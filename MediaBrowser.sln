@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaBrowser", "MediaBrowser\MediaBrowser.csproj", "{299CD68E-1122-4ABB-BA26-283E331417BA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{47317A2D-29F2-4E48-A986-DDDA2467158E}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\nuget.exe = .nuget\nuget.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaBrowser.Model", "..\..\..\..\Visual Studio 2012\Projects\MBServer\MediaBrowser.Model\MediaBrowser.Model.csproj", "{7EEEB4BB-F3E8-48FC-B4C5-70F0FFF8329B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaBrowser.Shared", "MediaBrowser.Shared\MediaBrowser.Shared.csproj", "{2D3D6DCD-C00F-4E40-AF44-8975A2DF87A3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{299CD68E-1122-4ABB-BA26-283E331417BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{299CD68E-1122-4ABB-BA26-283E331417BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{299CD68E-1122-4ABB-BA26-283E331417BA}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{299CD68E-1122-4ABB-BA26-283E331417BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{299CD68E-1122-4ABB-BA26-283E331417BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{299CD68E-1122-4ABB-BA26-283E331417BA}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{7EEEB4BB-F3E8-48FC-B4C5-70F0FFF8329B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7EEEB4BB-F3E8-48FC-B4C5-70F0FFF8329B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7EEEB4BB-F3E8-48FC-B4C5-70F0FFF8329B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7EEEB4BB-F3E8-48FC-B4C5-70F0FFF8329B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D3D6DCD-C00F-4E40-AF44-8975A2DF87A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D3D6DCD-C00F-4E40-AF44-8975A2DF87A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D3D6DCD-C00F-4E40-AF44-8975A2DF87A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D3D6DCD-C00F-4E40-AF44-8975A2DF87A3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
