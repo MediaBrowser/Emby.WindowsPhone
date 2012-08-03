@@ -10,6 +10,7 @@ using System.Linq;
 using System.Windows;
 using MediaBrowser.Model.Entities;
 using System.Collections.Generic;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace MediaBrowser.ViewModel
 {
@@ -25,6 +26,7 @@ namespace MediaBrowser.ViewModel
     public class MainViewModel : ViewModelBase
     {
         private INavigationService NavService;
+        private bool hasLoaded;
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
@@ -41,7 +43,7 @@ namespace MediaBrowser.ViewModel
                 NavService = navService;                
                 WireCommands();
                 App.Settings.HostName = "192.168.0.2"; App.Settings.PortNo = "8096";
-                App.Settings.LoggedInUser = new Model.Users.User { Id = new Guid("47f733aa20be4e97998636c4a26325de") };
+                App.Settings.LoggedInUser = new Model.Users.User { Id = new Guid("c0eeed038863422d9efc61d4b65506fc") };
             }
         }
 
@@ -49,7 +51,7 @@ namespace MediaBrowser.ViewModel
         {
             PageLoaded = new RelayCommand(async () =>
             {
-                if (NavService.IsNetworkAvailable && App.Settings.CheckHostAndPort())
+                if (NavService.IsNetworkAvailable && App.Settings.CheckHostAndPort() && !hasLoaded)
                 {
                     ProgressIsVisible = true;
                     ProgressText = "Loading folders...";
@@ -59,6 +61,7 @@ namespace MediaBrowser.ViewModel
                     {
                         string folderjson = await new GZipWebClient().DownloadStringTaskAsync(url);
                         var item = JsonConvert.DeserializeObject<ApiBaseItemWrapper<ApiBaseItem>>(folderjson);
+                        Folders.Clear();
                         item.Children.ToList().ForEach(folder => Folders.Add(folder));
                     }
                     catch {}
@@ -66,6 +69,7 @@ namespace MediaBrowser.ViewModel
                     {
                         string recentjson = await new GZipWebClient().DownloadStringTaskAsync(recentUrl);
                         var recent = JsonConvert.DeserializeObject<List<ApiBaseItemWrapper<Video>>>(recentjson);
+                        RecentItems.Clear();
                         recent.Take(6).ToList().ForEach(recentItem => RecentItems.Add(recentItem));
                     }
                     catch (Exception ex)
@@ -74,15 +78,18 @@ namespace MediaBrowser.ViewModel
                     }
                     
                     ProgressIsVisible = false;
+                    hasLoaded = true;
                 }
             });
 
-            NavigateToPage = new RelayCommand<string>(type =>
+            NavigateToPage = new RelayCommand<ApiBaseItemWrapper<ApiBaseItem>>(type =>
             {
-                switch (type.ToLower())
+                switch (type.Type.ToLower())
                 {
                     case "folder":
-
+                        if (((ViewModelLocator)App.Current.Resources["Locator"]).Folder != null)
+                            Messenger.Default.Send<NotificationMessage>(new NotificationMessage(type.Item, Constants.ShowFolderMsg));
+                        NavService.NavigateToPage("/Views/FolderView.xaml");
                         break;
                     case "movie":
 
@@ -107,7 +114,7 @@ namespace MediaBrowser.ViewModel
         public string ProgressText { get; set; }
 
         public RelayCommand PageLoaded { get; set; }
-        public RelayCommand<string> NavigateToPage { get; set; }
+        public RelayCommand<ApiBaseItemWrapper<ApiBaseItem>> NavigateToPage { get; set; }
         public ObservableCollection<ApiBaseItemWrapper<ApiBaseItem>> Folders { get; set; }
         public ObservableCollection<ApiBaseItemWrapper<Video>> RecentItems { get; set; }
     }

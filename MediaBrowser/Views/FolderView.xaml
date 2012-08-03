@@ -4,6 +4,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+    xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP71"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
@@ -16,7 +19,17 @@
     Orientation="Portrait"
     shell:SystemTray.IsVisible="True"
     DataContext="{Binding Folder, Source={StaticResource Locator}}">
-
+    <shell:SystemTray.ProgressIndicator>
+        <shell:ProgressIndicator IsIndeterminate="True"
+                                 Text="{Binding ProgressText}"
+                                 IsVisible="{Binding ProgressIsVisible}"/>
+    </shell:SystemTray.ProgressIndicator>
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <cmd:EventToCommand Command="{Binding PageLoaded}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    
     <Grid x:Name="LayoutRoot"
           Background="Transparent">
         <Grid.RowDefinitions>
@@ -29,10 +42,10 @@
                     Grid.Row="0"
                     Margin="12,17,0,28">
             <TextBlock x:Name="ApplicationTitle"
-                       Text="MY APPLICATION"
+                       Text="{Binding Source={StaticResource AppName}, Converter={StaticResource StringCaseConverter}, ConverterParameter=false}"
                        Style="{StaticResource PhoneTextNormalStyle}" />
             <TextBlock x:Name="PageTitle"
-                       Text="page name"
+                       Text="{Binding SelectedFolder.Name, Converter={StaticResource StringCaseConverter}}"
                        Margin="9,-7,0,0"
                        Style="{StaticResource PhoneTextTitle1Style}" />
         </StackPanel>
@@ -40,7 +53,24 @@
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel"
               Grid.Row="1"
-              Margin="12,0,12,0"></Grid>
+              Margin="12,0,12,0">
+            <toolkit:LongListSelector GroupHeaderTemplate="{Binding GroupHeaderTemplate}"
+                                      GroupItemTemplate="{StaticResource LLSGroupItemTemplate}"
+                                      ItemsSource="{Binding FolderGroupings}">
+                <toolkit:LongListSelector.GroupItemsPanel>
+                    <ItemsPanelTemplate>
+                        <toolkit:WrapPanel />
+                    </ItemsPanelTemplate>
+                </toolkit:LongListSelector.GroupItemsPanel>
+                
+                <toolkit:LongListSelector.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}"
+                                   Style="{StaticResource PhoneTextNormalStyle}"/>
+                    </DataTemplate>
+                </toolkit:LongListSelector.ItemTemplate>
+            </toolkit:LongListSelector>
+        </Grid>
     </Grid>
 
     <!--Sample code showing usage of ApplicationBar-->
