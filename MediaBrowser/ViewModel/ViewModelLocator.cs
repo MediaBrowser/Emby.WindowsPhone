@@ -43,7 +43,9 @@ namespace MediaBrowser.ViewModel
             }
 
             SimpleIoc.Default.Register<MainViewModel>();
-            SimpleIoc.Default.Register<FolderViewModel>();            
+            SimpleIoc.Default.Register<FolderViewModel>();      
+            SimpleIoc.Default.Register<MovieViewModel>();
+            SimpleIoc.Default.Register<TvViewModel>();
         }
 
         /// <summary>
@@ -54,10 +56,7 @@ namespace MediaBrowser.ViewModel
             Justification = "This non-static member is needed for data binding purposes.")]
         public MainViewModel Main
         {
-            get
-            {
-                return ServiceLocator.Current.GetInstance<MainViewModel>();
-            }
+            get { return ServiceLocator.Current.GetInstance<MainViewModel>(); }
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
@@ -65,10 +64,23 @@ namespace MediaBrowser.ViewModel
             Justification = "This non-static member is needed for data binding purposes.")]
         public FolderViewModel Folder
         {
-            get
-            {
-                return ServiceLocator.Current.GetInstance<FolderViewModel>();
-            }
+            get { return ServiceLocator.Current.GetInstance<FolderViewModel>(); }
+        }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
+            "CA1822:MarkMembersAsStatic",
+            Justification = "This non-static member is needed for data binding purposes.")]
+        public MovieViewModel Movie
+        {
+            get { return ServiceLocator.Current.GetInstance<MovieViewModel>(); }
+        }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
+            "CA1822:MarkMembersAsStatic",
+            Justification = "This non-static member is needed for data binding purposes.")]
+        public TvViewModel Tv
+        {
+            get { return ServiceLocator.Current.GetInstance<TvViewModel>(); }
         }
 
         /// <summary>
@@ -77,6 +89,9 @@ namespace MediaBrowser.ViewModel
         public static void Cleanup()
         {
             ServiceLocator.Current.GetInstance<MainViewModel>().Cleanup();
+            ServiceLocator.Current.GetInstance<FolderViewModel>().Cleanup();
+            ServiceLocator.Current.GetInstance<MovieViewModel>().Cleanup();
+            ServiceLocator.Current.GetInstance<TvViewModel>().Cleanup();
         }
     }
 }

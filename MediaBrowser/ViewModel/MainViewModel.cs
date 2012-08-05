@@ -33,10 +33,10 @@ namespace MediaBrowser.ViewModel
         public MainViewModel(INavigationService navService)
         {
             Folders = new ObservableCollection<ApiBaseItemWrapper<ApiBaseItem>>();
-            RecentItems = new ObservableCollection<ApiBaseItemWrapper<Video>>();
+            RecentItems = new ObservableCollection<ApiBaseItemWrapper<ApiBaseItem>>();
             if (IsInDesignMode)
             {
-                RecentItems.Add(new ApiBaseItemWrapper<Video> { Item = new Video { Id = new Guid("2fc6f321b5f8bbe842fcd0eed089561d"), Name = "A Night To Remember" } });
+                RecentItems.Add(new ApiBaseItemWrapper<ApiBaseItem> { Item = new ApiBaseItem() { Id = new Guid("2fc6f321b5f8bbe842fcd0eed089561d"), Name = "A Night To Remember" } });
             }
             else
             {
@@ -44,6 +44,14 @@ namespace MediaBrowser.ViewModel
                 WireCommands();
                 App.Settings.HostName = "192.168.0.2"; App.Settings.PortNo = "8096";
                 App.Settings.LoggedInUser = new Model.Users.User { Id = new Guid("c0eeed038863422d9efc61d4b65506fc") };
+                DummyFolder = new ApiBaseItemWrapper<ApiBaseItem>
+                                  {
+                                      Type= "folder",
+                                      Item = new ApiBaseItem
+                                                 {
+                                                     Name= "recent"
+                                                 }
+                                  };
             }
         }
 
@@ -68,9 +76,9 @@ namespace MediaBrowser.ViewModel
                     try
                     {
                         string recentjson = await new GZipWebClient().DownloadStringTaskAsync(recentUrl);
-                        var recent = JsonConvert.DeserializeObject<List<ApiBaseItemWrapper<Video>>>(recentjson);
+                        var recent = JsonConvert.DeserializeObject<List<ApiBaseItemWrapper<ApiBaseItem>>>(recentjson);
                         RecentItems.Clear();
-                        recent.Take(6).ToList().ForEach(recentItem => RecentItems.Add(recentItem));
+                        recent.OrderBy(x => x.Item.DateCreated).Take(6).ToList().ForEach(recentItem => RecentItems.Add(recentItem));
                     }
                     catch (Exception ex)
                     {
@@ -82,31 +90,7 @@ namespace MediaBrowser.ViewModel
                 }
             });
 
-            NavigateToPage = new RelayCommand<ApiBaseItemWrapper<ApiBaseItem>>(type =>
-            {
-                switch (type.Type.ToLower())
-                {
-                    case "folder":
-                        if (((ViewModelLocator)App.Current.Resources["Locator"]).Folder != null)
-                            Messenger.Default.Send<NotificationMessage>(new NotificationMessage(type.Item, Constants.ShowFolderMsg));
-                        NavService.NavigateToPage("/Views/FolderView.xaml");
-                        break;
-                    case "movie":
-
-                        break;
-                    case "series":
-
-                        break;
-                    case "season":
-
-                        break;
-                    case "episode":
-
-                        break;
-                    default:
-                        break;
-                }
-            });
+            NavigateToPage = new RelayCommand<ApiBaseItemWrapper<ApiBaseItem>>(NavService.NavigateTopage);
         }
 
         // UI properties
@@ -116,6 +100,7 @@ namespace MediaBrowser.ViewModel
         public RelayCommand PageLoaded { get; set; }
         public RelayCommand<ApiBaseItemWrapper<ApiBaseItem>> NavigateToPage { get; set; }
         public ObservableCollection<ApiBaseItemWrapper<ApiBaseItem>> Folders { get; set; }
-        public ObservableCollection<ApiBaseItemWrapper<Video>> RecentItems { get; set; }
+        public ObservableCollection<ApiBaseItemWrapper<ApiBaseItem>> RecentItems { get; set; }
+        public ApiBaseItemWrapper<ApiBaseItem> DummyFolder { get; set; }
     }
 }

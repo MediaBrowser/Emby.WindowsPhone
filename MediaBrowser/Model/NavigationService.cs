@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Navigation;
+using MediaBrowser.ViewModel;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Net.NetworkInformation;
 using GalaSoft.MvvmLight.Messaging;
+using MediaBrowser.Model.Entities;
 
 namespace MediaBrowser.Model
 {
@@ -64,13 +66,10 @@ namespace MediaBrowser.Model
         {
             get
             {
-                var result = NetworkInterface.GetIsNetworkAvailable();
+                var result = System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable();
                 if (!result || NetworkInterface.NetworkInterfaceType == NetworkInterfaceType.None)
                 {
-                    Deployment.Current.Dispatcher.BeginInvoke(() =>
-                    {
-                        App.ShowMessage("", "No network connection available");
-                    });
+                    Deployment.Current.Dispatcher.BeginInvoke(() => App.ShowMessage("", "No network connection available"));
                 }
                 return result;
             }
@@ -85,6 +84,37 @@ namespace MediaBrowser.Model
                     var root = Application.Current.RootVisual as PhoneApplicationFrame;
                     root.Navigate(new Uri(link, UriKind.Relative));
                 }
+            }
+        }
+
+
+        public void NavigateTopage(ApiBaseItemWrapper<ApiBaseItem> item)
+        {
+            switch (item.Type.ToLower())
+            {
+                case "folder":
+                    if (((ViewModelLocator)Application.Current.Resources["Locator"]).Folder != null)
+                        Messenger.Default.Send<NotificationMessage>(new NotificationMessage(item.Item, Constants.ShowFolderMsg));
+                    NavigateToPage("/Views/FolderView.xaml");
+                    break;
+                case "movie":
+                    if(((ViewModelLocator)Application.Current.Resources["Locator"]).Movie != null)
+                        Messenger.Default.Send<NotificationMessage>(new NotificationMessage(item, Constants.ShowMovieMsg));
+                    NavigateToPage("/Views/MovieView.xaml");
+                    break;
+                case "series":
+                    if(((ViewModelLocator)Application.Current.Resources["Locator"]).Tv != null)
+                        Messenger.Default.Send<NotificationMessage>(new NotificationMessage(item, Constants.ShowTvSeries));
+                    NavigateToPage("/Views/TvShowView.xaml");
+                    break;
+                case "season":
+
+                    break;
+                case "episode":
+
+                    break;
+                default:
+                    break;
             }
         }
     }

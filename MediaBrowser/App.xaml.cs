@@ -57,6 +57,8 @@ namespace MediaBrowser
             // Phone-specific initialization
             InitializePhoneApplication();
 
+            ThemeManager.OverrideTheme(Theme.Light);
+
             // Show graphics profiling information while debugging.
             if (System.Diagnostics.Debugger.IsAttached)
             {

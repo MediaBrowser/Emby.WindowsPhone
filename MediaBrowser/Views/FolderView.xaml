@@ -7,29 +7,52 @@
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
     xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP71"
+    xmlns:delay="clr-namespace:Delay"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     d:DesignWidth="480"
-    d:DesignHeight="768"
+    d:DesignHeight="696"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait"
     Orientation="Portrait"
     shell:SystemTray.IsVisible="True"
+    toolkit:TiltEffect.IsTiltEnabled="True"
     DataContext="{Binding Folder, Source={StaticResource Locator}}">
     <shell:SystemTray.ProgressIndicator>
         <shell:ProgressIndicator IsIndeterminate="True"
                                  Text="{Binding ProgressText}"
-                                 IsVisible="{Binding ProgressIsVisible}"/>
+                                 IsVisible="{Binding ProgressIsVisible}" />
     </shell:SystemTray.ProgressIndicator>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
-            <cmd:EventToCommand Command="{Binding PageLoaded}"/>
+            <cmd:EventToCommand Command="{Binding PageLoaded}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
-    
+
+    <toolkit:TransitionService.NavigationInTransition>
+        <toolkit:NavigationInTransition>
+            <toolkit:NavigationInTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardIn" />
+            </toolkit:NavigationInTransition.Backward>
+            <toolkit:NavigationInTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardIn" />
+            </toolkit:NavigationInTransition.Forward>
+        </toolkit:NavigationInTransition>
+    </toolkit:TransitionService.NavigationInTransition>
+    <toolkit:TransitionService.NavigationOutTransition>
+        <toolkit:NavigationOutTransition>
+            <toolkit:NavigationOutTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardOut" />
+            </toolkit:NavigationOutTransition.Backward>
+            <toolkit:NavigationOutTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardOut" />
+            </toolkit:NavigationOutTransition.Forward>
+        </toolkit:NavigationOutTransition>
+    </toolkit:TransitionService.NavigationOutTransition>
+
     <Grid x:Name="LayoutRoot"
           Background="Transparent">
         <Grid.RowDefinitions>
@@ -55,18 +78,28 @@
               Grid.Row="1"
               Margin="12,0,12,0">
             <toolkit:LongListSelector GroupHeaderTemplate="{Binding GroupHeaderTemplate}"
-                                      GroupItemTemplate="{StaticResource LLSGroupItemTemplate}"
-                                      ItemsSource="{Binding FolderGroupings}">
-                <toolkit:LongListSelector.GroupItemsPanel>
-                    <ItemsPanelTemplate>
-                        <toolkit:WrapPanel />
-                    </ItemsPanelTemplate>
-                </toolkit:LongListSelector.GroupItemsPanel>
-                
+                                      GroupItemTemplate="{Binding GroupItemTemplate}"
+                                      ItemsSource="{Binding FolderGroupings}"
+                                      GroupItemsPanel="{Binding ItemsPanelTemplate}">
                 <toolkit:LongListSelector.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding Name}"
-                                   Style="{StaticResource PhoneTextNormalStyle}"/>
+                        <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                         HorizontalContentAlignment="Left"
+                                         Margin="12,6,0,6"
+                                         Command="{Binding Folder.NavigateToPage, Source={StaticResource Locator}}"
+                                         CommandParameter="{Binding}">
+                            <StackPanel Orientation="Horizontal"
+                                        DataContext="{Binding Item}">
+                                <delay:PlaceImage PlaceholderSource="/Images/MBLogo.png"
+                                                  Source="{Binding Converter={StaticResource ImageUrlConverter}, ConverterParameter=icon}"
+                                                  Height="75"
+                                                  Width="75"
+                                                  Stretch="UniformToFill"/>
+                                <TextBlock Text="{Binding Name}"
+                                           Style="{StaticResource PhoneTextLargeStyle}"
+                                           VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </HyperlinkButton>
                     </DataTemplate>
                 </toolkit:LongListSelector.ItemTemplate>
             </toolkit:LongListSelector>
@@ -74,15 +107,14 @@
     </Grid>
 
     <!--Sample code showing usage of ApplicationBar-->
-    <!--<phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button1.png" Text="Button 1"/>
-            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button2.png" Text="Button 2"/>
-            <shell:ApplicationBar.MenuItems>
-                <shell:ApplicationBarMenuItem Text="MenuItem 1"/>
-                <shell:ApplicationBarMenuItem Text="MenuItem 2"/>
-            </shell:ApplicationBar.MenuItems>
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True"
+                              IsMenuEnabled="True">
+            <shell:ApplicationBarIconButton x:Name="btnChangeGrouping"
+                                            IconUri="/Icons/appbar.group.png"
+                                            Text="group by"
+                                            Click="btnChangeGrouping_Click" />
         </shell:ApplicationBar>
-    </phone:PhoneApplicationPage.ApplicationBar>-->
+    </phone:PhoneApplicationPage.ApplicationBar>
 
 </phone:PhoneApplicationPage>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Navigation;
+using MediaBrowser.Model.Entities;
 
 namespace MediaBrowser.Model
 {
@@ -11,5 +12,6 @@ namespace MediaBrowser.Model
         void GoBack();
         bool IsNetworkAvailable { get; }
         void NavigateToPage(string link);
+        void NavigateTopage(ApiBaseItemWrapper<ApiBaseItem> item);
     }
 }

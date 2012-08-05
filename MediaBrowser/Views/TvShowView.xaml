@@ -1,0 +1,120 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="MediaBrowser.Views.TvShowView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+    xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP71"
+    xmlns:scott="clr-namespace:ScottIsAFool.WindowsPhone.Controls;assembly=ScottIsAFool.WindowsPhone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:delay="clr-namespace:Delay"
+    mc:Ignorable="d"
+    d:DesignWidth="480"
+    d:DesignHeight="768"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait"
+    Orientation="Portrait"
+    shell:SystemTray.IsVisible="True"
+    shell:SystemTray.Opacity="0"
+    toolkit:TiltEffect.IsTiltEnabled="True"
+    DataContext="{Binding Tv, Source={StaticResource Locator}}">
+    <shell:SystemTray.ProgressIndicator>
+        <shell:ProgressIndicator IsIndeterminate="True"
+                                 IsVisible="{Binding ProgressIsVisible}"
+                                 Text="{Binding ProgressText}" />
+    </shell:SystemTray.ProgressIndicator>
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <cmd:EventToCommand Command="{Binding TvSeriesPageLoaded}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <toolkit:TransitionService.NavigationInTransition>
+        <toolkit:NavigationInTransition>
+            <toolkit:NavigationInTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardIn" />
+            </toolkit:NavigationInTransition.Backward>
+            <toolkit:NavigationInTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardIn" />
+            </toolkit:NavigationInTransition.Forward>
+        </toolkit:NavigationInTransition>
+    </toolkit:TransitionService.NavigationInTransition>
+    <toolkit:TransitionService.NavigationOutTransition>
+        <toolkit:NavigationOutTransition>
+            <toolkit:NavigationOutTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardOut" />
+            </toolkit:NavigationOutTransition.Backward>
+            <toolkit:NavigationOutTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardOut" />
+            </toolkit:NavigationOutTransition.Forward>
+        </toolkit:NavigationOutTransition>
+    </toolkit:TransitionService.NavigationOutTransition>
+
+    <Grid x:Name="LayoutRoot"
+          Background="Transparent">
+        <controls:Panorama Title="{Binding SelectedTvSeries.Item.Name, Converter={StaticResource StringCaseConverter}}"
+                           x:Name="MainPanorama">
+            <controls:PanoramaItem Header="seasons">
+                <Grid>
+                    <scott:PhoneListBox ItemsSource="{Binding Seasons}"
+                                        Text="No seasons found"
+                                        TextHorizontalAlignment="Center"
+                                        TextVerticalAlignment="Top"
+                                        TextStyle="{StaticResource PhoneTextLargeStyle}">
+                        <scott:PhoneListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <toolkit:WrapPanel Width="420"
+                                                   ItemHeight="200"
+                                                   ItemWidth="200" />
+                            </ItemsPanelTemplate>
+                        </scott:PhoneListBox.ItemsPanel>
+                        <scott:PhoneListBox.ItemTemplate>
+                            <DataTemplate>
+                                <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                                 Margin="6">
+                                    <Grid DataContext="{Binding Item}">
+                                        <delay:PlaceImage PlaceholderSource="/Images/MBLogo.png"
+                                                          Source="{Binding Converter={StaticResource ImageUrlConverter}}"
+                                                          Height="173"
+                                                          MaxWidth="120"/>
+                                        <Border Background="#C4000000"
+                                                VerticalAlignment="Bottom">
+                                            <TextBlock Text="{Binding Name}"
+                                                       Style="{StaticResource PhoneTextNormalStyle}"
+                                                       FontWeight="Bold"
+                                                       TextWrapping="Wrap"
+                                                       Foreground="White" />
+                                        </Border>
+                                    </Grid>
+                                </HyperlinkButton>
+                            </DataTemplate>
+                        </scott:PhoneListBox.ItemTemplate>
+                    </scott:PhoneListBox>
+                </Grid>
+            </controls:PanoramaItem>
+            
+            <controls:PanoramaItem Header="details">
+                
+            </controls:PanoramaItem>
+        </controls:Panorama>
+    </Grid>
+
+    <!--Sample code showing usage of ApplicationBar-->
+    <!--<phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button1.png" Text="Button 1"/>
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button2.png" Text="Button 2"/>
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="MenuItem 1"/>
+                <shell:ApplicationBarMenuItem Text="MenuItem 2"/>
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>-->
+
+</phone:PhoneApplicationPage>

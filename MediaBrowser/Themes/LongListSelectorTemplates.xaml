@@ -1,0 +1,78 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit">
+
+    <!-- DataTemplates-->
+    <DataTemplate x:Key="LLSGroupHeaderTemplateName">
+        <Grid Margin="12,0,0,0">
+            <Grid HorizontalAlignment="Left"
+                  Width="75"
+                  Height="75">
+                <Border BorderThickness="1"
+                        Background="{StaticResource PhoneAccentBrush}">
+                    <Border.BorderBrush>
+                        <SolidColorBrush Color="{StaticResource PhoneAccentColor}" />
+                    </Border.BorderBrush>
+                </Border>
+                <TextBlock Margin="12,0,0,10"
+                           VerticalAlignment="Bottom"
+                           TextWrapping="Wrap"
+                           Foreground="White"
+                           Style="{StaticResource PhoneTextLargeStyle}"
+                           Text="{Binding Title}" />
+            </Grid>
+        </Grid>
+    </DataTemplate>
+    
+    <DataTemplate x:Key="LLSGroupItemTemplate">
+        <Border Background="{Binding GroupBackgroundBrush}"
+                Width="99"
+                Height="99"
+                Margin="6"
+                IsHitTestVisible="{Binding HasItems}">
+            <TextBlock Text="{Binding Title}"
+                       FontSize="36"
+                       Margin="{StaticResource PhoneTouchTargetOverhang}"
+                       Foreground="{StaticResource PhoneForegroundBrush}" />
+        </Border>
+    </DataTemplate>
+    
+    <DataTemplate x:Key="LLSGroupItemTemplateLong">
+        <Border Background="{Binding GroupBackgroundBrush}"
+                Width="450"
+                Height="99"
+                Margin="6"
+                IsHitTestVisible="{Binding HasItems}">
+            <TextBlock Text="{Binding Title}"
+                       FontSize="36"
+                       Margin="{StaticResource PhoneTouchTargetOverhang}"
+                       Foreground="{StaticResource PhoneForegroundBrush}" />
+        </Border>
+    </DataTemplate>
+    
+    <DataTemplate x:Key="LLSGroupHeaderTemplateLong">
+        <Grid Margin="12,0,0,0">
+            <Grid HorizontalAlignment="Left"
+                  Width="450"
+                  Height="50"
+                  Background="{StaticResource PhoneAccentBrush}">
+                <TextBlock Margin="12,0,0,10"
+                           VerticalAlignment="Bottom"
+                           TextWrapping="Wrap"
+                           Foreground="White"
+                           Style="{StaticResource PhoneTextLargeStyle}"
+                           Text="{Binding Title}" />
+            </Grid>
+        </Grid>
+    </DataTemplate>
+
+    <!-- ItemsPanelTemplates-->
+    <ItemsPanelTemplate x:Key="WrapPanelTemplate">
+        <toolkit:WrapPanel />
+    </ItemsPanelTemplate>
+
+    <ItemsPanelTemplate x:Key="StackPanelVerticalTemplate">
+        <StackPanel Orientation="Vertical" />
+    </ItemsPanelTemplate>
+
+</ResourceDictionary>
