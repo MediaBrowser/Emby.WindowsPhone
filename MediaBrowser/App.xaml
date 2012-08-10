@@ -11,7 +11,8 @@
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:scottConverters="clr-namespace:ScottIsAFool.WindowsPhone.Converters;assembly=ScottIsAFool.WindowsPhone"
              xmlns:converters="clr-namespace:MediaBrowser.Converters"
-             xmlns:model="clr-namespace:MediaBrowser.Model;assembly=MediaBrowser.Shared">
+             xmlns:model="clr-namespace:MediaBrowser.Model;assembly=MediaBrowser.Shared"
+             xmlns:delay="clr-namespace:Delay">
 
     <Application.Resources>
     	<ResourceDictionary>
@@ -56,8 +57,30 @@
     			</Setter>
     		</Style>
 
-    		
-    	</ResourceDictionary>
+    		<!-- DataTemplates -->
+            <DataTemplate x:Key="TileItemStyle">
+                <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                 Command="{Binding Main.NavigateToPage, Source={StaticResource Locator}}"
+                                 CommandParameter="{Binding}">
+                    <Grid MaxWidth="173"
+                          DataContext="{Binding Item}">
+                        <delay:PlaceImage PlaceholderSource="/Images/MBLogo.png"
+                                          Source="{Binding Converter={StaticResource ImageUrlConverter}}"
+                                          Width="173"
+                                          Height="173"
+                                          Stretch="UniformToFill" />
+                        <Border Background="#C4000000"
+                                VerticalAlignment="Bottom">
+                            <TextBlock Text="{Binding Name}"
+                                       Style="{StaticResource PhoneTextNormalStyle}"
+                                       FontWeight="Bold"
+                                       TextWrapping="Wrap"
+                                       Foreground="White" />
+                        </Border>
+                    </Grid>
+                </HyperlinkButton>
+            </DataTemplate>
+        </ResourceDictionary>
     </Application.Resources>
 
     <Application.ApplicationLifetimeObjects>

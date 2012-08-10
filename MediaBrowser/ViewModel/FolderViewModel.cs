@@ -1,4 +1,6 @@
-﻿using System.Windows.Controls;
+﻿using System;
+using System.Threading.Tasks;
+using System.Windows.Controls;
 using GalaSoft.MvvmLight;
 using MediaBrowser.Model;
 using GalaSoft.MvvmLight.Command;
@@ -77,45 +79,63 @@ namespace MediaBrowser.ViewModel
                     {
                         ProgressIsVisible = true;
                         ProgressText = "Getting items...";
-                        string url;
-                        if(SelectedFolder.Name.Equals("recent"))
-                        {
-                            url = string.Format(App.Settings.ApiUrl + "recentlyaddeditems?userid={0}",
-                                                App.Settings.LoggedInUser.Id);
-                        }
-                        else
-                        {
-                            url = string.Format(App.Settings.ApiUrl + "item?userid={0}&id={1}",
-                                                App.Settings.LoggedInUser.Id, SelectedFolder.Id);
-                        }
-                        string folderJson;
-                        try
-                        {
-                            folderJson = await new GZipWebClient().DownloadStringTaskAsync(url);
-                        }
-                        catch
-                        {
-                            App.ShowMessage("", "Error downloading information");
-                            return;
-                        }
-                        if(SelectedFolder.Name.Equals("recent"))
-                        {
-                            var folder = JsonConvert.DeserializeObject<List<ApiBaseItemWrapper<ApiBaseItem>>>(folderJson);
-                            CurrentItems = folder;
-                        }
-                        else
-                        {
-                            var folder = JsonConvert.DeserializeObject<ApiBaseItemWrapper<ApiBaseItem>>(folderJson);
-                            CurrentItems = folder.Children.ToList();                            
-                        }
+
+                        dataLoaded = await GetRecent();
+
                         SortList();
                         ProgressIsVisible = false;
-                        dataLoaded = true;
                     }
                 }
             });
 
             NavigateToPage = new RelayCommand<ApiBaseItemWrapper<ApiBaseItem>>(NavService.NavigateTopage);
+        }
+
+        private async Task<bool> GetRecent()
+        {
+            bool result = false;
+
+            string url;
+            if (SelectedFolder.Name.Contains("recent"))
+            {
+                url = string.Format(App.Settings.ApiUrl + "recentlyaddeditems?userid={0}",
+                                    App.Settings.LoggedInUser.Id);
+                if (SelectedFolder.Id != Guid.Empty)
+                {
+                    url += "&id=" + SelectedFolder.Id;
+                }
+            }
+            else
+            {
+                url = string.Format(App.Settings.ApiUrl + "item?userid={0}&id={1}",
+                                    App.Settings.LoggedInUser.Id, SelectedFolder.Id);
+            }
+            string folderJson = string.Empty;
+            try
+            {
+                folderJson = await new GZipWebClient().DownloadStringTaskAsync(url);
+            }
+            catch
+            {
+                App.ShowMessage("", "Error downloading information");
+            }
+            if (!string.IsNullOrEmpty(folderJson))
+            {
+                if (SelectedFolder.Name.Contains("recent"))
+                {
+                    var folder = JsonConvert.DeserializeObject<List<ApiBaseItemWrapper<ApiBaseItem>>>(folderJson);
+                    CurrentItems = folder;
+                    result = true;
+                }
+                else
+                {
+                    var folder = JsonConvert.DeserializeObject<ApiBaseItemWrapper<ApiBaseItem>>(folderJson);
+                    CurrentItems = folder.Children.ToList();
+                    result = true;
+                }
+            }
+
+            return result;
         }
 
         private void SortList()

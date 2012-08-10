@@ -77,7 +77,9 @@
                         <scott:PhoneListBox.ItemTemplate>
                             <DataTemplate>
                                 <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                                 Margin="6">
+                                                 Margin="6"
+                                                 Command="{Binding Tv.NavigateToPage, Source={StaticResource Locator}}"
+                                                 CommandParameter="{Binding}">
                                     <Grid DataContext="{Binding Item}">
                                         <delay:PlaceImage PlaceholderSource="/Images/MBLogo.png"
                                                           Source="{Binding Converter={StaticResource ImageUrlConverter}}"
@@ -96,6 +98,43 @@
                             </DataTemplate>
                         </scott:PhoneListBox.ItemTemplate>
                     </scott:PhoneListBox>
+                </Grid>
+            </controls:PanoramaItem>
+            
+            <controls:PanoramaItem Header="recent"
+                                   Orientation="Horizontal">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="420" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <scott:PhoneListBox ItemsSource="{Binding RecentItems}"
+                                        Text="No items found"
+                                        TextHorizontalAlignment="Center"
+                                        TextVerticalAlignment="Top"
+                                        TextStyle="{StaticResource PhoneTextLargeStyle}"
+                                        ItemTemplate="{StaticResource TileItemStyle}"
+                                        Grid.Row="0"
+                                        x:Name="lbRecentItems">
+                        <scott:PhoneListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <toolkit:WrapPanel ItemHeight="200"
+                                                   ItemWidth="200"
+                                                   Width="610" />
+                            </ItemsPanelTemplate>
+                        </scott:PhoneListBox.ItemsPanel>
+                    </scott:PhoneListBox>
+
+                    <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                     DataContext="{Binding DummyFolder}"
+                                     Command="{Binding Tv.NavigateToPage, Source={StaticResource Locator}}"
+                                     CommandParameter="{Binding}"
+                                     Grid.Row="1"
+                                     HorizontalContentAlignment="Left"
+                                     Visibility="{Binding Path=Items.Count, ElementName=lbRecentItems, Converter={StaticResource IntToVisibilityConverter}, ConverterParameter=false}">
+                        <TextBlock Text="more..."
+                                   Style="{StaticResource PhoneTextLargeStyle}" />
+                    </HyperlinkButton>
                 </Grid>
             </controls:PanoramaItem>
             

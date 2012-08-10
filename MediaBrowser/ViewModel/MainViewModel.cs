@@ -11,6 +11,7 @@ using System.Windows;
 using MediaBrowser.Model.Entities;
 using System.Collections.Generic;
 using GalaSoft.MvvmLight.Messaging;
+using System.Threading.Tasks;
 
 namespace MediaBrowser.ViewModel
 {
@@ -63,34 +64,71 @@ namespace MediaBrowser.ViewModel
                 {
                     ProgressIsVisible = true;
                     ProgressText = "Loading folders...";
-                    string url = App.Settings.ApiUrl + "item?userid=" + App.Settings.LoggedInUser.Id;
-                    string recentUrl = App.Settings.ApiUrl + "recentlyaddeditems?userid=" + App.Settings.LoggedInUser.Id;
-                    try
-                    {
-                        string folderjson = await new GZipWebClient().DownloadStringTaskAsync(url);
-                        var item = JsonConvert.DeserializeObject<ApiBaseItemWrapper<ApiBaseItem>>(folderjson);
-                        Folders.Clear();
-                        item.Children.ToList().ForEach(folder => Folders.Add(folder));
-                    }
-                    catch {}
-                    try
-                    {
-                        string recentjson = await new GZipWebClient().DownloadStringTaskAsync(recentUrl);
-                        var recent = JsonConvert.DeserializeObject<List<ApiBaseItemWrapper<ApiBaseItem>>>(recentjson);
-                        RecentItems.Clear();
-                        recent.OrderBy(x => x.Item.DateCreated).Take(6).ToList().ForEach(recentItem => RecentItems.Add(recentItem));
-                    }
-                    catch (Exception ex)
-                    {
-                        App.ShowMessage("", "Error connecting to service");
-                    }
-                    
+
+                    bool folderLoaded = await GetFolders();
+
+                    ProgressText = "Getting recent items...";
+
+                    bool recentLoaded = await GetRecent();
+
+                    hasLoaded = (folderLoaded && recentLoaded);
                     ProgressIsVisible = false;
                     hasLoaded = true;
                 }
             });
 
             NavigateToPage = new RelayCommand<ApiBaseItemWrapper<ApiBaseItem>>(NavService.NavigateTopage);
+        }
+
+        private async Task<bool> GetRecent()
+        {
+            bool result = false;
+
+            string recentUrl = App.Settings.ApiUrl + "recentlyaddeditems?userid=" + App.Settings.LoggedInUser.Id;
+            string recentjson = string.Empty;
+            try
+            {
+                recentjson = await new GZipWebClient().DownloadStringTaskAsync(recentUrl);
+            }
+            catch (Exception ex)
+            {
+                App.ShowMessage("", "Error connecting to service");
+            }
+            if (!string.IsNullOrEmpty(recentjson))
+            {
+                var recent = JsonConvert.DeserializeObject<List<ApiBaseItemWrapper<ApiBaseItem>>>(recentjson);
+                RecentItems.Clear();
+                recent.OrderBy(x => x.Item.DateCreated).Take(6).ToList().ForEach(recentItem => RecentItems.Add(recentItem));
+                result = true;
+            }
+
+            return result;
+        }
+
+        private async Task<bool> GetFolders()
+        {
+            bool result = false;
+
+            string url = App.Settings.ApiUrl + "item?userid=" + App.Settings.LoggedInUser.Id;
+            string folderjson = string.Empty;
+            try
+            {
+                folderjson = await new GZipWebClient().DownloadStringTaskAsync(url);
+            }
+            catch (Exception exe)
+            {
+                App.ShowMessage("", "Error connecting to service1");
+            }
+
+            if (!string.IsNullOrEmpty(folderjson))
+            {
+                var item = JsonConvert.DeserializeObject<ApiBaseItemWrapper<ApiBaseItem>>(folderjson);
+                Folders.Clear();
+                item.Children.ToList().ForEach(folder => Folders.Add(folder));
+                result = true;
+            }
+
+            return result;
         }
 
         // UI properties

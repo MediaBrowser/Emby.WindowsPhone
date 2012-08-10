@@ -108,7 +108,9 @@ namespace MediaBrowser.Model
                     NavigateToPage("/Views/TvShowView.xaml");
                     break;
                 case "season":
-
+                    if(((ViewModelLocator)Application.Current.Resources["Locator"]).Tv != null)
+                        Messenger.Default.Send<NotificationMessage>(new NotificationMessage(item, Constants.ShowSeasonMsg));
+                    NavigateToPage("/Views/SeasonView.xaml");
                     break;
                 case "episode":
 

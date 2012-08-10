@@ -12,5 +12,6 @@ namespace MediaBrowser
         public const string ShowMovieMsg = "ShowMovieMsg";
         public const string ShowTvSeries = "ShowTvSeries";
         public const string ClearFilmAndTvMsg = "ClearFilmAndTVMsg";
+        public const string ShowSeasonMsg = "ShowSeasonMsg";
     }
 }
