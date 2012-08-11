@@ -3,7 +3,7 @@ using Microsoft.Phone.Controls;
 using ScottIsAFool.WindowsPhone.Tools;
 using GalaSoft.MvvmLight.Messaging;
 
-namespace MediaBrowser.Views
+namespace MediaBrowser.WindowsPhone.Views
 {
     /// <summary>
     /// Description for FolderView.

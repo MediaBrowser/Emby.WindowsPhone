@@ -1,11 +1,11 @@
 ﻿using System;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using MediaBrowser.Model;
+using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.Model.Entities;
 using GalaSoft.MvvmLight.Messaging;
 
-namespace MediaBrowser.ViewModel
+namespace MediaBrowser.WindowsPhone.ViewModel
 {
     /// <summary>
     /// This class contains properties that a View can data bind to.

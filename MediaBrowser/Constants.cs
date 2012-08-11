@@ -1,5 +1,5 @@
 ﻿
-namespace MediaBrowser
+namespace MediaBrowser.WindowsPhone
 {
     public class Constants
     {

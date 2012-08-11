@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using GalaSoft.MvvmLight;
-using MediaBrowser.Model;
+using MediaBrowser.WindowsPhone.Model;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model.Entities;
@@ -14,7 +14,7 @@ using Newtonsoft.Json;
 using System.Linq;
 using System.Windows;
 
-namespace MediaBrowser.ViewModel
+namespace MediaBrowser.WindowsPhone.ViewModel
 {
     /// <summary>
     /// This class contains properties that a View can data bind to.

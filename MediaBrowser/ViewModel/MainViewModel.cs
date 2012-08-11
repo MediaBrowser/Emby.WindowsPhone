@@ -1,5 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
-using MediaBrowser.Model;
+using MediaBrowser.WindowsPhone.Model;
 using System.Net;
 using Newtonsoft.Json;
 using GalaSoft.MvvmLight.Command;
@@ -12,8 +12,9 @@ using MediaBrowser.Model.Entities;
 using System.Collections.Generic;
 using GalaSoft.MvvmLight.Messaging;
 using System.Threading.Tasks;
+using MediaBrowser.Model.Users;
 
-namespace MediaBrowser.ViewModel
+namespace MediaBrowser.WindowsPhone.ViewModel
 {
     /// <summary>
     /// This class contains properties that the main View can data bind to.
@@ -44,7 +45,7 @@ namespace MediaBrowser.ViewModel
                 NavService = navService;                
                 WireCommands();
                 App.Settings.HostName = "192.168.0.2"; App.Settings.PortNo = "8096";
-                App.Settings.LoggedInUser = new Model.Users.User { Id = new Guid("c0eeed038863422d9efc61d4b65506fc") };
+                App.Settings.LoggedInUser = new User { Id = new Guid("c0eeed038863422d9efc61d4b65506fc") };
                 DummyFolder = new ApiBaseItemWrapper<ApiBaseItem>
                                   {
                                       Type= "folder",

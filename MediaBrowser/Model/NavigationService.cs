@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Navigation;
-using MediaBrowser.ViewModel;
+using MediaBrowser.WindowsPhone.ViewModel;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Net.NetworkInformation;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model.Entities;
 
-namespace MediaBrowser.Model
+namespace MediaBrowser.WindowsPhone.Model
 {
     public class NavigationService : INavigationService
     {

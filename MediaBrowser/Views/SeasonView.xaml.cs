@@ -1,6 +1,6 @@
 ﻿using Microsoft.Phone.Controls;
 
-namespace MediaBrowser.Views
+namespace MediaBrowser.WindowsPhone.Views
 {
     /// <summary>
     /// Description for SeasonView.

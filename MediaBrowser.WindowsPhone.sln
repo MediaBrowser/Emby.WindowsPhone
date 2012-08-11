@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaBrowser", "MediaBrowser\MediaBrowser.csproj", "{299CD68E-1122-4ABB-BA26-283E331417BA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaBrowser.WindowsPhone", "MediaBrowser\MediaBrowser.WindowsPhone.csproj", "{299CD68E-1122-4ABB-BA26-283E331417BA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{47317A2D-29F2-4E48-A986-DDDA2467158E}"
 	ProjectSection(SolutionItems) = preProject

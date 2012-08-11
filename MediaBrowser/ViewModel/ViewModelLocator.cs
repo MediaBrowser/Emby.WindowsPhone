@@ -1,7 +1,7 @@
 ﻿/*
   In App.xaml:
   <Application.Resources>
-      <vm:ViewModelLocatorTemplate xmlns:vm="clr-namespace:MediaBrowser.ViewModel"
+      <vm:ViewModelLocatorTemplate xmlns:vm="clr-namespace:MediaBrowser.WindowsPhone.ViewModel"
                                    x:Key="Locator" />
   </Application.Resources>
   
@@ -12,9 +12,9 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
-using MediaBrowser.Model;
+using MediaBrowser.WindowsPhone.Model;
 
-namespace MediaBrowser.ViewModel
+namespace MediaBrowser.WindowsPhone.ViewModel
 {
     /// <summary>
     /// This class contains static references to all the view models in the

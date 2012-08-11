@@ -1,6 +1,6 @@
 ﻿using MediaBrowser.Model.Users;
 
-namespace MediaBrowser.Model
+namespace MediaBrowser.WindowsPhone.Model
 {
     public interface ISettingsService
     {

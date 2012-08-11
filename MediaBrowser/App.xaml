@@ -1,4 +1,4 @@
-﻿<Application x:Class="MediaBrowser.App"
+﻿<Application x:Class="MediaBrowser.WindowsPhone.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
@@ -7,11 +7,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d"
-             xmlns:vm="clr-namespace:MediaBrowser.ViewModel"
+             xmlns:vm="clr-namespace:MediaBrowser.WindowsPhone.ViewModel"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:scottConverters="clr-namespace:ScottIsAFool.WindowsPhone.Converters;assembly=ScottIsAFool.WindowsPhone"
-             xmlns:converters="clr-namespace:MediaBrowser.Converters"
-             xmlns:model="clr-namespace:MediaBrowser.Model;assembly=MediaBrowser.Shared"
+             xmlns:converters="clr-namespace:MediaBrowser.WindowsPhone.Converters"
+             xmlns:model="clr-namespace:MediaBrowser.WindowsPhone.Model;assembly=MediaBrowser.Shared"
              xmlns:delay="clr-namespace:Delay">
 
     <Application.Resources>
@@ -24,7 +24,7 @@
     			d:IsDataSource="True" />
     		<model:SettingsService x:Key="Settings" />
 
-    		<sys:String x:Key="AppName">MediaBrowser</sys:String>
+    		<sys:String x:Key="AppName">MediaBrowser.WindowsPhone</sys:String>
 
     		<!-- Converters from ScottIsAFool.WindowsPhone.Converters -->
     		<scottConverters:VisibilityConverter x:Key="VisibilityConverter" />

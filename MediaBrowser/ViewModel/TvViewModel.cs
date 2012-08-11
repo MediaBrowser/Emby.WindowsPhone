@@ -2,7 +2,7 @@
 using System.Collections.ObjectModel;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using MediaBrowser.Model;
+using MediaBrowser.WindowsPhone.Model;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model.Entities;
 using Newtonsoft.Json;
@@ -10,7 +10,7 @@ using SharpGIS;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MediaBrowser.ViewModel
+namespace MediaBrowser.WindowsPhone.ViewModel
 {
     /// <summary>
     /// This class contains properties that a View can data bind to.
@@ -57,6 +57,7 @@ namespace MediaBrowser.ViewModel
             {
                 if(m.Notification.Equals(Constants.ShowTvSeries))
                 {
+                    showDataLoaded = false;
                     SelectedTvSeries = (ApiBaseItemWrapper<ApiBaseItem>) m.Sender;
                     DummyFolder = new ApiBaseItemWrapper<ApiBaseItem>
                     {
@@ -70,6 +71,7 @@ namespace MediaBrowser.ViewModel
                 }
                 else if(m.Notification.Equals(Constants.ShowSeasonMsg))
                 {
+                    seasonDataLoaded = false;
                     SelectedSeason = (ApiBaseItemWrapper<ApiBaseItem>) m.Sender;
                 }
                 else if(m.Notification.Equals(Constants.ClearFilmAndTvMsg))

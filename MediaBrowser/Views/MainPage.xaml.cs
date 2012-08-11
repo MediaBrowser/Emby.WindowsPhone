@@ -5,7 +5,7 @@ using SharpGIS;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 
-namespace MediaBrowser
+namespace MediaBrowser.WindowsPhone
 {
     public partial class MainPage : PhoneApplicationPage
     {

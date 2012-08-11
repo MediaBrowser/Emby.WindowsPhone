@@ -2,12 +2,12 @@
 using System.Windows;
 using System.Windows.Navigation;
 using Coding4Fun.Phone.Controls;
-using MediaBrowser.Model;
-using MediaBrowser.ViewModel;
+using MediaBrowser.WindowsPhone.Model;
+using MediaBrowser.WindowsPhone.ViewModel;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 
-namespace MediaBrowser
+namespace MediaBrowser.WindowsPhone
 {
     /// <summary>
     /// Interaction logic for App.xaml

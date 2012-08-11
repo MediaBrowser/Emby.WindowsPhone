@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Windows.Data;
-using MediaBrowser.ViewModel;
+using MediaBrowser.WindowsPhone.ViewModel;
 using MediaBrowser.Model.Entities;
 
-namespace MediaBrowser.Converters
+namespace MediaBrowser.WindowsPhone.Converters
 {
     public class ImageUrlConverter : IValueConverter
     {

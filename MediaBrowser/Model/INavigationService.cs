@@ -2,7 +2,7 @@
 using System.Windows.Navigation;
 using MediaBrowser.Model.Entities;
 
-namespace MediaBrowser.Model
+namespace MediaBrowser.WindowsPhone.Model
 {
     public interface INavigationService
     {
