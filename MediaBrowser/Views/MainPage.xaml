@@ -10,6 +10,7 @@
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:scott="clr-namespace:ScottIsAFool.WindowsPhone.Controls;assembly=ScottIsAFool.WindowsPhone"
     xmlns:delay="clr-namespace:Delay"
+    xmlns:bar="clr-namespace:BindableApplicationBar;assembly=BindableApplicationBar"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
@@ -19,7 +20,7 @@
     Orientation="Portrait"
     mc:Ignorable="d"
     d:DesignWidth="480"
-    d:DesignHeight="768"
+    d:DesignHeight="696"
     shell:SystemTray.IsVisible="True"
     shell:SystemTray.Opacity="0"
     toolkit:TiltEffect.IsTiltEnabled="True"
@@ -59,7 +60,17 @@
     <!--LayoutRoot contains the root grid where all other page content is placed-->
 	<Grid x:Name="LayoutRoot"
 	      Background="Transparent">
-        <controls:Panorama Title="{Binding Source={StaticResource AppName}, Converter={StaticResource StringCaseConverter}}"> 
+        <controls:Panorama Title="">
+            <controls:Panorama.TitleTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="media"
+                                   Foreground="Black"/>
+                        <TextBlock Text="browser"
+                                   Foreground="Green" />
+                    </StackPanel>
+                </DataTemplate>
+            </controls:Panorama.TitleTemplate>
             <controls:Panorama.Background>
                 <ImageBrush ImageSource="/Images/PanoBackground.png"/>
             </controls:Panorama.Background>
@@ -95,7 +106,7 @@
                                    Orientation="Horizontal">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="420" />
+                        <RowDefinition Height="410" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     <scott:PhoneListBox ItemsSource="{Binding RecentItems}"
@@ -105,6 +116,7 @@
                                         TextStyle="{StaticResource PhoneTextLargeStyle}"
                                         ItemTemplate="{StaticResource TileItemStyle}"
                                         Grid.Row="0"
+                                        Margin="12,0,0,0"
                                         x:Name="lbRecentItems">
                         <scott:PhoneListBox.ItemsPanel>
                             <ItemsPanelTemplate>
@@ -129,10 +141,19 @@
             </controls:PanoramaItem>
             
             <controls:PanoramaItem Header="now playing">
-                <TextBlock Text="Coming soon"
+                <TextBlock Text="Coming soozn"
                            Style="{StaticResource PhoneTextNormalStyle}"/>
             </controls:PanoramaItem>
         </controls:Panorama>
     </Grid>
+    
+    <bar:Bindable.ApplicationBar>
+        <bar:BindableApplicationBar Mode="Minimized" 
+                                    IsMenuEnabled="True">
+            <bar:BindableApplicationBar.MenuItems>
+                <bar:BindableApplicationBarMenuItem Text="refresh information" />
+            </bar:BindableApplicationBar.MenuItems>
+        </bar:BindableApplicationBar>
+    </bar:Bindable.ApplicationBar>
 
 </phone:PhoneApplicationPage>

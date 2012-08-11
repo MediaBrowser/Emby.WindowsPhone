@@ -28,20 +28,21 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             if(IsInDesignMode)
             {
                 SelectedMovie = new ApiBaseItemWrapper<ApiBaseItem>
-                                    {
-                                        Item = new ApiBaseItem
-                                                   {
-                                                       Id = new Guid("6536a66e10417d69105bae71d41a6e6f"),
-                                                       Name = "Jurassic Park",
-                                                       SortName = "Jurassic Park",
-                                                       Overview = "Lots of dinosaurs eating people!"
-                                                   }
-                                    };
+                {
+                    Item = new ApiBaseItem
+                    {
+                        Id = new Guid("6536a66e10417d69105bae71d41a6e6f"),
+                        Name = "Jurassic Park",
+                        SortName = "Jurassic Park",
+                        Overview = "Lots of dinosaurs eating people!"
+                    }
+                };
             }
             else
             {
                 WireCommands();
                 WireMessages();
+                Test = 6.9;
             }
         }
 
@@ -52,6 +53,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 if(m.Notification.Equals(Constants.ShowMovieMsg))
                 {
                     SelectedMovie = (ApiBaseItemWrapper<ApiBaseItem>) m.Sender;
+                    
                 }
                 else if(m.Notification.Equals(Constants.ClearFilmAndTvMsg))
                 {
@@ -70,6 +72,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public bool ProgressIsVisible { get; set; }
 
         public ApiBaseItemWrapper<ApiBaseItem> SelectedMovie { get; set; }
+        public double Test { get; set; }
 
         public RelayCommand<ApiBaseItemWrapper<ApiBaseItem>> NavigateTopage { get; set; }
     }

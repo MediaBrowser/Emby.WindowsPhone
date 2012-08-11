@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows.Data;
-using MediaBrowser.WindowsPhone.ViewModel;
 using MediaBrowser.Model.Entities;
 
 namespace MediaBrowser.WindowsPhone.Converters

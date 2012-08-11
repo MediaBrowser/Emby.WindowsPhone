@@ -1,4 +1,6 @@
-﻿using Microsoft.Phone.Controls;
+﻿using System.Windows.Navigation;
+using GalaSoft.MvvmLight.Messaging;
+using Microsoft.Phone.Controls;
 
 namespace MediaBrowser.WindowsPhone.Views
 {
@@ -13,6 +15,15 @@ namespace MediaBrowser.WindowsPhone.Views
         public SeasonView()
         {
             InitializeComponent();
+        }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            base.OnNavigatedFrom(e);
+            if(e.NavigationMode == NavigationMode.Back)
+            {
+                Messenger.Default.Send<NotificationMessage>(new NotificationMessage(Constants.ClearEpisodesMsg));
+            }
         }
     }
 }

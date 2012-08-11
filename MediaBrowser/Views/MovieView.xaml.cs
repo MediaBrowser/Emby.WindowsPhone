@@ -18,18 +18,18 @@ namespace MediaBrowser.WindowsPhone.Views
         {
             InitializeComponent();
             Loaded += (s, e) =>
-                          {
-                              var item = (DataContext as MovieViewModel).SelectedMovie.Item;
-                              MainPanorama.Background = new ImageBrush
-                                                            {
-                                                                Stretch = Stretch.UniformToFill,
-                                                                Opacity = 0.6,
-                                                                ImageSource = new BitmapImage(
-                                                                    (Uri)
-                                                                    new Converters.ImageUrlConverter().
-                                                                        Convert(item, typeof (Uri), "backdrop", null))
-                                                            };
-                          };
+            {
+                var item = (DataContext as MovieViewModel).SelectedMovie.Item;
+                MainPanorama.Background = new ImageBrush
+                {
+                    Stretch = Stretch.UniformToFill,
+                    Opacity = 0.6,
+                    ImageSource = new BitmapImage(
+                        (Uri)
+                        new Converters.ImageUrlConverter().
+                            Convert(item, typeof (Uri), "backdrop", null))
+                };
+            };
         }
     }
 }

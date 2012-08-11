@@ -79,9 +79,13 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     SelectedTvSeries = null;
                     SelectedSeason = null;
                     SelectedEpisode = null;
-                    Seasons = null;
-                    Episodes = null;
+                    Seasons.Clear();
+                    Episodes.Clear();
                     RecentItems.Clear();
+                }
+                else if(m.Notification.Equals(Constants.ClearEpisodesMsg))
+                {
+                    Episodes.Clear();
                 }
             });
         }

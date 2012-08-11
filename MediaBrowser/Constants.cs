@@ -13,5 +13,6 @@ namespace MediaBrowser.WindowsPhone
         public const string ShowTvSeries = "ShowTvSeries";
         public const string ClearFilmAndTvMsg = "ClearFilmAndTVMsg";
         public const string ShowSeasonMsg = "ShowSeasonMsg";
+        public const string ClearEpisodesMsg = "ClearEpisodesMsg";
     }
 }

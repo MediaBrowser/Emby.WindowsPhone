@@ -13,6 +13,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
 using MediaBrowser.WindowsPhone.Model;
+using MediaBrowser.Model;
 
 namespace MediaBrowser.WindowsPhone.ViewModel
 {

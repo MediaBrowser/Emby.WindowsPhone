@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Media;
 using System.Windows.Navigation;
 using Coding4Fun.Phone.Controls;
-using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.ViewModel;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using MediaBrowser.Model;
 
 namespace MediaBrowser.WindowsPhone
 {
@@ -17,24 +18,20 @@ namespace MediaBrowser.WindowsPhone
         private static SettingsService _settings;
         public static SettingsService Settings
         {
-            get
-            {
-                if (_settings == null)
-                    _settings = (SettingsService)App.Current.Resources["Settings"];
-                return _settings;
-            }
+            get { return _settings ?? (_settings = (SettingsService) Current.Resources["Settings"]); }
         }
 
         public static void ShowMessage(string Title, string Message, Action action = null)
         {
-            ToastPrompt _prompt = new ToastPrompt
+            var _prompt = new ToastPrompt
             {
                 Title = Title,
-                Message = Message
+                Message = Message,
+                Foreground = new SolidColorBrush(Colors.White)
             };
 
             if (action != null)
-                _prompt.Tap += (s, e) => { action(); };
+                _prompt.Tap += (s, e) => action();
             _prompt.Show();
         }
 
@@ -139,7 +136,10 @@ namespace MediaBrowser.WindowsPhone
 
             // Create the frame but don't set it as RootVisual yet; this allows the splash
             // screen to remain active until the application is ready to render.
-            RootFrame = new TransitionFrame();
+            RootFrame = new TransitionFrame
+                            {
+                                Background = new SolidColorBrush(Colors.Transparent)
+                            };
             RootFrame.Navigated += CompleteInitializePhoneApplication;
 
             // Handle navigation failures

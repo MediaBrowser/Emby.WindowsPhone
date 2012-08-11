@@ -7,6 +7,7 @@
     xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:local="clr-namespace:MediaBrowser.WindowsPhone.Controls"
+    xmlns:telerik="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Input"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
@@ -55,7 +56,25 @@
             </controls:PanoramaItem>
             
             <controls:PanoramaItem Header="details">
-                
+                <Grid>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="{Binding SelectedMovie.Item.ProductionYear, StringFormat='Released in \{0\}'}"
+                                   Style="{StaticResource PhoneTextNormalStyle}"/>
+                        <telerik:RadRating VerticalAlignment="Top"
+                                           IsReadOnly="True"
+                                           RatingDisplayPrecision="Exact"
+                                           Value="{Binding SelectedMovie.Item.UserRating, Converter={StaticResource RatingConverter}}"
+                                           Foreground="{StaticResource PhoneAccentBrush}"
+                                           Margin="12,0,0,0">
+                            <telerik:RadRating.ItemShapeSelectedStyle>
+                                <Style TargetType="Path">
+                                    <Setter Property="Fill"
+                                            Value="{StaticResource PhoneAccentBrush}" />
+                                </Style>
+                            </telerik:RadRating.ItemShapeSelectedStyle>
+                        </telerik:RadRating>
+                    </StackPanel>
+                </Grid>
             </controls:PanoramaItem>
             
             <controls:PanoramaItem Header="cast">

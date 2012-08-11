@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.WindowsPhone.ViewModel;
 using Microsoft.Phone.Controls;
 
@@ -18,22 +20,31 @@ namespace MediaBrowser.WindowsPhone.Views
         {
             InitializeComponent();
             Loaded += (s, e) =>
-                          {
-                              var item = (DataContext as TvViewModel).SelectedTvSeries.Item;
-                              MainPanorama.Background = new ImageBrush
-                                                            {
-                                                                Stretch = Stretch.UniformToFill,
-                                                                Opacity = 0.6,
-                                                                ImageSource =
-                                                                    new BitmapImage(
-                                                                    (Uri)
-                                                                    new Converters.ImageUrlConverter().Convert(item,
-                                                                                                               typeof (
-                                                                                                                   Uri),
-                                                                                                               "backdrop",
-                                                                                                               null))
-                                                            };
-                          };
+            {
+                var item = (DataContext as TvViewModel).SelectedTvSeries.Item;
+                MainPanorama.Background = new ImageBrush
+                {
+                    Stretch = Stretch.UniformToFill,
+                    Opacity = 0.6,
+                    ImageSource =
+                        new BitmapImage(
+                        (Uri)
+                        new Converters.ImageUrlConverter().Convert(item,
+                                                                    typeof (
+                                                                        Uri),
+                                                                    "backdrop",
+                                                                    null))
+                };
+            };
+        }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            base.OnNavigatedFrom(e);
+            if(e.NavigationMode == NavigationMode.Back)
+            {
+                Messenger.Default.Send<NotificationMessage>(new NotificationMessage(Constants.ClearFilmAndTvMsg));
+            }
         }
     }
 }
