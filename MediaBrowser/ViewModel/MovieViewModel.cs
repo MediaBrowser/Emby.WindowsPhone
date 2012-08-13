@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.Model.Entities;
 using GalaSoft.MvvmLight.Messaging;
+using ScottIsAFool.WindowsPhone;
 
 namespace MediaBrowser.WindowsPhone.ViewModel
 {
@@ -42,7 +45,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 WireCommands();
                 WireMessages();
-                Test = 6.9;
             }
         }
 
@@ -54,6 +56,19 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 {
                     SelectedMovie = (ApiBaseItemWrapper<ApiBaseItem>) m.Sender;
                     
+                    var emptyGroups = new List<Group<PersonInfo>>();
+                    var headers = new List<string> {"Actor", "Director", "Writer", "Producer"};
+                    headers.ForEach(item => emptyGroups.Add(new Group<PersonInfo>(item, new List<PersonInfo>())));
+
+                    var groupedPeople = (from p in SelectedMovie.Item.People
+                                         group p by p.PersonType.ToString()
+                                         into grp
+                                         orderby grp.Key
+                                         select new Group<PersonInfo>(grp.Key, grp)).ToList();
+
+                    CastAndCrew = (from g in groupedPeople.Union(emptyGroups)
+                                   orderby g.Title
+                                   select g).ToList();
                 }
                 else if(m.Notification.Equals(Constants.ClearFilmAndTvMsg))
                 {
@@ -72,7 +87,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public bool ProgressIsVisible { get; set; }
 
         public ApiBaseItemWrapper<ApiBaseItem> SelectedMovie { get; set; }
-        public double Test { get; set; }
+        public List<Group<PersonInfo>> CastAndCrew { get; set; }
 
         public RelayCommand<ApiBaseItemWrapper<ApiBaseItem>> NavigateTopage { get; set; }
     }

@@ -8,6 +8,7 @@
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:local="clr-namespace:MediaBrowser.WindowsPhone.Controls"
     xmlns:telerik="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Input"
+    xmlns:delay="clr-namespace:Delay"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
@@ -51,7 +52,8 @@
                 <Grid>
                     <local:ScrollableTextBlock Text="{Binding SelectedMovie.Item.Overview}"
                                                Foreground="{StaticResource PhoneContrastForegroundBrush}"
-                                               Background="{StaticResource PhoneSubtleBrush}"/>
+                                               Background="{StaticResource PhoneSubtleBrush}"
+                                               Padding="12,6,6,12"/>
                 </Grid>
             </controls:PanoramaItem>
             
@@ -77,8 +79,30 @@
                 </Grid>
             </controls:PanoramaItem>
             
-            <controls:PanoramaItem Header="cast">
-                
+            <controls:PanoramaItem Header="cast + crew">
+                <toolkit:LongListSelector ItemsSource="{Binding CastAndCrew}"
+                                          GroupHeaderTemplate="{StaticResource LLSGroupHeaderTemplateLong}"
+                                          GroupItemTemplate="{StaticResource LLSGroupItemTemplateLong}"
+                                          GroupItemsPanel="{StaticResource StackPanelVerticalTemplate}"
+                                          Background="Transparent">
+                    <toolkit:LongListSelector.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal"
+                                        Margin="12,0,0,0">
+                                <delay:PlaceImage Height="99"
+                                                  Width="99"
+                                                  PlaceholderSource="/Images/MBLogo.png" />
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Text="{Binding Name, Converter={StaticResource StringCaseConverter}, ConverterParameter=false}"
+                                               FontWeight="Bold"
+                                               Style="{StaticResource PhoneTextLargeStyle}" />
+                                    <TextBlock Text="{Binding Overview}"
+                                               Style="{StaticResource PhoneTextNormalStyle}"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </DataTemplate>
+                    </toolkit:LongListSelector.ItemTemplate>
+                </toolkit:LongListSelector>
             </controls:PanoramaItem>
             
             <controls:PanoramaItem Header="poster">
