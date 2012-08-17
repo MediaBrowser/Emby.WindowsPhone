@@ -5,7 +5,7 @@ using GalaSoft.MvvmLight;
 using MediaBrowser.WindowsPhone.Model;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
-using MediaBrowser.Model.Entities;
+using MediaBrowser.Model.DTO;
 using Microsoft.Phone.Controls;
 using ScottIsAFool.WindowsPhone;
 using System.Collections.Generic;
@@ -88,7 +88,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 }
             });
 
-            NavigateToPage = new RelayCommand<ApiBaseItemWrapper<ApiBaseItem>>(NavService.NavigateTopage);
+            NavigateToPage = new RelayCommand<BaseItemContainer<ApiBaseItem>>(NavService.NavigateTopage);
         }
 
         private async Task<bool> GetRecent()
@@ -123,13 +123,13 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 if (SelectedFolder.Name.Contains("recent"))
                 {
-                    var folder = JsonConvert.DeserializeObject<List<ApiBaseItemWrapper<ApiBaseItem>>>(folderJson);
+                    var folder = JsonConvert.DeserializeObject<List<BaseItemContainer<ApiBaseItem>>>(folderJson);
                     CurrentItems = folder;
                     result = true;
                 }
                 else
                 {
-                    var folder = JsonConvert.DeserializeObject<ApiBaseItemWrapper<ApiBaseItem>>(folderJson);
+                    var folder = JsonConvert.DeserializeObject<BaseItemContainer<ApiBaseItem>>(folderJson);
                     CurrentItems = folder.Children.ToList();
                     result = true;
                 }
@@ -142,7 +142,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             ProgressText = "Re-grouping...";
             ProgressIsVisible = true;
-            var emptyGroups = new List<Group<ApiBaseItemWrapper<ApiBaseItem>>>();
+            var emptyGroups = new List<Group<BaseItemContainer<ApiBaseItem>>>();
             switch (SortBy)
             {
                 case "name":
@@ -150,12 +150,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     GroupItemTemplate = (DataTemplate) Application.Current.Resources["LLSGroupItemTemplate"];
                     ItemsPanelTemplate = (ItemsPanelTemplate) Application.Current.Resources["WrapPanelTemplate"];
                     var headers = new List<string> { "#", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
-                    headers.ForEach(item => emptyGroups.Add(new Group<ApiBaseItemWrapper<ApiBaseItem>>(item, new List<ApiBaseItemWrapper<ApiBaseItem>>())));
+                    headers.ForEach(item => emptyGroups.Add(new Group<BaseItemContainer<ApiBaseItem>>(item, new List<BaseItemContainer<ApiBaseItem>>())));
                     var groupedNameItems = (from c in CurrentItems
                                             group c by GetSortByNameHeader(c.Item)
                                                 into grp
                                                 orderby grp.Key
-                                                select new Group<ApiBaseItemWrapper<ApiBaseItem>>(grp.Key, grp)).ToList();
+                                                select new Group<BaseItemContainer<ApiBaseItem>>(grp.Key, grp)).ToList();
                     FolderGroupings = (from g in groupedNameItems.Union(emptyGroups)
                                        orderby g.Title
                                        select g).ToList();
@@ -169,13 +169,13 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                       orderby y.Item.ProductionYear
                                       select y.Item.ProductionYear.ToString()).Distinct().ToList();
                     movieYears.Insert(0, "?");
-                    movieYears.ForEach(item => emptyGroups.Add(new Group<ApiBaseItemWrapper<ApiBaseItem>>(item, new List<ApiBaseItemWrapper<ApiBaseItem>>())));
+                    movieYears.ForEach(item => emptyGroups.Add(new Group<BaseItemContainer<ApiBaseItem>>(item, new List<BaseItemContainer<ApiBaseItem>>())));
 
                     var groupedYearItems = from t in CurrentItems
                                            group t by GetSortByProductionYearHeader(t.Item)
                                                into grp
                                                orderby grp.Key
-                                               select new Group<ApiBaseItemWrapper<ApiBaseItem>>(grp.Key, grp);
+                                               select new Group<BaseItemContainer<ApiBaseItem>>(grp.Key, grp);
                     FolderGroupings = (from g in groupedYearItems.Union(emptyGroups)
                                        orderby g.Title
                                        select g).ToList();
@@ -189,7 +189,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                       from s in t.Item.Genres
                                       select s).Distinct().ToList();
                     genres.Insert(0, "none");
-                    genres.ForEach(item => emptyGroups.Add(new Group<ApiBaseItemWrapper<ApiBaseItem>>(item, new List<ApiBaseItemWrapper<ApiBaseItem>>())));
+                    genres.ForEach(item => emptyGroups.Add(new Group<BaseItemContainer<ApiBaseItem>>(item, new List<BaseItemContainer<ApiBaseItem>>())));
 
                     var groupedGenreItems = (from genre in genres
                                 let films = (from f in CurrentItems
@@ -197,7 +197,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                              where f.Item.Genres.Contains(genre)
                                              orderby GetSortByNameHeader(f.Item)
                                              select f).ToList()
-                                select new Group<ApiBaseItemWrapper<ApiBaseItem>>(genre, films)).ToList();
+                                select new Group<BaseItemContainer<ApiBaseItem>>(genre, films)).ToList();
 
                     FolderGroupings = (from g in groupedGenreItems.Union(emptyGroups)
                                        orderby g.Title
@@ -212,7 +212,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                    from st in s.Item.Studios
                                    select st).Distinct().ToList();
                     studios.Insert(0, "none");
-                    studios.ForEach(item => emptyGroups.Add(new Group<ApiBaseItemWrapper<ApiBaseItem>>(item, new List<ApiBaseItemWrapper<ApiBaseItem>>())));
+                    studios.ForEach(item => emptyGroups.Add(new Group<BaseItemContainer<ApiBaseItem>>(item, new List<BaseItemContainer<ApiBaseItem>>())));
 
                     var groupedStudioItems = (from studio in studios
                                               let films = (from f in CurrentItems
@@ -220,7 +220,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                            where f.Item.Studios.Contains(studio)
                                                            orderby GetSortByNameHeader(f.Item)
                                                            select f).ToList()
-                                              select new Group<ApiBaseItemWrapper<ApiBaseItem>>(studio, films)).ToList();
+                                              select new Group<BaseItemContainer<ApiBaseItem>>(studio, films)).ToList();
                     FolderGroupings = (from g in groupedStudioItems.Union(emptyGroups)
                                        orderby g.Title
                                        select g).ToList();
@@ -278,8 +278,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public bool ProgressIsVisible { get; set; }
 
         public ApiBaseItem SelectedFolder { get; set; }
-        public List<Group<ApiBaseItemWrapper<ApiBaseItem>>> FolderGroupings { get; set; }
-        public List<ApiBaseItemWrapper<ApiBaseItem>> CurrentItems { get; set; }
+        public List<Group<BaseItemContainer<ApiBaseItem>>> FolderGroupings { get; set; }
+        public List<BaseItemContainer<ApiBaseItem>> CurrentItems { get; set; }
 
         public string SortBy { get; set; }
         public DataTemplate GroupHeaderTemplate { get; set; }
@@ -287,6 +287,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public ItemsPanelTemplate ItemsPanelTemplate { get; set; }
 
         public RelayCommand PageLoaded { get; set; }
-        public RelayCommand<ApiBaseItemWrapper<ApiBaseItem>> NavigateToPage { get; set; }
+        public RelayCommand<BaseItemContainer<ApiBaseItem>> NavigateToPage { get; set; }
     }
 }

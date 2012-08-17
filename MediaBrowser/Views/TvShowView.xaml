@@ -142,6 +142,15 @@
             <controls:PanoramaItem Header="details">
                 
             </controls:PanoramaItem>
+
+            <controls:PanoramaItem Header="cast + crew">
+                <toolkit:LongListSelector ItemsSource="{Binding CastAndCrew}"
+                                          GroupHeaderTemplate="{StaticResource LLSGroupHeaderTemplateLong}"
+                                          GroupItemTemplate="{StaticResource LLSGroupItemTemplateLong}"
+                                          GroupItemsPanel="{StaticResource StackPanelVerticalTemplate}"
+                                          Background="Transparent"
+                                          ItemTemplate="{StaticResource CrewTemplate}"/>
+            </controls:PanoramaItem>
         </controls:Panorama>
     </Grid>
 

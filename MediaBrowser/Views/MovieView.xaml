@@ -9,9 +9,11 @@
     xmlns:local="clr-namespace:MediaBrowser.WindowsPhone.Controls"
     xmlns:telerik="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Input"
     xmlns:delay="clr-namespace:Delay"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+    xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP71"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
+    xmlns:Entities="clr-namespace:MediaBrowser.Model.Entities;assembly=MediaBrowser.Model" mc:Ignorable="d"
     d:DesignWidth="480"
     d:DesignHeight="768"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
@@ -22,6 +24,16 @@
     shell:SystemTray.IsVisible="True"
     shell:SystemTray.Opacity="0"
     DataContext="{Binding Movie, Source={StaticResource Locator}}">
+    <shell:SystemTray.ProgressIndicator>
+        <shell:ProgressIndicator IsIndeterminate="True"
+                                 IsVisible="{Binding ProgressIsVisible}"
+                                 Text="{Binding ProgressText}" />
+    </shell:SystemTray.ProgressIndicator>
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <cmd:EventToCommand Command="{Binding MoviePageLoaded}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
 
     <toolkit:TransitionService.NavigationInTransition>
         <toolkit:NavigationInTransition>
@@ -84,25 +96,8 @@
                                           GroupHeaderTemplate="{StaticResource LLSGroupHeaderTemplateLong}"
                                           GroupItemTemplate="{StaticResource LLSGroupItemTemplateLong}"
                                           GroupItemsPanel="{StaticResource StackPanelVerticalTemplate}"
-                                          Background="Transparent">
-                    <toolkit:LongListSelector.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal"
-                                        Margin="12,0,0,0">
-                                <delay:PlaceImage Height="99"
-                                                  Width="99"
-                                                  PlaceholderSource="/Images/MBLogo.png" />
-                                <StackPanel Orientation="Vertical">
-                                    <TextBlock Text="{Binding Name, Converter={StaticResource StringCaseConverter}, ConverterParameter=false}"
-                                               FontWeight="Bold"
-                                               Style="{StaticResource PhoneTextLargeStyle}" />
-                                    <TextBlock Text="{Binding Overview}"
-                                               Style="{StaticResource PhoneTextNormalStyle}"/>
-                                </StackPanel>
-                            </StackPanel>
-                        </DataTemplate>
-                    </toolkit:LongListSelector.ItemTemplate>
-                </toolkit:LongListSelector>
+                                          Background="Transparent"
+                                          ItemTemplate="{StaticResource CrewTemplate}"/>
             </controls:PanoramaItem>
             
             <controls:PanoramaItem Header="poster">

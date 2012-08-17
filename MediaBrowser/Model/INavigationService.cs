@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Navigation;
-using MediaBrowser.Model.Entities;
+using MediaBrowser.Model.DTO;
 
 namespace MediaBrowser.WindowsPhone.Model
 {
@@ -12,6 +12,6 @@ namespace MediaBrowser.WindowsPhone.Model
         void GoBack();
         bool IsNetworkAvailable { get; }
         void NavigateToPage(string link);
-        void NavigateTopage(ApiBaseItemWrapper<ApiBaseItem> item);
+        void NavigateTopage(BaseItemContainer<ApiBaseItem> item);
     }
 }

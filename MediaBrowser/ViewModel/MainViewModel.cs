@@ -8,7 +8,7 @@ using System.Collections.ObjectModel;
 using System;
 using System.Linq;
 using System.Windows;
-using MediaBrowser.Model.Entities;
+using MediaBrowser.Model.DTO;
 using System.Collections.Generic;
 using GalaSoft.MvvmLight.Messaging;
 using System.Threading.Tasks;
@@ -27,33 +27,33 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     /// </summary>
     public class MainViewModel : ViewModelBase
     {
-        private INavigationService NavService;
+        private readonly INavigationService NavService;
         private bool hasLoaded;
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
         public MainViewModel(INavigationService navService)
         {
-            Folders = new ObservableCollection<ApiBaseItemWrapper<ApiBaseItem>>();
-            RecentItems = new ObservableCollection<ApiBaseItemWrapper<ApiBaseItem>>();
+            Folders = new ObservableCollection<BaseItemContainer<ApiBaseItem>>();
+            RecentItems = new ObservableCollection<BaseItemContainer<ApiBaseItem>>();
             if (IsInDesignMode)
             {
-                RecentItems.Add(new ApiBaseItemWrapper<ApiBaseItem> { Item = new ApiBaseItem() { Id = new Guid("2fc6f321b5f8bbe842fcd0eed089561d"), Name = "A Night To Remember" } });
+                RecentItems.Add(new BaseItemContainer<ApiBaseItem> { Item = new ApiBaseItem() { Id = new Guid("2fc6f321b5f8bbe842fcd0eed089561d"), Name = "A Night To Remember" } });
             }
             else
             {
                 NavService = navService;                
                 WireCommands();
                 App.Settings.HostName = "192.168.0.2"; App.Settings.PortNo = "8096";
-                App.Settings.LoggedInUser = new User { Id = new Guid("c0eeed038863422d9efc61d4b65506fc") };
-                DummyFolder = new ApiBaseItemWrapper<ApiBaseItem>
-                                  {
-                                      Type= "folder",
-                                      Item = new ApiBaseItem
-                                                 {
-                                                     Name= "recent"
-                                                 }
-                                  };
+                App.Settings.LoggedInUser = new User { Id = new Guid("5d1cf7fce25943b790d140095457a42b") };
+                DummyFolder = new BaseItemContainer<ApiBaseItem>
+                {
+                    Type= "folder",
+                    Item = new ApiBaseItem
+                    {
+                        Name= "recent"
+                    }
+                };
             }
         }
 
@@ -78,14 +78,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 }
             });
 
-            NavigateToPage = new RelayCommand<ApiBaseItemWrapper<ApiBaseItem>>(NavService.NavigateTopage);
+            NavigateToPage = new RelayCommand<BaseItemContainer<ApiBaseItem>>(NavService.NavigateTopage);
         }
 
         private async Task<bool> GetRecent()
         {
             bool result = false;
 
-            string recentUrl = App.Settings.ApiUrl + "recentlyaddeditems?userid=" + App.Settings.LoggedInUser.Id;
+            string recentUrl = App.Settings.ApiUrl + "itemlist?listtype=recentlyaddeditems&userid=" + App.Settings.LoggedInUser.Id;
             string recentjson = string.Empty;
             try
             {
@@ -97,7 +97,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
             if (!string.IsNullOrEmpty(recentjson))
             {
-                var recent = JsonConvert.DeserializeObject<List<ApiBaseItemWrapper<ApiBaseItem>>>(recentjson);
+                var recent = JsonConvert.DeserializeObject<List<BaseItemContainer<ApiBaseItem>>>(recentjson);
                 RecentItems.Clear();
                 recent.OrderBy(x => x.Item.DateCreated).Take(6).ToList().ForEach(recentItem => RecentItems.Add(recentItem));
                 result = true;
@@ -123,7 +123,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             if (!string.IsNullOrEmpty(folderjson))
             {
-                var item = JsonConvert.DeserializeObject<ApiBaseItemWrapper<ApiBaseItem>>(folderjson);
+                var item = JsonConvert.DeserializeObject<BaseItemContainer<ApiBaseItem>>(folderjson);
                 Folders.Clear();
                 item.Children.ToList().ForEach(folder => Folders.Add(folder));
                 result = true;
@@ -137,9 +137,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public string ProgressText { get; set; }
 
         public RelayCommand PageLoaded { get; set; }
-        public RelayCommand<ApiBaseItemWrapper<ApiBaseItem>> NavigateToPage { get; set; }
-        public ObservableCollection<ApiBaseItemWrapper<ApiBaseItem>> Folders { get; set; }
-        public ObservableCollection<ApiBaseItemWrapper<ApiBaseItem>> RecentItems { get; set; }
-        public ApiBaseItemWrapper<ApiBaseItem> DummyFolder { get; set; }
+        public RelayCommand<BaseItemContainer<ApiBaseItem>> NavigateToPage { get; set; }
+        public ObservableCollection<BaseItemContainer<ApiBaseItem>> Folders { get; set; }
+        public ObservableCollection<BaseItemContainer<ApiBaseItem>> RecentItems { get; set; }
+        public BaseItemContainer<ApiBaseItem> DummyFolder { get; set; }
     }
 }

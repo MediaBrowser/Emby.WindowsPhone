@@ -93,6 +93,24 @@
                     </Grid>
                 </HyperlinkButton>
             </DataTemplate>
+
+            <DataTemplate x:Key="CrewTemplate">
+                <StackPanel Orientation="Horizontal"
+                                        Margin="12,0,0,12">
+                    <delay:PlaceImage Height="99"
+                                                  Width="99"
+                                                  PlaceholderSource="/Images/MBLogo.png"
+                                                  Source="{Binding Converter={StaticResource ImageUrlConverter}}"
+                                                  Stretch="Uniform"/>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="{Binding PersonInfo.Name, Converter={StaticResource StringCaseConverter}, ConverterParameter=false}"
+                                               FontWeight="Bold"
+                                               Style="{StaticResource PhoneTextLargeStyle}" />
+                        <TextBlock Text="{Binding PersonInfo.Overview}"
+                                               Style="{StaticResource PhoneTextNormalStyle}"/>
+                    </StackPanel>
+                </StackPanel>
+            </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>
 

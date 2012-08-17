@@ -5,7 +5,7 @@ using MediaBrowser.WindowsPhone.ViewModel;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Net.NetworkInformation;
 using GalaSoft.MvvmLight.Messaging;
-using MediaBrowser.Model.Entities;
+using MediaBrowser.Model.DTO;
 
 namespace MediaBrowser.WindowsPhone.Model
 {
@@ -88,7 +88,7 @@ namespace MediaBrowser.WindowsPhone.Model
         }
 
 
-        public void NavigateTopage(ApiBaseItemWrapper<ApiBaseItem> item)
+        public void NavigateTopage(BaseItemContainer<ApiBaseItem> item)
         {
             switch (item.Type.ToLower())
             {

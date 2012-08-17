@@ -126,6 +126,7 @@
     <Compile Include="Converters\RatingConverter.cs" />
     <Compile Include="PlaceImage.cs" />
     <Compile Include="ThemeManager.cs" />
+    <Compile Include="Utils.cs" />
     <Compile Include="ViewModel\FolderViewModel.cs" />
     <Compile Include="ViewModel\MovieViewModel.cs" />
     <Compile Include="ViewModel\TvViewModel.cs" />

@@ -40,7 +40,7 @@
     <DataTemplate x:Key="LLSGroupItemTemplateLong">
         <Border Background="{Binding GroupBackgroundBrush}"
                 Width="450"
-                Height="99"
+                Height="65"
                 Margin="6"
                 IsHitTestVisible="{Binding HasItems}">
             <TextBlock Text="{Binding Title}"
@@ -56,8 +56,7 @@
                   Width="450"
                   Height="50"
                   Background="{StaticResource PhoneAccentBrush}">
-                <TextBlock Margin="12,0,0,10"
-                           VerticalAlignment="Bottom"
+                <TextBlock VerticalAlignment="Bottom"
                            TextWrapping="Wrap"
                            Foreground="White"
                            Style="{StaticResource PhoneTextLargeStyle}"

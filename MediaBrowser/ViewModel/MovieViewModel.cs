@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MediaBrowser.WindowsPhone.Model;
-using MediaBrowser.Model.Entities;
+using MediaBrowser.Model.DTO;
 using GalaSoft.MvvmLight.Messaging;
+using Newtonsoft.Json;
 using ScottIsAFool.WindowsPhone;
+using SharpGIS;
+using MediaBrowser.Model.Entities;
 
 namespace MediaBrowser.WindowsPhone.ViewModel
 {
@@ -30,7 +34,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             NavService = navService;
             if(IsInDesignMode)
             {
-                SelectedMovie = new ApiBaseItemWrapper<ApiBaseItem>
+                SelectedMovie = new BaseItemContainer<ApiBaseItem>
                 {
                     Item = new ApiBaseItem
                     {
@@ -54,41 +58,67 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 if(m.Notification.Equals(Constants.ShowMovieMsg))
                 {
-                    SelectedMovie = (ApiBaseItemWrapper<ApiBaseItem>) m.Sender;
-                    
-                    var emptyGroups = new List<Group<PersonInfo>>();
-                    var headers = new List<string> {"Actor", "Director", "Writer", "Producer"};
-                    headers.ForEach(item => emptyGroups.Add(new Group<PersonInfo>(item, new List<PersonInfo>())));
-
-                    var groupedPeople = (from p in SelectedMovie.Item.People
-                                         group p by p.PersonType.ToString()
-                                         into grp
-                                         orderby grp.Key
-                                         select new Group<PersonInfo>(grp.Key, grp)).ToList();
-
-                    CastAndCrew = (from g in groupedPeople.Union(emptyGroups)
-                                   orderby g.Title
-                                   select g).ToList();
+                    SelectedMovie = (BaseItemContainer<ApiBaseItem>) m.Sender;
                 }
                 else if(m.Notification.Equals(Constants.ClearFilmAndTvMsg))
                 {
                     SelectedMovie = null;
+                    CastAndCrew = null;
                 }
             });
         }
 
         private void WireCommands()
         {
-            NavigateTopage = new RelayCommand<ApiBaseItemWrapper<ApiBaseItem>>(NavService.NavigateTopage);
+            MoviePageLoaded = new RelayCommand(async () =>
+            {
+                ProgressIsVisible = true;
+                ProgressText = "Getting cast + crew...";
+
+                bool dataLoaded = await GetMovieDetails();
+
+                ProgressIsVisible = false;
+                ProgressText = string.Empty;
+            });
+            NavigateTopage = new RelayCommand<BaseItemContainer<ApiBaseItem>>(NavService.NavigateTopage);
         }
+
+        private async Task<bool> GetMovieDetails()
+        {
+            var result = false;
+
+            string movieJson = string.Empty;
+            try
+            {
+                string url = string.Format(App.Settings.ApiUrl + "item?userid={0}&id={1}", App.Settings.LoggedInUser.Id,
+                                           SelectedMovie.Item.Id);
+                movieJson = await new GZipWebClient().DownloadStringTaskAsync(url);
+            }
+            catch
+            {
+                App.ShowMessage("", "Error downloading movie information");
+            }
+
+            if(!string.IsNullOrEmpty(movieJson))
+            {
+                var item = JsonConvert.DeserializeObject<BaseItemContainer<ApiBaseItem>>(movieJson);
+                CastAndCrew = Utils.GroupCastAndCrew(item.People);
+                result = true;
+            }
+
+            return result;
+        }
+
+        
 
         // UI properties
         public string ProgressText { get; set; }
         public bool ProgressIsVisible { get; set; }
 
-        public ApiBaseItemWrapper<ApiBaseItem> SelectedMovie { get; set; }
-        public List<Group<PersonInfo>> CastAndCrew { get; set; }
+        public BaseItemContainer<ApiBaseItem> SelectedMovie { get; set; }
+        public List<Group<BaseItemPerson>> CastAndCrew { get; set; }
 
-        public RelayCommand<ApiBaseItemWrapper<ApiBaseItem>> NavigateTopage { get; set; }
+        public RelayCommand<BaseItemContainer<ApiBaseItem>> NavigateTopage { get; set; }
+        public RelayCommand MoviePageLoaded { get; set; }
     }
 }
