@@ -19,7 +19,7 @@ namespace MediaBrowser.WindowsPhone.Views
             InitializeComponent();
             Loaded += (s, e) =>
             {
-                var item = (DataContext as MovieViewModel).SelectedMovie.Item;
+                var item = (DataContext as MovieViewModel).SelectedMovie;
                 MainPanorama.Background = new ImageBrush
                 {
                     Stretch = Stretch.UniformToFill,

@@ -90,7 +90,7 @@
                                                       Height="62"
                                                       Width="62"/>
                                     <StackPanel Orientation="Vertical">
-                                        <TextBlock Text="{Binding Item.Name}"
+                                        <TextBlock Text="{Binding Name}"
                                                    Style="{StaticResource PhoneTextLargeStyle}"/>
                                         <TextBlock Text="Unwatched items: 1"
                                                    Style="{StaticResource PhoneTextSubtleStyle}"/>

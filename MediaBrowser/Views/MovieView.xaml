@@ -58,11 +58,11 @@
 
     <Grid x:Name="LayoutRoot"
           Background="Transparent">
-        <controls:Panorama Title="{Binding SelectedMovie.Item.Name, Converter={StaticResource StringCaseConverter}}"
+        <controls:Panorama Title="{Binding SelectedMovie.Name, Converter={StaticResource StringCaseConverter}}"
                            x:Name="MainPanorama">
             <controls:PanoramaItem Header="overview">
                 <Grid>
-                    <local:ScrollableTextBlock Text="{Binding SelectedMovie.Item.Overview}"
+                    <local:ScrollableTextBlock Text="{Binding SelectedMovie.Overview}"
                                                Foreground="{StaticResource PhoneContrastForegroundBrush}"
                                                Background="{StaticResource PhoneSubtleBrush}"
                                                Padding="12,6,6,12"/>
@@ -72,14 +72,14 @@
             <controls:PanoramaItem Header="details">
                 <Grid>
                     <StackPanel Orientation="Vertical">
-                        <TextBlock Text="{Binding SelectedMovie.Item.ProductionYear, StringFormat='Released in \{0\}'}"
+                        <TextBlock Text="{Binding SelectedMovie.ProductionYear, StringFormat='Released in \{0\}'}"
                                    Style="{StaticResource PhoneTextNormalStyle}"/>
                         <telerik:RadRating VerticalAlignment="Top"
                                            IsReadOnly="True"
                                            RatingDisplayPrecision="Exact"
-                                           Value="{Binding SelectedMovie.Item.UserRating, Converter={StaticResource RatingConverter}}"
+                                           Value="{Binding SelectedMovie.UserRating, Converter={StaticResource RatingConverter}}"
                                            Foreground="{StaticResource PhoneAccentBrush}"
-                                           Margin="12,0,0,0">
+                                           Margin="12,12,0,0">
                             <telerik:RadRating.ItemShapeSelectedStyle>
                                 <Style TargetType="Path">
                                     <Setter Property="Fill"
@@ -87,6 +87,12 @@
                                 </Style>
                             </telerik:RadRating.ItemShapeSelectedStyle>
                         </telerik:RadRating>
+                        <HyperlinkButton Content="See film on imdb"
+                                         NavigateUri="{Binding ImdbId, StringFormat='http://m.imdb.com/title/\{0\}'}"
+                                         TargetName="_new"
+                                         HorizontalAlignment="Left"
+                                         Margin="0,12,0,0"/>
+                        <TextBlock />
                     </StackPanel>
                 </Grid>
             </controls:PanoramaItem>

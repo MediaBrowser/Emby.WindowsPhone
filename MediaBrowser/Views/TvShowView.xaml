@@ -58,7 +58,7 @@
 
     <Grid x:Name="LayoutRoot"
           Background="Transparent">
-        <controls:Panorama Title="{Binding SelectedTvSeries.Item.Name, Converter={StaticResource StringCaseConverter}}"
+        <controls:Panorama Title="{Binding SelectedTvSeries.Name, Converter={StaticResource StringCaseConverter}}"
                            x:Name="MainPanorama">
             <controls:PanoramaItem Header="seasons">
                 <Grid>

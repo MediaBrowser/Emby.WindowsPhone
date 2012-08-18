@@ -1,18 +1,15 @@
 ﻿using GalaSoft.MvvmLight;
 using MediaBrowser.WindowsPhone.Model;
-using System.Net;
 using Newtonsoft.Json;
 using GalaSoft.MvvmLight.Command;
 using SharpGIS;
 using System.Collections.ObjectModel;
 using System;
 using System.Linq;
-using System.Windows;
 using MediaBrowser.Model.DTO;
 using System.Collections.Generic;
-using GalaSoft.MvvmLight.Messaging;
 using System.Threading.Tasks;
-using MediaBrowser.Model.Users;
+using MediaBrowser.Model.Entities;
 
 namespace MediaBrowser.WindowsPhone.ViewModel
 {
@@ -34,11 +31,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         /// </summary>
         public MainViewModel(INavigationService navService)
         {
-            Folders = new ObservableCollection<BaseItemContainer<ApiBaseItem>>();
-            RecentItems = new ObservableCollection<BaseItemContainer<ApiBaseItem>>();
+            Folders = new ObservableCollection<DTOBaseItem>();
+            RecentItems = new ObservableCollection<DTOBaseItem>();
             if (IsInDesignMode)
             {
-                RecentItems.Add(new BaseItemContainer<ApiBaseItem> { Item = new ApiBaseItem() { Id = new Guid("2fc6f321b5f8bbe842fcd0eed089561d"), Name = "A Night To Remember" } });
+                RecentItems.Add(new DTOBaseItem { Id = new Guid("2fc6f321b5f8bbe842fcd0eed089561d"), Name = "A Night To Remember" } );
             }
             else
             {
@@ -46,14 +43,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 WireCommands();
                 App.Settings.HostName = "192.168.0.2"; App.Settings.PortNo = "8096";
                 App.Settings.LoggedInUser = new User { Id = new Guid("5d1cf7fce25943b790d140095457a42b") };
-                DummyFolder = new BaseItemContainer<ApiBaseItem>
-                {
-                    Type= "folder",
-                    Item = new ApiBaseItem
-                    {
-                        Name= "recent"
-                    }
-                };
+                DummyFolder = new DTOBaseItem
+                                  {
+                                      Type = "folder",
+                                      Name = "recent"
+                                  };
             }
         }
 
@@ -78,7 +72,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 }
             });
 
-            NavigateToPage = new RelayCommand<BaseItemContainer<ApiBaseItem>>(NavService.NavigateTopage);
+            NavigateToPage = new RelayCommand<DTOBaseItem>(NavService.NavigateTopage);
         }
 
         private async Task<bool> GetRecent()
@@ -97,9 +91,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
             if (!string.IsNullOrEmpty(recentjson))
             {
-                var recent = JsonConvert.DeserializeObject<List<BaseItemContainer<ApiBaseItem>>>(recentjson);
+                var recent = JsonConvert.DeserializeObject<List<DTOBaseItem>>(recentjson);
                 RecentItems.Clear();
-                recent.OrderBy(x => x.Item.DateCreated).Take(6).ToList().ForEach(recentItem => RecentItems.Add(recentItem));
+                recent.OrderBy(x => x.DateCreated).Take(6).ToList().ForEach(recentItem => RecentItems.Add(recentItem));
                 result = true;
             }
 
@@ -123,7 +117,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             if (!string.IsNullOrEmpty(folderjson))
             {
-                var item = JsonConvert.DeserializeObject<BaseItemContainer<ApiBaseItem>>(folderjson);
+                var item = JsonConvert.DeserializeObject<DTOBaseItem>(folderjson);
                 Folders.Clear();
                 item.Children.ToList().ForEach(folder => Folders.Add(folder));
                 result = true;
@@ -137,9 +131,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public string ProgressText { get; set; }
 
         public RelayCommand PageLoaded { get; set; }
-        public RelayCommand<BaseItemContainer<ApiBaseItem>> NavigateToPage { get; set; }
-        public ObservableCollection<BaseItemContainer<ApiBaseItem>> Folders { get; set; }
-        public ObservableCollection<BaseItemContainer<ApiBaseItem>> RecentItems { get; set; }
-        public BaseItemContainer<ApiBaseItem> DummyFolder { get; set; }
+        public RelayCommand<DTOBaseItem> NavigateToPage { get; set; }
+        public ObservableCollection<DTOBaseItem> Folders { get; set; }
+        public ObservableCollection<DTOBaseItem> RecentItems { get; set; }
+        public DTOBaseItem DummyFolder { get; set; }
     }
 }

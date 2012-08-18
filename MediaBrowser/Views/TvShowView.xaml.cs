@@ -21,7 +21,7 @@ namespace MediaBrowser.WindowsPhone.Views
             InitializeComponent();
             Loaded += (s, e) =>
             {
-                var item = (DataContext as TvViewModel).SelectedTvSeries.Item;
+                var item = (DataContext as TvViewModel).SelectedTvSeries;
                 MainPanorama.Background = new ImageBrush
                 {
                     Stretch = Stretch.UniformToFill,

@@ -15,7 +15,7 @@ namespace MediaBrowser.WindowsPhone
             headers.ForEach(item => emptyGroups.Add(new Group<BaseItemPerson>(item, new List<BaseItemPerson>())));
 
             var groupedPeople = (from p in people
-                                 group p by p.PersonInfo.PersonType.ToString()
+                                 group p by p.PersonInfo.Type
                                      into grp
                                      orderby grp.Key
                                      select new Group<BaseItemPerson>(grp.Key, grp)).ToList();

@@ -38,7 +38,7 @@
                            Margin="-12,0,0,0"/>
             </StackPanel>
             <TextBlock x:Name="PageTitle"
-                       Text="{Binding SelectedEpisode.Item.Name, Converter={StaticResource StringCaseConverter}}"
+                       Text="{Binding SelectedEpisode.Name, Converter={StaticResource StringCaseConverter}}"
                        Margin="9,-7,0,0"
                        Style="{StaticResource PhoneTextTitle1Style}" />
         </StackPanel>

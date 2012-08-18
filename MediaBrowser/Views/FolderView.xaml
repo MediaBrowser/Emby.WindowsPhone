@@ -94,8 +94,7 @@
                                          Margin="12,6,0,6"
                                          Command="{Binding Folder.NavigateToPage, Source={StaticResource Locator}}"
                                          CommandParameter="{Binding}">
-                            <StackPanel Orientation="Horizontal"
-                                        DataContext="{Binding Item}">
+                            <StackPanel Orientation="Horizontal">
                                 <delay:PlaceImage PlaceholderSource="/Images/MBLogo.png"
                                                   Source="{Binding Converter={StaticResource ImageUrlConverter}, ConverterParameter=icon}"
                                                   Height="75"

@@ -71,7 +71,7 @@
                                           Stretch="UniformToFill" />
                         <Border Background="#C4000000"
                                 VerticalAlignment="Bottom">
-                            <TextBlock Text="{Binding Item.Name}"
+                            <TextBlock Text="{Binding Name}"
                                        Style="{StaticResource PhoneTextNormalStyle}"
                                        FontWeight="Bold"
                                        TextWrapping="Wrap"
@@ -83,7 +83,7 @@
                                VerticalAlignment="Top"
                                Visibility="{Binding Type, Converter={StaticResource EpisodeNumberVisibilityConverter}}">
                             <Ellipse Fill="Green" />
-                            <TextBlock Text="{Binding Item.IndexNumber}"
+                            <TextBlock Text="{Binding IndexNumber}"
                                        Foreground="White"
                                        Style="{StaticResource PhoneTextNormalStyle}"
                                        Margin="0,-3,0,0"

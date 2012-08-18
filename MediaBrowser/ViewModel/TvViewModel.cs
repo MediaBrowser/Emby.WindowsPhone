@@ -33,16 +33,13 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public TvViewModel(INavigationService navService)
         {
             NavService = navService;
-            RecentItems = new ObservableCollection<BaseItemContainer<ApiBaseItem>>();
-            Episodes = new List<BaseItemContainer<ApiBaseItem>>();
+            RecentItems = new ObservableCollection<DTOBaseItem>();
+            Episodes = new List<DTOBaseItem>();
             if(IsInDesignMode)
             {
-                SelectedTvSeries = new BaseItemContainer<ApiBaseItem>
+                SelectedTvSeries = new DTOBaseItem
                                        {
-                                           Item = new ApiBaseItem
-                                                      {
-                                                          Name = "Scrubs"
-                                                      }
+                                           Name = "Scrubs"
                                        };
             }
             else
@@ -59,21 +56,19 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 if(m.Notification.Equals(Constants.ShowTvSeries))
                 {
                     showDataLoaded = false;
-                    SelectedTvSeries = (BaseItemContainer<ApiBaseItem>) m.Sender;
-                    DummyFolder = new BaseItemContainer<ApiBaseItem>
+                    SelectedTvSeries = (DTOBaseItem) m.Sender;
+                    DummyFolder = new DTOBaseItem
                     {
                         Type = "folder",
-                        Item = new ApiBaseItem
-                        {
-                            Name = SelectedTvSeries.Item.Name + "'s recent items",
-                            Id = SelectedTvSeries.Item.Id
-                        }
+                            Name = SelectedTvSeries.Name + "'s recent items",
+                            Id = SelectedTvSeries.Id
+                        
                     };
                 }
                 else if(m.Notification.Equals(Constants.ShowSeasonMsg))
                 {
                     seasonDataLoaded = false;
-                    SelectedSeason = (BaseItemContainer<ApiBaseItem>) m.Sender;
+                    SelectedSeason = (DTOBaseItem) m.Sender;
                 }
                 else if(m.Notification.Equals(Constants.ClearFilmAndTvMsg))
                 {
@@ -149,14 +144,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 }
             });
 
-            NavigateToPage = new RelayCommand<BaseItemContainer<ApiBaseItem>>(NavService.NavigateTopage);
+            NavigateToPage = new RelayCommand<DTOBaseItem>(NavService.NavigateTopage);
         }
 
         private async Task<bool> GetRecentItems()
         {
             bool result = false;
             var url = string.Format(App.Settings.ApiUrl + "itemlist?listtype=recentlyaddeditems&userid={0}&id={1}",
-                                    App.Settings.LoggedInUser.Id, SelectedTvSeries.Item.Id);
+                                    App.Settings.LoggedInUser.Id, SelectedTvSeries.Id);
 
             string recentJson = string.Empty;
             try
@@ -170,9 +165,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             if(!string.IsNullOrEmpty(recentJson))
             {
-                var recent = JsonConvert.DeserializeObject<List<BaseItemContainer<ApiBaseItem>>>(recentJson);
+                var recent = JsonConvert.DeserializeObject<List<DTOBaseItem>>(recentJson);
                 RecentItems.Clear();
-                recent.OrderBy(x => x.Item.DateCreated)
+                recent.OrderBy(x => x.DateCreated)
                       .Take(6)
                       .ToList()
                       .ForEach(recentItem => RecentItems.Add(recentItem));
@@ -186,7 +181,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             bool result = false;
             var url = string.Format(App.Settings.ApiUrl + "item?userid={0}&id={1}",
-                                                   App.Settings.LoggedInUser.Id, SelectedTvSeries.Item.Id);
+                                                   App.Settings.LoggedInUser.Id, SelectedTvSeries.Id);
 
             string seasonJson = string.Empty;
             try
@@ -199,7 +194,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
             if(!string.IsNullOrEmpty(seasonJson))
             {
-                var seasons = JsonConvert.DeserializeObject<BaseItemContainer<ApiBaseItem>>(seasonJson);
+                var seasons = JsonConvert.DeserializeObject<DTOBaseItem>(seasonJson);
                 Seasons = seasons.Children.ToList();
                 CastAndCrew = Utils.GroupCastAndCrew(seasons.People);
                 result = true;
@@ -212,7 +207,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             bool result = false;
 
             var url = string.Format(App.Settings.ApiUrl + "item?userid={0}&id={1}",
-                                                   App.Settings.LoggedInUser.Id, SelectedSeason.Item.Id);
+                                                   App.Settings.LoggedInUser.Id, SelectedSeason.Id);
 
             string episodeJson = string.Empty;
             try
@@ -225,8 +220,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
             if(!string.IsNullOrEmpty(episodeJson))
             {
-                var episodes = JsonConvert.DeserializeObject<BaseItemContainer<ApiBaseItem>>(episodeJson);
-                Episodes = episodes.Children.OrderBy(x => x.Item.IndexNumber).ToList();
+                var episodes = JsonConvert.DeserializeObject<DTOBaseItem>(episodeJson);
+                Episodes = episodes.Children.OrderBy(x => x.IndexNumber).ToList();
                                  
                 result = true;
             }
@@ -238,16 +233,16 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public string ProgressText { get; set; }
         public bool ProgressIsVisible { get; set; }
 
-        public BaseItemContainer<ApiBaseItem> SelectedTvSeries { get; set; }
-        public List<BaseItemContainer<ApiBaseItem>> Seasons { get; set; }
-        public List<BaseItemContainer<ApiBaseItem>> Episodes { get; set; }
-        public BaseItemContainer<ApiBaseItem> SelectedEpisode { get; set; }
-        public BaseItemContainer<ApiBaseItem> SelectedSeason { get; set; }
-        public ObservableCollection<BaseItemContainer<ApiBaseItem>> RecentItems { get; set; }
-        public BaseItemContainer<ApiBaseItem> DummyFolder { get; set; }
+        public DTOBaseItem SelectedTvSeries { get; set; }
+        public List<DTOBaseItem> Seasons { get; set; }
+        public List<DTOBaseItem> Episodes { get; set; }
+        public DTOBaseItem SelectedEpisode { get; set; }
+        public DTOBaseItem SelectedSeason { get; set; }
+        public ObservableCollection<DTOBaseItem> RecentItems { get; set; }
+        public DTOBaseItem DummyFolder { get; set; }
         public List<Group<BaseItemPerson>> CastAndCrew { get; set; }
 
-        public RelayCommand<BaseItemContainer<ApiBaseItem>> NavigateToPage { get; set; }
+        public RelayCommand<DTOBaseItem> NavigateToPage { get; set; }
         public RelayCommand TvSeriesPageLoaded { get; set; }
         public RelayCommand SeasonPageLoaded { get; set; }
         public RelayCommand EpisodePageLoaded { get; set; }

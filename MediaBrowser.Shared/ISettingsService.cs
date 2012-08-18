@@ -1,4 +1,4 @@
-﻿using MediaBrowser.Model.Users;
+﻿using MediaBrowser.Model.Entities;
 
 namespace MediaBrowser.Model
 {

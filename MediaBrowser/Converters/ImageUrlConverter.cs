@@ -12,12 +12,12 @@ namespace MediaBrowser.WindowsPhone.Converters
             if (value != null)
             {
                 Type type = value.GetType();
-                if (type == typeof (ApiBaseItem))
+                if (type == typeof (DTOBaseItem))
                 {
                     string imageType = parameter == null ? string.Empty : (string) parameter;
-                    // http://192.168.0.2:8096/mediabrowser/api/image?id=d0aac36ee980d7dc0bcf8323b1884f70&maxheight=173&quality=90
-                    var item = (BaseItem) value;
-                    const string baseUrl = "{0}/image?id={1}&maxheight={2}&quality=90&type={3}";
+                    // http://192.168.0.2:8096/mediabrowser/api/image?item.Id=d0aac36ee980d7dc0bcf8323b1884f70&maxheight=173&quality=90
+                    var item = (DTOBaseItem)value;
+                    const string baseUrl = "{0}/image?item.Id={1}&maxheight={2}&quality=90&type={3}";
                     if (imageType.Equals("logo", StringComparison.OrdinalIgnoreCase))
                     {
                         return new Uri(string.Format(baseUrl, App.Settings.ApiUrl, item.Id, 173, imageType),
@@ -60,7 +60,7 @@ namespace MediaBrowser.WindowsPhone.Converters
                 else if(type == typeof(BaseItemPerson))
                 {
                     var person = (BaseItemPerson) value;
-                    return new Uri(string.Format("{0}/image?personname={1}&quality=90&maxwidth=99", App.Settings.ApiUrl, person.PersonInfo.Name));
+                    return new Uri(string.Format("{0}/image?personname={1}&quality=90&maxwitem.Idth=99", App.Settings.ApiUrl, person.PersonInfo.Name));
                 }
             }
             return "";

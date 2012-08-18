@@ -88,13 +88,13 @@ namespace MediaBrowser.WindowsPhone.Model
         }
 
 
-        public void NavigateTopage(BaseItemContainer<ApiBaseItem> item)
+        public void NavigateTopage(DTOBaseItem item)
         {
             switch (item.Type.ToLower())
             {
-                case "folder":
+                case "virtualfolder":
                     if (((ViewModelLocator)Application.Current.Resources["Locator"]).Folder != null)
-                        Messenger.Default.Send<NotificationMessage>(new NotificationMessage(item.Item, Constants.ShowFolderMsg));
+                        Messenger.Default.Send<NotificationMessage>(new NotificationMessage(item, Constants.ShowFolderMsg));
                     NavigateToPage("/Views/FolderView.xaml");
                     break;
                 case "movie":
@@ -113,7 +113,9 @@ namespace MediaBrowser.WindowsPhone.Model
                     NavigateToPage("/Views/SeasonView.xaml");
                     break;
                 case "episode":
-
+                    if (((ViewModelLocator)Application.Current.Resources["Locator"]).Tv != null)
+                        Messenger.Default.Send<NotificationMessage>(new NotificationMessage(item, Constants.ShowEpisodeMsg));
+                    NavigateToPage("/Views/EpisodeView.xaml");
                     break;
                 default:
                     break;

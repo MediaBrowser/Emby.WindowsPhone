@@ -34,16 +34,13 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             NavService = navService;
             if(IsInDesignMode)
             {
-                SelectedMovie = new BaseItemContainer<ApiBaseItem>
-                {
-                    Item = new ApiBaseItem
-                    {
-                        Id = new Guid("6536a66e10417d69105bae71d41a6e6f"),
-                        Name = "Jurassic Park",
-                        SortName = "Jurassic Park",
-                        Overview = "Lots of dinosaurs eating people!"
-                    }
-                };
+                SelectedMovie = new DTOBaseItem
+                                    {
+                                        Id = new Guid("6536a66e10417d69105bae71d41a6e6f"),
+                                        Name = "Jurassic Park",
+                                        SortName = "Jurassic Park",
+                                        Overview = "Lots of dinosaurs eating people!"
+                                    };
             }
             else
             {
@@ -58,7 +55,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 if(m.Notification.Equals(Constants.ShowMovieMsg))
                 {
-                    SelectedMovie = (BaseItemContainer<ApiBaseItem>) m.Sender;
+                    SelectedMovie = (DTOBaseItem) m.Sender;
+                    ImdbId = SelectedMovie.ProviderIds["Imdb"];
                 }
                 else if(m.Notification.Equals(Constants.ClearFilmAndTvMsg))
                 {
@@ -80,7 +78,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 ProgressIsVisible = false;
                 ProgressText = string.Empty;
             });
-            NavigateTopage = new RelayCommand<BaseItemContainer<ApiBaseItem>>(NavService.NavigateTopage);
+            NavigateTopage = new RelayCommand<DTOBaseItem>(NavService.NavigateTopage);
         }
 
         private async Task<bool> GetMovieDetails()
@@ -91,7 +89,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             try
             {
                 string url = string.Format(App.Settings.ApiUrl + "item?userid={0}&id={1}", App.Settings.LoggedInUser.Id,
-                                           SelectedMovie.Item.Id);
+                                           SelectedMovie.Id);
                 movieJson = await new GZipWebClient().DownloadStringTaskAsync(url);
             }
             catch
@@ -101,7 +99,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             if(!string.IsNullOrEmpty(movieJson))
             {
-                var item = JsonConvert.DeserializeObject<BaseItemContainer<ApiBaseItem>>(movieJson);
+                var item = JsonConvert.DeserializeObject<DTOBaseItem>(movieJson);
                 CastAndCrew = Utils.GroupCastAndCrew(item.People);
                 result = true;
             }
@@ -115,10 +113,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public string ProgressText { get; set; }
         public bool ProgressIsVisible { get; set; }
 
-        public BaseItemContainer<ApiBaseItem> SelectedMovie { get; set; }
+        public DTOBaseItem SelectedMovie { get; set; }
         public List<Group<BaseItemPerson>> CastAndCrew { get; set; }
+        public string ImdbId { get; set; }
 
-        public RelayCommand<BaseItemContainer<ApiBaseItem>> NavigateTopage { get; set; }
+        public RelayCommand<DTOBaseItem> NavigateTopage { get; set; }
         public RelayCommand MoviePageLoaded { get; set; }
     }
 }
