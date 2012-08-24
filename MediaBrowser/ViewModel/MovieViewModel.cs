@@ -57,6 +57,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 {
                     SelectedMovie = (DTOBaseItem) m.Sender;
                     ImdbId = SelectedMovie.ProviderIds["Imdb"];
+                    if(SelectedMovie.RunTimeTicks.HasValue)
+                        RunTime = TimeSpan.FromTicks(SelectedMovie.RunTimeTicks.Value).ToString();
+                    
                 }
                 else if(m.Notification.Equals(Constants.ClearFilmAndTvMsg))
                 {
@@ -116,6 +119,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public DTOBaseItem SelectedMovie { get; set; }
         public List<Group<BaseItemPerson>> CastAndCrew { get; set; }
         public string ImdbId { get; set; }
+        public string RunTime { get; set; }
 
         public RelayCommand<DTOBaseItem> NavigateTopage { get; set; }
         public RelayCommand MoviePageLoaded { get; set; }

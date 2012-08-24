@@ -80,7 +80,7 @@
                                                  Margin="6"
                                                  Command="{Binding Tv.NavigateToPage, Source={StaticResource Locator}}"
                                                  CommandParameter="{Binding}">
-                                    <Grid DataContext="{Binding Item}">
+                                    <Grid>
                                         <delay:PlaceImage PlaceholderSource="/Images/MBLogo.png"
                                                           Source="{Binding Converter={StaticResource ImageUrlConverter}}"
                                                           Height="173"

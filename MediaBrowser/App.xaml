@@ -65,7 +65,7 @@
                                  CommandParameter="{Binding}">
                     <Grid MaxWidth="173">
                         <delay:PlaceImage PlaceholderSource="/Images/MBLogo.png"
-                                          Source="{Binding Item, Converter={StaticResource ImageUrlConverter}}"
+                                          Source="{Binding Converter={StaticResource ImageUrlConverter}}"
                                           Width="173"
                                           Height="173"
                                           Stretch="UniformToFill" />
@@ -103,10 +103,10 @@
                                                   Source="{Binding Converter={StaticResource ImageUrlConverter}}"
                                                   Stretch="Uniform"/>
                     <StackPanel Orientation="Vertical">
-                        <TextBlock Text="{Binding PersonInfo.Name, Converter={StaticResource StringCaseConverter}, ConverterParameter=false}"
+                        <TextBlock Text="{Binding Name, Converter={StaticResource StringCaseConverter}, ConverterParameter=false}"
                                                FontWeight="Bold"
                                                Style="{StaticResource PhoneTextLargeStyle}" />
-                        <TextBlock Text="{Binding PersonInfo.Overview}"
+                        <TextBlock Text="{Binding Overview}"
                                                Style="{StaticResource PhoneTextNormalStyle}"/>
                     </StackPanel>
                 </StackPanel>

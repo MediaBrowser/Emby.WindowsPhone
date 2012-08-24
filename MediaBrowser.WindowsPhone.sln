@@ -10,7 +10,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{47317A
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaBrowser.Model", "..\..\..\..\Visual Studio 2012\Projects\MBServer\MediaBrowser.Model\MediaBrowser.Model.csproj", "{7EEEB4BB-F3E8-48FC-B4C5-70F0FFF8329B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaBrowser.Model", "..\..\..\..\Visual Studio 2012\Projects\MediaBrowserServer\MediaBrowser.Model\MediaBrowser.Model.csproj", "{7EEEB4BB-F3E8-48FC-B4C5-70F0FFF8329B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaBrowser.Shared", "MediaBrowser.Shared\MediaBrowser.Shared.csproj", "{2D3D6DCD-C00F-4E40-AF44-8975A2DF87A3}"
 EndProject

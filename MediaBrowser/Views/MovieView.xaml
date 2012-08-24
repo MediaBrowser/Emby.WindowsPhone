@@ -1,29 +1,29 @@
-﻿<phone:PhoneApplicationPage
-    x:Class="MediaBrowser.WindowsPhone.Views.MovieView"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
-    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
-    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
-    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
-    xmlns:local="clr-namespace:MediaBrowser.WindowsPhone.Controls"
-    xmlns:telerik="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Input"
-    xmlns:delay="clr-namespace:Delay"
-    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-    xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP71"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:Entities="clr-namespace:MediaBrowser.Model.Entities;assembly=MediaBrowser.Model" mc:Ignorable="d"
-    d:DesignWidth="480"
-    d:DesignHeight="768"
-    FontFamily="{StaticResource PhoneFontFamilyNormal}"
-    FontSize="{StaticResource PhoneFontSizeNormal}"
-    Foreground="{StaticResource PhoneForegroundBrush}"
-    SupportedOrientations="Portrait"
-    Orientation="Portrait"
-    shell:SystemTray.IsVisible="True"
-    shell:SystemTray.Opacity="0"
-    DataContext="{Binding Movie, Source={StaticResource Locator}}">
+﻿<phone:PhoneApplicationPage x:Class="MediaBrowser.WindowsPhone.Views.MovieView"
+                            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                            xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+                            xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+                            xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+                            xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+                            xmlns:local="clr-namespace:MediaBrowser.WindowsPhone.Controls"
+                            xmlns:telerik="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Input"
+                            xmlns:delay="clr-namespace:Delay"
+                            xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+                            xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP71"
+                            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                            xmlns:Entities="clr-namespace:MediaBrowser.Model.Entities;assembly=MediaBrowser.Model"
+                            mc:Ignorable="d"
+                            d:DesignWidth="480"
+                            d:DesignHeight="768"
+                            FontFamily="{StaticResource PhoneFontFamilyNormal}"
+                            FontSize="{StaticResource PhoneFontSizeNormal}"
+                            Foreground="{StaticResource PhoneForegroundBrush}"
+                            SupportedOrientations="Portrait"
+                            Orientation="Portrait"
+                            shell:SystemTray.IsVisible="True"
+                            shell:SystemTray.Opacity="0"
+                            DataContext="{Binding Movie, Source={StaticResource Locator}}">
     <shell:SystemTray.ProgressIndicator>
         <shell:ProgressIndicator IsIndeterminate="True"
                                  IsVisible="{Binding ProgressIsVisible}"
@@ -65,15 +65,16 @@
                     <local:ScrollableTextBlock Text="{Binding SelectedMovie.Overview}"
                                                Foreground="{StaticResource PhoneContrastForegroundBrush}"
                                                Background="{StaticResource PhoneSubtleBrush}"
-                                               Padding="12,6,6,12"/>
+                                               Padding="12,6,6,12" />
                 </Grid>
             </controls:PanoramaItem>
-            
+
             <controls:PanoramaItem Header="details">
                 <Grid>
                     <StackPanel Orientation="Vertical">
                         <TextBlock Text="{Binding SelectedMovie.ProductionYear, StringFormat='Released in \{0\}'}"
-                                   Style="{StaticResource PhoneTextNormalStyle}"/>
+                                   Style="{StaticResource PhoneTextNormalStyle}" />
+
                         <telerik:RadRating VerticalAlignment="Top"
                                            IsReadOnly="True"
                                            RatingDisplayPrecision="Exact"
@@ -91,27 +92,32 @@
                                          NavigateUri="{Binding ImdbId, StringFormat='http://m.imdb.com/title/\{0\}'}"
                                          TargetName="_new"
                                          HorizontalAlignment="Left"
-                                         Margin="0,12,0,0"/>
-                        <TextBlock />
+                                         Margin="0,12,0,0" />
+                        <TextBlock Text="{Binding RunTime, StringFormat='Running time: \{0\}'}"
+                                   Style="{StaticResource PhoneTextNormalStyle}"
+                                   Margin="12,12,0,0" />
+                        <TextBlock Text="{Binding SelectedMovie.OfficialRating, StringFormat='Rating: \{0\}'}"
+                                   Style="{StaticResource PhoneTextNormalStyle}"
+                                   Margin="12,12,0,0" />
                     </StackPanel>
                 </Grid>
             </controls:PanoramaItem>
-            
+
             <controls:PanoramaItem Header="cast + crew">
                 <toolkit:LongListSelector ItemsSource="{Binding CastAndCrew}"
                                           GroupHeaderTemplate="{StaticResource LLSGroupHeaderTemplateLong}"
                                           GroupItemTemplate="{StaticResource LLSGroupItemTemplateLong}"
                                           GroupItemsPanel="{StaticResource StackPanelVerticalTemplate}"
                                           Background="Transparent"
-                                          ItemTemplate="{StaticResource CrewTemplate}"/>
+                                          ItemTemplate="{StaticResource CrewTemplate}" />
             </controls:PanoramaItem>
-            
+
             <controls:PanoramaItem Header="poster">
-                <Image Source="{Binding SelectedMovie.Item, Converter={StaticResource ImageUrlConverter}, ConverterParameter=poster}"
+                <Image Source="{Binding SelectedMovie, Converter={StaticResource ImageUrlConverter}, ConverterParameter=poster}"
                        Height="450"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Top"
-                       Margin="12,0,0,0"/>
+                       Margin="12,0,0,0" />
             </controls:PanoramaItem>
         </controls:Panorama>
     </Grid>

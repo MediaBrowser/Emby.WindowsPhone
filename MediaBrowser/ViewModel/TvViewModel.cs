@@ -80,6 +80,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     RecentItems.Clear();
                     CastAndCrew = null;
                 }
+                else if(m.Notification.Equals(Constants.ShowEpisodeMsg))
+                {
+                    SelectedEpisode = (DTOBaseItem) m.Sender;
+                }
                 else if(m.Notification.Equals(Constants.ClearEpisodesMsg))
                 {
                     Episodes.Clear();
@@ -137,6 +141,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         ProgressIsVisible = true;
                         ProgressText = "Getting episode details...";
 
+                        //bool episodeLoaded = await GetEpisode();
 
                         ProgressText = string.Empty;
                         ProgressIsVisible = false;
@@ -145,6 +150,30 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             });
 
             NavigateToPage = new RelayCommand<DTOBaseItem>(NavService.NavigateTopage);
+        }
+
+        private async Task<bool> GetEpisode()
+        {
+            bool result = false;
+
+            var url = string.Format(App.Settings.ApiUrl + "item?userid={0}&id={1}", App.Settings.LoggedInUser.Id,
+                                    SelectedEpisode.Id);
+
+            string episodeJson = string.Empty;
+            try
+            {
+                episodeJson = await new GZipWebClient().DownloadStringTaskAsync(url);
+            }
+            catch
+            {
+                App.ShowMessage("", "Error downloading episode details");
+            }
+
+            if(!string.IsNullOrEmpty(episodeJson))
+            {
+            }
+
+            return result;
         }
 
         private async Task<bool> GetRecentItems()
