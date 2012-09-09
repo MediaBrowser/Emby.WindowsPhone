@@ -34,7 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .NET Framework is automatically included -->
-    <ProjectReference Include="..\..\..\..\..\Visual Studio 2012\Projects\MBServer\MediaBrowser.Model\MediaBrowser.Model.csproj">
+    <ProjectReference Include="..\..\..\..\..\Visual Studio 2012\Projects\MediaBrowserServer\MediaBrowser.Model\MediaBrowser.Model.csproj">
       <Project>{7EEEB4BB-F3E8-48FC-B4C5-70F0FFF8329B}</Project>
       <Name>MediaBrowser.Model</Name>
     </ProjectReference>

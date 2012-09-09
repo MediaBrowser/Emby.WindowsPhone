@@ -14,6 +14,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaBrowser.Model", "..\..
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaBrowser.Shared", "MediaBrowser.Shared\MediaBrowser.Shared.csproj", "{2D3D6DCD-C00F-4E40-AF44-8975A2DF87A3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaBrowser.ApiInteraction.WindowsPhone", "MediaBrowser.ApiInteraction.WindowsPhone\MediaBrowser.ApiInteraction.WindowsPhone.csproj", "{54EEE576-F803-485B-BFDC-798C3105E600}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -34,6 +36,10 @@ Global
 		{2D3D6DCD-C00F-4E40-AF44-8975A2DF87A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D3D6DCD-C00F-4E40-AF44-8975A2DF87A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D3D6DCD-C00F-4E40-AF44-8975A2DF87A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54EEE576-F803-485B-BFDC-798C3105E600}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54EEE576-F803-485B-BFDC-798C3105E600}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54EEE576-F803-485B-BFDC-798C3105E600}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54EEE576-F803-485B-BFDC-798C3105E600}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

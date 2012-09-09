@@ -63,11 +63,14 @@
         <controls:Panorama Title="">
             <controls:Panorama.TitleTemplate>
                 <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="media"
+                    <StackPanel Orientation="Horizontal">                        
+						<TextBlock Text="media"
                                    Foreground="Black"/>
                         <TextBlock Text="browser"
                                    Foreground="Green" />
+                        <TextBlock Text="3"
+                                   Foreground="Green"
+                                   FontFamily="/MediaBrowser.WindowsPhone;component/Fonts/MISTRAL.TTF#Mistral" Margin="0" FontSize="133.333" />
                     </StackPanel>
                 </DataTemplate>
             </controls:Panorama.TitleTemplate>

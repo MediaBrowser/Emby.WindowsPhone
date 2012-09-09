@@ -26,14 +26,10 @@ namespace MediaBrowser.WindowsPhone.Views
                 {
                     Stretch = Stretch.UniformToFill,
                     Opacity = 0.6,
-                    ImageSource =
-                        new BitmapImage(
-                        (Uri)
-                        new Converters.ImageUrlConverter().Convert(item,
-                                                                    typeof (
-                                                                        Uri),
-                                                                    "backdrop",
-                                                                    null))
+                    ImageSource = new BitmapImage(new Uri(
+                        (string)
+                        new Converters.ImageUrlConverter().
+                            Convert(item, typeof(string), "backdrop", null)))
                 };
             };
         }

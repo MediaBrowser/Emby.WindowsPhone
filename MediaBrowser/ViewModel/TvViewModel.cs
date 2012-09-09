@@ -2,11 +2,10 @@
 using System.Collections.ObjectModel;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using MediaBrowser.ApiInteraction.WindowsPhone;
 using MediaBrowser.WindowsPhone.Model;
 using GalaSoft.MvvmLight.Messaging;
-using Newtonsoft.Json;
 using ScottIsAFool.WindowsPhone;
-using SharpGIS;
 using System.Linq;
 using System.Threading.Tasks;
 using MediaBrowser.Model.DTO;
@@ -25,12 +24,13 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     public class TvViewModel : ViewModelBase
     {
         private readonly INavigationService NavService;
+        private readonly ApiClient ApiClient;
         private bool showDataLoaded;
         private bool seasonDataLoaded;
         /// <summary>
         /// Initializes a new instance of the TvViewModel class.
         /// </summary>
-        public TvViewModel(INavigationService navService)
+        public TvViewModel(INavigationService navService, ApiClient apiClient)
         {
             NavService = navService;
             RecentItems = new ObservableCollection<DTOBaseItem>();
@@ -44,6 +44,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
             else
             {
+                NavService = navService;
+                ApiClient = apiClient;
                 WireCommands();
                 WireMessages();
             }
@@ -154,108 +156,67 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
         private async Task<bool> GetEpisode()
         {
-            bool result = false;
-
-            var url = string.Format(App.Settings.ApiUrl + "item?userid={0}&id={1}", App.Settings.LoggedInUser.Id,
-                                    SelectedEpisode.Id);
-
-            string episodeJson = string.Empty;
             try
             {
-                episodeJson = await new GZipWebClient().DownloadStringTaskAsync(url);
+                var episode = await ApiClient.GetItemAsync(SelectedEpisode.Id, App.Settings.LoggedInUser.Id);
+                return true;
             }
             catch
             {
                 App.ShowMessage("", "Error downloading episode details");
+                return false;
             }
-
-            if(!string.IsNullOrEmpty(episodeJson))
-            {
-            }
-
-            return result;
         }
 
         private async Task<bool> GetRecentItems()
         {
-            bool result = false;
-            var url = string.Format(App.Settings.ApiUrl + "itemlist?listtype=recentlyaddeditems&userid={0}&id={1}",
-                                    App.Settings.LoggedInUser.Id, SelectedTvSeries.Id);
-
-            string recentJson = string.Empty;
             try
             {
-                recentJson = await new GZipWebClient().DownloadStringTaskAsync(url);
-            }
-            catch
-            {
-                App.ShowMessage("", "Error downloading recent items");
-            }
-
-            if(!string.IsNullOrEmpty(recentJson))
-            {
-                var recent = JsonConvert.DeserializeObject<List<DTOBaseItem>>(recentJson);
+                var recent =
+                    await ApiClient.GetRecentlyAddedItemsAsync(App.Settings.LoggedInUser.Id, SelectedTvSeries.Id);
                 RecentItems.Clear();
                 recent.OrderBy(x => x.DateCreated)
                       .Take(6)
                       .ToList()
                       .ForEach(recentItem => RecentItems.Add(recentItem));
-                result = true;
+                return true;
             }
-
-            return result;
+            catch
+            {
+                App.ShowMessage("", "Error getting recent items");
+                return false;
+            }
         }
 
         private async Task<bool> GetSeasons()
         {
-            bool result = false;
-            var url = string.Format(App.Settings.ApiUrl + "item?userid={0}&id={1}",
-                                                   App.Settings.LoggedInUser.Id, SelectedTvSeries.Id);
-
-            string seasonJson = string.Empty;
             try
             {
-                seasonJson = await new GZipWebClient().DownloadStringTaskAsync(url);
+                var seasons = await ApiClient.GetItemAsync(SelectedTvSeries.Id, App.Settings.LoggedInUser.Id);
+                Seasons = seasons.Children.ToList();
+                CastAndCrew = Utils.GroupCastAndCrew(seasons.People);
+                return true;
             }
             catch
             {
-                App.ShowMessage("", "Error downloading season details");
+                App.ShowMessage("", "Error getting seasons");
+                return false;
             }
-            if(!string.IsNullOrEmpty(seasonJson))
-            {
-                var seasons = JsonConvert.DeserializeObject<DTOBaseItem>(seasonJson);
-                Seasons = seasons.Children.ToList();
-                CastAndCrew = Utils.GroupCastAndCrew(seasons.People);
-                result = true;
-            }
-            return result;
         }
 
         private async Task<bool> GetEpisodes()
         {
-            bool result = false;
-
-            var url = string.Format(App.Settings.ApiUrl + "item?userid={0}&id={1}",
-                                                   App.Settings.LoggedInUser.Id, SelectedSeason.Id);
-
-            string episodeJson = string.Empty;
             try
             {
-                episodeJson = await new GZipWebClient().DownloadStringTaskAsync(url);
+                var episodes = await ApiClient.GetItemAsync(SelectedSeason.Id, App.Settings.LoggedInUser.Id);
+                Episodes = episodes.Children.OrderBy(x => x.IndexNumber).ToList();
+                return true;
             }
             catch
             {
-                App.ShowMessage("", "Error downloading episodes");
+                App.ShowMessage("", "Error getting episodes");
+                return false;
             }
-            if(!string.IsNullOrEmpty(episodeJson))
-            {
-                var episodes = JsonConvert.DeserializeObject<DTOBaseItem>(episodeJson);
-                Episodes = episodes.Children.OrderBy(x => x.IndexNumber).ToList();
-                                 
-                result = true;
-            }
-
-            return result;
         }
 
         // UI properties

@@ -1,16 +1,13 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Windows.Controls;
 using GalaSoft.MvvmLight;
+using MediaBrowser.ApiInteraction.WindowsPhone;
 using MediaBrowser.WindowsPhone.Model;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model.DTO;
-using Microsoft.Phone.Controls;
 using ScottIsAFool.WindowsPhone;
 using System.Collections.Generic;
-using SharpGIS;
-using Newtonsoft.Json;
 using System.Linq;
 using System.Windows;
 
@@ -28,18 +25,16 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     public class FolderViewModel : ViewModelBase
     {
         private readonly INavigationService NavService;
+        private readonly ApiClient ApiClient;
         private bool dataLoaded;
         /// <summary>
         /// Initializes a new instance of the FolderViewModel class.
         /// </summary>
-        public FolderViewModel(INavigationService navService)
+        public FolderViewModel(INavigationService navService, ApiClient apiClient)
         {
-            if (IsInDesignMode)
+            if (!IsInDesignMode)
             {
-
-            }
-            else
-            {
+                ApiClient = apiClient;
                 NavService = navService;
                 WireCommands();
                 WireMessages();
@@ -80,7 +75,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         ProgressIsVisible = true;
                         ProgressText = "Getting items...";
 
-                        dataLoaded = await GetRecent();
+                        dataLoaded = await GetItems();
 
                         SortList();
                         ProgressIsVisible = false;
@@ -91,51 +86,27 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             NavigateToPage = new RelayCommand<DTOBaseItem>(NavService.NavigateTopage);
         }
 
-        private async Task<bool> GetRecent()
+        private async Task<bool> GetItems()
         {
-            bool result = false;
-
-            string url;
-            if (SelectedFolder.Name.Contains("recent"))
-            {
-                url = string.Format(App.Settings.ApiUrl + "recentlyaddeditems?userid={0}",
-                                    App.Settings.LoggedInUser.Id);
-                if (SelectedFolder.Id != Guid.Empty)
-                {
-                    url += "&id=" + SelectedFolder.Id;
-                }
-            }
-            else
-            {
-                url = string.Format(App.Settings.ApiUrl + "item?userid={0}&id={1}",
-                                    App.Settings.LoggedInUser.Id, SelectedFolder.Id);
-            }
-            string folderJson = string.Empty;
             try
-            {
-                folderJson = await new GZipWebClient().DownloadStringTaskAsync(url);
-            }
-            catch
-            {
-                App.ShowMessage("", "Error downloading information");
-            }
-            if (!string.IsNullOrEmpty(folderJson))
             {
                 if (SelectedFolder.Name.Contains("recent"))
                 {
-                    var folder = JsonConvert.DeserializeObject<List<DTOBaseItem>>(folderJson);
-                    CurrentItems = folder;
-                    result = true;
+                    var items = await ApiClient.GetRecentlyAddedItemsAsync(App.Settings.LoggedInUser.Id);
+                    CurrentItems = items.ToList();
                 }
                 else
                 {
-                    var folder = JsonConvert.DeserializeObject<DTOBaseItem>(folderJson);
-                    CurrentItems = folder.Children.ToList();
-                    result = true;
+                    var items = await ApiClient.GetItemAsync(SelectedFolder.Id, App.Settings.LoggedInUser.Id);
+                    CurrentItems = items.Children.ToList();
                 }
+                return true;
             }
-
-            return result;
+            catch
+            {
+                App.ShowMessage("", "Error getting data");
+                return false;
+            }
         }
 
         private void SortList()
@@ -235,7 +206,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 return true;
             }
-            DTOBaseItem.Studios = new List<BaseItemStudio> {new BaseItemStudio {Name = "none"}};
+            DTOBaseItem.Studios = new[] {new BaseItemStudio {Name = "none"}};
             return true;
         }
 
@@ -245,7 +216,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 return true;
             }
-            DTOBaseItem.Genres = new List<string> { "none" };
+            DTOBaseItem.Genres = new string[] { "none" };
             return true;
         }
 

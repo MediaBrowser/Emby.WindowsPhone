@@ -193,6 +193,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Fonts\MISTRAL.TTF" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
@@ -222,9 +223,13 @@
     <Folder Include="Design\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\Visual Studio 2012\Projects\MBServer\MediaBrowser.Model\MediaBrowser.Model.csproj">
+    <ProjectReference Include="..\..\..\..\..\Visual Studio 2012\Projects\MediaBrowserServer\MediaBrowser.Model\MediaBrowser.Model.csproj">
       <Project>{7EEEB4BB-F3E8-48FC-B4C5-70F0FFF8329B}</Project>
       <Name>MediaBrowser.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MediaBrowser.ApiInteraction.WindowsPhone\MediaBrowser.ApiInteraction.WindowsPhone.csproj">
+      <Project>{54EEE576-F803-485B-BFDC-798C3105E600}</Project>
+      <Name>MediaBrowser.ApiInteraction.WindowsPhone</Name>
     </ProjectReference>
     <ProjectReference Include="..\MediaBrowser.Shared\MediaBrowser.Shared.csproj">
       <Project>{2D3D6DCD-C00F-4E40-AF44-8975A2DF87A3}</Project>

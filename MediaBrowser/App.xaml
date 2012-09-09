@@ -24,7 +24,7 @@
             <model:SettingsService x:Key="Settings" />
 
             <sys:String x:Key="AppName">MediaBrowser</sys:String>
-
+            
             <!-- Converters from ScottIsAFool.WindowsPhone.Converters -->
             <scottConverters:VisibilityConverter x:Key="VisibilityConverter" />
             <scottConverters:InvertedVisibilityConverter x:Key="InvertedVisibilityConverter" />

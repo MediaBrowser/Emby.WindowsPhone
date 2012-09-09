@@ -1,15 +1,12 @@
 ﻿using GalaSoft.MvvmLight;
+using MediaBrowser.ApiInteraction.WindowsPhone;
 using MediaBrowser.WindowsPhone.Model;
-using Newtonsoft.Json;
 using GalaSoft.MvvmLight.Command;
-using SharpGIS;
 using System.Collections.ObjectModel;
 using System;
 using System.Linq;
 using MediaBrowser.Model.DTO;
-using System.Collections.Generic;
 using System.Threading.Tasks;
-using MediaBrowser.Model.Entities;
 
 namespace MediaBrowser.WindowsPhone.ViewModel
 {
@@ -25,11 +22,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     public class MainViewModel : ViewModelBase
     {
         private readonly INavigationService NavService;
+        private readonly ApiClient ApiClient;
         private bool hasLoaded;
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
-        public MainViewModel(INavigationService navService)
+        public MainViewModel(ApiClient apiClient, INavigationService navService)
         {
             Folders = new ObservableCollection<DTOBaseItem>();
             RecentItems = new ObservableCollection<DTOBaseItem>();
@@ -39,10 +37,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
             else
             {
+                ApiClient = apiClient;
                 NavService = navService;                
                 WireCommands();
-                App.Settings.HostName = "192.168.0.2"; App.Settings.PortNo = "8096";
-                App.Settings.LoggedInUser = new User { Id = new Guid("5d1cf7fce25943b790d140095457a42b") };
+                App.Settings.LoggedInUser = new DTOUser { Id = new Guid("5d1cf7fce25943b790d140095457a42b") };
                 DummyFolder = new DTOBaseItem
                                   {
                                       Type = "folder",
@@ -77,53 +75,32 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
         private async Task<bool> GetRecent()
         {
-            bool result = false;
-
-            string recentUrl = App.Settings.ApiUrl + "itemlist?listtype=recentlyaddeditems&userid=" + App.Settings.LoggedInUser.Id;
-            string recentjson = string.Empty;
             try
             {
-                recentjson = await new GZipWebClient().DownloadStringTaskAsync(recentUrl);
-            }
-            catch (Exception ex)
-            {
-                App.ShowMessage("", "Error connecting to service");
-            }
-            if (!string.IsNullOrEmpty(recentjson))
-            {
-                var recent = JsonConvert.DeserializeObject<List<DTOBaseItem>>(recentjson);
+                var recent = await ApiClient.GetRecentlyAddedItemsAsync(App.Settings.LoggedInUser.Id);
                 RecentItems.Clear();
                 recent.OrderBy(x => x.DateCreated).Take(6).ToList().ForEach(recentItem => RecentItems.Add(recentItem));
-                result = true;
+                return true;
             }
-
-            return result;
+            catch
+            {
+                return false;
+            }
         }
 
         private async Task<bool> GetFolders()
         {
-            bool result = false;
-
-            string url = App.Settings.ApiUrl + "item?userid=" + App.Settings.LoggedInUser.Id;
-            string folderjson = string.Empty;
             try
             {
-                folderjson = await new GZipWebClient().DownloadStringTaskAsync(url);
-            }
-            catch (Exception exe)
-            {
-                App.ShowMessage("", "Error connecting to service1");
-            }
-
-            if (!string.IsNullOrEmpty(folderjson))
-            {
-                var item = JsonConvert.DeserializeObject<DTOBaseItem>(folderjson);
+                var item = await ApiClient.GetItemAsync(Guid.Empty, App.Settings.LoggedInUser.Id);
                 Folders.Clear();
                 item.Children.ToList().ForEach(folder => Folders.Add(folder));
-                result = true;
+                return true;
             }
-
-            return result;
+            catch
+            {
+                return false;
+            }
         }
 
         // UI properties

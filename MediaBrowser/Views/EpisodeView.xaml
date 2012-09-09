@@ -58,11 +58,11 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <!--TitlePanel contains the name of the application and page title-->
+        <!--TitlePanel contains the name of the application and page title-->		
         <StackPanel x:Name="TitlePanel"
                     Grid.Row="0"
                     Margin="12,17,0,28">
-            <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Height="27">
                 <TextBlock Text="MEDIA"
                            Foreground="Black"
                            Style="{StaticResource PhoneTextNormalStyle}" />
@@ -70,6 +70,12 @@
                            Foreground="Green"
                            Style="{StaticResource PhoneTextNormalStyle}"
                            Margin="-12,0,0,0"/>
+				<TextBlock Text="3" 
+						   Foreground="Green" 
+						   FontFamily="/MediaBrowser.WindowsPhone;component/Fonts/MISTRAL.TTF#Mistral" 
+						   Margin="4,-10,0,0" 
+						   Padding="0"
+						   VerticalAlignment="Top"/>				
             </StackPanel>
             <TextBlock x:Name="PageTitle"
                        Text="{Binding SelectedEpisode.Name, Converter={StaticResource StringCaseConverter}}"

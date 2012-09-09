@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Windows.Data;
+using GalaSoft.MvvmLight.Ioc;
+using MediaBrowser.ApiInteraction.WindowsPhone;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.DTO;
 
@@ -12,6 +14,7 @@ namespace MediaBrowser.WindowsPhone.Converters
             if (value != null)
             {
                 Type type = value.GetType();
+                var apiClient = SimpleIoc.Default.GetInstance<ApiClient>();
                 if (type == typeof (DTOBaseItem))
                 {
                     string imageType = parameter == null ? string.Empty : (string) parameter;
@@ -20,51 +23,45 @@ namespace MediaBrowser.WindowsPhone.Converters
                     const string baseUrl = "{0}/image?id={1}&maxheight={2}&quality=90&type={3}";
                     if (imageType.Equals("logo", StringComparison.OrdinalIgnoreCase))
                     {
-                        return new Uri(string.Format(baseUrl, App.Settings.ApiUrl, item.Id, 173, imageType),
-                                       UriKind.Absolute);
+                        return apiClient.GetImageUrl(item.Id, ImageType.Logo, maxHeight: 173, quality: 90);
                     }
                     else if (imageType.Equals("backdrop", StringComparison.OrdinalIgnoreCase))
                     {
-                        return new Uri(string.Format(baseUrl, App.Settings.ApiUrl, item.Id, 800, imageType),
-                                       UriKind.Absolute);
+                        return apiClient.GetImageUrl(item.Id, ImageType.Backdrop, maxHeight: 800, quality: 90);
                     }
                     else if (imageType.Equals("banner", StringComparison.OrdinalIgnoreCase))
                     {
-                        return new Uri(string.Format(baseUrl, App.Settings.ApiUrl, item.Id, 140, imageType),
-                                       UriKind.Absolute);
+                        return apiClient.GetImageUrl(item.Id, ImageType.Banner, maxHeight: 140, quality: 90);
                     }
                     else if (imageType.Equals("art", StringComparison.OrdinalIgnoreCase))
                     {
-                        return new Uri(string.Format(baseUrl, App.Settings.ApiUrl, item.Id, 173, imageType),
-                                       UriKind.Absolute);
+                        return apiClient.GetImageUrl(item.Id, ImageType.Art, maxHeight: 173, quality: 90);
                     }
                     else if (imageType.Equals("thumbnail", StringComparison.OrdinalIgnoreCase))
                     {
-                        return new Uri(string.Format(baseUrl, App.Settings.ApiUrl, item.Id, 173, imageType),
-                                       UriKind.Absolute);
+                        return apiClient.GetImageUrl(item.Id, ImageType.Thumbnail, maxHeight: 173, quality: 90);
                     }
                     else if (imageType.Equals("icon", StringComparison.OrdinalIgnoreCase))
                     {
-                        return new Uri(string.Format(baseUrl, App.Settings.ApiUrl, item.Id, 75, ""));
+                        return apiClient.GetImageUrl(item.Id, ImageType.Primary, maxHeight: 75, quality: 90);
                     }
                     else if (imageType.Equals("poster", StringComparison.OrdinalIgnoreCase))
                     {
-                        return new Uri(string.Format(baseUrl, App.Settings.ApiUrl, item.Id, 450, ""));
+                        return apiClient.GetImageUrl(item.Id, ImageType.Primary, maxHeight: 450, quality: 90);
                     }
                     else if(imageType.Equals("episode", StringComparison.OrdinalIgnoreCase))
                     {
-                        return new Uri(string.Format(baseUrl, App.Settings.ApiUrl, item.Id, 225, ""));
+                        return apiClient.GetImageUrl(item.Id, ImageType.Primary, maxHeight: 225, quality: 90);
                     }
                     else
                     {
-                        return new Uri(string.Format(baseUrl, App.Settings.ApiUrl, item.Id, 173, imageType),
-                                       UriKind.Absolute);
+                        return apiClient.GetImageUrl(item.Id, ImageType.Primary, maxHeight: 200, quality: 90);
                     }
                 }
                 else if(type == typeof(BaseItemPerson))
                 {
                     var person = (BaseItemPerson) value;
-                    return new Uri(string.Format("{0}/image?personname={1}&quality=90&maxwidth=99", App.Settings.ApiUrl, person.Name));
+                    return apiClient.GetPersonImageUrl(person.Name, maxWidth: 99, quality: 90);
                 }
             }
             return "";

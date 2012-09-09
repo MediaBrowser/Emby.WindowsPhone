@@ -1,12 +1,14 @@
-﻿using MediaBrowser.Model.Entities;
+﻿using MediaBrowser.Model.Configuration;
+using MediaBrowser.Model.DTO;
 
 namespace MediaBrowser.Model
 {
     public class SettingsService : ISettingsService
     {
-        public User LoggedInUser{ get; set; }
+        public DTOUser LoggedInUser{ get; set; }
         public string HostName { get; set; }
-        public string PortNo { get; set; }
+        public int PortNo { get; set; }
+        public ServerConfiguration ServerConfiguration { get; set; }
 
         public string ApiUrl
         {
@@ -15,7 +17,7 @@ namespace MediaBrowser.Model
 
         public bool CheckHostAndPort()
         {
-            return !string.IsNullOrEmpty(HostName) && !string.IsNullOrEmpty(PortNo);
+            return !string.IsNullOrEmpty(HostName);
         }
     }
 }

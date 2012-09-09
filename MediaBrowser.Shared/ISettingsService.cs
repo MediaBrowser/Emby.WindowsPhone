@@ -1,13 +1,15 @@
-﻿using MediaBrowser.Model.Entities;
+﻿using MediaBrowser.Model.Configuration;
+using MediaBrowser.Model.DTO;
 
 namespace MediaBrowser.Model
 {
     public interface ISettingsService
     {
-        User LoggedInUser { get; set; }
+        DTOUser LoggedInUser { get; set; }
         string HostName { get; set; }
-        string PortNo { get; set; }
+        int PortNo { get; set; }
         string ApiUrl { get; }
         bool CheckHostAndPort();
+        ServerConfiguration ServerConfiguration { get; set; }
     }
 }

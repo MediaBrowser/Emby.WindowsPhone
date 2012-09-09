@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using MediaBrowser.ApiInteraction.WindowsPhone;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.Model.DTO;
 using GalaSoft.MvvmLight.Messaging;
-using Newtonsoft.Json;
 using ScottIsAFool.WindowsPhone;
-using SharpGIS;
-using MediaBrowser.Model.Entities;
 
 namespace MediaBrowser.WindowsPhone.ViewModel
 {
@@ -26,13 +23,13 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     public class MovieViewModel : ViewModelBase
     {
         private readonly INavigationService NavService;
+        private readonly ApiClient ApiClient;
         /// <summary>
         /// Initializes a new instance of the MovieViewModel class.
         /// </summary>
-        public MovieViewModel(INavigationService navService)
+        public MovieViewModel(INavigationService navService, ApiClient apiClient)
         {
-            NavService = navService;
-            if(IsInDesignMode)
+            if (IsInDesignMode)
             {
                 SelectedMovie = new DTOBaseItem
                                     {
@@ -44,6 +41,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
             else
             {
+                NavService = navService;
+                ApiClient = apiClient;
                 WireCommands();
                 WireMessages();
             }
@@ -53,15 +52,15 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             Messenger.Default.Register<NotificationMessage>(this, m =>
             {
-                if(m.Notification.Equals(Constants.ShowMovieMsg))
+                if (m.Notification.Equals(Constants.ShowMovieMsg))
                 {
-                    SelectedMovie = (DTOBaseItem) m.Sender;
+                    SelectedMovie = (DTOBaseItem)m.Sender;
                     ImdbId = SelectedMovie.ProviderIds["Imdb"];
-                    if(SelectedMovie.RunTimeTicks.HasValue)
+                    if (SelectedMovie.RunTimeTicks.HasValue)
                         RunTime = TimeSpan.FromTicks(SelectedMovie.RunTimeTicks.Value).ToString();
-                    
+
                 }
-                else if(m.Notification.Equals(Constants.ClearFilmAndTvMsg))
+                else if (m.Notification.Equals(Constants.ClearFilmAndTvMsg))
                 {
                     SelectedMovie = null;
                     CastAndCrew = null;
@@ -88,29 +87,22 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             var result = false;
 
-            string movieJson = string.Empty;
             try
             {
-                string url = string.Format(App.Settings.ApiUrl + "item?userid={0}&id={1}", App.Settings.LoggedInUser.Id,
-                                           SelectedMovie.Id);
-                movieJson = await new GZipWebClient().DownloadStringTaskAsync(url);
+                var item = await ApiClient.GetItemAsync(SelectedMovie.Id, App.Settings.LoggedInUser.Id);
+                CastAndCrew = Utils.GroupCastAndCrew(item.People);
+                result = true;
             }
             catch
             {
-                App.ShowMessage("", "Error downloading movie information");
-            }
-
-            if(!string.IsNullOrEmpty(movieJson))
-            {
-                var item = JsonConvert.DeserializeObject<DTOBaseItem>(movieJson);
-                CastAndCrew = Utils.GroupCastAndCrew(item.People);
-                result = true;
+                App.ShowMessage("", "Error getting extra information");
+                result = false;
             }
 
             return result;
         }
 
-        
+
 
         // UI properties
         public string ProgressText { get; set; }
