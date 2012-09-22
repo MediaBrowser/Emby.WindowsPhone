@@ -88,7 +88,7 @@ namespace MediaBrowser.WindowsPhone.Model
         }
 
 
-        public void NavigateTopage(DtoBaseItem item)
+        public void NavigateToPage(DtoBaseItem item)
         {
             switch (item.Type.ToLower())
             {

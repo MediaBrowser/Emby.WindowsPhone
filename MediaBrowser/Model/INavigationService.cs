@@ -12,6 +12,6 @@ namespace MediaBrowser.WindowsPhone.Model
         void GoBack();
         bool IsNetworkAvailable { get; }
         void NavigateToPage(string link);
-        void NavigateTopage(DtoBaseItem item);
+        void NavigateToPage(DtoBaseItem item);
     }
 }

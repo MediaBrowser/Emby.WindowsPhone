@@ -80,7 +80,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 ProgressIsVisible = false;
                 ProgressText = string.Empty;
             });
-            NavigateTopage = new RelayCommand<DtoBaseItem>(NavService.NavigateTopage);
+            NavigateTopage = new RelayCommand<DtoBaseItem>(NavService.NavigateToPage);
         }
 
         private async Task<bool> GetMovieDetails()

@@ -41,7 +41,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 ApiClient = apiClient;
                 NavService = navService;                
                 WireCommands();
-                App.Settings.LoggedInUser = new DtoUser { Id = new Guid("5d1cf7fce25943b790d140095457a42b") };
                 DummyFolder = new DtoBaseItem
                                   {
                                       Type = "folder",
@@ -71,7 +70,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 }
             });
 
-            NavigateToPage = new RelayCommand<DtoBaseItem>(NavService.NavigateTopage);
+            NavigateToPage = new RelayCommand<DtoBaseItem>(NavService.NavigateToPage);
         }
 
         private async Task<bool> GetRecent()

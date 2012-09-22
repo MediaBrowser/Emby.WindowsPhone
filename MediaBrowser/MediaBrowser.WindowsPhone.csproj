@@ -116,6 +116,7 @@
     <Reference Include="Telerik.Windows.Core, Version=2012.2.801.2040, Culture=neutral, PublicKeyToken=5803cfa389c90ce7" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ThicknessAnimationX.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
@@ -125,10 +126,14 @@
     <Compile Include="Converters\ImageUrlConverter.cs" />
     <Compile Include="Converters\RatingConverter.cs" />
     <Compile Include="PlaceImage.cs" />
+    <Compile Include="Splashscreen.xaml.cs">
+      <DependentUpon>Splashscreen.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ThemeManager.cs" />
     <Compile Include="Utils.cs" />
     <Compile Include="ViewModel\FolderViewModel.cs" />
     <Compile Include="ViewModel\MovieViewModel.cs" />
+    <Compile Include="ViewModel\SplashscreenViewModel.cs" />
     <Compile Include="ViewModel\TvViewModel.cs" />
     <Compile Include="Views\EpisodeView.xaml.cs">
       <DependentUpon>EpisodeView.xaml</DependentUpon>
@@ -159,6 +164,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Splashscreen.xaml">
+      <SubType>Form</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -211,9 +220,6 @@
     <Content Include="Images\MBLogo.png" />
     <Content Include="Images\PanoBackground.png" />
     <Content Include="Images\PanoTitle.png" />
-    <Content Include="SplashScreenImage.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Toolkit.Content\ApplicationBar.Cancel.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Check.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Delete.png" />

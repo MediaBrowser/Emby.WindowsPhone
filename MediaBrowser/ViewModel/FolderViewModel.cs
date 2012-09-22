@@ -83,7 +83,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 }
             });
 
-            NavigateToPage = new RelayCommand<DtoBaseItem>(NavService.NavigateTopage);
+            NavigateToPage = new RelayCommand<DtoBaseItem>(NavService.NavigateToPage);
         }
 
         private async Task<bool> GetItems()

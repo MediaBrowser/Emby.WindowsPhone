@@ -85,13 +85,7 @@ namespace MediaBrowser.WindowsPhone
         // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
-            Settings.HostName = "192.168.0.2";
-            Settings.PortNo = 8096;
-            SimpleIoc.Default.Register<ApiClient>(() => new ApiClient
-                                                            {
-                                                                ServerHostName = Settings.HostName,
-                                                                ServerApiPort = Settings.PortNo
-                                                            });
+            
         }
 
         // Code to execute when the application is activated (brought to foreground)

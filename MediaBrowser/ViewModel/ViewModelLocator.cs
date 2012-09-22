@@ -37,19 +37,21 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             if (ViewModelBase.IsInDesignModeStatic)
             {
-                SimpleIoc.Default.Register<ApiClient>();
+                SimpleIoc.Default.Register(()=> new ApiClient{ ServerApiPort = 8096, ServerHostName = "192.168.0.2"});
                 SimpleIoc.Default.Register<INavigationService, NavigationService>();
             }
             else
             {
                 SimpleIoc.Default.Register<INavigationService, NavigationService>();
                 SimpleIoc.Default.Register<ISettingsService, SettingsService>();
+                SimpleIoc.Default.Register<ApiClient>();
             }
 
             SimpleIoc.Default.Register<MainViewModel>(true);
             SimpleIoc.Default.Register<FolderViewModel>(true);      
             SimpleIoc.Default.Register<MovieViewModel>(true);
             SimpleIoc.Default.Register<TvViewModel>(true);
+            SimpleIoc.Default.Register<SplashscreenViewModel>();
         }
 
         /// <summary>
@@ -87,6 +89,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             get { return ServiceLocator.Current.GetInstance<TvViewModel>(); }
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
+            "CA1822:MarkMembersAsStatic",
+            Justification = "This non-static member is needed for data binding purposes.")]
+        public SplashscreenViewModel Splashscreen
+        {
+            get { return ServiceLocator.Current.GetInstance<SplashscreenViewModel>(); }
+        }
+
         /// <summary>
         /// Cleans up all the resources.
         /// </summary>
@@ -96,6 +106,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             ServiceLocator.Current.GetInstance<FolderViewModel>().Cleanup();
             ServiceLocator.Current.GetInstance<MovieViewModel>().Cleanup();
             ServiceLocator.Current.GetInstance<TvViewModel>().Cleanup();
+            ServiceLocator.Current.GetInstance<SplashscreenViewModel>().Cleanup();
         }
     }
 }

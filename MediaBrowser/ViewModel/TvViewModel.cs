@@ -32,6 +32,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         /// </summary>
         public TvViewModel(INavigationService navService, ApiClient apiClient)
         {
+            NavService = navService;
+            ApiClient = apiClient;
             RecentItems = new ObservableCollection<DtoBaseItem>();
             Episodes = new List<DtoBaseItem>();
             if(IsInDesignMode)
@@ -46,8 +48,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 WireCommands();
                 WireMessages();
             }
-            NavService = navService;
-            ApiClient = apiClient;
         }
 
         private void WireMessages()
@@ -150,7 +150,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 }
             });
 
-            NavigateToPage = new RelayCommand<DtoBaseItem>(NavService.NavigateTopage);
+            NavigateToPage = new RelayCommand<DtoBaseItem>(NavService.NavigateToPage);
         }
 
         private async Task<bool> GetEpisode()

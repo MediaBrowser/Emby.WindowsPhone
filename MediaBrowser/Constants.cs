@@ -3,8 +3,6 @@ namespace MediaBrowser.WindowsPhone
 {
     public class Constants
     {
-        public const string UserId = "c0eeed038863422d9efc61d4b65506fc";
-
         // Message Constants
         public const string ShowFolderMsg = "ShowFolderMsg";
         public const string ChangeGroupingMsg = "ChangeGroupingMsg";
@@ -15,5 +13,6 @@ namespace MediaBrowser.WindowsPhone
         public const string ShowSeasonMsg = "ShowSeasonMsg";
         public const string ClearEpisodesMsg = "ClearEpisodesMsg";
         public const string ShowEpisodeMsg = "ShowEpisodeMsg";
+        public const string SplashAnimationFinishedMsg = "SplashAnimationFinishedMsg";
     }
 }
