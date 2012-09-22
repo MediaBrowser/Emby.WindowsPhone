@@ -5,7 +5,7 @@ namespace MediaBrowser.Model
 {
     public interface ISettingsService
     {
-        DTOUser LoggedInUser { get; set; }
+        DtoUser LoggedInUser { get; set; }
         string HostName { get; set; }
         int PortNo { get; set; }
         string ApiUrl { get; }

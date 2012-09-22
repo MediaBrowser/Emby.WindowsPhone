@@ -5,7 +5,7 @@ namespace MediaBrowser.Model
 {
     public class SettingsService : ISettingsService
     {
-        public DTOUser LoggedInUser{ get; set; }
+        public DtoUser LoggedInUser{ get; set; }
         public string HostName { get; set; }
         public int PortNo { get; set; }
         public ServerConfiguration ServerConfiguration { get; set; }

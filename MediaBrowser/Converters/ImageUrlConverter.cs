@@ -15,11 +15,11 @@ namespace MediaBrowser.WindowsPhone.Converters
             {
                 Type type = value.GetType();
                 var apiClient = SimpleIoc.Default.GetInstance<ApiClient>();
-                if (type == typeof (DTOBaseItem))
+                if (type == typeof (DtoBaseItem))
                 {
                     string imageType = parameter == null ? string.Empty : (string) parameter;
                     // http://192.168.0.2:8096/mediabrowser/api/image?item.Id=d0aac36ee980d7dc0bcf8323b1884f70&maxheight=173&quality=90
-                    var item = (DTOBaseItem)value;
+                    var item = (DtoBaseItem)value;
                     const string baseUrl = "{0}/image?id={1}&maxheight={2}&quality=90&type={3}";
                     if (imageType.Equals("logo", StringComparison.OrdinalIgnoreCase))
                     {

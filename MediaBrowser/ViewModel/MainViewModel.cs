@@ -29,19 +29,20 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         /// </summary>
         public MainViewModel(ApiClient apiClient, INavigationService navService)
         {
-            Folders = new ObservableCollection<DTOBaseItem>();
-            RecentItems = new ObservableCollection<DTOBaseItem>();
+            Folders = new ObservableCollection<DtoBaseItem>();
+            RecentItems = new ObservableCollection<DtoBaseItem>();
             if (IsInDesignMode)
             {
-                RecentItems.Add(new DTOBaseItem { Id = new Guid("2fc6f321b5f8bbe842fcd0eed089561d"), Name = "A Night To Remember" } );
+                RandomString = "blah";
+                RecentItems.Add(new DtoBaseItem { Id = new Guid("2fc6f321b5f8bbe842fcd0eed089561d"), Name = "A Night To Remember" });
             }
             else
             {
                 ApiClient = apiClient;
                 NavService = navService;                
                 WireCommands();
-                App.Settings.LoggedInUser = new DTOUser { Id = new Guid("5d1cf7fce25943b790d140095457a42b") };
-                DummyFolder = new DTOBaseItem
+                App.Settings.LoggedInUser = new DtoUser { Id = new Guid("5d1cf7fce25943b790d140095457a42b") };
+                DummyFolder = new DtoBaseItem
                                   {
                                       Type = "folder",
                                       Name = "recent"
@@ -70,7 +71,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 }
             });
 
-            NavigateToPage = new RelayCommand<DTOBaseItem>(NavService.NavigateTopage);
+            NavigateToPage = new RelayCommand<DtoBaseItem>(NavService.NavigateTopage);
         }
 
         private async Task<bool> GetRecent()
@@ -108,9 +109,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public string ProgressText { get; set; }
 
         public RelayCommand PageLoaded { get; set; }
-        public RelayCommand<DTOBaseItem> NavigateToPage { get; set; }
-        public ObservableCollection<DTOBaseItem> Folders { get; set; }
-        public ObservableCollection<DTOBaseItem> RecentItems { get; set; }
-        public DTOBaseItem DummyFolder { get; set; }
+        public RelayCommand<DtoBaseItem> NavigateToPage { get; set; }
+        public ObservableCollection<DtoBaseItem> Folders { get; set; }
+        public ObservableCollection<DtoBaseItem> RecentItems { get; set; }
+        public DtoBaseItem DummyFolder { get; set; }
+        public string RandomString { get; set; }
     }
 }

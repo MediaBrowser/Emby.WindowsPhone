@@ -31,7 +31,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             if (IsInDesignMode)
             {
-                SelectedMovie = new DTOBaseItem
+                SelectedMovie = new DtoBaseItem
                                     {
                                         Id = new Guid("6536a66e10417d69105bae71d41a6e6f"),
                                         Name = "Jurassic Park",
@@ -54,7 +54,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 if (m.Notification.Equals(Constants.ShowMovieMsg))
                 {
-                    SelectedMovie = (DTOBaseItem)m.Sender;
+                    SelectedMovie = (DtoBaseItem)m.Sender;
                     ImdbId = SelectedMovie.ProviderIds["Imdb"];
                     if (SelectedMovie.RunTimeTicks.HasValue)
                         RunTime = TimeSpan.FromTicks(SelectedMovie.RunTimeTicks.Value).ToString();
@@ -80,7 +80,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 ProgressIsVisible = false;
                 ProgressText = string.Empty;
             });
-            NavigateTopage = new RelayCommand<DTOBaseItem>(NavService.NavigateTopage);
+            NavigateTopage = new RelayCommand<DtoBaseItem>(NavService.NavigateTopage);
         }
 
         private async Task<bool> GetMovieDetails()
@@ -108,12 +108,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public string ProgressText { get; set; }
         public bool ProgressIsVisible { get; set; }
 
-        public DTOBaseItem SelectedMovie { get; set; }
+        public DtoBaseItem SelectedMovie { get; set; }
         public List<Group<BaseItemPerson>> CastAndCrew { get; set; }
         public string ImdbId { get; set; }
         public string RunTime { get; set; }
 
-        public RelayCommand<DTOBaseItem> NavigateTopage { get; set; }
+        public RelayCommand<DtoBaseItem> NavigateTopage { get; set; }
         public RelayCommand MoviePageLoaded { get; set; }
     }
 }

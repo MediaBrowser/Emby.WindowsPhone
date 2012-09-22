@@ -144,7 +144,7 @@
             </controls:PanoramaItem>
             
             <controls:PanoramaItem Header="now playing">
-                <TextBlock Text="Coming soozn"
+                <TextBlock Text="{Binding RandomString}"
                            Style="{StaticResource PhoneTextNormalStyle}"/>
             </controls:PanoramaItem>
         </controls:Panorama>

@@ -11,6 +11,7 @@
 
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
+using MediaBrowser.ApiInteraction.WindowsPhone;
 using Microsoft.Practices.ServiceLocation;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.Model;
@@ -36,6 +37,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             if (ViewModelBase.IsInDesignModeStatic)
             {
+                SimpleIoc.Default.Register<ApiClient>();
+                SimpleIoc.Default.Register<INavigationService, NavigationService>();
             }
             else
             {
@@ -43,10 +46,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 SimpleIoc.Default.Register<ISettingsService, SettingsService>();
             }
 
-            SimpleIoc.Default.Register<MainViewModel>();
-            SimpleIoc.Default.Register<FolderViewModel>();      
-            SimpleIoc.Default.Register<MovieViewModel>();
-            SimpleIoc.Default.Register<TvViewModel>();
+            SimpleIoc.Default.Register<MainViewModel>(true);
+            SimpleIoc.Default.Register<FolderViewModel>(true);      
+            SimpleIoc.Default.Register<MovieViewModel>(true);
+            SimpleIoc.Default.Register<TvViewModel>(true);
         }
 
         /// <summary>

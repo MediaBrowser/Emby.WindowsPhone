@@ -88,33 +88,28 @@ namespace MediaBrowser.WindowsPhone.Model
         }
 
 
-        public void NavigateTopage(DTOBaseItem item)
+        public void NavigateTopage(DtoBaseItem item)
         {
             switch (item.Type.ToLower())
             {
                 case "virtualfolder":
-                    if (((ViewModelLocator)Application.Current.Resources["Locator"]).Folder != null)
-                        Messenger.Default.Send<NotificationMessage>(new NotificationMessage(item, Constants.ShowFolderMsg));
+                    Messenger.Default.Send<NotificationMessage>(new NotificationMessage(item, Constants.ShowFolderMsg));
                     NavigateToPage("/Views/FolderView.xaml");
                     break;
                 case "movie":
-                    if(((ViewModelLocator)Application.Current.Resources["Locator"]).Movie != null)
-                        Messenger.Default.Send<NotificationMessage>(new NotificationMessage(item, Constants.ShowMovieMsg));
+                    Messenger.Default.Send<NotificationMessage>(new NotificationMessage(item, Constants.ShowMovieMsg));
                     NavigateToPage("/Views/MovieView.xaml");
                     break;
                 case "series":
-                    if(((ViewModelLocator)Application.Current.Resources["Locator"]).Tv != null)
-                        Messenger.Default.Send<NotificationMessage>(new NotificationMessage(item, Constants.ShowTvSeries));
+                    Messenger.Default.Send<NotificationMessage>(new NotificationMessage(item, Constants.ShowTvSeries));
                     NavigateToPage("/Views/TvShowView.xaml");
                     break;
                 case "season":
-                    if(((ViewModelLocator)Application.Current.Resources["Locator"]).Tv != null)
-                        Messenger.Default.Send<NotificationMessage>(new NotificationMessage(item, Constants.ShowSeasonMsg));
+                    Messenger.Default.Send<NotificationMessage>(new NotificationMessage(item, Constants.ShowSeasonMsg));
                     NavigateToPage("/Views/SeasonView.xaml");
                     break;
                 case "episode":
-                    if (((ViewModelLocator)Application.Current.Resources["Locator"]).Tv != null)
-                        Messenger.Default.Send<NotificationMessage>(new NotificationMessage(item, Constants.ShowEpisodeMsg));
+                    Messenger.Default.Send<NotificationMessage>(new NotificationMessage(item, Constants.ShowEpisodeMsg));
                     NavigateToPage("/Views/EpisodeView.xaml");
                     break;
                 default:

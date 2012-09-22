@@ -32,23 +32,22 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         /// </summary>
         public TvViewModel(INavigationService navService, ApiClient apiClient)
         {
-            NavService = navService;
-            RecentItems = new ObservableCollection<DTOBaseItem>();
-            Episodes = new List<DTOBaseItem>();
+            RecentItems = new ObservableCollection<DtoBaseItem>();
+            Episodes = new List<DtoBaseItem>();
             if(IsInDesignMode)
             {
-                SelectedTvSeries = new DTOBaseItem
+                SelectedTvSeries = new DtoBaseItem
                                        {
                                            Name = "Scrubs"
                                        };
             }
             else
             {
-                NavService = navService;
-                ApiClient = apiClient;
                 WireCommands();
                 WireMessages();
             }
+            NavService = navService;
+            ApiClient = apiClient;
         }
 
         private void WireMessages()
@@ -58,8 +57,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 if(m.Notification.Equals(Constants.ShowTvSeries))
                 {
                     showDataLoaded = false;
-                    SelectedTvSeries = (DTOBaseItem) m.Sender;
-                    DummyFolder = new DTOBaseItem
+                    SelectedTvSeries = (DtoBaseItem) m.Sender;
+                    DummyFolder = new DtoBaseItem
                     {
                         Type = "folder",
                             Name = SelectedTvSeries.Name + "'s recent items",
@@ -70,7 +69,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 else if(m.Notification.Equals(Constants.ShowSeasonMsg))
                 {
                     seasonDataLoaded = false;
-                    SelectedSeason = (DTOBaseItem) m.Sender;
+                    SelectedSeason = (DtoBaseItem) m.Sender;
                 }
                 else if(m.Notification.Equals(Constants.ClearFilmAndTvMsg))
                 {
@@ -84,7 +83,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 }
                 else if(m.Notification.Equals(Constants.ShowEpisodeMsg))
                 {
-                    SelectedEpisode = (DTOBaseItem) m.Sender;
+                    SelectedEpisode = (DtoBaseItem) m.Sender;
                 }
                 else if(m.Notification.Equals(Constants.ClearEpisodesMsg))
                 {
@@ -102,7 +101,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     if(SelectedTvSeries != null)
                     {
                         ProgressIsVisible = true;
-                        ProgressText = "Getting seasons...";
+                        ProgressText = "Getting show information...";
 
                         bool seasonsLoaded = await GetSeasons();
 
@@ -151,7 +150,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 }
             });
 
-            NavigateToPage = new RelayCommand<DTOBaseItem>(NavService.NavigateTopage);
+            NavigateToPage = new RelayCommand<DtoBaseItem>(NavService.NavigateTopage);
         }
 
         private async Task<bool> GetEpisode()
@@ -223,16 +222,16 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public string ProgressText { get; set; }
         public bool ProgressIsVisible { get; set; }
 
-        public DTOBaseItem SelectedTvSeries { get; set; }
-        public List<DTOBaseItem> Seasons { get; set; }
-        public List<DTOBaseItem> Episodes { get; set; }
-        public DTOBaseItem SelectedEpisode { get; set; }
-        public DTOBaseItem SelectedSeason { get; set; }
-        public ObservableCollection<DTOBaseItem> RecentItems { get; set; }
-        public DTOBaseItem DummyFolder { get; set; }
+        public DtoBaseItem SelectedTvSeries { get; set; }
+        public List<DtoBaseItem> Seasons { get; set; }
+        public List<DtoBaseItem> Episodes { get; set; }
+        public DtoBaseItem SelectedEpisode { get; set; }
+        public DtoBaseItem SelectedSeason { get; set; }
+        public ObservableCollection<DtoBaseItem> RecentItems { get; set; }
+        public DtoBaseItem DummyFolder { get; set; }
         public List<Group<BaseItemPerson>> CastAndCrew { get; set; }
 
-        public RelayCommand<DTOBaseItem> NavigateToPage { get; set; }
+        public RelayCommand<DtoBaseItem> NavigateToPage { get; set; }
         public RelayCommand TvSeriesPageLoaded { get; set; }
         public RelayCommand SeasonPageLoaded { get; set; }
         public RelayCommand EpisodePageLoaded { get; set; }

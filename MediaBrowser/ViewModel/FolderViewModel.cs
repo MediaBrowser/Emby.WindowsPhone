@@ -48,7 +48,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 if (m.Notification.Equals(Constants.ShowFolderMsg))
                 {
-                    SelectedFolder = m.Sender as DTOBaseItem;
+                    SelectedFolder = m.Sender as DtoBaseItem;
                     dataLoaded = false;
                 }
                 else if(m.Notification.Equals(Constants.ChangeGroupingMsg))
@@ -83,7 +83,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 }
             });
 
-            NavigateToPage = new RelayCommand<DTOBaseItem>(NavService.NavigateTopage);
+            NavigateToPage = new RelayCommand<DtoBaseItem>(NavService.NavigateTopage);
         }
 
         private async Task<bool> GetItems()
@@ -113,7 +113,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             ProgressText = "Re-grouping...";
             ProgressIsVisible = true;
-            var emptyGroups = new List<Group<DTOBaseItem>>();
+            var emptyGroups = new List<Group<DtoBaseItem>>();
             switch (SortBy)
             {
                 case "name":
@@ -121,12 +121,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     GroupItemTemplate = (DataTemplate) Application.Current.Resources["LLSGroupItemTemplate"];
                     ItemsPanelTemplate = (ItemsPanelTemplate) Application.Current.Resources["WrapPanelTemplate"];
                     var headers = new List<string> { "#", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
-                    headers.ForEach(item => emptyGroups.Add(new Group<DTOBaseItem>(item, new List<DTOBaseItem>())));
+                    headers.ForEach(item => emptyGroups.Add(new Group<DtoBaseItem>(item, new List<DtoBaseItem>())));
                     var groupedNameItems = (from c in CurrentItems
                                             group c by GetSortByNameHeader(c)
                                                 into grp
                                                 orderby grp.Key
-                                                select new Group<DTOBaseItem>(grp.Key, grp)).ToList();
+                                                select new Group<DtoBaseItem>(grp.Key, grp)).ToList();
                     FolderGroupings = (from g in groupedNameItems.Union(emptyGroups)
                                        orderby g.Title
                                        select g).ToList();
@@ -140,13 +140,13 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                       orderby y.ProductionYear
                                       select y.ProductionYear.ToString()).Distinct().ToList();
                     movieYears.Insert(0, "?");
-                    movieYears.ForEach(item => emptyGroups.Add(new Group<DTOBaseItem>(item, new List<DTOBaseItem>())));
+                    movieYears.ForEach(item => emptyGroups.Add(new Group<DtoBaseItem>(item, new List<DtoBaseItem>())));
 
                     var groupedYearItems = from t in CurrentItems
                                            group t by GetSortByProductionYearHeader(t)
                                                into grp
                                                orderby grp.Key
-                                               select new Group<DTOBaseItem>(grp.Key, grp);
+                                               select new Group<DtoBaseItem>(grp.Key, grp);
                     FolderGroupings = (from g in groupedYearItems.Union(emptyGroups)
                                        orderby g.Title
                                        select g).ToList();
@@ -160,7 +160,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                       from s in t.Genres
                                       select s).Distinct().ToList();
                     genres.Insert(0, "none");
-                    genres.ForEach(item => emptyGroups.Add(new Group<DTOBaseItem>(item, new List<DTOBaseItem>())));
+                    genres.ForEach(item => emptyGroups.Add(new Group<DtoBaseItem>(item, new List<DtoBaseItem>())));
 
                     var groupedGenreItems = (from genre in genres
                                 let films = (from f in CurrentItems
@@ -168,7 +168,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                              where f.Genres.Contains(genre)
                                              orderby GetSortByNameHeader(f)
                                              select f).ToList()
-                                select new Group<DTOBaseItem>(genre, films)).ToList();
+                                select new Group<DtoBaseItem>(genre, films)).ToList();
 
                     FolderGroupings = (from g in groupedGenreItems.Union(emptyGroups)
                                        orderby g.Title
@@ -183,7 +183,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                    from st in s.Studios
                                    select st).Distinct().ToList();
                     studios.Insert(0, new BaseItemStudio {Name = "none"});
-                    studios.ForEach(item => emptyGroups.Add(new Group<DTOBaseItem>(item.Name, new List<DTOBaseItem>())));
+                    studios.ForEach(item => emptyGroups.Add(new Group<DtoBaseItem>(item.Name, new List<DtoBaseItem>())));
 
                     var groupedStudioItems = (from studio in studios
                                               let films = (from f in CurrentItems
@@ -191,7 +191,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                            where f.Studios.Contains(studio)
                                                            orderby GetSortByNameHeader(f)
                                                            select f).ToList()
-                                              select new Group<DTOBaseItem>(studio.Name, films)).ToList();
+                                              select new Group<DtoBaseItem>(studio.Name, films)).ToList();
                     FolderGroupings = (from g in groupedStudioItems.Union(emptyGroups)
                                        orderby g.Title
                                        select g).ToList();
@@ -200,34 +200,34 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             ProgressIsVisible = false;
         }
 
-        private bool CheckStudio(DTOBaseItem DTOBaseItem)
+        private bool CheckStudio(DtoBaseItem DtoBaseItem)
         {
-            if (DTOBaseItem.Studios != null && DTOBaseItem.Studios.Any())
+            if (DtoBaseItem.Studios != null && DtoBaseItem.Studios.Any())
             {
                 return true;
             }
-            DTOBaseItem.Studios = new[] {new BaseItemStudio {Name = "none"}};
+            DtoBaseItem.Studios = new[] {new BaseItemStudio {Name = "none"}};
             return true;
         }
 
-        private bool CheckGenre(DTOBaseItem DTOBaseItem)
+        private bool CheckGenre(DtoBaseItem DtoBaseItem)
         {
-            if (DTOBaseItem.Genres != null && DTOBaseItem.Genres.Any())
+            if (DtoBaseItem.Genres != null && DtoBaseItem.Genres.Any())
             {
                 return true;
             }
-            DTOBaseItem.Genres = new string[] { "none" };
+            DtoBaseItem.Genres = new string[] { "none" };
             return true;
         }
 
-        private string GetSortByProductionYearHeader(DTOBaseItem DTOBaseItem)
+        private string GetSortByProductionYearHeader(DtoBaseItem DtoBaseItem)
         {
-            return DTOBaseItem.ProductionYear == null ? "?" : DTOBaseItem.ProductionYear.ToString();
+            return DtoBaseItem.ProductionYear == null ? "?" : DtoBaseItem.ProductionYear.ToString();
         }
 
-        private string GetSortByNameHeader(DTOBaseItem DTOBaseItem)
+        private string GetSortByNameHeader(DtoBaseItem DtoBaseItem)
         {
-            string name = !string.IsNullOrEmpty(DTOBaseItem.SortName) ? DTOBaseItem.SortName : DTOBaseItem.Name;
+            string name = !string.IsNullOrEmpty(DtoBaseItem.SortName) ? DtoBaseItem.SortName : DtoBaseItem.Name;
             string[] words = name.Split(' ');
             char l = name.ToLower()[0];
             if (words[0].ToLower().Equals("the") ||
@@ -248,9 +248,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public string ProgressText { get; set; }
         public bool ProgressIsVisible { get; set; }
 
-        public DTOBaseItem SelectedFolder { get; set; }
-        public List<Group<DTOBaseItem>> FolderGroupings { get; set; }
-        public List<DTOBaseItem> CurrentItems { get; set; }
+        public DtoBaseItem SelectedFolder { get; set; }
+        public List<Group<DtoBaseItem>> FolderGroupings { get; set; }
+        public List<DtoBaseItem> CurrentItems { get; set; }
 
         public string SortBy { get; set; }
         public DataTemplate GroupHeaderTemplate { get; set; }
@@ -258,6 +258,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public ItemsPanelTemplate ItemsPanelTemplate { get; set; }
 
         public RelayCommand PageLoaded { get; set; }
-        public RelayCommand<DTOBaseItem> NavigateToPage { get; set; }
+        public RelayCommand<DtoBaseItem> NavigateToPage { get; set; }
     }
 }

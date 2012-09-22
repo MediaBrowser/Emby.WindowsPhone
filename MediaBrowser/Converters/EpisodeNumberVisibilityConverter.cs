@@ -8,7 +8,10 @@ namespace MediaBrowser.WindowsPhone.Converters
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
+            if(value != null)
             return ((string) value).ToLower().Equals("episode") ? Visibility.Visible : Visibility.Collapsed;
+            
+            return null;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
