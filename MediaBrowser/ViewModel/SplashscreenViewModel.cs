@@ -42,30 +42,40 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                     ApiClient.ServerHostName = App.Settings.HostName;
                     ApiClient.ServerApiPort = App.Settings.PortNo;
-                    if(NavigationService.IsNetworkAvailable)
+                    if (NavigationService.IsNetworkAvailable)
                     {
                         ProgressIsVisible = true;
                         ProgressText = "Getting server details...";
 
                         await GetServerConfiguration();
 
-                        ProgressText = string.Empty;
-                        ProgressIsVisible = false;
-                    }
-                    if(App.Settings.ServerConfiguration != null)
-                    {
-                        if(!App.Settings.ServerConfiguration.EnableUserProfiles && App.Settings.LoggedInUser == null)
+                        if (App.Settings.ServerConfiguration != null)
                         {
-                            NavigationService.NavigateToPage("/Views/ChooseProfileView.xaml");
+                            if (App.Settings.ServerConfiguration.EnableUserProfiles &&
+                                App.Settings.LoggedInUser == null)
+                            {
+                                NavigationService.NavigateToPage("/Views/ChooseProfileView.xaml");
+                            }
+                            else
+                            {
+                                ProgressText = "Getting default user...";
+                                App.Settings.LoggedInUser = await ApiClient.GetDefaultUserAsync();
+                                if (App.Settings.LoggedInUser != null)
+                                {
+                                    NavigationService.NavigateToPage("/Views/MainPage.xaml");
+                                }
+                                else
+                                {
+                                    App.ShowMessage("", "No default user found.");
+                                }
+                            }
                         }
                         else
                         {
-                            NavigationService.NavigateToPage("/Views/MainPage.xaml");
+                            App.ShowMessage("", "Could not find your server.");
                         }
-                    }
-                    else
-                    {
-                        App.ShowMessage("", "Could not find your server.");
+                        ProgressText = string.Empty;
+                        ProgressIsVisible = false;
                     }
                 }
             });

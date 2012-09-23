@@ -17,6 +17,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Themes/LongListSelectorTemplates.xaml" />
+                <ResourceDictionary Source="Themes/UIResources.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             <!--Global View Model Locator-->
             <vm:ViewModelLocator x:Key="Locator"

@@ -62,6 +62,12 @@ namespace MediaBrowser.WindowsPhone.Converters
                     var person = (BaseItemPerson) value;
                     return apiClient.GetPersonImageUrl(person.Name, maxWidth: 99, quality: 90);
                 }
+                else if(type == typeof(DtoUser))
+                {
+                    var user = (DtoUser) value;
+                    var url = apiClient.GetUserImageUrl(user.Id, maxHeight: 173, maxWidth: 173, quality: 95);
+                    return new Uri(url);
+                }
             }
             return "";
         }

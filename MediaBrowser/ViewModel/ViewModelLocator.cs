@@ -52,6 +52,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             SimpleIoc.Default.Register<MovieViewModel>(true);
             SimpleIoc.Default.Register<TvViewModel>(true);
             SimpleIoc.Default.Register<SplashscreenViewModel>();
+            SimpleIoc.Default.Register<ChooseProfileViewModel>();
         }
 
         /// <summary>
@@ -95,6 +96,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public SplashscreenViewModel Splashscreen
         {
             get { return ServiceLocator.Current.GetInstance<SplashscreenViewModel>(); }
+        }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
+            "CA1822:MarkMembersAsStatic",
+            Justification = "This non-static member is needed for data binding purposes.")]
+        public ChooseProfileViewModel Profile
+        {
+            get { return ServiceLocator.Current.GetInstance<ChooseProfileViewModel>(); }
         }
 
         /// <summary>

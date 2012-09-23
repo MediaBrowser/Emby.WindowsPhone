@@ -29,6 +29,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         /// </summary>
         public MainViewModel(ApiClient apiClient, INavigationService navService)
         {
+            ApiClient = apiClient;
+            NavService = navService;
             Folders = new ObservableCollection<DtoBaseItem>();
             RecentItems = new ObservableCollection<DtoBaseItem>();
             if (IsInDesignMode)
@@ -38,8 +40,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
             else
             {
-                ApiClient = apiClient;
-                NavService = navService;                
                 WireCommands();
                 DummyFolder = new DtoBaseItem
                                   {
