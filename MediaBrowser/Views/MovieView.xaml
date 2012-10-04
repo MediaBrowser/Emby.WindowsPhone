@@ -12,7 +12,6 @@
                             xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP71"
                             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                            xmlns:Entities="clr-namespace:MediaBrowser.Model.Entities;assembly=MediaBrowser.Model"
                             mc:Ignorable="d"
                             d:DesignWidth="480"
                             d:DesignHeight="768"

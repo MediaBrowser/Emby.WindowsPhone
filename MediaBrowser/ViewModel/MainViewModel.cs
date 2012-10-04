@@ -1,4 +1,5 @@
-﻿using GalaSoft.MvvmLight;
+﻿using System.Collections.Generic;
+using GalaSoft.MvvmLight;
 using MediaBrowser.ApiInteraction.WindowsPhone;
 using MediaBrowser.WindowsPhone.Model;
 using GalaSoft.MvvmLight.Command;
@@ -77,7 +78,33 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             try
             {
-                var recent = await ApiClient.GetRecentlyAddedItemsAsync(App.Settings.LoggedInUser.Id);
+                var items = await ApiClient.GetRecentlyAddedItemsAsync(App.Settings.LoggedInUser.Id);
+                var episodesBySeries = items
+                    .Where(x => x.Type == "Episode")
+                    .GroupBy(l => l.ParentBackdropItemId)
+                    .Select(g => new
+                    {
+                        Id = g.Key,
+                        Name = g.Select(l => l.EpisodeInfo.SeriesName).FirstOrDefault(),
+                        Count = g.Count(),
+                        CreatedDate = g.OrderByDescending(l => l.DateCreated).First().DateCreated
+                    }).ToList();
+                var seriesList = new List<DtoBaseItem>();
+                if (episodesBySeries != null && episodesBySeries.Any())
+                {
+                    seriesList.AddRange(episodesBySeries.Select(series => new DtoBaseItem
+                    {
+                        Name = string.Format("{0} ({1} items)", series.Name, series.Count),
+                        Id = series.Id.Value,
+                        DateCreated = series.CreatedDate,
+                        Type = "Series",
+                        SortName = Constants.GetTvInformationMsg
+                    }));
+                }
+                var recent = items
+                    .Where(x => x.Type != "Episode")
+                    .Union(seriesList)
+                    .OrderByDescending(x => x.DateCreated).ToList();
                 RecentItems.Clear();
                 recent.OrderBy(x => x.DateCreated).Take(6).ToList().ForEach(recentItem => RecentItems.Add(recentItem));
                 return true;

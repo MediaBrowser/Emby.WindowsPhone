@@ -115,7 +115,7 @@
                                 <PasswordBox x:Name="passwordBox"
                                              Password="{TemplateBinding Password}"
                                              VerticalAlignment="Top"
-											 HorizontalAlignment="Left"
+											 HorizontalAlignment="Stretch"
                                              Grid.Column="0" />
                                 <Button Grid.Column="1"
                                         Padding="0"

@@ -10,8 +10,8 @@
                             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
                             xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP71"
                             xmlns:scott="clr-namespace:ScottIsAFool.WindowsPhone.Controls;assembly=ScottIsAFool.WindowsPhone"
-                            xmlns:converter="clr-namespace:MediaBrowser.WindowsPhone.Converters"
-                            xmlns:controls="clr-namespace:MediaBrowser.WindowsPhone.Controls" mc:Ignorable="d ignore"
+                            xmlns:controls="clr-namespace:MediaBrowser.WindowsPhone.Controls"
+                            mc:Ignorable="d ignore"
                             d:DesignWidth="480"
                             d:DesignHeight="768"
                             FontFamily="{StaticResource PhoneFontFamilyNormal}"
@@ -20,6 +20,7 @@
                             SupportedOrientations="Portrait"
                             Orientation="Portrait"
                             shell:SystemTray.IsVisible="True"
+                            toolkit:TiltEffect.IsTiltEnabled="True"
                             DataContext="{Binding Profile, Source={StaticResource Locator}}">
     <shell:SystemTray.ProgressIndicator>
         <shell:ProgressIndicator IsIndeterminate="True"
@@ -31,10 +32,6 @@
             <cmd:EventToCommand Command="{Binding ChooseProfilePageLoaded}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
-    
-    <phone:PhoneApplicationPage.Resources>
-        
-    </phone:PhoneApplicationPage.Resources>
 
     <toolkit:TransitionService.NavigationInTransition>
         <toolkit:NavigationInTransition>
@@ -74,7 +71,7 @@
                         Margin="0">
                 <TextBlock Text="MEDIA"
                            Foreground="Black"
-                           Style="{StaticResource PhoneTextNormalStyle}"/>
+                           Style="{StaticResource PhoneTextNormalStyle}" />
                 <TextBlock Text="BROWSER"
                            Foreground="Green"
                            Style="{StaticResource PhoneTextNormalStyle}"
@@ -99,10 +96,9 @@
             <scott:PhoneListBox ItemsSource="{Binding Profiles}">
                 <scott:PhoneListBox.ItemTemplate>
                     <DataTemplate>
-                        <HyperlinkButton Style="{StaticResource EmptyButtonStyle}">
-                            <controls:ProfileBox Profile="{Binding}"
-                                                 Margin="0,12,0,0"/>
-                        </HyperlinkButton>
+                        <controls:ProfileBox Profile="{Binding}"
+                                             Margin="0,12,0,0"
+                                             LoginCommand="{Binding Profile.LoginCommand, Source={StaticResource Locator}}" />
                     </DataTemplate>
                 </scott:PhoneListBox.ItemTemplate>
             </scott:PhoneListBox>

@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.ApiInteraction.WindowsPhone;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.Model.DTO;
@@ -59,11 +61,48 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 if(NavigationService.IsNetworkAvailable)
                 {
+                    ProgressText = "Getting profiles...";
+                    ProgressIsVisible = true;
                     var profiles = await ApiClient.GetAllUsersAsync();
                     foreach(var profile in profiles)
                         Profiles.Add(profile);
+                    ProgressText = string.Empty;
+                    ProgressIsVisible = false;
                 }
             });
+
+            LoginCommand = new RelayCommand<object[]>(async loginDetails =>
+                                                                {
+                                                                    var selectedUser = loginDetails[0] as DtoUser;
+                                                                    var pinCode = loginDetails[1] as string;
+
+                                                                    if (selectedUser != null)
+                                                                    {
+
+                                                                        Debug.WriteLine(selectedUser.Id);
+                                                                        ProgressText = "Authenticating...";
+                                                                        ProgressIsVisible = true;
+
+                                                                        var result = await ApiClient.AuthenticateUserAsync(selectedUser.Id, pinCode);
+                                                                        if (result.Success)
+                                                                        {
+                                                                            SetUser(selectedUser);
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            App.ShowMessage("", "Error logging in");
+                                                                        }
+
+                                                                        ProgressText = "";
+                                                                        ProgressIsVisible = false;
+                                                                    }
+                                                                });
+        }
+
+        private void SetUser(DtoUser profile)
+        {
+            App.Settings.LoggedInUser = profile;
+            NavigationService.NavigateToPage("/Views/MainPage.xaml");
         }
 
         public string ProgressText { get; set; }
@@ -72,5 +111,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public ObservableCollection<DtoUser> Profiles { get; set; }
 
         public RelayCommand ChooseProfilePageLoaded { get; set; }
+        public RelayCommand<object[]> LoginCommand { get; set; }
     }
 }

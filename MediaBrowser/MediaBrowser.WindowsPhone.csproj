@@ -122,7 +122,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Constants.cs" />
     <Compile Include="Controls\ScrollableTextBlock.cs" />
     <Compile Include="Converters\EpisodeNumberVisibilityConverter.cs" />
     <Compile Include="Converters\ImageUrlConverter.cs" />
@@ -241,9 +240,7 @@
     <Content Include="Toolkit.Content\ApplicationBar.Delete.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Select.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Design\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\..\Visual Studio 2012\Projects\MediaBrowserServer\MediaBrowser.Model\MediaBrowser.Model.csproj">
       <Project>{7EEEB4BB-F3E8-48FC-B4C5-70F0FFF8329B}</Project>

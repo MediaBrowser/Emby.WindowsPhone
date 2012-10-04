@@ -26,11 +26,6 @@ namespace MediaBrowser.WindowsPhone
                 NavigationService.RemoveBackEntry();
         }
 
-        private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new Uri("/Views/MainPage.xaml", UriKind.Relative));
-        }
-
         private void LoadAnimation_Completed(object sender, EventArgs e)
         {
             Messenger.Default.Send<NotificationMessage>(new NotificationMessage(Constants.SplashAnimationFinishedMsg));

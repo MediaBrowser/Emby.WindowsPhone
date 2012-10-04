@@ -14,5 +14,21 @@ namespace MediaBrowser.WindowsPhone.Views
         {
             InitializeComponent();
         }
+
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            while(NavigationService.CanGoBack)
+            {
+                NavigationService.RemoveBackEntry();
+            }
+        }
+
+        protected override void OnNavigatedFrom(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            if (NavigationService.CanGoBack)
+                NavigationService.RemoveBackEntry();
+        }
     }
 }

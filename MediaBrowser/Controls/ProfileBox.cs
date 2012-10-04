@@ -32,7 +32,16 @@ namespace MediaBrowser.WindowsPhone.Controls
 
         void ProfileBox_Tap(object sender, GestureEventArgs e)
         {
-            VisualStateManager.GoToState(this, "PasswordShowing", true);
+            if (Profile.HasPassword)
+            {
+                VisualStateManager.GoToState(this, "PasswordShowing", true);
+                if (passwordBox != null)
+                    passwordBox.Focus();
+            }
+            else
+            {
+                DoLogin();
+            }
         }
 
         public string Password
@@ -95,8 +104,15 @@ namespace MediaBrowser.WindowsPhone.Controls
 
         private void DoLogin()
         {
-            if(LoginCommand != null)
-                LoginCommand.Execute(Password);
+            if (LoginCommand != null)
+            {
+                var loginDetails = new object[]
+                                       {
+                                           Profile,
+                                           Password
+                                       };
+                LoginCommand.Execute(loginDetails);
+            }
         }
     }
 }

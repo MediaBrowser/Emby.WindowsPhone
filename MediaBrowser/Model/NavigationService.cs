@@ -92,7 +92,7 @@ namespace MediaBrowser.WindowsPhone.Model
         {
             switch (item.Type.ToLower())
             {
-                case "virtualfolder":
+                case "folder":
                     Messenger.Default.Send<NotificationMessage>(new NotificationMessage(item, Constants.ShowFolderMsg));
                     NavigateToPage("/Views/FolderView.xaml");
                     break;
