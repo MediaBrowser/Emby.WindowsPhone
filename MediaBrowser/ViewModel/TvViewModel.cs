@@ -107,7 +107,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                         ProgressText = "Getting recent items...";
 
-                        bool recentItems = await GetRecentItems();
+                        bool recentItems = await GetRecentItems().ConfigureAwait(true);
 
                         ProgressIsVisible = false;
                         ProgressText = "";
@@ -174,7 +174,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 var recent =
                     await ApiClient.GetRecentlyAddedItemsAsync(App.Settings.LoggedInUser.Id, SelectedTvSeries.Id);
                 RecentItems.Clear();
-                recent.OrderBy(x => x.DateCreated)
+                recent.OrderByDescending(x => x.DateCreated)
                       .Take(6)
                       .ToList()
                       .ForEach(recentItem => RecentItems.Add(recentItem));
@@ -192,7 +192,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             try
             {
                 var seasons = await ApiClient.GetItemAsync(SelectedTvSeries.Id, App.Settings.LoggedInUser.Id);
-                Seasons = seasons.Children.ToList();
+                Seasons = seasons.Children.OrderBy(x => x.IndexNumber).ToList();
                 CastAndCrew = Utils.GroupCastAndCrew(seasons.People);
                 return true;
             }

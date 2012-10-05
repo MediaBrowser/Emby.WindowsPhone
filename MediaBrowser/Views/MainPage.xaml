@@ -95,7 +95,7 @@
                                     <StackPanel Orientation="Vertical">
                                         <TextBlock Text="{Binding Name}"
                                                    Style="{StaticResource PhoneTextLargeStyle}"/>
-                                        <TextBlock Text="Unwatched items: 1"
+                                        <TextBlock Text="{Binding RecentlyAddedUnPlayedItemCount, StringFormat='Unwatched items: \{0\}'}"
                                                    Style="{StaticResource PhoneTextSubtleStyle}"/>
                                     </StackPanel>
                                 </StackPanel>

@@ -2,7 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:MediaBrowser.WindowsPhone.Controls"
                     xmlns:converter="clr-namespace:MediaBrowser.WindowsPhone.Converters"
-                    xmlns:delay="clr-namespace:Delay">
+                    xmlns:delay="clr-namespace:Delay"
+                    xmlns:Controls="clr-namespace:Coding4Fun.Phone.Controls;assembly=Coding4Fun.Phone.Controls">
     
     <!-- Converters -->
     <converter:LoggedInDateConverter x:Key="LoggedInDateConverter" />
@@ -103,11 +104,12 @@
                                        Style="{StaticResource PhoneTextSubtleStyle}"
                                        TextWrapping="Wrap"
                                        Margin="15,0,0,0" />
+							<CheckBox x:Name="chbxSaveUser" Content="Stay signed in" Margin="4,-19,0,0"/>
                             <Grid x:Name="passwordStack"
                                   Visibility="Collapsed"
                                   HorizontalAlignment="Stretch"
                                   VerticalAlignment="Top"
-                                  Margin="15">
+                                  Margin="4,-19,0,15">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="5*" />
                                     <ColumnDefinition Width="2*" />
@@ -117,12 +119,13 @@
                                              VerticalAlignment="Top"
 											 HorizontalAlignment="Stretch"
                                              Grid.Column="0" />
-                                <Button Grid.Column="1"
-                                        Padding="0"
-                                        x:Name="loginButton"
-                                        HorizontalContentAlignment="Left"
-                                        VerticalContentAlignment="Top"
-                                        Margin="0,-3,0,0" />
+                                <Controls:RoundButton Grid.Column="1"
+                                                      Padding="0"
+                                                      x:Name="loginButton"
+                                                      HorizontalContentAlignment="Left"
+                                                      VerticalContentAlignment="Top"
+                                                      Margin="0,8,0,0" 
+                                                      ImageSource="/Icons/appbar.next.rest.png"/>
                             </Grid>
                             <TextBlock Text="incorrect pin"
                                        x:Name="textIncorrectPin"

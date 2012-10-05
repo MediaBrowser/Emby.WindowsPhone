@@ -1,5 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using GalaSoft.MvvmLight.Ioc;
+using MediaBrowser.ApiInteraction.WindowsPhone;
 using MediaBrowser.Model.DTO;
 using ScottIsAFool.WindowsPhone;
 
@@ -26,5 +30,25 @@ namespace MediaBrowser.WindowsPhone
 
             return result;
         }
+
+        internal static async Task Login(DtoUser selectedUser, string pinCode, Action successAction)
+        {
+            var client = SimpleIoc.Default.GetInstance<ApiClient>();
+            var result = await client.AuthenticateUserAsync(selectedUser.Id, pinCode);
+
+            if (result.Success)
+            {
+                if(successAction != null)
+                {
+                    successAction.Invoke();
+                }
+            }
+            else
+            {
+                App.ShowMessage("", "Error logging in");
+            }
+        }
+
+        
     }
 }

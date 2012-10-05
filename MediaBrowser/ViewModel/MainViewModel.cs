@@ -90,7 +90,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         CreatedDate = g.OrderByDescending(l => l.DateCreated).First().DateCreated
                     }).ToList();
                 var seriesList = new List<DtoBaseItem>();
-                if (episodesBySeries != null && episodesBySeries.Any())
+                if (episodesBySeries.Any())
                 {
                     seriesList.AddRange(episodesBySeries.Select(series => new DtoBaseItem
                     {
@@ -104,9 +104,13 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 var recent = items
                     .Where(x => x.Type != "Episode")
                     .Union(seriesList)
-                    .OrderByDescending(x => x.DateCreated).ToList();
+                    .Select(x => x);
                 RecentItems.Clear();
-                recent.OrderBy(x => x.DateCreated).Take(6).ToList().ForEach(recentItem => RecentItems.Add(recentItem));
+                recent
+                    .OrderByDescending(x => x.DateCreated)
+                    .Take(6)
+                    .ToList()
+                    .ForEach(recentItem => RecentItems.Add(recentItem));
                 return true;
             }
             catch

@@ -4,6 +4,9 @@
     {
         public static string[] TileColours = { "D8502B", "009300", "A200A9", "0A58C1", "009FB0", "3290F5", "93009C", "AF1A3F" };
 
+        public const string SelectedUserSetting = "SelectedUser";
+        public const string SelectedUserPinSetting = "SelectedUserPin";
+
         public const string FolderViewLoadedMsg = "FolderViewLoadedMsg";
         public const string MainPageLoadedMsg = "MainPageLoadedMsg";
         public const string ShowFolderMsg = "ShowFolderMsg";

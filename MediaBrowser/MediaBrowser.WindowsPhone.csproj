@@ -230,6 +230,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Icons\appbar.group.png" />
+    <Content Include="Icons\appbar.next.rest.png" />
     <Content Include="Images\MBLogo.png" />
     <Content Include="Images\PanoBackground.png" />
     <Content Include="Images\PanoTitle.png" />

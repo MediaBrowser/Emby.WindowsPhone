@@ -92,27 +92,25 @@ namespace MediaBrowser.WindowsPhone.Model
         {
             switch (item.Type.ToLower())
             {
-                case "folder":
-                    Messenger.Default.Send<NotificationMessage>(new NotificationMessage(item, Constants.ShowFolderMsg));
+                case "collectionfolder":
+                    Messenger.Default.Send(new NotificationMessage(item, Constants.ShowFolderMsg));
                     NavigateToPage("/Views/FolderView.xaml");
                     break;
                 case "movie":
-                    Messenger.Default.Send<NotificationMessage>(new NotificationMessage(item, Constants.ShowMovieMsg));
+                    Messenger.Default.Send(new NotificationMessage(item, Constants.ShowMovieMsg));
                     NavigateToPage("/Views/MovieView.xaml");
                     break;
                 case "series":
-                    Messenger.Default.Send<NotificationMessage>(new NotificationMessage(item, Constants.ShowTvSeries));
+                    Messenger.Default.Send(new NotificationMessage(item, Constants.ShowTvSeries));
                     NavigateToPage("/Views/TvShowView.xaml");
                     break;
                 case "season":
-                    Messenger.Default.Send<NotificationMessage>(new NotificationMessage(item, Constants.ShowSeasonMsg));
+                    Messenger.Default.Send(new NotificationMessage(item, Constants.ShowSeasonMsg));
                     NavigateToPage("/Views/SeasonView.xaml");
                     break;
                 case "episode":
-                    Messenger.Default.Send<NotificationMessage>(new NotificationMessage(item, Constants.ShowEpisodeMsg));
+                    Messenger.Default.Send(new NotificationMessage(item, Constants.ShowEpisodeMsg));
                     NavigateToPage("/Views/EpisodeView.xaml");
-                    break;
-                default:
                     break;
             }
         }

@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using Coding4Fun.Phone.Controls;
 using MediaBrowser.Model.DTO;
 
 namespace MediaBrowser.WindowsPhone.Controls
@@ -14,29 +15,44 @@ namespace MediaBrowser.WindowsPhone.Controls
     public class ProfileBox : Control
     {
         private PasswordBox passwordBox;
-        private Button loginButton;
+        private RoundButton loginButton;
+        private CheckBox checkBox;
+        private bool passwordShowing;
 
         public ProfileBox()
         {
             this.DefaultStyleKey = typeof (ProfileBox);
             this.Tap += ProfileBox_Tap;
+            //this.LostFocus += OnLostFocus;
             if(DesignerProperties.IsInDesignTool)
             {
                 Profile = new DtoUser
-                              {
-                                  Name = "Scott Lovegrove",
-                                  LastLoginDate = DateTime.Now.AddHours(-1)
-                              };
+                {
+                    Name = "Scott Lovegrove",
+                    LastLoginDate = DateTime.Now.AddHours(-1)
+                };
             }
+        }
+
+        private void OnLostFocus(object sender, RoutedEventArgs routedEventArgs)
+        {
+            if (VisualStateManager.GoToState(this, "PasswordHidden", true))
+                passwordShowing = false;
         }
 
         void ProfileBox_Tap(object sender, GestureEventArgs e)
         {
             if (Profile.HasPassword)
             {
-                VisualStateManager.GoToState(this, "PasswordShowing", true);
-                if (passwordBox != null)
-                    passwordBox.Focus();
+                if (!passwordShowing)
+                {
+                    if (VisualStateManager.GoToState(this, "PasswordShowing", true))
+                    {
+                        if (passwordBox != null)
+                            passwordBox.Focus();
+                        passwordShowing = true;
+                    }
+                }
             }
             else
             {
@@ -95,11 +111,13 @@ namespace MediaBrowser.WindowsPhone.Controls
                 };
             }
 
-            loginButton = GetTemplateChild("loginButton") as Button;
+            loginButton = GetTemplateChild("loginButton") as RoundButton;
             if(loginButton != null)
             {
                 loginButton.Click += (sender, args) => DoLogin();
             }
+
+            checkBox = GetTemplateChild("chbxSaveUser") as CheckBox;
         }
 
         private void DoLogin()
@@ -109,7 +127,8 @@ namespace MediaBrowser.WindowsPhone.Controls
                 var loginDetails = new object[]
                                        {
                                            Profile,
-                                           Password
+                                           passwordBox.Password,
+                                           checkBox.IsChecked
                                        };
                 LoginCommand.Execute(loginDetails);
             }

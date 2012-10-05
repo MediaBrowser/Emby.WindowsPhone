@@ -4,6 +4,8 @@ using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.ApiInteraction.WindowsPhone;
 using MediaBrowser.WindowsPhone.Model;
+using ScottIsAFool.WindowsPhone.IsolatedStorage;
+using MediaBrowser.Model.DTO;
 
 namespace MediaBrowser.WindowsPhone.ViewModel
 {
@@ -51,22 +53,37 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                         if (App.Settings.ServerConfiguration != null)
                         {
-                            if (App.Settings.ServerConfiguration.EnableUserProfiles &&
-                                App.Settings.LoggedInUser == null)
+                            // Get a user from IsoSettings if one exists
+                            App.Settings.LoggedInUser = ISettings.GetKeyValue<DtoUser>(Constants.SelectedUserSetting);
+                            
+                            // If one exists, then authenticate that user.
+                            if (App.Settings.LoggedInUser != null)
                             {
-                                NavigationService.NavigateToPage("/Views/ChooseProfileView.xaml");
+                                ProgressText = "Authenticating...";
+                                App.Settings.PinCode = ISettings.GetKeyValue<string>(Constants.SelectedUserPinSetting);
+                                await Utils.Login(App.Settings.LoggedInUser, App.Settings.PinCode, () => NavigationService.NavigateToPage("/Views/MainPage.xaml"));
                             }
                             else
                             {
-                                ProgressText = "Getting default user...";
-                                App.Settings.LoggedInUser = await ApiClient.GetDefaultUserAsync();
-                                if (App.Settings.LoggedInUser != null)
+                                // As no user is saved, check whether users are used at all
+                                // If they are, get the user to check what profile is wanted.
+                                if (App.Settings.ServerConfiguration.EnableUserProfiles)
                                 {
-                                    NavigationService.NavigateToPage("/Views/MainPage.xaml");
+                                    NavigationService.NavigateToPage("/Views/ChooseProfileView.xaml");
                                 }
                                 else
                                 {
-                                    App.ShowMessage("", "No default user found.");
+                                    // If not, get the default user and log them in.
+                                    ProgressText = "Getting default user...";
+                                    App.Settings.LoggedInUser = await ApiClient.GetDefaultUserAsync();
+                                    if (App.Settings.LoggedInUser != null)
+                                    {
+                                        NavigationService.NavigateToPage("/Views/MainPage.xaml");
+                                    }
+                                    else
+                                    {
+                                        App.ShowMessage("", "No default user found.");
+                                    }
                                 }
                             }
                         }

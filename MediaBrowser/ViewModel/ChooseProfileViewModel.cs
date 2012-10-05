@@ -8,6 +8,7 @@ using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.ApiInteraction.WindowsPhone;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.Model.DTO;
+using ScottIsAFool.WindowsPhone.IsolatedStorage;
 
 namespace MediaBrowser.WindowsPhone.ViewModel
 {
@@ -72,31 +73,32 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             });
 
             LoginCommand = new RelayCommand<object[]>(async loginDetails =>
-                                                                {
-                                                                    var selectedUser = loginDetails[0] as DtoUser;
-                                                                    var pinCode = loginDetails[1] as string;
+            {
+                var selectedUser = loginDetails[0] as DtoUser;
+                var pinCode = loginDetails[1] as string;
+                var saveUser = (bool)loginDetails[2];
 
-                                                                    if (selectedUser != null)
-                                                                    {
+                if (selectedUser != null)
+                {
 
-                                                                        Debug.WriteLine(selectedUser.Id);
-                                                                        ProgressText = "Authenticating...";
-                                                                        ProgressIsVisible = true;
+                    Debug.WriteLine(selectedUser.Id);
+                    ProgressText = "Authenticating...";
+                    ProgressIsVisible = true;
 
-                                                                        var result = await ApiClient.AuthenticateUserAsync(selectedUser.Id, pinCode);
-                                                                        if (result.Success)
-                                                                        {
-                                                                            SetUser(selectedUser);
-                                                                        }
-                                                                        else
-                                                                        {
-                                                                            App.ShowMessage("", "Error logging in");
-                                                                        }
+                    await Utils.Login(selectedUser, pinCode, () =>
+                    {
+                        SetUser(selectedUser);
+                        if(saveUser)
+                        {
+                            ISettings.SetKeyValue(Constants.SelectedUserSetting, selectedUser);
+                            ISettings.SetKeyValue(Constants.SelectedUserPinSetting, pinCode);
+                        }
+                    });
 
-                                                                        ProgressText = "";
-                                                                        ProgressIsVisible = false;
-                                                                    }
-                                                                });
+                    ProgressText = "";
+                    ProgressIsVisible = false;
+                }
+            });
         }
 
         private void SetUser(DtoUser profile)
