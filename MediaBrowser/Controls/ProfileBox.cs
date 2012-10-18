@@ -18,6 +18,7 @@ namespace MediaBrowser.WindowsPhone.Controls
         private RoundButton loginButton;
         private CheckBox checkBox;
         private bool passwordShowing;
+        private bool checkboxTapped;
 
         public ProfileBox()
         {
@@ -42,6 +43,11 @@ namespace MediaBrowser.WindowsPhone.Controls
 
         void ProfileBox_Tap(object sender, GestureEventArgs e)
         {
+            if (checkboxTapped)
+            {
+                checkboxTapped = false;
+                return;
+            }
             if (Profile.HasPassword)
             {
                 if (!passwordShowing)
@@ -118,6 +124,13 @@ namespace MediaBrowser.WindowsPhone.Controls
             }
 
             checkBox = GetTemplateChild("chbxSaveUser") as CheckBox;
+            if(checkBox != null)
+            {
+                checkBox.Tap += (sender, args) =>
+                {
+                    checkboxTapped = true;
+                };
+            }
         }
 
         private void DoLogin()

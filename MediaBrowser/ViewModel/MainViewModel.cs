@@ -8,6 +8,7 @@ using System;
 using System.Linq;
 using MediaBrowser.Model.DTO;
 using System.Threading.Tasks;
+using ScottIsAFool.WindowsPhone.IsolatedStorage;
 
 namespace MediaBrowser.WindowsPhone.ViewModel
 {
@@ -43,10 +44,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 WireCommands();
                 DummyFolder = new DtoBaseItem
-                                  {
-                                      Type = "folder",
-                                      Name = "recent"
-                                  };
+                {
+                    Type = "folder",
+                    Name = "recent"
+                };
             }
         }
 
@@ -54,24 +55,54 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             PageLoaded = new RelayCommand(async () =>
             {
-                if (NavService.IsNetworkAvailable && App.Settings.CheckHostAndPort() && !hasLoaded)
-                {
-                    ProgressIsVisible = true;
-                    ProgressText = "Loading folders...";
-
-                    bool folderLoaded = await GetFolders();
-
-                    ProgressText = "Getting recent items...";
-
-                    bool recentLoaded = await GetRecent();
-
-                    hasLoaded = (folderLoaded && recentLoaded);
-                    ProgressIsVisible = false;
-                    hasLoaded = true;
-                }
+                await GetEverything(false);
             });
 
+            RefreshDataCommand = new RelayCommand(async () =>
+            {
+                await GetEverything(true);
+            });
+
+            ChangeProfileCommand = new RelayCommand(() =>
+                                                        {
+                                                            Reset();
+                                                            NavService.NavigateToPage("/Views/ChooseProfileView.xaml");
+                                                        });
+
             NavigateToPage = new RelayCommand<DtoBaseItem>(NavService.NavigateToPage);
+        }
+
+        private void Reset()
+        {
+            App.Settings.LoggedInUser = null;
+            App.Settings.PinCode = string.Empty;
+            ISettings.DeleteValue(Constants.SelectedUserSetting);
+            ISettings.DeleteValue(Constants.SelectedUserPinSetting);
+            hasLoaded = false;
+            Folders.Clear();
+            RecentItems.Clear();
+        }
+
+        private async Task GetEverything(bool isRefresh)
+        {
+            if (NavService.IsNetworkAvailable
+                && App.Settings.CheckHostAndPort()
+                && (!hasLoaded || isRefresh))
+            {
+
+                ProgressIsVisible = true;
+                ProgressText = "Loading folders...";
+
+                bool folderLoaded = await GetFolders();
+
+                ProgressText = "Getting recent items...";
+
+                bool recentLoaded = await GetRecent();
+
+                hasLoaded = (folderLoaded && recentLoaded);
+                ProgressIsVisible = false;
+                hasLoaded = true;
+            }
         }
 
         private async Task<bool> GetRecent()
@@ -139,6 +170,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public string ProgressText { get; set; }
 
         public RelayCommand PageLoaded { get; set; }
+        public RelayCommand ChangeProfileCommand { get; set; }
+        public RelayCommand RefreshDataCommand { get; set; }
         public RelayCommand<DtoBaseItem> NavigateToPage { get; set; }
         public ObservableCollection<DtoBaseItem> Folders { get; set; }
         public ObservableCollection<DtoBaseItem> RecentItems { get; set; }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
@@ -42,6 +43,22 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                        {
                                            Name = "Scrubs"
                                        };
+                SelectedSeason = new DtoBaseItem
+                                     {
+                                         Name = "Season 1",
+                                         Children= new[]
+                                                       {
+                                                           new DtoBaseItem
+                                                               {
+                                                                   Id= new Guid("e252ea3059d140a0274282bc8cd194cc"),
+                                                                   Name= "1x01 - Pilot",
+                                                                   Overview = "A Kindergarten teacher starts speaking gibberish and passed out in front of her class. What looks like a possible brain tumor does not respond to treatment and provides many more questions than answers for House and his team as they engage in a risky trial-and-error approach to her case. When the young teacher refuses any additional variations of treatment and her life starts slipping away, House must act against his code of conduct and make a personal visit to his patient to convince her to trust him one last time."
+                                                               }
+                                                       }
+                                     };
+                Episodes = SelectedSeason.Children.ToList();
+                SelectedEpisode = SelectedSeason.Children[0];
+
             }
             else
             {
@@ -150,6 +167,15 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 }
             });
 
+            NextEpisodeCommand = new RelayCommand(() =>
+                                                      {
+                                                          SelectedEpisode = SelectedEpisode.IndexNumber + 1 > Episodes.Count ? Episodes[0] : Episodes[SelectedEpisode.IndexNumber.Value];
+                                                      });
+            PreviousEpisodeCommand = new RelayCommand(()=>
+                                                          {
+                                                              SelectedEpisode = SelectedEpisode.IndexNumber - 1 == 0 ? Episodes[Episodes.Count - 1] : Episodes[SelectedEpisode.IndexNumber.Value - 2];
+                                                          });
+
             NavigateToPage = new RelayCommand<DtoBaseItem>(NavService.NavigateToPage);
         }
 
@@ -235,5 +261,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public RelayCommand TvSeriesPageLoaded { get; set; }
         public RelayCommand SeasonPageLoaded { get; set; }
         public RelayCommand EpisodePageLoaded { get; set; }
+        public RelayCommand NextEpisodeCommand { get; set; }
+        public RelayCommand PreviousEpisodeCommand { get; set; }
     }
 }

@@ -6,6 +6,8 @@ using MediaBrowser.ApiInteraction.WindowsPhone;
 using MediaBrowser.WindowsPhone.Model;
 using ScottIsAFool.WindowsPhone.IsolatedStorage;
 using MediaBrowser.Model.DTO;
+using MediaBrowser.Shared;
+using MediaBrowser.Model;
 
 namespace MediaBrowser.WindowsPhone.ViewModel
 {
@@ -39,12 +41,31 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 if(m.Notification.Equals(Constants.SplashAnimationFinishedMsg))
                 {
                     // Get settings from storage
-                    App.Settings.HostName = "192.168.0.2";
-                    App.Settings.PortNo = 8096;
+                    var connectionDetails = ISettings.GetKeyValue<ConnectionDetails>(Constants.ConnectionSettings);
+                    if(connectionDetails != null)
+                    {
+                        App.Settings.ConnectionDetails = connectionDetails;
+                    }
+                    else
+                    {
+                        App.ShowMessage("", "No connection settings, tap to set", () => NavigationService.NavigateToPage("/Views/Settings/Connection.xaml"));
+                        //return;
+                    }
+                    App.Settings.ConnectionDetails = new ConnectionDetails
+                                                         {
+                                                             HostName = "192.168.0.2",
+                                                             PortNo = 8096
+                                                         };
 
-                    ApiClient.ServerHostName = App.Settings.HostName;
-                    ApiClient.ServerApiPort = App.Settings.PortNo;
-                    if (NavigationService.IsNetworkAvailable)
+                    ApiClient.ServerHostName = App.Settings.ConnectionDetails.HostName;
+                    ApiClient.ServerApiPort = App.Settings.ConnectionDetails.PortNo;
+                    var user = ISettings.GetKeyValue<UserSettingWrapper>(Constants.SelectedUserSetting);
+                    if(user != null)
+                    {
+                        App.Settings.LoggedInUser = user.User;
+                        App.Settings.PinCode = user.Pin;
+                    }
+                    if (NavigationService.IsNetworkAvailable && App.Settings.ConnectionDetails != null)
                     {
                         ProgressIsVisible = true;
                         ProgressText = "Getting server details...";
@@ -53,14 +74,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                         if (App.Settings.ServerConfiguration != null)
                         {
-                            // Get a user from IsoSettings if one exists
-                            App.Settings.LoggedInUser = ISettings.GetKeyValue<DtoUser>(Constants.SelectedUserSetting);
-                            
                             // If one exists, then authenticate that user.
                             if (App.Settings.LoggedInUser != null)
                             {
                                 ProgressText = "Authenticating...";
-                                App.Settings.PinCode = ISettings.GetKeyValue<string>(Constants.SelectedUserPinSetting);
                                 await Utils.Login(App.Settings.LoggedInUser, App.Settings.PinCode, () => NavigationService.NavigateToPage("/Views/MainPage.xaml"));
                             }
                             else

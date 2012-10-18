@@ -7,18 +7,17 @@ namespace MediaBrowser.Model
     {
         public DtoUser LoggedInUser { get; set; }
         public string PinCode { get; set; }
-        public string HostName { get; set; }
-        public int PortNo { get; set; }
+        public ConnectionDetails ConnectionDetails { get; set; }
         public ServerConfiguration ServerConfiguration { get; set; }
 
         public string ApiUrl
         {
-            get { return string.Format("http://{0}:{1}/mediabrowser/api/", HostName, PortNo); }
+            get { return string.Format("http://{0}:{1}/mediabrowser/api/", ConnectionDetails.HostName, ConnectionDetails.PortNo); }
         }
 
         public bool CheckHostAndPort()
         {
-            return !string.IsNullOrEmpty(HostName);
+            return !string.IsNullOrEmpty(ConnectionDetails.HostName);
         }
     }
 }

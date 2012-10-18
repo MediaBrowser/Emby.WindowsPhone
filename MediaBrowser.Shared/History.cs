@@ -57,5 +57,21 @@ namespace MediaBrowser.Shared
                 _historyItems[viewModelType].Remove(item);
             }
         }
+
+        public virtual void ClearAllForType(Type viewModelType)
+        {
+            if(_historyItems.ContainsKey(viewModelType))
+            {
+                _historyItems[viewModelType].Clear();
+            }
+        }
+
+        public virtual void ClearAll()
+        {
+            foreach(var type in _historyItems.Keys)
+            {
+                _historyItems[type].Clear();
+            }
+        }
     }
 }

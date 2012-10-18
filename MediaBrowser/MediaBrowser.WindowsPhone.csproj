@@ -72,8 +72,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files\Laurent Bugnion (GalaSoft)\Mvvm Light Toolkit\Binaries\WP71\GalaSoft.MvvmLight.Extras.WP71.dll</HintPath>
     </Reference>
-    <Reference Include="HtmlAgilityPack">
-      <HintPath>..\packages\ScottIsAFool.WindowsPhone.1.0.8.0\lib\HtmlAgilityPack.dll</HintPath>
+    <Reference Include="HtmlAgilityPack, Version=1.4.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\HtmlAgilityPack.1.4.6\lib\sl4-windowsphone71\HtmlAgilityPack.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Phone.Controls, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Phone.Controls.Toolkit, Version=7.0.0.0, Culture=neutral, PublicKeyToken=b772ad94eb9ca604, processorArchitecture=MSIL">
@@ -89,8 +90,9 @@
     <Reference Include="PhoneFlipMenuControl">
       <HintPath>..\packages\PhoneFlipMenu.1.0.0\lib\sl4-wp71\PhoneFlipMenuControl.dll</HintPath>
     </Reference>
-    <Reference Include="ScottIsAFool.WindowsPhone">
-      <HintPath>..\packages\ScottIsAFool.WindowsPhone.1.0.8.0\lib\ScottIsAFool.WindowsPhone.dll</HintPath>
+    <Reference Include="ScottIsAFool.WindowsPhone, Version=1.0.10.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\ScottIsAFool.WindowsPhone.1.0.10.0\lib\wp71\ScottIsAFool.WindowsPhone.dll</HintPath>
     </Reference>
     <Reference Include="SharpGIS.GZipWebClient">
       <HintPath>..\packages\SharpGIS.GZipWebClient.1.2\lib\sl40-wp71\SharpGIS.GZipWebClient.dll</HintPath>
@@ -108,9 +110,6 @@
     <Reference Include="System.Net" />
     <Reference Include="System.Xml" />
     <Reference Include="mscorlib.extensions" />
-    <Reference Include="System.Xml.XPath">
-      <HintPath>..\packages\ScottIsAFool.WindowsPhone.1.0.8.0\lib\System.Xml.XPath.dll</HintPath>
-    </Reference>
     <Reference Include="Telerik.Windows.Controls.Input, Version=2012.2.801.2040, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
     <Reference Include="Telerik.Windows.Controls.Primitives, Version=2012.2.801.2040, Culture=neutral, PublicKeyToken=5803cfa389c90ce7" />
     <Reference Include="Telerik.Windows.Core, Version=2012.2.801.2040, Culture=neutral, PublicKeyToken=5803cfa389c90ce7" />
@@ -223,12 +222,9 @@
     <None Include="Properties\WMAppManifest.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ApplicationIcon.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Background.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="ApplicationIcon.png" />
+    <Content Include="Background.png" />
+    <Content Include="Icons\appbar.back.rest.png" />
     <Content Include="Icons\appbar.group.png" />
     <Content Include="Icons\appbar.next.rest.png" />
     <Content Include="Images\MBLogo.png" />

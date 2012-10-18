@@ -1,11 +1,9 @@
-﻿using Microsoft.Phone.Controls;
-
-namespace MediaBrowser.WindowsPhone.Views
+﻿namespace MediaBrowser.WindowsPhone.Views
 {
     /// <summary>
     /// Description for ChooseProfileView.
     /// </summary>
-    public partial class ChooseProfileView : PhoneApplicationPage
+    public partial class ChooseProfileView
     {
         /// <summary>
         /// Initializes a new instance of the ChooseProfileView class.

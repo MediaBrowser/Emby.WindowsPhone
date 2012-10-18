@@ -154,7 +154,10 @@
         <bar:BindableApplicationBar Mode="Minimized" 
                                     IsMenuEnabled="True">
             <bar:BindableApplicationBar.MenuItems>
-                <bar:BindableApplicationBarMenuItem Text="refresh information" />
+                <bar:BindableApplicationBarMenuItem Text="refresh information"
+                                                    Command="{Binding RefreshDataCommand}"/>
+                <bar:BindableApplicationBarMenuItem Text="change profile"
+                                                    Command="{Binding ChangeProfileCommand}"/>
             </bar:BindableApplicationBar.MenuItems>
         </bar:BindableApplicationBar>
     </bar:Bindable.ApplicationBar>

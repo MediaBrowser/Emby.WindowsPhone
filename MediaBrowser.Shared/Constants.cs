@@ -6,6 +6,8 @@
 
         public const string SelectedUserSetting = "SelectedUser";
         public const string SelectedUserPinSetting = "SelectedUserPin";
+        public const string ConnectionSettings = "ConnectionSettings";
+        public const string SpecificSettings = "SpecificSettings";
 
         public const string FolderViewLoadedMsg = "FolderViewLoadedMsg";
         public const string MainPageLoadedMsg = "MainPageLoadedMsg";
@@ -35,5 +37,9 @@
         public const string ClearEpisodesMsg = "ClearEpisodesMsg";
         public const string ShowEpisodeMsg = "ShowEpisodeMsg";
         public const string SplashAnimationFinishedMsg = "SplashAnimationFinishedMsg";
+        public const string ClearTvSeriesMsg = "ClearTvSeriesMsg";
+        public const string TvEpisodeSelectedMsg = "TvEpisodeSelectedMsg";
+        public const string TvSeasonSelectedMsg = "TvSeasonSelectedMsg";
+        public const string ClearEverythingMsg = "ClearEverythingMsg";
     }
 }

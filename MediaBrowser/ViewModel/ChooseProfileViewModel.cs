@@ -9,6 +9,7 @@ using MediaBrowser.ApiInteraction.WindowsPhone;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.Model.DTO;
 using ScottIsAFool.WindowsPhone.IsolatedStorage;
+using MediaBrowser.Shared;
 
 namespace MediaBrowser.WindowsPhone.ViewModel
 {
@@ -90,8 +91,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         SetUser(selectedUser);
                         if(saveUser)
                         {
-                            ISettings.SetKeyValue(Constants.SelectedUserSetting, selectedUser);
-                            ISettings.SetKeyValue(Constants.SelectedUserPinSetting, pinCode);
+                            ISettings.SetKeyValue(Constants.SelectedUserSetting, new UserSettingWrapper
+                                                                                     {
+                                                                                         User = selectedUser,
+                                                                                         Pin = pinCode
+                                                                                     });
                         }
                     });
 

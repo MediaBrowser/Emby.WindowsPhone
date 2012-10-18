@@ -55,7 +55,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 if (m.Notification.Equals(Constants.ShowMovieMsg))
                 {
                     SelectedMovie = (DtoBaseItem)m.Sender;
-                    ImdbId = SelectedMovie.ProviderIds["Imdb"];
+                    if (SelectedMovie.ProviderIds != null)
+                        ImdbId = SelectedMovie.ProviderIds["Imdb"];
                     if (SelectedMovie.RunTimeTicks.HasValue)
                         RunTime = TimeSpan.FromTicks(SelectedMovie.RunTimeTicks.Value).ToString();
 

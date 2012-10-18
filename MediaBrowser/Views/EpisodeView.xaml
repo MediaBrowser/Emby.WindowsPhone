@@ -9,9 +9,9 @@
     xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
     xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP71"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
-    mc:Ignorable="d"
+    xmlns:bar="clr-namespace:BindableApplicationBar;assembly=BindableApplicationBar" mc:Ignorable="d"
     d:DesignWidth="480"
-    d:DesignHeight="768"
+    d:DesignHeight="696"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
@@ -89,21 +89,25 @@
             <ScrollViewer>
                 <StackPanel Orientation="Vertical">
                     <Image Source="{Binding SelectedEpisode, Converter={StaticResource ImageUrlConverter}, ConverterParameter=episode}" />
+                    <TextBlock Text="{Binding SelectedEpisode.Overview}"
+                               TextWrapping="Wrap"
+                               Style="{StaticResource PhoneTextNormalStyle}" />
                 </StackPanel> 
             </ScrollViewer>
         </Grid>
     </Grid>
 
-    <!--Sample code showing usage of ApplicationBar-->
-    <!--<phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button1.png" Text="Button 1"/>
-            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button2.png" Text="Button 2"/>
-            <shell:ApplicationBar.MenuItems>
-                <shell:ApplicationBarMenuItem Text="MenuItem 1"/>
-                <shell:ApplicationBarMenuItem Text="MenuItem 2"/>
-            </shell:ApplicationBar.MenuItems>
-        </shell:ApplicationBar>
-    </phone:PhoneApplicationPage.ApplicationBar>-->
+    <bar:Bindable.ApplicationBar>
+        <bar:BindableApplicationBar IsMenuEnabled="True">
+            <bar:BindableApplicationBar.Buttons>
+                <bar:BindableApplicationBarButton Text="previous"
+                                                  Command="{Binding PreviousEpisodeCommand}"
+                                                  IconUri="/icons/appbar.back.rest.png" />
+                <bar:BindableApplicationBarButton Text="next"
+                                                  Command="{Binding NextEpisodeCommand}"
+                                                  IconUri="/icons/appbar.next.rest.png" />
+            </bar:BindableApplicationBar.Buttons>
+        </bar:BindableApplicationBar>
+    </bar:Bindable.ApplicationBar>
 
 </phone:PhoneApplicationPage>
