@@ -23,7 +23,7 @@
     shell:SystemTray.IsVisible="True"
     shell:SystemTray.Opacity="0"
     toolkit:TiltEffect.IsTiltEnabled="True"
-    DataContext="{Binding Tv, Source={StaticResource Locator}}">
+    d:DataContext="{Binding Tv, Source={StaticResource Locator}}">
     <shell:SystemTray.ProgressIndicator>
         <shell:ProgressIndicator IsIndeterminate="True"
                                  IsVisible="{Binding ProgressIsVisible}"
@@ -78,7 +78,7 @@
                             <DataTemplate>
                                 <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
                                                  Margin="6"
-                                                 Command="{Binding Tv.NavigateToPage, Source={StaticResource Locator}}"
+                                                 Command="{Binding Main.NavigateToPage, Source={StaticResource Locator}}"
                                                  CommandParameter="{Binding}">
                                     <Grid>
                                         <delay:PlaceImage PlaceholderSource="/Images/MBLogo.png"
@@ -128,7 +128,7 @@
 
                     <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
                                      DataContext="{Binding DummyFolder}"
-                                     Command="{Binding Tv.NavigateToPage, Source={StaticResource Locator}}"
+                                     Command="{Binding Main.NavigateToPage, Source={StaticResource Locator}}"
                                      CommandParameter="{Binding}"
                                      Grid.Row="1"
                                      HorizontalContentAlignment="Left"

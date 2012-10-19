@@ -9,6 +9,7 @@
   DataContext="{Binding Source={StaticResource Locator}, Path=ViewModelName}"
 */
 
+using System;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using MediaBrowser.ApiInteraction.WindowsPhone;
@@ -39,18 +40,19 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 SimpleIoc.Default.Register(()=> new ApiClient{ ServerApiPort = 8096, ServerHostName = "192.168.0.2"});
                 SimpleIoc.Default.Register<INavigationService, NavigationService>();
+                SimpleIoc.Default.Register<FolderViewModel>();
+                SimpleIoc.Default.Register<MovieViewModel>();
+                SimpleIoc.Default.Register<TvViewModel>();
             }
             else
             {
                 SimpleIoc.Default.Register<INavigationService, NavigationService>();
                 SimpleIoc.Default.Register<ISettingsService, SettingsService>();
                 SimpleIoc.Default.Register<ApiClient>();
+                SimpleIoc.Default.Register<TvViewModel>();
             }
 
             SimpleIoc.Default.Register<MainViewModel>(true);
-            SimpleIoc.Default.Register<FolderViewModel>(true);      
-            SimpleIoc.Default.Register<MovieViewModel>(true);
-            SimpleIoc.Default.Register<TvViewModel>(true);
             SimpleIoc.Default.Register<SplashscreenViewModel>();
             SimpleIoc.Default.Register<ChooseProfileViewModel>();
         }
@@ -106,14 +108,29 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             get { return ServiceLocator.Current.GetInstance<ChooseProfileViewModel>(); }
         }
 
+        public static TvViewModel GetTvViewModel(Guid itemId)
+        {
+            return ServiceLocator.Current.GetInstance<TvViewModel>(itemId.ToString());
+        }
+
+        public static ApiClient ApiClient
+        {
+            get { return ServiceLocator.Current.GetInstance<ApiClient>(); }
+        }
+
+        public static INavigationService NavigationService
+        {
+            get { return ServiceLocator.Current.GetInstance<INavigationService>(); }
+        }
+
         /// <summary>
         /// Cleans up all the resources.
         /// </summary>
         public static void Cleanup()
         {
             ServiceLocator.Current.GetInstance<MainViewModel>().Cleanup();
-            ServiceLocator.Current.GetInstance<FolderViewModel>().Cleanup();
-            ServiceLocator.Current.GetInstance<MovieViewModel>().Cleanup();
+            //ServiceLocator.Current.GetInstance<FolderViewModel>().Cleanup();
+            //ServiceLocator.Current.GetInstance<MovieViewModel>().Cleanup();
             ServiceLocator.Current.GetInstance<TvViewModel>().Cleanup();
             ServiceLocator.Current.GetInstance<SplashscreenViewModel>().Cleanup();
         }

@@ -20,7 +20,7 @@
     Orientation="Portrait"
     shell:SystemTray.IsVisible="True"
     toolkit:TiltEffect.IsTiltEnabled="True"
-    DataContext="{Binding Folder, Source={StaticResource Locator}}">
+    d:DataContext="{Binding Folder, Source={StaticResource Locator}}">
     <shell:SystemTray.ProgressIndicator>
         <shell:ProgressIndicator IsIndeterminate="True"
                                  Text="{Binding ProgressText}"
@@ -100,7 +100,7 @@
                         <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
                                          HorizontalContentAlignment="Left"
                                          Margin="12,6,0,6"
-                                         Command="{Binding Folder.NavigateToPage, Source={StaticResource Locator}}"
+                                         Command="{Binding Main.NavigateToPage, Source={StaticResource Locator}}"
                                          CommandParameter="{Binding}">
                             <StackPanel Orientation="Horizontal">
                                 <delay:PlaceImage PlaceholderSource="/Images/MBLogo.png"

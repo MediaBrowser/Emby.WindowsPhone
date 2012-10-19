@@ -3,13 +3,11 @@ using System.Windows;
 using System.Windows.Media;
 using System.Windows.Navigation;
 using Coding4Fun.Phone.Controls;
-using GalaSoft.MvvmLight.Ioc;
-using MediaBrowser.ApiInteraction;
-using MediaBrowser.ApiInteraction.WindowsPhone;
 using MediaBrowser.WindowsPhone.ViewModel;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using MediaBrowser.Model;
+using MediaBrowser.Model.DTO;
 
 namespace MediaBrowser.WindowsPhone
 {
@@ -23,6 +21,8 @@ namespace MediaBrowser.WindowsPhone
         {
             get { return _settings ?? (_settings = (SettingsService) Current.Resources["Settings"]); }
         }
+
+        public static DtoBaseItem SelectedItem { get; set; }
 
         public static void ShowMessage(string Title, string Message, Action action = null)
         {

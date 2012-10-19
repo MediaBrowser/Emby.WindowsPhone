@@ -1,4 +1,6 @@
-﻿using Microsoft.Phone.Controls;
+﻿using System.Windows.Navigation;
+using MediaBrowser.WindowsPhone.ViewModel;
+using Microsoft.Phone.Controls;
 
 namespace MediaBrowser.WindowsPhone.Views
 {
@@ -13,6 +15,18 @@ namespace MediaBrowser.WindowsPhone.Views
         public EpisodeView()
         {
             InitializeComponent();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            if(e.NavigationMode == NavigationMode.New)
+            {
+                var item = App.SelectedItem;
+                var vm = ViewModelLocator.GetTvViewModel(item.EpisodeInfo.SeriesId);
+                vm.SelectedEpisode = item;
+                DataContext = vm;
+            }
         }
     }
 }

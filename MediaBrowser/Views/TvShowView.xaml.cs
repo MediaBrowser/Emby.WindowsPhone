@@ -5,6 +5,7 @@ using System.Windows.Navigation;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.WindowsPhone.ViewModel;
 using Microsoft.Phone.Controls;
+using MediaBrowser.Shared;
 
 namespace MediaBrowser.WindowsPhone.Views
 {
@@ -34,12 +35,28 @@ namespace MediaBrowser.WindowsPhone.Views
             };
         }
 
-        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            base.OnNavigatedFrom(e);
+            base.OnNavigatedTo(e);
             if(e.NavigationMode == NavigationMode.Back)
             {
-                Messenger.Default.Send<NotificationMessage>(new NotificationMessage(Constants.ClearFilmAndTvMsg));
+                DataContext = History.Current.GetLastItem<TvViewModel>(GetType(), false);
+            }
+            else if(e.NavigationMode == NavigationMode.New)
+            {
+                var item = App.SelectedItem;
+                var vm = ViewModelLocator.GetTvViewModel(item.Id);
+                vm.SelectedTvSeries = item;
+                DataContext = vm;
+            }
+        }
+
+        protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
+        {
+            base.OnNavigatingFrom(e);
+            if(e.NavigationMode == NavigationMode.New)
+            {
+                History.Current.AddHistoryItem(GetType(), DataContext);
             }
         }
     }

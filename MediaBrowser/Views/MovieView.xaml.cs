@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using MediaBrowser.WindowsPhone.ViewModel;
 using Microsoft.Phone.Controls;
+using MediaBrowser.Shared;
 
 namespace MediaBrowser.WindowsPhone.Views
 {
@@ -30,6 +32,31 @@ namespace MediaBrowser.WindowsPhone.Views
                             Convert(item, typeof (string), "backdrop", null)))
                 };
             };
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            if(e.NavigationMode == NavigationMode.Back)
+            {
+                DataContext = History.Current.GetLastItem<MovieViewModel>(GetType(), false);
+            }
+            else if(e.NavigationMode == NavigationMode.New)
+            {
+                DataContext = new MovieViewModel(ViewModelLocator.NavigationService, ViewModelLocator.ApiClient)
+                                  {
+                                      SelectedMovie = App.SelectedItem
+                                  };
+            }
+        }
+
+        protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
+        {
+            base.OnNavigatingFrom(e);
+            if(e.NavigationMode == NavigationMode.New)
+            {
+                History.Current.AddHistoryItem(GetType(), DataContext);
+            }
         }
     }
 }

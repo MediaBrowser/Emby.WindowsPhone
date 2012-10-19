@@ -34,7 +34,7 @@ namespace MediaBrowser.Shared
             }
         }
 
-        public virtual T GetLastItem<T>(Type viewModelType, bool lastIsCurrent = true) where T : class
+        public virtual T GetLastItem<T>(Type viewModelType, bool lastIsCurrent = false) where T : class
         {
             if (!_historyItems.ContainsKey(viewModelType))
             {

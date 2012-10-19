@@ -48,7 +48,6 @@ namespace MediaBrowser.WindowsPhone
                 App.ShowMessage("", "Error logging in");
             }
         }
-
         
     }
 }

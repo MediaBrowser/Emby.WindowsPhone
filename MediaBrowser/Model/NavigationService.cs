@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Navigation;
-using MediaBrowser.WindowsPhone.ViewModel;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Net.NetworkInformation;
 using GalaSoft.MvvmLight.Messaging;
@@ -90,26 +89,28 @@ namespace MediaBrowser.WindowsPhone.Model
 
         public void NavigateToPage(DtoBaseItem item)
         {
+            App.SelectedItem = item;
             switch (item.Type.ToLower())
             {
+                case "folder":
                 case "collectionfolder":
-                    Messenger.Default.Send(new NotificationMessage(item, Constants.ShowFolderMsg));
+                    //Messenger.Default.Send(new NotificationMessage(item, Constants.ShowFolderMsg));
                     NavigateToPage("/Views/FolderView.xaml");
                     break;
                 case "movie":
-                    Messenger.Default.Send(new NotificationMessage(item, Constants.ShowMovieMsg));
+                    //Messenger.Default.Send(new NotificationMessage(item, Constants.ShowMovieMsg));
                     NavigateToPage("/Views/MovieView.xaml");
                     break;
                 case "series":
-                    Messenger.Default.Send(new NotificationMessage(item, Constants.ShowTvSeries));
+                    //Messenger.Default.Send(new NotificationMessage(item, Constants.ShowTvSeries));
                     NavigateToPage("/Views/TvShowView.xaml");
                     break;
                 case "season":
-                    Messenger.Default.Send(new NotificationMessage(item, Constants.ShowSeasonMsg));
+                    //Messenger.Default.Send(new NotificationMessage(item, Constants.ShowSeasonMsg));
                     NavigateToPage("/Views/SeasonView.xaml");
                     break;
                 case "episode":
-                    Messenger.Default.Send(new NotificationMessage(item, Constants.ShowEpisodeMsg));
+                    //Messenger.Default.Send(new NotificationMessage(item, Constants.ShowEpisodeMsg));
                     NavigateToPage("/Views/EpisodeView.xaml");
                     break;
             }

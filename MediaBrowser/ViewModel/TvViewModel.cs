@@ -26,8 +26,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     {
         private readonly INavigationService NavService;
         private readonly ApiClient ApiClient;
-        private bool showDataLoaded;
-        private bool seasonDataLoaded;
+        public bool showDataLoaded;
+        public bool seasonDataLoaded;
         /// <summary>
         /// Initializes a new instance of the TvViewModel class.
         /// </summary>
@@ -71,38 +71,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             Messenger.Default.Register<NotificationMessage>(this, m =>
             {
-                if(m.Notification.Equals(Constants.ShowTvSeries))
-                {
-                    showDataLoaded = false;
-                    SelectedTvSeries = (DtoBaseItem) m.Sender;
-                    DummyFolder = new DtoBaseItem
-                    {
-                        Type = "folder",
-                            Name = SelectedTvSeries.Name + "'s recent items",
-                            Id = SelectedTvSeries.Id
-                        
-                    };
-                }
-                else if(m.Notification.Equals(Constants.ShowSeasonMsg))
-                {
-                    seasonDataLoaded = false;
-                    SelectedSeason = (DtoBaseItem) m.Sender;
-                }
-                else if(m.Notification.Equals(Constants.ClearFilmAndTvMsg))
-                {
-                    SelectedTvSeries = null;
-                    SelectedSeason = null;
-                    SelectedEpisode = null;
-                    Seasons.Clear();
-                    Episodes.Clear();
-                    RecentItems.Clear();
-                    CastAndCrew = null;
-                }
-                else if(m.Notification.Equals(Constants.ShowEpisodeMsg))
-                {
-                    SelectedEpisode = (DtoBaseItem) m.Sender;
-                }
-                else if(m.Notification.Equals(Constants.ClearEpisodesMsg))
+                
+                if(m.Notification.Equals(Constants.ClearEpisodesMsg))
                 {
                     Episodes.Clear();
                 }
@@ -113,7 +83,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             TvSeriesPageLoaded = new RelayCommand(async () =>
             {
-                if(NavService.IsNetworkAvailable && App.Settings.CheckHostAndPort() && !showDataLoaded)
+                DummyFolder = new DtoBaseItem
+                {
+                    Type = "folder",
+                    Name = SelectedTvSeries.Name + "'s recent items",
+                    Id = SelectedTvSeries.Id
+
+                };
+                if(NavService.IsNetworkAvailable && !showDataLoaded)
                 {
                     if(SelectedTvSeries != null)
                     {
@@ -135,7 +112,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             SeasonPageLoaded = new RelayCommand(async () =>
             {
-                if(NavService.IsNetworkAvailable && App.Settings.CheckHostAndPort() && !seasonDataLoaded)
+                if(NavService.IsNetworkAvailable && !seasonDataLoaded)
                 {
                     if(SelectedSeason != null)
                     {
@@ -152,7 +129,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             EpisodePageLoaded = new RelayCommand(async ()=>
             {
-                if(NavService.IsNetworkAvailable && App.Settings.CheckHostAndPort())
+                if(NavService.IsNetworkAvailable)
                 {
                     if(SelectedEpisode != null)
                     {

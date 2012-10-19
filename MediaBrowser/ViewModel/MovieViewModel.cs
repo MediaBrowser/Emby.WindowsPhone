@@ -7,6 +7,7 @@ using MediaBrowser.ApiInteraction.WindowsPhone;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.Model.DTO;
 using GalaSoft.MvvmLight.Messaging;
+using Microsoft.Phone.Tasks;
 using ScottIsAFool.WindowsPhone;
 
 namespace MediaBrowser.WindowsPhone.ViewModel
@@ -52,20 +53,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             Messenger.Default.Register<NotificationMessage>(this, m =>
             {
-                if (m.Notification.Equals(Constants.ShowMovieMsg))
-                {
-                    SelectedMovie = (DtoBaseItem)m.Sender;
-                    if (SelectedMovie.ProviderIds != null)
-                        ImdbId = SelectedMovie.ProviderIds["Imdb"];
-                    if (SelectedMovie.RunTimeTicks.HasValue)
-                        RunTime = TimeSpan.FromTicks(SelectedMovie.RunTimeTicks.Value).ToString();
-
-                }
-                else if (m.Notification.Equals(Constants.ClearFilmAndTvMsg))
-                {
-                    SelectedMovie = null;
-                    CastAndCrew = null;
-                }
+                
             });
         }
 
@@ -73,14 +61,38 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             MoviePageLoaded = new RelayCommand(async () =>
             {
-                ProgressIsVisible = true;
-                ProgressText = "Getting cast + crew...";
+                if (SelectedMovie.ProviderIds != null)
+                    ImdbId = SelectedMovie.ProviderIds["Imdb"];
+                if (SelectedMovie.RunTimeTicks.HasValue)
+                    RunTime = TimeSpan.FromTicks(SelectedMovie.RunTimeTicks.Value).ToString();
+                if (SelectedMovie != null && NavService.IsNetworkAvailable)
+                {
+                    ProgressIsVisible = true;
+                    ProgressText = "Getting cast + crew...";
 
-                bool dataLoaded = await GetMovieDetails();
+                    bool dataLoaded = await GetMovieDetails();
 
-                ProgressIsVisible = false;
-                ProgressText = string.Empty;
+                    ProgressIsVisible = false;
+                    ProgressText = string.Empty;
+                }
             });
+
+            PlayMovieCommand = new RelayCommand(() =>
+                                                    {
+                                                        var formats = new List<VideoOutputFormats>
+                                                                          {
+                                                                              VideoOutputFormats.Wmv,
+                                                                              VideoOutputFormats.Asf,
+                                                                              VideoOutputFormats.Ts
+                                                                          };
+                                                        var url = ApiClient.GetVideoStreamUrl(SelectedMovie.Id, formats, maxHeight: 480, maxWidth: 800, quality:StreamingQuality.Higher);
+                                                        var mediaPlayerLauncher = new MediaPlayerLauncher
+                                                                                      {
+                                                                                          Orientation = MediaPlayerOrientation.Landscape,
+                                                                                          Media = new Uri(url, UriKind.Absolute)
+                                                                                      };
+                                                        mediaPlayerLauncher.Show();
+                                                    });
             NavigateTopage = new RelayCommand<DtoBaseItem>(NavService.NavigateToPage);
         }
 
@@ -116,5 +128,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
         public RelayCommand<DtoBaseItem> NavigateTopage { get; set; }
         public RelayCommand MoviePageLoaded { get; set; }
+        public RelayCommand PlayMovieCommand { get; set; }
     }
 }
