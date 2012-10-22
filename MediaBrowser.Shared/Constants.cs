@@ -41,5 +41,7 @@
         public const string TvEpisodeSelectedMsg = "TvEpisodeSelectedMsg";
         public const string TvSeasonSelectedMsg = "TvSeasonSelectedMsg";
         public const string ClearEverythingMsg = "ClearEverythingMsg";
+        public const string PlayVideoItemMsg = "PlayVideoItemMsg";
+        public const string VideoPlayerLoadedMsg = "VideoPlayerLoadedMsg";
     }
 }
