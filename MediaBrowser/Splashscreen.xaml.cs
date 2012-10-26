@@ -28,7 +28,7 @@ namespace MediaBrowser.WindowsPhone
 
         private void LoadAnimation_Completed(object sender, EventArgs e)
         {
-            Messenger.Default.Send<NotificationMessage>(new NotificationMessage(Constants.SplashAnimationFinishedMsg));
+            Messenger.Default.Send(new NotificationMessage(Constants.SplashAnimationFinishedMsg));
         }
     }
 }

@@ -22,7 +22,7 @@
             <!--Global View Model Locator-->
             <vm:ViewModelLocator x:Key="Locator"
                                  d:IsDataSource="True" />
-            <model:SettingsService x:Key="Settings" />
+            <model:SettingsService x:Key="AppSettings" />
 
             <sys:String x:Key="AppName">MediaBrowser</sys:String>
             

@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.ApiInteraction.WindowsPhone;
@@ -31,36 +32,57 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             if (!IsInDesignMode)
             {
                 WireMessages();
+                WireCommands();
             }
+        }
+
+        private void WireCommands()
+        {
+            TestConnectionCommand = new RelayCommand(async () =>
+            {
+                ProgressIsVisible = true;
+                ProgressText = "Checking connection...";
+                if (await GetServerConfiguration())
+                {
+                    ISettings.DeleteValue(Constants.SelectedUserSetting);
+                    ISettings.SetKeyValue(Constants.ConnectionSettings, App.Settings.ConnectionDetails);
+                    await CheckProfiles();
+                }
+                else
+                {
+                    App.ShowMessage("", "Connection details are invalid, please try again.");
+                }
+                ProgressIsVisible = false;
+                ProgressText = string.Empty;
+            });
         }
 
         private void WireMessages()
         {
-            Messenger.Default.Register<NotificationMessage>(this, async m=>
+            Messenger.Default.Register<NotificationMessage>(this, async m =>
             {
-                if(m.Notification.Equals(Constants.SplashAnimationFinishedMsg))
+                if (m.Notification.Equals(Constants.SplashAnimationFinishedMsg))
                 {
                     // Get settings from storage
                     var connectionDetails = ISettings.GetKeyValue<ConnectionDetails>(Constants.ConnectionSettings);
-                    if(connectionDetails != null)
+                    if (connectionDetails != null)
                     {
                         App.Settings.ConnectionDetails = connectionDetails;
                     }
                     else
                     {
                         App.ShowMessage("", "No connection settings, tap to set", () => NavigationService.NavigateToPage("/Views/Settings/Connection.xaml"));
-                        //return;
+                        return;
                     }
-                    App.Settings.ConnectionDetails = new ConnectionDetails
-                                                         {
-                                                             HostName = "192.168.0.2",
-                                                             PortNo = 8096
-                                                         };
+                    //App.Settings.ConnectionDetails = new ConnectionDetails
+                    //                                     {
+                    //                                         HostName = "192.168.0.2",
+                    //                                         PortNo = 8096
+                    //                                     };
 
-                    ApiClient.ServerHostName = App.Settings.ConnectionDetails.HostName;
-                    ApiClient.ServerApiPort = App.Settings.ConnectionDetails.PortNo;
+                    
                     var user = ISettings.GetKeyValue<UserSettingWrapper>(Constants.SelectedUserSetting);
-                    if(user != null)
+                    if (user != null)
                     {
                         App.Settings.LoggedInUser = user.User;
                         App.Settings.PinCode = user.Pin;
@@ -74,35 +96,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                         if (App.Settings.ServerConfiguration != null)
                         {
-                            // If one exists, then authenticate that user.
-                            if (App.Settings.LoggedInUser != null)
-                            {
-                                ProgressText = "Authenticating...";
-                                await Utils.Login(App.Settings.LoggedInUser, App.Settings.PinCode, () => NavigationService.NavigateToPage("/Views/MainPage.xaml"));
-                            }
-                            else
-                            {
-                                // As no user is saved, check whether users are used at all
-                                // If they are, get the user to check what profile is wanted.
-                                if (App.Settings.ServerConfiguration.EnableUserProfiles)
-                                {
-                                    NavigationService.NavigateToPage("/Views/ChooseProfileView.xaml");
-                                }
-                                else
-                                {
-                                    // If not, get the default user and log them in.
-                                    ProgressText = "Getting default user...";
-                                    App.Settings.LoggedInUser = await ApiClient.GetDefaultUserAsync();
-                                    if (App.Settings.LoggedInUser != null)
-                                    {
-                                        NavigationService.NavigateToPage("/Views/MainPage.xaml");
-                                    }
-                                    else
-                                    {
-                                        App.ShowMessage("", "No default user found.");
-                                    }
-                                }
-                            }
+                            await CheckProfiles();
                         }
                         else
                         {
@@ -115,13 +109,57 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             });
         }
 
-        private async Task GetServerConfiguration()
+        private async Task CheckProfiles()
         {
-            var config = await ApiClient.GetServerConfigurationAsync();
-            App.Settings.ServerConfiguration = config;
+            // If one exists, then authenticate that user.
+            if (App.Settings.LoggedInUser != null)
+            {
+                ProgressText = "Authenticating...";
+                await Utils.Login(App.Settings.LoggedInUser, App.Settings.PinCode, () => NavigationService.NavigateToPage("/Views/MainPage.xaml"));
+            }
+            else
+            {
+                // As no user is saved, check whether users are used at all
+                // If they are, get the user to check what profile is wanted.
+                if (App.Settings.ServerConfiguration.EnableUserProfiles)
+                {
+                    NavigationService.NavigateToPage("/Views/ChooseProfileView.xaml");
+                }
+                else
+                {
+                    // If not, get the default user and log them in.
+                    ProgressText = "Getting default user...";
+                    App.Settings.LoggedInUser = await ApiClient.GetDefaultUserAsync();
+                    if (App.Settings.LoggedInUser != null)
+                    {
+                        NavigationService.NavigateToPage("/Views/MainPage.xaml");
+                    }
+                    else
+                    {
+                        App.ShowMessage("", "No default user found.");
+                    }
+                }
+            }
+        }
+
+        private async Task<bool> GetServerConfiguration()
+        {
+            try
+            {
+                ApiClient.ServerHostName = App.Settings.ConnectionDetails.HostName;
+                ApiClient.ServerApiPort = App.Settings.ConnectionDetails.PortNo;
+                var config = await ApiClient.GetServerConfigurationAsync();
+                App.Settings.ServerConfiguration = config;
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public string ProgressText { get; set; }
         public bool ProgressIsVisible { get; set; }
+        public RelayCommand TestConnectionCommand { get; set; }
     }
 }

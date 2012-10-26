@@ -19,23 +19,23 @@ namespace MediaBrowser.WindowsPhone
         private static SettingsService _settings;
         public static SettingsService Settings
         {
-            get { return _settings ?? (_settings = (SettingsService) Current.Resources["Settings"]); }
+            get { return _settings ?? (_settings = (SettingsService) Current.Resources["AppSettings"]); }
         }
 
         public static DtoBaseItem SelectedItem { get; set; }
 
-        public static void ShowMessage(string Title, string Message, Action action = null)
+        public static void ShowMessage(string title, string message, Action action = null)
         {
-            var _prompt = new ToastPrompt
+            var prompt = new ToastPrompt
             {
-                Title = Title,
-                Message = Message,
+                Title = title,
+                Message = message,
                 Foreground = new SolidColorBrush(Colors.White)
             };
 
             if (action != null)
-                _prompt.Tap += (s, e) => action();
-            _prompt.Show();
+                prompt.Tap += (s, e) => action();
+            prompt.Show();
         }
 
         // Easy access to the root frame
