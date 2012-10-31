@@ -158,6 +158,8 @@
                                                     Command="{Binding RefreshDataCommand}"/>
                 <bar:BindableApplicationBarMenuItem Text="change profile"
                                                     Command="{Binding ChangeProfileCommand}"/>
+                <bar:BindableApplicationBarMenuItem Text="settings"
+                                                    Command="" />
             </bar:BindableApplicationBar.MenuItems>
         </bar:BindableApplicationBar>
     </bar:Bindable.ApplicationBar>

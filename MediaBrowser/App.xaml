@@ -10,7 +10,7 @@
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
     xmlns:scottConverters="clr-namespace:ScottIsAFool.WindowsPhone.Converters;assembly=ScottIsAFool.WindowsPhone"
     xmlns:converters="clr-namespace:MediaBrowser.WindowsPhone.Converters"
-    xmlns:model="clr-namespace:MediaBrowser.Model;assembly=MediaBrowser.Shared"
+    xmlns:model="clr-namespace:MediaBrowser.Model"
     xmlns:delay="clr-namespace:Delay">
 
     <Application.Resources>

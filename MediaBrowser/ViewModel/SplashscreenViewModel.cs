@@ -42,15 +42,18 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 ProgressIsVisible = true;
                 ProgressText = "Checking connection...";
-                if (await GetServerConfiguration())
+                if (NavigationService.IsNetworkAvailable)
                 {
-                    ISettings.DeleteValue(Constants.SelectedUserSetting);
-                    ISettings.SetKeyValue(Constants.ConnectionSettings, App.Settings.ConnectionDetails);
-                    await CheckProfiles();
-                }
-                else
-                {
-                    App.ShowMessage("", "Connection details are invalid, please try again.");
+                    if (await GetServerConfiguration())
+                    {
+                        ISettings.DeleteValue(Constants.SelectedUserSetting);
+                        ISettings.SetKeyValue(Constants.ConnectionSettings, App.Settings.ConnectionDetails);
+                        await CheckProfiles();
+                    }
+                    else
+                    {
+                        App.ShowMessage("", "Connection details are invalid, please try again.");
+                    }
                 }
                 ProgressIsVisible = false;
                 ProgressText = string.Empty;
@@ -71,14 +74,15 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     }
                     else
                     {
-                        App.ShowMessage("", "No connection settings, tap to set", () => NavigationService.NavigateToPage("/Views/Settings/Connection.xaml"));
+                        App.ShowMessage("", "No connection settings, tap to set", () => NavigationService.NavigateToPage("/Views/Settings/ConnectionSettings.xaml"));
+                        //App.ShowMessage("", "No connection settings, tap to set", () => NavigationService.NavigateToPage("/Views/SettingsView.xaml"));
+                        App.Settings.ConnectionDetails = new ConnectionDetails
+                                                             {
+                                                                 PortNo = 8096
+                                                             };
                         return;
                     }
-                    //App.Settings.ConnectionDetails = new ConnectionDetails
-                    //                                     {
-                    //                                         HostName = "192.168.0.2",
-                    //                                         PortNo = 8096
-                    //                                     };
+                    
 
                     
                     var user = ISettings.GetKeyValue<UserSettingWrapper>(Constants.SelectedUserSetting);

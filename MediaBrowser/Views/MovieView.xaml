@@ -6,7 +6,6 @@
                             xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
                             xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
                             xmlns:local="clr-namespace:MediaBrowser.WindowsPhone.Controls"
-                            xmlns:telerik="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Input"
                             xmlns:delay="clr-namespace:Delay"
                             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
                             xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP71"
@@ -75,19 +74,11 @@
                         <TextBlock Text="{Binding SelectedMovie.ProductionYear, StringFormat='Released in \{0\}'}"
                                    Style="{StaticResource PhoneTextNormalStyle}" />
 
-                        <telerik:RadRating VerticalAlignment="Top"
-                                           IsReadOnly="True"
-                                           RatingDisplayPrecision="Exact"
-                                           Value="{Binding SelectedMovie.UserRating, Converter={StaticResource RatingConverter}}"
-                                           Foreground="{StaticResource PhoneAccentBrush}"
-                                           Margin="12,12,0,0">
-                            <telerik:RadRating.ItemShapeSelectedStyle>
-                                <Style TargetType="Path">
-                                    <Setter Property="Fill"
-                                            Value="{StaticResource PhoneAccentBrush}" />
-                                </Style>
-                            </telerik:RadRating.ItemShapeSelectedStyle>
-                        </telerik:RadRating>
+                        <toolkit:Rating VerticalAlignment="Top"
+                                        Value="{Binding SelectedMovie.OfficialRating, Converter={StaticResource RatingConverter}}"
+                                        Foreground="{StaticResource PhoneAccentBrush}"
+                                        HorizontalAlignment="Left"
+                                        Margin="12,12,0,0" />
                         <HyperlinkButton Content="See film on imdb"
                                          NavigateUri="{Binding ImdbId, StringFormat='http://m.imdb.com/title/\{0\}'}"
                                          TargetName="_new"
