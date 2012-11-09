@@ -92,13 +92,17 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 if (SelectedFolder.Name.Contains("recent"))
                 {
-                    var items = await ApiClient.GetRecentlyAddedItemsAsync(App.Settings.LoggedInUser.Id);
-                    CurrentItems = items.ToList();
+                    var items = await ApiClient.GetRecentlyAddedItemsAsync(App.Settings.LoggedInUser.Id, fields: new List<ItemFields>
+                                                                                                                 {
+                                                                                                                     ItemFields.SeriesInfo,
+                                                                                                                     ItemFields.DateCreated
+                                                                                                                 });
+                    CurrentItems = items.Items.ToList();
                 }
                 else
                 {
-                    var items = await ApiClient.GetItemAsync(SelectedFolder.Id, App.Settings.LoggedInUser.Id);
-                    CurrentItems = items.Children.ToList();
+                    var items = await ApiClient.GetChildrenAsync(App.Settings.LoggedInUser.Id, SelectedFolder.Id);
+                    CurrentItems = items.Items.ToList();
                 }
                 return true;
             }
@@ -216,7 +220,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 return true;
             }
-            DtoBaseItem.Genres = new string[] { "none" };
+            DtoBaseItem.Genres = new List<string> { "none" };
             return true;
         }
 

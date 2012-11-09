@@ -23,7 +23,8 @@
     d:DesignHeight="696"
     shell:SystemTray.IsVisible="True"
     shell:SystemTray.Opacity="0"
-    toolkit:TiltEffect.IsTiltEnabled="True"
+                            shell:SystemTray.BackgroundColor="White"
+                            toolkit:TiltEffect.IsTiltEnabled="True"
     DataContext="{Binding Main, Source={StaticResource Locator}}">
     <shell:SystemTray.ProgressIndicator>
         <shell:ProgressIndicator IsIndeterminate="True"
@@ -89,9 +90,12 @@
                                              Command="{Binding Main.NavigateToPage, Source={StaticResource Locator}}"
                                              CommandParameter="{Binding}">
                                 <StackPanel Orientation="Horizontal">
-                                    <delay:PlaceImage PlaceholderSource="/Images/MBLogo.png"
-                                                      Height="62"
-                                                      Width="62"/>
+                                    <Border Background="{Binding Converter={StaticResource RandomColour}}">
+                                        <delay:PlaceImage PlaceholderSource="/Images/MBLogo.png"
+                                                          Source="{Binding Converter={StaticResource ImageUrlConverter}}"
+                                                          Height="62"
+                                                          Width="62" />
+                                    </Border>
                                     <StackPanel Orientation="Vertical">
                                         <TextBlock Text="{Binding Name}"
                                                    Style="{StaticResource PhoneTextLargeStyle}"/>
@@ -158,8 +162,7 @@
                                                     Command="{Binding RefreshDataCommand}"/>
                 <bar:BindableApplicationBarMenuItem Text="change profile"
                                                     Command="{Binding ChangeProfileCommand}"/>
-                <bar:BindableApplicationBarMenuItem Text="settings"
-                                                    Command="" />
+                <bar:BindableApplicationBarMenuItem Text="settings" />
             </bar:BindableApplicationBar.MenuItems>
         </bar:BindableApplicationBar>
     </bar:Bindable.ApplicationBar>

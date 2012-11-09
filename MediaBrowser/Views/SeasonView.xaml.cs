@@ -28,7 +28,7 @@ namespace MediaBrowser.WindowsPhone.Views
             else if(e.NavigationMode == NavigationMode.New)
             {
                 var item = App.SelectedItem;
-                var vm = ViewModelLocator.GetTvViewModel(item.ParentId.Value);
+                var vm = ViewModelLocator.GetTvViewModel(item.SeriesId.Value);
                 vm.SelectedSeason = item;
                 vm.seasonDataLoaded = false;
                 DataContext = vm;

@@ -11,7 +11,7 @@
     xmlns:scottConverters="clr-namespace:ScottIsAFool.WindowsPhone.Converters;assembly=ScottIsAFool.WindowsPhone"
     xmlns:converters="clr-namespace:MediaBrowser.WindowsPhone.Converters"
     xmlns:model="clr-namespace:MediaBrowser.Model"
-    xmlns:delay="clr-namespace:Delay">
+    xmlns:delay="clr-namespace:Delay" >
 
     <Application.Resources>
         <ResourceDictionary>
@@ -36,6 +36,7 @@
             <converters:ImageUrlConverter x:Key="ImageUrlConverter" />
             <converters:EpisodeNumberVisibilityConverter x:Key="EpisodeNumberVisibilityConverter" />
             <converters:RatingConverter x:Key="RatingConverter" />
+            <converters:RandomColour x:Key="RandomColour" />
 
             <!-- Control Styles -->
             <Style x:Key="EmptyButtonStyle"

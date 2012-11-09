@@ -93,6 +93,7 @@ namespace MediaBrowser.WindowsPhone.Controls
 
         private void ParseText(string value)
         {
+            if (string.IsNullOrEmpty(value)) return;
             StringReader reader = new StringReader(value);
 
             if (this.stackPanel == null)

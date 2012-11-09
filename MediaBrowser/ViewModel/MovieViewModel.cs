@@ -30,6 +30,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         /// </summary>
         public MovieViewModel(INavigationService navService, ApiClient apiClient)
         {
+            NavService = navService;
+            ApiClient = apiClient;
             if (IsInDesignMode)
             {
                 SelectedMovie = new DtoBaseItem
@@ -42,8 +44,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
             else
             {
-                NavService = navService;
-                ApiClient = apiClient;
                 WireCommands();
                 WireMessages();
             }
@@ -61,16 +61,18 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             MoviePageLoaded = new RelayCommand(async () =>
             {
-                if (SelectedMovie.ProviderIds != null)
-                    ImdbId = SelectedMovie.ProviderIds["Imdb"];
-                if (SelectedMovie.RunTimeTicks.HasValue)
-                    RunTime = TimeSpan.FromTicks(SelectedMovie.RunTimeTicks.Value).ToString();
+                
                 if (SelectedMovie != null && NavService.IsNetworkAvailable)
                 {
                     ProgressIsVisible = true;
-                    ProgressText = "Getting cast + crew...";
-
+                    ProgressText = "Getting movie information...";
+                    
                     bool dataLoaded = await GetMovieDetails();
+
+                    if (SelectedMovie.ProviderIds != null)
+                        ImdbId = SelectedMovie.ProviderIds["Imdb"];
+                    if (SelectedMovie.RunTimeTicks.HasValue)
+                        RunTime = TimeSpan.FromTicks(SelectedMovie.RunTimeTicks.Value).ToString();
 
                     ProgressIsVisible = false;
                     ProgressText = string.Empty;
@@ -79,19 +81,21 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             PlayMovieCommand = new RelayCommand(() =>
                                                     {
-                                                        var formats = new List<VideoOutputFormats>
-                                                                          {
-                                                                              VideoOutputFormats.Wmv,
-                                                                              VideoOutputFormats.Asf,
-                                                                              VideoOutputFormats.Ts
-                                                                          };
-                                                        var url = ApiClient.GetVideoStreamUrl(SelectedMovie.Id, formats, maxHeight: 480, maxWidth: 800, quality:StreamingQuality.Higher);
-                                                        var mediaPlayerLauncher = new MediaPlayerLauncher
-                                                                                      {
-                                                                                          Orientation = MediaPlayerOrientation.Landscape,
-                                                                                          Media = new Uri(url, UriKind.Absolute)
-                                                                                      };
-                                                        mediaPlayerLauncher.Show();
+                                                        //var formats = new List<VideoOutputFormats>
+                                                        //                  {
+                                                        //                      VideoOutputFormats.Wmv,
+                                                        //                      VideoOutputFormats.Asf,
+                                                        //                      VideoOutputFormats.Ts
+                                                        //                  };
+                                                        //var url = ApiClient.GetVideoStreamUrl(SelectedMovie.Id, formats, maxHeight: 480, maxWidth: 800, quality:StreamingQuality.Higher);
+                                                        //var mediaPlayerLauncher = new MediaPlayerLauncher
+                                                        //                              {
+                                                        //                                  Orientation = MediaPlayerOrientation.Landscape,
+                                                        //                                  Media = new Uri(url, UriKind.Absolute)
+                                                        //                              };
+                                                        //mediaPlayerLauncher.Show();
+                                                        Messenger.Default.Send(new NotificationMessage(SelectedMovie, Constants.PlayVideoItemMsg));
+                                                        NavService.NavigateToPage("/Views/VideoPlayerView.xaml");
                                                     });
             NavigateTopage = new RelayCommand<DtoBaseItem>(NavService.NavigateToPage);
         }
@@ -103,6 +107,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             try
             {
                 var item = await ApiClient.GetItemAsync(SelectedMovie.Id, App.Settings.LoggedInUser.Id);
+                SelectedMovie = item;
                 CastAndCrew = Utils.GroupCastAndCrew(item.People);
                 result = true;
             }

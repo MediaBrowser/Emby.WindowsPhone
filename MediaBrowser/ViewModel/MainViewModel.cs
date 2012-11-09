@@ -109,14 +109,18 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             try
             {
-                var items = await ApiClient.GetRecentlyAddedItemsAsync(App.Settings.LoggedInUser.Id);
-                var episodesBySeries = items
+                var items = await ApiClient.GetRecentlyAddedItemsAsync(App.Settings.LoggedInUser.Id, fields: new List<ItemFields>
+                                                                                                                 {
+                                                                                                                     ItemFields.SeriesInfo,
+                                                                                                                     ItemFields.DateCreated
+                                                                                                                 });
+                var episodesBySeries = items.Items
                     .Where(x => x.Type == "Episode")
-                    .GroupBy(l => l.ParentBackdropItemId)
+                    .GroupBy(l => l.SeriesId)
                     .Select(g => new
                     {
                         Id = g.Key,
-                        Name = g.Select(l => l.EpisodeInfo.SeriesName).FirstOrDefault(),
+                        Name = g.Select(l => l.SeriesName).FirstOrDefault(),
                         Count = g.Count(),
                         CreatedDate = g.OrderByDescending(l => l.DateCreated).First().DateCreated
                     }).ToList();
@@ -132,7 +136,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         SortName = Constants.GetTvInformationMsg
                     }));
                 }
-                var recent = items
+                var recent = items.Items
                     .Where(x => x.Type != "Episode")
                     .Union(seriesList)
                     .Select(x => x);
@@ -154,9 +158,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             try
             {
-                var item = await ApiClient.GetItemAsync(Guid.Empty, App.Settings.LoggedInUser.Id);
+                var item = await ApiClient.GetChildrenAsync(App.Settings.LoggedInUser.Id);
                 Folders.Clear();
-                item.Children.ToList().ForEach(folder => Folders.Add(folder));
+                
+                item.Items.OrderByDescending(x => x.SortName).ToList().ForEach(folder => Folders.Add(folder));
                 return true;
             }
             catch

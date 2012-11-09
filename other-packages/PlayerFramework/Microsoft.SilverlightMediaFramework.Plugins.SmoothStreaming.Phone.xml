@@ -1,0 +1,666 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.Phone</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.DataChunk">
+            <summary>
+            Represents a chunk of data that can be downloaded from a stream.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.DataChunk.Timestamp">
+            <summary>
+            Gets the unique timestamp of this IDataChunk.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.DataChunk.Duration">
+            <summary>
+            Gets the duration of this IDataChunk.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.DataChunk.Attributes">
+            <summary>
+            Gets a list of attributes about this IDataChunk.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.DownloadStreamDataTimeOutException">
+            <summary>
+            Indicates that a timeout has occurred while downloading stream data.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.MediaStream">
+            <summary>
+            A stream that is part of an adaptive media manifest.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.MediaStream.SetSelectedTracks(System.Collections.Generic.IEnumerable{Microsoft.SilverlightMediaFramework.Plugins.Primitives.IMediaTrack})">
+            <summary>
+            Sets the tracks that are selected in this IMediaStream.
+            </summary>
+            <param name="tracks">All of the tracks that should be selected when this operation completes.</param>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.MediaStream.SetRestrictedTracks(System.Collections.Generic.IEnumerable{Microsoft.SilverlightMediaFramework.Plugins.Primitives.IMediaTrack})">
+            <summary>
+            Sets the tracks that are allowed to be used in this IMediaStream.
+            </summary>
+            <param name="tracks">The list of tracks that are allowed to be used.</param>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.MediaStream.Id">
+            <summary>
+            Gets the id of the IMediaStream.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.MediaStream.Name">
+            <summary>
+            Gets the name of the IMediaStream.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.MediaStream.Language">
+            <summary>
+            Gets the language of the IMediaStream.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.MediaStream.FourCC">
+            <summary>
+            Gets the FourCC property of this IMeidaStream.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.MediaStream.Type">
+            <summary>
+            Gets the type of the IMediaStream.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.MediaStream.SubType">
+            <summary>
+            Gets the subtype of the IMediaStream.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.MediaStream.Enabled">
+            <summary>
+            Gets whether this IMediaStream is enabled.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.MediaStream.IsSparseStream">
+            <summary>
+            Gets whether this IMediaStream is a sparse stream.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.MediaStream.Duration">
+            <summary>
+            Gets the Duration of this IMediaStream.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.MediaStream.TimeScale">
+            <summary>
+            Gets the TimeScale of this IMediaStream.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.MediaStream.Attributes">
+            <summary>
+            Gets the attributes that are part of this IMediaStream.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.MediaStream.AvailableTracks">
+            <summary>
+            Gets the tracks available in this IMediaStream.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.MediaStream.SelectedTracks">
+            <summary>
+            Gets the tracks that are currently selected in this IMediaStream.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.MediaStream.ChildStreams">
+            <summary>
+            Gets the child streams that are part of this IMediaStream.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.MediaTrack.Name">
+            <summary>
+            Gets the name of this IMediaTrack.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.MediaTrack.Allowed">
+            <summary>
+            Gets whether this IMediaTrack is allowed.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.MediaTrack.Index">
+            <summary>
+            Gets the index of this IMediaTrack within it's parent stream.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.MediaTrack.Language">
+            <summary>
+            Gets the language of this IMediaTrack.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.MediaTrack.Bitrate">
+            <summary>
+            Gets the bitrate of this IMediaTrack.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.MediaTrack.CustomAttributes">
+            <summary>
+            Gets the attributes that are a part of this IMediaTrack.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.MediaTrack.Attributes">
+            <summary>
+            Gets the attributes that are a part of this IMediaTrack.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.MediaTrack.Resolution">
+            <summary>
+            Gets the resolution of this IMediaTrack.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.MediaTrack.ParentStream">
+            <summary>
+            Gets the stream that contains this IMediaTrack.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.Resources.SmoothStreamingResources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.Resources.SmoothStreamingResources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.Resources.SmoothStreamingResources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.Resources.SmoothStreamingResources.DownloadStreamDataTimeOutExceptionMessage">
+            <summary>
+              Looks up a localized string similar to The download of stream data has timed out..
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.Resources.SmoothStreamingResources.ScheduleAdInvalidArgumentsExceptionMessage">
+            <summary>
+              Looks up a localized string similar to To schedule an ad you must specify either a valid start time or an existing ad to append to..
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.Resources.SmoothStreamingResources.SmoothStreamingMediaElementGeneratedLogMessageFormat">
+            <summary>
+              Looks up a localized string similar to Media Element Generated Log - Reason: {0}.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.Resources.SmoothStreamingResources.SmoothStreamingMediaPluginInstantiatedLogMessage">
+            <summary>
+              Looks up a localized string similar to SmoothStreamingMediaPlugin Instantiated.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.Resources.SmoothStreamingResources.SmoothStreamingMediaPluginLoadedLogMessage">
+            <summary>
+              Looks up a localized string similar to SmoothStreamingMediaPlugin Loaded.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.Resources.SmoothStreamingResources.SmoothStreamingMediaPluginLoadFailedLogMessage">
+            <summary>
+              Looks up a localized string similar to SmoothStreamingMediaPlugin Load Failed: {0}.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.Resources.SmoothStreamingResources.SmoothStreamingMediaPluginUnloadedLogMessage">
+            <summary>
+              Looks up a localized string similar to SmoothStreamingMediaPlugin Unloaded.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.Resources.SmoothStreamingResources.SmoothStreamingMediaPluginUnloadFailedLogMessage">
+            <summary>
+              Looks up a localized string similar to SmoothStreamingMediaPlugin Unload Failed: {0}.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.Resources.SmoothStreamingResources.StreamSelectionFailedMessage">
+            <summary>
+              Looks up a localized string similar to Stream Selection Failed..
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.Resources.SmoothStreamingResources.TimelineMarkerReached">
+            <summary>
+              Looks up a localized string similar to Timeline Marker Reached - Time: {0} Type: {1} Text: {2}.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.Segment.SetSelectedStreams(System.Collections.Generic.IEnumerable{Microsoft.SilverlightMediaFramework.Plugins.Primitives.IMediaStream})">
+            <summary>
+            Sets the streams that are selected within this ISegment.
+            </summary>
+            <param name="streams">All of the streams that should be selected when this operation completes.</param>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.Segment.StartPosition">
+            <summary>
+            Gets the start position of this ISegment.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.Segment.EndPosition">
+            <summary>
+            Gets the end position of this ISegment.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.Segment.AvailableStreams">
+            <summary>
+            Gets the streams available in this ISegment.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.Segment.SelectedStreams">
+            <summary>
+            Gets the streams that are currently selected within this ISegment.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.SmoothStreamingMediaPluginException">
+            <summary>
+            Indicates that an error has occurred within the SmoothStreamingMediaPlugin.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.StreamDownloadResult">
+            <summary>
+            The result of a stream download request.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.StreamDownloadResult.Stream">
+            <summary>
+            Gets a stream that contains the downloaded data.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.StreamDownloadResult.Type">
+            <summary>
+            Gets the type of stream this data was downloaded from.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.StreamDownloadResult.DataChunk">
+            <summary>
+            Gets the data chunk that was downloaded.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.StreamSelectionFailedException">
+            <summary>
+            Indicates that selection of a stream has failed.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.SmoothStreamingMediaPlugin">
+            <summary>
+            Represents a media plug-in that can play multiple-bitrate encoded adaptive media (Smooth Streaming).
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.SmoothStreamingMediaPlugin.Play">
+            <summary>
+            Starts playing the current media file from its current position.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.SmoothStreamingMediaPlugin.Pause">
+            <summary>
+            Pauses the currently playing media.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.SmoothStreamingMediaPlugin.Stop">
+            <summary>
+            Stops playing the current media.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.SmoothStreamingMediaPlugin.RequestLog">
+            <summary>
+            Requests that this plugin generate a LogEntry via the LogReady event
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.SmoothStreamingMediaPlugin.ClearBuffer(System.TimeSpan)">
+            <summary>
+            Empties the contents of the buffer leaving only the specified amount of buffered time.
+            </summary>
+            <param name="timeSpan">The amount of time to leave in the buffer.</param>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.SmoothStreamingMediaPlugin.Load">
+            <summary>
+            Loads a plug-in for playing adaptive media.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.SmoothStreamingMediaPlugin.Unload">
+            <summary>
+            Unloads a plug-in for adaptive media.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.SmoothStreamingMediaPlugin.DownloadStreamData(Microsoft.SilverlightMediaFramework.Plugins.Primitives.IMediaTrack)">
+            <summary>
+            Downloads all of the available data from the specified track.
+            </summary>
+            <param name="track">the track that contains the data to be downloaded.</param>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.SmoothStreamingMediaPlugin.DownloadStreamData(Microsoft.SilverlightMediaFramework.Plugins.Primitives.IMediaTrack,Microsoft.SilverlightMediaFramework.Plugins.Primitives.IDataChunk)">
+            <summary>
+            Downloads the chunk of data that is part of the specified track and has the specified timestamp id.
+            </summary>
+            <param name="track">the track that contains the data to be downloaded.</param>
+            <param name="chunk">the chunk to be downloaded.</param>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.SmoothStreamingMediaPlugin.SetVideoBitrateRange(System.Int64,System.Int64,System.Boolean)">
+            <summary>
+            Specifies the range of video bitrates that can be downloaded.
+            </summary>
+            <param name="minimumVideoBitrate">the minimum bitrate that can be downloaded.</param>
+            <param name="maximumVideoBitrate">the maximum bitrate that can be downloaded.</param>
+            <param name="flushBuffer">flush the buffer</param>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.SmoothStreamingMediaPlugin.SetCacheProvider(System.Object)">
+            <summary>
+            Specifies the cache provider that should be used.
+            </summary>
+            <param name="cacheProvider">the cache provider</param>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.SmoothStreamingMediaPlugin.ScheduleAd(System.Uri,Microsoft.SilverlightMediaFramework.Plugins.Primitives.DeliveryMethods,System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan},System.Uri,System.Boolean,Microsoft.SilverlightMediaFramework.Plugins.Primitives.IAdContext,System.Object,System.Boolean)">
+            <summary>
+            Schedules an ad to be played by this plugin.
+            </summary>
+            <param name="adSource">The source of the ad content.</param>
+            <param name="deliveryMethod">The delivery method of the ad content.</param>
+            <param name="duration">The duration of the ad content that should be played.  If ommitted the plugin will play the full duration of the ad content.</param>
+            <param name="startTime">The position within the media where this ad should be played.  If ommited ad will begin playing immediately.</param>
+            <param name="clickThrough">The URL where the user should be directed when they click the ad.</param>
+            <param name="pauseTimeline">Indicates if the timeline of the currently playing media should be paused while the ad is playing.</param>
+            <param name="appendToAd">Another scheduled ad that this ad should be appended to.  If ommitted this ad will be scheduled independently.</param>
+            <param name="data">User data.</param>
+            <param name="isLinearClip">Indicates that SSME.ScheduleLinearClip should be called instead of ScheduleClip. pauseTimeline must be false.</param>
+            <returns>A reference to the IAdContext that contains information about the scheduled ad.</returns>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.SmoothStreamingMediaPlugin.SeekToLive">
+            <summary>
+            Attempts to set current playback position to the LivePosition.
+            </summary>
+            <remarks>
+            This method is used on a live media stream with DVR capabilities, such as an adaptive stream (where the client can scrub to a 
+            point on the timeline previous to the live position).
+            </remarks>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.SmoothStreamingMediaPlugin.PluginLoaded">
+            <summary>
+            Occurs when the plug-in is loaded.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.SmoothStreamingMediaPlugin.PluginUnloaded">
+            <summary>
+            Occurs when the plug-in is unloaded.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.SmoothStreamingMediaPlugin.PluginLoadFailed">
+            <summary>
+            Occurs when an exception occurs when the plug-in is loaded.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.SmoothStreamingMediaPlugin.PluginUnloadFailed">
+            <summary>
+            Occurs when an exception occurs when the plug-in is unloaded.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.SmoothStreamingMediaPlugin.LogReady">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.SmoothStreamingMediaPlugin.SeekCompleted">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.SmoothStreamingMediaPlugin.BufferingProgressChanged">
+            <summary>
+            Occurs when the percent of the media being buffered changes.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.SmoothStreamingMediaPlugin.DownloadProgressChanged">
+            <summary>
+            Occurs when the percent of the media downloaded changes.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.SmoothStreamingMediaPlugin.MarkerReached">
+            <summary>
+            Occurs when a marker defined for the media file has been reached.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.SmoothStreamingMediaPlugin.MediaEnded">
+            <summary>
+            Occurs when the media reaches the end.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.SmoothStreamingMediaPlugin.MediaFailed">
+            <summary>
+            Occurs when the media does not open successfully.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.SmoothStreamingMediaPlugin.MediaOpened">
+            <summary>
+            Occurs when the media successfully opens.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.SmoothStreamingMediaPlugin.PlaybackRateChanged">
+            <summary>
+            Occurs when the PlaybackRate changes.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.SmoothStreamingMediaPlugin.CurrentStateChanged">
+            <summary>
+            Occurs when the state of playback for the media changes.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.SmoothStreamingMediaPlugin.AdaptiveStreamingErrorOccurred">
+            <summary>
+            Occurs when an error occurs during playback.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.SmoothStreamingMediaPlugin.ManifestReady">
+            <summary>
+            Occurs when the manifest has been downloaded.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.SmoothStreamingMediaPlugin.VideoPlaybackBitrateChanged">
+            <summary>
+            Occurs when the bitrate used for playback changes.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.SmoothStreamingMediaPlugin.VideoPlaybackTrackChanged">
+            <summary>
+            Occurs when the bitrate used for playback changes.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.SmoothStreamingMediaPlugin.VideoDownloadTrackChanged">
+            <summary>
+            Occurs when the bitrate used for downloading changes.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.SmoothStreamingMediaPlugin.StreamSelected">
+            <summary>
+            Occurs when a stream has been selected.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.SmoothStreamingMediaPlugin.StreamUnselected">
+            <summary>
+            Occurs when a stream has been unselected.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.SmoothStreamingMediaPlugin.StreamSelectionFailed">
+            <summary>
+            Occurs when the selection of a stream fails.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.SmoothStreamingMediaPlugin.StreamDataAdded">
+            <summary>
+            Occurs when data has been added to a stream.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.SmoothStreamingMediaPlugin.StreamDataRemoved">
+            <summary>
+            Occurs when data has been removed from a stream.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.SmoothStreamingMediaPlugin.DownloadStreamDataFailed">
+            <summary>
+            Occurs when the download of data from a stream fails.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.SmoothStreamingMediaPlugin.DownloadStreamDataCompleted">
+            <summary>
+            Occurs when the download of data from a stream completes.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.SmoothStreamingMediaPlugin.AdClickThrough">
+            <summary>
+            Occurs when the user clicks on an ad.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.SmoothStreamingMediaPlugin.AdError">
+            <summary>
+            Occurs when there is an error playing an ad.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.SmoothStreamingMediaPlugin.AdProgressUpdated">
+            <summary>
+            Occurs when the progress of the currently playing ad has been updated.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.SmoothStreamingMediaPlugin.AdStateChanged">
+            <summary>
+            Occurs when the state of the currently playing ad has changed.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.SmoothStreamingMediaPlugin.LiveEventCompleted">
+            <summary>
+            Occurs when a live event has completed.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.SmoothStreamingMediaPlugin.IsLoaded">
+            <summary>
+            Gets a value indicating whether a plug-in is currently loaded.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.SmoothStreamingMediaPlugin.AutoPlay">
+            <summary>
+            Gets or sets a value that indicates whether the media file starts to play immediately after it is opened.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.SmoothStreamingMediaPlugin.Segments">
+            <summary>
+            Gets the list of segments that are part of the current adaptive manifest
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.SmoothStreamingMediaPlugin.CurrentSegment">
+            <summary>
+            Gets the segment from the adaptive manifest that is currently active
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.SmoothStreamingMediaPlugin.Balance">
+            <summary>
+            Gets the balance.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.SmoothStreamingMediaPlugin.CanPause">
+            <summary>
+            Gets a value indicating if the current media item can be paused.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.SmoothStreamingMediaPlugin.CanSeek">
+            <summary>
+            Gets a value indicating if the current media item allows seeking to a play position.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.SmoothStreamingMediaPlugin.Duration">
+            <summary>
+            Gets the total time of the current media item.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.SmoothStreamingMediaPlugin.EndPosition">
+            <summary>
+            Gets the end time of the current media item.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.SmoothStreamingMediaPlugin.IsMuted">
+            <summary>
+            Gets or sets a value indicating if the current media item is muted so that no audio is playing.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.SmoothStreamingMediaPlugin.NaturalVideoSize">
+            <summary>
+            Gets the size value (unscaled width and height) of the current media item.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.SmoothStreamingMediaPlugin.PlaybackRate">
+            <summary>
+            Gets or sets the playback rate for media that support different playback rates.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.SmoothStreamingMediaPlugin.CurrentState">
+            <summary>
+            Gets the current state of the media item.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.SmoothStreamingMediaPlugin.Position">
+            <summary>
+            Gets the current position of the media item.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.SmoothStreamingMediaPlugin.StartPosition">
+            <summary>
+            Gets the start position for the media.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.SmoothStreamingMediaPlugin.Stretch">
+            <summary>
+            Gets the stretch setting for the current media item.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.SmoothStreamingMediaPlugin.EnableGPUAcceleration">
+            <summary>
+            Gets or sets a boolean value indicating whether to 
+            enable GPU acceleration
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.SmoothStreamingMediaPlugin.SupportedPlaybackRates">
+            <summary>
+            Gets a collection of the supported playback rates for the media.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.SmoothStreamingMediaPlugin.SupportsAdScheduling">
+            <summary>
+            Gets whether this plugin supports ad scheduling.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.SmoothStreamingMediaPlugin.SupportedDeliveryMethods">
+            <summary>
+            Gets the delivery methods supported by this plugin.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.SmoothStreamingMediaPlugin.VisualElement">
+            <summary>
+            Gets the control that is playing the media for this plug-in.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.SmoothStreamingMediaPlugin.Volume">
+            <summary>
+            Gets or sets the initial volume setting as a value between 0 and 1.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.SmoothStreamingMediaPlugin.LicenseAcquirer">
+            <summary>
+            Gets or sets the LicenseAcquirer associated with the IMediaPlugin. 
+            The LicenseAcquirer handles acquiring licenses for DRM encrypted content.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.SmoothStreamingMediaPlugin.DroppedFramesPerSecond">
+            <summary>
+            Gets the dropped frames per second.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.SmoothStreamingMediaPlugin.RenderedFramesPerSecond">
+            <summary>
+            Gets the rendered frames per second.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.SmoothStreamingMediaPlugin.MaximumPossibleBitrate">
+            <summary>
+            Maximum possible bitrate as calculated by display size, not currently implemented
+            </summary>
+        </member>
+    </members>
+</doc>

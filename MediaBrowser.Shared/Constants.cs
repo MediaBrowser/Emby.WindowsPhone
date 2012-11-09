@@ -43,5 +43,6 @@
         public const string ClearEverythingMsg = "ClearEverythingMsg";
         public const string PlayVideoItemMsg = "PlayVideoItemMsg";
         public const string VideoPlayerLoadedMsg = "VideoPlayerLoadedMsg";
+        public const string SendVideoTimeToServerMsg = "SendVideoTimeToServerMsg";
     }
 }

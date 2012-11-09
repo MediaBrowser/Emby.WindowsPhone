@@ -1,0 +1,1890 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.SilverlightMediaFramework.Plugins.Phone</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.SilverlightMediaFramework.Plugins.IVariableBitrateMediaPlugin">
+            <summary>
+            Represents a media plug-in that supports variable bitrates.
+            </summary>
+            <remarks>
+            Implement IAdaptiveMediaPlugin instead for adaptive media plugins. However, this subset interface can be used for plug-ins that supports variable bitrates without track or stream info.
+            </remarks>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Plugins.IMediaPlugin">
+            <summary>
+            Represents the base interface for any media plug-in.
+            </summary>
+            <remarks>
+            This interface contains members common to all media plug-ins. Implementing this interface by itself does not define any specific playback capabilities. 
+            </remarks>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Plugins.IPlugin">
+            <summary>
+            Defines the minimum that a plug-in must implement to be loaded by the SMF plug-in architecture.
+            </summary>
+            <remarks>
+            The SMF plug-in architecture is based on the Managed Extensibility Framework (MEF). 
+            </remarks>
+            
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Plugins.IPlugin.Load">
+            <summary>
+            Loads the plug-in.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Plugins.IPlugin.Unload">
+            <summary>
+            Unloads the plug-in.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.IPlugin.IsLoaded">
+            <summary>
+            Gets a value indicating whether a plug-in is currently loaded.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.IPlugin.LogReady">
+            <summary>
+            Occurs when the log is ready.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.IPlugin.PluginLoaded">
+            <summary>
+            Occurs when the plug-in is loaded.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.IPlugin.PluginUnloaded">
+            <summary>
+            Occurs when the plug-in is unloaded.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.IPlugin.PluginLoadFailed">
+            <summary>
+            Occurs when the plug-in fails to load.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.IPlugin.PluginUnloadFailed">
+            <summary>
+            Occurs when the plug-in fails to unload.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Plugins.IMediaPlugin.Play">
+            <summary>
+            Starts playing the current media file from its current position.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Plugins.IMediaPlugin.Pause">
+            <summary>
+            Pauses the currently playing media.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Plugins.IMediaPlugin.Stop">
+            <summary>
+            Stops playing the current media.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Plugins.IMediaPlugin.RequestLog">
+            <summary>
+            Requests that this plugin generate a LogEntry via the LogReady event
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Plugins.IMediaPlugin.ScheduleAd(System.Uri,Microsoft.SilverlightMediaFramework.Plugins.Primitives.DeliveryMethods,System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan},System.Uri,System.Boolean,Microsoft.SilverlightMediaFramework.Plugins.Primitives.IAdContext,System.Object,System.Boolean)">
+            <summary>
+            Schedules an ad to be played by this plugin.
+            </summary>
+            <param name="adSource">The source of the ad content.</param>
+            <param name="deliveryMethod">The delivery method of the ad content.</param>
+            <param name="duration">The duration of the ad content that should be played.  If ommitted the plugin will play the full duration of the ad content.</param>
+            <param name="startTime">The position within the media where this ad should be played.  If ommited ad will begin playing immediately.</param>
+            <param name="startOffset">The position within the clip that the clip should start from. If ommited ad will begin playing from its beginning.</param>
+            <param name="clickThrough">The URL where the user should be directed when they click the ad.</param>
+            <param name="pauseTimeline">Indicates if the timeline of the currently playing media should be paused while the ad is playing.</param>
+            <param name="appendToAd">Another scheduled ad that this ad should be appended to.  If ommitted this ad will be scheduled independently.</param>
+            <param name="data">User data.</param>
+            <param name="isLinearClip">Indicates that the clip should replace the main content for the cooresponding time slot.</param>
+            <returns>A reference to the IAdContext that contains information about the scheduled ad.</returns>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.IMediaPlugin.AutoPlay">
+            <summary>
+            Gets or sets a value indicating whether the media plays immediately after the media file is opened.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.IMediaPlugin.CacheMode">
+            <summary>
+            Gets or sets the cache mode
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.IMediaPlugin.Balance">
+            <summary>
+            Gets or sets the ratio of the volume level across stereo speakers.
+            </summary>
+            <remarks>
+            The value is in the range between -1 and 1. The default value of 0 signifies an equal volume between left and right stereo speakers.
+            A value of -1 represents 100 percent volume in the speakers on the left, and a value of 1 represents 100 percent volume in the speakers on the right. 
+            </remarks>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.IMediaPlugin.BufferingProgress">
+            <summary>
+            Gets the percentage of the current buffering that is completed.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.IMediaPlugin.BufferingTime">
+            <summary>
+            Gets or sets the amount of time for the current buffering action.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.IMediaPlugin.CanPause">
+            <summary>
+            Gets a value indicating whether the media can pause.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.IMediaPlugin.CanSeek">
+            <summary>
+            Gets a value indicating whether the media can seek to a new position.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.IMediaPlugin.CurrentState">
+            <summary>
+            Gets the current state of media playback.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.IMediaPlugin.DownloadProgress">
+            <summary>
+            Gets the percentage of the current buffering that is completed
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.IMediaPlugin.DownloadProgressOffset">
+            <summary>
+            Gets the download progress offset
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.IMediaPlugin.Duration">
+            <summary>
+            Gets the total time for the current media.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.IMediaPlugin.EndPosition">
+            <summary>
+            Gets the time position for the end of the media.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.IMediaPlugin.IsMuted">
+            <summary>
+            Gets or sets a value indicating whether the media plug-in is muted.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.IMediaPlugin.LicenseAcquirer">
+            <summary>
+            Gets or sets the LicenseAcquirer associated with the IMediaPlugin. 
+            The LicenseAcquirer handles acquiring licenses for DRM encrypted content.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.IMediaPlugin.PlaybackRate">
+            <summary>
+            Gets or sets the playback rate for media that support different playback rates.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.IMediaPlugin.Position">
+            <summary>
+            Gets or sets the current playback position.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.IMediaPlugin.StartPosition">
+            <summary>
+            Gets the start position for the media.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.IMediaPlugin.SupportedDeliveryMethods">
+            <summary>
+            Gets the delivery methods supported by this plugin.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.IMediaPlugin.SupportedPlaybackRates">
+            <summary>
+            Gets a collection of the supported playback rates for the media.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.IMediaPlugin.Volume">
+            <summary>
+            Gets or sets the volume of the media that is playing.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.IMediaPlugin.Source">
+            <summary>
+            Gets or sets the location of the media file.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.IMediaPlugin.NaturalVideoSize">
+            <summary>
+            Gets the size at which the media was encoded.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.IMediaPlugin.Stretch">
+            <summary>
+            Gets or sets the stretch mode for the media.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.IMediaPlugin.EnableGPUAcceleration">
+            <summary>
+            Gets or sets a boolean value indicating whether to 
+            enable GPU acceleration
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.IMediaPlugin.VisualElement">
+            <summary>
+            Gets the control that is playing the media for this plug-in.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.IMediaPlugin.DroppedFramesPerSecond">
+            <summary>
+            Gets the dropped frames per second.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.IMediaPlugin.RenderedFramesPerSecond">
+            <summary>
+            Gets the rendered frames per second.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.IMediaPlugin.SupportsAdScheduling">
+            <summary>
+            Gets whether this plugin supports ad scheduling.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.IMediaPlugin.BufferingProgressChanged">
+            <summary>
+            Occurs when the percent of the media being buffered changes.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.IMediaPlugin.DownloadProgressChanged">
+            <summary>
+            Occurs when the percent of the media downloaded changes.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.IMediaPlugin.MarkerReached">
+            <summary>
+            Occurs when a marker defined for the media file has been reached.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.IMediaPlugin.MediaEnded">
+            <summary>
+            Occurs when the media reaches the end.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.IMediaPlugin.MediaFailed">
+            <summary>
+            Occurs when the media does not open successfully.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.IMediaPlugin.MediaOpened">
+            <summary>
+            Occurs when the media successfully opens.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.IMediaPlugin.PlaybackRateChanged">
+            <summary>
+            Occurs when the PlaybackRate changes.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.IMediaPlugin.CurrentStateChanged">
+            <summary>
+            Occurs when the state of playback for the media changes.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.IMediaPlugin.SeekCompleted">
+            <summary>
+            Occurs when the action of seeking a new position on the timeline is completed.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.IMediaPlugin.AdClickThrough">
+            <summary>
+            Occurs when the user clicks on an ad.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.IMediaPlugin.AdError">
+            <summary>
+            Occurs when there is an error playing an ad.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.IMediaPlugin.AdProgressUpdated">
+            <summary>
+            Occurs when the progress of the currently playing ad has been updated.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.IMediaPlugin.AdStateChanged">
+            <summary>
+            Occurs when the state of the currently playing ad has changed.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.IVariableBitrateMediaPlugin.MaximumPossibleBitrate">
+            <summary>
+            Gets the value for the maximum bitrate.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.IVariableBitrateMediaPlugin.VideoPlaybackBitrateChanged">
+            <summary>
+            Occurs when the bitrate used for playback changes.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Plugins.IAdaptiveMediaPlugin">
+            <summary>
+            Represents a media plug-in that can play adaptive media encoded with multiple bitrates (IIS Smooth Streaming).
+            </summary>
+            <remarks>
+            You implement this interface for a plug-in that supports adaptive media streams.
+            </remarks>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Plugins.IAdaptiveMediaPlugin.ClearBuffer(System.TimeSpan)">
+            <summary>
+            Empties the contents of the buffer leaving only the specified amount of buffered time.
+            </summary>
+            <param name="timeSpan">The amount of time to leave in the buffer.</param>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Plugins.IAdaptiveMediaPlugin.DownloadStreamData(Microsoft.SilverlightMediaFramework.Plugins.Primitives.IMediaTrack)">
+            <summary>
+            Downloads all of the available data from the specified track.
+            </summary>
+            <param name="track">the track that contains the data to be downloaded.</param>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Plugins.IAdaptiveMediaPlugin.CancelDownloadStreamData(Microsoft.SilverlightMediaFramework.Plugins.Primitives.IMediaTrack)">
+            <summary>
+            Cancels any queued downloads for the specified track.
+            </summary>
+            <param name="track">the track that contains the data that should not be downloaded.</param>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Plugins.IAdaptiveMediaPlugin.DownloadStreamData(Microsoft.SilverlightMediaFramework.Plugins.Primitives.IMediaTrack,Microsoft.SilverlightMediaFramework.Plugins.Primitives.IDataChunk)">
+            <summary>
+            Downloads the specified chunk from the specified track.
+            </summary>
+            <param name="track">the track that contains the data to be downloaded.</param>
+            <param name="chunk">the chunk to be downloaded.</param>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Plugins.IAdaptiveMediaPlugin.SetVideoBitrateRange(System.Int64,System.Int64,System.Boolean)">
+            <summary>
+            Specifies the range of video bitrates that can be downloaded.
+            </summary>
+            <param name="minimumVideoBitrate">the minimum bitrate that can be downloaded.</param>
+            <param name="maximumVideoBitrate">the maximum bitrate that can be downloaded.</param>
+            <param name="flushBuffer">flush the buffer</param>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Plugins.IAdaptiveMediaPlugin.SetCacheProvider(System.Object)">
+            <summary>
+            Specifies the cache provider that should be used.
+            </summary>
+            <param name="cacheProvider">the cache provider</param>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.IAdaptiveMediaPlugin.AdaptiveSource">
+            <summary>
+            Gets or sets the location of the adaptive media.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.IAdaptiveMediaPlugin.ChunkDownloadStrategy">
+            <summary>
+            Gets or sets the strategy to be used when downloading captions and ad markers.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.IAdaptiveMediaPlugin.IsSourceAdaptive">
+            <summary>
+            Gets a value indicating whether the media is adaptive (multiple bitrate encoded).
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.IAdaptiveMediaPlugin.Segments">
+            <summary>
+            Gets the list of segments that are part of the current adaptive manifest
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.IAdaptiveMediaPlugin.CurrentSegment">
+            <summary>
+            Gets the segment from the adaptive manifest that is currently active
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.IAdaptiveMediaPlugin.VideoDownloadTrack">
+            <summary>
+            Gets the track that is currently being used to download video
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.IAdaptiveMediaPlugin.MaximumPlayableVideoTrack">
+            <summary>
+            Gets the video track with the highest bitrate that can be played, adjusted according to the current display settings
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.IAdaptiveMediaPlugin.VideoPlaybackTrack">
+            <summary>
+            Gets the track that is currently being used to play video
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.IAdaptiveMediaPlugin.ManifestAttributes">
+            <summary>
+            Gets attributes that are a part of the current adaptive manifest
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.IAdaptiveMediaPlugin.VideoPlaybackTrackChanged">
+            <summary>
+            Occurs when the bitrate used for playback changes.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.IAdaptiveMediaPlugin.VideoDownloadTrackChanged">
+            <summary>
+            Occurs when the bitrate used for downloading changes.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.IAdaptiveMediaPlugin.AdaptiveStreamingErrorOccurred">
+            <summary>
+            Occurs when an error occurs during playback.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.IAdaptiveMediaPlugin.ManifestReady">
+            <summary>
+            Occurs when the manifest has been downloaded.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.IAdaptiveMediaPlugin.StreamSelected">
+            <summary>
+            Occurs when a stream has been selected.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.IAdaptiveMediaPlugin.StreamUnselected">
+            <summary>
+            Occurs when a stream has been unselected.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.IAdaptiveMediaPlugin.StreamSelectionFailed">
+            <summary>
+            Occurs when the selection of a stream fails.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.IAdaptiveMediaPlugin.StreamDataAdded">
+            <summary>
+            Occurs when data has been added to a stream.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.IAdaptiveMediaPlugin.StreamDataRemoved">
+            <summary>
+            Occurs when data has been removed from a stream.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.IAdaptiveMediaPlugin.DownloadStreamDataFailed">
+            <summary>
+            Occurs when the download of data from a stream fails.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.IAdaptiveMediaPlugin.DownloadStreamDataCompleted">
+            <summary>
+            Occurs when the download of data from a stream completes.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Plugins.IAdPayloadHandlerPlugin">
+            <summary>
+            Defines a plugin capable of handling advertisements
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Plugins.IPlayerConsumer.SetPlayer(System.Windows.FrameworkElement)">
+            <summary>
+            Passes a reference to the Player
+            </summary>
+            <param name="Player">A reference to the Player</param>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Plugins.IAdPayloadHandlerPlugin.Handle(Microsoft.SilverlightMediaFramework.Plugins.Primitives.Advertising.IAdSource)">
+            <summary>
+            Accepts the ad and plays it ASAP
+            </summary>
+            <param name="Source">The source of the ad</param>
+            <returns>A handle to the playing ad. Used to deactivate it from an outside source</returns>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.IAdPayloadHandlerPlugin.HandleCompleted">
+            <summary>
+            Raised when an AdSequencingTrigger fails. The criteria are based on the FailureStrategy property.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.IAdPayloadHandlerPlugin.FailurePolicy">
+            <summary>
+            The failure strategy to use when handling an AdSequencingTrigger. Indicates what happens when a subset of an ad fails (such as when a companion ad fails).
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.IAdPayloadHandlerPlugin.CloseCompanionsOnComplete">
+            <summary>
+            Indicates that companion ads should be allowed to continue running after the ad has completed.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.IAdPayloadHandlerPlugin.InitTimeout">
+            <summary>
+            The timeout for initializing/loading ads. Null indicates no timeout.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.IAdPayloadHandlerPlugin.StartTimeout">
+            <summary>
+            The timeout for starting an ad. Null indicates no timeout.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.IAdPayloadHandlerPlugin.StopTimeout">
+            <summary>
+            The timeout for stopping an ad. Null indicates no timeout.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Plugins.IGenericPlugin">
+            <summary>
+            A generic plugin that will be loaded by the Player and given a reference to the Player so that it can
+            perform the plugin specific functionality
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Plugins.IHeuristicsPlugin">
+            <summary>
+            A plugin that implements heuristics for managing multiple IMediaPlugins running in the same application
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Plugins.IHeuristicsPlugin.SupportsPlugin(Microsoft.SilverlightMediaFramework.Plugins.IMediaPlugin)">
+            <summary>
+            Determines if this plugin supports management of the specified media plugin.
+            </summary>
+            <param name="mediaPlugin">The media plugin.</param>
+            <returns>True if this media plugin is supported.</returns>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Plugins.IHeuristicsPlugin.RegisterPlugin(Microsoft.SilverlightMediaFramework.Plugins.IMediaPlugin,System.Int32,System.Boolean)">
+            <summary>
+            Registers the specified media plugin so that it can be managed by this heuristics plugin.
+            </summary>
+            <param name="mediaPlugin">The media plugin to register.</param>
+            <param name="priority">The relative priority of this media plugin</param>
+            <param name="enableSync">Indicates if synchronization of this media plugin with others should be enabled.</param>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Plugins.IHeuristicsPlugin.UnregisterPlugin(Microsoft.SilverlightMediaFramework.Plugins.IMediaPlugin)">
+            <summary>
+            Unregisters the specified media plugin so that it is no longer managed by this heuristics plugin.
+            </summary>
+            <param name="mediaPlugin">The media plugin to unregister.</param>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Plugins.ILiveDvrMediaPlugin">
+            <summary>
+            Represents a media plug-in with live DVR capabilities.
+            </summary>
+            <remarks>
+            <para></para>
+            This interface keeps track of the current live position, which may be different than the current position 
+            if the user has scrubbed back to an earlier point in the video using the timeline.
+            
+            <para>
+            You implement this interface for a plug-in that supports live media streams.
+            </para>
+            </remarks>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.ILiveDvrMediaPlugin.IsSourceLive">
+            <summary>
+            Gets a value indicating whether the current media is live.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.ILiveDvrMediaPlugin.IsLivePosition">
+            <summary>
+            Gets a value indicating whether playback is currently at the live position.
+            </summary>
+            <remarks>
+            This property is only used on a live media stream with DVR capabilities, such as an adaptive stream (where the client can scrub to a 
+            point on the timeline previous to the live position).
+            </remarks>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.ILiveDvrMediaPlugin.LivePosition">
+            <summary>
+            Gets the live playback position.
+            </summary>
+            <remarks>
+            This property is only used on a live media stream with DVR capabilities, such as an adaptive stream (where the client can scrub to a 
+            point on the timeline previous to the live position).
+            </remarks>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.ILiveDvrMediaPlugin.LivePlaybackStartPosition">
+            <summary>
+            Gets/Sets the position within a live media where playback should start.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.ILiveDvrMediaPlugin.LiveEventCompleted">
+            <summary>
+            Occurs when a live event has completed.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Plugins.ILogWriter">
+            <summary>
+            Defines the members a class must implement to be a LogWriter plug-in.
+            </summary>
+            <remarks>
+            <para>
+            This plugin is useful for the recording of logging information.
+            </para>
+            <para>
+            DebugLogWriter is the ILogWriter implementation that SMF provides. You can write logging plug-ins
+            that write log entries to other locations, such as to an XML string that is sent by a Web service to a database.
+            </para>
+            <para> 
+            In addition to implementing this interface, a class must have an ExportLogWriter attribute
+            to be used as a Logging plug-in.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Plugins.ILogWriter.WriteLog(Microsoft.SilverlightMediaFramework.Plugins.Primitives.LogEntry)">
+            <summary>
+            Writes a specified LogEntry to the LogWriter.
+            </summary>
+            <param name="logEntry">The LogEntry to write.</param>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.ILogWriter.LogWriteFailed">
+            <summary>
+            Occurs when writing to this LogWriter fails.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.ILogWriter.LogWriteSuccessful">
+            <summary>
+            Occurs after a successful write operation to this LogWriter.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Plugins.IMarkerProvider">
+            <summary>
+            Represents an object that can get MediaMarkers from some source.
+            </summary>
+            <remarks>
+            <para>An IMarkerProvider object knows how to get MediaMarkers.
+            The provided default implementation gets Markers using the W3C Timed Text Authoring Format (TTAF) 1.0 specification.
+            </para>
+            <para>
+            In general, an IMarkerProvider is an object that can return an IEnumerable collection of MediaMarker objects from somewhere.
+            You can define an IMarkerProvider implementation that returns an IEnumerable collection of MediaMarker objects from any source you want 
+            an application to use (for example, from an XML file on the network or a Web service).
+            </para>
+            <para>
+            The PollingInterval is an optional property (nullable) that can be used to have the provider check for markers at a specific interval 
+            of time. This allows you to define a marker provider that can add or remove markers dynamically, such as during a live event.
+            </para>
+            <para>
+            An IMarkerProvider has a collection of new markers added and markers removed that are detected after the retrieval of markers. 
+            The Id property of a marker is used to determine if it is new or if an existing marker has been removed.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Plugins.IMarkerProvider.BeginRetrievingMarkers">
+            <summary>
+            Begins retrieving markers from the Source location.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Plugins.IMarkerProvider.StopRetrievingMarkers">
+            <summary>
+            Stops retrieving markers.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.IMarkerProvider.Source">
+            <summary>
+            Gets or sets the location for getting markers.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.IMarkerProvider.PollingInterval">
+            <summary>
+            Gets or sets the timing interval for polling (optional).
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.IMarkerProvider.NewMarkers">
+            <summary>
+            Occurs when new markers are found.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.IMarkerProvider.MarkersRemoved">
+            <summary>
+            Occurs when markers have been removed.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.IMarkerProvider.RetrieveMarkersFailed">
+            <summary>
+            Occurs when retrieving markers fails.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Plugins.IAdHost">
+            <summary>
+            An interface that provides everything needed to play ads in the player. Internally, this is used by VPAID advertising plugins.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Plugins.IAdHost.Play">
+            <summary>
+            Causes the player to play the video
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Plugins.IAdHost.Pause">
+            <summary>
+            Causes the player to pause the video
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Plugins.IAdHost.AddPlayBlock(System.Object)">
+            <summary>
+            Blocks the player from starting a video or pauses the video if active. This is useful for pre-roll ads.
+            Warning: You MUST call ReleasePlayBlock eventually to get the player to play again.
+            </summary>
+            <param name="blocker">The object applying the block. If the same object is added twice, it will be ignored.</param>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Plugins.IAdHost.ReleasePlayBlock(System.Object)">
+            <summary>
+            Releases a play block created with AddPlayBlock
+            </summary>
+            <param name="blocker">The object applying the block. If the object does not have a block, it will be ignored.</param>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.IAdHost.AdMode">
+            <summary>
+            Indicates that an ad is playing
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.IAdHost.PlaybackBitrate">
+            <summary>
+            The last known playback bitrate being used by the player
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.IAdHost.Volume">
+            <summary>
+            The current volume level of the player
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.IAdHost.PlayState">
+            <summary>
+            The state of the player
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.IAdHost.Containers">
+            <summary>
+            Containers available to the player for hosting ads. This is useful for companion and nonlinear ads.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.IAdHost.VideoArea">
+            <summary>
+            The main video area panel. This is useful for hosting linear ads.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.IAdHost.Plugins">
+            <summary>
+            A list of the currently available player plugins.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.IAdHost.VolumeChanged">
+            <summary>
+            Raised when the volume changes
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.IAdHost.StateChanged">
+            <summary>
+            Raised when the player state changes
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Plugins.IPlayer.ScheduleAdTrigger(Microsoft.SilverlightMediaFramework.Plugins.Primitives.Advertising.IAdSequencingTrigger,System.Nullable{System.TimeSpan})">
+            <summary>
+            Schedules an ad that is to be handled by an AdPayloadHandlerPlugin.
+            A valid AdPayloadHandlerPlugin must be part of your application or this will not be handled.
+            </summary>
+            <param name="adTrigger">An object containing information about the ad source and target</param>
+            <param name="startTime">The position within the media where this ad should be played. If ommited ad will begin playing immediately.</param>
+            <returns>An object that contains information about the scheduled ad.</returns>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Plugins.IPlayer.RemoveScheduledAd(Microsoft.SilverlightMediaFramework.Plugins.Primitives.Advertising.ScheduledAd)">
+            <summary>
+            Removes a scheduled ad that was the result of a call to ScheduleAdTrigger
+            </summary>
+            <param name="ScheduledAd">The scheduled ad created from the AdTrigger that was scheduled.</param>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Plugins.IPlayer.PlayLinearAd(System.Uri,Microsoft.SilverlightMediaFramework.Plugins.Primitives.DeliveryMethods,System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan},System.Uri,System.Nullable{System.TimeSpan},System.Boolean,Microsoft.SilverlightMediaFramework.Plugins.Primitives.IAdContext,System.Object)">
+            <summary>
+            Schedules an ad to be played by this plugin.
+            </summary>
+            <param name="adSource">The source of the ad content.</param>
+            <param name="deliveryMethod">The delivery method of the ad content.</param>
+            <param name="startTime">The position within the media where this ad should be played.  If ommited ad will begin playing immediately.</param>
+            <param name="startOffset">The offset/startup position of the ad.</param>
+            <param name="clickThrough">The URL where the user should be directed when they click the ad.</param>
+            <param name="duration">The duration of the ad content that should be played.  If ommitted the plugin will play the full duration of the ad content.</param>
+            <param name="pauseTimeline">Indicates if the timeline of the currently playing media should be paused while the ad is playing.</param>
+            <param name="appendToAd">Another scheduled ad that this ad should be appended to.  If ommitted this ad will be scheduled independently.</param>
+            <param name="data">User data.</param>
+            <returns>A reference to the IAdContext that contains information about the scheduled ad.</returns>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.IPlayer.SizeChanged">
+            <summary>
+            Raised when the size of the player has changed
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.IPlayer.VideoResolution">
+            <summary>
+            Returns the current video resolution
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.IPlayer.MediaElementSize">
+            <summary>
+            Returns the size of the current media element responsible for playing the video
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.IPlayer.Position">
+            <summary>
+            Returns the current position of the player
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.IPlayer.Duration">
+            <summary>
+            Returns the current duration of the video
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.IPlayer.SeekCompleted">
+            <summary>
+            Raised when the user has finished seeking
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.IPlayer.MediaOpened">
+            <summary>
+            Raised when the media is opened. Note: This occurs before the first frame of the video is displayed to the user.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.IPlayer.MediaFailed">
+            <summary>
+            Raised when the media fails.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.IPlayer.MediaEnded">
+            <summary>
+            Raised when the media finishes playing.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.IPlayer.PlayEnded">
+            <summary>
+            Raised when the last item in the playlist has finished playing.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.IPlayer.TimelineChanged">
+            <summary>
+            Raised when the timeline changes. This is a good alternative to creating your own timer.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.IPlayer.IsMediaAdaptive">
+            <summary>
+            Indicates that the current media is adaptive vs. progressive
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.IPlayer.ContentTitle">
+            <summary>
+            Returns the title of the current video.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.IPlayer.ContentUrl">
+            <summary>
+            Returns the Url of the current video.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.IPlayer.ContentMetadata">
+            <summary>
+            Returns a dictionary of metadata associated with the current video
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.IPlayer.CaptionsActive">
+            <summary>
+            Indicates whether or not closed captions are active or not.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.IPlayer.HasCaptions">
+            <summary>
+            Indicates whether or not the current video contains closed captions.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.IPlayer.HasVideo">
+            <summary>
+            Indicates that the current content contains video.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.IPlayer.HasAudio">
+            <summary>
+            Indicates that the current content contains audio.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.IPlayer.ActiveMediaPlugin">
+            <summary>
+            Returns the currently active media plugin used to play the current video.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.IPlayer.ContentStartPosition">
+            <summary>
+            Returns the startup position of the current content. This setting is what allows the application to automatically seek into a video on startup (useful for restoring a video position).
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.IPlayer.GlobalConfigMetadata">
+            <summary>
+            Returns custom metadata associated with the player instance.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.IPlayer.ContentChanged">
+            <summary>
+            Indicates that the current video has changed.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.IPlayer.DataReceived">
+            <summary>
+            Occurs when data is received from the media plugin.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Plugins.IS3DPlugin">
+            <summary>
+            A Stereoscopic 3D plugin that will be loaded by the Player and given a reference to the ActiveMediaPlugin
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.IS3DPlugin.SupportedS3DFormats">
+            <summary>
+            Gets the 3D formats supported by this plugin.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.IS3DPlugin.MediaPresenterElement">
+            <summary>
+            Allows the MediaPresenterElement to be passed to the 3D plugin
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.IS3DPlugin.Is3DPluginEnabled">
+            <summary>
+            Indicates whether the 3D Plugin is enabled.
+            Allows a consuming application to instruct the 3D plugin to activate or deactivate.
+            Useful when a consuming application will handle multuple 3D plugins.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.IS3DPlugin.S3DPropertiesValid">
+            <summary>
+            An event indicating that the S3D Properties have been successfully
+            validated for this 3D plugin for the current Playlist Item
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.IS3DPlugin.S3DPropertiesInvalid">
+            <summary>
+            An event indicating that the S3D Properties are invalid for this 3D plugin
+            for the current Playlist Item.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Plugins.IUIPlugin">
+            <summary>
+            Represents a plug-in that refers to a FrameworkElement.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.IUIPlugin.Target">
+            <summary>
+            Gets a name for the location within the Visual Tree where this plugin will be placed, typically a ContentControl.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.IUIPlugin.Element">
+            <summary>
+            The FrameworkElement that should be bound to the Visual Tree.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Plugins.LogWriters.DebugLogWriter">
+            <summary>
+            Represents the default logging plug-in which writes logging information to the Debug Window.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Plugins.LogWriters.DebugLogWriter.WriteLog(Microsoft.SilverlightMediaFramework.Plugins.Primitives.LogEntry)">
+            <summary>
+            Writes a specified LogEntry to the LogWriter.
+            </summary>
+            <param name="logEntry">The LogEntry to write.</param>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Plugins.LogWriters.DebugLogWriter.Load">
+            <summary>
+            Loads the plug-in.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Plugins.LogWriters.DebugLogWriter.Unload">
+            <summary>
+            Unloads the plug-in.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.LogWriters.DebugLogWriter.PluginLoaded">
+            <summary>
+            Occurs when the plug-in is loaded.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.LogWriters.DebugLogWriter.PluginUnloaded">
+            <summary>
+            Occurs when the plug-in is unloaded.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.LogWriters.DebugLogWriter.PluginLoadFailed">
+            <summary>
+            Occurs when the plug-in fails to load.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.LogWriters.DebugLogWriter.PluginUnloadFailed">
+            <summary>
+            Occurs when the plug-in fails to unload.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.LogWriters.DebugLogWriter.LogWriteFailed">
+            <summary>
+            Occurs when writing to this LogWriter fails.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.LogWriters.DebugLogWriter.LogWriteSuccessful">
+            <summary>
+            Occurs after a successful write operation to this LogWriter.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.LogWriters.DebugLogWriter.LogReady">
+            <summary>
+            Occurs when the log is ready.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.LogWriters.DebugLogWriter.IsLoaded">
+            <summary>
+            Gets a value indicating whether a plug-in is currently loaded.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Plugins.Metadata.ExportS3DPluginAttribute">
+            <summary>
+            Exports a plugin that implements the IS3DPlugin interface
+            </summary>
+            <remarks>
+            This attribute should be added to classes that implement IS3DPlugin.
+            </remarks>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Plugins.Metadata.ExportPluginAttribute">
+            <summary>
+            Specifies that a type, property, field, or method provides an export as a plug-in.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Metadata.ExportPluginAttribute.PluginName">
+            <summary>
+            Gets or sets the official name of this plug-in.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Metadata.ExportPluginAttribute.PluginDescription">
+            <summary>
+            Gets or sets a description of what the plug-in does.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Metadata.ExportPluginAttribute.PluginVersion">
+            <summary>
+            Gets or sets the version of this plug-in.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Plugins.Metadata.ExportAdaptiveCacheProviderAttribute">
+            <summary>
+            Exports a plugin that can act as an AdaptiveCacheProvider.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Plugins.Metadata.ExportAdPayloadHandlerPluginAttribute">
+            <summary>
+            Exports a plugin that implements the IAdPayloadHandlerPlugin interface
+            </summary>
+            <remarks>
+            This attribute should be added to classes that implement IAdPayloadHandlerPlugin.
+            </remarks>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Metadata.ExportAdPayloadHandlerPluginAttribute.SupportedFormat">
+            <summary>
+            Indicates the supported format of the ad source
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Plugins.Metadata.ExportGenericPluginAttribute">
+            <summary>
+            Exports a plugin that implements the IGenericPlugin interface
+            </summary>
+            <remarks>
+            This attribute should be added to classes that implement IGenericPlugin.
+            </remarks>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Plugins.Metadata.ExportLogWriterAttribute">
+            <summary>
+            Specifies that a type, property, field, or method provides an export as a logging plug-in.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Metadata.ExportLogWriterAttribute.LogWriterId">
+            <summary>
+            The Id of this LogWriter, used by the Player to load specific LogWriters.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Plugins.Metadata.ExportMarkerProviderAttribute">
+            <summary>
+            Identifies a class as a marker provider and specifies its capabilities.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Metadata.ExportMarkerProviderAttribute.SupportsPolling">
+            <summary>
+            Gets whether this plugin supports polling a marker data source.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Metadata.ExportMarkerProviderAttribute.SupportedFormat">
+            <summary>
+            Gets the marker data source format supported by this plugin.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Plugins.Metadata.ExportMediaPluginAttribute">
+            <summary>
+            Identifies a class as a media plug-in and specifies its capabilities.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Metadata.ExportMediaPluginAttribute.SupportsLiveDvr">
+            <summary>
+            Gets whether this plugin supports live DVR functionality implemented by the ILiveMediaPlugin.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Metadata.ExportMediaPluginAttribute.SupportedDeliveryMethods">
+            <summary>
+            Gets the supported delivery methods.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Metadata.ExportMediaPluginAttribute.SupportedMediaTypes">
+            <summary>
+            Gets the supported media type.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Plugins.Metadata.ExportMultiHeuristicsPluginAttribute">
+            <summary>
+            Exports a plugin that implements the IHeuristicsPlugins interface
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Metadata.ExportMultiHeuristicsPluginAttribute.SupportsSync">
+            <summary>
+            Gets wether this plugin supports synchronization.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Plugins.Metadata.ExportUIPluginAttribute">
+            <summary>
+            Exports a plugin that implement the IUIPlugin interface.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Plugins.Metadata.IPluginMetadata">
+            <summary>
+            Is used internally for querying and filtering available plugins.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Metadata.IPluginMetadata.PluginName">
+            <summary>
+            Gets the official name of this plug-in.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Metadata.IPluginMetadata.PluginDescription">
+            <summary>
+            Gets a description of what the plug-in does.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Metadata.IPluginMetadata.PluginVersion">
+            <summary>
+            Gets the version of this plug-in.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Metadata.IAdPayloadHandlerMetadata.SupportedFormat">
+            <summary>
+            Indicates the supported format of the ad source
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Plugins.Metadata.ILogWriterMetadata">
+            <summary>
+            Is used internally for querying and filtering available ILogWriter plugins.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Metadata.ILogWriterMetadata.LogWriterId">
+            <summary>
+            The Id of this LogWriter, used by the Player to load specific LogWriters.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Plugins.Metadata.IMarkerProviderMetadata">
+            <summary>
+            Is used internally for querying and filtering available plugins.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Metadata.IMarkerProviderMetadata.SupportsPolling">
+            <summary>
+            Gets whether this plugin supports polling a marker data source.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Metadata.IMarkerProviderMetadata.SupportedFormat">
+            <summary>
+            Gets the marker data source format supported by this plugin.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Plugins.Metadata.IMediaPluginMetadata">
+            <summary>
+            Is used internally for querying and filtering available plugins.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Metadata.IMediaPluginMetadata.SupportsLiveDvr">
+            <summary>
+            Gets whether this plugin supports live DVR functionality implemented by the ILiveMediaPlugin.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Metadata.IMediaPluginMetadata.SupportedDeliveryMethods">
+            <summary>
+            Gets the supported delivery methods.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Metadata.IMediaPluginMetadata.SupportedMediaTypes">
+            <summary>
+            Gets the supported media type.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Plugins.Primitives.AdProgress">
+            <summary>
+            Indicates the progress of an ad as it is being played.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Plugins.Primitives.Advertising.AdMarker">
+            <summary>
+            Represents an advertisment marker to be handled by an IAdPayloadHandlerPlugin.
+            </summary>
+            <remarks>
+            <para>
+            The position of a AdMarker represents its specific time location in a media clip.
+            </para>
+            </remarks>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Plugins.Primitives.MediaMarker">
+            <summary>
+            Represents the base class for markers.
+            </summary>
+            <remarks>
+            <para>
+            Markers signify a time location in a media file.
+            Each marker has a Begin and End time. 
+            </para>
+            <para>
+            There are two specific types of marker objects:
+            <list type="bullet">
+            <item><see cref="T:Microsoft.SilverlightMediaFramework.Media.CaptionMediaMarker">CaptionMediaMarker</see> objects represent caption text that can be displayed at a specific time in the media.</item>
+            /// <item><see cref="T:Microsoft.SilverlightMediaFramework.Media.TimelineMediaMarker">TimelineMediaMarker</see> objects can be displayed on the timeline</item>
+            </list>
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Plugins.Primitives.MediaMarker.Equals(System.Object)">
+            <summary>
+            Gets a value indicating whether two markers are references to the same marker.
+            </summary>
+            <param name="obj"></param>
+            <returns>true if the markers compared are the same marker; otherwise, false.</returns>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Primitives.MediaMarker.Id">
+            <summary>
+            Gets or sets a unique identifier for the marker.
+            </summary>
+            <remarks>
+            The Id is used to determine which markers are new each time polling occurs.
+            </remarks>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Primitives.MediaMarker.Begin">
+            <summary>
+            Gets or sets the begin position in the media stream of this marker item.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Primitives.MediaMarker.End">
+            <summary>
+            Gets or sets the end position in the media stream of this marker item.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Primitives.MediaMarker.Content">
+            <summary>
+            Gets or sets the text associated with this marker.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Primitives.MediaMarker.Duration">
+            <summary>
+            Gets the duration of this marker (calculated from start time to end time).
+            </summary>
+            <remarks>
+            The property value is calculated (it cannot be set) and is provided as a convenience.
+            </remarks>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Primitives.MediaMarker.Type">
+            <summary>
+            Gets or sets the type of marker (such as caption or display).
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Primitives.MediaMarker.BeginText">
+            <summary>
+            Gets a text representation of the marker begin time.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Primitives.MediaMarker.DurationText">
+            <summary>
+            Gets a text representation of the marker duration time.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Primitives.MediaMarker.EndText">
+            <summary>
+            Gets a text representation of the marker end time.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Primitives.Advertising.AdMarker.Immediate">
+            <summary>
+            Gets or sets a value indicating whether MediaMarker.Begin should be ignored and the marker should be triggered immediately.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Primitives.Advertising.AdMarker.ScheduledAd">
+            <summary>
+            Gets or sets the ScheduledAd object associated with this AdMarker. This contains required information about the Ad Trigger and Payload produced once the AdMarker is handled.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Plugins.Primitives.Advertising.TargetRegions.VideoArea">
+            <summary>
+            Targets the area over the video playback area.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Plugins.Primitives.Advertising.TargetRegions.LowerVideoArea">
+            <summary>
+            Targets an area at the bottom of the video playback area.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Plugins.Primitives.Advertising.TargetRegions.UpperVideoArea">
+            <summary>
+            Targets an area at the top of the video playback area.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Plugins.Primitives.Advertising.TargetRegions.LeftVideoArea">
+            <summary>
+            Targets an area at the left of the video playback area.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Plugins.Primitives.Advertising.TargetRegions.RightVideoArea">
+            <summary>
+            Targets an area at the right of the video playback area.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Plugins.Primitives.Advertising.FailurePolicyEnum">
+            <summary>
+            Provides the choices for how to handle failures.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Plugins.Primitives.Advertising.FailurePolicyEnum.Ignore">
+            <summary>
+            No matter what fails, ignore it. e.g. If a companion ad fails, still play the associated linear ad.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Plugins.Primitives.Advertising.FailurePolicyEnum.Abort">
+            <summary>
+            If there is any failure at any level, cancel out of the entire AdSpot.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Plugins.Primitives.Advertising.HandleCompletedEventArgs">
+            <summary>
+            EventArgs used to send information about a completed IAdPayloadHandler.Handle operation.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Primitives.Advertising.HandleCompletedEventArgs.AdSource">
+            <summary>
+            The payload associated with operation
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Primitives.Advertising.HandleCompletedEventArgs.Success">
+            <summary>
+            Flag indicating success vs. failure. Success criteria is based on the FailureStrategy property.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Plugins.Primitives.Advertising.IAdPayload">
+            <summary>
+            The payload for a handled AdSequencingSource
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Plugins.Primitives.Advertising.IAdPayload.Deactivate">
+            <summary>
+            Deactivates the payload
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.Primitives.Advertising.IAdPayload.Deactivated">
+            <summary>
+            Provides notification that the payload has been deactivated
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Plugins.Primitives.Advertising.ScheduledAd">
+            <summary>
+            Provides information about a scheduled ad. This class is intended to be assigned to AdMarker.ScheduledAd
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Plugins.Primitives.Advertising.ScheduledAd.#ctor(Microsoft.SilverlightMediaFramework.Plugins.Primitives.Advertising.IAdSequencingTrigger)">
+            <summary>
+            Creates a new ScheduledAd.
+            </summary>
+            <param name="Trigger">The ad sequencing trigger that defines source and target information for the ad.</param>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Plugins.Primitives.Advertising.ScheduledAd.Deactivate">
+            <summary>
+            Forces the ad to be deactivated.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Primitives.Advertising.ScheduledAd.Trigger">
+            <summary>
+            The ad sequencing trigger that defines source and target information for the ad.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.Primitives.Advertising.ScheduledAd.PayloadChanged">
+            <summary>
+            Fired when the payload changes. This indicates that an ad payload handler has handled the ad.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.Primitives.Advertising.ScheduledAd.Deactivated">
+            <summary>
+            Fired when the ad payload is deactivated.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Primitives.Advertising.ScheduledAd.Payload">
+            <summary>
+            This is the tie to an active ad.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Plugins.Primitives.ChunkDownloadStrategy">
+            <summary>
+            Indicates the strategy to use to dowbload data chunks, which are typically captions or ad markers.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Plugins.Primitives.ChunkDownloadStrategy.Unspecified">
+            <summary>
+            If set on a playlist item, the player's setting is used. If set on player,
+            AsNeeded is used.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Plugins.Primitives.ChunkDownloadStrategy.AggressiveFromCurrent">
+            <summary>
+            All chunks are downloaded, starting with future chunks then working backwards from current position.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Plugins.Primitives.ChunkDownloadStrategy.AggressiveFromStart">
+            <summary>
+            All chunks are downloaded, starting with future chunks then working forwards from beginning of stream.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Plugins.Primitives.ChunkDownloadStrategy.AggressiveFuture">
+            <summary>
+            All future chunks are downloaded.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Plugins.Primitives.ChunkDownloadStrategy.AsNeeded">
+            <summary>
+            Data chunks are only downloaded if the chunk timestamp falls near the current position. 
+            Chunks in future (up to 60 seconds) are downloaded first, then most recent chunk within 60 seconds.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Plugins.Primitives.DeliveryMethods">
+            <summary>
+            Indicates how the media is delivered.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Plugins.Primitives.IAdContext">
+            <summary>
+            Contains information about a scheduled advertisement
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Primitives.IAdContext.AdSource">
+            <summary>
+            The source of the ad content.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Primitives.IAdContext.ClickThrough">
+            <summary>
+            The URL where the user should be directed when they click the ad.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Primitives.IAdContext.IsAdaptiveMedia">
+            <summary>
+            Indicates if the ad content is adaptive media.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Primitives.IAdContext.CurrentAdState">
+            <summary>
+            The state of the ad.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Primitives.IAdContext.HasQuartileEvents">
+            <summary>
+            Gets whether this ad has quartile events.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Primitives.IAdContext.NaturalDuration">
+            <summary>
+            Gets the natural duration of the ad content.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Primitives.IAdContext.PlaybackDuration">
+            <summary>
+            Gets the playback duration of the ad content.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Plugins.Primitives.IDataChunk">
+            <summary>
+            Represents a chunk of data that can be downloaded from a stream.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Primitives.IDataChunk.Timestamp">
+            <summary>
+            Gets the unique timestamp of this IDataChunk.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Primitives.IDataChunk.Duration">
+            <summary>
+            Gets the duration of this IDataChunk.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Primitives.IDataChunk.Attributes">
+            <summary>
+            Gets a list of attributes about this IDataChunk.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Plugins.Primitives.IMediaStream">
+            <summary>
+            A stream that is part of an adaptive media manifest.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Plugins.Primitives.IMediaStream.SetSelectedTracks(System.Collections.Generic.IEnumerable{Microsoft.SilverlightMediaFramework.Plugins.Primitives.IMediaTrack})">
+            <summary>
+            Sets the tracks that are selected in this IMediaStream.
+            </summary>
+            <param name="tracks">All of the tracks that should be selected when this operation completes.</param>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Plugins.Primitives.IMediaStream.SetRestrictedTracks(System.Collections.Generic.IEnumerable{Microsoft.SilverlightMediaFramework.Plugins.Primitives.IMediaTrack})">
+            <summary>
+            Sets the tracks that are allowed to be used in this IMediaStream.
+            </summary>
+            <param name="tracks">The list of tracks that are allowed to be used.</param>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Primitives.IMediaStream.Id">
+            <summary>
+            Gets the id of the IMediaStream.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Primitives.IMediaStream.Name">
+            <summary>
+            Gets the name of the IMediaStream.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Primitives.IMediaStream.Language">
+            <summary>
+            Gets the language of the IMediaStream.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Primitives.IMediaStream.Type">
+            <summary>
+            Gets the type of the IMediaStream.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Primitives.IMediaStream.SubType">
+            <summary>
+            Gets the subtype of the IMediaStream.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Primitives.IMediaStream.Enabled">
+            <summary>
+            Gets whether this IMediaStream is enabled.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Primitives.IMediaStream.IsSparseStream">
+            <summary>
+            Gets whether this IMediaStream is a sparse stream.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Primitives.IMediaStream.FourCC">
+            <summary>
+            Gets the FourCC property of this IMeidaStream.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Primitives.IMediaStream.Duration">
+            <summary>
+            Gets the Duration of this IMediaStream.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Primitives.IMediaStream.TimeScale">
+            <summary>
+            Gets the TimeScale of this IMediaStream.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Primitives.IMediaStream.AvailableTracks">
+            <summary>
+            Gets the tracks available in this IMediaStream.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Primitives.IMediaStream.SelectedTracks">
+            <summary>
+            Gets the tracks that are currently selected in this IMediaStream.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Primitives.IMediaStream.ChildStreams">
+            <summary>
+            Gets the child streams that are part of this IMediaStream.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Primitives.IMediaStream.DataChunks">
+            <summary>
+            Gets the data chunks that can be downloaded from this IMediaStream.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Primitives.IMediaStream.Attributes">
+            <summary>
+            Gets the attributes that are part of this IMediaStream.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Plugins.Primitives.IMediaTrack">
+            <summary>
+            A track that is part of an IMediaStream.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Primitives.IMediaTrack.Name">
+            <summary>
+            Gets the name of this IMediaTrack.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Primitives.IMediaTrack.Allowed">
+            <summary>
+            Gets whether this IMediaTrack is allowed.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Primitives.IMediaTrack.Resolution">
+            <summary>
+            Gets the resolution of this IMediaTrack.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Primitives.IMediaTrack.Index">
+            <summary>
+            Gets the index of this IMediaTrack within it's parent stream.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Primitives.IMediaTrack.Language">
+            <summary>
+            Gets the language of this IMediaTrack.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Primitives.IMediaTrack.ParentStream">
+            <summary>
+            Gets the stream that contains this IMediaTrack.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Primitives.IMediaTrack.Bitrate">
+            <summary>
+            Gets the bitrate of this IMediaTrack.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Primitives.IMediaTrack.CustomAttributes">
+            <summary>
+            Gets the attributes that are a part of this IMediaTrack.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Primitives.IMediaTrack.Attributes">
+            <summary>
+            Gets the attributes that are a part of this IMediaTrack.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Plugins.Primitives.ISegment">
+            <summary>
+            A segment that is specified inside of an adaptive manifest.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Primitives.ISegment.StartPosition">
+            <summary>
+            Gets the start position of this ISegment.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Primitives.ISegment.EndPosition">
+            <summary>
+            Gets the end position of this ISegment.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Primitives.ISegment.AvailableStreams">
+            <summary>
+            Gets the streams available in this ISegment.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Primitives.ISegment.SelectedStreams">
+            <summary>
+            Gets the streams that are currently selected within this ISegment.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Plugins.Primitives.IStreamDownloadResult">
+            <summary>
+            The result of a stream download request.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Primitives.IStreamDownloadResult.Stream">
+            <summary>
+            Gets a stream that contains the downloaded data.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Primitives.IStreamDownloadResult.Type">
+            <summary>
+            Gets the type of stream this data was downloaded from.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Primitives.IStreamDownloadResult.DataChunk">
+            <summary>
+            Gets the IDataChunk that was downloaded.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Plugins.Primitives.LivePlaybackStartPosition">
+            <summary>
+            Indicates the position within a live media where playback should start.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Plugins.Primitives.LogEntry">
+            <summary>
+            Represents information in a log entry written to the LogWriters.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Primitives.LogEntry.Id">
+            <summary>
+            Gets the unique id of this LogEntry.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Primitives.LogEntry.Severity">
+            <summary>
+            Gets the severity of this LogEntry.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Primitives.LogEntry.Message">
+            <summary>
+            Gets the message of this LogEntry.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Primitives.LogEntry.Type">
+            <summary>
+            Gets the type of this LogEntry.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Primitives.LogEntry.SenderName">
+            <summary>
+            Gets the name of the sender of this LogEntry.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Primitives.LogEntry.Timestamp">
+            <summary>
+            Gets the timestamp indicating when this LogEntry was created.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Primitives.LogEntry.ExtendedProperties">
+            <summary>
+            Gets a dictionary containing additional data that is part of this LogEntry.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Plugins.Primitives.LogLevel">
+            <summary>
+            Indicates the severity level for a log entry.
+            </summary>
+            <remarks>
+            The LogLevel is used by plug-ins to indicate the severity of a log entry.
+            The Player has a LogLevel property that indicates what level of severity is required for a log entry to be logged (written to a LogWriter).
+            For example, if a plug-in sends a log entry of <c>LogLevel.Information</c> and the <c>Player.LogLevel</c> property is set to <c>LogLevel.Error</c>, 
+            the log entry will not be written to a LogWriter.
+            </remarks>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Plugins.Primitives.MediaPluginState">
+            <summary>
+            Indicates the state of an IMediaPlugin.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Plugins.Primitives.S3D.S3D_Formats">
+             <summary>
+             Indicates the 3D format.
+             
+             DiscreteTrack represents a Left or Right stream and is only valid when S3D_Content 
+             is set to DiscreteLeft or DiscreteRight. 
+             
+             SideBySide represents a frame-compatible formatted stream which contains Left and 
+             Right images stacked horizontally within the frame. 
+             
+             TopAndBottom represents a frame-compatible formatted stream which contains Left and 
+             Right images stacked vertically within the frame. 
+            
+             FrameSequential represents a stream where Left and Right frames alternate in 
+             chronological order. 
+             
+             FieldAlternative represents an interlaced stream where Left and Right images 
+             are coded as interlaced fields.
+             
+             SideBySide, TopAndBottom, FrameSequential and FieldAlternative are only valid 
+             when S3D_Content is set to Pair.
+             </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Plugins.Primitives.S3D.S3D_Contents">
+            <summary>
+            None describes a plain 2D source. 
+            
+            Pair describes a typical 3D source which contains both L and R images 
+            in the same stream. 
+            
+            DiscreteLeft/DiscreteRight describes a single stream which contains only the 
+            Left or Right images of a stereo pair, but is different than None in 
+            that it implies that another discrete stream is available which together 
+            with this one forms a complete 3D pair.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Plugins.Primitives.S3D.S3D_EyePriorities">
+            <summary>
+            LeftFirst indicates left eye images are delivered first in an image pair.
+            
+            RightFirst indicates right eye images are delivered first in an image pair. 
+            
+            “First” means left half in SideBySide; top half in TopAndBottom, even frames in 
+            FrameSequential; and even lines in FieldAlternative.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Plugins.Primitives.S3D.S3D_SubsamplingModes">
+            <summary>
+            None indicates no special subsampling algorithm was used to scale the left and right images. 
+            The other subsampling modes are only valid when S3D_Format is set to SideBySide or TopAndBottom.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Plugins.Primitives.S3D.S3D_SubsamplingOrders">
+            <summary>
+            None indicates no special subsampling algorithm was used to scale the left and right images. 
+            The other subsampling orders are only valid when S3D_SubsamplingMode 
+            is set to values not equal to None.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Primitives.S3D.S3DProperties.S3DFormat">
+            <summary>
+            Gets or sets a value indicating the stereoscopic 3D format of the media.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Primitives.S3D.S3DProperties.S3DContent">
+            <summary>
+            Gets or sets a value indicating the stereoscopic 3D content type of the media.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Primitives.S3D.S3DProperties.S3DEyePriority">
+            <summary>
+            Gets or sets a value indicating the stereoscopic 3D eye priority of the media.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Primitives.S3D.S3DProperties.S3DSubsamplingModes">
+            <summary>
+            Gets or sets a value indicating the stereoscopic 3D subsampling mode of the media.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Primitives.S3D.S3DProperties.S3DSubsamplingOrders">
+            <summary>
+            Gets or sets a value indicating the stereoscopic 3D subsampling order the media.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Primitives.S3D.S3DProperties.S3DLeftEyePAR">
+            <summary>
+            Gets or sets a value indicating the stereoscopic 3D left eye pixel aspect ratio the media.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Primitives.S3D.S3DProperties.S3DRightEyePAR">
+            <summary>
+            Gets or sets a value indicating the stereoscopic 3D right eye pixel aspect ratio the media.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Plugins.Primitives.StreamType">
+            <summary>
+            Indicates the type of an IMediaStream.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Plugins.Resources.PluginsResources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Resources.PluginsResources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Resources.PluginsResources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Resources.PluginsResources.DebugLogWriterOutputFormat">
+            <summary>
+              Looks up a localized string similar to Severity: &quot;{0}&quot; Sender: &quot;{1}&quot; Message: &quot;{2}&quot; Timestamp: &quot;{3}&quot;.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.Resources.PluginsResources.TimeSpanReadableFormat">
+            <summary>
+              Looks up a localized string similar to {0:00}:{1:00}:{2:00}.
+            </summary>
+        </member>
+    </members>
+</doc>

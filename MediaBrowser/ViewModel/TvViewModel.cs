@@ -45,19 +45,19 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                        };
                 SelectedSeason = new DtoBaseItem
                                      {
-                                         Name = "Season 1",
-                                         Children= new[]
-                                                       {
-                                                           new DtoBaseItem
-                                                               {
-                                                                   Id= new Guid("e252ea3059d140a0274282bc8cd194cc"),
-                                                                   Name= "1x01 - Pilot",
-                                                                   Overview = "A Kindergarten teacher starts speaking gibberish and passed out in front of her class. What looks like a possible brain tumor does not respond to treatment and provides many more questions than answers for House and his team as they engage in a risky trial-and-error approach to her case. When the young teacher refuses any additional variations of treatment and her life starts slipping away, House must act against his code of conduct and make a personal visit to his patient to convince her to trust him one last time."
-                                                               }
-                                                       }
+                                         Name = "Season 1"
                                      };
-                Episodes = SelectedSeason.Children.ToList();
-                SelectedEpisode = SelectedSeason.Children[0];
+                Episodes = new[]
+                               {
+                                   new DtoBaseItem
+                                       {
+                                           Id = new Guid("e252ea3059d140a0274282bc8cd194cc"),
+                                           Name = "1x01 - Pilot",
+                                           Overview =
+                                               "A Kindergarten teacher starts speaking gibberish and passed out in front of her class. What looks like a possible brain tumor does not respond to treatment and provides many more questions than answers for House and his team as they engage in a risky trial-and-error approach to her case. When the young teacher refuses any additional variations of treatment and her life starts slipping away, House must act against his code of conduct and make a personal visit to his patient to convince her to trust him one last time."
+                                       }
+                               }.ToList();
+                SelectedEpisode = Episodes[0];
 
             }
             else
@@ -96,6 +96,15 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     {
                         ProgressIsVisible = true;
                         ProgressText = "Getting show information...";
+
+                        try
+                        {
+                            SelectedTvSeries = await ApiClient.GetItemAsync(SelectedTvSeries.Id, App.Settings.LoggedInUser.Id);
+                            CastAndCrew = Utils.GroupCastAndCrew(SelectedTvSeries.People);
+                        }
+                        catch
+                        {
+                        }
 
                         bool seasonsLoaded = await GetSeasons();
 
@@ -177,7 +186,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 var recent =
                     await ApiClient.GetRecentlyAddedItemsAsync(App.Settings.LoggedInUser.Id, SelectedTvSeries.Id);
                 RecentItems.Clear();
-                recent.OrderByDescending(x => x.DateCreated)
+                recent.Items.OrderByDescending(x => x.DateCreated)
                       .Take(6)
                       .ToList()
                       .ForEach(recentItem => RecentItems.Add(recentItem));
@@ -194,9 +203,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             try
             {
-                var seasons = await ApiClient.GetItemAsync(SelectedTvSeries.Id, App.Settings.LoggedInUser.Id);
-                Seasons = seasons.Children.OrderBy(x => x.IndexNumber).ToList();
-                CastAndCrew = Utils.GroupCastAndCrew(seasons.People);
+                var seasons = await ApiClient.GetChildrenAsync(App.Settings.LoggedInUser.Id, SelectedTvSeries.Id, fields: new List<ItemFields>
+                                                                                                                              {
+                                                                                                                                  ItemFields.SeriesInfo
+                                                                                                                              });
+                Seasons = seasons.Items.OrderBy(x => x.IndexNumber).ToList();
                 return true;
             }
             catch
@@ -210,8 +221,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             try
             {
-                var episodes = await ApiClient.GetItemAsync(SelectedSeason.Id, App.Settings.LoggedInUser.Id);
-                Episodes = episodes.Children.OrderBy(x => x.IndexNumber).ToList();
+                var episodes = await ApiClient.GetChildrenAsync(App.Settings.LoggedInUser.Id, SelectedSeason.Id, fields: new List<ItemFields>
+                                                                                                                              {
+                                                                                                                                  ItemFields.SeriesInfo,
+                                                                                                                                  ItemFields.Overview
+                                                                                                                              });
+                Episodes = episodes.Items.OrderBy(x => x.IndexNumber).ToList();
                 return true;
             }
             catch

@@ -1,12 +1,10 @@
 ﻿using System.Threading.Tasks;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.ApiInteraction.WindowsPhone;
 using MediaBrowser.WindowsPhone.Model;
 using ScottIsAFool.WindowsPhone.IsolatedStorage;
-using MediaBrowser.Model.DTO;
 using MediaBrowser.Shared;
 using MediaBrowser.Model;
 
@@ -75,7 +73,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     else
                     {
                         App.ShowMessage("", "No connection settings, tap to set", () => NavigationService.NavigateToPage("/Views/Settings/ConnectionSettings.xaml"));
-                        //App.ShowMessage("", "No connection settings, tap to set", () => NavigationService.NavigateToPage("/Views/SettingsView.xaml"));
                         App.Settings.ConnectionDetails = new ConnectionDetails
                                                              {
                                                                  PortNo = 8096

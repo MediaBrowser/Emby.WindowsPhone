@@ -1,0 +1,3847 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.SilverlightMediaFramework.Core.Phone</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions.CaptionElement">
+            <summary>
+            Represents a closed caption
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions.TimedTextElement">
+            <summary>
+            The base class for captioning elements.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions.TimedTextElement.Style">
+            <summary>
+            Gets or sets the Style to be applied to this element.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions.TimedTextElement.CurrentStyle">
+            <summary>
+            Gets or sets the current style of this element.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions.TimedTextElement.CaptionElementType">
+            <summary>
+            Gets or sets the type of this caption element.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions.TimedTextElement.Animations">
+            <summary>
+            Gets or sets the list of animations to be applied to this element.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions.CaptionRegion">
+            <summary>
+            Represents an on-screen region where captions will be displayed.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions.DisplayAlign">
+            <summary>
+            Indicates the direction of display alignment
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions.Extent">
+            <summary>
+            Represents the extent property of a caption.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions.Extent.Width">
+            <summary>
+            Gets or sets the width.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions.Extent.Height">
+            <summary>
+            Gets or sets the height.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions.Extent.Empty">
+            <summary>
+            Gets or sets the empty value.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions.Extent.Auto">
+            <summary>
+            Gets or sets the auto value.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions.Length">
+            <summary>
+            Represents a length to be applied to a caption property..
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions.Length.Value">
+            <summary>
+            The numeric value of this length.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions.Length.Unit">
+            <summary>
+            The unit of this length.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions.LengthUnit">
+            <summary>
+            Represents a unit of length to be applied to a caption property.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions.Origin">
+            <summary>
+            Represents a point of origination to be applied to a caption 
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions.Origin.Left">
+            <summary>
+            Gets or sets the left margin of this origin.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions.Origin.Top">
+            <summary>
+            Gets or sets the top margin of this origin.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions.Origin.Empty">
+            <summary>
+            Gets an instance of an empty origin.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions.Overflow">
+            <summary>
+            Indicates the overflow value to be applied to a caption property.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions.Padding">
+            <summary>
+            Represents the padding value to be applied to a caption property.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions.Padding.Left">
+            <summary>
+            Gets or sets the left padding space.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions.Padding.Right">
+            <summary>
+            Gets or sets the right padding space.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions.Padding.Top">
+            <summary>
+            Gets or sets the top padding space.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions.Padding.Bottom">
+            <summary>
+            Gets or sets the bottom padding space.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions.Padding.Empty">
+            <summary>
+            Gets an instance of an empty padding.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions.ShowBackground">
+            <summary>
+            Indicates when the background of a caption should be displayed.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions.TimedTextAnimation">
+            <summary>
+            Represents an animation that will be applied to a caption
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions.TimedTextAnimation.MergeStyle(Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions.TimedTextStyle)">
+            <summary>
+            Will merge this CaptionAnimationElement's Style with the specified Style.
+            </summary>
+            <param name="s">The style to merge with</param>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions.TimedTextAnimation.PropertyName">
+            <summary>
+            The property that will be animated.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions.TimedTextElementType">
+            <summary>
+            The type of caption element.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions.TimedTextStyle">
+            <summary>
+            Represents styling settings for a CaptionMediaMarker object.
+            </summary>
+            <remarks>
+            <para>
+            This class is used to apply text styling settings defined in the W3C Timed Text Markup Language to a CaptionMediaMarker object.
+            For more detailed information, see http://www.w3.org/TR/ttaf1-dfxp/#styling
+            </para>
+            <para>
+            Note that members have a <c>[ScriptableMember]</c> attribute allowing them to be accessed from your JavaScript code.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions.TimedTextStyle.Clone">
+            <summary>
+            Creates a memberwise close of this style.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions.TimedTextStyle.Id">
+            <summary>
+            Gets or sets an identifier.
+            </summary>
+            <remarks>
+            The Id is used when polling occurs to determine which of the caption markers are new.
+            </remarks>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions.TimedTextStyle.BackgroundColor">
+            <summary>
+            Gets or sets the background color for the caption.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions.TimedTextStyle.Color">
+            <summary>
+            Gets or sets the foreground text color for the caption.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions.TimedTextStyle.OutlineColor">
+            <summary>
+            Set the outline color for the font
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions.TimedTextStyle.OutlineWidth">
+            <summary>
+            Sets the thickness of the font outline (stroke)
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions.TimedTextStyle.OutlineBlur">
+            <summary>
+            Sets the thickess of a shadow around the font
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions.TimedTextStyle.FontFamily">
+            <summary>
+            Gets or sets the font family for the caption.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions.TimedTextStyle.FontFamilyText">
+            <summary>
+            Text representation of FontFamily.  Really only here to support XML serialization.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions.TimedTextStyle.FontSize">
+            <summary>
+            Gets or sets the text size for the caption.
+            </summary>
+            <remarks>
+            The only unit of measurement supported is pixels (px).
+            </remarks>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions.TimedTextStyle.FontStyle">
+            <summary>
+            Gets or sets the text style for the caption.
+            </summary>
+            <remarks>
+            Only Normal and Italic styles are supported.
+            </remarks>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions.TimedTextStyle.FontWeight">
+            <summary>
+            Gets or sets the font weight for the caption.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions.TimedTextStyle.LineHeight">
+            <summary>
+            Gets or sets the line height for the caption.
+            </summary>
+            <remarks>
+            The only unit of measurement supported is pixels (px).
+            </remarks>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions.TimedTextStyle.Opacity">
+            <summary>
+            Gets or sets the percent that the caption is transparent (as a value between 0 and 1.0).
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions.TimedTextStyle.Origin">
+            <summary>
+            Gets or sets the margin for the caption.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions.TimedTextStyle.Padding">
+            <summary>
+            Gets or sets the amount of padding used for the caption.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions.TimedTextStyle.TextAlign">
+            <summary>
+            Gets or sets the text alignment setting for the caption.
+            </summary>
+            <remarks>
+            The only horizontal text alignments supported are left, center, and right.
+            </remarks>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions.TimedTextStyle.Visibility">
+            <summary>
+            Gets or sets the visibility of the caption.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions.TimedTextStyle.Direction">
+            <summary>
+            Gets or sets the direction (left to right or right to left) of the caption.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions.TimedTextStyle.Display">
+            <summary>
+            Gets or sets the display of the caption, this differs from visibility because visibility still takes space.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions.TimedTextStyle.WrapOption">
+            <summary>
+            Gets or sets the text wrapping setting for the caption.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions.TimedTextStyle.DisplayAlign">
+            <summary>
+            Gets or sets the display alignment for the caption.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions.TimedTextStyle.ShowBackground">
+            <summary>
+            Gets or sets when the background should be displayed for the caption.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions.TimedTextStyle.Overflow">
+            <summary>
+            Gets or sets the overflow for the caption.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions.TimedTextStyle.Extent">
+            <summary>
+            Gets or sets the extent for the caption.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions.TimedTextStyle.ZIndex">
+            <summary>
+            Gets or sets the zindex for the caption.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.Accessibility.Controls.CaptionBlockRegion.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Core.AdMarkerManager">
+            <summary>
+            Checks the status of ad markers.
+            </summary>
+            <remarks>
+            <para>
+            This class tracks which ad markers have been reached, which ad markers have been left 
+            (when media playing has passed the end position of an ad marker), 
+            and which ad markers were skipped (due to the user seeking to a new position in the timeline, for example).
+            This class raises the MarkerReached, MarkerLeft, and MarkerSkipped events respectively when these conditions occur.
+            </para>
+            </remarks>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Core.SkippableMarkerManager`1">
+            <summary>
+            Checks the status of markers.
+            </summary>
+            <remarks>
+            <para>
+            This class tracks which markers have been reached, which markers have been left 
+            (when media playing has passed the end position of a marker), 
+            and which markers were skipped (due to the user seeking to a new position in the timeline, for example).
+            This class raises the MarkerReached, MarkerLeft, and MarkerSkipped events respectively when these conditions occur.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.MediaMarkerManager`1.CheckMarkerPositions(System.TimeSpan,Microsoft.SilverlightMediaFramework.Core.Media.MediaMarkerCollection{`0},System.Boolean,System.Boolean)">
+            <summary>
+            Checks for markers whose position has been reached or left.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.MediaMarkerManager`1.MarkerReached">
+            <summary>
+            Occurs when a marker start time is reached.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.MediaMarkerManager`1.MarkerLeft">
+            <summary>
+            Occurs when a marker end time has been reached.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.SkippableMarkerManager`1.CheckForSkippedMarkers(System.TimeSpan,Microsoft.SilverlightMediaFramework.Core.Media.MediaMarkerCollection{`0})">
+            <summary>
+            Checks for markers that have been skipped.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.SkippableMarkerManager`1.MarkerSkipped">
+            <summary>
+            Occurs when a marker start time was passed during a seek for a new position.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.AdMarkerManager.unit_Deactivated(System.Object,System.EventArgs)">
+            <summary>
+            Fires when the ad has completed running (regardless of the reason).
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.AdMarkerManager.JumpToLiveAfterAd">
+            <summary>
+            Indicates that if the media source is a live streaming source, the player should jump to the current live position if we were close to the live position to begin with.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.AdMarkerManager.PlayAdsOnSeek">
+            <summary>
+            Indicates that ads should still be triggered when seeked into
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.AdMarkerManager.PlayAdsOnFwdRwd">
+            <summary>
+            Indicates that ads should still be triggered when fast-forwarding or rewinding into.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.AdMarkerManager.PayloadHandlers">
+            <summary>
+            Exposes the list of AdPayloadHandler plugins used to handle ads.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Core.AdSequencingPayload">
+            <summary>
+            Keeps track of an active Ad and allows it to be deactivated or to notify when it has been deactivated.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.AdSequencingPayload.#ctor(Microsoft.SilverlightMediaFramework.Plugins.Primitives.Advertising.IAdSequencingTrigger)">
+            <summary>
+            Creates a new AdSequencingPayload
+            </summary>
+            <param name="Trigger">The trigger causing this payload to be created</param>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.AdSequencingPayload.Deactivate">
+            <summary>
+            Deactivates the payload
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.AdSequencingPayload.AdQueue">
+            <summary>
+            The Queue of ad sequencing sources associated with this ad.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.AdSequencingPayload.ActiveSourceChanged">
+            <summary>
+            Indicates that the ActiveSource has changed
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.AdSequencingPayload.ActiveSource">
+            <summary>
+            Gets or Sets the ActiveSource. This is currently playing ad source and should no longer be in the queue.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.AdSequencingPayload.Deactivated">
+            <summary>
+            Provides notification that the payload has been deactivated
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.AdSequencingPayload.WasAtLivePosition">
+            <summary>
+            Indicates that we were at the live position when the ad began
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Core.AdSequencingSourcePayload">
+            <summary>
+            Contains the payload for a single handled ad source
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.AdSequencingSourcePayload.#ctor(Microsoft.SilverlightMediaFramework.Plugins.Primitives.Advertising.IAdPayload)">
+            <summary>
+            Creates a new payload for a single ad source.
+            </summary>
+            <param name="AdSourcePayload">The payload that came from the ad handler</param>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.AdSequencingSourcePayload.Deactivate">
+            <summary>
+            Forces the ad to be deactivated
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.AdSequencingSourcePayload.AddChild(Microsoft.SilverlightMediaFramework.Core.AdSequencingSourcePayload)">
+            <summary>
+            Adds a child payload assumed to be playing simultaneously with the parent. This is good for companion ads.
+            </summary>
+            <param name="Child">The child payload whose life cycle is dependent on the partent.</param>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.AdSequencingSourcePayload.AdSourcePayload">
+            <summary>
+            Gets the payload that came from the ad handler
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.AdSequencingSourcePayload.Deactivated">
+            <summary>
+            Notifies when the ad has been deactivated
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.BitrateGraphControl.knBitrateGraphItemHeight">
+            <summary>
+            The height of each bitrate item (label, background, and tracker).
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.BitrateGraphControl.knBitrateGraphLineMaxX">
+            <summary>
+            The maximum X value of the bitrate graph lines.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.BitrateGraphControl.knBitrateGraphLineMinX">
+            <summary>
+            The starting X value of the bitrate graph lines
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.BitrateGraphControl.knBitrateGraphLineOffsetFromLabel">
+            <summary>
+            The offset of our graph lines from the label position to get them 
+            centered.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.BitrateGraphControl.knBitrateLabelMinX">
+            <summary>
+            The left alignmnet of the bitrate labels on the graph
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.BitrateGraphControl.knBitrateLabelMinY">
+            <summary>
+            The top alignment of the first bitrate label
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.BitrateGraphControl.knGraphBottomMargin">
+            <summary>
+            Extra space at the bottom to make the graph look better
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.BitrateGraphControl.knGraphRightMargin">
+            <summary>
+            Extra space on the right to make the graph look good
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.BitrateGraphControl.m_bitrateList">
+            <summary>
+            The list of bitrates we are tracking
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.BitrateGraphControl.m_graphLineYValues">
+            <summary>
+            The Y values for all of the graph lines.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.BitrateGraphControl.m_lines">
+            <summary>
+            The list of all the lines in our graph
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.BitrateGraphControl.AvailableBitratesProperty">
+            <summary>
+            AvailableBitrates DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.BitrateGraphControl.CurrentBitrateProperty">
+            <summary>
+            CurrentBitrate DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.BitrateGraphControl.MaximumPlayableBitrateProperty">
+            <summary>
+            MaximumPlayableBitrate DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.BitrateGraphControl.ChartUpdateFrequencyProperty">
+            <summary>
+            ChartUpdateFrequency DependencyProperty.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.BitrateGraphControl.CompareDescending(System.UInt64,System.UInt64)">
+            <summary>
+            A simple comparer for use in a list sort.
+            </summary>
+            <param name="x">First object to compare</param>
+            <param name="y">Second object to compare</param>
+            <returns>positive if y greater than x, negative if y less than x, else 0</returns>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.BitrateGraphControl.AvailableBitrates">
+            <summary>
+            Gets or sets the bitrates that are currently available.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.BitrateGraphControl.CurrentBitrate">
+            <summary>
+            Gets or sets the currently active bitrate.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.BitrateGraphControl.MaximumPlayableBitrate">
+            <summary>
+            Gets or sets the current maximum playable bitrate.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.BitrateGraphControl.ChartUpdateFrequency">
+            <summary>
+            Gets or sets the frequency with which the charts are updated.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.BitrateGraphControl.BitrateGraph.CurrentLine">
+            <summary>
+            The current line we are drawing
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.BitrateGraphControl.BitrateGraph.LastBitrate">
+            <summary>
+            The last bitrate we drew.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Core.BitrateMonitor">
+            <summary>
+            Represents a control that displays the current bitrate for adaptive media on the client.
+            </summary>
+            <remarks>
+            By default, if the value of the Player class IsMediaAdaptive property is <c>false</c>, the BitrateMonitor is not visible.
+            </remarks>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.BitrateMonitor.PlaybackBitrateProperty">
+            <summary>
+            PlaybackBitrate DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.BitrateMonitor.MaximumPlaybackBitrateProperty">
+            <summary>
+            MaximumPlayback DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.BitrateMonitor.HighDefinitionBitrateProperty">
+            <summary>
+            MaximumPlayback DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.BitrateMonitor.PlaybackBitrate">
+            <summary>
+            Gets or sets the current playback bitrate.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.BitrateMonitor.MaximumPlaybackBitrate">
+            <summary>
+            Gets or sets the highest bitrate for playback.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.BitrateMonitor.HighDefinitionBitrate">
+            <summary>
+            Gets or sets the bitrate value for high definition video.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Core.ButtonInputType">
+            <summary>
+            Determines how to interpret when the user clicks and holds the mouse button down on the Fast Forward or Rewind buttons.
+            </summary>
+            <remarks>
+            This enumeration determines whether a user holding the mouse button down on the Fast Forward or Rewind buttons is interpreted as a request to continue 
+            that action while the mouse button is being held down or as just one mouse click.
+            </remarks>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Core.FeatureVisibility">
+            <summary>
+            Indicates the visibility of a feature to a user.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.FeatureVisibility.Hidden">
+            <summary>
+            Feature will be accessible but not visible.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.FeatureVisibility.Visible">
+            <summary>
+            Feature will be visible.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.FeatureVisibility.Disabled">
+            <summary>
+            Feature will not be visible and will not be accessible.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.FramerateGraphControl.knDesiredControlHeight">
+            <summary>
+            The desired height of this control
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.FramerateGraphControl.knDesiredControlWidth">
+            <summary>
+            The desired width of this control
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.FramerateGraphControl.knGraphLineMaxX">
+            <summary>
+            The maximum X value of graph lines.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.FramerateGraphControl.knGraphLineMaxY">
+            <summary>
+            The maximum Y value of the graph with (0,0) as the
+            upper left corner.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.FramerateGraphControl.knGraphLineMinX">
+            <summary>
+            The minimum X value of graph lines (essentially the starting
+            value of the graph lines.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.FramerateGraphControl.knGraphLineMinY">
+            <summary>
+            The minimum Y value of the graph with (0,0) as the
+            upper left corner.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.FramerateGraphControl.knMaxFps">
+            <summary>
+            The maximum fps that this graph displays.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.FramerateGraphControl.kbrGraphLineBrush">
+            <summary>
+            The brush we use to draw the graph lines
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.FramerateGraphControl.knGraphLineThickness">
+            <summary>
+            The thickness of the graph line
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.FramerateGraphControl.kszDesiredSize">
+            <summary>
+            The desired size of this control
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.FramerateGraphControl.m_currentLine">
+            <summary>
+            The current graph line displaying the current frames per second
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.FramerateGraphControl.m_lastFps">
+            <summary>
+            The last fps value that we saw.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.FramerateGraphControl.ChartUpdateFrequencyProperty">
+            <summary>
+            ChartUpdateFrequency DependencyProperty.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.FramerateGraphControl.CurrentFramerateProperty">
+            <summary>
+            CurrentFramerate DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.FramerateGraphControl.#ctor">
+            <summary>
+            Initializes a new instance of the FrameRateGraphControl
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.FramerateGraphControl.ComputeFpsGraphValue(System.Double)">
+            <summary>
+            Computes the Y value on the graph for a given fps value.
+            </summary>
+            <param name="fps">fps value to compute Y graph value for</param>
+            <returns>The Y value on the graph for this fps value</returns>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.FramerateGraphControl.CreateGraphLine">
+            <summary>
+            Creates a new line for the graph and initializes it's common properties
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.FramerateGraphControl.Repaint(System.Double)">
+            <summary>
+            Repaints this graph based on the current frames per second.
+            </summary>
+            <param name="fps"></param>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.FramerateGraphControl.ChartUpdateFrequency">
+            <summary>
+            Gets or sets the frequency with which the charts are updated.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.FramerateGraphControl.CurrentFramerate">
+            <summary>
+            Gets or sets the current framerate.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Core.Logging.Logger">
+            <summary>
+            Handles loading and unloading LogWriters.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.Logging.Logger.Dispose">
+            <summary>
+            Releases the resources used by the Logger.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.Logging.Logger.RegisterLogWriter(Microsoft.SilverlightMediaFramework.Plugins.ILogWriter)">
+            <summary>
+            Loads a logWriter to the current LogWriters collection.
+            </summary>
+            <param name="logWriter">The logWriter to load.</param>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.Logging.Logger.UnregisterLogWriter(Microsoft.SilverlightMediaFramework.Plugins.ILogWriter)">
+            <summary>
+            Removes a logWriter from the current LogWriters collection.
+            </summary>
+            <param name="logWriter">The logWriter to remove.</param>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.Logging.Logger.SendLogEntry(Microsoft.SilverlightMediaFramework.Plugins.Primitives.LogEntry)">
+            <summary>
+            Writes a log entry to each of the LogWriters.
+            </summary>
+            <param name="logEntry">The log entry to write.</param>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Logging.Logger.LogWriters">
+            <summary>
+            Represents the current LogWriters collection.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.Logging.Logger.LogWriteErrorOccurred">
+            <summary>
+            Occurs when an error occurs on attempting to write to a LogWriter.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.Logging.Logger.LogWriteSuccessful">
+            <summary>
+            Occurs when a log entry writes successfully to a LogWriter.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Core.MarkerControl">
+            <summary>
+            Represents a visual control used for displaying Markers.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Core.MarkerItemsControl">
+            <summary>
+            Represents the collection of marker items.
+            </summary>
+            <remarks>
+            The actual layout of the markers on the timeline is done by the MarkerItemsPanel.
+            
+            </remarks>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.MarkerItemsControl.StartPositionProperty">
+            <summary>
+            StartPosition DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.MarkerItemsControl.EndPositionProperty">
+            <summary>
+            EndPosition DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.MarkerItemsControl.LivePositionProperty">
+            <summary>
+            LivePosition DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.MarkerItemsControl.ThumbWidthProperty">
+            <summary>
+            ThumbWidth DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.MarkerItemsControl.IsLiveProperty">
+            <summary>
+            IsLive DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.MarkerItemsControl.StartPosition">
+            <summary>
+            Gets or sets the start position of the markers.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.MarkerItemsControl.EndPosition">
+            <summary>
+            Gets or sets the end position of the markers.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.MarkerItemsControl.LivePosition">
+            <summary>
+            Gets or sets the live position.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.MarkerItemsControl.ThumbWidth">
+            <summary>
+            Gets or sets the width of the thumb in the timeline.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.MarkerItemsControl.IsLive">
+            <summary>
+            Gets or sets a value indicating whether this is a live stream.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Core.MarkerItemsPanel">
+            <summary>
+            Does the layout of the markers on the timeline.
+            </summary>
+            <remarks>
+            Markers are arranged on the timeline relative to their Start positions. 
+            </remarks>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.MarkerItemsPanel.ThumbWidthProperty">
+            <summary>
+            ThumbWidth DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.MarkerItemsPanel.StartPositionProperty">
+            <summary>
+            StartPosition DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.MarkerItemsPanel.EndPositionProperty">
+            <summary>
+            EndPosition DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.MarkerItemsPanel.LivePositionProperty">
+            <summary>
+            LivePosition DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.MarkerItemsPanel.IsLiveProperty">
+            <summary>
+            IsLive DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.MarkerItemsPanel.MarkersProperty">
+            <summary>
+            Markers DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.MarkerItemsPanel.DisplayMarkersOutsideLiveWindowProperty">
+            <summary>
+            DisplayMarkersOutsideLiveWindow DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.MarkerItemsPanel.ThumbWidth">
+            <summary>
+            Gets or sets the width of the thumb in the timeline (used to calculate the position of the markers).
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.MarkerItemsPanel.StartPosition">
+            <summary>
+            Gets or sets the start position of the timeline.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.MarkerItemsPanel.EndPosition">
+            <summary>
+            Gets or sets the end position of the timeline.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.MarkerItemsPanel.LivePosition">
+            <summary>
+            Gets or sets the live position of the timeline.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.MarkerItemsPanel.IsLive">
+            <summary>
+            Gets or sets a value indicating whether this item is a live stream.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.MarkerItemsPanel.Markers">
+            <summary>
+            Gets or sets the collection of markers that will be positioned on the timeline.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.MarkerItemsPanel.DisplayMarkersOutsideLiveWindow">
+            <summary>
+            Gets or sets a value indicating whether to display markers outside of the window playing live media.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Core.MaxBitrateLimiterControl">
+            <summary>
+            Control used the limit the bitrate of a media.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.MaxBitrateLimiterControl.AvailableBitratesProperty">
+            <summary>
+            AvailableBitrates DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.MaxBitrateLimiterControl.DownloadBitrateProperty">
+            <summary>
+            DownloadBitrate DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.MaxBitrateLimiterControl.RecommendMaximumBitrate">
+            <summary>
+            Occurs when this control recommends changing the maximum bitrate.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.MaxBitrateLimiterControl.AvailableBitrates">
+            <summary>
+            Gets or sets the bitrates that are currently available.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.MaxBitrateLimiterControl.DownloadBitrate">
+            <summary>
+            Gets or sets the bitrate of the media currently being downloaded.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Core.Media.Advertisement">
+            <summary>
+            Contains information about a advertisement to be scheduled for play within a media.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Media.Advertisement.AdSource">
+            <summary>
+            Gets or sets the source of the advertisement content.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Media.Advertisement.AdSourceText">
+            <summary>
+            Text representation of AdSource.  Really only here to support XML serialization.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Media.Advertisement.Duration">
+            <summary>
+            Gets or sets the duration of the advertisement to be played.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Media.Advertisement.ClickThrough">
+            <summary>
+            Gets or sets the uri to direct a user to when they click on the advertisement.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Media.Advertisement.ClickThroughText">
+            <summary>
+            Text representation of ClickThrough.  Really only here to support XML serialization.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Media.Advertisement.DeliveryMethod">
+            <summary>
+            Gets or sets the delivery method to be used to play the advertisement content.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Media.Advertisement.IsLinearClip">
+            <summary>
+            Gets or sets whether the ad should be scheduled as a linear clip (for live scenarios).
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Media.Advertisement.PauseTimeline">
+            <summary>
+            Gets or sets whether the timeline of the media should be paused when the advertisment is playing.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Media.Advertisement.StartTime">
+            <summary>
+            Gets or sets the position within the media where this advertisment should begin playing.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Core.Media.Chapter">
+            <summary>
+            Represents a chapter marker for the media item.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Media.Chapter.ThumbSource">
+            <summary>
+            Gets or sets the source of the thumbnail for this chapter item.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Media.Chapter.ThumbSourceText">
+            <summary>
+            Text representation of ThumbSource.  Really only here to support XML serialization.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Media.Chapter.Title">
+            <summary>
+            Gets or sets the title of this chapter item.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Media.Chapter.Description">
+            <summary>
+            Gets or sets the description of this chapter item.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Core.Media.InvalidPlaylistException">
+            <summary>
+            Represents errors that occur when an invalid playlist is specified.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Core.Media.MarkerResource">
+            <summary>
+            Represents a resource for getting markers.
+            </summary>
+            <remarks>
+            The Source property indicates where to get the markers. This can be a location of an XML file, a web service, or any other mechanism located at a Uri that can return a collection of markers.
+            The default Format for markers is the W3C Timed Text Authoring Format 1.0 (TTAF1-DFXP).
+            </remarks>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.Media.MarkerResource.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Media.MarkerResource.Source">
+            <summary>
+            Gets or sets the location of the Markers data.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Media.MarkerResource.SourceText">
+            <summary>
+            Text representation of Source.  Really only here to support XML serialization.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Media.MarkerResource.PollingInterval">
+            <summary>
+            Gets or sets the time interval to poll the Markers data.
+            </summary>
+            <remarks>
+            This is a nullable type. A null value indicates no polling will be done.
+            </remarks>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Media.MarkerResource.Format">
+            <summary>
+            Gets or sets the format of the Markers data.
+            </summary>
+            <remarks>
+            The default Format is "TTAF1-DFXP" which represents markers using the W3C Timed Text Authoring Format 1.0 standard.
+            </remarks>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Core.Media.PlaylistItem">
+            <summary>
+            Represents a media item in a playlist.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.Media.PlaylistItem.#ctor">
+            <summary>
+            parameterless constructor required for Edit in Blend.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Media.PlaylistItem.StartPosition">
+            <summary>
+            Indicates the playback position to jump to after the media has opened.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Media.PlaylistItem.Duration">
+            <summary>
+            Indicates the duration of the media.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Media.PlaylistItem.FileSize">
+            <summary>
+            Gets the total file size of the encoded video for this item.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Media.PlaylistItem.FrameRate">
+            <summary>
+            Gets or sets the frame rate in FPS as persisted.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Media.PlaylistItem.JumpToLive">
+            <summary>
+            Gets or sets a value indicating whether the player should jump to 
+            the media live position when playback begins.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Media.PlaylistItem.MediaSource">
+            <summary>
+            Gets or sets the location of the media item.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Media.PlaylistItem.MediaSourceText">
+            <summary>
+            Text representation of MediaSource.  Really only here to support XML serialization.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Media.PlaylistItem.ThumbSource">
+            <summary>
+            Gets or sets the source of the thumbnail for this item. 
+            </summary>
+            <remarks>
+            Uses a string instead of a URI to facilitate binding and handling cases where 
+            the thumbnail file is missing without generating a page error.
+            </remarks>       
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Media.PlaylistItem.ThumbSourceText">
+            <summary>
+            Text representation of ThumbSource.  Really only here to support XML serialization.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Media.PlaylistItem.Description">
+            <summary>
+            Gets or sets the description of this playlist item.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Media.PlaylistItem.Title">
+            <summary>
+            Gets or sets the title of the playlist item.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Media.PlaylistItem.VideoStretchMode">
+            <summary>
+            Gets or sets the stretch mode used to display this item.
+            </summary>
+            <remarks>
+            The default is <c>Stretch.Uniform</c>
+            </remarks>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Media.PlaylistItem.VideoWidth">
+            <summary>
+            Gets or sets the width of the encoded video for this item.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Media.PlaylistItem.VideoHeight">
+            <summary>
+            Gets or sets the height of the encoded video for this item.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Media.PlaylistItem.Chapters">
+            <summary>
+            Gets the chapters for this item.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Media.PlaylistItem.MarkerResources">
+            <summary>
+            Gets the marker resources for this item.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Media.PlaylistItem.TimelineMarkers">
+            <summary>
+            Gets or sets the markers for this item.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Media.PlaylistItem.DeliveryMethod">
+            <summary>
+            Gets or sets a value indicating the delivery method of the media (progressive, streaming, etc.).
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Media.PlaylistItem.MediaType">
+            <summary>
+            Gets or sets a value indicating the media type. This is useful when using custom media plugins
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Media.PlaylistItem.S3DProperties">
+            <summary>
+            Container object for all the S3D Properties used for Stereoscopic 3D display.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Media.PlaylistItem.LiveDvrRequired">
+            <summary>
+            Gets or sets a value indicating whether this playlist item is a live stream.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Core.Media.SmpteFrameRate">
+            <summary>
+            Specifies SMPTE Frame Rates. 
+            </summary>
+            <remarks> 
+            Use this enumeration with the Timecode struct to set the framerate for the Timecode.
+            </remarks>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.Media.SmpteFrameRate.Unknown">
+            <summary>
+            unknown setting.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.Media.SmpteFrameRate.Smpte2398">
+            <summary>
+            SMPTE 23.98 frame rate. Also known as Film Sync.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.Media.SmpteFrameRate.Smpte24">
+            <summary>
+            SMPTE 24 fps frame rate.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.Media.SmpteFrameRate.Smpte25">
+            <summary>
+            SMPTE 25 fps frame rate. Also known as PAL.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.Media.SmpteFrameRate.Smpte2997Drop">
+            <summary>
+            SMPTE 29.97 fps Drop Frame timecode. Used in the NTSC television system.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.Media.SmpteFrameRate.Smpte2997NonDrop">
+            <summary>
+            SMPTE 29.97 fps Non Drop Fram timecode. Used in the NTSC television system.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.Media.SmpteFrameRate.Smpte30">
+            <summary>
+            SMPTE 30 fps frame rate.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Core.Media.StreamMetadata">
+            <summary>
+            Represents information about an audio stream.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Media.StreamMetadata.Id">
+            <summary>
+            Gets or sets the id of the stream.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Media.StreamMetadata.Name">
+            <summary>
+            Gets the name of the stream.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Media.StreamMetadata.Language">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Media.StreamMetadata.Attributes">
+            <summary>
+            Gets or sets a description for the audio stream.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Core.Media.TimelineMediaMarker">
+            <summary>
+            Represents a marker that can be displayed on the Timeline.
+            </summary>
+            <remarks>
+            <para>
+            The position of a TimelineMediaMarker represents its specific time location in a media clip.
+            </para>
+            <para>
+            A display marker can have associated text that pops up when the user hovers over that marker in the timeline. 
+            A display marker can be clickable so if a user clicks on the marker, the current play position 
+            of the media jumps to that location and begins playing there.
+            </para>
+            </remarks>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Media.TimelineMediaMarker.AllowSeek">
+            <summary>
+            Gets or sets a value indicating whether a user clicking this marker causes playback to jump to the beginning position of this marker.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Core.PlayElement">
+            <summary>
+            Represents a control that offers the user a button to play (if paused) or pause (if playing) playback of the current media item.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.PlayElement.PlayStateProperty">
+            <summary>
+            PlayState DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.PlayElement.PlayState">
+            <summary>
+            Gets the current media element state.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Core.PlaylistListBox">
+            <summary>
+            A specialized ListBox used for displaying a playlist.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Core.ScrollableListBox">
+            <summary>
+            A specialized ListBox that supports scrolling.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.ScrollableListBox.ScrollIncrementProperty">
+            <summary>
+            ScrollIncrement DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.ScrollableListBox.IncrementDelayProperty">
+            <summary>
+            IncrementDelay DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.ScrollableListBox.ScrollIncrement">
+            <summary>
+            Gets or sets the size of the increment used when scrolling.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.ScrollableListBox.IncrementDelay">
+            <summary>
+            Gets or sets the speed of scrolling when the user is holding down the scroll button.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.PlaylistListBox.AllowChapterSelection">
+            <summary>
+            Gets or sets whether to allow chapter selection.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Core.PlaylistListBoxItem">
+            <summary>
+            A specialized ListBoxItem used for displaying a playlist item.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Core.PositionAwareListBoxItem">
+            <summary>
+            Specialized control that exposes Visual States indicating it's position within a ListBox.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.PlaylistListBoxItem.IsPlaying">
+            <summary>
+            Gets or sets whether the playlist item being displayed is currently playing.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Core.PlaySpeedManager">
+            <summary>
+            Represents a class that is used by the Player to control the play speed.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.PlaySpeedManager.Dispose">
+            <summary>
+            Releases the resources used by the PlaySpeedManager.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.PlaySpeedManager.FastForward">
+            <summary>
+            Begins fast forwarding if the media supports it.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.PlaySpeedManager.IncrementFastForward">
+            <summary>
+            Increments the fast forwarding rate if the media supports it.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.PlaySpeedManager.DecrementFastForward">
+            <summary>
+            Decrements the fast forwarding rate if the media supports it.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.PlaySpeedManager.Rewind">
+            <summary>
+            Begins rewinding if the media supports it.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.PlaySpeedManager.IncrementRewind">
+            <summary>
+            Increments the rewinding rate if the media supports it.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.PlaySpeedManager.DecrementRewind">
+            <summary>
+            Decrements the rewinding rate if the media supports it.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.PlaySpeedManager.SlowMotion">
+            <summary>
+            Begins slow motion playback if the media supports it.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.PlaySpeedManager.RestoreNaturalPlaySpeed">
+            <summary>
+            Sets the playback rate to normal speed.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.PlaySpeedManager.IsFastForwarding">
+            <summary>
+            Gets a value indicating whether the Player is currently fast forwarding.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.PlaySpeedManager.IsRewinding">
+            <summary>
+            Gets a value indicating whether the Player is currently rewinding.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.PlaySpeedManager.IsSlowMotion">
+            <summary>
+            Gets a value indicating whether the Player is currently playing in slow motion.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.PlaySpeedManager.IsPlaySpeedNormal">
+            <summary>
+            Gets a value indicating whether the Player is currently playing at normal play speed.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.PlaySpeedManager.SupportsNaturalFastForward">
+            <summary>
+            Gets a value indicating whether the Player has any fast forwarding rates available to use.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.PlaySpeedManager.SupportsNaturalRewind">
+            <summary>
+            Gets a value indicating whether the Player has any rewind rates available to use.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.PlaySpeedManager.SupportsSlowMotion">
+            <summary>
+            Gets a value indicating whether the Player has any slow motion rates to use.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.PlaySpeedManager.FastForwardPlaybackRates">
+            <summary>
+            Gets a value indicating whether the Player has any fast forwarding rates to use.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.PlaySpeedManager.RewindPlaybackRates">
+            <summary>
+            Gets a list of available rewind rates.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.PlaySpeedManager.SlowMotionPlaybackRates">
+            <summary>
+            Gets a list of available slow motion rates.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Core.PlaySpeedState">
+            <summary>
+            Indicates the play speed of the Player.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Core.PluginsManager">
+            <summary>
+            Handles loading of plug-ins.
+            </summary>
+            <remarks>
+            Works with MEF to load all types of plug-ins.
+            </remarks>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.PluginsManager.InitializeCompositionContainer">
+            <summary>
+            Can optionally be called ahead of time to preload all the plugins and speed up the loading of video
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.PluginsManager.BeginAddExternalPackage(System.Uri)">
+            <summary>
+            Attempts to load the plug-ins at the specified location.
+            </summary>
+            <param name="xapLocation"></param>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.PluginsManager.Assemblies">
+            <summary>
+             Using ReflectionModelServices in this way is not generally recommended.  
+             However, We are only using this to
+             retrieve Assembly information simply for diagnosability.  This
+             property should not be used for any other purpose.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.PluginsManager.GenericPluginsImport">
+            <summary>
+            Import target for Generic Plugins
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.PluginsManager.AdPayloadHandlerPluginsImport">
+            <summary>
+            Import target for AdPayloadHandler Plugins
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.PluginsManager.S3DPluginsImport">
+            <summary>
+            Import target for 3D Plugins
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.PluginsManager.MultiHeuristicsPluginsImport">
+            <summary>
+            Import target for Heuristcs Plugins
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.PluginsManager.LogWriterPluginsImport">
+            <summary>
+            Import target for Log Writer Plugins
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.PluginsManager.MediaPluginsImport">
+            <summary>
+            Import target for Media Plugins
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.PluginsManager.MarkerProviderPluginsImport">
+            <summary>
+            Import target for Marker Provider Plugins
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.PluginsManager.PresentationPluginsImport">
+            <summary>
+            Import target for Presentation Plugins
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.PluginsManager.AdaptiveCacheProviders">
+            <summary>
+            Import target for Adaptive Cache Provider Plugins
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.PluginsManager.GenericPlugins">
+            <summary>
+            Available Generic Plugins
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.PluginsManager.AdPayloadHandlerPlugins">
+            <summary>
+            Available AdPayloadHandler Plugins
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.PluginsManager.S3DPlugins">
+            <summary>
+            Available 3D Plugins
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.PluginsManager.HeuristicsPlugins">
+            <summary>
+            Available Heuristics Plugins
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.PluginsManager.LogWriterPlugins">
+            <summary>
+            Available LogWriter Plugins
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.PluginsManager.MediaPlugins">
+            <summary>
+            Available Media Plugins
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.PluginsManager.MarkerProviderPlugins">
+            <summary>
+            Available Marker Provider Plugins
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.PluginsManager.PresentationPlugins">
+            <summary>
+            Available Presentation Plugins
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.PluginsManager.AssembliesToExclude">
+            <summary>
+            Provides a list of assembly names to exclude from the plugin search. This is available for 2 reasons:
+            1) This can help optimize MEF so it doesn't try to look for plugins that we know won't be found.
+            2) WP7 calls static constructors for all types being searched by MEF. This can help prevent problems associated with this. GestureListener in the Toolkit for example causes a problem.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.PluginsManager.AddExternalPackageCompleted">
+            <summary>
+            Occurs when loading of the plug-ins from the .XAP file is completed.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.PluginsManager.AddExternalPackageFailed">
+            <summary>
+            Occurs if an error occurs when loading the plug-ins from the .XAP file.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.PluginsManager.AddExternalPackageDownloadProgressChanged">
+            <summary>
+            Occurs when the progress changes on the download of an external package.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Core.SMFPlayer">
+            <summary>
+            Represents the area where video is displayed.
+            </summary>
+            <remarks>
+            <para>
+            The Player uses a plug-in architecture so that the type of plug-in required to play a media clip (item in a Playlist) 
+            determines which plug-in is selected. For example, for a progressive download media clip, the Player will load a 
+            ProgressiveMediaPlugIn.
+            </para>
+            <para>
+            The Player has child controls including the <see cref="T:Microsoft.SilverlightMediaFramework.Core.BitrateMonitor">BitrateMonitor</see>, 
+            <see cref="T:Microsoft.SilverlightMediaFramework.Core.Timeline">Timeline</see>, 
+            and <see cref="T:Microsoft.SilverlightMediaFramework.Core.VolumeControl">VolumeControl</see> controls. These controls and the control strip (Play/Pause, FastForward, Rewind, and Stop buttons) 
+            and Playlist are displayed on the Player.
+            </para>
+            <para>
+            The Player has boolean properties you can check (for example, IsFullScreen, IsPlaylistVisible, IsAdPlaying) to determine the state of the Player.
+            </para>
+            <para>
+            There are several named parts (TemplateParts) defined for the Player. These allow a designer to completely redefine the appearance of the visual child controls of the Player with a completely customized appearance.
+            Typically a designer will use a tool such as Expression Blend to define the look of the Player and its child controls.
+            </para>
+            <para>
+            Many visual states are defined for the Player that allow a designer to customize how the player will look in many different states, 
+            such as when an ad is playing or not playing. 
+            </para>
+            <para>
+            Events occur when certain things happen in the Player, such as PlayStateChanged, MediaOpened, MediaFailed, and MarkerReached. 
+            You can write event handlers to do something when one of these events occur.
+            </para>
+            <para>
+             Many public methods have a <c>[ScriptableMember]</c> attribute allowing you to write code
+             in JavaScript to control the player (for example, you can call the Play or Pause method).
+             Properties decorated with a <c>[ScriptableMember]</c> attribute
+             allow you to get the state of the Player from 
+             JavaScript code. Many of these properties have private setters, but some properties allow full read/write access, 
+             such as the Playlist property which you can use to access the current Playlist and its items or to set the property value to a new Playlist from
+             your JavaScript code. 
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.OnLogEntryReceived(Microsoft.SilverlightMediaFramework.Plugins.Primitives.LogEntry)">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.OnKeyDown(System.Windows.Input.KeyEventArgs)">
+            <summary>
+            Watches for certain key combinations to display additional information on screen.
+            </summary>
+            <remarks>
+            The Alt-Ctrl-V key combination displays the Version Information window.
+            The Alt-Ctrl-L key combination displays logging information.
+            </remarks>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.SelectMediaPlugin(Microsoft.SilverlightMediaFramework.Core.Media.PlaylistItem)">
+            <summary>
+            Selects a MediaPlugin plugin that can play a specified Playlist item.
+            </summary>
+            <remarks>
+            The PlaylistItem passed to this method is used to determine which type of IMediaPlugin to return.
+            If more than one plugin can play the Playlist item (based on the required capabilities it lists in its attributes), the first plugin found that matches that item's play requirements in used.
+            For the selection of which plugin to use if several match the requirements, a plugin already instantiated will take precedence over other plugins.
+            </remarks>
+            <returns>
+            An IMediaPlugin that can play the type of Playlist item passed as a parameter.
+            </returns>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.SelectLogWriter(System.String)">
+            <summary>
+            Queries the available plugins and selects an ILogWriter plugin.
+            </summary>
+            <remarks>
+            The text passed to this method is used to determine which type of ILogWriter to return.
+            If more than one plugin matches the requirements for the log writer (based on the comma-separated list of Log writers in its attributes), the first plugin found that matches the requirements in used.
+            If more than one plugin matches the requirements, a plugin already instantiated will take precedence over other plugins.
+            </remarks>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.OnAdMarkerReached(Microsoft.SilverlightMediaFramework.Plugins.Primitives.Advertising.AdMarker,System.Boolean)">
+            <summary>
+            Raises the AdMarkerReached event.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.OnAdMarkerLeft(Microsoft.SilverlightMediaFramework.Plugins.Primitives.Advertising.AdMarker)">
+            <summary>
+            Raises the AdMarkerLeft event.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.OnAdMarkerSkipped(Microsoft.SilverlightMediaFramework.Plugins.Primitives.Advertising.AdMarker)">
+            <summary>
+            Raises the AdMarkerSkipped event.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.OnTimelineMarkerReached(Microsoft.SilverlightMediaFramework.Core.Media.TimelineMediaMarker,System.Boolean)">
+            <summary>
+            Raises the TimelineMarkerReached event.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.OnTimelineMarkerLeft(Microsoft.SilverlightMediaFramework.Core.Media.TimelineMediaMarker)">
+            <summary>
+            Raises the TimelineMarkerLeft event.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.OnTimelineMarkerSkipped(Microsoft.SilverlightMediaFramework.Core.Media.TimelineMediaMarker)">
+            <summary>
+            Raises the TimelineMarkerSkipped event.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.OnCaptionRegionLeft(Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions.CaptionRegion)">
+            <summary>
+            Raises the CaptionLeft event.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.OnCaptionRegionReached(Microsoft.SilverlightMediaFramework.Core.Accessibility.Captions.CaptionRegion)">
+            <summary>
+            Raises the CaptionReached event.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.AddPluginsCatalog(System.ComponentModel.Composition.Primitives.ComposablePartCatalog)">
+            <summary>
+            Adds the specified catalog to the list of available plugins.
+            </summary>
+            <param name="catalog"></param>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.BeginAddExternalPlugins(System.Uri)">
+             <summary>
+             Begins loading plugins from the .XAP file at the specified URI.
+             </summary>
+             <remarks>
+             This method calls the PluginsManager which loads any plugins in the .XAP file at the specified URI.
+             The plugins will then be available for the application to use. 
+            
+             This method can be called at any time (rather than just at initialization of the Player). This method is not called automatically.
+            
+             The AddExternalPluginsCompleted event is fired when loading plugins is done. The AddExternalPluginsFailed event is fired if there is an error loading the plugins. 
+             </remarks>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.Play">
+            <summary>
+            Plays the current item in the playlist.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.AddPlayBlock(System.Object)">
+            <summary>
+            Blocks the player from starting a video or pauses the video if active. This is useful for pre-roll ads.
+            Warning: You MUST call ReleasePlayBlock eventually to get the player to play again.
+            </summary>
+            <param name="blocker">The object applying the block. If the same object is added twice, it will be ignored.</param>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.ReleasePlayBlock(System.Object)">
+            <summary>
+            Releases a play block created with AddPlayBlock
+            </summary>
+            <param name="blocker">The object applying the block. If the object does not have a block, it will be ignored.</param>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.Pause">
+            <summary>
+            Pauses play of the current playlist item.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.Stop">
+            <summary>
+            Stops playing the current playlist item.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.SubscribeToDataStreams(System.String[])">
+            <summary>
+            Begins downloading data from the streams with the specified names.  Listen to DataReceived event for download notifications.
+            </summary>
+            <param name="streamNames">A list of the stream names to subscribe to.</param>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.UnsubscribeToDataStreams(System.String[])">
+            <summary>
+            Stops downloading data from the specified streams.
+            </summary>
+            <param name="streamNames">A list of the stream names to unsubscribe to.</param>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.ScheduleAdvertisement(System.Uri,Microsoft.SilverlightMediaFramework.Plugins.Primitives.DeliveryMethods,System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan},System.Uri,System.Nullable{System.TimeSpan},System.Boolean,Microsoft.SilverlightMediaFramework.Plugins.Primitives.IAdContext,System.Object,System.Boolean)">
+            <summary>
+            Schedules an ad to be played by this plugin.
+            </summary>
+            <param name="adSource">The source of the ad content.</param>
+            <param name="deliveryMethod">The delivery method of the ad content.</param>
+            <param name="duration">The duration of the ad content that should be played.  If ommitted the plugin will play the full duration of the ad content.</param>
+            <param name="startTime">The position within the media where this ad should be played.  If ommited ad will begin playing immediately.</param>
+            <param name="clickThrough">The URL where the user should be directed when they click the ad.</param>
+            <param name="pauseTimeline">Indicates if the timeline of the currently playing media should be paused while the ad is playing.</param>
+            <param name="appendToAd">Another scheduled ad that this ad should be appended to.  If ommitted this ad will be scheduled independently.</param>
+            <param name="data">User data.</param>
+            <returns>A reference to the IAdContext that contains information about the scheduled ad.</returns>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.ScheduleAdTrigger(System.String,System.String,System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan})">
+            <summary>
+            Schedules an ad that is to be handled by an AdPayloadHandlerPlugin.
+            A valid AdPayloadHandlerPlugin must be part of your application or this will not be handled.
+            </summary>
+            <param name="adSource">The Uri of Ad's source. Often a VAST document</param>
+            <param name="format">The format of the ad source. e.g. "vast"</param>
+            <param name="startTime">The position within the media where this ad should be played.  If ommited ad will begin playing immediately.</param>
+            <param name="duration">The duration of the ad content that should be played.  If ommitted the plugin will play the full duration of the ad content.</param>
+            <returns>An object that contains information about the scheduled ad.</returns>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.ScheduleAdTrigger(Microsoft.SilverlightMediaFramework.Plugins.Primitives.Advertising.IAdSequencingTrigger,System.Nullable{System.TimeSpan})">
+            <summary>
+            Schedules an ad that is to be handled by an AdPayloadHandlerPlugin.
+            A valid AdPayloadHandlerPlugin must be part of your application or this will not be handled.
+            </summary>
+            <param name="adTrigger">An object containing information about the ad source and target</param>
+            <param name="startTime">The position within the media where this ad should be played. If ommited ad will begin playing immediately.</param>
+            <returns>An object that contains information about the scheduled ad.</returns>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.RemoveScheduledAd(Microsoft.SilverlightMediaFramework.Plugins.Primitives.Advertising.ScheduledAd)">
+            <summary>
+            Removes a scheduled ad created by scheduling an ad trigger
+            </summary>
+            <param name="ScheduledAd"></param>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.GoToNextPlaylistItem">
+            <summary>
+            Goes to the next playlist item.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.GoToPreviousPlaylistItem">
+            <summary>
+            Goes to the previous playlist item.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.GoToPlaylistItem(System.Int32)">
+            <summary>
+            Goes to the playlist item at the specified Playlist index.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.GoToPlaylistItem(Microsoft.SilverlightMediaFramework.Core.Media.PlaylistItem)">
+            <summary>
+            Goes to the specified playlist item.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.GoToNextChapter">
+            <summary>
+            Goes to the next chapter item.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.GoToPreviousChapter">
+            <summary>
+            Goes to the previous chapter item.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.GoToChapterItem(System.Int32)">
+            <summary>
+            Goes to the chapter item at the specified index.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.GoToChapterItem(Microsoft.SilverlightMediaFramework.Core.Media.Chapter)">
+            <summary>
+            Goes to the specified chapter item.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.SeekToPosition(System.Double)">
+            <summary>
+            Seeks to the given time.
+            </summary>
+            <param name="seconds">Time to seek to.</param>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.SeekToPosition(System.TimeSpan)">
+            <summary>
+            Seeks to the time passed in as a Timespan.
+            </summary>
+            <param name="position">Time to seek to.</param>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.StartFastForward">
+            <summary>
+            Starts FastForward play of the video.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.StopFastForward">
+            <summary>
+            Stops FastForward play and restores the natural play speed of the video.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.IncrementFastForward">
+            <summary>
+            Increment the fast forward speed to the next fastest supported value.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.DecrementFastForward">
+            <summary>
+            Decrement the fast forward speed to the next slowest supported value.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.StartRewind">
+            <summary>
+            Starts rewinding of the video.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.StopRewind">
+            <summary>
+            Stops rewind and restores the natural play speed of the video.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.IncrementRewind">
+            <summary>
+            Increment the rewind speed to the next fastest supported value.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.DecrementRewind">
+            <summary>
+            Increment the rewind speed to the next slowest supported value.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.StartSlowMotion">
+            <summary>
+            Starts slowmotion playing of the video.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.StopSlowMotion">
+            <summary>
+            Stops slow motion and restores the natural play speed of the video.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.Replay">
+            <summary>
+            Subtracts the amount of time specified by the ReplayOffset property from the current Position.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.SeekToLive">
+            <summary>
+            Sets the current play position to the current live position for a live video stream.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.ImportPlayerSettings(System.String)">
+            <summary>
+            Loads settings from an Expression Encoder formatted XML string
+            </summary>
+            <param name="settings">The XML string containing the settings to be loaded.</param>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.AdPayloadHandlerPlugins_HandleCompleted(System.Object,Microsoft.SilverlightMediaFramework.Plugins.Primitives.Advertising.HandleCompletedEventArgs)">
+            <summary>
+            Called by each ad payload handler
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.ContainerHostProperty">
+            <summary>
+            An attached property to allow containers to be added to the SMFPlayer through Xaml
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.SetContainerHost(System.Windows.FrameworkElement,Microsoft.SilverlightMediaFramework.Core.SMFPlayer)">
+            <summary>
+            Ads the element to the specified player's Containers collection. For programmatic use, add to the SMFPlayer.Containers collection is recommended.
+            </summary>
+            <param name="obj">The FrameworkElement we want to add to the player's Container collection.</param>
+            <param name="player">The SMFPlayer whose Containers collection is to be added to.</param>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.GetContainerHost(System.Windows.FrameworkElement)">
+            <summary>
+            Returns the SMFPlayer where the current container resides.
+            </summary>
+            <param name="obj">The FrameworkElement we want to add to the player's Container collection.</param>
+            <returns>Returns the SMFPlayer where the current container resides.</returns>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.OnApplyTemplate">
+            <summary>
+            Builds the visual tree when a new template is applied.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.GlobalConfigMetadataProperty">
+            <summary>
+            GlobalConfigMetadata DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.HighDefinitionBitrateProperty">
+            <summary>
+            HighDefinitionBitrate DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.PositionLiveBufferProperty">
+            <summary>
+            PositionLiveBuffer DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.EstimatedLiveDurationProperty">
+            <summary>
+            EstimatedLiveDuration DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.IsStartPositionOffsetProperty">
+            <summary>
+            OffsetStartPosition DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.AvailableVideoBitratesProperty">
+            <summary>
+            AvailableVideoBitrates DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.PlayerGraphVisibilityProperty">
+            <summary>
+            PlayerGraphVisibility DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.AutoLoadProperty">
+            <summary>
+            AutoLoad DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.AutoPlayProperty">
+            <summary>
+            AutoPlay DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.IsControlStripVisibleProperty">
+            <summary>
+            IsControlStripVisible DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.AvailableAudioStreamsProperty">
+            <summary>
+            AvailableAudioStreams DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.AvailableCaptionStreamsProperty">
+            <summary>
+            AvailableCaptionStreams DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.BufferingProgressProperty">
+            <summary>
+            BufferingProgress DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.BufferingTimeProperty">
+            <summary>
+            BufferingTime DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.ContinuousPlayProperty">
+            <summary>
+            ContinuousPlay DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.DownloadProgressProperty">
+            <summary>
+            DownloadProgress DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.DownloadProgressOffsetProperty">
+            <summary>
+            DownloadProgressOffset DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.EnableCachedCompositionProperty">
+            <summary>
+            EnableCachedComposition DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.EndPositionProperty">
+            <summary>
+            EndPosition DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.FastForwardButtonBehaviorProperty">
+            <summary>
+            FastForwardButtonBehavior DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.HeuristicsPriorityProperty">
+            <summary>
+            HeuristicsPriority DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.EnableSyncProperty">
+            <summary>
+            EnableSync DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.CaptionsVisibilityProperty">
+            <summary>
+            CaptionsVisibility DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.ChaptersVisibilityProperty">
+            <summary>
+            ChaptersVisibility DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.LoggingConsoleVisibilityProperty">
+            <summary>
+            LoggingConsoleVisibility DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.IsMediaAdaptiveProperty">
+            <summary>
+            IsMediaAdaptive DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.IsMediaLiveProperty">
+            <summary>
+            IsMediaLive DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.PlaylistVisibilityProperty">
+            <summary>
+            PlaylistVisibility DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.IsPositionLiveProperty">
+            <summary>
+            IsPositionLive DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.IsPosterVisibleProperty">
+            <summary>
+            IsPosterVisible DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.IsAdvertisingProperty">
+            <summary>
+            IsAdvertisingProperty DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.RetryStateProperty">
+            <summary>
+            IsRetrying DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.IsScrubbingProperty">
+            <summary>
+            IsScrubbing DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.IsSlowMotionEnabledProperty">
+            <summary>
+            IsSlowMotionEnabled DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.LivePositionProperty">
+            <summary>
+            LivePosition DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.LivePositionTextProperty">
+            <summary>
+            LivePositionText DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.LogLevelProperty">
+            <summary>
+            LogLevel DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.LogWritersProperty">
+            <summary>
+            LogWriters DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.TimelineMarkersProperty">
+            <summary>
+            TimelineMarkers DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.AdMarkersProperty">
+            <summary>
+            AdMarkers DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.ChaptersProperty">
+            <summary>
+            Chapters DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.CaptionsProperty">
+            <summary>
+            Captions DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.VisibleCaptionsProperty">
+            <summary>
+            VisibleCaptions DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.MaximumPlaybackBitrateProperty">
+            <summary>
+            MaximumPlaybackBitrate DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.MediaTitleProperty">
+            <summary>
+            MediaTitle DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.PlaybackBitrateProperty">
+            <summary>
+            PlaybackBitrate DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.DownloadBitrateProperty">
+            <summary>
+            DownloadBitrate DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.DroppedFramesPerSecondProperty">
+            <summary>
+            DroppedFramesPerSecond DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.RenderedFramesPerSecondProperty">
+            <summary>
+            RenderedFramesPerSecond DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.PlaybackPositionProperty">
+            <summary>
+            PlaybackPosition DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.PlaybackPositionDatabindingProperty">
+            <summary>
+            PlaybackPositionOverride DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.PlayerIdProperty">
+            <summary>
+            PlayerId DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.PlaylistProperty">
+            <summary>
+            Playlist DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.CurrentPlaylistItemProperty">
+            <summary>
+            CurrentPlaylistItem DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.PlaySpeedStateProperty">
+            <summary>
+            PlaySpeedState DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.PlayStateProperty">
+            <summary>
+            PlayState DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.ReplayOffsetProperty">
+            <summary>
+            ReplayOffset DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.RetryIntervalProperty">
+            <summary>
+            RetryInterval DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.RetryDurationProperty">
+            <summary>
+            RetryDuration DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.RewindButtonBehaviorProperty">
+            <summary>
+            RewindButtonBehavior DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.SeekWhileScrubbingProperty">
+            <summary>
+            SeekWhileScrubbing DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.SelectedAudioStreamProperty">
+            <summary>
+            SelectedAudioStream DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.SelectedCaptionStreamProperty">
+            <summary>
+            SelectedCaptionStream DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.StartMutedProperty">
+            <summary>
+            StartMuted DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.StartPositionProperty">
+            <summary>
+            StartPosition DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.VersionInformationVisibilityProperty">
+            <summary>
+            VersionInformationVisibility DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.VideoHeightProperty">
+            <summary>
+            VideoHeight DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.VideoWidthProperty">
+            <summary>
+            VideoWidth DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.VolumeLevelProperty">
+            <summary>
+            VolumeLevel DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.IsMutedProperty">
+            <summary>
+            IsMuted DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.HeuristicsPluginRequiredMetadataProperty">
+            <summary>
+            HeuristicsPluginRequiredMetadata DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.OnRestrictTracks">
+            <summary>
+            Called from OnManifestReady to restrict video tracks. Windows Phone 7 has restrictions on which tracks are allowed. Override this function to change the default logic.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.GetRestrictedTracks(System.Collections.Generic.IEnumerable{System.Linq.IGrouping{System.Windows.Size,Microsoft.SilverlightMediaFramework.Plugins.Primitives.IMediaTrack}})">
+            <summary>
+            Return a collection of tracks to be restricted.
+            Note: Windows Phone 7 only supports tracks with the same resolution.
+            Override this function to provide a custom selection algorithm. Remember to make sure all non-restricted tracks have the same resolution.
+            </summary>
+            <param name="AvailableTrackGroups">All available tracks, grouped by resolution.</param>
+            <returns>The tracks that should be restricted.</returns>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.TimelineChanged">
+            <summary>
+            Indicates that the timeline has changed. You can drive period tests on this event to avoid creating multiple timers
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.TimelineMarkersChanged">
+            <summary>
+            TimelineMarkers collection has changed
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.ChaptersChanged">
+            <summary>
+            Chapters collection has changed
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.MediaPluginRegistered">
+            <summary>
+            Raised immediately after the MediaPlugin has been selected and created. Used for advanced purposes only where applications need access to the underlying MediaPlugin. In most cases, you should not use this event.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.AvailableAudioStreamsChanged">
+            <summary>
+            Occurs when AvailableAudioStreams changes.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.CaptionsVisibilityChanged">
+            <summary>
+            Occurs when CaptionsVisibility changes.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.AddExternalPluginsCompleted">
+            <summary>
+            Occurs when loading plugins has completed.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.AddExternalPluginsFailed">
+            <summary>
+            Occurs when loading plugins has failed.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.AddExternalPackageDownloadProgressChanged">
+            <summary>
+            Occurs when the progress changes on the download of an external package.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.BufferingProgressChanged">
+            <summary>
+            Occurs when the percent of the media being buffered changes.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.PlaybackPositionChanged">
+            <summary>
+            Occurs when the current playback position of this Player changes.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.PlayStateChanged">
+            <summary>
+            Occurs when the state of this Player changes.
+            </summary>
+            <remarks>
+            The PlayState enumeration indicates the current state of the Player.
+            </remarks>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.PlaySpeedStateChanged">
+            <summary>
+            Occurs when the play speed of this Player changes.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.CaptionReached">
+            <summary>
+            Occurs when a caption region is reached.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.CaptionLeft">
+            <summary>
+            Occurs when a caption region is left.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.TimelineMarkerReached">
+            <summary>
+            Occurs when a marker is reached.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.TimelineMarkerLeft">
+            <summary>
+            Occurs when a marker is left.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.TimelineMarkerSkipped">
+            <summary>
+            Occurs when a marker is skipped.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.PlaylistChanged">
+            <summary>
+            Occurs when the Playlist changes.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.PlaylistItemChanged">
+            <summary>
+            Occurs when the Playlist changes.
+            </summary>
+            <remarks>
+            The current PlaylistItem is passed to the event handler.  
+            </remarks>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.PlaylistReachedEnd">
+            <summary>
+            Occurs when the Playlist reaches the end. This does not occur when ContinuousPlay == true
+            </summary>
+            <remarks>
+            This will fire anytime we attempt to play a PlaylistItem index greater than the total number of playlist items.
+            </remarks>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.MediaFailed">
+            <summary>
+            Occurs when media fails.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.MediaEnded">
+            <summary>
+            Occurs when media ends.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.MediaOpened">
+            <summary>
+            Occurs when media has opened.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.ScrubbingStarted">
+            <summary>
+            Occurs when the user starts changing the timeline position.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.Scrubbing">
+            <summary>
+            Occurs when the user is changing the timeline position.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.ScrubbingCompleted">
+            <summary>
+            Occurs when the user finishes changing the timeline position.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.SeekCompleted">
+            <summary>
+            Occurs when the user has completed seeking.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.RetryStarted">
+            <summary>
+            Occurs when the Player starts retrying.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.RetrySuccessful">
+            <summary>
+            Occurs when retrying has successfully completed.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.RetryFailed">
+            <summary>
+            Occurs when retrying has failed.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.RetryCancelled">
+            <summary>
+            Occurs when retrying has been cancelled.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.RetryAttemptFailed">
+            <summary>
+            Occurs when a retry attempt has failed.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.LogWriteErrorOccurred">
+            <summary>
+            Occurs when writing a Log Entry fails.
+            </summary>
+            <remarks>
+            Plug-ins send logging events to the Player. This event allows an application to know if 
+            an error occurs when writing to a LogWriter fails.
+            </remarks>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.LogWriteSuccessful">
+            <summary>
+            Occurs when writing a Log Entry completes successfully.
+            </summary>
+            <remarks>
+            Plug-ins send logging events to the Player. This event allows an application to know  
+            when writing to a LogWriter succeeds.
+            </remarks>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.LogEntryReceived">
+            <summary>
+            Occurs when a Log Entry has been received.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.DataReceived">
+            <summary>
+            Occurs when data is received from a plugin.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.AudioStreamChanged">
+            <summary>
+            Occurs when the audio stream changes.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.CaptionStreamChanged">
+            <summary>
+            Occurs when the caption stream changes.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.VolumeLevelChanged">
+            <summary>
+            Occurs when the volume level changes.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.IsMutedChanged">
+            <summary>
+            Occurs when the player is muted or unmuted.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.PlaybackBitrateChanged">
+            <summary>
+            Occurs when the bitrate of the media that is playing changes.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.DownloadBitrateChanged">
+            <summary>
+            Occurs when the bitrate of media that is downloading changes.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.DownloadProgressChanged">
+            <summary>
+            Occurs when the download progress of media that is downloading changes.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.EstimatedLiveDurationExceeded">
+            <summary>
+            Occurs when the duration of a live media exceeds the EstimatedLiveDuration.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.AdvertisementProgressChanged">
+            <summary>
+            Occurs when the progress of an advertisement changes.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.AdvertisementStateChanged">
+            <summary>
+            Occurs when the state of an advertisement changes.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.AdvertisementError">
+            <summary>
+            Occurs when there is an error playing an advertisement.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.AdvertisementClickThrough">
+            <summary>
+            Occurs when a user clicks on an advertisement.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.PositionUpdateInterval">
+            <summary>
+            Gets/sets the interval used for checking markers and updating the timeline
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.CurrentPlaylistIndex">
+            <summary>
+            Gets the current index of the current Playlist Item state.
+            </summary>
+            <remarks>
+            Returns null if there is no current Playlist.
+            </remarks>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.IsPlayBlocked">
+            <summary>
+            Indicates whether or not play is current blocked via AddPlayBlock. This is useful for advertising.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.JumpToLiveAfterAd">
+            <summary>
+            Indicates that if the media source is a live streaming source, the player should jump to the current live position if we were close to the live position to begin with.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.PlayAdsOnSeek">
+            <summary>
+            Indicates that ads should still be triggered when seeked into
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.PlayAdsOnFwdRwd">
+            <summary>
+            Indicates that ads should still be triggered when fast-forwarding or rewinding into.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.AdInitTimeout">
+            <summary>
+            The timeout for initializing/loading ads. Null indicates no timeout.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.AdStartTimeout">
+            <summary>
+            The timeout for starting an ad. Null indicates no timeout.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.AdStopTimeout">
+            <summary>
+            The timeout for stopping an ad. Null indicates no timeout.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.AdCloseCompanionsOnComplete">
+            <summary>
+            Indicates that companion ads should be allowed to continue running after the ad has completed.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.AdFailurePolicy">
+            <summary>
+            The failure strategy to use when handling an AdSequencingTrigger. Indicates what happens when a subset of an ad fails (such as when a companion ad fails).
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.AdFailed">
+            <summary>
+            Raised when an ad fails. The FailurePolicy property will drive the criteria for when this is fired.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.AdSucceeded">
+            <summary>
+            Raised when an ad fails. The FailurePolicy property will drive the criteria for when this is fired.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.AdMarkerReached">
+            <summary>
+            Raised when an ad marker is reached.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.AdMarkerLeft">
+            <summary>
+            Raised when an ad marker has finished or is removed.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.AdMarkerSkipped">
+            <summary>
+            Raised when an ad marker has been skipped.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.AdMarkersChanged">
+            <summary>
+            Raised when the ad marker collection has changed.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.GlobalConfigMetadata">
+            <summary>
+            Gets or sets the bitrate value for high definition video.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.HighDefinitionBitrate">
+            <summary>
+            Gets or sets the bitrate value for high definition video.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.PositionLiveBuffer">
+            <summary>
+            Gets or sets a value indicating what the tollerance is for determining whether or not the current position is live. IsPositionLive is affected by this property.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.EstimatedLiveDuration">
+            <summary>
+            Gets or sets a value indicating what the estimated live duration is for live streams. This property affects the EndPosition property and causes the EstimatedLiveDurationExceeded event to fire when the position exceeds this position.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.IsStartPositionOffset">
+            <summary>
+            Gets or sets a value indicating whether the StartPosition is offset. If so, positions are then calculated relative to the StartPosition.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.AvailableVideoBitrates">
+            <summary>
+            Gets a value indicating which video bitrates are available for the current playlistitem.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.PlayerGraphVisibility">
+            <summary>
+            Gets or sets a value indicating whether the player graph feature should be displayed.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.AutoLoad">
+            <summary>
+            Gets or sets a value indicating whether a PlaylistItem should automatically be loaded. Setting this to False requires you to manually set CurrentPlaylistItem. Note: Loading a PlaylistItem will open the video and start buffering. However, AutoPlay is the property that controls whether or not playback should begin.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.AutoPlay">
+            <summary>
+            Gets or sets a value indicating whether a playlist should start playing when loaded.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.IsControlStripVisible">
+            <summary>
+            Gets or sets a value indicating whether the control strip should be visible or not.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.AvailableAudioStreams">
+            <summary>
+            Gets the available audio streams for the media.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.AvailableCaptionStreams">
+            <summary>
+            Gets the buffering progress for the currently playing Progressive media.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.BufferingProgress">
+            <summary>
+            Gets the buffering progress for the currently playing Progressive media.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.BufferingTime">
+            <summary>
+            Gets or sets the buffering time in seconds for the media plugin.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.ContinuousPlay">
+            <summary>
+            Gets or sets a value indicating whether the next PlaylistItem should automatically start when another PlaylistItem has finished.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.DownloadProgress">
+            <summary>
+            Gets the buffering progress for the currently playing progressive media.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.DownloadProgressOffset">
+            <summary>
+            Gets the buffering progress for the currently playing progressive media.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.EnableCachedComposition">
+            <summary>
+            Gets or sets a value indicating whether GPU accelerated cached composition should be used in the player.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.EndPosition">
+            <summary>
+            Gets the duration of the current playlist item.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.FastForwardButtonBehavior">
+            <summary>
+            Gets or sets the behavior of the FastForward button when a user presses and holds the mouse down on the button.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.HeuristicsPriority">
+            <summary>
+            Configures the value used to prioritize multiple Player heuristics.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.EnableSync">
+            <summary>
+            Configures the value used to prioritize multiple Player heuristics.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.CaptionsVisibility">
+            <summary>
+            Gets or sets a value indicating the visibility of captions.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.ChaptersVisibility">
+            <summary>
+            Gets a value indicating whether the Chapters control is visible.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.LoggingConsoleVisibility">
+            <summary>
+            Gets or sets a value indicating whether the Player is displaying the Log Window.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.IsMediaAdaptive">
+            <summary>
+            Gets a value indicating whether the current playing media is adaptive media.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.IsMediaLive">
+            <summary>
+            Gets a value indicating whether the current media is live.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.PlaylistVisibility">
+            <summary>
+            Gets or sets a value indicating whether the Playlist is visible.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.IsPositionLive">
+            <summary>
+            Gets a value indicating whether the current playback position for live media is the live position.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.IsPosterVisible">
+            <summary>
+            Gets a value indicating whether a Poster is displayed.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.IsAdvertising">
+            <summary>
+            Gets a value indicating whether an ad is displayed.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.RetryState">
+            <summary>
+            Gets a value indicating whether the Player is in retrying mode.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.RetryStateChanged">
+            <summary>
+            Indicates that the RetryState property has changed.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.IsScrubbing">
+            <summary>
+            Gets or sets a value indicating whether the timeline is currently seeking to a new position.
+            </summary>
+            <remarks>
+            When IsScrubbing is set to true the PlaybackPosition is not updated based on the current position of the underlying media element. 
+            This allows PlaybackPosition to be set via two-way data binding. 
+            When IsScrubbing is false, PlaybackPosition is updated using a timer interval to reflect the current media position.
+            </remarks>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.IsSlowMotionEnabled">
+            <summary>
+            Gets a value indicating whether the Player is in SlowMotion mode.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.LivePosition">
+            <summary>
+            Gets the position of live playback.
+            </summary>
+            <remarks>
+            This is an optional property. The value is null if the media is not live media.
+            </remarks>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.LivePositionText">
+            <summary>
+            Gets the current live position as text.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.LogLevel">
+            <summary>
+            Gets or sets the level for logging.
+            </summary>
+            <remarks>
+            <para>The LogLevel allows you to filter log messages that are written to the LogWriters.
+            For example, you might set the LogLevel to LogLevel.Information in development, 
+            but use LogLevel.Errors in production to limit the number of log statements being generated in the Player
+            and plug-ins for performance reasons.
+            </para>
+            <para>
+            The LogLevel also determines the severity of log messages displayed in the Log Window when Ctrl-Alt-L is pressed when the Player is displayed.
+            </para>
+            </remarks>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.LogWriters">
+            <summary>
+            Gets  or sets the current set of LogWriters to write logging information to.
+            </summary>
+            <remarks>
+            The value of this property is a comma-separated list of LogWriters.
+            The LogLevel determines the severity of log messages in order for them to be sent to the LogWriters.
+            </remarks>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.TimelineMarkers">
+            <summary>
+            Gets the collection of markers for the current Playlist item.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.AdMarkers">
+            <summary>
+            Gets the collection of ad markers for the current Playlist item.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.Chapters">
+            <summary>
+            Gets the current caption markers.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.Captions">
+            <summary>
+            Gets the current caption markers.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.VisibleCaptions">
+            <summary>
+            Gets the current caption markers.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.MaximumPlaybackBitrate">
+            <summary>
+            Gets the maximum bitrate for the currently playing adaptive media.
+            </summary>
+            <remarks>
+            This value is only meaningful for adaptive media.
+            </remarks>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.MediaTitleContent">
+            <summary>
+            Gets or sets the title for the media.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.PlaybackBitrate">
+            <summary>
+            Gets the actual bitrate for the currently playing adaptive media.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.DownloadBitrate">
+            <summary>
+            Gets the actual bitrate for the currently playing adaptive media.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.DroppedFramesPerSecond">
+            <summary>
+            Gets the actual bitrate for the currently playing adaptive media.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.RenderedFramesPerSecond">
+            <summary>
+            Gets the actual bitrate for the currently playing adaptive media.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.PlaybackPosition">
+            <summary>
+            Gets the current playback position.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.PlaybackPositionDatabinding">
+            <summary>
+            Gets or sets a time position that the playback position can be set to.
+            </summary>
+            <remarks>
+            This property can be used to force media playback to seek to a specific time value in the current media.
+            </remarks>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.PlayerId">
+            <summary>
+            Gets a persisted ID for the player. ID is stored in isolated storage.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.Playlist">
+            <summary>
+            Gets a list of media items to play.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.CurrentPlaylistItem">
+            <summary>
+            Gets the current PlaylistItem.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.PlaySpeedState">
+            <summary>
+            Gets a value indicating the play speed of the media.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.PlayState">
+            <summary>
+            Gets the current play state of the Player.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.ReplayOffset">
+            <summary>
+            Gets or sets the amount of time to offset the current play position back for a replay.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.RetryInterval">
+            <summary>
+            Gets or sets the number of times to retry opening failed media
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.RetryDuration">
+            <summary>
+            Gets or sets the number of times to retry opening failed media
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.RewindButtonBehavior">
+            <summary>
+            Gets or sets the behavior of the Rewind button when a user presses and holds the mouse down on the button. 
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.SeekWhileScrubbing">
+            <summary>
+            Gets or sets a value indicating whether the Player should seek to a new video position while scrubbing or wait until scrubbing is completed.
+            </summary>
+            <value>
+            <c>true</c> if the Player should seek to a new video position while scrubbing; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.SelectedAudioStream">
+            <summary>
+            Gets the selected AudioStream.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.SelectedCaptionStream">
+            <summary>
+            Gets the selected AudioStream.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.StartMuted">
+            <summary>
+            Gets or sets a value indicating whether the player should start in muted state.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.StartPosition">
+            <summary>
+            Gets the start position of the current playlist item.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.VersionInformationVisibility">
+            <summary>
+            Gets a value indicating whether to show version information.
+            </summary>
+            <remarks>
+            The Version Information window shows the versions of all SMF assemblies on the client computer.
+            The Version Information window is displayed on the client computer when Ctrl-Alt-V is pressed.
+            </remarks>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.VideoHeight">
+            <summary>
+            Gets the height of the video.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.VideoWidth">
+            <summary>
+            Gets the width of the video.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.VolumeLevel">
+            <summary>
+            Gets the current volume level.
+            </summary>
+            <remarks>
+            The value is between 0 and 1.0.
+            </remarks>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.IsMuted">
+            <summary>
+            Gets or sets whether the current media is muted.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.SMFPlayer.HeuristicsPluginRequiredMetadata">
+            <summary>
+            Gets or sets the metadata used to selected a heuristics plugin.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.AddExternalPackageCompletedLogMessage">
+            <summary>
+              Looks up a localized string similar to Addition of External Package Has Completed: {0}.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.AddExternalPackageDownloadProgressChangedLogMessage">
+            <summary>
+              Looks up a localized string similar to Download Progress of external package ({0}) is {1}.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.AddExternalPackageFailedLogMessage">
+            <summary>
+              Looks up a localized string similar to Addition of External Package ({0}) Has Failed: {1}.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.AdNotHandled">
+            <summary>
+              Looks up a localized string similar to Ad not handled: {0}.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.AdSkippedFromFwdRwd">
+            <summary>
+              Looks up a localized string similar to Ad skipped due to fast forward or rewind: {0}.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.AdSkippedFromSeek">
+            <summary>
+              Looks up a localized string similar to Ad skipped due to seek: {0}.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.BufferingProgressChangedLogMessage">
+            <summary>
+              Looks up a localized string similar to Buffering Progress Changed: {0}.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.CaptionRegionLeftLogMessage">
+            <summary>
+              Looks up a localized string similar to Caption Region Left - Id: &quot;{0}&quot;.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.CaptionRegionReachedLogMessage">
+            <summary>
+              Looks up a localized string similar to Caption Region Reached - Id: &quot;{0}&quot;.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.ChapterItemDoesNotBelongToCurrentPlaylistMessage">
+            <summary>
+              Looks up a localized string similar to The specified Chapter Item does not belong to the current Playlist..
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.ConfiguredVideoSizeLogMessage">
+            <summary>
+              Looks up a localized string similar to Configured Video Size - Height: {0} Width: {1}.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.ConfigureMediaPluginFailedLogMessage">
+            <summary>
+              Looks up a localized string similar to Error Occurred Configuring Media Plugin: {0}.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.DebugLogWriterOutputFormat">
+            <summary>
+              Looks up a localized string similar to Severity: &quot;{0}&quot; Sender: &quot;{1}&quot; Message: &quot;{2}&quot; Timestamp: &quot;{3}&quot;.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.DownloadProgressChangedLogMessage">
+            <summary>
+              Looks up a localized string similar to Download Progress Changed: {0}.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.DurationChangedLogMessage">
+            <summary>
+              Looks up a localized string similar to Duration Changed: {0}.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.errorInvalidPlaylist">
+            <summary>
+              Looks up a localized string similar to Invalid Playlist.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.errorInvalidPlaylistNode">
+            <summary>
+              Looks up a localized string similar to Invalid Playlist: Unexpected node: {0} in {1}.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.GenericErrorOccurredLogMessage">
+            <summary>
+              Looks up a localized string similar to Error Occurred - Location: &quot;{0}&quot; Message: &quot;{1}&quot;.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.GenericPluginsLoadedLogMessage">
+            <summary>
+              Looks up a localized string similar to Generic Plugins Loaded.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.InsufficientQuotaSpaceToStoreResourcesErrorMessage">
+            <summary>
+              Looks up a localized string similar to Insufficient quota space to store resource.  Resource size: {0}..
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.LoadPluginFailedLogMessage">
+            <summary>
+              Looks up a localized string similar to The following error occurred loading a plugin - Plugin: &quot;{0}&quot; Error: &quot;{1}&quot;.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.LoggingOutputFormat">
+            <summary>
+              Looks up a localized string similar to {3} Severity: &quot;{0}&quot; Sender: &quot;{1}&quot; Type: &quot;{2}&quot; Message: &quot;{3}&quot; .
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.LogWritersLoadedLogMessage">
+            <summary>
+              Looks up a localized string similar to Loaded LogWriter Plugins.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.MarkerLeftLogMessage">
+            <summary>
+              Looks up a localized string similar to Marker Left - Type: &quot;{0}&quot; Begin: &quot;{1}&quot; End: &quot;{2}&quot;.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.MarkerProviderRegisteredLogMessage">
+            <summary>
+              Looks up a localized string similar to Marker Provider Registered: {0}.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.MarkerProviderUnregisteredLogMessage">
+            <summary>
+              Looks up a localized string similar to Marker Provider Unregistered: {0}.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.MarkerReachedLogMessage">
+            <summary>
+              Looks up a localized string similar to Marker Reached - Type: &quot;{0}&quot; Begin: &quot;{1}&quot; End: &quot;{2}&quot;.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.MarkerSkippedLogMessage">
+            <summary>
+              Looks up a localized string similar to Marker Skipped - Type: &quot;{0}&quot; Begin: &quot;{1}&quot; End: &quot;{2}&quot;.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.MarkersRemovedLogMessage">
+            <summary>
+              Looks up a localized string similar to Markers Removed: {0}.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.MaximumBitrateChangedLogMessage">
+            <summary>
+              Looks up a localized string similar to Maximum Bitrate Changed: {0}.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.MediaEndedLogMessage">
+            <summary>
+              Looks up a localized string similar to Media Ended.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.MediaFailedLogMessage">
+            <summary>
+              Looks up a localized string similar to Media Failed: {0}.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.MediaOpenedLogMessage">
+            <summary>
+              Looks up a localized string similar to Media Opened.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.MediaPluginRegisteredLogMessage">
+            <summary>
+              Looks up a localized string similar to Media Plug In Registered: {0}.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.MediaPluginUnregisteredLogMessage">
+            <summary>
+              Looks up a localized string similar to Media Plug In Unregistered: {0}.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.NewMarkersLogMessage">
+            <summary>
+              Looks up a localized string similar to New Markers: {0}.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.OfflineDownloadFailedErrorMessage">
+            <summary>
+              Looks up a localized string similar to Download Failed For {0} Stream Length is {1}..
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.PlaybackBitrateChangedLogMessage">
+            <summary>
+              Looks up a localized string similar to Playback Bitrate Changed: {0}.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.PlayBlockAdded">
+            <summary>
+              Looks up a localized string similar to PlayBlock added by {0}.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.PlayBlockReleased">
+            <summary>
+              Looks up a localized string similar to PlayBlock released by {0}.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.PlaylistChangedLogMessage">
+            <summary>
+              Looks up a localized string similar to Playlist Changed.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.PlaylistItemChangedLogMessage">
+            <summary>
+              Looks up a localized string similar to Playlist Item Changed.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.PlaySpeedChangedLogMessage">
+            <summary>
+              Looks up a localized string similar to Play Speed Changed: {0}.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.PlayStateChangedLogMessage">
+            <summary>
+              Looks up a localized string similar to Play State Changed: {0}.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.PluginLoadFailedLogMessage">
+            <summary>
+              Looks up a localized string similar to Unable To Load Plugin ({0}) the following error has occurred: {1}.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.PluginsLoaded3DLogMessage">
+            <summary>
+              Looks up a localized string similar to 3D Plugins Loaded.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.PluginsLoadedAdPayloadHandlerLogMessage">
+            <summary>
+              Looks up a localized string similar to AdPayloadHandler Plugins Loaded.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.readerChapterItem">
+            <summary>
+              Looks up a localized string similar to {0} {1}.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.readerChapters">
+            <summary>
+              Looks up a localized string similar to Show chapters toggle.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.readerClosedCaptions">
+            <summary>
+              Looks up a localized string similar to Closed captions toggle.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.readerFrameStepBackwards">
+            <summary>
+              Looks up a localized string similar to Step backwards one frame.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.readerFrameStepForwards">
+            <summary>
+              Looks up a localized string similar to Step forwards one frame.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.readerFullScreen">
+            <summary>
+              Looks up a localized string similar to Full screen toggle.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.readerHour">
+            <summary>
+              Looks up a localized string similar to one hour.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.readerHours">
+            <summary>
+              Looks up a localized string similar to {0} hours.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.readerMinute">
+            <summary>
+              Looks up a localized string similar to one minute.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.readerMinutes">
+            <summary>
+              Looks up a localized string similar to {0} minutes.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.readerMute">
+            <summary>
+              Looks up a localized string similar to Mute Toggle.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.readerNextMarker">
+            <summary>
+              Looks up a localized string similar to Skip to next marker.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.readerOffline">
+            <summary>
+              Looks up a localized string similar to Make player available offline.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.readerOfflineProgressCancel">
+            <summary>
+              Looks up a localized string similar to Click the cancel button to stop offline installation.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.readerOfflineProgressFinish">
+            <summary>
+              Looks up a localized string similar to Click the finish button to compete offline installation.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.readerPlaylist">
+            <summary>
+              Looks up a localized string similar to Show playlist toggle.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.readerPlaylistItem">
+            <summary>
+              Looks up a localized string similar to playlist item {0}. {1}..
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.readerPlayPause">
+            <summary>
+              Looks up a localized string similar to Play pause toggle.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.readerPlugin">
+            <summary>
+              Looks up a localized string similar to Show graphs.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.readerPopout">
+            <summary>
+              Looks up a localized string similar to Show player in seperate window.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.readerPreviousMarker">
+            <summary>
+              Looks up a localized string similar to Skip to previous marker.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.readerSecond">
+            <summary>
+              Looks up a localized string similar to one second.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.readerSeconds">
+            <summary>
+              Looks up a localized string similar to {0} seconds.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.readerSeekSlider">
+            <summary>
+              Looks up a localized string similar to Seek to time.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.readerStop">
+            <summary>
+              Looks up a localized string similar to Stop.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.readerVolumeDown">
+            <summary>
+              Looks up a localized string similar to Decrease volume.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.readerVolumeSlider">
+            <summary>
+              Looks up a localized string similar to Set volume.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.readerVolumeUp">
+            <summary>
+              Looks up a localized string similar to Increase volume.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.RetrieveMarkersFailedLogMessage">
+            <summary>
+              Looks up a localized string similar to Retrieving Markers Has Failed: {0}.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.RetryAttemptFailedLogMessage">
+            <summary>
+              Looks up a localized string similar to Retry Attempt Failed: {0}.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.RetryCancelledLogMessage">
+            <summary>
+              Looks up a localized string similar to Retry Cancelled.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.RetryFailedLogMessage">
+            <summary>
+              Looks up a localized string similar to Retry Failed.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.RetryMonitorMediaPluginCannotBeNullMessage">
+            <summary>
+              Looks up a localized string similar to Unable to begin retrying, MediaElementPlugin cannot be null..
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.RetryStartedLogMessage">
+            <summary>
+              Looks up a localized string similar to Retry Started.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.RetrySuccessfulLogMessage">
+            <summary>
+              Looks up a localized string similar to Retry Successful.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.Smpte12M_2398_BadFormat">
+            <summary>
+              Looks up a localized string similar to Timecode frame value is not in the expected range for SMPTE 23.98 IVTC..
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.Smpte12M_24_BadFormat">
+            <summary>
+              Looks up a localized string similar to Timecode frame value is not in the expected range for SMPTE 24fps Film Sync..
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.Smpte12M_25_BadFormat">
+            <summary>
+              Looks up a localized string similar to Timecode frame value is not in the expected range for SMPTE 25fps PAL..
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.Smpte12M_2997_Drop_BadFormat">
+            <summary>
+              Looks up a localized string similar to Timecode frame value is not in the expected range for SMPTE 29.97 DropFrame..
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.Smpte12M_2997_NonDrop_BadFormat">
+            <summary>
+              Looks up a localized string similar to Timecode frame value is not in the expected range for SMTPE 29.97 NonDrop..
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.Smpte12M_30_BadFormat">
+            <summary>
+              Looks up a localized string similar to Timecode frame value is not in the expected range for SMPTE 30fps..
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.Smpte12MBadFormat">
+            <summary>
+              Looks up a localized string similar to The timecode provided is not in the correct format..
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.Smpte12MOutOfRange">
+            <summary>
+              Looks up a localized string similar to The timecode provided is out of the expected range..
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.Smpte12MOverflowException">
+            <summary>
+              Looks up a localized string similar to The resulting timecode is out of the expected range of MaxValue..
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.UIPluginsLoadedLogMessage">
+            <summary>
+              Looks up a localized string similar to UI Plugins Loaded.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.UnableToLocateMarkerProviderLogMessage">
+            <summary>
+              Looks up a localized string similar to Unable To Locate The Correct Marker Provider For This Media.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.UnableToLocateMediaPluginLogMessage">
+            <summary>
+              Looks up a localized string similar to Unable To Locate A Media Plugin To Play This Media.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Resources.SilverlightMediaFrameworkResources.UnsupportedAdDeliveryMethodExceptionMessage">
+            <summary>
+              Looks up a localized string similar to This delivery method is not supported by the current Plugin: {0}.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Core.RetryMonitor">
+            <summary>
+            Provides functionality to handle retrying logic when media fails to play. 
+            </summary>
+            <remarks>
+            Retrying begins after a MediaFailed event occurs.
+            The RetryMonitor sets the Player IsRetrying property.
+            An application can check the <c>Player.IsRetrying</c> property or databind to that property to change the appearance of the player in retrying mode. 
+            </remarks>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.RetryMonitor.Dispose">
+            <summary>
+            Releases the resources used by the RetryMonitor.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.RetryMonitor.BeginRetrying(System.Uri,System.Boolean)">
+            <summary>
+            Begins retrying to re-establish connectivity to the media source.
+            </summary>
+            <param name="progressiveMediaSource">Location of the media file (for progressive download only)</param>
+            <param name="isMediaSourceAdaptive">Indicates whether media is adaptive (the default is false).</param>
+            <remarks>
+            
+            </remarks>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Core.RetryMonitor.CancelRetrying">
+            <summary>
+            Cancels retrying to re-establish a connection.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.RetryMonitor.IsRetrying">
+            <summary>
+            Gets a value indicating whether the Player is currently in retry mode.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.RetryMonitor.MediaPlugin">
+            <summary>
+            Gets or sets a media plugin.
+            </summary>
+            <remarks>
+            If a connection is re-established, the IsRetrying property is set to false.
+            </remarks>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Core.Timeline">
+            <summary>
+            Represents a control that shows a visual indicator of the duration of the current media and current position.
+            </summary>
+            <remarks>
+            The Timeline has a collection of Markers that are loaded into the Timeline when a new media Playlist item is loaded. 
+            The Timeline keeps track of the current position, start position, and end position. 
+            These values are set each time a new media Playlist item is loaded.
+            </remarks>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.Timeline.PlaybackPositionProperty">
+            <summary>
+            PlaybackPosition DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.Timeline.StartPositionProperty">
+            <summary>
+            StartPosition DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.Timeline.EndPositionProperty">
+            <summary>
+            EndPosition DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.Timeline.LivePositionProperty">
+            <summary>
+            LivePosition DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.Timeline.IsLiveProperty">
+            <summary>
+            IsLive DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.Timeline.TimelineMarkersProperty">
+            <summary>
+            TimelineMarkers DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.Timeline.ChaptersProperty">
+            <summary>
+            Chapters DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.Timeline.MarkersProperty">
+            <summary>
+            Markers DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Timeline.PlaybackPosition">
+            <summary>
+            Gets or sets the playback position of the media.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Timeline.StartPosition">
+            <summary>
+            Gets or sets the start position of the media.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Timeline.EndPosition">
+            <summary>
+            Gets or sets the end position of the media.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Timeline.LivePosition">
+            <summary>
+            Gets or sets the live position of the media.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Timeline.IsLive">
+            <summary>
+            Gets or sets whether the current media is live.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Timeline.TimelineMarkers">
+            <summary>
+            Gets or sets a collection of timeline markers to be displayed on the timeline.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Timeline.Chapters">
+            <summary>
+            Gets or sets a collection of chapters to be displayed on the timeline.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Timeline.Markers">
+            <summary>
+            Gets or sets an aggregation of TimelineMarkers and Chapters used to display them all with a MarkersItemControl.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.Timeline.IsScrubbing">
+            <summary>
+            Gets or sets whether the timeline is scrubbing.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.Timeline.MarkerSelected">
+            <summary>
+            Occurs when a marker has been clicked on.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.Timeline.ScrubbingStarted">
+            <summary>
+            Occurs when the user begins scrubbing.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.Timeline.Scrubbing">
+            <summary>
+            Occurs when the user scrubs.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.Timeline.ScrubbingCompleted">
+            <summary>
+            Occurs when the user completes scrubbing.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Core.VolumeControl">
+            <remarks>
+            The VolumeControl has visual states defined that allow a designer to customize the appearance of the control in various states
+            (such as MouseOver, Muted, and Disabled)
+            using an application
+            such as Expression Blend.
+            </remarks>
+            <summary>
+            Represents the Volume control on the Player.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.VolumeControl.VolumeProperty">
+            <summary>
+            VolumeProperty DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.VolumeControl.IsMutedProperty">
+            <summary>
+            IsMuted DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="F:Microsoft.SilverlightMediaFramework.Core.VolumeControl.IsExpandedProperty">
+            <summary>
+            IsExpanded DependencyProperty definition.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.VolumeControl.ExpandOnMouseOver">
+            <summary>
+            Gets or sets whether to expand the VolumeControl on mouseover.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.VolumeControl.AnimateVolume">
+            <summary>
+            Gets or sets whether to animate the VolumeControl when the volume level is changed.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.VolumeControl.IsMuted">
+            <summary>
+            Gets or sets whether the media is muted.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.VolumeControl.IsExpanded">
+            <summary>
+            Gets or sets whether the VolumeControl is expanded.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Core.VolumeControl.VolumeLevel">
+            <summary>
+            Gets or sets the volume level.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.VolumeControl.VolumeLevelChanged">
+            <summary>
+            Occurs when the volume level changes.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.VolumeControl.Muted">
+            <summary>
+            Occurs when the volume is muted.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Core.VolumeControl.UnMuted">
+            <summary>
+            Occurs when the volume is unmuted.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Core.TimelineMarkerManager">
+            <summary>
+            Checks the status of timeline markers.
+            </summary>
+            <remarks>
+            <para>
+            This class tracks which timeline markers have been reached, which timeline markers have been left 
+            (when media playing has passed the end position of a timeline marker), 
+            and which timeline markers were skipped (due to the user seeking to a new position in the timeline, for example).
+            This class raises the MarkerReached, MarkerLeft, and MarkerSkipped events respectively when these conditions occur.
+            </para>
+            </remarks>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Core.VersionInformation">
+            <summary>
+            Displays an overlay of information on a client computer about the version of SMF 
+            running on that computer.
+            </summary>
+            <remarks>
+            The information displayed about the client computer when a user presses Ctrl-Alt-V 
+            includes a listing of each assembly and loaded plug-in and their version numbers.
+            This information can be useful for troubleshooting and diagnostics.
+            </remarks>
+        </member>
+    </members>
+</doc>

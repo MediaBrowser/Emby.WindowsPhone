@@ -20,6 +20,7 @@
                             SupportedOrientations="Portrait"
                             Orientation="Portrait"
                             shell:SystemTray.IsVisible="True"
+                            shell:SystemTray.BackgroundColor="White"
                             toolkit:TiltEffect.IsTiltEnabled="True"
                             DataContext="{Binding Profile, Source={StaticResource Locator}}">
     <shell:SystemTray.ProgressIndicator>

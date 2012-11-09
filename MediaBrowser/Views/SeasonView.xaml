@@ -18,7 +18,8 @@
     SupportedOrientations="Portrait"
     Orientation="Portrait"
     shell:SystemTray.IsVisible="True"
-    toolkit:TiltEffect.IsTiltEnabled="True"
+                            shell:SystemTray.BackgroundColor="White"
+                            toolkit:TiltEffect.IsTiltEnabled="True"
     d:DataContext="{Binding Tv, Source={StaticResource Locator}}">
     <shell:SystemTray.ProgressIndicator>
         <shell:ProgressIndicator IsIndeterminate="True"

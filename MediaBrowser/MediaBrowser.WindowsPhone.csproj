@@ -82,6 +82,24 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files\Laurent Bugnion (GalaSoft)\Mvvm Light Toolkit\Binaries\WP71\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.SilverlightMediaFramework.Compatibility.Phone">
+      <HintPath>..\other-packages\PlayerFramework\Microsoft.SilverlightMediaFramework.Compatibility.Phone.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SilverlightMediaFramework.Core.Phone">
+      <HintPath>..\other-packages\PlayerFramework\Microsoft.SilverlightMediaFramework.Core.Phone.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SilverlightMediaFramework.Plugins.Phone">
+      <HintPath>..\other-packages\PlayerFramework\Microsoft.SilverlightMediaFramework.Plugins.Phone.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SilverlightMediaFramework.Plugins.Progressive.Phone">
+      <HintPath>..\other-packages\PlayerFramework\Microsoft.SilverlightMediaFramework.Plugins.Progressive.Phone.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.Phone">
+      <HintPath>..\other-packages\PlayerFramework\Microsoft.SilverlightMediaFramework.Plugins.SmoothStreaming.Phone.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SilverlightMediaFramework.Utilities.Phone">
+      <HintPath>..\other-packages\PlayerFramework\Microsoft.SilverlightMediaFramework.Utilities.Phone.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Threading.Tasks, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.Bcl.Async.1.0.12-beta\lib\sl4-windowsphone71\Microsoft.Threading.Tasks.dll</HintPath>
@@ -130,6 +148,7 @@
   <ItemGroup>
     <Compile Include="Controls\ProfileBox.cs" />
     <Compile Include="Converters\LoggedInDateConverter.cs" />
+    <Compile Include="Converters\RandomColour.cs" />
     <Compile Include="Converters\SettingsConverters.cs" />
     <Compile Include="Model\SettingsService.cs" />
     <Compile Include="ThicknessAnimationX.cs" />
@@ -151,6 +170,7 @@
     <Compile Include="ViewModel\MovieViewModel.cs" />
     <Compile Include="ViewModel\SplashscreenViewModel.cs" />
     <Compile Include="ViewModel\TvViewModel.cs" />
+    <Compile Include="ViewModel\VideoPlayerViewModel.cs" />
     <Compile Include="Views\ChooseProfileView.xaml.cs">
       <DependentUpon>ChooseProfileView.xaml</DependentUpon>
     </Compile>
@@ -182,6 +202,9 @@
     </Compile>
     <Compile Include="Views\TvShowView.xaml.cs">
       <DependentUpon>TvShowView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\VideoPlayerView.xaml.cs">
+      <DependentUpon>VideoPlayerView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -239,6 +262,10 @@
     </Page>
     <Page Include="Views\TvShowView.xaml">
       <SubType>Form</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\VideoPlayerView.xaml">
+      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>

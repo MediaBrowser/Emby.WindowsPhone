@@ -22,7 +22,8 @@
     Orientation="Portrait"
     shell:SystemTray.IsVisible="True"
     shell:SystemTray.Opacity="0"
-    toolkit:TiltEffect.IsTiltEnabled="True"
+                            shell:SystemTray.BackgroundColor="{StaticResource PhoneBackgroundColor}"
+                            toolkit:TiltEffect.IsTiltEnabled="True"
     d:DataContext="{Binding Tv, Source={StaticResource Locator}}">
     <shell:SystemTray.ProgressIndicator>
         <shell:ProgressIndicator IsIndeterminate="True"

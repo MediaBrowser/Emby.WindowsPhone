@@ -1,0 +1,2615 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.SilverlightMediaFramework.Plugins.TimedText.Phone</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.SilverlightMediaFramework.Plugins.TimedText.IMarkerParser">
+            <summary>
+            Defines the functionality a class must implement to be a MarkerParser.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Plugins.TimedText.IMarkerParser.ParseMarkerCollection(System.Xml.Linq.XDocument,System.TimeSpan,System.TimeSpan)">
+            <summary>
+            Accepts an XML representation of markers and returns an IEnumerable collection of MediaMarkers.
+            </summary>
+            <param name="markerXml">An XML document defining a DFXP data chunk.</param>
+            <param name="timeOffset">The default start time of the DFXP container.</param>
+            <param name="defaultEndTime">The default end time of the DFXP container.</param>
+            <returns>A collection of MediaMarker objects.</returns>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Plugins.TimedText.InStreamTimedTextPlugin">
+            <summary>
+            Provides SMF with the ability to parse and display DFXP formatted Timed Text captions arriving over in-stream data tracks.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Plugins.TimedText.InStreamTimedTextPlugin.SetPlayer(System.Windows.FrameworkElement)">
+            <summary>
+            Passes the plugin a reference to the Player
+            </summary>
+            <param name="player">A reference to the Player</param>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Plugins.TimedText.InStreamTimedTextPlugin.Load">
+            <summary>
+            Loads the plug-in.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Plugins.TimedText.InStreamTimedTextPlugin.Unload">
+            <summary>
+            Unloads the plug-in.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.TimedText.InStreamTimedTextPlugin.LogReady">
+            <summary>
+            Occurs when the log is ready.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.TimedText.InStreamTimedTextPlugin.PluginLoaded">
+            <summary>
+            Occurs when the plug-in is loaded.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.TimedText.InStreamTimedTextPlugin.PluginUnloaded">
+            <summary>
+            Occurs when the plug-in is unloaded.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.TimedText.InStreamTimedTextPlugin.PluginLoadFailed">
+            <summary>
+            Occurs when the plug-in fails to load.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.TimedText.InStreamTimedTextPlugin.PluginUnloadFailed">
+            <summary>
+            Occurs when the plug-in fails to unload.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.TimedText.InStreamTimedTextPlugin.IsLoaded">
+            <summary>
+            Gets a value indicating whether a plug-in is currently loaded.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Plugins.TimedText.Resources.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.TimedText.Resources.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.TimedText.Resources.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.TimedText.Resources.Resources.ArgumentException">
+            <summary>
+              Looks up a localized string similar to Expected an instance of TimeCode..
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.TimedText.Resources.Resources.MaxValueSmpte12MOverflowException">
+            <summary>
+              Looks up a localized string similar to The resulting timecode {0} is out of the expected range of MaxValue {1}..
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.TimedText.Resources.Resources.MinValueSmpte12MOverflowException">
+            <summary>
+              Looks up a localized string similar to The resulting timecode is out of the expected range of MinValue..
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.TimedText.Resources.Resources.Smpte12M_2398_BadFormat">
+            <summary>
+              Looks up a localized string similar to Timecode frame value is not in the expected range for SMPTE 23.98 IVTC..
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.TimedText.Resources.Resources.Smpte12M_24_BadFormat">
+            <summary>
+              Looks up a localized string similar to Timecode frame value is not in the expected range for SMPTE 24fps Film Sync..
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.TimedText.Resources.Resources.Smpte12M_25_BadFormat">
+            <summary>
+              Looks up a localized string similar to Timecode frame value is not in the expected range for SMPTE 25fps PAL..
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.TimedText.Resources.Resources.Smpte12M_2997_Drop_BadFormat">
+            <summary>
+              Looks up a localized string similar to Timecode frame value is not in the expected range for SMPTE 29.97 DropFrame..
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.TimedText.Resources.Resources.Smpte12M_2997_NonDrop_BadFormat">
+            <summary>
+              Looks up a localized string similar to Timecode frame value is not in the expected range for SMTPE 29.97 NonDrop..
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.TimedText.Resources.Resources.Smpte12M_30_BadFormat">
+            <summary>
+              Looks up a localized string similar to Timecode frame value is not in the expected range for SMPTE 30fps..
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.TimedText.Resources.Resources.Smpte12MBadFormat">
+            <summary>
+              Looks up a localized string similar to The timecode provided is not in the correct format..
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.TimedText.Resources.Resources.Smpte12MOutOfRange">
+            <summary>
+              Looks up a localized string similar to The timecode provided is out of the expected range..
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Plugins.TimedText.Resources.TimedTextMediaPluginResources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.TimedText.Resources.TimedTextMediaPluginResources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.TimedText.Resources.TimedTextMediaPluginResources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.TimedText.Resources.TimedTextMediaPluginResources.DownloadCompletedLogMessage">
+            <summary>
+              Looks up a localized string similar to Download Completed.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.TimedText.Resources.TimedTextMediaPluginResources.DownloadFailedLogMessage">
+            <summary>
+              Looks up a localized string similar to Download Failed: {0}.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.TimedText.Resources.TimedTextMediaPluginResources.DownloadProgressChangedLogMessage">
+            <summary>
+              Looks up a localized string similar to Download Progress Changed: {0}.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.TimedText.Resources.TimedTextMediaPluginResources.InStreamTimedTextPluginParseDFXPFailedLogMessage">
+            <summary>
+              Looks up a localized string similar to Parsing of DFXP data failed: {0}.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.TimedText.Resources.TimedTextMediaPluginResources.InStreamTimedTextPluginParsingSuccessfulLogMessage">
+            <summary>
+              Looks up a localized string similar to Parsing of DFXP data completed.  {0} captions added..
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.TimedText.Resources.TimedTextMediaPluginResources.ParseErrorLogMessage">
+            <summary>
+              Looks up a localized string similar to Parse Error: {0}.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.TimedText.Resources.TimedTextMediaPluginResources.TimedTextMediaPluginInstantiatedLogMessage">
+            <summary>
+              Looks up a localized string similar to TimedTextMediaPlugin Instantiated.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.TimedText.Resources.TimedTextMediaPluginResources.TimedTextMediaPluginLoadedLogMessage">
+            <summary>
+              Looks up a localized string similar to TimedTextMediaPlugin Loaded.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.TimedText.Resources.TimedTextMediaPluginResources.TimedTextMediaPluginUnloadedLogMessage">
+            <summary>
+              Looks up a localized string similar to TimedTextMediaPlugin Unloaded.
+            </summary>
+        </member>
+        <member name="T:TimedText.AnonymousSpanElement">
+            <summary>
+            These are called out as a subclass of span, 
+            as their validity is different than pure spans. 
+            But generally they behave like spans.
+            </summary>
+        </member>
+        <member name="T:TimedText.SpanElement">
+            <summary>
+            The span element functions as a logical container and a temporal
+            structuring element for a sequence of textual content units having inline 
+            level formatting semantics. The span element accepts as its children zero or 
+            more elements in the Metadata.class element group, followed by zero or more 
+            elements in the Animation.class element group, followed by zero or more br 
+            element or text nodes interpreted as anonymous spans.
+            
+            The span class also represents open text nodes, and thus has a Text property.
+            When presented on a visual medium, a span element is intended to generate a 
+            sequence of inline areas, each containing one or more glyph areas.
+            </summary>
+        </member>
+        <member name="T:TimedText.TimedTextElementBase">
+            <summary>
+            Base class for all timed text elements. 
+            Handles parsing and validity
+            </summary>
+        </member>
+        <member name="T:TimedText.Timing.TimeTree`2">
+            <summary>
+            A Tree of elements, where each element supports a list of annotations.
+            </summary>
+            <typeparam name="TChildren">Type of children elements</typeparam>
+            <typeparam name="TAttribute">Type of attribute annotations</typeparam>
+        </member>
+        <member name="M:TimedText.Timing.TimeTree`2.TemporallyActive(TimedText.Timing.TimeCode)">
+            <summary>
+            Test if the tree is active at the given time
+            </summary>
+            <param name="time">time of test</param>
+            <returns>true if active</returns>
+        </member>
+        <member name="M:TimedText.Timing.TimeTree`2.Reduce``1(System.Func{TimedText.Timing.TimeTree{`0,`1}.TreeType,System.Collections.Generic.List{``0}})">
+            <summary>
+            Apply function to all elements in the tree and return a
+            flattened list
+            </summary>
+            <typeparam name="X"></typeparam>
+            <param name="function"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TimedText.Timing.TimeTree`2.ComputeTimeIntervals(TimedText.Timing.TimeContainer,TimedText.Timing.TimeCode,TimedText.Timing.TimeCode)">
+            <summary>
+            Walk the tree to determine the absolute start and end times of all the elements.
+            the reference times passed in are absolute times, the result of calling this is to set the local start time
+            and end time to absolute times between these two reference times, based on the begin, end and dur attributes
+            and to recursively set all of the children.
+            </summary>
+        </member>
+        <member name="P:TimedText.Timing.TimeTree`2.Timing">
+            <summary>
+            The begin, end and dur times for this node
+            </summary>
+        </member>
+        <member name="P:TimedText.Timing.TimeTree`2.Metadata">
+            <summary>
+            Metadata associated with this node
+            </summary>
+        </member>
+        <member name="P:TimedText.Timing.TimeTree`2.TimeSemantics">
+            <summary>
+            Specifies whether children are sequential or parallel in time.
+            unless an element overrides, the default is par.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:TimedText.Timing.TimeTree`2.Parent">
+            <summary>
+            tree node which is the unique parent of this node
+            </summary>
+        </member>
+        <member name="P:TimedText.Timing.TimeTree`2.Children">
+            <summary>
+            List of time trees that are contained within this node
+            </summary>
+        </member>
+        <member name="P:TimedText.Timing.TimeTree`2.Attributes">
+            <summary>
+            List of attributes associated with this node
+            </summary>
+        </member>
+        <member name="P:TimedText.Timing.TimeTree`2.Begin">
+            <summary>
+            Get the time at which this element becomes active
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:TimedText.Timing.TimeTree`2.End">
+            <summary>
+            Get the time at which this element is no longer active
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:TimedText.Timing.TimeTree`2.Duration">
+            <summary>
+            Get the time at which this element is no longer active
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:TimedText.Timing.TimeTree`2.Events">
+            <summary>
+            return an ordered list of the significant time events 
+            in the time tree.
+            </summary>
+        </member>
+        <member name="F:TimedText.TimedTextElementBase.s_overflowExpression">
+            not to spec --- but float is ridiculous.
+        </member>
+        <member name="M:TimedText.TimedTextElementBase.GetElementFromName(System.String)">
+            <summary>
+            Instantiate one of the TimedText.* classes from a string representing
+            its name. 
+            </summary>
+            <param name="elem">name of the class to instantiate</param>
+            <returns>descendent of tt_element</returns>
+        </member>
+        <member name="M:TimedText.TimedTextElementBase.Valid">
+            <summary>
+            Test validity of this subtree
+            </summary>
+            <returns>true if valid</returns>
+        </member>
+        <member name="M:TimedText.TimedTextElementBase.SetLocalStyle(System.String,System.Object)">
+            <summary>
+            Set a local style on this element
+            allows modification at runtime.
+            </summary>
+            <param name="property"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:TimedText.TimedTextElementBase.ClearLocalStyle(System.String)">
+            <summary>
+            Clear local style on this element
+            </summary>
+            <param name="property"></param>
+        </member>
+        <member name="M:TimedText.TimedTextElementBase.GetReferentStyle(System.String)">
+            <summary>
+            Look up a style property in any referent style elements.
+            </summary>
+            <param name="property"></param>
+        </member>
+        <member name="M:TimedText.TimedTextElementBase.GetComputedStyle(System.String,TimedText.RegionElement)">
+            <summary>
+            Get the final computed value for a style property from this element
+            </summary>
+            <param name="propertyName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TimedText.TimedTextElementBase.GetFormattingObject(TimedText.Timing.TimeCode)">
+            <summary>
+            sub classes need to override this.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TimedText.TimedTextElementBase.ValidateAttributes(System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Validate attribute classes
+            </summary>
+            <param name="parameterSet">true if required to validate parameter attributes</param>
+            <param name="metadataSet">true if required to validate metadata attributes</param>
+            <param name="styleSet">true if required to validate style attributes</param>
+            <param name="timingSet">true if required to validate timing attributes</param>
+            <param name="regionSet">true if required to validate region attributes</param>
+            <param name="timeContainerSet">true if required to time container parameter attributes</param>
+        </member>
+        <member name="M:TimedText.TimedTextElementBase.ValidParameterAttribute(TimedText.TimedTextAttributeBase)">
+            <summary>
+            Validate a parameter attribute
+            </summary>
+            <param name="attribute"></param>
+        </member>
+        <member name="M:TimedText.TimedTextElementBase.ValidProfileAttribute(TimedText.TimedTextAttributeBase)">
+            <summary>
+            Validate a profile attribute
+            </summary>
+            <param name="attribute"></param>
+        </member>
+        <member name="M:TimedText.TimedTextElementBase.ValidTimeContainerAttribute(TimedText.TimedTextAttributeBase)">
+            <summary>
+            Validate a time container attribute
+            </summary>
+            <param name="attribute"></param>
+        </member>
+        <member name="M:TimedText.TimedTextElementBase.ValidRegionAttribute(TimedText.TimedTextAttributeBase)">
+            <summary>
+            Validate a region attribute
+            </summary>
+            <param name="attribute"></param>
+        </member>
+        <member name="M:TimedText.TimedTextElementBase.ValidStyleReference(TimedText.TimedTextAttributeBase)">
+            <summary>
+            Validate a style reference attribute
+            </summary>
+            <param name="attribute"></param>
+        </member>
+        <member name="M:TimedText.TimedTextElementBase.ValidAttributeValue(System.String,TimedText.TimedTextAttributeBase)">
+            <summary>
+            Validate an attribute by testing syntax against the given regular expression
+            </summary>
+            <param name="matchExpression">Regular expression of syntax</param>
+            <param name="attribute">Attribute to test</param>
+            <returns></returns>
+        </member>
+        <member name="M:TimedText.TimedTextElementBase.ValidStyleAttributeValue(TimedText.TimedTextAttributeBase)">
+            <summary>
+            Validate a style attribute value
+            </summary>
+            <param name="attribute">timed text attribute to be validated</param>
+        </member>
+        <member name="M:TimedText.TimedTextElementBase.ValidXmlAttributeValue(TimedText.TimedTextAttributeBase)">
+            <summary>
+            Validate an XML attribute value
+            </summary>
+            <param name="attribute"></param>
+        </member>
+        <member name="M:TimedText.TimedTextElementBase.ValidMetadataAttributeValue(TimedText.TimedTextAttributeBase)">
+            <summary>
+            validate a metadata attribute value
+            </summary>
+            <param name="attribute"></param>
+        </member>
+        <member name="M:TimedText.TimedTextElementBase.ValidElements">
+            <summary>
+            Test whether an element's content model, and all its descendants
+            are valid Timed Text
+            throws an exception if invalid.
+            </summary>
+        </member>
+        <member name="M:TimedText.TimedTextElementBase.ValidAttributes">
+            <summary>
+            Test whether an elements attributes are allowed by Timed Text
+            throws an exception if invalid.
+            </summary>
+        </member>
+        <member name="M:TimedText.TimedTextElementBase.Parse(System.Xml.Linq.XElement)">
+            <summary>
+            Convert an XElement to the internal TimedText classes.
+            </summary>
+            <param name="timedTextData">Raw XML construct</param>
+            <returns>Timed text Element hierachy</returns>
+        </member>
+        <member name="M:TimedText.TimedTextElementBase.InitialiseDefaults">
+            <summary>
+            Initialise all the components for this parse
+            </summary>
+        </member>
+        <member name="M:TimedText.TimedTextElementBase.ParseRecursive(System.Xml.Linq.XElement,TimedText.TtElement,System.Boolean)">
+            <summary>
+            Convert an XElement to the internal TimedText classes.
+            </summary>
+            <param name="timedTextData">Raw XML construct</param>
+            <param name="root">root element of the tree</param>
+            <returns>tt_element hierachy</returns>
+        </member>
+        <member name="M:TimedText.TimedTextElementBase.NormaliseWhitespace(System.Xml.Linq.XNode)">
+            <summary>
+            convert newlines to space, and collpase runs of space to a single space
+            </summary>
+            <param name="n"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TimedText.TimedTextElementBase.IsContentElement(TimedText.TimedTextElementBase)">
+            <summary>
+            Is it a content element for purposes of parenting anonymous span's?
+            </summary>
+            <param name="node"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TimedText.TimedTextElementBase.IsMetadataContentElement(TimedText.TimedTextElementBase)">
+            <summary>
+            Metadata items that admit PCDATA as content
+            </summary>
+            <param name="node"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TimedText.TimedTextElementBase.IsParameterContentElement(TimedText.TimedTextElementBase)">
+            <summary>
+            Parameter items that admit PCDATA as content
+            </summary>
+            <param name="node"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TimedText.TimedTextElementBase.NamespaceFromTimedTextNamespace(System.String)">
+            <summary>
+            Get the local C# namespace from the Timed Text XML namespace
+            </summary>
+            <param name="p">XML namespace</param>
+            <returns>C# namespace prefix as a string</returns>
+        </member>
+        <member name="M:TimedText.TimedTextElementBase.GetMetadata(System.String)">
+            <summary>
+            Get recorded metadata for the given attribute
+            </summary>
+            <param name="attribute">metadata attribute to retrieve</param>
+            <returns>attribute value</returns>
+        </member>
+        <member name="M:TimedText.SpanElement.#ctor(System.String)">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:TimedText.SpanElement.#ctor">
+            <summary>
+            Constructor to set defaults
+            </summary>
+        </member>
+        <member name="M:TimedText.SpanElement.GetFormattingObject(TimedText.Timing.TimeCode)">
+            <summary>
+            Return formatting object for span element
+            </summary>
+            <param name="regionId"></param>
+            <param name="tick"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TimedText.SpanElement.ValidAttributes">
+            <summary>
+            Check validity of span element attributes
+            </summary>
+        </member>
+        <member name="M:TimedText.SpanElement.ValidElements">
+            <summary>
+            Check valisdity of span element content model
+            </summary>
+        </member>
+        <member name="M:TimedText.AnonymousSpanElement.#ctor(System.String)">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:TimedText.AnonymousSpanElement.GetFormattingObject(TimedText.Timing.TimeCode)">
+            <summary>
+            Return the formatting object for anonymous span element
+            </summary>
+            <param name="regionId"></param>
+            <param name="tick"></param>
+            <returns></returns>
+        </member>
+        <member name="P:TimedText.AnonymousSpanElement.Text">
+            <summary>
+            The PCDATA text of the span
+            </summary>
+        </member>
+        <member name="T:TimedText.BodyElement">
+            <summary>
+            The body element functions as a logical container and a temporal structuring 
+            element for a sequence of textual content units represented as logical divisions.
+            The body element accepts as its children zero or more elements in the 
+            Metadata.class element group, followed by zero or more elements in the Animation.
+            class element group, followed by zero or more div elements.
+            </summary>
+        </member>
+        <member name="M:TimedText.BodyElement.#ctor">
+            <summary>
+            Constructor to set defaults
+            </summary>
+        </member>
+        <member name="M:TimedText.BodyElement.GetFormattingObject(TimedText.Timing.TimeCode)">
+            <summary>
+            Get formatting object for body element
+            </summary>
+            <param name="regionId"></param>
+            <param name="tick"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TimedText.BodyElement.ValidAttributes">
+            <summary>
+            Validate body element attributes
+            </summary>
+        </member>
+        <member name="M:TimedText.BodyElement.ValidElements">
+            <summary>
+            Validate body element content model
+            </summary>
+        </member>
+        <member name="T:TimedText.BrElement">
+            <summary>
+            The br element denotes an explicit line break. This is a specialised
+            form of span containing a Unicode break character
+            </summary>
+        </member>
+        <member name="M:TimedText.BrElement.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:TimedText.BrElement.GetFormattingObject(TimedText.Timing.TimeCode)">
+            <summary>
+            Return formatting object for br element
+            </summary>
+            <param name="regionId"></param>
+            <param name="tick"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TimedText.BrElement.ValidAttributes">
+            <summary>
+            Check valisity of br element attributes
+            </summary>
+        </member>
+        <member name="M:TimedText.BrElement.ValidElements">
+            <summary>
+            chack validity of br element content model
+            </summary>
+        </member>
+        <member name="T:TimedText.DivElement">
+            <summary>
+            The div element functions as a logical container and a temporal structuring 
+            element for a sequence of textual content units represented as logical paragraphs.
+            The div element accepts as its children zero or more elements in the Metadata.class
+            element group, followed by zero or more elements in the Animation.class element
+            group, followed by zero or more p elements.
+            </summary>
+        </member>
+        <member name="M:TimedText.DivElement.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:TimedText.DivElement.GetFormattingObject(TimedText.Timing.TimeCode)">
+            <summary>
+            Get the formatting object for this element
+            </summary>
+            <param name="regionId"></param>
+            <param name="tick"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TimedText.DivElement.ValidAttributes">
+            <summary>
+            Check validity of div element attributes
+            </summary>
+        </member>
+        <member name="M:TimedText.DivElement.ValidElements">
+            <summary>
+            Check validity of dive element content model
+            </summary>
+        </member>
+        <member name="T:TimedText.HeadElement">
+            <summary>
+            The head element is a container element used to group header matter,
+            including metadata, styling, and layout information.
+            The head element accepts as its children zero or more elements in the 
+            Metadata.class element group, followed by zero or one styling element, 
+            followed by zero or one layout element.
+            </summary>
+        </member>
+        <member name="M:TimedText.HeadElement.ValidAttributes">
+            <summary>
+            Check the attributes of the timed text head element
+            </summary>
+        </member>
+        <member name="M:TimedText.HeadElement.ValidElements">
+            <summary>
+            Check the validity of the timed text head element
+            </summary>
+        </member>
+        <member name="T:TimedText.LayoutElement">
+            <summary>
+            The layout element is a container element used to group layout matter, including
+            metadata that applies to layout matter.The layout element accepts as its children
+            zero or more elements in the Metadata.class element group, followed by zero or more
+            region elements.
+            </summary>
+        </member>
+        <member name="M:TimedText.LayoutElement.ValidAttributes">
+            <summary>
+            Check validity of layout element attributes
+            </summary>
+        </member>
+        <member name="M:TimedText.LayoutElement.ValidElements">
+            <summary>
+            Check validity of layout element content model
+            </summary>
+        </member>
+        <member name="M:TimedText.MetadataElement.ValidAttributes">
+            <summary>
+            Check validity of metadata element attributes
+            </summary>
+        </member>
+        <member name="M:TimedText.MetadataElement.ValidElements">
+            <summary>
+            Check validity of metadata content model
+            </summary>
+        </member>
+        <member name="T:TimedText.PElement">
+            <summary>
+            A p element represents a logical paragraph, serving as a transition between 
+            block level and inline level formatting semantics.The p element accepts as its
+            children zero or more elements in the Metadata.class element group, followed by 
+            zero or more elements in the Animation.class element group, followed by zero or 
+            more span element, br element, or text nodes interpreted as anonymous spans.
+            </summary>
+        </member>
+        <member name="M:TimedText.PElement.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:TimedText.PElement.GetFormattingObject(TimedText.Timing.TimeCode)">
+            <summary>
+            Return formatting object for p element
+            </summary>
+            <param name="regionId"></param>
+            <param name="tick"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TimedText.PElement.ValidAttributes">
+            <summary>
+            Check validity of p element attributes
+            </summary>
+        </member>
+        <member name="M:TimedText.PElement.ValidElements">
+            <summary>
+            Check validity of p element content model
+            </summary>
+        </member>
+        <member name="T:TimedText.RegionElement">
+            <summary>
+            The region element is used to define a space or area into which content is to 
+            be flowed for the purpose of presentation.The region element accepts as its 
+            children zero or more elements in the Metadata.class element group, followed 
+            by zero or more elements in the Animation.class element group, followed by zero 
+            or more style elements.
+            </summary>
+        </member>
+        <member name="M:TimedText.RegionElement.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:TimedText.RegionElement.GetFormattingObject(TimedText.Timing.TimeCode)">
+            <summary>
+            Return formatting object for region element
+            </summary>
+            <param name="regionId"></param>
+            <param name="tick"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TimedText.RegionElement.ValidAttributes">
+            <summary>
+            Check validity of region element attributes
+            </summary>
+        </member>
+        <member name="M:TimedText.RegionElement.ValidElements">
+            <summary>
+            Check vlidity of region element content model
+            </summary>
+        </member>
+        <member name="P:TimedText.RegionElement.DefaultRegionName">
+            <summary>
+            Name for region if none is specified
+            </summary>
+        </member>
+        <member name="T:TimedText.SetElement">
+            <summary>
+            The set element is used as a child element of a content element in order to 
+            express a discrete change of some style parameter value that applies over some 
+            time interval.The set element accepts as its children zero or more elements in 
+            the Metadata.class element group.
+            </summary>
+        </member>
+        <member name="M:TimedText.SetElement.GetFormattingObject(TimedText.Timing.TimeCode)">
+            <summary>
+            Return the formatting object for set element
+            </summary>
+            <param name="regionId"></param>
+            <param name="tick"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TimedText.SetElement.ValidAttributes">
+            <summary>
+            Check validity of set element attributes
+            </summary>
+        </member>
+        <member name="M:TimedText.SetElement.ValidElements">
+            <summary>
+            Check validity of set element content model
+            </summary>
+        </member>
+        <member name="T:TimedText.StyleElement">
+            <summary>
+            The style element is used to define a single style specification or a set 
+            of style specifications.The style element accepts as its children zero or 
+            more metadata elements.
+            </summary>
+        </member>
+        <member name="M:TimedText.StyleElement.ValidAttributes">
+            <summary>
+            Check valisity of style element attributes
+            </summary>
+        </member>
+        <member name="M:TimedText.StyleElement.ValidElements">
+            <summary>
+            Check valisity of style element content model
+            </summary>
+        </member>
+        <member name="T:TimedText.StylingElement">
+            <summary>
+            The styling element is a container element used to group styling matter, 
+            including metadata that applies to styling matter.The styling element accepts 
+            as its children zero or more elements in the Metadata.class element group, 
+            followed by zero or more style elements.
+            </summary>
+        </member>
+        <member name="T:TimedText.TimedTextAttributeBase">
+            <summary>
+            Representation of Timed Text attribute data.
+            </summary>
+        </member>
+        <member name="M:TimedText.TimedTextAttributeBase.GetInitialStyle(System.String)">
+            <summary>
+            Return the Initial value for attributes as defined in the 
+            timed text specification.
+            </summary>
+            <param name="property">Name of the property to look up</param>
+            <returns>property value</returns>        
+        </member>
+        <member name="M:TimedText.TimedTextAttributeBase.IsParameterAttribute">
+            <summary>
+            Test whether this attribute is in the Timed Text Parameter 
+            namespace
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TimedText.TimedTextAttributeBase.IsProfileAttribute">
+            <summary>
+            Test whether this attribute is in the Timed Text Parameter namespace
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TimedText.TimedTextAttributeBase.IsStyleAttribute">
+            <summary>
+            Test whether this attribute is in a Timed Text Style namespace
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TimedText.TimedTextAttributeBase.IsMetadataAttribute">
+            <summary>
+            Test whether this attribute is in a Timed Text Metadata namespace
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TimedText.TimedTextAttributeBase.IsFeatureAttribute">
+            <summary>
+            Test whether this attribute is in a Timed Text Featture namespace
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TimedText.TimedTextAttributeBase.IsExtensionAttribute">
+            <summary>
+            Test whether this attribute is in a Timed Text Extension 
+            namespace
+            [deprecated] this is expected to be removed from timed text
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TimedText.TimedTextAttributeBase.IsXmlAttribute">
+            <summary>
+            Test whether this attribute is in an intrinsic XML attribute
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TimedText.TimedTextAttributeBase.IsTimedTextAttribute">
+            <summary>
+            Test whether this attribute is in any Timed Text namespace
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:TimedText.TimedTextAttributeBase.Parent">
+            <summary>
+            Element whic owns this attribute
+            </summary>
+        </member>
+        <member name="P:TimedText.TimedTextAttributeBase.LocalName">
+            <summary>
+            Name of the attribute without namespace
+            </summary>
+        </member>
+        <member name="P:TimedText.TimedTextAttributeBase.NamespaceName">
+            <summary>
+            Namespace of the attribute
+            </summary>
+        </member>
+        <member name="P:TimedText.TimedTextAttributeBase.Value">
+            <summary>
+            Value of the attribute
+            </summary>
+        </member>
+        <member name="T:TimedText.TtElement">
+            <summary>
+            The tt element serves as the root, document element of a document 
+            instance. The tt element accepts as its children zero or one head 
+            element followed by zero or one body element.
+            </summary>
+        </member>
+        <member name="M:TimedText.TtElement.GetFormattingObject(TimedText.Timing.TimeCode)">
+            <summary>
+            return the root formatting object
+            </summary>
+            <param name="regionId"></param>
+            <param name="tick"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TimedText.TtElement.ValidAttributes">
+            <summary>
+            Check tt element attribute validity
+            </summary>
+        </member>
+        <member name="M:TimedText.TtElement.ValidElements">
+            <summary>
+            Check tt element validity
+            </summary>
+        </member>
+        <member name="T:TimedText.Formatting.Formatter">
+            <summary>
+            Formatter is a function which takes a rendering engine 
+            and applies it to the element
+            </summary>
+            <param name="renderObject"></param>
+        </member>
+        <member name="T:TimedText.Formatting.FormattingObject">
+            <summary>
+            This is the base class for formatting object. We re-use the TimeTree base class, but
+            its timing is not relevant here
+            </summary>
+        </member>
+        <member name="M:TimedText.Formatting.FormattingObject.Prune(System.String)">
+            <summary>
+            Remove any subtrees which are not selected into the region.
+            </summary>
+            <param name="regionId">region to select</param>
+        </member>
+        <member name="M:TimedText.Formatting.FormattingObject.MaxChildFontSize(TimedText.Rendering.IRenderObject)">
+            <summary>
+            Calculate the largest fontsize of children. 
+            If no children, use context font.
+            </summary>
+            <param name="renderObject"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TimedText.Formatting.FormattingObject.ComputeRelativeStyles(TimedText.Rendering.IRenderObject)">
+            <summary>
+            Calculate the context font size.
+            </summary>
+            <param name="renderObject"></param>
+        </member>
+        <member name="F:TimedText.Formatting.FormattingObject.m_element">
+            <summary>
+            reference to the underlying timed text element
+            </summary>
+        </member>
+        <member name="M:TimedText.Formatting.FormattingObject.CreateFormatter">
+            <summary>
+            Retun a formatting function for this element.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TimedText.Formatting.FormattingObject.ApplyAnimations">
+            <summary>
+            Override animated attributes.
+            </summary>
+        </member>
+        <member name="M:TimedText.Formatting.FormattingObject.RemoveAppliedAnimations">
+            <summary>
+            Undo all the animated overrides.
+            </summary>
+        </member>
+        <member name="M:TimedText.Formatting.FormattingObject.ReferenceArea">
+            <summary>
+            The reference area is where this element computes its dimensions from
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TimedText.Formatting.FormattingObject.ActualArea">
+            <summary>
+            The ActualArea area is where this element draws itself into
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TimedText.Formatting.FormattingObject.RenderTree(TimedText.Timing.TimeCode,TimedText.TimedTextElementBase)">
+            <summary>
+            return the formatting object which represents the timed text tree at 
+            the given time
+            </summary>
+            <param name="timeSpan"></param>
+            <param name="tree"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TimedText.Formatting.FormattingObject.SetStyle(System.String,System.Object)">
+            <summary>
+            Set a local style on the element
+            </summary>
+            <param name="property"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:TimedText.Formatting.FormattingObject.ClearStyle(System.String)">
+            <summary>
+            clear a local style
+            </summary>
+            <param name="property"></param>
+        </member>
+        <member name="P:TimedText.Formatting.FormattingObject.RegionId">
+            <summary>
+            Get the region for this formatting object
+            </summary>
+            <returns>id of the region to format into</returns>
+        </member>
+        <member name="P:TimedText.Formatting.FormattingObject.Animations">
+            <summary>
+            Store here the list of <set/> animations that are in effect.
+            </summary>
+        </member>
+        <member name="P:TimedText.Formatting.FormattingObject.AssignedRegion">
+            <summary>
+            Return the currently assigned region for this Formatting object
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:TimedText.Formatting.Root">
+            <summary>
+            block elements that contain block container
+            </summary>
+        </member>
+        <member name="M:TimedText.Formatting.Root.#ctor(TimedText.TimedTextElementBase)">
+            <summary>
+            </summary>
+            <param name="element"></param>
+        </member>
+        <member name="M:TimedText.Formatting.Root.CreateFormatter">
+            <summary>
+            Retun a formatting function for this element.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:TimedText.Formatting.Flow">
+            <summary>
+            Flow element
+            </summary>
+        </member>
+        <member name="M:TimedText.Formatting.Flow.CreateFormatter">
+            <summary>
+            Return a formatting function for this element.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:TimedText.Formatting.BlockContainer">
+            <summary>
+             block elements that contain block content and produce reference area
+            </summary>
+        </member>
+        <member name="M:TimedText.Formatting.BlockContainer.ReferenceArea">
+            <summary>
+            Block containers generate a non null reference area.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TimedText.Formatting.BlockContainer.ActualArea">
+            <summary>
+            Block containers generate a non null reference area.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TimedText.Formatting.BlockContainer.CreateFormatter">
+            <summary>
+            Retun a formatting function for this element.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:TimedText.Formatting.Block">
+            <summary>
+             block elements that contain block content
+            </summary>
+        </member>
+        <member name="M:TimedText.Formatting.Block.CreateFormatter">
+            <summary>
+            Return a formatting function for this element.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:TimedText.Formatting.Paragraph">
+            <summary>
+             block elements that contain inline content
+            </summary>
+        </member>
+        <member name="M:TimedText.Formatting.Paragraph.AddBidirectionEncoding(System.String,System.String,System.String)">
+            <summary>
+            collect up the Unicode Bidi algorithm on this paragraph
+            </summary>
+            <param name="unicodeBidirection">one of embed, normal, bidiOveride</param>
+            <param name="direction">one of ltr or rtl</param>
+        </member>
+        <member name="M:TimedText.Formatting.Paragraph.CreateFormatter">
+            <summary>
+            Return a formatting function for paragraphs.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TimedText.Formatting.Paragraph.ComputeLeftMargin(TimedText.Rendering.IRenderObject,TimedText.Formatting.InlineContent,TimedText.Styling.Font,System.Double,System.String,System.Int32)">
+            <summary>
+            Find the length of the next rendered line.
+            </summary>
+            <param name="renderObject"></param>
+            <param name="content"></param>
+            <param name="font"></param>
+            <param name="width"></param>
+            <param name="characters"></param>
+            <param name="startchar"></param>
+            <returns></returns>
+        </member>
+        <member name="P:TimedText.Formatting.Paragraph.Text">
+            <summary>
+            Temporary roll up of all the text in the paragraph
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:TimedText.Formatting.Inline" -->
+        <member name="M:TimedText.Formatting.Inline.CreateFormatter">
+            <summary>
+            Retun a formatting function for this element.
+            This should not be called, as we will take care of it in Paragraph.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:TimedText.Formatting.Animation">
+            <summary>
+            Animation elements wrap the set object; they are attached elements
+            Their formatter is never actually called.
+            </summary>
+        </member>
+        <member name="M:TimedText.Formatting.Animation.CreateFormatter">
+            <summary>
+            Retun a formatting function for this element.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:TimedText.Formatting.InlineContent">
+            <summary>
+            inline elements that contain inline content
+            </summary>
+        </member>
+        <member name="M:TimedText.Formatting.InlineContent.ClearBreaks">
+            <summary>
+            clear all breaks in the text.
+            </summary>
+        </member>
+        <member name="M:TimedText.Formatting.InlineContent.InsertBreaks(System.Collections.ObjectModel.Collection{System.Int32})">
+            <summary>
+            Insert breaks in the text at given positions.
+            </summary>
+        </member>
+        <member name="M:TimedText.Formatting.InlineContent.CreateFormatter">
+            <summary>
+            Return a formatting function for this element.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TimedText.Formatting.InlineContent.MeasureText(System.String,TimedText.Rendering.IRenderObject,TimedText.Styling.Font,System.Double@,System.Double@)">
+            <summary>
+            Measure the width of content. 
+            </summary>
+            <param name="renderObject"></param>
+            <returns></returns>
+        </member>
+        <member name="T:TimedText.Rendering.IRenderObject">
+            <summary>
+            represents an abstract interface to a renderObject. Specific output engines
+            implement this in order to draw the formatting object tree.
+            </summary>
+        </member>
+        <member name="M:TimedText.Rendering.IRenderObject.Clear(System.Windows.Media.Color)">
+            <summary>
+            clear the drawing surface to the specified color.
+            </summary>
+        </member>
+        <member name="M:TimedText.Rendering.IRenderObject.SetOpacity(System.Byte)">
+            <summary>
+            Set the drawing opacity
+            </summary>
+            <param name="level"></param>
+        </member>
+        <member name="M:TimedText.Rendering.IRenderObject.DrawLine(System.Windows.Media.Color,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Draw a line in the specified colour from x to y
+            </summary>
+            <param name="pen"></param>
+        </member>
+        <member name="M:TimedText.Rendering.IRenderObject.DrawRectangle(System.Windows.Media.Color,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Draw a rectangle outline with specified pen, filled with specified brush
+            from top left (x1,y1) to bottom right (x2,y2)
+            </summary>
+            <param name="pen">outline pen</param>
+            <param name="brush">fill brush</param>
+            <param name="x1">top left x coordinate</param>
+            <param name="y1">top left y coordinate</param>
+            <param name="x2">bottom right x coordinate</param>
+            <param name="y2">bottom right y coordinate</param>
+        </member>
+        <member name="M:TimedText.Rendering.IRenderObject.DrawText(System.String,TimedText.Styling.Font,System.Windows.Media.Color,TimedText.Styling.TextDecorationAttributeValue,System.Double,System.Double,TimedText.Informatics.MetadataInformation)">
+            Draws a series of glyphs identified by the specified text and font.
+        </member>
+        <member name="M:TimedText.Rendering.IRenderObject.PushClip(TimedText.Styling.Rectangle)">
+            <summary>
+            Set clipping rectangle.
+            </summary>
+            <param name="rect">clipping rectangle</param>
+        </member>
+        <member name="M:TimedText.Rendering.IRenderObject.PopClip">
+            <summary>
+            Unset clipping rectangle
+            </summary>
+        </member>
+        <member name="F:TimedText.Formatting.Unicode.BreakOpportunities">
+            <summary>
+            These characters all provide a break opportunity in Unicode.
+            </summary>
+        </member>
+        <member name="M:TimedText.Styling.ColorExpression.Parse(System.String)">
+            <summary>
+            Create a Color object from a timed text colour expression
+            </summary>
+            <param name="colorExpression">colour expression</param>
+            <returns>color</returns>
+        </member>
+        <member name="M:TimedText.Styling.ColorExpression.NamedColor(System.String)">
+            <summary>
+            return a colour from one of the allowed timed text names.
+            </summary>
+            <param name="input">name of color</param>
+            <returns>color</returns>
+        </member>
+        <member name="M:TimedText.Styling.ColorExpression.UnitTests">
+            <summary>
+            Test the colour parser. Not comprehensive at this point
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:TimedText.Styling.Extent">
+            <summary>
+            Class to record a two dimensional size
+            </summary>
+        </member>
+        <member name="F:TimedText.Styling.NumberPair.m_cellColumns">
+            <summary>
+            default is 
+            </summary>
+        </member>
+        <member name="M:TimedText.Styling.NumberPair.SetCellSize(System.String)">
+            <summary>
+            Set the number of cells to divide the render canvas up into
+            </summary>
+            <param name="expression"></param>
+        </member>
+        <member name="M:TimedText.Styling.NumberPair.#ctor(System.String,System.Boolean)">
+            <summary>
+            Parse a string in a context
+            </summary>
+            <param name="expression"></param>
+            <param name="fVertical"></param>
+        </member>
+        <member name="M:TimedText.Styling.NumberPair.SetContext(System.Double,System.Double)">
+            <summary>
+            % sizes are not valid unless this has been set.
+            </summary>
+            <param name="width"></param>
+            <param name="height"></param>
+        </member>
+        <member name="M:TimedText.Styling.NumberPair.SetFontContext(System.Double,System.Double)">
+            <summary>
+            em sizes are not valid unless this has been set
+            </summary>
+            <param name="width"></param>
+            <param name="height"></param>
+        </member>
+        <member name="M:TimedText.Styling.Extent.#ctor(System.String)">
+            <summary>
+            Parse a string in a context
+            </summary>
+            <param name="expression"></param>
+        </member>
+        <member name="M:TimedText.Styling.Extent.#ctor(System.Double,System.Double)">
+            <summary>
+            Create an absolute extent.
+            </summary>
+            <param name="width"></param>
+            <param name="height"></param>
+        </member>
+        <member name="P:TimedText.Styling.Extent.Width">
+            <summary>
+            Size in the horizontal direction
+            </summary>
+        </member>
+        <member name="P:TimedText.Styling.Extent.Height">
+            <summary>
+            Size in the vertical direction
+            </summary>
+        </member>
+        <member name="T:TimedText.Styling.AutoExtent">
+            <summary>
+            An auto extent is returned when the specified value is "auto"; this needs to be converted
+            into a real extent.
+            </summary>
+        </member>
+        <member name="T:TimedText.Styling.Inherit">
+            <summary>
+            For attribute values that are explicit inherit, insert this value. 
+            It contains an object which can be used to cache the inherited value.
+            </summary>
+        </member>
+        <member name="P:TimedText.Styling.Font.LeftToRight">
+            <summary>
+            Is the text rendered left to right?
+            </summary>
+        </member>
+        <member name="T:TimedText.Styling.Rectangle">
+            <summary>
+            Basic rectangle type for reference areas.
+            </summary>
+        </member>
+        <member name="T:TimedText.Styling.LineHeight">
+            <summary>
+            Lineheight is modeled on NumberPair, but only takes a single value.
+            </summary>
+        </member>
+        <member name="M:TimedText.Styling.LineHeight.#ctor(System.String)">
+            <summary>
+            Parse a line height in a context
+            </summary>
+            <param name="expression"></param>
+        </member>
+        <member name="M:TimedText.Styling.LineHeight.#ctor(System.Double)">
+            <summary>
+            Create an absolute line height.
+            </summary>
+            <param name="width"></param>
+            <param name="height"></param>
+        </member>
+        <member name="P:TimedText.Styling.LineHeight.Height">
+            <summary>
+            Size in the vertical direction
+            </summary>
+        </member>
+        <member name="P:TimedText.Styling.LineHeight.Width">
+            <summary>
+            Size in the horizontal direction
+            </summary>
+        </member>
+        <member name="T:TimedText.Styling.NormalHeight">
+            <summary>
+            A nnormal lineheight is returned when the specified value is "normal"; 
+            this determines line height based on its children.
+            </summary>
+        </member>
+        <member name="M:TimedText.Styling.FontSize.#ctor(System.String,TimedText.Styling.FontSize,System.Double,System.Double)">
+            <summary>
+            Parse a font size expression
+            </summary>
+            <param name="expression"></param>
+        </member>
+        <member name="M:TimedText.Styling.FontSize.#ctor(System.Double,System.Double)">
+            <summary>
+            Create an absolute font size.
+            </summary>
+            <param name="width"></param>
+            <param name="height"></param>
+        </member>
+        <member name="M:TimedText.Styling.FontSize.#ctor(System.Double)">
+            <summary>
+            Create an absolute font size.
+            </summary>
+            <param name="size"></param>
+        </member>
+        <member name="P:TimedText.Styling.FontSize.FontWidth">
+            <summary>
+            Size in the horizontal direction
+            </summary>
+        </member>
+        <member name="P:TimedText.Styling.FontSize.FontHeight">
+            <summary>
+            Size in the vertical direction
+            </summary>
+        </member>
+        <member name="T:TimedText.Styling.Origin">
+            <summary>
+            Class to model a position in 2D space.
+            </summary>
+        </member>
+        <member name="M:TimedText.Styling.Origin.#ctor(System.String)">
+            <summary>
+            Parse an extent expression in context
+            </summary>
+            <param name="expression"></param>
+        </member>
+        <member name="M:TimedText.Styling.Origin.#ctor(System.Double,System.Double)">
+            <summary>
+            Create an absolute position.
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+        </member>
+        <member name="P:TimedText.Styling.Origin.X">
+            <summary>
+            Horizontal position
+            </summary>
+        </member>
+        <member name="P:TimedText.Styling.Origin.Y">
+            <summary>
+            Vertical position
+            </summary>
+        </member>
+        <member name="T:TimedText.Styling.AutoOrigin">
+            <summary>
+            An auto extent is returned when the specified value is "auto"; this needs to be converted
+            into a real extent.
+            </summary>
+        </member>
+        <member name="M:TimedText.Styling.TextOutline.#ctor(System.Windows.Media.Color,System.Double,System.Double)">
+            <summary>
+            create an absolute text outline
+            </summary>
+            <param name="color"></param>
+            <param name="width"></param>
+            <param name="blur"></param>
+        </member>
+        <member name="M:TimedText.Styling.TextOutline.SetContext(System.Double,System.Double)">
+            <summary>
+            % sizes are not valid unless this has been set.
+            </summary>
+            <param name="width"></param>
+            <param name="height"></param>
+        </member>
+        <member name="M:TimedText.Styling.TextOutline.SetFontContext(System.Double,System.Double)">
+            <summary>
+            em sizes are not valid unless this has been set
+            </summary>
+            <param name="width"></param>
+            <param name="height"></param>
+        </member>
+        <member name="M:TimedText.Styling.TextOutline.#ctor(System.String)">
+            <summary>
+            Parse a text outline expression
+            </summary>
+            <param name="expression"></param>
+        </member>
+        <member name="T:TimedText.Styling.PaddingThickness">
+            <summary>
+            Padding is a fourway, modeled by two pairs
+            </summary>
+        </member>
+        <member name="M:TimedText.Styling.PaddingThickness.SetContext(System.Double,System.Double)">
+            <summary>
+            % sizes are not valid unless this has been set.
+            </summary>
+            <param name="width"></param>
+            <param name="height"></param>
+        </member>
+        <member name="M:TimedText.Styling.PaddingThickness.SetFontContext(System.Double,System.Double)">
+            <summary>
+            em sizes are not valid unless this has been set
+            </summary>
+            <param name="width"></param>
+            <param name="height"></param>
+        </member>
+        <member name="M:TimedText.Styling.PaddingThickness.#ctor(System.String)">
+            <summary>
+            Parse a padding thickness expression
+            </summary>
+            <param name="expression"></param>
+        </member>
+        <member name="T:TimedText.Timing.TimeCode">
+            <summary>
+            Represents a SMPTE 12M standard time code and provides conversion operations to various SMPTE time code formats and rates.
+            </summary>
+            <remarks>
+            Framerates supported by the TimeCode class include, 23.98 IVTC Film Sync, 24fps Film Sync, 25fps PAL, 29.97 drop frame,
+            29.97 Non drop, and 30fps.
+            </remarks>
+        </member>
+        <member name="F:TimedText.Timing.TimeCode.SMPTEREGEXSTRING">
+            <summary>
+            Regular expression string used for parsing out the timecode.
+            </summary>
+        </member>
+        <member name="F:TimedText.Timing.TimeCode._validateTimecode">
+            <summary>
+            Regular expression object used for validating timecode.
+            </summary>
+        </member>
+        <member name="F:TimedText.Timing.TimeCode.frameRate">
+            <summary>
+            The frame rate for this instance.
+            </summary>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,Microsoft.SilverlightMediaFramework.Core.Media.SmpteFrameRate)">
+            <summary>
+             Initializes a new instance of the TimeCode struct to a specified number of hours, minutes, and seconds.
+            </summary>
+            <param name="hours">Number of hours.</param>
+            <param name="minutes">Number of minutes.</param>
+            <param name="seconds">Number of seconds.</param>
+            <param name="frames">Number of frames.</param>
+            <param name="rate">The SMPTE frame rate.</param>
+            <code source="..\Documentation\SdkDocSamples\TimecodeSamples.cs" region="CreateTimeCode_2398FromIntegers" lang="CSharp" title="Create TimeCode from Integers"/>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,Microsoft.SilverlightMediaFramework.Core.Media.SmpteFrameRate)">
+            <summary>
+             Initializes a new instance of the TimeCode struct to a specified number of hours, minutes, and seconds.
+            </summary>
+            <param name="days">Number of days.</param>
+            <param name="hours">Number of hours.</param>
+            <param name="minutes">Number of minutes.</param>
+            <param name="seconds">Number of seconds.</param>
+            <param name="frames">Number of frames.</param>
+            <param name="rate">The SMPTE frame rate.</param>
+            <code source="..\Documentation\SdkDocSamples\TimecodeSamples.cs" region="CreateTimeCode_2398FromIntegers" lang="CSharp" title="Create TimeCode from Integers"/>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.#ctor(System.Int32,Microsoft.SilverlightMediaFramework.Core.Media.SmpteFrameRate)">
+            <summary>
+            Initializes a new instance of the TimeCode struct using an Int32 in hex format containing the time code value compatible with the Windows Media Format SDK.
+            Time code is stored so that the hexadecimal value is read as if it were a decimal value. That is, the time code value 0x01133512 does not represent decimal 18035986, rather it specifies 1 hour, 13 minutes, 35 seconds, and 12 frames.
+            </summary>
+            <param name="windowsMediaTimeCode">The integer value of the timecode.</param>
+            <param name="rate">The SMPTE frame rate.</param>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.#ctor(System.TimeSpan,Microsoft.SilverlightMediaFramework.Core.Media.SmpteFrameRate)">
+            <summary>
+            Initializes a new instance of the TimeCode struct using the TotalSeconds in the supplied TimeSpan.
+            </summary>
+            <param name="timeSpan">The <see cref="T:System.TimeSpan"/> to be used for the new timecode.</param>
+            <param name="rate">The SMPTE frame rate.</param>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the TimeCode struct using a time code string that contains the framerate at the end of the string.
+            </summary>
+            <remarks>
+            Pass in a timecode in the format "timecode@framrate". 
+            Supported rates include @23.98, @24, @25, @29.97, @30
+            </remarks>
+            <example>
+            "00:01:00:00@29.97" is equivalent to 29.97 non drop frame.
+            "00:01:00;00@29.97" is equivalent to 29.97 drop frame.
+            </example>
+            <param name="timeCodeAndRate">The SMPTE 12m time code string.</param>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.#ctor(System.String,Microsoft.SilverlightMediaFramework.Core.Media.SmpteFrameRate)">
+            <summary>
+            Initializes a new instance of the TimeCode struct using a time code string and a SMPTE framerate.
+            </summary>
+            <param name="timeCode">The SMPTE 12m time code string.</param>
+            <param name="rate">The SMPTE framerate used for this instance of TimeCode.</param>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.#ctor(System.Double,Microsoft.SilverlightMediaFramework.Core.Media.SmpteFrameRate)">
+            <summary>
+            Initializes a new instance of the TimeCode struct using an absolute time value, and the SMPTE framerate.
+            </summary>
+            <param name="absoluteTime">The double that represents the absolute time value.</param>
+            <param name="rate">The SMPTE framerate that this instance should use.</param>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.#ctor(System.UInt64,Microsoft.SilverlightMediaFramework.Core.Media.SmpteFrameRate)">
+            <summary>
+            Initializes a new instance of the TimeCode struct a long value that represents a value of a 27 Mhz clock.
+            </summary>
+            <param name="ticks27Mhz">The long value in 27 Mhz clock ticks.</param>
+            <param name="rate">The SMPTE frame rate to use for this instance.</param>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Decimal)">
+            <summary>
+             Initializes a new instance of the TimeCode struct to a specified number of hours, minutes, and seconds.
+            </summary>
+            <param name="hours">Number of hours</param>
+            <param name="minutes">Number of minutes</param>
+            <param name="seconds">Number of seconds</param>
+            <param name="frames">Number of frames</param>
+            <param name="rate">The Smpte frame rate</param>
+            <exception cref="T:System.FormatException">
+            The parameters specify a TimeCode value less than TimeCode.MinValue
+            or greater than TimeCode.MaxValue, or the values of time code components are not valid for the 
+            Smpte framerate.
+            </exception>
+            <code source="..\Documentation\SdkDocSamples\TimecodeSamples.cs" region="CreateTimeCode_2398FromIntegers" lang="CSharp" title="Create TimeCode from Integers"/>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.#ctor(System.TimeSpan,System.Decimal)">
+            <summary>
+            Initializes a new instance of the TimeCode struct using the TotalSeconds in the supplied TimeSpan.
+            </summary>
+            <param name="timeSpan">The <see cref="T:System.TimeSpan"/> to be used for the new timecode.</param>
+            <param name="rate">The Smpte frame rate</param>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.op_Subtraction(TimedText.Timing.TimeCode,TimedText.Timing.TimeCode)">
+            <summary>
+            Subtracts a specified TimeCode from another specified TimeCode.
+            </summary>
+            <param name="t1">The first TimeCode.</param>
+            <param name="t2">The second TimeCode.</param>
+            <returns>A TimeCode whose value is the result of the value of t1 minus the value of t2.
+            </returns>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.op_Inequality(TimedText.Timing.TimeCode,TimedText.Timing.TimeCode)">
+            <summary>
+            Indicates whether two TimeCode instances are not equal.
+            </summary>
+            <param name="t1">The first TimeCode.</param>
+            <param name="t2">The second TimeCode.</param>
+            <returns>true if the values of t1 and t2 are not equal; otherwise, false.</returns>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.op_Addition(TimedText.Timing.TimeCode,TimedText.Timing.TimeCode)">
+            <summary>
+            Adds two specified TimeCode instances.
+            </summary>
+            <param name="t1">The first TimeCode.</param>
+            <param name="t2">The second TimeCode.</param>
+            <returns>A TimeCode whose value is the sum of the values of t1 and t2.</returns>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.op_LessThan(TimedText.Timing.TimeCode,TimedText.Timing.TimeCode)">
+            <summary>
+             Indicates whether a specified TimeCode is less than another
+             specified TimeCode.
+            </summary>
+            <param name="t1">The first TimeCode.</param>
+            <param name="t2">The second TimeCode.</param>
+            <returns> 
+            A true if the value of t1 is less than the value of t2; otherwise, false.
+            </returns>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.op_LessThanOrEqual(TimedText.Timing.TimeCode,TimedText.Timing.TimeCode)">
+            <summary>
+             Indicates whether a specified TimeCode is less than or equal to another
+             specified TimeCode.
+            </summary>
+            <param name="t1">The first TimeCode.</param>
+            <param name="t2">The second TimeCode.</param>
+            <returns>true if the value of t1 is less than or equal to the value of t2; otherwise, false.</returns>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.op_Equality(TimedText.Timing.TimeCode,TimedText.Timing.TimeCode)">
+            <summary>
+             Indicates whether two TimeCode instances are equal.
+            </summary>
+            <param name="t1">The first TimeCode.</param>
+            <param name="t2">The second TimeCode.</param>
+            <returns>true if the values of t1 and t2 are equal; otherwise, false.</returns>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.op_GreaterThan(TimedText.Timing.TimeCode,TimedText.Timing.TimeCode)">
+            <summary>
+            Indicates whether a specified TimeCode is greater than another specified
+                TimeCode.
+            </summary>
+            <param name="t1">The first TimeCode.</param>
+            <param name="t2">The second TimeCode.</param>
+            <returns>true if the value of t1 is greater than the value of t2; otherwise, false.
+            </returns>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.op_GreaterThanOrEqual(TimedText.Timing.TimeCode,TimedText.Timing.TimeCode)">
+            <summary>
+            Indicates whether a specified TimeCode is greater than or equal to
+                another specified TimeCode.
+            </summary>
+            <param name="t1">The first TimeCode.</param>
+            <param name="t2">The second TimeCode.</param>
+            <returns>
+            A true if the value of t1 is greater than or equal to the value of t2; otherwise,
+               false.
+            </returns>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.Ticks27MhzToSmpte12M(System.UInt64,Microsoft.SilverlightMediaFramework.Core.Media.SmpteFrameRate)">
+            <summary>
+            Returns a SMPTE 12M formatted time code string from a 27Mhz ticks value.
+            </summary>
+            <param name="ticks27Mhz">27Mhz ticks value.</param>
+            <param name="rate">The SMPTE time code framerated desired.</param>
+            <returns>A SMPTE 12M formatted time code string.</returns>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.Compare(TimedText.Timing.TimeCode,TimedText.Timing.TimeCode)">
+            <summary>
+            Compares two TimeCode values and returns an integer that indicates their relationship.
+            </summary>
+            <param name="t1">The first TimeCode.</param>
+            <param name="t2">The second TimeCode.</param>
+            <returns>
+            Value Condition -1 t1 is less than t2, 0 t1 is equal to t2, 1 t1 is greater than t2.
+            </returns>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.Equals(TimedText.Timing.TimeCode,TimedText.Timing.TimeCode)">
+            <summary>
+             Returns a value indicating whether two specified instances of TimeCode
+             are equal.
+            </summary>
+            <param name="t1">The first TimeCode.</param>
+            <param name="t2">The second TimeCode.</param>
+            <returns>true if the values of t1 and t2 are equal; otherwise, false.</returns>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.FromDays(System.Double,Microsoft.SilverlightMediaFramework.Core.Media.SmpteFrameRate)">
+            <summary>
+             Returns a TimeCode that represents a specified number of days, where
+             the specification is accurate to the nearest millisecond.
+            </summary>
+            <param name="value">A number of days accurate to the nearest millisecond.</param>
+            <param name="rate">The desired framerate for this instance.</param>
+            <returns> A TimeCode that represents value.</returns>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.FromHours(System.Double,Microsoft.SilverlightMediaFramework.Core.Media.SmpteFrameRate)">
+            <summary>
+             Returns a TimeCode that represents a specified number of hours, where
+             the specification is accurate to the nearest millisecond.
+            </summary>
+            <param name="value">A number of hours accurate to the nearest millisecond.</param>
+            <param name="rate">The desired framerate for this instance.</param>
+            <returns> A TimeCode that represents value.</returns>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.FromMinutes(System.Double,Microsoft.SilverlightMediaFramework.Core.Media.SmpteFrameRate)">
+            <summary>
+              Returns a TimeCode that represents a specified number of minutes,
+              where the specification is accurate to the nearest millisecond.
+            </summary>
+            <param name="value">A number of minutes, accurate to the nearest millisecond.</param>
+            <param name="rate">The <see cref="T:Microsoft.SilverlightMediaFramework.Core.Media.SmpteFrameRate"/> to use for the calculation.</param>
+            <returns>A TimeCode that represents value.</returns>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.FromSeconds(System.Double,Microsoft.SilverlightMediaFramework.Core.Media.SmpteFrameRate)">
+            <summary>
+            Returns a TimeCode that represents a specified number of seconds,
+            where the specification is accurate to the nearest millisecond.
+            </summary>
+            <param name="value">A number of seconds, accurate to the nearest millisecond.</param>
+            /// <param name="rate">The framerate of the Timecode.</param>
+            <returns>A TimeCode that represents value.</returns>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.FromFrames(System.UInt64,Microsoft.SilverlightMediaFramework.Core.Media.SmpteFrameRate)">
+            <summary>
+            Returns a TimeCode that represents a specified number of frames.
+            </summary>
+            <param name="value">A number of frames.</param>
+            <param name="rate">The framerate of the Timecode.</param>
+            <returns>A TimeCode that represents value.</returns>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.FromTicks(System.UInt64,Microsoft.SilverlightMediaFramework.Core.Media.SmpteFrameRate)">
+            <summary>
+            Returns a TimeCode that represents a specified time, where the specification
+             is in units of ticks.
+            </summary>
+            <param name="ticks"> A number of ticks that represent a time.</param>
+            <param name="rate">The Smpte framerate.</param>
+            <returns>A TimeCode with a value of value.</returns>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.FromTicks27Mhz(System.UInt64,Microsoft.SilverlightMediaFramework.Core.Media.SmpteFrameRate)">
+            <summary>
+            Returns a TimeCode that represents a specified time, where the specification is 
+            in units of 27 Mhz clock ticks.
+            </summary>
+            <param name="value">A number of ticks in 27 Mhz clock format.</param>
+            <param name="rate">A Smpte framerate.</param>
+            <returns>A TimeCode.</returns>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.FromAbsoluteTime(System.Double,Microsoft.SilverlightMediaFramework.Core.Media.SmpteFrameRate)">
+            <summary>
+            Returns a TimeCode that represents a specified time, where the specification is 
+            in units of absolute time.
+            </summary>
+            <param name="value">The absolute time in 100 nanosecond units.</param>
+            <param name="rate">The SMPTE framerate.</param>
+            <returns>A TimeCode.</returns>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.FromTimeSpan(System.TimeSpan,Microsoft.SilverlightMediaFramework.Core.Media.SmpteFrameRate)">
+            <summary>
+            Returns a TimeCode that represents a specified time, where the specification is 
+            in units of absolute time.
+            </summary>
+            <param name="value">The <see cref="T:System.TimeSpan"/> object.</param>
+            <param name="rate">The SMPTE framerate.</param>
+            <returns>A TimeCode.</returns>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.ValidateSmpte12MTimecode(System.String)">
+            <summary>
+            Validates that the string provided is in the correct format for SMPTE 12M time code.
+            </summary>
+            <param name="timeCode">String that is the time code.</param>
+            <returns>True if this is a valid SMPTE 12M time code string.</returns>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.ValidateSmpte12MTimecode(System.Int32)">
+            <summary>
+            Validates that the hexadecimal formatted integer provided is in the correct format for SMPTE 12M time code
+            Time code is stored so that the hexadecimal value is read as if it were an integer value. 
+            That is, the time code value 0x01133512 does not represent integer 18035986, rather it specifies 1 hour, 13 minutes, 35 seconds, and 12 frames.      
+            </summary>
+            <param name="windowsMediaTimeCode">Integer that is the time code stored in hexadecimal format.</param>
+            <returns>True if this is a valid SMPTE 12M time code string.</returns>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.Smpte12MToTicks27Mhz(System.String,Microsoft.SilverlightMediaFramework.Core.Media.SmpteFrameRate)">
+            <summary>
+            Returns the value of the provided time code string and framerate in 27Mhz ticks.
+            </summary>
+            <param name="timeCode">The SMPTE 12M formatted time code string.</param>
+            <param name="rate">The SMPTE framerate.</param>
+            <returns>A ulong that represents the value of the time code in 27Mhz ticks.</returns>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.ParseFramerate(System.Double)">
+            <summary>
+            Parses a framerate value as double and converts it to a member of the SmpteFrameRate enumeration.
+            </summary>
+            <param name="rate">Double value of the framerate.</param>
+            <returns>A SmpteFrameRate enumeration value that matches the incoming rates.</returns>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.Add(TimedText.Timing.TimeCode)">
+            <summary>
+            Adds the specified TimeCode to this instance.
+            </summary>
+            <param name="ts">A TimeCode.</param>
+            <returns>A TimeCode that represents the value of this instance plus the value of ts.
+            </returns>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.CompareTo(System.Object)">
+            <summary>
+             Compares this instance to a specified object and returns an indication of
+              their relative values.
+            </summary>
+            <param name="value">An object to compare, or null.</param>
+            <returns>
+             Value Condition -1 The value of this instance is less than the value of value.
+               0 The value of this instance is equal to the value of value. 1 The value
+               of this instance is greater than the value of value.-or- value is null.
+            </returns>
+            <exception cref="T:System.ArgumentException">
+             value is not a TimeCode.
+            </exception>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.CompareTo(TimedText.Timing.TimeCode)">
+            <summary>
+            Compares this instance to a specified TimeCode object and returns
+            an indication of their relative values.
+            </summary>
+            <param name="value"> A TimeCode object to compare to this instance.</param>
+            <returns>
+            A signed number indicating the relative values of this instance and value.Value
+            Description A negative integer This instance is less than value. Zero This
+            instance is equal to value. A positive integer This instance is greater than
+            value.
+            </returns>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.Equals(System.Object)">
+            <summary>
+             Returns a value indicating whether this instance is equal to a specified
+             object.
+            </summary>
+            <param name="value">An object to compare with this instance.</param>
+            <returns>
+            A true if value is a TimeCode object that represents the same time interval
+            as the current TimeCode structure; otherwise, false.
+            </returns>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.Equals(TimedText.Timing.TimeCode)">
+            <summary>
+            Returns a value indicating whether this instance is equal to a specified
+                TimeCode object.
+            </summary>
+            <param name="obj">An TimeCode object to compare with this instance.</param>
+            <returns>true if obj represents the same time interval as this instance; otherwise, false.
+            </returns>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.GetHashCode">
+            <summary>
+            Returns a hash code for this instance.
+            </summary>
+            <returns> A 32-bit signed integer hash code.</returns>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.Subtract(TimedText.Timing.TimeCode)">
+            <summary>
+            Subtracts the specified TimeCode from this instance.
+            </summary>
+            <param name="ts">A TimeCode.</param>
+            <returns>A TimeCode whose value is the result of the value of this instance minus the value of ts.</returns>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.ToString">
+            <summary>
+            Returns the SMPTE 12M string representation of the value of this instance.
+            </summary>
+            <returns>
+            A string that represents the value of this instance. The return value is
+                of the form: hh:mm:ss:ff for non-drop frame and hh:mm:ss;ff for drop frame code
+                with "hh" hours, ranging from 0 to 23, "mm" minutes
+                ranging from 0 to 59, "ss" seconds ranging from 0 to 59, and  "ff"  based on the 
+                chosen framerate to be used by the time code instance.
+            </returns>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.ToString(Microsoft.SilverlightMediaFramework.Core.Media.SmpteFrameRate)">
+            <summary>
+            Outputs a string of the current time code in the requested framerate.
+            </summary>
+            <param name="rate">The SmpteFrameRate required for the string output.</param>
+            <returns>SMPTE 12M formatted time code string converted to the requested framerate.</returns>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.ToTicks27Mhz">
+            <summary>
+            Returns the value of this instance in 27 Mhz ticks.
+            </summary>
+            <returns>A ulong value that is in 27 Mhz ticks.</returns>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.ToTicksPcrTb">
+            <summary>
+            Returns the value of this instance in MPEG 2 PCR time base (PcrTb) format.
+            </summary>
+            <returns>A ulong value that is in PcrTb.</returns>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.Smpte12mToAbsoluteTime(System.String,Microsoft.SilverlightMediaFramework.Core.Media.SmpteFrameRate)">
+            <summary>
+            Converts a SMPTE timecode to absolute time.
+            </summary>
+            <param name="timeCode">The timecode to convert from.</param>
+            <param name="rate">The <see cref="T:Microsoft.SilverlightMediaFramework.Core.Media.SmpteFrameRate"/> of the timecode.</param>
+            <returns>A <see cref="T:System.Decimal"/> with the absolute time.</returns>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.ParseTimecodeString(System.String,System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@)">
+            <summary>
+            Parses a timecode string for the different parts of the timecode.
+            </summary>
+            <param name="timeCode">The source timecode to parse.</param>
+            <param name="days">The Days section from the timecode.</param>
+            <param name="hours">The Hours section from the timecode.</param>
+            <param name="minutes">The Minutes section from the timecode.</param>
+            <param name="seconds">The Seconds section from the timecode.</param>
+            <param name="frames">The frames section from the timecode.</param>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.ParseTimecodeString(System.String,System.Int32@,System.Int32@,System.Int32@,System.Int32@)">
+            <summary>
+            Parses a timecode string for the different parts of the timecode.
+            </summary>
+            <param name="timeCode">The source timecode to parse.</param>
+            <param name="hours">The Hours section from the timecode.</param>
+            <param name="minutes">The Minutes section from the timecode.</param>
+            <param name="seconds">The Seconds section from the timecode.</param>
+            <param name="frames">The frames section from the timecode.</param>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.FormatTimeCodeString(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Generates a string representation of the timecode.
+            </summary>
+            <param name="days">The Days section from the timecode.</param>
+            <param name="hours">The Hours section from the timecode.</param>
+            <param name="minutes">The Minutes section from the timecode.</param>
+            <param name="seconds">The Seconds section from the timecode.</param>
+            <param name="frames">The frames section from the timecode.</param>
+            <param name="dropFrame">Indicates whether the timecode is drop frame or not.</param>
+            <returns>The timecode in string format.</returns>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.FormatTimeCodeString(System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Generates a string representation of the timecode.
+            </summary>
+            <param name="hours">The Hours section from the timecode.</param>
+            <param name="minutes">The Minutes section from the timecode.</param>
+            <param name="seconds">The Seconds section from the timecode.</param>
+            <param name="frames">The frames section from the timecode.</param>
+            <param name="dropFrame">Indicates whether the timecode is drop frame or not.</param>
+            <returns>The timecode in string format.</returns>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.Smpte12M_23_98_ToAbsoluteTime(System.String)">
+            <summary>
+            Converts to Absolute time from SMPTE 12M 23.98.
+            </summary>
+            <param name="timeCode">The timecode to parse.</param>
+            <returns>A <see cref="T:System.Decimal"/> that contains the absolute duration.</returns>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.Smpte12M_24_ToAbsoluteTime(System.String)">
+            <summary>
+            Converts to Absolute time from SMPTE 12M 24.
+            </summary>
+            <param name="timeCode">The timecode to parse.</param>
+            <returns>A <see cref="T:System.Decimal"/> that contains the absolute duration.</returns>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.Smpte12M_25_ToAbsoluteTime(System.String)">
+            <summary>
+            Converts to Absolute time from SMPTE 12M 25.
+            </summary>
+            <param name="timeCode">The timecode to parse.</param>
+            <returns>A <see cref="T:System.Decimal"/> that contains the absolute duration.</returns>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.Smpte12M_29_97_Drop_ToAbsoluteTime(System.String)">
+            <summary>
+            Converts to Absolute time from SMPTE 12M 29.97 Drop frame.
+            </summary>
+            <param name="timeCode">The timecode to parse.</param>
+            <returns>A <see cref="T:System.Decimal"/> that contains the absolute duration.</returns>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.Smpte12M_29_97_NonDrop_ToAbsoluteTime(System.String)">
+            <summary>
+            Converts to Absolute time from SMPTE 12M 29.97 Non Drop.
+            </summary>
+            <param name="timeCode">The timecode to parse.</param>
+            <returns>A <see cref="T:System.Decimal"/> that contains the absolute duration.</returns>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.Smpte12M_30_ToAbsoluteTime(System.String)">
+            <summary>
+            Converts to Absolute time from SMPTE 12M 30.
+            </summary>
+            <param name="timeCode">The timecode to parse.</param>
+            <returns>A <see cref="T:System.Double"/> that contains the absolute duration.</returns>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.Ticks27MhzToPcrTb(System.UInt64)">
+            <summary>
+            Converts from 27Mhz ticks to PCRTb.
+            </summary>
+            <param name="ticks27Mhz">The number of 27Mhz ticks to convert from.</param>
+            <returns>A <see cref="T:System.UInt64"/> with the PCRTb.</returns>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.AbsoluteTimeToTicksPcrTb(TimedText.Timing.TimeCode.AbsoluteTimeHelper)">
+            <summary>
+                Converts the provided absolute time to PCRTb.
+            </summary>
+            <param name="time">Absolute time to be converted.</param>
+            <returns>The number of PCRTb ticks.</returns>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.AbsoluteTimeToTicks27Mhz(TimedText.Timing.TimeCode.AbsoluteTimeHelper)">
+            <summary>
+                Converts the specified absolute time to 27 mhz ticks.
+            </summary>
+            <param name="time">Absolute time to be converted.</param>
+            <returns>THe number of 27Mhz ticks.</returns>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.TicksPcrTbToAbsoluteTime(System.UInt64)">
+            <summary>
+                Converts the specified absolute time to absolute time.
+            </summary>
+            <param name="ticksPcrTb">Ticks PCRTb to be converted.</param>
+            <returns>The absolute time.</returns>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.Ticks27MhzToAbsoluteTime(System.UInt64)">
+            <summary>
+            Converts the specified absolute time to absolute time.
+            </summary>
+            <param name="ticks27Mhz">Ticks 27Mhz to be converted.</param>
+            <returns>The absolute time.</returns>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.AbsoluteTimeToSmpte12M(TimedText.Timing.TimeCode.AbsoluteTimeHelper,Microsoft.SilverlightMediaFramework.Core.Media.SmpteFrameRate)">
+            <summary>
+            Converts to SMPTE 12M.
+            </summary>
+            <param name="time">The absolute time to convert from.</param>
+            <param name="rate">The SMPTE frame rate.</param>
+            <returns>A string in SMPTE 12M format.</returns>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.FramesToAbsoluteTime(System.Single,Microsoft.SilverlightMediaFramework.Core.Media.SmpteFrameRate)">
+            <summary>
+            Returns the absolute time.
+            </summary>
+            <param name="frames">The number of frames.</param>
+            <param name="rate">The SMPTE frame rate to use for the conversion.</param>
+            <returns>The absolute time.</returns>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.FramesToTicks27Mhz(System.Single,Microsoft.SilverlightMediaFramework.Core.Media.SmpteFrameRate)">
+            <summary>
+            Returns the absolute time.
+            </summary>
+            <param name="frames">The number of frames.</param>
+            <param name="rate">The SMPTE frame rate to use for the conversion.</param>
+            <returns>The absolute time.</returns>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.AbsoluteTimeToFrames(TimedText.Timing.TimeCode.AbsoluteTimeHelper,Microsoft.SilverlightMediaFramework.Core.Media.SmpteFrameRate)">
+            <summary>
+            Returns the absolute time.
+            </summary>
+            <param name="absoluteTime">The number of frames.</param>
+            <param name="rate">The SMPTE frame rate to use for the conversion.</param>
+            <returns>The absolute time.</returns>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.AbsoluteTimeToSmpte12M_23_98fps(TimedText.Timing.TimeCode.AbsoluteTimeHelper)">
+            <summary>
+            Returns the SMPTE 12M 23.98 timecode.
+            </summary>
+            <param name="absoluteTime">The absolute time to convert from.</param>
+            <returns>A string that contains the correct format.</returns>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.AbsoluteTimeToSmpte12M_24fps(TimedText.Timing.TimeCode.AbsoluteTimeHelper)">
+            <summary>
+            Converts to SMPTE 12M 24fps.
+            </summary>
+            <param name="absoluteTime">The absolute time to convert from.</param>
+            <returns>A string that contains the correct format.</returns>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.AbsoluteTimeToSmpte12M_25fps(TimedText.Timing.TimeCode.AbsoluteTimeHelper)">
+            <summary>
+            Converts to SMPTE 12M 25fps.
+            </summary>
+            <param name="absoluteTime">The absolute time to convert from.</param>
+            <returns>A string that contains the correct format.</returns>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.AbsoluteTimeToSmpte12M_29_97_Drop(TimedText.Timing.TimeCode.AbsoluteTimeHelper)">
+            <summary>
+            Converts to SMPTE 12M 29.97fps Drop.
+            </summary>
+            <param name="absoluteTime">The absolute time to convert from.</param>
+            <returns>A string that contains the correct format.</returns>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.AbsoluteTimeToSmpte12M_29_97_NonDrop(TimedText.Timing.TimeCode.AbsoluteTimeHelper)">
+            <summary>
+            Converts to SMPTE 12M 29.97fps Non Drop.
+            </summary>
+            <param name="absoluteTime">The absolute time to convert from.</param>
+            <returns>A string that contains the correct format.</returns>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.AbsoluteTimeToSmpte12M_30fps(TimedText.Timing.TimeCode.AbsoluteTimeHelper)">
+            <summary>
+            Converts to SMPTE 12M 30fps.
+            </summary>
+            <param name="absoluteTime">The absolute time to convert from.</param>
+            <returns>A string that contains the correct format.</returns>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.Smpte12M_30fpsToTicks27Mhz(System.String)">
+            <summary>
+            Converts to Ticks 27Mhz.
+            </summary>
+            <param name="timeCode">The timecode to convert from.</param>
+            <returns>The number of 27Mhz ticks.</returns>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.Smpte12M_23_98fpsToTicks27Mhz(System.String)">
+            <summary>
+            Converts to Ticks 27Mhz.
+            </summary>
+            <param name="timeCode">The timecode to convert from.</param>
+            <returns>The number of 27Mhz ticks.</returns>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.Smpte12M_24fpsToTicks27Mhz(System.String)">
+            <summary>
+            Converts to Ticks 27Mhz.
+            </summary>
+            <param name="timeCode">The timecode to convert from.</param>
+            <returns>The number of 27Mhz ticks.</returns>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.Smpte12M_25fpsToTicks27Mhz(System.String)">
+            <summary>
+            Converts to Ticks 27Mhz.
+            </summary>
+            <param name="timeCode">The timecode to convert from.</param>
+            <returns>The number of 27Mhz ticks.</returns>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.Smpte12M_29_27_NonDropToTicks27Mhz(System.String)">
+            <summary>
+            Converts to Ticks 27Mhz.
+            </summary>
+            <param name="timeCode">The timecode to convert from.</param>
+            <returns>The number of 27Mhz ticks.</returns>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.Smpte12M_29_27_DropToTicks27Mhz(System.String)">
+            <summary>
+            Converts to Ticks 27Mhz.
+            </summary>
+            <param name="timeCode">The timecode to convert from.</param>
+            <returns>The number of 27Mhz ticks.</returns>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.Ticks27MhzToSmpte12M_29_27_NonDrop(System.UInt64)">
+            <summary>
+            Converts to SMPTE 12M 29.27fps Non Drop.
+            </summary>
+            <param name="ticks27Mhz">The number of 27Mhz ticks to convert from.</param>
+            <returns>A string that contains the correct format.</returns>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.Ticks27MhzToSmpte12M_29_27_Drop(System.UInt64)">
+            <summary>
+            Converts to SMPTE 12M 29.27fps Non Drop.
+            </summary>
+            <param name="ticks27Mhz">The number of 27Mhz ticks to convert from.</param>
+            <returns>A string that contains the correct format.</returns>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.Ticks27MhzToSmpte12M_23_98fps(System.UInt64)">
+            <summary>
+            Converts to SMPTE 12M 23.98fps.
+            </summary>
+            <param name="ticks27Mhz">The number of 27Mhz ticks to convert from.</param>
+            <returns>A string that contains the correct format.</returns>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.Ticks27MhzToSmpte12M_24fps(System.UInt64)">
+            <summary>
+            Converts to SMPTE 12M 24fps.
+            </summary>
+            <param name="ticks27Mhz">The number of 27Mhz ticks to convert from.</param>
+            <returns>A string that contains the correct format.</returns>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.Ticks27MhzToSmpte12M_25fps(System.UInt64)">
+            <summary>
+            Converts to SMPTE 12M 25fps.
+            </summary>
+            <param name="ticks27Mhz">The number of 27Mhz ticks to convert from.</param>
+            <returns>A string that contains the correct format.</returns>
+        </member>
+        <member name="M:TimedText.Timing.TimeCode.Ticks27MhzToSmpte12M_30fps(System.UInt64)">
+            <summary>
+            Converts to SMPTE 12M 30fps.
+            </summary>
+            <param name="ticks27Mhz">The number of 27Mhz ticks to convert from.</param>
+            <returns>A string that contains the correct format.</returns>
+        </member>
+        <member name="P:TimedText.Timing.TimeCode.TicksPerDay">
+            <summary>
+             Gets the number of ticks in 1 day. 
+             This field is constant.
+            </summary>
+            <value>The number of ticks in 1 day.</value>
+        </member>
+        <member name="P:TimedText.Timing.TimeCode.TicksPerDayAbsoluteTime">
+            <summary>
+             Gets the number of absolute time ticks in 1 day. 
+             This field is constant.
+            </summary>
+            <value>The number of absolute time ticks in 1 day.</value>
+        </member>
+        <member name="P:TimedText.Timing.TimeCode.TicksPerHour">
+            <summary>
+             Gets the number of ticks in 1 hour. This field is constant.
+            </summary>
+            <value>The number of ticks in 1 hour.</value>
+        </member>
+        <member name="P:TimedText.Timing.TimeCode.TicksPerHourAbsoluteTime">
+            <summary>
+             Gets the number of absolute time ticks in 1 hour. This field is constant.
+            </summary>
+            <value>The number of absolute time ticks in 1 hour.</value>
+        </member>
+        <member name="P:TimedText.Timing.TimeCode.TicksPerMillisecond">
+            <summary>
+            Gets the number of ticks in 1 millisecond. This field is constant.
+            </summary>
+            <value>The number of ticks in 1 millisecond.</value>
+        </member>
+        <member name="P:TimedText.Timing.TimeCode.TicksPerMillisecondAbsoluteTime">
+            <summary>
+            Gets the number of ticks in 1 millisecond. This field is constant.
+            </summary>
+            <value>The number of ticks in 1 millisecond.</value>
+        </member>
+        <member name="P:TimedText.Timing.TimeCode.TicksPerMinute">
+            <summary>
+            Gets the number of ticks in 1 minute. This field is constant.
+            </summary>
+            <value>The number of ticks in 1 minute.</value>
+        </member>
+        <member name="P:TimedText.Timing.TimeCode.TicksPerMinuteAbsoluteTime">
+            <summary>
+            Gets the number of absolute time ticks in 1 minute. This field is constant.
+            </summary>
+            <value>The number of absolute time ticks in 1 minute.</value>
+        </member>
+        <member name="P:TimedText.Timing.TimeCode.TicksPerSecond">
+            <summary>
+            Gets the number of ticks in 1 second.
+            </summary>
+            <value>The number of ticks in 1 second.</value>
+        </member>
+        <member name="P:TimedText.Timing.TimeCode.TicksPerSecondAbsoluteTime">
+            <summary>
+            Gets the number of ticks in 1 second.
+            </summary>
+            <value>The number of ticks in 1 second.</value>
+        </member>
+        <member name="P:TimedText.Timing.TimeCode.MinValue">
+            <summary>
+            Gets the minimum TimeCode value. This field is read-only.
+            </summary>
+            <value>The minimum TimeCode value.</value>
+        </member>
+        <member name="P:TimedText.Timing.TimeCode.Duration">
+            <summary>
+            Gets the absolute time in seconds of the current TimeCode object.
+            </summary>
+            <returns>
+             A double that is the absolute time in seconds duration of the current TimeCode object.
+            </returns>
+            <value>The absolute time in seconds of the current TimeCode.</value>
+        </member>
+        <member name="P:TimedText.Timing.TimeCode.FrameRate">
+            <summary>
+            Gets or sets the current SMPTE framerate for this TimeCode instance.
+            </summary>
+            <value>The frame rate of the TimeCode.</value>
+        </member>
+        <member name="P:TimedText.Timing.TimeCode.HoursSegment">
+            <summary>
+             Gets the number of whole hours represented by the current TimeCode
+             structure.
+            </summary>
+            <returns>
+             The hour component of the current TimeCode structure. The return value
+                ranges from 0 through 23.
+            </returns>
+            <value>The number of whole hours of the TimeCode.</value>
+        </member>
+        <member name="P:TimedText.Timing.TimeCode.MinutesSegment">
+            <summary>
+            Gets the number of whole minutes represented by the current TimeCode structure.
+            </summary>
+            <returns>
+            The minute component of the current TimeCode structure. The return
+            value ranges from 0 through 59.
+            </returns>
+            <value>The number of whole minutes of the current TimeCode.</value>
+        </member>
+        <member name="P:TimedText.Timing.TimeCode.SecondsSegment">
+            <summary>
+            Gets the number of whole seconds represented by the current TimeCode structure.
+            </summary>
+            <returns>
+             The second component of the current TimeCode structure. The return
+               value ranges from 0 through 59.
+            </returns>
+            <value>The number of whole seconds of the current TimeCode.</value>
+        </member>
+        <member name="P:TimedText.Timing.TimeCode.FramesSegment">
+            <summary>
+            Gets the number of whole frames represented by the current TimeCode
+                structure.
+            </summary>
+            <returns>
+            The frame component of the current TimeCode structure. The return
+                value depends on the framerate selected for this instance. All frame counts start at zero.
+            </returns>
+            <value>The number of whole frames of the TimeCode.</value>
+        </member>
+        <member name="P:TimedText.Timing.TimeCode.TotalDays">
+            <summary>
+            Gets the value of the current TimeCode structure expressed in whole
+                and fractional days.
+            </summary>
+            <returns>
+             The total number of days represented by this instance.
+            </returns>
+            <value>The number of days of the TimeCode.</value>
+        </member>
+        <member name="P:TimedText.Timing.TimeCode.TotalHours">
+            <summary>
+            Gets the value of the current TimeCode structure expressed in whole
+                and fractional hours.
+            </summary>
+            <returns>
+             The total number of hours represented by this instance.
+            </returns>
+            <value>The number of hours of the TimeCode.</value>
+        </member>
+        <member name="P:TimedText.Timing.TimeCode.TotalMinutes">
+            <summary>
+            Gets the value of the current TimeCode structure expressed in whole
+            and fractional minutes.
+            </summary>
+            <returns>
+             The total number of minutes represented by this instance.
+            </returns>
+            <value>The number of minutes of the TimeCode.</value>
+        </member>
+        <member name="P:TimedText.Timing.TimeCode.TotalSeconds">
+            <summary>
+            Gets the value of the current TimeCode structure expressed in whole
+            and fractional seconds. Not as Precise as the TotalSecondsPrecision.
+            </summary>
+            <returns>
+            The total number of seconds represented by this instance.
+            </returns>
+            <value>The number of seconds of the TimeCode.</value>
+        </member>
+        <member name="P:TimedText.Timing.TimeCode.TotalSecondsPrecision">
+            <summary>
+            Gets the value of the current TimeCode structure expressed in whole
+            and fractional seconds. This is returned as a <see cref="T:System.Decimal"/> for greater precision.
+            </summary>
+            <returns>
+            The total number of seconds in <see cref="T:System.Decimal"/> precision represented by this instance.
+            </returns>
+            <value>The number of seconds of the TimeCode.</value>
+        </member>
+        <member name="P:TimedText.Timing.TimeCode.TotalFrames">
+            <summary>
+            Gets the value of the current TimeCode structure expressed in frames.
+            </summary>
+            <returns>
+             The total number of frames represented by this instance.
+            </returns>
+            <value>The total frames of the current TimeCode.</value>
+        </member>
+        <member name="P:TimedText.Timing.TimeCode.AbsoluteTime">
+            <summary>
+            The private Timespan used to track absolute time for this instance.
+            </summary>
+        </member>
+        <member name="T:TimedText.Timing.TimeCode.AbsoluteTimeHelper">
+            <summary>
+            Wraps the AbsoluteTime value
+            </summary>
+        </member>
+        <member name="T:TimedText.Timing.TimeBase">
+            <summary>
+            Timed text timebase to use
+            </summary>
+        </member>
+        <member name="T:TimedText.Timing.ClockMode">
+            <summary>
+            Timed text clock mode to use
+            </summary>
+        </member>
+        <member name="T:TimedText.Timing.SmpteMode">
+            <summary>
+            Which flavour of Smpte timecode to use
+            </summary>
+        </member>
+        <member name="T:TimedText.Timing.Metric">
+            <summary>
+            Units that time is measured in
+            </summary>
+        </member>
+        <member name="T:TimedText.Timing.TimeExpression">
+            <summary>
+            Represents a timed text time expression
+            </summary>
+        </member>
+        <member name="F:TimedText.Timing.TimeExpression._currentTimeBase">
+            <summary>
+            Global time base for the current parse session.
+            </summary>
+            
+        </member>
+        <member name="M:TimedText.Timing.TimeExpression.#ctor">
+            <summary>
+            Private constructor - create these using the Parse
+            static function.
+            </summary>
+        </member>
+        <member name="M:TimedText.Timing.TimeExpression.InitializeParameters">
+            <summary>
+            Initialize global parameters for the next parse session
+            </summary>
+        </member>
+        <member name="M:TimedText.Timing.TimeExpression.Parse(System.String)">
+            <summary>
+            Convert a timed text time expression into a TimeCode. 
+            Where the current global framerate and tickrate apply
+            </summary>
+            <param name="timeExpression">Time expression</param>
+            <returns>TimeSpan duration equal to time expression (ignored)</returns>
+        </member>
+        <member name="M:TimedText.Timing.TimeExpression.GetMetricMultiplier(System.String,System.Double,System.Double)">
+            <summary>
+            returns the number needed to convert a time expression to milliseconds
+            if the time expression is defined in times of a time metric
+            </summary>
+            <param name="timeexpression"></param>
+            <param name="framerate"></param>
+            <param name="tickrate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TimedText.Timing.TimeExpression.UnitTests">
+            <summary>
+            Test the time parser. Not comprehensive at this point
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:TimedText.Timing.TimeExpression.CurrentClockMode">
+            <summary>
+            Global clock mode for the current parse session
+            </summary>
+        </member>
+        <member name="P:TimedText.Timing.TimeExpression.CurrentSmpteMode">
+            <summary>
+            Global smpte mode for the current parse session.
+            </summary>
+        </member>
+        <member name="P:TimedText.Timing.TimeExpression.CurrentFrameRate">
+            <summary>
+            Global framerate for the current parse session
+            </summary>
+        </member>
+        <member name="P:TimedText.Timing.TimeExpression.CurrentSubFrameRate">
+            <summary>
+            Global sub frame rate for the current parse session
+            </summary>
+        </member>
+        <member name="P:TimedText.Timing.TimeExpression.CurrentFrameRateNominator">
+            <summary>
+            Global frame rate nominator for the current parse session
+            </summary>
+        </member>
+        <member name="P:TimedText.Timing.TimeExpression.CurrentFrameRateDenominator">
+            <summary>
+            Global frame rate denominator for the current parse session
+            </summary>
+        </member>
+        <member name="P:TimedText.Timing.TimeExpression.CurrentSmpteFrameRate">
+            <summary>
+            Global Smpte timecode to use for the current parse session
+            </summary>
+        </member>
+        <member name="P:TimedText.Timing.TimeExpression.CurrentTickRate">
+            <summary>
+            Global tick rate for the current parse session
+            </summary>
+        </member>
+        <member name="T:TimedText.Timing.TimeContainer">
+            <summary>
+            Denotes whether time containment is parallel or sequential
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Plugins.TimedText.TimedTextMarkerParser">
+            <summary>
+            Accepts a string of XML defining the markers and returns a collection of MediaMarker objects.
+            </summary>
+            <remarks>
+            For more information about Timed Text Authoring Format 1.0, 
+            see http://www.w3.org/TR/2009/WD-ttaf1-dfxp-20090602/#dfxp-example-subtitle-1
+            </remarks>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Plugins.TimedText.MarkerProvider">
+            <summary>
+            Retrieves MediaMarkers using the W3C Timed Text Authoring Format (TTAF) 1.0 specification.
+            </summary>
+            <remarks>
+            <para>
+            The TimedTextMarkerProvider can read the TTAF format and return a collection of MediaMarker objects from it.
+            A TimedTextMarkerProvider has a reference to a PollingRequest object which determines the polling interval to be used, if any, for checking the source for new markers (polling is optional).
+            </para>
+            <para>
+            This class has a collection of new markers and a collection of markers removed since the last request to check for markers. This check is done using the Marker Id property.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Plugins.TimedText.MarkerProvider.BeginRetrievingMarkers">
+            <summary>
+            Begins the polling for retrieving markers.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Plugins.TimedText.MarkerProvider.StopRetrievingMarkers">
+            <summary>
+            Stops polling for markers.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Plugins.TimedText.MarkerProvider.Load">
+            <summary>
+            Loads the plug-in.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Plugins.TimedText.MarkerProvider.Unload">
+            <summary>
+            Unloads the plug-in.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.TimedText.MarkerProvider.PluginLoaded">
+            <summary>
+            Occurs when the plug-in is loaded.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.TimedText.MarkerProvider.PluginUnloaded">
+            <summary>
+            Occurs when the plug-in is unloaded.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.TimedText.MarkerProvider.PluginLoadFailed">
+            <summary>
+            Occurs when the plug-in fails to load.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.TimedText.MarkerProvider.PluginUnloadFailed">
+            <summary>
+            Occurs when the plug-in fails to unload.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.TimedText.MarkerProvider.LogReady">
+            <summary>
+            Occurs when the log is ready.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.TimedText.MarkerProvider.RetrieveMarkersFailed">
+            <summary>
+            Occurs when retrieving markers fails.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.TimedText.MarkerProvider.MarkersRemoved">
+            <summary>
+            Occurs when markers have been removed.
+            </summary>
+        </member>
+        <member name="E:Microsoft.SilverlightMediaFramework.Plugins.TimedText.MarkerProvider.NewMarkers">
+            <summary>
+            Occurs when new markers are found.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.TimedText.MarkerProvider.IsLoaded">
+            <summary>
+            Gets a value indicating whether a plug-in is currently loaded.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.TimedText.MarkerProvider.Source">
+            <summary>
+            Gets or sets the location where the markers are retrieved.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Plugins.TimedText.MarkerProvider.PollingInterval">
+            <summary>
+            The time interval between checking for new and removed markers.
+            </summary>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Plugins.TimedText.TimedTextStyleParser">
+            <summary>
+            Parses style information about a timed text marker.
+            </summary>
+            <remarks>
+            Style information determines the appearance of the marker text.
+            This class uses the style information defined in XML and creates corresponding 
+            Style objects.
+            Styles are defined in the W3C TTAF 1.0 specification.
+            </remarks>
+        </member>
+    </members>
+</doc>

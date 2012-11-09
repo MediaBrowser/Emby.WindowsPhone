@@ -15,6 +15,7 @@
                             Orientation="Portrait"
                             mc:Ignorable="d"
                             shell:SystemTray.IsVisible="True"
+                            shell:SystemTray.BackgroundColor="White"
                             toolkit:TiltEffect.IsTiltEnabled="True">
     <phone:PhoneApplicationPage.Resources>
         <Converters:SettingsConverters x:Key="SettingsConverters" />

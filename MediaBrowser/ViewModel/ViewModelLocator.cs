@@ -42,19 +42,19 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 SimpleIoc.Default.Register<INavigationService, NavigationService>();
                 SimpleIoc.Default.Register<FolderViewModel>();
                 SimpleIoc.Default.Register<MovieViewModel>();
-                SimpleIoc.Default.Register<TvViewModel>();
             }
             else
             {
                 SimpleIoc.Default.Register<INavigationService, NavigationService>();
                 SimpleIoc.Default.Register<ISettingsService, SettingsService>();
                 SimpleIoc.Default.Register<ApiClient>();
-                SimpleIoc.Default.Register<TvViewModel>();
             }
 
             SimpleIoc.Default.Register<MainViewModel>(true);
+            SimpleIoc.Default.Register<VideoPlayerViewModel>(true);
             SimpleIoc.Default.Register<SplashscreenViewModel>();
             SimpleIoc.Default.Register<ChooseProfileViewModel>();
+            SimpleIoc.Default.Register<TvViewModel>();
         }
 
         /// <summary>
@@ -106,6 +106,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public ChooseProfileViewModel Profile
         {
             get { return ServiceLocator.Current.GetInstance<ChooseProfileViewModel>(); }
+        }
+
+        public VideoPlayerViewModel Player
+        {
+            get { return ServiceLocator.Current.GetInstance<VideoPlayerViewModel>(); }
         }
 
         public static TvViewModel GetTvViewModel(Guid itemId)

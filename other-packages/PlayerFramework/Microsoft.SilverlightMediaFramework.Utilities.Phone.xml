@@ -1,0 +1,129 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.SilverlightMediaFramework.Utilities.Phone</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.SilverlightMediaFramework.Utilities.Data.PollingRequest">
+            <summary>
+            Sends requests for data (i.e. XML files) to allow objects and collections
+            to be periodically synchronized with the latest data defined on the server.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Utilities.Data.PollingRequest.#ctor(System.Uri)">
+            <summary>
+            Setup a non-reoccurring data request.
+            The StartPolling method must be called to begin the request.
+            </summary>
+            <param name="source"></param>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Utilities.Data.PollingRequest.#ctor(System.Uri,System.TimeSpan)">
+            <summary>
+            Setup a reoccurring data client.
+            The StartPolling method must be called to begin the request.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Utilities.Data.PollingRequest.StartPolling">
+            <summary>
+            Starts processing metadata requests.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Utilities.Data.PollingRequest.StopPolling">
+            <summary>
+            Stops processing requests.
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Utilities.ScriptableObservableCollection`1.Add(`0)">
+            <summary>
+            add item
+            </summary>
+            <param name="item">itemt o add</param>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Utilities.ScriptableObservableCollection`1.Clear">
+            <summary>
+            clear collection
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Utilities.ScriptableObservableCollection`1.Contains(`0)">
+            <summary>
+            does list contain this item
+            </summary>
+            <param name="item">item to find</param>
+            <returns>item found</returns>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Utilities.ScriptableObservableCollection`1.IndexOf(`0)">
+            <summary>
+            return index of this item
+            </summary>
+            <param name="item">item to find</param>
+            <returns>index of this item</returns>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Utilities.ScriptableObservableCollection`1.Insert(System.Int32,`0)">
+            <summary>
+            insert item into collection
+            </summary>
+            <param name="index">index to insert at</param>
+            <param name="item">item to insert</param>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Utilities.ScriptableObservableCollection`1.RemoveAt(System.Int32)">
+            <summary>
+            remove item at this index
+            </summary>
+            <param name="index">index to remove at</param>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Utilities.ScriptableObservableCollection`1.Remove(`0)">
+            <summary>
+            remove item from collection
+            </summary>
+            <param name="item">item to remove</param>
+            <returns>true if found and removed</returns>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Utilities.ScriptableObservableCollection`1.Item(System.Int32)">
+            <summary>
+            index item
+            </summary>
+            <param name="index">index</param>
+            <returns>item</returns>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Utilities.ScriptableObservableCollection`1.Count">
+            <summary>
+            number of items in collection
+            </summary>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Utilities.OrderedScriptableObservableCollection`1.Add(`0,System.IComparable{`0})">
+            <summary>
+            add item
+            </summary>
+            <param name="item">the item to add</param>
+            <param name="comparable">the object to use for comparisons</param>
+        </member>
+        <member name="M:Microsoft.SilverlightMediaFramework.Utilities.OrderedScriptableObservableCollection`1.Insert(System.Int32,`0)">
+            <summary>
+            insert item into collection
+            </summary>
+            <param name="index">index to insert at</param>
+            <param name="item">item to insert</param>
+        </member>
+        <member name="T:Microsoft.SilverlightMediaFramework.Utilities.Resources.UtilitiesResources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Utilities.Resources.UtilitiesResources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Utilities.Resources.UtilitiesResources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.SilverlightMediaFramework.Utilities.Resources.UtilitiesResources.TimeSpanReadableFormat">
+            <summary>
+              Looks up a localized string similar to {0:00}:{1:00}:{2:00}.
+            </summary>
+        </member>
+    </members>
+</doc>

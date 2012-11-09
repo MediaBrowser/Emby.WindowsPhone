@@ -23,7 +23,7 @@ namespace MediaBrowser.WindowsPhone.Views
             if(e.NavigationMode == NavigationMode.New)
             {
                 var item = App.SelectedItem;
-                var vm = ViewModelLocator.GetTvViewModel(item.EpisodeInfo.SeriesId);
+                var vm = ViewModelLocator.GetTvViewModel(item.SeriesId.Value);
                 vm.SelectedEpisode = item;
                 DataContext = vm;
             }
