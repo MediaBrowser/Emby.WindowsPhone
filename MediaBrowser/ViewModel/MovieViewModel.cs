@@ -36,7 +36,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 SelectedMovie = new DtoBaseItem
                                     {
-                                        Id = new Guid("6536a66e10417d69105bae71d41a6e6f"),
+                                        Id = "6536a66e10417d69105bae71d41a6e6f",
                                         Name = "Jurassic Park",
                                         SortName = "Jurassic Park",
                                         Overview = "Lots of dinosaurs eating people!"

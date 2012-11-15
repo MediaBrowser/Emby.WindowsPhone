@@ -38,7 +38,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             if (IsInDesignMode)
             {
                 RandomString = "blah";
-                RecentItems.Add(new DtoBaseItem { Id = new Guid("2fc6f321b5f8bbe842fcd0eed089561d"), Name = "A Night To Remember" });
+                RecentItems.Add(new DtoBaseItem { Id = "2fc6f321b5f8bbe842fcd0eed089561d", Name = "A Night To Remember" });
             }
             else
             {
@@ -130,7 +130,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     seriesList.AddRange(episodesBySeries.Select(series => new DtoBaseItem
                     {
                         Name = string.Format("{0} ({1} items)", series.Name, series.Count),
-                        Id = series.Id.Value,
+                        Id = series.Id,
                         DateCreated = series.CreatedDate,
                         Type = "Series",
                         SortName = Constants.GetTvInformationMsg

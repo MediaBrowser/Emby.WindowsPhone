@@ -113,9 +113,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             get { return ServiceLocator.Current.GetInstance<VideoPlayerViewModel>(); }
         }
 
-        public static TvViewModel GetTvViewModel(Guid itemId)
+        public static TvViewModel GetTvViewModel(string itemId)
         {
-            return ServiceLocator.Current.GetInstance<TvViewModel>(itemId.ToString());
+            return ServiceLocator.Current.GetInstance<TvViewModel>(itemId);
         }
 
         public static ApiClient ApiClient
