@@ -183,8 +183,19 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             try
             {
-                var recent =
-                    await ApiClient.GetRecentlyAddedItemsAsync(App.Settings.LoggedInUser.Id, SelectedTvSeries.Id);
+                var query = new ItemQuery
+                {
+                    UserId = App.Settings.LoggedInUser.Id,
+                    ParentId = SelectedTvSeries.Id,
+                    Filters = new[] { ItemFilter.IsRecentlyAdded },
+                    Fields = new[]
+                                                 {
+                                                     ItemFields.SeriesInfo,
+                                                     ItemFields.ParentId
+                                                 },
+                    Recursive = true
+                };
+                var recent = await ApiClient.GetItemsAsync(query);
                 RecentItems.Clear();
                 recent.Items.OrderByDescending(x => x.DateCreated)
                       .Take(6)
@@ -203,10 +214,17 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             try
             {
-                var seasons = await ApiClient.GetChildrenAsync(App.Settings.LoggedInUser.Id, SelectedTvSeries.Id, fields: new List<ItemFields>
-                                                                                                                              {
-                                                                                                                                  ItemFields.SeriesInfo
-                                                                                                                              });
+                var query = new ItemQuery
+                {
+                    UserId = App.Settings.LoggedInUser.Id,
+                    ParentId = SelectedTvSeries.Id,
+                    Fields = new[]
+                                                 {
+                                                     ItemFields.SeriesInfo,
+                                                     ItemFields.ParentId
+                                                 }
+                };
+                var seasons = await ApiClient.GetItemsAsync(query);
                 Seasons = seasons.Items.OrderBy(x => x.IndexNumber).ToList();
                 return true;
             }
@@ -221,11 +239,17 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             try
             {
-                var episodes = await ApiClient.GetChildrenAsync(App.Settings.LoggedInUser.Id, SelectedSeason.Id, fields: new List<ItemFields>
-                                                                                                                              {
-                                                                                                                                  ItemFields.SeriesInfo,
-                                                                                                                                  ItemFields.Overview
-                                                                                                                              });
+                var query = new ItemQuery
+                {
+                    UserId = App.Settings.LoggedInUser.Id,
+                    ParentId = SelectedSeason.Id,
+                    Fields = new[]
+                                                 {
+                                                     ItemFields.SeriesInfo,
+                                                     ItemFields.ParentId
+                                                 }
+                };
+                var episodes = await ApiClient.GetItemsAsync(query);
                 Episodes = episodes.Items.OrderBy(x => x.IndexNumber).ToList();
                 return true;
             }

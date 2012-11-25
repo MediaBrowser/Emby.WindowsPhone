@@ -2,6 +2,7 @@
 using System.Windows.Controls;
 using GalaSoft.MvvmLight;
 using MediaBrowser.ApiInteraction.WindowsPhone;
+using MediaBrowser.Model.Entities;
 using MediaBrowser.WindowsPhone.Model;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
@@ -92,16 +93,30 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 if (SelectedFolder.Name.Contains("recent"))
                 {
-                    var items = await ApiClient.GetRecentlyAddedItemsAsync(App.Settings.LoggedInUser.Id, fields: new List<ItemFields>
-                                                                                                                 {
-                                                                                                                     ItemFields.SeriesInfo,
-                                                                                                                     ItemFields.DateCreated
-                                                                                                                 });
+                    var query = new ItemQuery
+                    {
+                        Filters = new[] { ItemFilter.IsRecentlyAdded },
+                        UserId = App.Settings.LoggedInUser.Id,
+                        Fields = new[]
+                                                 {
+                                                     ItemFields.SeriesInfo,
+                                                     ItemFields.DateCreated
+                                                 },
+                        Recursive = true
+                    };
+                    var items = await ApiClient.GetItemsAsync(query);
                     CurrentItems = items.Items.ToList();
                 }
                 else
                 {
-                    var items = await ApiClient.GetChildrenAsync(App.Settings.LoggedInUser.Id, SelectedFolder.Id);
+                    var query = new ItemQuery
+                    {
+                        ParentId = SelectedFolder.Id,
+                        UserId = App.Settings.LoggedInUser.Id,
+                        SortBy = ItemSortBy.DateCreated,
+                        SortOrder = SortOrder.Descending
+                    };
+                    var items = await ApiClient.GetItemsAsync(query);
                     CurrentItems = items.Items.ToList();
                 }
                 return true;

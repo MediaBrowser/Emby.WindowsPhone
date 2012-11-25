@@ -108,7 +108,7 @@
                         <TextBlock Text="{Binding Name, Converter={StaticResource StringCaseConverter}, ConverterParameter=false}"
                                                FontWeight="Bold"
                                                Style="{StaticResource PhoneTextLargeStyle}" />
-                        <TextBlock Text="{Binding Overview}"
+                        <TextBlock Text="{Binding Role}"
                                                Style="{StaticResource PhoneTextNormalStyle}"/>
                     </StackPanel>
                 </StackPanel>

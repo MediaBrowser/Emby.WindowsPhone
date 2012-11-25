@@ -109,11 +109,18 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             try
             {
-                var items = await ApiClient.GetRecentlyAddedItemsAsync(App.Settings.LoggedInUser.Id, fields: new List<ItemFields>
-                                                                                                                 {
-                                                                                                                     ItemFields.SeriesInfo,
-                                                                                                                     ItemFields.DateCreated
-                                                                                                                 });
+                var query = new ItemQuery
+                {
+                    Filters = new[] { ItemFilter.IsRecentlyAdded },
+                    UserId = App.Settings.LoggedInUser.Id,
+                    Fields = new[]
+                                                 {
+                                                     ItemFields.SeriesInfo,
+                                                     ItemFields.DateCreated
+                                                 },
+                    Recursive = true
+                };
+                var items = await ApiClient.GetItemsAsync(query);
                 var episodesBySeries = items.Items
                     .Where(x => x.Type == "Episode")
                     .GroupBy(l => l.SeriesId)
@@ -158,7 +165,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             try
             {
-                var item = await ApiClient.GetChildrenAsync(App.Settings.LoggedInUser.Id);
+                var query = new ItemQuery
+                {
+                    UserId = App.Settings.LoggedInUser.Id
+                };
+                var item = await ApiClient.GetItemsAsync(query);
                 Folders.Clear();
                 
                 item.Items.OrderByDescending(x => x.SortName).ToList().ForEach(folder => Folders.Add(folder));
