@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using MediaBrowser.ApiInteraction.WindowsPhone;
+using MediaBrowser.ApiInteraction;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.Model.DTO;
 using GalaSoft.MvvmLight.Messaging;
-using Microsoft.Phone.Tasks;
 using ScottIsAFool.WindowsPhone;
 
 namespace MediaBrowser.WindowsPhone.ViewModel

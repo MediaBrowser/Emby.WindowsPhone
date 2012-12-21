@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using GalaSoft.MvvmLight;
-using MediaBrowser.ApiInteraction.WindowsPhone;
+using MediaBrowser.ApiInteraction;
 using MediaBrowser.WindowsPhone.Model;
 using GalaSoft.MvvmLight.Command;
 using System.Collections.ObjectModel;

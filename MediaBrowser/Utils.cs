@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Ioc;
-using MediaBrowser.ApiInteraction.WindowsPhone;
+using MediaBrowser.ApiInteraction;
 using MediaBrowser.Model.DTO;
 using ScottIsAFool.WindowsPhone;
 

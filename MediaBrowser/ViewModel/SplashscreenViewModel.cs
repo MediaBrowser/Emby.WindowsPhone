@@ -2,7 +2,7 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
-using MediaBrowser.ApiInteraction.WindowsPhone;
+using MediaBrowser.ApiInteraction;
 using MediaBrowser.WindowsPhone.Model;
 using ScottIsAFool.WindowsPhone.IsolatedStorage;
 using MediaBrowser.Shared;
@@ -79,9 +79,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                              };
                         return;
                     }
-                    
 
-                    
+
+
                     var user = ISettings.GetKeyValue<UserSettingWrapper>(Constants.SelectedUserSetting);
                     if (user != null)
                     {
@@ -120,26 +120,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
             else
             {
-                // As no user is saved, check whether users are used at all
-                // If they are, get the user to check what profile is wanted.
-                if (App.Settings.ServerConfiguration.EnableUserProfiles)
-                {
-                    NavigationService.NavigateToPage("/Views/ChooseProfileView.xaml");
-                }
-                else
-                {
-                    // If not, get the default user and log them in.
-                    ProgressText = "Getting default user...";
-                    App.Settings.LoggedInUser = await ApiClient.GetDefaultUserAsync();
-                    if (App.Settings.LoggedInUser != null)
-                    {
-                        NavigationService.NavigateToPage("/Views/MainPage.xaml");
-                    }
-                    else
-                    {
-                        App.ShowMessage("", "No default user found.");
-                    }
-                }
+                NavigationService.NavigateToPage("/Views/ChooseProfileView.xaml");
             }
         }
 

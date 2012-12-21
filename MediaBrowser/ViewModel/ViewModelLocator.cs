@@ -9,10 +9,9 @@
   DataContext="{Binding Source={StaticResource Locator}, Path=ViewModelName}"
 */
 
-using System;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
-using MediaBrowser.ApiInteraction.WindowsPhone;
+using MediaBrowser.ApiInteraction;
 using Microsoft.Practices.ServiceLocation;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.Model;
@@ -38,7 +37,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             if (ViewModelBase.IsInDesignModeStatic)
             {
-                SimpleIoc.Default.Register(()=> new ApiClient{ ServerApiPort = 8096, ServerHostName = "192.168.0.2"});
+                SimpleIoc.Default.Register(()=> new ApiClient(new AsyncHttpClient()){ ServerApiPort = 8096, ServerHostName = "192.168.0.2"});
                 SimpleIoc.Default.Register<INavigationService, NavigationService>();
                 SimpleIoc.Default.Register<FolderViewModel>();
                 SimpleIoc.Default.Register<MovieViewModel>();
@@ -47,7 +46,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 SimpleIoc.Default.Register<INavigationService, NavigationService>();
                 SimpleIoc.Default.Register<ISettingsService, SettingsService>();
-                SimpleIoc.Default.Register<ApiClient>();
+                SimpleIoc.Default.Register(() => new ApiClient(new AsyncHttpClient()));
             }
 
             SimpleIoc.Default.Register<MainViewModel>(true);

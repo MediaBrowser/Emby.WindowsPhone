@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaBrowser.WindowsPhone", "MediaBrowser\MediaBrowser.WindowsPhone.csproj", "{299CD68E-1122-4ABB-BA26-283E331417BA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{47317A2D-29F2-4E48-A986-DDDA2467158E}"
@@ -14,7 +14,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaBrowser.Model", "..\..
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaBrowser.Shared", "MediaBrowser.Shared\MediaBrowser.Shared.csproj", "{2D3D6DCD-C00F-4E40-AF44-8975A2DF87A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaBrowser.ApiInteraction.WindowsPhone", "MediaBrowser.ApiInteraction.WindowsPhone\MediaBrowser.ApiInteraction.WindowsPhone.csproj", "{54EEE576-F803-485B-BFDC-798C3105E600}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaBrowser.ApiInteraction.Portable", "..\..\..\..\Visual Studio 2012\Projects\MediaBrowserServer\MediaBrowser.ApiInteraction.Portable\MediaBrowser.ApiInteraction.Portable.csproj", "{52E0C440-85C0-4A99-ACFE-07C87B2600BE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,10 +36,10 @@ Global
 		{2D3D6DCD-C00F-4E40-AF44-8975A2DF87A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D3D6DCD-C00F-4E40-AF44-8975A2DF87A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D3D6DCD-C00F-4E40-AF44-8975A2DF87A3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{54EEE576-F803-485B-BFDC-798C3105E600}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{54EEE576-F803-485B-BFDC-798C3105E600}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{54EEE576-F803-485B-BFDC-798C3105E600}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{54EEE576-F803-485B-BFDC-798C3105E600}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52E0C440-85C0-4A99-ACFE-07C87B2600BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52E0C440-85C0-4A99-ACFE-07C87B2600BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52E0C440-85C0-4A99-ACFE-07C87B2600BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52E0C440-85C0-4A99-ACFE-07C87B2600BE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

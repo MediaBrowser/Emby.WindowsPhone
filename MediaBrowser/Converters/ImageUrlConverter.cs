@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Data;
 using GalaSoft.MvvmLight.Ioc;
-using MediaBrowser.ApiInteraction.WindowsPhone;
+using MediaBrowser.ApiInteraction;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.DTO;
 

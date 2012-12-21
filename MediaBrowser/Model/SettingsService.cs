@@ -1,6 +1,7 @@
 ﻿using MediaBrowser.Model.Configuration;
 using MediaBrowser.Model.DTO;
 using System.ComponentModel;
+using MediaBrowser.Model.System;
 
 namespace MediaBrowser.Model
 {
@@ -10,6 +11,7 @@ namespace MediaBrowser.Model
         public string PinCode { get; set; }
         public ConnectionDetails ConnectionDetails { get; set; }
         public ServerConfiguration ServerConfiguration { get; set; }
+        public SystemInfo SystemStatus { get; set; }
 
         public string ApiUrl
         {

@@ -2,7 +2,7 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
-using MediaBrowser.ApiInteraction.WindowsPhone;
+using MediaBrowser.ApiInteraction;
 using MediaBrowser.Model.DTO;
 
 namespace MediaBrowser.WindowsPhone.ViewModel
@@ -45,14 +45,20 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                                           if (m.Notification.Equals(Constants.PlayVideoItemMsg))
                                                                           {
                                                                               selectedItem = (DtoBaseItem)m.Sender;
-                                                                              var formats = new List<VideoOutputFormats>
-                                                                                                {
-                                                                                                    VideoOutputFormats.Wmv,
-                                                                                                    VideoOutputFormats.Asf,
-                                                                                                    VideoOutputFormats.Ts
-                                                                                                };
+                                                                              
                                                                               // Ask permission to not lock the screen.
-                                                                              VideoUrl = ApiClient.GetVideoStreamUrl(selectedItem.Id, formats, maxHeight: 480, maxWidth: 800, quality: StreamingQuality.Higher);
+
+                                                                              var query = new VideoStreamOptions
+                                                                              {
+                                                                                  ItemId = selectedItem.Id,
+                                                                                  VideoContainer = MediaContainers.Ts,
+                                                                                  VideoCodec = VideoCodecs.H264,
+                                                                                  AudioCodec = AudioCodecs.Mp3,
+                                                                                  MaxHeight = 480,
+                                                                                  MaxWidth = 800,
+                                                                                  
+                                                                              };
+                                                                              VideoUrl = ApiClient.GetVideoStreamUrl(query);
                                                                           }
                                                                       });
         }
