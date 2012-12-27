@@ -6,12 +6,12 @@
                             xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
                             xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
                             xmlns:local="clr-namespace:MediaBrowser.WindowsPhone.Controls"
-                            xmlns:delay="clr-namespace:Delay"
                             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
                             xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP71"
                             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                             xmlns:bar="clr-namespace:BindableApplicationBar;assembly=BindableApplicationBar"
+                            xmlns:delay="clr-namespace:Delay"
                             mc:Ignorable="d"
                             d:DesignWidth="480"
                             d:DesignHeight="696"
@@ -23,6 +23,7 @@
                             shell:SystemTray.IsVisible="True"
                             shell:SystemTray.Opacity="0"
                             shell:SystemTray.BackgroundColor="White"
+                            x:Name="PageRoot"
                             d:DataContext="{Binding Movie, Source={StaticResource Locator}}">
     <shell:SystemTray.ProgressIndicator>
         <shell:ProgressIndicator IsIndeterminate="True"
@@ -116,18 +117,67 @@
                                           GroupHeaderTemplate="{StaticResource LLSGroupHeaderTemplateLong}"
                                           GroupItemTemplate="{StaticResource LLSGroupItemTemplateLong}"
                                           GroupItemsPanel="{StaticResource StackPanelVerticalTemplate}"
-                                          Background="Transparent"
-                                          ItemTemplate="{StaticResource CrewTemplate}" />
+                                          Background="Transparent" 
+                                          x:Name="LlsCastCrew">
+                    <toolkit:LongListSelector.ItemTemplate>
+                        <DataTemplate>
+                            <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                             Margin="12,0,0,12"
+                                             HorizontalContentAlignment="Left"
+                                             Command="{Binding ElementName=PageRoot, Path=DataContext.ShowOtherFilmsCommand}"
+                                             CommandParameter="{Binding}">
+                                <StackPanel Orientation="Horizontal">
+                                    <delay:PlaceImage Height="99"
+                                                      Width="99"
+                                                      PlaceholderSource="/Images/MBLogo.png"
+                                                      Source="{Binding Converter={StaticResource ImageUrlConverter}}"
+                                                      Stretch="Uniform" />
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock Text="{Binding Name, Converter={StaticResource StringCaseConverter}, ConverterParameter=false}"
+                                                   FontWeight="Bold"
+                                                   Style="{StaticResource PhoneTextLargeStyle}" />
+                                        <TextBlock Text="{Binding Role}"
+                                                   Style="{StaticResource PhoneTextNormalStyle}" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </HyperlinkButton>
+                        </DataTemplate>
+                    </toolkit:LongListSelector.ItemTemplate>
+                </toolkit:LongListSelector>
             </controls:PanoramaItem>
         </controls:Panorama>
     </Grid>
     <bar:Bindable.ApplicationBar>
         <bar:BindableApplicationBar Mode="Minimized"
                                     IsMenuEnabled="True">
+            <bar:BindableApplicationBar.Buttons>
+                <bar:BindableApplicationBarButton Text="{Binding SelectedMovie.UserData.IsFavorite, Converter={StaticResource FavouritesConverter}, ConverterParameter=text}"
+                                                  IconUri="{Binding SelectedMovie.UserData.IsFavorite, Converter={StaticResource FavouritesConverter}, ConverterParameter=icon}"
+                                                  InitialIconUri="/Icons/appbar.star.add.png"
+                                                  Command="{Binding AddRemoveFavouriteCommand}" />
+            </bar:BindableApplicationBar.Buttons>
             <bar:BindableApplicationBar.MenuItems>
                 <bar:BindableApplicationBarMenuItem Text="play movie"
                                                     Command="{Binding PlayMovieCommand}" />
             </bar:BindableApplicationBar.MenuItems>
         </bar:BindableApplicationBar>
     </bar:Bindable.ApplicationBar>
+    <!--<phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True"
+                              Mode="Minimized"
+                              IsMenuEnabled="True">
+            <shell:ApplicationBarIconButton Text="add "
+                                            IconUri="/Icons/appbar.star.add.png" />
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="settings" />
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>-->
+    <!--<i:Interaction.Behaviors>
+        <appBarUtils:AppBarItemCommand Id="FavouriteButton"
+                                       Text="{Binding SelectedMovie.UserData.IsFavorite, Converter={StaticResource FavouritesConverter}, ConverterParameter=text}"
+                                       IconUri="{Binding SelectedMovie.UserData.IsFavorite, Converter={StaticResource FavouritesConverter}, ConverterParameter=icon}"
+                                       Command="{Binding AddRemoveFavouriteCommand}" />
+    </i:Interaction.Behaviors>-->
+
 </phone:PhoneApplicationPage>

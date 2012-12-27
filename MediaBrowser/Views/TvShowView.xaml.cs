@@ -3,6 +3,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using GalaSoft.MvvmLight.Messaging;
+using MediaBrowser.Model.DTO;
 using MediaBrowser.WindowsPhone.ViewModel;
 using Microsoft.Phone.Controls;
 using MediaBrowser.Shared;
@@ -44,7 +45,7 @@ namespace MediaBrowser.WindowsPhone.Views
             }
             else if(e.NavigationMode == NavigationMode.New)
             {
-                var item = App.SelectedItem;
+                var item = (DtoBaseItem)App.SelectedItem;
                 var vm = ViewModelLocator.GetTvViewModel(item.Id);
                 vm.SelectedTvSeries = item;
                 DataContext = vm;

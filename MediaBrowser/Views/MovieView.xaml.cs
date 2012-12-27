@@ -2,6 +2,7 @@
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
+using MediaBrowser.Model.DTO;
 using MediaBrowser.WindowsPhone.ViewModel;
 using Microsoft.Phone.Controls;
 using MediaBrowser.Shared;
@@ -45,7 +46,7 @@ namespace MediaBrowser.WindowsPhone.Views
             {
                 DataContext = new MovieViewModel(ViewModelLocator.NavigationService, ViewModelLocator.ApiClient)
                                   {
-                                      SelectedMovie = App.SelectedItem
+                                      SelectedMovie = (DtoBaseItem)App.SelectedItem
                                   };
             }
         }

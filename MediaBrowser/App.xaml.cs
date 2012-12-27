@@ -22,7 +22,7 @@ namespace MediaBrowser.WindowsPhone
             get { return _settings ?? (_settings = (SettingsService) Current.Resources["AppSettings"]); }
         }
 
-        public static DtoBaseItem SelectedItem { get; set; }
+        public static object SelectedItem { get; set; }
 
         public static void ShowMessage(string title, string message, Action action = null)
         {

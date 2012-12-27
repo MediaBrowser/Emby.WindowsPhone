@@ -24,6 +24,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     {
         private readonly INavigationService NavService;
         private readonly ApiClient ApiClient;
+
         /// <summary>
         /// Initializes a new instance of the MovieViewModel class.
         /// </summary>
@@ -31,6 +32,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             NavService = navService;
             ApiClient = apiClient;
+            CanUpdateFavourites = true;
             if (IsInDesignMode)
             {
                 SelectedMovie = new DtoBaseItem
@@ -72,6 +74,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         ImdbId = SelectedMovie.ProviderIds["Imdb"];
                     if (SelectedMovie.RunTimeTicks.HasValue)
                         RunTime = TimeSpan.FromTicks(SelectedMovie.RunTimeTicks.Value).ToString();
+                    if (SelectedMovie.UserData == null)
+                        SelectedMovie.UserData = new DtoUserItemData();
 
                     ProgressIsVisible = false;
                     ProgressText = string.Empty;
@@ -96,6 +100,28 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                         Messenger.Default.Send(new NotificationMessage(SelectedMovie, Constants.PlayVideoItemMsg));
                                                         NavService.NavigateToPage("/Views/VideoPlayerView.xaml");
                                                     });
+
+            AddRemoveFavouriteCommand = new RelayCommand(async () =>
+            {
+                try
+                {
+                    CanUpdateFavourites = false;
+                    SelectedMovie.UserData = await ApiClient.UpdateFavoriteStatusAsync(SelectedMovie.Id, App.Settings.LoggedInUser.Id, !SelectedMovie.UserData.IsFavorite);
+                    CanUpdateFavourites = true;
+                }
+                catch
+                {
+
+                }
+                CanUpdateFavourites = true;
+            });
+
+            ShowOtherFilmsCommand = new RelayCommand<BaseItemPerson>(person =>
+                                                                         {
+                                                                             App.SelectedItem = person;
+                                                                             NavService.NavigateToPage("/Views/FolderView.xaml");
+                                                                         });
+
             NavigateTopage = new RelayCommand<DtoBaseItem>(NavService.NavigateToPage);
         }
 
@@ -119,11 +145,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             return result;
         }
 
-
-
         // UI properties
         public string ProgressText { get; set; }
         public bool ProgressIsVisible { get; set; }
+        public bool CanUpdateFavourites { get; set; }
+        public string FavouriteText { get; set; }
+        public Uri FavouriteIcon { get; set; }
 
         public DtoBaseItem SelectedMovie { get; set; }
         public List<Group<BaseItemPerson>> CastAndCrew { get; set; }
@@ -133,5 +160,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public RelayCommand<DtoBaseItem> NavigateTopage { get; set; }
         public RelayCommand MoviePageLoaded { get; set; }
         public RelayCommand PlayMovieCommand { get; set; }
+        public RelayCommand AddRemoveFavouriteCommand { get; set; }
+        public RelayCommand<BaseItemPerson> ShowOtherFilmsCommand { get; set; }
     }
 }

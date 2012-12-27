@@ -37,6 +37,8 @@
             <converters:EpisodeNumberVisibilityConverter x:Key="EpisodeNumberVisibilityConverter" />
             <converters:RatingConverter x:Key="RatingConverter" />
             <converters:RandomColour x:Key="RandomColour" />
+            <converters:FavouritesConverter x:Key="FavouritesConverter" />
+
 
             <!-- Control Styles -->
             <Style x:Key="EmptyButtonStyle"

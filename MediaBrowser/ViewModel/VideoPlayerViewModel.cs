@@ -51,7 +51,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                                               var query = new VideoStreamOptions
                                                                               {
                                                                                   ItemId = selectedItem.Id,
-                                                                                  VideoContainer = MediaContainers.Ts,
+                                                                                  OutputFileExtension= "ts",
                                                                                   VideoCodec = VideoCodecs.H264,
                                                                                   AudioCodec = AudioCodecs.Mp3,
                                                                                   MaxHeight = 480,

@@ -83,7 +83,7 @@
                            VerticalAlignment="Top" />
             </StackPanel>
             <TextBlock x:Name="PageTitle"
-                       Text="{Binding SelectedFolder.Name, Converter={StaticResource StringCaseConverter}}"
+                       Text="{Binding PageTitle, Converter={StaticResource StringCaseConverter}}"
                        Margin="9,-7,0,0"
                        Style="{StaticResource PhoneTextTitle1Style}" />
         </StackPanel>

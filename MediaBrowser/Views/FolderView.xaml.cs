@@ -1,7 +1,8 @@
 ﻿using System.Windows.Navigation;
+using MediaBrowser.Model.DTO;
 using MediaBrowser.WindowsPhone.ViewModel;
 using Microsoft.Phone.Controls;
-using ScottIsAFool.WindowsPhone.Tools;
+using Coding4Fun.Phone.Controls;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Shared;
 
@@ -22,10 +23,11 @@ namespace MediaBrowser.WindowsPhone.Views
 
         private void btnChangeGrouping_Click(object sender, System.EventArgs e)
         {
-            new PhoneFlipMenu(
-                new PhoneFlipMenuAction("name", () => Messenger.Default.Send(new NotificationMessage("name", Constants.ChangeGroupingMsg))),
-                new PhoneFlipMenuAction("production year", () => Messenger.Default.Send(new NotificationMessage("production year",Constants.ChangeGroupingMsg))),
-                new PhoneFlipMenuAction("genre", () => Messenger.Default.Send(new NotificationMessage("genre", Constants.ChangeGroupingMsg)))).Show();
+
+            new AppBarPrompt(
+                new AppBarPromptAction("name", () => Messenger.Default.Send(new NotificationMessage("name", Constants.ChangeGroupingMsg))),
+                new AppBarPromptAction("production year", () => Messenger.Default.Send(new NotificationMessage("production year", Constants.ChangeGroupingMsg))),
+                new AppBarPromptAction("genre", () => Messenger.Default.Send(new NotificationMessage("genre", Constants.ChangeGroupingMsg)))).Show();
                 //                                     ,
                 //new PhoneFlipMenuAction("studio", () =>
                 //                                      {
@@ -45,10 +47,20 @@ namespace MediaBrowser.WindowsPhone.Views
             }
             else if(e.NavigationMode == NavigationMode.New)
             {
-                DataContext = new FolderViewModel(ViewModelLocator.NavigationService, ViewModelLocator.ApiClient)
-                                  {
-                                      SelectedFolder = App.SelectedItem
-                                  };
+                if (App.SelectedItem is DtoBaseItem)
+                {
+                    DataContext = new FolderViewModel(ViewModelLocator.NavigationService, ViewModelLocator.ApiClient)
+                                      {
+                                          SelectedFolder = (DtoBaseItem) App.SelectedItem
+                                      };
+                }
+                else if (App.SelectedItem is BaseItemPerson)
+                {
+                    DataContext = new FolderViewModel(ViewModelLocator.NavigationService, ViewModelLocator.ApiClient)
+                    {
+                        SelectedPerson = (BaseItemPerson)App.SelectedItem
+                    };
+                }
             }
         }
 

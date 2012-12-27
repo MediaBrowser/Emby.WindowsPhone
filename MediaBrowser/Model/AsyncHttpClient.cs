@@ -23,6 +23,7 @@ namespace MediaBrowser.WindowsPhone.Model
 
         public async Task<Stream> PostAsync(string url, string contentType, string postContent)
         {
+            WebClient.Headers["Content-Type"] = "application/x-www-form-urlencoded";
             var returnString = await WebClient.UploadStringTaskAsync(url, postContent);
             return new MemoryStream(Encoding.UTF8.GetBytes(returnString));
         }

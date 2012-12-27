@@ -1,4 +1,5 @@
 ﻿using System.Windows.Navigation;
+using MediaBrowser.Model.DTO;
 using MediaBrowser.WindowsPhone.ViewModel;
 using Microsoft.Phone.Controls;
 using MediaBrowser.Shared;
@@ -27,7 +28,7 @@ namespace MediaBrowser.WindowsPhone.Views
             }
             else if(e.NavigationMode == NavigationMode.New)
             {
-                var item = App.SelectedItem;
+                var item = (DtoBaseItem)App.SelectedItem;
                 var vm = ViewModelLocator.GetTvViewModel(item.SeriesId);
                 vm.SelectedSeason = item;
                 vm.seasonDataLoaded = false;

@@ -52,14 +52,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BindableApplicationBar">
+    <Reference Include="BindableApplicationBar, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\other-packages\BindableApplicationBar\BindableApplicationBar.dll</HintPath>
     </Reference>
     <Reference Include="Coding4Fun.Phone.Controls">
-      <HintPath>..\packages\Coding4Fun.Phone.Controls.Complete.1.5.6\lib\sl4-windowsphone71\Coding4Fun.Phone.Controls.dll</HintPath>
-    </Reference>
-    <Reference Include="Coding4Fun.Phone.Controls.Toolkit">
-      <HintPath>..\packages\Coding4Fun.Phone.Controls.Complete.1.5.6\lib\sl4-windowsphone71\Coding4Fun.Phone.Controls.Toolkit.dll</HintPath>
+      <HintPath>..\packages\Coding4Fun.Phone.Controls.1.6.1\lib\sl4-windowsphone71\Coding4Fun.Phone.Controls.dll</HintPath>
     </Reference>
     <Reference Include="GalaSoft.MvvmLight.WP71">
       <SpecificVersion>False</SpecificVersion>
@@ -69,14 +67,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files\Laurent Bugnion (GalaSoft)\Mvvm Light Toolkit\Binaries\WP71\GalaSoft.MvvmLight.Extras.WP71.dll</HintPath>
     </Reference>
-    <Reference Include="HtmlAgilityPack, Version=1.4.6.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\HtmlAgilityPack.1.4.6\lib\sl4-windowsphone71\HtmlAgilityPack.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Phone.Controls, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Phone.Controls.Toolkit, Version=7.0.0.0, Culture=neutral, PublicKeyToken=b772ad94eb9ca604, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\SilverlightToolkitWP.4.2012.10.9\lib\sl4-windowsphone71\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
+      <HintPath>..\packages\WPtoolkit.4.2012.10.30\lib\sl4-windowsphone71\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation">
       <SpecificVersion>False</SpecificVersion>
@@ -112,15 +106,14 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.Bcl.Async.1.0.12-beta\lib\sl4-windowsphone71\Microsoft.Threading.Tasks.Extensions.Phone.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.4.5.7\lib\sl4-windowsphone71\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="PhoneFlipMenuControl">
-      <HintPath>..\packages\PhoneFlipMenu.1.0.0\lib\sl4-wp71\PhoneFlipMenuControl.dll</HintPath>
-    </Reference>
-    <Reference Include="ScottIsAFool.WindowsPhone, Version=1.0.10.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.Xna.Framework" />
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\ScottIsAFool.WindowsPhone.1.0.10.0\lib\wp71\ScottIsAFool.WindowsPhone.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\sl4-windowsphone71\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="ScottIsAFool.WindowsPhone, Version=1.0.11.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\ScottIsAFool.WindowsPhone.1.0.11.0\lib\wp71\ScottIsAFool.WindowsPhone.dll</HintPath>
     </Reference>
     <Reference Include="SharpGIS.GZipWebClient">
       <HintPath>..\packages\SharpGIS.GZipWebClient.1.2\lib\sl40-wp71\SharpGIS.GZipWebClient.dll</HintPath>
@@ -147,6 +140,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controls\ProfileBox.cs" />
+    <Compile Include="Converters\FavouritesConverter.cs" />
     <Compile Include="Converters\LoggedInDateConverter.cs" />
     <Compile Include="Converters\RandomColour.cs" />
     <Compile Include="Converters\SettingsConverters.cs" />
@@ -284,6 +278,9 @@
     <Content Include="Icons\appbar.back.rest.png" />
     <Content Include="Icons\appbar.group.png" />
     <Content Include="Icons\appbar.next.rest.png" />
+    <Content Include="Icons\appbar.star.add.png" />
+    <Content Include="Icons\appbar.star.minus.png" />
+    <Content Include="Icons\appbar.star.png" />
     <Content Include="Images\MBLogo.png" />
     <Content Include="Images\PanoBackground.png" />
     <Content Include="Images\PanoTitle.png" />

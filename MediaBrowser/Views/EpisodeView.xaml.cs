@@ -1,4 +1,5 @@
 ﻿using System.Windows.Navigation;
+using MediaBrowser.Model.DTO;
 using MediaBrowser.WindowsPhone.ViewModel;
 using Microsoft.Phone.Controls;
 
@@ -22,7 +23,7 @@ namespace MediaBrowser.WindowsPhone.Views
             base.OnNavigatedTo(e);
             if(e.NavigationMode == NavigationMode.New)
             {
-                var item = App.SelectedItem;
+                var item = (DtoBaseItem)App.SelectedItem;
                 var vm = ViewModelLocator.GetTvViewModel(item.SeriesId);
                 vm.SelectedEpisode = item;
                 DataContext = vm;
