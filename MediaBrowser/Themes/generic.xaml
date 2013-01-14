@@ -3,7 +3,7 @@
                     xmlns:local="clr-namespace:MediaBrowser.WindowsPhone.Controls"
                     xmlns:converter="clr-namespace:MediaBrowser.WindowsPhone.Converters"
                     xmlns:delay="clr-namespace:Delay"
-                    xmlns:Controls="clr-namespace:Coding4Fun.Phone.Controls;assembly=Coding4Fun.Phone.Controls">
+                    xmlns:controls="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls">
     
     <!-- Converters -->
     <converter:LoggedInDateConverter x:Key="LoggedInDateConverter" />
@@ -119,7 +119,7 @@
                                              VerticalAlignment="Top"
 											 HorizontalAlignment="Stretch"
                                              Grid.Column="0" />
-                                <Controls:RoundButton Grid.Column="1"
+                                <controls:RoundButton Grid.Column="1"
                                                       Padding="0"
                                                       x:Name="loginButton"
                                                       HorizontalContentAlignment="Left"

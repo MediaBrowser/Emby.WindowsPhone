@@ -1,8 +1,8 @@
 ﻿using System.Windows.Navigation;
+using Coding4Fun.Toolkit.Controls;
 using MediaBrowser.Model.DTO;
 using MediaBrowser.WindowsPhone.ViewModel;
 using Microsoft.Phone.Controls;
-using Coding4Fun.Phone.Controls;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Shared;
 

@@ -195,11 +195,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     Recursive = true
                 };
                 var recent = await ApiClient.GetItemsAsync(query);
-                RecentItems.Clear();
-                recent.Items.OrderByDescending(x => x.DateCreated)
-                      .Take(6)
-                      .ToList()
-                      .ForEach(recentItem => RecentItems.Add(recentItem));
+                if (recent != null && recent.Items != null)
+                {
+                    RecentItems.Clear();
+                    recent.Items.OrderByDescending(x => x.DateCreated)
+                          .Take(6)
+                          .ToList()
+                          .ForEach(recentItem => RecentItems.Add(recentItem));
+                }
                 return true;
             }
             catch
@@ -245,7 +248,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     Fields = new[]
                                                  {
                                                      ItemFields.SeriesInfo,
-                                                     ItemFields.ParentId
+                                                     ItemFields.ParentId,
+                                                     ItemFields.Overview, 
                                                  }
                 };
                 var episodes = await ApiClient.GetItemsAsync(query);

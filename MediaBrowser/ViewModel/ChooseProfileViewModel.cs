@@ -36,13 +36,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                {
                                    new DtoUser
                                        {
-                                           HasImage = true,
                                            Id = new Guid("dd425709431649698e92d86b1f2b00fa"),
                                            Name = "ScottIsAFool"
                                        },
                                    new DtoUser
                                        {
-                                           HasImage = true,
                                            Id = new Guid("dab28e40cfbc43658082f55a44cf139a"),
                                            Name = "Redshirt",
                                            LastLoginDate = DateTime.Now.AddHours(-1)

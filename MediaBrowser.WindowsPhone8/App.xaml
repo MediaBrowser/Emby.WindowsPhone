@@ -1,0 +1,142 @@
+﻿<Application x:Class="MediaBrowser.WindowsPhone.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+             xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+             xmlns:vm="clr-namespace:MediaBrowser.WindowsPhone.ViewModel"
+             xmlns:model="clr-namespace:MediaBrowser.Model"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:scottConverters="clr-namespace:ScottIsAFool.WindowsPhone.Converters;assembly=ScottIsAFool.WindowsPhone"
+             xmlns:converters="clr-namespace:MediaBrowser.WindowsPhone.Converters" xmlns:delay="clr-namespace:Delay">
+
+    <!--Application Resources-->
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Themes/LongListSelectorTemplates.xaml" />
+                <ResourceDictionary Source="Themes/UIResources.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <!--Global View Model Locator-->
+            <vm:ViewModelLocator x:Key="Locator"
+                                 d:IsDataSource="True" />
+            <model:SettingsService x:Key="AppSettings" />
+
+            <sys:String x:Key="AppName">MediaBrowser</sys:String>
+
+            <LinearGradientBrush SpreadMethod="Reflect"
+                                 ColorInterpolationMode="SRgbLinearInterpolation"
+                                 StartPoint="0,0"
+                                 EndPoint="0,1"
+                                 x:Key="MediaBrowserBackground">
+                <GradientStop Color="#ff000000"
+                              Offset="0" />
+                <GradientStop Color="#ffbbbbbb"
+                              Offset="1" />
+            </LinearGradientBrush>
+
+            <!-- Converters from ScottIsAFool.WindowsPhone.Converters -->
+            <scottConverters:VisibilityConverter x:Key="VisibilityConverter" />
+            <scottConverters:InvertedVisibilityConverter x:Key="InvertedVisibilityConverter" />
+            <scottConverters:StringCaseConverter x:Key="StringCaseConverter" />
+            <scottConverters:IntToVisibilityConverter x:Key="IntToVisibilityConverter" />
+
+            <!-- Local Converters -->
+            <converters:ImageUrlConverter x:Key="ImageUrlConverter" />
+            <converters:EpisodeNumberVisibilityConverter x:Key="EpisodeNumberVisibilityConverter" />
+            <converters:RatingConverter x:Key="RatingConverter" />
+            <converters:RandomColour x:Key="RandomColour" />
+            <converters:FavouritesConverter x:Key="FavouritesConverter" />
+
+            <local:LocalizedStrings xmlns:local="clr-namespace:MediaBrowser.WindowsPhone"
+                                    x:Key="LocalizedStrings" />
+
+            <!-- Control Styles -->
+            <Style x:Key="EmptyButtonStyle"
+                   TargetType="ButtonBase">
+                <Setter Property="Background"
+                        Value="Transparent" />
+                <Setter Property="Padding"
+                        Value="0" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ButtonBase">
+                            <Border Background="{TemplateBinding Background}"
+                                    Padding="{TemplateBinding Padding}">
+                                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                  Content="{TemplateBinding Content}"
+                                                  ContentTemplate="{TemplateBinding ContentTemplate}" />
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <!-- DataTemplates -->
+            <DataTemplate x:Key="TileItemStyle">
+                <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                 Command="{Binding Main.NavigateToPage, Source={StaticResource Locator}}"
+                                 CommandParameter="{Binding}">
+                    <Grid MaxWidth="173">
+                        <delay:PlaceImage PlaceholderSource="/Images/MBLogo.png"
+                                          Source="{Binding Converter={StaticResource ImageUrlConverter}}"
+                                          Width="173"
+                                          Height="173"
+                                          Stretch="UniformToFill" />
+                        <Border Background="#C4000000"
+                                VerticalAlignment="Bottom">
+                            <TextBlock Text="{Binding Name}"
+                                       Style="{StaticResource PhoneTextNormalStyle}"
+                                       FontWeight="Bold"
+                                       TextWrapping="Wrap"
+                                       Foreground="White" />
+                        </Border>
+                        <Grid  Height="40"
+                               Width="40"
+                               HorizontalAlignment="Right"
+                               VerticalAlignment="Top"
+                               Visibility="{Binding Type, Converter={StaticResource EpisodeNumberVisibilityConverter}}">
+                            <Ellipse Fill="Green" />
+                            <TextBlock Text="{Binding IndexNumber}"
+                                       Foreground="White"
+                                       Style="{StaticResource PhoneTextNormalStyle}"
+                                       Margin="0,-3,0,0"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center" />
+                        </Grid>
+                    </Grid>
+                </HyperlinkButton>
+            </DataTemplate>
+
+            <DataTemplate x:Key="CrewTemplate">
+                <StackPanel Orientation="Horizontal"
+                            Margin="12,0,0,12">
+                    <delay:PlaceImage Height="99"
+                                      Width="99"
+                                      PlaceholderSource="/Images/MBLogo.png"
+                                      Source="{Binding Converter={StaticResource ImageUrlConverter}}"
+                                      Stretch="Uniform" />
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="{Binding Name, Converter={StaticResource StringCaseConverter}, ConverterParameter=false}"
+                                   FontWeight="Bold"
+                                   Style="{StaticResource PhoneTextLargeStyle}" />
+                        <TextBlock Text="{Binding Role}"
+                                   Style="{StaticResource PhoneTextNormalStyle}" />
+                    </StackPanel>
+                </StackPanel>
+            </DataTemplate>
+        </ResourceDictionary>
+    </Application.Resources>
+
+    <Application.ApplicationLifetimeObjects>
+        <!--Required object that handles lifetime events for the application-->
+        <shell:PhoneApplicationService Launching="Application_Launching"
+                                       Closing="Application_Closing"
+                                       Activated="Application_Activated"
+                                       Deactivated="Application_Deactivated" />
+    </Application.ApplicationLifetimeObjects>
+
+</Application>

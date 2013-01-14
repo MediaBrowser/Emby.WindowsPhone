@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using Coding4Fun.Phone.Controls;
+using Coding4Fun.Toolkit.Controls;
 using MediaBrowser.Model.DTO;
 
 namespace MediaBrowser.WindowsPhone.Controls

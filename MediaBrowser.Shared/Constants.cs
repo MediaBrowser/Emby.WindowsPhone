@@ -44,5 +44,12 @@
         public const string PlayVideoItemMsg = "PlayVideoItemMsg";
         public const string VideoPlayerLoadedMsg = "VideoPlayerLoadedMsg";
         public const string SendVideoTimeToServerMsg = "SendVideoTimeToServerMsg";
+        public const string PlayTrailerMsg = "PlayTrailerMsg";
+        public const string ChangeTrailerMsg = "ChangeTrailerMsg";
+        public const string TrailerPageLoadedMsg = "TrailerPageLoadedMsg";
+        public const string MusicArtistChangedMsg = "MusicArtistChangedMsg";
+        public const string ArtistViewLoadedMsg = "ArtistViewLoadedMsg";
+        public const string MusicAlbumChangedMsg = "MusicAlbumChangedMsg";
+        public const string AlbumViewLoadedMsg = "AlbumViewLoadedMsg";
     }
 }

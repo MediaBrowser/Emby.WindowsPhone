@@ -2,12 +2,11 @@
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Navigation;
-using Coding4Fun.Phone.Controls;
+using Coding4Fun.Toolkit.Controls;
 using MediaBrowser.WindowsPhone.ViewModel;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using MediaBrowser.Model;
-using MediaBrowser.Model.DTO;
 
 namespace MediaBrowser.WindowsPhone
 {
@@ -30,7 +29,8 @@ namespace MediaBrowser.WindowsPhone
             {
                 Title = title,
                 Message = message,
-                Foreground = new SolidColorBrush(Colors.White)
+                Foreground = new SolidColorBrush(Colors.White),
+                Background= (SolidColorBrush)Current.Resources["PhoneAccentBrush"]
             };
 
             if (action != null)
@@ -57,7 +57,7 @@ namespace MediaBrowser.WindowsPhone
             // Phone-specific initialization
             InitializePhoneApplication();
 
-            ThemeManager.OverrideTheme(Theme.Light);
+            ThemeManager.OverrideTheme(Theme.Dark);
 
             // Show graphics profiling information while debugging.
             if (System.Diagnostics.Debugger.IsAttached)

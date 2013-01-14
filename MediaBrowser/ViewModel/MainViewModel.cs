@@ -35,9 +35,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             NavService = navService;
             Folders = new ObservableCollection<DtoBaseItem>();
             RecentItems = new ObservableCollection<DtoBaseItem>();
+            FavouriteItems = new ObservableCollection<DtoBaseItem>();
             if (IsInDesignMode)
             {
-                RandomString = "blah";
+                Folders.Add(new DtoBaseItem { Id = "78dbff5aa1c2101b98ebaf42b72a988d", Name = "Movies" });
                 RecentItems.Add(new DtoBaseItem { Id = "2fc6f321b5f8bbe842fcd0eed089561d", Name = "A Night To Remember" });
             }
             else
@@ -70,6 +71,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                         });
 
             NavigateToPage = new RelayCommand<DtoBaseItem>(NavService.NavigateToPage);
+
+            NavigateToAPage = new RelayCommand<string>(NavService.NavigateToPage);
         }
 
         private void Reset()
@@ -99,9 +102,39 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                 bool recentLoaded = await GetRecent();
 
-                hasLoaded = (folderLoaded && recentLoaded);
+                ProgressText = "Getting favourites...";
+
+                bool favouritesLoaded = await GetFavouriteItems();
+
+                hasLoaded = (folderLoaded && recentLoaded && favouritesLoaded);
                 ProgressIsVisible = false;
                 hasLoaded = true;
+            }
+        }
+
+        private async Task<bool> GetFavouriteItems()
+        {
+            try
+            {
+                var query = new ItemQuery
+                {
+                    UserId = App.Settings.LoggedInUser.Id,
+                    Filters = new[] { ItemFilter.IsFavorite, },
+                    Recursive = true
+                };
+                var items = await ApiClient.GetItemsAsync(query);
+                if (items != null && items.Items != null)
+                {
+                    foreach (var item in items.Items)
+                    {
+                        FavouriteItems.Add(item);
+                    }
+                }
+                return true;
+            }
+            catch
+            {
+                return false;
             }
         }
 
@@ -121,7 +154,18 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     Recursive = true
                 };
                 var items = await ApiClient.GetItemsAsync(query);
-                var episodesBySeries = items.Items
+                await SortRecent(items.Items);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        private async Task SortRecent(DtoBaseItem[] dtoBaseItem)
+        {
+            var episodesBySeries = dtoBaseItem
                     .Where(x => x.Type == "Episode")
                     .GroupBy(l => l.SeriesId)
                     .Select(g => new
@@ -131,34 +175,28 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         Count = g.Count(),
                         CreatedDate = g.OrderByDescending(l => l.DateCreated).First().DateCreated
                     }).ToList();
-                var seriesList = new List<DtoBaseItem>();
-                if (episodesBySeries.Any())
-                {
-                    seriesList.AddRange(episodesBySeries.Select(series => new DtoBaseItem
-                    {
-                        Name = string.Format("{0} ({1} items)", series.Name, series.Count),
-                        Id = series.Id,
-                        DateCreated = series.CreatedDate,
-                        Type = "Series",
-                        SortName = Constants.GetTvInformationMsg
-                    }));
-                }
-                var recent = items.Items
-                    .Where(x => x.Type != "Episode")
-                    .Union(seriesList)
-                    .Select(x => x);
-                RecentItems.Clear();
-                recent
-                    .OrderByDescending(x => x.DateCreated)
-                    .Take(6)
-                    .ToList()
-                    .ForEach(recentItem => RecentItems.Add(recentItem));
-                return true;
-            }
-            catch
+            var seriesList = new List<DtoBaseItem>();
+            if (episodesBySeries.Any())
             {
-                return false;
+                seriesList.AddRange(episodesBySeries.Select(series => new DtoBaseItem
+                {
+                    Name = string.Format("{0} ({1} items)", series.Name, series.Count),
+                    Id = series.Id,
+                    DateCreated = series.CreatedDate,
+                    Type = "Series",
+                    SortName = Constants.GetTvInformationMsg
+                }));
             }
+            var recent = dtoBaseItem
+                .Where(x => x.Type != "Episode")
+                .Union(seriesList)
+                .Select(x => x);
+            RecentItems.Clear();
+            recent
+                .OrderByDescending(x => x.DateCreated)
+                .Take(6)
+                .ToList()
+                .ForEach(recentItem => RecentItems.Add(recentItem));
         }
 
         private async Task<bool> GetFolders()
@@ -189,9 +227,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public RelayCommand ChangeProfileCommand { get; set; }
         public RelayCommand RefreshDataCommand { get; set; }
         public RelayCommand<DtoBaseItem> NavigateToPage { get; set; }
+        public RelayCommand<string> NavigateToAPage { get; set; }
         public ObservableCollection<DtoBaseItem> Folders { get; set; }
         public ObservableCollection<DtoBaseItem> RecentItems { get; set; }
+        public ObservableCollection<DtoBaseItem> FavouriteItems { get; set; }
         public DtoBaseItem DummyFolder { get; set; }
-        public string RandomString { get; set; }
     }
 }

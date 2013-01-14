@@ -1929,6 +1929,12 @@
             Reads a Type from the stream, using the model's DynamicTypeFormatting if appropriate; supported wire-types: String
             </summary>
         </member>
+        <member name="M:ProtoBuf.ProtoReader.Merge(ProtoBuf.ProtoReader,System.Object,System.Object)">
+            <summary>
+            Merge two objects using the details from the current reader; this is used to change the type
+            of objects when an inheritance relationship is discovered later than usual during deserilazation.
+            </summary>
+        </member>
         <member name="P:ProtoBuf.ProtoReader.FieldNumber">
             <summary>
             Gets the number of the field being processed.

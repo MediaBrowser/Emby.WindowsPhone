@@ -3,8 +3,8 @@ using System.Windows;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Net.NetworkInformation;
-using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model.DTO;
+
 
 namespace MediaBrowser.WindowsPhone.Model
 {
@@ -94,6 +94,7 @@ namespace MediaBrowser.WindowsPhone.Model
             {
                 case "folder":
                 case "collectionfolder":
+                case "trailercollectionfolder":
                     //Messenger.Default.Send(new NotificationMessage(item, Constants.ShowFolderMsg));
                     NavigateToPage("/Views/FolderView.xaml");
                     break;
@@ -112,6 +113,9 @@ namespace MediaBrowser.WindowsPhone.Model
                 case "episode":
                     //Messenger.Default.Send(new NotificationMessage(item, Constants.ShowEpisodeMsg));
                     NavigateToPage("/Views/EpisodeView.xaml");
+                    break;
+                case "trailer":
+                    NavigateToPage("/Views/TrailerView.xaml");
                     break;
             }
         }

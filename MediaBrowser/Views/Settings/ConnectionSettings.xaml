@@ -6,6 +6,7 @@
                             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                             xmlns:ignore="http://www.ignore.com"
+                            xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
                             mc:Ignorable="d ignore"
                             d:DesignWidth="480"
                             d:DesignHeight="768"
@@ -20,6 +21,27 @@
                                  Text="{Binding Splashscreen.ProgressText, Source={StaticResource Locator}}"
                                  IsVisible="{Binding Splashscreen.ProgressIsVisible, Source={StaticResource Locator}}" />
     </shell:SystemTray.ProgressIndicator>
+
+    <toolkit:TransitionService.NavigationInTransition>
+        <toolkit:NavigationInTransition>
+            <toolkit:NavigationInTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardIn" />
+            </toolkit:NavigationInTransition.Backward>
+            <toolkit:NavigationInTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardIn" />
+            </toolkit:NavigationInTransition.Forward>
+        </toolkit:NavigationInTransition>
+    </toolkit:TransitionService.NavigationInTransition>
+    <toolkit:TransitionService.NavigationOutTransition>
+        <toolkit:NavigationOutTransition>
+            <toolkit:NavigationOutTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardOut" />
+            </toolkit:NavigationOutTransition.Backward>
+            <toolkit:NavigationOutTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardOut" />
+            </toolkit:NavigationOutTransition.Forward>
+        </toolkit:NavigationOutTransition>
+    </toolkit:TransitionService.NavigationOutTransition>
 
     <Grid x:Name="LayoutRoot"
           Background="Transparent">
@@ -45,29 +67,7 @@
         <Grid x:Name="ContentPanel"
               Grid.Row="1"
               Margin="12,0,12,0">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Put the connection details in to point to the computer running Mediabrowser3. Then simply test them to confirm."
-                           TextWrapping="Wrap"
-                           Style="{StaticResource PhoneTextNormalStyle}" />
-                <TextBlock Text="Hostname:"
-                           Margin="12,12,0,0"
-                           Style="{StaticResource PhoneTextNormalStyle}"/>
-                <TextBox Text="{Binding ConnectionDetails.HostName, Source={StaticResource AppSettings}, Mode=TwoWay}"
-                         InputScope="Url" />
-                <TextBlock Text="Port:"
-                           Margin="12,12,0,0"
-                           Style="{StaticResource PhoneTextNormalStyle}"/>
-                <TextBox Text="{Binding ConnectionDetails.PortNo, Source={StaticResource AppSettings}, Mode=TwoWay}"
-                         InputScope="Number" />
-                <TextBlock Text="WARNING: Changing the hostname will remove any saved profiles."
-                           TextWrapping="Wrap"
-                           FontWeight="ExtraBold"
-                           Style="{StaticResource PhoneTextNormalStyle}"
-                           Margin="12,12,0,0" />
-                <Button Margin="0,12,0,0"
-                        Content="Connect"
-                        Command="{Binding Splashscreen.TestConnectionCommand, Source={StaticResource Locator}}" />
-            </StackPanel>
+            
         </Grid>
     </Grid>
 

@@ -12,6 +12,7 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using MediaBrowser.ApiInteraction;
+using MediaBrowser.Model.Connectivity;
 using Microsoft.Practices.ServiceLocation;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.Model;
@@ -37,7 +38,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             if (ViewModelBase.IsInDesignModeStatic)
             {
-                SimpleIoc.Default.Register(()=> new ApiClient(new AsyncHttpClient()){ ServerApiPort = 8096, ServerHostName = "192.168.0.2"});
+                if (!SimpleIoc.Default.IsRegistered<ApiClient>())
+                    SimpleIoc.Default.Register(() => new ApiClient(new AsyncHttpClient()) {ServerApiPort = 8096, ServerHostName = "192.168.0.2", ClientType = ClientType.WindowsPhone});
                 SimpleIoc.Default.Register<INavigationService, NavigationService>();
                 SimpleIoc.Default.Register<FolderViewModel>();
                 SimpleIoc.Default.Register<MovieViewModel>();
@@ -46,7 +48,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 SimpleIoc.Default.Register<INavigationService, NavigationService>();
                 SimpleIoc.Default.Register<ISettingsService, SettingsService>();
-                SimpleIoc.Default.Register(() => new ApiClient(new AsyncHttpClient()));
+                if (!SimpleIoc.Default.IsRegistered<ApiClient>())
+                    SimpleIoc.Default.Register(() => new ApiClient(new AsyncHttpClient()));
             }
 
             SimpleIoc.Default.Register<MainViewModel>(true);

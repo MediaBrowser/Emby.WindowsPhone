@@ -8,6 +8,7 @@
                             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                             xmlns:Controls="clr-namespace:ScottIsAFool.WindowsPhone.Controls;assembly=ScottIsAFool.WindowsPhone"
                             xmlns:Converters="clr-namespace:MediaBrowser.WindowsPhone.Converters"
+                            xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
                             FontFamily="{StaticResource PhoneFontFamilyNormal}"
                             FontSize="{StaticResource PhoneFontSizeNormal}"
                             Foreground="{StaticResource PhoneForegroundBrush}"
@@ -15,7 +16,7 @@
                             Orientation="Portrait"
                             mc:Ignorable="d"
                             shell:SystemTray.IsVisible="True"
-                            shell:SystemTray.BackgroundColor="White"
+                            shell:SystemTray.BackgroundColor="Black"
                             toolkit:TiltEffect.IsTiltEnabled="True">
     <phone:PhoneApplicationPage.Resources>
         <Converters:SettingsConverters x:Key="SettingsConverters" />
@@ -44,52 +45,74 @@
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot"
-          Background="Transparent">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-
-        <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel Grid.Row="0"
-                    Margin="12,17,0,28">
-            <StackPanel Orientation="Horizontal"
-                        VerticalAlignment="Top"
-                        Height="27">
-                <TextBlock Text="MEDIA"
-                           Foreground="Black"
-                           Style="{StaticResource PhoneTextNormalStyle}" />
-                <TextBlock Text="BROWSER"
-                           Foreground="Green"
-                           Style="{StaticResource PhoneTextNormalStyle}"
-                           Margin="-12,0,0,0" />
-                <TextBlock Text="3"
-                           Foreground="Green"
-                           FontFamily="/MediaBrowser.WindowsPhone;component/Fonts/MISTRAL.TTF#Mistral"
-                           Margin="4,-10,0,0"
-                           Padding="0"
-                           VerticalAlignment="Top" />
-            </StackPanel>
-            <TextBlock Text="settings"
-                       Margin="9,-7,0,0"
-                       Style="{StaticResource PhoneTextTitle1Style}" />
-        </StackPanel>
+          Background="{StaticResource MediaBrowserBackground}">
+        <controls:Pivot>
+            <controls:Pivot.Title>
+                <StackPanel Orientation="Horizontal"
+                            VerticalAlignment="Top"
+                            Height="27">
+                    <TextBlock Text="MEDIA"
+                               Foreground="{StaticResource PhoneForegroundBrush}"
+                               Style="{StaticResource PhoneTextNormalStyle}" />
+                    <TextBlock Text="BROWSER"
+                               Foreground="Green"
+                               Style="{StaticResource PhoneTextNormalStyle}"
+                               Margin="-12,0,0,0" />
+                    <TextBlock Text="3"
+                               Foreground="Green"
+                               FontFamily="/MediaBrowser.WindowsPhone;component/Fonts/MISTRAL.TTF#Mistral"
+                               Margin="4,-10,0,0"
+                               Padding="0"
+                               VerticalAlignment="Top" />
+                </StackPanel>
+            </controls:Pivot.Title>
+            
+            <controls:PivotItem Header="general">
+                
+            </controls:PivotItem>
+            
+            <controls:PivotItem Header="connection">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="Put the connection details in to point to the computer running Mediabrowser3. Then simply test them to confirm."
+                               TextWrapping="Wrap"
+                               Style="{StaticResource PhoneTextNormalStyle}" />
+                    <TextBlock Text="Hostname:"
+                               Margin="12,12,0,0"
+                               Style="{StaticResource PhoneTextNormalStyle}" />
+                    <TextBox Text="{Binding ConnectionDetails.HostName, Source={StaticResource AppSettings}, Mode=TwoWay}"
+                             InputScope="Url" />
+                    <TextBlock Text="Port:"
+                               Margin="12,12,0,0"
+                               Style="{StaticResource PhoneTextNormalStyle}" />
+                    <TextBox Text="{Binding ConnectionDetails.PortNo, Source={StaticResource AppSettings}, Mode=TwoWay}"
+                             InputScope="Number" />
+                    <TextBlock Text="WARNING: Changing the hostname will remove any saved profiles."
+                               TextWrapping="Wrap"
+                               FontWeight="ExtraBold"
+                               Style="{StaticResource PhoneTextNormalStyle}"
+                               Margin="12,12,0,0" />
+                    <Button Margin="0,12,0,0"
+                            Content="Connect"
+                            Command="{Binding Splashscreen.TestConnectionCommand, Source={StaticResource Locator}}" />
+                </StackPanel>
+            </controls:PivotItem>
+        </controls:Pivot>
 
         <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel"
+        <!--<Grid x:Name="ContentPanel"
               Grid.Row="1"
               Margin="12,0,12,0">
             <ScrollViewer VerticalAlignment="Top">
                 <StackPanel Orientation="Vertical">
-                    <!--<HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                    <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
                                      NavigateUri="/Views/Settings/ConnectionSettings.xaml"
-                                     HorizontalContentAlignment="Left">-->
+                                     HorizontalContentAlignment="Left">
                         <Controls:HeaderAndDetail HeaderText="connection"
-                                                  DetailText="{Binding ConnectionDetails, Source={StaticResource AppSettings}, Converter={StaticResource SettingsConverters}}"/>
-                    <!--</HyperlinkButton>-->
+                                                  DetailText="{Binding ConnectionDetails, Source={StaticResource AppSettings}, Converter={StaticResource SettingsConverters}, ConverterParameter=connectiondetails}"/>
+                    </HyperlinkButton>
                 </StackPanel>
             </ScrollViewer>
-        </Grid>
+        </Grid>-->
     </Grid>
 
 </phone:PhoneApplicationPage>

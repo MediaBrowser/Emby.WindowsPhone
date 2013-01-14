@@ -1,24 +1,24 @@
-﻿<phone:PhoneApplicationPage 
-    x:Class="MediaBrowser.WindowsPhone.Views.EpisodeView"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
-    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-    xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP71"
-    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
-    xmlns:bar="clr-namespace:BindableApplicationBar;assembly=BindableApplicationBar" mc:Ignorable="d"
-    d:DesignWidth="480"
-    d:DesignHeight="696"
-    FontFamily="{StaticResource PhoneFontFamilyNormal}"
-    FontSize="{StaticResource PhoneFontSizeNormal}"
-    Foreground="{StaticResource PhoneForegroundBrush}"
-    SupportedOrientations="Portrait"
-    Orientation="Portrait"
-    shell:SystemTray.IsVisible="True"
-                            shell:SystemTray.BackgroundColor="White"
+﻿<phone:PhoneApplicationPage x:Class="MediaBrowser.WindowsPhone.Views.EpisodeView"
+                            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                            xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+                            xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+                            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                            xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+                            xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+                            xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platforms.WP75"
+                            xmlns:cimbalino="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
+                            mc:Ignorable="d"
+                            d:DesignWidth="480"
+                            d:DesignHeight="696"
+                            FontFamily="{StaticResource PhoneFontFamilyNormal}"
+                            FontSize="{StaticResource PhoneFontSizeNormal}"
+                            Foreground="{StaticResource PhoneForegroundBrush}"
+                            SupportedOrientations="Portrait"
+                            Orientation="Portrait"
+                            shell:SystemTray.IsVisible="True"
+                            shell:SystemTray.BackgroundColor="Black"
                             d:DataContext="{Binding Tv, Source={StaticResource Locator}}">
     <shell:SystemTray.ProgressIndicator>
         <shell:ProgressIndicator IsIndeterminate="True"
@@ -27,7 +27,7 @@
     </shell:SystemTray.ProgressIndicator>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
-            <cmd:EventToCommand Command="{Binding EpisodePageLoaded}" />
+            <command:EventToCommand Command="{Binding EpisodePageLoaded}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
 
@@ -53,30 +53,42 @@
     </toolkit:TransitionService.NavigationOutTransition>
 
     <Grid x:Name="LayoutRoot"
-          Background="Transparent">
+          Background="{StaticResource MediaBrowserBackground}">
+        <i:Interaction.Behaviors>
+            <cimbalino:ApplicationBarBehavior>
+                    <cimbalino:ApplicationBarIconButton Command="{Binding PreviousEpisodeCommand}"
+                                                        Text="previous"
+                                                        IconUri="/icons/appbar.back.rest.png"/>
+                    <cimbalino:ApplicationBarIconButton Text="next"
+                                                  Command="{Binding NextEpisodeCommand}"
+                                                  IconUri="/icons/appbar.next.rest.png" />
+            </cimbalino:ApplicationBarBehavior>
+        </i:Interaction.Behaviors>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <!--TitlePanel contains the name of the application and page title-->		
+        <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel"
                     Grid.Row="0"
                     Margin="12,17,0,28">
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Height="27">
+            <StackPanel Orientation="Horizontal"
+                        VerticalAlignment="Top"
+                        Height="27">
                 <TextBlock Text="MEDIA"
-                           Foreground="Black"
+                           Foreground="{StaticResource PhoneForegroundBrush}"
                            Style="{StaticResource PhoneTextNormalStyle}" />
                 <TextBlock Text="BROWSER"
                            Foreground="Green"
                            Style="{StaticResource PhoneTextNormalStyle}"
-                           Margin="-12,0,0,0"/>
-				<TextBlock Text="3" 
-						   Foreground="Green" 
-						   FontFamily="/MediaBrowser.WindowsPhone;component/Fonts/MISTRAL.TTF#Mistral" 
-						   Margin="4,-10,0,0" 
-						   Padding="0"
-						   VerticalAlignment="Top"/>				
+                           Margin="-12,0,0,0" />
+                <TextBlock Text="3"
+                           Foreground="Green"
+                           FontFamily="/MediaBrowser.WindowsPhone;component/Fonts/MISTRAL.TTF#Mistral"
+                           Margin="4,-10,0,0"
+                           Padding="0"
+                           VerticalAlignment="Top" />
             </StackPanel>
             <TextBlock x:Name="PageTitle"
                        Text="{Binding SelectedEpisode.Name, Converter={StaticResource StringCaseConverter}}"
@@ -93,22 +105,10 @@
                     <TextBlock Text="{Binding SelectedEpisode.Overview}"
                                TextWrapping="Wrap"
                                Style="{StaticResource PhoneTextNormalStyle}" />
-                </StackPanel> 
+                </StackPanel>
             </ScrollViewer>
         </Grid>
+        
     </Grid>
-
-    <bar:Bindable.ApplicationBar>
-        <bar:BindableApplicationBar IsMenuEnabled="True">
-            <bar:BindableApplicationBar.Buttons>
-                <bar:BindableApplicationBarButton Text="previous"
-                                                  Command="{Binding PreviousEpisodeCommand}"
-                                                  IconUri="/icons/appbar.back.rest.png" />
-                <bar:BindableApplicationBarButton Text="next"
-                                                  Command="{Binding NextEpisodeCommand}"
-                                                  IconUri="/icons/appbar.next.rest.png" />
-            </bar:BindableApplicationBar.Buttons>
-        </bar:BindableApplicationBar>
-    </bar:Bindable.ApplicationBar>
 
 </phone:PhoneApplicationPage>

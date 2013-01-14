@@ -3,14 +3,11 @@
 // (Ms-PL, http://opensource.org/licenses/ms-pl.html).
 
 using System;
-using System.IO;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Markup;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
 
 namespace Delay
 {
@@ -34,8 +31,10 @@ namespace Delay
                         "xmlns=\"http://schemas.microsoft.com/winfx/2006/xaml/presentation\" " +
                         "xmlns:x=\"http://schemas.microsoft.com/winfx/2006/xaml\">" +
                         "<Grid>" +
-                            "<Image x:Name=\"BackImage\"/>" +
-                            "<Image x:Name=\"FrontImage\"/>" +
+                            "<Border x:Name=\"BackImageHolder\" Background=\"{TemplateBinding Background}\">" +
+                                "<Image x:Name=\"BackImage\"/>" +
+                            "</Border>" +
+                                "<Image x:Name=\"FrontImage\"/>" +
                         "</Grid>" +
                     "</ControlTemplate>";
             }
@@ -50,6 +49,8 @@ namespace Delay
         /// Stores a reference to the front image (desired image).
         /// </summary>
         private Image _frontImage;
+
+        private Border _border;
 
         /// <summary>
         /// Stores a value indicating whether the front image is loaded.
@@ -182,6 +183,7 @@ namespace Delay
             // Get template parts
             _backImage = GetTemplateChild("BackImage") as Image;
             _frontImage = GetTemplateChild("FrontImage") as Image;
+            _border = GetTemplateChild("BackImageHolder") as Border;
             _frontImageLoaded = false;
 
             // Set Bindings and hook up to new elements
@@ -229,7 +231,7 @@ namespace Delay
         {
             if (null != _backImage)
             {
-                _backImage.Visibility = _frontImageLoaded ? Visibility.Collapsed : Visibility.Visible;
+                _border.Visibility = _frontImageLoaded ? Visibility.Collapsed : Visibility.Visible;
             }
         }
     }

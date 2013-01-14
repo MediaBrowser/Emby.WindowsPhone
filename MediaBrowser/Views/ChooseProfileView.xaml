@@ -8,9 +8,9 @@
                             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                             xmlns:ignore="http://www.ignore.com"
                             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-                            xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP71"
                             xmlns:scott="clr-namespace:ScottIsAFool.WindowsPhone.Controls;assembly=ScottIsAFool.WindowsPhone"
                             xmlns:controls="clr-namespace:MediaBrowser.WindowsPhone.Controls"
+                            xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platforms.WP75"
                             mc:Ignorable="d ignore"
                             d:DesignWidth="480"
                             d:DesignHeight="768"
@@ -20,7 +20,7 @@
                             SupportedOrientations="Portrait"
                             Orientation="Portrait"
                             shell:SystemTray.IsVisible="True"
-                            shell:SystemTray.BackgroundColor="White"
+                            shell:SystemTray.BackgroundColor="Black"
                             toolkit:TiltEffect.IsTiltEnabled="True"
                             DataContext="{Binding Profile, Source={StaticResource Locator}}">
     <shell:SystemTray.ProgressIndicator>
@@ -30,7 +30,7 @@
     </shell:SystemTray.ProgressIndicator>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
-            <cmd:EventToCommand Command="{Binding ChooseProfilePageLoaded}" />
+            <command:EventToCommand Command="{Binding ChooseProfilePageLoaded}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
 
@@ -56,7 +56,7 @@
     </toolkit:TransitionService.NavigationOutTransition>
 
     <Grid x:Name="LayoutRoot"
-          Background="Transparent">
+          Background="{StaticResource MediaBrowserBackground}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -71,7 +71,7 @@
                         Height="27"
                         Margin="0">
                 <TextBlock Text="MEDIA"
-                           Foreground="Black"
+                           Foreground="{StaticResource PhoneForegroundBrush}"
                            Style="{StaticResource PhoneTextNormalStyle}" />
                 <TextBlock Text="BROWSER"
                            Foreground="Green"

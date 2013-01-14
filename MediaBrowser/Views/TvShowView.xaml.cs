@@ -2,7 +2,6 @@
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model.DTO;
 using MediaBrowser.WindowsPhone.ViewModel;
 using Microsoft.Phone.Controls;
@@ -27,7 +26,7 @@ namespace MediaBrowser.WindowsPhone.Views
                 MainPanorama.Background = new ImageBrush
                 {
                     Stretch = Stretch.UniformToFill,
-                    Opacity = 0.6,
+                    Opacity = 0.2,
                     ImageSource = new BitmapImage(new Uri(
                         (string)
                         new Converters.ImageUrlConverter().

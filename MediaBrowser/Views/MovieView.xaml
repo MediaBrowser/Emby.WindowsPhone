@@ -7,11 +7,11 @@
                             xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
                             xmlns:local="clr-namespace:MediaBrowser.WindowsPhone.Controls"
                             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-                            xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP71"
                             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                            xmlns:bar="clr-namespace:BindableApplicationBar;assembly=BindableApplicationBar"
+                            xmlns:cimbalino="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
                             xmlns:delay="clr-namespace:Delay"
+                            xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platforms.WP75"
                             mc:Ignorable="d"
                             d:DesignWidth="480"
                             d:DesignHeight="696"
@@ -22,7 +22,7 @@
                             Orientation="Portrait"
                             shell:SystemTray.IsVisible="True"
                             shell:SystemTray.Opacity="0"
-                            shell:SystemTray.BackgroundColor="White"
+                            shell:SystemTray.BackgroundColor="Black"
                             x:Name="PageRoot"
                             d:DataContext="{Binding Movie, Source={StaticResource Locator}}">
     <shell:SystemTray.ProgressIndicator>
@@ -32,7 +32,7 @@
     </shell:SystemTray.ProgressIndicator>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
-            <cmd:EventToCommand Command="{Binding MoviePageLoaded}" />
+            <command:EventToCommand Command="{Binding MoviePageLoaded}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
 
@@ -58,7 +58,19 @@
     </toolkit:TransitionService.NavigationOutTransition>
 
     <Grid x:Name="LayoutRoot"
-          Background="Transparent">
+          Background="{StaticResource MediaBrowserBackground}">
+        <i:Interaction.Behaviors>
+                <cimbalino:ApplicationBarBehavior Mode="Minimized"
+                                          IsMenuEnabled="True">
+                    <cimbalino:ApplicationBarIconButton Text="{Binding SelectedMovie.UserData.IsFavorite, Converter={StaticResource FavouritesConverter}, ConverterParameter=text}"
+                                                        IconUri="{Binding SelectedMovie.UserData.IsFavorite, Converter={StaticResource FavouritesConverter}, ConverterParameter=icon}"
+                                                        Command="{Binding AddRemoveFavouriteCommand}" />
+                    <cimbalino:ApplicationBarBehavior.MenuItems>
+                        <cimbalino:ApplicationBarMenuItem Text="play movie"
+                                                          Command="{Binding PlayMovieCommand}" />
+                    </cimbalino:ApplicationBarBehavior.MenuItems>
+                </cimbalino:ApplicationBarBehavior>
+        </i:Interaction.Behaviors>
         <controls:Panorama Title="{Binding SelectedMovie.Name, Converter={StaticResource StringCaseConverter}}"
                            x:Name="MainPanorama">
             <controls:PanoramaItem Header="poster">
@@ -72,8 +84,7 @@
             <controls:PanoramaItem Header="overview">
                 <Grid>
                     <local:ScrollableTextBlock Text="{Binding SelectedMovie.Overview}"
-                                               Foreground="{StaticResource PhoneContrastForegroundBrush}"
-                                               Background="{StaticResource PhoneSubtleBrush}"
+                                               Foreground="{StaticResource PhoneForegroundBrush}"
                                                Padding="12,6,6,12" />
                 </Grid>
             </controls:PanoramaItem>
@@ -117,7 +128,7 @@
                                           GroupHeaderTemplate="{StaticResource LLSGroupHeaderTemplateLong}"
                                           GroupItemTemplate="{StaticResource LLSGroupItemTemplateLong}"
                                           GroupItemsPanel="{StaticResource StackPanelVerticalTemplate}"
-                                          Background="Transparent" 
+                                          Background="Transparent"
                                           x:Name="LlsCastCrew">
                     <toolkit:LongListSelector.ItemTemplate>
                         <DataTemplate>
@@ -147,37 +158,5 @@
             </controls:PanoramaItem>
         </controls:Panorama>
     </Grid>
-    <bar:Bindable.ApplicationBar>
-        <bar:BindableApplicationBar Mode="Minimized"
-                                    IsMenuEnabled="True">
-            <bar:BindableApplicationBar.Buttons>
-                <bar:BindableApplicationBarButton Text="{Binding SelectedMovie.UserData.IsFavorite, Converter={StaticResource FavouritesConverter}, ConverterParameter=text}"
-                                                  IconUri="{Binding SelectedMovie.UserData.IsFavorite, Converter={StaticResource FavouritesConverter}, ConverterParameter=icon}"
-                                                  InitialIconUri="/Icons/appbar.star.add.png"
-                                                  Command="{Binding AddRemoveFavouriteCommand}" />
-            </bar:BindableApplicationBar.Buttons>
-            <bar:BindableApplicationBar.MenuItems>
-                <bar:BindableApplicationBarMenuItem Text="play movie"
-                                                    Command="{Binding PlayMovieCommand}" />
-            </bar:BindableApplicationBar.MenuItems>
-        </bar:BindableApplicationBar>
-    </bar:Bindable.ApplicationBar>
-    <!--<phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar IsVisible="True"
-                              Mode="Minimized"
-                              IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton Text="add "
-                                            IconUri="/Icons/appbar.star.add.png" />
-            <shell:ApplicationBar.MenuItems>
-                <shell:ApplicationBarMenuItem Text="settings" />
-            </shell:ApplicationBar.MenuItems>
-        </shell:ApplicationBar>
-    </phone:PhoneApplicationPage.ApplicationBar>-->
-    <!--<i:Interaction.Behaviors>
-        <appBarUtils:AppBarItemCommand Id="FavouriteButton"
-                                       Text="{Binding SelectedMovie.UserData.IsFavorite, Converter={StaticResource FavouritesConverter}, ConverterParameter=text}"
-                                       IconUri="{Binding SelectedMovie.UserData.IsFavorite, Converter={StaticResource FavouritesConverter}, ConverterParameter=icon}"
-                                       Command="{Binding AddRemoveFavouriteCommand}" />
-    </i:Interaction.Behaviors>-->
 
 </phone:PhoneApplicationPage>

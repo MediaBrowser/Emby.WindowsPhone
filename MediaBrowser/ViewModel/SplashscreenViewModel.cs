@@ -1,9 +1,11 @@
 ﻿using System.Threading.Tasks;
+using System.Windows;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.ApiInteraction;
 using MediaBrowser.WindowsPhone.Model;
+using Microsoft.Phone.Controls;
 using ScottIsAFool.WindowsPhone.IsolatedStorage;
 using MediaBrowser.Shared;
 using MediaBrowser.Model;
@@ -74,9 +76,26 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     {
                         App.ShowMessage("", "No connection settings, tap to set", () => NavigationService.NavigateToPage("/Views/Settings/ConnectionSettings.xaml"));
                         App.Settings.ConnectionDetails = new ConnectionDetails
-                                                             {
-                                                                 PortNo = 8096
-                                                             };
+                                                            {
+                                                                PortNo = 8096
+                                                            };
+                        //var messageBox = new CustomMessageBox
+                        //                     {
+                        //                         Caption= "No connection details",
+                        //                         Message = "No connection settings have been set, would you like to set them now?",
+                        //                         LeftButtonContent= "yes",
+                        //                         RightButtonContent = "no",
+                        //                         IsFullScreen = false
+                        //                     };
+                        //messageBox.Dismissed += (sender, args) =>
+                        //                            {
+                        //                                if (args.Result == CustomMessageBoxResult.LeftButton)
+                        //                                {
+                        //                                    
+                        //                                    Deployment.Current.Dispatcher.BeginInvoke(()=> NavigationService.NavigateToPage("/Views/Settings/ConnectionSettings.xaml"));
+                        //                                }
+                        //                            };
+                        //messageBox.Show();
                         return;
                     }
 
@@ -102,6 +121,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         else
                         {
                             App.ShowMessage("", "Could not find your server.");
+                            NavigationService.NavigateToPage("/Views/Settings/ConnectionSettings.xaml");
                         }
                         ProgressText = string.Empty;
                         ProgressIsVisible = false;
