@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.ApiInteraction;
 using MediaBrowser.WindowsPhone.Model;
 using GalaSoft.MvvmLight.Command;
@@ -26,6 +27,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         private readonly INavigationService NavService;
         private readonly ApiClient ApiClient;
         private bool hasLoaded;
+        private DtoBaseItem[] recentItems;
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
@@ -38,18 +40,30 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             FavouriteItems = new ObservableCollection<DtoBaseItem>();
             if (IsInDesignMode)
             {
-                Folders.Add(new DtoBaseItem { Id = "78dbff5aa1c2101b98ebaf42b72a988d", Name = "Movies" });
+                Folders.Add(new DtoBaseItem { Id = "78dbff5aa1c2101b98ebaf42b72a988d", Name = "Movies", RecentlyAddedUnPlayedItemCount = 2});
                 RecentItems.Add(new DtoBaseItem { Id = "2fc6f321b5f8bbe842fcd0eed089561d", Name = "A Night To Remember" });
             }
             else
             {
                 WireCommands();
+                WireMessages();
                 DummyFolder = new DtoBaseItem
                 {
                     Type = "folder",
                     Name = "recent"
                 };
             }
+        }
+
+        private void WireMessages()
+        {
+            Messenger.Default.Register<PropertyChangedMessage<object>>(this, async m =>
+                                                                                 {
+                                                                                     if (m.PropertyName.Equals("IncludeTrailersInRecent"))
+                                                                                     {
+                                                                                         await SortRecent(recentItems);
+                                                                                     }
+                                                                                 });
         }
 
         private void WireCommands()
@@ -125,7 +139,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 var items = await ApiClient.GetItemsAsync(query);
                 if (items != null && items.Items != null)
                 {
-                    foreach (var item in items.Items)
+                    foreach (var item in items.Items.Take(6))
                     {
                         FavouriteItems.Add(item);
                     }
@@ -154,6 +168,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     Recursive = true
                 };
                 var items = await ApiClient.GetItemsAsync(query);
+                recentItems = items.Items;
                 await SortRecent(items.Items);
                 return true;
             }
@@ -192,6 +207,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 .Union(seriesList)
                 .Select(x => x);
             RecentItems.Clear();
+            if (App.SpecificSettings.IncludeTrailersInRecent)
+            {
+                recent = recent.Where(x => x.Type != "Trailer");
+            }
             recent
                 .OrderByDescending(x => x.DateCreated)
                 .Take(6)
@@ -205,7 +224,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 var query = new ItemQuery
                 {
-                    UserId = App.Settings.LoggedInUser.Id
+                    UserId = App.Settings.LoggedInUser.Id,
+                    Fields = new []{ ItemFields.ItemCounts, }
                 };
                 var item = await ApiClient.GetItemsAsync(query);
                 Folders.Clear();

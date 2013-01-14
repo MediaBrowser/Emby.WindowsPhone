@@ -18,9 +18,6 @@
                             shell:SystemTray.IsVisible="True"
                             shell:SystemTray.BackgroundColor="Black"
                             toolkit:TiltEffect.IsTiltEnabled="True">
-    <phone:PhoneApplicationPage.Resources>
-        <Converters:SettingsConverters x:Key="SettingsConverters" />
-    </phone:PhoneApplicationPage.Resources>
 
     <toolkit:TransitionService.NavigationInTransition>
         <toolkit:NavigationInTransition>
@@ -46,29 +43,33 @@
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot"
           Background="{StaticResource MediaBrowserBackground}">
-        <controls:Pivot>
+        <controls:Pivot x:Name="settingsPivot">
             <controls:Pivot.Title>
                 <StackPanel Orientation="Horizontal"
                             VerticalAlignment="Top"
                             Height="27">
                     <TextBlock Text="MEDIA"
                                Foreground="{StaticResource PhoneForegroundBrush}"
-                               Style="{StaticResource PhoneTextNormalStyle}" />
+                               Style="{StaticResource PhoneTextNormalStyle}"
+                               Margin="0" />
                     <TextBlock Text="BROWSER"
                                Foreground="Green"
                                Style="{StaticResource PhoneTextNormalStyle}"
-                               Margin="-12,0,0,0" />
+                               Margin="0" />
                     <TextBlock Text="3"
                                Foreground="Green"
                                FontFamily="/MediaBrowser.WindowsPhone;component/Fonts/MISTRAL.TTF#Mistral"
-                               Margin="4,-10,0,0"
+                               Margin="0,-10,0,0"
                                Padding="0"
                                VerticalAlignment="Top" />
                 </StackPanel>
             </controls:Pivot.Title>
             
             <controls:PivotItem Header="general">
-                
+                <StackPanel>
+                    <CheckBox Content="Show trailers in recent items"
+                              IsChecked="{Binding IncludeTrailersInRecent, Source={StaticResource SpecificSettings}, Mode=TwoWay}"/>
+                </StackPanel>
             </controls:PivotItem>
             
             <controls:PivotItem Header="connection">

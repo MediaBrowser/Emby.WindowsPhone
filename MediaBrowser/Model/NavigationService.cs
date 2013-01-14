@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Navigation;
+using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Net.NetworkInformation;
 using MediaBrowser.Model.DTO;
@@ -115,6 +116,7 @@ namespace MediaBrowser.WindowsPhone.Model
                     NavigateToPage("/Views/EpisodeView.xaml");
                     break;
                 case "trailer":
+                    Messenger.Default.Send(new NotificationMessage(Constants.ChangeTrailerMsg));
                     NavigateToPage("/Views/TrailerView.xaml");
                     break;
             }

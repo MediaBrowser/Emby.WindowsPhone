@@ -11,7 +11,7 @@
     xmlns:scottConverters="clr-namespace:ScottIsAFool.WindowsPhone.Converters;assembly=ScottIsAFool.WindowsPhone"
     xmlns:converters="clr-namespace:MediaBrowser.WindowsPhone.Converters"
     xmlns:model="clr-namespace:MediaBrowser.Model"
-    xmlns:delay="clr-namespace:Delay" >
+    xmlns:delay="clr-namespace:Delay" xmlns:windowsPhone="clr-namespace:MediaBrowser.WindowsPhone">
 
     <Application.Resources>
         <ResourceDictionary>
@@ -23,6 +23,7 @@
             <vm:ViewModelLocator x:Key="Locator"
                                  d:IsDataSource="True" />
             <model:SettingsService x:Key="AppSettings" />
+            <windowsPhone:SpecificSettings x:Key="SpecificSettings"/>
 
             <sys:String x:Key="AppName">MediaBrowser</sys:String>
 
@@ -79,8 +80,9 @@
                                  Command="{Binding Main.NavigateToPage, Source={StaticResource Locator}}"
                                  CommandParameter="{Binding}">
                     <Grid MaxWidth="173">
-                        <delay:PlaceImage PlaceholderSource="/Images/MBLogo.png"
+                        <delay:PlaceImage PlaceholderSource="/Images/Logo.png"
                                           Source="{Binding Converter={StaticResource ImageUrlConverter}}"
+                                          Background="{Binding Converter={StaticResource RandomColour}}"
                                           Width="173"
                                           Height="173"
                                           Stretch="UniformToFill" />

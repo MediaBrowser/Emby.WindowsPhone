@@ -154,6 +154,7 @@
     <Compile Include="Converters\SettingsConverters.cs" />
     <Compile Include="Model\AsyncHttpClient.cs" />
     <Compile Include="Model\SettingsService.cs" />
+    <Compile Include="SpecificSettings.cs" />
     <Compile Include="ThicknessAnimationX.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -172,6 +173,7 @@
     <Compile Include="ViewModel\FolderViewModel.cs" />
     <Compile Include="ViewModel\MovieViewModel.cs" />
     <Compile Include="ViewModel\SplashscreenViewModel.cs" />
+    <Compile Include="ViewModel\TrailerViewModel.cs" />
     <Compile Include="ViewModel\TvViewModel.cs" />
     <Compile Include="ViewModel\VideoPlayerViewModel.cs" />
     <Compile Include="Views\ChooseProfileView.xaml.cs">
@@ -199,9 +201,6 @@
     </Compile>
     <Compile Include="Views\SettingsView.xaml.cs">
       <DependentUpon>SettingsView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Settings\ConnectionSettings.xaml.cs">
-      <DependentUpon>ConnectionSettings.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TrailerView.xaml.cs">
       <DependentUpon>TrailerView.xaml</DependentUpon>
@@ -262,10 +261,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Settings\ConnectionSettings.xaml">
-      <SubType>Form</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\TrailerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -300,6 +295,7 @@
     <Content Include="Images\MBLogo.png" />
     <Content Include="Images\PanoBackground.png" />
     <Content Include="Images\PanoTitle.png" />
+    <Content Include="Images\Play128.png" />
     <Content Include="Images\UserLoginDefault.png" />
     <Content Include="README_FIRST.txt" />
     <Content Include="SplashScreenImage.jpg" />

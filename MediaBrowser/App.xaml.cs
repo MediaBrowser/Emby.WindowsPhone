@@ -7,6 +7,7 @@ using MediaBrowser.WindowsPhone.ViewModel;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using MediaBrowser.Model;
+using ScottIsAFool.WindowsPhone.IsolatedStorage;
 
 namespace MediaBrowser.WindowsPhone
 {
@@ -19,6 +20,12 @@ namespace MediaBrowser.WindowsPhone
         public static SettingsService Settings
         {
             get { return _settings ?? (_settings = (SettingsService) Current.Resources["AppSettings"]); }
+        }
+
+        private static SpecificSettings _specificSettings;
+        public static SpecificSettings SpecificSettings
+        {
+            get { return _specificSettings ?? (_specificSettings = (SpecificSettings)Current.Resources["SpecificSettings"]); }
         }
 
         public static object SelectedItem { get; set; }
@@ -98,12 +105,19 @@ namespace MediaBrowser.WindowsPhone
         // This code will not execute when the application is closing
         private void Application_Deactivated(object sender, DeactivatedEventArgs e)
         {
+            SaveSettings();
+        }
+
+        private void SaveSettings()
+        {
+            ISettings.Set(Constants.SpecificSettings, SpecificSettings);
         }
 
         // Code to execute when the application is closing (eg, user hit Back)
         // This code will not execute when the application is deactivated
         private void Application_Closing(object sender, ClosingEventArgs e)
         {
+            SaveSettings();
             ViewModelLocator.Cleanup();
         }
 

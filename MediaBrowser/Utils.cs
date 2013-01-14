@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Ioc;
 using MediaBrowser.ApiInteraction;
@@ -49,5 +50,18 @@ namespace MediaBrowser.WindowsPhone
             }
         }
         
+        internal static void CopyItem<T>(T source, T destination) where T : class
+        {
+            var type = typeof (T);
+            var properties = type.GetProperties(BindingFlags.Public);
+
+            foreach (var fi in properties)
+            {
+                if (fi.CanWrite)
+                {
+                    fi.SetValue(destination, fi.GetValue(source, null), null);
+                }
+            }
+        }
     }
 }

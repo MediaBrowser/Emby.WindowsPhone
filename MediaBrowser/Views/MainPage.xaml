@@ -93,7 +93,7 @@
             <!--<controls:Panorama.Background>
                 <ImageBrush ImageSource="/Images/PanoBackground.png" />
             </controls:Panorama.Background>-->
-            <controls:PanoramaItem Header="folders">
+            <controls:PanoramaItem Header="collections">
                 <scott:PhoneListBox ItemsSource="{Binding Folders}"
                                     Text="No folders found"
                                     TextHorizontalAlignment="Center"
@@ -103,18 +103,22 @@
                         <DataTemplate>
                             <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
                                              Command="{Binding Main.NavigateToPage, Source={StaticResource Locator}}"
-                                             CommandParameter="{Binding}">
+                                             CommandParameter="{Binding}"
+                                             Margin="12,0,0,0">
                                 <StackPanel Orientation="Horizontal">
                                     <delay:PlaceImage PlaceholderSource="/Images/Logo.png"
                                                       Source="{Binding Converter={StaticResource ImageUrlConverter}}"
                                                       Height="62"
                                                       Width="62"
+                                                      VerticalAlignment="Top"
                                                       Background="{Binding Converter={StaticResource RandomColour}}" />
-                                    <StackPanel Orientation="Vertical">
+                                    <StackPanel Orientation="Vertical"
+                                                VerticalAlignment="Top"
+                                                Margin="0,-7,0,0">
                                         <TextBlock Text="{Binding Name}"
                                                    Style="{StaticResource PhoneTextLargeStyle}" />
-                                        <TextBlock Text="{Binding RecentlyAddedUnPlayedItemCount, StringFormat='Unwatched items: \{0\}'}"
-                                                   Style="{StaticResource PhoneTextSubtleStyle}" />
+                                        <!--<TextBlock Text="{Binding RecentlyAddedUnPlayedItemCount, StringFormat='Unwatched items: \{0\}'}"
+                                                   Style="{StaticResource PhoneTextSubtleStyle}"/>-->
                                     </StackPanel>
                                 </StackPanel>
                             </HyperlinkButton>

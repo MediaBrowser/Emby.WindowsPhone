@@ -57,6 +57,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             SimpleIoc.Default.Register<SplashscreenViewModel>();
             SimpleIoc.Default.Register<ChooseProfileViewModel>();
             SimpleIoc.Default.Register<TvViewModel>();
+            SimpleIoc.Default.Register<TrailerViewModel>(true);
         }
 
         /// <summary>
@@ -110,9 +111,20 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             get { return ServiceLocator.Current.GetInstance<ChooseProfileViewModel>(); }
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
+            "CA1822:MarkMembersAsStatic",
+            Justification = "This non-static member is needed for data binding purposes.")]
         public VideoPlayerViewModel Player
         {
             get { return ServiceLocator.Current.GetInstance<VideoPlayerViewModel>(); }
+        }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
+            "CA1822:MarkMembersAsStatic",
+            Justification = "This non-static member is needed for data binding purposes.")]
+        public TrailerViewModel Trailer
+        {
+            get { return ServiceLocator.Current.GetInstance<TrailerViewModel>(); }
         }
 
         public static TvViewModel GetTvViewModel(string itemId)

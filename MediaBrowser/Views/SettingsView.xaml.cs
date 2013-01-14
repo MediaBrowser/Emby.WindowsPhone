@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Navigation;
-using Microsoft.Phone.Controls;
-using Microsoft.Phone.Shell;
+﻿using Microsoft.Phone.Controls;
 
 namespace MediaBrowser.WindowsPhone.Views
 {
@@ -15,6 +7,17 @@ namespace MediaBrowser.WindowsPhone.Views
         public SettingsView()
         {
             InitializeComponent();
+        }
+
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            string settingPane;
+            if (NavigationContext.QueryString.TryGetValue("settingsPane", out settingPane))
+            {
+                var selectedIndex = int.Parse(settingPane);
+                settingsPivot.SelectedIndex = selectedIndex;
+            }
         }
     }
 }

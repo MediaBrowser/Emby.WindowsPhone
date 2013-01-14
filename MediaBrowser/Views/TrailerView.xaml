@@ -12,6 +12,7 @@
                             SupportedOrientations="Portrait"
                             Orientation="Portrait"
                             mc:Ignorable="d"
+                            DataContext="{Binding Trailer, Source={StaticResource Locator}}"
                             shell:SystemTray.IsVisible="True"
                             shell:SystemTray.BackgroundColor="Black"
                             toolkit:TiltEffect.IsTiltEnabled="True">
@@ -44,7 +45,7 @@
                            Padding="0"
                            VerticalAlignment="Top" />
             </StackPanel>
-            <TextBlock Text="trailer"
+            <TextBlock Text="{Binding SelectedTrailer.Name, Converter={StaticResource StringCaseConverter}}"
                        Margin="9,-7,0,0"
                        Style="{StaticResource PhoneTextTitle1Style}" />
         </StackPanel>
@@ -53,7 +54,28 @@
         <Grid x:Name="ContentPanel"
               Grid.Row="1"
               Margin="12,0,12,0">
-
+            <ScrollViewer>
+                <StackPanel Orientation="Vertical">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <Image Source="{Binding SelectedTrailer, Converter={StaticResource ImageUrlConverter}}"
+                                   Stretch="UniformToFill"
+                                   HorizontalAlignment="Center" />
+                            <Image Source="/Images/Play128.png"
+                                   Width="99"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center" />
+                        </Grid>
+                    </Grid>
+                    <TextBlock Text="{Binding SelectedTrailer.Overview}"
+                               Style="{StaticResource PhoneTextNormalStyle}"
+                               TextWrapping="Wrap" />
+                </StackPanel>
+            </ScrollViewer>
         </Grid>
     </Grid>
 

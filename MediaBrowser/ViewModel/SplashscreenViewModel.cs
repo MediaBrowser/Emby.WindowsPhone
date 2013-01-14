@@ -66,6 +66,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 if (m.Notification.Equals(Constants.SplashAnimationFinishedMsg))
                 {
+                    ProgressIsVisible = true;
+                    ProgressText = "Loading settings...";
                     // Get settings from storage
                     var connectionDetails = ISettings.GetKeyValue<ConnectionDetails>(Constants.ConnectionSettings);
                     if (connectionDetails != null)
@@ -74,7 +76,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     }
                     else
                     {
-                        App.ShowMessage("", "No connection settings, tap to set", () => NavigationService.NavigateToPage("/Views/Settings/ConnectionSettings.xaml"));
+                        App.ShowMessage("", "No connection settings, tap to set", () => NavigationService.NavigateToPage("/Views/SettingsView.xaml?settingsPane=1"));
                         App.Settings.ConnectionDetails = new ConnectionDetails
                                                             {
                                                                 PortNo = 8096
@@ -96,10 +98,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         //                                }
                         //                            };
                         //messageBox.Show();
+                        
                         return;
                     }
 
-
+                    var specificSettings = ISettings.GetKeyValue<SpecificSettings>(Constants.SpecificSettings);
+                    if(specificSettings != null) Utils.CopyItem(specificSettings, App.SpecificSettings);
 
                     var user = ISettings.GetKeyValue<UserSettingWrapper>(Constants.SelectedUserSetting);
                     if (user != null)
@@ -109,7 +113,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     }
                     if (NavigationService.IsNetworkAvailable && App.Settings.ConnectionDetails != null)
                     {
-                        ProgressIsVisible = true;
                         ProgressText = "Getting server details...";
 
                         await GetServerConfiguration();
@@ -123,9 +126,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                             App.ShowMessage("", "Could not find your server.");
                             NavigationService.NavigateToPage("/Views/Settings/ConnectionSettings.xaml");
                         }
-                        ProgressText = string.Empty;
-                        ProgressIsVisible = false;
                     }
+                    ProgressText = string.Empty;
+                    ProgressIsVisible = false;
                 }
             });
         }
