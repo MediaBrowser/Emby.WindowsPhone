@@ -10,7 +10,9 @@
              xmlns:model="clr-namespace:MediaBrowser.Model"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:scottConverters="clr-namespace:ScottIsAFool.WindowsPhone.Converters;assembly=ScottIsAFool.WindowsPhone"
-             xmlns:converters="clr-namespace:MediaBrowser.WindowsPhone.Converters" xmlns:delay="clr-namespace:Delay">
+             xmlns:converters="clr-namespace:MediaBrowser.WindowsPhone.Converters"
+             xmlns:delay="clr-namespace:Delay"
+             xmlns:windowsPhone="clr-namespace:MediaBrowser.WindowsPhone">
 
     <!--Application Resources-->
     <Application.Resources>
@@ -23,6 +25,7 @@
             <vm:ViewModelLocator x:Key="Locator"
                                  d:IsDataSource="True" />
             <model:SettingsService x:Key="AppSettings" />
+            <windowsPhone:SpecificSettings x:Key="SpecificSettings" />
 
             <sys:String x:Key="AppName">MediaBrowser</sys:String>
 

@@ -7,8 +7,8 @@
                             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
                             xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
-                            xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platforms.WP75"
                             xmlns:cimbalino="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
+                            xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP71"
                             mc:Ignorable="d"
                             d:DesignWidth="480"
                             d:DesignHeight="696"
@@ -80,7 +80,7 @@
                 <TextBlock Text="MEDIA"
                            Foreground="{StaticResource PhoneForegroundBrush}"
                            Style="{StaticResource PhoneTextNormalStyle}"
-                           Margin="0" />
+                           Margin="12,0,0,0" />
                 <TextBlock Text="BROWSER"
                            Foreground="Green"
                            Style="{StaticResource PhoneTextNormalStyle}"

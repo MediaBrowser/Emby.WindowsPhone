@@ -2,13 +2,14 @@
 using System.Collections.ObjectModel;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using MediaBrowser.ApiInteraction;
 using MediaBrowser.WindowsPhone.Model;
 using GalaSoft.MvvmLight.Messaging;
-using ScottIsAFool.WindowsPhone;
 using System.Linq;
 using System.Threading.Tasks;
 using MediaBrowser.Model.DTO;
+#if !WP8
+using ScottIsAFool.WindowsPhone;
+#endif
 
 namespace MediaBrowser.WindowsPhone.ViewModel
 {

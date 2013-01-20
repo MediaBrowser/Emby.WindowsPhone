@@ -10,7 +10,7 @@
                             xmlns:delay="clr-namespace:Delay"
                             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                            xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP71"
+                            xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP8"
                             xmlns:cimbalino="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
                             FontFamily="{StaticResource PhoneFontFamilyNormal}"
                             FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -74,8 +74,8 @@
                 </cimbalino:ApplicationBarBehavior.MenuItems>
             </cimbalino:ApplicationBarBehavior>
         </i:Interaction.Behaviors>
-        <controls:Panorama Title="">
-            <controls:Panorama.TitleTemplate>
+        <phone:Panorama Title="">
+            <phone:Panorama.TitleTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="media"
@@ -89,11 +89,11 @@
                                    FontSize="133.333" />
                     </StackPanel>
                 </DataTemplate>
-            </controls:Panorama.TitleTemplate>
+            </phone:Panorama.TitleTemplate>
             <!--<controls:Panorama.Background>
                 <ImageBrush ImageSource="/Images/PanoBackground.png" />
             </controls:Panorama.Background>-->
-            <controls:PanoramaItem Header="collections">
+            <phone:PanoramaItem Header="collections">
                 <scott:PhoneListBox ItemsSource="{Binding Folders}"
                                     Text="No folders found"
                                     TextHorizontalAlignment="Center"
@@ -125,9 +125,9 @@
                         </DataTemplate>
                     </scott:PhoneListBox.ItemTemplate>
                 </scott:PhoneListBox>
-            </controls:PanoramaItem>
+            </phone:PanoramaItem>
 
-            <controls:PanoramaItem Header="recent"
+            <phone:PanoramaItem Header="recent"
                                    Orientation="Horizontal">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -163,9 +163,9 @@
                                    Style="{StaticResource PhoneTextLargeStyle}" />
                     </HyperlinkButton>
                 </Grid>
-            </controls:PanoramaItem>
+            </phone:PanoramaItem>
 
-            <controls:PanoramaItem Header="favourites">
+            <phone:PanoramaItem Header="favourites">
                 <scott:PhoneListBox ItemsSource="{Binding FavouriteItems}"
                                     Text="No items found"
                                     TextHorizontalAlignment="Center"
@@ -181,8 +181,8 @@
                         </ItemsPanelTemplate>
                     </scott:PhoneListBox.ItemsPanel>
                 </scott:PhoneListBox>
-            </controls:PanoramaItem>
-        </controls:Panorama>
+            </phone:PanoramaItem>
+        </phone:Panorama>
     </Grid>
 
 </phone:PhoneApplicationPage>

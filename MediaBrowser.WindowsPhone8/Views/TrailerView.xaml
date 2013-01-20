@@ -7,7 +7,7 @@
                             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                             xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
                             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-                            xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP71"
+                            xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP8"
                             FontFamily="{StaticResource PhoneFontFamilyNormal}"
                             FontSize="{StaticResource PhoneFontSizeNormal}"
                             Foreground="{StaticResource PhoneForegroundBrush}"
@@ -85,17 +85,17 @@
                                    HorizontalAlignment="Center"
                                    VerticalAlignment="Center" />
                         </Grid>
-                        <toolkit:LongListSelector Grid.Column="1"
+                        <phone:LongListSelector Grid.Column="1"
                                                   Background="Transparent"
                                                   IsHitTestVisible="False"
                                                   ItemsSource="{Binding CastAndCrew}">
-                            <toolkit:LongListSelector.ItemTemplate>
+                            <phone:LongListSelector.ItemTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding Name}"/>
                                 </DataTemplate>
-                            </toolkit:LongListSelector.ItemTemplate>
+                            </phone:LongListSelector.ItemTemplate>
                             
-                        </toolkit:LongListSelector>
+                        </phone:LongListSelector>
                     </Grid>
                     <TextBlock Text="{Binding SelectedTrailer.Overview}"
                                Style="{StaticResource PhoneTextNormalStyle}"

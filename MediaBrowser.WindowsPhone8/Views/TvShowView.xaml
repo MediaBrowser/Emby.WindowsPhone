@@ -10,7 +10,7 @@
                             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                             xmlns:delay="clr-namespace:Delay"
-                            xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP71"
+                            xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP8"
                             mc:Ignorable="d"
                             d:DesignWidth="480"
                             d:DesignHeight="768"
@@ -58,9 +58,9 @@
 
     <Grid x:Name="LayoutRoot"
           Background="{StaticResource MediaBrowserBackground}">
-        <controls:Panorama Title="{Binding SelectedTvSeries.Name, Converter={StaticResource StringCaseConverter}}"
-                           x:Name="MainPanorama">
-            <controls:PanoramaItem Header="seasons">
+        <phone:Panorama Title="{Binding SelectedTvSeries.Name, Converter={StaticResource StringCaseConverter}}"
+                        x:Name="MainPanorama">
+            <phone:PanoramaItem Header="seasons">
                 <Grid>
                     <scott:PhoneListBox ItemsSource="{Binding Seasons}"
                                         Text="No seasons found"
@@ -99,10 +99,10 @@
                         </scott:PhoneListBox.ItemTemplate>
                     </scott:PhoneListBox>
                 </Grid>
-            </controls:PanoramaItem>
+            </phone:PanoramaItem>
 
-            <controls:PanoramaItem Header="recent"
-                                   Orientation="Horizontal">
+            <phone:PanoramaItem Header="recent"
+                                Orientation="Horizontal">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="420" />
@@ -137,21 +137,22 @@
                                    Style="{StaticResource PhoneTextLargeStyle}" />
                     </HyperlinkButton>
                 </Grid>
-            </controls:PanoramaItem>
+            </phone:PanoramaItem>
 
-            <controls:PanoramaItem Header="details">
+            <phone:PanoramaItem Header="details">
 
-            </controls:PanoramaItem>
+            </phone:PanoramaItem>
 
-            <controls:PanoramaItem Header="cast + crew">
-                <toolkit:LongListSelector ItemsSource="{Binding CastAndCrew}"
-                                          GroupHeaderTemplate="{StaticResource LLSGroupHeaderTemplateLong}"
-                                          GroupItemTemplate="{StaticResource LLSGroupItemTemplateLong}"
-                                          GroupItemsPanel="{StaticResource StackPanelVerticalTemplate}"
-                                          Background="Transparent"
-                                          ItemTemplate="{StaticResource CrewTemplate}" />
-            </controls:PanoramaItem>
-        </controls:Panorama>
+            <phone:PanoramaItem Header="cast + crew">
+                <phone:LongListSelector ItemsSource="{Binding CastAndCrew}"
+                                        GroupHeaderTemplate="{StaticResource LLSGroupHeaderTemplateLong}"
+                                        JumpListStyle="{StaticResource LLSGroupItemLongStyle}"
+                                        Background="Transparent"
+                                        HideEmptyGroups="True"
+                                        IsGroupingEnabled="True"
+                                        ItemTemplate="{StaticResource CrewTemplate}" />
+            </phone:PanoramaItem>
+        </phone:Panorama>
     </Grid>
 
     <!--Sample code showing usage of ApplicationBar-->

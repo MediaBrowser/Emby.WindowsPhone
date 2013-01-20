@@ -25,6 +25,12 @@ namespace MediaBrowser.WindowsPhone
             get { return _settings ?? (_settings = (SettingsService)Current.Resources["AppSettings"]); }
         }
 
+        private static SpecificSettings _specificSettings;
+        public static SpecificSettings SpecificSettings
+        {
+            get { return _specificSettings ?? (_specificSettings = (SpecificSettings)Current.Resources["SpecificSettings"]); }
+        }
+
         public static object SelectedItem { get; set; }
 
         public static void ShowMessage(string title, string message, Action action = null)
@@ -60,6 +66,8 @@ namespace MediaBrowser.WindowsPhone
 
             // Phone-specific initialization
             InitializePhoneApplication();
+
+            ThemeManager.OverrideTheme(Theme.Dark);
 
             // Language display initialization
             InitializeLanguage();

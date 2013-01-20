@@ -10,7 +10,7 @@
                             xmlns:Converters="clr-namespace:MediaBrowser.WindowsPhone.Converters"
                             xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
                             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-                            xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP71"
+                            xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP8"
                             FontFamily="{StaticResource PhoneFontFamilyNormal}"
                             FontSize="{StaticResource PhoneFontSizeNormal}"
                             Foreground="{StaticResource PhoneForegroundBrush}"
@@ -56,8 +56,8 @@
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot"
           Background="{StaticResource MediaBrowserBackground}">
-        <controls:Pivot x:Name="settingsPivot">
-            <controls:Pivot.Title>
+        <phone:Pivot x:Name="settingsPivot">
+            <phone:Pivot.Title>
                 <StackPanel Orientation="Horizontal"
                             VerticalAlignment="Top"
                             Height="27"
@@ -77,16 +77,16 @@
                                Padding="0"
                                VerticalAlignment="Top" />
                 </StackPanel>
-            </controls:Pivot.Title>
+            </phone:Pivot.Title>
 
-            <controls:PivotItem Header="general">
+            <phone:PivotItem Header="general">
                 <StackPanel>
                     <CheckBox Content="Show trailers in recent items"
                               IsChecked="{Binding IncludeTrailersInRecent, Source={StaticResource SpecificSettings}, Mode=TwoWay}" />
                 </StackPanel>
-            </controls:PivotItem>
+            </phone:PivotItem>
 
-            <controls:PivotItem Header="push notifications">
+            <phone:PivotItem Header="push notifications">
                 <Grid>
                     <StackPanel Orientation="Vertical"
                                 Visibility="{Binding ServerPluginInstalled, Converter={StaticResource VisibilityConverter}}">
@@ -108,9 +108,9 @@
                         
                     </StackPanel>
                 </Grid>
-            </controls:PivotItem>
+            </phone:PivotItem>
 
-            <controls:PivotItem Header="connection">
+            <phone:PivotItem Header="connection">
                 <StackPanel Orientation="Vertical">
                     <TextBlock Text="Put the connection details in to point to the computer running Mediabrowser3. Then simply test them to confirm."
                                TextWrapping="Wrap"
@@ -134,8 +134,8 @@
                             Content="Connect"
                             Command="{Binding Splashscreen.TestConnectionCommand, Source={StaticResource Locator}}" />
                 </StackPanel>
-            </controls:PivotItem>
-        </controls:Pivot>
+            </phone:PivotItem>
+        </phone:Pivot>
 
         <!--ContentPanel - place additional content here-->
         <!--<Grid x:Name="ContentPanel"

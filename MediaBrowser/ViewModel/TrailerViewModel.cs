@@ -4,10 +4,11 @@ using System.Threading.Tasks;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
-using MediaBrowser.ApiInteraction;
 using MediaBrowser.Model.DTO;
 using MediaBrowser.WindowsPhone.Model;
+#if !WP8
 using ScottIsAFool.WindowsPhone;
+#endif
 
 namespace MediaBrowser.WindowsPhone.ViewModel
 {

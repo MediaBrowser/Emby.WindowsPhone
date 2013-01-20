@@ -207,7 +207,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 .Union(seriesList)
                 .Select(x => x);
             RecentItems.Clear();
-            if (App.SpecificSettings.IncludeTrailersInRecent)
+            if (!App.SpecificSettings.IncludeTrailersInRecent)
             {
                 recent = recent.Where(x => x.Type != "Trailer");
             }

@@ -1,16 +1,17 @@
 ﻿using System.Threading.Tasks;
 using System.Windows.Controls;
 using GalaSoft.MvvmLight;
-using MediaBrowser.ApiInteraction;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.WindowsPhone.Model;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model.DTO;
-using ScottIsAFool.WindowsPhone;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
+#if !WP8
+using ScottIsAFool.WindowsPhone;
+#endif
 
 namespace MediaBrowser.WindowsPhone.ViewModel
 {
@@ -91,9 +92,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 var query = new ItemQuery
                 {
                     UserId = App.Settings.LoggedInUser.Id,
-                    SortBy = ItemSortBy.SortName,
+                    SortBy = new[] { ItemSortBy.SortName },
                     SortOrder = SortOrder.Ascending,
-                    Fields = new[] { ItemFields.SortName, ItemFields.UserData, }
+                    Fields = new[] { ItemFields.SortName, ItemFields.UserData, ItemFields.Genres, }
                 };
                 if (SelectedPerson != null)
                 {
@@ -142,8 +143,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 case "name":
                     GroupHeaderTemplate = (DataTemplate)Application.Current.Resources["LLSGroupHeaderTemplateName"];
+#if WP8
+                    GroupItemTemplate = (Style)Application.Current.Resources["LLSGroupItemStyle"];
+#else
                     GroupItemTemplate = (DataTemplate)Application.Current.Resources["LLSGroupItemTemplate"];
                     ItemsPanelTemplate = (ItemsPanelTemplate)Application.Current.Resources["WrapPanelTemplate"];
+#endif
                     var headers = new List<string> { "#", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
                     headers.ForEach(item => emptyGroups.Add(new Group<DtoBaseItem>(item, new List<DtoBaseItem>())));
                     var groupedNameItems = (from c in CurrentItems
@@ -151,14 +156,22 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                 into grp
                                                 orderby grp.Key
                                                 select new Group<DtoBaseItem>(grp.Key, grp)).ToList();
+#if WP8
+                    FolderGroupings = groupedNameItems.ToList();
+#else
                     FolderGroupings = (from g in groupedNameItems.Union(emptyGroups)
                                        orderby g.Title
                                        select g).ToList();
+#endif
                     break;
                 case "production year":
                     GroupHeaderTemplate = (DataTemplate)Application.Current.Resources["LLSGroupHeaderTemplateLong"];
+#if WP8
+                    GroupItemTemplate = (Style)Application.Current.Resources["LLSGroupItemStyle"];
+#else
                     GroupItemTemplate = (DataTemplate)Application.Current.Resources["LLSGroupItemTemplate"];
                     ItemsPanelTemplate = (ItemsPanelTemplate)Application.Current.Resources["WrapPanelTemplate"];
+#endif
                     var movieYears = (from y in CurrentItems
                                       where y.ProductionYear != null
                                       orderby y.ProductionYear
@@ -171,14 +184,22 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                into grp
                                                orderby grp.Key
                                                select new Group<DtoBaseItem>(grp.Key, grp);
+#if WP8
+                    FolderGroupings = groupedYearItems.ToList();
+#else
                     FolderGroupings = (from g in groupedYearItems.Union(emptyGroups)
                                        orderby g.Title
                                        select g).ToList();
+#endif
                     break;
                 case "genre":
                     GroupHeaderTemplate = (DataTemplate)Application.Current.Resources["LLSGroupHeaderTemplateLong"];
+#if WP8
+                    GroupItemTemplate = (Style)Application.Current.Resources["LLSGroupItemLongStyle"];
+#else
                     GroupItemTemplate = (DataTemplate)Application.Current.Resources["LLSGroupItemTemplateLong"];
                     ItemsPanelTemplate = (ItemsPanelTemplate)Application.Current.Resources["StackPanelVerticalTemplate"];
+#endif
                     var genres = (from t in CurrentItems
                                   where t.Genres != null
                                   from s in t.Genres
@@ -193,15 +214,22 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                           orderby GetSortByNameHeader(f)
                                                           select f).ToList()
                                              select new Group<DtoBaseItem>(genre, films)).ToList();
-
+#if WP8
+                    FolderGroupings = groupedGenreItems.ToList();
+#else
                     FolderGroupings = (from g in groupedGenreItems.Union(emptyGroups)
                                        orderby g.Title
                                        select g).ToList();
+#endif
                     break;
                 case "studio":
                     GroupHeaderTemplate = (DataTemplate)Application.Current.Resources["LLSGroupHeaderTemplateLong"];
+#if WP8
+                    GroupItemTemplate = (Style)Application.Current.Resources["LLSGroupItemLongStyle"];
+#else
                     GroupItemTemplate = (DataTemplate)Application.Current.Resources["LLSGroupItemTemplateLong"];
                     ItemsPanelTemplate = (ItemsPanelTemplate)Application.Current.Resources["StackPanelVerticalTemplate"];
+#endif
                     var studios = (from s in CurrentItems
                                    where s.Studios != null
                                    from st in s.Studios
@@ -216,44 +244,48 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                            orderby GetSortByNameHeader(f)
                                                            select f).ToList()
                                               select new Group<DtoBaseItem>(studio.Name, films)).ToList();
+#if WP8
+                    FolderGroupings = groupedStudioItems.ToList();
+#else
                     FolderGroupings = (from g in groupedStudioItems.Union(emptyGroups)
                                        orderby g.Title
                                        select g).ToList();
+#endif
                     break;
             }
             ProgressIsVisible = false;
         }
 
-        private bool CheckStudio(DtoBaseItem DtoBaseItem)
+        private bool CheckStudio(DtoBaseItem dtoBaseItem)
         {
-            if (DtoBaseItem.Studios != null && DtoBaseItem.Studios.Any())
+            if (dtoBaseItem.Studios != null && dtoBaseItem.Studios.Any())
             {
                 return true;
             }
-            DtoBaseItem.Studios = new[] { new BaseItemStudio { Name = "none" } };
+            dtoBaseItem.Studios = new[] { new BaseItemStudio { Name = "none" } };
             return true;
         }
 
-        private bool CheckGenre(DtoBaseItem DtoBaseItem)
+        private bool CheckGenre(DtoBaseItem dtoBaseItem)
         {
-            if (DtoBaseItem.Genres != null && DtoBaseItem.Genres.Any())
+            if (dtoBaseItem.Genres != null && dtoBaseItem.Genres.Any())
             {
                 return true;
             }
-            DtoBaseItem.Genres = new List<string> { "none" };
+            dtoBaseItem.Genres = new List<string> { "none" };
             return true;
         }
 
-        private string GetSortByProductionYearHeader(DtoBaseItem DtoBaseItem)
+        private string GetSortByProductionYearHeader(DtoBaseItem dtoBaseItem)
         {
-            return DtoBaseItem.ProductionYear == null ? "?" : DtoBaseItem.ProductionYear.ToString();
+            return dtoBaseItem.ProductionYear == null ? "?" : dtoBaseItem.ProductionYear.ToString();
         }
 
-        private string GetSortByNameHeader(DtoBaseItem DtoBaseItem)
+        private string GetSortByNameHeader(DtoBaseItem dtoBaseItem)
         {
-            string name = !string.IsNullOrEmpty(DtoBaseItem.SortName) ? DtoBaseItem.SortName : DtoBaseItem.Name;
-            string[] words = name.Split(' ');
-            char l = name.ToLower()[0];
+            var name = !string.IsNullOrEmpty(dtoBaseItem.SortName) ? dtoBaseItem.SortName : dtoBaseItem.Name;
+            var words = name.Split(' ');
+            var l = name.ToLower()[0];
             if (words[0].ToLower().Equals("the") ||
                 words[0].ToLower().Equals("a") ||
                 words[0].ToLower().Equals("an"))
@@ -280,7 +312,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
         public string SortBy { get; set; }
         public DataTemplate GroupHeaderTemplate { get; set; }
+#if WP8
+        public Style GroupItemTemplate { get; set; }
+#else
         public DataTemplate GroupItemTemplate { get; set; }
+#endif
         public ItemsPanelTemplate ItemsPanelTemplate { get; set; }
 
         public RelayCommand PageLoaded { get; set; }

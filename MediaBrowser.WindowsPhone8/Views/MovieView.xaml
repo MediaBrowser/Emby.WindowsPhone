@@ -3,7 +3,6 @@
                             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                             xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
                             xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
-                            xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
                             xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
                             xmlns:local="clr-namespace:MediaBrowser.WindowsPhone.Controls"
                             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
@@ -11,7 +10,7 @@
                             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                             xmlns:cimbalino="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
                             xmlns:delay="clr-namespace:Delay"
-                            xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP71"
+                            xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP8"
                             mc:Ignorable="d"
                             d:DesignWidth="480"
                             d:DesignHeight="696"
@@ -60,36 +59,36 @@
     <Grid x:Name="LayoutRoot"
           Background="{StaticResource MediaBrowserBackground}">
         <i:Interaction.Behaviors>
-                <cimbalino:ApplicationBarBehavior Mode="Minimized"
-                                          IsMenuEnabled="True">
-                    <cimbalino:ApplicationBarIconButton Text="{Binding SelectedMovie.UserData.IsFavorite, Converter={StaticResource FavouritesConverter}, ConverterParameter=text}"
-                                                        IconUri="{Binding SelectedMovie.UserData.IsFavorite, Converter={StaticResource FavouritesConverter}, ConverterParameter=icon}"
-                                                        Command="{Binding AddRemoveFavouriteCommand}" />
-                    <cimbalino:ApplicationBarBehavior.MenuItems>
-                        <cimbalino:ApplicationBarMenuItem Text="play movie"
-                                                          Command="{Binding PlayMovieCommand}" />
-                    </cimbalino:ApplicationBarBehavior.MenuItems>
-                </cimbalino:ApplicationBarBehavior>
+            <cimbalino:ApplicationBarBehavior Mode="Minimized"
+                                              IsMenuEnabled="True">
+                <cimbalino:ApplicationBarIconButton Text="{Binding SelectedMovie.UserData.IsFavorite, Converter={StaticResource FavouritesConverter}, ConverterParameter=text}"
+                                                    IconUri="{Binding SelectedMovie.UserData.IsFavorite, Converter={StaticResource FavouritesConverter}, ConverterParameter=icon}"
+                                                    Command="{Binding AddRemoveFavouriteCommand}" />
+                <cimbalino:ApplicationBarBehavior.MenuItems>
+                    <cimbalino:ApplicationBarMenuItem Text="play movie"
+                                                      Command="{Binding PlayMovieCommand}" />
+                </cimbalino:ApplicationBarBehavior.MenuItems>
+            </cimbalino:ApplicationBarBehavior>
         </i:Interaction.Behaviors>
-        <controls:Panorama Title="{Binding SelectedMovie.Name, Converter={StaticResource StringCaseConverter}}"
-                           x:Name="MainPanorama">
-            <controls:PanoramaItem Header="poster">
+        <phone:Panorama Title="{Binding SelectedMovie.Name, Converter={StaticResource StringCaseConverter}}"
+                        x:Name="MainPanorama">
+            <phone:PanoramaItem Header="poster">
                 <Image Source="{Binding SelectedMovie, Converter={StaticResource ImageUrlConverter}, ConverterParameter=poster}"
                        Height="450"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Top"
                        Margin="12,0,0,0" />
-            </controls:PanoramaItem>
+            </phone:PanoramaItem>
 
-            <controls:PanoramaItem Header="overview">
+            <phone:PanoramaItem Header="overview">
                 <Grid>
                     <local:ScrollableTextBlock Text="{Binding SelectedMovie.Overview}"
                                                Foreground="{StaticResource PhoneForegroundBrush}"
                                                Padding="12,6,6,12" />
                 </Grid>
-            </controls:PanoramaItem>
+            </phone:PanoramaItem>
 
-            <controls:PanoramaItem Header="details">
+            <phone:PanoramaItem Header="details">
                 <Grid>
                     <StackPanel Orientation="Vertical">
                         <TextBlock Text="{Binding SelectedMovie.ProductionYear, StringFormat='Released in \{0\}'}"
@@ -121,16 +120,18 @@
                                    Margin="12,12,0,0" />
                     </StackPanel>
                 </Grid>
-            </controls:PanoramaItem>
+            </phone:PanoramaItem>
 
-            <controls:PanoramaItem Header="cast + crew">
-                <toolkit:LongListSelector ItemsSource="{Binding CastAndCrew}"
-                                          GroupHeaderTemplate="{StaticResource LLSGroupHeaderTemplateLong}"
-                                          GroupItemTemplate="{StaticResource LLSGroupItemTemplateLong}"
-                                          GroupItemsPanel="{StaticResource StackPanelVerticalTemplate}"
-                                          Background="Transparent"
-                                          x:Name="LlsCastCrew">
-                    <toolkit:LongListSelector.ItemTemplate>
+            <phone:PanoramaItem Header="cast + crew">
+                <phone:LongListSelector ItemsSource="{Binding CastAndCrew}"
+                                        GroupHeaderTemplate="{StaticResource LLSGroupHeaderTemplateLong}"
+                                        JumpListStyle="{StaticResource LLSGroupItemLongStyle}"
+                                        Background="Transparent"
+                                        LayoutMode="List"
+                                        HideEmptyGroups="True"
+                                        IsGroupingEnabled="True"
+                                        x:Name="LlsCastCrew">
+                    <phone:LongListSelector.ItemTemplate>
                         <DataTemplate>
                             <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
                                              Margin="12,0,0,12"
@@ -153,10 +154,10 @@
                                 </StackPanel>
                             </HyperlinkButton>
                         </DataTemplate>
-                    </toolkit:LongListSelector.ItemTemplate>
-                </toolkit:LongListSelector>
-            </controls:PanoramaItem>
-        </controls:Panorama>
+                    </phone:LongListSelector.ItemTemplate>
+                </phone:LongListSelector>
+            </phone:PanoramaItem>
+        </phone:Panorama>
     </Grid>
 
 </phone:PhoneApplicationPage>

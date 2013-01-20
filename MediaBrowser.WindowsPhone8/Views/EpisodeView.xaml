@@ -1,14 +1,14 @@
-﻿<phone:PhoneApplicationPage x:Class="MediaBrowser.WindowsPhone.Views.FolderView"
+﻿<phone:PhoneApplicationPage x:Class="MediaBrowser.WindowsPhone.Views.EpisodeView"
                             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                             xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
                             xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
-                            xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
-                            xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-                            xmlns:delay="clr-namespace:Delay"
                             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                            xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP71"
+                            xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+                            xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+                            xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP8"
+                            xmlns:cimbalino="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
                             mc:Ignorable="d"
                             d:DesignWidth="480"
                             d:DesignHeight="696"
@@ -19,8 +19,7 @@
                             Orientation="Portrait"
                             shell:SystemTray.IsVisible="True"
                             shell:SystemTray.BackgroundColor="Black"
-                            toolkit:TiltEffect.IsTiltEnabled="True"
-                            d:DataContext="{Binding Folder, Source={StaticResource Locator}}">
+                            d:DataContext="{Binding Tv, Source={StaticResource Locator}}">
     <shell:SystemTray.ProgressIndicator>
         <shell:ProgressIndicator IsIndeterminate="True"
                                  Text="{Binding ProgressText}"
@@ -28,7 +27,7 @@
     </shell:SystemTray.ProgressIndicator>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
-            <command:EventToCommand Command="{Binding PageLoaded}" />
+            <command:EventToCommand Command="{Binding EpisodePageLoaded}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
 
@@ -55,6 +54,16 @@
 
     <Grid x:Name="LayoutRoot"
           Background="{StaticResource MediaBrowserBackground}">
+        <i:Interaction.Behaviors>
+            <cimbalino:ApplicationBarBehavior>
+                    <cimbalino:ApplicationBarIconButton Command="{Binding PreviousEpisodeCommand}"
+                                                        Text="previous"
+                                                        IconUri="/icons/appbar.back.rest.png"/>
+                    <cimbalino:ApplicationBarIconButton Text="next"
+                                                  Command="{Binding NextEpisodeCommand}"
+                                                  IconUri="/icons/appbar.next.rest.png" />
+            </cimbalino:ApplicationBarBehavior>
+        </i:Interaction.Behaviors>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -84,53 +93,24 @@
                            VerticalAlignment="Top" />
             </StackPanel>
             <TextBlock x:Name="PageTitle"
-                       Text="{Binding PageTitle, Converter={StaticResource StringCaseConverter}}"
+                       Text="{Binding SelectedEpisode.Name, Converter={StaticResource StringCaseConverter}}"
                        Margin="9,-7,0,0"
                        Style="{StaticResource PhoneTextTitle1Style}" />
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel"
-              Grid.Row="1"
-              Margin="12,0,12,0">
-            <toolkit:LongListSelector GroupHeaderTemplate="{Binding GroupHeaderTemplate}"
-                                      GroupItemTemplate="{Binding GroupItemTemplate}"
-                                      ItemsSource="{Binding FolderGroupings}"
-                                      GroupItemsPanel="{Binding ItemsPanelTemplate}"
-                                      Background="Transparent">
-                <toolkit:LongListSelector.ItemTemplate>
-                    <DataTemplate>
-                        <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                         HorizontalContentAlignment="Left"
-                                         Margin="12,6,0,6"
-                                         Command="{Binding Main.NavigateToPage, Source={StaticResource Locator}}"
-                                         CommandParameter="{Binding}">
-                            <StackPanel Orientation="Horizontal">
-                                <delay:PlaceImage PlaceholderSource="/Images/MBLogo.png"
-                                                  Source="{Binding Converter={StaticResource ImageUrlConverter}, ConverterParameter=icon}"
-                                                  Height="75"
-                                                  Width="75"
-                                                  Stretch="UniformToFill" />
-                                <TextBlock Text="{Binding Name}"
-                                           Style="{StaticResource PhoneTextLargeStyle}"
-                                           VerticalAlignment="Center" />
-                            </StackPanel>
-                        </HyperlinkButton>
-                    </DataTemplate>
-                </toolkit:LongListSelector.ItemTemplate>
-            </toolkit:LongListSelector>
+              Grid.Row="1">
+            <ScrollViewer>
+                <StackPanel Orientation="Vertical">
+                    <Image Source="{Binding SelectedEpisode, Converter={StaticResource ImageUrlConverter}, ConverterParameter=episode}" />
+                    <TextBlock Text="{Binding SelectedEpisode.Overview}"
+                               TextWrapping="Wrap"
+                               Style="{StaticResource PhoneTextNormalStyle}" />
+                </StackPanel>
+            </ScrollViewer>
         </Grid>
+        
     </Grid>
-
-    <!--Sample code showing usage of ApplicationBar-->
-    <phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar IsVisible="True"
-                              IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton x:Name="btnChangeGrouping"
-                                            IconUri="/Icons/appbar.group.png"
-                                            Text="group by"
-                                            Click="btnChangeGrouping_Click" />
-        </shell:ApplicationBar>
-    </phone:PhoneApplicationPage.ApplicationBar>
 
 </phone:PhoneApplicationPage>

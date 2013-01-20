@@ -7,7 +7,9 @@ using GalaSoft.MvvmLight.Ioc;
 using MediaBrowser.ApiInteraction;
 using MediaBrowser.Model.DTO;
 using MediaBrowser.WindowsPhone.Model;
+#if !WP8
 using ScottIsAFool.WindowsPhone;
+#endif
 
 namespace MediaBrowser.WindowsPhone
 {
@@ -26,7 +28,11 @@ namespace MediaBrowser.WindowsPhone
                                      select new Group<BaseItemPerson>(grp.Key, grp)).ToList();
 
             var result = (from g in groupedPeople.Union(emptyGroups)
+#if WP8
+                          where g.Count > 0
+#else
                       where g.HasItems
+#endif
                            orderby g.Title
                            select g).ToList();
 
