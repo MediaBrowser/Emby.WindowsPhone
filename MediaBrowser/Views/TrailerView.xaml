@@ -6,6 +6,8 @@
                             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                             xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+                            xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+                            xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platforms.WP75"
                             FontFamily="{StaticResource PhoneFontFamilyNormal}"
                             FontSize="{StaticResource PhoneFontSizeNormal}"
                             Foreground="{StaticResource PhoneForegroundBrush}"
@@ -16,6 +18,16 @@
                             shell:SystemTray.IsVisible="True"
                             shell:SystemTray.BackgroundColor="Black"
                             toolkit:TiltEffect.IsTiltEnabled="True">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <command:EventToCommand Command="{Binding TrailerPageLoaded}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <shell:SystemTray.ProgressIndicator>
+        <shell:ProgressIndicator Text="{Binding ProgressText}"
+                                 IsVisible="{Binding ProgressIsVisible}"
+                                 IsIndeterminate="True"/>
+    </shell:SystemTray.ProgressIndicator>
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot"
@@ -30,18 +42,20 @@
                     Margin="12,17,0,28">
             <StackPanel Orientation="Horizontal"
                         VerticalAlignment="Top"
-                        Height="27">
+                        Height="27"
+                        Margin="0">
                 <TextBlock Text="MEDIA"
                            Foreground="{StaticResource PhoneForegroundBrush}"
-                           Style="{StaticResource PhoneTextNormalStyle}" />
+                           Style="{StaticResource PhoneTextNormalStyle}"
+                           Margin="0" />
                 <TextBlock Text="BROWSER"
                            Foreground="Green"
                            Style="{StaticResource PhoneTextNormalStyle}"
-                           Margin="-12,0,0,0" />
+                           Margin="0" />
                 <TextBlock Text="3"
+                           FontFamily="Euphemia"
                            Foreground="Green"
-                           FontFamily="/MediaBrowser.WindowsPhone;component/Fonts/MISTRAL.TTF#Mistral"
-                           Margin="4,-10,0,0"
+                           Margin="0,-10,0,0"
                            Padding="0"
                            VerticalAlignment="Top" />
             </StackPanel>
@@ -56,20 +70,32 @@
               Margin="12,0,12,0">
             <ScrollViewer>
                 <StackPanel Orientation="Vertical">
-                    <Grid>
+                    <Grid Margin="12,0,0,0">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="3*" />
+                            <ColumnDefinition Width="5*" />
                         </Grid.ColumnDefinitions>
-                        <Grid Grid.Column="0">
+                        <Grid Grid.Column="0"
+                              VerticalAlignment="Top">
                             <Image Source="{Binding SelectedTrailer, Converter={StaticResource ImageUrlConverter}}"
                                    Stretch="UniformToFill"
                                    HorizontalAlignment="Center" />
                             <Image Source="/Images/Play128.png"
-                                   Width="99"
+                                   MaxWidth="63"
                                    HorizontalAlignment="Center"
                                    VerticalAlignment="Center" />
                         </Grid>
+                        <toolkit:LongListSelector Grid.Column="1"
+                                                  Background="Transparent"
+                                                  IsHitTestVisible="False"
+                                                  ItemsSource="{Binding CastAndCrew}">
+                            <toolkit:LongListSelector.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}"/>
+                                </DataTemplate>
+                            </toolkit:LongListSelector.ItemTemplate>
+                            
+                        </toolkit:LongListSelector>
                     </Grid>
                     <TextBlock Text="{Binding SelectedTrailer.Overview}"
                                Style="{StaticResource PhoneTextNormalStyle}"

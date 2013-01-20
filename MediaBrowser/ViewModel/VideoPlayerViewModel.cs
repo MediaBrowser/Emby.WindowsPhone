@@ -4,6 +4,7 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.ApiInteraction;
 using MediaBrowser.Model.DTO;
+using MediaBrowser.WindowsPhone.Model;
 
 namespace MediaBrowser.WindowsPhone.ViewModel
 {
@@ -15,12 +16,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     /// </summary>
     public class VideoPlayerViewModel : ViewModelBase
     {
-        private readonly ApiClient ApiClient;
+        private readonly ExtendedApiClient ApiClient;
         private DtoBaseItem selectedItem;
         /// <summary>
         /// Initializes a new instance of the VideoPlayerViewModel class.
         /// </summary>
-        public VideoPlayerViewModel(ApiClient apiClient)
+        public VideoPlayerViewModel(ExtendedApiClient apiClient)
         {
             ApiClient = apiClient;
             if (!IsInDesignMode)

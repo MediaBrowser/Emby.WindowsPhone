@@ -1,11 +1,14 @@
-﻿using System.Threading.Tasks;
+﻿using System.Diagnostics;
+using System.Threading.Tasks;
 using System.Windows;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.ApiInteraction;
 using MediaBrowser.WindowsPhone.Model;
 using Microsoft.Phone.Controls;
+using Microsoft.Phone.Info;
 using ScottIsAFool.WindowsPhone.IsolatedStorage;
 using MediaBrowser.Shared;
 using MediaBrowser.Model;
@@ -20,12 +23,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     /// </summary>
     public class SplashscreenViewModel : ViewModelBase
     {
-        private readonly ApiClient ApiClient;
+        private readonly ExtendedApiClient ApiClient;
         private readonly INavigationService NavigationService;
         /// <summary>
         /// Initializes a new instance of the SplashscreenViewModel class.
         /// </summary>
-        public SplashscreenViewModel(ApiClient apiClient, INavigationService navigationService)
+        public SplashscreenViewModel(ExtendedApiClient apiClient, INavigationService navigationService)
         {
             ApiClient = apiClient;
             NavigationService = navigationService;
@@ -76,7 +79,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     }
                     else
                     {
-                        App.ShowMessage("", "No connection settings, tap to set", () => NavigationService.NavigateToPage("/Views/SettingsView.xaml?settingsPane=1"));
+                        App.ShowMessage("", "No connection settings, tap to set", () => NavigationService.NavigateToPage("/Views/SettingsView.xaml?settingsPane=2"));
                         App.Settings.ConnectionDetails = new ConnectionDetails
                                                             {
                                                                 PortNo = 8096
@@ -105,6 +108,15 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     var specificSettings = ISettings.GetKeyValue<SpecificSettings>(Constants.SpecificSettings);
                     if(specificSettings != null) Utils.CopyItem(specificSettings, App.SpecificSettings);
 
+                    var deviceName = DeviceStatus.DeviceName;
+                    var deviceId = DeviceStatus.DeviceManufacturer;
+
+                    var phone = Ailon.WP.Utils.PhoneNameResolver.Resolve(deviceId, deviceName);
+                    
+                    var deviceInfo = string.Format("{0} ({1})", phone.CanonicalModel, phone.CanonicalManufacturer);
+
+                    ApiClient.DeviceName = deviceInfo;
+
                     var user = ISettings.GetKeyValue<UserSettingWrapper>(Constants.SelectedUserSetting);
                     if (user != null)
                     {
@@ -119,6 +131,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                         if (App.Settings.ServerConfiguration != null)
                         {
+                            await SetPushSettings();
                             await CheckProfiles();
                         }
                         else
@@ -131,6 +144,35 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     ProgressIsVisible = false;
                 }
             });
+        }
+
+        private async Task SetPushSettings()
+        {
+            var settings = SimpleIoc.Default.GetInstance<SettingsViewModel>();
+            settings.loadingFromSettings = true;
+            Debug.WriteLine(settings.UseNotifications);
+            settings.ServerPluginInstalled = ISettings.GetKeyValue<bool>("ServerPluginInstalled");
+            if (settings.ServerPluginInstalled)
+            {
+                settings.UseNotifications = ISettings.GetKeyValue<bool>("UseNotifications");
+                if (settings.UseNotifications)
+                {
+                    settings.IsRegistered = ISettings.GetKeyValue<bool>("IsRegistered");
+                    settings.SendTileUpdates = ISettings.GetKeyValue<bool>("SendTileUpdates");
+                    settings.SendToastUpdates = ISettings.GetKeyValue<bool>("SendToastUpdates");
+                    settings.loadingFromSettings = false;
+                    await settings.RegisterService();
+                    try
+                    {
+                        await ApiClient.CheckForPulse(settings.DeviceId);
+                    }
+                    catch
+                    {
+                        var s = "";
+                    }
+                }
+            }
+            settings.loadingFromSettings = false;
         }
 
         private async Task CheckProfiles()

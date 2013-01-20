@@ -66,18 +66,20 @@
                     Margin="12,17,0,28">
             <StackPanel Orientation="Horizontal"
                         VerticalAlignment="Top"
-                        Height="27">
+                        Height="27"
+                        Margin="0">
                 <TextBlock Text="MEDIA"
                            Foreground="{StaticResource PhoneForegroundBrush}"
-                           Style="{StaticResource PhoneTextNormalStyle}" />
+                           Style="{StaticResource PhoneTextNormalStyle}"
+                           Margin="0" />
                 <TextBlock Text="BROWSER"
                            Foreground="Green"
                            Style="{StaticResource PhoneTextNormalStyle}"
-                           Margin="-12,0,0,0" />
+                           Margin="0" />
                 <TextBlock Text="3"
+                           FontFamily="Euphemia"
                            Foreground="Green"
-                           FontFamily="/MediaBrowser.WindowsPhone;component/Fonts/MISTRAL.TTF#Mistral"
-                           Margin="4,-10,0,0"
+                           Margin="0,-10,0,0"
                            Padding="0"
                            VerticalAlignment="Top" />
             </StackPanel>

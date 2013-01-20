@@ -79,12 +79,12 @@
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="media"
-                                   Foreground="{StaticResource PhoneForegroundBrush}" />
+                                   Foreground="{StaticResource PhoneForegroundBrush}"/>
                         <TextBlock Text="browser"
-                                   Foreground="Green" />
+                                   Foreground="Green"/>
                         <TextBlock Text="3"
                                    Foreground="Green"
-                                   FontFamily="/MediaBrowser.WindowsPhone;component/Fonts/MISTRAL.TTF#Mistral"
+                                   FontFamily="Euphemia"
                                    Margin="0"
                                    FontSize="133.333" />
                     </StackPanel>

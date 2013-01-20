@@ -28,6 +28,11 @@ namespace MediaBrowser.WindowsPhone.Model
             return new MemoryStream(Encoding.UTF8.GetBytes(returnString));
         }
 
+        public bool IsBusy
+        {
+            get { return WebClient.IsBusy; }
+        }
+
         public void Dispose()
         {
             

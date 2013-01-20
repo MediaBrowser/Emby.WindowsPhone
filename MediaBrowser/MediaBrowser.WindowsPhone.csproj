@@ -153,7 +153,9 @@
     <Compile Include="Converters\RandomColour.cs" />
     <Compile Include="Converters\SettingsConverters.cs" />
     <Compile Include="Model\AsyncHttpClient.cs" />
+    <Compile Include="Model\ExtendedApiClient.cs" />
     <Compile Include="Model\SettingsService.cs" />
+    <Compile Include="PhoneNameResolver.cs" />
     <Compile Include="SpecificSettings.cs" />
     <Compile Include="ThicknessAnimationX.cs" />
     <Compile Include="App.xaml.cs">
@@ -172,6 +174,7 @@
     <Compile Include="ViewModel\ChooseProfileViewModel.cs" />
     <Compile Include="ViewModel\FolderViewModel.cs" />
     <Compile Include="ViewModel\MovieViewModel.cs" />
+    <Compile Include="ViewModel\SettingsViewModel.cs" />
     <Compile Include="ViewModel\SplashscreenViewModel.cs" />
     <Compile Include="ViewModel\TrailerViewModel.cs" />
     <Compile Include="ViewModel\TvViewModel.cs" />

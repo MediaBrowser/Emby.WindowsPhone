@@ -4,6 +4,7 @@ using GalaSoft.MvvmLight.Ioc;
 using MediaBrowser.ApiInteraction;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.DTO;
+using MediaBrowser.WindowsPhone.Model;
 
 namespace MediaBrowser.WindowsPhone.Converters
 {
@@ -14,7 +15,7 @@ namespace MediaBrowser.WindowsPhone.Converters
             if (value != null)
             {
                 var type = value.GetType();
-                var apiClient = SimpleIoc.Default.GetInstance<ApiClient>();
+                var apiClient = SimpleIoc.Default.GetInstance<ExtendedApiClient>();
                 if (type == typeof (DtoBaseItem))
                 {
                     

@@ -26,12 +26,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     public class FolderViewModel : ViewModelBase
     {
         private readonly INavigationService NavService;
-        private readonly ApiClient ApiClient;
+        private readonly ExtendedApiClient ApiClient;
         private bool dataLoaded;
         /// <summary>
         /// Initializes a new instance of the FolderViewModel class.
         /// </summary>
-        public FolderViewModel(INavigationService navService, ApiClient apiClient)
+        public FolderViewModel(INavigationService navService, ExtendedApiClient apiClient)
         {
             if (!IsInDesignMode)
             {

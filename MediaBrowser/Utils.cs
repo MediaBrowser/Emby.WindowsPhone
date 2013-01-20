@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Ioc;
 using MediaBrowser.ApiInteraction;
 using MediaBrowser.Model.DTO;
+using MediaBrowser.WindowsPhone.Model;
 using ScottIsAFool.WindowsPhone;
 
 namespace MediaBrowser.WindowsPhone
@@ -14,9 +15,8 @@ namespace MediaBrowser.WindowsPhone
     {
         public static List<Group<BaseItemPerson>> GroupCastAndCrew(IEnumerable<BaseItemPerson> people)
         {
-            var result = new List<Group<BaseItemPerson>>();
             var emptyGroups = new List<Group<BaseItemPerson>>();
-            var headers = new List<string> { "Actor", "Director", "Writer", "Producer" };
+            var headers = new List<string> { "Director", "Actor", "Writer", "Producer" };
             headers.ForEach(item => emptyGroups.Add(new Group<BaseItemPerson>(item, new List<BaseItemPerson>())));
 
             var groupedPeople = (from p in people
@@ -25,7 +25,8 @@ namespace MediaBrowser.WindowsPhone
                                      orderby grp.Key
                                      select new Group<BaseItemPerson>(grp.Key, grp)).ToList();
 
-            result = (from g in groupedPeople.Union(emptyGroups)
+            var result = (from g in groupedPeople.Union(emptyGroups)
+                      where g.HasItems
                            orderby g.Title
                            select g).ToList();
 
@@ -34,7 +35,7 @@ namespace MediaBrowser.WindowsPhone
 
         internal static async Task Login(DtoUser selectedUser, string pinCode, Action successAction)
         {
-            var client = SimpleIoc.Default.GetInstance<ApiClient>();
+            var client = SimpleIoc.Default.GetInstance<ExtendedApiClient>();
             var result = await client.AuthenticateUserAsync(selectedUser.Id, pinCode);
 
             if (result.Success)

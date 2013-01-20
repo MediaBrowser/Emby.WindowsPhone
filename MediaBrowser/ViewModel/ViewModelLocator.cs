@@ -38,8 +38,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             if (ViewModelBase.IsInDesignModeStatic)
             {
-                if (!SimpleIoc.Default.IsRegistered<ApiClient>())
-                    SimpleIoc.Default.Register(() => new ApiClient(new AsyncHttpClient()) {ServerApiPort = 8096, ServerHostName = "192.168.0.2", ClientType = ClientType.WindowsPhone});
+                if (!SimpleIoc.Default.IsRegistered<ExtendedApiClient>())
+                    SimpleIoc.Default.Register(() => new ExtendedApiClient(new AsyncHttpClient()) {ServerApiPort = 8096, ServerHostName = "192.168.0.2", ClientType = ClientType.WindowsPhone});
                 SimpleIoc.Default.Register<INavigationService, NavigationService>();
                 SimpleIoc.Default.Register<FolderViewModel>();
                 SimpleIoc.Default.Register<MovieViewModel>();
@@ -48,8 +48,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 SimpleIoc.Default.Register<INavigationService, NavigationService>();
                 SimpleIoc.Default.Register<ISettingsService, SettingsService>();
-                if (!SimpleIoc.Default.IsRegistered<ApiClient>())
-                    SimpleIoc.Default.Register(() => new ApiClient(new AsyncHttpClient()));
+                if (!SimpleIoc.Default.IsRegistered<ExtendedApiClient>())
+                    SimpleIoc.Default.Register(() => new ExtendedApiClient(new AsyncHttpClient()){ ClientType = ClientType.WindowsPhone});
             }
 
             SimpleIoc.Default.Register<MainViewModel>(true);
@@ -58,6 +58,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             SimpleIoc.Default.Register<ChooseProfileViewModel>();
             SimpleIoc.Default.Register<TvViewModel>();
             SimpleIoc.Default.Register<TrailerViewModel>(true);
+            SimpleIoc.Default.Register<SettingsViewModel>(true);
         }
 
         /// <summary>
@@ -119,6 +120,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             get { return ServiceLocator.Current.GetInstance<VideoPlayerViewModel>(); }
         }
 
+        public SettingsViewModel Settings
+        {
+            get { return ServiceLocator.Current.GetInstance<SettingsViewModel>(); }
+        }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
             "CA1822:MarkMembersAsStatic",
             Justification = "This non-static member is needed for data binding purposes.")]
@@ -132,9 +138,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             return ServiceLocator.Current.GetInstance<TvViewModel>(itemId);
         }
 
-        public static ApiClient ApiClient
+        public static ExtendedApiClient ApiClient
         {
-            get { return ServiceLocator.Current.GetInstance<ApiClient>(); }
+            get { return ServiceLocator.Current.GetInstance<ExtendedApiClient>(); }
         }
 
         public static INavigationService NavigationService

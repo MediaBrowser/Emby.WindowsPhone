@@ -51,5 +51,7 @@
         public const string ArtistViewLoadedMsg = "ArtistViewLoadedMsg";
         public const string MusicAlbumChangedMsg = "MusicAlbumChangedMsg";
         public const string AlbumViewLoadedMsg = "AlbumViewLoadedMsg";
+        public const string CheckForPushPluginMsg = "CheckForPushPluginMsg";
+        public const string NotificationSettingsLoadedMsg = "NotificationSettingsLoadedMsg";
     }
 }

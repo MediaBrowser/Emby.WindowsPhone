@@ -24,13 +24,13 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     public class TvViewModel : ViewModelBase
     {
         private readonly INavigationService NavService;
-        private readonly ApiClient ApiClient;
+        private readonly ExtendedApiClient ApiClient;
         public bool showDataLoaded;
         public bool seasonDataLoaded;
         /// <summary>
         /// Initializes a new instance of the TvViewModel class.
         /// </summary>
-        public TvViewModel(INavigationService navService, ApiClient apiClient)
+        public TvViewModel(INavigationService navService, ExtendedApiClient apiClient)
         {
             NavService = navService;
             ApiClient = apiClient;

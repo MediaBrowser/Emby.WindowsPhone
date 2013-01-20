@@ -18,6 +18,7 @@
                             Orientation="Portrait"
                             shell:SystemTray.IsVisible="True"
                             shell:SystemTray.Opacity="0"
+                            shell:SystemTray.ForegroundColor="Black"
                             DataContext="{Binding Splashscreen, Source={StaticResource Locator}}">
     <shell:SystemTray.ProgressIndicator>
         <shell:ProgressIndicator Text="{Binding ProgressText}"
@@ -88,10 +89,12 @@
                        Style="{StaticResource PhoneTextTitle1Style}"
                        Margin="0,820,0,0"
                        Grid.Column="0"
+                       FontFamily="Euphemia"
                        VerticalAlignment="Center" />
             <TextBlock x:Name="textBlock1"
                        Text="browser"
                        Foreground="Green"
+                       FontFamily="Euphemia"
                        Style="{StaticResource PhoneTextTitle1Style}"
                        Margin="0,0,0,820"
                        Grid.Column="1"
@@ -99,7 +102,7 @@
             <TextBlock x:Name="textBlock2"
                        Text="3"
                        Foreground="Green"
-                       FontFamily="/MediaBrowser.WindowsPhone;component/Fonts/MISTRAL.TTF#Mistral"
+                       FontFamily="Euphemia"
                        FontSize="48"
                        Grid.Column="2"
                        VerticalAlignment="Center"

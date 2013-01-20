@@ -19,13 +19,13 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     /// </summary>
     public class ChooseProfileViewModel : ViewModelBase
     {
-        private readonly ApiClient ApiClient;
+        private readonly ExtendedApiClient ApiClient;
         private readonly INavigationService NavigationService;
 
         /// <summary>
         /// Initializes a new instance of the ChooseProfileViewModel class.
         /// </summary>
-        public ChooseProfileViewModel(ApiClient apiClient, INavigationService navigationService)
+        public ChooseProfileViewModel(ExtendedApiClient apiClient, INavigationService navigationService)
         {
             ApiClient = apiClient;
             NavigationService = navigationService;

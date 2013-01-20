@@ -9,15 +9,28 @@
                             xmlns:Controls="clr-namespace:ScottIsAFool.WindowsPhone.Controls;assembly=ScottIsAFool.WindowsPhone"
                             xmlns:Converters="clr-namespace:MediaBrowser.WindowsPhone.Converters"
                             xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+                            xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+                            xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platforms.WP75"
                             FontFamily="{StaticResource PhoneFontFamilyNormal}"
                             FontSize="{StaticResource PhoneFontSizeNormal}"
                             Foreground="{StaticResource PhoneForegroundBrush}"
                             SupportedOrientations="Portrait"
                             Orientation="Portrait"
                             mc:Ignorable="d"
+                            DataContext="{Binding Settings, Source={StaticResource Locator}}"
                             shell:SystemTray.IsVisible="True"
                             shell:SystemTray.BackgroundColor="Black"
                             toolkit:TiltEffect.IsTiltEnabled="True">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <command:EventToCommand Command="{Binding SettingsPageLoaded}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <shell:SystemTray.ProgressIndicator>
+        <shell:ProgressIndicator Text="{Binding ProgressText}"
+                                 IsVisible="{Binding ProgressIsVisible}"
+                                 IsIndeterminate="True" />
+    </shell:SystemTray.ProgressIndicator>
 
     <toolkit:TransitionService.NavigationInTransition>
         <toolkit:NavigationInTransition>
@@ -47,7 +60,8 @@
             <controls:Pivot.Title>
                 <StackPanel Orientation="Horizontal"
                             VerticalAlignment="Top"
-                            Height="27">
+                            Height="27"
+                            Margin="0">
                     <TextBlock Text="MEDIA"
                                Foreground="{StaticResource PhoneForegroundBrush}"
                                Style="{StaticResource PhoneTextNormalStyle}"
@@ -57,21 +71,45 @@
                                Style="{StaticResource PhoneTextNormalStyle}"
                                Margin="0" />
                     <TextBlock Text="3"
+                               FontFamily="Euphemia"
                                Foreground="Green"
-                               FontFamily="/MediaBrowser.WindowsPhone;component/Fonts/MISTRAL.TTF#Mistral"
                                Margin="0,-10,0,0"
                                Padding="0"
                                VerticalAlignment="Top" />
                 </StackPanel>
             </controls:Pivot.Title>
-            
+
             <controls:PivotItem Header="general">
                 <StackPanel>
                     <CheckBox Content="Show trailers in recent items"
-                              IsChecked="{Binding IncludeTrailersInRecent, Source={StaticResource SpecificSettings}, Mode=TwoWay}"/>
+                              IsChecked="{Binding IncludeTrailersInRecent, Source={StaticResource SpecificSettings}, Mode=TwoWay}" />
                 </StackPanel>
             </controls:PivotItem>
-            
+
+            <controls:PivotItem Header="push notifications">
+                <Grid>
+                    <StackPanel Orientation="Vertical"
+                                Visibility="{Binding ServerPluginInstalled, Converter={StaticResource VisibilityConverter}}">
+                        <toolkit:ToggleSwitch Header="use notifications"
+                                              IsChecked="{Binding UseNotifications, Mode=TwoWay}" />
+                        <TextBlock Text="{Binding RegisteredText}"
+                                   Style="{StaticResource PhoneTextNormalStyle}" />
+                        <StackPanel Orientation="Vertical"
+                                    Visibility="{Binding UseNotifications, Converter={StaticResource VisibilityConverter}}">
+                            <CheckBox Content="Toast"
+                                      IsChecked="{Binding SendToastUpdates, Mode=TwoWay}" />
+                            <CheckBox Content="Live tile"
+                                      IsChecked="{Binding SendTileUpdates, Mode=TwoWay}" />
+                        </StackPanel>
+                    </StackPanel>
+                    
+                    <StackPanel Orientation="Vertical"
+                                Visibility="{Binding ServerPluginInstalled, Converter={StaticResource InvertedVisibilityConverter}}">
+                        
+                    </StackPanel>
+                </Grid>
+            </controls:PivotItem>
+
             <controls:PivotItem Header="connection">
                 <StackPanel Orientation="Vertical">
                     <TextBlock Text="Put the connection details in to point to the computer running Mediabrowser3. Then simply test them to confirm."

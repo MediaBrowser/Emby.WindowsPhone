@@ -23,12 +23,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     public class MovieViewModel : ViewModelBase
     {
         private readonly INavigationService NavService;
-        private readonly ApiClient ApiClient;
+        private readonly ExtendedApiClient ApiClient;
 
         /// <summary>
         /// Initializes a new instance of the MovieViewModel class.
         /// </summary>
-        public MovieViewModel(INavigationService navService, ApiClient apiClient)
+        public MovieViewModel(INavigationService navService, ExtendedApiClient apiClient)
         {
             NavService = navService;
             ApiClient = apiClient;
@@ -40,7 +40,15 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                         Id = "6536a66e10417d69105bae71d41a6e6f",
                                         Name = "Jurassic Park",
                                         SortName = "Jurassic Park",
-                                        Overview = "Lots of dinosaurs eating people!"
+                                        Overview = "Lots of dinosaurs eating people!",
+                                        People = new []
+                                                     {
+                                                         new BaseItemPerson{Name = "Steven Spielberg", Type = "Director"},
+                                                         new BaseItemPerson{Name = "Sam Neill", Type = "Actor"},
+                                                         new BaseItemPerson{Name = "Richard Attenborough", Type = "Actor"},
+                                                         new BaseItemPerson{Name = "Laura Dern", Type = "Actor"}
+                                                     }
+
                                     };
             }
             else

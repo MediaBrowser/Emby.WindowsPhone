@@ -25,13 +25,13 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     public class MainViewModel : ViewModelBase
     {
         private readonly INavigationService NavService;
-        private readonly ApiClient ApiClient;
+        private readonly ExtendedApiClient ApiClient;
         private bool hasLoaded;
         private DtoBaseItem[] recentItems;
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
-        public MainViewModel(ApiClient apiClient, INavigationService navService)
+        public MainViewModel(ExtendedApiClient apiClient, INavigationService navService)
         {
             ApiClient = apiClient;
             NavService = navService;
