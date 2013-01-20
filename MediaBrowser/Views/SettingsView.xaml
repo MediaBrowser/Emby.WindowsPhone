@@ -105,7 +105,9 @@
                     
                     <StackPanel Orientation="Vertical"
                                 Visibility="{Binding ServerPluginInstalled, Converter={StaticResource InvertedVisibilityConverter}}">
-                        
+                        <TextBlock Text="In order to use push notifications on your device, you need to install the Push Notification service on your MediaBrowser server. This can be done through the control panel in the plugins section."
+                                   Style="{StaticResource PhoneTextNormalStyle}"
+                                   TextWrapping="Wrap" />
                     </StackPanel>
                 </Grid>
             </controls:PivotItem>

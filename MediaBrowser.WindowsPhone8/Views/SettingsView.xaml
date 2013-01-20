@@ -6,9 +6,6 @@
                             xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
                             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                            xmlns:Controls="clr-namespace:ScottIsAFool.WindowsPhone.Controls;assembly=ScottIsAFool.WindowsPhone"
-                            xmlns:Converters="clr-namespace:MediaBrowser.WindowsPhone.Converters"
-                            xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
                             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
                             xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP8"
                             FontFamily="{StaticResource PhoneFontFamilyNormal}"
@@ -105,7 +102,9 @@
                     
                     <StackPanel Orientation="Vertical"
                                 Visibility="{Binding ServerPluginInstalled, Converter={StaticResource InvertedVisibilityConverter}}">
-                        
+                        <TextBlock Text="In order to use push notifications on your device, you need to install the Push Notification service on your MediaBrowser server. This can be done through the control panel in the plugins section."
+                                   Style="{StaticResource PhoneTextNormalStyle}"
+                                   TextWrapping="Wrap"/>
                     </StackPanel>
                 </Grid>
             </phone:PivotItem>

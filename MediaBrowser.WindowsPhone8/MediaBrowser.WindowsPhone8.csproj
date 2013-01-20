@@ -19,7 +19,7 @@
     </SupportedCultures>
     <XapOutputs>true</XapOutputs>
     <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
-    <XapFilename>MediaBrowser.WindowsPhone8_$(Configuration)_$(Platform).xap</XapFilename>
+    <XapFilename>MediaBrowser.WindowsPhone.WP8.xap</XapFilename>
     <SilverlightManifestTemplate>Properties\AppManifest.xml</SilverlightManifestTemplate>
     <SilverlightAppEntry>MediaBrowser.WindowsPhone.App</SilverlightAppEntry>
     <ValidateXaml>true</ValidateXaml>

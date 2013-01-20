@@ -57,7 +57,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                                       {
                                                                           if (m.Notification.Equals(Constants.CheckForPushPluginMsg))
                                                                           {
-                                                                              
+
                                                                           }
                                                                       });
         }
@@ -80,19 +80,16 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 return new RelayCommand(async () =>
                                             {
-                                                if (!ServerPluginInstalled)
+                                                if (NavigationService.IsNetworkAvailable)
                                                 {
-                                                    if (NavigationService.IsNetworkAvailable)
+                                                    try
                                                     {
-                                                        try
-                                                        {
-                                                            var result = await ApiClient.CheckForPushServer();
-                                                            ServerPluginInstalled = true;
-                                                        }
-                                                        catch
-                                                        {
-
-                                                        }
+                                                        var result = await ApiClient.CheckForPushServer();
+                                                        ServerPluginInstalled = true;
+                                                    }
+                                                    catch
+                                                    {
+                                                        ServerPluginInstalled = false;
                                                     }
                                                 }
                                             });
@@ -101,7 +98,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
         internal string DeviceId
         {
+#if WP8
+            get { return ParseANID(UserExtendedProperties.GetValue("ANID2") as string); }
+#else
             get { return ParseANID(UserExtendedProperties.GetValue("ANID") as string); }
+#endif
         }
 
         private void OnServerPluginInstalledChanged()
@@ -175,7 +176,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 }
                 catch
                 {
-                    
+
                 }
             }
             ISettings.Set("SendToastUpdates", SendToastUpdates);
@@ -191,7 +192,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 }
                 catch
                 {
-                    
+
                 }
             }
             ISettings.Set("SendTileUpdates", SendTileUpdates);
@@ -216,7 +217,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                               ProgressText = string.Empty;
                                                               ProgressIsVisible = false;
                                                           });
-            
+
         }
 
         private void SubscribeToChannelEvents()

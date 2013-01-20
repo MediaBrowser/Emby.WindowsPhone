@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Windows;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.Model.DTO;
 using GalaSoft.MvvmLight.Messaging;
+using Microsoft.Phone.Tasks;
 #if !WP8
 using ScottIsAFool.WindowsPhone;
 #endif
@@ -91,7 +93,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 }
             });
 
-            PlayMovieCommand = new RelayCommand(() =>
+            PlayMovieCommand = new RelayCommand(async () =>
                                                     {
                                                         //var formats = new List<VideoOutputFormats>
                                                         //                  {
@@ -106,8 +108,28 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                         //                                  Media = new Uri(url, UriKind.Absolute)
                                                         //                              };
                                                         //mediaPlayerLauncher.Show();
-                                                        Messenger.Default.Send(new NotificationMessage(SelectedMovie, Constants.PlayVideoItemMsg));
-                                                        NavService.NavigateToPage("/Views/VideoPlayerView.xaml");
+                                                        //Messenger.Default.Send(new NotificationMessage(SelectedMovie, Constants.PlayVideoItemMsg));
+                                                        //NavService.NavigateToPage("/Views/VideoPlayerView.xaml");
+                                                        var bounds = Application.Current.RootVisual.RenderSize;
+                                                        var query = new VideoStreamOptions
+                                                        {
+                                                            ItemId = SelectedMovie.Id,
+                                                            VideoCodec = VideoCodecs.H264,
+                                                            OutputFileExtension = "ts",
+                                                            AudioCodec = AudioCodecs.Mp3,
+                                                            MaxHeight = (int)bounds.Height,
+                                                            MaxWidth = (int)bounds.Width
+                                                        };
+                                                        var url = ApiClient.GetVideoStreamUrl(query);
+                                                        System.Diagnostics.Debug.WriteLine(url);
+                                                        await ApiClient.ReportPlaybackStartAsync(SelectedMovie.Id, App.Settings.LoggedInUser.Id).ConfigureAwait(true);
+
+                                                        var mediaPlayerLauncher = new MediaPlayerLauncher
+                                                                                      {
+                                                                                          Orientation = MediaPlayerOrientation.Landscape,
+                                                                                          Media = new Uri(url, UriKind.Absolute)
+                                                                                      };
+                                                        mediaPlayerLauncher.Show();
                                                     });
 
             AddRemoveFavouriteCommand = new RelayCommand(async () =>

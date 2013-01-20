@@ -24,7 +24,13 @@ namespace MediaBrowser.WindowsPhone.Model
 
         public async Task<RequestResult> RegisterDevice(string deviceId, string uri, bool? sendTileUpdate = null, bool? sendToastUpdate = null)
         {
-            var dict = new QueryStringDictionary {{"deviceid", deviceId}, {"url", uri}, {"action", "register"}, {"devicetype", "WindowsPhone7"}};
+            var dict = new QueryStringDictionary {{"deviceid", deviceId}, {"url", uri}, {"action", "register"}, 
+#if WP8
+            {"devicetype", "WindowsPhone8"}
+#else
+            {"devicetype", "WindowsPhone7"}
+#endif
+            };
 
             if(sendTileUpdate.HasValue)
                 dict.Add("sendlivetile", sendTileUpdate.Value);
