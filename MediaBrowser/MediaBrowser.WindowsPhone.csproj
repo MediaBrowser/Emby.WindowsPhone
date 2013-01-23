@@ -119,8 +119,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\ScottIsAFool.WindowsPhone.1.0.11.0\lib\wp71\ScottIsAFool.WindowsPhone.dll</HintPath>
     </Reference>
-    <Reference Include="SharpGIS.GZipWebClient">
-      <HintPath>..\packages\SharpGIS.GZipWebClient.1.2\lib\sl40-wp71\SharpGIS.GZipWebClient.dll</HintPath>
+    <Reference Include="SharpGIS.GZipWebClient, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\SharpGIS.GZipWebClient.1.4.0.0\lib\wp71\SharpGIS.GZipWebClient.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime">
       <HintPath>..\packages\Microsoft.Bcl.1.0.11-beta\lib\sl4-windowsphone71\System.Runtime.dll</HintPath>

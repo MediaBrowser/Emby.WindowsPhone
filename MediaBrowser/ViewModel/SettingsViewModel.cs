@@ -99,7 +99,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         internal string DeviceId
         {
 #if WP8
-            get { return ParseANID(UserExtendedProperties.GetValue("ANID2") as string); }
+            get
+            {
+                var id = UserExtendedProperties.GetValue("ANID2") as string;
+                return string.IsNullOrEmpty(id) ? "emulator" : id;
+            }
 #else
             get { return ParseANID(UserExtendedProperties.GetValue("ANID") as string); }
 #endif
