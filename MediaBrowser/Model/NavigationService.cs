@@ -97,7 +97,7 @@ namespace MediaBrowser.WindowsPhone.Model
                 case "collectionfolder":
                 case "trailercollectionfolder":
                     //Messenger.Default.Send(new NotificationMessage(item, Constants.ShowFolderMsg));
-                    NavigateToPage("/Views/FolderView.xaml");
+                    NavigateToPage("/Views/CollectionView.xaml");
                     break;
                 case "movie":
                     //Messenger.Default.Send(new NotificationMessage(item, Constants.ShowMovieMsg));

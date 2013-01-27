@@ -10,6 +10,7 @@ using System;
 using System.Linq;
 using MediaBrowser.Model.DTO;
 using System.Threading.Tasks;
+using Microsoft.Phone.Shell;
 using ScottIsAFool.WindowsPhone.IsolatedStorage;
 
 namespace MediaBrowser.WindowsPhone.ViewModel
@@ -41,7 +42,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             FavouriteItems = new ObservableCollection<DtoBaseItem>();
             if (IsInDesignMode)
             {
-                Folders.Add(new DtoBaseItem { Id = "78dbff5aa1c2101b98ebaf42b72a988d", Name = "Movies", RecentlyAddedUnPlayedItemCount = 2});
+                Folders.Add(new DtoBaseItem { Id = "78dbff5aa1c2101b98ebaf42b72a988d", Name = "Movies", RecentlyAddedUnPlayedItemCount = 2 });
                 RecentItems.Add(new DtoBaseItem { Id = "2fc6f321b5f8bbe842fcd0eed089561d", Name = "A Night To Remember" });
             }
             else
@@ -84,6 +85,34 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                             Reset();
                                                             NavService.NavigateToPage("/Views/ChooseProfileView.xaml");
                                                         });
+
+            PinCollectionCommand = new RelayCommand<DtoBaseItem>(collection =>
+                                                                     {
+                                                                         var tileUrl = string.Format(Constants.PhoneCollectionTileUrlFormat, collection.Id, collection.Name);
+                                                                         var existingTile = ShellTile.ActiveTiles.SingleOrDefault(x => x.NavigationUri.ToString() == tileUrl);
+                                                                         if (existingTile != default(ShellTile))
+                                                                         {
+                                                                             App.ShowMessage("", "Collection already pinned");
+                                                                             return;
+                                                                         }
+#if WP8
+                                                                         var tileDate = new CycleTileData
+                                                                                            {
+                                                                                                Title = collection.Name,
+                                                                                                CycleImages = new Collection<Uri>
+                                                                                                                  {
+                                                                                                                      new Uri("/Assets/Tiles/FlipCycleTileLarge.png", UriKind.Relative),
+                                                                                                                      new Uri("/Assets/Tiles/FlipCycleTileMedium.png", UriKind.Relative)
+                                                                                                                  },
+                                                                                                SmallBackgroundImage = new Uri("/Assets/Tiles/FlipCycleTileSmall.png", UriKind.Relative)
+                                                                                            };
+                                                                         ShellTile.Create(new Uri(tileUrl, UriKind.Relative), tileDate, true);
+#else
+
+#endif
+                                                                         
+
+                                                                     });
 
             NavigateToPage = new RelayCommand<DtoBaseItem>(NavService.NavigateToPage);
 
@@ -159,7 +188,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 var query = new ItemQuery
                 {
-                    Filters = new[] { ItemFilter.IsRecentlyAdded, ItemFilter.IsNotFolder,  },
+                    Filters = new[] { ItemFilter.IsRecentlyAdded, ItemFilter.IsNotFolder, },
                     UserId = App.Settings.LoggedInUser.Id,
                     Fields = new[]
                                                  {
@@ -180,45 +209,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
         }
 
-        private async Task SortRecent(DtoBaseItem[] dtoBaseItem)
+        private async Task SortRecent(DtoBaseItem[] items)
         {
-            var episodesBySeries = dtoBaseItem
-                    .Where(x => x.Type == "Episode")
-                    .GroupBy(l => l.SeriesId)
-                    .Select(g => new
-                    {
-                        Id = g.Key,
-                        Name = g.Select(l => l.SeriesName).FirstOrDefault(),
-                        Count = g.Count(),
-                        CreatedDate = g.OrderByDescending(l => l.DateCreated).First().DateCreated
-                    }).ToList();
-            var seriesList = new List<DtoBaseItem>();
-            if (episodesBySeries.Any())
-            {
-                seriesList.AddRange(episodesBySeries.Select(series => new DtoBaseItem
-                {
-                    Name = string.Format("{0} ({1} items)", series.Name, series.Count),
-                    Id = series.Id,
-                    DateCreated = series.CreatedDate,
-                    Type = "Series",
-                    SortName = Constants.GetTvInformationMsg,
-                    ImageTags = new Dictionary<ImageType, Guid> { { ImageType.Primary, Guid.NewGuid() } }
-                }));
-            }
-            var recent = dtoBaseItem
-                .Where(x => x.Type != "Episode")
-                .Union(seriesList)
-                .Select(x => x);
             RecentItems.Clear();
-            if (!App.SpecificSettings.IncludeTrailersInRecent)
-            {
-                recent = recent.Where(x => x.Type != "Trailer");
-            }
-            recent
-                .OrderByDescending(x => x.DateCreated)
-                .Take(6)
-                .ToList()
-                .ForEach(recentItem => RecentItems.Add(recentItem));
+
+            var recent = await Utils.SortRecentItems(items);
+            recent.ForEach(recentItem => RecentItems.Add(recentItem));
         }
 
         private async Task<bool> GetFolders()
@@ -228,11 +224,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 var query = new ItemQuery
                 {
                     UserId = App.Settings.LoggedInUser.Id,
-                    Fields = new []{ ItemFields.ItemCounts, }
+                    Fields = new[] { ItemFields.ItemCounts, }
                 };
                 var item = await ApiClient.GetItemsAsync(query);
                 Folders.Clear();
-                
+
                 item.Items.OrderByDescending(x => x.SortName).ToList().ForEach(folder => Folders.Add(folder));
                 return true;
             }
@@ -251,6 +247,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public RelayCommand RefreshDataCommand { get; set; }
         public RelayCommand<DtoBaseItem> NavigateToPage { get; set; }
         public RelayCommand<string> NavigateToAPage { get; set; }
+        public RelayCommand<DtoBaseItem> PinCollectionCommand { get; set; }
         public ObservableCollection<DtoBaseItem> Folders { get; set; }
         public ObservableCollection<DtoBaseItem> RecentItems { get; set; }
         public ObservableCollection<DtoBaseItem> FavouriteItems { get; set; }

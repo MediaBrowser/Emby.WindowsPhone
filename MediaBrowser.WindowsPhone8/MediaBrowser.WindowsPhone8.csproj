@@ -190,6 +190,10 @@
       <Link>Views\ChooseProfileView.xaml.cs</Link>
       <DependentUpon>ChooseProfileView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="..\MediaBrowser\Views\CollectionView.xaml.cs">
+      <Link>Views\CollectionView.xaml.cs</Link>
+      <DependentUpon>CollectionView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="..\MediaBrowser\Views\EpisodeView.xaml.cs">
       <Link>Views\EpisodeView.xaml.cs</Link>
       <DependentUpon>EpisodeView.xaml</DependentUpon>
@@ -264,6 +268,10 @@
     <Page Include="Themes\LongListSelectorTemplates.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\CollectionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\FolderView.xaml">
       <Generator>MSBuild:Compile</Generator>

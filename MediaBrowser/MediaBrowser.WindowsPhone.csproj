@@ -181,6 +181,9 @@
     <Compile Include="Views\ChooseProfileView.xaml.cs">
       <DependentUpon>ChooseProfileView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\CollectionView.xaml.cs">
+      <DependentUpon>CollectionView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\EpisodeView.xaml.cs">
       <DependentUpon>EpisodeView.xaml</DependentUpon>
     </Compile>
@@ -236,6 +239,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\ChooseProfileView.xaml">
+      <SubType>Form</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CollectionView.xaml">
       <SubType>Form</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

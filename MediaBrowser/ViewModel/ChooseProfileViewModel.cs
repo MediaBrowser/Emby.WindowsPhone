@@ -104,7 +104,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         private void SetUser(DtoUser profile)
         {
             App.Settings.LoggedInUser = profile;
-            NavigationService.NavigateToPage("/Views/MainPage.xaml");
+            if (!string.IsNullOrEmpty(App.Action))
+                NavigationService.NavigateToPage(App.Action);
+            else
+                NavigationService.NavigateToPage("/Views/MainPage.xaml");
         }
 
         public string ProgressText { get; set; }

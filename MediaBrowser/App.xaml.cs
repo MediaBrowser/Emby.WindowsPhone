@@ -30,6 +30,8 @@ namespace MediaBrowser.WindowsPhone
 
         public static object SelectedItem { get; set; }
 
+        public static string Action { get; set; }
+
         public static void ShowMessage(string title, string message, Action action = null)
         {
             var prompt = new ToastPrompt

@@ -26,6 +26,22 @@ namespace MediaBrowser.WindowsPhone
                 NavigationService.RemoveBackEntry();
         }
 
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            string action;
+            if (NavigationContext.QueryString.TryGetValue("action", out action))
+            {
+                string name, id;
+                if (NavigationContext.QueryString.TryGetValue("name", out name) &&
+                    NavigationContext.QueryString.TryGetValue("id", out id))
+                {
+                    var navigationUrl = string.Format("/Views/{0}View.xaml?id={1}&name={2}", action, id, name);
+                    App.Action = navigationUrl;
+                }
+            }
+        }
+
         private void LoadAnimation_Completed(object sender, EventArgs e)
         {
             Messenger.Default.Send(new NotificationMessage(Constants.SplashAnimationFinishedMsg));

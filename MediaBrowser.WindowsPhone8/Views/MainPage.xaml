@@ -89,9 +89,6 @@
                     </StackPanel>
                 </DataTemplate>
             </phone:Panorama.TitleTemplate>
-            <!--<controls:Panorama.Background>
-                <ImageBrush ImageSource="/Images/PanoBackground.png" />
-            </controls:Panorama.Background>-->
             <phone:PanoramaItem Header="collections">
                 <scott:PhoneListBox ItemsSource="{Binding Folders}"
                                     Text="No folders found"
@@ -104,16 +101,21 @@
                                              Command="{Binding Main.NavigateToPage, Source={StaticResource Locator}}"
                                              CommandParameter="{Binding}"
                                              Margin="12,0,0,0">
+                                <toolkit:ContextMenuService.ContextMenu>
+                                    <toolkit:ContextMenu>
+                                        <toolkit:MenuItem Header="Pin to start"
+                                                          Command="{Binding Main.PinCollectionCommand, Source={StaticResource Locator}}"
+                                                          CommandParameter="{Binding}" />
+                                    </toolkit:ContextMenu>
+                                </toolkit:ContextMenuService.ContextMenu>
                                 <StackPanel Orientation="Horizontal">
                                     <delay:PlaceImage PlaceholderSource="/Images/Logo.png"
                                                       Source="{Binding Converter={StaticResource ImageUrlConverter}}"
                                                       Height="62"
                                                       Width="62"
-                                                      VerticalAlignment="Top"
-                                                      Background="{Binding Converter={StaticResource RandomColour}}" />
+                                                      VerticalAlignment="Top"/>
                                     <StackPanel Orientation="Vertical"
-                                                VerticalAlignment="Top"
-                                                Margin="0,-7,0,0">
+                                                VerticalAlignment="Center">
                                         <TextBlock Text="{Binding Name}"
                                                    Style="{StaticResource PhoneTextLargeStyle}" />
                                         <!--<TextBlock Text="{Binding RecentlyAddedUnPlayedItemCount, StringFormat='Unwatched items: \{0\}'}"
@@ -130,7 +132,7 @@
                                    Orientation="Horizontal">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="410" />
+                        <RowDefinition Height="6*" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     <scott:PhoneListBox ItemsSource="{Binding RecentItems}"

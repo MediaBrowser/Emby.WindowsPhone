@@ -1,15 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
-using System.Windows;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
-using MediaBrowser.ApiInteraction;
 using MediaBrowser.WindowsPhone.Model;
-using Microsoft.Phone.Controls;
 using Microsoft.Phone.Info;
 using Microsoft.Phone.Shell;
 using ScottIsAFool.WindowsPhone.IsolatedStorage;
@@ -161,22 +156,22 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 settings.UseNotifications = ISettings.GetKeyValue<bool>("UseNotifications");
                 if (settings.UseNotifications)
                 {
-                    //App.SpecificSettings.DeviceSettings = await ApiClient.GetDeviceSettings(settings.DeviceId);
+                    App.SpecificSettings.DeviceSettings = await ApiClient.GetDeviceSettings(settings.DeviceId);
 
                     settings.IsRegistered = ISettings.GetKeyValue<bool>("IsRegistered");
-                    //settings.SendTileUpdates = App.SpecificSettings.DeviceSettings.SendLiveTiles;
-                    //settings.SendToastUpdates = App.SpecificSettings.DeviceSettings.SendToasts;
+                    settings.SendTileUpdates = App.SpecificSettings.DeviceSettings.SendLiveTiles;
+                    settings.SendToastUpdates = App.SpecificSettings.DeviceSettings.SendToasts;
 
-                    //var tilesToRemove = App.SpecificSettings.DeviceSettings.LiveTiles.Where(x => ShellTile.ActiveTiles.All(p => p.NavigationUri.ToString() != x.LiveTileId)).ToList();
+                    var tilesToRemove = App.SpecificSettings.DeviceSettings.LiveTiles.Where(x => ShellTile.ActiveTiles.All(p => p.NavigationUri.ToString() != x.LiveTileId)).ToList();
 
-                    //if (tilesToRemove.Any())
-                    //{
-                    //    foreach (var tile in tilesToRemove)
-                    //    {
-                    //        await ApiClient.DeleteLiveTile(settings.DeviceId, tile.LiveTileId);
-                    //    }
-                    //    App.SpecificSettings.DeviceSettings = await ApiClient.GetDeviceSettings(settings.DeviceId);
-                    //}
+                    if (tilesToRemove.Any())
+                    {
+                        foreach (var tile in tilesToRemove)
+                        {
+                            await ApiClient.DeleteLiveTile(settings.DeviceId, tile.LiveTileId);
+                        }
+                        App.SpecificSettings.DeviceSettings = await ApiClient.GetDeviceSettings(settings.DeviceId);
+                    }
 
                     settings.loadingFromSettings = false;
                     await settings.RegisterService();
@@ -199,7 +194,13 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             if (App.Settings.LoggedInUser != null)
             {
                 ProgressText = "Authenticating...";
-                await Utils.Login(App.Settings.LoggedInUser, App.Settings.PinCode, () => NavigationService.NavigateToPage("/Views/MainPage.xaml"));
+                await Utils.Login(App.Settings.LoggedInUser, App.Settings.PinCode, () =>
+                                                                                       {
+                                                                                           if (!string.IsNullOrEmpty(App.Action))
+                                                                                               NavigationService.NavigateToPage(App.Action);
+                                                                                           else
+                                                                                               NavigationService.NavigateToPage("/Views/MainPage.xaml");
+                                                                                       });
             }
             else
             {

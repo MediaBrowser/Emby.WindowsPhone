@@ -114,7 +114,8 @@ namespace MediaBrowser.WindowsPhone.Model
         {
             using (var stream = await GetSerializedStreamAsync(url, format).ConfigureAwait(false))
             {
-                return DeserializeFromStream<T>(stream);
+                //return DeserializeFromStream<T>(stream);
+                return (T)DataSerializer.DeserializeFromStream(stream, format, typeof (T));
             }
         }
     }

@@ -67,6 +67,8 @@ namespace MediaBrowser.WindowsPhone.Converters
                     {
                         imageOptions.MaxHeight = 200;
                     }
+                    if (item.Type == "Series")
+                        return apiClient.GetImageUrl(item.Id, imageOptions);
                     return apiClient.GetImageUrl(item, imageOptions);
                 }
                 else if(type == typeof(BaseItemPerson))

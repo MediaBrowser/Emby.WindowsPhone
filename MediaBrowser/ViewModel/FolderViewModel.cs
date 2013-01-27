@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using System.Windows.Controls;
 using GalaSoft.MvvmLight;
 using MediaBrowser.Model.Entities;
@@ -34,7 +36,16 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         /// </summary>
         public FolderViewModel(INavigationService navService, ExtendedApiClient apiClient)
         {
-            if (!IsInDesignMode)
+            RecentItems = new ObservableCollection<DtoBaseItem>();
+            RandomItems = new ObservableCollection<DtoBaseItem>();
+            if (IsInDesignMode)
+            {
+                SelectedFolder = new DtoBaseItem
+                                     {
+                                         Name = "Movies"
+                                     };
+            }
+            else
             {
                 ApiClient = apiClient;
                 NavService = navService;
@@ -82,7 +93,76 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 }
             });
 
+            CollectionPageLoaded = new RelayCommand(async () =>
+                                                        {
+                                                            if (NavService.IsNetworkAvailable && !dataLoaded)
+                                                            {
+                                                                ProgressText = "Checking collection...";
+                                                                ProgressIsVisible = true;
+
+                                                                dataLoaded = await GetCollectionItems();
+
+                                                                ProgressText = string.Empty;
+                                                                ProgressIsVisible = false;
+                                                            }
+
+                                                            if (CurrentItems != null && CurrentItems.Any())
+                                                            {
+                                                                GetRandomItems();
+                                                            }
+                                                        });
+
             NavigateToPage = new RelayCommand<DtoBaseItem>(NavService.NavigateToPage);
+        }
+
+        private void GetRandomItems()
+        {
+            RandomItems.Clear();
+            var random = CurrentItems.OrderBy(n => Guid.NewGuid()).Take(6).ToList();
+            random.ForEach(item => RandomItems.Add(item));
+        }
+
+        private async Task<bool> GetCollectionItems()
+        {
+            var getItems = await GetItems();
+
+            var getRecent = await GetRecentCollectionItems();
+
+            return (getItems && getRecent);
+        }
+
+        private async Task<bool> GetRecentCollectionItems()
+        {
+            var query = new ItemQuery
+            {
+                Filters = new[] { ItemFilter.IsRecentlyAdded, ItemFilter.IsNotFolder, },
+                UserId = App.Settings.LoggedInUser.Id,
+                Fields = new[]
+                                                 {
+                                                     ItemFields.SeriesInfo,
+                                                     ItemFields.DateCreated,
+                                                     ItemFields.UserData, 
+                                                 },
+                ParentId = SelectedFolder.Id,
+                Recursive = true
+            };
+
+            try
+            {
+                var items = await ApiClient.GetItemsAsync(query);
+
+                if (items != null && items.Items != null)
+                {
+                    var recent = await Utils.SortRecentItems(items.Items);
+                    recent.ForEach(item => RecentItems.Add(item));
+                }
+
+                return true;
+            }
+            catch 
+            {
+                return false;
+            }
         }
 
         private async Task<bool> GetItems()
@@ -309,6 +389,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public BaseItemPerson SelectedPerson { get; set; }
         public List<Group<DtoBaseItem>> FolderGroupings { get; set; }
         public List<DtoBaseItem> CurrentItems { get; set; }
+        public ObservableCollection<DtoBaseItem> RecentItems { get; set; }
+        public ObservableCollection<DtoBaseItem> RandomItems { get; set; }
 
         public string SortBy { get; set; }
         public DataTemplate GroupHeaderTemplate { get; set; }
@@ -320,6 +402,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public ItemsPanelTemplate ItemsPanelTemplate { get; set; }
 
         public RelayCommand PageLoaded { get; set; }
+        public RelayCommand CollectionPageLoaded { get; set; }
         public RelayCommand<DtoBaseItem> NavigateToPage { get; set; }
     }
 }

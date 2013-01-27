@@ -82,7 +82,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 return new RelayCommand(async () =>
                                             {
-                                                if (NavigationService.IsNetworkAvailable)
+                                                if (NavigationService.IsNetworkAvailable && !string.IsNullOrEmpty(ApiClient.ServerHostName))
                                                 {
                                                     try
                                                     {
