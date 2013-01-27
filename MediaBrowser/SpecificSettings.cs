@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using GalaSoft.MvvmLight.Messaging;
+using MediaBrowser.WindowsPhone.Model;
 
 namespace MediaBrowser.WindowsPhone
 {
@@ -7,6 +8,8 @@ namespace MediaBrowser.WindowsPhone
     {
         
         public bool IncludeTrailersInRecent { get; set; }
+
+        public DeviceSettings DeviceSettings { get; set; }
         
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged(string propertyName)

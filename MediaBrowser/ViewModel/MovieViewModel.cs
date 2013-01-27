@@ -95,21 +95,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             PlayMovieCommand = new RelayCommand(async () =>
                                                     {
-                                                        //var formats = new List<VideoOutputFormats>
-                                                        //                  {
-                                                        //                      VideoOutputFormats.Wmv,
-                                                        //                      VideoOutputFormats.Asf,
-                                                        //                      VideoOutputFormats.Ts
-                                                        //                  };
-                                                        //var url = ApiClient.GetVideoStreamUrl(SelectedMovie.Id, formats, maxHeight: 480, maxWidth: 800, quality:StreamingQuality.Higher);
-                                                        //var mediaPlayerLauncher = new MediaPlayerLauncher
-                                                        //                              {
-                                                        //                                  Orientation = MediaPlayerOrientation.Landscape,
-                                                        //                                  Media = new Uri(url, UriKind.Absolute)
-                                                        //                              };
-                                                        //mediaPlayerLauncher.Show();
-                                                        //Messenger.Default.Send(new NotificationMessage(SelectedMovie, Constants.PlayVideoItemMsg));
-                                                        //NavService.NavigateToPage("/Views/VideoPlayerView.xaml");
+#if WP8
+                                                        Messenger.Default.Send(new NotificationMessage(SelectedMovie, Constants.PlayVideoItemMsg));
+                                                        NavService.NavigateToPage("/Views/VideoPlayerView.xaml");
+#else
                                                         var bounds = Application.Current.RootVisual.RenderSize;
                                                         var query = new VideoStreamOptions
                                                         {
@@ -130,6 +119,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                                                           Media = new Uri(url, UriKind.Absolute)
                                                                                       };
                                                         mediaPlayerLauncher.Show();
+#endif
                                                     });
 
             AddRemoveFavouriteCommand = new RelayCommand(async () =>

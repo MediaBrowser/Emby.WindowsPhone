@@ -21,6 +21,8 @@
                             shell:SystemTray.IsVisible="True"
                             shell:SystemTray.BackgroundColor="Black"
                             toolkit:TiltEffect.IsTiltEnabled="True">
+
+    
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <command:EventToCommand Command="{Binding SettingsPageLoaded}" />
@@ -88,8 +90,14 @@
 
             <controls:PivotItem Header="push notifications">
                 <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    
                     <StackPanel Orientation="Vertical"
-                                Visibility="{Binding ServerPluginInstalled, Converter={StaticResource VisibilityConverter}}">
+                                Visibility="{Binding ServerPluginInstalled, Converter={StaticResource VisibilityConverter}}"
+                                Grid.Row="0">
                         <toolkit:ToggleSwitch Header="use notifications"
                                               IsChecked="{Binding UseNotifications, Mode=TwoWay}" />
                         <TextBlock Text="{Binding RegisteredText}"
@@ -103,7 +111,26 @@
                         </StackPanel>
                     </StackPanel>
                     
+                    <ListBox ItemsSource="{Binding DeviceSettings.LiveTiles, Source={StaticResource SpecificSettings}}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <toolkit:ContextMenuService.ContextMenu>
+                                        <toolkit:ContextMenu>
+                                            <toolkit:MenuItem Header="Add to calendar"
+                                                              Command="{Binding Main.AddToCalendarCommand, Source={StaticResource Locator}}"
+                                                              CommandParameter="{Binding}" />
+                                        </toolkit:ContextMenu>
+                                    </toolkit:ContextMenuService.ContextMenu>
+                                    <TextBlock Text="{Binding TileName}"
+                                               Style="{StaticResource PhoneTextNormalStyle}" />
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    
                     <StackPanel Orientation="Vertical"
+                                Grid.Row="0"
                                 Visibility="{Binding ServerPluginInstalled, Converter={StaticResource InvertedVisibilityConverter}}">
                         <TextBlock Text="In order to use push notifications on your device, you need to install the Push Notification service on your MediaBrowser server. This can be done through the control panel in the plugins section."
                                    Style="{StaticResource PhoneTextNormalStyle}"

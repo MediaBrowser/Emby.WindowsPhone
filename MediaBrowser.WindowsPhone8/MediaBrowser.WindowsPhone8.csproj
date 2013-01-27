@@ -122,11 +122,17 @@
     <Compile Include="..\MediaBrowser\Model\AsyncHttpClient.cs">
       <Link>Model\AsyncHttpClient.cs</Link>
     </Compile>
+    <Compile Include="..\MediaBrowser\Model\DeviceSettings.cs">
+      <Link>Model\DeviceSettings.cs</Link>
+    </Compile>
     <Compile Include="..\MediaBrowser\Model\ExtendedApiClient.cs">
       <Link>Model\ExtendedApiClient.cs</Link>
     </Compile>
     <Compile Include="..\MediaBrowser\Model\INavigationService.cs">
       <Link>Model\INavigationService.cs</Link>
+    </Compile>
+    <Compile Include="..\MediaBrowser\Model\LiveTile.cs">
+      <Link>Model\LiveTile.cs</Link>
     </Compile>
     <Compile Include="..\MediaBrowser\Model\NavigationService.cs">
       <Link>Model\NavigationService.cs</Link>
@@ -177,9 +183,6 @@
     <Compile Include="..\MediaBrowser\ViewModel\TvViewModel.cs">
       <Link>ViewModel\TvViewModel.cs</Link>
     </Compile>
-    <Compile Include="..\MediaBrowser\ViewModel\VideoPlayerViewModel.cs">
-      <Link>ViewModel\VideoPlayerViewModel.cs</Link>
-    </Compile>
     <Compile Include="..\MediaBrowser\ViewModel\ViewModelLocator.cs">
       <Link>ViewModel\ViewModelLocator.cs</Link>
     </Compile>
@@ -222,6 +225,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\TicksToTimespanConverter.cs" />
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="Model\Group.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -231,6 +235,7 @@
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
     <Compile Include="ThemeManager.cs" />
+    <Compile Include="ViewModel\VideoPlayerViewModel.cs" />
     <Compile Include="Views\VideoPlayerView.xaml.cs">
       <DependentUpon>VideoPlayerView.xaml</DependentUpon>
     </Compile>
@@ -426,7 +431,11 @@
       <Name>MediaBrowser.Shared</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <SDKReference Include="Microsoft.PlayerFramework.WP8.Core, Version=1.7.1.0">
+      <Name>Microsoft Player Framework</Name>
+    </SDKReference>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

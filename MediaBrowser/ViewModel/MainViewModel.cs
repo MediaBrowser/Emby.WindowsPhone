@@ -2,6 +2,7 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.ApiInteraction;
+using MediaBrowser.Model.Entities;
 using MediaBrowser.WindowsPhone.Model;
 using GalaSoft.MvvmLight.Command;
 using System.Collections.ObjectModel;
@@ -158,12 +159,13 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 var query = new ItemQuery
                 {
-                    Filters = new[] { ItemFilter.IsRecentlyAdded },
+                    Filters = new[] { ItemFilter.IsRecentlyAdded, ItemFilter.IsNotFolder,  },
                     UserId = App.Settings.LoggedInUser.Id,
                     Fields = new[]
                                                  {
                                                      ItemFields.SeriesInfo,
-                                                     ItemFields.DateCreated
+                                                     ItemFields.DateCreated,
+                                                     ItemFields.UserData, 
                                                  },
                     Recursive = true
                 };
@@ -199,7 +201,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     Id = series.Id,
                     DateCreated = series.CreatedDate,
                     Type = "Series",
-                    SortName = Constants.GetTvInformationMsg
+                    SortName = Constants.GetTvInformationMsg,
+                    ImageTags = new Dictionary<ImageType, Guid> { { ImageType.Primary, Guid.NewGuid() } }
                 }));
             }
             var recent = dtoBaseItem

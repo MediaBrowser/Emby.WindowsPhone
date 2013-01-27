@@ -144,12 +144,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controls\ProfileBox.cs" />
+    <Compile Include="Converters\DeviceIdToBooleanConverter.cs" />
     <Compile Include="Converters\FavouritesConverter.cs" />
     <Compile Include="Converters\LoggedInDateConverter.cs" />
     <Compile Include="Converters\RandomColour.cs" />
     <Compile Include="Converters\SettingsConverters.cs" />
     <Compile Include="Model\AsyncHttpClient.cs" />
+    <Compile Include="Model\DeviceSettings.cs" />
     <Compile Include="Model\ExtendedApiClient.cs" />
+    <Compile Include="Model\LiveTile.cs" />
     <Compile Include="Model\SettingsService.cs" />
     <Compile Include="PhoneNameResolver.cs" />
     <Compile Include="SpecificSettings.cs" />

@@ -1,4 +1,6 @@
-﻿using System.Diagnostics;
+﻿using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using GalaSoft.MvvmLight;
@@ -9,6 +11,7 @@ using MediaBrowser.ApiInteraction;
 using MediaBrowser.WindowsPhone.Model;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Info;
+using Microsoft.Phone.Shell;
 using ScottIsAFool.WindowsPhone.IsolatedStorage;
 using MediaBrowser.Shared;
 using MediaBrowser.Model;
@@ -150,16 +153,31 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             var settings = SimpleIoc.Default.GetInstance<SettingsViewModel>();
             settings.loadingFromSettings = true;
-            Debug.WriteLine(settings.UseNotifications);
+
             settings.ServerPluginInstalled = ISettings.GetKeyValue<bool>("ServerPluginInstalled");
+
             if (settings.ServerPluginInstalled)
             {
                 settings.UseNotifications = ISettings.GetKeyValue<bool>("UseNotifications");
                 if (settings.UseNotifications)
                 {
+                    //App.SpecificSettings.DeviceSettings = await ApiClient.GetDeviceSettings(settings.DeviceId);
+
                     settings.IsRegistered = ISettings.GetKeyValue<bool>("IsRegistered");
-                    settings.SendTileUpdates = ISettings.GetKeyValue<bool>("SendTileUpdates");
-                    settings.SendToastUpdates = ISettings.GetKeyValue<bool>("SendToastUpdates");
+                    //settings.SendTileUpdates = App.SpecificSettings.DeviceSettings.SendLiveTiles;
+                    //settings.SendToastUpdates = App.SpecificSettings.DeviceSettings.SendToasts;
+
+                    //var tilesToRemove = App.SpecificSettings.DeviceSettings.LiveTiles.Where(x => ShellTile.ActiveTiles.All(p => p.NavigationUri.ToString() != x.LiveTileId)).ToList();
+
+                    //if (tilesToRemove.Any())
+                    //{
+                    //    foreach (var tile in tilesToRemove)
+                    //    {
+                    //        await ApiClient.DeleteLiveTile(settings.DeviceId, tile.LiveTileId);
+                    //    }
+                    //    App.SpecificSettings.DeviceSettings = await ApiClient.GetDeviceSettings(settings.DeviceId);
+                    //}
+
                     settings.loadingFromSettings = false;
                     await settings.RegisterService();
                     try

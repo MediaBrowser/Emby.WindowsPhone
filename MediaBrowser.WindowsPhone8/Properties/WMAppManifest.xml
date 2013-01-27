@@ -25,7 +25,7 @@
           <Title>MediaBrowser</Title>
           <BackContent>
           </BackContent>
-          <BackBackgroundImageURI>
+          <BackBackgroundImageURI IsRelative="true" IsResource="false">
           </BackBackgroundImageURI>
           <BackTitle>
           </BackTitle>
@@ -33,7 +33,7 @@
           <LargeBackContent />
           <LargeBackBackgroundImageURI IsRelative="true" IsResource="false">
           </LargeBackBackgroundImageURI>
-          <DeviceLockImageURI>
+          <DeviceLockImageURI IsRelative="true" IsResource="false">
           </DeviceLockImageURI>
           <HasLarge>True</HasLarge>
         </TemplateFlip>

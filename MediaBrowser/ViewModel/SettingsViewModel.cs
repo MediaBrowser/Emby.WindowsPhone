@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
@@ -96,6 +98,17 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
         }
 
+        public RelayCommand<LiveTile> DeleteLiveTile
+        {
+            get
+            {
+                return new RelayCommand<LiveTile>(async liveTile =>
+                                                      {
+                                                          
+                                                      });
+            }
+        }
+
         internal string DeviceId
         {
 #if WP8
@@ -147,8 +160,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     ProgressText = "Unregistering device...";
 
                     var response = await ApiClient.DeleteDevice(DeviceId);
-
+                    
                     SendToastUpdates = SendTileUpdates = true;
+                    
+                    if(HttpNotificationChannel.IsShellTileBound) HttpNotificationChannel.UnbindToShellTile();
+                    if(HttpNotificationChannel.IsShellToastBound) HttpNotificationChannel.UnbindToShellToast();
 
                     IsRegistered = false;
 
@@ -260,7 +276,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
             if (!HttpNotificationChannel.IsShellTileBound)
             {
-                HttpNotificationChannel.BindToShellTile();
+                HttpNotificationChannel.BindToShellTile(new Collection<Uri>{ new Uri("http://dev.scottisafool.co.uk")});
             }
         }
 

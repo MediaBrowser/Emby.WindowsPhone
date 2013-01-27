@@ -39,14 +39,14 @@ namespace MediaBrowser.WindowsPhone.Model
 
             var url = GetApiUrl("push", dict);
 
-            return await GetStream(url);
+            return await GetStream<RequestResult>(url);
         }
 
         public async Task<RequestResult> CheckForPushServer()
         {
             var url = GetApiUrl("push");
 
-            return await GetStream(url);
+            return await GetStream<RequestResult>(url);
         }
 
         public async Task<RequestResult> CheckForPulse(string deviceId)
@@ -55,10 +55,10 @@ namespace MediaBrowser.WindowsPhone.Model
 
             var url = GetApiUrl("push", dict);
 
-            return await GetStream(url);
+            return await GetStream<RequestResult>(url);
         }
 
-        public async Task<RequestResult> UpdateDevice(string deviceId, bool? sendToasts = null, bool? liveTile = null)
+        public async Task<RequestResult> UpdateDevice(string deviceId, bool? sendToasts = null, bool? liveTile = null, string liveTileName = null, string liveTileId = null)
         {
             var dict = new QueryStringDictionary {{"deviceid", deviceId}, {"action", "update"}};
 
@@ -72,9 +72,15 @@ namespace MediaBrowser.WindowsPhone.Model
                 dict.Add("sendlivetile", liveTile.Value);
             }
 
+            if (!string.IsNullOrEmpty(liveTileName) && !string.IsNullOrEmpty(liveTileId))
+            {
+                dict.Add("tilename", liveTileName);
+                dict.Add("tileid", liveTileId);
+            }
+
             var url = GetApiUrl("push", dict);
 
-            return await GetStream(url);
+            return await GetStream<RequestResult>(url);
         }
 
         public async Task<RequestResult> DeleteDevice(string deviceId)
@@ -83,23 +89,32 @@ namespace MediaBrowser.WindowsPhone.Model
 
             var url = GetApiUrl("push", dict);
 
-            return await GetStream(url);
+            return await GetStream<RequestResult>(url);
         }
 
-        public async Task<RequestResult> GetDeviceSettings(string deviceId)
+        public async Task<RequestResult> DeleteLiveTile(string deviceId, string liveTileId)
+        {
+            var dict = new QueryStringDictionary { { "deviceid", deviceId }, { "action", "deletetile" }, {"tileid", liveTileId} };
+
+            var url = GetApiUrl("push", dict);
+
+            return await GetStream<RequestResult>(url);
+        }
+
+        public async Task<DeviceSettings> GetDeviceSettings(string deviceId)
         {
             var dict = new QueryStringDictionary { { "deviceid", deviceId }, { "action", "getsettings" } };
 
             var url = GetApiUrl("push", dict);
 
-            return await GetStream(url);
+            return await GetStream<DeviceSettings>(url, SerializationFormats.Json);
         }
 
-        private async Task<RequestResult> GetStream(string url)
+        private async Task<T> GetStream<T>(string url, SerializationFormats format = SerializationFormats.Protobuf) where T : class
         {
-            using (var stream = await GetSerializedStreamAsync(url).ConfigureAwait(false))
+            using (var stream = await GetSerializedStreamAsync(url, format).ConfigureAwait(false))
             {
-                return DeserializeFromStream<RequestResult>(stream);
+                return DeserializeFromStream<T>(stream);
             }
         }
     }
