@@ -52,6 +52,7 @@
             <converters:RatingConverter x:Key="RatingConverter" />
             <converters:RandomColour x:Key="RandomColour" />
             <converters:FavouritesConverter x:Key="FavouritesConverter" />
+            <converters:PinnedItemConverter x:Key="PinnedItemConverter"/>
 
             <local:LocalizedStrings xmlns:local="clr-namespace:MediaBrowser.WindowsPhone"
                                     x:Key="LocalizedStrings" />

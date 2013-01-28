@@ -11,6 +11,8 @@ using MediaBrowser.Model.DTO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
+using Microsoft.Phone.Shell;
+
 #if !WP8
 using ScottIsAFool.WindowsPhone;
 #endif
@@ -74,6 +76,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     CurrentItems = null;
                     FolderGroupings = null;
                 }
+                else if (m.Notification.Equals(Constants.CollectionPinnedMsg))
+                {
+                    var tileUrl = (string) m.Sender;
+                    var tile = ShellTile.ActiveTiles.SingleOrDefault(x => x.NavigationUri.ToString() == tileUrl);
+                    CanPinCollection = tile == default(ShellTile);
+                }
             });
         }
 
@@ -95,10 +103,15 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             CollectionPageLoaded = new RelayCommand(async () =>
                                                         {
-                                                            if (NavService.IsNetworkAvailable && !dataLoaded)
+                                                            if (NavService.IsNetworkAvailable && !dataLoaded && SelectedFolder != null)
                                                             {
                                                                 ProgressText = "Checking collection...";
                                                                 ProgressIsVisible = true;
+
+                                                                var tileUrl = string.Format(Constants.PhoneCollectionTileUrlFormat, SelectedFolder.Id, SelectedFolder.Name);
+                                                                var shellExists = ShellTile.ActiveTiles.SingleOrDefault(x => x.NavigationUri.ToString() == tileUrl);
+
+                                                                CanPinCollection = shellExists == default(ShellTile);
 
                                                                 dataLoaded = await GetCollectionItems();
 
@@ -383,6 +396,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         // Shell properties
         public string ProgressText { get; set; }
         public bool ProgressIsVisible { get; set; }
+        public bool CanPinCollection { get; set; }
 
         public string PageTitle { get; set; }
         public DtoBaseItem SelectedFolder { get; set; }

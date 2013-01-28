@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Windows;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.ApiInteraction;
@@ -88,13 +89,19 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             PinCollectionCommand = new RelayCommand<DtoBaseItem>(collection =>
                                                                      {
-                                                                         var tileUrl = string.Format(Constants.PhoneCollectionTileUrlFormat, collection.Id, collection.Name);
-                                                                         var existingTile = ShellTile.ActiveTiles.SingleOrDefault(x => x.NavigationUri.ToString() == tileUrl);
+                                                                         string tileUrl;
+                                                                         var existingTile = GetShellTile(collection, out tileUrl); 
                                                                          if (existingTile != default(ShellTile))
                                                                          {
-                                                                             App.ShowMessage("", "Collection already pinned");
+                                                                             var result = MessageBox.Show("Are you sure you wish to unpin this tile?", "Are you sure?", MessageBoxButton.OKCancel);
+                                                                             if (result == MessageBoxResult.OK)
+                                                                             {
+                                                                                 existingTile.Delete();
+                                                                                 Messenger.Default.Send(new NotificationMessage(tileUrl, Constants.CollectionPinnedMsg));
+                                                                             }
                                                                              return;
                                                                          }
+                                                                         
 #if WP8
                                                                          var tileDate = new CycleTileData
                                                                                             {
@@ -110,13 +117,20 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 #else
 
 #endif
-                                                                         
+                                                                         Messenger.Default.Send(new NotificationMessage(tileUrl, Constants.CollectionPinnedMsg));
 
                                                                      });
 
             NavigateToPage = new RelayCommand<DtoBaseItem>(NavService.NavigateToPage);
 
             NavigateToAPage = new RelayCommand<string>(NavService.NavigateToPage);
+        }
+
+        private static ShellTile GetShellTile(DtoBaseItem collection, out string url)
+        {
+            var tileUrl = string.Format(Constants.PhoneCollectionTileUrlFormat, collection.Id, collection.Name);
+            url = tileUrl;
+            return ShellTile.ActiveTiles.SingleOrDefault(x => x.NavigationUri.ToString() == tileUrl);
         }
 
         private void Reset()

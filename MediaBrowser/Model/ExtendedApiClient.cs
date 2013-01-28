@@ -1,25 +1,17 @@
 ﻿using System.Threading.Tasks;
 using MediaBrowser.ApiInteraction;
 using MediaBrowser.Model.Entities;
+using MediaBrowser.Model.Logging;
 using MediaBrowser.Model.Web;
 
 namespace MediaBrowser.WindowsPhone.Model
 {
     public class ExtendedApiClient : ApiClient
     {
-        public ExtendedApiClient(IAsyncHttpClient httpClient)
-            : base(httpClient)
+        public ExtendedApiClient(ILogger logger, IAsyncHttpClient httpClient)
+            : base(logger, httpClient)
         {
             
-        }
-
-        public bool IsBusy
-        {
-            get
-            {
-                var asyncHttpClient = HttpClient as AsyncHttpClient;
-                return asyncHttpClient != null && asyncHttpClient.IsBusy;
-            }
         }
 
         public async Task<RequestResult> RegisterDevice(string deviceId, string uri, bool? sendTileUpdate = null, bool? sendToastUpdate = null)

@@ -110,6 +110,9 @@
     <Compile Include="..\MediaBrowser\Converters\LoggedInDateConverter.cs">
       <Link>Converters\LoggedInDateConverter.cs</Link>
     </Compile>
+    <Compile Include="..\MediaBrowser\Converters\PinnedItemConverter.cs">
+      <Link>Converters\PinnedItemConverter.cs</Link>
+    </Compile>
     <Compile Include="..\MediaBrowser\Converters\RandomColour.cs">
       <Link>Converters\RandomColour.cs</Link>
     </Compile>
@@ -363,6 +366,8 @@
     <Content Include="Icons\appbar.back.rest.png" />
     <Content Include="Icons\appbar.group.png" />
     <Content Include="Icons\appbar.next.rest.png" />
+    <Content Include="Icons\appbar.pin.png" />
+    <Content Include="Icons\appbar.pin.remove.png" />
     <Content Include="Icons\appbar.star.add.png" />
     <Content Include="Icons\appbar.star.minus.png" />
     <Content Include="Icons\appbar.star.png" />

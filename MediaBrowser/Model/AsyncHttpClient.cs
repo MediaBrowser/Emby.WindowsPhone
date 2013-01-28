@@ -1,7 +1,9 @@
 ﻿using System.IO;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using MediaBrowser.ApiInteraction;
+using MediaBrowser.Model.Logging;
 using SharpGIS;
 
 namespace MediaBrowser.WindowsPhone.Model
@@ -15,12 +17,12 @@ namespace MediaBrowser.WindowsPhone.Model
             WebClient = new GZipWebClient();
         }
 
-        public async Task<Stream> GetStreamAsync(string url)
+        public async Task<Stream> GetStreamAsync(string url, ILogger logger, CancellationToken cancellationToken)
         {
             return await WebClient.OpenReadTaskAsync(url);
         }
 
-        public async Task<Stream> PostAsync(string url, string contentType, string postContent)
+        public async Task<Stream> PostAsync(string url, string contentType, string postContent, ILogger logger, CancellationToken cancellationToken)
         {
             WebClient.Headers["Content-Type"] = "application/x-www-form-urlencoded";
             var returnString = await WebClient.UploadStringTaskAsync(url, postContent);
@@ -34,7 +36,7 @@ namespace MediaBrowser.WindowsPhone.Model
 
         public void Dispose()
         {
-            
+
         }
     }
 }

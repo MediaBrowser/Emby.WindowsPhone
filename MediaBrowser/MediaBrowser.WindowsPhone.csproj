@@ -147,6 +147,7 @@
     <Compile Include="Converters\DeviceIdToBooleanConverter.cs" />
     <Compile Include="Converters\FavouritesConverter.cs" />
     <Compile Include="Converters\LoggedInDateConverter.cs" />
+    <Compile Include="Converters\PinnedItemConverter.cs" />
     <Compile Include="Converters\RandomColour.cs" />
     <Compile Include="Converters\SettingsConverters.cs" />
     <Compile Include="Model\AsyncHttpClient.cs" />
