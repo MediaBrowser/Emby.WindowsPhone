@@ -1,4 +1,5 @@
-﻿using System.Windows.Navigation;
+﻿using System.Windows.Controls;
+using System.Windows.Navigation;
 using MediaBrowser.Model.DTO;
 using MediaBrowser.WindowsPhone.ViewModel;
 using Microsoft.Phone.Controls;
@@ -18,7 +19,7 @@ namespace MediaBrowser.WindowsPhone.Views
             InitializeComponent();
         }
 
-        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
             if (e.NavigationMode == NavigationMode.New)
@@ -47,6 +48,11 @@ namespace MediaBrowser.WindowsPhone.Views
                     SelectedFolder = selectedItem
                 };
             }
+        }
+
+        private void Panorama_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            this.ApplicationBar.IsVisible = ThePanorama.SelectedIndex == 0;
         }
     }
 }

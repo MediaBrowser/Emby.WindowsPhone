@@ -1,13 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using System.Windows;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
-using MediaBrowser.ApiInteraction;
-using MediaBrowser.Model.Entities;
 using MediaBrowser.WindowsPhone.Model;
 using GalaSoft.MvvmLight.Command;
 using System.Collections.ObjectModel;
-using System;
 using System.Linq;
 using MediaBrowser.Model.DTO;
 using System.Threading.Tasks;
@@ -115,7 +112,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                                                             };
                                                                          ShellTile.Create(new Uri(tileUrl, UriKind.Relative), tileDate, true);
 #else
-
+                                                                         var tileData = new StandardTileData
+                                                                                            {
+                                                                                                Title = collection.Name,
+                                                                                                BackBackgroundImage = new Uri("/Images/Logo.png", UriKind.Relative)
+                                                                                            };
+                                                                         ShellTile.Create(new Uri(tileUrl, UriKind.Relative), tileData);
 #endif
                                                                          Messenger.Default.Send(new NotificationMessage(tileUrl, Constants.CollectionPinnedMsg));
 
@@ -246,7 +248,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 item.Items.OrderByDescending(x => x.SortName).ToList().ForEach(folder => Folders.Add(folder));
                 return true;
             }
-            catch
+            catch (Exception ex)
             {
                 return false;
             }

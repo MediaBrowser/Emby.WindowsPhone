@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
@@ -218,7 +219,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 App.Settings.ServerConfiguration = config;
                 return true;
             }
-            catch
+            catch (Exception ex)
             {
                 return false;
             }

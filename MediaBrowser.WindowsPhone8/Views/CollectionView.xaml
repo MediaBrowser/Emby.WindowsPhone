@@ -62,7 +62,9 @@
                                                     CommandParameter="{Binding SelectedFolder}"/>
             </cimbalino:ApplicationBarBehavior>
         </i:Interaction.Behaviors>
-        <phone:Panorama Title="{Binding SelectedFolder.Name, Converter={StaticResource StringCaseConverter}}">
+        <phone:Panorama Title="{Binding SelectedFolder.Name, Converter={StaticResource StringCaseConverter}}"
+                        SelectionChanged="Panorama_OnSelectionChanged"
+                        x:Name="ThePanorama">
         <!--<phone:Panorama Title="movies">-->
             <phone:PanoramaItem Header="recent">
                 <controls:PhoneListBox ItemsSource="{Binding RecentItems}"

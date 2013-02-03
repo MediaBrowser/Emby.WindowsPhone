@@ -332,15 +332,6 @@
     <Content Include="..\MediaBrowser\Images\Logo.png">
       <Link>Images\Logo.png</Link>
     </Content>
-    <Content Include="..\MediaBrowser\Images\MBLogo.png">
-      <Link>Images\MBLogo.png</Link>
-    </Content>
-    <Content Include="..\MediaBrowser\Images\PanoBackground.png">
-      <Link>Images\PanoBackground.png</Link>
-    </Content>
-    <Content Include="..\MediaBrowser\Images\PanoTitle.png">
-      <Link>Images\PanoTitle.png</Link>
-    </Content>
     <Content Include="..\MediaBrowser\Images\UserLoginDefault.png">
       <Link>Images\UserLoginDefault.png</Link>
     </Content>
@@ -388,8 +379,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Cimbalino.Phone.Toolkit.2.0.1\lib\wp8\Cimbalino.Phone.Toolkit.dll</HintPath>
     </Reference>
-    <Reference Include="Coding4Fun.Toolkit.Controls">
-      <HintPath>..\other-packages\Coding4fun\Coding4Fun.Toolkit.Controls.dll</HintPath>
+    <Reference Include="Coding4Fun.Toolkit.Controls, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Coding4Fun.Toolkit.Controls.2.0.0\lib\windowsphone8\Coding4Fun.Toolkit.Controls.dll</HintPath>
     </Reference>
     <Reference Include="GalaSoft.MvvmLight.Extras.WP8">
       <HintPath>..\packages\MvvmLightLibs.4.1.26.1\lib\WindowsPhone8\GalaSoft.MvvmLight.Extras.WP8.dll</HintPath>
@@ -414,10 +406,6 @@
     </Reference>
     <Reference Include="PropertyChanged">
       <HintPath>..\packages\PropertyChanged.Fody.1.32.2.0\lib\SL40-WP\PropertyChanged.dll</HintPath>
-    </Reference>
-    <Reference Include="protobuf-net, Version=2.0.0.621, Culture=neutral, PublicKeyToken=257b51d87d2e4d67, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\protobuf-net.2.0.0.621\lib\windowsphone8\protobuf-net.dll</HintPath>
     </Reference>
     <Reference Include="ScottIsAFool.WindowsPhone">
       <HintPath>..\packages\ScottIsAFool.WindowsPhone.1.0.11.0\lib\wp71\ScottIsAFool.WindowsPhone.dll</HintPath>

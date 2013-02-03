@@ -315,49 +315,49 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                        select g).ToList();
 #endif
                     break;
-                case "studio":
-                    GroupHeaderTemplate = (DataTemplate)Application.Current.Resources["LLSGroupHeaderTemplateLong"];
-#if WP8
-                    GroupItemTemplate = (Style)Application.Current.Resources["LLSGroupItemLongStyle"];
-#else
-                    GroupItemTemplate = (DataTemplate)Application.Current.Resources["LLSGroupItemTemplateLong"];
-                    ItemsPanelTemplate = (ItemsPanelTemplate)Application.Current.Resources["StackPanelVerticalTemplate"];
-#endif
-                    var studios = (from s in CurrentItems
-                                   where s.Studios != null
-                                   from st in s.Studios
-                                   select st).Distinct().ToList();
-                    studios.Insert(0, new BaseItemStudio { Name = "none" });
-                    studios.ForEach(item => emptyGroups.Add(new Group<DtoBaseItem>(item.Name, new List<DtoBaseItem>())));
+//                case "studio":
+//                    GroupHeaderTemplate = (DataTemplate)Application.Current.Resources["LLSGroupHeaderTemplateLong"];
+//#if WP8
+//                    GroupItemTemplate = (Style)Application.Current.Resources["LLSGroupItemLongStyle"];
+//#else
+//                    GroupItemTemplate = (DataTemplate)Application.Current.Resources["LLSGroupItemTemplateLong"];
+//                    ItemsPanelTemplate = (ItemsPanelTemplate)Application.Current.Resources["StackPanelVerticalTemplate"];
+//#endif
+//                    var studios = (from s in CurrentItems
+//                                   where s.Studios != null
+//                                   from st in s.Studios
+//                                   select st).Distinct().ToList();
+//                    studios.Insert(0, new BaseItemStudio { Name = "none" });
+//                    studios.ForEach(item => emptyGroups.Add(new Group<DtoBaseItem>(item.Name, new List<DtoBaseItem>())));
 
-                    var groupedStudioItems = (from studio in studios
-                                              let films = (from f in CurrentItems
-                                                           where CheckStudio(f)
-                                                           where f.Studios.Contains(studio)
-                                                           orderby GetSortByNameHeader(f)
-                                                           select f).ToList()
-                                              select new Group<DtoBaseItem>(studio.Name, films)).ToList();
-#if WP8
-                    FolderGroupings = groupedStudioItems.ToList();
-#else
-                    FolderGroupings = (from g in groupedStudioItems.Union(emptyGroups)
-                                       orderby g.Title
-                                       select g).ToList();
-#endif
-                    break;
+//                    var groupedStudioItems = (from studio in studios
+//                                              let films = (from f in CurrentItems
+//                                                           where CheckStudio(f)
+//                                                           where f.Studios.Contains(studio)
+//                                                           orderby GetSortByNameHeader(f)
+//                                                           select f).ToList()
+//                                              select new Group<DtoBaseItem>(studio.Name, films)).ToList();
+//#if WP8
+//                    FolderGroupings = groupedStudioItems.ToList();
+//#else
+//                    FolderGroupings = (from g in groupedStudioItems.Union(emptyGroups)
+//                                       orderby g.Title
+//                                       select g).ToList();
+//#endif
+//                    break;
             }
             ProgressIsVisible = false;
         }
 
-        private bool CheckStudio(DtoBaseItem dtoBaseItem)
-        {
-            if (dtoBaseItem.Studios != null && dtoBaseItem.Studios.Any())
-            {
-                return true;
-            }
-            dtoBaseItem.Studios = new[] { new BaseItemStudio { Name = "none" } };
-            return true;
-        }
+        //private bool CheckStudio(DtoBaseItem dtoBaseItem)
+        //{
+        //    if (dtoBaseItem.Studios != null && dtoBaseItem.Studios.Any())
+        //    {
+        //        return true;
+        //    }
+        //    dtoBaseItem.Studios = new[] { new BaseItemStudio { Name = "none" } };
+        //    return true;
+        //}
 
         private bool CheckGenre(DtoBaseItem dtoBaseItem)
         {
