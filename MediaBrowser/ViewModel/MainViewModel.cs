@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using MediaBrowser.Model.DTO;
 using System.Threading.Tasks;
+using MediaBrowser.WindowsPhone.Resources;
 using Microsoft.Phone.Shell;
 using ScottIsAFool.WindowsPhone.IsolatedStorage;
 
@@ -50,7 +51,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 DummyFolder = new DtoBaseItem
                 {
                     Type = "folder",
-                    Name = "recent"
+                    Name = AppResources.Recent.ToLower()
                 };
             }
         }
@@ -90,7 +91,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                                          var existingTile = GetShellTile(collection, out tileUrl); 
                                                                          if (existingTile != default(ShellTile))
                                                                          {
-                                                                             var result = MessageBox.Show("Are you sure you wish to unpin this tile?", "Are you sure?", MessageBoxButton.OKCancel);
+                                                                             var result = MessageBox.Show(AppResources.MessageBoxUnpinText, AppResources.MessageBoxHeaderAreYouSure, MessageBoxButton.OKCancel);
                                                                              if (result == MessageBoxResult.OK)
                                                                              {
                                                                                  existingTile.Delete();
@@ -154,15 +155,15 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
 
                 ProgressIsVisible = true;
-                ProgressText = "Loading folders...";
+                ProgressText = AppResources.SysTrayLoadingCollections;
 
                 bool folderLoaded = await GetFolders();
 
-                ProgressText = "Getting recent items...";
+                ProgressText = AppResources.SysTrayGettingRecentItems;
 
                 bool recentLoaded = await GetRecent();
 
-                ProgressText = "Getting favourites...";
+                ProgressText = AppResources.SysTrayGettingFavourites;
 
                 bool favouritesLoaded = await GetFavouriteItems();
 

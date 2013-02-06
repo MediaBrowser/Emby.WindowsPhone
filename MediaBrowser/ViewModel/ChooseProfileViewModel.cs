@@ -6,6 +6,7 @@ using GalaSoft.MvvmLight.Command;
 using MediaBrowser.ApiInteraction;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.Model.DTO;
+using MediaBrowser.WindowsPhone.Resources;
 using ScottIsAFool.WindowsPhone.IsolatedStorage;
 using MediaBrowser.Shared;
 
@@ -59,7 +60,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 if(NavigationService.IsNetworkAvailable)
                 {
-                    ProgressText = "Getting profiles...";
+                    ProgressText = AppResources.SysTrayGettingProfiles;
                     ProgressIsVisible = true;
                     var profiles = await ApiClient.GetAllUsersAsync();
                     foreach(var profile in profiles)
@@ -79,7 +80,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 {
 
                     Debug.WriteLine(selectedUser.Id);
-                    ProgressText = "Authenticating...";
+                    ProgressText = AppResources.SysTrayAuthenticating;
                     ProgressIsVisible = true;
 
                     await Utils.Login(selectedUser, pinCode, () =>

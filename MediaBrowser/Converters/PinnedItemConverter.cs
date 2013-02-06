@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Data;
+using MediaBrowser.WindowsPhone.Resources;
 
 namespace MediaBrowser.WindowsPhone.Converters
 {
@@ -16,7 +17,7 @@ namespace MediaBrowser.WindowsPhone.Converters
             {
                 return isPinned ?  new Uri("/Icons/appbar.pin.png", UriKind.Relative) : new Uri("/Icons/appbar.pin.remove.png", UriKind.Relative);
             }
-            return isPinned ? "pin to start" : "unpin";
+            return isPinned ? AppResources.PinToStart.ToLower() : AppResources.Unpin.ToLower();
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)

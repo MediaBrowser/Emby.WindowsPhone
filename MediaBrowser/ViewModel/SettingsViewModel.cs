@@ -10,6 +10,7 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.WindowsPhone.Model;
+using MediaBrowser.WindowsPhone.Resources;
 using Microsoft.Phone.Info;
 using Microsoft.Phone.Notification;
 using ScottIsAFool.WindowsPhone.IsolatedStorage;
@@ -47,7 +48,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 loadingFromSettings = true;
                 SendTileUpdates = SendToastUpdates = true;
-                RegisteredText = "Device not registered";
+                RegisteredText = AppResources.DeviceNotRegistered;
                 loadingFromSettings = false;
                 WireMessages();
             }
@@ -141,7 +142,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 ProgressIsVisible = true;
                 if (UseNotifications)
                 {
-                    ProgressText = "Registering device...";
+                    ProgressText = AppResources.SysTrayRegisteringDevice;
                     HttpNotificationChannel = HttpNotificationChannel.Find(PushServiceName);
 
                     if (HttpNotificationChannel != null)
@@ -157,7 +158,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 }
                 else
                 {
-                    ProgressText = "Unregistering device...";
+                    ProgressText = AppResources.SysTrayUnregisteringDevice;
 
                     var response = await ApiClient.DeleteDevice(DeviceId);
                     
@@ -182,7 +183,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
         private void OnIsRegisteredChanged()
         {
-            RegisteredText = IsRegistered ? "Device registered" : "Device not registered";
+            RegisteredText = IsRegistered ? AppResources.DeviceRegistered : AppResources.DeviceNotRegistered;
             ISettings.Set("IsRegistered", IsRegistered);
         }
 

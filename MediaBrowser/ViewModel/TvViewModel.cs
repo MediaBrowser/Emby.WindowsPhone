@@ -7,6 +7,8 @@ using GalaSoft.MvvmLight.Messaging;
 using System.Linq;
 using System.Threading.Tasks;
 using MediaBrowser.Model.DTO;
+using MediaBrowser.WindowsPhone.Resources;
+
 #if !WP8
 using ScottIsAFool.WindowsPhone;
 #endif
@@ -86,7 +88,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 DummyFolder = new DtoBaseItem
                 {
                     Type = "folder",
-                    Name = SelectedTvSeries.Name + "'s recent items",
+                    Name = string.Format(AppResources.TvShowRecentItemsTitle, SelectedTvSeries.Name.ToLower()),
                     Id = SelectedTvSeries.Id
 
                 };
@@ -95,7 +97,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     if(SelectedTvSeries != null)
                     {
                         ProgressIsVisible = true;
-                        ProgressText = "Getting show information...";
+                        ProgressText = AppResources.SysTrayGettingShowInformation;
 
                         try
                         {
@@ -108,7 +110,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                         bool seasonsLoaded = await GetSeasons();
 
-                        ProgressText = "Getting recent items...";
+                        ProgressText = AppResources.SysTrayGettingRecentItems;
 
                         bool recentItems = await GetRecentItems().ConfigureAwait(true);
 
@@ -126,7 +128,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     if(SelectedSeason != null)
                     {
                         ProgressIsVisible = true;
-                        ProgressText = "Getting episodes...";
+                        ProgressText = AppResources.SysTrayGettingEpisodes;
 
                         seasonDataLoaded = await GetEpisodes();
 
@@ -143,7 +145,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     if(SelectedEpisode != null)
                     {
                         ProgressIsVisible = true;
-                        ProgressText = "Getting episode details...";
+                        ProgressText = AppResources.SysTrayGettingEpisodeDetails;
 
                         //bool episodeLoaded = await GetEpisode();
 
@@ -174,7 +176,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
             catch
             {
-                App.ShowMessage("", "Error downloading episode details");
+                App.ShowMessage("", AppResources.ErrorEpisodeDetails);
                 return false;
             }
         }
@@ -208,7 +210,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
             catch
             {
-                App.ShowMessage("", "Error getting recent items");
+                App.ShowMessage("", AppResources.ErrorRecentItems);
                 return false;
             }
         }
@@ -233,7 +235,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
             catch
             {
-                App.ShowMessage("", "Error getting seasons");
+                App.ShowMessage("", AppResources.ErrorSeasons);
                 return false;
             }
         }
@@ -259,7 +261,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
             catch
             {
-                App.ShowMessage("", "Error getting episodes");
+                App.ShowMessage("", AppResources.ErrorEpisodes);
                 return false;
             }
         }

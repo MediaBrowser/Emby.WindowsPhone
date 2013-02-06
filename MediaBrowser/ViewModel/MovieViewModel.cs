@@ -7,6 +7,7 @@ using GalaSoft.MvvmLight.Command;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.Model.DTO;
 using GalaSoft.MvvmLight.Messaging;
+using MediaBrowser.WindowsPhone.Resources;
 using Microsoft.Phone.Tasks;
 #if !WP8
 using ScottIsAFool.WindowsPhone;
@@ -77,7 +78,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 if (SelectedMovie != null && NavService.IsNetworkAvailable)
                 {
                     ProgressIsVisible = true;
-                    ProgressText = "Getting movie information...";
+                    ProgressText = AppResources.SysTrayGettingMovieInfo;
                     
                     bool dataLoaded = await GetMovieDetails();
 
@@ -159,7 +160,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
             catch
             {
-                App.ShowMessage("", "Error getting extra information");
+                App.ShowMessage("", AppResources.ErrorGettingExtraInfo);
                 result = false;
             }
 

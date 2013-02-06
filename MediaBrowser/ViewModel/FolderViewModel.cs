@@ -11,6 +11,7 @@ using MediaBrowser.Model.DTO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
+using MediaBrowser.WindowsPhone.Resources;
 using Microsoft.Phone.Shell;
 
 #if !WP8
@@ -92,7 +93,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 if (NavService.IsNetworkAvailable && App.Settings.CheckHostAndPort() && !dataLoaded)
                 {
                     ProgressIsVisible = true;
-                    ProgressText = "Getting items...";
+                    ProgressText = AppResources.SysTrayGettingItems;
 
                     dataLoaded = await GetItems();
 
@@ -105,7 +106,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                         {
                                                             if (NavService.IsNetworkAvailable && !dataLoaded && SelectedFolder != null)
                                                             {
-                                                                ProgressText = "Checking collection...";
+                                                                ProgressText = AppResources.SysTrayCheckingCollection;
                                                                 ProgressIsVisible = true;
 
                                                                 var tileUrl = string.Format(Constants.PhoneCollectionTileUrlFormat, SelectedFolder.Id, SelectedFolder.Name);
@@ -200,7 +201,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 {
                     if (SelectedFolder.Name.Contains("recent"))
                     {
-                        PageTitle = "recent items";
+                        PageTitle = AppResources.Recent.ToLower();
                         query.Filters = new[] { ItemFilter.IsRecentlyAdded };
                         query.Recursive = true;
                     }
@@ -222,14 +223,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
             catch
             {
-                App.ShowMessage("", "Error getting data");
+                App.ShowMessage("", AppResources.ErrorGettingData);
                 return false;
             }
         }
 
         private void SortList()
         {
-            ProgressText = "Re-grouping...";
+            ProgressText = AppResources.SysTrayRegrouping;
             ProgressIsVisible = true;
             var emptyGroups = new List<Group<DtoBaseItem>>();
             switch (SortBy)

@@ -6,6 +6,7 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.WindowsPhone.Model;
+using MediaBrowser.WindowsPhone.Resources;
 using Microsoft.Phone.Info;
 using Microsoft.Phone.Shell;
 using ScottIsAFool.WindowsPhone.IsolatedStorage;
@@ -43,7 +44,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             TestConnectionCommand = new RelayCommand(async () =>
             {
                 ProgressIsVisible = true;
-                ProgressText = "Checking connection...";
+                ProgressText = AppResources.SysTrayAuthenticating;
                 if (NavigationService.IsNetworkAvailable)
                 {
                     if (await GetServerConfiguration())
@@ -54,7 +55,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     }
                     else
                     {
-                        App.ShowMessage("", "Connection details are invalid, please try again.");
+                        App.ShowMessage("", AppResources.ErrorConnectionDetailsInvalid);
                     }
                 }
                 ProgressIsVisible = false;
@@ -69,7 +70,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 if (m.Notification.Equals(Constants.SplashAnimationFinishedMsg))
                 {
                     ProgressIsVisible = true;
-                    ProgressText = "Loading settings...";
+                    ProgressText = AppResources.SysTrayLoadingSettings;
                     // Get settings from storage
                     var connectionDetails = ISettings.GetKeyValue<ConnectionDetails>(Constants.ConnectionSettings);
                     if (connectionDetails != null)
@@ -78,7 +79,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     }
                     else
                     {
-                        App.ShowMessage("", "No connection settings, tap to set", () => NavigationService.NavigateToPage("/Views/SettingsView.xaml?settingsPane=2"));
+                        App.ShowMessage("", AppResources.ErrorNoConnectionSettings, () => NavigationService.NavigateToPage("/Views/SettingsView.xaml?settingsPane=2"));
                         App.Settings.ConnectionDetails = new ConnectionDetails
                                                             {
                                                                 PortNo = 8096
@@ -124,7 +125,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     }
                     if (NavigationService.IsNetworkAvailable && App.Settings.ConnectionDetails != null)
                     {
-                        ProgressText = "Getting server details...";
+                        ProgressText = AppResources.SysTrayGettingServerDetails;
 
                         await GetServerConfiguration();
 
@@ -135,7 +136,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         }
                         else
                         {
-                            App.ShowMessage("", "Could not find your server.");
+                            App.ShowMessage("", AppResources.ErrorCouldNotFindServer);
                             NavigationService.NavigateToPage("/Views/Settings/ConnectionSettings.xaml");
                         }
                     }
@@ -194,7 +195,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             // If one exists, then authenticate that user.
             if (App.Settings.LoggedInUser != null)
             {
-                ProgressText = "Authenticating...";
+                ProgressText = AppResources.SysTrayAuthenticating;
                 await Utils.Login(App.Settings.LoggedInUser, App.Settings.PinCode, () =>
                                                                                        {
                                                                                            if (!string.IsNullOrEmpty(App.Action))
