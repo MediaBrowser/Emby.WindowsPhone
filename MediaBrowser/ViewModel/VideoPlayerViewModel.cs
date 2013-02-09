@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Windows;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
@@ -41,7 +43,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
         private void WireMessages()
         {
-            Messenger.Default.Register<NotificationMessage>(this, m =>
+            Messenger.Default.Register<NotificationMessage>(this, async m =>
                                                                       {
                                                                           if (m.Notification.Equals(Constants.PlayVideoItemMsg))
                                                                           {
@@ -49,22 +51,31 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                                               
                                                                               // Ask permission to not lock the screen.
 
+                                                                              var bounds = Application.Current.RootVisual.RenderSize;
                                                                               var query = new VideoStreamOptions
                                                                               {
                                                                                   ItemId = selectedItem.Id,
-                                                                                  OutputFileExtension= "ts",
                                                                                   VideoCodec = VideoCodecs.H264,
+                                                                                  OutputFileExtension = "ts",
                                                                                   AudioCodec = AudioCodecs.Mp3,
-                                                                                  MaxHeight = 480,
-                                                                                  MaxWidth = 800,
-                                                                                  
+                                                                                  MaxHeight = (int)bounds.Width,
+                                                                                  MaxWidth = (int)bounds.Height
                                                                               };
-                                                                              VideoUrl = ApiClient.GetVideoStreamUrl(query);
+                                                                              //try
+                                                                              //{
+                                                                              //    await ApiClient.ReportPlaybackStartAsync(selectedItem.Id, App.Settings.LoggedInUser.Id).ConfigureAwait(true);
+                                                                              //}
+                                                                              //catch
+                                                                              //{
+                                                                              //    var s = "";
+                                                                              //}
+                                                                              VideoUrl = new Uri(ApiClient.GetVideoStreamUrl(query));
+                                                                              Messenger.Default.Send(new NotificationMessage("BigBob"));
                                                                           }
                                                                       });
         }
 
-        public string VideoUrl { get; set; }
+        public Uri VideoUrl { get; set; }
 
         public RelayCommand VideoPageLoaded { get; set; }
     }

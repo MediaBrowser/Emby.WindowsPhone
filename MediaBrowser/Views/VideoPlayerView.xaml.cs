@@ -1,7 +1,9 @@
 ﻿using System;
 using GalaSoft.MvvmLight.Ioc;
+using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.WindowsPhone.ViewModel;
 using Microsoft.Phone.Controls;
+using Microsoft.SilverlightMediaFramework.Core;
 using Microsoft.SilverlightMediaFramework.Core.Media;
 using Microsoft.SilverlightMediaFramework.Plugins.Primitives;
 
@@ -15,14 +17,20 @@ namespace MediaBrowser.WindowsPhone.Views
             Loaded += (sender, args) =>
                           {
                               var url = SimpleIoc.Default.GetInstance<VideoPlayerViewModel>().VideoUrl;
-                              //thePlayer.Playlist.Add(new PlaylistItem
-                              //                           {
-                              //                               DeliveryMethod = DeliveryMethods.NotSpecified,
-                              //                               MediaSource = new Uri(url)
-                              //                           });
-                              //thePlayer.Play();
-                              thePlayer.Source = new Uri(url);
+                              thePlayer.Playlist.Add(new PlaylistItem
+                              {
+                                  DeliveryMethod = DeliveryMethods.NotSpecified,
+                                  MediaSource = url
+                              });
+                              thePlayer.Play();
                           };
+
+            
+        }
+
+        private void ThePlayer_OnMediaFailed(object sender, CustomEventArgs<Exception> e)
+        {
+            var s = "";
         }
     }
 }

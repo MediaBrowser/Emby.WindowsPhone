@@ -8,6 +8,7 @@
                             xmlns:Core="clr-namespace:Microsoft.SilverlightMediaFramework.Core;assembly=Microsoft.SilverlightMediaFramework.Core.Phone"
                             xmlns:Media="clr-namespace:Microsoft.SilverlightMediaFramework.Core.Media;assembly=Microsoft.SilverlightMediaFramework.Core.Phone"
                             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+                            xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP71"
                             FontFamily="{StaticResource PhoneFontFamilyNormal}"
                             FontSize="{StaticResource PhoneFontSizeNormal}"
                             Foreground="{StaticResource PhoneForegroundBrush}"
@@ -16,12 +17,28 @@
                             mc:Ignorable="d"
                             DataContext="{Binding Player, Source={StaticResource Locator}}"
                             shell:SystemTray.IsVisible="False">
+    <!--<i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <command:EventToCommand Command="{Binding VideoPageLoaded}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>-->
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot"
           Background="Transparent">
-        <!--<Core:SMFPlayer x:Name="thePlayer" />-->
-        <MediaElement x:Name="thePlayer" />
+        <Core:SMFPlayer x:Name="thePlayer"
+                        MediaFailed="ThePlayer_OnMediaFailed"
+                        AutoPlay="True"
+                        AutoLoad="True">
+            <!--<Core:SMFPlayer.Playlist>
+                <Media:PlaylistItem DeliveryMethod="NotSpecified"
+                                    MediaSource="{Binding VideoUrl}"
+                                    />
+            </Core:SMFPlayer.Playlist>-->
+        </Core:SMFPlayer>
+                            
+            
+        <!--<MediaElement x:Name="thePlayer" />-->
     </Grid>
 
 </phone:PhoneApplicationPage>

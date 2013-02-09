@@ -96,10 +96,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             PlayMovieCommand = new RelayCommand(async () =>
                                                     {
-#if WP8
-                                                        Messenger.Default.Send(new NotificationMessage(SelectedMovie, Constants.PlayVideoItemMsg));
-                                                        NavService.NavigateToPage("/Views/VideoPlayerView.xaml");
-#else
+//#if WP8
+                                                        //Messenger.Default.Send(new NotificationMessage(SelectedMovie, Constants.PlayVideoItemMsg));
+                                                        //NavService.NavigateToPage("/Views/VideoPlayerView.xaml");
+//#else
                                                         var bounds = Application.Current.RootVisual.RenderSize;
                                                         var query = new VideoStreamOptions
                                                         {
@@ -107,12 +107,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                             VideoCodec = VideoCodecs.H264,
                                                             OutputFileExtension = "ts",
                                                             AudioCodec = AudioCodecs.Mp3,
-                                                            MaxHeight = (int)bounds.Height,
-                                                            MaxWidth = (int)bounds.Width
+                                                            MaxHeight = (int)bounds.Width,
+                                                            MaxWidth = (int)bounds.Height
                                                         };
                                                         var url = ApiClient.GetVideoStreamUrl(query);
                                                         System.Diagnostics.Debug.WriteLine(url);
-                                                        await ApiClient.ReportPlaybackStartAsync(SelectedMovie.Id, App.Settings.LoggedInUser.Id).ConfigureAwait(true);
+                                                        //await ApiClient.ReportPlaybackStartAsync(SelectedMovie.Id, App.Settings.LoggedInUser.Id).ConfigureAwait(true);
 
                                                         var mediaPlayerLauncher = new MediaPlayerLauncher
                                                                                       {
@@ -120,7 +120,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                                                           Media = new Uri(url, UriKind.Absolute)
                                                                                       };
                                                         mediaPlayerLauncher.Show();
-#endif
+//#endif
                                                     });
 
             AddRemoveFavouriteCommand = new RelayCommand(async () =>

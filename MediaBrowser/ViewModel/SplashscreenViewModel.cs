@@ -137,7 +137,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         else
                         {
                             App.ShowMessage("", AppResources.ErrorCouldNotFindServer);
-                            NavigationService.NavigateToPage("/Views/Settings/ConnectionSettings.xaml");
+                            NavigationService.NavigateToPage("/Views/SettingsView.xaml?settingsPane=2");
                         }
                     }
                     ProgressText = string.Empty;
