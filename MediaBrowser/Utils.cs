@@ -43,19 +43,14 @@ namespace MediaBrowser.WindowsPhone
         internal static async Task Login(DtoUser selectedUser, string pinCode, Action successAction)
         {
             var client = SimpleIoc.Default.GetInstance<ExtendedApiClient>();
-            var result = await client.AuthenticateUserAsync(selectedUser.Id, pinCode);
+            await client.AuthenticateUserAsync(selectedUser.Id, pinCode);
 
-            if (result.Success)
-            {
+            
                 if(successAction != null)
                 {
                     successAction.Invoke();
                 }
-            }
-            else
-            {
-                App.ShowMessage("", "Error logging in");
-            }
+            
         }
         
         internal static void CopyItem<T>(T source, T destination) where T : class

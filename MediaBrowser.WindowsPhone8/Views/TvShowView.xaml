@@ -58,7 +58,9 @@
     <Grid x:Name="LayoutRoot"
           Background="{StaticResource MediaBrowserBackground}">
         <phone:Panorama Title="{Binding SelectedTvSeries.Name, Converter={StaticResource StringCaseConverter}}"
-                        x:Name="MainPanorama">
+                        x:Name="MainPanorama"
+                        HeaderTemplate="{StaticResource LikeWp7ItemHeaderTemplate}"
+                        TitleTemplate="{StaticResource LikeWp7TitleTemplate}">
             <phone:PanoramaItem Header="seasons">
                 <Grid>
                     <scott:PhoneListBox ItemsSource="{Binding Seasons}"

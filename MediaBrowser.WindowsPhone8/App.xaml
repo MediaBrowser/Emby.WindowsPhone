@@ -132,6 +132,27 @@
                     </StackPanel>
                 </StackPanel>
             </DataTemplate>
+
+            <!--Panorama templates-->
+            <DataTemplate x:Key="LikeWp7TitleTemplate">
+                <Grid Margin="-12,-41,0,18">
+                    <TextBlock Text="{Binding}"
+                               Style="{StaticResource PhoneTextHugeStyle}"
+                               FontSize="187"
+                               CharacterSpacing="0">
+                    </TextBlock>
+                </Grid>
+            </DataTemplate>
+            <DataTemplate x:Key="LikeWp7ItemHeaderTemplate">
+                <Grid Margin="-14,-10,0,-12">
+                    <TextBlock Text="{Binding}"
+                               Style="{StaticResource PhoneTextNormalStyle}"
+                               FontFamily="{StaticResource PhoneFontFamilySemiLight}"
+                               FontSize="72"
+                               CharacterSpacing="0">
+                    </TextBlock>
+                </Grid>
+            </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>
 

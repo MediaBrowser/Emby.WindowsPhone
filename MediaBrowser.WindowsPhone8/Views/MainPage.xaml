@@ -73,10 +73,12 @@
                 </cimbalino:ApplicationBarBehavior.MenuItems>
             </cimbalino:ApplicationBarBehavior>
         </i:Interaction.Behaviors>
-        <phone:Panorama Title="">
+        <phone:Panorama Title=""
+                        HeaderTemplate="{StaticResource LikeWp7ItemHeaderTemplate}">
             <phone:Panorama.TitleTemplate>
                 <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal"
+                                Margin="-12,-41,0,18">
                         <TextBlock Text="media"
                                    Foreground="{StaticResource PhoneForegroundBrush}"/>
                         <TextBlock Text="browser"

@@ -92,6 +92,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="..\MediaBrowser\Behaviours\OnTextPropertyChangedBehaviour.cs">
+      <Link>Behaviours\OnTextPropertyChangedBehaviour.cs</Link>
+    </Compile>
     <Compile Include="..\MediaBrowser\Controls\ProfileBox.cs">
       <Link>Controls\ProfileBox.cs</Link>
     </Compile>
@@ -139,6 +142,9 @@
     </Compile>
     <Compile Include="..\MediaBrowser\Model\NavigationService.cs">
       <Link>Model\NavigationService.cs</Link>
+    </Compile>
+    <Compile Include="..\MediaBrowser\Model\RequestResult.cs">
+      <Link>Model\RequestResult.cs</Link>
     </Compile>
     <Compile Include="..\MediaBrowser\Model\SettingsService.cs">
       <Link>Model\SettingsService.cs</Link>
@@ -416,8 +422,9 @@
     <Reference Include="PropertyChanged">
       <HintPath>..\packages\PropertyChanged.Fody.1.32.2.0\lib\SL40-WP\PropertyChanged.dll</HintPath>
     </Reference>
-    <Reference Include="ScottIsAFool.WindowsPhone">
-      <HintPath>..\packages\ScottIsAFool.WindowsPhone.1.0.11.0\lib\wp71\ScottIsAFool.WindowsPhone.dll</HintPath>
+    <Reference Include="ScottIsAFool.WindowsPhone, Version=1.0.12.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\ScottIsAFool.WindowsPhone.1.0.12.1\lib\wp71\ScottIsAFool.WindowsPhone.dll</HintPath>
     </Reference>
     <Reference Include="SharpGIS.GZipWebClient, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

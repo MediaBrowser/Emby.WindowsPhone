@@ -104,20 +104,26 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                         var query = new VideoStreamOptions
                                                         {
                                                             ItemId = SelectedMovie.Id,
-                                                            VideoCodec = VideoCodecs.H264,
-                                                            OutputFileExtension = "ts",
-                                                            AudioCodec = AudioCodecs.Mp3,
-                                                            MaxHeight = (int)bounds.Width,
-                                                            MaxWidth = (int)bounds.Height
+                                                            VideoCodec = VideoCodecs.Wmv,
+                                                            OutputFileExtension = "asf",
+                                                            AudioCodec = AudioCodecs.Wma,
+                                                            VideoBitRate = 1000000,
+                                                            AudioBitRate = 128000,
+                                                            MaxAudioChannels = 2,
+                                                            FrameRate = 30,
+                                                            MaxHeight = 480,// (int)bounds.Width,
+                                                            MaxWidth = 800// (int)bounds.Height
                                                         };
                                                         var url = ApiClient.GetVideoStreamUrl(query);
                                                         System.Diagnostics.Debug.WriteLine(url);
-                                                        //await ApiClient.ReportPlaybackStartAsync(SelectedMovie.Id, App.Settings.LoggedInUser.Id).ConfigureAwait(true);
+                                                        await ApiClient.ReportPlaybackStartAsync(SelectedMovie.Id, App.Settings.LoggedInUser.Id).ConfigureAwait(true);
 
                                                         var mediaPlayerLauncher = new MediaPlayerLauncher
                                                                                       {
                                                                                           Orientation = MediaPlayerOrientation.Landscape,
-                                                                                          Media = new Uri(url, UriKind.Absolute)
+                                                                                          Media = new Uri(url, UriKind.Absolute),
+                                                                                          Controls = MediaPlaybackControls.Pause | MediaPlaybackControls.Stop,
+                                                                                          Location = MediaLocationType.Data
                                                                                       };
                                                         mediaPlayerLauncher.Show();
 //#endif

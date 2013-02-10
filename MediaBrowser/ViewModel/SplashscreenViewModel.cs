@@ -31,6 +31,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public SplashscreenViewModel(ExtendedApiClient apiClient, INavigationService navigationService)
         {
             ApiClient = apiClient;
+            
             NavigationService = navigationService;
             if (!IsInDesignMode)
             {

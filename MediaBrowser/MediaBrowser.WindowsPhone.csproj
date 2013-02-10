@@ -112,9 +112,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\sl4-windowsphone71\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="ScottIsAFool.WindowsPhone, Version=1.0.11.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="ScottIsAFool.WindowsPhone, Version=1.0.12.1, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\ScottIsAFool.WindowsPhone.1.0.11.0\lib\wp71\ScottIsAFool.WindowsPhone.dll</HintPath>
+      <HintPath>..\packages\ScottIsAFool.WindowsPhone.1.0.12.1\lib\wp71\ScottIsAFool.WindowsPhone.dll</HintPath>
     </Reference>
     <Reference Include="SharpGIS.GZipWebClient, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -148,6 +148,7 @@
     <Compile Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.Designer.cs">
       <Link>Resources\AppResources.Designer.cs</Link>
     </Compile>
+    <Compile Include="Behaviours\OnTextPropertyChangedBehaviour.cs" />
     <Compile Include="Controls\ProfileBox.cs" />
     <Compile Include="Converters\DeviceIdToBooleanConverter.cs" />
     <Compile Include="Converters\FavouritesConverter.cs" />
@@ -159,6 +160,7 @@
     <Compile Include="Model\DeviceSettings.cs" />
     <Compile Include="Model\ExtendedApiClient.cs" />
     <Compile Include="Model\LiveTile.cs" />
+    <Compile Include="Model\RequestResult.cs" />
     <Compile Include="Model\SettingsService.cs" />
     <Compile Include="PhoneNameResolver.cs" />
     <Compile Include="SpecificSettings.cs" />

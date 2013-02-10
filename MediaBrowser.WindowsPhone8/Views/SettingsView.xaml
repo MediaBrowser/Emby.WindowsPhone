@@ -8,6 +8,7 @@
                             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
                             xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP8"
+                            xmlns:behaviours="clr-namespace:ScottIsAFool.WindowsPhone.Behaviours"
                             FontFamily="{StaticResource PhoneFontFamilyNormal}"
                             FontSize="{StaticResource PhoneFontSizeNormal}"
                             Foreground="{StaticResource PhoneForegroundBrush}"
@@ -118,7 +119,11 @@
                                Margin="12,12,0,0"
                                Style="{StaticResource PhoneTextNormalStyle}" />
                     <TextBox Text="{Binding ConnectionDetails.HostName, Source={StaticResource AppSettings}, Mode=TwoWay}"
-                             InputScope="Url" />
+                             InputScope="Url">
+                        <i:Interaction.Behaviors>
+                            <behaviours:UpdateTextBindingOnPropertyChanged EnterHitCommand="{Binding Splashscreen.TestConnectionCommand, Source={StaticResource Locator}}"/>
+                        </i:Interaction.Behaviors>
+                    </TextBox>
                     <TextBlock Text="Port:"
                                Margin="12,12,0,0"
                                Style="{StaticResource PhoneTextNormalStyle}" />

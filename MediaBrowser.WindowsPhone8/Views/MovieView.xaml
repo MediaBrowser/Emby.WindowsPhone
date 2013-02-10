@@ -71,7 +71,9 @@
             </cimbalino:ApplicationBarBehavior>
         </i:Interaction.Behaviors>
         <phone:Panorama Title="{Binding SelectedMovie.Name, Converter={StaticResource StringCaseConverter}}"
-                        x:Name="MainPanorama">
+                        x:Name="MainPanorama"
+                        HeaderTemplate="{StaticResource LikeWp7ItemHeaderTemplate}"
+                        TitleTemplate="{StaticResource LikeWp7TitleTemplate}">
             <phone:PanoramaItem Header="poster">
                 <Image Source="{Binding SelectedMovie, Converter={StaticResource ImageUrlConverter}, ConverterParameter=poster}"
                        Height="450"

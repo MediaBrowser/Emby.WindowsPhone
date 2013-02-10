@@ -64,6 +64,8 @@
         </i:Interaction.Behaviors>
         <phone:Panorama Title="{Binding SelectedFolder.Name, Converter={StaticResource StringCaseConverter}}"
                         SelectionChanged="Panorama_OnSelectionChanged"
+                        HeaderTemplate="{StaticResource LikeWp7ItemHeaderTemplate}"
+                        TitleTemplate="{StaticResource LikeWp7TitleTemplate}"
                         x:Name="ThePanorama">
         <!--<phone:Panorama Title="movies">-->
             <phone:PanoramaItem Header="recent">

@@ -11,6 +11,7 @@
 
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
+using MediaBrowser.ApiInteraction;
 using MediaBrowser.Model.Connectivity;
 using MediaBrowser.Shared;
 using Microsoft.Practices.ServiceLocation;
@@ -49,7 +50,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 SimpleIoc.Default.Register<INavigationService, NavigationService>();
                 SimpleIoc.Default.Register<ISettingsService, SettingsService>();
                 if (!SimpleIoc.Default.IsRegistered<ExtendedApiClient>())
-                    SimpleIoc.Default.Register(() => new ExtendedApiClient(new Logger(), new AsyncHttpClient()) { ClientType = ClientType.WindowsPhone });
+                    SimpleIoc.Default.Register(() => new ExtendedApiClient(new Logger(), new AsyncHttpClient()) { ClientType = ClientType.WindowsPhone, SerializationFormat = SerializationFormats.Json });
             }
 
             SimpleIoc.Default.Register<MainViewModel>(true);
