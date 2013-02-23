@@ -63,10 +63,6 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .NET Framework is automatically included -->
-    <ProjectReference Include="..\..\..\..\..\Visual Studio 2012\Projects\MediaBrowserServer\MediaBrowser.Model\MediaBrowser.Model.csproj">
-      <Project>{7EEEB4BB-F3E8-48FC-B4C5-70F0FFF8329B}</Project>
-      <Name>MediaBrowser.Model</Name>
-    </ProjectReference>
     <None Include="FodyWeavers.xml" />
   </ItemGroup>
   <ItemGroup>
@@ -76,7 +72,13 @@
     <Compile Include="ISettingsService.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RequestResult.cs" />
     <Compile Include="UserSettingWrapper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="MediaBrowser.Model">
+      <HintPath>..\packages\MediaBrowser.Common.3.0.0\lib\portable-net4+sl4+wp7+win8\MediaBrowser.Model.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />

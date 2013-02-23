@@ -3,7 +3,7 @@ using System.Diagnostics;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
-using MediaBrowser.Model.DTO;
+using MediaBrowser.Model.Dto;
 using MediaBrowser.WindowsPhone.Model;
 
 namespace MediaBrowser.WindowsPhone.ViewModel
@@ -41,7 +41,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                                           {
                                                                               if (m.Sender != null)
                                                                               {
-                                                                                  SelectedItem = (DtoBaseItem) m.Sender;
+                                                                                  SelectedItem = (BaseItemDto) m.Sender;
                                                                                   if (m.Target != null)
                                                                                       isResume = (bool) m.Target;
                                                                               }
@@ -64,7 +64,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public string VideoUrl { get; set; }
         public TimeSpan StartTime { get; set; }
         public TimeSpan PlayedVideoDuration { get; set; }
-        public DtoBaseItem SelectedItem { get; set; }
+        public BaseItemDto SelectedItem { get; set; }
 
         public RelayCommand VideoPageLoaded
         {

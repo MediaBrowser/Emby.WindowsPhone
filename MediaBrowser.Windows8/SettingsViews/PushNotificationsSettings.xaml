@@ -1,0 +1,39 @@
+﻿<UserControl
+    x:Class="MediaBrowser.Windows8.SettingsViews.PushNotificationsSettings"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:ScottIsAFool.Windows8.Controls"
+    mc:Ignorable="d"
+    DataContext="{Binding Notifications, Source={StaticResource Locator}}"
+    d:DesignHeight="300"
+    d:DesignWidth="400"
+    Loaded="PushNotificationsSettings_OnLoaded">
+    
+    <Grid>
+        <StackPanel Orientation="Vertical"
+                    Visibility="{Binding ServerPluginInstalled, Converter={StaticResource VisibilityConverter}}">
+            <ToggleSwitch Header="Use notifications"
+                          IsOn="{Binding UseNotifications, Mode=TwoWay}"
+                          Style="{StaticResource LightToggleSwitch}"/>
+            <StackPanel Orientation="Vertical"
+                        Visibility="{Binding UseNotifications, Converter={StaticResource VisibilityConverter}}">
+                <TextBlock Text="{Binding RegisteredText}"
+                           Foreground="Black"
+                           Style="{StaticResource BasicTextStyle}"/>
+                <ToggleSwitch Header="Toast notifications"
+                              Style="{StaticResource LightToggleSwitch}"
+                              IsOn="{Binding SendToastUpdates, Mode=TwoWay}"/>
+                <ToggleSwitch Header="Live tile updates"
+                              IsOn="{Binding SendTileUpdates, Mode=TwoWay}"
+                              Style="{StaticResource LightToggleSwitch}" />
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Visibility="{Binding ServerPluginInstalled, Converter={StaticResource InvertedVisibilityConverter}}">
+            <TextBlock Text="In order to use push notifications on your device, you need to install the Push Notification service on your MediaBrowser server. This can be done through the control panel in the plugins section."
+                       Style="{StaticResource BasicTextStyle}"
+                       TextWrapping="Wrap" />
+        </StackPanel>
+    </Grid>
+</UserControl>

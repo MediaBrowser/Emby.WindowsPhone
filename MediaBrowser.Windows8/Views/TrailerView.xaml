@@ -1,0 +1,208 @@
+﻿<common:LayoutAwarePage x:Name="pageRoot"
+                        x:Class="MediaBrowser.Windows8.Views.TrailerView"
+                        DataContext="{Binding Trailer, Source={StaticResource Locator}}"
+                        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                        xmlns:common="using:MediaBrowser.Windows8.Common"
+                        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                        xmlns:playerFramework="using:Microsoft.PlayerFramework"
+                        xmlns:controls="using:WinRTXamlToolkit.Controls"
+                        xmlns:controls1="using:ScottIsAFool.Windows8.Controls"
+                        mc:Ignorable="d">
+    <common:LayoutAwarePage.Resources>
+        <CollectionViewSource Source="{Binding CastAndCrew}"
+                              x:Name="CastAndCrewCollection"
+                              IsSourceGrouped="True"
+                              ItemsPath="Items"
+                              d:Source="{Binding Trailer.CastAndCrew, Source={StaticResource Locator}}"/>
+    </common:LayoutAwarePage.Resources>
+
+    <!--
+        This grid acts as a root panel for the page that defines two rows:
+        * Row 0 contains the back button and page title
+        * Row 1 contains the rest of the page layout
+    -->
+    <Grid Style="{StaticResource LayoutRootStyle}"
+          x:Name="LayoutRoot"
+          Background="{StaticResource MediaBrowserBackground}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="140" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        
+        <controls1:ExtendedProgressBar Text="{Binding ProgressText}"
+                                       IsIndeterminate="True"
+                                       HorizontalAlignment="Stretch"
+                                       Visibility="{Binding ProgressVisibility}"
+                                       VerticalAlignment="Top"/>
+
+        <!-- Back button and page title -->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button x:Name="backButton"
+                    Click="GoBack"
+                    IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}"
+                    Style="{StaticResource BackButtonStyle}" />
+            <StackPanel Orientation="Horizontal"
+                        Grid.Column="1">
+                <TextBlock x:Name="pageTitle"
+                           Text="{Binding SelectedTrailer.Name}"
+                           Style="{StaticResource PageHeaderTextStyle}" />
+                <TextBlock x:Name="filmYear"
+                           Text="{Binding SelectedTrailer.ProductionYear, Converter={StaticResource StringFormatterConverter}, ConverterParameter=(\{0\})}"
+                           Style="{StaticResource PageHeaderTextStyle}" />
+            </StackPanel>
+
+        </Grid>
+
+        <Grid Grid.Row="1"
+              Margin="120,0,12,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="4*" />
+                <ColumnDefinition Width="4*" />
+            </Grid.ColumnDefinitions>
+
+            <Image Source="{Binding SelectedTrailer, Converter={StaticResource ImageUrlConverter}, ConverterParameter=fullposter}"
+                   Grid.Column="0"
+                   VerticalAlignment="Top" />
+
+            <TextBlock Text="{Binding SelectedTrailer.Overview}"
+                       Grid.Column="1"
+                       TextWrapping="Wrap"
+                       Margin="6,6,6,0"
+                       Style="{StaticResource BodyTextStyle}"
+                       VerticalAlignment="Top" />
+
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                
+                <StackPanel Grid.Row="1"
+                            HorizontalAlignment="Left">
+                    <GridView ItemsSource="{Binding Source={StaticResource CastAndCrewCollection}}"
+                              IsSwipeEnabled="False"
+                              SelectionMode="None"
+                              IsHitTestVisible="False"
+                              IsItemClickEnabled="False"
+                              Width="450">
+                        <GridView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <controls:WrapPanel Orientation="Vertical"
+                                                    HorizontalAlignment="Left"
+                                                    Width="450"
+                                                    ItemHeight="50"/>
+                            </ItemsPanelTemplate>
+                        </GridView.ItemsPanel>
+                        <GridView.GroupStyle>
+                            <GroupStyle HidesIfEmpty="True">
+                                <GroupStyle.HeaderTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Title, Converter={StaticResource StringFormatterConverter}, ConverterParameter='\{0\}:'}"
+                                                   Style="{StaticResource BodyTextStyle}"
+                                                   FontWeight="Bold"
+                                                   TextWrapping="Wrap"
+                                                   HorizontalAlignment="Left" />
+                                    </DataTemplate>
+                                </GroupStyle.HeaderTemplate>
+                                <GroupStyle.Panel>
+                                    <ItemsPanelTemplate>
+                                        <controls:WrapPanel Orientation="Horizontal" />
+                                    </ItemsPanelTemplate>
+                                </GroupStyle.Panel>
+                            </GroupStyle>
+                        </GridView.GroupStyle>
+                        <GridView.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Name}"
+                                           HorizontalAlignment="Left"
+                                           TextAlignment="Left"
+                                           Style="{StaticResource BodyTextStyle}"
+                                           Margin="-3,0,0,0"/>
+                            </DataTemplate>
+                        </GridView.ItemTemplate>
+                    </GridView>
+                    <TextBlock Style="{StaticResource BasicTextStyle}">
+                        <Run Text="Hitting theatres: " FontWeight="Bold"/>
+                        <LineBreak/>
+                        <Run Text="{Binding SelectedTrailer.PremiereDate, Converter={StaticResource ShortDateConverter}, ConverterParameter=display}"/>
+                    </TextBlock>
+                    <TextBlock Style="{StaticResource BasicTextStyle}">
+                        <Run Text="Rated:"
+                             FontWeight="Bold"/>
+                        <LineBreak/>
+                        <Run Text="{Binding SelectedTrailer.OfficialRating}"/>
+                    </TextBlock>
+                </StackPanel>
+
+                <Canvas x:Name="playerCanvas"
+                        SizeChanged="PlayerCanvas_OnSizeChanged"
+                        HorizontalAlignment="Left"
+                        Width="450"
+                        Height="300"
+                        Grid.Row="0">
+                    <Canvas.RenderTransform>
+                        <TranslateTransform x:Name="CanvasMover" />
+                    </Canvas.RenderTransform>
+                    <playerFramework:MediaPlayer AutoPlay="False"
+                                                 x:Name="player"
+                                                 IsFullScreenChanged="Player_OnIsFullScreenChanged"
+                                                 Width="{Binding ElementName=playerCanvas, Path=Width}"
+                                                 Height="{Binding ElementName=playerCanvas, Path=Height}"
+                                                 Source="{Binding TrailerUrl}"
+                                                 VerticalAlignment="Top"
+                                                 Background="Black"
+                                                 IsFullScreenVisible="True"
+                                                 EndTime="{Binding SelectedTrailer.RunTimeTicks, Converter={StaticResource TicksToTimespanConverter}}" />
+                </Canvas>
+            </Grid>
+        </Grid>
+
+        <VisualStateManager.VisualStateGroups>
+
+            <!-- Visual states reflect the application's view state -->
+            <VisualStateGroup x:Name="ApplicationViewStates">
+                <VisualState x:Name="FullScreenLandscape" />
+                <VisualState x:Name="Filled" />
+
+                <!-- The entire page respects the narrower 100-pixel margin convention for portrait -->
+                <VisualState x:Name="FullScreenPortrait">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="backButton"
+                                                       Storyboard.TargetProperty="Style">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="{StaticResource PortraitBackButtonStyle}" />
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+
+                <!-- The back button and title have different styles when snapped -->
+                <VisualState x:Name="Snapped">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="backButton"
+                                                       Storyboard.TargetProperty="Style">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="{StaticResource SnappedBackButtonStyle}" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="pageTitle"
+                                                       Storyboard.TargetProperty="Style">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="{StaticResource SnappedPageHeaderTextStyle}" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="filmYear"
+                                                       Storyboard.TargetProperty="Style">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="{StaticResource SnappedPageHeaderTextStyle}" />
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+    </Grid>
+</common:LayoutAwarePage>

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using MediaBrowser.Model.DTO;
+using MediaBrowser.Model.Dto;
 
 namespace MediaBrowser.Shared
 {

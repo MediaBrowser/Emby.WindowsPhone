@@ -1,0 +1,139 @@
+﻿<common:LayoutAwarePage x:Name="pageRoot"
+                        x:Class="MediaBrowser.Windows8.Views.ArtistView"
+                        DataContext="{Binding Music, Source={StaticResource Locator}}"
+                        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                        xmlns:common="using:MediaBrowser.Windows8.Common"
+                        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                        xmlns:Controls="using:ScottIsAFool.Windows8.Controls"
+                        xmlns:controls="using:MediaBrowser.Windows8.Controls"
+                        xmlns:winRtBehaviors="using:WinRtBehaviors" xmlns:behaviors="using:Win8nl.Behaviors"
+                        mc:Ignorable="d">
+
+    <Page.Resources>
+
+    </Page.Resources>
+
+    <!--
+        This grid acts as a root panel for the page that defines two rows:
+        * Row 0 contains the back button and page title
+        * Row 1 contains the rest of the page layout
+    -->
+    <Grid Style="{StaticResource LayoutRootStyle}"
+          Background="{StaticResource MediaBrowserBackground}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="140" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Controls:ExtendedProgressBar IsIndeterminate="True"
+                                      Visibility="{Binding ProgressVisibility}"
+                                      HorizontalAlignment="Stretch"
+                                      VerticalAlignment="Top"
+                                      Text="{Binding ProgressText}" />
+
+        <!-- Back button and page title -->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button x:Name="backButton"
+                    Click="GoBack"
+                    IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}"
+                    Style="{StaticResource BackButtonStyle}" />
+            <StackPanel Orientation="Horizontal"
+                        Grid.Column="1"
+                        x:Name="TitleStack">
+                <TextBlock x:Name="pageTitle"
+                           Text="{Binding SelectedArtist.Name}"
+                           Style="{StaticResource PageHeaderTextStyle}" />
+                <TextBlock Text="{Binding Albums.Count, Converter={StaticResource StringFormatterConverter}, ConverterParameter=' {0} albums'}"
+                           Style="{StaticResource PageSubheaderTextStyle}"
+                           x:Name="AlbumCount"/>
+            </StackPanel>
+
+
+        </Grid>
+        <GridView Grid.Row="1"
+                  ItemsSource="{Binding Albums}"
+                  Padding="120,0,0,0"
+                  SelectionMode="Single"
+                  IsSwipeEnabled="True"
+                  IsItemClickEnabled="True">
+            <winRtBehaviors:Interaction.Behaviors>
+                <behaviors:EventToBoundCommandBehavior Command="{Binding Main.ItemClicked, Source={StaticResource Locator}}"
+                                                       Event="ItemClick"
+                                                       PassEventArgsToCommand="True" />
+            </winRtBehaviors:Interaction.Behaviors>
+            <GridView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Height="250"
+                          Width="250"
+                          Margin="0,0,6,0">
+
+                        <controls:PlaceImage PlaceholderSource="../Assets/Logo.png"
+                                             Background="{Binding Converter={StaticResource RandomColour}}"
+                                             Stretch="UniformToFill"
+                                             Source="{Binding Converter={StaticResource ImageUrlConverter}}" />
+                        <Border VerticalAlignment="Bottom"
+                                Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}"
+                                Height="70">
+                            <TextBlock Style="{StaticResource TitleTextStyle}"
+                                       Margin="15,0">
+                                <Run Text="{Binding Name}" />
+                                <Run Text="{Binding ProductionYear, Converter={StaticResource StringFormatterConverter}, ConverterParameter='({0})'}" />
+                            </TextBlock>
+                        </Border>
+                    </Grid>
+                </DataTemplate>
+            </GridView.ItemTemplate>
+        </GridView>
+        <VisualStateManager.VisualStateGroups>
+
+            <!-- Visual states reflect the application's view state -->
+            <VisualStateGroup x:Name="ApplicationViewStates">
+                <VisualState x:Name="FullScreenLandscape" />
+                <VisualState x:Name="Filled" />
+
+                <!-- The entire page respects the narrower 100-pixel margin convention for portrait -->
+                <VisualState x:Name="FullScreenPortrait">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="backButton"
+                                                       Storyboard.TargetProperty="Style">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="{StaticResource PortraitBackButtonStyle}" />
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+
+                <!-- The back button and title have different styles when snapped -->
+                <VisualState x:Name="Snapped">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="backButton"
+                                                       Storyboard.TargetProperty="Style">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="{StaticResource SnappedBackButtonStyle}" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="pageTitle"
+                                                       Storyboard.TargetProperty="Style">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="{StaticResource SnappedPageHeaderTextStyle}" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="AlbumCount"
+                                                       Storyboard.TargetProperty="Style">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="{StaticResource SnappedPageHeaderTextStyle}" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="TitleStack"
+                                                       Storyboard.TargetProperty="Orientation">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Vertical" />
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+    </Grid>
+</common:LayoutAwarePage>

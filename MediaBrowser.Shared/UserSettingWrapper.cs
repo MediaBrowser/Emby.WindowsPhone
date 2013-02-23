@@ -1,10 +1,10 @@
-﻿using MediaBrowser.Model.DTO;
+﻿using MediaBrowser.Model.Dto;
 
 namespace MediaBrowser.Shared
 {
     public class UserSettingWrapper
     {
-        public DtoUser User { get; set; }
+        public UserDto User { get; set; }
         public string Pin { get; set; }
     }
 }

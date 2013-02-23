@@ -32,3 +32,5 @@ _ReSharper*/
 *.[Pp]ublish.xml
 *.resharper
 packages
+AppPackages/
+AppPackages.*

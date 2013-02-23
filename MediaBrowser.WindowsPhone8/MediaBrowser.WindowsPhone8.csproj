@@ -92,146 +92,140 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\MediaBrowser\Behaviours\OnTextPropertyChangedBehaviour.cs">
+    <Compile Include="..\MediaBrowser.WindowsPhone7\Behaviours\OnTextPropertyChangedBehaviour.cs">
       <Link>Behaviours\OnTextPropertyChangedBehaviour.cs</Link>
     </Compile>
-    <Compile Include="..\MediaBrowser\Controls\ProfileBox.cs">
+    <Compile Include="..\MediaBrowser.WindowsPhone7\Controls\ProfileBox.cs">
       <Link>Controls\ProfileBox.cs</Link>
     </Compile>
-    <Compile Include="..\MediaBrowser\Controls\ScrollableTextBlock.cs">
+    <Compile Include="..\MediaBrowser.WindowsPhone7\Controls\ScrollableTextBlock.cs">
       <Link>Controls\ScrollableTextBlock.cs</Link>
     </Compile>
-    <Compile Include="..\MediaBrowser\Converters\EpisodeNumberVisibilityConverter.cs">
+    <Compile Include="..\MediaBrowser.WindowsPhone7\Converters\EpisodeNumberVisibilityConverter.cs">
       <Link>Converters\EpisodeNumberVisibilityConverter.cs</Link>
     </Compile>
-    <Compile Include="..\MediaBrowser\Converters\FavouritesConverter.cs">
+    <Compile Include="..\MediaBrowser.WindowsPhone7\Converters\FavouritesConverter.cs">
       <Link>Converters\FavouritesConverter.cs</Link>
     </Compile>
-    <Compile Include="..\MediaBrowser\Converters\ImageUrlConverter.cs">
+    <Compile Include="..\MediaBrowser.WindowsPhone7\Converters\ImageUrlConverter.cs">
       <Link>Converters\ImageUrlConverter.cs</Link>
     </Compile>
-    <Compile Include="..\MediaBrowser\Converters\LoggedInDateConverter.cs">
+    <Compile Include="..\MediaBrowser.WindowsPhone7\Converters\LoggedInDateConverter.cs">
       <Link>Converters\LoggedInDateConverter.cs</Link>
     </Compile>
-    <Compile Include="..\MediaBrowser\Converters\PinnedItemConverter.cs">
+    <Compile Include="..\MediaBrowser.WindowsPhone7\Converters\PinnedItemConverter.cs">
       <Link>Converters\PinnedItemConverter.cs</Link>
     </Compile>
-    <Compile Include="..\MediaBrowser\Converters\RandomColour.cs">
+    <Compile Include="..\MediaBrowser.WindowsPhone7\Converters\RandomColour.cs">
       <Link>Converters\RandomColour.cs</Link>
     </Compile>
-    <Compile Include="..\MediaBrowser\Converters\RatingConverter.cs">
+    <Compile Include="..\MediaBrowser.WindowsPhone7\Converters\RatingConverter.cs">
       <Link>Converters\RatingConverter.cs</Link>
     </Compile>
-    <Compile Include="..\MediaBrowser\Converters\SettingsConverters.cs">
+    <Compile Include="..\MediaBrowser.WindowsPhone7\Converters\SettingsConverters.cs">
       <Link>Converters\SettingsConverters.cs</Link>
     </Compile>
-    <Compile Include="..\MediaBrowser\Model\AsyncHttpClient.cs">
-      <Link>Model\AsyncHttpClient.cs</Link>
-    </Compile>
-    <Compile Include="..\MediaBrowser\Model\DeviceSettings.cs">
+    <Compile Include="..\MediaBrowser.WindowsPhone7\Model\DeviceSettings.cs">
       <Link>Model\DeviceSettings.cs</Link>
     </Compile>
-    <Compile Include="..\MediaBrowser\Model\ExtendedApiClient.cs">
+    <Compile Include="..\MediaBrowser.WindowsPhone7\Model\ExtendedApiClient.cs">
       <Link>Model\ExtendedApiClient.cs</Link>
     </Compile>
-    <Compile Include="..\MediaBrowser\Model\INavigationService.cs">
+    <Compile Include="..\MediaBrowser.WindowsPhone7\Model\INavigationService.cs">
       <Link>Model\INavigationService.cs</Link>
     </Compile>
-    <Compile Include="..\MediaBrowser\Model\LiveTile.cs">
+    <Compile Include="..\MediaBrowser.WindowsPhone7\Model\LiveTile.cs">
       <Link>Model\LiveTile.cs</Link>
     </Compile>
-    <Compile Include="..\MediaBrowser\Model\NavigationService.cs">
+    <Compile Include="..\MediaBrowser.WindowsPhone7\Model\NavigationService.cs">
       <Link>Model\NavigationService.cs</Link>
     </Compile>
-    <Compile Include="..\MediaBrowser\Model\RequestResult.cs">
-      <Link>Model\RequestResult.cs</Link>
-    </Compile>
-    <Compile Include="..\MediaBrowser\Model\SettingsService.cs">
+    <Compile Include="..\MediaBrowser.WindowsPhone7\Model\SettingsService.cs">
       <Link>Model\SettingsService.cs</Link>
     </Compile>
-    <Compile Include="..\MediaBrowser\PhoneNameResolver.cs">
+    <Compile Include="..\MediaBrowser.WindowsPhone7\PhoneNameResolver.cs">
       <Link>PhoneNameResolver.cs</Link>
     </Compile>
-    <Compile Include="..\MediaBrowser\PlaceImage.cs">
+    <Compile Include="..\MediaBrowser.WindowsPhone7\PlaceImage.cs">
       <Link>PlaceImage.cs</Link>
     </Compile>
-    <Compile Include="..\MediaBrowser\SpecificSettings.cs">
+    <Compile Include="..\MediaBrowser.WindowsPhone7\SpecificSettings.cs">
       <Link>SpecificSettings.cs</Link>
     </Compile>
-    <Compile Include="..\MediaBrowser\Splashscreen.xaml.cs">
+    <Compile Include="..\MediaBrowser.WindowsPhone7\Splashscreen.xaml.cs">
       <Link>Splashscreen.xaml.cs</Link>
       <DependentUpon>Splashscreen.xaml</DependentUpon>
     </Compile>
-    <Compile Include="..\MediaBrowser\ThicknessAnimationX.cs">
+    <Compile Include="..\MediaBrowser.WindowsPhone7\ThicknessAnimationX.cs">
       <Link>ThicknessAnimationX.cs</Link>
     </Compile>
-    <Compile Include="..\MediaBrowser\Utils.cs">
+    <Compile Include="..\MediaBrowser.WindowsPhone7\Utils.cs">
       <Link>Utils.cs</Link>
     </Compile>
-    <Compile Include="..\MediaBrowser\ViewModel\ChooseProfileViewModel.cs">
+    <Compile Include="..\MediaBrowser.WindowsPhone7\ViewModel\ChooseProfileViewModel.cs">
       <Link>ViewModel\ChooseProfileViewModel.cs</Link>
     </Compile>
-    <Compile Include="..\MediaBrowser\ViewModel\FolderViewModel.cs">
+    <Compile Include="..\MediaBrowser.WindowsPhone7\ViewModel\FolderViewModel.cs">
       <Link>ViewModel\FolderViewModel.cs</Link>
     </Compile>
-    <Compile Include="..\MediaBrowser\ViewModel\MainViewModel.cs">
+    <Compile Include="..\MediaBrowser.WindowsPhone7\ViewModel\MainViewModel.cs">
       <Link>ViewModel\MainViewModel.cs</Link>
     </Compile>
-    <Compile Include="..\MediaBrowser\ViewModel\MovieViewModel.cs">
+    <Compile Include="..\MediaBrowser.WindowsPhone7\ViewModel\MovieViewModel.cs">
       <Link>ViewModel\MovieViewModel.cs</Link>
     </Compile>
-    <Compile Include="..\MediaBrowser\ViewModel\SettingsViewModel.cs">
+    <Compile Include="..\MediaBrowser.WindowsPhone7\ViewModel\SettingsViewModel.cs">
       <Link>ViewModel\SettingsViewModel.cs</Link>
     </Compile>
-    <Compile Include="..\MediaBrowser\ViewModel\SplashscreenViewModel.cs">
+    <Compile Include="..\MediaBrowser.WindowsPhone7\ViewModel\SplashscreenViewModel.cs">
       <Link>ViewModel\SplashscreenViewModel.cs</Link>
     </Compile>
-    <Compile Include="..\MediaBrowser\ViewModel\TrailerViewModel.cs">
+    <Compile Include="..\MediaBrowser.WindowsPhone7\ViewModel\TrailerViewModel.cs">
       <Link>ViewModel\TrailerViewModel.cs</Link>
     </Compile>
-    <Compile Include="..\MediaBrowser\ViewModel\TvViewModel.cs">
+    <Compile Include="..\MediaBrowser.WindowsPhone7\ViewModel\TvViewModel.cs">
       <Link>ViewModel\TvViewModel.cs</Link>
     </Compile>
-    <Compile Include="..\MediaBrowser\ViewModel\ViewModelLocator.cs">
+    <Compile Include="..\MediaBrowser.WindowsPhone7\ViewModel\ViewModelLocator.cs">
       <Link>ViewModel\ViewModelLocator.cs</Link>
     </Compile>
-    <Compile Include="..\MediaBrowser\Views\ChooseProfileView.xaml.cs">
+    <Compile Include="..\MediaBrowser.WindowsPhone7\Views\ChooseProfileView.xaml.cs">
       <Link>Views\ChooseProfileView.xaml.cs</Link>
       <DependentUpon>ChooseProfileView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="..\MediaBrowser\Views\CollectionView.xaml.cs">
+    <Compile Include="..\MediaBrowser.WindowsPhone7\Views\CollectionView.xaml.cs">
       <Link>Views\CollectionView.xaml.cs</Link>
       <DependentUpon>CollectionView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="..\MediaBrowser\Views\EpisodeView.xaml.cs">
+    <Compile Include="..\MediaBrowser.WindowsPhone7\Views\EpisodeView.xaml.cs">
       <Link>Views\EpisodeView.xaml.cs</Link>
       <DependentUpon>EpisodeView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="..\MediaBrowser\Views\FolderView.xaml.cs">
+    <Compile Include="..\MediaBrowser.WindowsPhone7\Views\FolderView.xaml.cs">
       <Link>Views\FolderView.xaml.cs</Link>
       <DependentUpon>FolderView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="..\MediaBrowser\Views\MainPage.xaml.cs">
+    <Compile Include="..\MediaBrowser.WindowsPhone7\Views\MainPage.xaml.cs">
       <Link>Views\MainPage.xaml.cs</Link>
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="..\MediaBrowser\Views\MovieView.xaml.cs">
+    <Compile Include="..\MediaBrowser.WindowsPhone7\Views\MovieView.xaml.cs">
       <Link>Views\MovieView.xaml.cs</Link>
       <DependentUpon>MovieView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="..\MediaBrowser\Views\SeasonView.xaml.cs">
+    <Compile Include="..\MediaBrowser.WindowsPhone7\Views\SeasonView.xaml.cs">
       <Link>Views\SeasonView.xaml.cs</Link>
       <DependentUpon>SeasonView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="..\MediaBrowser\Views\SettingsView.xaml.cs">
+    <Compile Include="..\MediaBrowser.WindowsPhone7\Views\SettingsView.xaml.cs">
       <Link>Views\SettingsView.xaml.cs</Link>
       <DependentUpon>SettingsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="..\MediaBrowser\Views\TrailerView.xaml.cs">
+    <Compile Include="..\MediaBrowser.WindowsPhone7\Views\TrailerView.xaml.cs">
       <Link>Views\TrailerView.xaml.cs</Link>
       <DependentUpon>TrailerView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="..\MediaBrowser\Views\TvShowView.xaml.cs">
+    <Compile Include="..\MediaBrowser.WindowsPhone7\Views\TvShowView.xaml.cs">
       <Link>Views\TvShowView.xaml.cs</Link>
       <DependentUpon>TvShowView.xaml</DependentUpon>
     </Compile>
@@ -259,17 +253,17 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
-    <Page Include="..\MediaBrowser\Splashscreen.xaml">
+    <Page Include="..\MediaBrowser.WindowsPhone7\Splashscreen.xaml">
       <Link>Splashscreen.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="..\MediaBrowser\Themes\generic.xaml">
+    <Page Include="..\MediaBrowser.WindowsPhone7\Themes\generic.xaml">
       <Link>Themes\generic.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="..\MediaBrowser\Themes\UIResources.xaml">
+    <Page Include="..\MediaBrowser.WindowsPhone7\Themes\UIResources.xaml">
       <Link>Themes\UIResources.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -324,7 +318,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="..\MediaBrowser\Fonts\MISTRAL.TTF">
+    <Resource Include="..\MediaBrowser.WindowsPhone7\Fonts\MISTRAL.TTF">
       <Link>Fonts\MISTRAL.TTF</Link>
     </Resource>
     <None Include="app.config" />
@@ -335,13 +329,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\MediaBrowser\Images\default_avatar.png">
+    <Content Include="..\MediaBrowser.WindowsPhone7\Images\default_avatar.png">
       <Link>Images\default_avatar.png</Link>
     </Content>
-    <Content Include="..\MediaBrowser\Images\Logo.png">
+    <Content Include="..\MediaBrowser.WindowsPhone7\Images\Logo.png">
       <Link>Images\Logo.png</Link>
     </Content>
-    <Content Include="..\MediaBrowser\Images\UserLoginDefault.png">
+    <Content Include="..\MediaBrowser.WindowsPhone7\Images\UserLoginDefault.png">
       <Link>Images\UserLoginDefault.png</Link>
     </Content>
     <Content Include="Assets\AlignmentGrid.png" />
@@ -384,6 +378,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="AdvancedREI.Net.Http.Compression">
+      <HintPath>..\packages\HttpClient.Compression.1.0.0-beta4\lib\portable-net4+sl4+wp7+win8\AdvancedREI.Net.Http.Compression.dll</HintPath>
+    </Reference>
     <Reference Include="Cimbalino.Phone.Toolkit, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Cimbalino.Phone.Toolkit.2.0.1\lib\wp8\Cimbalino.Phone.Toolkit.dll</HintPath>
@@ -397,6 +394,13 @@
     </Reference>
     <Reference Include="GalaSoft.MvvmLight.WP8">
       <HintPath>..\packages\MvvmLightLibs.4.1.26.1\lib\WindowsPhone8\GalaSoft.MvvmLight.WP8.dll</HintPath>
+    </Reference>
+    <Reference Include="MediaBrowser.ApiInteraction.Portable">
+      <HintPath>..\packages\MediaBrowser.ApiClient.3.0.0.2-beta\lib\portable-net45+sl4+wp71+win8\MediaBrowser.ApiInteraction.Portable.dll</HintPath>
+    </Reference>
+    <Reference Include="MediaBrowser.Model">
+      <HintPath>..\packages\MediaBrowser.Common.3.0.0\lib\portable-net4+sl4+wp7+win8\MediaBrowser.Model.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Phone.Controls.Toolkit">
       <HintPath>..\packages\WPtoolkit.4.2012.10.30\lib\wp8\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
@@ -430,26 +434,30 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\SharpGIS.GZipWebClient.1.4.0.0\lib\wp71\SharpGIS.GZipWebClient.dll</HintPath>
     </Reference>
+    <Reference Include="System.Net.Http">
+      <HintPath>..\packages\Microsoft.Net.Http.2.1.3-beta\lib\sl4-windowsphone71\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Extensions">
+      <HintPath>..\packages\Microsoft.Net.Http.2.1.3-beta\lib\sl4-windowsphone71\System.Net.Http.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives">
+      <HintPath>..\packages\Microsoft.Net.Http.2.1.3-beta\lib\sl4-windowsphone71\System.Net.Http.Primitives.dll</HintPath>
+    </Reference>
     <Reference Include="System.Windows.Interactivity, Version=3.9.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmLightLibs.4.1.26.1\lib\WindowsPhone8\System.Windows.Interactivity.dll</HintPath>
     </Reference>
+    <Reference Include="Zlib.Portable">
+      <HintPath>..\packages\Zlib.Portable.1.9.2\lib\portable-net4+sl4+wp71+win8\Zlib.Portable.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\Visual Studio 2012\Projects\MediaBrowserServer\MediaBrowser.ApiInteraction.Portable\MediaBrowser.ApiInteraction.Portable.csproj">
-      <Project>{52E0C440-85C0-4A99-ACFE-07C87B2600BE}</Project>
-      <Name>MediaBrowser.ApiInteraction.Portable</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\..\Visual Studio 2012\Projects\MediaBrowserServer\MediaBrowser.Model\MediaBrowser.Model.csproj">
-      <Project>{7EEEB4BB-F3E8-48FC-B4C5-70F0FFF8329B}</Project>
-      <Name>MediaBrowser.Model</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MediaBrowser.Shared\MediaBrowser.Shared.csproj">
       <Project>{2D3D6DCD-C00F-4E40-AF44-8975A2DF87A3}</Project>
       <Name>MediaBrowser.Shared</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <SDKReference Include="Microsoft.PlayerFramework.WP8.Core, Version=1.7.1.0">
+    <SDKReference Include="Microsoft.PlayerFramework.WP8.Core, Version=1.8.0.5">
       <Name>Microsoft Player Framework</Name>
     </SDKReference>
   </ItemGroup>
@@ -465,4 +473,5 @@
   <ProjectExtensions />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <Import Project="$(ProjectDir)\..\Tools\Fody\Fody.targets" />
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.0-rc\tools\Microsoft.Bcl.Build.targets" />
 </Project>
