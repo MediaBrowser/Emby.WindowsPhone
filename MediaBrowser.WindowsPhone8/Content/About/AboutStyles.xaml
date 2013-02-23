@@ -1,0 +1,112 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:System="clr-namespace:System;assembly=mscorlib"
+                    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+                    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+                    xmlns:controls2="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls">
+
+    <!-- About Page -->
+    <Style x:Key="AboutPageStyle"
+           TargetType="controls:PhoneApplicationPage">
+        <Setter Property="FontFamily"
+                Value="{StaticResource PhoneFontFamilyNormal}" />
+        <Setter Property="FontSize"
+                Value="{StaticResource PhoneFontSizeNormal}" />
+        <Setter Property="Foreground"
+                Value="{StaticResource PhoneForegroundBrush}" />
+        
+        <!-- Use the following setter to enable/disable the system tray on the about page -->
+        <Setter Property="shell:SystemTray.IsVisible"
+                Value="False" />
+        
+        <!-- You can use setters like the following to add transitions to your about page. 
+             To make this work, you have to add:
+             1.) A reference to the Microsoft.Phone.Controls.Toolkit assembly from the toolkit
+             2.) A namespace declaration to this ResourceDictionary: xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit
+             3.) Replace the normal PhoneApplicationFrame with a TransitionFrame in App.xaml.cs -->
+        <!--<Setter Property="toolkit:TransitionService.NavigationInTransition">
+            <Setter.Value>
+                <toolkit:NavigationInTransition>
+                    <toolkit:NavigationInTransition.Backward>
+                        <toolkit:TurnstileTransition Mode="BackwardIn" />
+                    </toolkit:NavigationInTransition.Backward>
+                    <toolkit:NavigationInTransition.Forward>
+                        <toolkit:TurnstileTransition Mode="ForwardIn" />
+                    </toolkit:NavigationInTransition.Forward>
+                </toolkit:NavigationInTransition>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="toolkit:TransitionService.NavigationOutTransition">
+            <Setter.Value>
+                <toolkit:NavigationOutTransition>
+                    <toolkit:NavigationOutTransition.Backward>
+                        <toolkit:TurnstileTransition Mode="BackwardOut" />
+                    </toolkit:NavigationOutTransition.Backward>
+                    <toolkit:NavigationOutTransition.Forward>
+                        <toolkit:TurnstileTransition Mode="ForwardOut" />
+                    </toolkit:NavigationOutTransition.Forward>
+                </toolkit:NavigationOutTransition>
+            </Setter.Value>
+        </Setter>-->
+    </Style>
+    
+    <!-- Pivot control and items -->
+    <!-- You can use this style to e.g. change the HeaderTemplate -->
+    <Style x:Key="AboutPivotStyle"
+           TargetType="controls2:Pivot">
+        <!-- Some eye-hurting sample values: -->
+        <!-- Setting the background color of the pivot control/about page to DarkGreen, and the header color to Yellow
+        <Setter Property="Background"
+                Value="DarkGreen" />
+        <Setter Property="HeaderTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <ContentControl Content="{Binding}"
+                                    Foreground="Yellow" />
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>-->
+    </Style>
+
+    <Style x:Key="AboutPivotItemStyle"
+           TargetType="controls2:PivotItem">        
+    </Style>
+
+    <!-- Text based controls -->
+    <Style x:Key="AboutTextTitleStyle"
+           TargetType="TextBlock"
+           BasedOn="{StaticResource PhoneTextExtraLargeStyle}">
+        <Setter Property="Foreground"
+                Value="{StaticResource PhoneAccentColor}" />
+    </Style>
+
+    <Style x:Key="AboutTextSubTitleStyle"
+           TargetType="TextBlock"
+           BasedOn="{StaticResource PhoneTextLargeStyle}">
+    </Style>
+
+    <Style x:Key="AboutTextNormalStyle"
+           TargetType="TextBlock"
+           BasedOn="{StaticResource PhoneTextNormalStyle}">
+    </Style>
+
+    <Style x:Key="AboutTextNormalHighlightedStyle"
+           TargetType="TextBlock"
+           BasedOn="{StaticResource PhoneTextNormalStyle}">
+        <Setter Property="Foreground"
+                Value="{StaticResource PhoneAccentColor}" />
+        <Setter Property="FontWeight"
+                Value="Bold" />
+    </Style>
+
+    <Style x:Key="AboutHyperlinkButtonStyle"
+           TargetType="HyperlinkButton">
+        <Setter Property="Foreground"
+                Value="{StaticResource PhoneAccentColor}" />
+    </Style>
+
+    <!-- The style used for the buttons (e.g. the review button) -->
+    <Style x:Key="AboutButtonStyle"
+           TargetType="Button">
+    </Style>
+</ResourceDictionary>
