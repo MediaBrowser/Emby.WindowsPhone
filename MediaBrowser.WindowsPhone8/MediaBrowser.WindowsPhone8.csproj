@@ -95,6 +95,9 @@
     <Compile Include="..\MediaBrowser.WindowsPhone7\Behaviours\OnTextPropertyChangedBehaviour.cs">
       <Link>Behaviours\OnTextPropertyChangedBehaviour.cs</Link>
     </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone7\Controls\MediaBrowserLogo.cs">
+      <Link>Controls\MediaBrowserLogo.cs</Link>
+    </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone7\Controls\ProfileBox.cs">
       <Link>Controls\ProfileBox.cs</Link>
     </Compile>
@@ -449,6 +452,9 @@
     </Reference>
     <Reference Include="PropertyChanged">
       <HintPath>..\packages\PropertyChanged.Fody.1.32.2.0\lib\SL40-WP\PropertyChanged.dll</HintPath>
+    </Reference>
+    <Reference Include="protobuf-net">
+      <HintPath>..\packages\protobuf-net.2.0.0.621\lib\windowsphone8\protobuf-net.dll</HintPath>
     </Reference>
     <Reference Include="ScottIsAFool.WindowsPhone, Version=1.0.12.1, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

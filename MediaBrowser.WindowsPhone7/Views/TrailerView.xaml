@@ -8,6 +8,7 @@
                             xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
                             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
                             xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP71"
+                            xmlns:controls="clr-namespace:MediaBrowser.WindowsPhone.Controls"
                             FontFamily="{StaticResource PhoneFontFamilyNormal}"
                             FontSize="{StaticResource PhoneFontSizeNormal}"
                             Foreground="{StaticResource PhoneForegroundBrush}"
@@ -40,25 +41,7 @@
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel Grid.Row="0"
                     Margin="12,17,0,28">
-            <StackPanel Orientation="Horizontal"
-                        VerticalAlignment="Top"
-                        Height="27"
-                        Margin="0">
-                <TextBlock Text="MEDIA"
-                           Foreground="{StaticResource PhoneForegroundBrush}"
-                           Style="{StaticResource PhoneTextNormalStyle}"
-                           Margin="12,0,0,0" />
-                <TextBlock Text="BROWSER"
-                           Foreground="Green"
-                           Style="{StaticResource PhoneTextNormalStyle}"
-                           Margin="0" />
-                <TextBlock Text="3"
-                           FontFamily="Euphemia"
-                           Foreground="Green"
-                           Margin="0,-10,0,0"
-                           Padding="0"
-                           VerticalAlignment="Top" />
-            </StackPanel>
+            <controls:MediaBrowserLogo />
             <TextBlock Text="{Binding SelectedTrailer.Name, Converter={StaticResource StringCaseConverter}}"
                        Margin="9,-7,0,0"
                        Style="{StaticResource PhoneTextTitle1Style}" />

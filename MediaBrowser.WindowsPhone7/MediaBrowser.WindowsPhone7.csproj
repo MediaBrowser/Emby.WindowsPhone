@@ -173,6 +173,7 @@
       <Link>Resources\AppResources.Designer.cs</Link>
     </Compile>
     <Compile Include="Behaviours\OnTextPropertyChangedBehaviour.cs" />
+    <Compile Include="Controls\MediaBrowserLogo.cs" />
     <Compile Include="Controls\ProfileBox.cs" />
     <Compile Include="Converters\DeviceIdToBooleanConverter.cs" />
     <Compile Include="Converters\FavouritesConverter.cs" />

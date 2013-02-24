@@ -6,6 +6,7 @@
                             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                             xmlns:ignore="http://www.ignore.com"
+                            xmlns:controls="clr-namespace:MediaBrowser.WindowsPhone.Controls"
                             mc:Ignorable="d ignore"
                             d:DesignWidth="480"
                             d:DesignHeight="768"
@@ -28,9 +29,7 @@
         <StackPanel x:Name="TitlePanel"
                     Grid.Row="0"
                     Margin="12,17,0,28">
-            <TextBlock x:Name="ApplicationTitle"
-                       Text="MY APPLICATION"
-                       Style="{StaticResource PhoneTextNormalStyle}" />
+            <controls:MediaBrowserLogo />
             <TextBlock x:Name="PageTitle"
                        Text="page name"
                        Margin="9,-7,0,0"

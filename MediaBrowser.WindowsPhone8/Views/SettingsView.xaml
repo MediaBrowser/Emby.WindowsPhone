@@ -9,6 +9,7 @@
                             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
                             xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP8"
                             xmlns:behaviours="clr-namespace:ScottIsAFool.WindowsPhone.Behaviours"
+                            xmlns:controls="clr-namespace:MediaBrowser.WindowsPhone.Controls"
                             FontFamily="{StaticResource PhoneFontFamilyNormal}"
                             FontSize="{StaticResource PhoneFontSizeNormal}"
                             Foreground="{StaticResource PhoneForegroundBrush}"
@@ -56,25 +57,7 @@
           Background="{StaticResource MediaBrowserBackground}">
         <phone:Pivot x:Name="settingsPivot">
             <phone:Pivot.Title>
-                <StackPanel Orientation="Horizontal"
-                            VerticalAlignment="Top"
-                            Height="27"
-                            Margin="0">
-                    <TextBlock Text="MEDIA"
-                               Foreground="{StaticResource PhoneForegroundBrush}"
-                               Style="{StaticResource PhoneTextNormalStyle}"
-                               Margin="0" />
-                    <TextBlock Text="BROWSER"
-                               Foreground="Green"
-                               Style="{StaticResource PhoneTextNormalStyle}"
-                               Margin="0" />
-                    <TextBlock Text="3"
-                               FontFamily="Euphemia"
-                               Foreground="Green"
-                               Margin="0,-10,0,0"
-                               Padding="0"
-                               VerticalAlignment="Top" />
-                </StackPanel>
+                <controls:MediaBrowserLogo />
             </phone:Pivot.Title>
 
             <phone:PivotItem Header="general">
