@@ -61,6 +61,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             SimpleIoc.Default.Register<TvViewModel>();
             SimpleIoc.Default.Register<TrailerViewModel>(true);
             SimpleIoc.Default.Register<SettingsViewModel>(true);
+            SimpleIoc.Default.Register<MusicViewModel>(true);
         }
 
         /// <summary>

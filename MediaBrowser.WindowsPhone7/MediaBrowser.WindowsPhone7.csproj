@@ -203,11 +203,18 @@
     <Compile Include="ViewModel\ChooseProfileViewModel.cs" />
     <Compile Include="ViewModel\FolderViewModel.cs" />
     <Compile Include="ViewModel\MovieViewModel.cs" />
+    <Compile Include="ViewModel\MusicViewModel.cs" />
     <Compile Include="ViewModel\SettingsViewModel.cs" />
     <Compile Include="ViewModel\SplashscreenViewModel.cs" />
     <Compile Include="ViewModel\TrailerViewModel.cs" />
     <Compile Include="ViewModel\TvViewModel.cs" />
     <Compile Include="ViewModel\VideoPlayerViewModel.cs" />
+    <Compile Include="Views\AlbumView.xaml.cs">
+      <DependentUpon>AlbumView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ArtistView.xaml.cs">
+      <DependentUpon>ArtistView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ChooseProfileView.xaml.cs">
       <DependentUpon>ChooseProfileView.xaml</DependentUpon>
     </Compile>
@@ -271,6 +278,14 @@
     <Page Include="Themes\UIResources.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AlbumView.xaml">
+      <SubType>Form</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ArtistView.xaml">
+      <SubType>Form</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ChooseProfileView.xaml">
       <SubType>Form</SubType>
@@ -348,9 +363,17 @@
     <Content Include="Toolkit.Content\ApplicationBar.Select.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AudioSharedLibrary\AudioSharedLibrary.csproj">
+      <Project>{49716E9D-F1AE-4ECF-9ED6-557BC424DBD3}</Project>
+      <Name>AudioSharedLibrary</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MediaBrowser.Shared\MediaBrowser.Shared.csproj">
       <Project>{2D3D6DCD-C00F-4E40-AF44-8975A2DF87A3}</Project>
       <Name>MediaBrowser.Shared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MediaBrowser.WindowsPhone.AudioAgent\MediaBrowser.WindowsPhone.AudioAgent.csproj">
+      <Project>{D14362C5-5568-49A0-8FAA-7F8C219C0C48}</Project>
+      <Name>MediaBrowser.WindowsPhone.AudioAgent</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

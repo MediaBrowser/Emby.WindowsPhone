@@ -349,6 +349,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Getting albums....
+        /// </summary>
+        public static string SysTrayGettingAlbums {
+            get {
+                return ResourceManager.GetString("SysTrayGettingAlbums", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Getting episode details....
         /// </summary>
         public static string SysTrayGettingEpisodeDetails {

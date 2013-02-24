@@ -12,14 +12,16 @@
     </Capabilities>
     <Tasks>
       <DefaultTask Name="_default" NavigationPage="Splashscreen.xaml" />
+      <ExtendedTask Name="BackgroundTask">
+        <BackgroundServiceAgent Specifier="AudioPlayerAgent" Name="MediaBrowser.WindowsPhone.AudioAgent" Source="MediaBrowser.WindowsPhone.AudioAgent" Type="MediaBrowser.WindowsPhone.AudioAgent.AudioPlayer" />
+      </ExtendedTask>
     </Tasks>
     <Tokens>
       <PrimaryToken TokenID="MediaBrowser.WindowsPhoneToken" TaskName="_default">
         <TemplateType5>
           <BackgroundImageURI IsRelative="true" IsResource="false">Background.png</BackgroundImageURI>
           <Count>0</Count>
-          <Title>
-          </Title>
+          <Title></Title>
         </TemplateType5>
       </PrimaryToken>
     </Tokens>

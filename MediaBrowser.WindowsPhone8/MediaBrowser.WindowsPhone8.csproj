@@ -174,6 +174,9 @@
     <Compile Include="..\MediaBrowser.WindowsPhone7\ViewModel\MovieViewModel.cs">
       <Link>ViewModel\MovieViewModel.cs</Link>
     </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone7\ViewModel\MusicViewModel.cs">
+      <Link>ViewModel\MusicViewModel.cs</Link>
+    </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone7\ViewModel\SettingsViewModel.cs">
       <Link>ViewModel\SettingsViewModel.cs</Link>
     </Compile>
@@ -188,6 +191,14 @@
     </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone7\ViewModel\ViewModelLocator.cs">
       <Link>ViewModel\ViewModelLocator.cs</Link>
+    </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone7\Views\AlbumView.xaml.cs">
+      <Link>Views\AlbumView.xaml.cs</Link>
+      <DependentUpon>AlbumView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone7\Views\ArtistView.xaml.cs">
+      <Link>Views\ArtistView.xaml.cs</Link>
+      <DependentUpon>ArtistView.xaml</DependentUpon>
     </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone7\Views\ChooseProfileView.xaml.cs">
       <Link>Views\ChooseProfileView.xaml.cs</Link>
@@ -275,6 +286,14 @@
     <Page Include="Themes\LongListSelectorTemplates.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AlbumView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ArtistView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\CollectionView.xaml">
       <SubType>Designer</SubType>
@@ -459,9 +478,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AudioSharedLibrary\AudioSharedLibrary.csproj">
+      <Project>{49716E9D-F1AE-4ECF-9ED6-557BC424DBD3}</Project>
+      <Name>AudioSharedLibrary</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MediaBrowser.Shared\MediaBrowser.Shared.csproj">
       <Project>{2D3D6DCD-C00F-4E40-AF44-8975A2DF87A3}</Project>
       <Name>MediaBrowser.Shared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MediaBrowser.WindowsPhone.AudioAgent\MediaBrowser.WindowsPhone.AudioAgent.csproj">
+      <Project>{D14362C5-5568-49A0-8FAA-7F8C219C0C48}</Project>
+      <Name>MediaBrowser.WindowsPhone.AudioAgent</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

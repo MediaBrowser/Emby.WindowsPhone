@@ -95,6 +95,7 @@ namespace MediaBrowser.WindowsPhone.Model
             {
                 case "folder":
                 case "collectionfolder":
+                case "genre":
                 case "trailercollectionfolder":
                     //Messenger.Default.Send(new NotificationMessage(item, Constants.ShowFolderMsg));
                     NavigateToPage("/Views/CollectionView.xaml");
@@ -118,6 +119,14 @@ namespace MediaBrowser.WindowsPhone.Model
                 case "trailer":
                     Messenger.Default.Send(new NotificationMessage(Constants.ChangeTrailerMsg));
                     NavigateToPage("/Views/TrailerView.xaml");
+                    break;
+                case "musicartist":
+                    Messenger.Default.Send(new NotificationMessage(item, Constants.MusicArtistChangedMsg));
+                    NavigateToPage("/Views/ArtistView.xaml");
+                    break;
+                case "musicalbum":
+                    Messenger.Default.Send(new NotificationMessage(item, Constants.MusicAlbumChangedMsg));
+                    NavigateToPage("/Views/AlbumView.xaml");
                     break;
             }
         }

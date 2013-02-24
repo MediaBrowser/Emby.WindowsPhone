@@ -1,14 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
+using System.Windows;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model.Dto;
-using MediaBrowser.Windows8.Model;
-using Windows.UI.Xaml;
-using System.Linq;
+using MediaBrowser.WindowsPhone.Model;
+using MediaBrowser.WindowsPhone.Resources;
 
-namespace MediaBrowser.Windows8.ViewModel
+namespace MediaBrowser.WindowsPhone.ViewModel
 {
     /// <summary>
     /// This class contains properties that a View can data bind to.
@@ -19,32 +21,29 @@ namespace MediaBrowser.Windows8.ViewModel
     public class MusicViewModel : ViewModelBase
     {
         private readonly ExtendedApiClient ApiClient;
-        private readonly NavigationService NavigationService;
+        private readonly INavigationService NavigationService;
 
         private List<BaseItemDto> artistTracks;
         private bool gotAlbums;
-
         /// <summary>
         /// Initializes a new instance of the MusicViewModel class.
         /// </summary>
-        public MusicViewModel(ExtendedApiClient apiClient, NavigationService navigationService)
+        public MusicViewModel(ExtendedApiClient apiClient, INavigationService navigationService)
         {
-            ApiClient = apiClient;
             NavigationService = navigationService;
-            Albums = new ObservableCollection<BaseItemDto>();
-            artistTracks = new List<BaseItemDto>();
+            ApiClient = apiClient;
             if (IsInDesignMode)
             {
                 SelectedArtist = new BaseItemDto
-                                     {
-                                         Name = "Hans Zimmer",
-                                         Id = "179d32421632781047c73c9bd501adea"
-                                     };
+                {
+                    Name = "Hans Zimmer",
+                    Id = "179d32421632781047c73c9bd501adea"
+                };
                 SelectedAlbum = new BaseItemDto
-                                    {
-                                        Name = "The Dark Knight Rises",
-                                        Id = "f8d5c8cbcbd39bc75c2ba7ada65d4319",
-                                    };
+                {
+                    Name = "The Dark Knight Rises",
+                    Id = "f8d5c8cbcbd39bc75c2ba7ada65d4319",
+                };
                 Albums = new ObservableCollection<BaseItemDto>
                              {
                                  new BaseItemDto {Name = "The Dark Knight Rises", Id = "f8d5c8cbcbd39bc75c2ba7ada65d4319", ProductionYear = 2012},
@@ -61,18 +60,14 @@ namespace MediaBrowser.Windows8.ViewModel
             }
             else
             {
-                WireMessages();
                 WireCommands();
+                WireMessages();
             }
-        }
-
-        private void WireCommands()
-        {
         }
 
         private void WireMessages()
         {
-            Messenger.Default.Register<NotificationMessage>(this, async m =>
+            Messenger.Default.Register<NotificationMessage>(this, m =>
             {
                 if (m.Notification.Equals(Constants.MusicArtistChangedMsg))
                 {
@@ -89,24 +84,29 @@ namespace MediaBrowser.Windows8.ViewModel
                         .OrderBy(x => x.ParentIndexNumber)
                         .ThenBy(x => x.IndexNumber).ToList();
                 }
-                if (m.Notification.Equals(Constants.ArtistViewLoadedMsg))
-                {
-                    if (NavigationService.IsNetworkAvailable && !gotAlbums)
-                    {
-                        ProgressText = "Getting albums...";
-                        ProgressVisibility = Visibility.Visible;
-
-                        gotAlbums = await GetAlbums();
-
-                        ProgressText = string.Empty;
-                        ProgressVisibility = Visibility.Collapsed;
-                    }
-                }
-                if (m.Notification.Equals(Constants.AlbumViewLoadedMsg))
-                {
-
-                }
             });
+        }
+
+        private void WireCommands()
+        {
+            ArtistPageLoaded = new RelayCommand(async () =>
+                                                    {
+                                                        if (NavigationService.IsNetworkAvailable && !gotAlbums)
+                                                        {
+                                                            ProgressText = AppResources.SysTrayGettingAlbums;
+                                                            ProgressIsVisible = true;
+
+                                                            gotAlbums = await GetAlbums();
+
+                                                            ProgressText = string.Empty;
+                                                            ProgressIsVisible = false;
+                                                        }
+                                                    });
+
+            AlbumPageLoaded = new RelayCommand(() =>
+                                                   {
+                                                       
+                                                   });
         }
 
         private async Task<bool> GetAlbums()
@@ -114,12 +114,12 @@ namespace MediaBrowser.Windows8.ViewModel
             try
             {
                 var query = new ItemQuery
-                                {
-                                    UserId = App.Settings.LoggedInUser.Id,
-                                    ParentId = SelectedArtist.Id,
-                                    Recursive = true,
-                                    Fields = new[] { ItemFields.AudioInfo, ItemFields.ParentId, }
-                                };
+                {
+                    UserId = App.Settings.LoggedInUser.Id,
+                    ParentId = SelectedArtist.Id,
+                    Recursive = true,
+                    Fields = new[] { ItemFields.AudioInfo, ItemFields.ParentId, }
+                };
                 var items = await ApiClient.GetItemsAsync(query);
                 if (items != null && items.Items.Any())
                 {
@@ -153,11 +153,14 @@ namespace MediaBrowser.Windows8.ViewModel
         }
 
         public string ProgressText { get; set; }
-        public Visibility ProgressVisibility { get; set; }
+        public bool ProgressIsVisible { get; set; }
 
         public BaseItemDto SelectedArtist { get; set; }
+        public BaseItemDto SelectedAlbum { get; set; }
         public ObservableCollection<BaseItemDto> Albums { get; set; }
         public List<BaseItemDto> AlbumTracks { get; set; }
-        public BaseItemDto SelectedAlbum { get; set; }
+
+        public RelayCommand ArtistPageLoaded { get; set; }
+        public RelayCommand AlbumPageLoaded { get; set; }
     }
 }

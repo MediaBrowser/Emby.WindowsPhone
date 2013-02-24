@@ -213,6 +213,9 @@
   <data name="SysTrayCheckingConnection" xml:space="preserve">
     <value>Checking connection...</value>
   </data>
+  <data name="SysTrayGettingAlbums" xml:space="preserve">
+    <value>Getting albums...</value>
+  </data>
   <data name="SysTrayGettingEpisodeDetails" xml:space="preserve">
     <value>Getting episode details...</value>
   </data>
