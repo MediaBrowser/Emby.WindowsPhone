@@ -115,7 +115,8 @@ namespace MediaBrowser.Windows8.ViewModel
                     try
                     {
                         var totalTicks = StartTime.HasValue ? StartTime.Value.Ticks + PlayedVideoDuration.Ticks : PlayedVideoDuration.Ticks;
-                        SelectedItem.UserData = await ApiClient.ReportPlaybackStoppedAsync(SelectedItem.Id, App.Settings.LoggedInUser.Id, totalTicks);
+                        SelectedItem.UserData.PlaybackPositionTicks = totalTicks;
+                        await ApiClient.ReportPlaybackStoppedAsync(SelectedItem.Id, App.Settings.LoggedInUser.Id, totalTicks);
                     }
                     catch
                     {

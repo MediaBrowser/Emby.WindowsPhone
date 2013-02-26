@@ -51,7 +51,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                                               try
                                                                               {
                                                                                   var totalTicks = isResume ? StartTime.Ticks + PlayedVideoDuration.Ticks : PlayedVideoDuration.Ticks;
-                                                                                  SelectedItem.UserData = await ApiClient.ReportPlaybackStoppedAsync(SelectedItem.Id, App.Settings.LoggedInUser.Id, totalTicks);
+                                                                                  SelectedItem.UserData.PlaybackPositionTicks = totalTicks;
+                                                                                  await ApiClient.ReportPlaybackStoppedAsync(SelectedItem.Id, App.Settings.LoggedInUser.Id, totalTicks);
                                                                               }
                                                                               catch
                                                                               {
