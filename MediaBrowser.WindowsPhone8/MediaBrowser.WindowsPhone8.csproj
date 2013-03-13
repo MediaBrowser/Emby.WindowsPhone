@@ -128,17 +128,11 @@
     <Compile Include="..\MediaBrowser.WindowsPhone7\Converters\SettingsConverters.cs">
       <Link>Converters\SettingsConverters.cs</Link>
     </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\Model\DeviceSettings.cs">
-      <Link>Model\DeviceSettings.cs</Link>
-    </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone7\Model\ExtendedApiClient.cs">
       <Link>Model\ExtendedApiClient.cs</Link>
     </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone7\Model\INavigationService.cs">
       <Link>Model\INavigationService.cs</Link>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\Model\LiveTile.cs">
-      <Link>Model\LiveTile.cs</Link>
     </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone7\Model\NavigationService.cs">
       <Link>Model\NavigationService.cs</Link>
@@ -424,13 +418,13 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\MvvmLightLibs.4.1.27.0\lib\WindowsPhone8\GalaSoft.MvvmLight.WP8.dll</HintPath>
     </Reference>
-    <Reference Include="MediaBrowser.ApiInteraction.Portable, Version=3.0.4818.13347, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="MediaBrowser.ApiInteraction.Portable, Version=3.0.4820.37722, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MediaBrowser.ApiClient.3.0.0.43-beta\lib\portable-net45+sl4+wp71+win8\MediaBrowser.ApiInteraction.Portable.dll</HintPath>
+      <HintPath>..\packages\MediaBrowser.ApiClient.3.0.0.46-beta\lib\portable-net45+sl4+wp71+win8\MediaBrowser.ApiInteraction.Portable.dll</HintPath>
     </Reference>
-    <Reference Include="MediaBrowser.Model, Version=3.0.4818.13277, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="MediaBrowser.Model, Version=3.0.4819.26380, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MediaBrowser.Common.3.0.43\lib\portable-net4+sl4+wp7+win8\MediaBrowser.Model.dll</HintPath>
+      <HintPath>..\packages\MediaBrowser.Common.3.0.45\lib\portable-net4+sl4+wp7+win8\MediaBrowser.Model.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Phone.Controls.Toolkit">
       <HintPath>..\packages\WPtoolkit.4.2012.10.30\lib\wp8\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
@@ -453,17 +447,16 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\sl4-windowsphone71\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="PropertyChanged, Version=1.33.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\PropertyChanged.Fody.1.33.1.0\lib\SL40-WP\PropertyChanged.dll</HintPath>
+    <Reference Include="PropertyChanged">
+      <HintPath>..\packages\PropertyChanged.Fody.1.35.0.0\lib\SL40-WP\PropertyChanged.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="protobuf-net">
       <HintPath>..\packages\protobuf-net.2.0.0.621\lib\windowsphone8\protobuf-net.dll</HintPath>
     </Reference>
-    <Reference Include="ScottIsAFool.WindowsPhone, Version=1.0.12.1, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="ScottIsAFool.WindowsPhone, Version=1.0.13.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\ScottIsAFool.WindowsPhone.1.0.12.1\lib\wp71\ScottIsAFool.WindowsPhone.dll</HintPath>
+      <HintPath>..\packages\ScottIsAFool.WindowsPhone.1.0.13.0\lib\wp8\ScottIsAFool.WindowsPhone.dll</HintPath>
     </Reference>
     <Reference Include="SharpGIS.GZipWebClient, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

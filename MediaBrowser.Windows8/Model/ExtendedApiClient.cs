@@ -1,5 +1,9 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using MediaBrowser.ApiInteraction;
+using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Logging;
 using MediaBrowser.Model.Web;
 using MediaBrowser.Shared;
@@ -14,68 +18,126 @@ namespace MediaBrowser.Windows8.Model
             
         }
 
-        public async Task<RequestResult> RegisterDevice(string deviceId, string uri, bool? sendTileUpdate = null, bool? sendToastUpdate = null)
+        /// <summary>
+        /// Registers the device for push notifications.
+        /// </summary>
+        /// <param name="deviceId">The device id.</param>
+        /// <param name="uri">The URI.</param>
+        /// <param name="deviceType">Type of the device.</param>
+        /// <param name="sendTileUpdate">The send tile update.</param>
+        /// <param name="sendToastUpdate">The send toast update.</param>
+        /// <returns></returns>
+        /// <exception cref="System.ArgumentNullException">
+        /// deviceType
+        /// or
+        /// deviceId
+        /// </exception>
+        public Task RegisterDeviceAsync(string deviceId, string uri, bool? sendTileUpdate = null, bool? sendToastUpdate = null)
         {
-            var dict = new QueryStringDictionary {{"deviceid", deviceId}, {"url", uri}, {"action", "register"}, {"devicetype", "Windows8"}};
+            if (string.IsNullOrEmpty(deviceId))
+            {
+                throw new ArgumentNullException("deviceId");
+            }
 
-            if(sendTileUpdate.HasValue)
+            var dict = new QueryStringDictionary
+                           {
+                               {"deviceid", deviceId},
+                               {"url", uri},
+                               {"devicetype", "Windows8"}
+                           };
+
+            if (sendTileUpdate.HasValue)
                 dict.Add("sendlivetile", sendTileUpdate.Value);
-            if(sendToastUpdate.HasValue)
+            if (sendToastUpdate.HasValue)
                 dict.Add("sendtoast", sendToastUpdate.Value);
 
-            var url = GetApiUrl("push", dict);
+            var url = GetApiUrl("PushNotification/Devices", dict);
 
-            return await GetStream<RequestResult>(url);
+            return PostAsync<EmptyRequestResult>(url, new Dictionary<string, string>());
         }
 
-        public async Task<RequestResult> CheckForPushServer()
+        /// <summary>
+        /// Deletes the device async.
+        /// </summary>
+        /// <param name="deviceId">The device id.</param>
+        /// <returns></returns>
+        /// <exception cref="System.ArgumentNullException">deviceId</exception>
+        public Task DeleteDeviceAsync(string deviceId)
         {
-            var url = GetApiUrl("push");
-
-            return await GetStream<RequestResult>(url);
-        }
-
-        public async Task<RequestResult> CheckForPulse(string deviceId)
-        {
-            var dict = new QueryStringDictionary { { "deviceid", deviceId }, { "action", "heartbeat" } };
-
-            var url = GetApiUrl("push", dict);
-
-            return await GetStream<RequestResult>(url);
-        }
-
-        public async Task<RequestResult> UpdateDevice(string deviceId, bool? sendToasts = null, bool? liveTile = null, string liveTileName = null, string liveTileId = null)
-        {
-            var dict = new QueryStringDictionary { { "deviceid", deviceId }, { "action", "update" } };
-
-            if (sendToasts.HasValue)
+            if (string.IsNullOrEmpty(deviceId))
             {
-                dict.Add("sendtoast", sendToasts.Value);
+                throw new ArgumentNullException("deviceId");
             }
 
-            if (liveTile.HasValue)
-            {
-                dict.Add("sendlivetile", liveTile.Value);
-            }
+            var url = GetApiUrl("PushNotification/Devices/" + deviceId);
 
-            if (!string.IsNullOrEmpty(liveTileName) && !string.IsNullOrEmpty(liveTileId))
-            {
-                dict.Add("tilename", liveTileName);
-                dict.Add("tileid", liveTileId);
-            }
-
-            var url = GetApiUrl("push", dict);
-
-            return await GetStream<RequestResult>(url);
+            return HttpClient.DeleteAsync(url, CancellationToken.None);
         }
 
-        public async Task<RequestResult> DeleteDevice(string deviceId)
+        /// <summary>
+        /// Updates the device async.
+        /// </summary>
+        /// <param name="deviceId">The device id.</param>
+        /// <param name="sendTileUpdate">The send tile update.</param>
+        /// <param name="sendToastUpdate">The send toast update.</param>
+        /// <returns></returns>
+        /// <exception cref="System.ArgumentNullException">deviceId</exception>
+        public Task UpdateDeviceAsync(string deviceId, bool? sendTileUpdate = null, bool? sendToastUpdate = null)
         {
-            var dict = new QueryStringDictionary { { "deviceid", deviceId }, { "action", "delete" } };
+            if (string.IsNullOrEmpty(deviceId))
+            {
+                throw new ArgumentNullException("deviceId");
+            }
 
-            var url = GetApiUrl("push", dict);
+            var dict = new QueryStringDictionary();
 
-            return await GetStream<RequestResult>(url);
+            if (sendTileUpdate.HasValue)
+                dict.Add("sendlivetile", sendTileUpdate.Value);
+            if (sendToastUpdate.HasValue)
+                dict.Add("sendtoast", sendToastUpdate.Value);
+
+            var url = GetApiUrl("PushNotification/Devices/" + deviceId, dict);
+
+            return PostAsync<EmptyRequestResult>(url, new Dictionary<string, string>());
+        }
+
+        /// <summary>
+        /// Pushes the heartbeat async.
+        /// </summary>
+        /// <param name="deviceId">The device id.</param>
+        /// <returns></returns>
+        /// <exception cref="System.ArgumentNullException">deviceId</exception>
+        public Task PushHeartbeatAsync(string deviceId)
+        {
+            if (string.IsNullOrEmpty(deviceId))
+            {
+                throw new ArgumentNullException("deviceId");
+            }
+
+            var url = GetApiUrl("PushNotification/Devices/" + deviceId + "/Heartbeats");
+
+            return PostAsync<EmptyRequestResult>(url, new Dictionary<string, string>());
+        }
+
+        /// <summary>
+        /// Gets the device settings async.
+        /// </summary>
+        /// <param name="deviceId">The device id.</param>
+        /// <returns></returns>
+        /// <exception cref="System.ArgumentNullException">deviceId</exception>
+        public async Task<DeviceSettings> GetDeviceSettingsAsync(string deviceId)
+        {
+            if (string.IsNullOrEmpty(deviceId))
+            {
+                throw new ArgumentNullException("deviceId");
+            }
+
+            var url = GetApiUrl("PushNotification/Devices/" + deviceId + "/Settings");
+
+            using (var stream = await GetSerializedStreamAsync(url).ConfigureAwait(false))
+            {
+                return DeserializeFromStream<DeviceSettings>(stream);
+            }
         }
 
         public async Task<RequestResult> DeleteLiveTile(string deviceId, string liveTileId)

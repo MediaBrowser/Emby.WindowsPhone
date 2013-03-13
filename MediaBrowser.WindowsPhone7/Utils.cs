@@ -115,13 +115,13 @@ namespace MediaBrowser.WindowsPhone
             return recent.ToList();
         }
 
-        internal static string ToHash(this string pinCode)
+        internal static byte[] ToHash(this string pinCode)
         {
             var sha1 = new SHA1Managed();
             var encoding = new UTF8Encoding();
             sha1.ComputeHash(encoding.GetBytes(pinCode));
 
-            return BitConverter.ToString(sha1.Hash).Replace("-", "");
+            return sha1.Hash;
         }
     }
 }

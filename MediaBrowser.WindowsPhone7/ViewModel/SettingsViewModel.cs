@@ -90,7 +90,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                 {
                                                     try
                                                     {
-                                                        var result = await ApiClient.CheckForPushServer();
+                                                        //var result = await ApiClient.CheckForPushServer();
                                                         ServerPluginInstalled = true;
                                                     }
                                                     catch
@@ -183,7 +183,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 {
                     ProgressText = AppResources.SysTrayUnregisteringDevice;
 
-                    var response = await ApiClient.DeleteDevice(DeviceId);
+                    await ApiClient.DeleteDeviceAsync(DeviceId);
 
                     SendToastUpdates = SendTileUpdates = true;
 
@@ -216,7 +216,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 try
                 {
-                    await ApiClient.UpdateDevice(DeviceId, SendToastUpdates);
+                    await ApiClient.UpdateDeviceAsync(DeviceId, SendToastUpdates);
                 }
                 catch
                 {
@@ -232,7 +232,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 try
                 {
-                    await ApiClient.UpdateDevice(DeviceId, liveTile: SendTileUpdates);
+                    await ApiClient.UpdateDeviceAsync(DeviceId, sendTileUpdate: SendTileUpdates);
                 }
                 catch
                 {
@@ -247,7 +247,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             var response = new RequestResult();
             try
             {
-                response = await ApiClient.RegisterDevice(DeviceId, HttpNotificationChannel.ChannelUri.ToString(), SendTileUpdates, SendToastUpdates);
+                await ApiClient.RegisterDeviceAsync(DeviceId, HttpNotificationChannel.ChannelUri.ToString(), SendTileUpdates, SendToastUpdates);
             }
             catch
             {
@@ -256,7 +256,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             Deployment.Current.Dispatcher.BeginInvoke(() =>
                                                           {
-                                                              IsRegistered = response.Success;
+                                                              IsRegistered = true;
                                                               BindingANotificationsChannelToAToastNotification();
                                                               ProgressText = string.Empty;
                                                               ProgressIsVisible = false;

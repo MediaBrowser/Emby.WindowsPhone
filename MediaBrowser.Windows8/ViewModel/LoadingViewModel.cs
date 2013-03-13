@@ -238,7 +238,7 @@ namespace MediaBrowser.Windows8.ViewModel
                 notifications.IsRegistered = await storageHelper.LoadAsync("IsRegistered");
                 try
                 {
-                    await ApiClient.CheckForPulse(notifications.DeviceId);
+                    await ApiClient.PushHeartbeatAsync(notifications.DeviceId);
                 }catch{}
             }
             notifications.loadingFromSettings = false;

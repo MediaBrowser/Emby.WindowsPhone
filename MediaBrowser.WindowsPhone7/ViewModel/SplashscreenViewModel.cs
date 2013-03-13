@@ -160,7 +160,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 settings.UseNotifications = ISettings.GetKeyValue<bool>("UseNotifications");
                 if (settings.UseNotifications)
                 {
-                    App.SpecificSettings.DeviceSettings = await ApiClient.GetDeviceSettings(settings.DeviceId);
+                    App.SpecificSettings.DeviceSettings = await ApiClient.GetDeviceSettingsAsync(settings.DeviceId);
 
                     settings.IsRegistered = ISettings.GetKeyValue<bool>("IsRegistered");
                     settings.SendTileUpdates = App.SpecificSettings.DeviceSettings.SendLiveTiles;
@@ -172,16 +172,16 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     {
                         foreach (var tile in tilesToRemove)
                         {
-                            await ApiClient.DeleteLiveTile(settings.DeviceId, tile.LiveTileId);
+                            //await ApiClient.DeleteLiveTile(settings.DeviceId, tile.LiveTileId);
                         }
-                        App.SpecificSettings.DeviceSettings = await ApiClient.GetDeviceSettings(settings.DeviceId);
+                        App.SpecificSettings.DeviceSettings = await ApiClient.GetDeviceSettingsAsync(settings.DeviceId);
                     }
 
                     settings.loadingFromSettings = false;
                     await settings.RegisterService();
                     try
                     {
-                        await ApiClient.CheckForPulse(settings.DeviceId);
+                        await ApiClient.PushHeartbeatAsync(settings.DeviceId);
                     }
                     catch
                     {

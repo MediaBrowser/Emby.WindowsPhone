@@ -67,7 +67,7 @@ namespace MediaBrowser.Windows8.ViewModel
                 ProgressText = "Checking server for plugin...";
                 ProgressVisibility = Visibility.Visible;
                 
-                var result = await ApiClient.CheckForPushServer();
+                //var result = await ApiClient.CheckForPushServer();
                 ServerPluginInstalled = true;
 
                 await SavePushSettings();
@@ -122,8 +122,8 @@ namespace MediaBrowser.Windows8.ViewModel
         {
             try
             {
-                var result = await ApiClient.DeleteDevice(DeviceId);
-                IsRegistered = result.Success;
+                await ApiClient.DeleteDeviceAsync(DeviceId);
+                IsRegistered = true;
             }
             catch
             {
@@ -141,8 +141,8 @@ namespace MediaBrowser.Windows8.ViewModel
                                                                             
                                                                         };
                 var url = PushNotificationChannel.Uri.Replace("%", "IMAPERCENT");
-                var result = await ApiClient.RegisterDevice(Uri.EscapeDataString(DeviceId), url, SendTileUpdates, SendToastUpdates);
-                IsRegistered = result.Success;
+                await ApiClient.RegisterDeviceAsync(Uri.EscapeDataString(DeviceId), url, SendTileUpdates, SendToastUpdates);
+                IsRegistered = true;
             }
             catch
             {
@@ -155,7 +155,7 @@ namespace MediaBrowser.Windows8.ViewModel
             if (loadingFromSettings) return;
             try
             {
-                await ApiClient.UpdateDevice(DeviceId, SendToastUpdates);
+                await ApiClient.UpdateDeviceAsync(DeviceId, SendToastUpdates);
                 await SavePushSettings();
             }
             catch
@@ -180,7 +180,7 @@ namespace MediaBrowser.Windows8.ViewModel
             if (loadingFromSettings) return;
             try
             {
-                await ApiClient.UpdateDevice(DeviceId, liveTile: SendTileUpdates);
+                await ApiClient.UpdateDeviceAsync(DeviceId, sendTileUpdate: SendTileUpdates);
                 await SavePushSettings();
             }
             catch

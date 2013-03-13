@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using GalaSoft.MvvmLight.Messaging;
+using MediaBrowser.Shared;
 using MediaBrowser.WindowsPhone.Model;
 
 namespace MediaBrowser.WindowsPhone

@@ -69,8 +69,10 @@
   <ItemGroup>
     <Compile Include="ConnectionDetails.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="DeviceSettings.cs" />
     <Compile Include="History.cs" />
     <Compile Include="ISettingsService.cs" />
+    <Compile Include="LiveTile.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RequestResult.cs" />
@@ -78,10 +80,10 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MediaBrowser.Model">
-      <HintPath>..\packages\MediaBrowser.Common.3.0.43\lib\portable-net4+sl4+wp7+win8\MediaBrowser.Model.dll</HintPath>
+      <HintPath>..\packages\MediaBrowser.Common.3.0.45\lib\portable-net4+sl4+wp7+win8\MediaBrowser.Model.dll</HintPath>
     </Reference>
     <Reference Include="PropertyChanged">
-      <HintPath>..\packages\PropertyChanged.Fody.1.33.1.0\lib\portable-net4+sl4+wp7+win8\PropertyChanged.dll</HintPath>
+      <HintPath>..\packages\PropertyChanged.Fody.1.35.0.0\lib\portable-net4+sl4+wp7+win8\PropertyChanged.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>
