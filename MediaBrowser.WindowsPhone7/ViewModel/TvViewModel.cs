@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using MediaBrowser.Model.Querying;
 using MediaBrowser.WindowsPhone.Model;
 using GalaSoft.MvvmLight.Messaging;
 using System.Linq;

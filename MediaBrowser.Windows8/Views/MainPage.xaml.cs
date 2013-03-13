@@ -1,5 +1,4 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
-
 using System;
 using System.Collections.Generic;
 using Windows.UI.Xaml;
@@ -7,7 +6,7 @@ using Windows.UI.Xaml.Controls;
 
 // The Grouped Items Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234231
 
-namespace MediaBrowser.Windows8
+namespace MediaBrowser.Windows8.Views
 {
     /// <summary>
     /// A page that displays a grouped collection of items.
@@ -35,7 +34,7 @@ namespace MediaBrowser.Windows8
 
         private void MainPageLoaded(object sender, RoutedEventArgs e)
         {
-            Messenger.Default.Send<NotificationMessage>(new NotificationMessage(Constants.MainPageLoadedMsg));
+            Messenger.Default.Send(new NotificationMessage(Constants.MainPageLoadedMsg));
         }
     }
 }

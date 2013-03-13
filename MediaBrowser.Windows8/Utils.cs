@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model.Dto;
-using MediaBrowser.ApiInteraction;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Windows8.Model;
 using MetroLog;
@@ -20,10 +19,10 @@ namespace MediaBrowser.Windows8
         {
             var client = SimpleIoc.Default.GetInstance<ExtendedApiClient>();
             LogManagerFactory.DefaultLogManager.GetLogger<Utils>().Info("Logging in as " + selectedUser.Name);
-            await client.AuthenticateUserAsync(selectedUser.Id, pinCode);
 
             try
             {
+                await client.AuthenticateUserAsync(selectedUser.Id, pinCode.ToHash());
                 if (successAction != null)
                 {
                     LogManagerFactory.DefaultLogManager.GetLogger<Utils>().Info("Login successful");
@@ -60,7 +59,7 @@ namespace MediaBrowser.Windows8
 
         public async static Task<ObservableCollection<Group<BaseItemPerson>>> GroupCastAndCrew(BaseItemDto item)
         {
-            var CastAndCrew = new ObservableCollection<Group<BaseItemPerson>>
+            var castAndCrew = new ObservableCollection<Group<BaseItemPerson>>
                               {
                                   new Group<BaseItemPerson> {Title = "Director"},
                                   new Group<BaseItemPerson> {Title = "Cast"}
@@ -75,7 +74,7 @@ namespace MediaBrowser.Windows8
                                                            .Select(x => x).ToList();
                                        foreach (var director in directors)
                                        {
-                                           CastAndCrew[0].Items.Add(director);
+                                           castAndCrew[0].Items.Add(director);
                                        }
 
                                        var castMembers = item.People
@@ -83,12 +82,12 @@ namespace MediaBrowser.Windows8
                                                              .Select(x => x);
                                        foreach (var cast in castMembers)
                                        {
-                                           CastAndCrew[1].Items.Add(cast);
+                                           castAndCrew[1].Items.Add(cast);
                                        }
                                    }
                                });
 
-            return CastAndCrew;
+            return castAndCrew;
         }
     }
 }

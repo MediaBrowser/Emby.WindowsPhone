@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using GalaSoft.MvvmLight;
 using MediaBrowser.Model.Entities;
+using MediaBrowser.Model.Querying;
 using MediaBrowser.WindowsPhone.Model;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;

@@ -140,6 +140,7 @@
     <Compile Include="Converters\VideoResolutionConverter.cs" />
     <Compile Include="Converters\VisibilityConverter.cs" />
     <Compile Include="Design\DesignNavigationService.cs" />
+    <Compile Include="ExtensionMethods.cs" />
     <Compile Include="Model\ExtendedApiClient.cs" />
     <Compile Include="Model\Group.cs" />
     <Compile Include="Model\INavigationService.cs" />
@@ -381,13 +382,13 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Win8nl.1.0.7\lib\NetCore45\GalaSoft.MvvmLight.Win8.dll</HintPath>
     </Reference>
-    <Reference Include="MediaBrowser.ApiInteraction.Portable, Version=3.0.4804.40949, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="MediaBrowser.ApiInteraction.Portable, Version=3.0.4818.13347, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MediaBrowser.ApiClient.3.0.0.7-beta\lib\portable-net45+sl4+wp71+win8\MediaBrowser.ApiInteraction.Portable.dll</HintPath>
+      <HintPath>..\packages\MediaBrowser.ApiClient.3.0.0.43-beta\lib\portable-net45+sl4+wp71+win8\MediaBrowser.ApiInteraction.Portable.dll</HintPath>
     </Reference>
-    <Reference Include="MediaBrowser.Model, Version=3.0.4804.40948, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="MediaBrowser.Model, Version=3.0.4818.13277, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MediaBrowser.Common.3.0.7\lib\portable-net4+sl4+wp7+win8\MediaBrowser.Model.dll</HintPath>
+      <HintPath>..\packages\MediaBrowser.Common.3.0.43\lib\portable-net4+sl4+wp7+win8\MediaBrowser.Model.dll</HintPath>
     </Reference>
     <Reference Include="MetroLog, Version=0.6.2.0, Culture=neutral, PublicKeyToken=ba4ace74c3b410f3, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -417,12 +418,14 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\winrt45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="PropertyChanged, Version=1.33.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="PropertyChanged, Version=1.33.1.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\PropertyChanged.Fody.1.33.0.0\lib\WinRT45\PropertyChanged.dll</HintPath>
+      <HintPath>..\packages\PropertyChanged.Fody.1.33.1.0\lib\WinRT45\PropertyChanged.dll</HintPath>
+      <Private>False</Private>
     </Reference>
-    <Reference Include="protobuf-net">
-      <HintPath>..\packages\protobuf-net.2.0.0.621\lib\netcore45\protobuf-net.dll</HintPath>
+    <Reference Include="protobuf-net, Version=2.0.0.621, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\other-packages\Protobuf\protobuf-net.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http.Extensions">
       <HintPath>..\packages\Microsoft.Net.Http.2.1.3-beta\lib\win8\System.Net.Http.Extensions.dll</HintPath>

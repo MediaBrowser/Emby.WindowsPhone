@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Security.Cryptography;
+using System.Text;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Ioc;
 using MediaBrowser.ApiInteraction;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
+using MediaBrowser.Model.Net;
 using MediaBrowser.WindowsPhone.Model;
 #if !WP8
 using ScottIsAFool.WindowsPhone;
@@ -32,10 +35,10 @@ namespace MediaBrowser.WindowsPhone
 #if WP8
                           where g.Count > 0
 #else
-                      where g.HasItems
+                          where g.HasItems
 #endif
-                           orderby g.Title
-                           select g).ToList();
+                          orderby g.Title
+                          select g).ToList();
 
             return result;
         }
@@ -43,19 +46,25 @@ namespace MediaBrowser.WindowsPhone
         internal static async Task Login(UserDto selectedUser, string pinCode, Action successAction)
         {
             var client = SimpleIoc.Default.GetInstance<ExtendedApiClient>();
-            await client.AuthenticateUserAsync(selectedUser.Id, pinCode);
 
-            
-                if(successAction != null)
+            try
+            {
+                await client.AuthenticateUserAsync(selectedUser.Id, pinCode.ToHash());
+
+                if (successAction != null)
                 {
                     successAction.Invoke();
                 }
-            
+            }
+            catch (HttpException ex)
+            {
+                
+            }
         }
-        
+
         internal static void CopyItem<T>(T source, T destination) where T : class
         {
-            var type = typeof (T);
+            var type = typeof(T);
             var properties = type.GetProperties(BindingFlags.Public);
 
             foreach (var fi in properties)
@@ -104,6 +113,15 @@ namespace MediaBrowser.WindowsPhone
                 .OrderByDescending(x => x.DateCreated)
                 .Take(6);
             return recent.ToList();
+        }
+
+        internal static string ToHash(this string pinCode)
+        {
+            var sha1 = new SHA1Managed();
+            var encoding = new UTF8Encoding();
+            sha1.ComputeHash(encoding.GetBytes(pinCode));
+
+            return BitConverter.ToString(sha1.Hash).Replace("-", "");
         }
     }
 }

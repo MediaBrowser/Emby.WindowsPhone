@@ -8,6 +8,7 @@ using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
+using MediaBrowser.Model.Querying;
 using MediaBrowser.Windows8.Model;
 using MediaBrowser.Windows8.Views;
 using ReflectionIT.Windows8.Helpers;

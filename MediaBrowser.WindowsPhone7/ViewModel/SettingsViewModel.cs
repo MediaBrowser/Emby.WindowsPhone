@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Net.Sockets;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
@@ -13,6 +14,7 @@ using MediaBrowser.Shared;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Resources;
 using Microsoft.Phone.Info;
+using Microsoft.Phone.Net.NetworkInformation;
 using Microsoft.Phone.Notification;
 using ScottIsAFool.WindowsPhone.IsolatedStorage;
 
@@ -106,8 +108,28 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 return new RelayCommand<LiveTile>(async liveTile =>
                                                       {
-                                                          
+
                                                       });
+            }
+        }
+
+        public RelayCommand FindServerLoaded
+        {
+            get
+            {
+                return new RelayCommand(() =>
+                                            {
+                                                if (!NavigationService.IsNetworkAvailable || (NetworkInterface.NetworkInterfaceType != NetworkInterfaceType.Ethernet && NetworkInterface.NetworkInterfaceType != NetworkInterfaceType.Wireless80211))
+                                                    return;
+                                                ProgressIsVisible = true;
+                                                ProgressText = "Attempting to find your server...";
+
+                                                var socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+                                                
+
+                                                ProgressText = string.Empty;
+                                                ProgressIsVisible = false;
+                                            });
             }
         }
 
@@ -162,11 +184,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     ProgressText = AppResources.SysTrayUnregisteringDevice;
 
                     var response = await ApiClient.DeleteDevice(DeviceId);
-                    
+
                     SendToastUpdates = SendTileUpdates = true;
-                    
-                    if(HttpNotificationChannel.IsShellTileBound) HttpNotificationChannel.UnbindToShellTile();
-                    if(HttpNotificationChannel.IsShellToastBound) HttpNotificationChannel.UnbindToShellToast();
+
+                    if (HttpNotificationChannel.IsShellTileBound) HttpNotificationChannel.UnbindToShellTile();
+                    if (HttpNotificationChannel.IsShellToastBound) HttpNotificationChannel.UnbindToShellToast();
 
                     IsRegistered = false;
 
@@ -278,7 +300,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
             if (!HttpNotificationChannel.IsShellTileBound)
             {
-                HttpNotificationChannel.BindToShellTile(new Collection<Uri>{ new Uri("http://dev.scottisafool.co.uk")});
+                HttpNotificationChannel.BindToShellTile(new Collection<Uri> { new Uri("http://dev.scottisafool.co.uk") });
             }
         }
 

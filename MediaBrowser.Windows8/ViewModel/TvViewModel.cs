@@ -8,6 +8,7 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.ApiInteraction;
 using MediaBrowser.Model.Dto;
+using MediaBrowser.Model.Querying;
 using MediaBrowser.Shared;
 using MediaBrowser.Windows8.Model;
 using MediaBrowser.Windows8.Views;

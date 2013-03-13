@@ -48,7 +48,7 @@ namespace MediaBrowser.Windows8.ViewModel
                         () => new NavigationService(new Frame()));
 
                 if (!SimpleIoc.Default.IsRegistered<ExtendedApiClient>())
-                    SimpleIoc.Default.Register(() => new ExtendedApiClient(new Logger(), new AsyncHttpClient())
+                    SimpleIoc.Default.Register(() => new ExtendedApiClient(new Logger(), new AsyncHttpClient(new Logger()))
                                                                     {
                                                                         ServerHostName = "192.168.0.2",
                                                                         ServerApiPort = 8096,
@@ -65,12 +65,10 @@ namespace MediaBrowser.Windows8.ViewModel
             {
                 SimpleIoc.Default.Register<NavigationService>();
                 if (!SimpleIoc.Default.IsRegistered<ExtendedApiClient>())
-                    SimpleIoc.Default.Register(() => new ExtendedApiClient(new Logger(), new AsyncHttpClient(new HttpClientHandler
-                                                                                                                 {
-                                                                                                                     AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip
-                                                                                                                 }))
+                    SimpleIoc.Default.Register(() => new ExtendedApiClient(new Logger(), new AsyncHttpClient(new Logger()))
                                                          {
                                                              ClientType = ClientType.WindowsRT,
+                                                             SerializationFormat = SerializationFormats.Json
                                                          });
                 
             }

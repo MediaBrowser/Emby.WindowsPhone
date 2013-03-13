@@ -55,8 +55,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                                               var query = new VideoStreamOptions
                                                                               {
                                                                                   ItemId = selectedItem.Id,
-                                                                                  VideoCodec = VideoCodecs.H264,
-                                                                                  OutputFileExtension = "ts",
+                                                                                  VideoCodec = VideoCodecs.Wmv,
+                                                                                  //OutputFileExtension = "ts",
                                                                                   AudioCodec = AudioCodecs.Mp3,
                                                                                   MaxHeight = (int)bounds.Width,
                                                                                   MaxWidth = (int)bounds.Height
@@ -70,7 +70,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                                               //    var s = "";
                                                                               //}
                                                                               VideoUrl = new Uri(ApiClient.GetVideoStreamUrl(query));
-                                                                              Messenger.Default.Send(new NotificationMessage("BigBob"));
                                                                           }
                                                                       });
         }

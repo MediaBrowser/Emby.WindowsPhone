@@ -105,7 +105,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                         {
                                                             ItemId = SelectedMovie.Id,
                                                             VideoCodec = VideoCodecs.Wmv,
-                                                            OutputFileExtension = "asf",
+                                                            //OutputFileExtension = "asf",
                                                             AudioCodec = AudioCodecs.Wma,
                                                             VideoBitRate = 1000000,
                                                             AudioBitRate = 128000,

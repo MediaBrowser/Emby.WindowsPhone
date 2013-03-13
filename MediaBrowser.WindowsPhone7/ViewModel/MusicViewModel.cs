@@ -7,6 +7,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model.Dto;
+using MediaBrowser.Model.Querying;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Resources;
 

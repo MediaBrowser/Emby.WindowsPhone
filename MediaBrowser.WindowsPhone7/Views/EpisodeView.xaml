@@ -57,12 +57,12 @@
           Background="{StaticResource MediaBrowserBackground}">
         <i:Interaction.Behaviors>
             <cimbalino:ApplicationBarBehavior>
-                    <cimbalino:ApplicationBarIconButton Command="{Binding PreviousEpisodeCommand}"
-                                                        Text="previous"
-                                                        IconUri="/icons/appbar.back.rest.png"/>
-                    <cimbalino:ApplicationBarIconButton Text="next"
-                                                  Command="{Binding NextEpisodeCommand}"
-                                                  IconUri="/icons/appbar.next.rest.png" />
+                <cimbalino:ApplicationBarIconButton Command="{Binding PreviousEpisodeCommand}"
+                                                    Text="previous"
+                                                    IconUri="/icons/appbar.back.rest.png" />
+                <cimbalino:ApplicationBarIconButton Text="next"
+                                                    Command="{Binding NextEpisodeCommand}"
+                                                    IconUri="/icons/appbar.next.rest.png" />
             </cimbalino:ApplicationBarBehavior>
         </i:Interaction.Behaviors>
         <Grid.RowDefinitions>
@@ -93,7 +93,7 @@
                 </StackPanel>
             </ScrollViewer>
         </Grid>
-        
+
     </Grid>
 
 </phone:PhoneApplicationPage>

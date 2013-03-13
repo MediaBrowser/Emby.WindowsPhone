@@ -55,9 +55,9 @@
     <Reference Include="AdvancedREI.Net.Http.Compression">
       <HintPath>..\packages\HttpClient.Compression.1.0.0-beta4\lib\portable-net4+sl4+wp7+win8\AdvancedREI.Net.Http.Compression.dll</HintPath>
     </Reference>
-    <Reference Include="Cimbalino.Phone.Toolkit, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Cimbalino.Phone.Toolkit, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Cimbalino.Phone.Toolkit.2.0.1\lib\sl4-wp71\Cimbalino.Phone.Toolkit.dll</HintPath>
+      <HintPath>..\packages\Cimbalino.Phone.Toolkit.2.1\lib\sl4-wp71\Cimbalino.Phone.Toolkit.dll</HintPath>
     </Reference>
     <Reference Include="Coding4Fun.Toolkit.Controls, Version=2.0.2.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -71,13 +71,13 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\MvvmLightLibs.4.1.27.0\lib\sl4-wp71\GalaSoft.MvvmLight.WP71.dll</HintPath>
     </Reference>
-    <Reference Include="MediaBrowser.ApiInteraction.Portable, Version=3.0.4804.40949, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="MediaBrowser.ApiInteraction.Portable, Version=3.0.4818.13347, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MediaBrowser.ApiClient.3.0.0.7-beta\lib\portable-net45+sl4+wp71+win8\MediaBrowser.ApiInteraction.Portable.dll</HintPath>
+      <HintPath>..\packages\MediaBrowser.ApiClient.3.0.0.43-beta\lib\portable-net45+sl4+wp71+win8\MediaBrowser.ApiInteraction.Portable.dll</HintPath>
     </Reference>
-    <Reference Include="MediaBrowser.Model, Version=3.0.4804.40948, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="MediaBrowser.Model, Version=3.0.4818.13277, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MediaBrowser.Common.3.0.7\lib\portable-net4+sl4+wp7+win8\MediaBrowser.Model.dll</HintPath>
+      <HintPath>..\packages\MediaBrowser.Common.3.0.43\lib\portable-net4+sl4+wp7+win8\MediaBrowser.Model.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Phone.Controls, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Phone.Controls.Toolkit, Version=7.0.0.0, Culture=neutral, PublicKeyToken=b772ad94eb9ca604, processorArchitecture=MSIL">
@@ -230,6 +230,9 @@
     <Compile Include="Views\EpisodeView.xaml.cs">
       <DependentUpon>EpisodeView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\FindServerView.xaml.cs">
+      <DependentUpon>FindServerView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\FolderView.xaml.cs">
       <DependentUpon>FolderView.xaml</DependentUpon>
     </Compile>
@@ -302,6 +305,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\EpisodeView.xaml">
+      <SubType>Form</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FindServerView.xaml">
       <SubType>Form</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

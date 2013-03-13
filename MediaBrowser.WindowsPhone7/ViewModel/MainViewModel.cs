@@ -2,6 +2,7 @@
 using System.Windows;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
+using MediaBrowser.Model.Querying;
 using MediaBrowser.WindowsPhone.Model;
 using GalaSoft.MvvmLight.Command;
 using System.Collections.ObjectModel;
@@ -41,7 +42,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             FavouriteItems = new ObservableCollection<BaseItemDto>();
             if (IsInDesignMode)
             {
-                Folders.Add(new BaseItemDto { Id = "78dbff5aa1c2101b98ebaf42b72a988d", Name = "Movies", RecentlyAddedUnPlayedItemCount = 2 });
+                Folders.Add(new BaseItemDto { Id = "78dbff5aa1c2101b98ebaf42b72a988d", Name = "Movies" });
                 RecentItems.Add(new BaseItemDto { Id = "2fc6f321b5f8bbe842fcd0eed089561d", Name = "A Night To Remember" });
             }
             else

@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model.Dto;
+using MediaBrowser.Model.Querying;
 using MediaBrowser.Windows8.Model;
 using Windows.UI.Xaml;
 using System.Linq;

@@ -61,11 +61,13 @@ namespace MediaBrowser.Windows8.ViewModel
                 ApiClient.ServerHostName = App.Settings.ConnectionDetails.HostName;
                 ApiClient.ServerApiPort = App.Settings.ConnectionDetails.PortNo;
                 var isNotLocalhost = CheckForLocalhost();
+#if !DEBUG
                 if (!isNotLocalhost)
                 {
                     await MessageBox.ShowAsync("Unfortunately, this app can't be run on the same machine as the server, this is a limitation of the platform.", "Please use a different hostname", MessageBoxButton.OK);
                     return;
                 }
+#endif
                 var connectionSuccess = await CheckForServer();
                 if (connectionSuccess)
                 {
@@ -162,12 +164,11 @@ namespace MediaBrowser.Windows8.ViewModel
             bool serverConfig = false;
             ProgressVisibility = Visibility.Visible;
             ProgressText = "Loading settings...";
-            SpecificSettings settings = null;
             var settingsLoader = new ObjectStorageHelper<SpecificSettings>(StorageType.Roaming);
             //await settingsLoader.DeleteAsync(Constants.SpecificSettings);
             try
             {
-                settings = await settingsLoader.LoadAsync(Constants.SpecificSettings);
+                SpecificSettings settings = await settingsLoader.LoadAsync(Constants.SpecificSettings);
                 if (settings != null)
                     await Utils.CopyItem(settings, SimpleIoc.Default.GetInstance<SpecificSettings>());
             }
@@ -188,6 +189,7 @@ namespace MediaBrowser.Windows8.ViewModel
                 if (serverConfig)
                 {
                     var storageHelper = new ObjectStorageHelper<UserSettingWrapper>(StorageType.Roaming);
+                    //await storageHelper.DeleteAsync(Constants.SelectedUserSetting);
                     var wrapper = await storageHelper.LoadAsync(Constants.SelectedUserSetting);
                     if (wrapper != null)
                     {

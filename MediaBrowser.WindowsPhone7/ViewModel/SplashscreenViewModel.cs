@@ -5,6 +5,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
+using MediaBrowser.Model.Net;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Resources;
 using Microsoft.Phone.Info;
@@ -223,6 +224,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
             catch (Exception ex)
             {
+                var mbEx = ex as HttpException;
                 return false;
             }
         }

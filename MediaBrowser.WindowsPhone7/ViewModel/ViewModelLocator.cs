@@ -41,7 +41,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             if (ViewModelBase.IsInDesignModeStatic)
             {
                 if (!SimpleIoc.Default.IsRegistered<ExtendedApiClient>())
-                    SimpleIoc.Default.Register(() => new ExtendedApiClient(new Logger(), new AsyncHttpClient()) { ServerApiPort = 8096, ServerHostName = "192.168.0.2", ClientType = ClientType.WindowsPhone });
+                    SimpleIoc.Default.Register(() => new ExtendedApiClient(new Logger(), new AsyncHttpClient(new Logger())) { ServerApiPort = 8096, ServerHostName = "192.168.0.2", ClientType = ClientType.WindowsPhone });
                 SimpleIoc.Default.Register<INavigationService, NavigationService>();
                 SimpleIoc.Default.Register<FolderViewModel>();
                 SimpleIoc.Default.Register<MovieViewModel>();
@@ -51,7 +51,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 SimpleIoc.Default.Register<INavigationService, NavigationService>();
                 SimpleIoc.Default.Register<ISettingsService, SettingsService>();
                 if (!SimpleIoc.Default.IsRegistered<ExtendedApiClient>())
-                    SimpleIoc.Default.Register(() => new ExtendedApiClient(new Logger(), new AsyncHttpClient(new CompressedHttpClientHandler())) { ClientType = ClientType.WindowsPhone, SerializationFormat = SerializationFormats.Json });
+                    SimpleIoc.Default.Register(() => new ExtendedApiClient(new Logger(), new AsyncHttpClient(new Logger())) { ClientType = ClientType.WindowsPhone, SerializationFormat = SerializationFormats.Json });
             }
 
             SimpleIoc.Default.Register<MainViewModel>(true);
