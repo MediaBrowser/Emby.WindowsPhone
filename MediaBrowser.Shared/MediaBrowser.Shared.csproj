@@ -80,7 +80,7 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MediaBrowser.Model">
-      <HintPath>..\packages\MediaBrowser.Common.3.0.45\lib\portable-net4+sl4+wp7+win8\MediaBrowser.Model.dll</HintPath>
+      <HintPath>..\packages\MediaBrowser.Common.3.0.49\lib\portable-net4+sl4+wp7+win8\MediaBrowser.Model.dll</HintPath>
     </Reference>
     <Reference Include="PropertyChanged">
       <HintPath>..\packages\PropertyChanged.Fody.1.35.0.0\lib\portable-net4+sl4+wp7+win8\PropertyChanged.dll</HintPath>
@@ -96,5 +96,5 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <Import Project="$(ProjectPath)\..\..\..\..\..\..\visual studio 2012\Projects\Win8\MediaBrowser.Windows8\Tools\Fody\Fody.targets" />
+  <Import Project="$(ProjectPath)\..\..\Tools\Fody\Fody.targets" />
 </Project>

@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Windows8.ViewModel;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Shared;
@@ -57,6 +59,11 @@ namespace MediaBrowser.Windows8.Views
         {
             ActionControls.Visibility = viewState == ApplicationViewState.Snapped ? Visibility.Collapsed : Visibility.Visible;
             return base.DetermineVisualState(viewState);
+        }
+
+        private void ListViewBase_OnItemClick(object sender, ItemClickEventArgs e)
+        {
+            SimpleIoc.Default.GetInstance<MainViewModel>().ItemClicked.Execute(e);
         }
     }
 }

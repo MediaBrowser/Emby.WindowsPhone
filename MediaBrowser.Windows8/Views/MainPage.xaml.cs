@@ -1,6 +1,8 @@
-﻿using GalaSoft.MvvmLight.Messaging;
+﻿using GalaSoft.MvvmLight.Ioc;
+using GalaSoft.MvvmLight.Messaging;
 using System;
 using System.Collections.Generic;
+using MediaBrowser.Windows8.ViewModel;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -35,6 +37,11 @@ namespace MediaBrowser.Windows8.Views
         private void MainPageLoaded(object sender, RoutedEventArgs e)
         {
             Messenger.Default.Send(new NotificationMessage(Constants.MainPageLoadedMsg));
+        }
+
+        private void OnItemClick(object sender, ItemClickEventArgs e)
+        {
+            SimpleIoc.Default.GetInstance<MainViewModel>().ItemClicked.Execute(e);
         }
     }
 }

@@ -1,6 +1,8 @@
-﻿using GalaSoft.MvvmLight.Messaging;
+﻿using GalaSoft.MvvmLight.Ioc;
+using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Windows8.ViewModel;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using MediaBrowser.Shared;
 
@@ -43,6 +45,11 @@ namespace MediaBrowser.Windows8.Views
             {
                 History.Current.AddHistoryItem(GetType(), DataContext);
             }
+        }
+
+        private void ListViewBase_OnItemClick(object sender, ItemClickEventArgs e)
+        {
+            SimpleIoc.Default.GetInstance<MainViewModel>().ItemClicked.Execute(e);
         }
     }
 }

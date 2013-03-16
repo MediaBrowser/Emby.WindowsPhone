@@ -1,8 +1,10 @@
-﻿using GalaSoft.MvvmLight.Messaging;
+﻿using GalaSoft.MvvmLight.Ioc;
+using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Windows8.Common;
 using MediaBrowser.Windows8.ViewModel;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Shared;
@@ -44,8 +46,6 @@ namespace MediaBrowser.Windows8.Views
             else if(e.NavigationMode == NavigationMode.New)
             {
                 item = (BaseItemDto) e.Parameter;
-                
-                
             }
         }
 
@@ -56,6 +56,11 @@ namespace MediaBrowser.Windows8.Views
             {
                 History.Current.AddHistoryItem(GetType(), DataContext);                
             }
+        }
+
+        private void ItemGridView_OnItemClick(object sender, ItemClickEventArgs e)
+        {
+            SimpleIoc.Default.GetInstance<MainViewModel>().ItemClicked.Execute(e);
         }
     }
 }

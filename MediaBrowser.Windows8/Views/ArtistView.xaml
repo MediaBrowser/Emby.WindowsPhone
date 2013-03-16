@@ -61,12 +61,13 @@
                   Padding="120,0,0,0"
                   SelectionMode="Single"
                   IsSwipeEnabled="True"
-                  IsItemClickEnabled="True">
-            <winRtBehaviors:Interaction.Behaviors>
+                  IsItemClickEnabled="True"
+                  ItemClick="ListViewBase_OnItemClick">
+            <!--<winRtBehaviors:Interaction.Behaviors>
                 <behaviors:EventToBoundCommandBehavior Command="{Binding Main.ItemClicked, Source={StaticResource Locator}}"
                                                        Event="ItemClick"
                                                        PassEventArgsToCommand="True" />
-            </winRtBehaviors:Interaction.Behaviors>
+            </winRtBehaviors:Interaction.Behaviors>-->
             <GridView.ItemTemplate>
                 <DataTemplate>
                     <Grid Height="250"

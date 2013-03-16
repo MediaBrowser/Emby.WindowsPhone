@@ -91,14 +91,18 @@ namespace MediaBrowser.WindowsPhone.Model
         public void NavigateToPage(BaseItemDto item)
         {
             App.SelectedItem = item;
-            switch (item.Type.ToLower())
+            var type = item.Type.ToLower();
+            if (type.Contains("collectionfolder")) type = "collectionfolder";
+            switch (type)
             {
-                case "folder":
                 case "collectionfolder":
                 case "genre":
                 case "trailercollectionfolder":
                     //Messenger.Default.Send(new NotificationMessage(item, Constants.ShowFolderMsg));
                     NavigateToPage("/Views/CollectionView.xaml");
+                    break;
+                case "folder":
+                    NavigateToPage("/Views/FolderView.xaml");
                     break;
                 case "movie":
                     //Messenger.Default.Send(new NotificationMessage(item, Constants.ShowMovieMsg));

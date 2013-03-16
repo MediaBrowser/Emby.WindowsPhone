@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Shared;
@@ -70,6 +71,11 @@ namespace MediaBrowser.Windows8.Views
             {
                 History.Current.AddHistoryItem(GetType(), DataContext);                
             }
+        }
+
+        private void GridView_OnItemClick(object sender, ItemClickEventArgs e)
+        {
+            SimpleIoc.Default.GetInstance<MainViewModel>().ItemClicked.Execute(e);
         }
     }
 }

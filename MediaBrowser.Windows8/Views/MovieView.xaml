@@ -199,12 +199,13 @@
                                   IsSwipeEnabled="True"
                                   IsTapEnabled="True"
                                   VerticalAlignment="Top"
-                                  HorizontalAlignment="Stretch">
-                            <winRtBehaviors:Interaction.Behaviors>
+                                  HorizontalAlignment="Stretch"
+                                  ItemClick="ListViewBase_OnItemClick">
+                            <!--<winRtBehaviors:Interaction.Behaviors>
                                 <behaviors:EventToBoundCommandBehavior Command="{Binding DataContext.GenreTappedCommand, ElementName=pageRoot}"
                                                                        Event="ItemClick"
                                                                        PassEventArgsToCommand="True" />
-                            </winRtBehaviors:Interaction.Behaviors>
+                            </winRtBehaviors:Interaction.Behaviors>-->
                             <GridView.Header>
                                 <TextBlock Text="Genres:"
                                            Style="{StaticResource BasicTextStyle}"
@@ -285,14 +286,12 @@
                           Grid.Row="2"
                           Height="Auto"
                           Margin="12,0,0,0"
-                          Padding="120,0,0,0">
-                    <winRtBehaviors:Interaction.Behaviors>
+                          Padding="120,0,0,0"
+                          ItemClick="ListViewBase_OnItemClick">
+                    <!--<winRtBehaviors:Interaction.Behaviors>
                         <behaviors:EventToBoundCommandBehavior Command="{Binding Main.ItemClicked, Source={StaticResource Locator}}"
                                                                Event="ItemClick"
                                                                PassEventArgsToCommand="True" />
-                    </winRtBehaviors:Interaction.Behaviors>
-                    <!--<winRtBehaviors:Interaction.Behaviors>
-                        
                     </winRtBehaviors:Interaction.Behaviors>-->
                     <GridView.ItemsPanel>
                         <ItemsPanelTemplate>

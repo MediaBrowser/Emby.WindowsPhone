@@ -7,14 +7,16 @@
                         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                         xmlns:Controls="using:ScottIsAFool.Windows8.Controls"
-                        xmlns:winRtBehaviors="using:WinRtBehaviors" xmlns:behaviors="using:Win8nl.Behaviors"
+                        
+                        xmlns:behaviors="using:Win8nl.Behaviors"
                         xmlns:converters="using:MediaBrowser.Windows8.Converters"
+                        xmlns:winRtBehaviors="using:WinRtBehaviors"
                         mc:Ignorable="d"
                         Loaded="MainPageLoaded">
 
     <Page.Resources>
 
-        <converters:CountToVisibilityConverter x:Key="CountToVisibilityConverter"/>
+        <converters:CountToVisibilityConverter x:Key="CountToVisibilityConverter" />
         <CollectionViewSource x:Name="groupedItemsViewSource"
                               Source="{Binding Groups}"
                               IsSourceGrouped="true"
@@ -22,7 +24,8 @@
                               d:Source="{Binding Main.Groups, Source={StaticResource Locator}}" />
     </Page.Resources>
     <Page.TopAppBar>
-        <AppBar ContentTemplate="{StaticResource NavigationAppBar}" x:Name="theTopAppBar" />
+        <AppBar ContentTemplate="{StaticResource NavigationAppBar}"
+                x:Name="theTopAppBar" />
     </Page.TopAppBar>
     <Page.BottomAppBar>
         <AppBar Visibility="{Binding SelectedItems.Count, ElementName=itemGridView, Converter={StaticResource CountToVisibilityConverter}}"
@@ -33,7 +36,7 @@
                             HorizontalAlignment="Left"
                             Visibility="{Binding PinCollectionVisibility}">
                     <Button Style="{StaticResource PinAppBarButtonStyle}"
-                            AutomationProperties.Name="Pin Collection"/>
+                            AutomationProperties.Name="Pin Collection" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal"
                             HorizontalAlignment="Right"
@@ -68,8 +71,8 @@
                 <RowDefinition Height="140" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            
-            
+
+
 
             <!-- Horizontal scrolling grid used in most view states -->
             <GridView x:Name="itemGridView"
@@ -84,12 +87,13 @@
                       IsSwipeEnabled="True"
                       IsItemClickEnabled="True"
                       CanDragItems="True"
-                      Grid.Column="1">
-                <winRtBehaviors:Interaction.Behaviors>
+                      Grid.Column="1"
+                      ItemClick="OnItemClick">
+                <!--<winRtBehaviors:Interaction.Behaviors>
                     <behaviors:EventToBoundCommandBehavior Command="{Binding Main.ItemClicked, Source={StaticResource Locator}}"
                                                            Event="ItemClick"
-                                                           PassEventArgsToCommand="True"/>
-                </winRtBehaviors:Interaction.Behaviors>
+                                                           PassEventArgsToCommand="True" />
+                </winRtBehaviors:Interaction.Behaviors>-->
 
                 <GridView.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -130,12 +134,13 @@
                       ItemTemplate="{StaticResource Standard80ItemTemplate}"
                       SelectionMode="None"
                       IsSwipeEnabled="false"
-                      IsItemClickEnabled="True">
-                <winRtBehaviors:Interaction.Behaviors>
+                      IsItemClickEnabled="True"
+                      ItemClick="OnItemClick">
+                <!--<winRtBehaviors:Interaction.Behaviors>
                     <behaviors:EventToBoundCommandBehavior Command="{Binding Main.ItemClicked, Source={StaticResource Locator}}"
                                                            Event="ItemClick"
                                                            PassEventArgsToCommand="True" />
-                </winRtBehaviors:Interaction.Behaviors>
+                </winRtBehaviors:Interaction.Behaviors>-->
                 <ListView.GroupStyle>
                     <GroupStyle>
                         <GroupStyle.HeaderTemplate>
