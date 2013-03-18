@@ -159,8 +159,15 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                     {
                                                         App.Settings.ConnectionDetails.HostName = server.IpAddress;
                                                         App.Settings.ConnectionDetails.PortNo = int.Parse(server.PortNo);
-                                                        NavigationService.GoBack();
+                                                        //NavigationService.GoBack();
+
+                                                        ProgressIsVisible = true;
+                                                        ProgressText = AppResources.SysTrayAuthenticating;
+
                                                         SimpleIoc.Default.GetInstance<SplashscreenViewModel>().TestConnectionCommand.Execute(null);
+
+                                                        ProgressIsVisible = false;
+                                                        ProgressText = string.Empty;
                                                     });
             }
         }
