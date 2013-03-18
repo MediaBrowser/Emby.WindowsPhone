@@ -21,7 +21,7 @@ namespace MediaBrowser.Windows8.Model
         [PreferredConstructor]
         public NavigationService()
         {
-            
+
         }
 
         public void Navigate(Type pageType, object parameter = null)
@@ -78,7 +78,10 @@ namespace MediaBrowser.Windows8.Model
         {
             if (item is BaseItemDto)
             {
-                switch (((BaseItemDto)item).Type.ToLower())
+                var type = ((BaseItemDto)item).Type.ToLower();
+                if (type.Contains("collectionfolder")) type = "collectionfolder";
+
+                switch (type)
                 {
                     case "folder":
                     case "collectionfolder":
@@ -115,7 +118,7 @@ namespace MediaBrowser.Windows8.Model
                         break;
                 }
             }
-            else if(item is BaseItemPerson)
+            else if (item is BaseItemPerson)
             {
                 Navigate<FolderView>(item);
             }

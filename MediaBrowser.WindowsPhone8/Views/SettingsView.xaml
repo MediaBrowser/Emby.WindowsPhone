@@ -120,25 +120,12 @@
                     <Button Margin="0,12,0,0"
                             Content="Connect"
                             Command="{Binding Splashscreen.TestConnectionCommand, Source={StaticResource Locator}}" />
+                    <Button Content="Find server"
+                            Command="{Binding Main.NavigateToAPage, Source={StaticResource Locator}}"
+                            CommandParameter="/Views/FindServerView.xaml"/>
                 </StackPanel>
             </phone:PivotItem>
         </phone:Pivot>
-
-        <!--ContentPanel - place additional content here-->
-        <!--<Grid x:Name="ContentPanel"
-              Grid.Row="1"
-              Margin="12,0,12,0">
-            <ScrollViewer VerticalAlignment="Top">
-                <StackPanel Orientation="Vertical">
-                    <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                     NavigateUri="/Views/Settings/ConnectionSettings.xaml"
-                                     HorizontalContentAlignment="Left">
-                        <Controls:HeaderAndDetail HeaderText="connection"
-                                                  DetailText="{Binding ConnectionDetails, Source={StaticResource AppSettings}, Converter={StaticResource SettingsConverters}, ConverterParameter=connectiondetails}"/>
-                    </HyperlinkButton>
-                </StackPanel>
-            </ScrollViewer>
-        </Grid>-->
     </Grid>
 
 </phone:PhoneApplicationPage>

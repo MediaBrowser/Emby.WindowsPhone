@@ -63,7 +63,7 @@
             <GridView Grid.Row="1"
                       x:Name="gridView"
                       ItemsSource="{Binding Episodes}"
-                      Margin="120,0,0,0"
+                      Padding="120,0,0,0"
                       SelectionMode="None"
                       IsItemClickEnabled="True"
                       ItemClick="GridView_OnItemClick">

@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
-using System.Net.Sockets;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Threading;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
-using MediaBrowser.Model.Entities;
 using MediaBrowser.Shared;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Resources;
@@ -17,6 +17,12 @@ using Microsoft.Phone.Info;
 using Microsoft.Phone.Net.NetworkInformation;
 using Microsoft.Phone.Notification;
 using ScottIsAFool.WindowsPhone.IsolatedStorage;
+
+#if WP8
+using Windows.Networking;
+using Windows.Networking.Sockets;
+using Windows.Storage.Streams;
+#endif
 
 namespace MediaBrowser.WindowsPhone.ViewModel
 {
@@ -46,6 +52,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 IsRegistered = UseNotifications = true;
                 RegisteredText = "Device registered";
                 ServerPluginInstalled = false;
+
+#if WP8
+                FoundServers = new ObservableCollection<Server>
+                                   {
+                                       new Server {IpAddress = "192.168.0.2", PortNo = "8096"},
+                                       new Server {IpAddress = "192.168.0.4", PortNo = "8096"}
+                                   };
+#endif
             }
             else
             {
@@ -113,25 +127,85 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
         }
 
+#if WP8
+        #region Server Broadcast code WP8 only
+        public ObservableCollection<Server> FoundServers { get; set; }
         public RelayCommand FindServerLoaded
         {
             get
             {
-                return new RelayCommand(() =>
+                return new RelayCommand(async () =>
                                             {
-                                                if (!NavigationService.IsNetworkAvailable || (NetworkInterface.NetworkInterfaceType != NetworkInterfaceType.Ethernet && NetworkInterface.NetworkInterfaceType != NetworkInterfaceType.Wireless80211))
+                                                if (!NavigationService.IsNetworkAvailable ||
+                                                    (NetworkInterface.NetworkInterfaceType != NetworkInterfaceType.Ethernet
+                                                    && NetworkInterface.NetworkInterfaceType != NetworkInterfaceType.Wireless80211))
                                                     return;
                                                 ProgressIsVisible = true;
                                                 ProgressText = "Attempting to find your server...";
 
-                                                var socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
-                                                
+                                                await SendMessage("who is MediaBrowserServer?", 7359);
 
                                                 ProgressText = string.Empty;
                                                 ProgressIsVisible = false;
                                             });
             }
         }
+
+        public RelayCommand<Server> ServerTappedCommand
+        {
+            get
+            {
+                return new RelayCommand<Server>(server =>
+                                                    {
+                                                        App.Settings.ConnectionDetails.HostName = server.IpAddress;
+                                                        App.Settings.ConnectionDetails.PortNo = int.Parse(server.PortNo);
+                                                        NavigationService.GoBack();
+                                                        SimpleIoc.Default.GetInstance<SplashscreenViewModel>().TestConnectionCommand.Execute(null);
+                                                    });
+            }
+        }
+
+        private async Task SendMessage(string message, int port)
+        {
+            FoundServers = new ObservableCollection<Server>();
+            var socket = new DatagramSocket();
+
+            socket.MessageReceived += SocketOnMessageReceived;
+
+            using (var stream = await socket.GetOutputStreamAsync(new HostName("255.255.255.255"), port.ToString()))
+            {
+                using (var writer = new DataWriter(stream))
+                {
+                    var data = Encoding.UTF8.GetBytes(message);
+
+                    writer.WriteBytes(data);
+                    writer.StoreAsync();
+                }
+            }
+        }
+
+        private async void SocketOnMessageReceived(DatagramSocket sender, DatagramSocketMessageReceivedEventArgs args)
+        {
+            var result = args.GetDataStream();
+            var resultStream = result.AsStreamForRead(1024);
+
+            using (var reader = new StreamReader(resultStream))
+            {
+                var text = await reader.ReadToEndAsync();
+                Deployment.Current.Dispatcher.BeginInvoke(() =>
+                {
+                    // Do what you need to with the resulting text
+                    // Doesn't have to be a messagebox
+                    var parts = text.Split('|');
+
+                    var fullAddress = parts[1].Split(':');
+
+                    FoundServers.Add(new Server { IpAddress = fullAddress[0], PortNo = fullAddress[1] });
+                });
+            }
+        }
+        #endregion
+#endif
 
         internal string DeviceId
         {
@@ -146,6 +220,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 #endif
         }
 
+        #region Push Notification methods
         private void OnServerPluginInstalledChanged()
         {
             ISettings.Set("ServerPluginInstalled", ServerPluginInstalled);
@@ -303,6 +378,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 HttpNotificationChannel.BindToShellTile(new Collection<Uri> { new Uri("http://dev.scottisafool.co.uk") });
             }
         }
+        #endregion
 
         private static string ParseANID(string anid)
         {

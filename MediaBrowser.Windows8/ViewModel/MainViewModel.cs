@@ -137,7 +137,7 @@ namespace MediaBrowser.Windows8.ViewModel
             dataLoaded = false;
         }
 
-        private void SelectedItemChanged()
+        private void OnSelectedItemChanged()
         {
             IsOpen = SelectedItem != null;
             IsSticky = IsOpen;
@@ -360,20 +360,7 @@ namespace MediaBrowser.Windows8.ViewModel
         public bool IsOpen { get; set; }
        
         public List<Group<BaseItemDto>> Groups { get; set; }
-        private BaseItemDto selectedItem;
-        public BaseItemDto SelectedItem
-        {
-            get { return selectedItem; }
-            set
-            {
-                if (value != selectedItem)
-                {
-                    selectedItem = value;
-                    RaisePropertyChanged(()=> SelectedItem);
-                    SelectedItemChanged();
-                }
-            }
-        }
+        public BaseItemDto SelectedItem { get; set; }
 
         public Visibility PlayResumeVisibility { get; set; }
         public Visibility PinCollectionVisibility { get; set; }
