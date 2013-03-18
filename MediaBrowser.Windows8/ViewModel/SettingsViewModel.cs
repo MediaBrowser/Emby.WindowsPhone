@@ -1,10 +1,18 @@
 ﻿using System;
+using System.Collections.ObjectModel;
+using System.IO;
+using System.Text;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Windows8.Model;
+using ReflectionIT.Windows8.Helpers;
 using WinRtUtility;
+using Windows.Networking;
 using Windows.Networking.PushNotifications;
+using Windows.Networking.Sockets;
+using Windows.Storage.Streams;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 
 namespace MediaBrowser.Windows8.ViewModel
@@ -15,7 +23,7 @@ namespace MediaBrowser.Windows8.ViewModel
     /// See http://www.galasoft.ch/mvvm
     /// </para>
     /// </summary>
-    public class NotificationsViewModel : ViewModelBase
+    public class SettingsViewModel : ViewModelBase
     {
         private readonly ExtendedApiClient ApiClient;
         private readonly NavigationService NavigationService;
@@ -23,7 +31,7 @@ namespace MediaBrowser.Windows8.ViewModel
         /// <summary>
         /// Initializes a new instance of the NotificationsViewModel class.
         /// </summary>
-        public NotificationsViewModel(ExtendedApiClient apiClient, NavigationService navigationService)
+        public SettingsViewModel(ExtendedApiClient apiClient, NavigationService navigationService)
         {
             ApiClient = apiClient;
             NavigationService = navigationService;
@@ -31,6 +39,11 @@ namespace MediaBrowser.Windows8.ViewModel
             if (IsInDesignMode)
             {
                 UseNotifications = ServerPluginInstalled = true;
+                FoundServers = new ObservableCollection<Server>
+                                   {
+                                       new Server {IpAddress = "192.168.0.2", PortNo = "8096"},
+                                       new Server {IpAddress = "192.168.0.4", PortNo = "8096"}
+                                   };
             }
             else
             {
@@ -86,10 +99,54 @@ namespace MediaBrowser.Windows8.ViewModel
         public string ProgressText { get; set; }
         public Visibility ProgressVisibility { get; set; }
 
+        #region Find Server
+
+        public ObservableCollection<Server> FoundServers { get; set; }
+
+        private async Task SendMessage(string message, int port)
+        {
+            var socket = new DatagramSocket();
+            FoundServers = new ObservableCollection<Server>();
+
+            socket.MessageReceived += SocketOnMessageReceived;
+
+            using (var stream = await socket.GetOutputStreamAsync(new HostName("255.255.255.255"), port.ToString()))
+            {
+                using (var writer = new DataWriter(stream))
+                {
+                    var data = Encoding.UTF8.GetBytes(message);
+
+                    writer.WriteBytes(data);
+                    writer.StoreAsync();
+                }
+            }
+        }
+
+        private async void SocketOnMessageReceived(DatagramSocket sender, DatagramSocketMessageReceivedEventArgs args)
+        {
+            var result = args.GetDataStream();
+            var resultStream = result.AsStreamForRead(1024);
+
+            using (var reader = new StreamReader(resultStream))
+            {
+                var text = await reader.ReadToEndAsync();
+                Window.Current.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                                                                                      {
+                                                                                          var parts = text.Split('|');
+
+                                                                                          var fullAddress = parts[1].Split(':');
+
+                                                                                          FoundServers.Add(new Server { IpAddress = fullAddress[0], PortNo = fullAddress[1] });
+                                                                                      });
+            }
+        }
+        #endregion
+
+        #region Push Notifications
         public string RegisteredText { get; set; }
         public bool SendToastUpdates { get; set; }
         public bool SendTileUpdates { get; set; }
-
+        
         public bool IsRegistered { get; set; }
         public bool ServerPluginInstalled { get; set; }
         public bool UseNotifications { get; set; }
@@ -188,5 +245,6 @@ namespace MediaBrowser.Windows8.ViewModel
                 
             }
         }
+        #endregion
     }
 }

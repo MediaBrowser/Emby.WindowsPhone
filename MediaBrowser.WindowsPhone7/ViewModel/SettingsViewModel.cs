@@ -201,8 +201,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 var text = await reader.ReadToEndAsync();
                 Deployment.Current.Dispatcher.BeginInvoke(() =>
                 {
-                    // Do what you need to with the resulting text
-                    // Doesn't have to be a messagebox
                     var parts = text.Split('|');
 
                     var fullAddress = parts[1].Split(':');

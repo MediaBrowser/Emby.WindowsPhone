@@ -82,7 +82,7 @@ namespace MediaBrowser.Windows8.ViewModel
             SimpleIoc.Default.Register<TvViewModel>();
             SimpleIoc.Default.Register<TrailerViewModel>(true);
             SimpleIoc.Default.Register<MusicViewModel>(true);
-            SimpleIoc.Default.Register<NotificationsViewModel>(true);
+            SimpleIoc.Default.Register<SettingsViewModel>(true);
 
         }
 
@@ -131,9 +131,9 @@ namespace MediaBrowser.Windows8.ViewModel
             get { return ServiceLocator.Current.GetInstance<MusicViewModel>(); }
         }
 
-        public NotificationsViewModel Notifications
+        public SettingsViewModel Settings
         {
-            get { return ServiceLocator.Current.GetInstance<NotificationsViewModel>(); }
+            get { return ServiceLocator.Current.GetInstance<SettingsViewModel>(); }
         }
 
         public SpecificSettings SpecificSettings

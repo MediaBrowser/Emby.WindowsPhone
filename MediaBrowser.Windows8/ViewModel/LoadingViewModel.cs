@@ -225,7 +225,7 @@ namespace MediaBrowser.Windows8.ViewModel
         private async Task LoadPushSettings()
         {
             var storageHelper = new ObjectStorageHelper<bool>(StorageType.Local);
-            var notifications = SimpleIoc.Default.GetInstance<NotificationsViewModel>();
+            var notifications = SimpleIoc.Default.GetInstance<SettingsViewModel>();
             
             notifications.loadingFromSettings = true;
 

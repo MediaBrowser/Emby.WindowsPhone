@@ -6,7 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:ScottIsAFool.Windows8.Controls"
     mc:Ignorable="d"
-    DataContext="{Binding Notifications, Source={StaticResource Locator}}"
+    DataContext="{Binding Settings, Source={StaticResource Locator}}"
     d:DesignHeight="300"
     d:DesignWidth="400"
     Loaded="PushNotificationsSettings_OnLoaded">

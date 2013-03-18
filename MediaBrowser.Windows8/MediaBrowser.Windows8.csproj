@@ -147,6 +147,7 @@
     <Compile Include="Model\ModelBase.cs" />
     <Compile Include="Model\MySerializer.cs" />
     <Compile Include="Model\NavigationService.cs" />
+    <Compile Include="Model\Server.cs" />
     <Compile Include="Model\SettingsService.cs" />
     <Compile Include="SettingsCharm.cs" />
     <Compile Include="SettingsViews\ConnectionSettings.xaml.cs">
@@ -172,7 +173,7 @@
     <Compile Include="ViewModel\FolderViewModel.cs" />
     <Compile Include="ViewModel\MovieViewModel.cs" />
     <Compile Include="ViewModel\MusicViewModel.cs" />
-    <Compile Include="ViewModel\NotificationsViewModel.cs" />
+    <Compile Include="ViewModel\SettingsViewModel.cs" />
     <Compile Include="ViewModel\SelectProfilesViewModel.cs" />
     <Compile Include="ViewModel\TrailerViewModel.cs" />
     <Compile Include="ViewModel\TvViewModel.cs" />
