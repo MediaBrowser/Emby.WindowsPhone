@@ -4,7 +4,10 @@ using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
+using GalaSoft.MvvmLight.Threading;
 using MediaBrowser.Windows8.Model;
 using ReflectionIT.Windows8.Helpers;
 using WinRtUtility;
@@ -79,14 +82,14 @@ namespace MediaBrowser.Windows8.ViewModel
             {
                 ProgressText = "Checking server for plugin...";
                 ProgressVisibility = Visibility.Visible;
-                
+
                 //var result = await ApiClient.CheckForPushServer();
                 ServerPluginInstalled = true;
 
                 await SavePushSettings();
 
                 ProgressText = string.Empty;
-                ProgressVisibility= Visibility.Collapsed;
+                ProgressVisibility = Visibility.Collapsed;
             }
             catch { }
         }
@@ -100,6 +103,30 @@ namespace MediaBrowser.Windows8.ViewModel
         public Visibility ProgressVisibility { get; set; }
 
         #region Find Server
+
+        public RelayCommand FindServersCommand
+        {
+            get
+            {
+                return new RelayCommand(async () =>
+                                                  {
+                                                      await SendMessage("who is MediaBrowserServer?", 7359);
+                                                  });
+            }
+        }
+
+        public RelayCommand<Server> ServerTappedCommand
+        {
+            get
+            {
+                return new RelayCommand<Server>(server =>
+                                                    {
+                                                        App.Settings.ConnectionDetails.HostName = server.IpAddress;
+                                                        App.Settings.ConnectionDetails.PortNo = int.Parse(server.PortNo);
+                                                        SimpleIoc.Default.GetInstance<LoadingViewModel>().TestConnectionCommand.Execute(null);
+                                                    });
+            }
+        }
 
         public ObservableCollection<Server> FoundServers { get; set; }
 
@@ -130,14 +157,12 @@ namespace MediaBrowser.Windows8.ViewModel
             using (var reader = new StreamReader(resultStream))
             {
                 var text = await reader.ReadToEndAsync();
-                Window.Current.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                                                                                      {
-                                                                                          var parts = text.Split('|');
 
-                                                                                          var fullAddress = parts[1].Split(':');
+                var parts = text.Split('|');
 
-                                                                                          FoundServers.Add(new Server { IpAddress = fullAddress[0], PortNo = fullAddress[1] });
-                                                                                      });
+                var fullAddress = parts[1].Split(':');
+
+                App.ThisWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => FoundServers.Add(new Server { IpAddress = fullAddress[0], PortNo = fullAddress[1] }));
             }
         }
         #endregion
@@ -146,7 +171,7 @@ namespace MediaBrowser.Windows8.ViewModel
         public string RegisteredText { get; set; }
         public bool SendToastUpdates { get; set; }
         public bool SendTileUpdates { get; set; }
-        
+
         public bool IsRegistered { get; set; }
         public bool ServerPluginInstalled { get; set; }
         public bool UseNotifications { get; set; }
@@ -184,7 +209,7 @@ namespace MediaBrowser.Windows8.ViewModel
             }
             catch
             {
-                
+
             }
         }
 
@@ -195,7 +220,7 @@ namespace MediaBrowser.Windows8.ViewModel
                 PushNotificationChannel = await PushNotificationChannelManager.CreatePushNotificationChannelForApplicationAsync();
                 PushNotificationChannel.PushNotificationReceived += (sender, args) =>
                                                                         {
-                                                                            
+
                                                                         };
                 var url = PushNotificationChannel.Uri.Replace("%", "IMAPERCENT");
                 await ApiClient.RegisterDeviceAsync(Uri.EscapeDataString(DeviceId), url, SendTileUpdates, SendToastUpdates);
@@ -203,7 +228,7 @@ namespace MediaBrowser.Windows8.ViewModel
             }
             catch
             {
-                
+
             }
         }
 
@@ -217,7 +242,7 @@ namespace MediaBrowser.Windows8.ViewModel
             }
             catch
             {
-                
+
             }
         }
 
@@ -230,7 +255,7 @@ namespace MediaBrowser.Windows8.ViewModel
             await storageHelper.SaveAsync(SendTileUpdates, "SendTileUpdates");
             await storageHelper.SaveAsync(SendToastUpdates, "SendToastUpdates");
             await storageHelper.SaveAsync(IsRegistered, "IsRegistered");
-        } 
+        }
 
         private async void OnSendTileUpdatesChanged()
         {
@@ -242,7 +267,7 @@ namespace MediaBrowser.Windows8.ViewModel
             }
             catch
             {
-                
+
             }
         }
         #endregion

@@ -38,6 +38,8 @@ namespace MediaBrowser.Windows8
             }
         }
 
+        public static Window ThisWindow { get; private set; }
+
         /// <summary>
         /// Initializes the singleton Application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -53,6 +55,8 @@ namespace MediaBrowser.Windows8
                                                                                                  });
 
             GlobalCrashHandler.Configure();
+
+            ThisWindow = Window.Current;
         }
 
         /// <summary>
