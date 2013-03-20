@@ -18,6 +18,7 @@
                             SupportedOrientations="Portrait"
                             Orientation="Portrait"
                             shell:SystemTray.IsVisible="True"
+                            shell:SystemTray.Opacity="0"
                             d:DataContext="{Binding Folder, Source={StaticResource Locator}}">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
@@ -59,7 +60,7 @@
                 <cimbalino:ApplicationBarIconButton IconUri="{Binding CanPinCollection, Converter={StaticResource PinnedItemConverter}}"
                                                     Text="{Binding CanPinCollection, Converter={StaticResource PinnedItemConverter}, ConverterParameter=text}"
                                                     Command="{Binding Main.PinCollectionCommand, Source={StaticResource Locator}}"
-                                                    CommandParameter="{Binding SelectedFolder}"/>
+                                                    CommandParameter="{Binding SelectedFolder}" />
             </cimbalino:ApplicationBarBehavior>
         </i:Interaction.Behaviors>
         <phone:Panorama Title="{Binding SelectedFolder.Name, Converter={StaticResource StringCaseConverter}}"
@@ -67,29 +68,37 @@
                         HeaderTemplate="{StaticResource LikeWp7ItemHeaderTemplate}"
                         TitleTemplate="{StaticResource LikeWp7TitleTemplate}"
                         x:Name="ThePanorama">
-        <!--<phone:Panorama Title="movies">-->
+            <!--<phone:Panorama Title="movies">-->
             <phone:PanoramaItem Header="recent">
-                <controls:PhoneListBox ItemsSource="{Binding RecentItems}"
-                                       Text="No items found"
-                                       TextHorizontalAlignment="Center"
-                                       TextVerticalAlignment="Top"
-                                       TextStyle="{StaticResource PhoneTextLargeStyle}"
-                                       ItemTemplate="{StaticResource TileItemStyle}"
-                                       Margin="12,0,0,0">
-                    <controls:PhoneListBox.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <toolkit:WrapPanel ItemWidth="200"
-                                               ItemHeight="200"/>
-                        </ItemsPanelTemplate>
-                    </controls:PhoneListBox.ItemsPanel>
-                </controls:PhoneListBox>
+                <phone:LongListSelector ItemsSource="{Binding RecentItems}">
+                    <phone:LongListSelector.ItemTemplate>
+                        <DataTemplate>
+                            <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                             Command="{Binding Main.NavigateToPage, Source={StaticResource Locator}}"
+                                             CommandParameter="{Binding}"
+                                             HorizontalContentAlignment="Left"
+                                             Margin="12,0,0,12">
+                                <Grid Height="173">
+                                    <Image Source="{Binding Converter={StaticResource ImageUrlConverter}, ConverterParameter=backdropsmall}"
+                                           Stretch="UniformToFill" />
+                                    <Border VerticalAlignment="Bottom"
+                                            Background="#C4000000">
+                                        <TextBlock Text="{Binding Name, Converter={StaticResource StringCaseConverter}, ConverterParameter=false}"
+                                                   Style="{StaticResource PhoneTextLargeStyle}"
+                                                   HorizontalAlignment="Left"/>
+                                    </Border>
+                                </Grid>
+                            </HyperlinkButton>
+                        </DataTemplate>
+                    </phone:LongListSelector.ItemTemplate>
+                </phone:LongListSelector>
             </phone:PanoramaItem>
 
             <phone:PanoramaItem Header="random items"
                                 Orientation="Horizontal">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="6*"/>
+                        <RowDefinition Height="6*" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     <controls:PhoneListBox ItemsSource="{Binding RandomItems}"
@@ -104,17 +113,17 @@
                             <ItemsPanelTemplate>
                                 <toolkit:WrapPanel ItemWidth="200"
                                                    ItemHeight="200"
-                                                   MaxWidth="610"/>
+                                                   MaxWidth="610" />
                             </ItemsPanelTemplate>
                         </controls:PhoneListBox.ItemsPanel>
                     </controls:PhoneListBox>
-                    
+
                     <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
                                      Grid.Row="1"
                                      HorizontalContentAlignment="Left"
                                      NavigateUri="/Views/FolderView.xaml">
                         <TextBlock Text="show all items..."
-                                   Style="{StaticResource PhoneTextLargeStyle}"/>
+                                   Style="{StaticResource PhoneTextLargeStyle}" />
                     </HyperlinkButton>
                 </Grid>
             </phone:PanoramaItem>

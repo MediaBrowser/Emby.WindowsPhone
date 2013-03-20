@@ -16,17 +16,21 @@ namespace MediaBrowser.WindowsPhone.Converters
             {
                 var type = value.GetType();
                 var apiClient = SimpleIoc.Default.GetInstance<ExtendedApiClient>();
-                if (type == typeof (BaseItemDto))
+                if (type == typeof(BaseItemDto))
                 {
-                    
-                    var imageType = parameter == null ? string.Empty : (string) parameter;
+
+                    var imageType = parameter == null ? string.Empty : (string)parameter;
                     // http://192.168.0.2:8096/mediabrowser/api/image?item.Id=d0aac36ee980d7dc0bcf8323b1884f70&maxheight=173&quality=90
                     var item = (BaseItemDto)value;
                     if (!item.HasPrimaryImage) return "";
                     var imageOptions = new ImageOptions
                                            {
                                                Quality = 90,
+#if WP8
+                                               MaxHeight = 336,
+#else
                                                MaxHeight = 173,
+#endif
                                                ImageType = ImageType.Primary
                                            };
                     if (imageType.Equals("logo", StringComparison.OrdinalIgnoreCase))
@@ -35,7 +39,17 @@ namespace MediaBrowser.WindowsPhone.Converters
                     }
                     else if (imageType.Equals("backdrop", StringComparison.OrdinalIgnoreCase))
                     {
+
                         imageOptions.MaxHeight = 800;
+                        imageOptions.ImageType = ImageType.Backdrop;
+                    }
+                    else if (imageType.Equals("backdropsmall", StringComparison.OrdinalIgnoreCase))
+                    {
+#if WP8
+                        imageOptions.MaxHeight = 336;
+#else
+                        imageOptions.MaxHeight = 173;
+#endif
                         imageOptions.ImageType = ImageType.Backdrop;
                     }
                     else if (imageType.Equals("banner", StringComparison.OrdinalIgnoreCase))
@@ -53,36 +67,52 @@ namespace MediaBrowser.WindowsPhone.Converters
                     }
                     else if (imageType.Equals("icon", StringComparison.OrdinalIgnoreCase))
                     {
+#if WP8
+                        imageOptions.MaxHeight = 159;
+#else
                         imageOptions.MaxHeight = 90;
+#endif
                     }
                     else if (imageType.Equals("poster", StringComparison.OrdinalIgnoreCase))
                     {
+#if WP8
+                        imageOptions.MaxHeight = 675;
+#else
                         imageOptions.MaxHeight = 450;
+#endif
                     }
-                    else if(imageType.Equals("episode", StringComparison.OrdinalIgnoreCase))
+                    else if (imageType.Equals("episode", StringComparison.OrdinalIgnoreCase))
                     {
+#if WP8
+                        imageOptions.MaxHeight = 382;
+#else
                         imageOptions.MaxHeight = 255;
+#endif
                     }
                     else
                     {
+#if WP8
+                        imageOptions.MaxHeight = 300;
+#else
                         imageOptions.MaxHeight = 200;
+#endif
                     }
                     if (item.Type == "Series")
                         return apiClient.GetImageUrl(item.Id, imageOptions);
                     return apiClient.GetImageUrl(item, imageOptions);
                 }
-                else if(type == typeof(BaseItemPerson))
+                else if (type == typeof(BaseItemPerson))
                 {
-                    var person = (BaseItemPerson) value;
+                    var person = (BaseItemPerson)value;
                     if (person.HasPrimaryImage)
-                        return apiClient.GetPersonImageUrl(person, new ImageOptions {MaxWidth = 99, Quality = 90});
+                        return apiClient.GetPersonImageUrl(person, new ImageOptions { MaxWidth = 99, Quality = 90 });
                 }
-                else if(type == typeof(UserDto))
+                else if (type == typeof(UserDto))
                 {
-                    var user = (UserDto) value;
+                    var user = (UserDto)value;
                     if (user.HasPrimaryImage)
                     {
-                        var url = apiClient.GetUserImageUrl(user, new ImageOptions {MaxHeight = 173, MaxWidth = 173, Quality = 95});
+                        var url = apiClient.GetUserImageUrl(user, new ImageOptions { MaxHeight = 173, MaxWidth = 173, Quality = 95 });
                         return new Uri(url);
                     }
                 }

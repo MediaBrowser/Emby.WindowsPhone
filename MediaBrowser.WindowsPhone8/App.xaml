@@ -84,7 +84,7 @@
                                  Command="{Binding Main.NavigateToPage, Source={StaticResource Locator}}"
                                  CommandParameter="{Binding}">
                     <Grid MaxWidth="173">
-                        <delay:PlaceImage PlaceholderSource="/Images/MBLogo.png"
+                        <delay:PlaceImage PlaceholderSource="/Images/Logo.png"
                                           Source="{Binding Converter={StaticResource ImageUrlConverter}}"
                                           Width="173"
                                           Height="173"

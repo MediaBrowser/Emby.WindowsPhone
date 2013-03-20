@@ -48,6 +48,21 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                      {
                                          Name = "Movies"
                                      };
+                RecentItems.Add(new BaseItemDto
+                                    {
+                                        Id = "6536a66e10417d69105bae71d41a6e6f",
+                                        Name = "Jurassic Park",
+                                        SortName = "Jurassic Park",
+                                        Overview = "Lots of dinosaurs eating people!",
+                                        People = new []
+                                                     {
+                                                         new BaseItemPerson{Name = "Steven Spielberg", Type = "Director"},
+                                                         new BaseItemPerson{Name = "Sam Neill", Type = "Actor"},
+                                                         new BaseItemPerson{Name = "Richard Attenborough", Type = "Actor"},
+                                                         new BaseItemPerson{Name = "Laura Dern", Type = "Actor"}
+                                                     }
+
+                                    });
             }
             else
             {
