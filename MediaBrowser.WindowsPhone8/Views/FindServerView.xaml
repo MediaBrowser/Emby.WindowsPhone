@@ -82,7 +82,8 @@
                                          Command="{Binding Settings.ServerTappedCommand, Source={StaticResource Locator}}"
                                          CommandParameter="{Binding}">
                             <controls1:HeaderAndDetail HeaderText="{Binding IpAddress}"
-                                                       DetailText="{Binding PortNo}" />
+                                                       DetailText="{Binding PortNo}"
+                                                       DetailTextStyle="{StaticResource PhoneTextSubtleStyle}"/>
                         </HyperlinkButton>
                     </DataTemplate>
                 </phone:LongListSelector.ItemTemplate>

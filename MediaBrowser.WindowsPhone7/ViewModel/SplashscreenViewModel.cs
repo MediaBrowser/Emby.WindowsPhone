@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Ioc;
@@ -8,6 +9,7 @@ using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model.Net;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Resources;
+using Microsoft.Phone.Controls;
 using Microsoft.Phone.Info;
 using Microsoft.Phone.Shell;
 using ScottIsAFool.WindowsPhone.IsolatedStorage;
@@ -75,75 +77,75 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     ProgressText = AppResources.SysTrayLoadingSettings;
                     // Get settings from storage
                     var connectionDetails = ISettings.GetKeyValue<ConnectionDetails>(Constants.ConnectionSettings);
-                    if (connectionDetails != null)
+                    if (connectionDetails == null)
                     {
-                        App.Settings.ConnectionDetails = connectionDetails;
+
+                        //App.ShowMessage("", AppResources.ErrorNoConnectionSettings, () => NavigationService.NavigateToPage("/Views/SettingsView.xaml?settingsPane=2"));
+                        App.Settings.ConnectionDetails = new ConnectionDetails
+                                                             {
+                                                                 PortNo = 8096
+                                                             };
+                        var messageBox = new CustomMessageBox
+                                             {
+                                                 Caption = "No connection details",
+                                                 Message = "No connection settings have been set, would you like to set them now?",
+                                                 LeftButtonContent = "yes",
+                                                 RightButtonContent = "no",
+                                                 IsFullScreen = false
+                                             };
+                        messageBox.Dismissed += (sender, args) =>
+                                                    {
+                                                        if (args.Result == CustomMessageBoxResult.LeftButton)
+                                                        {
+                                                            Deployment.Current.Dispatcher.BeginInvoke(() => NavigationService.NavigateToPage("/Views/SettingsView.xaml?settingsPane=2"));
+                                                        }
+                                                    };
+                        messageBox.Show();
+
                     }
                     else
                     {
-                        App.ShowMessage("", AppResources.ErrorNoConnectionSettings, () => NavigationService.NavigateToPage("/Views/SettingsView.xaml?settingsPane=2"));
-                        App.Settings.ConnectionDetails = new ConnectionDetails
-                                                            {
-                                                                PortNo = 8096
-                                                            };
-                        //var messageBox = new CustomMessageBox
-                        //                     {
-                        //                         Caption= "No connection details",
-                        //                         Message = "No connection settings have been set, would you like to set them now?",
-                        //                         LeftButtonContent= "yes",
-                        //                         RightButtonContent = "no",
-                        //                         IsFullScreen = false
-                        //                     };
-                        //messageBox.Dismissed += (sender, args) =>
-                        //                            {
-                        //                                if (args.Result == CustomMessageBoxResult.LeftButton)
-                        //                                {
-                        //                                    
-                        //                                    Deployment.Current.Dispatcher.BeginInvoke(()=> NavigationService.NavigateToPage("/Views/Settings/ConnectionSettings.xaml"));
-                        //                                }
-                        //                            };
-                        //messageBox.Show();
-                        
-                        return;
-                    }
+                        App.Settings.ConnectionDetails = connectionDetails;
 
-                    var specificSettings = ISettings.GetKeyValue<SpecificSettings>(Constants.SpecificSettings);
-                    if(specificSettings != null) Utils.CopyItem(specificSettings, App.SpecificSettings);
 
-                    var deviceName = DeviceStatus.DeviceName;
-                    var deviceId = DeviceStatus.DeviceManufacturer;
+                        var specificSettings = ISettings.GetKeyValue<SpecificSettings>(Constants.SpecificSettings);
+                        if (specificSettings != null) Utils.CopyItem(specificSettings, App.SpecificSettings);
 
-                    var phone = Ailon.WP.Utils.PhoneNameResolver.Resolve(deviceId, deviceName);
-                    
-                    var deviceInfo = string.Format("{0} ({1})", phone.CanonicalModel, phone.CanonicalManufacturer);
+                        var deviceName = DeviceStatus.DeviceName;
+                        var deviceId = DeviceStatus.DeviceManufacturer;
 
-                    ApiClient.DeviceName = deviceInfo;
+                        var phone = Ailon.WP.Utils.PhoneNameResolver.Resolve(deviceId, deviceName);
 
-                    var user = ISettings.GetKeyValue<UserSettingWrapper>(Constants.SelectedUserSetting);
-                    if (user != null)
-                    {
-                        App.Settings.LoggedInUser = user.User;
-                        App.Settings.PinCode = user.Pin;
-                    }
-                    if (NavigationService.IsNetworkAvailable && App.Settings.ConnectionDetails != null)
-                    {
-                        ProgressText = AppResources.SysTrayGettingServerDetails;
+                        var deviceInfo = string.Format("{0} ({1})", phone.CanonicalModel, phone.CanonicalManufacturer);
 
-                        await GetServerConfiguration();
+                        ApiClient.DeviceName = deviceInfo;
 
-                        if (App.Settings.ServerConfiguration != null)
+                        var user = ISettings.GetKeyValue<UserSettingWrapper>(Constants.SelectedUserSetting);
+                        if (user != null)
                         {
-                            await SetPushSettings();
-                            await CheckProfiles();
+                            App.Settings.LoggedInUser = user.User;
+                            App.Settings.PinCode = user.Pin;
                         }
-                        else
+                        if (NavigationService.IsNetworkAvailable && App.Settings.ConnectionDetails != null)
                         {
-                            App.ShowMessage("", AppResources.ErrorCouldNotFindServer);
-                            NavigationService.NavigateToPage("/Views/SettingsView.xaml?settingsPane=2");
+                            ProgressText = AppResources.SysTrayGettingServerDetails;
+
+                            await GetServerConfiguration();
+
+                            if (App.Settings.ServerConfiguration != null)
+                            {
+                                await SetPushSettings();
+                                await CheckProfiles();
+                            }
+                            else
+                            {
+                                App.ShowMessage("", AppResources.ErrorCouldNotFindServer);
+                                NavigationService.NavigateToPage("/Views/SettingsView.xaml?settingsPane=2");
+                            }
                         }
+                        ProgressText = string.Empty;
+                        ProgressIsVisible = false;
                     }
-                    ProgressText = string.Empty;
-                    ProgressIsVisible = false;
                 }
             });
         }

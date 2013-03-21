@@ -19,6 +19,7 @@
                             Orientation="Portrait"
                             shell:SystemTray.IsVisible="True"
                             shell:SystemTray.Opacity="0"
+                            toolkit:TiltEffect.IsTiltEnabled="True"
                             d:DataContext="{Binding Folder, Source={StaticResource Locator}}">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
