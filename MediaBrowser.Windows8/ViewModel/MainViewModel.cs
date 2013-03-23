@@ -61,7 +61,13 @@ namespace MediaBrowser.Windows8.ViewModel
                                             Name = "Jurassic Park",
                                             DateCreated = DateTime.Now,
                                             Type= "Movie"
-                                        }.ToWrapper());
+                                        }.ToWrapper(2,2));
+                Groups[RecentItems].Items.Add(new BaseItemDto
+                                                  {
+                                                      Id = "c0ac2259ea0b6d18b0a9c9c3c2a8da68",
+                                                      Name = "Jurassic Park 3",
+                                                      Type = "Movie"
+                                                  }.ToWrapper());
             }
             else
             {

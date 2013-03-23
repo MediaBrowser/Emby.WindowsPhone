@@ -169,7 +169,6 @@
                       Margin="0,-10,0,0"
                       Padding="0,0,0,60"
                       ItemsSource="{Binding Source={StaticResource groupedItemsViewSource}}"
-                      ItemTemplate="{StaticResource Standard80ItemTemplate}"
                       SelectionMode="None"
                       IsSwipeEnabled="false"
                       IsItemClickEnabled="True"
@@ -179,6 +178,29 @@
                                                            Event="ItemClick"
                                                            PassEventArgsToCommand="True" />
                 </winRtBehaviors:Interaction.Behaviors>-->
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="0,6">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Border Background="{Binding Converter={StaticResource RandomColour}}"
+                                    Width="60"
+                                    Height="60">
+                                <Image Source="{Binding Converter={StaticResource ImageUrlConverter}}"
+                                       AutomationProperties.Name="{Binding Title}"
+                                       Stretch="UniformToFill" />
+                            </Border>
+                            <StackPanel Grid.Column="1"
+                                        Margin="10,0,0,0">
+                                <TextBlock Text="{Binding Name}"
+                                           Style="{StaticResource ItemTextStyle}"
+                                           MaxHeight="40" />
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
                 <ListView.GroupStyle>
                     <GroupStyle HidesIfEmpty="True">
                         <GroupStyle.HeaderTemplate>
