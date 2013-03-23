@@ -41,6 +41,7 @@
                     Command="{Binding FindServersCommand}" />
             <ListView ItemsSource="{Binding FoundServers}"
                       SelectionMode="Single"
+                      IsItemClickEnabled="True"
                       ItemContainerStyle="{StaticResource LightStyleItemContainer}"
                       ItemClick="ListViewBase_OnItemClick">
                 <ListView.ItemTemplate>
