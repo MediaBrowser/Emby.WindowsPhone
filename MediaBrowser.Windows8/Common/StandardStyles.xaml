@@ -2016,8 +2016,8 @@
     <!-- Grid-appropriate 250 pixel square item template as seen in the GroupedItemsPage and ItemsPage -->
     <DataTemplate x:Key="Standard250x250ItemTemplate">
         <Grid HorizontalAlignment="Left"
-              Width="250"
-              Height="250">
+              DataContext="{Binding Item}"
+              >
             <controls:PlaceImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
                                  Stretch="UniformToFill"
                                  AutomationProperties.Name="{Binding Name}"
@@ -2026,12 +2026,11 @@
 
             <StackPanel VerticalAlignment="Bottom"
                         Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}"
-                        Orientation="Vertical"
-                        Height="65">
+                        Orientation="Vertical">
                 <TextBlock Text="{Binding Name}"
                            Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}"
                            Style="{StaticResource TitleTextStyle}"
-                           Margin="15,0,15,0" />
+                           Margin="15,0" />
                 <StackPanel Orientation="Horizontal"
                             Visibility="{Binding Type, Converter={StaticResource CollectionDateHider}}">
                     <TextBlock Text="Added on:"
@@ -2115,7 +2114,8 @@
         the following pages when snapped: GroupedItemsPage, GroupDetailPage, and ItemsPage
     -->
     <DataTemplate x:Key="Standard80ItemTemplate">
-        <Grid Margin="0,6">
+        <Grid Margin="0,6"
+              DataContext="{Binding Item}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />

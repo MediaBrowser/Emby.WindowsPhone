@@ -66,8 +66,7 @@
             </cimbalino:ApplicationBarBehavior>
         </i:Interaction.Behaviors>
         <controls3:Panorama Title="{Binding SelectedFolder.Name, Converter={StaticResource StringCaseConverter}}"
-                        SelectionChanged="Panorama_OnSelectionChanged"
-                        x:Name="ThePanorama">
+                            x:Name="ThePanorama">
             <!--<phone:Panorama Title="movies">-->
             <controls3:PanoramaItem Header="recent">
                 <controls:PhoneListBox ItemsSource="{Binding RecentItems}"
@@ -100,33 +99,30 @@
             </controls3:PanoramaItem>
 
             <controls3:PanoramaItem Header="random items"
-                                Orientation="Horizontal">
+                                    Orientation="Horizontal">
                 <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="6*" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
+
                     <controls:PhoneListBox ItemsSource="{Binding RandomItems}"
                                            Text="No items found"
                                            TextHorizontalAlignment="Center"
                                            TextVerticalAlignment="Top"
                                            TextStyle="{StaticResource PhoneTextLargeStyle}"
                                            ItemTemplate="{StaticResource TileItemStyle}"
-                                           Grid.Row="0"
                                            Margin="12,0,0,0">
                         <controls:PhoneListBox.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <toolkit:WrapPanel ItemWidth="200"
-                                                   ItemHeight="200"
+                                <toolkit:WrapPanel ItemWidth="180"
+                                                   ItemHeight="180"
                                                    MaxWidth="610" />
                             </ItemsPanelTemplate>
                         </controls:PhoneListBox.ItemsPanel>
                     </controls:PhoneListBox>
 
                     <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                     Grid.Row="1"
                                      HorizontalContentAlignment="Left"
-                                     NavigateUri="/Views/FolderView.xaml">
+                                     VerticalAlignment="Bottom"
+                                     NavigateUri="/Views/FolderView.xaml"
+                                     Padding="0">
                         <TextBlock Text="show all items..."
                                    Style="{StaticResource PhoneTextLargeStyle}" />
                     </HyperlinkButton>

@@ -116,6 +116,7 @@
     <Compile Include="Controls\ExtendedProgressBar.cs" />
     <Compile Include="Controls\PlaceImage.cs" />
     <Compile Include="Controls\ProfileBox.cs" />
+    <Compile Include="Controls\ReSizedGridView.cs" />
     <Compile Include="Converters\CollectionDateHider.cs" />
     <Compile Include="Converters\CountryConverter.cs" />
     <Compile Include="Converters\CountToVisibilityConverter.cs" />
@@ -136,12 +137,14 @@
     <Compile Include="Converters\StringFormatterConverter.cs" />
     <Compile Include="Converters\TextLengthConverter.cs" />
     <Compile Include="Converters\TicksToTimespanConverter.cs" />
+    <Compile Include="Converters\TileHeightConverter.cs" />
     <Compile Include="Converters\VideoFormatConverter.cs" />
     <Compile Include="Converters\VideoResolutionConverter.cs" />
     <Compile Include="Converters\VisibilityConverter.cs" />
     <Compile Include="Design\DesignNavigationService.cs" />
     <Compile Include="ExtensionMethods.cs" />
     <Compile Include="Model\ExtendedApiClient.cs" />
+    <Compile Include="Model\GridItemWrapper.cs" />
     <Compile Include="Model\Group.cs" />
     <Compile Include="Model\INavigationService.cs" />
     <Compile Include="Model\ModelBase.cs" />

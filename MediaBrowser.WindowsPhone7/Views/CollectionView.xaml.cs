@@ -49,10 +49,5 @@ namespace MediaBrowser.WindowsPhone.Views
                 };
             }
         }
-
-        private void Panorama_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            this.ApplicationBar.IsVisible = ThePanorama.SelectedIndex == 0;
-        }
     }
 }

@@ -54,14 +54,14 @@ namespace MediaBrowser.Windows8.ViewModel
             if (IsInDesignMode)
             {
                 // Code runs in Blend --> create design time data.
-                Groups[Collections].Items.Add(new BaseItemDto{ Name = "Movies"});
+                Groups[Collections].Items.Add(new BaseItemDto{ Name = "Movies"}.ToWrapper());
                 Groups[RecentItems].Items.Add(new BaseItemDto
                                         {
                                             Id = "c0ac2259ea0b6d18b0a9c9c3c2a8da68",
                                             Name = "Jurassic Park",
                                             DateCreated = DateTime.Now,
                                             Type= "Movie"
-                                        });
+                                        }.ToWrapper());
             }
             else
             {
@@ -126,13 +126,13 @@ namespace MediaBrowser.Windows8.ViewModel
         
         private void Reset()
         {
-            Groups = new List<Group<BaseItemDto>>();
-            for (var i = 0; i < 4; i++) Groups.Add(new Group<BaseItemDto>());
+            Groups = new List<Group<GridItemWrapper<BaseItemDto>>>();
+            for (var i = 0; i < 4; i++) Groups.Add(new Group<GridItemWrapper<BaseItemDto>>());
 
-            Groups[Collections] = new Group<BaseItemDto> {Title = "Collections"};
-            Groups[RecentItems] = new Group<BaseItemDto> {Title = "Recently Added"};
-            Groups[Resumable] = new Group<BaseItemDto> {Title = "Resumable"};
-            Groups[Favourites] = new Group<BaseItemDto> {Title = "Favourites"};
+            Groups[Collections] = new Group<GridItemWrapper<BaseItemDto>> { Title = "Collections" };
+            Groups[RecentItems] = new Group<GridItemWrapper<BaseItemDto>> { Title = "Recently Added" };
+            Groups[Resumable] = new Group<GridItemWrapper<BaseItemDto>> { Title = "Resumable" };
+            Groups[Favourites] = new Group<GridItemWrapper<BaseItemDto>> { Title = "Favourites" };
 
             dataLoaded = false;
         }
@@ -143,7 +143,7 @@ namespace MediaBrowser.Windows8.ViewModel
             IsSticky = IsOpen;
             if (IsSticky)
             {
-                switch (SelectedItem.Type.ToLower())
+                switch (SelectedItem.Item.Type.ToLower())
                 {
                     case "movie":
                     case "episode":
@@ -184,7 +184,11 @@ namespace MediaBrowser.Windows8.ViewModel
 
                                                                });
 
-            ItemClicked = new RelayCommand<ItemClickEventArgs>(args => navigationService.NavigateToPage(args.ClickedItem));
+            ItemClicked = new RelayCommand<ItemClickEventArgs>(args =>
+                                                                   {
+                                                                       var dtoItem = (GridItemWrapper<BaseItemDto>) args.ClickedItem;
+                                                                       navigationService.NavigateToPage(dtoItem.Item);
+                                                                   });
             NavigateToPage = new RelayCommand<object>(navigationService.NavigateToPage);
             PlayVideoCommand = new RelayCommand<BaseItemDto>(item => navigationService.PlayVideoItem(item, false));
             ResumeVideoCommand = new RelayCommand<BaseItemDto>(item => navigationService.PlayVideoItem(item, true));
@@ -204,7 +208,7 @@ namespace MediaBrowser.Windows8.ViewModel
                 {
                     foreach (var item in items.Items)
                     {
-                        Groups[Collections].Items.Add(item);
+                        Groups[Collections].Items.Add(item.ToWrapper());
                     }
                 }
                 return true;
@@ -230,7 +234,12 @@ namespace MediaBrowser.Windows8.ViewModel
                 {
                     foreach (var item in items.Items)
                     {
-                        Groups[Favourites].Items.Add(item);
+                        Groups[Favourites].Items.Add(item.ToWrapper());
+                    }
+                    if (Groups[Favourites].Items.Any())
+                    {
+                        var firstItem = Groups[Favourites].Items.First();
+                        firstItem.ColSpan = firstItem.RowSpan = 2;
                     }
                 }
                 return true;
@@ -256,7 +265,12 @@ namespace MediaBrowser.Windows8.ViewModel
                 {
                     foreach (var item in items.Items)
                     {
-                        Groups[Resumable].Items.Add(item);
+                        Groups[Resumable].Items.Add(item.ToWrapper());
+                    }
+                    if (Groups[Resumable].Items.Any())
+                    {
+                        var firstItem = Groups[Resumable].Items.First();
+                        firstItem.ColSpan = firstItem.RowSpan = 2;
                     }
                 }
                 return true;
@@ -339,9 +353,10 @@ namespace MediaBrowser.Windows8.ViewModel
                                });
                 foreach (var item in recent)
                 {
-                    Groups[RecentItems].Items.Add(item);
+                    Groups[RecentItems].Items.Add(item.ToWrapper());
                 }
-                
+                var firstItem = Groups[RecentItems].Items.First();
+                firstItem.ColSpan = firstItem.RowSpan = 2;
             }
         }
 
@@ -359,8 +374,8 @@ namespace MediaBrowser.Windows8.ViewModel
         public bool IsSticky { get; set; }
         public bool IsOpen { get; set; }
        
-        public List<Group<BaseItemDto>> Groups { get; set; }
-        public BaseItemDto SelectedItem { get; set; }
+        public List<Group<GridItemWrapper<BaseItemDto>>> Groups { get; set; }
+        public GridItemWrapper<BaseItemDto> SelectedItem { get; set; }
 
         public Visibility PlayResumeVisibility { get; set; }
         public Visibility PinCollectionVisibility { get; set; }

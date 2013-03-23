@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using MediaBrowser.Model.Dto;
+using MediaBrowser.Windows8.Model;
 using Windows.Security.Cryptography;
 using Windows.Security.Cryptography.Core;
 
@@ -14,6 +15,11 @@ namespace MediaBrowser.Windows8
             var array = new byte[0];
             CryptographicBuffer.CopyToByteArray(hashed, out array);
             return array;
+        }
+
+        public static GridItemWrapper<BaseItemDto> ToWrapper(this BaseItemDto item, int rowSpan = 1, int colSpan = 1)
+        {
+            return new GridItemWrapper<BaseItemDto>(item){ColSpan = colSpan, RowSpan = rowSpan};
         }
     }
 }

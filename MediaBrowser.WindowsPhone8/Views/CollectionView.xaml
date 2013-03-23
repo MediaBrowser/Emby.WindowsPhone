@@ -65,7 +65,6 @@
             </cimbalino:ApplicationBarBehavior>
         </i:Interaction.Behaviors>
         <phone:Panorama Title="{Binding SelectedFolder.Name, Converter={StaticResource StringCaseConverter}}"
-                        SelectionChanged="Panorama_OnSelectionChanged"
                         HeaderTemplate="{StaticResource LikeWp7ItemHeaderTemplate}"
                         TitleTemplate="{StaticResource LikeWp7TitleTemplate}"
                         x:Name="ThePanorama">
@@ -98,17 +97,12 @@
             <phone:PanoramaItem Header="random items"
                                 Orientation="Horizontal">
                 <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="6*" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
                     <controls:PhoneListBox ItemsSource="{Binding RandomItems}"
                                            Text="No items found"
                                            TextHorizontalAlignment="Center"
                                            TextVerticalAlignment="Top"
                                            TextStyle="{StaticResource PhoneTextLargeStyle}"
                                            ItemTemplate="{StaticResource TileItemStyle}"
-                                           Grid.Row="0"
                                            Margin="12,0,0,0">
                         <controls:PhoneListBox.ItemsPanel>
                             <ItemsPanelTemplate>
@@ -120,7 +114,7 @@
                     </controls:PhoneListBox>
 
                     <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                     Grid.Row="1"
+                                     VerticalAlignment="Bottom"
                                      HorizontalContentAlignment="Left"
                                      NavigateUri="/Views/FolderView.xaml">
                         <TextBlock Text="show all items..."

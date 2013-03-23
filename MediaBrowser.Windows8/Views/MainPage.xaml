@@ -11,12 +11,13 @@
                         xmlns:behaviors="using:Win8nl.Behaviors"
                         xmlns:converters="using:MediaBrowser.Windows8.Converters"
                         xmlns:winRtBehaviors="using:WinRtBehaviors"
+                        xmlns:controls="using:MediaBrowser.Windows8.Controls"
                         mc:Ignorable="d"
                         Loaded="MainPageLoaded">
 
     <Page.Resources>
-
         <converters:CountToVisibilityConverter x:Key="CountToVisibilityConverter" />
+        <converters:TileHeightConverter x:Key="TileHeightConverter"/>
         <CollectionViewSource x:Name="groupedItemsViewSource"
                               Source="{Binding Groups}"
                               IsSourceGrouped="true"
@@ -75,13 +76,12 @@
 
 
             <!-- Horizontal scrolling grid used in most view states -->
-            <GridView x:Name="itemGridView"
+            <Controls:ReSizedGridView x:Name="itemGridView"
                       AutomationProperties.AutomationId="ItemGridView"
                       AutomationProperties.Name="Grouped Items"
                       Grid.RowSpan="2"
                       Padding="120,137,40,46"
                       ItemsSource="{Binding Source={StaticResource groupedItemsViewSource}}"
-                      ItemTemplate="{StaticResource Standard250x250ItemTemplate}"
                       SelectionMode="Single"
                       SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
                       IsSwipeEnabled="True"
@@ -94,10 +94,45 @@
                                                            Event="ItemClick"
                                                            PassEventArgsToCommand="True" />
                 </winRtBehaviors:Interaction.Behaviors>-->
+                <GridView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid HorizontalAlignment="Left"
+                              DataContext="{Binding Item}">
+                            <controls:PlaceImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
+                                                 Stretch="UniformToFill"
+                                                 AutomationProperties.Name="{Binding Name}"
+                                                 Background="{Binding Converter={StaticResource RandomColour}}"
+                                                 PlaceholderSource="../Assets/Logo.png" />
 
+                            <StackPanel VerticalAlignment="Bottom"
+                                        Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}"
+                                        Orientation="Vertical"
+                                        Height="{Binding Type, Converter={StaticResource TileHeightConverter}}">
+                                <TextBlock Text="{Binding Name}"
+                                           Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}"
+                                           Style="{StaticResource TitleTextStyle}"
+                                           Margin="15,0" />
+                                <StackPanel Orientation="Horizontal"
+                                            Visibility="{Binding Type, Converter={StaticResource CollectionDateHider}}">
+                                    <TextBlock Text="Added on:"
+                                               Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}"
+                                               Style="{StaticResource TitleTextStyle}"
+                                               Margin="15,0,0,0" />
+                                    <TextBlock Text="{Binding DateCreated, Converter={StaticResource ShortDateConverter}}"
+                                               Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}"
+                                               Style="{StaticResource TitleTextStyle}"
+                                               Margin="3,0,15,0" />
+                                </StackPanel>
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </GridView.ItemTemplate>
                 <GridView.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <VirtualizingStackPanel Orientation="Horizontal" />
+                        <!--<VariableSizedWrapGrid ItemHeight="200"
+                                               ItemWidth="200"/>-->
+                        <VirtualizingStackPanel Orientation="Horizontal"
+                                                VirtualizationMode="Standard"/>
                     </ItemsPanelTemplate>
                 </GridView.ItemsPanel>
                 <GridView.GroupStyle>
@@ -114,12 +149,15 @@
                         <GroupStyle.Panel>
                             <ItemsPanelTemplate>
                                 <VariableSizedWrapGrid Orientation="Vertical"
-                                                       Margin="0,0,80,0" />
+                                                       Margin="0,0,80,0" 
+                                                       ItemHeight="170"
+                                                       ItemWidth="200"
+                                                       MaximumRowsOrColumns="3"/>
                             </ItemsPanelTemplate>
                         </GroupStyle.Panel>
                     </GroupStyle>
                 </GridView.GroupStyle>
-            </GridView>
+            </Controls:ReSizedGridView>
 
             <!-- Vertical scrolling list only used when snapped -->
             <ListView x:Name="itemListView"
@@ -142,7 +180,7 @@
                                                            PassEventArgsToCommand="True" />
                 </winRtBehaviors:Interaction.Behaviors>-->
                 <ListView.GroupStyle>
-                    <GroupStyle>
+                    <GroupStyle HidesIfEmpty="True">
                         <GroupStyle.HeaderTemplate>
                             <DataTemplate>
                                 <Grid Margin="7,7,0,0">

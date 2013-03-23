@@ -107,7 +107,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     {
                         App.Settings.ConnectionDetails = connectionDetails;
 
-
                         var specificSettings = ISettings.GetKeyValue<SpecificSettings>(Constants.SpecificSettings);
                         if (specificSettings != null) Utils.CopyItem(specificSettings, App.SpecificSettings);
 
