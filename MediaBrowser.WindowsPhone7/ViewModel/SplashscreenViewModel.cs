@@ -97,7 +97,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                     {
                                                         if (args.Result == CustomMessageBoxResult.LeftButton)
                                                         {
-                                                            Deployment.Current.Dispatcher.BeginInvoke(() => NavigationService.NavigateToPage("/Views/SettingsView.xaml?settingsPane=2"));
+                                                            // This is needed as a fix for the Windows Phone Toolkit giving an error.
+                                                            ((CustomMessageBox)sender).Dismissing += (o, e) => e.Cancel = true;
+                                                            NavigationService.NavigateToPage("/Views/SettingsView.xaml?settingsPane=2");
                                                         }
                                                     };
                         messageBox.Show();
