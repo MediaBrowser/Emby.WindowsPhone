@@ -120,6 +120,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         var deviceInfo = string.Format("{0} ({1})", phone.CanonicalModel, phone.CanonicalManufacturer);
 
                         ApiClient.DeviceName = deviceInfo;
+                        
+                        object uniqueId;
+                        DeviceExtendedProperties.TryGetValue("DeviceUniqueId", out uniqueId);
+                        ApiClient.DeviceId = uniqueId.ToString();
 
                         var user = ISettings.GetKeyValue<UserSettingWrapper>(Constants.SelectedUserSetting);
                         if (user != null)

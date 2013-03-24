@@ -18,10 +18,7 @@ namespace MediaBrowser.WindowsPhone.Converters
             {
                 return isFavourite ? "remove" : "add";
             }
-            else
-            {
-                return isFavourite ? new Uri("/Icons/appbar.star.minus.png", UriKind.Relative) : new Uri("/Icons/appbar.star.add.png", UriKind.Relative);
-            }
+            return isFavourite ? new Uri("/Icons/appbar.star.minus.png", UriKind.Relative) : new Uri("/Icons/appbar.star.add.png", UriKind.Relative);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)

@@ -12,13 +12,9 @@
   See http://www.galasoft.ch/mvvm
 */
 
-using System;
-using System.Net;
-using System.Net.Http;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using MediaBrowser.ApiInteraction;
-using MediaBrowser.Model.Connectivity;
 using MediaBrowser.Shared;
 using MediaBrowser.Windows8.Model;
 using Microsoft.Practices.ServiceLocation;
@@ -48,12 +44,7 @@ namespace MediaBrowser.Windows8.ViewModel
                         () => new NavigationService(new Frame()));
 
                 if (!SimpleIoc.Default.IsRegistered<ExtendedApiClient>())
-                    SimpleIoc.Default.Register(() => new ExtendedApiClient(new Logger(), new AsyncHttpClient(new Logger()))
-                                                                    {
-                                                                        ServerHostName = "192.168.0.2",
-                                                                        ServerApiPort = 8096,
-                                                                        ClientType = ClientType.WindowsRT
-                                                                    });
+                    SimpleIoc.Default.Register(() => new ExtendedApiClient(new Logger(), new AsyncHttpClient(new Logger()), "192.168.0.2", 8096, "Windows RT", "", ""));
                 if (!SimpleIoc.Default.IsRegistered<FolderViewModel>())
                     SimpleIoc.Default.Register<FolderViewModel>();
                 if (!SimpleIoc.Default.IsRegistered<TvViewModel>())
@@ -65,12 +56,7 @@ namespace MediaBrowser.Windows8.ViewModel
             {
                 SimpleIoc.Default.Register<NavigationService>();
                 if (!SimpleIoc.Default.IsRegistered<ExtendedApiClient>())
-                    SimpleIoc.Default.Register(() => new ExtendedApiClient(new Logger(), new AsyncHttpClient(new Logger()))
-                                                         {
-                                                             ClientType = ClientType.WindowsRT,
-                                                             SerializationFormat = SerializationFormats.Json
-                                                         });
-                
+                    SimpleIoc.Default.Register(() => new ExtendedApiClient(new Logger(), new AsyncHttpClient(new Logger()), "", 8096, "Windows RT", "", "") { SerializationFormat = SerializationFormats.Json });
             }
 
             if (!SimpleIoc.Default.IsRegistered<SpecificSettings>())

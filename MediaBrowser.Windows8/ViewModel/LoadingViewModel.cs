@@ -133,10 +133,21 @@ namespace MediaBrowser.Windows8.ViewModel
                     {
                         ApiClient.DeviceName = computerName;
                     }
+                    ApiClient.DeviceId = GetHardwareId();
 
                     await CheckForServer();
                 }
             });
+        }
+
+        public static string GetHardwareId()
+        {
+            var _Token = Windows.System.Profile.HardwareIdentification.GetPackageSpecificToken(null);
+            var _Id = _Token.Id;
+            var _Reader = Windows.Storage.Streams.DataReader.FromBuffer(_Id);
+            var _Bytes = new byte[_Id.Length];
+            _Reader.ReadBytes(_Bytes);
+            return BitConverter.ToString(_Bytes);
         }
 
         private async Task<bool> CheckForServer()

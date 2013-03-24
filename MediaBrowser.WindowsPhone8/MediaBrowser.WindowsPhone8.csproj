@@ -426,13 +426,13 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\MvvmLightLibs.4.1.27.0\lib\WindowsPhone8\GalaSoft.MvvmLight.WP8.dll</HintPath>
     </Reference>
-    <Reference Include="MediaBrowser.ApiInteraction.Portable, Version=3.0.4823.24450, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="MediaBrowser.ApiInteraction.Portable, Version=3.0.4831.29615, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MediaBrowser.ApiClient.3.0.0.49-beta\lib\portable-net45+sl4+wp71+win8\MediaBrowser.ApiInteraction.Portable.dll</HintPath>
+      <HintPath>..\packages\MediaBrowser.ApiClient.3.0.0.55-beta\lib\portable-net45+sl4+wp71+win8\MediaBrowser.ApiInteraction.Portable.dll</HintPath>
     </Reference>
-    <Reference Include="MediaBrowser.Model, Version=3.0.4823.20739, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="MediaBrowser.Model, Version=3.0.4828.37041, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MediaBrowser.Common.3.0.49\lib\portable-net4+sl4+wp7+win8\MediaBrowser.Model.dll</HintPath>
+      <HintPath>..\packages\MediaBrowser.Common.3.0.56\lib\portable-net4+sl4+wp7+win8\MediaBrowser.Model.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Phone.Controls.Toolkit">
       <HintPath>..\packages\WPtoolkit.4.2012.10.30\lib\wp8\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
@@ -456,7 +456,7 @@
       <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\sl4-windowsphone71\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="PropertyChanged">
-      <HintPath>..\packages\PropertyChanged.Fody.1.35.0.0\lib\SL40-WP\PropertyChanged.dll</HintPath>
+      <HintPath>..\packages\PropertyChanged.Fody.1.36.1.0\lib\SL40-WP\PropertyChanged.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="protobuf-net">
@@ -519,6 +519,9 @@
   -->
   <ProjectExtensions />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
-  <Import Project="$(ProjectDir)\..\Tools\Fody\Fody.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.0-rc\tools\Microsoft.Bcl.Build.targets" />
+  <Import Project="..\packages\Fody.1.13.3.0\Fody.targets" Condition="Exists('..\packages\Fody.1.13.3.0\Fody.targets')" />
+  <Target Name="FodyTargetsCheck" BeforeTargets="BeforeCompile">
+    <Error Condition="!Exists('..\packages\Fody.1.13.3.0\Fody.targets')" Text="Could not find Fody.targets. You either forget to check in the package or forgot to enable package restore." />
+  </Target>
 </Project>

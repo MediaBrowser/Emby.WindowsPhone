@@ -12,8 +12,8 @@ namespace MediaBrowser.Windows8.Model
 {
     public class ExtendedApiClient : ApiClient
     {
-        public ExtendedApiClient(ILogger logger, IAsyncHttpClient httpClient)
-            : base(logger, httpClient)
+        public ExtendedApiClient(ILogger logger, IAsyncHttpClient httpClient, string serverHostName, int serverApiPort, string clientName, string deviceName, string deviceId)
+            : base(logger, httpClient, serverHostName, serverApiPort, clientName, deviceName, deviceId)
         {
             
         }
