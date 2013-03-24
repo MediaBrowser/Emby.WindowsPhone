@@ -45,26 +45,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
         private void WireCommands()
         {
-            TestConnectionCommand = new RelayCommand(async () =>
-            {
-                ProgressIsVisible = true;
-                ProgressText = AppResources.SysTrayAuthenticating;
-                if (NavigationService.IsNetworkAvailable)
-                {
-                    if (await GetServerConfiguration())
-                    {
-                        ISettings.DeleteValue(Constants.SelectedUserSetting);
-                        ISettings.SetKeyValue(Constants.ConnectionSettings, App.Settings.ConnectionDetails);
-                        await CheckProfiles();
-                    }
-                    else
-                    {
-                        App.ShowMessage("", AppResources.ErrorConnectionDetailsInvalid);
-                    }
-                }
-                ProgressIsVisible = false;
-                ProgressText = string.Empty;
-            });
+            
         }
 
         private void WireMessages()
@@ -135,12 +116,13 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         {
                             ProgressText = AppResources.SysTrayGettingServerDetails;
 
-                            await GetServerConfiguration();
+                            await Utils.GetServerConfiguration(ApiClient);
 
                             if (App.Settings.ServerConfiguration != null)
                             {
                                 await SetPushSettings();
-                                await CheckProfiles();
+                                ProgressText = AppResources.SysTrayAuthenticating;
+                                await Utils.CheckProfiles(NavigationService);
                             }
                             else
                             {
@@ -199,42 +181,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             settings.loadingFromSettings = false;
         }
 
-        private async Task CheckProfiles()
-        {
-            // If one exists, then authenticate that user.
-            if (App.Settings.LoggedInUser != null)
-            {
-                ProgressText = AppResources.SysTrayAuthenticating;
-                await Utils.Login(App.Settings.LoggedInUser, App.Settings.PinCode, () =>
-                                                                                       {
-                                                                                           if (!string.IsNullOrEmpty(App.Action))
-                                                                                               NavigationService.NavigateToPage(App.Action);
-                                                                                           else
-                                                                                               NavigationService.NavigateToPage("/Views/MainPage.xaml");
-                                                                                       });
-            }
-            else
-            {
-                NavigationService.NavigateToPage("/Views/ChooseProfileView.xaml");
-            }
-        }
-
-        private async Task<bool> GetServerConfiguration()
-        {
-            try
-            {
-                ApiClient.ServerHostName = App.Settings.ConnectionDetails.HostName;
-                ApiClient.ServerApiPort = App.Settings.ConnectionDetails.PortNo;
-                var config = await ApiClient.GetServerConfigurationAsync();
-                App.Settings.ServerConfiguration = config;
-                return true;
-            }
-            catch (Exception ex)
-            {
-                var mbEx = ex as HttpException;
-                return false;
-            }
-        }
+        
 
         public string ProgressText { get; set; }
         public bool ProgressIsVisible { get; set; }

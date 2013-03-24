@@ -104,7 +104,7 @@
                     <TextBox Text="{Binding ConnectionDetails.HostName, Source={StaticResource AppSettings}, Mode=TwoWay}"
                              InputScope="Url">
                         <i:Interaction.Behaviors>
-                            <behaviours:UpdateTextBindingOnPropertyChanged EnterHitCommand="{Binding Splashscreen.TestConnectionCommand, Source={StaticResource Locator}}"/>
+                            <behaviours:UpdateTextBindingOnPropertyChanged EnterHitCommand="{Binding Settings.TestConnectionCommand, Source={StaticResource Locator}}"/>
                         </i:Interaction.Behaviors>
                     </TextBox>
                     <TextBlock Text="Port:"

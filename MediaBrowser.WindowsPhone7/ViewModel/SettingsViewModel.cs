@@ -127,6 +127,36 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
         }
 
+        public RelayCommand TestConnectionCommand
+        {
+            get
+            {
+                return new RelayCommand(async () => await TestConnection());
+            }
+        }
+
+        private async Task TestConnection()
+        {
+            ProgressIsVisible = true;
+            ProgressText = AppResources.SysTrayAuthenticating;
+            if (NavigationService.IsNetworkAvailable)
+            {
+                if (await Utils.GetServerConfiguration(ApiClient))
+                {
+                    ISettings.DeleteValue(Constants.SelectedUserSetting);
+                    ISettings.SetKeyValue(Constants.ConnectionSettings, App.Settings.ConnectionDetails);
+                    ProgressText = AppResources.SysTrayAuthenticating;
+                    await Utils.CheckProfiles(NavigationService);
+                }
+                else
+                {
+                    App.ShowMessage("", AppResources.ErrorConnectionDetailsInvalid);
+                }
+            }
+            ProgressIsVisible = false;
+            ProgressText = string.Empty;
+        }
+
 #if WP8
         #region Server Broadcast code WP8 only
         public ObservableCollection<Server> FoundServers { get; set; }
@@ -155,7 +185,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             get
             {
-                return new RelayCommand<Server>(server =>
+                return new RelayCommand<Server>(async server =>
                                                     {
                                                         App.Settings.ConnectionDetails.HostName = server.IpAddress;
                                                         App.Settings.ConnectionDetails.PortNo = int.Parse(server.PortNo);
@@ -164,7 +194,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                         ProgressIsVisible = true;
                                                         ProgressText = AppResources.SysTrayAuthenticating;
 
-                                                        SimpleIoc.Default.GetInstance<SplashscreenViewModel>().TestConnectionCommand.Execute(null);
+                                                        await TestConnection();
 
                                                         ProgressIsVisible = false;
                                                         ProgressText = string.Empty;

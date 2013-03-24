@@ -7,10 +7,13 @@ using System.Text;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Ioc;
 using MediaBrowser.ApiInteraction;
+using MediaBrowser.Model.Configuration;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Net;
 using MediaBrowser.WindowsPhone.Model;
+using MediaBrowser.WindowsPhone.Resources;
+
 #if !WP8
 using ScottIsAFool.WindowsPhone;
 #endif
@@ -113,6 +116,41 @@ namespace MediaBrowser.WindowsPhone
                 .OrderByDescending(x => x.DateCreated)
                 .Take(6);
             return recent.ToList();
+        }
+
+        internal static async Task<bool> GetServerConfiguration(ExtendedApiClient ApiClient)
+        {
+            try
+            {
+                ApiClient.ServerHostName = App.Settings.ConnectionDetails.HostName;
+                ApiClient.ServerApiPort = App.Settings.ConnectionDetails.PortNo;
+                var config = await ApiClient.GetServerConfigurationAsync();
+                App.Settings.ServerConfiguration = config;
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        internal static async Task CheckProfiles(INavigationService NavigationService)
+        {
+            // If one exists, then authenticate that user.
+            if (App.Settings.LoggedInUser != null)
+            {
+                await Utils.Login(App.Settings.LoggedInUser, App.Settings.PinCode, () =>
+                {
+                    if (!string.IsNullOrEmpty(App.Action))
+                        NavigationService.NavigateToPage(App.Action);
+                    else
+                        NavigationService.NavigateToPage("/Views/MainPage.xaml");
+                });
+            }
+            else
+            {
+                NavigationService.NavigateToPage("/Views/ChooseProfileView.xaml");
+            }
         }
 
         internal static byte[] ToHash(this string pinCode)
