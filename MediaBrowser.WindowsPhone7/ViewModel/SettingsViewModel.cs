@@ -419,20 +419,15 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             if (!string.IsNullOrEmpty(anid))
             {
-                string[] parts = anid.Split('&');
-                IEnumerable<string[]> pairs = parts.Select(part => part.Split('='));
+                var parts = anid.Split('&');
+                var pairs = parts.Select(part => part.Split('='));
                 var id = pairs
                     .Where(pair => pair.Length == 2 && pair[0] == "A")
                     .Select(pair => pair[1])
                     .FirstOrDefault();
                 return id;
             }
-            else
-            {
-                return "emulator";
-            }
-
-            return string.Empty;
+            return "emulator";
         }
     }
 }

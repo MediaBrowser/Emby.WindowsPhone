@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using GalaSoft.MvvmLight;
@@ -104,7 +105,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         
                         object uniqueId;
                         DeviceExtendedProperties.TryGetValue("DeviceUniqueId", out uniqueId);
-                        ApiClient.DeviceId = uniqueId.ToString();
+                        ApiClient.DeviceId = Convert.ToBase64String((byte[]) uniqueId, 0, ((byte[]) uniqueId).Length);
 
                         var user = ISettings.GetKeyValue<UserSettingWrapper>(Constants.SelectedUserSetting);
                         if (user != null)
