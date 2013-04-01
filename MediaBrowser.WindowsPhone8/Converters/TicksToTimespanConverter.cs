@@ -11,7 +11,7 @@ namespace MediaBrowser.WindowsPhone.Converters
             {
                 var runtimeTicks = (long)value;
                 var runtime = TimeSpan.FromTicks(runtimeTicks);
-                return runtime;
+                return runtime.ToString(@"mm\:ss");
             }
             return new TimeSpan();
         }

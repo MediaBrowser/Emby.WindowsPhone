@@ -2,7 +2,6 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Windows;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
@@ -10,6 +9,9 @@ using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Querying;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Resources;
+#if !WP8
+using ScottIsAFool.WindowsPhone;
+#endif
 
 namespace MediaBrowser.WindowsPhone.ViewModel
 {
@@ -58,6 +60,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                       new BaseItemDto {Name = "On Thin Ice", Id = "2696da6a01f254fbd7e199a191bd5c4f", IndexNumber = 2, ParentIndexNumber = 1, RunTimeTicks = 1745500000},
                                   }.OrderBy(x => x.ParentIndexNumber)
                                    .ThenBy(x => x.IndexNumber).ToList();
+
+                SortedTracks = Utils.GroupArtistTracks(AlbumTracks);
             }
             else
             {
@@ -97,7 +101,15 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                             ProgressText = AppResources.SysTrayGettingAlbums;
                                                             ProgressIsVisible = true;
 
+                                                            try
+                                                            {
+                                                                SelectedArtist = await ApiClient.GetItemAsync(SelectedArtist.Id, App.Settings.LoggedInUser.Id);
+                                                            }
+                                                            catch { }
+
                                                             gotAlbums = await GetAlbums();
+
+                                                            SortTracks();
 
                                                             ProgressText = string.Empty;
                                                             ProgressIsVisible = false;
@@ -106,8 +118,29 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             AlbumPageLoaded = new RelayCommand(() =>
                                                    {
-                                                       
+
                                                    });
+
+            AlbumTapped = new RelayCommand<BaseItemDto>(album =>
+                                                            {
+                                                                SelectedAlbum = album;
+                                                                AlbumTracks = artistTracks.Where(x => x.ParentId == SelectedAlbum.Id)
+                                                                                          .OrderBy(x => x.IndexNumber)
+                                                                                          .ToList();
+                                                            });
+
+            AlbumPlayTapped = new RelayCommand<BaseItemDto>(album =>
+                                                                {
+
+                                                                });
+        }
+
+        private void SortTracks()
+        {
+            if (artistTracks != null && artistTracks.Any())
+            {
+                SortedTracks = Utils.GroupArtistTracks(artistTracks);
+            }
         }
 
         private async Task<bool> GetAlbums()
@@ -160,8 +193,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public BaseItemDto SelectedAlbum { get; set; }
         public ObservableCollection<BaseItemDto> Albums { get; set; }
         public List<BaseItemDto> AlbumTracks { get; set; }
+        public List<Group<BaseItemDto>> SortedTracks { get; set; }
 
         public RelayCommand ArtistPageLoaded { get; set; }
         public RelayCommand AlbumPageLoaded { get; set; }
+        public RelayCommand<BaseItemDto> AlbumTapped { get; set; }
+        public RelayCommand<BaseItemDto> AlbumPlayTapped { get; set; }
     }
 }

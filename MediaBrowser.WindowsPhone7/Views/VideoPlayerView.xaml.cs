@@ -20,7 +20,7 @@ namespace MediaBrowser.WindowsPhone.Views
                               thePlayer.Playlist.Add(new PlaylistItem
                               {
                                   DeliveryMethod = DeliveryMethods.NotSpecified,
-                                  MediaSource = url
+                                  MediaSource = new Uri(url)
                               });
                               thePlayer.Play();
                           };

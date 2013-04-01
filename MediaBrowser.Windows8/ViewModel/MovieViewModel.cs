@@ -8,6 +8,7 @@ using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.ApiInteraction;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
+using MediaBrowser.Model.Net;
 using MediaBrowser.Windows8.Model;
 using MediaBrowser.Windows8.Views;
 using Windows.Foundation;
@@ -152,7 +153,15 @@ namespace MediaBrowser.Windows8.ViewModel
 
             LikeDislikeCommand = new RelayCommand<string>(async isLike =>
                                                                     {
-                                                                        SelectedMovie.UserData = await ApiClient.UpdateUserItemRatingAsync(SelectedMovie.Id, App.Settings.LoggedInUser.Id, bool.Parse(isLike));
+                                                                        try
+                                                                        {
+                                                                            SelectedMovie.UserData.Likes = bool.Parse(isLike);
+                                                                            await ApiClient.UpdateUserItemRatingAsync(SelectedMovie.Id, App.Settings.LoggedInUser.Id, bool.Parse(isLike));
+                                                                        }
+                                                                        catch (HttpException ex)
+                                                                        {
+                                                                            var v = "v";
+                                                                        }
                                                                     });
 
             

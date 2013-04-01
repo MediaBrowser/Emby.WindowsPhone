@@ -10,6 +10,8 @@
                             xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP8"
                             xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
                             xmlns:controls="clr-namespace:MediaBrowser.WindowsPhone.Controls"
+                            xmlns:delay="clr-namespace:Delay"
+                            xmlns:c4f="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
                             mc:Ignorable="d ignore"
                             FontFamily="{StaticResource PhoneFontFamilyNormal}"
                             FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -77,7 +79,7 @@
                     Grid.Row="0"
                     Margin="12,17,0,28">
             <controls:MediaBrowserLogo />
-            <TextBlock Text="{Binding SelectedAlbum.Name}"
+            <TextBlock Text="{Binding SelectedAlbum.Name, Converter={StaticResource StringCaseConverter}}"
                        Margin="9,-7,0,0"
                        Style="{StaticResource PhoneTextTitle1Style}" />
         </StackPanel>
@@ -86,15 +88,45 @@
         <Grid x:Name="ContentPanel"
               Grid.Row="1"
               Margin="12,0,12,0">
-
-            <TextBlock Text="{Binding WelcomeTitle}"
-                       Style="{StaticResource PhoneTextNormalStyle}"
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Center"
-                       TextAlignment="Center"
-                       TextWrapping="Wrap"
-                       FontSize="40" />
-
+            <phone:LongListSelector ItemsSource="{Binding AlbumTracks}"
+                                    IsGroupingEnabled="False"
+                                    Margin="12,0,0,0">
+                <phone:LongListSelector.ListHeader>
+                        <StackPanel Orientation="Horizontal"
+                                    Margin="0,0,0,12">
+                            <delay:PlaceImage Source="{Binding SelectedAlbum, Converter={StaticResource ImageUrlConverter}}"
+                                              Background="{Binding Converter={StaticResource RandomColour}}"
+                                              Height="150"
+                                              Width="150"/>
+                            <StackPanel Orientation="Vertical"
+                                        Margin="0,-6,0,0"
+                                        VerticalAlignment="Top">
+                                <TextBlock Text="{Binding SelectedAlbum.Name}"
+                                           Style="{StaticResource PhoneTextTitle2Style}"
+                                           TextWrapping="Wrap"
+                                           MaxWidth="260"/>
+                                <TextBlock Text="{Binding SelectedArtist.Name}"
+                                           Style="{StaticResource PhoneTextSubtleStyle}"/>
+                            </StackPanel>
+                        </StackPanel>
+                </phone:LongListSelector.ListHeader>
+                <phone:LongListSelector.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal"
+                                    Margin="0,12,0,0">
+                            <c4f:RoundButton ImageSource="/Icons/transport.play.png"
+                                             Margin="-6,0,0,0" />
+                            <StackPanel Orientation="Vertical"
+                                        Margin="0,-12,0,0">
+                                <TextBlock Text="{Binding Name}"
+                                           Style="{StaticResource PhoneTextTitle2Style}" />
+                                <TextBlock Text="{Binding RunTimeTicks, Converter={StaticResource TicksToTimespanConverter}}"
+                                           Style="{StaticResource PhoneTextSubtleStyle}" />
+                            </StackPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </phone:LongListSelector.ItemTemplate>
+            </phone:LongListSelector>
         </Grid>
 
         <!--Uncomment to see an alignment grid to help ensure your controls are

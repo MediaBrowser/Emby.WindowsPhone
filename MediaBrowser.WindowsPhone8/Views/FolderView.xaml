@@ -77,9 +77,9 @@
               Grid.Row="1"
               Margin="12,0,12,0">
             <phone:LongListSelector GroupHeaderTemplate="{Binding GroupHeaderTemplate}"
-                                      JumpListStyle="{Binding GroupItemTemplate}"
-                                      ItemsSource="{Binding FolderGroupings}"
-                                      Background="Transparent"
+                                    JumpListStyle="{Binding GroupItemTemplate}"
+                                    ItemsSource="{Binding FolderGroupings}"
+                                    Background="Transparent"
                                     HideEmptyGroups="True"
                                     IsGroupingEnabled="True">
                 <phone:LongListSelector.ItemTemplate>

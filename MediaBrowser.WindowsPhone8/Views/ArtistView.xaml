@@ -10,6 +10,9 @@
                             xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP8"
                             xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
                             xmlns:controls="clr-namespace:MediaBrowser.WindowsPhone.Controls"
+                            xmlns:delay="clr-namespace:Delay"
+                            xmlns:pixelLab="clr-namespace:PixelLab"
+                            xmlns:c4f="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
                             mc:Ignorable="d ignore"
                             FontFamily="{StaticResource PhoneFontFamilyNormal}"
                             FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -17,10 +20,11 @@
                             SupportedOrientations="Portrait"
                             Orientation="Portrait"
                             shell:SystemTray.IsVisible="True"
+                            toolkit:TiltEffect.IsTiltEnabled="True"
                             DataContext="{Binding Music, Source={StaticResource Locator}}">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
-            <command:EventToCommand Command="{Binding ArtistPageLoaded}"/>
+            <command:EventToCommand Command="{Binding ArtistPageLoaded}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
 
@@ -53,40 +57,92 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <!-- LOCALIZATION NOTE:
-            To localize the displayed strings copy their values to appropriately named
-            keys in the app's neutral language resource file (AppResources.resx) then
-            replace the hard-coded text value between the attributes' quotation marks
-            with the binding clause whose path points to that string name.
-
-            For example:
-
-                Text="{Binding Path=LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}"
-
-            This binding points to the template's string resource named "ApplicationTitle".
-
-            Adding supported languages in the Project Properties tab will create a
-            new resx file per language that can carry the translated values of your
-            UI strings. The binding in these examples will cause the value of the
-            attributes to be drawn from the .resx file that matches the
-            CurrentUICulture of the app at run time.
-         -->
-
         <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel x:Name="TitlePanel"
+        <!--<StackPanel x:Name="TitlePanel"
                     Grid.Row="0"
                     Margin="12,17,0,28">
             <controls:MediaBrowserLogo />
             <TextBlock Text="{Binding SelectedArtist.Name}"
                        Margin="9,-7,0,0"
                        Style="{StaticResource PhoneTextTitle1Style}" />
-        </StackPanel>
+        </StackPanel>-->
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel"
-              Grid.Row="1"
-              Margin="12,0,12,0">
+              Grid.Row="1">
+            <phone:Pivot Title="{Binding SelectedArtist.Name, Converter={StaticResource StringCaseConverter}, ConverterParameter=false}">
+                <phone:PivotItem Header="albums">
+                    <phone:LongListSelector ItemsSource="{Binding Albums}">
+                        <phone:LongListSelector.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal"
+                                            Margin="12,0,0,12">
+                                    <Grid Width="150"
+                                          Height="150"
+                                          VerticalAlignment="Top">
+                                        <delay:PlaceImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
+                                                          Height="150"
+                                                          Width="150"
+                                                          Background="{Binding Converter={StaticResource RandomColour}}" />
+                                        <c4f:RoundButton ImageSource="/Icons/transport.play.png"
+                                                         HorizontalAlignment="Right"
+                                                         VerticalAlignment="Top"
+                                                         Margin="6"
+                                                         />
+                                    </Grid>
+                                    <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                                     NavigateUri="/Views/AlbumView.xaml"
+                                                     Command="{Binding Music.AlbumTapped, Source={StaticResource Locator}}"
+                                                     CommandParameter="{Binding}"
+                                                     HorizontalContentAlignment="Left"
+                                                     VerticalContentAlignment="Top">
+                                        <TextBlock Text="{Binding Name}"
+                                                   Style="{StaticResource PhoneTextTitle2Style}"
+                                                   FontWeight="Bold"
+                                                   TextWrapping="Wrap"
+                                                   Margin="12,-6,0,0"
+                                                   MaxWidth="240"
+                                                   MaxHeight="140"
+                                                   LineHeight="2"
+                                                   TextTrimming="WordEllipsis" />
+                                    </HyperlinkButton>
+                                </StackPanel>
+                            </DataTemplate>
+                        </phone:LongListSelector.ItemTemplate>
+                    </phone:LongListSelector>
+                </phone:PivotItem>
 
+                <phone:PivotItem Header="songs">
+                    <toolkit:LongListMultiSelector ItemsSource="{Binding SortedTracks}"
+                                                   JumpListStyle="{StaticResource LLSGroupItemStyle}"
+                                                   GroupHeaderTemplate="{StaticResource LLSGroupHeaderTemplateName}"
+                                                   HideEmptyGroups="True"
+                                                   IsGroupingEnabled="True">
+                        <toolkit:LongListMultiSelector.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal"
+                                            Margin="0,12,0,0">
+                                    <c4f:RoundButton ImageSource="/Icons/transport.play.png"
+                                                     Margin="-6,0,0,0" />
+                                    <StackPanel Orientation="Vertical"
+                                                Margin="0,-12,0,0">
+                                        <TextBlock Text="{Binding Name}"
+                                                   Style="{StaticResource PhoneTextTitle2Style}" />
+                                        <TextBlock Text="{Binding Album}"
+                                                   Style="{StaticResource PhoneTextSubtleStyle}" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </DataTemplate>
+                        </toolkit:LongListMultiSelector.ItemTemplate>
+                    </toolkit:LongListMultiSelector>
+                </phone:PivotItem>
+
+                <phone:PivotItem Header="bio">
+                    <TextBlock Text="{Binding SelectedArtist.Overview}"
+                               Style="{StaticResource PhoneTextNormalStyle}"
+                               TextWrapping="Wrap" />
+                </phone:PivotItem>
+            </phone:Pivot>
         </Grid>
 
         <!--Uncomment to see an alignment grid to help ensure your controls are

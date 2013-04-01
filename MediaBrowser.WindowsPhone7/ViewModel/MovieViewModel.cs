@@ -80,7 +80,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     ProgressIsVisible = true;
                     ProgressText = AppResources.SysTrayGettingMovieInfo;
                     
-                    bool dataLoaded = await GetMovieDetails();
+                    var dataLoaded = await GetMovieDetails();
 
                     if (SelectedMovie.ProviderIds != null)
                         ImdbId = SelectedMovie.ProviderIds["Imdb"];
@@ -96,20 +96,22 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             PlayMovieCommand = new RelayCommand(async () =>
                                                     {
-//#if WP8
-                                                        //Messenger.Default.Send(new NotificationMessage(SelectedMovie, Constants.PlayVideoItemMsg));
-                                                        //NavService.NavigateToPage("/Views/VideoPlayerView.xaml");
-//#else
+#if WP8
+                                                        Messenger.Default.Send(new NotificationMessage(SelectedMovie, Constants.PlayVideoItemMsg));
+                                                        NavService.NavigateToPage("/Views/VideoPlayerView.xaml");
+#else
                                                         var bounds = Application.Current.RootVisual.RenderSize;
                                                         var query = new VideoStreamOptions
                                                         {
                                                             ItemId = SelectedMovie.Id,
-                                                            VideoCodec = VideoCodecs.H264,
-                                                            OutputFileExtension = ".mp4",
-                                                            AudioCodec = AudioCodecs.Aac,
+                                                            VideoCodec = VideoCodecs.Wmv,
+                                                            //OutputFileExtension = ".asf",
+                                                            AudioCodec = AudioCodecs.Wma,
                                                             VideoBitRate = 1000000,
                                                             AudioBitRate = 128000,
                                                             MaxAudioChannels = 2,
+                                                            //Profile = "baseline",
+                                                            //Level = "3",
                                                             //FrameRate = 30,
                                                             MaxHeight = 480,// (int)bounds.Width,
                                                             MaxWidth = 800// (int)bounds.Height
@@ -126,7 +128,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                                                           Location = MediaLocationType.Data
                                                                                       };
                                                         mediaPlayerLauncher.Show();
-//#endif
+#endif
                                                     });
 
             AddRemoveFavouriteCommand = new RelayCommand(async () =>

@@ -50,7 +50,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                                           {
                                                                               try
                                                                               {
-                                                                                  var totalTicks = isResume ? StartTime.Ticks + PlayedVideoDuration.Ticks : PlayedVideoDuration.Ticks;
+                                                                                  var totalTicks = isResume ? StartTime.Value.Ticks + PlayedVideoDuration.Ticks : PlayedVideoDuration.Ticks;
                                                                                   SelectedItem.UserData.PlaybackPositionTicks = totalTicks;
                                                                                   await ApiClient.ReportPlaybackStoppedAsync(SelectedItem.Id, App.Settings.LoggedInUser.Id, totalTicks);
                                                                               }
@@ -59,11 +59,24 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                                                   string v = "v";
                                                                               }
                                                                           }
+                                                                          //if (m.Notification.Equals(Constants.SendVideoTimeToServerMsg))
+                                                                          //{
+                                                                          //    try
+                                                                          //    {
+                                                                          //        var totalTicks = StartTime.HasValue ? StartTime.Value.Ticks + PlayedVideoDuration.Ticks : PlayedVideoDuration.Ticks;
+                                                                          //        SelectedItem.UserData.PlaybackPositionTicks = totalTicks;
+                                                                          //        await ApiClient.ReportPlaybackStoppedAsync(SelectedItem.Id, App.Settings.LoggedInUser.Id, totalTicks);
+                                                                          //    }
+                                                                          //    catch
+                                                                          //    {
+                                                                          //        var v = "v";
+                                                                          //    }
+                                                                          //}
                                                                       });
         }
 
         public string VideoUrl { get; set; }
-        public TimeSpan StartTime { get; set; }
+        public TimeSpan? StartTime { get; set; }
         public TimeSpan PlayedVideoDuration { get; set; }
         public BaseItemDto SelectedItem { get; set; }
 
@@ -83,11 +96,16 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                 {
                                                     ItemId = SelectedItem.Id,
                                                     VideoCodec = VideoCodecs.H264,
-                                                    OutputFileExtension = "ts",
-                                                    AudioCodec = AudioCodecs.Mp3,
-                                                    StartTimeTicks = ticks,
-                                                    MaxHeight = 480,
-                                                    MaxWidth = 800
+                                                    OutputFileExtension = ".mp4",
+                                                    AudioCodec = AudioCodecs.Aac,
+                                                    VideoBitRate = 1000000,
+                                                    AudioBitRate = 128000,
+                                                    MaxAudioChannels = 2,
+                                                    Profile = "baseline",
+                                                    Level= "3",
+                                                    //FrameRate = 20,
+                                                    MaxHeight = 480,// (int)bounds.Width,
+                                                    MaxWidth = 800// (int)bounds.Height
                                                 };
 
                                                 VideoUrl = ApiClient.GetVideoStreamUrl(query);

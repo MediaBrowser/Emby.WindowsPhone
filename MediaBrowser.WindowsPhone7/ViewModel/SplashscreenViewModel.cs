@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
-using MediaBrowser.Model.Net;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Resources;
 using Microsoft.Phone.Controls;
@@ -93,20 +90,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                         var specificSettings = ISettings.GetKeyValue<SpecificSettings>(Constants.SpecificSettings);
                         if (specificSettings != null) Utils.CopyItem(specificSettings, App.SpecificSettings);
-
-                        var deviceName = DeviceStatus.DeviceName;
-                        var deviceId = DeviceStatus.DeviceManufacturer;
-
-                        var phone = Ailon.WP.Utils.PhoneNameResolver.Resolve(deviceId, deviceName);
-
-                        var deviceInfo = string.Format("{0} ({1})", phone.CanonicalModel, phone.CanonicalManufacturer);
-
-                        ApiClient.DeviceName = deviceInfo;
                         
-                        object uniqueId;
-                        DeviceExtendedProperties.TryGetValue("DeviceUniqueId", out uniqueId);
-                        ApiClient.DeviceId = Convert.ToBase64String((byte[]) uniqueId, 0, ((byte[]) uniqueId).Length);
-
                         var user = ISettings.GetKeyValue<UserSettingWrapper>(Constants.SelectedUserSetting);
                         if (user != null)
                         {

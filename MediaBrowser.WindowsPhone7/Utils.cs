@@ -5,14 +5,13 @@ using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using Ailon.WP.Utils;
 using GalaSoft.MvvmLight.Ioc;
-using MediaBrowser.ApiInteraction;
-using MediaBrowser.Model.Configuration;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Net;
 using MediaBrowser.WindowsPhone.Model;
-using MediaBrowser.WindowsPhone.Resources;
+using Microsoft.Phone.Info;
 
 #if !WP8
 using ScottIsAFool.WindowsPhone;
@@ -46,6 +45,51 @@ namespace MediaBrowser.WindowsPhone
             return result;
         }
 
+        public static List<Group<BaseItemDto>> GroupArtistTracks(IEnumerable<BaseItemDto> tracks)
+        {
+            var emptyGroups = new List<Group<BaseItemDto>>();
+
+            var headers = new List<string> { "#", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
+            headers.ForEach(item => emptyGroups.Add(new Group<BaseItemDto>(item, new List<BaseItemDto>())));
+
+            var groupedTracks = (from t in tracks
+                                 group t by GetSortByNameHeader(t)
+                                 into grp
+                                 orderby grp.Key
+                                 select new Group<BaseItemDto>(grp.Key, grp)).ToList();
+
+            var result = (from g in groupedTracks.Union(emptyGroups)
+#if WP8
+                          where g.Count > 0
+#else
+                          where g.HasItems
+
+#endif
+                          orderby g.Title
+                          select g).ToList();
+
+            return result;
+        }
+
+        internal static string GetSortByNameHeader(BaseItemDto dtoBaseItem)
+        {
+            var name = !String.IsNullOrEmpty(dtoBaseItem.SortName) ? dtoBaseItem.SortName : dtoBaseItem.Name;
+            var words = name.Split(' ');
+            var l = name.ToLower()[0];
+            if (words[0].ToLower().Equals("the") ||
+                words[0].ToLower().Equals("a") ||
+                words[0].ToLower().Equals("an"))
+            {
+                if (words.Length > 0)
+                    l = words[1].ToLower()[0];
+            }
+            if (l >= 'a' && l <= 'z')
+            {
+                return l.ToString();
+            }
+            return '#'.ToString();
+        }
+
         internal static async Task Login(UserDto selectedUser, string pinCode, Action successAction)
         {
             var client = SimpleIoc.Default.GetInstance<ExtendedApiClient>();
@@ -61,7 +105,7 @@ namespace MediaBrowser.WindowsPhone
             }
             catch (HttpException ex)
             {
-                
+                var v = "";
             }
         }
 
@@ -96,7 +140,7 @@ namespace MediaBrowser.WindowsPhone
             {
                 seriesList.AddRange(episodesBySeries.Select(series => new BaseItemDto
                 {
-                    Name = string.Format("{0} ({1} items)", series.Name, series.Count),
+                    Name = String.Format("{0} ({1} items)", series.Name, series.Count),
                     Id = series.Id,
                     DateCreated = series.CreatedDate,
                     Type = "Series",
@@ -112,10 +156,11 @@ namespace MediaBrowser.WindowsPhone
             {
                 recent = recent.Where(x => x.Type != "Trailer");
             }
-            recent
+            return recent
                 .OrderByDescending(x => x.DateCreated)
-                .Take(6);
-            return recent.ToList();
+                .Take(6)
+                .ToList();
+
         }
 
         internal static async Task<bool> GetServerConfiguration(ExtendedApiClient ApiClient)
@@ -139,9 +184,9 @@ namespace MediaBrowser.WindowsPhone
             // If one exists, then authenticate that user.
             if (App.Settings.LoggedInUser != null)
             {
-                await Utils.Login(App.Settings.LoggedInUser, App.Settings.PinCode, () =>
+                await Login(App.Settings.LoggedInUser, App.Settings.PinCode, () =>
                 {
-                    if (!string.IsNullOrEmpty(App.Action))
+                    if (!String.IsNullOrEmpty(App.Action))
                         NavigationService.NavigateToPage(App.Action);
                     else
                         NavigationService.NavigateToPage("/Views/MainPage.xaml");
@@ -160,6 +205,24 @@ namespace MediaBrowser.WindowsPhone
             sha1.ComputeHash(encoding.GetBytes(pinCode));
 
             return sha1.Hash;
+        }
+
+        internal static ExtendedApiClient SetDeviceProperties(this ExtendedApiClient apiClient)
+        {
+            var deviceName = DeviceStatus.DeviceName;
+            var deviceId = DeviceStatus.DeviceManufacturer;
+
+            var phone = PhoneNameResolver.Resolve(deviceId, deviceName);
+
+            var deviceInfo = String.Format("{0} ({1})", phone.CanonicalModel, phone.CanonicalManufacturer);
+
+            apiClient.DeviceName = deviceInfo;
+
+            object uniqueId;
+            DeviceExtendedProperties.TryGetValue("DeviceUniqueId", out uniqueId);
+            apiClient.DeviceId = Convert.ToBase64String((byte[])uniqueId, 0, ((byte[])uniqueId).Length);
+
+            return apiClient;
         }
     }
 }

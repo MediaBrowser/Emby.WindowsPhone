@@ -143,8 +143,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 if (await Utils.GetServerConfiguration(ApiClient))
                 {
-                    ISettings.DeleteValue(Constants.SelectedUserSetting);
-                    ISettings.SetKeyValue(Constants.ConnectionSettings, App.Settings.ConnectionDetails);
+                    if (!IsInDesignMode)
+                    {
+                        ISettings.DeleteValue(Constants.SelectedUserSetting);
+                        ISettings.SetKeyValue(Constants.ConnectionSettings, App.Settings.ConnectionDetails);
+                    }
                     ProgressText = AppResources.SysTrayAuthenticating;
                     await Utils.CheckProfiles(NavigationService);
                 }
@@ -258,7 +261,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         #region Push Notification methods
         private void OnServerPluginInstalledChanged()
         {
-            ISettings.Set("ServerPluginInstalled", ServerPluginInstalled);
+            if (!IsInDesignMode)
+                ISettings.Set("ServerPluginInstalled", ServerPluginInstalled);
         }
 
         public async void OnUseNotificationsChanged()
@@ -305,7 +309,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     ProgressText = string.Empty;
                     ProgressIsVisible = false;
                 }
-                ISettings.Set("UseNotifications", UseNotifications);
+                if (!IsInDesignMode)
+                    ISettings.Set("UseNotifications", UseNotifications);
             }
         }
 
@@ -317,7 +322,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         private void OnIsRegisteredChanged()
         {
             RegisteredText = IsRegistered ? AppResources.DeviceRegistered : AppResources.DeviceNotRegistered;
-            ISettings.Set("IsRegistered", IsRegistered);
+            if (!IsInDesignMode) ISettings.Set("IsRegistered", IsRegistered);
         }
 
         private async void OnSendToastUpdatesChanged()
@@ -333,7 +338,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                 }
             }
-            ISettings.Set("SendToastUpdates", SendToastUpdates);
+            if (!IsInDesignMode) ISettings.Set("SendToastUpdates", SendToastUpdates);
         }
 
         private async void OnSendTileUpdatesChanged()
@@ -349,7 +354,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                 }
             }
-            ISettings.Set("SendTileUpdates", SendTileUpdates);
+            if (!IsInDesignMode) ISettings.Set("SendTileUpdates", SendTileUpdates);
         }
 
         private async Task SubscribeToService()

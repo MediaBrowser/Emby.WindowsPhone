@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
-using MediaBrowser.ApiInteraction;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Windows8.Model;
 using MyToolkit.Multimedia;

@@ -262,7 +262,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     var headers = new List<string> { "#", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
                     headers.ForEach(item => emptyGroups.Add(new Group<BaseItemDto>(item, new List<BaseItemDto>())));
                     var groupedNameItems = (from c in CurrentItems
-                                            group c by GetSortByNameHeader(c)
+                                            group c by Utils.GetSortByNameHeader(c)
                                                 into grp
                                                 orderby grp.Key
                                                 select new Group<BaseItemDto>(grp.Key, grp)).ToList();
@@ -321,7 +321,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                              let films = (from f in CurrentItems
                                                           where CheckGenre(f)
                                                           where f.Genres.Contains(genre)
-                                                          orderby GetSortByNameHeader(f)
+                                                          orderby Utils.GetSortByNameHeader(f)
                                                           select f).ToList()
                                              select new Group<BaseItemDto>(genre, films)).ToList();
 #if WP8
@@ -389,25 +389,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         private string GetSortByProductionYearHeader(BaseItemDto dtoBaseItem)
         {
             return dtoBaseItem.ProductionYear == null ? "?" : dtoBaseItem.ProductionYear.ToString();
-        }
-
-        private string GetSortByNameHeader(BaseItemDto dtoBaseItem)
-        {
-            var name = !string.IsNullOrEmpty(dtoBaseItem.SortName) ? dtoBaseItem.SortName : dtoBaseItem.Name;
-            var words = name.Split(' ');
-            var l = name.ToLower()[0];
-            if (words[0].ToLower().Equals("the") ||
-                words[0].ToLower().Equals("a") ||
-                words[0].ToLower().Equals("an"))
-            {
-                if (words.Length > 0)
-                    l = words[1].ToLower()[0];
-            }
-            if (l >= 'a' && l <= 'z')
-            {
-                return l.ToString();
-            }
-            return '#'.ToString();
         }
 
         // Shell properties

@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Phone.Controls;
 using Microsoft.PlayerFramework;
 
@@ -15,12 +16,12 @@ namespace MediaBrowser.WindowsPhone.Views
             //BuildLocalizedApplicationBar();
         }
 
-        private void ThePlayer_MediaEnded(object sender, Microsoft.PlayerFramework.MediaPlayerActionEventArgs e)
+        private void ThePlayerMediaEnded(object sender, Microsoft.PlayerFramework.MediaPlayerActionEventArgs e)
         {
-            var s = "";
+            Messenger.Default.Send(new NotificationMessage(Constants.SendVideoTimeToServerMsg));
         }
 
-        private void ThePlayer_MediaFailed(object sender, System.Windows.ExceptionRoutedEventArgs e)
+        private void ThePlayerMediaFailed(object sender, System.Windows.ExceptionRoutedEventArgs e)
         {
             var s = "";
         }
@@ -38,6 +39,20 @@ namespace MediaBrowser.WindowsPhone.Views
         private void ThePlayer_OnMediaStarted(object sender, RoutedEventArgs e)
         {
             var s = "";
+        }
+
+        protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
+        {
+            base.OnBackKeyPress(e);
+            var result = MessageBox.Show("Are you sure you want to exit the video player?", "Are you sure?", MessageBoxButton.OKCancel);
+            if (result == MessageBoxResult.OK)
+            {
+                Messenger.Default.Send(new NotificationMessage(Constants.SendVideoTimeToServerMsg));
+            }
+            else
+            {
+                e.Cancel = false;
+            }
         }
     }
 }

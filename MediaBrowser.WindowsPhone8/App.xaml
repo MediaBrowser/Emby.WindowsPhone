@@ -52,6 +52,8 @@
             <converters:RandomColour x:Key="RandomColour" />
             <converters:FavouritesConverter x:Key="FavouritesConverter" />
             <converters:PinnedItemConverter x:Key="PinnedItemConverter"/>
+            <converters:RuntimeConverter x:Key="RuntimeConverter"/>
+            <converters:TicksToTimespanConverter x:Key="TicksToTimespanConverter"/>
 
             <local:LocalizedStrings xmlns:local="clr-namespace:MediaBrowser.WindowsPhone"
                                     x:Key="LocalizedStrings" />

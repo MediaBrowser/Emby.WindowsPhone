@@ -192,8 +192,16 @@ namespace MediaBrowser.Windows8.ViewModel
 
             ItemClicked = new RelayCommand<ItemClickEventArgs>(args =>
                                                                    {
-                                                                       var dtoItem = (GridItemWrapper<BaseItemDto>) args.ClickedItem;
-                                                                       navigationService.NavigateToPage(dtoItem.Item);
+                                                                       var item = args.ClickedItem as GridItemWrapper<BaseItemDto>;
+                                                                       if (item != null)
+                                                                       {
+                                                                           var dtoItem = item;
+                                                                           navigationService.NavigateToPage(dtoItem.Item);
+                                                                       }
+                                                                       else
+                                                                       {
+                                                                           navigationService.NavigateToPage(args.ClickedItem);
+                                                                       }
                                                                    });
             NavigateToPage = new RelayCommand<object>(navigationService.NavigateToPage);
             PlayVideoCommand = new RelayCommand<BaseItemDto>(item => navigationService.PlayVideoItem(item, false));
@@ -357,12 +365,26 @@ namespace MediaBrowser.Windows8.ViewModel
                                        recent = recent.Where(y => y.Type != "Trailer").ToList();
                                    
                                });
+                var i = 0;
                 foreach (var item in recent)
                 {
-                    Groups[RecentItems].Items.Add(item.ToWrapper());
+                    switch (i)
+                    {
+                        case 0:
+                            Groups[RecentItems].Items.Add(item.ToWrapper(2,2));
+                            break;
+                        //case 1:
+                        //    Groups[RecentItems].Items.Add(item.ToWrapper(1, 2));
+                        //    break;
+                        //case 2:
+                        //    Groups[RecentItems].Items.Add(item.ToWrapper(2));
+                        //    break;
+                        default:
+                            Groups[RecentItems].Items.Add(item.ToWrapper());
+                            break;
+                    }
+                    i++;
                 }
-                var firstItem = Groups[RecentItems].Items.First();
-                firstItem.ColSpan = firstItem.RowSpan = 2;
             }
         }
 

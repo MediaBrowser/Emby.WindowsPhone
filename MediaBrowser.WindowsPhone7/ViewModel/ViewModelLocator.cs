@@ -49,7 +49,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 SimpleIoc.Default.Register<INavigationService, NavigationService>();
                 SimpleIoc.Default.Register<ISettingsService, SettingsService>();
                 if (!SimpleIoc.Default.IsRegistered<ExtendedApiClient>())
-                    SimpleIoc.Default.Register(() => new ExtendedApiClient(new Logger(), new AsyncHttpClient(new Logger()), "dummy", 8096, "Windows Phone", "dummy", "dummy") { SerializationFormat = SerializationFormats.Json });
+                    SimpleIoc.Default.Register(() => new ExtendedApiClient(new Logger(), new AsyncHttpClient(new Logger()), "dummy", 8096, "Windows Phone", "dummy", "dummy") { SerializationFormat = SerializationFormats.Json }.SetDeviceProperties());
             }
 
             SimpleIoc.Default.Register<MainViewModel>(true);
@@ -134,6 +134,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             get { return ServiceLocator.Current.GetInstance<TrailerViewModel>(); }
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
+            "CA1822:MarkMembersAsStatic",
+            Justification = "This non-static member is needed for data binding purposes.")]
         public MusicViewModel Music
         {
             get { return ServiceLocator.Current.GetInstance<MusicViewModel>(); }
