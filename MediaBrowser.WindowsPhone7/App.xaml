@@ -52,7 +52,7 @@
             <converters:RandomColour x:Key="RandomColour" />
             <converters:FavouritesConverter x:Key="FavouritesConverter" />
             <converters:PinnedItemConverter x:Key="PinnedItemConverter"/>
-
+            <converters:TicksToTimespanConverter x:Key="TicksToTimespanConverter"/>
 
             <!-- Control Styles -->
             <Style x:Key="EmptyButtonStyle"

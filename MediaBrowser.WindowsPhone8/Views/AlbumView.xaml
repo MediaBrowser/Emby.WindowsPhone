@@ -90,31 +90,34 @@
               Margin="12,0,12,0">
             <phone:LongListSelector ItemsSource="{Binding AlbumTracks}"
                                     IsGroupingEnabled="False"
-                                    Margin="12,0,0,0">
-                <phone:LongListSelector.ListHeader>
+                                    Margin="12,0,0,0"
+                                    ListHeader="{Binding SelectedAlbum}">
+                <phone:LongListSelector.ListHeaderTemplate>
+                    <DataTemplate>
                         <StackPanel Orientation="Horizontal"
                                     Margin="0,0,0,12">
-                            <delay:PlaceImage Source="{Binding SelectedAlbum, Converter={StaticResource ImageUrlConverter}}"
+                            <delay:PlaceImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
                                               Background="{Binding Converter={StaticResource RandomColour}}"
                                               Height="150"
                                               Width="150"/>
                             <StackPanel Orientation="Vertical"
                                         Margin="0,-6,0,0"
                                         VerticalAlignment="Top">
-                                <TextBlock Text="{Binding SelectedAlbum.Name}"
+                                <TextBlock Text="{Binding Name}"
                                            Style="{StaticResource PhoneTextTitle2Style}"
                                            TextWrapping="Wrap"
                                            MaxWidth="260"/>
-                                <TextBlock Text="{Binding SelectedArtist.Name}"
+                                <TextBlock Text="{Binding Name}"
                                            Style="{StaticResource PhoneTextSubtleStyle}"/>
                             </StackPanel>
                         </StackPanel>
-                </phone:LongListSelector.ListHeader>
+                    </DataTemplate>
+                </phone:LongListSelector.ListHeaderTemplate>
                 <phone:LongListSelector.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal"
                                     Margin="0,12,0,0">
-                            <c4f:RoundButton ImageSource="/Icons/transport.play.png"
+                            <c4f:RoundButton ImageSource="/Icons/appbar.transport.play.rest.png"
                                              Margin="-6,0,0,0" />
                             <StackPanel Orientation="Vertical"
                                         Margin="0,-12,0,0">

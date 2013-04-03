@@ -2,8 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:System="clr-namespace:System;assembly=mscorlib"
                     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
-                    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
-                    xmlns:controls2="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls">
+                    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone">
 
     <!-- About Page -->
     <Style x:Key="AboutPageStyle"
@@ -53,7 +52,7 @@
     <!-- Pivot control and items -->
     <!-- You can use this style to e.g. change the HeaderTemplate -->
     <Style x:Key="AboutPivotStyle"
-           TargetType="controls2:Pivot">
+           TargetType="controls:Pivot">
         <!-- Some eye-hurting sample values: -->
         <!-- Setting the background color of the pivot control/about page to DarkGreen, and the header color to Yellow
         <Setter Property="Background"
@@ -69,7 +68,7 @@
     </Style>
 
     <Style x:Key="AboutPivotItemStyle"
-           TargetType="controls2:PivotItem">        
+           TargetType="controls:PivotItem">        
     </Style>
 
     <!-- Text based controls -->

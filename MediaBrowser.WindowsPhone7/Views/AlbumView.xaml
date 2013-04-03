@@ -7,6 +7,9 @@
                             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                             xmlns:ignore="http://www.ignore.com"
                             xmlns:controls="clr-namespace:MediaBrowser.WindowsPhone.Controls"
+                            xmlns:scott="clr-namespace:ScottIsAFool.WindowsPhone.Controls;assembly=ScottIsAFool.WindowsPhone"
+                            xmlns:delay="clr-namespace:Delay"
+                            xmlns:c4f="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
                             mc:Ignorable="d ignore"
                             d:DesignWidth="480"
                             d:DesignHeight="768"
@@ -19,7 +22,7 @@
                             DataContext="{Binding Music, Source={StaticResource Locator}}">
 
     <Grid x:Name="LayoutRoot"
-          Background="Transparent">
+          Background="{StaticResource MediaBrowserBackground}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -31,7 +34,7 @@
                     Margin="12,17,0,28">
             <controls:MediaBrowserLogo />
             <TextBlock x:Name="PageTitle"
-                       Text="page name"
+                       Text="{Binding SelectedAlbum.Name, Converter={StaticResource StringCaseConverter}}"
                        Margin="9,-7,0,0"
                        Style="{StaticResource PhoneTextTitle1Style}" />
         </StackPanel>
@@ -39,19 +42,54 @@
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel"
               Grid.Row="1"
-              Margin="12,0,12,0"></Grid>
-    </Grid>
+              Margin="12,0,12,0">
+            <scott:PhoneMultiListBox ItemsSource="{Binding AlbumTracks}"
+                                     ListHeader="{Binding SelectedAlbum}"
+                                     Margin="12,0,0,0">
+                <scott:PhoneMultiListBox.ListHeaderTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal"
+                                    Margin="0,0,0,12"
+                                    HorizontalAlignment="Left">
+                            <delay:PlaceImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
+                                              Background="{Binding Converter={StaticResource RandomColour}}"
+                                              Height="150"
+                                              Width="150" />
+                            <StackPanel Orientation="Vertical"
+                                        Margin="0,-6,0,0"
+                                        VerticalAlignment="Top">
+                                <TextBlock Text="{Binding Name}"
+                                           Style="{StaticResource PhoneTextTitle2Style}"
+                                           TextWrapping="Wrap"
+                                           MaxWidth="260" />
+                                <TextBlock Text="{Binding Music.SelectedArtist.Name, Source={StaticResource Locator}}"
+                                           Style="{StaticResource PhoneTextSubtleStyle}" />
+                            </StackPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </scott:PhoneMultiListBox.ListHeaderTemplate>
+                <scott:PhoneMultiListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal"
+                                    HorizontalAlignment="Left"
+                                    Margin="-34,12,0,0">
+                            <c4f:RoundButton ImageSource="/Icons/appbar.transport.play.rest.png"
+                                             Margin="0,0,0,0"
+                                             HorizontalAlignment="Left"
+                                             HorizontalContentAlignment="Left"/>
+                            <StackPanel Orientation="Vertical"
+                                        Margin="0,-12,0,0">
+                                <TextBlock Text="{Binding Name}"
+                                           Style="{StaticResource PhoneTextTitle2Style}" />
+                                <TextBlock Text="{Binding RunTimeTicks, Converter={StaticResource TicksToTimespanConverter}}"
+                                           Style="{StaticResource PhoneTextSubtleStyle}" />
+                            </StackPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </scott:PhoneMultiListBox.ItemTemplate>
 
-    <!--Sample code showing usage of ApplicationBar-->
-    <!--<phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button1.png" Text="Button 1"/>
-            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button2.png" Text="Button 2"/>
-            <shell:ApplicationBar.MenuItems>
-                <shell:ApplicationBarMenuItem Text="MenuItem 1"/>
-                <shell:ApplicationBarMenuItem Text="MenuItem 2"/>
-            </shell:ApplicationBar.MenuItems>
-        </shell:ApplicationBar>
-    </phone:PhoneApplicationPage.ApplicationBar>-->
+            </scott:PhoneMultiListBox>
+        </Grid>
+    </Grid>
 
 </phone:PhoneApplicationPage>

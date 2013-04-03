@@ -104,9 +104,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                         var query = new VideoStreamOptions
                                                         {
                                                             ItemId = SelectedMovie.Id,
-                                                            VideoCodec = VideoCodecs.Wmv,
-                                                            //OutputFileExtension = ".asf",
-                                                            AudioCodec = AudioCodecs.Wma,
+                                                            VideoCodec = VideoCodecs.H264,
+                                                            OutputFileExtension = ".mp4",
+                                                            Static = true,
+                                                            AudioCodec = AudioCodecs.Mp3,
                                                             VideoBitRate = 1000000,
                                                             AudioBitRate = 128000,
                                                             MaxAudioChannels = 2,
