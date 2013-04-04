@@ -213,6 +213,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                      ItemFields.SeriesInfo,
                                                      ItemFields.DateCreated,
                                                      ItemFields.UserData, 
+                                                     ItemFields.ParentId, 
+                                                     ItemFields.AudioInfo, 
                                                  },
                     Recursive = true
                 };

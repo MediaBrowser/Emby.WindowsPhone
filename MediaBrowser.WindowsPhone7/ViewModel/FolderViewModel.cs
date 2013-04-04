@@ -173,6 +173,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                      ItemFields.DateCreated,
                                                      ItemFields.UserData, 
                                                      ItemFields.ProviderIds, 
+                                                     ItemFields.ParentId, 
+                                                     ItemFields.AudioInfo, 
                                                  },
                 ParentId = SelectedFolder.Id,
                 Recursive = true

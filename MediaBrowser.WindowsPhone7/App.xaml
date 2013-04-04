@@ -44,6 +44,7 @@
             <scottConverters:InvertedVisibilityConverter x:Key="InvertedVisibilityConverter" />
             <scottConverters:StringCaseConverter x:Key="StringCaseConverter" />
             <scottConverters:IntToVisibilityConverter x:Key="IntToVisibilityConverter" />
+            <scottConverters:CountToEnabled x:Key="CountToEnabled" />
 
             <!-- Local Converters -->
             <converters:ImageUrlConverter x:Key="ImageUrlConverter" />

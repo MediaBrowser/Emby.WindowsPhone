@@ -88,9 +88,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 if (m.Notification.Equals(Constants.MusicAlbumChangedMsg))
                 {
                     SelectedAlbum = (BaseItemDto)m.Sender;
-                    AlbumTracks = artistTracks.Where(x => x.ParentId == SelectedAlbum.Id)
-                        .OrderBy(x => x.ParentIndexNumber)
-                        .ThenBy(x => x.IndexNumber).ToList();
+                    if (artistTracks != null)
+                    {
+                        AlbumTracks = artistTracks.Where(x => x.ParentId == SelectedAlbum.Id)
+                                                  .OrderBy(x => x.ParentIndexNumber)
+                                                  .ThenBy(x => x.IndexNumber).ToList();
+                    }
                 }
             });
         }
@@ -104,24 +107,32 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                             ProgressText = AppResources.SysTrayGettingAlbums;
                                                             ProgressIsVisible = true;
 
-                                                            try
-                                                            {
-                                                                SelectedArtist = await ApiClient.GetItemAsync(SelectedArtist.Id, App.Settings.LoggedInUser.Id);
-                                                            }
-                                                            catch { }
-
-                                                            gotAlbums = await GetAlbums();
-
-                                                            SortTracks();
+                                                            await GetArtistInfo();
 
                                                             ProgressText = string.Empty;
                                                             ProgressIsVisible = false;
                                                         }
                                                     });
 
-            AlbumPageLoaded = new RelayCommand(() =>
+            AlbumPageLoaded = new RelayCommand(async () =>
                                                    {
+                                                       if (AlbumTracks == null)
+                                                       {
+                                                           ProgressText = "Getting tracks...";
+                                                           ProgressIsVisible = true;
+                                                           try
+                                                           {
+                                                               await GetArtistInfo();
 
+                                                               AlbumTracks = artistTracks.Where(x => x.ParentId == SelectedAlbum.Id)
+                                                                                         .OrderBy(x => x.ParentIndexNumber)
+                                                                                         .ThenBy(x => x.IndexNumber).ToList();
+                                                           }
+                                                           catch
+                                                           {
+
+                                                           }
+                                                       }
                                                    });
 
             AlbumTapped = new RelayCommand<BaseItemDto>(album =>
@@ -157,6 +168,31 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                                                                                           SelectedTracks = SelectedTracks.OrderBy(x => x.IndexNumber).ToList();
                                                                                       });
+
+            AddToNowPlayingCommand = new RelayCommand(() =>
+                                                          {
+
+                                                          });
+
+            PlayItemsCommand = new RelayCommand(() =>
+                                                    {
+
+                                                    });
+        }
+
+        private async Task GetArtistInfo()
+        {
+            try
+            {
+                SelectedArtist = await ApiClient.GetItemAsync(SelectedArtist.Id, App.Settings.LoggedInUser.Id);
+            }
+            catch
+            {
+            }
+
+            gotAlbums = await GetAlbums();
+
+            SortTracks();
         }
 
         private void SortTracks()
@@ -228,5 +264,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public RelayCommand<BaseItemDto> AlbumTapped { get; set; }
         public RelayCommand<BaseItemDto> AlbumPlayTapped { get; set; }
         public RelayCommand<SelectionChangedEventArgs> SelectionChangedCommand { get; set; }
+        public RelayCommand AddToNowPlayingCommand { get; set; }
+        public RelayCommand PlayItemsCommand { get; set; }
     }
 }

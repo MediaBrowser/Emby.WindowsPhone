@@ -58,12 +58,19 @@
                 <cimbalino:ApplicationBar>
                     <cimbalino:ApplicationBarIconButton Text="select items"
                                                         IconUri="/Icons/appbar.list.check.png"
-                                                        Click="ApplicationBarIconButton_OnClick" />
+                                                        Click="ApplicationBarIconButton_OnClick"
+                                                        IsEnabled="{Binding AlbumTracks.Count, Converter={StaticResource CountToEnabled}, ConverterParameter=delete}"/>
                 </cimbalino:ApplicationBar>
                 <cimbalino:ApplicationBar>
-                    <cimbalino:ApplicationBarIconButton Text="delete"
+                    <cimbalino:ApplicationBarIconButton Text="play items"
                                                         IconUri="/Icons/appbar.transport.play.rest.png"
-                                                        Command="{Binding DeleteItemsCommand}" />
+                                                        Command="{Binding PlayItemsCommand}"
+                                                        IsEnabled="{Binding SelectedTracks.Count, Converter={StaticResource CountToEnabled}, ConverterParameter=delete}" />
+                    <cimbalino:ApplicationBar.MenuItems>
+                        <cimbalino:ApplicationBarMenuItem Text="add to now playing"
+                                                          Command="{Binding AddToNowPlayingCommand}"
+                                                          IsEnabled="{Binding SelectedTracks.Count, Converter={StaticResource CountToEnabled}, ConverterParameter=delete}"/>
+                    </cimbalino:ApplicationBar.MenuItems>
                 </cimbalino:ApplicationBar>
             </cimbalino:MultiApplicationBarBehavior>
         </i:Interaction.Behaviors>
