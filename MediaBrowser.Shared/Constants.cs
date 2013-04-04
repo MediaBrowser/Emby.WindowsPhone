@@ -6,6 +6,8 @@
 
         public static string PhoneCollectionTileUrlFormat = "/Splashscreen.xaml?action=Collection&id={0}&name={1}";
 
+        public const string FanArtApiKey = "bcf6ad1169c39f89538c94d8c4529023";
+
         public const string SelectedUserSetting = "SelectedUser";
         public const string SelectedUserPinSetting = "SelectedUserPin";
         public const string ConnectionSettings = "ConnectionSettings";
