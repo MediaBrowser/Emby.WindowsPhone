@@ -121,7 +121,7 @@
                                            Style="{StaticResource PhoneTextTitle2Style}"
                                            TextWrapping="Wrap"
                                            MaxWidth="260" />
-                                <TextBlock Text="{Binding Music.SelectedArtist.Name, Source={StaticResource Locator}}"
+                                <TextBlock Text="{Binding Artist}"
                                            Style="{StaticResource PhoneTextSubtleStyle}" />
                             </StackPanel>
                         </StackPanel>

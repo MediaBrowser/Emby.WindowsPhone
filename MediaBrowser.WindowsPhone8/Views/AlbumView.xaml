@@ -120,7 +120,7 @@
                                            HorizontalAlignment="Left"
                                            TextWrapping="Wrap"
                                            MaxWidth="260" />
-                                <TextBlock Text="{Binding Music.SelectedArtist.Name, Source={StaticResource Locator}}"
+                                <TextBlock Text="{Binding Artist}"
                                            HorizontalAlignment="Left"
                                            Style="{StaticResource PhoneTextSubtleStyle}" />
                             </StackPanel>

@@ -255,6 +255,9 @@
     <Compile Include="Views\MovieView.xaml.cs">
       <DependentUpon>MovieView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\MusicCollectionView.xaml.cs">
+      <DependentUpon>MusicCollectionView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SeasonView.xaml.cs">
       <DependentUpon>SeasonView.xaml</DependentUpon>
     </Compile>
@@ -329,6 +332,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\MovieView.xaml">
+      <SubType>Form</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MusicCollectionView.xaml">
       <SubType>Form</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

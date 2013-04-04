@@ -62,7 +62,8 @@
           Background="{StaticResource MediaBrowserBackground}">
         <controls:Pivot x:Name="settingsPivot">
             <controls:Pivot.Title>
-                <controls2:MediaBrowserLogo />
+                <controls2:MediaBrowserLogo
+                    Margin="-12,0,0,0"/>
             </controls:Pivot.Title>
 
             <controls:PivotItem Header="general">
