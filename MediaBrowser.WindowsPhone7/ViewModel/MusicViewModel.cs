@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
@@ -35,6 +36,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             NavigationService = navigationService;
             ApiClient = apiClient;
+            SelectedTracks = new List<BaseItemDto>();
             if (IsInDesignMode)
             {
                 SelectedArtist = new BaseItemDto
@@ -134,6 +136,27 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                                 {
 
                                                                 });
+
+            SelectionChangedCommand = new RelayCommand<SelectionChangedEventArgs>(args =>
+                                                                                      {
+                                                                                          if (args.AddedItems != null)
+                                                                                          {
+                                                                                              foreach (var track in args.AddedItems.Cast<BaseItemDto>())
+                                                                                              {
+                                                                                                  SelectedTracks.Add(track);
+                                                                                              }
+                                                                                          }
+
+                                                                                          if (args.RemovedItems != null)
+                                                                                          {
+                                                                                              foreach (var track in args.RemovedItems.Cast<BaseItemDto>())
+                                                                                              {
+                                                                                                  SelectedTracks.Remove(track);
+                                                                                              }
+                                                                                          }
+
+                                                                                          SelectedTracks = SelectedTracks.OrderBy(x => x.IndexNumber).ToList();
+                                                                                      });
         }
 
         private void SortTracks()
@@ -198,10 +221,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public ObservableCollection<BaseItemDto> Albums { get; set; }
         public List<BaseItemDto> AlbumTracks { get; set; }
         public List<Group<BaseItemDto>> SortedTracks { get; set; }
+        public List<BaseItemDto> SelectedTracks { get; set; }
 
         public RelayCommand ArtistPageLoaded { get; set; }
         public RelayCommand AlbumPageLoaded { get; set; }
         public RelayCommand<BaseItemDto> AlbumTapped { get; set; }
         public RelayCommand<BaseItemDto> AlbumPlayTapped { get; set; }
+        public RelayCommand<SelectionChangedEventArgs> SelectionChangedCommand { get; set; }
     }
 }

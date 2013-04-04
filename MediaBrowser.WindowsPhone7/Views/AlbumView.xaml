@@ -92,6 +92,12 @@
                                      Margin="12,0,0,0"
                                      x:Name="MultiSelectList"
                                      IsSelectionEnabled="{Binding IsInSelectionMode, Mode=TwoWay}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <command:EventToCommand Command="{Binding SelectionChangedCommand}"
+                                                PassEventArgsToCommand="True" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
                 <scott:PhoneMultiListBox.ListHeaderTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal"
