@@ -370,6 +370,7 @@
     <Content Include="FodyWeavers.xml" />
     <Content Include="Icons\appbar.back.rest.png" />
     <Content Include="Icons\appbar.group.png" />
+    <Content Include="Icons\appbar.list.check.png" />
     <Content Include="Icons\appbar.next.rest.png" />
     <Content Include="Icons\appbar.pin.png" />
     <Content Include="Icons\appbar.pin.remove.png" />

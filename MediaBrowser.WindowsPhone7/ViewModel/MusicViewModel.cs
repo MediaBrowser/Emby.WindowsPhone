@@ -68,6 +68,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 WireCommands();
                 WireMessages();
             }
+
         }
 
         private void WireMessages()
@@ -188,6 +189,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
         public string ProgressText { get; set; }
         public bool ProgressIsVisible { get; set; }
+
+        public bool IsInSelectionMode { get; set; }
+        public int SelectedAppBarIndex { get { return IsInSelectionMode ? 1 : 0; } }
 
         public BaseItemDto SelectedArtist { get; set; }
         public BaseItemDto SelectedAlbum { get; set; }

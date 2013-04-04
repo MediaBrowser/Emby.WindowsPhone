@@ -401,6 +401,7 @@
     <Content Include="Content\About\Data.xml" />
     <Content Include="Icons\appbar.back.rest.png" />
     <Content Include="Icons\appbar.group.png" />
+    <Content Include="Icons\appbar.list.check.png" />
     <Content Include="Icons\appbar.next.rest.png" />
     <Content Include="Icons\appbar.pin.png" />
     <Content Include="Icons\appbar.pin.remove.png" />
@@ -408,7 +409,7 @@
     <Content Include="Icons\appbar.star.minus.png" />
     <Content Include="Icons\appbar.star.png" />
     <Content Include="Icons\appbar.transport.play.rest.png" />
-    <Content Include="Icons\transport.play.png" />
+    <Content Include="Icons\appbar.transport.play.png" />
     <Content Include="README_FIRST.txt" />
     <Content Include="Toolkit.Content\ApplicationBar.Cancel.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Check.png" />

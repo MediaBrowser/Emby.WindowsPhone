@@ -10,6 +10,10 @@
                             xmlns:scott="clr-namespace:ScottIsAFool.WindowsPhone.Controls;assembly=ScottIsAFool.WindowsPhone"
                             xmlns:delay="clr-namespace:Delay"
                             xmlns:c4f="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
+                            xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+                            xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+                            xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP71"
+                            xmlns:cimbalino="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
                             mc:Ignorable="d ignore"
                             d:DesignWidth="480"
                             d:DesignHeight="768"
@@ -20,9 +24,49 @@
                             Orientation="Portrait"
                             shell:SystemTray.IsVisible="True"
                             DataContext="{Binding Music, Source={StaticResource Locator}}">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <command:EventToCommand Command="{Binding AlbumPageLoaded}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <toolkit:TransitionService.NavigationInTransition>
+        <toolkit:NavigationInTransition>
+            <toolkit:NavigationInTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardIn" />
+            </toolkit:NavigationInTransition.Backward>
+            <toolkit:NavigationInTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardIn" />
+            </toolkit:NavigationInTransition.Forward>
+        </toolkit:NavigationInTransition>
+    </toolkit:TransitionService.NavigationInTransition>
+    <toolkit:TransitionService.NavigationOutTransition>
+        <toolkit:NavigationOutTransition>
+            <toolkit:NavigationOutTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardOut" />
+            </toolkit:NavigationOutTransition.Backward>
+            <toolkit:NavigationOutTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardOut" />
+            </toolkit:NavigationOutTransition.Forward>
+        </toolkit:NavigationOutTransition>
+    </toolkit:TransitionService.NavigationOutTransition>
 
     <Grid x:Name="LayoutRoot"
           Background="{StaticResource MediaBrowserBackground}">
+        <i:Interaction.Behaviors>
+            <cimbalino:MultiApplicationBarBehavior SelectedIndex="{Binding SelectedAppBarIndex}">
+                <cimbalino:ApplicationBar>
+                    <cimbalino:ApplicationBarIconButton Text="select items"
+                                                        IconUri="/Icons/appbar.list.check.png"
+                                                        Click="ApplicationBarIconButton_OnClick" />
+                </cimbalino:ApplicationBar>
+                <cimbalino:ApplicationBar>
+                    <cimbalino:ApplicationBarIconButton Text="delete"
+                                                        IconUri="/Icons/appbar.transport.play.rest.png"
+                                                        Command="{Binding DeleteItemsCommand}" />
+                </cimbalino:ApplicationBar>
+            </cimbalino:MultiApplicationBarBehavior>
+        </i:Interaction.Behaviors>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -45,7 +89,9 @@
               Margin="12,0,12,0">
             <scott:PhoneMultiListBox ItemsSource="{Binding AlbumTracks}"
                                      ListHeader="{Binding SelectedAlbum}"
-                                     Margin="12,0,0,0">
+                                     Margin="12,0,0,0"
+                                     x:Name="MultiSelectList"
+                                     IsSelectionEnabled="{Binding IsInSelectionMode, Mode=TwoWay}">
                 <scott:PhoneMultiListBox.ListHeaderTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal"

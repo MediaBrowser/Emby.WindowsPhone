@@ -1,4 +1,5 @@
-﻿using Microsoft.Phone.Controls;
+﻿using System;
+using Microsoft.Phone.Controls;
 
 namespace MediaBrowser.WindowsPhone.Views
 {
@@ -13,6 +14,21 @@ namespace MediaBrowser.WindowsPhone.Views
         public AlbumView()
         {
             InitializeComponent();
+        }
+
+        private void ApplicationBarIconButton_OnClick(object sender, EventArgs e)
+        {
+            MultiSelectList.IsSelectionEnabled = true;
+        }
+
+        protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
+        {
+            base.OnBackKeyPress(e);
+            if (MultiSelectList.IsSelectionEnabled)
+            {
+                MultiSelectList.IsSelectionEnabled = false;
+                e.Cancel = true;
+            }
         }
     }
 }

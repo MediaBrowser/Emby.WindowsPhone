@@ -85,7 +85,7 @@
                                                               Height="150"
                                                               Width="150"
                                                               Background="{Binding Converter={StaticResource RandomColour}}" />
-                                            <c4f:RoundButton ImageSource="/Icons/transport.play.png"
+                                            <c4f:RoundButton ImageSource="/Icons/appbar.transport.play.rest.png"
                                                              HorizontalAlignment="Right"
                                                              VerticalAlignment="Top"
                                                              Margin="6" />
