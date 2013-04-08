@@ -86,8 +86,8 @@
                                                               Width="150"
                                                               Background="{Binding Converter={StaticResource RandomColour}}" />
                                             <c4f:RoundButton ImageSource="/Icons/appbar.transport.play.rest.png"
-                                                             HorizontalAlignment="Right"
-                                                             VerticalAlignment="Top"
+                                                             HorizontalAlignment="Center"
+                                                             VerticalAlignment="Center"
                                                              Margin="6" />
                                         </Grid>
                                         <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
@@ -121,8 +121,8 @@
                             <toolkit:LongListMultiSelector.ItemTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal"
-                                                Margin="0,12,0,0">
-                                        <c4f:RoundButton ImageSource="/Icons/transport.play.png"
+                                                Margin="-12,12,0,0">
+                                        <c4f:RoundButton ImageSource="/Icons/appbar.transport.play.rest.png"
                                                          Margin="-6,0,0,0" />
                                         <StackPanel Orientation="Vertical"
                                                     Margin="0,-12,0,0">
