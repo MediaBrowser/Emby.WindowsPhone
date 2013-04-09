@@ -148,14 +148,14 @@ namespace MediaBrowser.Windows8.ViewModel
                 return false;
             }
 
-            bool serverConfig = false;
+            var serverConfig = false;
             ProgressVisibility = Visibility.Visible;
             ProgressText = "Loading settings...";
             var settingsLoader = new ObjectStorageHelper<SpecificSettings>(StorageType.Roaming);
             //await settingsLoader.DeleteAsync(Constants.SpecificSettings);
             try
             {
-                SpecificSettings settings = await settingsLoader.LoadAsync(Constants.SpecificSettings);
+                var settings = await settingsLoader.LoadAsync(Constants.SpecificSettings);
                 if (settings != null)
                     await Utils.CopyItem(settings, SimpleIoc.Default.GetInstance<SpecificSettings>());
             }

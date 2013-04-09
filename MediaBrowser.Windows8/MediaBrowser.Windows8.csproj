@@ -479,6 +479,12 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\winrtxamltoolkit.1.3.5.3\lib\netcore45\WinRTXamlToolkit.dll</HintPath>
     </Reference>
+    <Reference Include="Wintellect.Sterling.Core">
+      <HintPath>..\other-packages\SterlingDB-RT\Wintellect.Sterling.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Wintellect.Sterling.WinRT">
+      <HintPath>..\other-packages\SterlingDB-RT\Wintellect.Sterling.WinRT.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\WP8Apps\MediaBrowser\MediaBrowser.Shared\MediaBrowser.Shared.csproj">
