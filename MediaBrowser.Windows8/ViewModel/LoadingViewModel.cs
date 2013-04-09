@@ -120,34 +120,10 @@ namespace MediaBrowser.Windows8.ViewModel
                     ApiClient.ServerHostName = App.Settings.ConnectionDetails.HostName;
                     ApiClient.ServerApiPort = App.Settings.ConnectionDetails.PortNo;
                     logger.Info(string.Format("Host: {0}, Port: {1}", ApiClient.ServerHostName, ApiClient.ServerApiPort));
-
-                    var hostNames = NetworkInformation.GetHostNames();
-                    var localName = hostNames.FirstOrDefault(name => name.DisplayName.Contains(".local"));
-                    var computerName = localName.DisplayName.Replace(".local", "");
-                    Debug.WriteLine(computerName);
-                    try
-                    {
-                        ApiClient.DeviceName = computerName.Substring(0, computerName.IndexOf(".", StringComparison.Ordinal));
-                    }
-                    catch
-                    {
-                        ApiClient.DeviceName = computerName;
-                    }
-                    ApiClient.DeviceId = GetHardwareId();
-
+                    
                     await CheckForServer();
                 }
             });
-        }
-
-        public static string GetHardwareId()
-        {
-            var _Token = Windows.System.Profile.HardwareIdentification.GetPackageSpecificToken(null);
-            var _Id = _Token.Id;
-            var _Reader = Windows.Storage.Streams.DataReader.FromBuffer(_Id);
-            var _Bytes = new byte[_Id.Length];
-            _Reader.ReadBytes(_Bytes);
-            return BitConverter.ToString(_Bytes);
         }
 
         private async Task<bool> CheckForServer()

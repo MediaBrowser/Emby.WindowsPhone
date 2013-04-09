@@ -76,26 +76,27 @@
                         <scott:PhoneListBox ItemsSource="{Binding Albums}">
                             <scott:PhoneListBox.ItemTemplate>
                                 <DataTemplate>
-                                    <StackPanel Orientation="Horizontal"
-                                                Margin="12,0,0,12">
-                                        <Grid Width="150"
-                                              Height="150"
-                                              VerticalAlignment="Top">
-                                            <delay:PlaceImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
-                                                              Height="150"
-                                                              Width="150"
-                                                              Background="{Binding Converter={StaticResource RandomColour}}" />
-                                            <c4f:RoundButton ImageSource="/Icons/appbar.transport.play.rest.png"
-                                                             HorizontalAlignment="Right"
-                                                             VerticalAlignment="Top"
-                                                             Margin="6" />
-                                        </Grid>
-                                        <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                                         NavigateUri="/Views/AlbumView.xaml"
-                                                         Command="{Binding Music.AlbumTapped, Source={StaticResource Locator}}"
-                                                         CommandParameter="{Binding}"
-                                                         HorizontalContentAlignment="Left"
-                                                         VerticalContentAlignment="Top">
+                                    <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                                     HorizontalContentAlignment="Left"
+                                                     VerticalContentAlignment="Top"
+                                                     NavigateUri="/Views/AlbumView.xaml"
+                                                     Command="{Binding Music.AlbumTapped, Source={StaticResource Locator}}"
+                                                     CommandParameter="{Binding}">
+                                        <StackPanel Orientation="Horizontal"
+                                                    Margin="12,0,0,12">
+                                            <Grid Width="150"
+                                                  Height="150"
+                                                  VerticalAlignment="Top">
+                                                <delay:PlaceImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
+                                                                  Height="150"
+                                                                  Width="150"
+                                                                  Background="{Binding Converter={StaticResource RandomColour}}" />
+                                                <c4f:RoundButton ImageSource="/Icons/appbar.transport.play.rest.png"
+                                                                 HorizontalAlignment="Center"
+                                                                 VerticalAlignment="Center"
+                                                                 Margin="6"
+                                                                 Command="{Binding AlbumPlayTapped}" />
+                                            </Grid>
                                             <TextBlock Text="{Binding Name}"
                                                        Style="{StaticResource PhoneTextTitle2Style}"
                                                        FontWeight="Bold"
@@ -105,8 +106,8 @@
                                                        MaxHeight="140"
                                                        LineHeight="2"
                                                        TextTrimming="WordEllipsis" />
-                                        </HyperlinkButton>
-                                    </StackPanel>
+                                        </StackPanel>
+                                    </HyperlinkButton>
                                 </DataTemplate>
                             </scott:PhoneListBox.ItemTemplate>
                         </scott:PhoneListBox>

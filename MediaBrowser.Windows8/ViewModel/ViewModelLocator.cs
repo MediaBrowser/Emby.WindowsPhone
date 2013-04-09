@@ -56,7 +56,7 @@ namespace MediaBrowser.Windows8.ViewModel
             {
                 SimpleIoc.Default.Register<NavigationService>();
                 if (!SimpleIoc.Default.IsRegistered<ExtendedApiClient>())
-                    SimpleIoc.Default.Register(() => new ExtendedApiClient(new Logger(), new AsyncHttpClient(new Logger()), "dummy", 8096, "Windows RT", "dummy", "dummy") { SerializationFormat = SerializationFormats.Json });
+                    SimpleIoc.Default.Register(() => new ExtendedApiClient(new Logger(), new AsyncHttpClient(new Logger()), "dummy", 8096, "Windows RT", "dummy", "dummy").SetDeviceProperties());
             }
 
             if (!SimpleIoc.Default.IsRegistered<SpecificSettings>())

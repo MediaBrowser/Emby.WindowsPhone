@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Reflection;
@@ -10,10 +11,13 @@ using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Windows8.Model;
 using MetroLog;
+using Windows.Networking.Connectivity;
+using Windows.Storage.Streams;
+using Windows.System.Profile;
 
 namespace MediaBrowser.Windows8
 {
-    public class Utils
+    public static class Utils
     {
         public static async Task DoLogin(UserDto selectedUser, string pinCode, Action successAction)
         {
@@ -60,7 +64,7 @@ namespace MediaBrowser.Windows8
         public async static Task<ObservableCollection<Group<BaseItemPerson>>> GroupCastAndCrew(BaseItemDto item)
         {
             var castAndCrew = new ObservableCollection<Group<BaseItemPerson>>
-                              {
+                                  {
                                   new Group<BaseItemPerson> {Title = "Director"},
                                   new Group<BaseItemPerson> {Title = "Cast"}
                               };
@@ -88,6 +92,35 @@ namespace MediaBrowser.Windows8
                                });
 
             return castAndCrew;
+        }
+
+        internal static ExtendedApiClient SetDeviceProperties(this ExtendedApiClient apiClient)
+        {
+            var hostNames = NetworkInformation.GetHostNames();
+            var localName = hostNames.FirstOrDefault(name => name.DisplayName.Contains(".local"));
+            var computerName = localName.DisplayName.Replace(".local", "");
+            Debug.WriteLine(computerName);
+            try
+            {
+                apiClient.DeviceName = computerName.Substring(0, computerName.IndexOf(".", StringComparison.Ordinal));
+            }
+            catch
+            {
+                apiClient.DeviceName = computerName;
+            }
+            apiClient.DeviceId = GetHardwareId();
+
+            return apiClient;
+        }
+
+        private static string GetHardwareId()
+        {
+            var token = HardwareIdentification.GetPackageSpecificToken(null);
+            var id = token.Id;
+            var reader = DataReader.FromBuffer(id);
+            var bytes = new byte[id.Length];
+            reader.ReadBytes(bytes);
+            return BitConverter.ToString(bytes);
         }
     }
 }

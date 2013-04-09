@@ -49,7 +49,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 SimpleIoc.Default.Register<INavigationService, NavigationService>();
                 SimpleIoc.Default.Register<ISettingsService, SettingsService>();
                 if (!SimpleIoc.Default.IsRegistered<ExtendedApiClient>())
-                    SimpleIoc.Default.Register(() => new ExtendedApiClient(new Logger(), new AsyncHttpClient(new Logger()), "dummy", 8096, "Windows Phone", "dummy", "dummy") { SerializationFormat = SerializationFormats.Json }.SetDeviceProperties());
+                    SimpleIoc.Default.Register(() => new ExtendedApiClient(new Logger(), new AsyncHttpClient(new Logger()), "dummy", 8096, "Windows Phone", "dummy", "dummy").SetDeviceProperties());
             }
 
             SimpleIoc.Default.Register<MainViewModel>(true);

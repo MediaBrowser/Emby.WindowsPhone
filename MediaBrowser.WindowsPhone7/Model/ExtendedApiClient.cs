@@ -144,9 +144,9 @@ namespace MediaBrowser.WindowsPhone.Model
             }
         }
 
-        private async Task<T> GetStream<T>(string url, SerializationFormats format = SerializationFormats.Protobuf) where T : class
+        private async Task<T> GetStream<T>(string url) where T : class
         {
-            using (var stream = await GetSerializedStreamAsync(url, format).ConfigureAwait(false))
+            using (var stream = await GetSerializedStreamAsync(url).ConfigureAwait(false))
             {
                 //return DeserializeFromStream<T>(stream);
                 return (T)JsonSerializer.DeserializeFromStream(stream, typeof (T));

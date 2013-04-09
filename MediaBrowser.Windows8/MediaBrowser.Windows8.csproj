@@ -17,6 +17,7 @@
     <RestorePackages>true</RestorePackages>
     <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
     <PackageCertificateThumbprint>2875E3E76819AB27A03BFE8393C1CA8554F7D7BB</PackageCertificateThumbprint>
+    <FodyPath>..\packages\Fody.1.13.6.1</FodyPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -105,6 +106,7 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <None Include="Fody.targets" />
     <None Include="FodyWeavers.xml" />
   </ItemGroup>
   <ItemGroup>
@@ -373,9 +375,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Callisto, Version=1.2.6.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Callisto, Version=1.2.7.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Callisto.1.2.6\lib\winrt45\Callisto.dll</HintPath>
+      <HintPath>..\packages\Callisto.1.2.7\lib\winrt45\Callisto.dll</HintPath>
     </Reference>
     <Reference Include="GalaSoft.MvvmLight.Extras.Win8, Version=4.0.23.35608, Culture=neutral, PublicKeyToken=33a77f5c33c10a68, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -385,13 +387,13 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Win8nl.1.0.7\lib\NetCore45\GalaSoft.MvvmLight.Win8.dll</HintPath>
     </Reference>
-    <Reference Include="MediaBrowser.ApiInteraction.Portable, Version=3.0.4842.18759, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="MediaBrowser.ApiInteraction.Portable, Version=3.0.4845.31349, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MediaBrowser.ApiClient.3.0.0.68-beta\lib\portable-net45+sl4+wp71+win8\MediaBrowser.ApiInteraction.Portable.dll</HintPath>
+      <HintPath>..\packages\MediaBrowser.ApiClient.3.0.0.74-beta\lib\portable-net45+sl4+wp71+win8\MediaBrowser.ApiInteraction.Portable.dll</HintPath>
     </Reference>
-    <Reference Include="MediaBrowser.Model, Version=3.0.4842.18631, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="MediaBrowser.Model, Version=3.0.4845.31111, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MediaBrowser.Common.3.0.65\lib\portable-net4+sl4+wp7+win8\MediaBrowser.Model.dll</HintPath>
+      <HintPath>..\packages\MediaBrowser.Common.3.0.69\lib\portable-net4+sl4+wp7+win8\MediaBrowser.Model.dll</HintPath>
     </Reference>
     <Reference Include="MetroLog, Version=0.6.2.0, Culture=neutral, PublicKeyToken=ba4ace74c3b410f3, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -413,16 +415,16 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.Bcl.Async.1.0.14-rc\lib\win8\Microsoft.Threading.Tasks.dll</HintPath>
     </Reference>
-    <Reference Include="MyToolkit, Version=1.12.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="MyToolkit, Version=1.13.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MyToolkit.1.12.0\lib\netcore45\MyToolkit.dll</HintPath>
+      <HintPath>..\packages\MyToolkit.1.13.0\lib\netcore45\MyToolkit.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\winrt45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="PropertyChanged">
-      <HintPath>..\packages\PropertyChanged.Fody.1.36.1.0\lib\WinRT45\PropertyChanged.dll</HintPath>
+      <HintPath>..\packages\PropertyChanged.Fody.1.36.2.3\lib\WinRT45\PropertyChanged.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="protobuf-net, Version=2.0.0.621, Culture=neutral, processorArchitecture=MSIL">
@@ -627,10 +629,6 @@
   </Target>
   -->
   <Target Name="AfterCompile" />
-  <Import Project="..\packages\Fody.1.13.3.0\Fody.targets" Condition="Exists('..\packages\Fody.1.13.3.0\Fody.targets')" />
-  <Target Name="FodyTargetsCheck" BeforeTargets="BeforeCompile">
-    <Error Condition="!Exists('..\packages\Fody.1.13.3.0\Fody.targets')" Text="Could not find Fody.targets. You either forget to check in the package or forgot to enable package restore." />
-  </Target>
   <PropertyGroup>
     <FilesToXapDependsOn>$(FilesToXapDependsOn);BeforeFilesToXap</FilesToXapDependsOn>
   </PropertyGroup>
@@ -639,4 +637,5 @@
       <FilteredPackagingOutputs Remove="@(FilteredPackagingOutputs)" Condition="'%(FilteredPackagingOutputs.OutputGroup)' == 'CopyLocalFilesOutputGroup' AND '%(FilteredPackagingOutputs.Extension)' == '.xml'" />
     </ItemGroup>
   </Target>
+  <Import Project="Fody.targets" />
 </Project>
