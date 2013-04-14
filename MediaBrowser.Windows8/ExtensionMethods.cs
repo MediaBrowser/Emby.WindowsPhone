@@ -1,7 +1,13 @@
-﻿using MediaBrowser.Model.Dto;
+﻿using System;
+using System.Diagnostics;
+using System.Linq;
+using MediaBrowser.Model.Dto;
 using MediaBrowser.Windows8.Model;
+using Windows.Networking.Connectivity;
 using Windows.Security.Cryptography;
 using Windows.Security.Cryptography.Core;
+using Windows.Storage.Streams;
+using Windows.System.Profile;
 
 namespace MediaBrowser.Windows8
 {
@@ -20,6 +26,35 @@ namespace MediaBrowser.Windows8
         public static GridItemWrapper<BaseItemDto> ToWrapper(this BaseItemDto item, int rowSpan = 1, int colSpan = 1)
         {
             return new GridItemWrapper<BaseItemDto>(item){ColSpan = colSpan, RowSpan = rowSpan};
+        }
+
+        internal static ExtendedApiClient SetDeviceProperties(this ExtendedApiClient apiClient)
+        {
+            var hostNames = NetworkInformation.GetHostNames();
+            var localName = hostNames.FirstOrDefault(name => name.DisplayName.Contains(".local"));
+            var computerName = localName.DisplayName.Replace(".local", "");
+            Debug.WriteLine(computerName);
+            try
+            {
+                apiClient.DeviceName = computerName.Substring(0, computerName.IndexOf(".", StringComparison.Ordinal));
+            }
+            catch
+            {
+                apiClient.DeviceName = computerName;
+            }
+            apiClient.DeviceId = GetHardwareId();
+
+            return apiClient;
+        }
+
+        private static string GetHardwareId()
+        {
+            var token = HardwareIdentification.GetPackageSpecificToken(null);
+            var id = token.Id;
+            var reader = DataReader.FromBuffer(id);
+            var bytes = new byte[id.Length];
+            reader.ReadBytes(bytes);
+            return BitConverter.ToString(bytes);
         }
     }
 }

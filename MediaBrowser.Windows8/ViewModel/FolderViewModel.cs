@@ -127,7 +127,7 @@ namespace MediaBrowser.Windows8.ViewModel
                             if (SelectedPerson != null)
                             {
                                 query.Person = SelectedPerson.Name;
-                                query.PersonType = SelectedPerson.Type;
+                                query.PersonTypes = new []{SelectedPerson.Type};
                                 query.Recursive = true;
                             }
                             else if (SelectedCollection != null)

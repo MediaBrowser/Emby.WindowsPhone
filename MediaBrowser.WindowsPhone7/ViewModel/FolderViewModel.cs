@@ -213,7 +213,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 {
                     PageTitle = SelectedPerson.Name.ToLower();
                     query.Person = SelectedPerson.Name;
-                    query.PersonType = SelectedPerson.Type;
+                    query.PersonTypes = new []{SelectedPerson.Type};
                     query.Recursive = true;
                 }
                 else

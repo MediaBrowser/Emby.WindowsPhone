@@ -105,7 +105,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                         {
                                                             ItemId = SelectedMovie.Id,
                                                             VideoCodec = VideoCodecs.H264,
-                                                            OutputFileExtension = ".mp4",
+                                                            OutputFileExtension = ".wmv",
                                                             Static = true,
                                                             AudioCodec = AudioCodecs.Mp3,
                                                             VideoBitRate = 1000000,
@@ -126,7 +126,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                                                           Orientation = MediaPlayerOrientation.Landscape,
                                                                                           Media = new Uri(url, UriKind.Absolute),
                                                                                           Controls = MediaPlaybackControls.Pause | MediaPlaybackControls.Stop,
-                                                                                          Location = MediaLocationType.Data
+                                                                                          //Location = MediaLocationType.Data
                                                                                       };
                                                         mediaPlayerLauncher.Show();
 #endif

@@ -107,7 +107,7 @@ namespace MediaBrowser.Windows8
             {
                 Settings.LoggedInUser = new UserDto
                                             {
-                                                Id = new Guid("5d1cf7fce25943b790d140095457a42b"),
+                                                Id = new Guid("5d1cf7fce25943b790d140095457a42b").ToString(),
                                                 Name = "ScottIsAFool"
                                             };
             }

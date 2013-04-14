@@ -37,12 +37,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                {
                                    new UserDto
                                        {
-                                           Id = new Guid("dd425709431649698e92d86b1f2b00fa"),
+                                           Id = new Guid("dd425709431649698e92d86b1f2b00fa").ToString(),
                                            Name = "ScottIsAFool"
                                        },
                                    new UserDto
                                        {
-                                           Id = new Guid("dab28e40cfbc43658082f55a44cf139a"),
+                                           Id = new Guid("dab28e40cfbc43658082f55a44cf139a").ToString(),
                                            Name = "Redshirt",
                                            LastLoginDate = DateTime.Now.AddHours(-1)
                                        }

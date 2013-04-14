@@ -42,12 +42,12 @@ namespace MediaBrowser.Windows8.ViewModel
                                    new UserDto
                                        {
                                            Name = "ScottIsAFool",
-                                           Id = new Guid("5d1cf7fce25943b790d140095457a42b")
+                                           Id = "5d1cf7fce25943b790d140095457a42b"
                                        },
                                    new UserDto
                                        {
                                            Name = "Redshirt",
-                                           Id = Guid.NewGuid()
+                                           Id = Guid.NewGuid().ToString()
                                        }
                                };
             }

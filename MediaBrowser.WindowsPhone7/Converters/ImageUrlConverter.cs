@@ -96,9 +96,16 @@ namespace MediaBrowser.WindowsPhone.Converters
                         imageOptions.MaxHeight = 200;
 #endif
                     }
-                    if (item.Type == "Series")
-                        return apiClient.GetImageUrl(item.Id, imageOptions);
-                    return apiClient.GetImageUrl(item, imageOptions);
+                    try
+                    {
+                        if (item.Type == "Series")
+                            return apiClient.GetImageUrl(item.Id, imageOptions);
+                        return apiClient.GetImageUrl(item, imageOptions);
+                    }
+                    catch
+                    {
+                        return "";
+                    }
                 }
                 else if (type == typeof(BaseItemPerson))
                 {

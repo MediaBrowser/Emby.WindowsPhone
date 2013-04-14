@@ -34,7 +34,7 @@ namespace MediaBrowser.Windows8.Controls
             {
                 if(m.Notification.Equals(Constants.ErrorLoggingInMsg))
                 {
-                    Guid userId = (Guid)m.Sender;
+                    var userId = (string)m.Sender;
                     if(userId == Profile.Id)
                     {
                         // Display error
