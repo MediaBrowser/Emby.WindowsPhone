@@ -73,8 +73,15 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                      {
                                                          if (NavigationService.IsNetworkAvailable)
                                                          {
+                                                             ProgressText = "Getting trailer details...";
+                                                             ProgressIsVisible = true;
+
                                                              SelectedTrailer = await ApiClient.GetItemAsync(SelectedTrailer.Id, App.Settings.LoggedInUser.Id);
+                                                             
                                                              CastAndCrew = Utils.GroupCastAndCrew(SelectedTrailer.People);
+
+                                                             ProgressText = string.Empty;
+                                                             ProgressIsVisible = false;
                                                          }
                                                          else
                                                          {

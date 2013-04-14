@@ -11,6 +11,7 @@ using MediaBrowser.Model.Dto;
 using System.Threading.Tasks;
 using MediaBrowser.WindowsPhone.Resources;
 using Microsoft.Phone.Shell;
+using Microsoft.Phone.Tasks;
 using ScottIsAFool.WindowsPhone.IsolatedStorage;
 
 namespace MediaBrowser.WindowsPhone.ViewModel
@@ -124,6 +125,44 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                                          Messenger.Default.Send(new NotificationMessage(tileUrl, Constants.CollectionPinnedMsg));
 
                                                                      });
+
+            PlayMovieCommand = new RelayCommand<BaseItemDto>(async item =>
+            {
+#if WP8
+                                                        Messenger.Default.Send(new NotificationMessage(item, Constants.PlayVideoItemMsg));
+                                                        NavService.NavigateToPage("/Views/VideoPlayerView.xaml");
+#else
+                var bounds = Application.Current.RootVisual.RenderSize;
+                var query = new VideoStreamOptions
+                {
+                    ItemId = item.Id,
+                    VideoCodec = VideoCodecs.H264,
+                    OutputFileExtension = ".wmv",
+                    Static = true,
+                    AudioCodec = AudioCodecs.Mp3,
+                    VideoBitRate = 1000000,
+                    AudioBitRate = 128000,
+                    MaxAudioChannels = 2,
+                    //Profile = "baseline",
+                    //Level = "3",
+                    //FrameRate = 30,
+                    MaxHeight = 480,// (int)bounds.Width,
+                    MaxWidth = 800// (int)bounds.Height
+                };
+                var url = ApiClient.GetVideoStreamUrl(query);
+                System.Diagnostics.Debug.WriteLine(url);
+                await ApiClient.ReportPlaybackStartAsync(item.Id, App.Settings.LoggedInUser.Id).ConfigureAwait(true);
+
+                var mediaPlayerLauncher = new MediaPlayerLauncher
+                {
+                    Orientation = MediaPlayerOrientation.Landscape,
+                    Media = new Uri(url, UriKind.Absolute),
+                    Controls = MediaPlaybackControls.Pause | MediaPlaybackControls.Stop,
+                    //Location = MediaLocationType.Data
+                };
+                mediaPlayerLauncher.Show();
+#endif
+            });
 
             NavigateToPage = new RelayCommand<BaseItemDto>(NavService.NavigateToPage);
 
@@ -268,6 +307,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public RelayCommand<BaseItemDto> NavigateToPage { get; set; }
         public RelayCommand<string> NavigateToAPage { get; set; }
         public RelayCommand<BaseItemDto> PinCollectionCommand { get; set; }
+        public RelayCommand<BaseItemDto> PlayMovieCommand { get; set; }
         public ObservableCollection<BaseItemDto> Folders { get; set; }
         public ObservableCollection<BaseItemDto> RecentItems { get; set; }
         public ObservableCollection<BaseItemDto> FavouriteItems { get; set; }

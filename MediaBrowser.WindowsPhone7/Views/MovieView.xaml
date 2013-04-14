@@ -67,7 +67,8 @@
                                                         Command="{Binding AddRemoveFavouriteCommand}" />
                     <cimbalino:ApplicationBarBehavior.MenuItems>
                         <cimbalino:ApplicationBarMenuItem Text="play movie"
-                                                          Command="{Binding PlayMovieCommand}" />
+                                                          Command="{Binding Main.PlayMovieCommand, Source={StaticResource Locator}}"
+                                                          CommandParameter="{Binding SelectedMovie}"/>
                     </cimbalino:ApplicationBarBehavior.MenuItems>
                 </cimbalino:ApplicationBarBehavior>
         </i:Interaction.Behaviors>

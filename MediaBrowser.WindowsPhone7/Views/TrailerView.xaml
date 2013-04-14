@@ -21,13 +21,13 @@
                             toolkit:TiltEffect.IsTiltEnabled="True">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
-            <command:EventToCommand Command="{Binding TrailerPageLoaded}"/>
+            <command:EventToCommand Command="{Binding TrailerPageLoaded}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
     <shell:SystemTray.ProgressIndicator>
         <shell:ProgressIndicator Text="{Binding ProgressText}"
                                  IsVisible="{Binding ProgressIsVisible}"
-                                 IsIndeterminate="True"/>
+                                 IsIndeterminate="True" />
     </shell:SystemTray.ProgressIndicator>
 
     <!--LayoutRoot is the root grid where all page content is placed-->
@@ -58,26 +58,30 @@
                             <ColumnDefinition Width="3*" />
                             <ColumnDefinition Width="5*" />
                         </Grid.ColumnDefinitions>
-                        <Grid Grid.Column="0"
-                              VerticalAlignment="Top">
-                            <Image Source="{Binding SelectedTrailer, Converter={StaticResource ImageUrlConverter}}"
-                                   Stretch="UniformToFill"
-                                   HorizontalAlignment="Center" />
-                            <Image Source="/Images/Play128.png"
-                                   MaxWidth="63"
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center" />
-                        </Grid>
+                        <Button Style="{StaticResource EmptyButtonStyle}"
+                                Grid.Column="0"
+                                Command="{Binding Main.PlayMovieCommand, Source={StaticResource Locator}}"
+                                CommandParameter="{Binding SelectedTrailer}">
+                            <Grid VerticalAlignment="Top">
+                                <Image Source="{Binding SelectedTrailer, Converter={StaticResource ImageUrlConverter}}"
+                                       Stretch="UniformToFill"
+                                       HorizontalAlignment="Center" />
+                                <Image Source="/Images/Play128.png"
+                                       MaxWidth="63"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center" />
+                            </Grid>
+                        </Button>
                         <toolkit:LongListSelector Grid.Column="1"
                                                   Background="Transparent"
                                                   IsHitTestVisible="False"
                                                   ItemsSource="{Binding CastAndCrew}">
                             <toolkit:LongListSelector.ItemTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Name}"/>
+                                    <TextBlock Text="{Binding Name}"
+                                               Style="{StaticResource PhoneTextNormalStyle}" />
                                 </DataTemplate>
                             </toolkit:LongListSelector.ItemTemplate>
-                            
                         </toolkit:LongListSelector>
                     </Grid>
                     <TextBlock Text="{Binding SelectedTrailer.Overview}"
