@@ -12,6 +12,7 @@
                             xmlns:cimbalino="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
                             xmlns:delay="clr-namespace:Delay"
                             xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP71"
+                            xmlns:controls1="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
                             mc:Ignorable="d"
                             d:DesignWidth="480"
                             d:DesignHeight="696"
@@ -23,6 +24,7 @@
                             shell:SystemTray.IsVisible="True"
                             shell:SystemTray.Opacity="0"
                             shell:SystemTray.BackgroundColor="Black"
+                            toolkit:TiltEffect.IsTiltEnabled="True"
                             x:Name="PageRoot"
                             d:DataContext="{Binding Movie, Source={StaticResource Locator}}">
     <shell:SystemTray.ProgressIndicator>
@@ -60,26 +62,33 @@
     <Grid x:Name="LayoutRoot"
           Background="{StaticResource MediaBrowserBackground}">
         <i:Interaction.Behaviors>
-                <cimbalino:ApplicationBarBehavior Mode="Minimized"
-                                          IsMenuEnabled="True">
-                    <cimbalino:ApplicationBarIconButton Text="{Binding SelectedMovie.UserData.IsFavorite, Converter={StaticResource FavouritesConverter}, ConverterParameter=text}"
-                                                        IconUri="{Binding SelectedMovie.UserData.IsFavorite, Converter={StaticResource FavouritesConverter}, ConverterParameter=icon}"
-                                                        Command="{Binding AddRemoveFavouriteCommand}" />
-                    <cimbalino:ApplicationBarBehavior.MenuItems>
-                        <cimbalino:ApplicationBarMenuItem Text="play movie"
-                                                          Command="{Binding Main.PlayMovieCommand, Source={StaticResource Locator}}"
-                                                          CommandParameter="{Binding SelectedMovie}"/>
-                    </cimbalino:ApplicationBarBehavior.MenuItems>
-                </cimbalino:ApplicationBarBehavior>
+            <cimbalino:ApplicationBarBehavior Mode="Minimized"
+                                              IsMenuEnabled="True">
+                <cimbalino:ApplicationBarIconButton Text="{Binding SelectedMovie.UserData.IsFavorite, Converter={StaticResource FavouritesConverter}, ConverterParameter=text}"
+                                                    IconUri="{Binding SelectedMovie.UserData.IsFavorite, Converter={StaticResource FavouritesConverter}, ConverterParameter=icon}"
+                                                    Command="{Binding AddRemoveFavouriteCommand}" />
+            </cimbalino:ApplicationBarBehavior>
         </i:Interaction.Behaviors>
         <controls:Panorama Title="{Binding SelectedMovie.Name, Converter={StaticResource StringCaseConverter}}"
                            x:Name="MainPanorama">
             <controls:PanoramaItem Header="poster">
-                <Image Source="{Binding SelectedMovie, Converter={StaticResource ImageUrlConverter}, ConverterParameter=poster}"
-                       Height="450"
-                       HorizontalAlignment="Left"
-                       VerticalAlignment="Top"
-                       Margin="12,0,0,0" />
+                <Button Style="{StaticResource EmptyButtonStyle}"
+                        HorizontalContentAlignment="Left"
+                        VerticalContentAlignment="Top"
+                        Command="{Binding Main.PlayMovieCommand, Source={StaticResource Locator}}"
+                        CommandParameter="{Binding SelectedMovie}">
+                    <Grid>
+                        <Image Source="{Binding SelectedMovie, Converter={StaticResource ImageUrlConverter}, ConverterParameter=poster}"
+                               Height="450"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Top"
+                               Margin="12,0,0,0" />
+                        <controls1:RoundButton ImageSource="/Icons/appbar.transport.play.rest.png"
+                                               IsHitTestVisible="False"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"/>
+                    </Grid>
+                </Button>
             </controls:PanoramaItem>
 
             <controls:PanoramaItem Header="overview">

@@ -58,5 +58,6 @@
         public const string CheckForPushPluginMsg = "CheckForPushPluginMsg";
         public const string NotificationSettingsLoadedMsg = "NotificationSettingsLoadedMsg";
         public const string CollectionPinnedMsg = "CollectionPinnedMsg";
+        public const string ResetAppMsg = "ResetAppMsg";
     }
 }

@@ -11,6 +11,8 @@
                             xmlns:cimbalino="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
                             xmlns:delay="clr-namespace:Delay"
                             xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP8"
+                            xmlns:binding="clr-namespace:ScottIsAFool.WindowsPhone.Bindings"
+                            xmlns:controls1="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
                             mc:Ignorable="d"
                             d:DesignWidth="480"
                             d:DesignHeight="696"
@@ -64,10 +66,6 @@
                 <cimbalino:ApplicationBarIconButton Text="{Binding SelectedMovie.UserData.IsFavorite, Converter={StaticResource FavouritesConverter}, ConverterParameter=text}"
                                                     IconUri="{Binding SelectedMovie.UserData.IsFavorite, Converter={StaticResource FavouritesConverter}, ConverterParameter=icon}"
                                                     Command="{Binding AddRemoveFavouriteCommand}" />
-                <cimbalino:ApplicationBarBehavior.MenuItems>
-                    <cimbalino:ApplicationBarMenuItem Text="play movie"
-                                                      Command="{Binding PlayMovieCommand}" />
-                </cimbalino:ApplicationBarBehavior.MenuItems>
             </cimbalino:ApplicationBarBehavior>
         </i:Interaction.Behaviors>
         <phone:Panorama Title="{Binding SelectedMovie.Name, Converter={StaticResource StringCaseConverter}}"
@@ -75,11 +73,23 @@
                         HeaderTemplate="{StaticResource LikeWp7ItemHeaderTemplate}"
                         TitleTemplate="{StaticResource LikeWp7TitleTemplate}">
             <phone:PanoramaItem Header="poster">
-                <Image Source="{Binding SelectedMovie, Converter={StaticResource ImageUrlConverter}, ConverterParameter=poster}"
-                       Height="450"
-                       HorizontalAlignment="Left"
-                       VerticalAlignment="Top"
-                       Margin="12,0,0,0" />
+                <Button Style="{StaticResource EmptyButtonStyle}"
+                        HorizontalContentAlignment="Left"
+                        VerticalContentAlignment="Top"
+                        Command="{Binding Main.PlayMovieCommand, Source={StaticResource Locator}}"
+                        CommandParameter="{Binding SelectedMovie}">
+                    <Grid>
+                        <Image Source="{Binding SelectedMovie, Converter={StaticResource ImageUrlConverter}, ConverterParameter=poster}"
+                               Height="450"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Top"
+                               Margin="12,0,0,0" />
+                        <controls1:RoundButton ImageSource="/Icons/appbar.transport.play.png"
+                                               IsHitTestVisible="False"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center" />
+                    </Grid>
+                </Button>
             </phone:PanoramaItem>
 
             <phone:PanoramaItem Header="overview">

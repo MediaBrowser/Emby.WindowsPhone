@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.ApiInteraction;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.Model.Dto;
@@ -33,7 +34,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             Profiles = new ObservableCollection<UserDto>();
             if(IsInDesignMode)
             {
-                Profiles = new ObservableCollection<UserDto>()
+                Profiles = new ObservableCollection<UserDto>
                                {
                                    new UserDto
                                        {
@@ -51,7 +52,19 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             else
             {
                 WireCommands();
+                WireMessages();
             }
+        }
+
+        private void WireMessages()
+        {
+            Messenger.Default.Register<NotificationMessage>(this, m =>
+                                                                      {
+                                                                          if (m.Notification.Equals(Constants.ResetAppMsg))
+                                                                          {
+                                                                              Profiles.Clear();
+                                                                          }
+                                                                      });
         }
 
         private void WireCommands()

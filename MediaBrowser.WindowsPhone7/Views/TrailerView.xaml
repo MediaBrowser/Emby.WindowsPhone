@@ -61,7 +61,8 @@
                         <Button Style="{StaticResource EmptyButtonStyle}"
                                 Grid.Column="0"
                                 Command="{Binding Main.PlayMovieCommand, Source={StaticResource Locator}}"
-                                CommandParameter="{Binding SelectedTrailer}">
+                                CommandParameter="{Binding SelectedTrailer}"
+                                VerticalAlignment="Top">
                             <Grid VerticalAlignment="Top">
                                 <Image Source="{Binding SelectedTrailer, Converter={StaticResource ImageUrlConverter}}"
                                        Stretch="UniformToFill"
@@ -75,7 +76,8 @@
                         <toolkit:LongListSelector Grid.Column="1"
                                                   Background="Transparent"
                                                   IsHitTestVisible="False"
-                                                  ItemsSource="{Binding CastAndCrew}">
+                                                  ItemsSource="{Binding CastAndCrew}"
+                                                  MaxHeight="173">
                             <toolkit:LongListSelector.ItemTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding Name}"

@@ -90,7 +90,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             PinCollectionCommand = new RelayCommand<BaseItemDto>(collection =>
                                                                      {
                                                                          string tileUrl;
-                                                                         var existingTile = GetShellTile(collection, out tileUrl); 
+                                                                         var existingTile = GetShellTile(collection, out tileUrl);
                                                                          if (existingTile != default(ShellTile))
                                                                          {
                                                                              var result = MessageBox.Show(AppResources.MessageBoxUnpinText, AppResources.MessageBoxHeaderAreYouSure, MessageBoxButton.OKCancel);
@@ -101,7 +101,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                                              }
                                                                              return;
                                                                          }
-                                                                         
+
 #if WP8
                                                                          var tileDate = new CycleTileData
                                                                                             {
@@ -129,16 +129,16 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             PlayMovieCommand = new RelayCommand<BaseItemDto>(async item =>
             {
 #if WP8
-                                                        Messenger.Default.Send(new NotificationMessage(item, Constants.PlayVideoItemMsg));
-                                                        NavService.NavigateToPage("/Views/VideoPlayerView.xaml");
+                Messenger.Default.Send(new NotificationMessage(item, Constants.PlayVideoItemMsg));
+                NavService.NavigateToPage("/Views/VideoPlayerView.xaml");
 #else
                 var bounds = Application.Current.RootVisual.RenderSize;
                 var query = new VideoStreamOptions
                 {
                     ItemId = item.Id,
                     VideoCodec = VideoCodecs.H264,
-                    OutputFileExtension = ".wmv",
-                    Static = true,
+                    OutputFileExtension = ".asf",
+                    //Static = true,
                     AudioCodec = AudioCodecs.Mp3,
                     VideoBitRate = 1000000,
                     AudioBitRate = 128000,
@@ -185,6 +185,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             hasLoaded = false;
             Folders.Clear();
             RecentItems.Clear();
+            Messenger.Default.Send(new NotificationMessage(Constants.ResetAppMsg));
         }
 
         private async Task GetEverything(bool isRefresh)

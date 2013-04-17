@@ -96,12 +96,15 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     {
                         ItemId = SelectedItem.Id,
                         VideoCodec = VideoCodecs.H264,
-                        OutputFileExtension = ".mp4",
-                        AudioCodec = AudioCodecs.Aac,
+                        OutputFileExtension = ".asf",
+                        //Static = true,
+                        AudioCodec = AudioCodecs.Mp3,
                         VideoBitRate = 1000000,
                         AudioBitRate = 128000,
                         MaxAudioChannels = 2,
-                        //FrameRate = 20,
+                        //Profile = "baseline",
+                        //Level = "3",
+                        //FrameRate = 30,
                         MaxHeight = 480,// (int)bounds.Width,
                         MaxWidth = 800// (int)bounds.Height
                     };

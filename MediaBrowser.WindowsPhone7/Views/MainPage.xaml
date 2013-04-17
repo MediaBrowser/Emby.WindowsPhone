@@ -71,6 +71,9 @@
                     <cimbalino:ApplicationBarMenuItem Text="settings"
                                                       Command="{Binding NavigateToAPage}"
                                                       CommandParameter="/Views/SettingsView.xaml" />
+                    <cimbalino:ApplicationBarMenuItem Text="video debug"
+                                                      Command="{Binding NavigateToAPage}"
+                                                      CommandParameter="/Views/VideoDebugView.xaml"/>
                 </cimbalino:ApplicationBarBehavior.MenuItems>
             </cimbalino:ApplicationBarBehavior>
         </i:Interaction.Behaviors>
