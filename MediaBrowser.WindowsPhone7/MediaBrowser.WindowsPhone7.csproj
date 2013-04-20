@@ -191,6 +191,9 @@
     </Compile>
     <Compile Include="Behaviours\OnTextPropertyChangedBehaviour.cs" />
     <Compile Include="Controls\DynamicTextBlock.cs" />
+    <Compile Include="Controls\LogFileView.xaml.cs">
+      <DependentUpon>LogFileView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\MediaBrowserLogo.cs" />
     <Compile Include="Controls\ProfileBox.cs" />
     <Compile Include="Converters\DeviceIdToBooleanConverter.cs" />
@@ -292,6 +295,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Content>
+    <Page Include="Controls\LogFileView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Splashscreen.xaml">
       <SubType>Form</SubType>
       <Generator>MSBuild:Compile</Generator>

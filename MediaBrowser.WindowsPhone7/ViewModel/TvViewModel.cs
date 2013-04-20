@@ -301,6 +301,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         // UI properties
         public string ProgressText { get; set; }
         public bool ProgressIsVisible { get; set; }
+        public bool EpisodeNavigationEnabled { get { return Episodes.Count > 1; } }
 
         public BaseItemDto SelectedTvSeries { get; set; }
         public List<BaseItemDto> Seasons { get; set; }

@@ -61,10 +61,12 @@
             <cimbalino:ApplicationBarBehavior>
                 <cimbalino:ApplicationBarIconButton Command="{Binding PreviousEpisodeCommand}"
                                                     Text="previous"
-                                                    IconUri="/icons/appbar.back.rest.png" />
+                                                    IconUri="/icons/appbar.back.rest.png"
+                                                    IsEnabled="{Binding EpisodeNavigationEnabled}"/>
                 <cimbalino:ApplicationBarIconButton Text="next"
                                                     Command="{Binding NextEpisodeCommand}"
-                                                    IconUri="/icons/appbar.next.rest.png" />
+                                                    IconUri="/icons/appbar.next.rest.png"
+                                                    IsEnabled="{Binding EpisodeNavigationEnabled}"/>
             </cimbalino:ApplicationBarBehavior>
         </i:Interaction.Behaviors>
         <Grid.RowDefinitions>

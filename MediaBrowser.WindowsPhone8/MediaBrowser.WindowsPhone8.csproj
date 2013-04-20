@@ -99,6 +99,10 @@
     <Compile Include="..\MediaBrowser.WindowsPhone7\Controls\DynamicTextBlock.cs">
       <Link>Controls\DynamicTextBlock.cs</Link>
     </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone7\Controls\LogFileView.xaml.cs">
+      <Link>Controls\LogFileView.xaml.cs</Link>
+      <DependentUpon>LogFileView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone7\Controls\MediaBrowserLogo.cs">
       <Link>Controls\MediaBrowserLogo.cs</Link>
     </Compile>
@@ -278,6 +282,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Page Include="..\MediaBrowser.WindowsPhone7\Controls\LogFileView.xaml">
+      <Link>Controls\LogFileView.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="..\MediaBrowser.WindowsPhone7\Splashscreen.xaml">
       <Link>Splashscreen.xaml</Link>
       <Generator>MSBuild:Compile</Generator>

@@ -70,6 +70,9 @@
                     <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.Settings, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringCaseConverter}}"
                                                       Command="{Binding NavigateToAPage}"
                                                       CommandParameter="/Views/SettingsView.xaml" />
+                    <cimbalino:ApplicationBarMenuItem Text="about"
+                                                      Command="{Binding NavigateToAPage}"
+                                                      CommandParameter="/YourLastAboutDialog;component/AboutPage.xaml"/>
                 </cimbalino:ApplicationBarBehavior.MenuItems>
             </cimbalino:ApplicationBarBehavior>
         </i:Interaction.Behaviors>

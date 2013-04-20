@@ -14,6 +14,8 @@
                 Value="{StaticResource PhoneFontSizeNormal}" />
         <Setter Property="Foreground"
                 Value="{StaticResource PhoneForegroundBrush}" />
+        <Setter Property="Background"
+                Value="{StaticResource MediaBrowserBackground}"/>
         
         <!-- Use the following setter to enable/disable the system tray on the about page -->
         <Setter Property="shell:SystemTray.IsVisible"

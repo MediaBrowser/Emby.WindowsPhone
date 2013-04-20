@@ -239,7 +239,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             try
             {
-                _logger.LogFormat("Getting favourites for use [{0}]", LogLevel.Info, App.Settings.LoggedInUser.Name);
+                FavouriteItems.Clear();
+                _logger.LogFormat("Getting favourites for user [{0}]", LogLevel.Info, App.Settings.LoggedInUser.Name);
 
                 var query = new ItemQuery
                 {
