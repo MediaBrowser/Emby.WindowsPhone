@@ -5,6 +5,7 @@
 // Logger.Log("Application_Launching");
 
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.IO.IsolatedStorage;
 using System.Text;
@@ -36,6 +37,8 @@ namespace MediaBrowser.WindowsPhone
             messageLog.Append("[" + logLevel.ToString().ToUpper() + "]");
             messageLog.Append("[ " + _type.FullName + " ]");
             messageLog.AppendFormat("[ Message: {0} ]", message);
+
+            Debug.WriteLine(messageLog);
 
             try
             {

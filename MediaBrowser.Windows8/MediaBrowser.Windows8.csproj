@@ -156,17 +156,11 @@
     <Compile Include="Model\Server.cs" />
     <Compile Include="Model\SettingsService.cs" />
     <Compile Include="SettingsCharm.cs" />
-    <Compile Include="SettingsViews\ConnectionSettings.xaml.cs">
-      <DependentUpon>ConnectionSettings.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SettingsViews\GeneralSettings.xaml.cs">
-      <DependentUpon>GeneralSettings.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SettingsViews\ImageSettings.xaml.cs">
-      <DependentUpon>ImageSettings.xaml</DependentUpon>
-    </Compile>
     <Compile Include="SettingsViews\PushNotificationsSettings.xaml.cs">
       <DependentUpon>PushNotificationsSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SettingsViews\SettingsView.xaml.cs">
+      <DependentUpon>SettingsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="SettingsViews\StreamingSettings.xaml.cs">
       <DependentUpon>StreamingSettings.xaml</DependentUpon>
@@ -298,19 +292,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="SettingsViews\ConnectionSettings.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="SettingsViews\GeneralSettings.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="SettingsViews\ImageSettings.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="SettingsViews\PushNotificationsSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SettingsViews\SettingsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

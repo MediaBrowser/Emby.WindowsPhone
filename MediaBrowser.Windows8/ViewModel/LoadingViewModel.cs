@@ -80,6 +80,13 @@ namespace MediaBrowser.Windows8.ViewModel
                     }, Constants.ConnectionSettings);
                 }
             });
+
+            ClearConnectionSettingsCommand = new RelayCommand(async () =>
+                                                                  {
+                                                                      var connectionSettings = new ObjectStorageHelper<ConnectionDetails>(StorageType.Roaming);
+                                                                      await connectionSettings.DeleteAsync(Constants.ConnectionSettings);
+                                                                      App.Settings.ConnectionDetails = new ConnectionDetails {PortNo = 8096};
+                                                                  });
         }
 
         private bool CheckForLocalhost()
@@ -272,5 +279,6 @@ namespace MediaBrowser.Windows8.ViewModel
         public Visibility ProgressVisibility { get; set; }
 
         public RelayCommand TestConnectionCommand { get; set; }
+        public RelayCommand ClearConnectionSettingsCommand { get; set; }
     }
 }
