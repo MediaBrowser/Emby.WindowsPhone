@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model.Entities;
+using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Querying;
 using MediaBrowser.Windows8.Model;
 using MetroLog;
@@ -116,6 +117,7 @@ namespace MediaBrowser.Windows8.ViewModel
                     {
                         ProgressVisibility = Visibility.Visible;
                         ProgressText = "Getting items...";
+
                         try
                         {
                             var items = new ItemsResult();
@@ -129,6 +131,7 @@ namespace MediaBrowser.Windows8.ViewModel
 
                             if (SelectedPerson != null)
                             {
+                                _logger.Info("Getting items for {0}", LogLevel.Info, SelectedPerson.Name);
                                 query.Person = SelectedPerson.Name;
                                 query.PersonTypes = new []{SelectedPerson.Type};
                                 query.Recursive = true;
@@ -137,11 +140,13 @@ namespace MediaBrowser.Windows8.ViewModel
                             {
                                 if (SelectedCollection.Type.Equals("genre"))
                                 {
+                                    _logger.Info("Getting items for genre [{0}]", LogLevel.Info, SelectedCollection.Name);
                                     query.Genres = new[] { SelectedCollection.Name };
                                     query.Recursive = true;
                                 }
                                 else
                                 {
+                                    _logger.Info("Getting items for folder [{0}]", LogLevel.Info, SelectedCollection.Name);
                                     query.ParentId = SelectedCollection.Id;
                                 }
                             }
@@ -153,8 +158,9 @@ namespace MediaBrowser.Windows8.ViewModel
                             await SortItems();
                             _collectionLoaded = true;
                         }
-                        catch
+                        catch (HttpException ex)
                         {
+                            _logger.Fatal(ex.Message, ex);
                         }
                         ProgressVisibility = Visibility.Collapsed;
                     }

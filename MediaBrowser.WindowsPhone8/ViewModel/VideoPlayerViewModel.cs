@@ -107,7 +107,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                 Debug.WriteLine(VideoUrl);
 
                                                 _logger.LogFormat("Playing {0} [{1}] ({2})", LogLevel.Info, SelectedItem.Type, SelectedItem.Name, SelectedItem.Id);
-                                                _logger.Log(VideoUrl);
+                                                _logger.Log(VideoUrl, LogLevel.Debug);
 
                                                 try
                                                 {

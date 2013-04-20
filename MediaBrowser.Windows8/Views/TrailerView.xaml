@@ -151,8 +151,9 @@
                         <TranslateTransform x:Name="CanvasMover" />
                     </Canvas.RenderTransform>
                     <playerFramework:MediaPlayer AutoPlay="False"
-                                                 x:Name="player"
+                                                 x:Name="Player"
                                                  IsFullScreenChanged="Player_OnIsFullScreenChanged"
+                                                 MediaFailed="Player_OnMediaFailed"
                                                  Width="{Binding ElementName=playerCanvas, Path=Width}"
                                                  Height="{Binding ElementName=playerCanvas, Path=Height}"
                                                  Source="{Binding TrailerUrl}"

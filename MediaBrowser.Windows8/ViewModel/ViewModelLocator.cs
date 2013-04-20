@@ -44,7 +44,7 @@ namespace MediaBrowser.Windows8.ViewModel
                         () => new NavigationService(new Frame()));
 
                 if (!SimpleIoc.Default.IsRegistered<ExtendedApiClient>())
-                    SimpleIoc.Default.Register(() => new ExtendedApiClient(new MBLogger(), new AsyncHttpClient(new Logger()), "192.168.0.2", 8096, "Windows RT", "dummy", "dummy"));
+                    SimpleIoc.Default.Register(() => new ExtendedApiClient(new MBLogger(), new AsyncHttpClient(new MBLogger()), "192.168.0.2", 8096, "Windows RT", "dummy", "dummy"));
                 if (!SimpleIoc.Default.IsRegistered<FolderViewModel>())
                     SimpleIoc.Default.Register<FolderViewModel>();
                 if (!SimpleIoc.Default.IsRegistered<TvViewModel>())
@@ -56,7 +56,7 @@ namespace MediaBrowser.Windows8.ViewModel
             {
                 SimpleIoc.Default.Register<NavigationService>();
                 if (!SimpleIoc.Default.IsRegistered<ExtendedApiClient>())
-                    SimpleIoc.Default.Register(() => new ExtendedApiClient(new MBLogger(), new AsyncHttpClient(new Logger()), "dummy", 8096, "Windows RT", "dummy", "dummy").SetDeviceProperties());
+                    SimpleIoc.Default.Register(() => new ExtendedApiClient(new MBLogger(), new AsyncHttpClient(new MBLogger()), "dummy", 8096, "Windows RT", "dummy", "dummy").SetDeviceProperties());
             }
 
             if (!SimpleIoc.Default.IsRegistered<SpecificSettings>())

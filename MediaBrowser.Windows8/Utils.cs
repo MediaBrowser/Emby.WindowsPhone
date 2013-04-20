@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net;
@@ -10,22 +11,25 @@ using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Windows8.Model;
 using MetroLog;
+using Win8nl.Utilities;
 
 namespace MediaBrowser.Windows8
 {
     public class Utils
     {
-        public static async Task DoLogin(UserDto selectedUser, string pinCode, Action successAction)
+        public static async Task DoLogin(ILogger logger, UserDto selectedUser, string pinCode, Action successAction)
         {
             var client = SimpleIoc.Default.GetInstance<ExtendedApiClient>();
-            LogManagerFactory.DefaultLogManager.GetLogger<Utils>().Info("Logging in as " + selectedUser.Name);
+            logger.Info("Authenticating user [{0}]", selectedUser.Name);
 
             try
             {
                 await client.AuthenticateUserAsync(selectedUser.Id, pinCode.ToHash());
+
+                logger.Info("Logged in as [{0}]", selectedUser.Name);
+
                 if (successAction != null)
                 {
-                    LogManagerFactory.DefaultLogManager.GetLogger<Utils>().Info("Login successful");
                     successAction.Invoke();
                 }
             }
@@ -35,7 +39,7 @@ namespace MediaBrowser.Windows8
                 {
                     if (ex.StatusCode.Value == HttpStatusCode.Unauthorized)
                     {
-                        LogManagerFactory.DefaultLogManager.GetLogger<Utils>().Info("Login unsuccessful: Incorrect username or password");
+                        logger.Info("Login unsuccessful: Incorrect username or password");
                         Messenger.Default.Send(new NotificationMessage(selectedUser.Id, Constants.ErrorLoggingInMsg));        
                     }
                 }
@@ -90,6 +94,44 @@ namespace MediaBrowser.Windows8
             return castAndCrew;
         }
 
-        
+        public static List<Group<BaseItemDto>> GroupArtistTracks(IEnumerable<BaseItemDto> tracks)
+        {
+            var emptyGroups = new List<Group<BaseItemDto>>();
+
+            var headers = new List<string> { "#", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
+            headers.ForEach(item => emptyGroups.Add(new Group<BaseItemDto>{Title = item, Items = new ObservableCollection<BaseItemDto>()}));
+
+            var groupedTracks = (from t in tracks
+                                 group t by GetSortByNameHeader(t)
+                                     into grp
+                                     orderby grp.Key
+                                     select new Group<BaseItemDto> { Title = grp.Key, Items = new ObservableCollection<BaseItemDto>(grp.ToList()) }).ToList();
+
+            var result = (from g in groupedTracks.Union(emptyGroups)
+                          where g.Items.Count > 0
+                          orderby g.Title
+                          select g).ToList();
+
+            return result;
+        }
+
+        internal static string GetSortByNameHeader(BaseItemDto dtoBaseItem)
+        {
+            var name = !String.IsNullOrEmpty(dtoBaseItem.SortName) ? dtoBaseItem.SortName : dtoBaseItem.Name;
+            var words = name.Split(' ');
+            var l = name.ToLower()[0];
+            if (words[0].ToLower().Equals("the") ||
+                words[0].ToLower().Equals("a") ||
+                words[0].ToLower().Equals("an"))
+            {
+                if (words.Length > 0)
+                    l = words[1].ToLower()[0];
+            }
+            if (l >= 'a' && l <= 'z')
+            {
+                return l.ToString();
+            }
+            return '#'.ToString();
+        }
     }
 }

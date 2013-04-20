@@ -59,7 +59,7 @@ namespace MediaBrowser.Windows8.Views
                 var item = (BaseItemDto)e.Parameter;
                 var vm = ViewModelLocator.GetTvViewModel(item.SeriesId);
                 vm.SelectedSeason = item;
-                vm.seasonDataLoaded = false;
+                vm.SeasonDataLoaded = false;
                 DataContext = vm;
             }
         }

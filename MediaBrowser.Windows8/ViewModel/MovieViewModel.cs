@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
-using MediaBrowser.ApiInteraction;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Windows8.Model;
-using MediaBrowser.Windows8.Views;
-using Windows.Foundation;
+using MetroLog;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -25,15 +22,19 @@ namespace MediaBrowser.Windows8.ViewModel
     /// </summary>
     public class MovieViewModel : ViewModelBase
     {
-        private readonly ExtendedApiClient ApiClient;
-        private readonly NavigationService NavigationService;
-        private bool dataLoaded;
+        private readonly ExtendedApiClient _apiClient;
+        private readonly NavigationService _navigationService;
+        private readonly ILogger _logger;
+        private bool _dataLoaded;
         /// <summary>
         /// Initializes a new instance of the MovieViewModel class.
         /// </summary>
         public MovieViewModel(ExtendedApiClient apiClient, NavigationService navigationService)
         {
-            
+            _apiClient = apiClient;
+            _navigationService = navigationService;
+            _logger = LogManagerFactory.DefaultLogManager.GetLogger<MovieViewModel>();
+
             MediaStreams = new List<Group<MediaStream>>();
             if (IsInDesignMode)
             {
@@ -92,8 +93,6 @@ namespace MediaBrowser.Windows8.ViewModel
             else
             {
                 ProgressVisibility = Visibility.Collapsed;
-                ApiClient = apiClient;
-                NavigationService = navigationService;
                 WireMessages();
                 WireCommands();
                 CanUpdateFavourites = true;
@@ -127,7 +126,7 @@ namespace MediaBrowser.Windows8.ViewModel
                                                                                                         Name = (string)args.ClickedItem,
                                                                                                         Type = "genre"
                                                                                                     };
-                                                                              NavigationService.NavigateToPage(genreFolder);
+                                                                              _navigationService.NavigateToPage(genreFolder);
                                                                           });
 
             BackButtonCommand = new RelayCommand(() =>
@@ -141,7 +140,7 @@ namespace MediaBrowser.Windows8.ViewModel
                                                                  {
                                                                      CanUpdateFavourites = false;
                                                                      SelectedMovie.UserData.IsFavorite = !SelectedMovie.UserData.IsFavorite;
-                                                                     await ApiClient.UpdateFavoriteStatusAsync(SelectedMovie.Id, App.Settings.LoggedInUser.Id, SelectedMovie.UserData.IsFavorite);
+                                                                     await _apiClient.UpdateFavoriteStatusAsync(SelectedMovie.Id, App.Settings.LoggedInUser.Id, SelectedMovie.UserData.IsFavorite);
                                                                      CanUpdateFavourites = true;
                                                                  }
                                                                  catch
@@ -156,7 +155,7 @@ namespace MediaBrowser.Windows8.ViewModel
                                                                         try
                                                                         {
                                                                             SelectedMovie.UserData.Likes = bool.Parse(isLike);
-                                                                            await ApiClient.UpdateUserItemRatingAsync(SelectedMovie.Id, App.Settings.LoggedInUser.Id, bool.Parse(isLike));
+                                                                            await _apiClient.UpdateUserItemRatingAsync(SelectedMovie.Id, App.Settings.LoggedInUser.Id, bool.Parse(isLike));
                                                                         }
                                                                         catch (HttpException ex)
                                                                         {
@@ -176,18 +175,27 @@ namespace MediaBrowser.Windows8.ViewModel
                     var id = (string)m.Sender;
                     ProgressText = "Getting cast and crew...";
                     ProgressVisibility = Visibility.Visible;
-                    if (SelectedMovie != null && NavigationService.IsNetworkAvailable && (SelectedMovie.Id == id) && !dataLoaded)
+                    if (SelectedMovie != null && _navigationService.IsNetworkAvailable && (SelectedMovie.Id == id) && !_dataLoaded)
                     {
+                        try
+                        {
+                            _logger.Info("Getting details for movie [{0}] ({1})", SelectedMovie.Name, SelectedMovie.Id);
 
-                        var item = await ApiClient.GetItemAsync(SelectedMovie.Id, App.Settings.LoggedInUser.Id);
-                        if (item.UserData == null) item.UserData = new UserItemDataDto();
-                        SelectedMovie = item;
+                            var item = await _apiClient.GetItemAsync(SelectedMovie.Id, App.Settings.LoggedInUser.Id);
 
-                        CastAndCrew = await Utils.GroupCastAndCrew(item);
-                        dataLoaded = true;
-                        GroupMediaStreams();
+                            if (item.UserData == null) item.UserData = new UserItemDataDto();
+
+                            SelectedMovie = item;
+
+                            CastAndCrew = await Utils.GroupCastAndCrew(item);
+                            _dataLoaded = true;
+                            GroupMediaStreams();
+                        }
+                        catch (HttpException ex)
+                        {
+                            _logger.Fatal(ex.Message, ex);
+                        }
                     }
-
 
                     ProgressText = "";
                     ProgressVisibility = Visibility.Collapsed;

@@ -1,9 +1,12 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model.Dto;
+using MediaBrowser.Model.Net;
 using MediaBrowser.Windows8.Model;
+using MetroLog;
 using MyToolkit.Multimedia;
 using ReflectionIT.Windows8.Helpers;
 using Windows.UI.Xaml;
@@ -19,17 +22,21 @@ namespace MediaBrowser.Windows8.ViewModel
     /// </summary>
     public class VideoPlayerViewModel : ViewModelBase
     {
-        private readonly ExtendedApiClient ApiClient;
-        private readonly NavigationService NavigationService;
-        private bool isResume;
-        private bool isTrailer;
+        private readonly ExtendedApiClient _apiClient;
+        private readonly NavigationService _navigationService;
+        private readonly ILogger _logger;
+
+        private bool _isResume;
+        private bool _isTrailer;
         /// <summary>
         /// Initializes a new instance of the VideoPlayerViewModel class.
         /// </summary>
         public VideoPlayerViewModel(ExtendedApiClient apiClient, NavigationService navigationService)
         {
-            ApiClient = apiClient;
-            NavigationService = navigationService;
+            _apiClient = apiClient;
+            _navigationService = navigationService;
+            _logger = LogManagerFactory.DefaultLogManager.GetLogger<VideoPlayerViewModel>();
+
             if (IsInDesignMode)
             {
                 SelectedItem = new BaseItemDto
@@ -51,45 +58,52 @@ namespace MediaBrowser.Windows8.ViewModel
                 {
                     SelectedItem = (BaseItemDto)m.Sender;
                     if(m.Target != null)
-                        isResume = (bool) m.Target;
-                    isTrailer = false;
+                        _isResume = (bool) m.Target;
+                    _isTrailer = false;
                 }
                 if (m.Notification.Equals(Constants.PlayTrailerMsg))
                 {
                     SelectedItem = (BaseItemDto) m.Sender;
-                    isTrailer = true;
+                    _isTrailer = true;
                 }
                 if (m.Notification.Equals(Constants.VideoPlayerLoadedMsg))
                 {
-                    if (isTrailer)
+                    if (_isTrailer)
                     {
                         var url = SelectedItem.TrailerUrls[0];
                         if (url.ToLower().Contains("youtube."))
                         {
+                            _logger.Info("Trying to play YouTube trailer");
                             var hadError = false;
                             try
                             {
                                 VideoUrl = await ParseYoutubeLink(url);
+                                _logger.Debug(VideoUrl);
                             }
-                            catch
+                            catch(Exception ex)
                             {
+                                _logger.Error(ex.Message, ex);
                                 hadError = true;
                             }
                             if (hadError)
                             {
                                 await MessageBox.ShowAsync("Unfortunately there was an error trying to retrieve the trailer, it could have been removed from the interwebs. Sorry about that.", "Error", MessageBoxButton.OK);
-                                NavigationService.GoBack();
+                                _navigationService.GoBack();
                             }
                         }
                         else
                         {
+                            _logger.Info("Trying to play trailer");
+
                             VideoUrl = url;
+
+                            _logger.Debug(VideoUrl);
                         }
                     }
                     else
                     {
                         long ticks = 0;
-                        if (SelectedItem.UserData != null && isResume)
+                        if (SelectedItem.UserData != null && _isResume)
                         {
                             ticks = SelectedItem.UserData.PlaybackPositionTicks;
                         }
@@ -104,9 +118,22 @@ namespace MediaBrowser.Windows8.ViewModel
                             MaxHeight = (int)bounds.Height,
                             MaxWidth = (int)bounds.Width
                         };
-                        VideoUrl = ApiClient.GetVideoStreamUrl(query);
-                        System.Diagnostics.Debug.WriteLine(VideoUrl);
-                        await ApiClient.ReportPlaybackStartAsync(SelectedItem.Id, App.Settings.LoggedInUser.Id).ConfigureAwait(true);
+
+                        VideoUrl = _apiClient.GetVideoStreamUrl(query);
+
+                        Debug.WriteLine(VideoUrl);
+
+                        _logger.Info("Playing {0} [{1}] ({2})", SelectedItem.Type, SelectedItem.Name, SelectedItem.Id);
+                        _logger.Debug(VideoUrl);
+
+                        try
+                        {
+                            await _apiClient.ReportPlaybackStartAsync(SelectedItem.Id, App.Settings.LoggedInUser.Id).ConfigureAwait(true);
+                        }
+                        catch (HttpException ex)
+                        {
+                            _logger.Error(ex.Message, ex);
+                        }
                     }
                 }
                 if(m.Notification.Equals(Constants.SendVideoTimeToServerMsg))
@@ -114,12 +141,14 @@ namespace MediaBrowser.Windows8.ViewModel
                     try
                     {
                         var totalTicks = StartTime.HasValue ? StartTime.Value.Ticks + PlayedVideoDuration.Ticks : PlayedVideoDuration.Ticks;
+                        
+                        await _apiClient.ReportPlaybackStoppedAsync(SelectedItem.Id, App.Settings.LoggedInUser.Id, totalTicks);
+                        
                         SelectedItem.UserData.PlaybackPositionTicks = totalTicks;
-                        await ApiClient.ReportPlaybackStoppedAsync(SelectedItem.Id, App.Settings.LoggedInUser.Id, totalTicks);
                     }
-                    catch
+                    catch (HttpException ex)
                     {
-                        string v = "v";
+                        _logger.Error(ex.Message, ex);
                     }
                 }
             });

@@ -96,7 +96,7 @@ namespace MediaBrowser.WindowsPhone
 
             try
             {
-                logger.LogFormat("Authenticationg user [{0}]", LogLevel.Info, selectedUser.Name);
+                logger.LogFormat("Authenticating user [{0}]", LogLevel.Info, selectedUser.Name);
 
                 await client.AuthenticateUserAsync(selectedUser.Id, pinCode.ToHash());
 

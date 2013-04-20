@@ -4,8 +4,10 @@ using System.Threading.Tasks;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model.Dto;
+using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Querying;
 using MediaBrowser.Windows8.Model;
+using MetroLog;
 using Windows.UI.Xaml;
 using System.Linq;
 
@@ -19,21 +21,24 @@ namespace MediaBrowser.Windows8.ViewModel
     /// </summary>
     public class MusicViewModel : ViewModelBase
     {
-        private readonly ExtendedApiClient ApiClient;
-        private readonly NavigationService NavigationService;
+        private readonly ExtendedApiClient _apiClient;
+        private readonly NavigationService _navigationService;
+        private readonly ILogger _logger;
 
-        private List<BaseItemDto> artistTracks;
-        private bool gotAlbums;
+        private List<BaseItemDto> _artistTracks;
+        private bool _gotAlbums;
 
         /// <summary>
         /// Initializes a new instance of the MusicViewModel class.
         /// </summary>
         public MusicViewModel(ExtendedApiClient apiClient, NavigationService navigationService)
         {
-            ApiClient = apiClient;
-            NavigationService = navigationService;
+            _apiClient = apiClient;
+            _navigationService = navigationService;
+            _logger = LogManagerFactory.DefaultLogManager.GetLogger<MusicViewModel>();
+
             Albums = new ObservableCollection<BaseItemDto>();
-            artistTracks = new List<BaseItemDto>();
+            _artistTracks = new List<BaseItemDto>();
             if (IsInDesignMode)
             {
                 SelectedArtist = new BaseItemDto
@@ -78,26 +83,26 @@ namespace MediaBrowser.Windows8.ViewModel
                 if (m.Notification.Equals(Constants.MusicArtistChangedMsg))
                 {
                     Albums = new ObservableCollection<BaseItemDto>();
-                    artistTracks = new List<BaseItemDto>();
+                    _artistTracks = new List<BaseItemDto>();
                     AlbumTracks = new List<BaseItemDto>();
                     SelectedArtist = (BaseItemDto)m.Sender;
-                    gotAlbums = false;
+                    _gotAlbums = false;
                 }
                 if (m.Notification.Equals(Constants.MusicAlbumChangedMsg))
                 {
                     SelectedAlbum = (BaseItemDto)m.Sender;
-                    AlbumTracks = artistTracks.Where(x => x.ParentId == SelectedAlbum.Id)
+                    AlbumTracks = _artistTracks.Where(x => x.ParentId == SelectedAlbum.Id)
                         .OrderBy(x => x.ParentIndexNumber)
                         .ThenBy(x => x.IndexNumber).ToList();
                 }
                 if (m.Notification.Equals(Constants.ArtistViewLoadedMsg))
                 {
-                    if (NavigationService.IsNetworkAvailable && !gotAlbums)
+                    if (_navigationService.IsNetworkAvailable && !_gotAlbums)
                     {
                         ProgressText = "Getting albums...";
                         ProgressVisibility = Visibility.Visible;
 
-                        gotAlbums = await GetAlbums();
+                        _gotAlbums = await GetAlbums();
 
                         ProgressText = string.Empty;
                         ProgressVisibility = Visibility.Collapsed;
@@ -108,6 +113,32 @@ namespace MediaBrowser.Windows8.ViewModel
 
                 }
             });
+        }
+
+        private async Task GetArtistInfo()
+        {
+            try
+            {
+                _logger.Info("Getting information for Artist [{0}] ({1})", SelectedArtist.Name, SelectedArtist.Id);
+
+                SelectedArtist = await _apiClient.GetItemAsync(SelectedArtist.Id, App.Settings.LoggedInUser.Id);
+            }
+            catch (HttpException ex)
+            {
+                _logger.Fatal(ex.Message, ex);
+            }
+
+            _gotAlbums = await GetAlbums();
+
+            SortTracks();
+        }
+
+        private void SortTracks()
+        {
+            if (_artistTracks != null && _artistTracks.Any())
+            {
+                SortedTracks = Utils.GroupArtistTracks(_artistTracks);
+            }
         }
 
         private async Task<bool> GetAlbums()
@@ -121,15 +152,21 @@ namespace MediaBrowser.Windows8.ViewModel
                                     Recursive = true,
                                     Fields = new[] { ItemFields.AudioInfo, ItemFields.ParentId, }
                                 };
-                var items = await ApiClient.GetItemsAsync(query);
+
+                _logger.Info("Getting albums for artist [{0}] ({1})", SelectedArtist.Name, SelectedArtist.Id);
+                var items = await _apiClient.GetItemsAsync(query);
                 if (items != null && items.Items.Any())
                 {
+                    // Extract the album items from the results
                     var albums = items.Items.Where(x => x.Type == "MusicAlbum").ToList();
-                    artistTracks = items.Items.Where(y => y.Type == "Audio").ToList();
 
-                    var nameId = (from a in artistTracks
+                    // Extract the track items from the results
+                    _artistTracks = items.Items.Where(y => y.Type == "Audio").ToList();
+
+                    var nameId = (from a in _artistTracks
                                   select new KeyValuePair<string, string>(a.Album, a.ParentId)).Distinct();
 
+                    // This sets the album names correctly based on what's in the track information (rather than folder name)
                     foreach (var ni in nameId)
                     {
                         var item = albums.SingleOrDefault(x => x.Id == ni.Value);
@@ -140,15 +177,13 @@ namespace MediaBrowser.Windows8.ViewModel
                     {
                         Albums.Add(album);
                     }
+                    return true;
                 }
-                else
-                {
-                    return false;
-                }
-                return true;
+                return false;
             }
-            catch
+            catch (HttpException ex)
             {
+                _logger.Fatal(ex.Message, ex);
                 return false;
             }
         }
@@ -160,5 +195,6 @@ namespace MediaBrowser.Windows8.ViewModel
         public ObservableCollection<BaseItemDto> Albums { get; set; }
         public List<BaseItemDto> AlbumTracks { get; set; }
         public BaseItemDto SelectedAlbum { get; set; }
+        public List<Group<BaseItemDto>> SortedTracks { get; set; }
     }
 }

@@ -8,9 +8,11 @@ using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
+using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Querying;
 using MediaBrowser.Windows8.Model;
 using MediaBrowser.Windows8.Views;
+using MetroLog;
 using ReflectionIT.Windows8.Helpers;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -31,24 +33,27 @@ namespace MediaBrowser.Windows8.ViewModel
     /// </summary>
     public class MainViewModel : ViewModelBase
     {
-        private readonly NavigationService navigationService;
-        private readonly ExtendedApiClient ApiClient;
-        private bool dataLoaded;
+        private readonly NavigationService _navigationService;
+        private readonly ExtendedApiClient _apiClient;
+        private readonly ILogger _logger;
+        private bool _dataLoaded;
 
         private const int RecentItems = 2;
         private const int Collections = 1;
         private const int Favourites = 3;
         private const int Resumable = 0;
 
-        private BaseItemDto[] recentItems;
+        private BaseItemDto[] _recentItems;
 
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
         public MainViewModel(NavigationService navigation, ExtendedApiClient apiClient)
         {
-            navigationService = navigation;
-            ApiClient = apiClient;
+            _navigationService = navigation;
+            _apiClient = apiClient;
+            _logger = LogManagerFactory.DefaultLogManager.GetLogger<MainViewModel>();
+
             Reset();
 
             if (IsInDesignMode)
@@ -87,7 +92,7 @@ namespace MediaBrowser.Windows8.ViewModel
                 if (m.Notification.Equals(Constants.MainPageLoadedMsg))
                 {
                     SelectedItem = null;
-                    if (navigationService.IsNetworkAvailable && !dataLoaded)
+                    if (_navigationService.IsNetworkAvailable && !_dataLoaded)
                     {
                         ProgressVisibility = Visibility.Visible;
 
@@ -103,8 +108,8 @@ namespace MediaBrowser.Windows8.ViewModel
                         ProgressText = "Getting favourites...";
                         bool faves = await GetFavouriteItems();
                         
-                        dataLoaded = (collections && recent && resumable);
-                        if (!dataLoaded)
+                        _dataLoaded = (collections && recent && resumable);
+                        if (!_dataLoaded)
                         {
                             await
                                 MessageBox.ShowAsync(
@@ -125,7 +130,7 @@ namespace MediaBrowser.Windows8.ViewModel
                                                                                  {
                                                                                      if (m.PropertyName.Equals("IncludeTrailersInRecentItems"))
                                                                                      {
-                                                                                         await SortRecentItems(recentItems);
+                                                                                         await SortRecentItems(_recentItems);
                                                                                      }
                                                                                  });
         }
@@ -140,7 +145,7 @@ namespace MediaBrowser.Windows8.ViewModel
             Groups[Resumable] = new Group<GridItemWrapper<BaseItemDto>> { Title = "Resumable" };
             Groups[Favourites] = new Group<GridItemWrapper<BaseItemDto>> { Title = "Favourites" };
 
-            dataLoaded = false;
+            _dataLoaded = false;
         }
 
         private void OnSelectedItemChanged()
@@ -180,7 +185,7 @@ namespace MediaBrowser.Windows8.ViewModel
             PlayTrailerCommand = new RelayCommand<BaseItemDto>(item =>
             {
                 Messenger.Default.Send(new NotificationMessage(item, Constants.PlayTrailerMsg));
-                navigationService.Navigate<VideoPlayer>();
+                _navigationService.Navigate<VideoPlayer>();
             });
 
             PinItemCommand = new RelayCommand<BaseItemDto>(async item =>
@@ -196,17 +201,17 @@ namespace MediaBrowser.Windows8.ViewModel
                                                                        if (item != null)
                                                                        {
                                                                            var dtoItem = item;
-                                                                           navigationService.NavigateToPage(dtoItem.Item);
+                                                                           _navigationService.NavigateToPage(dtoItem.Item);
                                                                        }
                                                                        else
                                                                        {
-                                                                           navigationService.NavigateToPage(args.ClickedItem);
+                                                                           _navigationService.NavigateToPage(args.ClickedItem);
                                                                        }
                                                                    });
-            NavigateToPage = new RelayCommand<object>(navigationService.NavigateToPage);
-            PlayVideoCommand = new RelayCommand<BaseItemDto>(item => navigationService.PlayVideoItem(item, false));
-            ResumeVideoCommand = new RelayCommand<BaseItemDto>(item => navigationService.PlayVideoItem(item, true));
-            GoHome = new RelayCommand(() => navigationService.Navigate<MainPage>());
+            NavigateToPage = new RelayCommand<object>(_navigationService.NavigateToPage);
+            PlayVideoCommand = new RelayCommand<BaseItemDto>(item => _navigationService.PlayVideoItem(item, false));
+            ResumeVideoCommand = new RelayCommand<BaseItemDto>(item => _navigationService.PlayVideoItem(item, true));
+            GoHome = new RelayCommand(() => _navigationService.Navigate<MainPage>());
         }
 
         public async Task<bool> GetCollections()
@@ -217,7 +222,10 @@ namespace MediaBrowser.Windows8.ViewModel
                                 {
                                     UserId = App.Settings.LoggedInUser.Id
                                 };
-                var items = await ApiClient.GetItemsAsync(query);
+
+                _logger.Info("Getting collections for [{0}]", App.Settings.LoggedInUser.Name);
+
+                var items = await _apiClient.GetItemsAsync(query);
                 if (items != null && items.Items.Any())
                 {
                     foreach (var item in items.Items)
@@ -227,8 +235,9 @@ namespace MediaBrowser.Windows8.ViewModel
                 }
                 return true;
             }
-            catch
+            catch (HttpException ex)
             {
+                _logger.Fatal(ex.Message, ex);
                 return false;
             }
         }
@@ -243,7 +252,10 @@ namespace MediaBrowser.Windows8.ViewModel
                                     Filters = new[] {ItemFilter.IsFavorite,},
                                     Recursive=true
                                 };
-                var items = await ApiClient.GetItemsAsync(query);
+
+                _logger.Info("Getting favourites for user [{0}]", App.Settings.LoggedInUser.Name);
+
+                var items = await _apiClient.GetItemsAsync(query);
                 if (items != null && items.Items != null)
                 {
                     foreach (var item in items.Items)
@@ -258,8 +270,9 @@ namespace MediaBrowser.Windows8.ViewModel
                 }
                 return true;
             }
-            catch
+            catch (HttpException ex)
             {
+                _logger.Fatal(ex.Message, ex);
                 return false;
             }
         }
@@ -274,7 +287,10 @@ namespace MediaBrowser.Windows8.ViewModel
                                     Filters = new[] {ItemFilter.IsResumable,},
                                     Recursive = true
                                 };
-                var items = await ApiClient.GetItemsAsync(query);
+
+                _logger.Info("Getting resumable items for [{0}]", App.Settings.LoggedInUser.Name);
+
+                var items = await _apiClient.GetItemsAsync(query);
                 if (items != null && items.Items != null)
                 {
                     foreach (var item in items.Items)
@@ -289,8 +305,9 @@ namespace MediaBrowser.Windows8.ViewModel
                 }
                 return true;
             }
-            catch
+            catch (HttpException ex)
             {
+                _logger.Fatal(ex.Message, ex);
                 return false;
             }
 
@@ -312,14 +329,18 @@ namespace MediaBrowser.Windows8.ViewModel
                                                  },
                                     Recursive = true
                                 };
-                var items = await ApiClient.GetItemsAsync(query);
-                recentItems = items.Items;
+
+                _logger.Info("Getting most recent items");
+
+                var items = await _apiClient.GetItemsAsync(query);
+                _recentItems = items.Items;
                 await SortRecentItems(items.Items);
                 
                 return true;
             }
-            catch
+            catch (HttpException ex)
             {
+                _logger.Fatal(ex.Message, ex);
                 return false;
             }
         }

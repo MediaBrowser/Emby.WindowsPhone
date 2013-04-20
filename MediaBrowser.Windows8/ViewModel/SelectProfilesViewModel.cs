@@ -5,9 +5,10 @@ using System.Threading.Tasks;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
-using MediaBrowser.ApiInteraction;
+using MediaBrowser.Model.Net;
 using MediaBrowser.Windows8.Model;
 using MediaBrowser.Windows8.Views;
+using MetroLog;
 using WinRtUtility;
 using Windows.UI.Xaml;
 using MediaBrowser.Model.Dto;
@@ -23,17 +24,19 @@ namespace MediaBrowser.Windows8.ViewModel
     /// </summary>
     public class SelectProfilesViewModel : ViewModelBase
     {
-        private readonly ExtendedApiClient ApiClient;
-        private readonly NavigationService NavigationService;
-        private bool haveProfiles;
+        private readonly ExtendedApiClient _apiClient;
+        private readonly NavigationService _navigationService;
+        private readonly ILogger _logger;
+        private bool _haveProfiles;
 
         /// <summary>
         /// Initializes a new instance of the ProfilesViewModel class.
         /// </summary>
         public SelectProfilesViewModel(ExtendedApiClient apiClient, NavigationService navigationService)
         {
-            ApiClient = apiClient;
-            NavigationService = navigationService;
+            _apiClient = apiClient;
+            _navigationService = navigationService;
+            _logger = LogManagerFactory.DefaultLogManager.GetLogger<SelectProfilesViewModel>();
             Profiles = new ObservableCollection<UserDto>();
             if (IsInDesignMode)
             {
@@ -64,12 +67,12 @@ namespace MediaBrowser.Windows8.ViewModel
             {
                 if (m.Notification.Equals(Constants.ProfileViewLoadedMsg))
                 {
-                    if (NavigationService.IsNetworkAvailable)
+                    if (_navigationService.IsNetworkAvailable)
                     {
                         ProgressText = "Getting profiles";
                         ProgressVisibility = Visibility.Visible;
 
-                        haveProfiles = await GetUserProfiles();
+                        _haveProfiles = await GetUserProfiles();
 
                         ProgressText = "";
                         ProgressVisibility = Visibility.Collapsed;
@@ -89,16 +92,17 @@ namespace MediaBrowser.Windows8.ViewModel
                         ProgressText = "Authenticating...";
                         ProgressVisibility = Visibility.Visible;
 
-                        await Utils.DoLogin(selectedUser, pinCode, async () =>
+                        await Utils.DoLogin(_logger, selectedUser, pinCode, async () =>
                         {
                             SetUser(selectedUser);
                             if(saveUser)
                             {
                                 var storageHelper = new ObjectStorageHelper<UserSettingWrapper>(StorageType.Roaming);
                                 await storageHelper.SaveAsync(new UserSettingWrapper{ User = selectedUser, Pin = pinCode}, Constants.SelectedUserSetting);
+
+                                _logger.Info("User [{0}] has been saved", selectedUser.Name);
                             }
                         });
-                        
 
                         ProgressText = "";
                         ProgressVisibility = Visibility.Collapsed;
@@ -111,16 +115,20 @@ namespace MediaBrowser.Windows8.ViewModel
         {
             try
             {
-                var profiles = await ApiClient.GetAllUsersAsync();
+                _logger.Info("Getting profiles");
+                var profiles = await _apiClient.GetAllUsersAsync();
+
                 Profiles.Clear();
+
                 foreach(var profile in profiles)
                 {
                     Profiles.Add(profile);
                 }
                 return true;
             }
-            catch
+            catch (HttpException ex)
             {
+                _logger.Fatal(ex.Message, ex);
                 return false;
             }
         }
@@ -138,20 +146,28 @@ namespace MediaBrowser.Windows8.ViewModel
 
             ChangeProfileCommand = new RelayCommand(async () =>
             {
+                _logger.Info("Signed out user [{0}]", App.Settings.LoggedInUser.Name);
+
                 App.Settings.LoggedInUser = null;
                 App.Settings.PinCode = string.Empty;
+
                 Messenger.Default.Send(new NotificationMessage(Constants.ClearEverythingMsg));
+
                 History.Current.ClearAll();
+
                 await new ObjectStorageHelper<UserSettingWrapper>(StorageType.Roaming).DeleteAsync(Constants.SelectedUserSetting);
-                NavigationService.Navigate<SelectProfileView>();
+
+                _logger.Info("Signed out.");
+
+                _navigationService.Navigate<SelectProfileView>();
             });
         }
 
         private void SetUser(UserDto profile)
         {
             App.Settings.LoggedInUser = profile;
-            ApiClient.CurrentUserId = profile.Id;
-            NavigationService.Navigate<MainPage>();
+            _apiClient.CurrentUserId = profile.Id;
+            _navigationService.Navigate<MainPage>();
         }
 
         public string ProgressText { get; set; }

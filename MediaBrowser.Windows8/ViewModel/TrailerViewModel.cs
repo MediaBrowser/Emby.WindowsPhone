@@ -5,7 +5,9 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.ApiInteraction;
 using MediaBrowser.Model.Dto;
+using MediaBrowser.Model.Net;
 using MediaBrowser.Windows8.Model;
+using MetroLog;
 using Windows.UI.Xaml;
 
 namespace MediaBrowser.Windows8.ViewModel
@@ -18,15 +20,18 @@ namespace MediaBrowser.Windows8.ViewModel
     /// </summary>
     public class TrailerViewModel : ViewModelBase
     {
-        private readonly ExtendedApiClient ApiClient;
-        private readonly NavigationService NavigationService;
+        private readonly ExtendedApiClient _apiClient;
+        private readonly NavigationService _navigationService;
+        private readonly ILogger _logger;
         /// <summary>
         /// Initializes a new instance of the TrailerViewModel class.
         /// </summary>
         public TrailerViewModel(ExtendedApiClient apiClient, NavigationService navigationService)
         {
-            ApiClient = apiClient;
-            NavigationService = navigationService;
+            _apiClient = apiClient;
+            _navigationService = navigationService;
+            _logger = LogManagerFactory.DefaultLogManager.GetLogger<TrailerViewModel>();
+
             if (IsInDesignMode)
             {
                 CastAndCrew = new ObservableCollection<Group<BaseItemPerson>>
@@ -67,7 +72,7 @@ namespace MediaBrowser.Windows8.ViewModel
                                                                           {
                                                                               if (SelectedTrailer != null)
                                                                               {
-                                                                                  if (NavigationService.IsNetworkAvailable)
+                                                                                  if (_navigationService.IsNetworkAvailable)
                                                                                   {
                                                                                       ProgressText = "Getting trailer details...";
                                                                                       ProgressVisibility = Visibility.Visible;
@@ -83,7 +88,10 @@ namespace MediaBrowser.Windows8.ViewModel
                                                                                           MaxHeight = 768,
                                                                                           MaxWidth = 1366
                                                                                       };
-                                                                                      TrailerUrl = ApiClient.GetVideoStreamUrl(query);
+
+                                                                                      TrailerUrl = _apiClient.GetVideoStreamUrl(query);
+
+                                                                                      _logger.Debug(TrailerUrl);
 
                                                                                       CastAndCrew = await Utils.GroupCastAndCrew(SelectedTrailer);
 
@@ -99,11 +107,14 @@ namespace MediaBrowser.Windows8.ViewModel
         {
             try
             {
-                SelectedTrailer = await ApiClient.GetItemAsync(SelectedTrailer.Id, App.Settings.LoggedInUser.Id);
+                _logger.Info("Getting information for trailer [{0}] ({1})", SelectedTrailer.Name, SelectedTrailer.Id);
+
+                SelectedTrailer = await _apiClient.GetItemAsync(SelectedTrailer.Id, App.Settings.LoggedInUser.Id);
                 return true;
             }
-            catch
+            catch (HttpException ex)
             {
+                _logger.Fatal(ex.Message, ex);
                 return false;
             }
         }

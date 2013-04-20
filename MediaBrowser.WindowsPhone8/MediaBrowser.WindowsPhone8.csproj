@@ -142,6 +142,9 @@
     <Compile Include="..\MediaBrowser.WindowsPhone7\Converters\TicksToTimespanConverter.cs">
       <Link>Converters\TicksToTimespanConverter.cs</Link>
     </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone7\ExtensionMethods.cs">
+      <Link>ExtensionMethods.cs</Link>
+    </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone7\Model\ExtendedApiClient.cs">
       <Link>Model\ExtendedApiClient.cs</Link>
     </Compile>

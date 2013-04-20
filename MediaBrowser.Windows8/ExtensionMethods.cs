@@ -73,6 +73,8 @@ namespace MediaBrowser.Windows8
                     return LogLevel.Info;
                 case LogSeverity.Warn:
                     return LogLevel.Warn;
+                default:
+                    return LogLevel.Info;
             }
         }
     }

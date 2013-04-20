@@ -7,6 +7,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
+using MediaBrowser.Model.Net;
 using MediaBrowser.Windows8.Model;
 using MediaBrowser.Windows8.Views;
 using MetroLog;
@@ -144,24 +145,27 @@ namespace MediaBrowser.Windows8.ViewModel
             var serverFound = await FindServer();
             if (!serverFound)
             {
-                
                 await MessageBox.ShowAsync("We were unable to find your server, please try again later.", "Server not found", MessageBoxButton.OK);
                 return false;
             }
 
             var serverConfig = false;
+
             ProgressVisibility = Visibility.Visible;
             ProgressText = "Loading settings...";
+
             var settingsLoader = new ObjectStorageHelper<SpecificSettings>(StorageType.Roaming);
             //await settingsLoader.DeleteAsync(Constants.SpecificSettings);
+
             try
             {
                 var settings = await settingsLoader.LoadAsync(Constants.SpecificSettings);
                 if (settings != null)
                     await Utils.CopyItem(settings, SimpleIoc.Default.GetInstance<SpecificSettings>());
             }
-            catch
+            catch (Exception ex)
             {
+                _logger.Error("Failed to load settings", ex);
                 settingsLoader.DeleteAsync(Constants.SpecificSettings);
             }
 
@@ -184,7 +188,7 @@ namespace MediaBrowser.Windows8.ViewModel
                         App.Settings.LoggedInUser = wrapper.User;
                         ProgressText = "Authenticating...";
                         App.Settings.PinCode = wrapper.Pin;
-                        await Utils.DoLogin(App.Settings.LoggedInUser, App.Settings.PinCode,
+                        await Utils.DoLogin(_logger, App.Settings.LoggedInUser, App.Settings.PinCode,
                                           () =>
                                               {
                                                   _apiClient.CurrentUserId = App.Settings.LoggedInUser.Id;
@@ -198,7 +202,6 @@ namespace MediaBrowser.Windows8.ViewModel
                 }
                 else
                 {
-                    // TODO: Display error
                     await
                         MessageBox.ShowAsync(
                             "There was an error getting some of the data. Please try again later.", "Error",
@@ -227,7 +230,11 @@ namespace MediaBrowser.Windows8.ViewModel
                 try
                 {
                     await _apiClient.PushHeartbeatAsync(notifications.DeviceId);
-                }catch{}
+                }
+                catch (HttpException ex)
+                {
+                    _logger.Fatal("LoadPushSettings()", ex);
+                }
             }
             notifications.loadingFromSettings = false;
         } 
@@ -240,9 +247,9 @@ namespace MediaBrowser.Windows8.ViewModel
                 App.Settings.SystemStatus = await _apiClient.GetSystemInfoAsync();
                 return true;
             }
-            catch (Exception ex)
+            catch (HttpException ex)
             {
-                _logger.Error("FindServer()", ex);
+                _logger.Fatal("FindServer()", ex);
                 return false;
             }
         }
@@ -254,7 +261,7 @@ namespace MediaBrowser.Windows8.ViewModel
                 App.Settings.ServerConfiguration = await _apiClient.GetServerConfigurationAsync();
                 return true;
             }
-            catch (Exception ex)
+            catch (HttpException ex)
             {
                 _logger.Error("GetServerConfig()", ex);
                 return false;

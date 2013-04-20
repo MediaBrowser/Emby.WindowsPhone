@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
-using MediaBrowser.ApiInteraction;
 using MediaBrowser.Model.Dto;
+using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Querying;
-using MediaBrowser.Shared;
 using MediaBrowser.Windows8.Model;
-using MediaBrowser.Windows8.Views;
+using MetroLog;
 using Windows.UI.Xaml;
 
 namespace MediaBrowser.Windows8.ViewModel
@@ -24,17 +23,22 @@ namespace MediaBrowser.Windows8.ViewModel
     /// </summary>
     public class TvViewModel : ViewModelBase
     {
-        private readonly ExtendedApiClient ApiClient;
-        private readonly NavigationService NavigationService;
+        private readonly ExtendedApiClient _apiClient;
+        private readonly NavigationService _navigationService;
+        private readonly ILogger _logger;
 
-        public bool showDataLoaded, seasonDataLoaded;
-        private BaseItemDto episode;
+        public bool ShowDataLoaded, SeasonDataLoaded;
+        private BaseItemDto _episode;
 
         /// <summary>
         /// Initializes a new instance of the TvViewModel class.
         /// </summary>
         public TvViewModel(ExtendedApiClient apiClient, NavigationService navigationService)
         {
+            _apiClient = apiClient;
+            _navigationService = navigationService;
+            _logger = LogManagerFactory.DefaultLogManager.GetLogger<TvViewModel>();
+
             Reset();
             PropertyChanged += (sender, args) =>
                                    {
@@ -120,8 +124,6 @@ namespace MediaBrowser.Windows8.ViewModel
                 WireMessages();
                 WireCommands();
             }
-            ApiClient = apiClient;
-            NavigationService = navigationService;
         }
 
         private void Reset()
@@ -143,7 +145,7 @@ namespace MediaBrowser.Windows8.ViewModel
             {
                 if (m.Notification.Equals(Constants.TvShowPageLoadedMsg))
                 {
-                    if (NavigationService.IsNetworkAvailable && !showDataLoaded)
+                    if (_navigationService.IsNetworkAvailable && !ShowDataLoaded)
                     {
                         var id = (string) m.Sender;
                         if (SelectedTvSeries != null && SelectedTvSeries.Id == id)
@@ -160,7 +162,7 @@ namespace MediaBrowser.Windows8.ViewModel
 
                             ProgressText = string.Empty;
                             ProgressVisibility = Visibility.Collapsed;
-                            showDataLoaded = (seasonsLoaded && recentItems);
+                            ShowDataLoaded = (seasonsLoaded && recentItems);
 
                         }
                     }
@@ -175,14 +177,14 @@ namespace MediaBrowser.Windows8.ViewModel
                 }
                 if (m.Notification.Equals(Constants.TvSeasonPageLoadedMsg))
                 {
-                    if (NavigationService.IsNetworkAvailable && !seasonDataLoaded)
+                    if (_navigationService.IsNetworkAvailable && !SeasonDataLoaded)
                     {
                         if (SelectedSeason != null)
                         {
                             ProgressVisibility = Visibility.Visible;
                             ProgressText = "Getting episodes...";
 
-                            seasonDataLoaded = await GetEpisodes();
+                            SeasonDataLoaded = await GetEpisodes();
 
                             ProgressText = string.Empty;
                             ProgressVisibility = Visibility.Collapsed;
@@ -191,7 +193,7 @@ namespace MediaBrowser.Windows8.ViewModel
                 }
                 if (m.Notification.Equals(Constants.TvEpisodePageLoadedMsg))
                 {
-                    if (SelectedSeason == null && NavigationService.IsNetworkAvailable)
+                    if (SelectedSeason == null && _navigationService.IsNetworkAvailable)
                     {
                         ProgressText = "Getting extra information...";
                         ProgressVisibility = Visibility.Visible;
@@ -213,7 +215,7 @@ namespace MediaBrowser.Windows8.ViewModel
                 {
                     Episodes = null;
                     SelectedSeason = null;
-                    seasonDataLoaded = false;
+                    SeasonDataLoaded = false;
                 }
                 if (m.Notification.Equals(Constants.ClearEverythingMsg))
                 {
@@ -238,13 +240,17 @@ namespace MediaBrowser.Windows8.ViewModel
                                                      ItemFields.Overview, 
                                                  }
                                 };
-                var episodes = await ApiClient.GetItemsAsync(query);
+
+                _logger.Info("Getting episodes for Season [{0}] ({1}) of TV Show [{2}] ({3})", SelectedTvSeries.Name, SelectedTvSeries.Id);
+
+                var episodes = await _apiClient.GetItemsAsync(query);
                                                                                                                            
                 Episodes = episodes.Items.OrderBy(x => x.IndexNumber).ToList();
                 return true;
             }
-            catch
+            catch (HttpException ex)
             {
+                _logger.Fatal(ex.Message, ex);
                 return false;
             }
         }
@@ -253,11 +259,16 @@ namespace MediaBrowser.Windows8.ViewModel
         {
             try
             {
-                var episodeInfo = await ApiClient.GetItemAsync(SelectedEpisode.Id, App.Settings.LoggedInUser.Id);
+                _logger.Info("Getting information for episode [{0}] ({1})", SelectedEpisode.Name, SelectedEpisode.Id);
+
+                var episode = await _apiClient.GetItemAsync(SelectedEpisode.Id, App.Settings.LoggedInUser.Id);
+
                 return true;
             }
-            catch
+            catch (HttpException ex)
             {
+                _logger.Fatal(ex.Message, ex);
+
                 return false;
             }
         }
@@ -278,7 +289,10 @@ namespace MediaBrowser.Windows8.ViewModel
                                                  },
                                                  Recursive = true
                 };
-                var recent = await ApiClient.GetItemsAsync(query);
+
+                _logger.Info("Getting recent items for TV Show [{0}] ({1})", SelectedTvSeries.Name, SelectedTvSeries.Id);
+
+                var recent = await _apiClient.GetItemsAsync(query);
                 RecentItems.Clear();
                 var items = recent.Items.OrderBy(x => x.DateCreated)
                     .Take(12)
@@ -289,8 +303,9 @@ namespace MediaBrowser.Windows8.ViewModel
                 }
                 return true;
             }
-            catch
+            catch (HttpException ex)
             {
+                _logger.Fatal(ex.Message, ex);
                 return false;
             }
         }
@@ -309,20 +324,26 @@ namespace MediaBrowser.Windows8.ViewModel
                                                      ItemFields.ParentId
                                                  }
                 };
-                var seasons = await ApiClient.GetItemsAsync(query);
+
+                _logger.Info("Getting seasons for TV Show [{0}] ({1})", SelectedTvSeries.Name, SelectedTvSeries.Id);
+
+                var seasons = await _apiClient.GetItemsAsync(query);
                 if (!string.IsNullOrEmpty(SelectedTvSeries.SortName) && SelectedTvSeries.SortName.Equals(Constants.GetTvInformationMsg))
                 {
-                    SelectedTvSeries = await ApiClient.GetItemAsync(SelectedTvSeries.Id, App.Settings.LoggedInUser.Id);
+                    SelectedTvSeries = await _apiClient.GetItemAsync(SelectedTvSeries.Id, App.Settings.LoggedInUser.Id);
                 }
                 foreach (var season in seasons.Items.OrderBy(x => x.IndexNumber))
                 {
                     SeasonsAndRecent[1].Items.Add(season);
                 }
+
                 // TODO: Cast and crew
+                
                 return true;
             }
-            catch
+            catch (HttpException ex)
             {
+                _logger.Fatal(ex.Message, ex);
                 return false;
             }
         }

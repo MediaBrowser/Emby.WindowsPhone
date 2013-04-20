@@ -1,4 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
+using MediaBrowser.Windows8.Common;
+using MetroLog;
 using Windows.Foundation;
 using Windows.UI.Xaml;
 
@@ -9,20 +11,25 @@ namespace MediaBrowser.Windows8.Views
     /// <summary>
     /// A basic page that provides characteristics common to most applications.
     /// </summary>
-    public sealed partial class TrailerView : MediaBrowser.Windows8.Common.LayoutAwarePage
+    public sealed partial class TrailerView : LayoutAwarePage
     {
+        private readonly ILogger _logger;
+
         public TrailerView()
         {
+            _logger = LogManagerFactory.DefaultLogManager.GetLogger<TrailerView>();
+
             this.InitializeComponent();
+
             Loaded += (sender, args) => Messenger.Default.Send(new NotificationMessage(Constants.TrailerPageLoadedMsg));
         }
 
         private void PlayerCanvas_OnSizeChanged(object sender, SizeChangedEventArgs e)
         {
-            if (!player.IsFullScreen)
+            if (!Player.IsFullScreen)
             {
-                player.Width = e.NewSize.Width;
-                player.Height = e.NewSize.Height;
+                Player.Width = e.NewSize.Width;
+                Player.Height = e.NewSize.Height;
             }
         }
 
@@ -30,19 +37,24 @@ namespace MediaBrowser.Windows8.Views
         {
             if (e.NewValue)
             {
-                var offset = player.TransformToVisual(LayoutRoot).TransformPoint(new Point());
+                var offset = Player.TransformToVisual(LayoutRoot).TransformPoint(new Point());
                 CanvasMover.X = -offset.X;
                 CanvasMover.Y = -offset.Y;
-                this.player.Height = Window.Current.Bounds.Height;
-                this.player.Width = Window.Current.Bounds.Width;
+                Player.Height = Window.Current.Bounds.Height;
+                Player.Width = Window.Current.Bounds.Width;
             }
             else
             {
-                this.player.Width = playerCanvas.Width;
-                this.player.Height = playerCanvas.Height;
+                Player.Width = playerCanvas.Width;
+                Player.Height = playerCanvas.Height;
                 CanvasMover.X = 0;
                 CanvasMover.Y = 0;
             }
+        }
+
+        private void Player_OnMediaFailed(object sender, ExceptionRoutedEventArgs e)
+        {
+            _logger.Error("Video failed to play: " + e.ErrorMessage);
         }
     }
 }
