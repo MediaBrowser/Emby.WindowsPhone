@@ -37,7 +37,6 @@ namespace MediaBrowser.Windows8.ViewModel
         {
             _apiClient = apiClient;
             _navigationService = navigationService;
-            _logger = LogManagerFactory.DefaultLogManager.GetLogger<TvViewModel>();
 
             Reset();
             PropertyChanged += (sender, args) =>
@@ -118,11 +117,14 @@ namespace MediaBrowser.Windows8.ViewModel
                     SeasonsAndRecent[2].Items.Add(episode);
                 }
                 SelectedEpisode = episodes[0];
+
+                _logger = new DesignLogger();
             }
             else
             {
                 WireMessages();
                 WireCommands();
+                _logger = LogManagerFactory.DefaultLogManager.GetLogger<TvViewModel>();
             }
         }
 

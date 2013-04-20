@@ -36,7 +36,6 @@ namespace MediaBrowser.Windows8.ViewModel
         {
             _apiClient = apiClient;
             _navigationService = navigationService;
-            _logger = LogManagerFactory.DefaultLogManager.GetLogger<SelectProfilesViewModel>();
             Profiles = new ObservableCollection<UserDto>();
             if (IsInDesignMode)
             {
@@ -53,11 +52,13 @@ namespace MediaBrowser.Windows8.ViewModel
                                            Id = Guid.NewGuid().ToString()
                                        }
                                };
+                _logger = new DesignLogger();
             }
             else
             {
                 WireCommands();
                 WireMessages();
+                _logger = LogManagerFactory.DefaultLogManager.GetLogger<SelectProfilesViewModel>();
             }
         }
 

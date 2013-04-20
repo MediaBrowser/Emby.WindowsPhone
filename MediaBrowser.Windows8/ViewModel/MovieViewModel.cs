@@ -33,7 +33,6 @@ namespace MediaBrowser.Windows8.ViewModel
         {
             _apiClient = apiClient;
             _navigationService = navigationService;
-            _logger = LogManagerFactory.DefaultLogManager.GetLogger<MovieViewModel>();
 
             MediaStreams = new List<Group<MediaStream>>();
             if (IsInDesignMode)
@@ -89,6 +88,8 @@ namespace MediaBrowser.Windows8.ViewModel
                 CastAndCrew[0].Items.Add(new BaseItemPerson { Name = "Steven Spielberg", Role = "The main guy" });
                 CastAndCrew[1].Items.Add(new BaseItemPerson { Name = "Sam Neill", Role = "Dr Alan Grant" });
                 CastAndCrew[1].Items.Add(new BaseItemPerson { Name = "Richard Attenborough", Role = "John Hammond" });
+
+                _logger = new DesignLogger();
             }
             else
             {
@@ -96,6 +97,7 @@ namespace MediaBrowser.Windows8.ViewModel
                 WireMessages();
                 WireCommands();
                 CanUpdateFavourites = true;
+                _logger = LogManagerFactory.DefaultLogManager.GetLogger<MovieViewModel>();
             }
 
         }

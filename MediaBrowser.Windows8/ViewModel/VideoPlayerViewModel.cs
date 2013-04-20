@@ -35,7 +35,6 @@ namespace MediaBrowser.Windows8.ViewModel
         {
             _apiClient = apiClient;
             _navigationService = navigationService;
-            _logger = LogManagerFactory.DefaultLogManager.GetLogger<VideoPlayerViewModel>();
 
             if (IsInDesignMode)
             {
@@ -43,10 +42,13 @@ namespace MediaBrowser.Windows8.ViewModel
                                    {
                                        Name = "Jurassic Park"
                                    };
+
+                _logger = new DesignLogger();
             }
             else
             {
                 WireMessages();
+                _logger = LogManagerFactory.DefaultLogManager.GetLogger<VideoPlayerViewModel>();
             }
         }
 

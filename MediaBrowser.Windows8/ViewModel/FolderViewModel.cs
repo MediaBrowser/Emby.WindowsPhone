@@ -25,7 +25,6 @@ namespace MediaBrowser.Windows8.ViewModel
         {
             _navigtaionService = navigation;
             _apiClient = apiClient;
-            _logger = LogManagerFactory.DefaultLogManager.GetLogger<FolderViewModel>();
             if (IsInDesignMode)
             {
                 SelectedCollection = new BaseItemDto
@@ -85,12 +84,13 @@ namespace MediaBrowser.Windows8.ViewModel
                                            }
                                };
                 SortItems();
-                
+                _logger = new DesignLogger();
             }
             else
             {
                 WireCommands();
                 WireMessages();
+                _logger = LogManagerFactory.DefaultLogManager.GetLogger<FolderViewModel>();
             }
         }
 

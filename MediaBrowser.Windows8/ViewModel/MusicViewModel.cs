@@ -35,7 +35,6 @@ namespace MediaBrowser.Windows8.ViewModel
         {
             _apiClient = apiClient;
             _navigationService = navigationService;
-            _logger = LogManagerFactory.DefaultLogManager.GetLogger<MusicViewModel>();
 
             Albums = new ObservableCollection<BaseItemDto>();
             _artistTracks = new List<BaseItemDto>();
@@ -64,11 +63,13 @@ namespace MediaBrowser.Windows8.ViewModel
                                       new BaseItemDto {Name = "On Thin Ice", Id = "2696da6a01f254fbd7e199a191bd5c4f", IndexNumber = 2, ParentIndexNumber = 1, RunTimeTicks = 1745500000},
                                   }.OrderBy(x => x.ParentIndexNumber)
                                    .ThenBy(x => x.IndexNumber).ToList();
+                _logger = new DesignLogger();
             }
             else
             {
                 WireMessages();
                 WireCommands();
+                _logger = LogManagerFactory.DefaultLogManager.GetLogger<MusicViewModel>();
             }
         }
 

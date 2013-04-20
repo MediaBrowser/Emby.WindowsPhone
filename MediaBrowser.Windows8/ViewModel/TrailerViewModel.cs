@@ -30,7 +30,6 @@ namespace MediaBrowser.Windows8.ViewModel
         {
             _apiClient = apiClient;
             _navigationService = navigationService;
-            _logger = LogManagerFactory.DefaultLogManager.GetLogger<TrailerViewModel>();
 
             if (IsInDesignMode)
             {
@@ -52,10 +51,13 @@ namespace MediaBrowser.Windows8.ViewModel
                 CastAndCrew[0].Items.Add(new BaseItemPerson { Name = "Steven Spielberg", Type = "Director" });
                 CastAndCrew[1].Items.Add(new BaseItemPerson{Name = "Sam Neill", Type = "Actor"});
                 CastAndCrew[1].Items.Add(new BaseItemPerson { Name = "Richard Attenborough", Type = "Actor" });
+
+                _logger = new DesignLogger();
             }
             else
             {
                 WireMessages();
+                _logger = LogManagerFactory.DefaultLogManager.GetLogger<TrailerViewModel>();
             }
         }
 

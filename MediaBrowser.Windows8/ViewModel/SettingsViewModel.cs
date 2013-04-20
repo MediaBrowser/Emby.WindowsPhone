@@ -9,6 +9,7 @@ using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
 using GalaSoft.MvvmLight.Threading;
 using MediaBrowser.Windows8.Model;
+using MetroLog;
 using ReflectionIT.Windows8.Helpers;
 using WinRtUtility;
 using Windows.Networking;
@@ -28,16 +29,17 @@ namespace MediaBrowser.Windows8.ViewModel
     /// </summary>
     public class SettingsViewModel : ViewModelBase
     {
-        private readonly ExtendedApiClient ApiClient;
-        private readonly NavigationService NavigationService;
-        public bool loadingFromSettings;
+        private readonly ExtendedApiClient _apiClient;
+        private readonly NavigationService _navigationService;
+        private readonly ILogger _logger;
+        public bool LoadingFromSettings;
         /// <summary>
         /// Initializes a new instance of the NotificationsViewModel class.
         /// </summary>
         public SettingsViewModel(ExtendedApiClient apiClient, NavigationService navigationService)
         {
-            ApiClient = apiClient;
-            NavigationService = navigationService;
+            _apiClient = apiClient;
+            _navigationService = navigationService;
             RegisteredText = "Device not registered";
             if (IsInDesignMode)
             {
@@ -47,13 +49,15 @@ namespace MediaBrowser.Windows8.ViewModel
                                        new Server {IpAddress = "192.168.0.2", PortNo = "8096"},
                                        new Server {IpAddress = "192.168.0.4", PortNo = "8096"}
                                    };
+                _logger = new DesignLogger();
             }
             else
             {
                 WireMessages();
-                loadingFromSettings = true;
+                LoadingFromSettings = true;
                 SendTileUpdates = SendToastUpdates = true;
-                loadingFromSettings = false;
+                LoadingFromSettings = false;
+                _logger = LogManagerFactory.DefaultLogManager.GetLogger<SettingsViewModel>();
             }
         }
 
@@ -96,7 +100,7 @@ namespace MediaBrowser.Windows8.ViewModel
 
         public string DeviceId
         {
-            get { return ApiClient.DeviceName + Windows.System.UserProfile.UserInformation.GetDisplayNameAsync().GetResults(); }
+            get { return _apiClient.DeviceName + Windows.System.UserProfile.UserInformation.GetDisplayNameAsync().GetResults(); }
         }
 
         public string ProgressText { get; set; }
@@ -185,8 +189,8 @@ namespace MediaBrowser.Windows8.ViewModel
 
         private async void OnUseNotificationsChanged()
         {
-            if (!ServerPluginInstalled || loadingFromSettings) return;
-            if (NavigationService.IsNetworkAvailable)
+            if (!ServerPluginInstalled || LoadingFromSettings) return;
+            if (_navigationService.IsNetworkAvailable)
             {
                 if (UseNotifications)
                 {
@@ -204,7 +208,7 @@ namespace MediaBrowser.Windows8.ViewModel
         {
             try
             {
-                await ApiClient.DeleteDeviceAsync(DeviceId);
+                await _apiClient.DeleteDeviceAsync(DeviceId);
                 IsRegistered = true;
             }
             catch
@@ -223,7 +227,7 @@ namespace MediaBrowser.Windows8.ViewModel
 
                                                                         };
                 var url = PushNotificationChannel.Uri.Replace("%", "IMAPERCENT");
-                await ApiClient.RegisterDeviceAsync(Uri.EscapeDataString(DeviceId), url, SendTileUpdates, SendToastUpdates);
+                await _apiClient.RegisterDeviceAsync(Uri.EscapeDataString(DeviceId), url, SendTileUpdates, SendToastUpdates);
                 IsRegistered = true;
             }
             catch
@@ -234,10 +238,10 @@ namespace MediaBrowser.Windows8.ViewModel
 
         private async void OnSendToastUpdatesChanged()
         {
-            if (loadingFromSettings) return;
+            if (LoadingFromSettings) return;
             try
             {
-                await ApiClient.UpdateDeviceAsync(DeviceId, SendToastUpdates);
+                await _apiClient.UpdateDeviceAsync(DeviceId, SendToastUpdates);
                 await SavePushSettings();
             }
             catch
@@ -259,10 +263,10 @@ namespace MediaBrowser.Windows8.ViewModel
 
         private async void OnSendTileUpdatesChanged()
         {
-            if (loadingFromSettings) return;
+            if (LoadingFromSettings) return;
             try
             {
-                await ApiClient.UpdateDeviceAsync(DeviceId, sendTileUpdate: SendTileUpdates);
+                await _apiClient.UpdateDeviceAsync(DeviceId, sendTileUpdate: SendTileUpdates);
                 await SavePushSettings();
             }
             catch

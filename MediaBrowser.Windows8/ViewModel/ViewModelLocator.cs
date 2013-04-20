@@ -15,7 +15,6 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using MediaBrowser.ApiInteraction;
-using MediaBrowser.Shared;
 using MediaBrowser.Windows8.Model;
 using Microsoft.Practices.ServiceLocation;
 using Windows.UI.Xaml.Controls;
@@ -38,13 +37,13 @@ namespace MediaBrowser.Windows8.ViewModel
             if (ViewModelBase.IsInDesignModeStatic)
             {
                 // Create design time view services and models
-                
+
                 if (!SimpleIoc.Default.IsRegistered<NavigationService>())
                     SimpleIoc.Default.Register(
                         () => new NavigationService(new Frame()));
 
                 if (!SimpleIoc.Default.IsRegistered<ExtendedApiClient>())
-                    SimpleIoc.Default.Register(() => new ExtendedApiClient(new MBLogger(), new AsyncHttpClient(new MBLogger()), "192.168.0.2", 8096, "Windows RT", "dummy", "dummy"));
+                    SimpleIoc.Default.Register(() => new ExtendedApiClient(new DesignLogger(), new AsyncHttpClient(new DesignLogger()), "192.168.0.2", 8096, "Windows RT", "dummy", "dummy"));
                 if (!SimpleIoc.Default.IsRegistered<FolderViewModel>())
                     SimpleIoc.Default.Register<FolderViewModel>();
                 if (!SimpleIoc.Default.IsRegistered<TvViewModel>())

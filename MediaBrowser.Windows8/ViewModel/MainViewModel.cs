@@ -52,7 +52,6 @@ namespace MediaBrowser.Windows8.ViewModel
         {
             _navigationService = navigation;
             _apiClient = apiClient;
-            _logger = LogManagerFactory.DefaultLogManager.GetLogger<MainViewModel>();
 
             Reset();
 
@@ -73,6 +72,7 @@ namespace MediaBrowser.Windows8.ViewModel
                                                       Name = "Jurassic Park 3",
                                                       Type = "Movie"
                                                   }.ToWrapper());
+                _logger = new DesignLogger();
             }
             else
             {
@@ -82,6 +82,7 @@ namespace MediaBrowser.Windows8.ViewModel
                 ProgressVisibility = Visibility.Collapsed;
                 PlayResumeVisibility = Visibility.Collapsed;
                 PinCollectionVisibility = Visibility.Collapsed;
+                _logger = LogManagerFactory.DefaultLogManager.GetLogger<MainViewModel>();
             }
         }
 

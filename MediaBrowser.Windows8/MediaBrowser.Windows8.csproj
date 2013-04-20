@@ -145,6 +145,7 @@
     <Compile Include="Converters\VisibilityConverter.cs" />
     <Compile Include="Design\DesignNavigationService.cs" />
     <Compile Include="ExtensionMethods.cs" />
+    <Compile Include="Model\DesignLogger.cs" />
     <Compile Include="Model\ExtendedApiClient.cs" />
     <Compile Include="Model\GridItemWrapper.cs" />
     <Compile Include="Model\Group.cs" />

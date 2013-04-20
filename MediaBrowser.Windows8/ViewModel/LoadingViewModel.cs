@@ -43,15 +43,15 @@ namespace MediaBrowser.Windows8.ViewModel
         {
             _apiClient = apiClient;
             _navService = navigationService;
-            _logger = LogManagerFactory.DefaultLogManager.GetLogger<LoadingViewModel>();
             if (IsInDesignMode)
             {
-                
+                _logger = new DesignLogger();
             }
             else
             {
                 WireMessages();
                 WireCommands();
+                _logger = LogManagerFactory.DefaultLogManager.GetLogger<LoadingViewModel>();
             }
         }
 
@@ -225,7 +225,7 @@ namespace MediaBrowser.Windows8.ViewModel
             var storageHelper = new ObjectStorageHelper<bool>(StorageType.Local);
             var notifications = SimpleIoc.Default.GetInstance<SettingsViewModel>();
             
-            notifications.loadingFromSettings = true;
+            notifications.LoadingFromSettings = true;
 
             notifications.ServerPluginInstalled = await storageHelper.LoadAsync("ServerPluginInstalled");
             if (notifications.ServerPluginInstalled)
@@ -243,7 +243,7 @@ namespace MediaBrowser.Windows8.ViewModel
                     _logger.Fatal("LoadPushSettings()", ex);
                 }
             }
-            notifications.loadingFromSettings = false;
+            notifications.LoadingFromSettings = false;
         } 
 
         private async Task<bool> FindServer()
