@@ -101,9 +101,9 @@ namespace MediaBrowser.WindowsPhone.Model
                     //Messenger.Default.Send(new NotificationMessage(item, Constants.ShowFolderMsg));
                     NavigateToPage("/Views/CollectionView.xaml");
                     break;
-                case "boxset":
                 case "folder":
-                    NavigateToPage("/Views/FolderView.xaml");
+                case "boxset":
+                    NavigateToPage("/Views/FolderView.xaml?id=" + item.Id);
                     break;
                 case "movie":
                     //Messenger.Default.Send(new NotificationMessage(item, Constants.ShowMovieMsg));
