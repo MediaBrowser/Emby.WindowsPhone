@@ -7,23 +7,27 @@ namespace MediaBrowser.WindowsPhone.Views
 {
     public partial class VideoPlayerView : PhoneApplicationPage
     {
+        private readonly ILog _logger;
         // Constructor
         public VideoPlayerView()
         {
+            _logger = new WPLogger(typeof(VideoPlayerView));
+
             InitializeComponent();
 
             // Sample code to localize the ApplicationBar
             //BuildLocalizedApplicationBar();
         }
 
-        private void ThePlayerMediaEnded(object sender, Microsoft.PlayerFramework.MediaPlayerActionEventArgs e)
+        private void ThePlayerMediaEnded(object sender, MediaPlayerActionEventArgs e)
         {
             Messenger.Default.Send(new NotificationMessage(Constants.SendVideoTimeToServerMsg));
         }
 
-        private void ThePlayerMediaFailed(object sender, System.Windows.ExceptionRoutedEventArgs e)
+        private void ThePlayerMediaFailed(object sender, ExceptionRoutedEventArgs e)
         {
-            var s = "";
+            _logger.Log("Error playing media: " + e.ErrorException.Message, LogLevel.Error);
+            _logger.Log(e.ErrorException.StackTrace, LogLevel.Error);
         }
 
         private void ThePlayer_OnMediaOpened(object sender, RoutedEventArgs e)

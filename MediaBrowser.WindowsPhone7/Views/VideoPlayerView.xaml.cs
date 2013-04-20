@@ -1,6 +1,5 @@
 ﻿using System;
 using GalaSoft.MvvmLight.Ioc;
-using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.WindowsPhone.ViewModel;
 using Microsoft.Phone.Controls;
 using Microsoft.SilverlightMediaFramework.Core;
@@ -11,8 +10,12 @@ namespace MediaBrowser.WindowsPhone.Views
 {
     public partial class VideoPlayerView : PhoneApplicationPage
     {
+        private readonly ILog _logger;
+
         public VideoPlayerView()
         {
+            _logger = new WPLogger(typeof(VideoPlayerView));
+
             InitializeComponent();
             Loaded += (sender, args) =>
                           {
@@ -30,7 +33,8 @@ namespace MediaBrowser.WindowsPhone.Views
 
         private void ThePlayer_OnMediaFailed(object sender, CustomEventArgs<Exception> e)
         {
-            var s = "";
+            _logger.Log("Error playing video: " + e.Value.Message, LogLevel.Error);
+            _logger.Log(e.Value.StackTrace, LogLevel.Error);
         }
     }
 }
