@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using MediaBrowser.Model.Net;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.Model.Dto;
 using GalaSoft.MvvmLight.Messaging;
@@ -26,16 +27,19 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     /// </summary>
     public class MovieViewModel : ViewModelBase
     {
-        private readonly INavigationService NavService;
-        private readonly ExtendedApiClient ApiClient;
+        private readonly INavigationService _navService;
+        private readonly ExtendedApiClient _apiClient;
+        private readonly ILog _logger;
 
         /// <summary>
         /// Initializes a new instance of the MovieViewModel class.
         /// </summary>
         public MovieViewModel(INavigationService navService, ExtendedApiClient apiClient)
         {
-            NavService = navService;
-            ApiClient = apiClient;
+            _navService = navService;
+            _apiClient = apiClient;
+            _logger = new WPLogger(typeof(MovieViewModel));
+
             CanUpdateFavourites = true;
             if (IsInDesignMode)
             {
@@ -75,7 +79,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             MoviePageLoaded = new RelayCommand(async () =>
             {
                 
-                if (SelectedMovie != null && NavService.IsNetworkAvailable)
+                if (SelectedMovie != null && _navService.IsNetworkAvailable)
                 {
                     ProgressIsVisible = true;
                     ProgressText = AppResources.SysTrayGettingMovieInfo;
@@ -99,13 +103,16 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 try
                 {
                     CanUpdateFavourites = false;
+                    
+                    await _apiClient.UpdateFavoriteStatusAsync(SelectedMovie.Id, App.Settings.LoggedInUser.Id, !SelectedMovie.UserData.IsFavorite);
                     SelectedMovie.UserData.IsFavorite = !SelectedMovie.UserData.IsFavorite;
-                    await ApiClient.UpdateFavoriteStatusAsync(SelectedMovie.Id, App.Settings.LoggedInUser.Id, SelectedMovie.UserData.IsFavorite);
+                    
                     CanUpdateFavourites = true;
                 }
-                catch
+                catch (HttpException ex)
                 {
-
+                    _logger.Log(ex.Message, LogLevel.Fatal);
+                    _logger.Log(ex.StackTrace, LogLevel.Fatal);
                 }
                 CanUpdateFavourites = true;
             });
@@ -113,25 +120,30 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             ShowOtherFilmsCommand = new RelayCommand<BaseItemPerson>(person =>
                                                                          {
                                                                              App.SelectedItem = person;
-                                                                             NavService.NavigateToPage("/Views/FolderView.xaml");
+                                                                             _navService.NavigateToPage("/Views/FolderView.xaml");
                                                                          });
 
-            NavigateTopage = new RelayCommand<BaseItemDto>(NavService.NavigateToPage);
+            NavigateTopage = new RelayCommand<BaseItemDto>(_navService.NavigateToPage);
         }
 
         private async Task<bool> GetMovieDetails()
         {
-            var result = false;
+            bool result;
 
             try
             {
-                var item = await ApiClient.GetItemAsync(SelectedMovie.Id, App.Settings.LoggedInUser.Id);
+                _logger.LogFormat("Getting details for movie [{0}] ({1})", LogLevel.Info, SelectedMovie.Name, SelectedMovie.Id);
+
+                var item = await _apiClient.GetItemAsync(SelectedMovie.Id, App.Settings.LoggedInUser.Id);
                 SelectedMovie = item;
                 CastAndCrew = Utils.GroupCastAndCrew(item.People);
                 result = true;
             }
-            catch
+            catch (HttpException ex)
             {
+                _logger.Log(ex.Message, LogLevel.Fatal);
+                _logger.Log(ex.StackTrace, LogLevel.Fatal);
+
                 App.ShowMessage("", AppResources.ErrorGettingExtraInfo);
                 result = false;
             }

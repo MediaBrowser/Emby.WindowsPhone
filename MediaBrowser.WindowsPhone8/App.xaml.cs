@@ -16,6 +16,8 @@ namespace MediaBrowser.WindowsPhone
 {
     public partial class App : Application
     {
+        private readonly ILog _logger;
+
         public static bool IsInKidsCorner { get { return ApplicationProfile.Modes == ApplicationProfileModes.Alternate; } }
 
         private static SettingsService _settings;
@@ -41,7 +43,7 @@ namespace MediaBrowser.WindowsPhone
                 Title = title,
                 Message = message,
                 Foreground = new SolidColorBrush(Colors.White),
-                Background = (SolidColorBrush)Current.Resources["PhoneAccentBrush"]
+                TextWrapping = TextWrapping.Wrap
             };
 
             if (action != null)
@@ -59,6 +61,8 @@ namespace MediaBrowser.WindowsPhone
         /// </summary>
         public App()
         {
+            _logger = new WPLogger(typeof(App));
+
             // Global handler for uncaught exceptions.
             UnhandledException += Application_UnhandledException;
 
@@ -128,6 +132,10 @@ namespace MediaBrowser.WindowsPhone
                 // A navigation has failed; break into the debugger
                 Debugger.Break();
             }
+
+            _logger.Log(e.Exception.Message, LogLevel.Fatal);
+            _logger.Log(e.Uri.ToString(), LogLevel.Fatal);
+            _logger.Log(e.Exception.StackTrace, LogLevel.Fatal);
         }
 
         // Code to execute on Unhandled Exceptions
@@ -138,6 +146,11 @@ namespace MediaBrowser.WindowsPhone
                 // An unhandled exception has occurred; break into the debugger
                 Debugger.Break();
             }
+
+            _logger.Log(e.ExceptionObject.Message, LogLevel.Fatal);
+            _logger.Log(e.ExceptionObject.StackTrace, LogLevel.Fatal);
+
+            e.Handled = true;
         }
 
         #region Phone application initialization

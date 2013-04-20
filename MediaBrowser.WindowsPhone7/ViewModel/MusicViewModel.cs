@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,6 +8,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model.Dto;
+using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Querying;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Resources;
@@ -24,18 +26,21 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     /// </summary>
     public class MusicViewModel : ViewModelBase
     {
-        private readonly ExtendedApiClient ApiClient;
-        private readonly INavigationService NavigationService;
+        private readonly ExtendedApiClient _apiClient;
+        private readonly INavigationService _navigationService;
+        private readonly ILog _logger;
 
-        private List<BaseItemDto> artistTracks;
-        private bool gotAlbums;
+        private List<BaseItemDto> _artistTracks;
+        private bool _gotAlbums;
         /// <summary>
         /// Initializes a new instance of the MusicViewModel class.
         /// </summary>
         public MusicViewModel(ExtendedApiClient apiClient, INavigationService navigationService)
         {
-            NavigationService = navigationService;
-            ApiClient = apiClient;
+            _navigationService = navigationService;
+            _apiClient = apiClient;
+            _logger= new WPLogger(typeof(MusicViewModel));
+
             SelectedTracks = new List<BaseItemDto>();
             if (IsInDesignMode)
             {
@@ -80,17 +85,17 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 if (m.Notification.Equals(Constants.MusicArtistChangedMsg))
                 {
                     Albums = new ObservableCollection<BaseItemDto>();
-                    artistTracks = new List<BaseItemDto>();
+                    _artistTracks = new List<BaseItemDto>();
                     AlbumTracks = new List<BaseItemDto>();
                     SelectedArtist = (BaseItemDto)m.Sender;
-                    gotAlbums = false;
+                    _gotAlbums = false;
                 }
                 if (m.Notification.Equals(Constants.MusicAlbumChangedMsg))
                 {
                     SelectedAlbum = (BaseItemDto)m.Sender;
-                    if (artistTracks != null)
+                    if (_artistTracks != null)
                     {
-                        AlbumTracks = artistTracks.Where(x => x.ParentId == SelectedAlbum.Id)
+                        AlbumTracks = _artistTracks.Where(x => x.ParentId == SelectedAlbum.Id)
                                                   .OrderBy(x => x.ParentIndexNumber)
                                                   .ThenBy(x => x.IndexNumber).ToList();
                     }
@@ -102,7 +107,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             ArtistPageLoaded = new RelayCommand(async () =>
                                                     {
-                                                        if (NavigationService.IsNetworkAvailable && !gotAlbums)
+                                                        if (_navigationService.IsNetworkAvailable && !_gotAlbums)
                                                         {
                                                             ProgressText = AppResources.SysTrayGettingAlbums;
                                                             ProgressIsVisible = true;
@@ -124,7 +129,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                            {
                                                                await GetArtistInfo();
 
-                                                               AlbumTracks = artistTracks.Where(x => x.ParentId == SelectedAlbum.Id)
+                                                               AlbumTracks = _artistTracks.Where(x => x.ParentId == SelectedAlbum.Id)
                                                                                          .OrderBy(x => x.ParentIndexNumber)
                                                                                          .ThenBy(x => x.IndexNumber).ToList();
                                                            }
@@ -138,7 +143,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             AlbumTapped = new RelayCommand<BaseItemDto>(album =>
                                                             {
                                                                 SelectedAlbum = album;
-                                                                AlbumTracks = artistTracks.Where(x => x.ParentId == SelectedAlbum.Id)
+                                                                AlbumTracks = _artistTracks.Where(x => x.ParentId == SelectedAlbum.Id)
                                                                                           .OrderBy(x => x.IndexNumber)
                                                                                           .ToList();
                                                             });
@@ -184,22 +189,26 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             try
             {
-                SelectedArtist = await ApiClient.GetItemAsync(SelectedArtist.Id, App.Settings.LoggedInUser.Id);
+                _logger.LogFormat("Getting information for Artist [{0}] ({1})", LogLevel.Info, SelectedArtist.Name, SelectedArtist.Id);
+
+                SelectedArtist = await _apiClient.GetItemAsync(SelectedArtist.Id, App.Settings.LoggedInUser.Id);
             }
-            catch
+            catch (HttpException ex)
             {
+                _logger.Log(ex.Message, LogLevel.Fatal);
+                _logger.Log(ex.StackTrace, LogLevel.Fatal);
             }
 
-            gotAlbums = await GetAlbums();
+            _gotAlbums = await GetAlbums();
 
             SortTracks();
         }
 
         private void SortTracks()
         {
-            if (artistTracks != null && artistTracks.Any())
+            if (_artistTracks != null && _artistTracks.Any())
             {
-                SortedTracks = Utils.GroupArtistTracks(artistTracks);
+                SortedTracks = Utils.GroupArtistTracks(_artistTracks);
             }
         }
 
@@ -208,21 +217,28 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             try
             {
                 var query = new ItemQuery
-                {
-                    UserId = App.Settings.LoggedInUser.Id,
-                    ParentId = SelectedArtist.Id,
-                    Recursive = true,
-                    Fields = new[] { ItemFields.AudioInfo, ItemFields.ParentId, }
-                };
-                var items = await ApiClient.GetItemsAsync(query);
+                                {
+                                    UserId = App.Settings.LoggedInUser.Id,
+                                    ParentId = SelectedArtist.Id,
+                                    Recursive = true,
+                                    Fields = new[] {ItemFields.AudioInfo, ItemFields.ParentId,}
+                                };
+
+                _logger.LogFormat("Getting albums for artist [{0}] ({1})", LogLevel.Info, SelectedArtist.Name, SelectedArtist.Id);
+
+                var items = await _apiClient.GetItemsAsync(query);
                 if (items != null && items.Items.Any())
                 {
+                    // Extract the album items from the results
                     var albums = items.Items.Where(x => x.Type == "MusicAlbum").ToList();
-                    artistTracks = items.Items.Where(y => y.Type == "Audio").ToList();
 
-                    var nameId = (from a in artistTracks
+                    // Extract the track items from the results
+                    _artistTracks = items.Items.Where(y => y.Type == "Audio").ToList();
+
+                    var nameId = (from a in _artistTracks
                                   select new KeyValuePair<string, string>(a.Album, a.ParentId)).Distinct();
 
+                    // This sets the album names correctly based on what's in the track information (rather than folder name)
                     foreach (var ni in nameId)
                     {
                         var item = albums.SingleOrDefault(x => x.Id == ni.Value);
@@ -233,15 +249,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     {
                         Albums.Add(album);
                     }
+                    return true;
                 }
-                else
-                {
-                    return false;
-                }
-                return true;
+                return false;
             }
-            catch
+            catch (Exception ex)
             {
+                _logger.Log(ex.Message, LogLevel.Fatal);
+                _logger.Log(ex.StackTrace, LogLevel.Fatal);
                 return false;
             }
         }

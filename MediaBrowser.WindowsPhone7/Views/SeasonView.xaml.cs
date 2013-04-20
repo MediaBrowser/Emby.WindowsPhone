@@ -31,7 +31,7 @@ namespace MediaBrowser.WindowsPhone.Views
                 var item = (BaseItemDto)App.SelectedItem;
                 var vm = ViewModelLocator.GetTvViewModel(item.SeriesId);
                 vm.SelectedSeason = item;
-                vm.seasonDataLoaded = false;
+                vm.SeasonDataLoaded = false;
                 DataContext = vm;
             }
         }

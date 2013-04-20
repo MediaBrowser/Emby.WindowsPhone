@@ -5,6 +5,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
+using MediaBrowser.Model.Net;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Resources;
 using Microsoft.Phone.Controls;
@@ -24,16 +25,19 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     /// </summary>
     public class SplashscreenViewModel : ViewModelBase
     {
-        private readonly ExtendedApiClient ApiClient;
-        private readonly INavigationService NavigationService;
+        private readonly ExtendedApiClient _apiClient;
+        private readonly INavigationService _navigationService;
+        private readonly ILog _logger;
+
         /// <summary>
         /// Initializes a new instance of the SplashscreenViewModel class.
         /// </summary>
         public SplashscreenViewModel(ExtendedApiClient apiClient, INavigationService navigationService)
         {
-            ApiClient = apiClient;
-            
-            NavigationService = navigationService;
+            _apiClient = apiClient;
+            _navigationService = navigationService;
+            _logger = new WPLogger(typeof(SplashscreenViewModel));
+
             if (!IsInDesignMode)
             {
                 WireMessages();
@@ -54,12 +58,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 {
                     ProgressIsVisible = true;
                     ProgressText = AppResources.SysTrayLoadingSettings;
+
                     // Get settings from storage
                     var connectionDetails = ISettings.GetKeyValue<ConnectionDetails>(Constants.ConnectionSettings);
                     if (connectionDetails == null)
                     {
-
-                        //App.ShowMessage("", AppResources.ErrorNoConnectionSettings, () => NavigationService.NavigateToPage("/Views/SettingsView.xaml?settingsPane=2"));
                         App.Settings.ConnectionDetails = new ConnectionDetails
                                                              {
                                                                  PortNo = 8096
@@ -78,7 +81,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                         {
                                                             // This is needed as a fix for the Windows Phone Toolkit giving an error.
                                                             ((CustomMessageBox)sender).Dismissing += (o, e) => e.Cancel = true;
-                                                            NavigationService.NavigateToPage("/Views/SettingsView.xaml?settingsPane=2");
+                                                            _navigationService.NavigateToPage("/Views/SettingsView.xaml?settingsPane=2");
                                                         }
                                                     };
                         messageBox.Show();
@@ -88,33 +91,39 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     {
                         App.Settings.ConnectionDetails = connectionDetails;
 
+                        // Get and set the app specific settings 
                         var specificSettings = ISettings.GetKeyValue<SpecificSettings>(Constants.SpecificSettings);
                         if (specificSettings != null) Utils.CopyItem(specificSettings, App.SpecificSettings);
                         
+                        // See if there is a user already saved in isolated storage
                         var user = ISettings.GetKeyValue<UserSettingWrapper>(Constants.SelectedUserSetting);
                         if (user != null)
                         {
                             App.Settings.LoggedInUser = user.User;
                             App.Settings.PinCode = user.Pin;
                         }
-                        if (NavigationService.IsNetworkAvailable && App.Settings.ConnectionDetails != null)
+
+                        // See if we can find and communicate with the server
+                        if (_navigationService.IsNetworkAvailable && App.Settings.ConnectionDetails != null)
                         {
                             ProgressText = AppResources.SysTrayGettingServerDetails;
 
-                            await Utils.GetServerConfiguration(ApiClient);
+                            await Utils.GetServerConfiguration(_apiClient, _logger);
 
+                            // Server has been found 
                             if (App.Settings.ServerConfiguration != null)
                             {
                                 await SetPushSettings();
                                 ProgressText = AppResources.SysTrayAuthenticating;
-                                await Utils.CheckProfiles(NavigationService);
+                                await Utils.CheckProfiles(_navigationService, _logger);
                             }
                             else
                             {
                                 App.ShowMessage("", AppResources.ErrorCouldNotFindServer);
-                                NavigationService.NavigateToPage("/Views/SettingsView.xaml?settingsPane=2");
+                                _navigationService.NavigateToPage("/Views/SettingsView.xaml?settingsPane=2");
                             }
                         }
+
                         ProgressText = string.Empty;
                         ProgressIsVisible = false;
                     }
@@ -125,7 +134,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         private async Task SetPushSettings()
         {
             var settings = SimpleIoc.Default.GetInstance<SettingsViewModel>();
-            settings.loadingFromSettings = true;
+            settings.LoadingFromSettings = true;
 
             settings.ServerPluginInstalled = ISettings.GetKeyValue<bool>("ServerPluginInstalled");
 
@@ -134,7 +143,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 settings.UseNotifications = ISettings.GetKeyValue<bool>("UseNotifications");
                 if (settings.UseNotifications)
                 {
-                    App.SpecificSettings.DeviceSettings = await ApiClient.GetDeviceSettingsAsync(settings.DeviceId);
+                    App.SpecificSettings.DeviceSettings = await _apiClient.GetDeviceSettingsAsync(settings.DeviceId);
 
                     settings.IsRegistered = ISettings.GetKeyValue<bool>("IsRegistered");
                     settings.SendTileUpdates = App.SpecificSettings.DeviceSettings.SendLiveTiles;
@@ -148,25 +157,24 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         {
                             //await ApiClient.DeleteLiveTile(settings.DeviceId, tile.LiveTileId);
                         }
-                        App.SpecificSettings.DeviceSettings = await ApiClient.GetDeviceSettingsAsync(settings.DeviceId);
+                        App.SpecificSettings.DeviceSettings = await _apiClient.GetDeviceSettingsAsync(settings.DeviceId);
                     }
 
-                    settings.loadingFromSettings = false;
+                    settings.LoadingFromSettings = false;
                     await settings.RegisterService();
                     try
                     {
-                        await ApiClient.PushHeartbeatAsync(settings.DeviceId);
+                        await _apiClient.PushHeartbeatAsync(settings.DeviceId);
                     }
-                    catch
+                    catch (HttpException ex)
                     {
-                        var s = "";
+                        _logger.Log(ex.Message, LogLevel.Fatal);
+                        _logger.Log(ex.StackTrace, LogLevel.Fatal);
                     }
                 }
             }
-            settings.loadingFromSettings = false;
+            settings.LoadingFromSettings = false;
         }
-
-        
 
         public string ProgressText { get; set; }
         public bool ProgressIsVisible { get; set; }

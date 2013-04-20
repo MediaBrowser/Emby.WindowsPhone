@@ -4,7 +4,7 @@ using System.Diagnostics;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
-using MediaBrowser.ApiInteraction;
+using MediaBrowser.Model.Net;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.WindowsPhone.Resources;
@@ -21,16 +21,18 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     /// </summary>
     public class ChooseProfileViewModel : ViewModelBase
     {
-        private readonly ExtendedApiClient ApiClient;
-        private readonly INavigationService NavigationService;
+        private readonly ExtendedApiClient _apiClient;
+        private readonly INavigationService _navigationService;
+        private readonly ILog _logger;
 
         /// <summary>
         /// Initializes a new instance of the ChooseProfileViewModel class.
         /// </summary>
         public ChooseProfileViewModel(ExtendedApiClient apiClient, INavigationService navigationService)
         {
-            ApiClient = apiClient;
-            NavigationService = navigationService;
+            _apiClient = apiClient;
+            _navigationService = navigationService;
+            _logger = new WPLogger(typeof(ChooseProfileViewModel));
             Profiles = new ObservableCollection<UserDto>();
             if(IsInDesignMode)
             {
@@ -71,13 +73,25 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             ChooseProfilePageLoaded = new RelayCommand(async ()=>
             {
-                if(NavigationService.IsNetworkAvailable)
+                if(_navigationService.IsNetworkAvailable)
                 {
                     ProgressText = AppResources.SysTrayGettingProfiles;
                     ProgressIsVisible = true;
-                    var profiles = await ApiClient.GetAllUsersAsync();
-                    foreach(var profile in profiles)
-                        Profiles.Add(profile);
+
+                    _logger.Log("Getting profiles");
+                    
+                    try
+                    {
+                        var profiles = await _apiClient.GetAllUsersAsync();
+                        foreach (var profile in profiles)
+                            Profiles.Add(profile);
+                    }
+                    catch (HttpException ex)
+                    {
+                        _logger.Log(ex.Message, LogLevel.Fatal);
+                        _logger.Log(ex.StackTrace, LogLevel.Fatal);
+                    }
+
                     ProgressText = string.Empty;
                     ProgressIsVisible = false;
                 }
@@ -91,12 +105,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                 if (selectedUser != null)
                 {
-
                     Debug.WriteLine(selectedUser.Id);
+
                     ProgressText = AppResources.SysTrayAuthenticating;
                     ProgressIsVisible = true;
 
-                    await Utils.Login(selectedUser, pinCode, () =>
+                    await Utils.Login(_logger, selectedUser, pinCode, () =>
                     {
                         SetUser(selectedUser);
                         if(saveUser)
@@ -106,6 +120,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                                                          User = selectedUser,
                                                                                          Pin = pinCode
                                                                                      });
+                            _logger.LogFormat("User [{0}] has been saved", LogLevel.Info, selectedUser.Name);
                         }
                     });
 
@@ -119,9 +134,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             App.Settings.LoggedInUser = profile;
             if (!string.IsNullOrEmpty(App.Action))
-                NavigationService.NavigateToPage(App.Action);
+                _navigationService.NavigateToPage(App.Action);
             else
-                NavigationService.NavigateToPage("/Views/MainPage.xaml");
+                _navigationService.NavigateToPage("/Views/MainPage.xaml");
         }
 
         public string ProgressText { get; set; }

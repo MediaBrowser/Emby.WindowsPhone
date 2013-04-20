@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using GalaSoft.MvvmLight;
 using MediaBrowser.Model.Entities;
+using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Querying;
 using MediaBrowser.WindowsPhone.Model;
 using GalaSoft.MvvmLight.Command;
@@ -32,9 +33,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     /// </summary>
     public class FolderViewModel : ViewModelBase
     {
-        private readonly INavigationService NavService;
-        private readonly ExtendedApiClient ApiClient;
-        private bool dataLoaded;
+        private readonly INavigationService _navService;
+        private readonly ExtendedApiClient _apiClient;
+        private readonly ILog _logger;
+        private bool _dataLoaded;
         /// <summary>
         /// Initializes a new instance of the FolderViewModel class.
         /// </summary>
@@ -42,6 +44,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             RecentItems = new ObservableCollection<BaseItemDto>();
             RandomItems = new ObservableCollection<BaseItemDto>();
+
+            _apiClient = apiClient;
+            _navService = navService;
+            _logger = new WPLogger(typeof(FolderViewModel));
+
             if (IsInDesignMode)
             {
                 SelectedFolder = new BaseItemDto
@@ -66,8 +73,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
             else
             {
-                ApiClient = apiClient;
-                NavService = navService;
                 WireCommands();
                 WireMessages();
                 SortBy = "name";
@@ -81,7 +86,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 if (m.Notification.Equals(Constants.ShowFolderMsg))
                 {
                     SelectedFolder = m.Sender as BaseItemDto;
-                    dataLoaded = false;
+                    _dataLoaded = false;
                 }
                 else if (m.Notification.Equals(Constants.ChangeGroupingMsg))
                 {
@@ -106,12 +111,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             PageLoaded = new RelayCommand(async () =>
             {
-                if (NavService.IsNetworkAvailable && App.Settings.CheckHostAndPort() && !dataLoaded)
+                if (_navService.IsNetworkAvailable && App.Settings.CheckHostAndPort() && !_dataLoaded)
                 {
                     ProgressIsVisible = true;
                     ProgressText = AppResources.SysTrayGettingItems;
 
-                    dataLoaded = await GetItems();
+                    _dataLoaded = await GetItems();
 
                     SortList();
                     ProgressIsVisible = false;
@@ -120,7 +125,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             CollectionPageLoaded = new RelayCommand(async () =>
                                                         {
-                                                            if (NavService.IsNetworkAvailable && !dataLoaded && SelectedFolder != null)
+                                                            if (_navService.IsNetworkAvailable && !_dataLoaded && SelectedFolder != null)
                                                             {
                                                                 ProgressText = AppResources.SysTrayCheckingCollection;
                                                                 ProgressIsVisible = true;
@@ -130,7 +135,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                                                                 CanPinCollection = shellExists == default(ShellTile);
 
-                                                                dataLoaded = await GetCollectionItems();
+                                                                _dataLoaded = await GetCollectionItems();
 
                                                                 ProgressText = string.Empty;
                                                                 ProgressIsVisible = false;
@@ -142,7 +147,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                             }
                                                         });
 
-            NavigateToPage = new RelayCommand<BaseItemDto>(NavService.NavigateToPage);
+            NavigateToPage = new RelayCommand<BaseItemDto>(_navService.NavigateToPage);
         }
 
         private void GetRandomItems()
@@ -182,7 +187,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             try
             {
-                var items = await ApiClient.GetItemsAsync(query);
+                _logger.LogFormat("Getting recent items for collection [{0}]", LogLevel.Info, SelectedFolder.Name);
+
+                var items = await _apiClient.GetItemsAsync(query);
 
                 if (items != null && items.Items != null)
                 {
@@ -192,8 +199,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                 return true;
             }
-            catch 
+            catch (HttpException ex)
             {
+                _logger.Log(ex.Message, LogLevel.Fatal);
+                _logger.Log(ex.StackTrace, LogLevel.Fatal);
                 return false;
             }
         }
@@ -211,6 +220,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 };
                 if (SelectedPerson != null)
                 {
+                    _logger.LogFormat("Getting items for {0}", LogLevel.Info, SelectedPerson.Name);
                     PageTitle = SelectedPerson.Name.ToLower();
                     query.Person = SelectedPerson.Name;
                     query.PersonTypes = new []{SelectedPerson.Type};
@@ -220,28 +230,34 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 {
                     if (SelectedFolder.Name.Contains("recent"))
                     {
+                        _logger.Log("Getting recent items");
                         PageTitle = AppResources.Recent.ToLower();
                         query.Filters = new[] { ItemFilter.IsRecentlyAdded };
                         query.Recursive = true;
                     }
                     else if (SelectedFolder.Type.Equals("Genre"))
                     {
+                        _logger.LogFormat("Getting items for genre [{0}]", LogLevel.Info, SelectedFolder.Name);
                         PageTitle = SelectedFolder.Type.ToLower();
                         query.Genres = new[] { SelectedFolder.Name };
                         query.Recursive = true;
                     }
                     else
                     {
+                        _logger.LogFormat("Getting items for folder [{0}]", LogLevel.Info, SelectedFolder.Name);
                         PageTitle = SelectedFolder.Name.ToLower();
                         query.ParentId = SelectedFolder.Id;
                     }
                 }
-                var items = await ApiClient.GetItemsAsync(query);
+                var items = await _apiClient.GetItemsAsync(query);
                 CurrentItems = items.Items.ToList();
                 return true;
             }
-            catch
+            catch (HttpException ex)
             {
+                _logger.Log(ex.Message, LogLevel.Fatal);
+                _logger.Log(ex.StackTrace, LogLevel.Fatal);
+
                 App.ShowMessage("", AppResources.ErrorGettingData);
                 return false;
             }
@@ -251,7 +267,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             ProgressText = AppResources.SysTrayRegrouping;
             ProgressIsVisible = true;
+
             var emptyGroups = new List<Group<BaseItemDto>>();
+
+            _logger.LogFormat("Sorting by [{0}]", LogLevel.Info, SortBy);
+
             switch (SortBy)
             {
                 case "name":

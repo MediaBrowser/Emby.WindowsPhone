@@ -203,7 +203,7 @@
     <Compile Include="Converters\TicksToTimespanConverter.cs" />
     <Compile Include="Model\ExtendedApiClient.cs" />
     <Compile Include="Model\SettingsService.cs" />
-    <Compile Include="Model\WPLogger.cs" />
+    <Compile Include="WPLogger.cs" />
     <Compile Include="PhoneNameResolver.cs" />
     <Compile Include="SpecificSettings.cs" />
     <Compile Include="ThicknessAnimationX.cs" />

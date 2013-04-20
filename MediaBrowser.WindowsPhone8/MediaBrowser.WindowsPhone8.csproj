@@ -247,6 +247,9 @@
       <Link>Views\TvShowView.xaml.cs</Link>
       <DependentUpon>TvShowView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone7\WPLogger.cs">
+      <Link>WPLogger.cs</Link>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>

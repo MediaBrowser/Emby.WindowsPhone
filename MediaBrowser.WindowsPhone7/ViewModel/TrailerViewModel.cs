@@ -5,6 +5,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model.Dto;
+using MediaBrowser.Model.Net;
 using MediaBrowser.WindowsPhone.Model;
 #if !WP8
 using ScottIsAFool.WindowsPhone;
@@ -20,15 +21,19 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     /// </summary>
     public class TrailerViewModel : ViewModelBase
     {
-        private readonly INavigationService NavigationService;
-        private readonly ExtendedApiClient ApiClient;
+        private readonly INavigationService _navigationService;
+        private readonly ExtendedApiClient _apiClient;
+        private readonly ILog _logger;
+
         /// <summary>
         /// Initializes a new instance of the TrailerViewModel class.
         /// </summary>
         public TrailerViewModel(INavigationService navigation, ExtendedApiClient apiClient)
         {
-            NavigationService = navigation;
-            ApiClient = apiClient;
+            _navigationService = navigation;
+            _apiClient = apiClient;
+            _logger = new WPLogger(typeof(TrailerViewModel));
+
             if (IsInDesignMode)
             {
                 SelectedTrailer = new BaseItemDto
@@ -71,21 +76,29 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             TrailerPageLoaded = new RelayCommand(async () =>
                                                      {
-                                                         if (NavigationService.IsNetworkAvailable)
+                                                         if (_navigationService.IsNetworkAvailable)
                                                          {
                                                              ProgressText = "Getting trailer details...";
                                                              ProgressIsVisible = true;
 
-                                                             SelectedTrailer = await ApiClient.GetItemAsync(SelectedTrailer.Id, App.Settings.LoggedInUser.Id);
-                                                             
-                                                             CastAndCrew = Utils.GroupCastAndCrew(SelectedTrailer.People);
+                                                             try
+                                                             {
+                                                                 _logger.LogFormat("Getting information for trailer [{0}] ({1})", LogLevel.Info, SelectedTrailer.Name, SelectedTrailer.Id);
+
+                                                                 SelectedTrailer = await _apiClient.GetItemAsync(SelectedTrailer.Id, App.Settings.LoggedInUser.Id);
+
+                                                                 CastAndCrew = Utils.GroupCastAndCrew(SelectedTrailer.People);
+                                                             }
+                                                             catch (HttpException ex)
+                                                             {
+                                                                 _logger.Log(ex.Message, LogLevel.Fatal);
+                                                                 _logger.Log(ex.StackTrace, LogLevel.Fatal);
+
+                                                                 App.ShowMessage("", "Unable to get the trailer information.");
+                                                             }
 
                                                              ProgressText = string.Empty;
                                                              ProgressIsVisible = false;
-                                                         }
-                                                         else
-                                                         {
-                                                             // TODO: Message
                                                          }
                                                      });
         }

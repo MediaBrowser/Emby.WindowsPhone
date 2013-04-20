@@ -90,13 +90,17 @@ namespace MediaBrowser.WindowsPhone
             return '#'.ToString();
         }
 
-        internal static async Task Login(UserDto selectedUser, string pinCode, Action successAction)
+        internal static async Task Login(ILog logger, UserDto selectedUser, string pinCode, Action successAction)
         {
             var client = SimpleIoc.Default.GetInstance<ExtendedApiClient>();
 
             try
             {
+                logger.LogFormat("Authenticationg user [{0}]", LogLevel.Info, selectedUser.Name);
+
                 await client.AuthenticateUserAsync(selectedUser.Id, pinCode.ToHash());
+
+                logger.LogFormat("Logged in as [{0}]", LogLevel.Info, selectedUser.Name);
 
                 if (successAction != null)
                 {
@@ -105,7 +109,8 @@ namespace MediaBrowser.WindowsPhone
             }
             catch (HttpException ex)
             {
-                var v = "";
+                logger.Log(ex.Message, LogLevel.Fatal);
+                logger.Log(ex.StackTrace, LogLevel.Fatal);
             }
         }
 
@@ -187,38 +192,44 @@ namespace MediaBrowser.WindowsPhone
 
         }
 
-        internal static async Task<bool> GetServerConfiguration(ExtendedApiClient ApiClient)
+        internal static async Task<bool> GetServerConfiguration(ExtendedApiClient apiClient, ILog logger)
         {
             try
             {
-                ApiClient.ServerHostName = App.Settings.ConnectionDetails.HostName;
-                ApiClient.ServerApiPort = App.Settings.ConnectionDetails.PortNo;
-                var config = await ApiClient.GetServerConfigurationAsync();
+                apiClient.ServerHostName = App.Settings.ConnectionDetails.HostName;
+                apiClient.ServerApiPort = App.Settings.ConnectionDetails.PortNo;
+                
+                logger.LogFormat("Getting server configuration. Hostname ({0}), Port ({1})", LogLevel.Info, apiClient.ServerHostName, apiClient.ServerApiPort);
+                
+                var config = await apiClient.GetServerConfigurationAsync();
                 App.Settings.ServerConfiguration = config;
+                
                 return true;
             }
-            catch
+            catch (HttpException ex)
             {
+                logger.Log(ex.Message, LogLevel.Fatal);
+                logger.Log(ex.StackTrace, LogLevel.Fatal);
                 return false;
             }
         }
 
-        internal static async Task CheckProfiles(INavigationService NavigationService)
+        internal static async Task CheckProfiles(INavigationService navigationService, ILog log)
         {
             // If one exists, then authenticate that user.
             if (App.Settings.LoggedInUser != null)
             {
-                await Login(App.Settings.LoggedInUser, App.Settings.PinCode, () =>
+                await Login(log, App.Settings.LoggedInUser, App.Settings.PinCode, () =>
                 {
                     if (!String.IsNullOrEmpty(App.Action))
-                        NavigationService.NavigateToPage(App.Action);
+                        navigationService.NavigateToPage(App.Action);
                     else
-                        NavigationService.NavigateToPage("/Views/MainPage.xaml");
+                        navigationService.NavigateToPage("/Views/MainPage.xaml");
                 });
             }
             else
             {
-                NavigationService.NavigateToPage("/Views/ChooseProfileView.xaml");
+                navigationService.NavigateToPage("/Views/ChooseProfileView.xaml");
             }
         }
 

@@ -2,6 +2,7 @@
 using System.Windows;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
+using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Querying;
 using MediaBrowser.WindowsPhone.Model;
 using GalaSoft.MvvmLight.Command;
@@ -27,20 +28,25 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     /// </summary>
     public class MainViewModel : ViewModelBase
     {
-        private readonly INavigationService NavService;
-        private readonly ExtendedApiClient ApiClient;
-        private bool hasLoaded;
-        private BaseItemDto[] recentItems;
+        private readonly INavigationService _navService;
+        private readonly ExtendedApiClient _apiClient;
+        private readonly ILog _logger;
+        private bool _hasLoaded;
+        private BaseItemDto[] _recentItems;
+        
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
         public MainViewModel(ExtendedApiClient apiClient, INavigationService navService)
         {
-            ApiClient = apiClient;
-            NavService = navService;
+            _apiClient = apiClient;
+            _navService = navService;
+            _logger = new WPLogger(typeof(MainViewModel));
+
             Folders = new ObservableCollection<BaseItemDto>();
             RecentItems = new ObservableCollection<BaseItemDto>();
             FavouriteItems = new ObservableCollection<BaseItemDto>();
+
             if (IsInDesignMode)
             {
                 Folders.Add(new BaseItemDto { Id = "78dbff5aa1c2101b98ebaf42b72a988d", Name = "Movies" });
@@ -64,7 +70,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                                                  {
                                                                                      if (m.PropertyName.Equals("IncludeTrailersInRecent"))
                                                                                      {
-                                                                                         await SortRecent(recentItems);
+                                                                                         await SortRecent(_recentItems);
                                                                                      }
                                                                                  });
         }
@@ -83,8 +89,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             ChangeProfileCommand = new RelayCommand(() =>
                                                         {
+                                                            _logger.Log("Signing out");
+
                                                             Reset();
-                                                            NavService.NavigateToPage("/Views/ChooseProfileView.xaml");
+
+                                                            _navService.NavigateToPage("/Views/ChooseProfileView.xaml");
                                                         });
 
             PinCollectionCommand = new RelayCommand<BaseItemDto>(collection =>
@@ -128,9 +137,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             PlayMovieCommand = new RelayCommand<BaseItemDto>(async item =>
             {
+                _logger.LogFormat("Playing {0} [{1}]", LogLevel.Info, item.Type, item.Name);
 #if WP8
                 Messenger.Default.Send(new NotificationMessage(item, Constants.PlayVideoItemMsg));
-                NavService.NavigateToPage("/Views/VideoPlayerView.xaml");
+                _navService.NavigateToPage("/Views/VideoPlayerView.xaml");
 #else
                 var bounds = Application.Current.RootVisual.RenderSize;
                 var query = new VideoStreamOptions
@@ -149,9 +159,20 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     MaxHeight = 480,// (int)bounds.Width,
                     MaxWidth = 800// (int)bounds.Height
                 };
-                var url = ApiClient.GetVideoStreamUrl(query);
+                var url = _apiClient.GetVideoStreamUrl(query);
                 System.Diagnostics.Debug.WriteLine(url);
-                await ApiClient.ReportPlaybackStartAsync(item.Id, App.Settings.LoggedInUser.Id).ConfigureAwait(true);
+                _logger.Log(url);
+
+                try
+                {
+                    _logger.Log("Telling the server about watching this video");
+                    await _apiClient.ReportPlaybackStartAsync(item.Id, App.Settings.LoggedInUser.Id).ConfigureAwait(true);
+                }
+                catch (HttpException ex)
+                {
+                    _logger.Log(ex.Message, LogLevel.Fatal);
+                    _logger.Log(ex.StackTrace, LogLevel.Fatal);
+                }
 
                 var mediaPlayerLauncher = new MediaPlayerLauncher
                 {
@@ -164,9 +185,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 #endif
             });
 
-            NavigateToPage = new RelayCommand<BaseItemDto>(NavService.NavigateToPage);
+            NavigateToPage = new RelayCommand<BaseItemDto>(_navService.NavigateToPage);
 
-            NavigateToAPage = new RelayCommand<string>(NavService.NavigateToPage);
+            NavigateToAPage = new RelayCommand<string>(_navService.NavigateToPage);
         }
 
         private static ShellTile GetShellTile(BaseItemDto collection, out string url)
@@ -182,7 +203,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             App.Settings.PinCode = string.Empty;
             ISettings.DeleteValue(Constants.SelectedUserSetting);
             ISettings.DeleteValue(Constants.SelectedUserPinSetting);
-            hasLoaded = false;
+            _hasLoaded = false;
             Folders.Clear();
             RecentItems.Clear();
             Messenger.Default.Send(new NotificationMessage(Constants.ResetAppMsg));
@@ -190,27 +211,27 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
         private async Task GetEverything(bool isRefresh)
         {
-            if (NavService.IsNetworkAvailable
+            if (_navService.IsNetworkAvailable
                 && App.Settings.CheckHostAndPort()
-                && (!hasLoaded || isRefresh))
+                && (!_hasLoaded || isRefresh))
             {
 
                 ProgressIsVisible = true;
                 ProgressText = AppResources.SysTrayLoadingCollections;
 
-                bool folderLoaded = await GetFolders();
+                var folderLoaded = await GetFolders();
 
                 ProgressText = AppResources.SysTrayGettingRecentItems;
 
-                bool recentLoaded = await GetRecent();
+                var recentLoaded = await GetRecent();
 
                 ProgressText = AppResources.SysTrayGettingFavourites;
 
-                bool favouritesLoaded = await GetFavouriteItems();
+                var favouritesLoaded = await GetFavouriteItems();
 
-                hasLoaded = (folderLoaded && recentLoaded && favouritesLoaded);
+                _hasLoaded = (folderLoaded && recentLoaded && favouritesLoaded);
                 ProgressIsVisible = false;
-                hasLoaded = true;
+                _hasLoaded = true;
             }
         }
 
@@ -218,13 +239,15 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             try
             {
+                _logger.LogFormat("Getting favourites for use [{0}]", LogLevel.Info, App.Settings.LoggedInUser.Name);
+
                 var query = new ItemQuery
                 {
                     UserId = App.Settings.LoggedInUser.Id,
                     Filters = new[] { ItemFilter.IsFavorite, },
                     Recursive = true
                 };
-                var items = await ApiClient.GetItemsAsync(query);
+                var items = await _apiClient.GetItemsAsync(query);
                 if (items != null && items.Items != null)
                 {
                     foreach (var item in items.Items.Take(6))
@@ -234,8 +257,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 }
                 return true;
             }
-            catch
+            catch (HttpException ex)
             {
+                _logger.Log(ex.Message, LogLevel.Fatal);
+                _logger.Log(ex.StackTrace, LogLevel.Fatal);
                 return false;
             }
         }
@@ -244,6 +269,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             try
             {
+                _logger.Log("Getting most recent items");
+
                 var query = new ItemQuery
                 {
                     Filters = new[] { ItemFilter.IsRecentlyAdded, ItemFilter.IsNotFolder, },
@@ -258,13 +285,15 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                  },
                     Recursive = true
                 };
-                var items = await ApiClient.GetItemsAsync(query);
-                recentItems = items.Items;
+                var items = await _apiClient.GetItemsAsync(query);
+                _recentItems = items.Items;
                 await SortRecent(items.Items);
                 return true;
             }
-            catch
+            catch (HttpException ex)
             {
+                _logger.Log(ex.Message, LogLevel.Fatal);
+                _logger.Log(ex.StackTrace, LogLevel.Fatal);
                 return false;
             }
         }
@@ -281,19 +310,26 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             try
             {
+                _logger.LogFormat("Getting collections for [{0}]", LogLevel.Info, App.Settings.LoggedInUser.Name);
+
                 var query = new ItemQuery
                 {
                     UserId = App.Settings.LoggedInUser.Id,
                     Fields = new[] { ItemFields.ItemCounts, }
                 };
-                var item = await ApiClient.GetItemsAsync(query);
+
+                var item = await _apiClient.GetItemsAsync(query);
+
                 Folders.Clear();
 
                 item.Items.OrderByDescending(x => x.SortName).ToList().ForEach(folder => Folders.Add(folder));
+
                 return true;
             }
-            catch (Exception ex)
+            catch (HttpException ex)
             {
+                _logger.Log(ex.Message, LogLevel.Fatal);
+                _logger.Log(ex.StackTrace, LogLevel.Fatal);
                 return false;
             }
         }

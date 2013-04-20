@@ -11,6 +11,7 @@ namespace MediaBrowser.WindowsPhone.Model
 {
     public class NavigationService : INavigationService
     {
+        private readonly ILog _logger = new WPLogger(typeof(INavigationService));
         private PhoneApplicationFrame _mainFrame;
 
         public event NavigatingCancelEventHandler Navigating;
@@ -86,8 +87,7 @@ namespace MediaBrowser.WindowsPhone.Model
                 }
             }
         }
-
-
+        
         public void NavigateToPage(BaseItemDto item)
         {
             App.SelectedItem = item;

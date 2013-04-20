@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
+using MediaBrowser.Model.Net;
 using MediaBrowser.Shared;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Resources;
@@ -34,19 +34,22 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     /// </summary>
     public class SettingsViewModel : ViewModelBase
     {
-        private readonly ExtendedApiClient ApiClient;
-        private readonly INavigationService NavigationService;
+        private readonly ExtendedApiClient _apiClient;
+        private readonly INavigationService _navigationService;
+        private readonly ILog _logger;
 
         private const string PushServiceName = "MediaBrowser.WindowsPhone.PushService";
 
-        public bool loadingFromSettings;
+        public bool LoadingFromSettings;
         /// <summary>
         /// Initializes a new instance of the PushViewModel class.
         /// </summary>
         public SettingsViewModel(ExtendedApiClient apiClient, INavigationService navigationService)
         {
-            ApiClient = apiClient;
-            NavigationService = navigationService;
+            _apiClient = apiClient;
+            _navigationService = navigationService;
+            _logger = new WPLogger(typeof(SettingsViewModel));
+
             if (IsInDesignMode)
             {
                 IsRegistered = UseNotifications = true;
@@ -63,10 +66,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
             else
             {
-                loadingFromSettings = true;
+                LoadingFromSettings = true;
                 SendTileUpdates = SendToastUpdates = true;
                 RegisteredText = AppResources.DeviceNotRegistered;
-                loadingFromSettings = false;
+                LoadingFromSettings = false;
                 WireMessages();
             }
         }
@@ -100,7 +103,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 return new RelayCommand(async () =>
                                             {
-                                                if (NavigationService.IsNetworkAvailable && !string.IsNullOrEmpty(ApiClient.ServerHostName))
+                                                if (_navigationService.IsNetworkAvailable && !string.IsNullOrEmpty(_apiClient.ServerHostName))
                                                 {
                                                     try
                                                     {
@@ -139,20 +142,24 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             ProgressIsVisible = true;
             ProgressText = AppResources.SysTrayAuthenticating;
-            if (NavigationService.IsNetworkAvailable)
+
+            if (_navigationService.IsNetworkAvailable)
             {
-                if (await Utils.GetServerConfiguration(ApiClient))
+                _logger.Log("Testing connection");
+                if (await Utils.GetServerConfiguration(_apiClient, _logger))
                 {
                     if (!IsInDesignMode)
                     {
                         ISettings.DeleteValue(Constants.SelectedUserSetting);
                         ISettings.SetKeyValue(Constants.ConnectionSettings, App.Settings.ConnectionDetails);
                     }
+
                     ProgressText = AppResources.SysTrayAuthenticating;
-                    await Utils.CheckProfiles(NavigationService);
+                    await Utils.CheckProfiles(_navigationService, _logger);
                 }
                 else
                 {
+                    _logger.Log("Invalid connection details");
                     App.ShowMessage("", AppResources.ErrorConnectionDetailsInvalid);
                 }
             }
@@ -169,13 +176,16 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 return new RelayCommand(async () =>
                                             {
-                                                if (!NavigationService.IsNetworkAvailable ||
+                                                // If we're not connected to wifi or ethernet then we don't want to attempt this
+                                                if (!_navigationService.IsNetworkAvailable ||
                                                     (NetworkInterface.NetworkInterfaceType != NetworkInterfaceType.Ethernet
                                                     && NetworkInterface.NetworkInterfaceType != NetworkInterfaceType.Wireless80211))
                                                     return;
+
                                                 ProgressIsVisible = true;
                                                 ProgressText = "Attempting to find your server...";
 
+                                                _logger.Log("Sending UDP broadcast");
                                                 await SendMessage("who is MediaBrowserServer?", 7359);
 
                                                 ProgressText = string.Empty;
@@ -234,6 +244,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 var text = await reader.ReadToEndAsync();
                 Deployment.Current.Dispatcher.BeginInvoke(() =>
                 {
+                    _logger.Log("UDP response received");
+
                     var parts = text.Split('|');
 
                     var fullAddress = parts[1].Split(':');
@@ -267,14 +279,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
         public async void OnUseNotificationsChanged()
         {
-            if (!ServerPluginInstalled || loadingFromSettings) return;
+            if (!ServerPluginInstalled || LoadingFromSettings) return;
 
             RegisterService();
         }
 
         public async Task RegisterService()
         {
-            if (NavigationService.IsNetworkAvailable)
+            if (_navigationService.IsNetworkAvailable)
             {
                 ProgressIsVisible = true;
                 if (UseNotifications)
@@ -297,7 +309,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 {
                     ProgressText = AppResources.SysTrayUnregisteringDevice;
 
-                    await ApiClient.DeleteDeviceAsync(DeviceId);
+                    await _apiClient.DeleteDeviceAsync(DeviceId);
 
                     SendToastUpdates = SendTileUpdates = true;
 
@@ -327,11 +339,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
         private async void OnSendToastUpdatesChanged()
         {
-            if (!loadingFromSettings)
+            if (!LoadingFromSettings)
             {
                 try
                 {
-                    await ApiClient.UpdateDeviceAsync(DeviceId, SendToastUpdates);
+                    await _apiClient.UpdateDeviceAsync(DeviceId, SendToastUpdates);
                 }
                 catch
                 {
@@ -343,11 +355,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
         private async void OnSendTileUpdatesChanged()
         {
-            if (!loadingFromSettings)
+            if (!LoadingFromSettings)
             {
                 try
                 {
-                    await ApiClient.UpdateDeviceAsync(DeviceId, sendTileUpdate: SendTileUpdates);
+                    await _apiClient.UpdateDeviceAsync(DeviceId, sendTileUpdate: SendTileUpdates);
                 }
                 catch
                 {
@@ -360,18 +372,21 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         private async Task SubscribeToService()
         {
             var response = new RequestResult();
+            var isRegistered = false;
             try
             {
-                await ApiClient.RegisterDeviceAsync(DeviceId, HttpNotificationChannel.ChannelUri.ToString(), SendTileUpdates, SendToastUpdates);
+                await _apiClient.RegisterDeviceAsync(DeviceId, HttpNotificationChannel.ChannelUri.ToString(), SendTileUpdates, SendToastUpdates);
+                isRegistered = true;
             }
-            catch
+            catch (HttpException ex)
             {
-                var s = "";
+                _logger.Log(ex.Message, LogLevel.Fatal);
+                _logger.Log(ex.StackTrace, LogLevel.Fatal);
             }
 
             Deployment.Current.Dispatcher.BeginInvoke(() =>
                                                           {
-                                                              IsRegistered = true;
+                                                              IsRegistered = isRegistered;
                                                               BindingANotificationsChannelToAToastNotification();
                                                               ProgressText = string.Empty;
                                                               ProgressIsVisible = false;
@@ -403,7 +418,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             HttpNotificationChannel.ErrorOccurred += (sender, args) =>
                                                          {
-                                                             var s = "";
+                                                             _logger.Log(args.Message, LogLevel.Error);
+                                                             _logger.Log(args.ErrorType.ToString(), LogLevel.Error);
                                                          };
         }
 

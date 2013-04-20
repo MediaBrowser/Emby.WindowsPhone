@@ -4,6 +4,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model.Dto;
+using MediaBrowser.Model.Net;
 using MediaBrowser.WindowsPhone.Model;
 
 namespace MediaBrowser.WindowsPhone.ViewModel
@@ -16,17 +17,20 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     /// </summary>
     public class VideoPlayerViewModel : ViewModelBase
     {
-        private readonly ExtendedApiClient ApiClient;
-        private readonly INavigationService NavigationService;
+        private readonly ExtendedApiClient _apiClient;
+        private readonly INavigationService _navigationService;
+        private readonly ILog _logger;
 
-        private bool isResume;
+        private bool _isResume;
         /// <summary>
         /// Initializes a new instance of the VideoPlayerViewModel class.
         /// </summary>
         public VideoPlayerViewModel(ExtendedApiClient apiClient, INavigationService navigationService)
         {
-            ApiClient = apiClient;
-            NavigationService = navigationService;
+            _apiClient = apiClient;
+            _navigationService = navigationService;
+            _logger = new WPLogger(typeof(VideoPlayerViewModel));
+
             if (!IsInDesignMode)
             {
                 WireMessages();
@@ -36,43 +40,34 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         private void WireMessages()
         {
             Messenger.Default.Register<NotificationMessage>(this, async m =>
-                                                                      {
-                                                                          if (m.Notification.Equals(Constants.PlayVideoItemMsg))
-                                                                          {
-                                                                              if (m.Sender != null)
-                                                                              {
-                                                                                  SelectedItem = (BaseItemDto) m.Sender;
-                                                                                  if (m.Target != null)
-                                                                                      isResume = (bool) m.Target;
-                                                                              }
-                                                                          }
-                                                                          if (m.Notification.Equals(Constants.SendVideoTimeToServerMsg))
-                                                                          {
-                                                                              try
-                                                                              {
-                                                                                  var totalTicks = isResume ? StartTime.Value.Ticks + PlayedVideoDuration.Ticks : PlayedVideoDuration.Ticks;
-                                                                                  SelectedItem.UserData.PlaybackPositionTicks = totalTicks;
-                                                                                  await ApiClient.ReportPlaybackStoppedAsync(SelectedItem.Id, App.Settings.LoggedInUser.Id, totalTicks);
-                                                                              }
-                                                                              catch
-                                                                              {
-                                                                                  string v = "v";
-                                                                              }
-                                                                          }
-                                                                          //if (m.Notification.Equals(Constants.SendVideoTimeToServerMsg))
-                                                                          //{
-                                                                          //    try
-                                                                          //    {
-                                                                          //        var totalTicks = StartTime.HasValue ? StartTime.Value.Ticks + PlayedVideoDuration.Ticks : PlayedVideoDuration.Ticks;
-                                                                          //        SelectedItem.UserData.PlaybackPositionTicks = totalTicks;
-                                                                          //        await ApiClient.ReportPlaybackStoppedAsync(SelectedItem.Id, App.Settings.LoggedInUser.Id, totalTicks);
-                                                                          //    }
-                                                                          //    catch
-                                                                          //    {
-                                                                          //        var v = "v";
-                                                                          //    }
-                                                                          //}
-                                                                      });
+            {
+                if (m.Notification.Equals(Constants.PlayVideoItemMsg))
+                {
+                    if (m.Sender != null)
+                    {
+                        SelectedItem = (BaseItemDto)m.Sender;
+                        if (m.Target != null)
+                            _isResume = (bool)m.Target;
+                    }
+                }
+                if (m.Notification.Equals(Constants.SendVideoTimeToServerMsg))
+                {
+                    try
+                    {
+                        var totalTicks = _isResume ? StartTime.Value.Ticks + PlayedVideoDuration.Ticks : PlayedVideoDuration.Ticks;
+
+                        _logger.LogFormat("Sending current runtime [{0}] to the server", LogLevel.Info, totalTicks);
+
+                        await _apiClient.ReportPlaybackStoppedAsync(SelectedItem.Id, App.Settings.LoggedInUser.Id, totalTicks);
+                        SelectedItem.UserData.PlaybackPositionTicks = totalTicks;
+                    }
+                    catch (HttpException ex)
+                    {
+                        _logger.Log(ex.Message, LogLevel.Fatal);
+                        _logger.Log(ex.StackTrace, LogLevel.Fatal);
+                    }
+                }
+            });
         }
 
         public string VideoUrl { get; set; }
@@ -87,7 +82,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 return new RelayCommand(async () =>
                                             {
                                                 long ticks = 0;
-                                                if (SelectedItem.UserData != null && isResume)
+                                                if (SelectedItem.UserData != null && _isResume)
                                                 {
                                                     ticks = SelectedItem.UserData.PlaybackPositionTicks;
                                                 }
@@ -108,14 +103,22 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                     MaxWidth = 800// (int)bounds.Height
                                                 };
 
-                                                VideoUrl = ApiClient.GetVideoStreamUrl(query);
+                                                VideoUrl = _apiClient.GetVideoStreamUrl(query);
                                                 Debug.WriteLine(VideoUrl);
+
+                                                _logger.LogFormat("Playing {0} [{1}] ({2})", LogLevel.Info, SelectedItem.Type, SelectedItem.Name, SelectedItem.Id);
+                                                _logger.Log(VideoUrl);
 
                                                 try
                                                 {
-                                                    await ApiClient.ReportPlaybackStartAsync(SelectedItem.Id, App.Settings.LoggedInUser.Id);
+                                                    _logger.Log("Sending playback started message to the server.");
+                                                    await _apiClient.ReportPlaybackStartAsync(SelectedItem.Id, App.Settings.LoggedInUser.Id);
                                                 }
-                                                catch{}
+                                                catch (HttpException ex)
+                                                {
+                                                    _logger.Log(ex.Message, LogLevel.Fatal);
+                                                    _logger.Log(ex.StackTrace, LogLevel.Fatal);
+                                                }
                                             });
             }
         }
