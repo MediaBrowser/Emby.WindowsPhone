@@ -21,6 +21,7 @@
                             Orientation="Portrait"
                             shell:SystemTray.IsVisible="True"
                             shell:SystemTray.BackgroundColor="Black"
+                            toolkit:TiltEffect.IsTiltEnabled="True"
                             d:DataContext="{Binding Tv, Source={StaticResource Locator}}">
     <shell:SystemTray.ProgressIndicator>
         <shell:ProgressIndicator IsIndeterminate="True"
@@ -88,8 +89,8 @@
             <ScrollViewer>
                 <StackPanel Orientation="Vertical">
                     <Button Style="{StaticResource EmptyButtonStyle}"
-                            HorizontalContentAlignment="Left"
-                            VerticalContentAlignment="Top"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"
                             Command="{Binding Main.PlayMovieCommand, Source={StaticResource Locator}}"
                             CommandParameter="{Binding SelectedEpisode}">
                         <Grid>

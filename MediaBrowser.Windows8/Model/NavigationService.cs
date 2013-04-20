@@ -87,6 +87,7 @@ namespace MediaBrowser.Windows8.Model
                     case "collectionfolder":
                     case "genre":
                     case "trailercollectionfolder":
+                    case "boxset":
                         //Navigate<CollectionView>(item);
                         Navigate<FolderView>(item);
                         break;
