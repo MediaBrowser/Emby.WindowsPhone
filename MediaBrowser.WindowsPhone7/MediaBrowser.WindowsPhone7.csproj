@@ -204,7 +204,9 @@
     <Compile Include="Converters\RuntimeConverter.cs" />
     <Compile Include="Converters\SettingsConverters.cs" />
     <Compile Include="Converters\TicksToTimespanConverter.cs" />
+    <Compile Include="ExtensionMethods.cs" />
     <Compile Include="Model\ExtendedApiClient.cs" />
+    <Compile Include="Model\MBLogger.cs" />
     <Compile Include="Model\SettingsService.cs" />
     <Compile Include="WPLogger.cs" />
     <Compile Include="PhoneNameResolver.cs" />

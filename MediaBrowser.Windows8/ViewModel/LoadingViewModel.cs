@@ -30,19 +30,19 @@ namespace MediaBrowser.Windows8.ViewModel
     /// </summary>
     public class LoadingViewModel : ViewModelBase
     {
-        private readonly ExtendedApiClient ApiClient;
-        private readonly NavigationService navService;
-        private bool checksDone;
-        private ILogger logger;
+        private readonly ExtendedApiClient _apiClient;
+        private readonly NavigationService _navService;
+        private bool _checksDone;
+        private readonly ILogger _logger;
 
         /// <summary>
         /// Initializes a new instance of the LoadingViewModel class.
         /// </summary>
         public LoadingViewModel(ExtendedApiClient apiClient, NavigationService navigationService)
         {
-            ApiClient = apiClient;
-            navService = navigationService;
-            logger = LogManagerFactory.DefaultLogManager.GetLogger<LoadingViewModel>();
+            _apiClient = apiClient;
+            _navService = navigationService;
+            _logger = LogManagerFactory.DefaultLogManager.GetLogger<LoadingViewModel>();
             if (IsInDesignMode)
             {
                 
@@ -58,8 +58,8 @@ namespace MediaBrowser.Windows8.ViewModel
         {
             TestConnectionCommand = new RelayCommand(async () =>
             {
-                ApiClient.ServerHostName = App.Settings.ConnectionDetails.HostName;
-                ApiClient.ServerApiPort = App.Settings.ConnectionDetails.PortNo;
+                _apiClient.ServerHostName = App.Settings.ConnectionDetails.HostName;
+                _apiClient.ServerApiPort = App.Settings.ConnectionDetails.PortNo;
                 var isNotLocalhost = CheckForLocalhost();
 #if !DEBUG
                 if (!isNotLocalhost)
@@ -104,7 +104,7 @@ namespace MediaBrowser.Windows8.ViewModel
             return App.Settings.ConnectionDetails.HostName != "127.0.0.1" &&
                 App.Settings.ConnectionDetails.HostName.ToLower() != "localhost" &&
                 App.Settings.ConnectionDetails.HostName != machineIpAddress &&
-                App.Settings.ConnectionDetails.HostName.ToLower() != ApiClient.DeviceName.ToLower();
+                App.Settings.ConnectionDetails.HostName.ToLower() != _apiClient.DeviceName.ToLower();
         }
 
         private void WireMessages()
@@ -117,9 +117,10 @@ namespace MediaBrowser.Windows8.ViewModel
                     //await connectionSettings.DeleteAsync(Constants.ConnectionSettings);
                     App.Settings.ConnectionDetails = await connectionSettings.LoadAsync(Constants.ConnectionSettings) ?? new ConnectionDetails {PortNo = 8096};
 
-                    ApiClient.ServerHostName = App.Settings.ConnectionDetails.HostName;
-                    ApiClient.ServerApiPort = App.Settings.ConnectionDetails.PortNo;
-                    logger.Info(string.Format("Host: {0}, Port: {1}", ApiClient.ServerHostName, ApiClient.ServerApiPort));
+                    _apiClient.ServerHostName = App.Settings.ConnectionDetails.HostName;
+                    _apiClient.ServerApiPort = App.Settings.ConnectionDetails.PortNo;
+                    
+                    _logger.Info(string.Format("Host: {0}, Port: {1}", _apiClient.ServerHostName, _apiClient.ServerApiPort));
                     
                     await CheckForServer();
                 }
@@ -169,7 +170,7 @@ namespace MediaBrowser.Windows8.ViewModel
             TileUpdateManager.CreateTileUpdaterForApplication().Clear();
 
             ProgressText = "Finding server and getting configuration...";
-            if (navService.IsNetworkAvailable)
+            if (_navService.IsNetworkAvailable)
             {
                 serverConfig = await GetServerConfig();
 
@@ -186,13 +187,13 @@ namespace MediaBrowser.Windows8.ViewModel
                         await Utils.DoLogin(App.Settings.LoggedInUser, App.Settings.PinCode,
                                           () =>
                                               {
-                                                  ApiClient.CurrentUserId = App.Settings.LoggedInUser.Id;
-                                                  navService.Navigate<MainPage>();
+                                                  _apiClient.CurrentUserId = App.Settings.LoggedInUser.Id;
+                                                  _navService.Navigate<MainPage>();
                                               });
                     }
                     else
                     {
-                        navService.Navigate<SelectProfileView>();
+                        _navService.Navigate<SelectProfileView>();
                     }
                 }
                 else
@@ -225,7 +226,7 @@ namespace MediaBrowser.Windows8.ViewModel
                 notifications.IsRegistered = await storageHelper.LoadAsync("IsRegistered");
                 try
                 {
-                    await ApiClient.PushHeartbeatAsync(notifications.DeviceId);
+                    await _apiClient.PushHeartbeatAsync(notifications.DeviceId);
                 }catch{}
             }
             notifications.loadingFromSettings = false;
@@ -235,13 +236,13 @@ namespace MediaBrowser.Windows8.ViewModel
         {
             try
             {
-                logger.Info(string.Format("FindServer() --> Connecting to {0} on port {1}.", ApiClient.ServerHostName, ApiClient.ServerApiPort));
-                App.Settings.SystemStatus = await ApiClient.GetSystemInfoAsync();
+                _logger.Info(string.Format("FindServer() --> Connecting to {0} on port {1}.", _apiClient.ServerHostName, _apiClient.ServerApiPort));
+                App.Settings.SystemStatus = await _apiClient.GetSystemInfoAsync();
                 return true;
             }
             catch (Exception ex)
             {
-                logger.Error("FindServer()", ex);
+                _logger.Error("FindServer()", ex);
                 return false;
             }
         }
@@ -250,12 +251,12 @@ namespace MediaBrowser.Windows8.ViewModel
         {
             try
             {
-                App.Settings.ServerConfiguration = await ApiClient.GetServerConfigurationAsync();
+                App.Settings.ServerConfiguration = await _apiClient.GetServerConfigurationAsync();
                 return true;
             }
             catch (Exception ex)
             {
-                logger.Error("GetServerConfig()", ex);
+                _logger.Error("GetServerConfig()", ex);
                 return false;
             }
         }

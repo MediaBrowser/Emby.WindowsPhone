@@ -149,6 +149,7 @@
     <Compile Include="Model\GridItemWrapper.cs" />
     <Compile Include="Model\Group.cs" />
     <Compile Include="Model\INavigationService.cs" />
+    <Compile Include="Model\MBLogger.cs" />
     <Compile Include="Model\ModelBase.cs" />
     <Compile Include="Model\MySerializer.cs" />
     <Compile Include="Model\NavigationService.cs" />

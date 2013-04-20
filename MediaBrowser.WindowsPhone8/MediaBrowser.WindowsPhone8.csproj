@@ -148,6 +148,9 @@
     <Compile Include="..\MediaBrowser.WindowsPhone7\Model\INavigationService.cs">
       <Link>Model\INavigationService.cs</Link>
     </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone7\Model\MBLogger.cs">
+      <Link>Model\MBLogger.cs</Link>
+    </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone7\Model\NavigationService.cs">
       <Link>Model\NavigationService.cs</Link>
     </Compile>

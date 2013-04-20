@@ -118,6 +118,8 @@ namespace MediaBrowser.WindowsPhone
         Info,
         Warning,
         Error,
-        Fatal
+        Fatal,
+        Debug,
+        Trace
     }
 }

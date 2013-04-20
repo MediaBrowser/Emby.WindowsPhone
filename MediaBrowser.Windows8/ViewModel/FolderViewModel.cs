@@ -6,6 +6,7 @@ using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Querying;
 using MediaBrowser.Windows8.Model;
+using MetroLog;
 using Windows.UI.Xaml;
 using MediaBrowser.Model.Dto;
 
@@ -13,22 +14,24 @@ namespace MediaBrowser.Windows8.ViewModel
 {
     public class FolderViewModel : ViewModelBase
     {
-        private readonly NavigationService navigtaionService;
-        private readonly ExtendedApiClient ApiClient;
-        private bool collectionLoaded;
-        private BaseItemDto[] children;
+        private readonly NavigationService _navigtaionService;
+        private readonly ExtendedApiClient _apiClient;
+        private readonly ILogger _logger;
+        private bool _collectionLoaded;
+        private BaseItemDto[] _children;
 
         public FolderViewModel(NavigationService navigation, ExtendedApiClient apiClient)
         {
-            navigtaionService = navigation;
-            ApiClient = apiClient;
+            _navigtaionService = navigation;
+            _apiClient = apiClient;
+            _logger = LogManagerFactory.DefaultLogManager.GetLogger<FolderViewModel>();
             if (IsInDesignMode)
             {
                 SelectedCollection = new BaseItemDto
                                          {
                                              Name = "Movies"
                                          };
-                children = new[]
+                _children = new[]
                                {
                                    new BaseItemDto
                                        {
@@ -101,7 +104,7 @@ namespace MediaBrowser.Windows8.ViewModel
                 if (m.Notification.Equals(Constants.ShowFolderMsg))
                 {
                     SelectedCollection = (BaseItemDto)m.Sender;
-                    collectionLoaded = false;
+                    _collectionLoaded = false;
                 }
                 else if (m.Notification.Equals(Constants.FolderViewLoadedMsg))
                 {
@@ -109,7 +112,7 @@ namespace MediaBrowser.Windows8.ViewModel
                         PageTitle = SelectedCollection.Name;
                     else if (SelectedPerson != null)
                         PageTitle = SelectedPerson.Name;
-                    if (navigtaionService.IsNetworkAvailable && !collectionLoaded)
+                    if (_navigtaionService.IsNetworkAvailable && !_collectionLoaded)
                     {
                         ProgressVisibility = Visibility.Visible;
                         ProgressText = "Getting items...";
@@ -143,12 +146,12 @@ namespace MediaBrowser.Windows8.ViewModel
                                 }
                             }
 
-                            items = await ApiClient.GetItemsAsync(query);
+                            items = await _apiClient.GetItemsAsync(query);
 
-                            children = items.Items;
+                            _children = items.Items;
                             ProgressText = "Grouping items...";
                             await SortItems();
-                            collectionLoaded = true;
+                            _collectionLoaded = true;
                         }
                         catch
                         {
@@ -172,12 +175,12 @@ namespace MediaBrowser.Windows8.ViewModel
         private async Task SortItems()
         {
             var groups = new ObservableCollection<GroupInfoList<object>>();
-            if (children != null)
+            if (_children != null)
             {
                 await Task.Run(() =>
                                    {
-                                       foreach(var i in children) if (i.UserData == null) i.UserData = new UserItemDataDto();
-                                       var query = from item in children.OrderBy(x => x.SortName).ToList()
+                                       foreach(var i in _children) if (i.UserData == null) i.UserData = new UserItemDataDto();
+                                       var query = from item in _children.OrderBy(x => x.SortName).ToList()
                                                    group item by GetSortByNameHeader(item)
                                                        into grp
                                                        orderby grp.Key
@@ -191,7 +194,7 @@ namespace MediaBrowser.Windows8.ViewModel
 
                                    });
             }
-            ItemCount = string.Format("{0} items", children.Count());
+            ItemCount = string.Format("{0} items", _children.Count());
             GroupedMovies = groups;
         }
 

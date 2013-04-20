@@ -2,7 +2,9 @@
 using System.Diagnostics;
 using System.Linq;
 using MediaBrowser.Model.Dto;
+using MediaBrowser.Model.Logging;
 using MediaBrowser.Windows8.Model;
+using MetroLog;
 using Windows.Networking.Connectivity;
 using Windows.Security.Cryptography;
 using Windows.Security.Cryptography.Core;
@@ -25,7 +27,7 @@ namespace MediaBrowser.Windows8
 
         public static GridItemWrapper<BaseItemDto> ToWrapper(this BaseItemDto item, int rowSpan = 1, int colSpan = 1)
         {
-            return new GridItemWrapper<BaseItemDto>(item){ColSpan = colSpan, RowSpan = rowSpan};
+            return new GridItemWrapper<BaseItemDto>(item) { ColSpan = colSpan, RowSpan = rowSpan };
         }
 
         internal static ExtendedApiClient SetDeviceProperties(this ExtendedApiClient apiClient)
@@ -55,6 +57,23 @@ namespace MediaBrowser.Windows8
             var bytes = new byte[id.Length];
             reader.ReadBytes(bytes);
             return BitConverter.ToString(bytes);
+        }
+
+        internal static LogLevel ToLogLevel(this LogSeverity severity)
+        {
+            switch (severity)
+            {
+                case LogSeverity.Debug:
+                    return LogLevel.Debug;
+                case LogSeverity.Error:
+                    return LogLevel.Error;
+                case LogSeverity.Fatal:
+                    return LogLevel.Fatal;
+                case LogSeverity.Info:
+                    return LogLevel.Info;
+                case LogSeverity.Warn:
+                    return LogLevel.Warn;
+            }
         }
     }
 }
