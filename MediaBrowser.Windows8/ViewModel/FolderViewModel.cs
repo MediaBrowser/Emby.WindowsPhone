@@ -131,7 +131,7 @@ namespace MediaBrowser.Windows8.ViewModel
 
                             if (SelectedPerson != null)
                             {
-                                _logger.Info("Getting items for {0}", LogLevel.Info, SelectedPerson.Name);
+                                _logger.Info("Getting items for {0}", SelectedPerson.Name);
                                 query.Person = SelectedPerson.Name;
                                 query.PersonTypes = new []{SelectedPerson.Type};
                                 query.Recursive = true;
@@ -140,13 +140,13 @@ namespace MediaBrowser.Windows8.ViewModel
                             {
                                 if (SelectedCollection.Type.Equals("genre"))
                                 {
-                                    _logger.Info("Getting items for genre [{0}]", LogLevel.Info, SelectedCollection.Name);
+                                    _logger.Info("Getting items for genre [{0}]", SelectedCollection.Name);
                                     query.Genres = new[] { SelectedCollection.Name };
                                     query.Recursive = true;
                                 }
                                 else
                                 {
-                                    _logger.Info("Getting items for folder [{0}]", LogLevel.Info, SelectedCollection.Name);
+                                    _logger.Info("Getting items for folder [{0}]", SelectedCollection.Name);
                                     query.ParentId = SelectedCollection.Id;
                                 }
                             }

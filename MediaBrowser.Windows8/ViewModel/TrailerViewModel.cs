@@ -8,6 +8,7 @@ using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Windows8.Model;
 using MetroLog;
+using Windows.System.Display;
 using Windows.UI.Xaml;
 
 namespace MediaBrowser.Windows8.ViewModel
@@ -23,6 +24,8 @@ namespace MediaBrowser.Windows8.ViewModel
         private readonly ExtendedApiClient _apiClient;
         private readonly NavigationService _navigationService;
         private readonly ILogger _logger;
+
+        private DisplayRequest _displayRequest;
         /// <summary>
         /// Initializes a new instance of the TrailerViewModel class.
         /// </summary>
@@ -93,6 +96,8 @@ namespace MediaBrowser.Windows8.ViewModel
 
                                                                                       TrailerUrl = _apiClient.GetVideoStreamUrl(query);
 
+                                                                                      SetDisplayTimeout();
+
                                                                                       _logger.Debug(TrailerUrl);
 
                                                                                       CastAndCrew = await Utils.GroupCastAndCrew(SelectedTrailer);
@@ -102,7 +107,23 @@ namespace MediaBrowser.Windows8.ViewModel
                                                                                   }
                                                                               }
                                                                           }
+                                                                          if (m.Notification.Equals(Constants.LeftTrailerMsg))
+                                                                          {
+                                                                              if (_displayRequest != null)
+                                                                              {
+                                                                                  _displayRequest.RequestRelease();
+                                                                              }
+                                                                          }
                                                                       });
+        }
+
+        private void SetDisplayTimeout()
+        {
+            if (_displayRequest == null)
+            {
+                _displayRequest = new DisplayRequest();
+                _displayRequest.RequestActive();
+            }
         }
 
         private async Task<bool> GetTrailerDetails()

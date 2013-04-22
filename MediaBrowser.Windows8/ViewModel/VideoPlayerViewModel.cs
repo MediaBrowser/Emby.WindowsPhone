@@ -9,6 +9,7 @@ using MediaBrowser.Windows8.Model;
 using MetroLog;
 using MyToolkit.Multimedia;
 using ReflectionIT.Windows8.Helpers;
+using Windows.System.Display;
 using Windows.UI.Xaml;
 using System;
 
@@ -28,6 +29,8 @@ namespace MediaBrowser.Windows8.ViewModel
 
         private bool _isResume;
         private bool _isTrailer;
+        private DisplayRequest _displayRequest;
+
         /// <summary>
         /// Initializes a new instance of the VideoPlayerViewModel class.
         /// </summary>
@@ -123,10 +126,12 @@ namespace MediaBrowser.Windows8.ViewModel
 
                         VideoUrl = _apiClient.GetVideoStreamUrl(query);
 
+                        SetDisplayTimeout();
+
                         Debug.WriteLine(VideoUrl);
 
                         _logger.Info("Playing {0} [{1}] ({2})", SelectedItem.Type, SelectedItem.Name, SelectedItem.Id);
-                        _logger.Debug(VideoUrl);
+                        _logger.Info(VideoUrl);
 
                         try
                         {
@@ -147,6 +152,11 @@ namespace MediaBrowser.Windows8.ViewModel
                         await _apiClient.ReportPlaybackStoppedAsync(SelectedItem.Id, App.Settings.LoggedInUser.Id, totalTicks);
                         
                         SelectedItem.UserData.PlaybackPositionTicks = totalTicks;
+
+                        if (_displayRequest != null)
+                        {
+                            _displayRequest.RequestRelease();
+                        }
                     }
                     catch (HttpException ex)
                     {
@@ -154,6 +164,15 @@ namespace MediaBrowser.Windows8.ViewModel
                     }
                 }
             });
+        }
+
+        private void SetDisplayTimeout()
+        {
+            if (_displayRequest == null)
+            {
+                _displayRequest = new DisplayRequest();
+                _displayRequest.RequestActive();
+            }
         }
 
         private static async Task<string> ParseYoutubeLink(string link)

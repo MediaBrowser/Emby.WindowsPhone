@@ -56,5 +56,11 @@ namespace MediaBrowser.Windows8.Views
         {
             _logger.Error("Video failed to play: " + e.ErrorMessage);
         }
+
+        protected override void GoBack(object sender, RoutedEventArgs e)
+        {
+            base.GoBack(sender, e);
+            Messenger.Default.Send(new NotificationMessage(Constants.LeftTrailerMsg));
+        }
     }
 }
