@@ -25,6 +25,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         private readonly ExtendedApiClient _apiClient;
         private readonly ILog _logger;
 
+        private bool _dataLoaded;
         /// <summary>
         /// Initializes a new instance of the TrailerViewModel class.
         /// </summary>
@@ -68,6 +69,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                                           if (m.Notification.Equals(Constants.ChangeTrailerMsg))
                                                                           {
                                                                               SelectedTrailer = (BaseItemDto)App.SelectedItem;
+                                                                              _dataLoaded = false;
                                                                           }
                                                                       });
         }
@@ -76,7 +78,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             TrailerPageLoaded = new RelayCommand(async () =>
                                                      {
-                                                         if (_navigationService.IsNetworkAvailable)
+                                                         if (_navigationService.IsNetworkAvailable && !_dataLoaded)
                                                          {
                                                              ProgressText = "Getting trailer details...";
                                                              ProgressIsVisible = true;
@@ -88,6 +90,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                                  SelectedTrailer = await _apiClient.GetItemAsync(SelectedTrailer.Id, App.Settings.LoggedInUser.Id);
 
                                                                  CastAndCrew = Utils.GroupCastAndCrew(SelectedTrailer.People);
+
+                                                                 _dataLoaded = true;
                                                              }
                                                              catch (HttpException ex)
                                                              {

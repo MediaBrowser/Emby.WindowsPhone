@@ -60,6 +60,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             SimpleIoc.Default.Register<TrailerViewModel>(true);
             SimpleIoc.Default.Register<SettingsViewModel>(true);
             SimpleIoc.Default.Register<MusicViewModel>(true);
+            SimpleIoc.Default.Register<SearchViewModel>();
         }
 
         /// <summary>
@@ -140,6 +141,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public MusicViewModel Music
         {
             get { return ServiceLocator.Current.GetInstance<MusicViewModel>(); }
+        }
+
+        public SearchViewModel Search
+        {
+            get { return ServiceLocator.Current.GetInstance<SearchViewModel>(); }
         }
 
         public static TvViewModel GetTvViewModel(string itemId)
