@@ -104,7 +104,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                 orderby grp.Key
                                 select new Group<BaseItemDto>(grp.Key, grp)).ToList();
 #if WP8
-            SearchResults = groupedItems;
+            SearchResults = (from g in groupedItems.Union(emptyGroups)
+                                 orderby g.Title
+                                 select g).ToList();
 #else
             SearchResults = (from g in groupedItems.Union(emptyGroups)
                              orderby g.Title

@@ -1,14 +1,19 @@
-﻿using GalaSoft.MvvmLight.Messaging;
+﻿using System;
+using System.Collections.Generic;
+using GalaSoft.MvvmLight.Messaging;
 using Windows.UI.Xaml.Navigation;
 
 namespace MediaBrowser.Windows8.Views
 {
     public sealed partial class LoadingView
     {
+        private bool _isFromSearch;
+        private string _searchTerm;
+
         public LoadingView()
         {
             this.InitializeComponent();
-            Loaded += (s, e) => Messenger.Default.Send<NotificationMessage>(new NotificationMessage(Constants.LoadingPageLoadedMsg));
+            Loaded += (s, e) => Messenger.Default.Send(new NotificationMessage(_isFromSearch, _searchTerm, Constants.LoadingPageLoadedMsg));
         }
 
         /// <summary>
@@ -21,6 +26,15 @@ namespace MediaBrowser.Windows8.Views
             if(e.NavigationMode == NavigationMode.Back)
             {
                 Frame.GoBack();
+            }
+        }
+
+        protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
+        {
+            if (navigationParameter != null)
+            {
+                _searchTerm = navigationParameter as String;
+                _isFromSearch = true;
             }
         }
     }

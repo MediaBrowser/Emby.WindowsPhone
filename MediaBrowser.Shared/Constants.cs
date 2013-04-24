@@ -60,5 +60,8 @@
         public const string CollectionPinnedMsg = "CollectionPinnedMsg";
         public const string ResetAppMsg = "ResetAppMsg";
         public const string LeftTrailerMsg = "LeftTrailerMsg";
+        public const string NoResultsMsg = "NoResultsMsg";
+        public const string SearchPageLoadedMsg = "SearchPageLoadedMsg";
+        public const string ChangeFilteredResultsMsg = "ChangeFilteredResultsMsg";
     }
 }

@@ -33,8 +33,11 @@ namespace MediaBrowser.Windows8.ViewModel
     {
         private readonly ExtendedApiClient _apiClient;
         private readonly NavigationService _navService;
-        private bool _checksDone;
         private readonly ILogger _logger;
+
+        private bool _checksDone;
+        private bool _isFromSearch;
+        private string _searchTerm;
 
         /// <summary>
         /// Initializes a new instance of the LoadingViewModel class.
@@ -59,6 +62,8 @@ namespace MediaBrowser.Windows8.ViewModel
         {
             TestConnectionCommand = new RelayCommand(async () =>
             {
+                Messenger.Default.Send(new NotificationMessage(Constants.ClearEverythingMsg));
+
                 _apiClient.ServerHostName = App.Settings.ConnectionDetails.HostName;
                 _apiClient.ServerApiPort = App.Settings.ConnectionDetails.PortNo;
                 var isNotLocalhost = CheckForLocalhost();
@@ -91,8 +96,6 @@ namespace MediaBrowser.Windows8.ViewModel
                                                                       var connectionSettings = new ObjectStorageHelper<ConnectionDetails>(StorageType.Roaming);
                                                                       await connectionSettings.DeleteAsync(Constants.ConnectionSettings);
                                                                       App.Settings.ConnectionDetails = new ConnectionDetails {PortNo = 8096};
-
-                                                                      Messenger.Default.Send(new NotificationMessage(Constants.ClearEverythingMsg));
                                                                   });
         }
 
@@ -128,6 +131,12 @@ namespace MediaBrowser.Windows8.ViewModel
             {
                 if (m.Notification.Equals(Constants.LoadingPageLoadedMsg))
                 {
+                    _isFromSearch = (bool) m.Sender;
+                    if (_isFromSearch)
+                    {
+                        _searchTerm = (string) m.Target;
+                    }
+
                     var connectionSettings = new ObjectStorageHelper<ConnectionDetails>(StorageType.Roaming);
                     //await connectionSettings.DeleteAsync(Constants.ConnectionSettings);
                     App.Settings.ConnectionDetails = await connectionSettings.LoadAsync(Constants.ConnectionSettings) ?? new ConnectionDetails {PortNo = 8096};
@@ -211,7 +220,14 @@ namespace MediaBrowser.Windows8.ViewModel
                                           () =>
                                               {
                                                   _apiClient.CurrentUserId = App.Settings.LoggedInUser.Id;
-                                                  _navService.Navigate<MainPage>();
+                                                  if (_isFromSearch)
+                                                  {
+                                                      _navService.Navigate<SearchView>(_searchTerm);
+                                                  }
+                                                  else
+                                                  {
+                                                      _navService.Navigate<MainPage>();
+                                                  }
                                               });
                     }
                     else

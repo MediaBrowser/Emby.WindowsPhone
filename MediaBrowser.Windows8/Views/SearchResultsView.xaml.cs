@@ -2,9 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using GalaSoft.MvvmLight.Messaging;
+using MediaBrowser.Shared;
 using MediaBrowser.Windows8.Common;
+using MediaBrowser.Windows8.ViewModel;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
 
 // The Search Contract item template is documented at http://go.microsoft.com/fwlink/?LinkId=234240
 
@@ -17,12 +21,31 @@ namespace MediaBrowser.Windows8.Views
     /// <summary>
     /// This page displays search results when a global search is directed to this application.
     /// </summary>
-    public sealed partial class SearchResultsView : LayoutAwarePage
+    public sealed partial class SearchView : LayoutAwarePage
     {
+        private string _searchTerm;
 
-        public SearchResultsView()
+        public SearchView()
         {
             this.InitializeComponent();
+            
+            Loaded += (sender, args) => Messenger.Default.Send(new NotificationMessage(_searchTerm, Constants.SearchPageLoadedMsg));
+            
+            WireMessages();
+        }
+
+        private void WireMessages()
+        {
+            Messenger.Default.Register<NotificationMessage>(this, m =>
+            {
+                if (m.Notification.Equals(Constants.NoResultsMsg))
+                {
+                    if (m.Sender.ToString().Equals(_searchTerm))
+                    {
+                        VisualStateManager.GoToState(this, "NoResultsFound", true);
+                    }
+                }
+            });
         }
 
         /// <summary>
@@ -36,24 +59,7 @@ namespace MediaBrowser.Windows8.Views
         /// session.  This will be null the first time a page is visited.</param>
         protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
-            var queryText = navigationParameter as String;
-
-            // TODO: Application-specific searching logic.  The search process is responsible for
-            //       creating a list of user-selectable result categories:
-            //
-            //       filterList.Add(new Filter("<filter name>", <result count>));
-            //
-            //       Only the first filter, typically "All", should pass true as a third argument in
-            //       order to start in an active state.  Results for the active filter are provided
-            //       in Filter_SelectionChanged below.
-
-            var filterList = new List<Filter>();
-            filterList.Add(new Filter("All", 0, true));
-
-            // Communicate results through the view model
-            this.DefaultViewModel["QueryText"] = '\u201c' + queryText + '\u201d';
-            this.DefaultViewModel["Filters"] = filterList;
-            this.DefaultViewModel["ShowFilters"] = filterList.Count > 1;
+            _searchTerm = navigationParameter as String;
         }
 
         /// <summary>
@@ -61,7 +67,7 @@ namespace MediaBrowser.Windows8.Views
         /// </summary>
         /// <param name="sender">The ComboBox instance.</param>
         /// <param name="e">Event data describing how the selected filter was changed.</param>
-        void Filter_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        void FilterSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             // Determine what filter was selected
             var selectedFilter = e.AddedItems.FirstOrDefault() as Filter;
@@ -71,23 +77,8 @@ namespace MediaBrowser.Windows8.Views
                 // RadioButton representation used when not snapped to reflect the change
                 selectedFilter.Active = true;
 
-                // TODO: Respond to the change in active filter by setting this.DefaultViewModel["Results"]
-                //       to a collection of items with bindable Image, Title, Subtitle, and Description properties
-
-                // Ensure results are found
-                object results;
-                ICollection resultsCollection;
-                if (this.DefaultViewModel.TryGetValue("Results", out results) &&
-                    (resultsCollection = results as ICollection) != null &&
-                    resultsCollection.Count != 0)
-                {
-                    VisualStateManager.GoToState(this, "ResultsFound", true);
-                    return;
-                }
+                Messenger.Default.Send(new NotificationMessage(selectedFilter, _searchTerm, Constants.ChangeFilteredResultsMsg));
             }
-
-            // Display informational text when there are no search results.
-            VisualStateManager.GoToState(this, "NoResultsFound", true);
         }
 
         /// <summary>
@@ -95,7 +86,7 @@ namespace MediaBrowser.Windows8.Views
         /// </summary>
         /// <param name="sender">The selected RadioButton instance.</param>
         /// <param name="e">Event data describing how the RadioButton was selected.</param>
-        void Filter_Checked(object sender, RoutedEventArgs e)
+        void FilterChecked(object sender, RoutedEventArgs e)
         {
             // Mirror the change into the CollectionViewSource used by the corresponding ComboBox
             // to ensure that the change is reflected when snapped
@@ -106,10 +97,35 @@ namespace MediaBrowser.Windows8.Views
             }
         }
 
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            if (e.NavigationMode == NavigationMode.Back)
+            {
+                DataContext = History.Current.GetLastItem<SearchViewModel>(GetType());
+            }
+            else if (e.NavigationMode == NavigationMode.New)
+            {
+                DataContext = new SearchViewModel(ViewModelLocator.NavigationService, ViewModelLocator.ApiClient)
+                {
+                    SearchTerm = _searchTerm
+                };
+            }
+        }
+
+        protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
+        {
+            base.OnNavigatingFrom(e);
+            if (e.NavigationMode == NavigationMode.New)
+            {
+                History.Current.AddHistoryItem(GetType(), DataContext);
+            }
+        }
+
         /// <summary>
         /// View model describing one of the filters available for viewing search results.
         /// </summary>
-        private sealed class Filter : MediaBrowser.Windows8.Common.BindableBase
+        public sealed class Filter : MediaBrowser.Windows8.Common.BindableBase
         {
             private String _name;
             private int _count;

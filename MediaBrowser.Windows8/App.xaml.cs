@@ -102,7 +102,6 @@ namespace MediaBrowser.Windows8
                 nav.Frame = rootFrame;
             }
             
-            
             if (ViewModelBase.IsInDesignModeStatic)
             {
                 Settings.LoggedInUser = new UserDto
@@ -180,11 +179,15 @@ namespace MediaBrowser.Windows8
                 }
             }
 
-            frame.Navigate(typeof(SearchResultsView), args.QueryText);
+            frame.Navigate(typeof(LoadingView), args.QueryText);
             Window.Current.Content = frame;
+
+            var nav = SimpleIoc.Default.GetInstance<NavigationService>();
+            nav.Frame = frame;
 
             // Ensure the current window is active
             Window.Current.Activate();
+            SettingsCharm.Create();
         }
     }
 }
