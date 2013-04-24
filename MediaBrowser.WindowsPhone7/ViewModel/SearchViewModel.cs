@@ -67,15 +67,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                };
                 GroupSearchResults(data);
             }
-            else
-            {
-                WireMessages();
-            }
-        }
-
-        private void WireMessages()
-        {
-
         }
 
         private async Task DoSearch()

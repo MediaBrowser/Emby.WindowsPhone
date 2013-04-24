@@ -69,15 +69,20 @@ namespace MediaBrowser.Windows8.ViewModel
                     return;
                 }
 #endif
+                var userSettings = new ObjectStorageHelper<UserSettingWrapper>(StorageType.Roaming);
+                await userSettings.DeleteAsync(Constants.SelectedUserSetting);
+
                 var connectionSuccess = await CheckForServer();
                 if (connectionSuccess)
                 {
                     var connectionSettings = new ObjectStorageHelper<ConnectionDetails>(StorageType.Roaming);
+                    
                     await connectionSettings.SaveAsync(new ConnectionDetails
                     {
                         HostName = App.Settings.ConnectionDetails.HostName,
                         PortNo = App.Settings.ConnectionDetails.PortNo
                     }, Constants.ConnectionSettings);
+
                 }
             });
 
@@ -86,6 +91,8 @@ namespace MediaBrowser.Windows8.ViewModel
                                                                       var connectionSettings = new ObjectStorageHelper<ConnectionDetails>(StorageType.Roaming);
                                                                       await connectionSettings.DeleteAsync(Constants.ConnectionSettings);
                                                                       App.Settings.ConnectionDetails = new ConnectionDetails {PortNo = 8096};
+
+                                                                      Messenger.Default.Send(new NotificationMessage(Constants.ClearEverythingMsg));
                                                                   });
         }
 
@@ -131,6 +138,11 @@ namespace MediaBrowser.Windows8.ViewModel
                     _logger.Info(string.Format("Host: {0}, Port: {1}", _apiClient.ServerHostName, _apiClient.ServerApiPort));
                     
                     await CheckForServer();
+                }
+
+                if (m.Notification.Equals(Constants.ClearEverythingMsg))
+                {
+                    
                 }
             });
         }

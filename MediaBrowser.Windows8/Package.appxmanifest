@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
-  <Identity Name="43233ScottLovegrove.222904C874756" Publisher="CN=43EE5435-230A-4364-8907-04B5F073D610" Version="1.0.13.1" />
+  <Identity Name="43233ScottLovegrove.222904C874756" Publisher="CN=43EE5435-230A-4364-8907-04B5F073D610" Version="1.0.13.2" />
   <Properties>
     <DisplayName>MediaBrowser3</DisplayName>
     <PublisherDisplayName>ScottLovegrove</PublisherDisplayName>
@@ -30,6 +30,7 @@
             <Task Type="pushNotification" />
           </BackgroundTasks>
         </Extension>
+        <Extension Category="windows.search" />
       </Extensions>
     </Application>
   </Applications>

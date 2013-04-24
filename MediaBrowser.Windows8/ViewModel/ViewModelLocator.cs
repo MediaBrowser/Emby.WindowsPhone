@@ -68,7 +68,7 @@ namespace MediaBrowser.Windows8.ViewModel
             SimpleIoc.Default.Register<TrailerViewModel>(true);
             SimpleIoc.Default.Register<MusicViewModel>(true);
             SimpleIoc.Default.Register<SettingsViewModel>(true);
-
+            SimpleIoc.Default.Register<SearchViewModel>();
         }
 
         public LoadingViewModel Loading
@@ -119,6 +119,11 @@ namespace MediaBrowser.Windows8.ViewModel
         public SettingsViewModel Settings
         {
             get { return ServiceLocator.Current.GetInstance<SettingsViewModel>(); }
+        }
+
+        public SearchViewModel Search
+        {
+            get { return ServiceLocator.Current.GetInstance<SearchViewModel>(); }
         }
 
         public SpecificSettings SpecificSettings

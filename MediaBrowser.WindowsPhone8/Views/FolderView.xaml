@@ -76,6 +76,7 @@
         <Grid x:Name="ContentPanel"
               Grid.Row="1"
               Margin="12,0,12,0">
+            <!---->
             <phone:LongListSelector GroupHeaderTemplate="{Binding GroupHeaderTemplate}"
                                     JumpListStyle="{Binding GroupItemTemplate}"
                                     ItemsSource="{Binding FolderGroupings}"
@@ -90,7 +91,7 @@
                                          Command="{Binding Main.NavigateToPage, Source={StaticResource Locator}}"
                                          CommandParameter="{Binding}">
                             <StackPanel Orientation="Horizontal">
-                                <delay:PlaceImage PlaceholderSource="/Images/MBLogo.png"
+                                <delay:PlaceImage PlaceholderSource="/Images/Logo.png"
                                                   Source="{Binding Converter={StaticResource ImageUrlConverter}, ConverterParameter=icon}"
                                                   Height="75"
                                                   Width="75"
@@ -107,14 +108,14 @@
     </Grid>
 
     <!--Sample code showing usage of ApplicationBar-->
-    <phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar IsVisible="True"
-                              IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton x:Name="btnChangeGrouping"
-                                            IconUri="/Icons/appbar.group.png"
-                                            Text="group by"
-                                            Click="btnChangeGrouping_Click" />
-        </shell:ApplicationBar>
-    </phone:PhoneApplicationPage.ApplicationBar>
+            <phone:PhoneApplicationPage.ApplicationBar>
+                <shell:ApplicationBar IsVisible="True"
+                                      IsMenuEnabled="True">
+                    <shell:ApplicationBarIconButton x:Name="btnChangeGrouping"
+                                                    IconUri="/Icons/appbar.group.png"
+                                                    Text="group by"
+                                                    Click="btnChangeGrouping_Click" />
+                </shell:ApplicationBar>
+            </phone:PhoneApplicationPage.ApplicationBar>
 
 </phone:PhoneApplicationPage>
