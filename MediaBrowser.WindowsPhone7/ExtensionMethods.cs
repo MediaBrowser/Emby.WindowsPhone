@@ -29,7 +29,7 @@ namespace MediaBrowser.WindowsPhone
 
         internal static PlaylistItem ToPlaylistItem(this BaseItemDto item, ExtendedApiClient apiClient)
         {
-            var url = apiClient.GetAudioStreamUrl(new VideoStreamOptions
+            var url = apiClient.GetAudioStreamUrl(new StreamOptions
                                                       {
                                                           AudioBitRate = 128,
                                                           AudioCodec = AudioCodecs.Mp3,
