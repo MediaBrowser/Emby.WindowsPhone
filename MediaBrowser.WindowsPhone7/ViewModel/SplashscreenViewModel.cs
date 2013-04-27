@@ -79,7 +79,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                         {
                                                             // This is needed as a fix for the Windows Phone Toolkit giving an error.
                                                             ((CustomMessageBox)sender).Dismissing += (o, e) => e.Cancel = true;
-                                                            _navigationService.NavigateToPage("/Views/SettingsView.xaml?settingsPane=2");
+                                                            _navigationService.NavigateTo("/Views/SettingsView.xaml?settingsPane=2");
                                                         }
                                                     };
                         messageBox.Show();
@@ -118,7 +118,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                             else
                             {
                                 App.ShowMessage("", AppResources.ErrorCouldNotFindServer);
-                                _navigationService.NavigateToPage("/Views/SettingsView.xaml?settingsPane=2");
+                                _navigationService.NavigateTo("/Views/SettingsView.xaml?settingsPane=2");
                             }
                         }
 

@@ -80,7 +80,7 @@
             <!-- DataTemplates -->
             <DataTemplate x:Key="TileItemStyle">
                 <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                 Command="{Binding Main.NavigateToPage, Source={StaticResource Locator}}"
+                                 Command="{Binding Main.NavigateTo, Source={StaticResource Locator}}"
                                  CommandParameter="{Binding}">
                     <Grid MaxWidth="173">
                         <delay:PlaceImage PlaceholderSource="/Images/Logo.png"

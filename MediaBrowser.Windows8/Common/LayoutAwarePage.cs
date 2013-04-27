@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using Windows.ApplicationModel.Search;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.System;
@@ -51,6 +52,9 @@ namespace MediaBrowser.Windows8.Common
         public LayoutAwarePage()
         {
             if (Windows.ApplicationModel.DesignMode.DesignModeEnabled) return;
+
+            // Make sure each page will bring open the search if you start typing
+            SearchPane.GetForCurrentView().ShowOnKeyboardInput = true;
 
             // Create an empty default view model
             this.DefaultViewModel = new ObservableDictionary<String, Object>();

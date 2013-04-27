@@ -147,7 +147,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                             }
                                                         });
 
-            NavigateToPage = new RelayCommand<BaseItemDto>(_navService.NavigateToPage);
+            NavigateTo = new RelayCommand<BaseItemDto>(_navService.NavigateTo);
         }
 
         private void GetRandomItems()
@@ -438,6 +438,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
         public RelayCommand PageLoaded { get; set; }
         public RelayCommand CollectionPageLoaded { get; set; }
-        public RelayCommand<BaseItemDto> NavigateToPage { get; set; }
+        public RelayCommand<BaseItemDto> NavigateTo { get; set; }
     }
 }

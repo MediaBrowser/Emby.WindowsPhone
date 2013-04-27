@@ -6,17 +6,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using Cimbalino.Phone.Toolkit.Services;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Shared;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Resources;
-using Microsoft.Phone.Info;
 using Microsoft.Phone.Net.NetworkInformation;
 using Microsoft.Phone.Notification;
 using ScottIsAFool.WindowsPhone.IsolatedStorage;
+using INavigationService = MediaBrowser.WindowsPhone.Model.INavigationService;
 
 #if WP8
 using Windows.Networking;
@@ -262,11 +264,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 #if WP8
             get
             {
-                var id = UserExtendedProperties.GetValue("ANID2") as string;
+                var id = SimpleIoc.Default.GetInstance<IUserExtendedPropertiesService>().AnonymousUserID;
                 return string.IsNullOrEmpty(id) ? "emulator" : id;
             }
 #else
-            get { return ParseANID(UserExtendedProperties.GetValue("ANID") as string); }
+            get { return ParseANID(SimpleIoc.Default.GetInstance<IUserExtendedPropertiesService>().AnonymousUserID); }
 #endif
         }
 

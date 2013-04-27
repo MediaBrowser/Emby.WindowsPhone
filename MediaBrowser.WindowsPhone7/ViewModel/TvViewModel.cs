@@ -173,7 +173,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                               SelectedEpisode = SelectedEpisode.IndexNumber - 1 == 0 ? Episodes[Episodes.Count - 1] : Episodes[SelectedEpisode.IndexNumber.Value - 2];
                                                           });
 
-            NavigateToPage = new RelayCommand<BaseItemDto>(_navService.NavigateToPage);
+            NavigateTo = new RelayCommand<BaseItemDto>(_navService.NavigateTo);
         }
 
         private async Task<bool> GetEpisode()
@@ -312,7 +312,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public BaseItemDto DummyFolder { get; set; }
         public List<Group<BaseItemPerson>> CastAndCrew { get; set; }
 
-        public RelayCommand<BaseItemDto> NavigateToPage { get; set; }
+        public RelayCommand<BaseItemDto> NavigateTo { get; set; }
         public RelayCommand TvSeriesPageLoaded { get; set; }
         public RelayCommand SeasonPageLoaded { get; set; }
         public RelayCommand EpisodePageLoaded { get; set; }

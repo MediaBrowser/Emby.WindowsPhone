@@ -93,7 +93,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                                                             Reset();
 
-                                                            _navService.NavigateToPage("/Views/ChooseProfileView.xaml");
+                                                            _navService.NavigateTo("/Views/ChooseProfileView.xaml");
                                                         });
 
             PinCollectionCommand = new RelayCommand<BaseItemDto>(collection =>
@@ -140,7 +140,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 _logger.LogFormat("Playing {0} [{1}]", LogLevel.Info, item.Type, item.Name);
 #if WP8
                 Messenger.Default.Send(new NotificationMessage(item, Constants.PlayVideoItemMsg));
-                _navService.NavigateToPage("/Views/VideoPlayerView.xaml");
+                _navService.NavigateTo("/Views/VideoPlayerView.xaml");
 #else
                 var bounds = Application.Current.RootVisual.RenderSize;
                 var query = new VideoStreamOptions
@@ -185,9 +185,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 #endif
             });
 
-            NavigateToPage = new RelayCommand<BaseItemDto>(_navService.NavigateToPage);
+            NavigateToPage = new RelayCommand<BaseItemDto>(_navService.NavigateTo);
 
-            NavigateToAPage = new RelayCommand<string>(_navService.NavigateToPage);
+            NavigateToAPage = new RelayCommand<string>(_navService.NavigateTo);
         }
 
         private static ShellTile GetShellTile(BaseItemDto collection, out string url)

@@ -197,7 +197,7 @@ namespace MediaBrowser.Windows8.ViewModel
                 settingsLoader.DeleteAsync(Constants.SpecificSettings);
             }
 
-            await LoadPushSettings();
+            //await LoadPushSettings();
 
             TileUpdateManager.CreateTileUpdaterForApplication().Clear();
 

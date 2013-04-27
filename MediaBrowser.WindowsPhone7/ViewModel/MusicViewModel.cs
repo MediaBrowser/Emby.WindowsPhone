@@ -14,6 +14,8 @@ using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Resources;
 #if !WP8
 using ScottIsAFool.WindowsPhone;
+using Wintellect.Sterling;
+
 #endif
 
 namespace MediaBrowser.WindowsPhone.ViewModel
@@ -191,6 +193,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 _logger.LogFormat("Getting information for Artist [{0}] ({1})", LogLevel.Info, SelectedArtist.Name, SelectedArtist.Id);
 
+                var artistQuery = new ArtistsQuery
+                                      {
+
+                                      };
                 SelectedArtist = await _apiClient.GetItemAsync(SelectedArtist.Id, App.Settings.LoggedInUser.Id);
             }
             catch (HttpException ex)
@@ -200,6 +206,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
 
             _gotAlbums = await GetAlbums();
+
+            await GetArtistTracks();
 
             SortTracks();
         }
@@ -212,6 +220,38 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
         }
 
+        private async Task<bool> GetArtistTracks()
+        {
+            try
+            {
+                var query = new ItemQuery
+                {
+                    UserId = App.Settings.LoggedInUser.Id,
+                    Artists = new[] { SelectedArtist.Name },
+                    Recursive = true,
+                    Fields = new[] { ItemFields.AudioInfo, ItemFields.ParentId, },
+                    IncludeItemTypes = new[] { "Audio" }
+                };
+
+                _logger.LogFormat("Getting tracks for artist [{0}] ({1})", LogLevel.Info, SelectedArtist.Name, SelectedArtist.Id);
+
+                var items = await _apiClient.GetItemsAsync(query);
+
+                if (items != null && items.Items.Any())
+                {
+                    _artistTracks = items.Items.ToList();
+                }
+
+                return true;
+            }
+            catch (HttpException ex)
+            {
+                _logger.Log(ex.Message, LogLevel.Fatal);
+                _logger.Log(ex.StackTrace, LogLevel.Fatal);
+                return false;
+            }
+        }
+
         private async Task<bool> GetAlbums()
         {
             try
@@ -219,9 +259,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 var query = new ItemQuery
                                 {
                                     UserId = App.Settings.LoggedInUser.Id,
-                                    ParentId = SelectedArtist.Id,
+                                    Artists = new [] {SelectedArtist.Name},
                                     Recursive = true,
-                                    Fields = new[] {ItemFields.AudioInfo, ItemFields.ParentId,}
+                                    Fields = new[] {ItemFields.AudioInfo, ItemFields.ParentId, },
+                                    IncludeItemTypes = new []{"MusicAlbum"}
                                 };
 
                 _logger.LogFormat("Getting albums for artist [{0}] ({1})", LogLevel.Info, SelectedArtist.Name, SelectedArtist.Id);
@@ -229,23 +270,23 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 var items = await _apiClient.GetItemsAsync(query);
                 if (items != null && items.Items.Any())
                 {
-                    // Extract the album items from the results
-                    var albums = items.Items.Where(x => x.Type == "MusicAlbum").ToList();
+                    //// Extract the album items from the results
+                    //var albums = items.Items.Where(x => x.Type == "MusicAlbum").ToList();
 
-                    // Extract the track items from the results
-                    _artistTracks = items.Items.Where(y => y.Type == "Audio").ToList();
+                    //// Extract the track items from the results
+                    //_artistTracks = items.Items.Where(y => y.Type == "Audio").ToList();
 
-                    var nameId = (from a in _artistTracks
-                                  select new KeyValuePair<string, string>(a.Album, a.ParentId)).Distinct();
+                    //var nameId = (from a in _artistTracks
+                    //              select new KeyValuePair<string, string>(a.Album, a.ParentId)).Distinct();
 
-                    // This sets the album names correctly based on what's in the track information (rather than folder name)
-                    foreach (var ni in nameId)
-                    {
-                        var item = albums.SingleOrDefault(x => x.Id == ni.Value);
-                        item.Name = ni.Key;
-                    }
+                    //// This sets the album names correctly based on what's in the track information (rather than folder name)
+                    //foreach (var ni in nameId)
+                    //{
+                    //    var item = albums.SingleOrDefault(x => x.Id == ni.Value);
+                    //    item.Name = ni.Key;
+                    //}
 
-                    foreach (var album in albums)
+                    foreach (var album in items.Items)
                     {
                         Albums.Add(album);
                     }

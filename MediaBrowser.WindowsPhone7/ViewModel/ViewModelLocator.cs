@@ -9,13 +9,18 @@
   DataContext="{Binding Source={StaticResource Locator}, Path=ViewModelName}"
 */
 
+using Cimbalino.Phone.Toolkit.Services;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using MediaBrowser.ApiInteraction;
 using MediaBrowser.Shared;
+using MediaBrowser.WindowsPhone.DB;
 using Microsoft.Practices.ServiceLocation;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.Model;
+using Wintellect.Sterling;
+using INavigationService = MediaBrowser.WindowsPhone.Model.INavigationService;
+using NavigationService = MediaBrowser.WindowsPhone.Model.NavigationService;
 
 namespace MediaBrowser.WindowsPhone.ViewModel
 {
@@ -50,6 +55,20 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 SimpleIoc.Default.Register<ISettingsService, SettingsService>();
                 if (!SimpleIoc.Default.IsRegistered<ExtendedApiClient>())
                     SimpleIoc.Default.Register(() => new ExtendedApiClient(new MBLogger(), new AsyncHttpClient(new MBLogger()), "dummy", 8096, "Windows Phone", "dummy", "dummy").SetDeviceProperties());
+
+                if (!SimpleIoc.Default.IsRegistered<IDeviceExtendedPropertiesService>())
+                    SimpleIoc.Default.Register<IDeviceExtendedPropertiesService, DeviceExtendedPropertiesService>();
+
+                if (!SimpleIoc.Default.IsRegistered<IUserExtendedPropertiesService>())
+                    SimpleIoc.Default.Register<IUserExtendedPropertiesService, UserExtendedPropertiesService>();
+
+                if (!SimpleIoc.Default.IsRegistered<ISterlingDatabaseInstance>())
+                    SimpleIoc.Default.Register(() =>
+                                                   {
+                                                       var engine = new SterlingEngine();
+                                                       engine.Activate();
+                                                       return engine.SterlingDatabase.RegisterDatabase<PlaylistDB>();
+                                                   }, true);
             }
 
             SimpleIoc.Default.Register<MainViewModel>(true);

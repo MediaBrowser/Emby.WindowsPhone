@@ -5,7 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              d:DesignHeight="1000"
-             d:DesignWidth="400">
+             d:DesignWidth="320">
 
     <Grid>
         <StackPanel Orientation="Vertical">
@@ -66,7 +66,7 @@
                             HorizontalAlignment="Left"
                             Command="{Binding Loading.TestConnectionCommand, Source={StaticResource Locator}}" />
                     <Button Margin="0,12,0,0"
-                            Content="Clear connection settings"
+                            Content="Clear connection"
                             Style="{StaticResource LightButtonStyle}"
                             HorizontalAlignment="Right"
                             Command="{Binding Loading.ClearConnectionSettingsCommand, Source={StaticResource Locator}}" />

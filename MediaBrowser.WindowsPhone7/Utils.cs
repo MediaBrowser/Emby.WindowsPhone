@@ -6,12 +6,14 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using Ailon.WP.Utils;
+using Cimbalino.Phone.Toolkit.Services;
 using GalaSoft.MvvmLight.Ioc;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Net;
 using MediaBrowser.WindowsPhone.Model;
 using Microsoft.Phone.Info;
+using INavigationService = MediaBrowser.WindowsPhone.Model.INavigationService;
 
 #if !WP8
 using ScottIsAFool.WindowsPhone;
@@ -222,14 +224,14 @@ namespace MediaBrowser.WindowsPhone
                 await Login(log, App.Settings.LoggedInUser, App.Settings.PinCode, () =>
                 {
                     if (!String.IsNullOrEmpty(App.Action))
-                        navigationService.NavigateToPage(App.Action);
+                        navigationService.NavigateTo(App.Action);
                     else
-                        navigationService.NavigateToPage("/Views/MainPage.xaml");
+                        navigationService.NavigateTo("/Views/MainPage.xaml");
                 });
             }
             else
             {
-                navigationService.NavigateToPage("/Views/ChooseProfileView.xaml");
+                navigationService.NavigateTo("/Views/ChooseProfileView.xaml");
             }
         }
 
@@ -253,9 +255,8 @@ namespace MediaBrowser.WindowsPhone
 
             apiClient.DeviceName = deviceInfo;
 
-            object uniqueId;
-            DeviceExtendedProperties.TryGetValue("DeviceUniqueId", out uniqueId);
-            apiClient.DeviceId = Convert.ToBase64String((byte[])uniqueId, 0, ((byte[])uniqueId).Length);
+            var uniqueId = SimpleIoc.Default.GetInstance<IDeviceExtendedPropertiesService>().DeviceUniqueId;
+            apiClient.DeviceId = Convert.ToBase64String(uniqueId, 0, uniqueId.Length);
 
             return apiClient;
         }

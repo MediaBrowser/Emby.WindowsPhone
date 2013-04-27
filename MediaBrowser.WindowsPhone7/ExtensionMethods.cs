@@ -1,4 +1,8 @@
-﻿using MediaBrowser.Model.Logging;
+﻿using System.Linq;
+using MediaBrowser.Model.Dto;
+using MediaBrowser.Model.Logging;
+using MediaBrowser.Shared;
+using MediaBrowser.WindowsPhone.Model;
 
 namespace MediaBrowser.WindowsPhone
 {
@@ -21,6 +25,26 @@ namespace MediaBrowser.WindowsPhone
                 default:
                     return LogLevel.Info;
             }
+        }
+
+        internal static PlaylistItem ToPlaylistItem(this BaseItemDto item, ExtendedApiClient apiClient)
+        {
+            var url = apiClient.GetAudioStreamUrl(new VideoStreamOptions
+                                                      {
+                                                          AudioBitRate = 128,
+                                                          AudioCodec = AudioCodecs.Mp3,
+                                                          ItemId = item.Id,
+                                                          OutputFileExtension = "mp3",
+
+                                                      });
+            return new PlaylistItem
+                       {
+                           Album = item.Album,
+                           Artist = item.Artists.Any() ? item.Artists[0] : "",
+                           TrackName = item.Name,
+                           TrackUrl = url,
+                           MediaBrowserId = item.Id
+                       };
         }
     }
 }

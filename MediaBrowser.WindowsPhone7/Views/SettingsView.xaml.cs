@@ -1,4 +1,6 @@
-﻿using Microsoft.Phone.Controls;
+﻿using System;
+using Microsoft.Phone.Controls;
+using Microsoft.Phone.Tasks;
 
 namespace MediaBrowser.WindowsPhone.Views
 {
@@ -18,6 +20,16 @@ namespace MediaBrowser.WindowsPhone.Views
                 var selectedIndex = int.Parse(settingPane);
                 settingsPivot.SelectedIndex = selectedIndex;
             }
+        }
+
+        private void EmailLogs_OnClick(object sender, EventArgs e)
+        {
+            new EmailComposeTask
+            {
+                To = "scottisafool@live.co.uk",
+                Subject = string.Format("Media Browser 3 log file"),
+                Body = WPLogger.GetLogFileContent()
+            }.Show();
         }
     }
 }
