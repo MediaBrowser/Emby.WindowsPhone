@@ -78,6 +78,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\MvvmLightLibs.4.1.27.0\lib\sl4-wp71\GalaSoft.MvvmLight.WP71.dll</HintPath>
     </Reference>
+    <Reference Include="MediaBrowser.ApiInteraction.Portable, Version=3.0.4865.18835, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\MediaBrowser.ApiClient.3.0.0.85-beta\lib\portable-net45+sl4+wp71+win8\MediaBrowser.ApiInteraction.Portable.dll</HintPath>
+    </Reference>
     <Reference Include="MediaBrowser.Model, Version=3.0.4865.18680, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\MediaBrowser.Common.3.0.85\lib\portable-net4+sl4+wp7+win8\MediaBrowser.Model.dll</HintPath>
@@ -215,6 +219,9 @@
     <Compile Include="Model\SettingsService.cs" />
     <Compile Include="ViewModel\PlaylistViewModel.cs" />
     <Compile Include="ViewModel\SearchViewModel.cs" />
+    <Compile Include="Views\NowPlayingView.xaml.cs">
+      <DependentUpon>NowPlayingView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SearchView.xaml.cs">
       <DependentUpon>SearchView.xaml</DependentUpon>
     </Compile>
@@ -363,6 +370,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MusicCollectionView.xaml">
+      <SubType>Form</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NowPlayingView.xaml">
       <SubType>Form</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

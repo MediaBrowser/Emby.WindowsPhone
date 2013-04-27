@@ -197,6 +197,9 @@
     <Compile Include="..\MediaBrowser.WindowsPhone7\ViewModel\MusicViewModel.cs">
       <Link>ViewModel\MusicViewModel.cs</Link>
     </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone7\ViewModel\PlaylistViewModel.cs">
+      <Link>ViewModel\PlaylistViewModel.cs</Link>
+    </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone7\ViewModel\SearchViewModel.cs">
       <Link>ViewModel\SearchViewModel.cs</Link>
     </Compile>
@@ -246,6 +249,10 @@
     <Compile Include="..\MediaBrowser.WindowsPhone7\Views\MovieView.xaml.cs">
       <Link>Views\MovieView.xaml.cs</Link>
       <DependentUpon>MovieView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone7\Views\NowPlayingView.xaml.cs">
+      <Link>Views\NowPlayingView.xaml.cs</Link>
+      <DependentUpon>NowPlayingView.xaml</DependentUpon>
     </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone7\Views\SearchView.xaml.cs">
       <Link>Views\SearchView.xaml.cs</Link>
@@ -365,6 +372,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\NowPlayingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\SearchView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -478,6 +489,10 @@
     <Reference Include="GalaSoft.MvvmLight.WP8, Version=4.1.27.22645, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\MvvmLightLibs.4.1.27.0\lib\WindowsPhone8\GalaSoft.MvvmLight.WP8.dll</HintPath>
+    </Reference>
+    <Reference Include="MediaBrowser.ApiInteraction.Portable, Version=3.0.4865.18835, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\MediaBrowser.ApiClient.3.0.0.85-beta\lib\portable-net45+sl4+wp71+win8\MediaBrowser.ApiInteraction.Portable.dll</HintPath>
     </Reference>
     <Reference Include="MediaBrowser.Model, Version=3.0.4865.18680, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

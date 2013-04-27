@@ -167,6 +167,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             get { return ServiceLocator.Current.GetInstance<SearchViewModel>(); }
         }
 
+        public PlaylistViewModel Playlist
+        {
+            get { return ServiceLocator.Current.GetInstance<PlaylistViewModel>(); }
+        }
+
         public static TvViewModel GetTvViewModel(string itemId)
         {
             return ServiceLocator.Current.GetInstance<TvViewModel>(itemId);
