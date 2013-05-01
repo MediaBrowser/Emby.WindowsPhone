@@ -95,7 +95,7 @@
                                                                  HorizontalAlignment="Center"
                                                                  VerticalAlignment="Center"
                                                                  Margin="6"
-                                                                 Command="{Binding AlbumPlayTapped}" />
+                                                                 Command="{Binding Music.AlbumPlayTapped, Source={StaticResource Locator}}" />
                                             </Grid>
                                             <TextBlock Text="{Binding Name}"
                                                        Style="{StaticResource PhoneTextTitle2Style}"

@@ -45,6 +45,7 @@ namespace MediaBrowser.WindowsPhone.Views
             if(e.NavigationMode == NavigationMode.Back)
             {
                 DataContext = History.Current.GetLastItem<FolderViewModel>(GetType());
+                App.SelectedItem = ((FolderViewModel) DataContext).SelectedFolder;
             }
             else if(e.NavigationMode == NavigationMode.New)
             {

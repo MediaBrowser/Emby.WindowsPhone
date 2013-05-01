@@ -74,7 +74,15 @@ namespace MediaBrowser.WindowsPhone
 
         public void LogFormat(string format, LogLevel logLevel, params object[] parameters)
         {
-            Log(string.Format(format, parameters), logLevel);
+            try
+            {
+                Log(string.Format(format, parameters), logLevel);
+            }
+            catch
+            {
+                Log("Error writing to log file.");
+                Log("Original message: " + format);
+            }
         }
 
         public static string GetLogFileContent()

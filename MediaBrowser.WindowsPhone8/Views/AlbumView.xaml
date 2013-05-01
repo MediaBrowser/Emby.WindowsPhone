@@ -58,6 +58,11 @@
                                                         IconUri="/Icons/appbar.list.check.png"
                                                         Click="ApplicationBarIconButton_OnClick"
                                                         IsEnabled="{Binding AlbumTracks.Count, Converter={StaticResource CountToEnabled}, ConverterParameter=delete}"/>
+                    <cimbalino:ApplicationBar.MenuItems>
+                        <cimbalino:ApplicationBarMenuItem Text="now playing"
+                                                          Command="{Binding Main.NavigateToAPage, Source={StaticResource Locator}}"
+                                                          CommandParameter="/Views/NowPlayingView.xaml" />
+                    </cimbalino:ApplicationBar.MenuItems>
                 </cimbalino:ApplicationBar>
                 <cimbalino:ApplicationBar>
                     <cimbalino:ApplicationBarIconButton Text="play items"
@@ -68,6 +73,9 @@
                         <cimbalino:ApplicationBarMenuItem Text="add to now playing"
                                                           Command="{Binding AddToNowPlayingCommand}"
                                                           IsEnabled="{Binding SelectedTracks.Count, Converter={StaticResource CountToEnabled}, ConverterParameter=delete}" />
+                        <cimbalino:ApplicationBarMenuItem Text="now playing"
+                                                          Command="{Binding Main.NavigateToAPage, Source={StaticResource Locator}}"
+                                                          CommandParameter="/Views/NowPlayingView.xaml"/>
                     </cimbalino:ApplicationBar.MenuItems>
                 </cimbalino:ApplicationBar>
             </cimbalino:MultiApplicationBarBehavior>

@@ -7,6 +7,8 @@
                             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                             xmlns:ignore="http://www.ignore.com"
                             xmlns:mb="clr-namespace:MediaBrowser.WindowsPhone.Controls"
+                            xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+                            xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP71"
                             mc:Ignorable="d ignore"
                             d:DesignWidth="480"
                             d:DesignHeight="768"
@@ -17,6 +19,11 @@
                             Orientation="Portrait"
                             shell:SystemTray.IsVisible="True"
                             DataContext="{Binding Playlist, Source={StaticResource Locator}}">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <command:EventToCommand Command="{Binding PlaylistPageLoaded}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
 
     <Grid x:Name="LayoutRoot"
           Background="{StaticResource MediaBrowserBackground}">
@@ -31,7 +38,7 @@
                     Margin="12,17,0,28">
             <mb:MediaBrowserLogo/>
             <TextBlock x:Name="PageTitle"
-                       Text="page name"
+                       Text="now playing"
                        Margin="9,-7,0,0"
                        Style="{StaticResource PhoneTextTitle1Style}" />
         </StackPanel>
@@ -39,7 +46,33 @@
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel"
               Grid.Row="1"
-              Margin="12,0,12,0"></Grid>
+              Margin="12,0,12,0">
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Vertical"
+                            DataContext="{Binding NowPlayingItem}">
+                    <TextBlock Text="{Binding Artist}"
+                               Style="{StaticResource PhoneTextGroupHeaderStyle}"/>
+                    <TextBlock Text="{Binding Album}"
+                               Style="{StaticResource PhoneTextNormalStyle}"/>
+                    <Image Source="{Binding ImageUrl}"
+                           Height="300"
+                           Width="300"
+                           Margin="12,0,0,0"
+                           HorizontalAlignment="Left"/>
+                    <TextBlock Text="{Binding TrackName}"
+                               Style="{StaticResource PhoneTextNormalStyle}"/>
+                </StackPanel>
+                <ListBox ItemsSource="{Binding SmallList}"
+                         IsHitTestVisible="False">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding TrackName}"
+                                       Style="{StaticResource PhoneTextSmallStyle}"/>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </StackPanel>
+        </Grid>
     </Grid>
 
     <!--Sample code showing usage of ApplicationBar-->

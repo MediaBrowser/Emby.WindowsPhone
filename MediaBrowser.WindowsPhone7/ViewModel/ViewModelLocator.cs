@@ -48,6 +48,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 SimpleIoc.Default.Register<INavigationService, NavigationService>();
                 SimpleIoc.Default.Register<FolderViewModel>();
                 SimpleIoc.Default.Register<MovieViewModel>();
+                if(!SimpleIoc.Default.IsRegistered<IApplicationSettingsService>())
+                    SimpleIoc.Default.Register<IApplicationSettingsService, ApplicationSettingsDesignService>();
             }
             else
             {
@@ -69,6 +71,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                        engine.Activate();
                                                        return engine.SterlingDatabase.RegisterDatabase<PlaylistDB>();
                                                    }, true);
+
+                if (!SimpleIoc.Default.IsRegistered<IApplicationSettingsService>())
+                    SimpleIoc.Default.Register<IApplicationSettingsService, ApplicationSettingsService>();
             }
 
             SimpleIoc.Default.Register<MainViewModel>(true);
@@ -80,6 +85,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             SimpleIoc.Default.Register<SettingsViewModel>(true);
             SimpleIoc.Default.Register<MusicViewModel>(true);
             SimpleIoc.Default.Register<SearchViewModel>();
+            SimpleIoc.Default.Register<PlaylistViewModel>();
         }
 
         /// <summary>

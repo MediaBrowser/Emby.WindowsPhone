@@ -11,6 +11,7 @@ namespace MediaBrowser.Shared
         public bool IsPlaying { get; set; }
         public string TrackUrl { get; set; }
         public string MediaBrowserId { get; set; }
+        public string ImageUrl { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
     }

@@ -282,7 +282,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                  }
                 };
 
-                _logger.LogFormat("Getting episodes for Season [{0}] ({1}) of TV Show [{2}] ({3})", LogLevel.Info, SelectedTvSeries.Name, SelectedTvSeries.Id);
+                _logger.LogFormat("Getting episodes for Season [{0}] ({1}) of TV Show [{2}] ({3})", LogLevel.Info, SelectedSeason.Name, SelectedSeason.Id, SelectedTvSeries.Name, SelectedTvSeries.Id);
 
                 var episodes = await _apiClient.GetItemsAsync(query);
                 Episodes = episodes.Items.OrderBy(x => x.IndexNumber).ToList();

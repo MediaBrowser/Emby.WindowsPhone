@@ -4,14 +4,18 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using Cimbalino.Phone.Toolkit.Services;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Querying;
+using MediaBrowser.Shared;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Resources;
+using INavigationService = MediaBrowser.WindowsPhone.Model.INavigationService;
+
 #if !WP8
 using ScottIsAFool.WindowsPhone;
 using Wintellect.Sterling;
@@ -31,17 +35,19 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         private readonly ExtendedApiClient _apiClient;
         private readonly INavigationService _navigationService;
         private readonly ILog _logger;
+        private readonly IApplicationSettingsService _settingsService;
 
         private List<BaseItemDto> _artistTracks;
         private bool _gotAlbums;
         /// <summary>
         /// Initializes a new instance of the MusicViewModel class.
         /// </summary>
-        public MusicViewModel(ExtendedApiClient apiClient, INavigationService navigationService)
+        public MusicViewModel(ExtendedApiClient apiClient, INavigationService navigationService, IApplicationSettingsService applicationSettings)
         {
             _navigationService = navigationService;
             _apiClient = apiClient;
             _logger= new WPLogger(typeof(MusicViewModel));
+            _settingsService = applicationSettings;
 
             SelectedTracks = new List<BaseItemDto>();
             if (IsInDesignMode)
@@ -178,7 +184,21 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             AddToNowPlayingCommand = new RelayCommand(() =>
                                                           {
+                                                              if (!SelectedTracks.Any()) return;
 
+                                                              var currentPlaylist = _settingsService.Get(Constants.CurrentPlaylist, new List<PlaylistItem>());
+
+                                                              var i = 1;
+                                                              
+                                                              SelectedTracks.ForEach(item =>
+                                                                                         {
+                                                                                             var playlistItem = item.ToPlaylistItem(_apiClient);
+                                                                                             playlistItem.Id = currentPlaylist.Count + i;
+                                                                                             currentPlaylist.Add(playlistItem);
+                                                                                             i++;
+                                                                                         });
+
+                                                              _settingsService.Set(Constants.CurrentPlaylist, currentPlaylist);
                                                           });
 
             PlayItemsCommand = new RelayCommand(() =>

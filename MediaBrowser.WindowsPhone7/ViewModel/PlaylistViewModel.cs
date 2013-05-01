@@ -3,13 +3,14 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using Cimbalino.Phone.Toolkit.Services;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Shared;
-using MediaBrowser.WindowsPhone.DB;
 using MediaBrowser.WindowsPhone.Model;
 using Wintellect.Sterling;
+using INavigationService = MediaBrowser.WindowsPhone.Model.INavigationService;
 
 namespace MediaBrowser.WindowsPhone.ViewModel
 {
@@ -24,18 +25,20 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         private readonly ExtendedApiClient _apiClient;
         private readonly INavigationService _navigationService;
         private readonly ILog _logger;
+        private readonly IApplicationSettingsService _settingsService;
 
         private readonly ISterlingDatabaseInstance _databaseInstance;
 
         /// <summary>
         /// Initializes a new instance of the PlaylistViewModel class.
         /// </summary>
-        public PlaylistViewModel(ExtendedApiClient apiClient, INavigationService navigationService, ISterlingDatabaseInstance databaseInstance)
+        public PlaylistViewModel(ExtendedApiClient apiClient, INavigationService navigationService, ISterlingDatabaseInstance databaseInstance, IApplicationSettingsService applicationSettingsService)
         {
             _navigationService = navigationService;
             _apiClient = apiClient;
             _databaseInstance = databaseInstance;
             _logger = new WPLogger(typeof(PlaylistViewModel));
+            _settingsService = applicationSettingsService;
 
             Playlist = new ObservableCollection<PlaylistItem>();
             SelectedItems = new List<PlaylistItem>();
@@ -44,8 +47,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 Playlist = new ObservableCollection<PlaylistItem>
                                {
                                    new PlaylistItem {Artist = "John Williams", Album = "Jurassic Park OST", Id = 1, IsPlaying = true, TrackName = "Jurassic Park Theme"},
-                                   new PlaylistItem {Artist = "John Williams", Album = "Jurassic Park OST", Id = 1, IsPlaying = true, TrackName = "Journey to the Island"}
+                                   new PlaylistItem {Artist = "John Williams", Album = "Jurassic Park OST", Id = 1, IsPlaying = false, TrackName = "Journey to the Island"},
+                                   new PlaylistItem {Artist = "John Williams", Album = "Jurassic Park OST", Id = 1, IsPlaying = false, TrackName = "Incident at Isla Nublar"}
                                };
+                NowPlayingItem = Playlist[0];
             }
             else
             {
@@ -55,33 +60,24 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
         private void WireMessages()
         {
-            Messenger.Default.Register<NotificationMessage<List<PlaylistItem>>>(this, m =>
-                                                                                          {
-                                                                                              if (m.Content == null) return;
+            
+        }
 
-                                                                                              m.Content.ForEach(item => _databaseInstance.Save(item));
-
-                                                                                              GetPlaylistItems();
-                                                                                          });
+        private string GetUserAnid()
+        {
+            return new UserExtendedPropertiesService().AnonymousUserID;
         }
 
         public ObservableCollection<PlaylistItem> Playlist { get; set; }
+        public List<PlaylistItem> SmallList { get { return Playlist.Take(3).ToList(); } }
         public List<PlaylistItem> SelectedItems { get; set; }
+        public PlaylistItem NowPlayingItem { get; set; }
 
         public RelayCommand PlaylistPageLoaded
         {
             get
             {
-                return new RelayCommand(() =>
-                                            {
-                                                if (_databaseInstance == null)
-                                                {
-                                                    _logger.Log("Playlist database was null");
-                                                    return;
-                                                }
-
-                                                GetPlaylistItems();
-                                            });
+                return new RelayCommand(GetPlaylistItems);
             }
         }
 
@@ -148,18 +144,19 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
         }
 
-        
-
         private void GetPlaylistItems()
         {
-            var items = _databaseInstance.Query<PlaylistItem, int>().Select(p => p.LazyValue);
+            var items = _settingsService.Get<List<PlaylistItem>>(Constants.CurrentPlaylist);
 
             Playlist.Clear();
 
-            foreach (var item in items)
+            foreach (var item in items.Where(x => !x.IsPlaying))
             {
-                Playlist.Add(item.Value);
+                Playlist.Add(item);
             }
+
+            var nowPlaying = items.FirstOrDefault(x => x.IsPlaying);
+            if (nowPlaying != null) NowPlayingItem = nowPlaying;
         }
     }
 }

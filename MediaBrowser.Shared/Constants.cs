@@ -63,5 +63,7 @@
         public const string NoResultsMsg = "NoResultsMsg";
         public const string SearchPageLoadedMsg = "SearchPageLoadedMsg";
         public const string ChangeFilteredResultsMsg = "ChangeFilteredResultsMsg";
+        public const string SendTracksToNowPlayingMsg = "SendTracksToNowPlayingMsg";
+        public const string CurrentPlaylist = "CurrentPlaylist";
     }
 }

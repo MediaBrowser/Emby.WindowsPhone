@@ -98,9 +98,8 @@ namespace MediaBrowser.WindowsPhone.Converters
                     }
                     try
                     {
-                        if (item.Type == "Series")
-                            return apiClient.GetImageUrl(item.Id, imageOptions);
-                        return apiClient.GetImageUrl(item, imageOptions);
+                        string url = item.Type == "Series" ? apiClient.GetImageUrl(item.Id, imageOptions) : apiClient.GetImageUrl(item, imageOptions);
+                        return url;
                     }
                     catch
                     {
