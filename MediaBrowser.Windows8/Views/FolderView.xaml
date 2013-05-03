@@ -564,9 +564,15 @@
         * Row 0 contains the back button and page title
         * Row 1 contains the rest of the page layout
     -->
-    <Grid Style="{StaticResource LayoutRootStyle}">
-        <Grid x:Name="GridForBackground"
-              Background="{StaticResource MediaBrowserBackground}">
+    <Grid Style="{StaticResource LayoutRootStyle}"
+          Background="{StaticResource MediaBrowserBackground}">
+        <Grid x:Name="GridForBackground">
+            <Grid.Background>
+                <ImageBrush ImageSource="{Binding SelectedCollection, Converter={StaticResource ImageUrlConverter}, ConverterParameter=BigBackdrop}"
+                            x:Name="backgroundImage"
+                            Stretch="UniformToFill"
+                            Opacity="0.2" />
+            </Grid.Background>
             <Grid.RowDefinitions>
                 <RowDefinition Height="140" />
                 <RowDefinition Height="*" />

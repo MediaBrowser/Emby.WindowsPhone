@@ -387,9 +387,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\MediaBrowser.ApiClient.3.0.0.85-beta\lib\portable-net45+sl4+wp71+win8\MediaBrowser.ApiInteraction.Portable.dll</HintPath>
     </Reference>
-    <Reference Include="MediaBrowser.Model, Version=3.0.4866.28203, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="MediaBrowser.Model, Version=3.0.4870.42133, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MediaBrowser.Common.3.0.87\lib\portable-net4+sl4+wp7+win8\MediaBrowser.Model.dll</HintPath>
+      <HintPath>..\packages\MediaBrowser.Common.3.0.89\lib\portable-net4+sl4+wp7+win8\MediaBrowser.Model.dll</HintPath>
     </Reference>
     <Reference Include="MetroLog, Version=0.6.2.0, Culture=neutral, PublicKeyToken=ba4ace74c3b410f3, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -475,9 +475,9 @@
     <Reference Include="WinRtUtility">
       <HintPath>..\other-packages\WinRtUtility.dll</HintPath>
     </Reference>
-    <Reference Include="WinRTXamlToolkit, Version=1.3.7.5, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="WinRTXamlToolkit, Version=1.3.8.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\WinRTXamlToolkit.1.3.7.5\lib\netcore45\WinRTXamlToolkit.dll</HintPath>
+      <HintPath>..\packages\WinRTXamlToolkit.1.3.8.0\lib\netcore45\WinRTXamlToolkit.dll</HintPath>
     </Reference>
     <Reference Include="Wintellect.Sterling.Core">
       <HintPath>..\other-packages\SterlingDB-RT\Wintellect.Sterling.Core.dll</HintPath>

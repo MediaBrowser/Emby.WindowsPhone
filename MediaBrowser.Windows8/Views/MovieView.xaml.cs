@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using GalaSoft.MvvmLight.Ioc;
+﻿using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Windows8.ViewModel;
 using Windows.UI.ViewManagement;
