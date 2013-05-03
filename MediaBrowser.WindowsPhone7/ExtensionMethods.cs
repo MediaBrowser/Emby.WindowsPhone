@@ -1,4 +1,6 @@
 ﻿using System.Linq;
+using System.Windows;
+using System.Windows.Media;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Logging;
 using MediaBrowser.Shared;
@@ -45,6 +47,32 @@ namespace MediaBrowser.WindowsPhone
                            MediaBrowserId = item.Id,
                            ImageUrl = (string) new Converters.ImageUrlConverter().Convert(item, typeof(string), null, null)
                        };
+        }
+
+        public static void SetHorizontalOffset(this FrameworkElement fe, double offset)
+        {
+            var trans = new TranslateTransform()
+            {
+                X = offset
+            };
+            fe.RenderTransform = trans;
+
+            fe.Tag = new Offset()
+            {
+                Value = offset,
+                Transform = trans
+            };
+        }
+
+        public static Offset GetHorizontalOffset(this FrameworkElement fe)
+        {
+            return fe.Tag == null ? new Offset() : (Offset)fe.Tag;
+        }
+
+        public struct Offset
+        {
+            public double Value { get; set; }
+            public TranslateTransform Transform { get; set; }
         }
     }
 }

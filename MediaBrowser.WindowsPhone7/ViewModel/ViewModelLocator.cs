@@ -63,15 +63,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                 if (!SimpleIoc.Default.IsRegistered<IUserExtendedPropertiesService>())
                     SimpleIoc.Default.Register<IUserExtendedPropertiesService, UserExtendedPropertiesService>();
-
-                if (!SimpleIoc.Default.IsRegistered<ISterlingDatabaseInstance>())
-                    SimpleIoc.Default.Register(() =>
-                                                   {
-                                                       var engine = new SterlingEngine();
-                                                       engine.Activate();
-                                                       return engine.SterlingDatabase.RegisterDatabase<PlaylistDB>();
-                                                   }, true);
-
+                
                 if (!SimpleIoc.Default.IsRegistered<IApplicationSettingsService>())
                     SimpleIoc.Default.Register<IApplicationSettingsService, ApplicationSettingsService>();
             }

@@ -176,12 +176,6 @@
     </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="mscorlib.extensions" />
-    <Reference Include="Wintellect.Sterling.WindowsPhone">
-      <HintPath>..\packages\SterlingPhone.1.6.2\lib\sl3-wp\Wintellect.Sterling.WindowsPhone.dll</HintPath>
-    </Reference>
-    <Reference Include="Wintellect.Sterling.WindowsPhone.IsolatedStorage">
-      <HintPath>..\packages\SterlingPhone.1.6.2\lib\sl3-wp\Wintellect.Sterling.WindowsPhone.IsolatedStorage.dll</HintPath>
-    </Reference>
     <Reference Include="YourLastAboutDialog, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\YLAD.2.1.0\lib\wp71\YourLastAboutDialog.dll</HintPath>

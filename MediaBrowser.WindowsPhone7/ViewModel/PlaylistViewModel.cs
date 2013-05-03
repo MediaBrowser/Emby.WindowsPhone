@@ -6,10 +6,8 @@ using System.Windows.Controls;
 using Cimbalino.Phone.Toolkit.Services;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Shared;
 using MediaBrowser.WindowsPhone.Model;
-using Wintellect.Sterling;
 using INavigationService = MediaBrowser.WindowsPhone.Model.INavigationService;
 
 namespace MediaBrowser.WindowsPhone.ViewModel
@@ -27,16 +25,13 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         private readonly ILog _logger;
         private readonly IApplicationSettingsService _settingsService;
 
-        private readonly ISterlingDatabaseInstance _databaseInstance;
-
         /// <summary>
         /// Initializes a new instance of the PlaylistViewModel class.
         /// </summary>
-        public PlaylistViewModel(ExtendedApiClient apiClient, INavigationService navigationService, ISterlingDatabaseInstance databaseInstance, IApplicationSettingsService applicationSettingsService)
+        public PlaylistViewModel(ExtendedApiClient apiClient, INavigationService navigationService, IApplicationSettingsService applicationSettingsService)
         {
             _navigationService = navigationService;
             _apiClient = apiClient;
-            _databaseInstance = databaseInstance;
             _logger = new WPLogger(typeof(PlaylistViewModel));
             _settingsService = applicationSettingsService;
 
@@ -63,11 +58,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             
         }
 
-        private string GetUserAnid()
-        {
-            return new UserExtendedPropertiesService().AnonymousUserID;
-        }
-
         public ObservableCollection<PlaylistItem> Playlist { get; set; }
         public List<PlaylistItem> SmallList { get { return Playlist.Take(3).ToList(); } }
         public List<PlaylistItem> SelectedItems { get; set; }
@@ -91,7 +81,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                 
                                                 if (result == MessageBoxResult.OK)
                                                 {
-                                                    _databaseInstance.Truncate(typeof(PlaylistItem));
+                                                    _settingsService.Reset(Constants.CurrentPlaylist);
+
+                                                    GetPlaylistItems();
                                                 }
                                             });
             }
@@ -131,14 +123,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     var result = MessageBox.Show("Are you sure you wish to delete these items? This cannot be undone.", "Are you sure?", MessageBoxButton.OKCancel);
                     if (result == MessageBoxResult.OK)
                     {
-                        var temp = Playlist.TakeWhile(x => !SelectedItems.Contains(x)).ToList();
+                        var temp = Playlist.TakeWhile(x => SelectedItems.Contains(x)).ToList();
 
                         foreach (var item in temp)
                         {
-                            _databaseInstance.Delete(item);
+                            Playlist.Remove(item);
                         }
 
-                        Playlist = new ObservableCollection<PlaylistItem>(temp);
+                        _settingsService.Set(Constants.CurrentPlaylist, Playlist);
                     }
                 });
             }

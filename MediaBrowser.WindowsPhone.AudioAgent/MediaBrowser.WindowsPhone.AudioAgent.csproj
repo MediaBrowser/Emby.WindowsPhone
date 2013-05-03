@@ -51,12 +51,6 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Net" />
     <Reference Include="mscorlib.extensions" />
-    <Reference Include="Wintellect.Sterling.WindowsPhone">
-      <HintPath>..\packages\SterlingPhone.1.6.2\lib\sl3-wp\Wintellect.Sterling.WindowsPhone.dll</HintPath>
-    </Reference>
-    <Reference Include="Wintellect.Sterling.WindowsPhone.IsolatedStorage">
-      <HintPath>..\packages\SterlingPhone.1.6.2\lib\sl3-wp\Wintellect.Sterling.WindowsPhone.IsolatedStorage.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AudioPlayer.cs" />
@@ -64,7 +58,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MediaBrowser.Shared\MediaBrowser.Shared.csproj">
