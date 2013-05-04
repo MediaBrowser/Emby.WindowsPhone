@@ -6,6 +6,7 @@ using System.Windows.Controls;
 using Cimbalino.Phone.Toolkit.Services;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Shared;
 using MediaBrowser.WindowsPhone.Model;
 using INavigationService = MediaBrowser.WindowsPhone.Model.INavigationService;
@@ -42,8 +43,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 Playlist = new ObservableCollection<PlaylistItem>
                                {
                                    new PlaylistItem {Artist = "John Williams", Album = "Jurassic Park OST", Id = 1, IsPlaying = true, TrackName = "Jurassic Park Theme"},
-                                   new PlaylistItem {Artist = "John Williams", Album = "Jurassic Park OST", Id = 1, IsPlaying = false, TrackName = "Journey to the Island"},
-                                   new PlaylistItem {Artist = "John Williams", Album = "Jurassic Park OST", Id = 1, IsPlaying = false, TrackName = "Incident at Isla Nublar"}
+                                   new PlaylistItem {Artist = "John Williams", Album = "Jurassic Park OST", Id = 2, IsPlaying = false, TrackName = "Journey to the Island"},
+                                   new PlaylistItem {Artist = "John Williams", Album = "Jurassic Park OST", Id = 3, IsPlaying = false, TrackName = "Incident at Isla Nublar"}
                                };
                 NowPlayingItem = Playlist[0];
             }
@@ -55,13 +56,58 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
         private void WireMessages()
         {
-            
+            Messenger.Default.Register<NotificationMessage<List<PlaylistItem>>>(this, m =>
+                                                                                          {
+                                                                                              if (m.Notification.Equals(Constants.AddToPlaylistMsg))
+                                                                                              {
+                                                                                                  AddToPlaylist(m.Content);
+                                                                                              }
+                                                                                          });
+        }
+
+        private void AddToPlaylist(List<PlaylistItem> list)
+        {
+            if (list == null || !list.Any()) return;
+
+            var items = _settingsService.Get<List<PlaylistItem>>(Constants.CurrentPlaylist);
+
+            _logger.LogFormat("Adding {0} item(s) to the playlist", LogLevel.Info, list.Count);
+
+            list.ForEach(items.Add);
+
+            ResetTrackNumbers(list);
+
+            _settingsService.Set(Constants.CurrentPlaylist, list);
+            _settingsService.Save();
+        }
+
+        private void RemoveFromPlaylist(List<PlaylistItem> list)
+        {
+            if (list == null || !list.Any()) return;
+
+            var items = _settingsService.Get<List<PlaylistItem>>(Constants.CurrentPlaylist);
+
+            var afterRemoval = items.Where(x => !list.Contains(x)).ToList();
+
+            ResetTrackNumbers(afterRemoval);
         }
 
         public ObservableCollection<PlaylistItem> Playlist { get; set; }
-        public List<PlaylistItem> SmallList { get { return Playlist.Take(3).ToList(); } }
+        public List<PlaylistItem> SmallList
+        {
+            get
+            {
+                return Playlist.Where(x => !x.IsPlaying)
+                               .OrderBy(x => x.Id)
+                               .Take(3)
+                               .ToList();
+            }
+        }
         public List<PlaylistItem> SelectedItems { get; set; }
         public PlaylistItem NowPlayingItem { get; set; }
+
+        public bool IsInSelectionMode { get; set; }
+        public int SelectedAppBarIndex { get { return IsInSelectionMode ? 1 : 0; } }
 
         public RelayCommand PlaylistPageLoaded
         {
@@ -110,6 +156,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                             SelectedItems.Remove(item);
                         }
                     }
+                    RaisePropertyChanged(() => SelectedItems);
                 });
             }
         }
@@ -123,29 +170,36 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     var result = MessageBox.Show("Are you sure you wish to delete these items? This cannot be undone.", "Are you sure?", MessageBoxButton.OKCancel);
                     if (result == MessageBoxResult.OK)
                     {
-                        var temp = Playlist.TakeWhile(x => SelectedItems.Contains(x)).ToList();
+                        RemoveFromPlaylist(SelectedItems);
 
-                        foreach (var item in temp)
-                        {
-                            Playlist.Remove(item);
-                        }
-
-                        _settingsService.Set(Constants.CurrentPlaylist, Playlist);
+                        GetPlaylistItems();
                     }
                 });
             }
+        }
+
+        private void ResetTrackNumbers(IEnumerable<PlaylistItem> list)
+        {
+            if (list == null) return;
+
+            var i = 1;
+            foreach (var item in list)
+            {
+                item.Id = i;
+                i++;
+            }
+
+            _settingsService.Set(Constants.CurrentPlaylist, list.ToList());
+            _settingsService.Save();
         }
 
         private void GetPlaylistItems()
         {
             var items = _settingsService.Get<List<PlaylistItem>>(Constants.CurrentPlaylist);
 
-            Playlist.Clear();
+            if (items == null) return;
 
-            foreach (var item in items.Where(x => !x.IsPlaying))
-            {
-                Playlist.Add(item);
-            }
+            Playlist = new ObservableCollection<PlaylistItem>(items);
 
             var nowPlaying = items.FirstOrDefault(x => x.IsPlaying);
             if (nowPlaying != null) NowPlayingItem = nowPlaying;

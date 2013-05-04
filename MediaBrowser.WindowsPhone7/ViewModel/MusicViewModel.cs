@@ -18,8 +18,6 @@ using INavigationService = MediaBrowser.WindowsPhone.Model.INavigationService;
 
 #if !WP8
 using ScottIsAFool.WindowsPhone;
-using Wintellect.Sterling;
-
 #endif
 
 namespace MediaBrowser.WindowsPhone.ViewModel
@@ -193,12 +191,19 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                               SelectedTracks.ForEach(item =>
                                                                                          {
                                                                                              var playlistItem = item.ToPlaylistItem(_apiClient);
-                                                                                             playlistItem.Id = currentPlaylist.Count + i;
+                                                                                             if (i == 1) playlistItem.IsPlaying = true;
+                                                                                             playlistItem.Id = currentPlaylist.Count + 1;
                                                                                              currentPlaylist.Add(playlistItem);
                                                                                              i++;
                                                                                          });
 
+                                                              App.ShowMessage("", string.Format("{0} tracks added successfully", SelectedTracks.Count));
+
                                                               _settingsService.Set(Constants.CurrentPlaylist, currentPlaylist);
+
+                                                              SelectedTracks = new List<BaseItemDto>();
+
+                                                              IsInSelectionMode = false;
                                                           });
 
             PlayItemsCommand = new RelayCommand(() =>

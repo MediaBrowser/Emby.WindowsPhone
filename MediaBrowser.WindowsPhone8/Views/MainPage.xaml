@@ -65,6 +65,9 @@
                 <cimbalino:ApplicationBarBehavior.MenuItems>
                     <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.MainAppBarRefreshInformation, Source={StaticResource LocalizedStrings}}"
                                                       Command="{Binding RefreshDataCommand}" />
+                    <cimbalino:ApplicationBarMenuItem Text="now playing"
+                                                      Command="{Binding Main.NavigateToAPage, Source={StaticResource Locator}}"
+                                                      CommandParameter="/Views/NowPlayingView.xaml" />
                     <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.MainAppBarChangeProfile, Source={StaticResource LocalizedStrings}}"
                                                       Command="{Binding ChangeProfileCommand}" />
                     <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.Settings, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringCaseConverter}}"

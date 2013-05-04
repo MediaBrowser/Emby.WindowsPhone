@@ -124,6 +124,9 @@
     <Compile Include="..\MediaBrowser.WindowsPhone7\Converters\LoggedInDateConverter.cs">
       <Link>Converters\LoggedInDateConverter.cs</Link>
     </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone7\Converters\NowPlayingConverter.cs">
+      <Link>Converters\NowPlayingConverter.cs</Link>
+    </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone7\Converters\PinnedItemConverter.cs">
       <Link>Converters\PinnedItemConverter.cs</Link>
     </Compile>
@@ -141,9 +144,6 @@
     </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone7\Converters\TicksToTimespanConverter.cs">
       <Link>Converters\TicksToTimespanConverter.cs</Link>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\DB\PlaylistDB.cs">
-      <Link>DB\PlaylistDB.cs</Link>
     </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone7\ExtensionMethods.cs">
       <Link>ExtensionMethods.cs</Link>
@@ -244,6 +244,10 @@
     <Compile Include="..\MediaBrowser.WindowsPhone7\Views\FolderView.xaml.cs">
       <Link>Views\FolderView.xaml.cs</Link>
       <DependentUpon>FolderView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone7\Views\FullPlaylistView.xaml.cs">
+      <Link>Views\FullPlaylistView.xaml.cs</Link>
+      <DependentUpon>FullPlaylistView.xaml</DependentUpon>
     </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone7\Views\MainPage.xaml.cs">
       <Link>Views\MainPage.xaml.cs</Link>
@@ -367,6 +371,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\FullPlaylistView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -446,6 +454,7 @@
     </Content>
     <Content Include="Content\About\Data.xml" />
     <Content Include="Icons\appbar.back.rest.png" />
+    <Content Include="Icons\appbar.delete.rest.png" />
     <Content Include="Icons\appbar.group.png" />
     <Content Include="Icons\appbar.list.check.png" />
     <Content Include="Icons\appbar.next.rest.png" />
@@ -494,13 +503,13 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\MvvmLightLibs.4.1.27.0\lib\WindowsPhone8\GalaSoft.MvvmLight.WP8.dll</HintPath>
     </Reference>
-    <Reference Include="MediaBrowser.ApiInteraction.Portable, Version=3.0.4865.18835, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="MediaBrowser.ApiInteraction.Portable, Version=3.0.4871.40038, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MediaBrowser.ApiClient.3.0.0.85-beta\lib\portable-net45+sl4+wp71+win8\MediaBrowser.ApiInteraction.Portable.dll</HintPath>
+      <HintPath>..\packages\MediaBrowser.ApiClient.3.0.0.91-beta\lib\portable-net45+sl4+wp71+win8\MediaBrowser.ApiInteraction.Portable.dll</HintPath>
     </Reference>
-    <Reference Include="MediaBrowser.Model, Version=3.0.4870.42133, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="MediaBrowser.Model, Version=3.0.4871.39973, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MediaBrowser.Common.3.0.89\lib\portable-net4+sl4+wp7+win8\MediaBrowser.Model.dll</HintPath>
+      <HintPath>..\packages\MediaBrowser.Common.3.0.91\lib\portable-net4+sl4+wp7+win8\MediaBrowser.Model.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Phone.Controls.Toolkit">
       <HintPath>..\packages\WPtoolkit.4.2012.10.30\lib\wp8\Microsoft.Phone.Controls.Toolkit.dll</HintPath>

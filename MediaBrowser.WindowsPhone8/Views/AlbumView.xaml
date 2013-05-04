@@ -72,6 +72,7 @@
                     <cimbalino:ApplicationBar.MenuItems>
                         <cimbalino:ApplicationBarMenuItem Text="add to now playing"
                                                           Command="{Binding AddToNowPlayingCommand}"
+                                                          CommandParameter="{Binding SelectedItems, ElementName=MultiSelectList}"
                                                           IsEnabled="{Binding SelectedTracks.Count, Converter={StaticResource CountToEnabled}, ConverterParameter=delete}" />
                         <cimbalino:ApplicationBarMenuItem Text="now playing"
                                                           Command="{Binding Main.NavigateToAPage, Source={StaticResource Locator}}"
@@ -117,6 +118,7 @@
                                     Margin="0,0,0,12">
                             <delay:PlaceImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
                                               Background="{Binding Converter={StaticResource RandomColour}}"
+                                              VerticalAlignment="Top"
                                               Height="150"
                                               Width="150" />
                             <StackPanel Orientation="Vertical"
@@ -138,7 +140,7 @@
                 <toolkit:LongListMultiSelector.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal"
-                                    Margin="-28,12,0,0">
+                                    Margin="0,0,0,6">
                             <c4f:RoundButton ImageSource="/Icons/appbar.transport.play.rest.png"
                                              Margin="-6,0,0,0" />
                             <StackPanel Orientation="Vertical"

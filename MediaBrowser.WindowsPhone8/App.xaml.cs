@@ -147,6 +147,8 @@ namespace MediaBrowser.WindowsPhone
                 Debugger.Break();
             }
 
+            App.ShowMessage("", "Nuts, something broke. Could you let the developer know please.");
+
             _logger.Log(e.ExceptionObject.Message, LogLevel.Fatal);
             _logger.Log(e.ExceptionObject.StackTrace, LogLevel.Fatal);
 
