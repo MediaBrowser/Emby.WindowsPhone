@@ -74,7 +74,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             SimpleIoc.Default.Register<SettingsViewModel>(true);
             SimpleIoc.Default.Register<MusicViewModel>(true);
             SimpleIoc.Default.Register<SearchViewModel>();
-            SimpleIoc.Default.Register<PlaylistViewModel>();
+            SimpleIoc.Default.Register<PlaylistViewModel>(true);
         }
 
         /// <summary>

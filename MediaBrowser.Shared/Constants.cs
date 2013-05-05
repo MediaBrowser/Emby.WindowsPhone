@@ -66,5 +66,6 @@
         public const string SendTracksToNowPlayingMsg = "SendTracksToNowPlayingMsg";
         public const string CurrentPlaylist = "CurrentPlaylist";
         public const string AddToPlaylistMsg = "AddToPlaylistMsg";
+        public const string SetPlaylistAsMsg = "SetPlaylistAsMsg";
     }
 }

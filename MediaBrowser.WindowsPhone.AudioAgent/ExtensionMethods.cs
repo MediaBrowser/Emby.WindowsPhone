@@ -16,7 +16,7 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
             result.Title = playlistItem.TrackName;
             result.Artist = playlistItem.Artist;
             result.Album = playlistItem.Album;
-            result.AlbumArt = new Uri(playlistItem.ImageUrl, UriKind.Absolute);
+            result.AlbumArt = !string.IsNullOrEmpty(playlistItem.ImageUrl) ? new Uri(playlistItem.ImageUrl, UriKind.Absolute) : null;
 
             result.EndEdit();
 

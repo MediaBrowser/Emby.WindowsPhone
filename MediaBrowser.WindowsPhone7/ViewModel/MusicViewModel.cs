@@ -150,13 +150,19 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                             {
                                                                 SelectedAlbum = album;
                                                                 AlbumTracks = _artistTracks.Where(x => x.ParentId == SelectedAlbum.Id)
-                                                                                          .OrderBy(x => x.IndexNumber)
-                                                                                          .ToList();
+                                                                                           .OrderBy(x => x.IndexNumber)
+                                                                                           .ToList();
                                                             });
 
             AlbumPlayTapped = new RelayCommand<BaseItemDto>(album =>
                                                                 {
+                                                                    var albumTracks = _artistTracks.Where(x => x.ParentId == album.Id)
+                                                                                                   .OrderBy(x => x.IndexNumber)
+                                                                                                   .ToList();
 
+                                                                    var newList = ConvertTracks(albumTracks);
+
+                                                                    Messenger.Default.Send(new NotificationMessage<List<PlaylistItem>>(newList, Constants.SetPlaylistAsMsg));
                                                                 });
 
             SelectionChangedCommand = new RelayCommand<SelectionChangedEventArgs>(args =>
@@ -184,30 +190,22 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                           {
                                                               if (!SelectedTracks.Any()) return;
 
-                                                              var newList = new List<PlaylistItem>();
-
-                                                              var i = 1;
-                                                              
-                                                              SelectedTracks.ForEach(item =>
-                                                                                         {
-                                                                                             var playlistItem = item.ToPlaylistItem(_apiClient);
-                                                                                             if (i == 1) playlistItem.IsPlaying = true;
-                                                                                             newList.Add(playlistItem);
-                                                                                             i++;
-                                                                                         });
+                                                              var newList = ConvertTracks(SelectedTracks);
 
                                                               Messenger.Default.Send(new NotificationMessage<List<PlaylistItem>>(newList, Constants.AddToPlaylistMsg));
 
                                                               SelectedTracks = new List<BaseItemDto>();
                                                               
-                                                              App.ShowMessage("", string.Format("{0} tracks added successfully", SelectedTracks.Count));
+                                                              App.ShowMessage("", string.Format("{0} tracks added successfully", newList.Count));
 
                                                               IsInSelectionMode = false;
                                                           });
 
             PlayItemsCommand = new RelayCommand(() =>
                                                     {
+                                                        var newList = ConvertTracks(SelectedTracks);
 
+                                                        Messenger.Default.Send(new NotificationMessage<List<PlaylistItem>>(newList, Constants.SetPlaylistAsMsg));
                                                     });
         }
 
@@ -242,6 +240,18 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 SortedTracks = Utils.GroupArtistTracks(_artistTracks);
             }
+        }
+
+        private List<PlaylistItem> ConvertTracks(List<BaseItemDto> list)
+        {
+            var newList = new List<PlaylistItem>();
+            list.ForEach(item =>
+                             {
+                                 var playlistItem = item.ToPlaylistItem(_apiClient);
+                                 newList.Add(playlistItem);
+                             });
+
+            return newList;
         }
 
         private async Task<bool> GetArtistTracks()

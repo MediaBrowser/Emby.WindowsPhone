@@ -26,6 +26,11 @@ namespace MediaBrowser.WindowsPhone.Model
         {
         }
 
+        public void Refresh()
+        {
+            
+        }
+
         public bool IsDirty { get; private set; }
     }
 }

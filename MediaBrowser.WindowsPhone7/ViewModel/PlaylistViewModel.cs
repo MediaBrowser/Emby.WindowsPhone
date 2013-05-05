@@ -9,6 +9,7 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Shared;
 using MediaBrowser.WindowsPhone.Model;
+using Microsoft.Phone.BackgroundAudio;
 using INavigationService = MediaBrowser.WindowsPhone.Model.INavigationService;
 
 namespace MediaBrowser.WindowsPhone.ViewModel
@@ -24,7 +25,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         private readonly ExtendedApiClient _apiClient;
         private readonly INavigationService _navigationService;
         private readonly ILog _logger;
-        private readonly IApplicationSettingsService _settingsService;
+        private IApplicationSettingsService _settingsService;
 
         /// <summary>
         /// Initializes a new instance of the PlaylistViewModel class.
@@ -62,6 +63,18 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                                                               {
                                                                                                   AddToPlaylist(m.Content);
                                                                                               }
+
+                                                                                              if (m.Notification.Equals(Constants.SetPlaylistAsMsg))
+                                                                                              {
+                                                                                                  _settingsService.Reset(Constants.CurrentPlaylist);
+
+                                                                                                  AddToPlaylist(m.Content);
+
+                                                                                                  _navigationService.NavigateTo("/Views/NowPlayingView.xaml");
+
+                                                                                                  if(BackgroundAudioPlayer.Instance.PlayerState != PlayState.Playing)
+                                                                                                      BackgroundAudioPlayer.Instance.Play();
+                                                                                              }
                                                                                           });
         }
 
@@ -69,16 +82,13 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             if (list == null || !list.Any()) return;
 
-            var items = _settingsService.Get<List<PlaylistItem>>(Constants.CurrentPlaylist);
+            var items = _settingsService.Get<List<PlaylistItem>>(Constants.CurrentPlaylist) ?? new List<PlaylistItem>();
 
             _logger.LogFormat("Adding {0} item(s) to the playlist", LogLevel.Info, list.Count);
 
             list.ForEach(items.Add);
 
-            ResetTrackNumbers(list);
-
-            _settingsService.Set(Constants.CurrentPlaylist, list);
-            _settingsService.Save();
+            ResetTrackNumbers(items);
         }
 
         private void RemoveFromPlaylist(List<PlaylistItem> list)
@@ -197,6 +207,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
         private void GetPlaylistItems()
         {
+            _settingsService = new ApplicationSettingsService();
+
             var items = _settingsService.Get<List<PlaylistItem>>(Constants.CurrentPlaylist);
 
             if (items == null) return;
@@ -206,5 +218,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             var nowPlaying = items.FirstOrDefault(x => x.IsPlaying);
             if (nowPlaying != null) NowPlayingItem = nowPlaying;
         }
+
+        
     }
 }

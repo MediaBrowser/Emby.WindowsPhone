@@ -11,7 +11,7 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
     public class AudioPlayer : AudioPlayerAgent
     {
         private static volatile bool _classInitialized;
-        private readonly IApplicationSettingsService _settingsService;
+        private IApplicationSettingsService _settingsService;
 
         /// <remarks>
         /// AudioPlayer instances can share the same process. 
@@ -20,6 +20,8 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
         /// </remarks>
         public AudioPlayer()
         {
+            _settingsService = new ApplicationSettingsService();
+
             if (!_classInitialized)
             {
                 _classInitialized = true;
@@ -28,7 +30,6 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
                 {
                     Application.Current.UnhandledException += AudioPlayer_UnhandledException;
                 });
-                _settingsService = new ApplicationSettingsService();
             }
         }
 
@@ -162,6 +163,8 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
         /// <returns>an instance of AudioTrack, or null if the playback is completed</returns>
         private AudioTrack GetNextTrack()
         {
+            GetLatestIsoStorage();
+
             AudioTrack track = null;
 
             var items = _settingsService.Get<List<PlaylistItem>>(Constants.CurrentPlaylist);
@@ -205,6 +208,8 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
         /// <returns>an instance of AudioTrack, or null if previous track is not allowed</returns>
         private AudioTrack GetPreviousTrack()
         {
+            GetLatestIsoStorage();
+
             AudioTrack track = null;
 
             var items = _settingsService.Get<List<PlaylistItem>>(Constants.CurrentPlaylist);
@@ -233,6 +238,11 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
             // specify the track
 
             return track;
+        }
+
+        private void GetLatestIsoStorage()
+        {
+            _settingsService = new ApplicationSettingsService();
         }
 
         /// <summary>
