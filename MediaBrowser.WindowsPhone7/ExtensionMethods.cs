@@ -45,7 +45,7 @@ namespace MediaBrowser.WindowsPhone
                            TrackName = item.Name,
                            TrackUrl = streamUrl,
                            MediaBrowserId = item.Id,
-                           ImageUrl = (string) new Converters.ImageUrlConverter().Convert(item, typeof(string), null, null)
+                           ImageUrl = (string) new Converters.ImageUrlConverter().Convert(item, typeof(string), null, null),
                        };
         }
 

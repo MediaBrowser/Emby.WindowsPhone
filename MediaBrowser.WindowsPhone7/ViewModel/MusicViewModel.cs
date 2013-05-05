@@ -184,7 +184,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                           {
                                                               if (!SelectedTracks.Any()) return;
 
-                                                              var currentPlaylist = _settingsService.Get(Constants.CurrentPlaylist, new List<PlaylistItem>());
+                                                              var newList = new List<PlaylistItem>();
 
                                                               var i = 1;
                                                               
@@ -192,16 +192,15 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                                                          {
                                                                                              var playlistItem = item.ToPlaylistItem(_apiClient);
                                                                                              if (i == 1) playlistItem.IsPlaying = true;
-                                                                                             playlistItem.Id = currentPlaylist.Count + 1;
-                                                                                             currentPlaylist.Add(playlistItem);
+                                                                                             newList.Add(playlistItem);
                                                                                              i++;
                                                                                          });
 
-                                                              App.ShowMessage("", string.Format("{0} tracks added successfully", SelectedTracks.Count));
-
-                                                              _settingsService.Set(Constants.CurrentPlaylist, currentPlaylist);
+                                                              Messenger.Default.Send(new NotificationMessage<List<PlaylistItem>>(newList, Constants.AddToPlaylistMsg));
 
                                                               SelectedTracks = new List<BaseItemDto>();
+                                                              
+                                                              App.ShowMessage("", string.Format("{0} tracks added successfully", SelectedTracks.Count));
 
                                                               IsInSelectionMode = false;
                                                           });

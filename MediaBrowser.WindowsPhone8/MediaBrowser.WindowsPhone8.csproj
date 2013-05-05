@@ -332,6 +332,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Content Include="..\MediaBrowser.WindowsPhone7\Images\DefaultAlbumCase.png">
+      <Link>Images\DefaultAlbumCase.png</Link>
+    </Content>
+    <Content Include="..\MediaBrowser.WindowsPhone7\Images\DefaultVideo.png">
+      <Link>Images\DefaultVideo.png</Link>
+    </Content>
     <Content Include="..\MediaBrowser.WindowsPhone7\Images\Play128.png">
       <Link>Images\Play128.png</Link>
     </Content>

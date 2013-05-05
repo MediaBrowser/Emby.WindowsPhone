@@ -79,11 +79,12 @@
                         Command="{Binding Main.PlayMovieCommand, Source={StaticResource Locator}}"
                         CommandParameter="{Binding SelectedMovie}">
                     <Grid>
-                        <Image Source="{Binding SelectedMovie, Converter={StaticResource ImageUrlConverter}, ConverterParameter=poster}"
-                               Height="450"
-                               HorizontalAlignment="Left"
-                               VerticalAlignment="Top"
-                               Margin="12,0,0,0" />
+                        <delay:PlaceImage Source="{Binding SelectedMovie, Converter={StaticResource ImageUrlConverter}, ConverterParameter=poster}"
+                                          PlaceholderSource="/Images/DefaultVideo.png"
+                                          Height="450"
+                                          HorizontalAlignment="Left"
+                                          VerticalAlignment="Top"
+                                          Margin="12,0,0,0" />
                         <controls1:RoundButton ImageSource="/Icons/appbar.transport.play.rest.png"
                                                IsHitTestVisible="False"
                                                HorizontalAlignment="Center"

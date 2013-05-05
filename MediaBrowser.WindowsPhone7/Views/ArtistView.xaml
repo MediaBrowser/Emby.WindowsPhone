@@ -71,7 +71,8 @@
             <!--ContentPanel - place additional content here-->
             <Grid x:Name="ContentPanel"
                   Grid.Row="1">
-                <controls:Pivot Title="{Binding SelectedArtist.Name, Converter={StaticResource StringCaseConverter}, ConverterParameter=false}">
+                <controls:Pivot Title="{Binding SelectedArtist.Name, Converter={StaticResource StringCaseConverter}, ConverterParameter=false}"
+                                x:Name="MainPivot">
                     <controls:PivotItem Header="albums">
                         <scott:PhoneListBox ItemsSource="{Binding Albums}">
                             <scott:PhoneListBox.ItemTemplate>
@@ -90,7 +91,7 @@
                                                 <delay:PlaceImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
                                                                   Height="150"
                                                                   Width="150"
-                                                                  Background="{Binding Converter={StaticResource RandomColour}}" />
+                                                                  PlaceholderSource="/Images/DefaultAlbumCase.png" />
                                                 <c4f:RoundButton ImageSource="/Icons/appbar.transport.play.rest.png"
                                                                  HorizontalAlignment="Center"
                                                                  VerticalAlignment="Center"

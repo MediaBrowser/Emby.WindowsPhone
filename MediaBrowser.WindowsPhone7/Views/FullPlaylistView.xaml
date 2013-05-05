@@ -11,6 +11,7 @@
                             xmlns:converters="clr-namespace:MediaBrowser.WindowsPhone.Converters"
                             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
                             xmlns:cimbalino="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
+                            xmlns:controls="clr-namespace:ScottIsAFool.WindowsPhone.Controls;assembly=ScottIsAFool.WindowsPhone"
                             mc:Ignorable="d ignore"
                             FontFamily="{StaticResource PhoneFontFamilyNormal}"
                             FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -81,12 +82,11 @@
               Grid.Row="1"
               Margin="12,0,12,0">
 
-            <toolkit:LongListMultiSelector ItemsSource="{Binding Playlist}"
-                                           IsGroupingEnabled="False"
+            <controls:PhoneMultiListBox ItemsSource="{Binding Playlist}"
                                            HorizontalContentAlignment="Left"
                                            x:Name="PlaylistSelector"
                                            IsSelectionEnabled="{Binding IsInSelectionMode, Mode=TwoWay}">
-                <toolkit:LongListMultiSelector.ItemTemplate>
+                <controls:PhoneMultiListBox.ItemTemplate>
                     <DataTemplate>
                         <Grid HorizontalAlignment="Left"
                               Margin="-12,0,0,0">
@@ -98,8 +98,8 @@
                             </TextBlock>
                         </Grid>
                     </DataTemplate>
-                </toolkit:LongListMultiSelector.ItemTemplate>
-            </toolkit:LongListMultiSelector>
+                </controls:PhoneMultiListBox.ItemTemplate>
+            </controls:PhoneMultiListBox>
         </Grid>
 
         <!--Uncomment to see an alignment grid to help ensure your controls are

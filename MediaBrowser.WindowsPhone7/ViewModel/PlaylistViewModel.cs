@@ -172,6 +172,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     {
                         RemoveFromPlaylist(SelectedItems);
 
+                        IsInSelectionMode = false;
+
                         GetPlaylistItems();
                     }
                 });

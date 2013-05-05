@@ -428,6 +428,8 @@
     <Content Include="Icons\appbar.star.minus.png" />
     <Content Include="Icons\appbar.star.png" />
     <Content Include="Icons\appbar.transport.play.rest.png" />
+    <Content Include="Images\DefaultAlbumCase.png" />
+    <Content Include="Images\DefaultVideo.png" />
     <Content Include="Images\default_avatar.png" />
     <Content Include="Images\Logo.png" />
     <Content Include="Images\Play128.png" />

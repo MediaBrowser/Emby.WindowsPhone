@@ -22,54 +22,24 @@ namespace MediaBrowser.WindowsPhone.Views
         {
             InitializeComponent();
 
-            Loaded += async (sender, args) =>
-                                {
-                                    var client = new GZipWebClient();
+            Loaded += (sender, args) =>
+                          {
+                              var item = (DataContext as MusicViewModel).SelectedArtist;
 
-                                    var item = (DataContext as MusicViewModel).SelectedArtist;
+                              var url = (string)
+                                        new Converters.ImageUrlConverter().
+                                            Convert(item, typeof (string), "primary", null);
 
-                                    if (item.ProviderIds == null || !item.ProviderIds.ContainsKey("Musicbrainz")) return;
-
-                                    var musicBrainzId = item.ProviderIds["Musicbrainz"];
-
-                                    if (string.IsNullOrEmpty(musicBrainzId)) return;
-
-                                    const string urlFormat = "http://api.fanart.tv/webservice/artist/{0}/{1}/json/artistthumb/1/1/";
-
-                                    var url = string.Format(urlFormat, Constants.FanArtApiKey, musicBrainzId /*"e6de1f3b-6484-491c-88dd-6d619f142abc"*/);
-
-                                    try
-                                    {
-                                        var json = await client.DownloadStringTaskAsync(url);
-
-                                        if (string.IsNullOrEmpty(json)) return;
-
-                                        var images = JObject.Parse(json);
-
-                                        var artist = images.First;
-
-                                        var artistInfo = artist.First;
-
-                                        var imageItems = (JArray)artistInfo["artistthumb"];
-
-                                        if (!imageItems.Any()) return;
-
-                                        var imageUrl = imageItems[0]["url"].ToString();
-
-                                        if (string.IsNullOrEmpty(imageUrl)) return;
-
-                                        GridForBackground.Background = new ImageBrush
-                                                                           {
-                                                                               Stretch = Stretch.UniformToFill,
-                                                                               Opacity = 0.2,
-                                                                               ImageSource = new BitmapImage(new Uri(imageUrl))
-                                                                           };
-                                    }
-                                    catch
-                                    {
-                                        var v = "";
-                                    }
-                                };
+                              if (!string.IsNullOrEmpty(url))
+                              {
+                                  MainPivot.Background = new ImageBrush
+                                                             {
+                                                                 Stretch = Stretch.UniformToFill,
+                                                                 Opacity = 0.2,
+                                                                 ImageSource = new BitmapImage(new Uri(url))
+                                                             };
+                              }
+                          };
         }
     }
 }
