@@ -8,6 +8,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Shared;
+using MediaBrowser.WindowsPhone.AudioAgent;
 using MediaBrowser.WindowsPhone.Model;
 using Microsoft.Phone.BackgroundAudio;
 using INavigationService = MediaBrowser.WindowsPhone.Model.INavigationService;
@@ -25,17 +26,17 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         private readonly ExtendedApiClient _apiClient;
         private readonly INavigationService _navigationService;
         private readonly ILog _logger;
-        private IApplicationSettingsService _settingsService;
+        private readonly PlaylistHelper _playlistHelper;
 
         /// <summary>
         /// Initializes a new instance of the PlaylistViewModel class.
         /// </summary>
-        public PlaylistViewModel(ExtendedApiClient apiClient, INavigationService navigationService, IApplicationSettingsService applicationSettingsService)
+        public PlaylistViewModel(ExtendedApiClient apiClient, INavigationService navigationService, IStorageService storageService)
         {
             _navigationService = navigationService;
             _apiClient = apiClient;
             _logger = new WPLogger(typeof(PlaylistViewModel));
-            _settingsService = applicationSettingsService;
+            _playlistHelper = new PlaylistHelper(storageService);
 
             Playlist = new ObservableCollection<PlaylistItem>();
             SelectedItems = new List<PlaylistItem>();
@@ -66,7 +67,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                                                                                               if (m.Notification.Equals(Constants.SetPlaylistAsMsg))
                                                                                               {
-                                                                                                  _settingsService.Reset(Constants.CurrentPlaylist);
+                                                                                                  _playlistHelper.ClearPlaylist();
 
                                                                                                   AddToPlaylist(m.Content);
 
@@ -82,7 +83,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             if (list == null || !list.Any()) return;
 
-            var items = _settingsService.Get<List<PlaylistItem>>(Constants.CurrentPlaylist) ?? new List<PlaylistItem>();
+            var items = _playlistHelper.GetPlaylist();
 
             _logger.LogFormat("Adding {0} item(s) to the playlist", LogLevel.Info, list.Count);
 
@@ -95,7 +96,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             if (list == null || !list.Any()) return;
 
-            var items = _settingsService.Get<List<PlaylistItem>>(Constants.CurrentPlaylist);
+            var items = _playlistHelper.GetPlaylist();
 
             var afterRemoval = items.Where(x => !list.Contains(x)).ToList();
 
@@ -137,7 +138,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                 
                                                 if (result == MessageBoxResult.OK)
                                                 {
-                                                    _settingsService.Reset(Constants.CurrentPlaylist);
+                                                    _playlistHelper.ClearPlaylist();
 
                                                     GetPlaylistItems();
                                                 }
@@ -201,15 +202,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 i++;
             }
 
-            _settingsService.Set(Constants.CurrentPlaylist, list.ToList());
-            _settingsService.Save();
+            _playlistHelper.SavePlaylist(list.ToList());
         }
 
         private void GetPlaylistItems()
         {
-            _settingsService = new ApplicationSettingsService();
-
-            var items = _settingsService.Get<List<PlaylistItem>>(Constants.CurrentPlaylist);
+            var items = _playlistHelper.GetPlaylist();
 
             if (items == null) return;
 

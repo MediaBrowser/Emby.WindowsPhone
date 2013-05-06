@@ -11,7 +11,7 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
     public class AudioPlayer : AudioPlayerAgent
     {
         private static volatile bool _classInitialized;
-        private IApplicationSettingsService _settingsService;
+        private PlaylistHelper _playlistHelper;
 
         /// <remarks>
         /// AudioPlayer instances can share the same process. 
@@ -20,7 +20,7 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
         /// </remarks>
         public AudioPlayer()
         {
-            _settingsService = new ApplicationSettingsService();
+            _playlistHelper = new PlaylistHelper(new StorageService());
 
             if (!_classInitialized)
             {
@@ -163,32 +163,32 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
         /// <returns>an instance of AudioTrack, or null if the playback is completed</returns>
         private AudioTrack GetNextTrack()
         {
-            GetLatestIsoStorage();
-
             AudioTrack track = null;
 
-            var items = _settingsService.Get<List<PlaylistItem>>(Constants.CurrentPlaylist);
+            var items = _playlistHelper.GetPlaylist();
 
             if (items == null || !items.Any()) return track;
 
             var currentTrack = items.FirstOrDefault(x => x.IsPlaying);
 
+            PlaylistItem nextTrack;
+
             if (currentTrack == default(PlaylistItem))
             {
-                currentTrack = items.FirstOrDefault();
-                track = currentTrack.ToAudioTrack();
+                nextTrack = items.FirstOrDefault();
             }
             else
             {
-                track = currentTrack.Id == items.Count ? items.FirstOrDefault().ToAudioTrack() : (items[currentTrack.Id + 1]).ToAudioTrack();
+                nextTrack = currentTrack.Id == items.Count ? items.FirstOrDefault() : (items[currentTrack.Id + 1]);
             }
+
+            track = nextTrack.ToAudioTrack();
 
             SetAllItemsToNotPlaying(items);
 
             items.FirstOrDefault(x => x.Id == currentTrack.Id).IsPlaying = true;
 
-            _settingsService.Set(Constants.CurrentPlaylist, items);
-            _settingsService.Save();
+            _playlistHelper.SavePlaylist(items);
 
             // specify the track
 
@@ -208,41 +208,36 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
         /// <returns>an instance of AudioTrack, or null if previous track is not allowed</returns>
         private AudioTrack GetPreviousTrack()
         {
-            GetLatestIsoStorage();
-
             AudioTrack track = null;
 
-            var items = _settingsService.Get<List<PlaylistItem>>(Constants.CurrentPlaylist);
+            var items = _playlistHelper.GetPlaylist();
 
             if (items == null || !items.Any()) return track;
 
             var currentTrack = items.FirstOrDefault(x => x.IsPlaying);
 
+            PlaylistItem nextTrack;
+
             if (currentTrack == default(PlaylistItem))
             {
-                currentTrack = items.LastOrDefault();
-                track = currentTrack.ToAudioTrack();
+                nextTrack = items.LastOrDefault();
             }
             else
             {
-                track = currentTrack.Id - 1 == 0 ? items.LastOrDefault().ToAudioTrack() : (items[currentTrack.Id - 1]).ToAudioTrack();
+                nextTrack = currentTrack.Id - 1 == 0 ? items.LastOrDefault() : (items[currentTrack.Id - 1]);
             }
+
+            track = nextTrack.ToAudioTrack();
 
             SetAllItemsToNotPlaying(items);
 
-            items.FirstOrDefault(x => x.Id == currentTrack.Id).IsPlaying = true;
+            items.FirstOrDefault(x => x.Id == nextTrack.Id).IsPlaying = true;
 
-            _settingsService.Set(Constants.CurrentPlaylist, items);
-            _settingsService.Save();
+            _playlistHelper.SavePlaylist(items);
 
             // specify the track
 
             return track;
-        }
-
-        private void GetLatestIsoStorage()
-        {
-            _settingsService = new ApplicationSettingsService();
         }
 
         /// <summary>
