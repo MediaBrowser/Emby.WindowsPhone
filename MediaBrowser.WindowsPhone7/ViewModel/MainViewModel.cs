@@ -2,6 +2,7 @@
 using System.Windows;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
+using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Querying;
 using MediaBrowser.WindowsPhone.Model;
@@ -316,7 +317,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 var query = new ItemQuery
                 {
                     UserId = App.Settings.LoggedInUser.Id,
-                    Fields = new[] { ItemFields.ItemCounts, }
+                    Fields = new[] { ItemFields.ItemCounts, },
+                    SortOrder = SortOrder.Ascending,
+                    SortBy = new[]{ItemSortBy.SortName}
                 };
 
                 var item = await _apiClient.GetItemsAsync(query);

@@ -69,6 +69,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AudioSharedLibrary\AudioSharedLibrary.csproj">
+      <Project>{49716E9D-F1AE-4ECF-9ED6-557BC424DBD3}</Project>
+      <Name>AudioSharedLibrary</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MediaBrowser.Shared\MediaBrowser.Shared.csproj">
       <Project>{2D3D6DCD-C00F-4E40-AF44-8975A2DF87A3}</Project>
       <Name>MediaBrowser.Shared</Name>

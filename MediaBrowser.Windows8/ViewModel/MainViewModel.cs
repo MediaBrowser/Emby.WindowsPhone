@@ -221,7 +221,9 @@ namespace MediaBrowser.Windows8.ViewModel
             {
                 var query = new ItemQuery
                                 {
-                                    UserId = App.Settings.LoggedInUser.Id
+                                    UserId = App.Settings.LoggedInUser.Id,
+                                    SortOrder = SortOrder.Ascending,
+                                    SortBy = new[] { ItemSortBy.SortName }
                                 };
 
                 _logger.Info("Getting collections for [{0}]", App.Settings.LoggedInUser.Name);
