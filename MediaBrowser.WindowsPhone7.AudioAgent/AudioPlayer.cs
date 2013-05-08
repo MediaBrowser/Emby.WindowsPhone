@@ -64,7 +64,7 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
             switch (playState)
             {
                 case PlayState.TrackEnded:
-                    player.Track = GetPreviousTrack();
+                    player.Track = GetNextTrack();
                     break;
                 case PlayState.TrackReady:
                     player.Play();

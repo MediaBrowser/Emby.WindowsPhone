@@ -70,6 +70,9 @@
                 <StackPanel>
                     <CheckBox Content="Show trailers in recent items"
                               IsChecked="{Binding IncludeTrailersInRecent, Source={StaticResource SpecificSettings}, Mode=TwoWay}" />
+                    <toolkit:ListPicker ItemsSource="{Binding GroupByItems}"
+                                        SelectedItem="{Binding DefaultGroupBy, Source={StaticResource SpecificSettings}, Mode=TwoWay}"
+                                        Header="Default grouping"/>
                 </StackPanel>
             </controls:PivotItem>
 

@@ -151,7 +151,7 @@
                                 <StackPanel Orientation="Horizontal">
                                     <delay:PlaceImage Height="99"
                                                       Width="99"
-                                                      PlaceholderSource="/Images/MBLogo.png"
+                                                      PlaceholderSource="/Images/Logo.png"
                                                       Source="{Binding Converter={StaticResource ImageUrlConverter}}"
                                                       Stretch="Uniform" />
                                     <StackPanel Orientation="Vertical">

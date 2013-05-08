@@ -78,10 +78,10 @@
                             <DataTemplate>
                                 <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
                                                  Margin="6"
-                                                 Command="{Binding Main.NavigateTo, Source={StaticResource Locator}}"
+                                                 Command="{Binding Main.NavigateToPage, Source={StaticResource Locator}}"
                                                  CommandParameter="{Binding}">
                                     <Grid>
-                                        <delay:PlaceImage PlaceholderSource="/Images/MBLogo.png"
+                                        <delay:PlaceImage PlaceholderSource="/Images/Logo.png"
                                                           Source="{Binding Converter={StaticResource ImageUrlConverter}}"
                                                           Height="173"
                                                           MaxWidth="120" />
@@ -128,7 +128,7 @@
 
                     <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
                                      DataContext="{Binding DummyFolder}"
-                                     Command="{Binding Main.NavigateTo, Source={StaticResource Locator}}"
+                                     Command="{Binding Main.NavigateToPage, Source={StaticResource Locator}}"
                                      CommandParameter="{Binding}"
                                      Grid.Row="1"
                                      HorizontalContentAlignment="Left"

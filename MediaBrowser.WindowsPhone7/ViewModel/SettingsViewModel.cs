@@ -73,6 +73,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 RegisteredText = AppResources.DeviceNotRegistered;
                 LoadingFromSettings = false;
                 WireMessages();
+                try
+                {
+                    GroupByItems = Enum<GroupBy>.GetNames();
+                }
+                catch{}
             }
         }
 
@@ -98,6 +103,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public bool ServerPluginInstalled { get; set; }
         public bool UseNotifications { get; set; }
         public HttpNotificationChannel HttpNotificationChannel { get; set; }
+
+        public List<GroupBy> GroupByItems { get; set; }
+        public GroupBy SelectedGroup { get; set; }
 
         public RelayCommand SettingsPageLoaded
         {

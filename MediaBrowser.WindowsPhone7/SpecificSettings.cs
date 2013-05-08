@@ -9,6 +9,7 @@ namespace MediaBrowser.WindowsPhone
     {
         
         public bool IncludeTrailersInRecent { get; set; }
+        public GroupBy DefaultGroupBy { get; set; }
 
         public DeviceSettings DeviceSettings { get; set; }
         

@@ -1,6 +1,7 @@
 ﻿using System.Windows.Navigation;
 using Coding4Fun.Toolkit.Controls;
 using MediaBrowser.Model.Dto;
+using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Resources;
 using MediaBrowser.WindowsPhone.ViewModel;
 using Microsoft.Phone.Controls;
@@ -26,9 +27,9 @@ namespace MediaBrowser.WindowsPhone.Views
         {
 
             new AppBarPrompt(
-                new AppBarPromptAction(AppResources.NameLabel, () => Messenger.Default.Send(new NotificationMessage("name", Constants.ChangeGroupingMsg))),
-                new AppBarPromptAction(AppResources.ProductionYear, () => Messenger.Default.Send(new NotificationMessage("production year", Constants.ChangeGroupingMsg))),
-                new AppBarPromptAction(AppResources.Genre, () => Messenger.Default.Send(new NotificationMessage("genre", Constants.ChangeGroupingMsg)))).Show();
+                new AppBarPromptAction(AppResources.NameLabel, () => Messenger.Default.Send(new NotificationMessage(GroupBy.Name, Constants.ChangeGroupingMsg))),
+                new AppBarPromptAction(AppResources.ProductionYear, () => Messenger.Default.Send(new NotificationMessage(GroupBy.ProductionYear, Constants.ChangeGroupingMsg))),
+                new AppBarPromptAction(AppResources.Genre, () => Messenger.Default.Send(new NotificationMessage(GroupBy.Genre, Constants.ChangeGroupingMsg)))).Show();
                 //                                     ,
                 //new PhoneFlipMenuAction("studio", () =>
                 //                                      {

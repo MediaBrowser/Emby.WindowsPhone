@@ -75,7 +75,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 WireCommands();
                 WireMessages();
-                SortBy = "name";
+                GroupBy = GroupBy.Name;
             }
         }
 
@@ -90,7 +90,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 }
                 else if (m.Notification.Equals(Constants.ChangeGroupingMsg))
                 {
-                    SortBy = (string)m.Sender;
+                    GroupBy = (GroupBy)m.Sender;
                     SortList();
                 }
                 else if (m.Notification.Equals(Constants.ClearFoldersMsg))
@@ -116,6 +116,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     ProgressIsVisible = true;
                     ProgressText = AppResources.SysTrayGettingItems;
 
+                    GroupBy = App.SpecificSettings.DefaultGroupBy;
                     _dataLoaded = await GetItems();
 
                     SortList();
@@ -270,11 +271,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             var emptyGroups = new List<Group<BaseItemDto>>();
 
-            _logger.LogFormat("Sorting by [{0}]", LogLevel.Info, SortBy);
+            _logger.LogFormat("Sorting by [{0}]", LogLevel.Info, GroupBy);
 
-            switch (SortBy)
+            switch (GroupBy)
             {
-                case "name":
+                case GroupBy.Name:
                     GroupHeaderTemplate = (DataTemplate)Application.Current.Resources["LLSGroupHeaderTemplateName"];
 #if WP8
                     GroupItemTemplate = (Style)Application.Current.Resources["LLSGroupItemStyle"];
@@ -297,7 +298,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                        select g).ToList();
 #endif
                     break;
-                case "production year":
+                case GroupBy.ProductionYear:
                     GroupHeaderTemplate = (DataTemplate)Application.Current.Resources["LLSGroupHeaderTemplateLong"];
 #if WP8
                     GroupItemTemplate = (Style)Application.Current.Resources["LLSGroupItemStyle"];
@@ -325,7 +326,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                        select g).ToList();
 #endif
                     break;
-                case "genre":
+                case GroupBy.Genre:
                     GroupHeaderTemplate = (DataTemplate)Application.Current.Resources["LLSGroupHeaderTemplateLong"];
 #if WP8
                     GroupItemTemplate = (Style)Application.Current.Resources["LLSGroupItemLongStyle"];
@@ -355,7 +356,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                        select g).ToList();
 #endif
                     break;
-//                case "studio":
+//                case GroupBy.Studio:
 //                    GroupHeaderTemplate = (DataTemplate)Application.Current.Resources["LLSGroupHeaderTemplateLong"];
 //#if WP8
 //                    GroupItemTemplate = (Style)Application.Current.Resources["LLSGroupItemLongStyle"];
@@ -427,7 +428,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public ObservableCollection<BaseItemDto> RecentItems { get; set; }
         public ObservableCollection<BaseItemDto> RandomItems { get; set; }
 
-        public string SortBy { get; set; }
+        public GroupBy GroupBy { get; set; }
         public DataTemplate GroupHeaderTemplate { get; set; }
 #if WP8
         public Style GroupItemTemplate { get; set; }

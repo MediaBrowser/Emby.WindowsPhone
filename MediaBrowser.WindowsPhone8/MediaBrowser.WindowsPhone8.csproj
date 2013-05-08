@@ -27,7 +27,7 @@
     <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
-    <FodyPath>..\packages\Fody.1.13.7.0</FodyPath>
+    <FodyPath>..\packages\Fody.1.13.8.0</FodyPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -153,6 +153,9 @@
     </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone7\Model\ExtendedApiClient.cs">
       <Link>Model\ExtendedApiClient.cs</Link>
+    </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone7\Model\GroupBy.cs">
+      <Link>Model\GroupBy.cs</Link>
     </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone7\Model\INavigationService.cs">
       <Link>Model\INavigationService.cs</Link>
@@ -488,15 +491,17 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\HttpClient.Compression.1.0.3-rc2\lib\portable-net4+sl4+wp7+win8\AdvancedREI.Net.Http.Compression.dll</HintPath>
     </Reference>
-    <Reference Include="Cimbalino.Phone.Toolkit, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Cimbalino.Phone.Toolkit, Version=2.3.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Cimbalino.Phone.Toolkit.2.2.0\lib\wp8\Cimbalino.Phone.Toolkit.dll</HintPath>
+      <HintPath>..\packages\Cimbalino.Phone.Toolkit.2.3.0\lib\wp8\Cimbalino.Phone.Toolkit.dll</HintPath>
     </Reference>
-    <Reference Include="Cimbalino.Phone.Toolkit.DeviceInfo">
-      <HintPath>..\packages\Cimbalino.Phone.Toolkit.DeviceInfo.2.2.0\lib\wp8\Cimbalino.Phone.Toolkit.DeviceInfo.dll</HintPath>
+    <Reference Include="Cimbalino.Phone.Toolkit.DeviceInfo, Version=2.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Cimbalino.Phone.Toolkit.DeviceInfo.2.3.0\lib\wp8\Cimbalino.Phone.Toolkit.DeviceInfo.dll</HintPath>
     </Reference>
-    <Reference Include="Cimbalino.Phone.Toolkit.UserInfo">
-      <HintPath>..\packages\Cimbalino.Phone.Toolkit.UserInfo.2.2.0\lib\wp8\Cimbalino.Phone.Toolkit.UserInfo.dll</HintPath>
+    <Reference Include="Cimbalino.Phone.Toolkit.UserInfo, Version=2.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Cimbalino.Phone.Toolkit.UserInfo.2.3.0\lib\wp8\Cimbalino.Phone.Toolkit.UserInfo.dll</HintPath>
     </Reference>
     <Reference Include="Coding4Fun.Toolkit.Controls">
       <HintPath>..\packages\Coding4Fun.Toolkit.Controls.2.0.5\lib\windowsphone8\Coding4Fun.Toolkit.Controls.dll</HintPath>
@@ -513,9 +518,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\MediaBrowser.ApiClient.3.0.0.91-beta\lib\portable-net45+sl4+wp71+win8\MediaBrowser.ApiInteraction.Portable.dll</HintPath>
     </Reference>
-    <Reference Include="MediaBrowser.Model, Version=3.0.4871.39973, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="MediaBrowser.Model, Version=3.0.4874.27908, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MediaBrowser.Common.3.0.91\lib\portable-net4+sl4+wp7+win8\MediaBrowser.Model.dll</HintPath>
+      <HintPath>..\packages\MediaBrowser.Common.3.0.92\lib\portable-net4+sl4+wp7+win8\MediaBrowser.Model.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Phone.Controls.Toolkit">
       <HintPath>..\packages\WPtoolkit.4.2012.10.30\lib\wp8\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
@@ -537,7 +542,7 @@
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Newtonsoft.Json.5.0.4\lib\portable-net45+wp80+win8\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.5.0.5\lib\portable-net45+wp80+win8\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="PropertyChanged">
       <HintPath>..\packages\PropertyChanged.Fody.1.36.2.3\lib\SL40-WP\PropertyChanged.dll</HintPath>
@@ -583,9 +588,9 @@
       <Project>{2D3D6DCD-C00F-4E40-AF44-8975A2DF87A3}</Project>
       <Name>MediaBrowser.Shared</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MediaBrowser.WindowsPhone.AudioAgent\MediaBrowser.WindowsPhone.AudioAgent.csproj">
+    <ProjectReference Include="..\MediaBrowser.WindowsPhone.AudioAgent\MediaBrowser.WindowsPhone7.AudioAgent.csproj">
       <Project>{D14362C5-5568-49A0-8FAA-7F8C219C0C48}</Project>
-      <Name>MediaBrowser.WindowsPhone.AudioAgent</Name>
+      <Name>MediaBrowser.WindowsPhone7.AudioAgent</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

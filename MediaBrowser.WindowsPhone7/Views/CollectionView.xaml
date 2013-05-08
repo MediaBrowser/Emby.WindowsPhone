@@ -78,7 +78,7 @@
                     <controls:PhoneListBox.ItemTemplate>
                         <DataTemplate>
                             <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                             Command="{Binding Main.NavigateTo, Source={StaticResource Locator}}"
+                                             Command="{Binding Main.NavigateToPage, Source={StaticResource Locator}}"
                                              CommandParameter="{Binding}"
                                              HorizontalContentAlignment="Left"
                                              Margin="12,0,0,12">

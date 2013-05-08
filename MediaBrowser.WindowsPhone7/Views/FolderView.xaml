@@ -86,10 +86,10 @@
                         <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
                                          HorizontalContentAlignment="Left"
                                          Margin="12,6,0,6"
-                                         Command="{Binding Main.NavigateTo, Source={StaticResource Locator}}"
+                                         Command="{Binding Main.NavigateToPage, Source={StaticResource Locator}}"
                                          CommandParameter="{Binding}">
                             <StackPanel Orientation="Horizontal">
-                                <delay:PlaceImage PlaceholderSource="/Images/MBLogo.png"
+                                <delay:PlaceImage PlaceholderSource="/Images/Logo.png"
                                                   Source="{Binding Converter={StaticResource ImageUrlConverter}, ConverterParameter=icon}"
                                                   Height="75"
                                                   Width="75"
