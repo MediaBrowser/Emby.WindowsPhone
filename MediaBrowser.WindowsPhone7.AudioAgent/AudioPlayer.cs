@@ -186,7 +186,7 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
 
             SetAllItemsToNotPlaying(items);
 
-            items.FirstOrDefault(x => x.Id == currentTrack.Id).IsPlaying = true;
+            items.FirstOrDefault(x => x.Id == nextTrack.Id).IsPlaying = true;
 
             _playlistHelper.SavePlaylist(items);
 

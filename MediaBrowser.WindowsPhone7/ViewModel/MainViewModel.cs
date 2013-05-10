@@ -312,7 +312,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             try
             {
-                _logger.LogFormat("Getting collections for [{0}]", LogLevel.Info, App.Settings.LoggedInUser.Name);
+                _logger.LogFormat("Getting collections for [{0}] ({1})", LogLevel.Info, App.Settings.LoggedInUser.Name, App.Settings.LoggedInUser.Id);
 
                 var query = new ItemQuery
                 {

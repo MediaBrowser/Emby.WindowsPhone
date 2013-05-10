@@ -14,7 +14,6 @@
       <DefaultTask Name="_default" NavigationPage="Splashscreen.xaml" />
       <ExtendedTask Name="BackgroundTask">
         <BackgroundServiceAgent Specifier="AudioPlayerAgent" Name="MediaBrowser.WindowsPhone.AudioAgent" Source="MediaBrowser.WindowsPhone.AudioAgent" Type="MediaBrowser.WindowsPhone.AudioAgent.AudioPlayer" />
-        <BackgroundServiceAgent Specifier="AudioPlayerAgent" Name="MediaBrowser.WindowsPhone.AudioAgent" Source="MediaBrowser.WindowsPhone.AudioAgent" Type="MediaBrowser.WindowsPhone.AudioAgent.AudioPlayer" />
       </ExtendedTask>
     </Tasks>
     <Tokens>

@@ -72,12 +72,13 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 SendTileUpdates = SendToastUpdates = true;
                 RegisteredText = AppResources.DeviceNotRegistered;
                 LoadingFromSettings = false;
+                ServerPluginInstalled = false;
                 WireMessages();
                 try
                 {
                     GroupByItems = Enum<GroupBy>.GetNames();
                 }
-                catch{}
+                catch { }
             }
         }
 

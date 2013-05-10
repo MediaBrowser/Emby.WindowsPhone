@@ -10,6 +10,9 @@
                             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
                             xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP8"
                             xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+                            xmlns:controls="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
+                            xmlns:cimbalino="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
+                            
                             mc:Ignorable="d ignore"
                             d:DesignWidth="480"
                             d:DesignHeight="768"
@@ -26,6 +29,16 @@
             <command:EventToCommand Command="{Binding PlaylistPageLoaded}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
+    <i:Interaction.Behaviors>
+        <cimbalino:ApplicationBarBehavior>
+            <cimbalino:ApplicationBarIconButton Text="previous"
+                                                IconUri="/Icons/transport.rew.png"/>
+            <cimbalino:ApplicationBarIconButton Text="play"
+                                                IconUri="/Icons/transport.rew.png" />
+            <cimbalino:ApplicationBarIconButton Text="next"
+                                                IconUri="/Icons/transport.ff.png" />
+        </cimbalino:ApplicationBarBehavior>
+    </i:Interaction.Behaviors>
 
     <toolkit:TransitionService.NavigationInTransition>
         <toolkit:NavigationInTransition>
@@ -70,7 +83,8 @@
         <Grid x:Name="ContentPanel"
               Grid.Row="1"
               Margin="12,0,12,0">
-            <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Vertical"
+                        VerticalAlignment="Top">
                 <StackPanel Orientation="Vertical"
                             DataContext="{Binding NowPlayingItem}">
                     <TextBlock Text="{Binding Artist}"
@@ -101,17 +115,5 @@
             </StackPanel>
         </Grid>
     </Grid>
-
-    <!--Sample code showing usage of ApplicationBar-->
-    <!--<phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button1.png" Text="Button 1"/>
-            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button2.png" Text="Button 2"/>
-            <shell:ApplicationBar.MenuItems>
-                <shell:ApplicationBarMenuItem Text="MenuItem 1"/>
-                <shell:ApplicationBarMenuItem Text="MenuItem 2"/>
-            </shell:ApplicationBar.MenuItems>
-        </shell:ApplicationBar>
-    </phone:PhoneApplicationPage.ApplicationBar>-->
 
 </phone:PhoneApplicationPage>

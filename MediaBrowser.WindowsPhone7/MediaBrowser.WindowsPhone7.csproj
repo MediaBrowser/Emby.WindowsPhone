@@ -57,9 +57,13 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\HttpClient.Compression.1.0.3-rc2\lib\portable-net4+sl4+wp7+win8\AdvancedREI.Net.Http.Compression.dll</HintPath>
     </Reference>
-    <Reference Include="Cimbalino.Phone.Toolkit, Version=2.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Cimbalino.Phone.Toolkit, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Cimbalino.Phone.Toolkit.2.3.0\lib\sl4-wp71\Cimbalino.Phone.Toolkit.dll</HintPath>
+      <HintPath>..\..\..\Cimbalino-Phone-Toolkit\src\Cimbalino.Phone.Toolkit (WP71)\Bin\Debug\Cimbalino.Phone.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="Cimbalino.Phone.Toolkit.Background, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Cimbalino-Phone-Toolkit\src\Cimbalino.Phone.Toolkit (WP71)\Bin\Debug\Cimbalino.Phone.Toolkit.Background.dll</HintPath>
     </Reference>
     <Reference Include="Cimbalino.Phone.Toolkit.DeviceInfo, Version=2.3.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -81,13 +85,13 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\MvvmLightLibs.4.1.27.0\lib\sl4-wp71\GalaSoft.MvvmLight.WP71.dll</HintPath>
     </Reference>
-    <Reference Include="MediaBrowser.ApiInteraction.Portable, Version=3.0.4871.40038, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="MediaBrowser.ApiInteraction.Portable, Version=3.0.4878.295, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MediaBrowser.ApiClient.3.0.0.91-beta\lib\portable-net45+sl4+wp71+win8\MediaBrowser.ApiInteraction.Portable.dll</HintPath>
+      <HintPath>..\packages\MediaBrowser.ApiClient.3.0.0.98-beta\lib\portable-net45+sl4+wp71+win8\MediaBrowser.ApiInteraction.Portable.dll</HintPath>
     </Reference>
-    <Reference Include="MediaBrowser.Model, Version=3.0.4874.27908, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="MediaBrowser.Model, Version=3.0.4878.13106, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MediaBrowser.Common.3.0.92\lib\portable-net4+sl4+wp7+win8\MediaBrowser.Model.dll</HintPath>
+      <HintPath>..\packages\MediaBrowser.Common.3.0.98\lib\portable-net4+sl4+wp7+win8\MediaBrowser.Model.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Phone.Controls, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Phone.Controls.Toolkit, Version=7.0.0.0, Culture=neutral, PublicKeyToken=b772ad94eb9ca604, processorArchitecture=MSIL">
@@ -134,7 +138,7 @@
       <HintPath>..\packages\Newtonsoft.Json.5.0.5\lib\portable-net40+sl4+wp7+win8\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="PropertyChanged">
-      <HintPath>..\packages\PropertyChanged.Fody.1.36.2.3\lib\SL40-WP71\PropertyChanged.dll</HintPath>
+      <HintPath>..\packages\PropertyChanged.Fody.1.37.0.0\Lib\SL40-WP71\PropertyChanged.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="protobuf-net">
@@ -430,7 +434,10 @@
     <Content Include="Icons\appbar.star.add.png" />
     <Content Include="Icons\appbar.star.minus.png" />
     <Content Include="Icons\appbar.star.png" />
+    <Content Include="Icons\appbar.transport.ff.rest.png" />
+    <Content Include="Icons\appbar.transport.pause.rest.png" />
     <Content Include="Icons\appbar.transport.play.rest.png" />
+    <Content Include="Icons\appbar.transport.rew.rest.png" />
     <Content Include="Images\DefaultAlbumCase.png" />
     <Content Include="Images\DefaultVideo.png" />
     <Content Include="Images\default_avatar.png" />
@@ -453,7 +460,7 @@
       <Project>{2D3D6DCD-C00F-4E40-AF44-8975A2DF87A3}</Project>
       <Name>MediaBrowser.Shared</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MediaBrowser.WindowsPhone.AudioAgent\MediaBrowser.WindowsPhone7.AudioAgent.csproj">
+    <ProjectReference Include="..\MediaBrowser.WindowsPhone7.AudioAgent\MediaBrowser.WindowsPhone7.AudioAgent.csproj">
       <Project>{D14362C5-5568-49A0-8FAA-7F8C219C0C48}</Project>
       <Name>MediaBrowser.WindowsPhone7.AudioAgent</Name>
     </ProjectReference>
