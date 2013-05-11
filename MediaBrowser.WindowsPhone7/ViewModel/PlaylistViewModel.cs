@@ -75,24 +75,30 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         private void WireMessages()
         {
             Messenger.Default.Register<NotificationMessage<List<PlaylistItem>>>(this, m =>
-                                                                                          {
-                                                                                              if (m.Notification.Equals(Constants.AddToPlaylistMsg))
-                                                                                              {
-                                                                                                  AddToPlaylist(m.Content);
-                                                                                              }
+                {
+                    if (m.Notification.Equals(Constants.AddToPlaylistMsg))
+                    {
+                        AddToPlaylist(m.Content);
+                    }
 
-                                                                                              if (m.Notification.Equals(Constants.SetPlaylistAsMsg))
-                                                                                              {
-                                                                                                  _playlistHelper.ClearPlaylist();
+                    if (m.Notification.Equals(Constants.SetPlaylistAsMsg))
+                    {
+                        _playlistHelper.ClearPlaylist();
 
-                                                                                                  AddToPlaylist(m.Content);
+                        AddToPlaylist(m.Content);
 
-                                                                                                  _navigationService.NavigateTo("/Views/NowPlayingView.xaml");
+                        _navigationService.NavigateTo("/Views/NowPlayingView.xaml");
 
-                                                                                                  if(BackgroundAudioPlayer.Instance.PlayerState != PlayState.Playing)
-                                                                                                      BackgroundAudioPlayer.Instance.Play();
-                                                                                              }
-                                                                                          });
+                        if (BackgroundAudioPlayer.Instance.PlayerState != PlayState.Playing)
+                            BackgroundAudioPlayer.Instance.Play();
+                    }
+
+                    if (m.Notification.Equals(Constants.PlaylistPageLeftMsg))
+                    {
+                        if (_playlistChecker.IsEnabled)
+                            _playlistChecker.Stop();
+                    }
+                });
         }
 
         private void AddToPlaylist(List<PlaylistItem> list)
@@ -141,7 +147,13 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             get
             {
-                return new RelayCommand(GetPlaylistItems);
+                return new RelayCommand(() =>
+                    {
+                        GetPlaylistItems();
+
+                        if(!_playlistChecker.IsEnabled)
+                            _playlistChecker.Start();
+                    });
             }
         }
 

@@ -14,6 +14,7 @@
                             xmlns:cimbalino="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
                             xmlns:converters="clr-namespace:Cimbalino.Phone.Toolkit.Converters;assembly=Cimbalino.Phone.Toolkit"
                             xmlns:localConverters="clr-namespace:MediaBrowser.WindowsPhone.Converters"
+                            xmlns:delay="clr-namespace:Delay"
 
                             mc:Ignorable="d ignore"
                             d:DesignWidth="480"
@@ -109,7 +110,8 @@
                                Style="{StaticResource PhoneTextGroupHeaderStyle}" />
                     <TextBlock Text="{Binding Album}"
                                Style="{StaticResource PhoneTextNormalStyle}" />
-                    <Image Source="{Binding ImageUrl}"
+                    <delay:PlaceImage Source="{Binding ImageUrl}"
+                                      PlaceholderSource="/Images/DefaultAlbumCase.png"
                            Height="300"
                            Width="300"
                            Margin="12,0,0,0"

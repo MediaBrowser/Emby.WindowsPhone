@@ -179,7 +179,7 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
             }
             else
             {
-                nextTrack = currentTrack.Id == items.Count ? items.FirstOrDefault() : (items[currentTrack.Id + 1]);
+                nextTrack = currentTrack.Id == items.Count ? items.FirstOrDefault() : items[currentTrack.Id];
             }
 
             track = nextTrack.ToAudioTrack();
