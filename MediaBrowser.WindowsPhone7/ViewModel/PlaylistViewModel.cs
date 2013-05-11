@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Threading;
 using Cimbalino.Phone.Toolkit.Services;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
@@ -28,6 +29,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         private readonly INavigationService _navigationService;
         private readonly ILog _logger;
         private readonly PlaylistHelper _playlistHelper;
+        private readonly DispatcherTimer _playlistChecker;
 
         /// <summary>
         /// Initializes a new instance of the PlaylistViewModel class.
@@ -38,6 +40,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             _apiClient = apiClient;
             _logger = new WPLogger(typeof(PlaylistViewModel));
             _playlistHelper = new PlaylistHelper(storageService);
+            _playlistChecker = new DispatcherTimer {Interval = new TimeSpan(0, 0, 3)};
+            _playlistChecker.Tick += PlaylistCheckerOnTick;
 
             Playlist = new ObservableCollection<PlaylistItem>();
             SelectedItems = new List<PlaylistItem>();
@@ -56,6 +60,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 WireMessages();
                 BackgroundAudioPlayer.Instance.PlayStateChanged += OnPlayStateChanged;
             }
+        }
+
+        private void PlaylistCheckerOnTick(object sender, EventArgs eventArgs)
+        {
+            GetPlaylistItems();
         }
 
         private void OnPlayStateChanged(object sender, EventArgs e)
@@ -233,11 +242,20 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 BackgroundAudioPlayer.Instance.Play();
             }
+
+            GetPlaylistItems();
         }
 
-        private void GetTrack(bool isNextNotPrevious)
+        private static void GetTrack(bool isNextNotPrevious)
         {
-            
+            if (isNextNotPrevious)
+            {
+                BackgroundAudioPlayer.Instance.SkipNext();
+            }
+            else
+            {
+                BackgroundAudioPlayer.Instance.SkipPrevious();
+            }
         }
 
         private void ResetTrackNumbers(IEnumerable<PlaylistItem> list)
@@ -265,7 +283,5 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             var nowPlaying = items.FirstOrDefault(x => x.IsPlaying);
             if (nowPlaying != null) NowPlayingItem = nowPlaying;
         }
-
-        
     }
 }
