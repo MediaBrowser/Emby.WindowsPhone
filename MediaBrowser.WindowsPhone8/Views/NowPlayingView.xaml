@@ -12,7 +12,9 @@
                             xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
                             xmlns:controls="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
                             xmlns:cimbalino="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
-                            
+                            xmlns:converters="clr-namespace:Cimbalino.Phone.Toolkit.Converters;assembly=Cimbalino.Phone.Toolkit"
+                            xmlns:localConverters="clr-namespace:MediaBrowser.WindowsPhone.Converters"
+
                             mc:Ignorable="d ignore"
                             d:DesignWidth="480"
                             d:DesignHeight="768"
@@ -29,16 +31,17 @@
             <command:EventToCommand Command="{Binding PlaylistPageLoaded}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
-    <i:Interaction.Behaviors>
-        <cimbalino:ApplicationBarBehavior>
-            <cimbalino:ApplicationBarIconButton Text="previous"
-                                                IconUri="/Icons/transport.rew.png"/>
-            <cimbalino:ApplicationBarIconButton Text="play"
-                                                IconUri="/Icons/transport.rew.png" />
-            <cimbalino:ApplicationBarIconButton Text="next"
-                                                IconUri="/Icons/transport.ff.png" />
-        </cimbalino:ApplicationBarBehavior>
-    </i:Interaction.Behaviors>
+
+
+    <phone:PhoneApplicationPage.Resources>
+        <converters:BooleanToStringConverter x:Key="PlayIconConverter"
+                                             FalseValue="/Icons/appbar.transport.play.png"
+                                             TrueValue="/Icons/transport.pause.png"/>
+        <converters:BooleanToStringConverter x:Key="PlayTextConverter"
+                                             TrueValue="pause"
+                                             FalseValue="play"/>
+        <localConverters:PlaylistCountConverter x:Key="PlaylistCountConverter"/>
+    </phone:PhoneApplicationPage.Resources>
 
     <toolkit:TransitionService.NavigationInTransition>
         <toolkit:NavigationInTransition>
@@ -63,6 +66,21 @@
 
     <Grid x:Name="LayoutRoot"
           Background="{StaticResource MediaBrowserBackground}">
+        <i:Interaction.Behaviors>
+            <cimbalino:ApplicationBarBehavior>
+                <cimbalino:ApplicationBarIconButton Text="previous"
+                                                IconUri="/Icons/transport.rew.png"
+                                                    IsEnabled="{Binding Playlist.Count, Converter={StaticResource PlaylistCountConverter}}"
+                                                    Command="{Binding PreviousTrackCommand}"/>
+                <cimbalino:ApplicationBarIconButton Text="{Binding IsPlaying, Converter={StaticResource PlayTextConverter}}"
+                                                IconUri="{Binding IsPlaying, Converter={StaticResource PlayIconConverter}}" 
+                                                    Command="{Binding PlayPauseCommand}"/>
+                <cimbalino:ApplicationBarIconButton Text="next"
+                                                IconUri="/Icons/transport.ff.png" 
+                                                    IsEnabled="{Binding Playlist.Count, Converter={StaticResource PlaylistCountConverter}}"
+                                                    Command="{Binding NextTrackCommand}"/>
+            </cimbalino:ApplicationBarBehavior>
+        </i:Interaction.Behaviors>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />

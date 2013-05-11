@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
@@ -53,7 +54,13 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             else
             {
                 WireMessages();
+                BackgroundAudioPlayer.Instance.PlayStateChanged += OnPlayStateChanged;
             }
+        }
+
+        private void OnPlayStateChanged(object sender, EventArgs e)
+        {
+            IsPlaying = BackgroundAudioPlayer.Instance.PlayerState == PlayState.Playing;
         }
 
         private void WireMessages()
@@ -116,6 +123,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         }
         public List<PlaylistItem> SelectedItems { get; set; }
         public PlaylistItem NowPlayingItem { get; set; }
+        public bool IsPlaying { get; set; }
 
         public bool IsInSelectionMode { get; set; }
         public int SelectedAppBarIndex { get { return IsInSelectionMode ? 1 : 0; } }
@@ -189,6 +197,47 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     }
                 });
             }
+        }
+
+        public RelayCommand NextTrackCommand
+        {
+            get
+            {
+                return new RelayCommand(() => GetTrack(true));
+            }
+        }
+
+        public RelayCommand PreviousTrackCommand
+        {
+            get
+            {
+                return new RelayCommand(() => GetTrack(false));
+            }
+        }
+
+        public RelayCommand PlayPauseCommand
+        {
+            get
+            {
+                return new RelayCommand(PlayPause);
+            }
+        }
+
+        private void PlayPause()
+        {
+            if (BackgroundAudioPlayer.Instance.PlayerState == PlayState.Playing)
+            {
+                BackgroundAudioPlayer.Instance.Stop();
+            }
+            else
+            {
+                BackgroundAudioPlayer.Instance.Play();
+            }
+        }
+
+        private void GetTrack(bool isNextNotPrevious)
+        {
+            
         }
 
         private void ResetTrackNumbers(IEnumerable<PlaylistItem> list)

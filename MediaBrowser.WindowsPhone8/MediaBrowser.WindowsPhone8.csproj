@@ -130,6 +130,9 @@
     <Compile Include="..\MediaBrowser.WindowsPhone7\Converters\PinnedItemConverter.cs">
       <Link>Converters\PinnedItemConverter.cs</Link>
     </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone7\Converters\PlaylistCountConverter.cs">
+      <Link>Converters\PlaylistCountConverter.cs</Link>
+    </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone7\Converters\RandomColour.cs">
       <Link>Converters\RandomColour.cs</Link>
     </Compile>
@@ -494,13 +497,11 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\HttpClient.Compression.1.0.3-rc2\lib\portable-net4+sl4+wp7+win8\AdvancedREI.Net.Http.Compression.dll</HintPath>
     </Reference>
-    <Reference Include="Cimbalino.Phone.Toolkit, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Cimbalino-Phone-Toolkit\src\Cimbalino.Phone.Toolkit (WP8)\Bin\x86\Debug\Cimbalino.Phone.Toolkit.dll</HintPath>
+    <Reference Include="Cimbalino.Phone.Toolkit">
+      <HintPath>..\packages\Cimbalino.Phone.Toolkit.2.3.0\lib\wp8\Cimbalino.Phone.Toolkit.dll</HintPath>
     </Reference>
-    <Reference Include="Cimbalino.Phone.Toolkit.Background, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Cimbalino-Phone-Toolkit\src\Cimbalino.Phone.Toolkit (WP8)\Bin\x86\Debug\Cimbalino.Phone.Toolkit.Background.dll</HintPath>
+    <Reference Include="Cimbalino.Phone.Toolkit.Background">
+      <HintPath>..\packages\Cimbalino.Phone.Toolkit.2.3.0\lib\wp8\Cimbalino.Phone.Toolkit.Background.dll</HintPath>
     </Reference>
     <Reference Include="Cimbalino.Phone.Toolkit.DeviceInfo, Version=2.3.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

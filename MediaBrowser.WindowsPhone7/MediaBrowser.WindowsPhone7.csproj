@@ -57,13 +57,11 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\HttpClient.Compression.1.0.3-rc2\lib\portable-net4+sl4+wp7+win8\AdvancedREI.Net.Http.Compression.dll</HintPath>
     </Reference>
-    <Reference Include="Cimbalino.Phone.Toolkit, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Cimbalino-Phone-Toolkit\src\Cimbalino.Phone.Toolkit (WP71)\Bin\Debug\Cimbalino.Phone.Toolkit.dll</HintPath>
+    <Reference Include="Cimbalino.Phone.Toolkit">
+      <HintPath>..\packages\Cimbalino.Phone.Toolkit.2.3.0\lib\sl4-wp71\Cimbalino.Phone.Toolkit.dll</HintPath>
     </Reference>
-    <Reference Include="Cimbalino.Phone.Toolkit.Background, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Cimbalino-Phone-Toolkit\src\Cimbalino.Phone.Toolkit (WP71)\Bin\Debug\Cimbalino.Phone.Toolkit.Background.dll</HintPath>
+    <Reference Include="Cimbalino.Phone.Toolkit.Background">
+      <HintPath>..\packages\Cimbalino.Phone.Toolkit.2.3.0\lib\sl4-wp71\Cimbalino.Phone.Toolkit.Background.dll</HintPath>
     </Reference>
     <Reference Include="Cimbalino.Phone.Toolkit.DeviceInfo, Version=2.3.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -209,6 +207,7 @@
     <Compile Include="Converters\LoggedInDateConverter.cs" />
     <Compile Include="Converters\NowPlayingConverter.cs" />
     <Compile Include="Converters\PinnedItemConverter.cs" />
+    <Compile Include="Converters\PlaylistCountConverter.cs" />
     <Compile Include="Converters\RandomColour.cs" />
     <Compile Include="Converters\RuntimeConverter.cs" />
     <Compile Include="Converters\SettingsConverters.cs" />
