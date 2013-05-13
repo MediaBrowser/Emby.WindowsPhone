@@ -12,6 +12,7 @@
                             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
                             xmlns:cimbalino="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
                             xmlns:controls="clr-namespace:ScottIsAFool.WindowsPhone.Controls;assembly=ScottIsAFool.WindowsPhone"
+                            xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP71"
                             mc:Ignorable="d ignore"
                             FontFamily="{StaticResource PhoneFontFamilyNormal}"
                             FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -83,19 +84,35 @@
               Margin="12,0,12,0">
 
             <controls:PhoneMultiListBox ItemsSource="{Binding Playlist}"
-                                           HorizontalContentAlignment="Left"
-                                           x:Name="PlaylistSelector"
-                                           IsSelectionEnabled="{Binding IsInSelectionMode, Mode=TwoWay}">
+                                        HorizontalContentAlignment="Left"
+                                        x:Name="PlaylistSelector"
+                                        IsSelectionEnabled="{Binding IsInSelectionMode, Mode=TwoWay}"
+                                        Text="Nothing in your playlist"
+                                        TextStyle="{StaticResource PhoneTextLargeStyle}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <command:EventToCommand Command="{Binding SelectionChangedCommand}"
+                                                PassEventArgsToCommand="True" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
                 <controls:PhoneMultiListBox.ItemTemplate>
                     <DataTemplate>
                         <Grid HorizontalAlignment="Left"
                               Margin="-12,0,0,0">
-                            <TextBlock Style="{StaticResource PhoneTextTitle2Style}"
-                                       Foreground="{Binding IsPlaying, Converter={StaticResource NowPlayingConverter}}">
-                            <Run Text="{Binding Id, StringFormat='\{0\}.'}" />
-                            <Run Text=" " />
-                            <Run Text="{Binding TrackName}" />
-                            </TextBlock>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Style="{StaticResource PhoneTextTitle2Style}"
+                                           Foreground="{Binding IsPlaying, Converter={StaticResource NowPlayingConverter}}"
+                                           Text="{Binding Id, StringFormat='\{0\}.'}" />
+                                <Grid Height="48"
+                                      Width="48">
+                                    <Image Source="/Icons/appbar.transport.play.rest.png"
+                                           Height="48"
+                                           Visibility="{Binding IsPlaying, Converter={StaticResource VisibilityConverter}}" />
+                                </Grid>
+                                <TextBlock Style="{StaticResource PhoneTextTitle2Style}"
+                                           Foreground="{Binding IsPlaying, Converter={StaticResource NowPlayingConverter}}"
+                                           Text="{Binding TrackName}" />
+                            </StackPanel>
                         </Grid>
                     </DataTemplate>
                 </controls:PhoneMultiListBox.ItemTemplate>

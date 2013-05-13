@@ -1,11 +1,9 @@
-﻿using Microsoft.Phone.Controls;
-
-namespace MediaBrowser.WindowsPhone.Views
+﻿namespace MediaBrowser.WindowsPhone.Views
 {
     /// <summary>
     /// Description for FullPlaylistView.
     /// </summary>
-    public partial class FullPlaylistView : PhoneApplicationPage
+    public partial class FullPlaylistView
     {
         /// <summary>
         /// Initializes a new instance of the FullPlaylistView class.
@@ -23,11 +21,11 @@ namespace MediaBrowser.WindowsPhone.Views
         protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
         {
             base.OnBackKeyPress(e);
-            if (PlaylistSelector.IsSelectionEnabled)
-            {
-                PlaylistSelector.IsSelectionEnabled = false;
-                e.Cancel = true;
-            }
+            
+            if (!PlaylistSelector.IsSelectionEnabled) return;
+            
+            PlaylistSelector.IsSelectionEnabled = false;
+            e.Cancel = true;
         }
     }
 }

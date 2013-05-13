@@ -15,7 +15,6 @@
                             xmlns:converters="clr-namespace:Cimbalino.Phone.Toolkit.Converters;assembly=Cimbalino.Phone.Toolkit"
                             xmlns:localConverters="clr-namespace:MediaBrowser.WindowsPhone.Converters"
                             xmlns:delay="clr-namespace:Delay"
-
                             mc:Ignorable="d ignore"
                             d:DesignWidth="480"
                             d:DesignHeight="768"

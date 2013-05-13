@@ -8,8 +8,13 @@
                             xmlns:ignore="http://www.ignore.com"
                             xmlns:mb="clr-namespace:MediaBrowser.WindowsPhone.Controls"
                             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-                            xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP71"
                             xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+                            xmlns:controls="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
+                            xmlns:cimbalino="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
+                            xmlns:converters="clr-namespace:Cimbalino.Phone.Toolkit.Converters;assembly=Cimbalino.Phone.Toolkit"
+                            xmlns:localConverters="clr-namespace:MediaBrowser.WindowsPhone.Converters"
+                            xmlns:delay="clr-namespace:Delay"
+                            xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP71"
                             mc:Ignorable="d ignore"
                             d:DesignWidth="480"
                             d:DesignHeight="768"
@@ -19,12 +24,24 @@
                             SupportedOrientations="Portrait"
                             Orientation="Portrait"
                             shell:SystemTray.IsVisible="True"
+                            toolkit:TiltEffect.IsTiltEnabled="True"
                             DataContext="{Binding Playlist, Source={StaticResource Locator}}">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
-            <command:EventToCommand Command="{Binding PlaylistPageLoaded}"/>
+            <command:EventToCommand Command="{Binding PlaylistPageLoaded}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
+
+
+    <phone:PhoneApplicationPage.Resources>
+        <converters:BooleanToStringConverter x:Key="PlayIconConverter"
+                                             FalseValue="/Icons/appbar.transport.play.rest.png"
+                                             TrueValue="/Icons/appbar.transport.pause.rest.png"/>
+        <converters:BooleanToStringConverter x:Key="PlayTextConverter"
+                                             TrueValue="pause"
+                                             FalseValue="play"/>
+        <localConverters:PlaylistCountConverter x:Key="PlaylistCountConverter"/>
+    </phone:PhoneApplicationPage.Resources>
 
     <toolkit:TransitionService.NavigationInTransition>
         <toolkit:NavigationInTransition>
@@ -49,6 +66,21 @@
 
     <Grid x:Name="LayoutRoot"
           Background="{StaticResource MediaBrowserBackground}">
+        <i:Interaction.Behaviors>
+            <cimbalino:ApplicationBarBehavior>
+                <cimbalino:ApplicationBarIconButton Text="previous"
+                                                IconUri="/Icons/appbar.transport.rew.rest.png"
+                                                    IsEnabled="{Binding Playlist.Count, Converter={StaticResource PlaylistCountConverter}}"
+                                                    Command="{Binding PreviousTrackCommand}"/>
+                <cimbalino:ApplicationBarIconButton Text="{Binding IsPlaying, Converter={StaticResource PlayTextConverter}}"
+                                                IconUri="{Binding IsPlaying, Converter={StaticResource PlayIconConverter}}" 
+                                                    Command="{Binding PlayPauseCommand}"/>
+                <cimbalino:ApplicationBarIconButton Text="next"
+                                                IconUri="/Icons/appbar.transport.ff.rest.pngg" 
+                                                    IsEnabled="{Binding Playlist.Count, Converter={StaticResource PlaylistCountConverter}}"
+                                                    Command="{Binding NextTrackCommand}"/>
+            </cimbalino:ApplicationBarBehavior>
+        </i:Interaction.Behaviors>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -58,7 +90,7 @@
         <StackPanel x:Name="TitlePanel"
                     Grid.Row="0"
                     Margin="12,17,0,28">
-            <mb:MediaBrowserLogo/>
+            <mb:MediaBrowserLogo />
             <TextBlock x:Name="PageTitle"
                        Text="now playing"
                        Margin="9,-7,0,0"
@@ -69,44 +101,38 @@
         <Grid x:Name="ContentPanel"
               Grid.Row="1"
               Margin="12,0,12,0">
-            <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Vertical"
+                        VerticalAlignment="Top">
                 <StackPanel Orientation="Vertical"
                             DataContext="{Binding NowPlayingItem}">
                     <TextBlock Text="{Binding Artist}"
-                               Style="{StaticResource PhoneTextGroupHeaderStyle}"/>
+                               Style="{StaticResource PhoneTextGroupHeaderStyle}" />
                     <TextBlock Text="{Binding Album}"
-                               Style="{StaticResource PhoneTextNormalStyle}"/>
-                    <Image Source="{Binding ImageUrl}"
+                               Style="{StaticResource PhoneTextNormalStyle}" />
+                    <delay:PlaceImage Source="{Binding ImageUrl}"
+                                      PlaceholderSource="/Images/DefaultAlbumCase.png"
                            Height="300"
                            Width="300"
                            Margin="12,0,0,0"
-                           HorizontalAlignment="Left"/>
+                           HorizontalAlignment="Left" />
                     <TextBlock Text="{Binding TrackName}"
-                               Style="{StaticResource PhoneTextNormalStyle}"/>
+                               Style="{StaticResource PhoneTextNormalStyle}" />
                 </StackPanel>
-                <ListBox ItemsSource="{Binding SmallList}"
-                         IsHitTestVisible="False">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding TrackName}"
-                                       Style="{StaticResource PhoneTextSmallStyle}"/>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
+                <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                 NavigateUri="/Views/FullPlaylistView.xaml"
+                                 HorizontalContentAlignment="Left">
+                    <ListBox ItemsSource="{Binding SmallList}"
+                             IsHitTestVisible="False">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding TrackName}"
+                                           Style="{StaticResource PhoneTextSmallStyle}" />
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </HyperlinkButton>
             </StackPanel>
         </Grid>
     </Grid>
-
-    <!--Sample code showing usage of ApplicationBar-->
-    <!--<phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button1.png" Text="Button 1"/>
-            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button2.png" Text="Button 2"/>
-            <shell:ApplicationBar.MenuItems>
-                <shell:ApplicationBarMenuItem Text="MenuItem 1"/>
-                <shell:ApplicationBarMenuItem Text="MenuItem 2"/>
-            </shell:ApplicationBar.MenuItems>
-        </shell:ApplicationBar>
-    </phone:PhoneApplicationPage.ApplicationBar>-->
 
 </phone:PhoneApplicationPage>

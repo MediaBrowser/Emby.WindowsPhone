@@ -55,7 +55,7 @@
                 <cimbalino:ApplicationBar>
                     <cimbalino:ApplicationBarIconButton Text="select items"
                                                         IconUri="/Icons/appbar.list.check.png"
-                                                        Click="ApplicationBarIconButton_OnClick"/>
+                                                        Click="ApplicationBarIconButton_OnClick" />
                 </cimbalino:ApplicationBar>
                 <cimbalino:ApplicationBar>
                     <cimbalino:ApplicationBarIconButton Text="delete items"
@@ -97,12 +97,20 @@
                     <DataTemplate>
                         <Grid HorizontalAlignment="Left"
                               Margin="-12,0,0,0">
-                            <TextBlock Style="{StaticResource PhoneTextTitle2Style}"
-                                       Foreground="{Binding IsPlaying, Converter={StaticResource NowPlayingConverter}}">
-                            <Run Text="{Binding Id, StringFormat='\{0\}.'}" />
-                            <Run Text=" " />
-                            <Run Text="{Binding TrackName}" />
-                            </TextBlock>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Style="{StaticResource PhoneTextTitle2Style}"
+                                           Foreground="{Binding IsPlaying, Converter={StaticResource NowPlayingConverter}}"
+                                           Text="{Binding Id, StringFormat='\{0\}.'}" />
+                                <Grid Height="48"
+                                      Width="48">
+                                    <Image Source="/Icons/appbar.transport.play.png"
+                                           Height="48"
+                                           Visibility="{Binding IsPlaying, Converter={StaticResource VisibilityConverter}}" />
+                                </Grid>
+                                <TextBlock Style="{StaticResource PhoneTextTitle2Style}"
+                                           Foreground="{Binding IsPlaying, Converter={StaticResource NowPlayingConverter}}"
+                                           Text="{Binding TrackName}" />
+                            </StackPanel>
                         </Grid>
                     </DataTemplate>
                 </toolkit:LongListMultiSelector.ItemTemplate>

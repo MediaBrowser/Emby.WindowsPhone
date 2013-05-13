@@ -9,6 +9,8 @@
     <converter:LoggedInDateConverter x:Key="LoggedInDateConverter" />
     
     <Style TargetType="local:MediaBrowserLogo">
+        <Setter Property="HorizontalAlignment"
+                Value="Stretch"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:MediaBrowserLogo">
