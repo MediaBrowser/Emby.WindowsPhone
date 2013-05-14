@@ -74,24 +74,33 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
             SavePlaylist(playlist);
         }
 
-        public void RandomiseTrackNumbers(bool randomise)
+        public bool RandomiseTrackNumbers(bool randomise)
         {
             var playlist = GetPlaylist();
 
-            if (playlist == null || !playlist.PlaylistItems.Any()) return;
+            if (playlist == null 
+                || !playlist.PlaylistItems.Any() 
+                || playlist.IsShuffled == randomise) return false;
+
+            playlist.IsShuffled = randomise;
 
             if (randomise)
             {
                 var randomisedList = playlist.PlaylistItems.Randomise();
 
-                playlist.PlaylistItems = randomisedList;
+                playlist.PlaylistItems = randomisedList.OrderBy(x => x.Id).ToList();
 
                 ResetTrackNumbers(playlist);
             }
             else
             {
                 playlist.PlaylistItems.ForEach(item => item.Id = item.OriginalId);
+                playlist.PlaylistItems = playlist.PlaylistItems.OrderBy(x => x.Id).ToList();
+
+                SavePlaylist(playlist);
             }
+
+            return true;
         }
 
         public void AddToPlaylist(List<PlaylistItem> list)

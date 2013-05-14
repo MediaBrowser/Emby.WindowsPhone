@@ -119,6 +119,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public List<PlaylistItem> SelectedItems { get; set; }
         public PlaylistItem NowPlayingItem { get; set; }
         public bool IsPlaying { get; set; }
+        public bool IsShuffled { get; set; }
 
         public bool IsInSelectionMode { get; set; }
         public int SelectedAppBarIndex { get { return IsInSelectionMode ? 1 : 0; } }
@@ -260,8 +261,16 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             Playlist = new ObservableCollection<PlaylistItem>(playlist.PlaylistItems);
 
+            IsShuffled = playlist.IsShuffled;
+
             var nowPlaying = playlist.PlaylistItems.FirstOrDefault(x => x.IsPlaying);
             if (nowPlaying != null) NowPlayingItem = nowPlaying;
+        }
+
+        private void OnIsShuffledChanged()
+        {
+            if (_playlistHelper.RandomiseTrackNumbers(IsShuffled))
+                GetPlaylistItems();
         }
     }
 }

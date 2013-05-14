@@ -36,11 +36,11 @@
     <phone:PhoneApplicationPage.Resources>
         <converters:BooleanToStringConverter x:Key="PlayIconConverter"
                                              FalseValue="/Icons/appbar.transport.play.png"
-                                             TrueValue="/Icons/transport.pause.png"/>
+                                             TrueValue="/Icons/transport.pause.png" />
         <converters:BooleanToStringConverter x:Key="PlayTextConverter"
                                              TrueValue="pause"
-                                             FalseValue="play"/>
-        <localConverters:PlaylistCountConverter x:Key="PlaylistCountConverter"/>
+                                             FalseValue="play" />
+        <localConverters:PlaylistCountConverter x:Key="PlaylistCountConverter" />
     </phone:PhoneApplicationPage.Resources>
 
     <toolkit:TransitionService.NavigationInTransition>
@@ -69,16 +69,16 @@
         <i:Interaction.Behaviors>
             <cimbalino:ApplicationBarBehavior>
                 <cimbalino:ApplicationBarIconButton Text="previous"
-                                                IconUri="/Icons/transport.rew.png"
+                                                    IconUri="/Icons/transport.rew.png"
                                                     IsEnabled="{Binding Playlist.Count, Converter={StaticResource PlaylistCountConverter}}"
-                                                    Command="{Binding PreviousTrackCommand}"/>
+                                                    Command="{Binding PreviousTrackCommand}" />
                 <cimbalino:ApplicationBarIconButton Text="{Binding IsPlaying, Converter={StaticResource PlayTextConverter}}"
-                                                IconUri="{Binding IsPlaying, Converter={StaticResource PlayIconConverter}}" 
-                                                    Command="{Binding PlayPauseCommand}"/>
+                                                    IconUri="{Binding IsPlaying, Converter={StaticResource PlayIconConverter}}"
+                                                    Command="{Binding PlayPauseCommand}" />
                 <cimbalino:ApplicationBarIconButton Text="next"
-                                                IconUri="/Icons/transport.ff.png" 
+                                                    IconUri="/Icons/transport.ff.png"
                                                     IsEnabled="{Binding Playlist.Count, Converter={StaticResource PlaylistCountConverter}}"
-                                                    Command="{Binding NextTrackCommand}"/>
+                                                    Command="{Binding NextTrackCommand}" />
             </cimbalino:ApplicationBarBehavior>
         </i:Interaction.Behaviors>
         <Grid.RowDefinitions>
@@ -109,12 +109,20 @@
                                Style="{StaticResource PhoneTextGroupHeaderStyle}" />
                     <TextBlock Text="{Binding Album}"
                                Style="{StaticResource PhoneTextNormalStyle}" />
-                    <delay:PlaceImage Source="{Binding ImageUrl}"
-                                      PlaceholderSource="/Images/DefaultAlbumCase.png"
-                           Height="300"
-                           Width="300"
-                           Margin="12,0,0,0"
-                           HorizontalAlignment="Left" />
+                    <Grid>
+                        <delay:PlaceImage Source="{Binding ImageUrl}"
+                                          PlaceholderSource="/Images/DefaultAlbumCase.png"
+                                          Height="300"
+                                          Width="300"
+                                          Margin="12,0,0,0"
+                                          HorizontalAlignment="Left"
+                                          VerticalAlignment="Top"/>
+                        <Grid HorizontalAlignment="Right"
+                              Margin="0,6,100,0">
+                            <ToggleButton VerticalAlignment="Top"
+                                          IsChecked="{Binding Playlist.IsShuffled, Source={StaticResource Locator}, Mode=TwoWay}"/>
+                        </Grid>
+                    </Grid>
                     <TextBlock Text="{Binding TrackName}"
                                Style="{StaticResource PhoneTextNormalStyle}" />
                 </StackPanel>
