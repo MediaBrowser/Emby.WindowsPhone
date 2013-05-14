@@ -121,6 +121,8 @@
                               Margin="0,6,100,0">
                             <ToggleButton VerticalAlignment="Top"
                                           IsChecked="{Binding Playlist.IsShuffled, Source={StaticResource Locator}, Mode=TwoWay}"/>
+                            <ToggleButton VerticalAlignment="Center"
+                                          IsChecked="{Binding Playlist.IsOnRepeat, Source={StaticResource Locator}, Mode=TwoWay}" />
                         </Grid>
                     </Grid>
                     <TextBlock Text="{Binding TrackName}"

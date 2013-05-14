@@ -14,6 +14,7 @@ namespace MediaBrowser.Shared
         public List<PlaylistItem> PlaylistItems { get; set; }
         public DateTime ModifiedDate { get; set; }
         public bool IsShuffled { get; set; }
+        public bool IsOnRepeat { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
     }

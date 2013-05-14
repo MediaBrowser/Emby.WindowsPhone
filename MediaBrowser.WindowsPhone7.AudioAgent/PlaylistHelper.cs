@@ -131,6 +131,15 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
             ResetTrackNumbers(playlist);
         }
 
-        
+        public void SetRepeat(bool repeat)
+        {
+            var playlist = GetPlaylist();
+
+            if (playlist == null || playlist.IsOnRepeat == repeat) return;
+
+            playlist.IsOnRepeat = repeat;
+
+            SavePlaylist(playlist);
+        }
     }
 }

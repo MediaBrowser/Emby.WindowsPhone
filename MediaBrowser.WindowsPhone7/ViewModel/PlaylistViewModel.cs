@@ -64,47 +64,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
         }
 
-        private void PlaylistCheckerOnTick(object sender, EventArgs eventArgs)
-        {
-            GetPlaylistItems();
-        }
-
-        private void OnPlayStateChanged(object sender, EventArgs e)
-        {
-            IsPlaying = BackgroundAudioPlayer.Instance.PlayerState == PlayState.Playing;
-        }
-
-        private void WireMessages()
-        {
-            Messenger.Default.Register<NotificationMessage<List<PlaylistItem>>>(this, m =>
-                {
-                    if (m.Notification.Equals(Constants.AddToPlaylistMsg))
-                    {
-                        _playlistHelper.AddToPlaylist(m.Content);
-
-                        _logger.LogFormat("Adding {0} item(s) to the playlist", LogLevel.Info, m.Content.Count);
-                    }
-
-                    if (m.Notification.Equals(Constants.SetPlaylistAsMsg))
-                    {
-                        _playlistHelper.ClearPlaylist();
-
-                        _playlistHelper.AddToPlaylist(m.Content);
-
-                        _navigationService.NavigateTo("/Views/NowPlayingView.xaml");
-
-                        if (BackgroundAudioPlayer.Instance.PlayerState != PlayState.Playing)
-                            BackgroundAudioPlayer.Instance.Play();
-                    }
-
-                    if (m.Notification.Equals(Constants.PlaylistPageLeftMsg))
-                    {
-                        if (_playlistChecker.IsEnabled)
-                            _playlistChecker.Stop();
-                    }
-                });
-        }
-
         public ObservableCollection<PlaylistItem> Playlist { get; set; }
         public List<PlaylistItem> SmallList
         {
@@ -120,10 +79,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public PlaylistItem NowPlayingItem { get; set; }
         public bool IsPlaying { get; set; }
         public bool IsShuffled { get; set; }
+        public bool IsOnRepeat { get; set; }
 
         public bool IsInSelectionMode { get; set; }
         public int SelectedAppBarIndex { get { return IsInSelectionMode ? 1 : 0; } }
 
+        #region Commands
         public RelayCommand PlaylistPageLoaded
         {
             get
@@ -225,6 +186,49 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
         }
 
+        #endregion
+
+        #region Private methods
+        private void PlaylistCheckerOnTick(object sender, EventArgs eventArgs)
+        {
+            GetPlaylistItems();
+        }
+
+        private void OnPlayStateChanged(object sender, EventArgs e)
+        {
+            IsPlaying = BackgroundAudioPlayer.Instance.PlayerState == PlayState.Playing;
+        }
+
+        private void WireMessages()
+        {
+            Messenger.Default.Register<NotificationMessage<List<PlaylistItem>>>(this, m =>
+            {
+                if (m.Notification.Equals(Constants.AddToPlaylistMsg))
+                {
+                    _playlistHelper.AddToPlaylist(m.Content);
+
+                    _logger.LogFormat("Adding {0} item(s) to the playlist", LogLevel.Info, m.Content.Count);
+                }
+
+                if (m.Notification.Equals(Constants.SetPlaylistAsMsg))
+                {
+                    _playlistHelper.ClearPlaylist();
+
+                    _playlistHelper.AddToPlaylist(m.Content);
+
+                    _navigationService.NavigateTo("/Views/NowPlayingView.xaml");
+
+                    if (BackgroundAudioPlayer.Instance.PlayerState != PlayState.Playing)
+                        BackgroundAudioPlayer.Instance.Play();
+                }
+
+                if (m.Notification.Equals(Constants.PlaylistPageLeftMsg))
+                {
+                    if (_playlistChecker.IsEnabled)
+                        _playlistChecker.Stop();
+                }
+            });
+        }
         private void PlayPause()
         {
             if (BackgroundAudioPlayer.Instance.PlayerState == PlayState.Playing)
@@ -239,7 +243,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             GetPlaylistItems();
         }
 
-        private static void GetTrack(bool isNextNotPrevious)
+        private void GetTrack(bool isNextNotPrevious)
         {
             if (isNextNotPrevious)
             {
@@ -262,6 +266,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             Playlist = new ObservableCollection<PlaylistItem>(playlist.PlaylistItems);
 
             IsShuffled = playlist.IsShuffled;
+            IsOnRepeat = playlist.IsOnRepeat;
 
             var nowPlaying = playlist.PlaylistItems.FirstOrDefault(x => x.IsPlaying);
             if (nowPlaying != null) NowPlayingItem = nowPlaying;
@@ -272,5 +277,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             if (_playlistHelper.RandomiseTrackNumbers(IsShuffled))
                 GetPlaylistItems();
         }
+
+        private void OnIsOnRepeatChanged()
+        {
+            _playlistHelper.SetRepeat(IsOnRepeat);
+        }
+        #endregion
     }
 }

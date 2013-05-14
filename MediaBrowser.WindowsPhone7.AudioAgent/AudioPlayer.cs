@@ -163,13 +163,11 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
         /// <returns>an instance of AudioTrack, or null if the playback is completed</returns>
         private AudioTrack GetNextTrack()
         {
-            AudioTrack track = null;
-
             var playlist = _playlistHelper.GetPlaylist();
 
             var items = playlist.PlaylistItems;
 
-            if (items == null || !items.Any()) return track;
+            if (items == null || !items.Any()) return null;
 
             var currentTrack = items.FirstOrDefault(x => x.IsPlaying);
 
@@ -181,10 +179,12 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
             }
             else
             {
+                if (!playlist.IsOnRepeat && currentTrack.Id == items.Count) return null;
+
                 nextTrack = currentTrack.Id == items.Count ? items.FirstOrDefault() : items[currentTrack.Id];
             }
 
-            track = nextTrack.ToAudioTrack();
+            var track = nextTrack.ToAudioTrack();
 
             SetAllItemsToNotPlaying(items);
 
@@ -210,8 +210,6 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
         /// <returns>an instance of AudioTrack, or null if previous track is not allowed</returns>
         private AudioTrack GetPreviousTrack()
         {
-            AudioTrack track = null;
-
             var playlist = _playlistHelper.GetPlaylist();
 
             var items = playlist.PlaylistItems;
@@ -231,7 +229,7 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
                 nextTrack = currentTrack.Id - 1 == 0 ? items.LastOrDefault() : (items[currentTrack.Id - 1]);
             }
 
-            track = nextTrack.ToAudioTrack();
+            var track = nextTrack.ToAudioTrack();
 
             SetAllItemsToNotPlaying(items);
 
