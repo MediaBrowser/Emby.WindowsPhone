@@ -76,7 +76,7 @@
                                                 IconUri="{Binding IsPlaying, Converter={StaticResource PlayIconConverter}}" 
                                                     Command="{Binding PlayPauseCommand}"/>
                 <cimbalino:ApplicationBarIconButton Text="next"
-                                                IconUri="/Icons/appbar.transport.ff.rest.pngg" 
+                                                IconUri="/Icons/appbar.transport.ff.rest.png" 
                                                     IsEnabled="{Binding Playlist.Count, Converter={StaticResource PlaylistCountConverter}}"
                                                     Command="{Binding NextTrackCommand}"/>
             </cimbalino:ApplicationBarBehavior>
