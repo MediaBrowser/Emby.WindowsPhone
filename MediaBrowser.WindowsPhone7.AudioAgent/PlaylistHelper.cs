@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using Cimbalino.Phone.Toolkit.Services;
 using MediaBrowser.Shared;
@@ -23,23 +24,25 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
                 _storageService.DeleteFile(_playlistFile);
         }
 
-        public List<PlaylistItem> GetPlaylist()
+        public Playlist GetPlaylist()
         {
-            if(!_storageService.FileExists(_playlistFile)) return new List<PlaylistItem>();
+            if (!_storageService.FileExists(_playlistFile)) return new Playlist();
 
             using (var file = new StreamReader(_storageService.OpenFile(_playlistFile, FileMode.Open, FileAccess.Read)))
             {
                 var json = file.ReadToEnd();
 
-                return JsonConvert.DeserializeObject<List<PlaylistItem>>(json);
+                return JsonConvert.DeserializeObject<Playlist>(json);
             }
         }
 
-        public void SavePlaylist(List<PlaylistItem> list)
+        public void SavePlaylist(Playlist list)
         {
             if (list == null) return;
 
             ClearPlaylist();
+
+            list.ModifiedDate = DateTime.Now;
             
             using (var file = new StreamWriter(_storageService.OpenFile(_playlistFile, FileMode.OpenOrCreate, FileAccess.ReadWrite)))
             {

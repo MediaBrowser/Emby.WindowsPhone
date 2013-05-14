@@ -31,6 +31,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         private readonly PlaylistHelper _playlistHelper;
         private readonly DispatcherTimer _playlistChecker;
 
+        private DateTime _lastReadDate;
+
         /// <summary>
         /// Initializes a new instance of the PlaylistViewModel class.
         /// </summary>
@@ -286,13 +288,15 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
         private void GetPlaylistItems()
         {
-            var items = _playlistHelper.GetPlaylist();
+            var playlist = _playlistHelper.GetPlaylist();
 
-            if (items == null) return;
+            if (playlist == null || playlist.ModifiedDate == _lastReadDate) return;
 
-            Playlist = new ObservableCollection<PlaylistItem>(items);
+            _lastReadDate = playlist.ModifiedDate;
 
-            var nowPlaying = items.FirstOrDefault(x => x.IsPlaying);
+            Playlist = new ObservableCollection<PlaylistItem>(playlist.PlaylistItems);
+
+            var nowPlaying = playlist.PlaylistItems.FirstOrDefault(x => x.IsPlaying);
             if (nowPlaying != null) NowPlayingItem = nowPlaying;
         }
     }

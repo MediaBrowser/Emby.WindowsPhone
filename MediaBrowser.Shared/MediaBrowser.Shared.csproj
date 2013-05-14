@@ -75,6 +75,7 @@
     <Compile Include="History.cs" />
     <Compile Include="ISettingsService.cs" />
     <Compile Include="LiveTile.cs" />
+    <Compile Include="Playlist.cs" />
     <Compile Include="PlaylistItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RequestResult.cs" />

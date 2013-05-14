@@ -165,7 +165,9 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
         {
             AudioTrack track = null;
 
-            var items = _playlistHelper.GetPlaylist();
+            var playlist = _playlistHelper.GetPlaylist();
+
+            var items = playlist.PlaylistItems;
 
             if (items == null || !items.Any()) return track;
 
@@ -188,7 +190,7 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
 
             items.FirstOrDefault(x => x.Id == nextTrack.Id).IsPlaying = true;
 
-            _playlistHelper.SavePlaylist(items);
+            _playlistHelper.SavePlaylist(playlist);
 
             // specify the track
 
@@ -210,9 +212,11 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
         {
             AudioTrack track = null;
 
-            var items = _playlistHelper.GetPlaylist();
+            var playlist = _playlistHelper.GetPlaylist();
 
-            if (items == null || !items.Any()) return track;
+            var items = playlist.PlaylistItems;
+
+            if (items == null || !items.Any()) return null;
 
             var currentTrack = items.FirstOrDefault(x => x.IsPlaying);
 
@@ -233,7 +237,7 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
 
             items.FirstOrDefault(x => x.Id == nextTrack.Id).IsPlaying = true;
 
-            _playlistHelper.SavePlaylist(items);
+            _playlistHelper.SavePlaylist(playlist);
 
             // specify the track
 
