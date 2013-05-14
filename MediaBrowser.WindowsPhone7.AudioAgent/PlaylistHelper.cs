@@ -33,7 +33,14 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
             {
                 var json = file.ReadToEnd();
 
-                return JsonConvert.DeserializeObject<Playlist>(json);
+                try
+                {
+                    return JsonConvert.DeserializeObject<Playlist>(json);
+                }
+                catch
+                {
+                    return new Playlist();
+                }
             }
         }
 
