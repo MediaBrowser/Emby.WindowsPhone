@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Cimbalino.Phone.Toolkit.Services;
 using MediaBrowser.Shared;
 using Newtonsoft.Json;
@@ -15,7 +16,7 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
         public PlaylistHelper(IStorageService storageService)
         {
             _storageService = storageService;
-            _playlistFile = string.Format("{0}.json", Constants.CurrentPlaylist);
+            _playlistFile = String.Format("{0}.json", Constants.CurrentPlaylist);
         }
 
         public void ClearPlaylist()
@@ -51,5 +52,69 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
                 file.Write(json);
             }
         }
+
+        public void ResetTrackNumbers(Playlist playlist)
+        {
+            if (playlist == null) return;
+
+            var i = 1;
+            foreach (var item in playlist.PlaylistItems)
+            {
+                item.Id = i;
+                i++;
+            }
+
+            SavePlaylist(playlist);
+        }
+
+        public void RandomiseTrackNumbers(bool randomise)
+        {
+            var playlist = GetPlaylist();
+
+            if (playlist == null || !playlist.PlaylistItems.Any()) return;
+
+            if (randomise)
+            {
+                var randomisedList = playlist.PlaylistItems.Randomise();
+
+                playlist.PlaylistItems = randomisedList;
+
+                ResetTrackNumbers(playlist);
+            }
+            else
+            {
+                playlist.PlaylistItems.ForEach(item => item.Id = item.OriginalId);
+            }
+        }
+
+        public void AddToPlaylist(List<PlaylistItem> list)
+        {
+            if (list == null || !list.Any()) return;
+
+            var playlist = GetPlaylist();
+
+            var items = playlist.PlaylistItems;
+
+            list.ForEach(items.Add);
+
+            ResetTrackNumbers(playlist);
+        }
+
+        public void RemoveFromPlaylist(List<PlaylistItem> list)
+        {
+            if (list == null || !list.Any()) return;
+
+            var playlist = GetPlaylist();
+
+            var items = playlist.PlaylistItems;
+
+            var afterRemoval = items.Where(x => !list.Contains(x)).ToList();
+
+            playlist.PlaylistItems = afterRemoval;
+
+            ResetTrackNumbers(playlist);
+        }
+
+        
     }
 }

@@ -80,14 +80,16 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 {
                     if (m.Notification.Equals(Constants.AddToPlaylistMsg))
                     {
-                        AddToPlaylist(m.Content);
+                        _playlistHelper.AddToPlaylist(m.Content);
+
+                        _logger.LogFormat("Adding {0} item(s) to the playlist", LogLevel.Info, m.Content.Count);
                     }
 
                     if (m.Notification.Equals(Constants.SetPlaylistAsMsg))
                     {
                         _playlistHelper.ClearPlaylist();
 
-                        AddToPlaylist(m.Content);
+                        _playlistHelper.AddToPlaylist(m.Content);
 
                         _navigationService.NavigateTo("/Views/NowPlayingView.xaml");
 
@@ -101,30 +103,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                             _playlistChecker.Stop();
                     }
                 });
-        }
-
-        private void AddToPlaylist(List<PlaylistItem> list)
-        {
-            if (list == null || !list.Any()) return;
-
-            var items = _playlistHelper.GetPlaylist();
-
-            _logger.LogFormat("Adding {0} item(s) to the playlist", LogLevel.Info, list.Count);
-
-            list.ForEach(items.Add);
-
-            ResetTrackNumbers(items);
-        }
-
-        private void RemoveFromPlaylist(List<PlaylistItem> list)
-        {
-            if (list == null || !list.Any()) return;
-
-            var items = _playlistHelper.GetPlaylist();
-
-            var afterRemoval = items.Where(x => !list.Contains(x)).ToList();
-
-            ResetTrackNumbers(afterRemoval);
         }
 
         public ObservableCollection<PlaylistItem> Playlist { get; set; }
@@ -212,7 +190,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     var result = MessageBox.Show("Are you sure you wish to delete these items? This cannot be undone.", "Are you sure?", MessageBoxButton.OKCancel);
                     if (result == MessageBoxResult.OK)
                     {
-                        RemoveFromPlaylist(SelectedItems);
+                        _playlistHelper.RemoveFromPlaylist(SelectedItems);
 
                         IsInSelectionMode = false;
 
@@ -270,20 +248,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 BackgroundAudioPlayer.Instance.SkipPrevious();
             }
-        }
-
-        private void ResetTrackNumbers(IEnumerable<PlaylistItem> list)
-        {
-            if (list == null) return;
-
-            var i = 1;
-            foreach (var item in list)
-            {
-                item.Id = i;
-                i++;
-            }
-
-            _playlistHelper.SavePlaylist(list.ToList());
         }
 
         private void GetPlaylistItems()

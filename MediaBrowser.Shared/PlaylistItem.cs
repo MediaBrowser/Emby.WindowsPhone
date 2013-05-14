@@ -5,6 +5,7 @@ namespace MediaBrowser.Shared
     public class PlaylistItem : INotifyPropertyChanged
     {
         public int Id { get; set; }
+        public int OriginalId { get; set; }
         public string TrackName { get; set; }
         public string Artist { get; set; }
         public string Album { get; set; }
