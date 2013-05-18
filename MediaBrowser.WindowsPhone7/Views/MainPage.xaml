@@ -66,7 +66,10 @@
                 <cimbalino:ApplicationBarBehavior.MenuItems>
                     <cimbalino:ApplicationBarMenuItem Text="refresh information"
                                                       Command="{Binding RefreshDataCommand}" />
-                    <cimbalino:ApplicationBarMenuItem Text="change profile"
+                                        <cimbalino:ApplicationBarMenuItem Text="now playing"
+                                                      Command="{Binding Main.NavigateToAPage, Source={StaticResource Locator}}"
+                                                      CommandParameter="/Views/NowPlayingView.xaml" />
+		    <cimbalino:ApplicationBarMenuItem Text="change profile"
                                                       Command="{Binding ChangeProfileCommand}" />
                     <cimbalino:ApplicationBarMenuItem Text="settings"
                                                       Command="{Binding NavigateToAPage}"

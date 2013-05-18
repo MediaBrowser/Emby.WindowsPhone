@@ -116,11 +116,12 @@
                                           Width="300"
                                           Margin="12,0,0,0"
                                           HorizontalAlignment="Left"
-                                          VerticalAlignment="Top"/>
+                                          VerticalAlignment="Top" />
                         <Grid HorizontalAlignment="Right"
                               Margin="0,6,100,0">
-                            <ToggleButton VerticalAlignment="Top"
-                                          IsChecked="{Binding Playlist.IsShuffled, Source={StaticResource Locator}, Mode=TwoWay}"/>
+                            <controls:OpacityToggleButton VerticalAlignment="Top"
+                                                          IsChecked="{Binding Playlist.IsShuffled, Source={StaticResource Locator}, Mode=TwoWay}"
+                                                          ImageSource="/Images/appbar.shuffle.png" />
                             <ToggleButton VerticalAlignment="Center"
                                           IsChecked="{Binding Playlist.IsOnRepeat, Source={StaticResource Locator}, Mode=TwoWay}" />
                         </Grid>

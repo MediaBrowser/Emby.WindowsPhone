@@ -60,6 +60,11 @@
                                                         IconUri="/Icons/appbar.list.check.png"
                                                         Click="ApplicationBarIconButton_OnClick"
                                                         IsEnabled="{Binding AlbumTracks.Count, Converter={StaticResource CountToEnabled}, ConverterParameter=delete}"/>
+                    <cimbalino:ApplicationBar.MenuItems>
+                        <cimbalino:ApplicationBarMenuItem Text="now playing"
+                                                          Command="{Binding Main.NavigateToAPage, Source={StaticResource Locator}}"
+                                                          CommandParameter="/Views/NowPlayingView.xaml" />
+                    </cimbalino:ApplicationBar.MenuItems>
                 </cimbalino:ApplicationBar>
                 <cimbalino:ApplicationBar>
                     <cimbalino:ApplicationBarIconButton Text="play items"
@@ -69,7 +74,11 @@
                     <cimbalino:ApplicationBar.MenuItems>
                         <cimbalino:ApplicationBarMenuItem Text="add to now playing"
                                                           Command="{Binding AddToNowPlayingCommand}"
-                                                          IsEnabled="{Binding SelectedTracks.Count, Converter={StaticResource CountToEnabled}, ConverterParameter=delete}"/>
+                                                          CommandParameter="{Binding SelectedItems, ElementName=MultiSelectList}"
+                                                          IsEnabled="{Binding SelectedTracks.Count, Converter={StaticResource CountToEnabled}, ConverterParameter=delete}" />
+                        <cimbalino:ApplicationBarMenuItem Text="now playing"
+                                                          Command="{Binding Main.NavigateToAPage, Source={StaticResource Locator}}"
+                                                          CommandParameter="/Views/NowPlayingView.xaml"/>
                     </cimbalino:ApplicationBar.MenuItems>
                 </cimbalino:ApplicationBar>
             </cimbalino:MultiApplicationBarBehavior>
@@ -117,12 +126,15 @@
                                               PlaceholderSource="/Images/DefaultAlbumCase.png" />
                             <StackPanel Orientation="Vertical"
                                         Margin="0,-6,0,0"
+                                        HorizontalAlignment="Left"
                                         VerticalAlignment="Top">
                                 <TextBlock Text="{Binding Name}"
                                            Style="{StaticResource PhoneTextTitle2Style}"
+                                           HorizontalAlignment="Left"
                                            TextWrapping="Wrap"
                                            MaxWidth="260" />
                                 <TextBlock Text="{Binding Artist}"
+                                           HorizontalAlignment="Left"
                                            Style="{StaticResource PhoneTextSubtleStyle}" />
                             </StackPanel>
                         </StackPanel>

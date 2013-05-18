@@ -437,6 +437,7 @@
     <Content Include="Icons\appbar.transport.pause.rest.png" />
     <Content Include="Icons\appbar.transport.play.rest.png" />
     <Content Include="Icons\appbar.transport.rew.rest.png" />
+    <Content Include="Images\appbar.shuffle.png" />
     <Content Include="Images\DefaultAlbumCase.png" />
     <Content Include="Images\DefaultVideo.png" />
     <Content Include="Images\default_avatar.png" />

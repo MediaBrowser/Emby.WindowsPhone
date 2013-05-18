@@ -47,6 +47,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 SimpleIoc.Default.Register<MovieViewModel>();
                 if(!SimpleIoc.Default.IsRegistered<IApplicationSettingsService>())
                     SimpleIoc.Default.Register<IApplicationSettingsService, ApplicationSettingsDesignService>();
+
+                if(!SimpleIoc.Default.IsRegistered<IStorageService>())
+                    SimpleIoc.Default.Register<IStorageService, StorageDesignService>();
             }
             else
             {

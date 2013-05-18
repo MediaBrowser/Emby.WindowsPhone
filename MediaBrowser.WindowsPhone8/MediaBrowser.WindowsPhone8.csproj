@@ -338,6 +338,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Content Include="..\MediaBrowser.WindowsPhone7\Images\appbar.shuffle.png">
+      <Link>Images\appbar.shuffle.png</Link>
+    </Content>
     <Content Include="..\MediaBrowser.WindowsPhone7\Images\DefaultAlbumCase.png">
       <Link>Images\DefaultAlbumCase.png</Link>
     </Content>
