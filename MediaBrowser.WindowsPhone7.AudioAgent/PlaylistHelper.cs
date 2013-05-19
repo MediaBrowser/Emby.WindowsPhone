@@ -67,6 +67,11 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
             var i = 1;
             foreach (var item in playlist.PlaylistItems)
             {
+                if (item.IsJustAdded)
+                {
+                    item.IsJustAdded = false;
+                    item.OriginalId = i;
+                }
                 item.Id = i;
                 i++;
             }
@@ -88,7 +93,7 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
             {
                 var randomisedList = playlist.PlaylistItems.Randomise();
 
-                playlist.PlaylistItems = randomisedList.OrderBy(x => x.Id).ToList();
+                playlist.PlaylistItems = randomisedList;
 
                 ResetTrackNumbers(playlist);
             }
@@ -140,6 +145,20 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
             playlist.IsOnRepeat = repeat;
 
             SavePlaylist(playlist);
+        }
+
+        public void SetAllTracksToNotPlayingAndSave()
+        {
+            var list = GetPlaylist();
+
+            SetAllTracksToNotPlaying(list.PlaylistItems);
+
+            SavePlaylist(list);
+        }
+
+        public void SetAllTracksToNotPlaying(List<PlaylistItem> list)
+        {
+            list.ForEach(item => item.IsPlaying = false);
         }
     }
 }

@@ -9,6 +9,11 @@ namespace MediaBrowser.WindowsPhone.Converters
         {
             var count = int.Parse(value.ToString());
 
+            if (parameter != null && bool.Parse(parameter.ToString()))
+            {
+                return count > 0;
+            }
+
             return count > 1;
         }
 

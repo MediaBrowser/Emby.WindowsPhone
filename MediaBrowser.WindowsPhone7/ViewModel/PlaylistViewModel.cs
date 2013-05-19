@@ -269,7 +269,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             IsOnRepeat = playlist.IsOnRepeat;
 
             var nowPlaying = playlist.PlaylistItems.FirstOrDefault(x => x.IsPlaying);
-            if (nowPlaying != null) NowPlayingItem = nowPlaying;
+            NowPlayingItem = nowPlaying;
         }
 
         private void OnIsShuffledChanged()

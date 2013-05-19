@@ -75,6 +75,7 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
                 case PlayState.Unknown:
                     break;
                 case PlayState.Stopped:
+                    _playlistHelper.SetAllTracksToNotPlaying();
                     break;
                 case PlayState.Paused:
                     break;
@@ -186,7 +187,7 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
 
             var track = nextTrack.ToAudioTrack();
 
-            SetAllItemsToNotPlaying(items);
+            _playlistHelper.SetAllTracksToNotPlaying(items);
 
             items.FirstOrDefault(x => x.Id == nextTrack.Id).IsPlaying = true;
 
@@ -231,7 +232,7 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
 
             var track = nextTrack.ToAudioTrack();
 
-            SetAllItemsToNotPlaying(items);
+            _playlistHelper.SetAllTracksToNotPlaying(items);
 
             items.FirstOrDefault(x => x.Id == nextTrack.Id).IsPlaying = true;
 
@@ -276,11 +277,6 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
         protected override void OnCancel()
         {
 
-        }
-
-        private void SetAllItemsToNotPlaying(List<PlaylistItem> list)
-        {
-            list.ForEach(item => item.IsPlaying = false);
         }
     }
 }

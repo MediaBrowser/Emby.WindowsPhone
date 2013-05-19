@@ -36,11 +36,11 @@
     <phone:PhoneApplicationPage.Resources>
         <converters:BooleanToStringConverter x:Key="PlayIconConverter"
                                              FalseValue="/Icons/appbar.transport.play.rest.png"
-                                             TrueValue="/Icons/appbar.transport.pause.rest.png"/>
+                                             TrueValue="/Icons/appbar.transport.pause.rest.png" />
         <converters:BooleanToStringConverter x:Key="PlayTextConverter"
                                              TrueValue="pause"
-                                             FalseValue="play"/>
-        <localConverters:PlaylistCountConverter x:Key="PlaylistCountConverter"/>
+                                             FalseValue="play" />
+        <localConverters:PlaylistCountConverter x:Key="PlaylistCountConverter" />
     </phone:PhoneApplicationPage.Resources>
 
     <toolkit:TransitionService.NavigationInTransition>
@@ -67,18 +67,23 @@
     <Grid x:Name="LayoutRoot"
           Background="{StaticResource MediaBrowserBackground}">
         <i:Interaction.Behaviors>
-            <cimbalino:ApplicationBarBehavior>
+            <cimbalino:ApplicationBarBehavior IsMenuEnabled="True">
                 <cimbalino:ApplicationBarIconButton Text="previous"
-                                                IconUri="/Icons/appbar.transport.rew.rest.png"
+                                                    IconUri="/Icons/appbar.transport.rew.rest.png"
                                                     IsEnabled="{Binding Playlist.Count, Converter={StaticResource PlaylistCountConverter}}"
-                                                    Command="{Binding PreviousTrackCommand}"/>
+                                                    Command="{Binding PreviousTrackCommand}" />
                 <cimbalino:ApplicationBarIconButton Text="{Binding IsPlaying, Converter={StaticResource PlayTextConverter}}"
-                                                IconUri="{Binding IsPlaying, Converter={StaticResource PlayIconConverter}}" 
-                                                    Command="{Binding PlayPauseCommand}"/>
+                                                    IconUri="{Binding IsPlaying, Converter={StaticResource PlayIconConverter}}"
+                                                    IsEnabled="{Binding Playlist.Count, Converter={StaticResource PlaylistCountConverter}, ConverterParameter=true}"
+                                                    Command="{Binding PlayPauseCommand}" />
                 <cimbalino:ApplicationBarIconButton Text="next"
-                                                IconUri="/Icons/appbar.transport.ff.rest.png" 
+                                                    IconUri="/Icons/appbar.transport.ff.rest.png"
                                                     IsEnabled="{Binding Playlist.Count, Converter={StaticResource PlaylistCountConverter}}"
-                                                    Command="{Binding NextTrackCommand}"/>
+                                                    Command="{Binding NextTrackCommand}" />
+                <cimbalino:ApplicationBarBehavior.MenuItems>
+                    <cimbalino:ApplicationBarMenuItem Text="clear now playing"
+                                                      Command="{Binding ClearPlaylistCommand}" />
+                </cimbalino:ApplicationBarBehavior.MenuItems>
             </cimbalino:ApplicationBarBehavior>
         </i:Interaction.Behaviors>
         <Grid.RowDefinitions>
@@ -117,13 +122,21 @@
                                           Margin="12,0,0,0"
                                           HorizontalAlignment="Left"
                                           VerticalAlignment="Top" />
-                        <Grid HorizontalAlignment="Right"
-                              Margin="0,6,100,0">
-                            <ToggleButton VerticalAlignment="Top"
-                                          IsChecked="{Binding Playlist.IsShuffled, Source={StaticResource Locator}, Mode=TwoWay}" />
-                            <ToggleButton VerticalAlignment="Center"
-                                          IsChecked="{Binding Playlist.IsOnRepeat, Source={StaticResource Locator}, Mode=TwoWay}" />
-                        </Grid>
+                        <StackPanel HorizontalAlignment="Right"
+                                    Orientation="Vertical"
+                                    VerticalAlignment="Top"
+                                    Margin="0,30,100,0">
+                            <controls:OpacityToggleButton VerticalAlignment="Top"
+                                                          IsChecked="{Binding Playlist.IsShuffled, Source={StaticResource Locator}, Mode=TwoWay}"
+                                                          ImageSource="/Images/appbar.shuffle.png"
+                                                          ButtonHeight="32"
+                                                          ButtonWidth="32" />
+                            <controls:OpacityToggleButton Margin="0,40,0,0"
+                                                          ImageSource="/Images/appbar.repeat.png"
+                                                          ButtonHeight="32"
+                                                          ButtonWidth="32"
+                                                          IsChecked="{Binding Playlist.IsOnRepeat, Source={StaticResource Locator}, Mode=TwoWay}" />
+                        </StackPanel>
                     </Grid>
                     <TextBlock Text="{Binding TrackName}"
                                Style="{StaticResource PhoneTextNormalStyle}" />
