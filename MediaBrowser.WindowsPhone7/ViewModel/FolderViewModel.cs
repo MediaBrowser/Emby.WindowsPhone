@@ -349,7 +349,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                           select f).ToList()
                                              select new Group<BaseItemDto>(genre, films)).ToList();
 #if WP8
-                    FolderGroupings = groupedGenreItems.ToList();
+                    FolderGroupings = groupedGenreItems.OrderBy(x => x.Title).ToList();
 #else
                     FolderGroupings = (from g in groupedGenreItems.Union(emptyGroups)
                                        orderby g.Title

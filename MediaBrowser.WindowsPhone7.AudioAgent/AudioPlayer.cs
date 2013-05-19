@@ -75,7 +75,7 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
                 case PlayState.Unknown:
                     break;
                 case PlayState.Stopped:
-                    _playlistHelper.SetAllTracksToNotPlaying();
+                    _playlistHelper.SetAllTracksToNotPlayingAndSave();
                     break;
                 case PlayState.Paused:
                     break;

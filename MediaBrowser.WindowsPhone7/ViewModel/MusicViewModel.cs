@@ -207,6 +207,18 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                                                         Messenger.Default.Send(new NotificationMessage<List<PlaylistItem>>(newList, Constants.SetPlaylistAsMsg));
                                                     });
+
+            PlaySongCommand = new RelayCommand<BaseItemDto>(song =>
+                                                                {
+                                                                    if (song == null) return;
+
+                                                                    var playlist = new List<PlaylistItem>
+                                                                                       {
+                                                                                           song.ToPlaylistItem(_apiClient)
+                                                                                       };
+
+                                                                    Messenger.Default.Send(new NotificationMessage<List<PlaylistItem>>(playlist, Constants.SetPlaylistAsMsg));
+                                                                });
         }
 
         private async Task GetArtistInfo()
@@ -353,6 +365,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public RelayCommand AlbumPageLoaded { get; set; }
         public RelayCommand<BaseItemDto> AlbumTapped { get; set; }
         public RelayCommand<BaseItemDto> AlbumPlayTapped { get; set; }
+        public RelayCommand<BaseItemDto> PlaySongCommand { get; set; }
         public RelayCommand<SelectionChangedEventArgs> SelectionChangedCommand { get; set; }
         public RelayCommand AddToNowPlayingCommand { get; set; }
         public RelayCommand PlayItemsCommand { get; set; }

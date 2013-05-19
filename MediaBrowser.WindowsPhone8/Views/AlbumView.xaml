@@ -142,7 +142,9 @@
                         <StackPanel Orientation="Horizontal"
                                     Margin="0,0,0,6">
                             <c4f:RoundButton ImageSource="/Icons/appbar.transport.play.rest.png"
-                                             Margin="-6,0,0,0" />
+                                             Margin="-6,0,0,0"
+                                             Command="{Binding Music.PlaySongCommand, Source={StaticResource Locator}}"
+                                             CommandParameter="{Binding}" />
                             <StackPanel Orientation="Vertical"
                                         Margin="0,-12,0,0">
                                 <TextBlock Text="{Binding Name}"
