@@ -6,6 +6,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using Ailon.WP.Utils;
+using Cimbalino.Phone.Toolkit.Helpers;
 using Cimbalino.Phone.Toolkit.Services;
 using GalaSoft.MvvmLight.Ioc;
 using MediaBrowser.Model.Dto;
@@ -257,6 +258,8 @@ namespace MediaBrowser.WindowsPhone
 
             var uniqueId = SimpleIoc.Default.GetInstance<IDeviceExtendedPropertiesService>().DeviceUniqueId;
             apiClient.DeviceId = Convert.ToBase64String(uniqueId, 0, uniqueId.Length);
+
+            apiClient.ApplicationVersion = ApplicationManifest.Current.App.Version;
 
             return apiClient;
         }

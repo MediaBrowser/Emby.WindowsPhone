@@ -117,7 +117,7 @@ namespace MediaBrowser.Windows8.ViewModel
             try
             {
                 _logger.Info("Getting profiles");
-                var profiles = await _apiClient.GetAllUsersAsync();
+                var profiles = await _apiClient.GetUsersAsync();
 
                 Profiles.Clear();
 

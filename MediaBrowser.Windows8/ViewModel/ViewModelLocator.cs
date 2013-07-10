@@ -12,6 +12,7 @@
   See http://www.galasoft.ch/mvvm
 */
 
+using Windows.ApplicationModel;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using MediaBrowser.ApiInteraction;
@@ -43,7 +44,7 @@ namespace MediaBrowser.Windows8.ViewModel
                         () => new NavigationService(new Frame()));
 
                 if (!SimpleIoc.Default.IsRegistered<ExtendedApiClient>())
-                    SimpleIoc.Default.Register(() => new ExtendedApiClient(new DesignLogger(), new AsyncHttpClient(new DesignLogger()), "192.168.0.2", 8096, "Windows RT", "dummy", "dummy"));
+                    SimpleIoc.Default.Register(() => new ExtendedApiClient(new DesignLogger(), new AsyncHttpClient(new DesignLogger()), "192.168.0.2", 8096, "Windows RT", "dummy", "dummy", "1.0.0.0"));
                 if (!SimpleIoc.Default.IsRegistered<FolderViewModel>())
                     SimpleIoc.Default.Register<FolderViewModel>();
                 if (!SimpleIoc.Default.IsRegistered<TvViewModel>())
@@ -55,7 +56,7 @@ namespace MediaBrowser.Windows8.ViewModel
             {
                 SimpleIoc.Default.Register<NavigationService>();
                 if (!SimpleIoc.Default.IsRegistered<ExtendedApiClient>())
-                    SimpleIoc.Default.Register(() => new ExtendedApiClient(new MBLogger(), new AsyncHttpClient(new MBLogger()), "dummy", 8096, "Windows RT", "dummy", "dummy").SetDeviceProperties());
+                    SimpleIoc.Default.Register(() => new ExtendedApiClient(new MBLogger(), new AsyncHttpClient(new MBLogger()), "dummy", 8096, "Windows RT", "dummy", "dummy", Package.Current.Id.Version.ToString()).SetDeviceProperties());
             }
 
             if (!SimpleIoc.Default.IsRegistered<SpecificSettings>())

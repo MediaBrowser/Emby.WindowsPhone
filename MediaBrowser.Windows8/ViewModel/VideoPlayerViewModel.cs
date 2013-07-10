@@ -75,14 +75,14 @@ namespace MediaBrowser.Windows8.ViewModel
                 {
                     if (_isTrailer)
                     {
-                        var url = SelectedItem.TrailerUrls[0];
-                        if (url.ToLower().Contains("youtube."))
+                        var url = SelectedItem.RemoteTrailers[0];
+                        if (url.Url.ToLower().Contains("youtube."))
                         {
                             _logger.Info("Trying to play YouTube trailer");
                             var hadError = false;
                             try
                             {
-                                VideoUrl = await ParseYoutubeLink(url);
+                                VideoUrl = await ParseYoutubeLink(url.Url);
                                 _logger.Debug(VideoUrl);
                             }
                             catch(Exception ex)
@@ -100,7 +100,7 @@ namespace MediaBrowser.Windows8.ViewModel
                         {
                             _logger.Info("Trying to play trailer");
 
-                            VideoUrl = url;
+                            VideoUrl = url.Url;
 
                             _logger.Debug(VideoUrl);
                         }

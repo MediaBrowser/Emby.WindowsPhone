@@ -41,7 +41,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             if (ViewModelBase.IsInDesignModeStatic)
             {
                 if (!SimpleIoc.Default.IsRegistered<ExtendedApiClient>())
-                    SimpleIoc.Default.Register(() => new ExtendedApiClient(new MBLogger(), new AsyncHttpClient(new MBLogger()), "192.168.0.2", 8096, "Windows Phone", "dummy", "dummy"));
+                    SimpleIoc.Default.Register(() => new ExtendedApiClient(new MBLogger(), new AsyncHttpClient(new MBLogger()), "192.168.0.2", 8096, "Windows Phone", "dummy", "dummy", "1.0.0.0"));
                 SimpleIoc.Default.Register<INavigationService, NavigationService>();
                 SimpleIoc.Default.Register<FolderViewModel>();
                 SimpleIoc.Default.Register<MovieViewModel>();
@@ -56,7 +56,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 SimpleIoc.Default.Register<INavigationService, NavigationService>();
                 SimpleIoc.Default.Register<ISettingsService, SettingsService>();
                 if (!SimpleIoc.Default.IsRegistered<ExtendedApiClient>())
-                    SimpleIoc.Default.Register(() => new ExtendedApiClient(new MBLogger(), new AsyncHttpClient(new MBLogger()), "dummy", 8096, "Windows Phone", "dummy", "dummy").SetDeviceProperties());
+                    SimpleIoc.Default.Register(() => new ExtendedApiClient(new MBLogger(), new AsyncHttpClient(new MBLogger()), "dummy", 8096, "Windows Phone", "dummy", "dummy", "1.0.0.0").SetDeviceProperties());
 
                 if (!SimpleIoc.Default.IsRegistered<IDeviceExtendedPropertiesService>())
                     SimpleIoc.Default.Register<IDeviceExtendedPropertiesService, DeviceExtendedPropertiesService>();

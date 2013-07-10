@@ -61,12 +61,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         private void WireMessages()
         {
             Messenger.Default.Register<NotificationMessage>(this, m =>
-                                                                      {
-                                                                          if (m.Notification.Equals(Constants.ResetAppMsg))
-                                                                          {
-                                                                              Profiles.Clear();
-                                                                          }
-                                                                      });
+            {
+                if (m.Notification.Equals(Constants.ResetAppMsg))
+                {
+                    Profiles.Clear();
+                }
+            });
         }
 
         private void WireCommands()
@@ -82,7 +82,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     
                     try
                     {
-                        var profiles = await _apiClient.GetAllUsersAsync();
+                        var profiles = await _apiClient.GetUsersAsync();
                         foreach (var profile in profiles)
                             Profiles.Add(profile);
                     }
