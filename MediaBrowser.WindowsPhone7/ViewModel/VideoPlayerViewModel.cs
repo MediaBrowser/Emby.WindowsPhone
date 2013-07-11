@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Diagnostics;
-using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Net;
 using MediaBrowser.WindowsPhone.Model;
+using ScottIsAFool.WindowsPhone.ViewModel;
 
 namespace MediaBrowser.WindowsPhone.ViewModel
 {
@@ -19,7 +19,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     {
         private readonly ExtendedApiClient _apiClient;
         private readonly INavigationService _navigationService;
-        private readonly ILog _logger;
 
         private bool _isResume;
         /// <summary>
@@ -29,15 +28,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             _apiClient = apiClient;
             _navigationService = navigationService;
-            _logger = new WPLogger(typeof(VideoPlayerViewModel));
-
-            if (!IsInDesignMode)
-            {
-                WireMessages();
-            }
         }
 
-        private void WireMessages()
+        public override void WireMessages()
         {
             Messenger.Default.Register<NotificationMessage>(this, async m =>
             {
@@ -54,17 +47,16 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 {
                     try
                     {
-                        var totalTicks = _isResume ? StartTime.Value.Ticks + PlayedVideoDuration.Ticks : PlayedVideoDuration.Ticks;
+                        var totalTicks = _isResume && StartTime.HasValue ? StartTime.Value.Ticks + PlayedVideoDuration.Ticks : PlayedVideoDuration.Ticks;
 
-                        _logger.LogFormat("Sending current runtime [{0}] to the server", LogLevel.Info, totalTicks);
+                        Log.Info("Sending current runtime [{0}] to the server", totalTicks);
 
                         await _apiClient.ReportPlaybackStoppedAsync(SelectedItem.Id, App.Settings.LoggedInUser.Id, totalTicks);
                         SelectedItem.UserData.PlaybackPositionTicks = totalTicks;
                     }
                     catch (HttpException ex)
                     {
-                        _logger.Log(ex.Message, LogLevel.Fatal);
-                        _logger.Log(ex.StackTrace, LogLevel.Fatal);
+                        Log.ErrorException("SendVideoTimeToServer", ex);
                     }
                 }
             });
@@ -108,18 +100,17 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     
                     Debug.WriteLine(VideoUrl);
                     
-                    _logger.LogFormat("Playing {0} [{1}] ({2})", LogLevel.Info, SelectedItem.Type, SelectedItem.Name, SelectedItem.Id);
-                    _logger.Log(VideoUrl);
+                    Log.Info("Playing {0} [{1}] ({2})", SelectedItem.Type, SelectedItem.Name, SelectedItem.Id);
+                    Log.Debug(VideoUrl);
 
                     try
                     {
-                        _logger.Log("Sending playback started message to the server.");
+                        Log.Info("Sending playback started message to the server.");
                         await _apiClient.ReportPlaybackStartAsync(SelectedItem.Id, App.Settings.LoggedInUser.Id);
                     }
                     catch (HttpException ex)
                     {
-                        _logger.Log(ex.Message, LogLevel.Fatal);
-                        _logger.Log(ex.StackTrace, LogLevel.Fatal);
+                        Log.ErrorException("VideoPageLoaded", ex);
                     }
                 });
             }

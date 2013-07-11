@@ -1,28 +1,27 @@
-﻿<phone:PhoneApplicationPage x:Class="MediaBrowser.WindowsPhone.Views.ChooseProfileView"
-                            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                            xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
-                            xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
-                            xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
-                            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                            xmlns:ignore="http://www.ignore.com"
-                            xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-                            xmlns:scott="clr-namespace:ScottIsAFool.WindowsPhone.Controls;assembly=ScottIsAFool.WindowsPhone"
-                            xmlns:controls="clr-namespace:MediaBrowser.WindowsPhone.Controls"
-                            xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP71"
-                            mc:Ignorable="d ignore"
-                            d:DesignWidth="480"
-                            d:DesignHeight="768"
-                            FontFamily="{StaticResource PhoneFontFamilyNormal}"
-                            FontSize="{StaticResource PhoneFontSizeNormal}"
-                            Foreground="{StaticResource PhoneForegroundBrush}"
-                            SupportedOrientations="Portrait"
-                            Orientation="Portrait"
-                            shell:SystemTray.IsVisible="True"
-                            shell:SystemTray.BackgroundColor="Black"
-                            toolkit:TiltEffect.IsTiltEnabled="True"
-                            DataContext="{Binding Profile, Source={StaticResource Locator}}">
+﻿<scott:BasePage x:Class="MediaBrowser.WindowsPhone.Views.ChooseProfileView"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+                xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                xmlns:ignore="http://www.ignore.com"
+                xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+                xmlns:scott="clr-namespace:ScottIsAFool.WindowsPhone.Controls;assembly=ScottIsAFool.WindowsPhone"
+                xmlns:controls="clr-namespace:MediaBrowser.WindowsPhone.Controls"
+                xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP71"
+                mc:Ignorable="d ignore"
+                d:DesignWidth="480"
+                d:DesignHeight="768"
+                FontFamily="{StaticResource PhoneFontFamilyNormal}"
+                FontSize="{StaticResource PhoneFontSizeNormal}"
+                Foreground="{StaticResource PhoneForegroundBrush}"
+                SupportedOrientations="Portrait"
+                Orientation="Portrait"
+                shell:SystemTray.IsVisible="True"
+                shell:SystemTray.BackgroundColor="Black"
+                toolkit:TiltEffect.IsTiltEnabled="True"
+                DataContext="{Binding Profile, Source={StaticResource Locator}}">
     <shell:SystemTray.ProgressIndicator>
         <shell:ProgressIndicator IsIndeterminate="True"
                                  IsVisible="{Binding ProgressIsVisible}"
@@ -66,7 +65,7 @@
         <StackPanel x:Name="TitlePanel"
                     Grid.Row="0"
                     Margin="12,17,0,28">
-            <controls:MediaBrowserLogo/>
+            <controls:MediaBrowserLogo />
             <TextBlock x:Name="PageTitle"
                        Text="profiles"
                        Margin="9,-7,0,0"
@@ -89,4 +88,4 @@
         </Grid>
     </Grid>
 
-</phone:PhoneApplicationPage>
+</scott:BasePage>

@@ -8,7 +8,7 @@ namespace MediaBrowser.WindowsPhone.Views
     /// <summary>
     /// Description for VideoDebugView.
     /// </summary>
-    public partial class VideoDebugView : PhoneApplicationPage
+    public partial class VideoDebugView
     {
         /// <summary>
         /// Initializes a new instance of the VideoDebugView class.

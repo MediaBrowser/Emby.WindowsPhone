@@ -8,6 +8,7 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using MediaBrowser.Model;
 using ScottIsAFool.WindowsPhone.IsolatedStorage;
+using ScottIsAFool.WindowsPhone.Logging;
 
 namespace MediaBrowser.WindowsPhone
 {
@@ -34,7 +35,7 @@ namespace MediaBrowser.WindowsPhone
 
         public static string Action { get; set; }
 
-        public static void ShowMessage(string title, string message, Action action = null)
+        public static void ShowMessage(string message, string title = "", Action action = null)
         {
             var prompt = new ToastPrompt
             {
@@ -136,9 +137,7 @@ namespace MediaBrowser.WindowsPhone
                 System.Diagnostics.Debugger.Break();
             }
 
-            _logger.Log(e.Exception.Message, LogLevel.Fatal);
-            _logger.Log(e.Uri.ToString(), LogLevel.Fatal);
-            _logger.Log(e.Exception.StackTrace, LogLevel.Fatal);
+            _logger.FatalException(string.Format("NavigationFailed, URI: {0}", e.Uri), e.Exception);
         }
 
         // Code to execute on Unhandled Exceptions
@@ -150,8 +149,7 @@ namespace MediaBrowser.WindowsPhone
                 System.Diagnostics.Debugger.Break();
             }
 
-            _logger.Log(e.ExceptionObject.Message, LogLevel.Fatal);
-            _logger.Log(e.ExceptionObject.StackTrace, LogLevel.Fatal);
+            _logger.FatalException("UnhandledException", e.ExceptionObject);
 
             e.Handled = true;
         }

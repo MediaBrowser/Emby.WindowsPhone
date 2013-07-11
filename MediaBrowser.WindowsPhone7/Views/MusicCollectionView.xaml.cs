@@ -5,7 +5,7 @@ namespace MediaBrowser.WindowsPhone.Views
     /// <summary>
     /// Description for MusicCollectionView.
     /// </summary>
-    public partial class MusicCollectionView : PhoneApplicationPage
+    public partial class MusicCollectionView
     {
         /// <summary>
         /// Initializes a new instance of the MusicCollectionView class.

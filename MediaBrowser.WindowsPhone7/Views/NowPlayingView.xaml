@@ -1,31 +1,31 @@
-﻿<phone:PhoneApplicationPage x:Class="MediaBrowser.WindowsPhone.Views.NowPlayingView"
-                            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                            xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
-                            xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
-                            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                            xmlns:ignore="http://www.ignore.com"
-                            xmlns:mb="clr-namespace:MediaBrowser.WindowsPhone.Controls"
-                            xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-                            xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
-                            xmlns:controls="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
-                            xmlns:cimbalino="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
-                            xmlns:converters="clr-namespace:Cimbalino.Phone.Toolkit.Converters;assembly=Cimbalino.Phone.Toolkit"
-                            xmlns:localConverters="clr-namespace:MediaBrowser.WindowsPhone.Converters"
-                            xmlns:delay="clr-namespace:Delay"
-                            xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP71"
-                            mc:Ignorable="d ignore"
-                            d:DesignWidth="480"
-                            d:DesignHeight="768"
-                            FontFamily="{StaticResource PhoneFontFamilyNormal}"
-                            FontSize="{StaticResource PhoneFontSizeNormal}"
-                            Foreground="{StaticResource PhoneForegroundBrush}"
-                            SupportedOrientations="Portrait"
-                            Orientation="Portrait"
-                            shell:SystemTray.IsVisible="True"
-                            toolkit:TiltEffect.IsTiltEnabled="True"
-                            DataContext="{Binding Playlist, Source={StaticResource Locator}}">
+﻿<scott:BasePage x:Class="MediaBrowser.WindowsPhone.Views.NowPlayingView"
+                xmlns:scott="clr-namespace:ScottIsAFool.WindowsPhone.Controls;assembly=ScottIsAFool.WindowsPhone"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                xmlns:ignore="http://www.ignore.com"
+                xmlns:mb="clr-namespace:MediaBrowser.WindowsPhone.Controls"
+                xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+                xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+                xmlns:controls="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
+                xmlns:cimbalino="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
+                xmlns:converters="clr-namespace:Cimbalino.Phone.Toolkit.Converters;assembly=Cimbalino.Phone.Toolkit"
+                xmlns:localConverters="clr-namespace:MediaBrowser.WindowsPhone.Converters"
+                xmlns:delay="clr-namespace:Delay"
+                xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP71"
+                mc:Ignorable="d ignore"
+                d:DesignWidth="480"
+                d:DesignHeight="768"
+                FontFamily="{StaticResource PhoneFontFamilyNormal}"
+                FontSize="{StaticResource PhoneFontSizeNormal}"
+                Foreground="{StaticResource PhoneForegroundBrush}"
+                SupportedOrientations="Portrait"
+                Orientation="Portrait"
+                shell:SystemTray.IsVisible="True"
+                toolkit:TiltEffect.IsTiltEnabled="True"
+                DataContext="{Binding Playlist, Source={StaticResource Locator}}">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <command:EventToCommand Command="{Binding PlaylistPageLoaded}" />
@@ -33,7 +33,7 @@
     </i:Interaction.Triggers>
 
 
-    <phone:PhoneApplicationPage.Resources>
+    <scott:BasePage.Resources>
         <converters:BooleanToStringConverter x:Key="PlayIconConverter"
                                              FalseValue="/Icons/appbar.transport.play.rest.png"
                                              TrueValue="/Icons/appbar.transport.pause.rest.png" />
@@ -41,7 +41,7 @@
                                              TrueValue="pause"
                                              FalseValue="play" />
         <localConverters:PlaylistCountConverter x:Key="PlaylistCountConverter" />
-    </phone:PhoneApplicationPage.Resources>
+    </scott:BasePage.Resources>
 
     <toolkit:TransitionService.NavigationInTransition>
         <toolkit:NavigationInTransition>
@@ -158,4 +158,4 @@
         </Grid>
     </Grid>
 
-</phone:PhoneApplicationPage>
+</scott:BasePage>

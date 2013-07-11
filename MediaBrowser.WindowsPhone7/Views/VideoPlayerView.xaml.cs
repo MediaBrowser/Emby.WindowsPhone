@@ -1,20 +1,18 @@
 ﻿using System;
 using GalaSoft.MvvmLight.Ioc;
 using MediaBrowser.WindowsPhone.ViewModel;
-using Microsoft.Phone.Controls;
 using Microsoft.SilverlightMediaFramework.Core;
 using Microsoft.SilverlightMediaFramework.Core.Media;
 using Microsoft.SilverlightMediaFramework.Plugins.Primitives;
+using ScottIsAFool.WindowsPhone.Logging;
 
 namespace MediaBrowser.WindowsPhone.Views
 {
-    public partial class VideoPlayerView : PhoneApplicationPage
+    public partial class VideoPlayerView
     {
-        private readonly ILog _logger;
-
         public VideoPlayerView()
         {
-            _logger = new WPLogger(typeof(VideoPlayerView));
+            Log = new WPLogger(typeof(VideoPlayerView));
 
             InitializeComponent();
             Loaded += (sender, args) =>
@@ -33,8 +31,7 @@ namespace MediaBrowser.WindowsPhone.Views
 
         private void ThePlayer_OnMediaFailed(object sender, CustomEventArgs<Exception> e)
         {
-            _logger.Log("Error playing video: " + e.Value.Message, LogLevel.Error);
-            _logger.Log(e.Value.StackTrace, LogLevel.Error);
+            Log.ErrorException("Error playing video: " + e.Value.Message, e.Value);
         }
     }
 }
