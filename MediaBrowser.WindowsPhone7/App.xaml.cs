@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Navigation;
+using Cimbalino.Phone.Toolkit.Helpers;
 using Coding4Fun.Toolkit.Controls;
 using MediaBrowser.WindowsPhone.ViewModel;
 using Microsoft.Phone.Controls;
@@ -72,6 +73,9 @@ namespace MediaBrowser.WindowsPhone
             InitializePhoneApplication();
 
             ThemeManager.OverrideTheme(Theme.Dark);
+            WPLogger.AppVersion = ApplicationManifest.Current.App.Version;
+            WPLogger.LogConfiguration.LogType = LogType.WriteToFile;
+            WPLogger.LogConfiguration.LoggingIsEnabled = true;
 
             // Show graphics profiling information while debugging.
             if (System.Diagnostics.Debugger.IsAttached)
