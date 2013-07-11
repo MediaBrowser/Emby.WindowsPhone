@@ -2,7 +2,7 @@
 
 namespace MediaBrowser.WindowsPhone.Views
 {
-    public partial class TrailerView : PhoneApplicationPage
+    public partial class TrailerView
     {
         public TrailerView()
         {

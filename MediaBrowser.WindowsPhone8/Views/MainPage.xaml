@@ -1,29 +1,29 @@
-﻿<phone:PhoneApplicationPage x:Class="MediaBrowser.WindowsPhone.MainPage"
-                            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                            xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
-                            xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-                            xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
-                            xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
-                            xmlns:scott="clr-namespace:ScottIsAFool.WindowsPhone.Controls;assembly=ScottIsAFool.WindowsPhone"
-                            xmlns:delay="clr-namespace:Delay"
-                            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                            xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP8"
-                            xmlns:cimbalino="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
-                            FontFamily="{StaticResource PhoneFontFamilyNormal}"
-                            FontSize="{StaticResource PhoneFontSizeNormal}"
-                            Foreground="{StaticResource PhoneForegroundBrush}"
-                            SupportedOrientations="Portrait"
-                            Orientation="Portrait"
-                            mc:Ignorable="d"
-                            d:DesignWidth="480"
-                            d:DesignHeight="696"
-                            shell:SystemTray.IsVisible="True"
-                            shell:SystemTray.Opacity="0"
-                            shell:SystemTray.BackgroundColor="Black"
-                            toolkit:TiltEffect.IsTiltEnabled="True"
-                            DataContext="{Binding Main, Source={StaticResource Locator}}">
+﻿<scott:BasePage x:Class="MediaBrowser.WindowsPhone.MainPage"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+                xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+                xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+                xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+                xmlns:scott="clr-namespace:ScottIsAFool.WindowsPhone.Controls;assembly=ScottIsAFool.WindowsPhone"
+                xmlns:delay="clr-namespace:Delay"
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP8"
+                xmlns:cimbalino="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
+                FontFamily="{StaticResource PhoneFontFamilyNormal}"
+                FontSize="{StaticResource PhoneFontSizeNormal}"
+                Foreground="{StaticResource PhoneForegroundBrush}"
+                SupportedOrientations="Portrait"
+                Orientation="Portrait"
+                mc:Ignorable="d"
+                d:DesignWidth="480"
+                d:DesignHeight="696"
+                shell:SystemTray.IsVisible="True"
+                shell:SystemTray.Opacity="0"
+                shell:SystemTray.BackgroundColor="Black"
+                toolkit:TiltEffect.IsTiltEnabled="True"
+                DataContext="{Binding Main, Source={StaticResource Locator}}">
     <shell:SystemTray.ProgressIndicator>
         <shell:ProgressIndicator IsIndeterminate="True"
                                  IsVisible="{Binding ProgressIsVisible}"
@@ -75,7 +75,7 @@
                                                       CommandParameter="/Views/SettingsView.xaml" />
                     <cimbalino:ApplicationBarMenuItem Text="about"
                                                       Command="{Binding NavigateToAPage}"
-                                                      CommandParameter="/YourLastAboutDialog;component/AboutPage.xaml"/>
+                                                      CommandParameter="/YourLastAboutDialog;component/AboutPage.xaml" />
                 </cimbalino:ApplicationBarBehavior.MenuItems>
             </cimbalino:ApplicationBarBehavior>
         </i:Interaction.Behaviors>
@@ -86,9 +86,9 @@
                     <StackPanel Orientation="Horizontal"
                                 Margin="-12,-41,0,18">
                         <TextBlock Text="media"
-                                   Foreground="{StaticResource PhoneForegroundBrush}"/>
+                                   Foreground="{StaticResource PhoneForegroundBrush}" />
                         <TextBlock Text="browser"
-                                   Foreground="Green"/>
+                                   Foreground="Green" />
                         <TextBlock Text="3"
                                    Foreground="Green"
                                    FontFamily="Euphemia"
@@ -121,7 +121,7 @@
                                                       Source="{Binding Converter={StaticResource ImageUrlConverter}}"
                                                       Height="62"
                                                       Width="62"
-                                                      VerticalAlignment="Top"/>
+                                                      VerticalAlignment="Top" />
                                     <StackPanel Orientation="Vertical"
                                                 VerticalAlignment="Center">
                                         <TextBlock Text="{Binding Name}"
@@ -137,7 +137,7 @@
             </phone:PanoramaItem>
 
             <phone:PanoramaItem Header="recent"
-                                   Orientation="Horizontal">
+                                Orientation="Horizontal">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="6*" />
@@ -186,7 +186,7 @@
                         <ItemsPanelTemplate>
                             <toolkit:WrapPanel ItemHeight="200"
                                                ItemWidth="200"
-                                               MaxWidth="470"/>
+                                               MaxWidth="470" />
                         </ItemsPanelTemplate>
                     </scott:PhoneListBox.ItemsPanel>
                 </scott:PhoneListBox>
@@ -194,4 +194,4 @@
         </phone:Panorama>
     </Grid>
 
-</phone:PhoneApplicationPage>
+</scott:BasePage>

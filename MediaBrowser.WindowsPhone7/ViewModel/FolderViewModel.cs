@@ -2,7 +2,6 @@
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Controls;
-using GalaSoft.MvvmLight;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Querying;
@@ -15,10 +14,10 @@ using System.Linq;
 using System.Windows;
 using MediaBrowser.WindowsPhone.Resources;
 using Microsoft.Phone.Shell;
-
 #if !WP8
 using ScottIsAFool.WindowsPhone;
 #endif
+using ScottIsAFool.WindowsPhone.ViewModel;
 
 namespace MediaBrowser.WindowsPhone.ViewModel
 {
@@ -35,8 +34,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     {
         private readonly INavigationService _navService;
         private readonly ExtendedApiClient _apiClient;
-        private readonly ILog _logger;
         private bool _dataLoaded;
+
         /// <summary>
         /// Initializes a new instance of the FolderViewModel class.
         /// </summary>
@@ -47,39 +46,37 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             _apiClient = apiClient;
             _navService = navService;
-            _logger = new WPLogger(typeof(FolderViewModel));
 
             if (IsInDesignMode)
             {
                 SelectedFolder = new BaseItemDto
-                                     {
-                                         Name = "Movies"
-                                     };
+                {
+                    Name = "Movies"
+                };
                 RecentItems.Add(new BaseItemDto
-                                    {
-                                        Id = "6536a66e10417d69105bae71d41a6e6f",
-                                        Name = "Jurassic Park",
-                                        SortName = "Jurassic Park",
-                                        Overview = "Lots of dinosaurs eating people!",
-                                        People = new []
-                                                     {
-                                                         new BaseItemPerson{Name = "Steven Spielberg", Type = "Director"},
-                                                         new BaseItemPerson{Name = "Sam Neill", Type = "Actor"},
-                                                         new BaseItemPerson{Name = "Richard Attenborough", Type = "Actor"},
-                                                         new BaseItemPerson{Name = "Laura Dern", Type = "Actor"}
-                                                     }
+                {
+                    Id = "6536a66e10417d69105bae71d41a6e6f",
+                    Name = "Jurassic Park",
+                    SortName = "Jurassic Park",
+                    Overview = "Lots of dinosaurs eating people!",
+                    People = new[]
+                    {
+                        new BaseItemPerson {Name = "Steven Spielberg", Type = "Director"},
+                        new BaseItemPerson {Name = "Sam Neill", Type = "Actor"},
+                        new BaseItemPerson {Name = "Richard Attenborough", Type = "Actor"},
+                        new BaseItemPerson {Name = "Laura Dern", Type = "Actor"}
+                    }
 
-                                    });
+                });
             }
             else
             {
                 WireCommands();
-                WireMessages();
                 GroupBy = GroupBy.Name;
             }
         }
 
-        private void WireMessages()
+        public override void WireMessages()
         {
             Messenger.Default.Register<NotificationMessage>(this, m =>
             {
@@ -90,7 +87,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 }
                 else if (m.Notification.Equals(Constants.ChangeGroupingMsg))
                 {
-                    GroupBy = (GroupBy)m.Sender;
+                    GroupBy = (GroupBy) m.Sender;
                     SortList();
                 }
                 else if (m.Notification.Equals(Constants.ClearFoldersMsg))
@@ -113,40 +110,38 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 if (_navService.IsNetworkAvailable && App.Settings.CheckHostAndPort() && !_dataLoaded)
                 {
-                    ProgressIsVisible = true;
-                    ProgressText = AppResources.SysTrayGettingItems;
+                    SetProgressBar(AppResources.SysTrayGettingItems);
 
                     GroupBy = App.SpecificSettings.DefaultGroupBy;
                     _dataLoaded = await GetItems();
 
                     SortList();
-                    ProgressIsVisible = false;
+
+                    SetProgressBar();
                 }
             });
 
             CollectionPageLoaded = new RelayCommand(async () =>
-                                                        {
-                                                            if (_navService.IsNetworkAvailable && !_dataLoaded && SelectedFolder != null)
-                                                            {
-                                                                ProgressText = AppResources.SysTrayCheckingCollection;
-                                                                ProgressIsVisible = true;
+            {
+                if (_navService.IsNetworkAvailable && !_dataLoaded && SelectedFolder != null)
+                {
+                    SetProgressBar(AppResources.SysTrayCheckingCollection);
 
-                                                                var tileUrl = string.Format(Constants.PhoneCollectionTileUrlFormat, SelectedFolder.Id, SelectedFolder.Name);
-                                                                var shellExists = ShellTile.ActiveTiles.SingleOrDefault(x => x.NavigationUri.ToString() == tileUrl);
+                    var tileUrl = string.Format(Constants.PhoneCollectionTileUrlFormat, SelectedFolder.Id, SelectedFolder.Name);
+                    var shellExists = ShellTile.ActiveTiles.SingleOrDefault(x => x.NavigationUri.ToString() == tileUrl);
 
-                                                                CanPinCollection = shellExists == default(ShellTile);
+                    CanPinCollection = shellExists == default(ShellTile);
 
-                                                                _dataLoaded = await GetCollectionItems();
+                    _dataLoaded = await GetCollectionItems();
 
-                                                                ProgressText = string.Empty;
-                                                                ProgressIsVisible = false;
-                                                            }
+                    SetProgressBar();
+                }
 
-                                                            if (CurrentItems != null && CurrentItems.Any())
-                                                            {
-                                                                GetRandomItems();
-                                                            }
-                                                        });
+                if (CurrentItems != null && CurrentItems.Any())
+                {
+                    GetRandomItems();
+                }
+            });
 
             NavigateTo = new RelayCommand<BaseItemDto>(_navService.NavigateTo);
         }
@@ -171,24 +166,24 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             var query = new ItemQuery
             {
-                Filters = new[] { ItemFilter.IsRecentlyAdded, ItemFilter.IsNotFolder, },
+                Filters = new[] {ItemFilter.IsRecentlyAdded, ItemFilter.IsNotFolder},
                 UserId = App.Settings.LoggedInUser.Id,
                 Fields = new[]
-                                                 {
-                                                     ItemFields.SeriesInfo,
-                                                     ItemFields.DateCreated,
-                                                     ItemFields.UserData, 
-                                                     ItemFields.ProviderIds, 
-                                                     ItemFields.ParentId, 
-                                                     ItemFields.AudioInfo, 
-                                                 },
+                {
+                    ItemFields.SeriesInfo,
+                    ItemFields.DateCreated,
+                    ItemFields.UserData,
+                    ItemFields.ProviderIds,
+                    ItemFields.ParentId,
+                    ItemFields.AudioInfo
+                },
                 ParentId = SelectedFolder.Id,
                 Recursive = true
             };
 
             try
             {
-                _logger.LogFormat("Getting recent items for collection [{0}]", LogLevel.Info, SelectedFolder.Name);
+                Log.Info("Getting recent items for collection [{0}]", SelectedFolder.Name);
 
                 var items = await _apiClient.GetItemsAsync(query);
 
@@ -202,8 +197,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
             catch (HttpException ex)
             {
-                _logger.Log(ex.Message, LogLevel.Fatal);
-                _logger.Log(ex.StackTrace, LogLevel.Fatal);
+                Log.ErrorException("GetRecentCollectionItems()", ex);
                 return false;
             }
         }
@@ -215,37 +209,37 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 var query = new ItemQuery
                 {
                     UserId = App.Settings.LoggedInUser.Id,
-                    SortBy = new[] { ItemSortBy.SortName },
+                    SortBy = new[] {ItemSortBy.SortName},
                     SortOrder = SortOrder.Ascending,
-                    Fields = new[] { ItemFields.SortName, ItemFields.UserData, ItemFields.Genres, ItemFields.ProviderIds,  }
+                    Fields = new[] {ItemFields.SortName, ItemFields.UserData, ItemFields.Genres, ItemFields.ProviderIds}
                 };
                 if (SelectedPerson != null)
                 {
-                    _logger.LogFormat("Getting items for {0}", LogLevel.Info, SelectedPerson.Name);
+                    Log.Info("Getting items for {0}", SelectedPerson.Name);
                     PageTitle = SelectedPerson.Name.ToLower();
                     query.Person = SelectedPerson.Name;
-                    query.PersonTypes = new []{SelectedPerson.Type};
+                    query.PersonTypes = new[] {SelectedPerson.Type};
                     query.Recursive = true;
                 }
                 else
                 {
                     if (SelectedFolder.Name.Contains("recent"))
                     {
-                        _logger.Log("Getting recent items");
+                        Log.Info("Getting recent items");
                         PageTitle = AppResources.Recent.ToLower();
-                        query.Filters = new[] { ItemFilter.IsRecentlyAdded };
+                        query.Filters = new[] {ItemFilter.IsRecentlyAdded};
                         query.Recursive = true;
                     }
                     else if (SelectedFolder.Type.Equals("Genre"))
                     {
-                        _logger.LogFormat("Getting items for genre [{0}]", LogLevel.Info, SelectedFolder.Name);
+                        Log.Info("Getting items for genre [{0}]", SelectedFolder.Name);
                         PageTitle = SelectedFolder.Type.ToLower();
-                        query.Genres = new[] { SelectedFolder.Name };
+                        query.Genres = new[] {SelectedFolder.Name};
                         query.Recursive = true;
                     }
                     else
                     {
-                        _logger.LogFormat("Getting items for folder [{0}]", LogLevel.Info, SelectedFolder.Name);
+                        Log.Info("Getting items for folder [{0}]", SelectedFolder.Name);
                         PageTitle = SelectedFolder.Name.ToLower();
                         query.ParentId = SelectedFolder.Id;
                     }
@@ -256,40 +250,38 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
             catch (HttpException ex)
             {
-                _logger.Log(ex.Message, LogLevel.Fatal);
-                _logger.Log(ex.StackTrace, LogLevel.Fatal);
+                Log.ErrorException("GetItems()", ex);
 
-                App.ShowMessage("", AppResources.ErrorGettingData);
+                App.ShowMessage(AppResources.ErrorGettingData);
                 return false;
             }
         }
 
         private void SortList()
         {
-            ProgressText = AppResources.SysTrayRegrouping;
-            ProgressIsVisible = true;
+            SetProgressBar(AppResources.SysTrayRegrouping);
 
             var emptyGroups = new List<Group<BaseItemDto>>();
 
-            _logger.LogFormat("Sorting by [{0}]", LogLevel.Info, GroupBy);
+            Log.Info("Sorting by [{0}]", GroupBy);
 
             switch (GroupBy)
             {
                 case GroupBy.Name:
-                    GroupHeaderTemplate = (DataTemplate)Application.Current.Resources["LLSGroupHeaderTemplateName"];
+                    GroupHeaderTemplate = (DataTemplate) Application.Current.Resources["LLSGroupHeaderTemplateName"];
 #if WP8
-                    GroupItemTemplate = (Style)Application.Current.Resources["LLSGroupItemStyle"];
+                    GroupItemTemplate = (Style) Application.Current.Resources["LLSGroupItemStyle"];
 #else
                     GroupItemTemplate = (DataTemplate)Application.Current.Resources["LLSGroupItemTemplate"];
                     ItemsPanelTemplate = (ItemsPanelTemplate)Application.Current.Resources["WrapPanelTemplate"];
 #endif
-                    var headers = new List<string> { "#", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
+                    var headers = new List<string> {"#", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
                     headers.ForEach(item => emptyGroups.Add(new Group<BaseItemDto>(item, new List<BaseItemDto>())));
                     var groupedNameItems = (from c in CurrentItems
-                                            group c by Utils.GetSortByNameHeader(c)
-                                                into grp
-                                                orderby grp.Key
-                                                select new Group<BaseItemDto>(grp.Key, grp)).ToList();
+                        group c by Utils.GetSortByNameHeader(c)
+                        into grp
+                        orderby grp.Key
+                        select new Group<BaseItemDto>(grp.Key, grp)).ToList();
 #if WP8
                     FolderGroupings = groupedNameItems.ToList();
 #else
@@ -299,25 +291,25 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 #endif
                     break;
                 case GroupBy.ProductionYear:
-                    GroupHeaderTemplate = (DataTemplate)Application.Current.Resources["LLSGroupHeaderTemplateLong"];
+                    GroupHeaderTemplate = (DataTemplate) Application.Current.Resources["LLSGroupHeaderTemplateLong"];
 #if WP8
-                    GroupItemTemplate = (Style)Application.Current.Resources["LLSGroupItemStyle"];
+                    GroupItemTemplate = (Style) Application.Current.Resources["LLSGroupItemStyle"];
 #else
                     GroupItemTemplate = (DataTemplate)Application.Current.Resources["LLSGroupItemTemplate"];
                     ItemsPanelTemplate = (ItemsPanelTemplate)Application.Current.Resources["WrapPanelTemplate"];
 #endif
                     var movieYears = (from y in CurrentItems
-                                      where y.ProductionYear != null
-                                      orderby y.ProductionYear
-                                      select y.ProductionYear.ToString()).Distinct().ToList();
+                        where y.ProductionYear != null
+                        orderby y.ProductionYear
+                        select y.ProductionYear.ToString()).Distinct().ToList();
                     movieYears.Insert(0, "?");
                     movieYears.ForEach(item => emptyGroups.Add(new Group<BaseItemDto>(item, new List<BaseItemDto>())));
 
                     var groupedYearItems = from t in CurrentItems
-                                           group t by GetSortByProductionYearHeader(t)
-                                               into grp
-                                               orderby grp.Key
-                                               select new Group<BaseItemDto>(grp.Key, grp);
+                        group t by GetSortByProductionYearHeader(t)
+                        into grp
+                        orderby grp.Key
+                        select new Group<BaseItemDto>(grp.Key, grp);
 #if WP8
                     FolderGroupings = groupedYearItems.ToList();
 #else
@@ -327,27 +319,27 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 #endif
                     break;
                 case GroupBy.Genre:
-                    GroupHeaderTemplate = (DataTemplate)Application.Current.Resources["LLSGroupHeaderTemplateLong"];
+                    GroupHeaderTemplate = (DataTemplate) Application.Current.Resources["LLSGroupHeaderTemplateLong"];
 #if WP8
-                    GroupItemTemplate = (Style)Application.Current.Resources["LLSGroupItemLongStyle"];
+                    GroupItemTemplate = (Style) Application.Current.Resources["LLSGroupItemLongStyle"];
 #else
                     GroupItemTemplate = (DataTemplate)Application.Current.Resources["LLSGroupItemTemplateLong"];
                     ItemsPanelTemplate = (ItemsPanelTemplate)Application.Current.Resources["StackPanelVerticalTemplate"];
 #endif
                     var genres = (from t in CurrentItems
-                                  where t.Genres != null
-                                  from s in t.Genres
-                                  select s).Distinct().ToList();
+                        where t.Genres != null
+                        from s in t.Genres
+                        select s).Distinct().ToList();
                     genres.Insert(0, "none");
                     genres.ForEach(item => emptyGroups.Add(new Group<BaseItemDto>(item, new List<BaseItemDto>())));
 
                     var groupedGenreItems = (from genre in genres
-                                             let films = (from f in CurrentItems
-                                                          where CheckGenre(f)
-                                                          where f.Genres.Contains(genre)
-                                                          orderby Utils.GetSortByNameHeader(f)
-                                                          select f).ToList()
-                                             select new Group<BaseItemDto>(genre, films)).ToList();
+                        let films = (from f in CurrentItems
+                            where CheckGenre(f)
+                            where f.Genres.Contains(genre)
+                            orderby Utils.GetSortByNameHeader(f)
+                            select f).ToList()
+                        select new Group<BaseItemDto>(genre, films)).ToList();
 #if WP8
                     FolderGroupings = groupedGenreItems.OrderBy(x => x.Title).ToList();
 #else
@@ -387,7 +379,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 //#endif
 //                    break;
             }
-            ProgressIsVisible = false;
+
+            SetProgressBar();
         }
 
         //private bool CheckStudio(BaseItemDto dtoBaseItem)
@@ -406,7 +399,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 return true;
             }
-            dtoBaseItem.Genres = new List<string> { "none" };
+            dtoBaseItem.Genres = new List<string> {"none"};
             return true;
         }
 
@@ -415,9 +408,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             return dtoBaseItem.ProductionYear == null ? "?" : dtoBaseItem.ProductionYear.ToString();
         }
 
-        // Shell properties
-        public string ProgressText { get; set; }
-        public bool ProgressIsVisible { get; set; }
         public bool CanPinCollection { get; set; }
 
         public string PageTitle { get; set; }

@@ -1,22 +1,15 @@
 ﻿using System.Windows;
 using GalaSoft.MvvmLight.Messaging;
-using Microsoft.Phone.Controls;
 using Microsoft.PlayerFramework;
 
 namespace MediaBrowser.WindowsPhone.Views
 {
-    public partial class VideoPlayerView : PhoneApplicationPage
+    public partial class VideoPlayerView
     {
-        private readonly ILog _logger;
         // Constructor
         public VideoPlayerView()
         {
-            _logger = new WPLogger(typeof(VideoPlayerView));
-
             InitializeComponent();
-
-            // Sample code to localize the ApplicationBar
-            //BuildLocalizedApplicationBar();
         }
 
         private void ThePlayerMediaEnded(object sender, MediaPlayerActionEventArgs e)
@@ -26,8 +19,7 @@ namespace MediaBrowser.WindowsPhone.Views
 
         private void ThePlayerMediaFailed(object sender, ExceptionRoutedEventArgs e)
         {
-            _logger.Log("Error playing media: " + e.ErrorException.Message, LogLevel.Error);
-            _logger.Log(e.ErrorException.StackTrace, LogLevel.Error);
+            Log.ErrorException("Error playing media: " + e.ErrorException.Message, e.ErrorException);
         }
 
         private void ThePlayer_OnMediaOpened(object sender, RoutedEventArgs e)

@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Navigation;
+using Cimbalino.Phone.Toolkit.Helpers;
 using Coding4Fun.Toolkit.Controls;
 using MediaBrowser.Model;
 using MediaBrowser.WindowsPhone.ViewModel;
@@ -11,32 +12,38 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using MediaBrowser.WindowsPhone.Resources;
 using Windows.Phone.ApplicationModel;
+using ScottIsAFool.WindowsPhone.Logging;
 
 namespace MediaBrowser.WindowsPhone
 {
-    public partial class App : Application
+    public partial class App
     {
         private readonly ILog _logger;
 
-        public static bool IsInKidsCorner { get { return ApplicationProfile.Modes == ApplicationProfileModes.Alternate; } }
+        public static bool IsInKidsCorner
+        {
+            get { return ApplicationProfile.Modes == ApplicationProfileModes.Alternate; }
+        }
 
         private static SettingsService _settings;
+
         public static SettingsService Settings
         {
-            get { return _settings ?? (_settings = (SettingsService)Current.Resources["AppSettings"]); }
+            get { return _settings ?? (_settings = (SettingsService) Current.Resources["AppSettings"]); }
         }
 
         private static SpecificSettings _specificSettings;
+
         public static SpecificSettings SpecificSettings
         {
-            get { return _specificSettings ?? (_specificSettings = (SpecificSettings)Current.Resources["SpecificSettings"]); }
+            get { return _specificSettings ?? (_specificSettings = (SpecificSettings) Current.Resources["SpecificSettings"]); }
         }
 
         public static object SelectedItem { get; set; }
 
         public static string Action { get; set; }
 
-        public static void ShowMessage(string title, string message, Action action = null)
+        public static void ShowMessage(string message, string title = "", Action action = null)
         {
             var prompt = new ToastPrompt
             {
@@ -50,18 +57,23 @@ namespace MediaBrowser.WindowsPhone
                 prompt.Tap += (s, e) => action();
             prompt.Show();
         }
+
         /// <summary>
         /// Provides easy access to the root frame of the Phone Application.
         /// </summary>
         /// <returns>The root frame of the Phone Application.</returns>
-        public static PhoneApplicationFrame RootFrame { get; private set; }
+        public static PhoneApplicationFrame RootFrame
+        {
+            get;
+            private set;
+        }
 
         /// <summary>
         /// Constructor for the Application object.
         /// </summary>
         public App()
         {
-            _logger = new WPLogger(typeof(App));
+            _logger = new WPLogger(typeof (App));
 
             // Global handler for uncaught exceptions.
             UnhandledException += Application_UnhandledException;
@@ -73,6 +85,9 @@ namespace MediaBrowser.WindowsPhone
             InitializePhoneApplication();
 
             ThemeManager.OverrideTheme(Theme.Dark);
+            WPLogger.AppVersion = ApplicationManifest.Current.App.Version;
+            WPLogger.LogConfiguration.LogType = LogType.WriteToFile;
+            WPLogger.LogConfiguration.LoggingIsEnabled = true;
 
             // Language display initialization
             InitializeLanguage();
@@ -81,7 +96,7 @@ namespace MediaBrowser.WindowsPhone
             if (Debugger.IsAttached)
             {
                 // Display the current frame rate counters.
-                Application.Current.Host.Settings.EnableFrameRateCounter = true;
+                Current.Host.Settings.EnableFrameRateCounter = true;
 
                 // Show the areas of the app that are being redrawn in each frame.
                 //Application.Current.Host.Settings.EnableRedrawRegions = true;
@@ -133,9 +148,7 @@ namespace MediaBrowser.WindowsPhone
                 Debugger.Break();
             }
 
-            _logger.Log(e.Exception.Message, LogLevel.Fatal);
-            _logger.Log(e.Uri.ToString(), LogLevel.Fatal);
-            _logger.Log(e.Exception.StackTrace, LogLevel.Fatal);
+            _logger.FatalException(string.Format("NavigationFailed, URI: {0}", e.Uri), e.Exception);
         }
 
         // Code to execute on Unhandled Exceptions
@@ -147,10 +160,9 @@ namespace MediaBrowser.WindowsPhone
                 Debugger.Break();
             }
 
-            //App.ShowMessage("", "Nuts, something broke. Could you let the developer know please.");
+            //App.ShowMessage("Nuts, something broke. Could you let the developer know please.");
 
-            _logger.Log(e.ExceptionObject.Message, LogLevel.Fatal);
-            _logger.Log(e.ExceptionObject.StackTrace, LogLevel.Fatal);
+            _logger.FatalException("UnhandledException", e.ExceptionObject);
 
             e.Handled = true;
         }
@@ -169,9 +181,9 @@ namespace MediaBrowser.WindowsPhone
             // Create the frame but don't set it as RootVisual yet; this allows the splash
             // screen to remain active until the application is ready to render.
             RootFrame = new TransitionFrame
-                            {
-                                Background = new SolidColorBrush(Colors.Transparent)
-                            };
+            {
+                Background = new SolidColorBrush(Colors.Transparent)
+            };
             RootFrame.Navigated += CompleteInitializePhoneApplication;
 
             // Handle navigation failures
@@ -221,23 +233,6 @@ namespace MediaBrowser.WindowsPhone
 
         #endregion
 
-        // Initialize the app's font and flow direction as defined in its localized resource strings.
-        //
-        // To ensure that the font of your application is aligned with its supported languages and that the
-        // FlowDirection for each of those languages follows its traditional direction, ResourceLanguage
-        // and ResourceFlowDirection should be initialized in each resx file to match these values with that
-        // file's culture. For example:
-        //
-        // AppResources.es-ES.resx
-        //    ResourceLanguage's value should be "es-ES"
-        //    ResourceFlowDirection's value should be "LeftToRight"
-        //
-        // AppResources.ar-SA.resx
-        //     ResourceLanguage's value should be "ar-SA"
-        //     ResourceFlowDirection's value should be "RightToLeft"
-        //
-        // For more info on localizing Windows Phone apps see http://go.microsoft.com/fwlink/?LinkId=262072.
-        //
         private void InitializeLanguage()
         {
             try

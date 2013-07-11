@@ -12,7 +12,7 @@ namespace MediaBrowser.WindowsPhone.Views
     /// <summary>
     /// Description for TvShowView.
     /// </summary>
-    public partial class TvShowView : PhoneApplicationPage
+    public partial class TvShowView
     {
         /// <summary>
         /// Initializes a new instance of the TvShowView class.

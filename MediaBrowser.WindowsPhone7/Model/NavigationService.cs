@@ -2,7 +2,7 @@
 using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Phone.Net.NetworkInformation;
 using MediaBrowser.Model.Dto;
-
+using ScottIsAFool.WindowsPhone.Logging;
 
 namespace MediaBrowser.WindowsPhone.Model
 {
@@ -17,7 +17,7 @@ namespace MediaBrowser.WindowsPhone.Model
                 var result = System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable();
                 if (!result || NetworkInterface.NetworkInterfaceType == NetworkInterfaceType.None)
                 {
-                    Deployment.Current.Dispatcher.BeginInvoke(() => App.ShowMessage("", "No network connection available"));
+                    Deployment.Current.Dispatcher.BeginInvoke(() => App.ShowMessage("No network connection available"));
                 }
                 return result;
             }

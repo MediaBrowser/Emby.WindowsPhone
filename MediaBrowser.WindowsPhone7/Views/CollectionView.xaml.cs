@@ -11,7 +11,7 @@ namespace MediaBrowser.WindowsPhone.Views
     /// <summary>
     /// Description for CollectionView.
     /// </summary>
-    public partial class CollectionView : PhoneApplicationPage
+    public partial class CollectionView
     {
         /// <summary>
         /// Initializes a new instance of the CollectionView class.

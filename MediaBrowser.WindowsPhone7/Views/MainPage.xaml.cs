@@ -7,7 +7,7 @@ using System.Runtime.Serialization;
 
 namespace MediaBrowser.WindowsPhone
 {
-    public partial class MainPage : PhoneApplicationPage
+    public partial class MainPage
     {
         // Constructor
         public MainPage()

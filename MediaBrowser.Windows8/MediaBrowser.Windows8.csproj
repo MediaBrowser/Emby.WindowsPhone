@@ -380,6 +380,9 @@
     <Reference Include="GalaSoft.MvvmLight.Win8">
       <HintPath>..\packages\Win8nl.1.0.8\lib\NetCore45\GalaSoft.MvvmLight.Win8.dll</HintPath>
     </Reference>
+    <Reference Include="JetBrains.Annotations">
+      <HintPath>..\packages\JetBrains.Annotations.7.0\lib\netcore45\JetBrains.Annotations.dll</HintPath>
+    </Reference>
     <Reference Include="MediaBrowser.ApiInteraction.Portable">
       <HintPath>..\packages\MediaBrowser.ApiClient.3.0.0.141\lib\portable-net45+sl4+wp71+win8\MediaBrowser.ApiInteraction.Portable.dll</HintPath>
     </Reference>

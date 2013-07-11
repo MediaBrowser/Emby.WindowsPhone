@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using MediaBrowser.Model.Logging;
+using ScottIsAFool.WindowsPhone.Logging;
 
 namespace MediaBrowser.WindowsPhone.Model
 {
@@ -15,46 +16,44 @@ namespace MediaBrowser.WindowsPhone.Model
 
         public void Info(string message, params object[] paramList)
         {
-            _logger.LogFormat(message, LogLevel.Info, paramList);
+            _logger.Info(message, paramList);
         }
 
         public void Error(string message, params object[] paramList)
         {
-            _logger.LogFormat(message, LogLevel.Error, paramList);
+            _logger.Error(message, paramList);
         }
 
         public void Warn(string message, params object[] paramList)
         {
-            _logger.LogFormat(message, LogLevel.Warning, paramList);
+            _logger.Warning(message, paramList);
         }
 
         public void Debug(string message, params object[] paramList)
         {
-            _logger.LogFormat(message, LogLevel.Debug, paramList);
+            _logger.Debug(message, paramList);
         }
 
         public void Fatal(string message, params object[] paramList)
         {
-            _logger.LogFormat(message, LogLevel.Fatal, paramList);
+            _logger.Fatal(message, paramList);
         }
 
         public void FatalException(string message, Exception exception, params object[] paramList)
         {
-            _logger.Log(exception.Message, LogLevel.Fatal);
-            _logger.Log(exception.StackTrace, LogLevel.Fatal);
-            _logger.LogFormat(message, LogLevel.Fatal, paramList);
+            _logger.Fatal(message, paramList);
+            _logger.FatalException(message, exception);
         }
 
         public void Log(LogSeverity severity, string message, params object[] paramList)
         {
-            _logger.LogFormat(message, severity.ToLogLevel(), paramList);
+            _logger.Info(message, paramList);
         }
 
         public void ErrorException(string message, Exception exception, params object[] paramList)
         {
-            _logger.Log(exception.Message, LogLevel.Error);
-            _logger.Log(exception.StackTrace, LogLevel.Error);
-            _logger.LogFormat(message, LogLevel.Error, paramList);
+            _logger.Error(message, paramList);
+            _logger.ErrorException(message, exception);
         }
 
         public void LogMultiline(string message, LogSeverity severity, StringBuilder additionalContent)

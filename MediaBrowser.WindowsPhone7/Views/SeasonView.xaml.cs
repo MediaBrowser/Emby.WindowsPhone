@@ -9,7 +9,7 @@ namespace MediaBrowser.WindowsPhone.Views
     /// <summary>
     /// Description for SeasonView.
     /// </summary>
-    public partial class SeasonView : PhoneApplicationPage
+    public partial class SeasonView
     {
         /// <summary>
         /// Initializes a new instance of the SeasonView class.

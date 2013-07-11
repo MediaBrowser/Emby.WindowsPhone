@@ -1,18 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Windows;
-using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MediaBrowser.Model.Net;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.Model.Dto;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.WindowsPhone.Resources;
-using Microsoft.Phone.Tasks;
 #if !WP8
 using ScottIsAFool.WindowsPhone;
 #endif
+using ScottIsAFool.WindowsPhone.ViewModel;
 
 namespace MediaBrowser.WindowsPhone.ViewModel
 {
@@ -29,7 +27,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     {
         private readonly INavigationService _navService;
         private readonly ExtendedApiClient _apiClient;
-        private readonly ILog _logger;
 
         /// <summary>
         /// Initializes a new instance of the MovieViewModel class.
@@ -38,39 +35,37 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             _navService = navService;
             _apiClient = apiClient;
-            _logger = new WPLogger(typeof(MovieViewModel));
 
             CanUpdateFavourites = true;
             if (IsInDesignMode)
             {
                 SelectedMovie = new BaseItemDto
-                                    {
-                                        Id = "6536a66e10417d69105bae71d41a6e6f",
-                                        Name = "Jurassic Park",
-                                        SortName = "Jurassic Park",
-                                        Overview = "Lots of dinosaurs eating people!",
-                                        People = new []
-                                                     {
-                                                         new BaseItemPerson{Name = "Steven Spielberg", Type = "Director"},
-                                                         new BaseItemPerson{Name = "Sam Neill", Type = "Actor"},
-                                                         new BaseItemPerson{Name = "Richard Attenborough", Type = "Actor"},
-                                                         new BaseItemPerson{Name = "Laura Dern", Type = "Actor"}
-                                                     }
+                {
+                    Id = "6536a66e10417d69105bae71d41a6e6f",
+                    Name = "Jurassic Park",
+                    SortName = "Jurassic Park",
+                    Overview = "Lots of dinosaurs eating people!",
+                    People = new[]
+                    {
+                        new BaseItemPerson {Name = "Steven Spielberg", Type = "Director"},
+                        new BaseItemPerson {Name = "Sam Neill", Type = "Actor"},
+                        new BaseItemPerson {Name = "Richard Attenborough", Type = "Actor"},
+                        new BaseItemPerson {Name = "Laura Dern", Type = "Actor"}
+                    }
 
-                                    };
+                };
             }
             else
             {
                 WireCommands();
-                WireMessages();
             }
         }
 
-        private void WireMessages()
+        public override void WireMessages()
         {
             Messenger.Default.Register<NotificationMessage>(this, m =>
             {
-                
+
             });
         }
 
@@ -78,23 +73,28 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             MoviePageLoaded = new RelayCommand(async () =>
             {
-                
                 if (SelectedMovie != null && _navService.IsNetworkAvailable)
                 {
-                    ProgressIsVisible = true;
-                    ProgressText = AppResources.SysTrayGettingMovieInfo;
-                    
-                    var dataLoaded = await GetMovieDetails();
+                    SetProgressBar(AppResources.SysTrayGettingMovieInfo);
+
+                    await GetMovieDetails();
 
                     if (SelectedMovie.ProviderIds != null)
+                    {
                         ImdbId = SelectedMovie.ProviderIds["Imdb"];
-                    if (SelectedMovie.RunTimeTicks.HasValue)
-                        RunTime = TimeSpan.FromTicks(SelectedMovie.RunTimeTicks.Value).ToString();
-                    if (SelectedMovie.UserData == null)
-                        SelectedMovie.UserData = new UserItemDataDto();
+                    }
 
-                    ProgressIsVisible = false;
-                    ProgressText = string.Empty;
+                    if (SelectedMovie.RunTimeTicks.HasValue)
+                    {
+                        RunTime = TimeSpan.FromTicks(SelectedMovie.RunTimeTicks.Value).ToString();
+                    }
+
+                    if (SelectedMovie.UserData == null)
+                    {
+                        SelectedMovie.UserData = new UserItemDataDto();
+                    }
+
+                    SetProgressBar();
                 }
             });
 
@@ -103,25 +103,22 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 try
                 {
                     CanUpdateFavourites = false;
-                    
+
                     await _apiClient.UpdateFavoriteStatusAsync(SelectedMovie.Id, App.Settings.LoggedInUser.Id, !SelectedMovie.UserData.IsFavorite);
                     SelectedMovie.UserData.IsFavorite = !SelectedMovie.UserData.IsFavorite;
-                    
-                    CanUpdateFavourites = true;
                 }
                 catch (HttpException ex)
                 {
-                    _logger.Log(ex.Message, LogLevel.Fatal);
-                    _logger.Log(ex.StackTrace, LogLevel.Fatal);
+                    Log.ErrorException("AddRemoveFavouriteCommand", ex);
                 }
                 CanUpdateFavourites = true;
             });
 
             ShowOtherFilmsCommand = new RelayCommand<BaseItemPerson>(person =>
-                                                                         {
-                                                                             App.SelectedItem = person;
-                                                                             _navService.NavigateTo("/Views/FolderView.xaml");
-                                                                         });
+            {
+                App.SelectedItem = person;
+                _navService.NavigateTo("/Views/FolderView.xaml");
+            });
 
             NavigateTopage = new RelayCommand<BaseItemDto>(_navService.NavigateTo);
         }
@@ -132,7 +129,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             try
             {
-                _logger.LogFormat("Getting details for movie [{0}] ({1})", LogLevel.Info, SelectedMovie.Name, SelectedMovie.Id);
+                Log.Info("Getting details for movie [{0}] ({1})", SelectedMovie.Name, SelectedMovie.Id);
 
                 var item = await _apiClient.GetItemAsync(SelectedMovie.Id, App.Settings.LoggedInUser.Id);
                 SelectedMovie = item;
@@ -141,19 +138,15 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
             catch (HttpException ex)
             {
-                _logger.Log(ex.Message, LogLevel.Fatal);
-                _logger.Log(ex.StackTrace, LogLevel.Fatal);
+                Log.ErrorException("GetMovieDetails()", ex);
 
-                App.ShowMessage("", AppResources.ErrorGettingExtraInfo);
+                App.ShowMessage(AppResources.ErrorGettingExtraInfo);
                 result = false;
             }
 
             return result;
         }
 
-        // UI properties
-        public string ProgressText { get; set; }
-        public bool ProgressIsVisible { get; set; }
         public bool CanUpdateFavourites { get; set; }
         public string FavouriteText { get; set; }
         public Uri FavouriteIcon { get; set; }

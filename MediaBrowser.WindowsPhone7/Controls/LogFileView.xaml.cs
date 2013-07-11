@@ -1,10 +1,10 @@
 ﻿using System.Windows;
-using System.Windows.Controls;
 using Microsoft.Phone.Tasks;
+using ScottIsAFool.WindowsPhone.Logging;
 
 namespace MediaBrowser.WindowsPhone.Controls
 {
-    public partial class LogFileView : UserControl
+    public partial class LogFileView
     {
         public LogFileView()
         {
@@ -17,7 +17,7 @@ namespace MediaBrowser.WindowsPhone.Controls
             {
                 To = "scottisafool@live.co.uk",
                 Subject = string.Format("Media Browser 3 log file"),
-                Body = WPLogger.GetLogFileContent()
+                Body = WPLogger.GetLogs()
             }.Show();
         }
 

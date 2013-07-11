@@ -6,7 +6,7 @@ namespace MediaBrowser.WindowsPhone.Views
     /// <summary>
     /// Description for AlbumView.
     /// </summary>
-    public partial class AlbumView : PhoneApplicationPage
+    public partial class AlbumView
     {
         /// <summary>
         /// Initializes a new instance of the AlbumView class.

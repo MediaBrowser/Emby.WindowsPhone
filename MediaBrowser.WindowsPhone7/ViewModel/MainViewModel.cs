@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows;
-using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Net;
@@ -13,8 +12,8 @@ using MediaBrowser.Model.Dto;
 using System.Threading.Tasks;
 using MediaBrowser.WindowsPhone.Resources;
 using Microsoft.Phone.Shell;
-using Microsoft.Phone.Tasks;
 using ScottIsAFool.WindowsPhone.IsolatedStorage;
+using ScottIsAFool.WindowsPhone.ViewModel;
 
 namespace MediaBrowser.WindowsPhone.ViewModel
 {
@@ -31,10 +30,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     {
         private readonly INavigationService _navService;
         private readonly ExtendedApiClient _apiClient;
-        private readonly ILog _logger;
         private bool _hasLoaded;
         private BaseItemDto[] _recentItems;
-        
+
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
@@ -42,7 +40,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             _apiClient = apiClient;
             _navService = navService;
-            _logger = new WPLogger(typeof(MainViewModel));
 
             Folders = new ObservableCollection<BaseItemDto>();
             RecentItems = new ObservableCollection<BaseItemDto>();
@@ -50,13 +47,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             if (IsInDesignMode)
             {
-                Folders.Add(new BaseItemDto { Id = "78dbff5aa1c2101b98ebaf42b72a988d", Name = "Movies" });
-                RecentItems.Add(new BaseItemDto { Id = "2fc6f321b5f8bbe842fcd0eed089561d", Name = "A Night To Remember" });
+                Folders.Add(new BaseItemDto {Id = "78dbff5aa1c2101b98ebaf42b72a988d", Name = "Movies"});
+                RecentItems.Add(new BaseItemDto {Id = "2fc6f321b5f8bbe842fcd0eed089561d", Name = "A Night To Remember"});
             }
             else
             {
                 WireCommands();
-                WireMessages();
                 DummyFolder = new BaseItemDto
                 {
                     Type = "folder",
@@ -65,15 +61,15 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
         }
 
-        private void WireMessages()
+        public override void WireMessages()
         {
             Messenger.Default.Register<PropertyChangedMessage<object>>(this, async m =>
-                                                                                 {
-                                                                                     if (m.PropertyName.Equals("IncludeTrailersInRecent"))
-                                                                                     {
-                                                                                         await SortRecent(_recentItems);
-                                                                                     }
-                                                                                 });
+            {
+                if (m.PropertyName.Equals("IncludeTrailersInRecent"))
+                {
+                    await SortRecent(_recentItems);
+                }
+            });
         }
 
         private void WireCommands()
@@ -89,41 +85,41 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             });
 
             ChangeProfileCommand = new RelayCommand(() =>
-                                                        {
-                                                            _logger.Log("Signing out");
+            {
+                Log.Info("Signing out");
 
-                                                            Reset();
+                Reset();
 
-                                                            _navService.NavigateTo("/Views/ChooseProfileView.xaml");
-                                                        });
+                _navService.NavigateTo("/Views/ChooseProfileView.xaml");
+            });
 
             PinCollectionCommand = new RelayCommand<BaseItemDto>(collection =>
-                                                                     {
-                                                                         string tileUrl;
-                                                                         var existingTile = GetShellTile(collection, out tileUrl);
-                                                                         if (existingTile != default(ShellTile))
-                                                                         {
-                                                                             var result = MessageBox.Show(AppResources.MessageBoxUnpinText, AppResources.MessageBoxHeaderAreYouSure, MessageBoxButton.OKCancel);
-                                                                             if (result == MessageBoxResult.OK)
-                                                                             {
-                                                                                 existingTile.Delete();
-                                                                                 Messenger.Default.Send(new NotificationMessage(tileUrl, Constants.CollectionPinnedMsg));
-                                                                             }
-                                                                             return;
-                                                                         }
+            {
+                string tileUrl;
+                var existingTile = GetShellTile(collection, out tileUrl);
+                if (existingTile != default(ShellTile))
+                {
+                    var result = MessageBox.Show(AppResources.MessageBoxUnpinText, AppResources.MessageBoxHeaderAreYouSure, MessageBoxButton.OKCancel);
+                    if (result == MessageBoxResult.OK)
+                    {
+                        existingTile.Delete();
+                        Messenger.Default.Send(new NotificationMessage(tileUrl, Constants.CollectionPinnedMsg));
+                    }
+                    return;
+                }
 
 #if WP8
-                                                                         var tileDate = new CycleTileData
-                                                                                            {
-                                                                                                Title = collection.Name,
-                                                                                                CycleImages = new Collection<Uri>
-                                                                                                                  {
-                                                                                                                      new Uri("/Assets/Tiles/FlipCycleTileLarge.png", UriKind.Relative),
-                                                                                                                      new Uri("/Assets/Tiles/FlipCycleTileMedium.png", UriKind.Relative)
-                                                                                                                  },
-                                                                                                SmallBackgroundImage = new Uri("/Assets/Tiles/FlipCycleTileSmall.png", UriKind.Relative)
-                                                                                            };
-                                                                         ShellTile.Create(new Uri(tileUrl, UriKind.Relative), tileDate, true);
+                var tileDate = new CycleTileData
+                {
+                    Title = collection.Name,
+                    CycleImages = new Collection<Uri>
+                    {
+                        new Uri("/Assets/Tiles/FlipCycleTileLarge.png", UriKind.Relative),
+                        new Uri("/Assets/Tiles/FlipCycleTileMedium.png", UriKind.Relative)
+                    },
+                    SmallBackgroundImage = new Uri("/Assets/Tiles/FlipCycleTileSmall.png", UriKind.Relative)
+                };
+                ShellTile.Create(new Uri(tileUrl, UriKind.Relative), tileDate, true);
 #else
                                                                          var tileData = new StandardTileData
                                                                                             {
@@ -132,13 +128,13 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                                                             };
                                                                          ShellTile.Create(new Uri(tileUrl, UriKind.Relative), tileData);
 #endif
-                                                                         Messenger.Default.Send(new NotificationMessage(tileUrl, Constants.CollectionPinnedMsg));
+                Messenger.Default.Send(new NotificationMessage(tileUrl, Constants.CollectionPinnedMsg));
 
-                                                                     });
+            });
 
             PlayMovieCommand = new RelayCommand<BaseItemDto>(async item =>
             {
-                _logger.LogFormat("Playing {0} [{1}]", LogLevel.Info, item.Type, item.Name);
+                Log.Info("Playing {0} [{1}]", item.Type, item.Name);
 #if WP8
                 Messenger.Default.Send(new NotificationMessage(item, Constants.PlayVideoItemMsg));
                 _navService.NavigateTo("/Views/VideoPlayerView.xaml");
@@ -162,17 +158,16 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 };
                 var url = _apiClient.GetVideoStreamUrl(query);
                 System.Diagnostics.Debug.WriteLine(url);
-                _logger.Log(url);
+                Log.Info(url);
 
                 try
                 {
-                    _logger.Log("Telling the server about watching this video");
+                    Log.Info("Telling the server about watching this video");
                     await _apiClient.ReportPlaybackStartAsync(item.Id, App.Settings.LoggedInUser.Id).ConfigureAwait(true);
                 }
                 catch (HttpException ex)
                 {
-                    _logger.Log(ex.Message, LogLevel.Fatal);
-                    _logger.Log(ex.StackTrace, LogLevel.Fatal);
+                    Log.ErrorException("PlayMovieCommand", ex);
                 }
 
                 var mediaPlayerLauncher = new MediaPlayerLauncher
@@ -217,21 +212,22 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 && (!_hasLoaded || isRefresh))
             {
 
-                ProgressIsVisible = true;
-                ProgressText = AppResources.SysTrayLoadingCollections;
-
+                SetProgressBar(AppResources.SysTrayLoadingCollections);
+                
                 var folderLoaded = await GetFolders();
 
-                ProgressText = AppResources.SysTrayGettingRecentItems;
+                SetProgressBar(AppResources.SysTrayGettingRecentItems);
 
                 var recentLoaded = await GetRecent();
 
-                ProgressText = AppResources.SysTrayGettingFavourites;
+                SetProgressBar(AppResources.SysTrayGettingFavourites);
 
                 var favouritesLoaded = await GetFavouriteItems();
 
                 _hasLoaded = (folderLoaded && recentLoaded && favouritesLoaded);
-                ProgressIsVisible = false;
+                
+                SetProgressBar();
+
                 _hasLoaded = true;
             }
         }
@@ -241,12 +237,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             try
             {
                 FavouriteItems.Clear();
-                _logger.LogFormat("Getting favourites for user [{0}]", LogLevel.Info, App.Settings.LoggedInUser.Name);
+                Log.Info("Getting favourites for user [{0}]", App.Settings.LoggedInUser.Name);
 
                 var query = new ItemQuery
                 {
                     UserId = App.Settings.LoggedInUser.Id,
-                    Filters = new[] { ItemFilter.IsFavorite, },
+                    Filters = new[] {ItemFilter.IsFavorite},
                     Recursive = true
                 };
                 var items = await _apiClient.GetItemsAsync(query);
@@ -261,8 +257,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
             catch (HttpException ex)
             {
-                _logger.Log(ex.Message, LogLevel.Fatal);
-                _logger.Log(ex.StackTrace, LogLevel.Fatal);
+                Log.ErrorException("GetFavouriteItems()", ex);
                 return false;
             }
         }
@@ -271,20 +266,20 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             try
             {
-                _logger.Log("Getting most recent items");
+                Log.Info("Getting most recent items");
 
                 var query = new ItemQuery
                 {
-                    Filters = new[] { ItemFilter.IsRecentlyAdded, ItemFilter.IsNotFolder, },
+                    Filters = new[] {ItemFilter.IsRecentlyAdded, ItemFilter.IsNotFolder},
                     UserId = App.Settings.LoggedInUser.Id,
                     Fields = new[]
-                                                 {
-                                                     ItemFields.SeriesInfo,
-                                                     ItemFields.DateCreated,
-                                                     ItemFields.UserData, 
-                                                     ItemFields.ParentId, 
-                                                     ItemFields.AudioInfo, 
-                                                 },
+                    {
+                        ItemFields.SeriesInfo,
+                        ItemFields.DateCreated,
+                        ItemFields.UserData,
+                        ItemFields.ParentId,
+                        ItemFields.AudioInfo
+                    },
                     Recursive = true
                 };
                 var items = await _apiClient.GetItemsAsync(query);
@@ -294,8 +289,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
             catch (HttpException ex)
             {
-                _logger.Log(ex.Message, LogLevel.Fatal);
-                _logger.Log(ex.StackTrace, LogLevel.Fatal);
+                Log.ErrorException("GetRecent()", ex);
                 return false;
             }
         }
@@ -312,14 +306,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             try
             {
-                _logger.LogFormat("Getting collections for [{0}] ({1})", LogLevel.Info, App.Settings.LoggedInUser.Name, App.Settings.LoggedInUser.Id);
+                Log.Info("Getting collections for [{0}] ({1})", App.Settings.LoggedInUser.Name, App.Settings.LoggedInUser.Id);
 
                 var query = new ItemQuery
                 {
                     UserId = App.Settings.LoggedInUser.Id,
-                    Fields = new[] { ItemFields.ItemCounts, },
+                    Fields = new[] {ItemFields.ItemCounts},
                     SortOrder = SortOrder.Ascending,
-                    SortBy = new[]{ItemSortBy.SortName}
+                    SortBy = new[] {ItemSortBy.SortName}
                 };
 
                 var item = await _apiClient.GetItemsAsync(query);
@@ -332,15 +326,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
             catch (HttpException ex)
             {
-                _logger.Log(ex.Message, LogLevel.Fatal);
-                _logger.Log(ex.StackTrace, LogLevel.Fatal);
+                Log.ErrorException("GetFolders()", ex);
                 return false;
             }
         }
-
-        // UI properties
-        public bool ProgressIsVisible { get; set; }
-        public string ProgressText { get; set; }
 
         public RelayCommand PageLoaded { get; set; }
         public RelayCommand ChangeProfileCommand { get; set; }

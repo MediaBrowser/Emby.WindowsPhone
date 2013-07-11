@@ -14,6 +14,7 @@ using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Net;
 using MediaBrowser.WindowsPhone.Model;
 using Microsoft.Phone.Info;
+using ScottIsAFool.WindowsPhone.Logging;
 using INavigationService = MediaBrowser.WindowsPhone.Model.INavigationService;
 
 #if !WP8
@@ -93,17 +94,17 @@ namespace MediaBrowser.WindowsPhone
             return '#'.ToString();
         }
 
-        internal static async Task Login(ILog logger, UserDto selectedUser, string pinCode, Action successAction)
+        internal static async Task Login(ScottIsAFool.WindowsPhone.Logging.ILog logger, UserDto selectedUser, string pinCode, Action successAction)
         {
             var client = SimpleIoc.Default.GetInstance<ExtendedApiClient>();
 
             try
             {
-                logger.LogFormat("Authenticating user [{0}]", LogLevel.Info, selectedUser.Name);
+                logger.Info("Authenticating user [{0}]", selectedUser.Name);
 
                 await client.AuthenticateUserAsync(selectedUser.Id, pinCode.ToHash());
 
-                logger.LogFormat("Logged in as [{0}]", LogLevel.Info, selectedUser.Name);
+                logger.Info("Logged in as [{0}]", selectedUser.Name);
 
                 if (successAction != null)
                 {
@@ -112,8 +113,7 @@ namespace MediaBrowser.WindowsPhone
             }
             catch (HttpException ex)
             {
-                logger.Log(ex.Message, LogLevel.Fatal);
-                logger.Log(ex.StackTrace, LogLevel.Fatal);
+                logger.ErrorException("Utils.Login()", ex);
             }
         }
 
@@ -202,7 +202,7 @@ namespace MediaBrowser.WindowsPhone
                 apiClient.ServerHostName = App.Settings.ConnectionDetails.HostName;
                 apiClient.ServerApiPort = App.Settings.ConnectionDetails.PortNo;
                 
-                logger.LogFormat("Getting server configuration. Hostname ({0}), Port ({1})", LogLevel.Info, apiClient.ServerHostName, apiClient.ServerApiPort);
+                logger.Info("Getting server configuration. Hostname ({0}), Port ({1})", apiClient.ServerHostName, apiClient.ServerApiPort);
                 
                 var config = await apiClient.GetServerConfigurationAsync();
                 App.Settings.ServerConfiguration = config;
@@ -211,8 +211,7 @@ namespace MediaBrowser.WindowsPhone
             }
             catch (HttpException ex)
             {
-                logger.Log(ex.Message, LogLevel.Fatal);
-                logger.Log(ex.StackTrace, LogLevel.Fatal);
+                logger.ErrorException("GetServerConfiguration()", ex);
                 return false;
             }
         }

@@ -2,7 +2,7 @@
 
 namespace MediaBrowser.WindowsPhone.Views
 {
-    public partial class FindServerView : PhoneApplicationPage
+    public partial class FindServerView
     {
         // Constructor
         public FindServerView()

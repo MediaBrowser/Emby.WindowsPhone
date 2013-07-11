@@ -13,7 +13,7 @@ namespace MediaBrowser.WindowsPhone.Views
     /// <summary>
     /// Description for FolderView.
     /// </summary>
-    public partial class FolderView : PhoneApplicationPage
+    public partial class FolderView
     {
         /// <summary>
         /// Initializes a new instance of the FolderView class.

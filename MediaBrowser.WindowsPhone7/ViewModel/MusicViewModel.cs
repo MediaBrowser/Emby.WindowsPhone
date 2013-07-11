@@ -4,8 +4,6 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Controls;
-using Cimbalino.Phone.Toolkit.Services;
-using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model.Dto;
@@ -14,6 +12,7 @@ using MediaBrowser.Model.Querying;
 using MediaBrowser.Shared;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Resources;
+using ScottIsAFool.WindowsPhone.ViewModel;
 using INavigationService = MediaBrowser.WindowsPhone.Model.INavigationService;
 
 #if !WP8
@@ -32,20 +31,17 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     {
         private readonly ExtendedApiClient _apiClient;
         private readonly INavigationService _navigationService;
-        private readonly ILog _logger;
-        private readonly IApplicationSettingsService _settingsService;
 
         private List<BaseItemDto> _artistTracks;
         private bool _gotAlbums;
+
         /// <summary>
         /// Initializes a new instance of the MusicViewModel class.
         /// </summary>
-        public MusicViewModel(ExtendedApiClient apiClient, INavigationService navigationService, IApplicationSettingsService applicationSettings)
+        public MusicViewModel(ExtendedApiClient apiClient, INavigationService navigationService)
         {
             _navigationService = navigationService;
             _apiClient = apiClient;
-            _logger= new WPLogger(typeof(MusicViewModel));
-            _settingsService = applicationSettings;
 
             SelectedTracks = new List<BaseItemDto>();
             if (IsInDesignMode)
@@ -61,30 +57,29 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     Id = "f8d5c8cbcbd39bc75c2ba7ada65d4319",
                 };
                 Albums = new ObservableCollection<BaseItemDto>
-                             {
-                                 new BaseItemDto {Name = "The Dark Knight Rises", Id = "f8d5c8cbcbd39bc75c2ba7ada65d4319", ProductionYear = 2012},
-                                 new BaseItemDto {Name = "Batman Begins", Id = "03b6dbb15e4abcca6ee336a2edd79ba6", ProductionYear = 2005},
-                                 new BaseItemDto {Name = "Sherlock Holmes", Id = "6e2d519b958d440d034c3ba6eca008a4", ProductionYear = 2010}
-                             };
+                {
+                    new BaseItemDto {Name = "The Dark Knight Rises", Id = "f8d5c8cbcbd39bc75c2ba7ada65d4319", ProductionYear = 2012},
+                    new BaseItemDto {Name = "Batman Begins", Id = "03b6dbb15e4abcca6ee336a2edd79ba6", ProductionYear = 2005},
+                    new BaseItemDto {Name = "Sherlock Holmes", Id = "6e2d519b958d440d034c3ba6eca008a4", ProductionYear = 2010}
+                };
                 AlbumTracks = new List<BaseItemDto>
-                                  {
-                                      new BaseItemDto {Name = "Bombers Over Ibiza (Junkie XL Remix)", IndexNumber = 1, ParentIndexNumber = 2, RunTimeTicks = 3487920000, Id = "7589bfbe8b10d0191e305d92f127bd01"},
-                                      new BaseItemDto {Name = "A Storm Is Coming", Id = "1ea1fd991c70b33c596611dadf24defc", IndexNumber = 1, ParentIndexNumber = 1, RunTimeTicks = 369630000},
-                                      new BaseItemDto {Name = "On Thin Ice", Id = "2696da6a01f254fbd7e199a191bd5c4f", IndexNumber = 2, ParentIndexNumber = 1, RunTimeTicks = 1745500000},
-                                  }.OrderBy(x => x.ParentIndexNumber)
-                                   .ThenBy(x => x.IndexNumber).ToList();
+                {
+                    new BaseItemDto {Name = "Bombers Over Ibiza (Junkie XL Remix)", IndexNumber = 1, ParentIndexNumber = 2, RunTimeTicks = 3487920000, Id = "7589bfbe8b10d0191e305d92f127bd01"},
+                    new BaseItemDto {Name = "A Storm Is Coming", Id = "1ea1fd991c70b33c596611dadf24defc", IndexNumber = 1, ParentIndexNumber = 1, RunTimeTicks = 369630000},
+                    new BaseItemDto {Name = "On Thin Ice", Id = "2696da6a01f254fbd7e199a191bd5c4f", IndexNumber = 2, ParentIndexNumber = 1, RunTimeTicks = 1745500000},
+                }.OrderBy(x => x.ParentIndexNumber)
+                    .ThenBy(x => x.IndexNumber).ToList();
 
                 SortedTracks = Utils.GroupArtistTracks(AlbumTracks);
             }
             else
             {
                 WireCommands();
-                WireMessages();
             }
 
         }
 
-        private void WireMessages()
+        public override void WireMessages()
         {
             Messenger.Default.Register<NotificationMessage>(this, m =>
             {
@@ -93,17 +88,18 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     Albums = new ObservableCollection<BaseItemDto>();
                     _artistTracks = new List<BaseItemDto>();
                     AlbumTracks = new List<BaseItemDto>();
-                    SelectedArtist = (BaseItemDto)m.Sender;
+                    SelectedArtist = (BaseItemDto) m.Sender;
                     _gotAlbums = false;
                 }
+
                 if (m.Notification.Equals(Constants.MusicAlbumChangedMsg))
                 {
-                    SelectedAlbum = (BaseItemDto)m.Sender;
+                    SelectedAlbum = (BaseItemDto) m.Sender;
                     if (_artistTracks != null)
                     {
                         AlbumTracks = _artistTracks.Where(x => x.ParentId == SelectedAlbum.Id)
-                                                  .OrderBy(x => x.ParentIndexNumber)
-                                                  .ThenBy(x => x.IndexNumber).ToList();
+                                                   .OrderBy(x => x.ParentIndexNumber)
+                                                   .ThenBy(x => x.IndexNumber).ToList();
                     }
                 }
             });
@@ -112,131 +108,134 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         private void WireCommands()
         {
             ArtistPageLoaded = new RelayCommand(async () =>
-                                                    {
-                                                        if (_navigationService.IsNetworkAvailable && !_gotAlbums)
-                                                        {
-                                                            ProgressText = AppResources.SysTrayGettingAlbums;
-                                                            ProgressIsVisible = true;
+            {
+                if (_navigationService.IsNetworkAvailable && !_gotAlbums)
+                {
+                    SetProgressBar(AppResources.SysTrayGettingAlbums);
 
-                                                            await GetArtistInfo();
+                    await GetArtistInfo();
 
-                                                            ProgressText = string.Empty;
-                                                            ProgressIsVisible = false;
-                                                        }
-                                                    });
+                    SetProgressBar();
+                }
+            });
 
             AlbumPageLoaded = new RelayCommand(async () =>
-                                                   {
-                                                       if (AlbumTracks == null)
-                                                       {
-                                                           ProgressText = "Getting tracks...";
-                                                           ProgressIsVisible = true;
-                                                           try
-                                                           {
-                                                               await GetArtistInfo();
+            {
+                if (AlbumTracks == null)
+                {
+                    SetProgressBar("Getting tracks...");
+                   
+                    try
+                    {
+                        await GetArtistInfo();
 
-                                                               AlbumTracks = _artistTracks.Where(x => x.ParentId == SelectedAlbum.Id)
-                                                                                         .OrderBy(x => x.ParentIndexNumber)
-                                                                                         .ThenBy(x => x.IndexNumber).ToList();
-                                                           }
-                                                           catch
-                                                           {
-
-                                                           }
-                                                       }
-                                                   });
+                        AlbumTracks = _artistTracks.Where(x => x.ParentId == SelectedAlbum.Id)
+                            .OrderBy(x => x.ParentIndexNumber)
+                            .ThenBy(x => x.IndexNumber).ToList();
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.ErrorException("AlbumPageLoaded", ex);
+                    }
+                }
+            });
 
             AlbumTapped = new RelayCommand<BaseItemDto>(album =>
-                                                            {
-                                                                SelectedAlbum = album;
-                                                                AlbumTracks = _artistTracks.Where(x => x.ParentId == SelectedAlbum.Id)
-                                                                                           .OrderBy(x => x.IndexNumber)
-                                                                                           .ToList();
-                                                            });
+            {
+                SelectedAlbum = album;
+                AlbumTracks = _artistTracks.Where(x => x.ParentId == SelectedAlbum.Id)
+                                           .OrderBy(x => x.IndexNumber)
+                                           .ToList();
+            });
 
             AlbumPlayTapped = new RelayCommand<BaseItemDto>(album =>
-                                                                {
-                                                                    var albumTracks = _artistTracks.Where(x => x.ParentId == album.Id)
-                                                                                                   .OrderBy(x => x.IndexNumber)
-                                                                                                   .ToList();
+            {
+                var albumTracks = _artistTracks.Where(x => x.ParentId == album.Id)
+                                               .OrderBy(x => x.IndexNumber)
+                                               .ToList();
 
-                                                                    var newList = ConvertTracks(albumTracks);
+                var newList = ConvertTracks(albumTracks);
 
-                                                                    Messenger.Default.Send(new NotificationMessage<List<PlaylistItem>>(newList, Constants.SetPlaylistAsMsg));
-                                                                });
+                Messenger.Default.Send(new NotificationMessage<List<PlaylistItem>>(newList, Constants.SetPlaylistAsMsg));
+            });
 
             SelectionChangedCommand = new RelayCommand<SelectionChangedEventArgs>(args =>
-                                                                                      {
-                                                                                          if (args.AddedItems != null)
-                                                                                          {
-                                                                                              foreach (var track in args.AddedItems.Cast<BaseItemDto>())
-                                                                                              {
-                                                                                                  SelectedTracks.Add(track);
-                                                                                              }
-                                                                                          }
+            {
+                if (args.AddedItems != null)
+                {
+                    foreach (var track in args.AddedItems.Cast<BaseItemDto>())
+                    {
+                        SelectedTracks.Add(track);
+                    }
+                }
 
-                                                                                          if (args.RemovedItems != null)
-                                                                                          {
-                                                                                              foreach (var track in args.RemovedItems.Cast<BaseItemDto>())
-                                                                                              {
-                                                                                                  SelectedTracks.Remove(track);
-                                                                                              }
-                                                                                          }
+                if (args.RemovedItems != null)
+                {
+                    foreach (var track in args.RemovedItems.Cast<BaseItemDto>())
+                    {
+                        SelectedTracks.Remove(track);
+                    }
+                }
 
-                                                                                          SelectedTracks = SelectedTracks.OrderBy(x => x.IndexNumber).ToList();
-                                                                                      });
+                SelectedTracks = SelectedTracks.OrderBy(x => x.IndexNumber).ToList();
+            });
 
             AddToNowPlayingCommand = new RelayCommand(() =>
-                                                          {
-                                                              if (!SelectedTracks.Any()) return;
+            {
+                if (!SelectedTracks.Any())
+                {
+                    return;
+                }
 
-                                                              var newList = ConvertTracks(SelectedTracks);
+                var newList = ConvertTracks(SelectedTracks);
 
-                                                              Messenger.Default.Send(new NotificationMessage<List<PlaylistItem>>(newList, Constants.AddToPlaylistMsg));
+                Messenger.Default.Send(new NotificationMessage<List<PlaylistItem>>(newList, Constants.AddToPlaylistMsg));
 
-                                                              SelectedTracks = new List<BaseItemDto>();
-                                                              
-                                                              App.ShowMessage("", string.Format("{0} tracks added successfully", newList.Count));
+                SelectedTracks = new List<BaseItemDto>();
 
-                                                              IsInSelectionMode = false;
-                                                          });
+                App.ShowMessage(string.Format("{0} tracks added successfully", newList.Count));
+
+                IsInSelectionMode = false;
+            });
 
             PlayItemsCommand = new RelayCommand(() =>
-                                                    {
-                                                        var newList = ConvertTracks(SelectedTracks);
+            {
+                var newList = ConvertTracks(SelectedTracks);
 
-                                                        Messenger.Default.Send(new NotificationMessage<List<PlaylistItem>>(newList, Constants.SetPlaylistAsMsg));
-                                                    });
+                Messenger.Default.Send(new NotificationMessage<List<PlaylistItem>>(newList, Constants.SetPlaylistAsMsg));
+            });
 
             PlaySongCommand = new RelayCommand<BaseItemDto>(song =>
-                                                                {
-                                                                    if (song == null) return;
+            {
+                if (song == null)
+                {
+                    return;
+                }
 
-                                                                    var playlist = new List<PlaylistItem>
-                                                                                       {
-                                                                                           song.ToPlaylistItem(_apiClient)
-                                                                                       };
+                var playlist = new List<PlaylistItem>
+                {
+                    song.ToPlaylistItem(_apiClient)
+                };
 
-                                                                    Messenger.Default.Send(new NotificationMessage<List<PlaylistItem>>(playlist, Constants.SetPlaylistAsMsg));
-                                                                });
+                Messenger.Default.Send(new NotificationMessage<List<PlaylistItem>>(playlist, Constants.SetPlaylistAsMsg));
+            });
         }
 
         private async Task GetArtistInfo()
         {
             try
             {
-                _logger.LogFormat("Getting information for Artist [{0}] ({1})", LogLevel.Info, SelectedArtist.Name, SelectedArtist.Id);
+                Log.Info("Getting information for Artist [{0}] ({1})", SelectedArtist.Name, SelectedArtist.Id);
 
                 var artistQuery = new ArtistsQuery
-                                      {
+                {
 
-                                      };
+                };
                 SelectedArtist = await _apiClient.GetItemAsync(SelectedArtist.Id, App.Settings.LoggedInUser.Id);
             }
             catch (HttpException ex)
             {
-                _logger.Log(ex.Message, LogLevel.Fatal);
-                _logger.Log(ex.StackTrace, LogLevel.Fatal);
+                Log.ErrorException("GetArtistInfo()", ex);
             }
 
             _gotAlbums = await GetAlbums();
@@ -258,10 +257,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             var newList = new List<PlaylistItem>();
             list.ForEach(item =>
-                             {
-                                 var playlistItem = item.ToPlaylistItem(_apiClient);
-                                 newList.Add(playlistItem);
-                             });
+            {
+                var playlistItem = item.ToPlaylistItem(_apiClient);
+                newList.Add(playlistItem);
+            });
 
             return newList;
         }
@@ -273,13 +272,13 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 var query = new ItemQuery
                 {
                     UserId = App.Settings.LoggedInUser.Id,
-                    Artists = new[] { SelectedArtist.Name },
+                    Artists = new[] {SelectedArtist.Name},
                     Recursive = true,
-                    Fields = new[] { ItemFields.AudioInfo, ItemFields.ParentId, },
-                    IncludeItemTypes = new[] { "Audio" }
+                    Fields = new[] {ItemFields.AudioInfo, ItemFields.ParentId,},
+                    IncludeItemTypes = new[] {"Audio"}
                 };
 
-                _logger.LogFormat("Getting tracks for artist [{0}] ({1})", LogLevel.Info, SelectedArtist.Name, SelectedArtist.Id);
+                Log.Info("Getting tracks for artist [{0}] ({1})", SelectedArtist.Name, SelectedArtist.Id);
 
                 var items = await _apiClient.GetItemsAsync(query);
 
@@ -292,8 +291,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
             catch (HttpException ex)
             {
-                _logger.Log(ex.Message, LogLevel.Fatal);
-                _logger.Log(ex.StackTrace, LogLevel.Fatal);
+                Log.ErrorException("GetArtistTracks()", ex);
                 return false;
             }
         }
@@ -303,15 +301,15 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             try
             {
                 var query = new ItemQuery
-                                {
-                                    UserId = App.Settings.LoggedInUser.Id,
-                                    Artists = new [] {SelectedArtist.Name},
-                                    Recursive = true,
-                                    Fields = new[] {ItemFields.AudioInfo, ItemFields.ParentId, },
-                                    IncludeItemTypes = new []{"MusicAlbum"}
-                                };
+                {
+                    UserId = App.Settings.LoggedInUser.Id,
+                    Artists = new[] {SelectedArtist.Name},
+                    Recursive = true,
+                    Fields = new[] {ItemFields.AudioInfo, ItemFields.ParentId,},
+                    IncludeItemTypes = new[] {"MusicAlbum"}
+                };
 
-                _logger.LogFormat("Getting albums for artist [{0}] ({1})", LogLevel.Info, SelectedArtist.Name, SelectedArtist.Id);
+                Log.Info("Getting albums for artist [{0}] ({1})", SelectedArtist.Name, SelectedArtist.Id);
 
                 var items = await _apiClient.GetItemsAsync(query);
                 if (items != null && items.Items.Any())
@@ -342,17 +340,17 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
             catch (Exception ex)
             {
-                _logger.Log(ex.Message, LogLevel.Fatal);
-                _logger.Log(ex.StackTrace, LogLevel.Fatal);
+                Log.ErrorException("GetAlbums()", ex);
                 return false;
             }
         }
 
-        public string ProgressText { get; set; }
-        public bool ProgressIsVisible { get; set; }
-
         public bool IsInSelectionMode { get; set; }
-        public int SelectedAppBarIndex { get { return IsInSelectionMode ? 1 : 0; } }
+
+        public int SelectedAppBarIndex
+        {
+            get { return IsInSelectionMode ? 1 : 0; }
+        }
 
         public BaseItemDto SelectedArtist { get; set; }
         public BaseItemDto SelectedAlbum { get; set; }

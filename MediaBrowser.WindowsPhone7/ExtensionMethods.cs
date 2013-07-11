@@ -7,6 +7,7 @@ using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Logging;
 using MediaBrowser.Shared;
 using MediaBrowser.WindowsPhone.Model;
+using ScottIsAFool.WindowsPhone.Logging;
 
 namespace MediaBrowser.WindowsPhone
 {
@@ -16,7 +17,9 @@ namespace MediaBrowser.WindowsPhone
         {
             var type = typeof(T);
             if (!type.IsEnum)
+            {
                 throw new ArgumentException("Type '" + type.Name + "' is not an enum");
+            }
 
             var fields = type.GetFields(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static);
 
@@ -28,8 +31,6 @@ namespace MediaBrowser.WindowsPhone
 
     internal static class ExtensionMethods
     {
-
-
         internal static LogLevel ToLogLevel(this LogSeverity severity)
         {
             switch (severity)
@@ -78,7 +79,7 @@ namespace MediaBrowser.WindowsPhone
             };
             fe.RenderTransform = trans;
 
-            fe.Tag = new Offset()
+            fe.Tag = new Offset
             {
                 Value = offset,
                 Transform = trans

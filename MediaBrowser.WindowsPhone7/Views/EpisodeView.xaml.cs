@@ -9,7 +9,7 @@ namespace MediaBrowser.WindowsPhone.Views
     /// <summary>
     /// Description for EpisodeView.
     /// </summary>
-    public partial class EpisodeView : PhoneApplicationPage
+    public partial class EpisodeView
     {
         /// <summary>
         /// Initializes a new instance of the EpisodeView class.

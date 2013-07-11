@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model.Net;
@@ -10,6 +9,7 @@ using MediaBrowser.Model.Dto;
 using MediaBrowser.WindowsPhone.Resources;
 using ScottIsAFool.WindowsPhone.IsolatedStorage;
 using MediaBrowser.Shared;
+using ScottIsAFool.WindowsPhone.ViewModel;
 
 namespace MediaBrowser.WindowsPhone.ViewModel
 {
@@ -23,7 +23,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     {
         private readonly ExtendedApiClient _apiClient;
         private readonly INavigationService _navigationService;
-        private readonly ILog _logger;
 
         /// <summary>
         /// Initializes a new instance of the ChooseProfileViewModel class.
@@ -32,33 +31,31 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             _apiClient = apiClient;
             _navigationService = navigationService;
-            _logger = new WPLogger(typeof(ChooseProfileViewModel));
             Profiles = new ObservableCollection<UserDto>();
-            if(IsInDesignMode)
+            if (IsInDesignMode)
             {
                 Profiles = new ObservableCollection<UserDto>
-                               {
-                                   new UserDto
-                                       {
-                                           Id = new Guid("dd425709431649698e92d86b1f2b00fa").ToString(),
-                                           Name = "ScottIsAFool"
-                                       },
-                                   new UserDto
-                                       {
-                                           Id = new Guid("dab28e40cfbc43658082f55a44cf139a").ToString(),
-                                           Name = "Redshirt",
-                                           LastLoginDate = DateTime.Now.AddHours(-1)
-                                       }
-                               };
+                {
+                    new UserDto
+                    {
+                        Id = new Guid("dd425709431649698e92d86b1f2b00fa").ToString(),
+                        Name = "ScottIsAFool"
+                    },
+                    new UserDto
+                    {
+                        Id = new Guid("dab28e40cfbc43658082f55a44cf139a").ToString(),
+                        Name = "Redshirt",
+                        LastLoginDate = DateTime.Now.AddHours(-1)
+                    }
+                };
             }
             else
             {
                 WireCommands();
-                WireMessages();
             }
         }
 
-        private void WireMessages()
+        public override void WireMessages()
         {
             Messenger.Default.Register<NotificationMessage>(this, m =>
             {
@@ -71,15 +68,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
         private void WireCommands()
         {
-            ChooseProfilePageLoaded = new RelayCommand(async ()=>
+            ChooseProfilePageLoaded = new RelayCommand(async () =>
             {
-                if(_navigationService.IsNetworkAvailable)
+                if (_navigationService.IsNetworkAvailable)
                 {
-                    ProgressText = AppResources.SysTrayGettingProfiles;
-                    ProgressIsVisible = true;
+                    SetProgressBar(AppResources.SysTrayGettingProfiles);
 
-                    _logger.Log("Getting profiles");
-                    
+                    Log.Info("Getting profiles");
+
                     try
                     {
                         var profiles = await _apiClient.GetUsersAsync();
@@ -88,12 +84,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     }
                     catch (HttpException ex)
                     {
-                        _logger.Log(ex.Message, LogLevel.Fatal);
-                        _logger.Log(ex.StackTrace, LogLevel.Fatal);
+                        Log.ErrorException("GettingProfiles()", ex);
                     }
 
-                    ProgressText = string.Empty;
-                    ProgressIsVisible = false;
+                    SetProgressBar();
                 }
             });
 
@@ -101,31 +95,29 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 var selectedUser = loginDetails[0] as UserDto;
                 var pinCode = loginDetails[1] as string;
-                var saveUser = (bool)loginDetails[2];
+                var saveUser = (bool) loginDetails[2];
 
                 if (selectedUser != null)
                 {
                     Debug.WriteLine(selectedUser.Id);
 
-                    ProgressText = AppResources.SysTrayAuthenticating;
-                    ProgressIsVisible = true;
+                    SetProgressBar(AppResources.SysTrayAuthenticating);
 
-                    await Utils.Login(_logger, selectedUser, pinCode, () =>
+                    await Utils.Login(Log, selectedUser, pinCode, () =>
                     {
                         SetUser(selectedUser);
-                        if(saveUser)
+                        if (saveUser)
                         {
                             ISettings.SetKeyValue(Constants.SelectedUserSetting, new UserSettingWrapper
-                                                                                     {
-                                                                                         User = selectedUser,
-                                                                                         Pin = pinCode
-                                                                                     });
-                            _logger.LogFormat("User [{0}] has been saved", LogLevel.Info, selectedUser.Name);
+                            {
+                                User = selectedUser,
+                                Pin = pinCode
+                            });
+                            Log.Info("User [{0}] has been saved", selectedUser.Name);
                         }
                     });
 
-                    ProgressText = "";
-                    ProgressIsVisible = false;
+                    SetProgressBar();
                 }
             });
         }
@@ -138,9 +130,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             else
                 _navigationService.NavigateTo("/Views/MainPage.xaml");
         }
-
-        public string ProgressText { get; set; }
-        public bool ProgressIsVisible { get; set; }
 
         public ObservableCollection<UserDto> Profiles { get; set; }
 

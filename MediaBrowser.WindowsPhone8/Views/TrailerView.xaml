@@ -1,24 +1,25 @@
-﻿<phone:PhoneApplicationPage x:Class="MediaBrowser.WindowsPhone.Views.TrailerView"
-                            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                            xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
-                            xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
-                            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                            xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
-                            xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-                            xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP8"
-                            xmlns:controls="clr-namespace:MediaBrowser.WindowsPhone.Controls"
-                            FontFamily="{StaticResource PhoneFontFamilyNormal}"
-                            FontSize="{StaticResource PhoneFontSizeNormal}"
-                            Foreground="{StaticResource PhoneForegroundBrush}"
-                            SupportedOrientations="Portrait"
-                            Orientation="Portrait"
-                            mc:Ignorable="d"
-                            DataContext="{Binding Trailer, Source={StaticResource Locator}}"
-                            shell:SystemTray.IsVisible="True"
-                            shell:SystemTray.BackgroundColor="Black"
-                            toolkit:TiltEffect.IsTiltEnabled="True">
+﻿<scott:BasePage x:Class="MediaBrowser.WindowsPhone.Views.TrailerView"
+                xmlns:scott="clr-namespace:ScottIsAFool.WindowsPhone.Controls;assembly=ScottIsAFool.WindowsPhone"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+                xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+                xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+                xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP8"
+                xmlns:controls="clr-namespace:MediaBrowser.WindowsPhone.Controls"
+                FontFamily="{StaticResource PhoneFontFamilyNormal}"
+                FontSize="{StaticResource PhoneFontSizeNormal}"
+                Foreground="{StaticResource PhoneForegroundBrush}"
+                SupportedOrientations="Portrait"
+                Orientation="Portrait"
+                mc:Ignorable="d"
+                DataContext="{Binding Trailer, Source={StaticResource Locator}}"
+                shell:SystemTray.IsVisible="True"
+                shell:SystemTray.BackgroundColor="Black"
+                toolkit:TiltEffect.IsTiltEnabled="True">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <command:EventToCommand Command="{Binding TrailerPageLoaded}" />
@@ -82,7 +83,7 @@
                             <phone:LongListSelector.ItemTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding Name}"
-                                               Style="{StaticResource PhoneTextNormalStyle}"/>
+                                               Style="{StaticResource PhoneTextNormalStyle}" />
                                 </DataTemplate>
                             </phone:LongListSelector.ItemTemplate>
 
@@ -96,4 +97,4 @@
         </Grid>
     </Grid>
 
-</phone:PhoneApplicationPage>
+</scott:BasePage>

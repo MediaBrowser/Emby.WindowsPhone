@@ -1,25 +1,26 @@
-﻿<phone:PhoneApplicationPage x:Class="MediaBrowser.WindowsPhone.Views.SettingsView"
-                            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                            xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
-                            xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
-                            xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
-                            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                            xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-                            xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP8"
-                            xmlns:behaviours="clr-namespace:ScottIsAFool.WindowsPhone.Behaviours"
-                            xmlns:controls="clr-namespace:MediaBrowser.WindowsPhone.Controls"
-                            FontFamily="{StaticResource PhoneFontFamilyNormal}"
-                            FontSize="{StaticResource PhoneFontSizeNormal}"
-                            Foreground="{StaticResource PhoneForegroundBrush}"
-                            SupportedOrientations="Portrait"
-                            Orientation="Portrait"
-                            mc:Ignorable="d"
-                            DataContext="{Binding Settings, Source={StaticResource Locator}}"
-                            shell:SystemTray.IsVisible="True"
-                            shell:SystemTray.BackgroundColor="Black"
-                            toolkit:TiltEffect.IsTiltEnabled="True">
+﻿<scott:BasePage x:Class="MediaBrowser.WindowsPhone.Views.SettingsView"
+                xmlns:scott="clr-namespace:ScottIsAFool.WindowsPhone.Controls;assembly=ScottIsAFool.WindowsPhone"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+                xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+                xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+                xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP8"
+                xmlns:behaviours="clr-namespace:ScottIsAFool.WindowsPhone.Behaviours"
+                xmlns:controls="clr-namespace:MediaBrowser.WindowsPhone.Controls"
+                FontFamily="{StaticResource PhoneFontFamilyNormal}"
+                FontSize="{StaticResource PhoneFontSizeNormal}"
+                Foreground="{StaticResource PhoneForegroundBrush}"
+                SupportedOrientations="Portrait"
+                Orientation="Portrait"
+                mc:Ignorable="d"
+                DataContext="{Binding Settings, Source={StaticResource Locator}}"
+                shell:SystemTray.IsVisible="True"
+                shell:SystemTray.BackgroundColor="Black"
+                toolkit:TiltEffect.IsTiltEnabled="True">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <command:EventToCommand Command="{Binding SettingsPageLoaded}" />
@@ -86,12 +87,12 @@
                                       IsChecked="{Binding SendTileUpdates, Mode=TwoWay}" />
                         </StackPanel>
                     </StackPanel>
-                    
+
                     <StackPanel Orientation="Vertical"
                                 Visibility="{Binding ServerPluginInstalled, Converter={StaticResource InvertedVisibilityConverter}}">
                         <TextBlock Text="In order to use push notifications on your device, you need to install the Push Notification service on your MediaBrowser server. This can be done through the control panel in the plugins section."
                                    Style="{StaticResource PhoneTextNormalStyle}"
-                                   TextWrapping="Wrap"/>
+                                   TextWrapping="Wrap" />
                     </StackPanel>
                 </Grid>
             </phone:PivotItem>
@@ -107,7 +108,7 @@
                     <TextBox Text="{Binding ConnectionDetails.HostName, Source={StaticResource AppSettings}, Mode=TwoWay}"
                              InputScope="Url">
                         <i:Interaction.Behaviors>
-                            <behaviours:UpdateTextBindingOnPropertyChanged EnterHitCommand="{Binding Settings.TestConnectionCommand, Source={StaticResource Locator}}"/>
+                            <behaviours:UpdateTextBindingOnPropertyChanged EnterHitCommand="{Binding Settings.TestConnectionCommand, Source={StaticResource Locator}}" />
                         </i:Interaction.Behaviors>
                     </TextBox>
                     <TextBlock Text="Port:"
@@ -125,13 +126,13 @@
                             Command="{Binding Settings.TestConnectionCommand, Source={StaticResource Locator}}" />
                     <Button Content="Find server"
                             Command="{Binding Main.NavigateToAPage, Source={StaticResource Locator}}"
-                            CommandParameter="/Views/FindServerView.xaml"/>
+                            CommandParameter="/Views/FindServerView.xaml" />
                 </StackPanel>
             </phone:PivotItem>
         </phone:Pivot>
     </Grid>
 
-    <phone:PhoneApplicationPage.ApplicationBar>
+    <scott:BasePage.ApplicationBar>
         <shell:ApplicationBar IsMenuEnabled="True"
                               Mode="Minimized">
             <shell:ApplicationBar.MenuItems>
@@ -140,6 +141,6 @@
                                               Click="EmailLogs_OnClick" />
             </shell:ApplicationBar.MenuItems>
         </shell:ApplicationBar>
-    </phone:PhoneApplicationPage.ApplicationBar>
+    </scott:BasePage.ApplicationBar>
 
-</phone:PhoneApplicationPage>
+</scott:BasePage>

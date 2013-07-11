@@ -12,7 +12,7 @@ namespace MediaBrowser.WindowsPhone.Views
     /// <summary>
     /// Description for MovieView.
     /// </summary>
-    public partial class MovieView : PhoneApplicationPage
+    public partial class MovieView
     {
         /// <summary>
         /// Initializes a new instance of the MovieView class.

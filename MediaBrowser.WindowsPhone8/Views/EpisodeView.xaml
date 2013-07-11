@@ -1,28 +1,28 @@
-﻿<phone:PhoneApplicationPage x:Class="MediaBrowser.WindowsPhone.Views.EpisodeView"
-                            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                            xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
-                            xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
-                            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                            xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-                            xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
-                            xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP8"
-                            xmlns:cimbalino="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
-                            xmlns:controls="clr-namespace:MediaBrowser.WindowsPhone.Controls"
-                            xmlns:controls1="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
-                            mc:Ignorable="d"
-                            d:DesignWidth="480"
-                            d:DesignHeight="696"
-                            FontFamily="{StaticResource PhoneFontFamilyNormal}"
-                            FontSize="{StaticResource PhoneFontSizeNormal}"
-                            Foreground="{StaticResource PhoneForegroundBrush}"
-                            SupportedOrientations="Portrait"
-                            Orientation="Portrait"
-                            shell:SystemTray.IsVisible="True"
-                            shell:SystemTray.BackgroundColor="Black"
-                            toolkit:TiltEffect.IsTiltEnabled="True"
-                            d:DataContext="{Binding Tv, Source={StaticResource Locator}}">
+﻿<scott:BasePage x:Class="MediaBrowser.WindowsPhone.Views.EpisodeView"
+                xmlns:scott="clr-namespace:ScottIsAFool.WindowsPhone.Controls;assembly=ScottIsAFool.WindowsPhone"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+                xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+                xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP8"
+                xmlns:cimbalino="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
+                xmlns:controls="clr-namespace:MediaBrowser.WindowsPhone.Controls"
+                xmlns:controls1="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
+                mc:Ignorable="d"
+                d:DesignWidth="480"
+                d:DesignHeight="696"
+                FontFamily="{StaticResource PhoneFontFamilyNormal}"
+                FontSize="{StaticResource PhoneFontSizeNormal}"
+                Foreground="{StaticResource PhoneForegroundBrush}"
+                SupportedOrientations="Portrait"
+                Orientation="Portrait"
+                shell:SystemTray.IsVisible="True"
+                shell:SystemTray.BackgroundColor="Black"
+                toolkit:TiltEffect.IsTiltEnabled="True"
+                d:DataContext="{Binding Tv, Source={StaticResource Locator}}">
     <shell:SystemTray.ProgressIndicator>
         <shell:ProgressIndicator IsIndeterminate="True"
                                  Text="{Binding ProgressText}"
@@ -64,12 +64,12 @@
         </toolkit:GestureService.GestureListener>
         <i:Interaction.Behaviors>
             <cimbalino:ApplicationBarBehavior>
-                    <cimbalino:ApplicationBarIconButton Command="{Binding PreviousEpisodeCommand}"
-                                                        Text="previous"
-                                                        IconUri="/icons/appbar.back.rest.png"/>
-                    <cimbalino:ApplicationBarIconButton Text="next"
-                                                  Command="{Binding NextEpisodeCommand}"
-                                                  IconUri="/icons/appbar.next.rest.png" />
+                <cimbalino:ApplicationBarIconButton Command="{Binding PreviousEpisodeCommand}"
+                                                    Text="previous"
+                                                    IconUri="/icons/appbar.back.rest.png" />
+                <cimbalino:ApplicationBarIconButton Text="next"
+                                                    Command="{Binding NextEpisodeCommand}"
+                                                    IconUri="/icons/appbar.next.rest.png" />
             </cimbalino:ApplicationBarBehavior>
         </i:Interaction.Behaviors>
         <Grid.RowDefinitions>
@@ -112,7 +112,7 @@
                 </StackPanel>
             </ScrollViewer>
         </Grid>
-        
+
     </Grid>
 
-</phone:PhoneApplicationPage>
+</scott:BasePage>

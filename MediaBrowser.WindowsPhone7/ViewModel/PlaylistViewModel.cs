@@ -6,13 +6,13 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
 using Cimbalino.Phone.Toolkit.Services;
-using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
+using JetBrains.Annotations;
 using MediaBrowser.Shared;
 using MediaBrowser.WindowsPhone.AudioAgent;
-using MediaBrowser.WindowsPhone.Model;
 using Microsoft.Phone.BackgroundAudio;
+using ScottIsAFool.WindowsPhone.ViewModel;
 using INavigationService = MediaBrowser.WindowsPhone.Model.INavigationService;
 
 namespace MediaBrowser.WindowsPhone.ViewModel
@@ -25,9 +25,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     /// </summary>
     public class PlaylistViewModel : ViewModelBase
     {
-        private readonly ExtendedApiClient _apiClient;
         private readonly INavigationService _navigationService;
-        private readonly ILog _logger;
         private readonly PlaylistHelper _playlistHelper;
         private readonly DispatcherTimer _playlistChecker;
 
@@ -36,11 +34,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         /// <summary>
         /// Initializes a new instance of the PlaylistViewModel class.
         /// </summary>
-        public PlaylistViewModel(ExtendedApiClient apiClient, INavigationService navigationService, IStorageService storageService)
+        public PlaylistViewModel(INavigationService navigationService, IStorageService storageService)
         {
             _navigationService = navigationService;
-            _apiClient = apiClient;
-            _logger = new WPLogger(typeof(PlaylistViewModel));
             _playlistHelper = new PlaylistHelper(storageService);
             _playlistChecker = new DispatcherTimer {Interval = new TimeSpan(0, 0, 3)};
             _playlistChecker.Tick += PlaylistCheckerOnTick;
@@ -50,21 +46,21 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             if (IsInDesignMode)
             {
                 Playlist = new ObservableCollection<PlaylistItem>
-                               {
-                                   new PlaylistItem {Artist = "John Williams", Album = "Jurassic Park OST", Id = 1, IsPlaying = true, TrackName = "Jurassic Park Theme"},
-                                   new PlaylistItem {Artist = "John Williams", Album = "Jurassic Park OST", Id = 2, IsPlaying = false, TrackName = "Journey to the Island"},
-                                   new PlaylistItem {Artist = "John Williams", Album = "Jurassic Park OST", Id = 3, IsPlaying = false, TrackName = "Incident at Isla Nublar"}
-                               };
+                {
+                    new PlaylistItem {Artist = "John Williams", Album = "Jurassic Park OST", Id = 1, IsPlaying = true, TrackName = "Jurassic Park Theme"},
+                    new PlaylistItem {Artist = "John Williams", Album = "Jurassic Park OST", Id = 2, IsPlaying = false, TrackName = "Journey to the Island"},
+                    new PlaylistItem {Artist = "John Williams", Album = "Jurassic Park OST", Id = 3, IsPlaying = false, TrackName = "Incident at Isla Nublar"}
+                };
                 NowPlayingItem = Playlist[0];
             }
             else
             {
-                WireMessages();
                 BackgroundAudioPlayer.Instance.PlayStateChanged += OnPlayStateChanged;
             }
         }
 
         public ObservableCollection<PlaylistItem> Playlist { get; set; }
+
         public List<PlaylistItem> SmallList
         {
             get
@@ -75,6 +71,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                .ToList();
             }
         }
+
         public List<PlaylistItem> SelectedItems { get; set; }
         public PlaylistItem NowPlayingItem { get; set; }
         public bool IsPlaying { get; set; }
@@ -82,20 +79,27 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public bool IsOnRepeat { get; set; }
 
         public bool IsInSelectionMode { get; set; }
-        public int SelectedAppBarIndex { get { return IsInSelectionMode ? 1 : 0; } }
+
+        public int SelectedAppBarIndex
+        {
+            get { return IsInSelectionMode ? 1 : 0; }
+        }
 
         #region Commands
+
         public RelayCommand PlaylistPageLoaded
         {
             get
             {
                 return new RelayCommand(() =>
-                    {
-                        GetPlaylistItems();
+                {
+                    GetPlaylistItems();
 
-                        if(!_playlistChecker.IsEnabled)
-                            _playlistChecker.Start();
-                    });
+                    if (!_playlistChecker.IsEnabled)
+                    {
+                        _playlistChecker.Start();
+                    }
+                });
             }
         }
 
@@ -104,16 +108,16 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             get
             {
                 return new RelayCommand(() =>
-                                            {
-                                                var result = MessageBox.Show("Are you sure you want to clear your playlist?", "Are you sure?", MessageBoxButton.OKCancel);
-                                                
-                                                if (result == MessageBoxResult.OK)
-                                                {
-                                                    _playlistHelper.ClearPlaylist();
+                {
+                    var result = MessageBox.Show("Are you sure you want to clear your playlist?", "Are you sure?", MessageBoxButton.OKCancel);
 
-                                                    GetPlaylistItems();
-                                                }
-                                            });
+                    if (result == MessageBoxResult.OK)
+                    {
+                        _playlistHelper.ClearPlaylist();
+
+                        GetPlaylistItems();
+                    }
+                });
             }
         }
 
@@ -189,6 +193,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         #endregion
 
         #region Private methods
+
         private void PlaylistCheckerOnTick(object sender, EventArgs eventArgs)
         {
             GetPlaylistItems();
@@ -199,7 +204,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             IsPlaying = BackgroundAudioPlayer.Instance.PlayerState == PlayState.Playing;
         }
 
-        private void WireMessages()
+        public override void WireMessages()
         {
             Messenger.Default.Register<NotificationMessage<List<PlaylistItem>>>(this, m =>
             {
@@ -207,7 +212,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 {
                     _playlistHelper.AddToPlaylist(m.Content);
 
-                    _logger.LogFormat("Adding {0} item(s) to the playlist", LogLevel.Info, m.Content.Count);
+                    Log.Info("Adding {0} item(s) to the playlist", m.Content.Count);
                 }
 
                 if (m.Notification.Equals(Constants.SetPlaylistAsMsg))
@@ -219,16 +224,21 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     _navigationService.NavigateTo("/Views/NowPlayingView.xaml");
 
                     if (BackgroundAudioPlayer.Instance.PlayerState != PlayState.Playing)
+                    {
                         BackgroundAudioPlayer.Instance.Play();
+                    }
                 }
 
                 if (m.Notification.Equals(Constants.PlaylistPageLeftMsg))
                 {
                     if (_playlistChecker.IsEnabled)
+                    {
                         _playlistChecker.Stop();
+                    }
                 }
             });
         }
+
         private void PlayPause()
         {
             if (BackgroundAudioPlayer.Instance.PlayerState == PlayState.Playing)
@@ -272,16 +282,19 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             NowPlayingItem = nowPlaying;
         }
 
+        [UsedImplicitly]
         private void OnIsShuffledChanged()
         {
             if (_playlistHelper.RandomiseTrackNumbers(IsShuffled))
                 GetPlaylistItems();
         }
 
+        [UsedImplicitly]
         private void OnIsOnRepeatChanged()
         {
             _playlistHelper.SetRepeat(IsOnRepeat);
         }
+
         #endregion
     }
 }

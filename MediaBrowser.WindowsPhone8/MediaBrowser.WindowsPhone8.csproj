@@ -287,9 +287,6 @@
       <Link>Views\TvShowView.xaml.cs</Link>
       <DependentUpon>TvShowView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\WPLogger.cs">
-      <Link>WPLogger.cs</Link>
-    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
@@ -524,6 +521,9 @@
     <Reference Include="GalaSoft.MvvmLight.WP8, Version=4.1.27.22645, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\MvvmLightLibs.4.1.27.0\lib\WindowsPhone8\GalaSoft.MvvmLight.WP8.dll</HintPath>
+    </Reference>
+    <Reference Include="JetBrains.Annotations">
+      <HintPath>..\packages\JetBrains.Annotations.7.0\lib\sl4-wp71\JetBrains.Annotations.dll</HintPath>
     </Reference>
     <Reference Include="MediaBrowser.ApiInteraction.Portable">
       <HintPath>..\packages\MediaBrowser.ApiClient.3.0.0.141\lib\portable-net45+sl4+wp71+win8\MediaBrowser.ApiInteraction.Portable.dll</HintPath>

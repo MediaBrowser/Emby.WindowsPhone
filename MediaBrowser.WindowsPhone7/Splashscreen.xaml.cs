@@ -8,7 +8,7 @@ namespace MediaBrowser.WindowsPhone
     /// <summary>
     /// Description for Splashscreen.
     /// </summary>
-    public partial class Splashscreen : PhoneApplicationPage
+    public partial class Splashscreen
     {
         /// <summary>
         /// Initializes a new instance of the Splashscreen class.

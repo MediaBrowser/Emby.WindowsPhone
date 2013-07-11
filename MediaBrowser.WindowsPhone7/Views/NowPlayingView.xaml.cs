@@ -7,7 +7,7 @@ namespace MediaBrowser.WindowsPhone.Views
     /// <summary>
     /// Description for NowPlayingView.
     /// </summary>
-    public partial class NowPlayingView : PhoneApplicationPage
+    public partial class NowPlayingView
     {
         /// <summary>
         /// Initializes a new instance of the NowPlayingView class.

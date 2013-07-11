@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Querying;
@@ -10,10 +9,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.WindowsPhone.Resources;
-
 #if !WP8
 using ScottIsAFool.WindowsPhone;
 #endif
+using ScottIsAFool.WindowsPhone.ViewModel;
 
 namespace MediaBrowser.WindowsPhone.ViewModel
 {
@@ -30,10 +29,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     {
         private readonly INavigationService _navService;
         private readonly ExtendedApiClient _apiClient;
-        private readonly ILog _logger;
 
         public bool ShowDataLoaded;
         public bool SeasonDataLoaded;
+
         /// <summary>
         /// Initializes a new instance of the TvViewModel class.
         /// </summary>
@@ -41,45 +40,43 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             _navService = navService;
             _apiClient = apiClient;
-            _logger =new WPLogger(typeof(TvViewModel)); 
 
             RecentItems = new ObservableCollection<BaseItemDto>();
             Episodes = new List<BaseItemDto>();
-            if(IsInDesignMode)
+            if (IsInDesignMode)
             {
                 SelectedTvSeries = new BaseItemDto
-                                       {
-                                           Name = "Scrubs"
-                                       };
+                {
+                    Name = "Scrubs"
+                };
                 SelectedSeason = new BaseItemDto
-                                     {
-                                         Name = "Season 1"
-                                     };
+                {
+                    Name = "Season 1"
+                };
                 Episodes = new[]
-                               {
-                                   new BaseItemDto
-                                       {
-                                           Id = "e252ea3059d140a0274282bc8cd194cc",
-                                           Name = "1x01 - Pilot",
-                                           Overview =
-                                               "A Kindergarten teacher starts speaking gibberish and passed out in front of her class. What looks like a possible brain tumor does not respond to treatment and provides many more questions than answers for House and his team as they engage in a risky trial-and-error approach to her case. When the young teacher refuses any additional variations of treatment and her life starts slipping away, House must act against his code of conduct and make a personal visit to his patient to convince her to trust him one last time."
-                                       }
-                               }.ToList();
+                {
+                    new BaseItemDto
+                    {
+                        Id = "e252ea3059d140a0274282bc8cd194cc",
+                        Name = "1x01 - Pilot",
+                        Overview =
+                            "A Kindergarten teacher starts speaking gibberish and passed out in front of her class. What looks like a possible brain tumor does not respond to treatment and provides many more questions than answers for House and his team as they engage in a risky trial-and-error approach to her case. When the young teacher refuses any additional variations of treatment and her life starts slipping away, House must act against his code of conduct and make a personal visit to his patient to convince her to trust him one last time."
+                    }
+                }.ToList();
                 SelectedEpisode = Episodes[0];
 
             }
             else
             {
                 WireCommands();
-                WireMessages();
             }
         }
 
-        private void WireMessages()
+        public override void WireMessages()
         {
             Messenger.Default.Register<NotificationMessage>(this, m =>
             {
-                if(m.Notification.Equals(Constants.ClearEpisodesMsg))
+                if (m.Notification.Equals(Constants.ClearEpisodesMsg))
                 {
                     Episodes.Clear();
                 }
@@ -97,34 +94,32 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     Id = SelectedTvSeries.Id
 
                 };
-                if(_navService.IsNetworkAvailable && !ShowDataLoaded)
+
+                if (_navService.IsNetworkAvailable && !ShowDataLoaded)
                 {
-                    if(SelectedTvSeries != null)
+                    if (SelectedTvSeries != null)
                     {
-                        ProgressIsVisible = true;
-                        ProgressText = AppResources.SysTrayGettingShowInformation;
+                        SetProgressBar(AppResources.SysTrayGettingShowInformation);
 
                         try
                         {
-                            _logger.LogFormat("Getting information for TV Series [{0}] ({1})", LogLevel.Info, SelectedTvSeries.Name, SelectedTvSeries.Id);
+                            Log.Info("Getting information for TV Series [{0}] ({1})", SelectedTvSeries.Name, SelectedTvSeries.Id);
 
                             SelectedTvSeries = await _apiClient.GetItemAsync(SelectedTvSeries.Id, App.Settings.LoggedInUser.Id);
                             CastAndCrew = Utils.GroupCastAndCrew(SelectedTvSeries.People);
                         }
                         catch (HttpException ex)
                         {
-                            _logger.Log(ex.Message, LogLevel.Fatal);
-                            _logger.Log(ex.StackTrace, LogLevel.Fatal);
+                            Log.ErrorException("TvSeriesPageLoaded", ex);
                         }
 
                         bool seasonsLoaded = await GetSeasons();
 
-                        ProgressText = AppResources.SysTrayGettingRecentItems;
+                        SetProgressBar(AppResources.SysTrayGettingRecentItems);
 
                         bool recentItems = await GetRecentItems().ConfigureAwait(true);
 
-                        ProgressIsVisible = false;
-                        ProgressText = "";
+                        SetProgressBar();
                         ShowDataLoaded = (seasonsLoaded && recentItems);
                     }
                 }
@@ -132,46 +127,43 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             SeasonPageLoaded = new RelayCommand(async () =>
             {
-                if(_navService.IsNetworkAvailable && !SeasonDataLoaded)
+                if (_navService.IsNetworkAvailable && !SeasonDataLoaded)
                 {
-                    if(SelectedSeason != null)
+                    if (SelectedSeason != null)
                     {
-                        ProgressIsVisible = true;
-                        ProgressText = AppResources.SysTrayGettingEpisodes;
+                        SetProgressBar(AppResources.SysTrayGettingEpisodes);
 
                         SeasonDataLoaded = await GetEpisodes();
 
-                        ProgressText = string.Empty;
-                        ProgressIsVisible = false;
+                        SetProgressBar();
                     }
                 }
             });
 
-            EpisodePageLoaded = new RelayCommand(async ()=>
+            EpisodePageLoaded = new RelayCommand(async () =>
             {
-                if(_navService.IsNetworkAvailable)
+                if (_navService.IsNetworkAvailable)
                 {
-                    if(SelectedEpisode != null)
+                    if (SelectedEpisode != null)
                     {
-                        ProgressIsVisible = true;
-                        ProgressText = AppResources.SysTrayGettingEpisodeDetails;
+                        SetProgressBar(AppResources.SysTrayGettingEpisodeDetails);
 
                         //bool episodeLoaded = await GetEpisode();
 
-                        ProgressText = string.Empty;
-                        ProgressIsVisible = false;
+                        SetProgressBar();
                     }
                 }
             });
 
             NextEpisodeCommand = new RelayCommand(() =>
-                                                      {
-                                                          SelectedEpisode = SelectedEpisode.IndexNumber + 1 > Episodes.Count ? Episodes[0] : Episodes[SelectedEpisode.IndexNumber.Value];
-                                                      });
-            PreviousEpisodeCommand = new RelayCommand(()=>
-                                                          {
-                                                              SelectedEpisode = SelectedEpisode.IndexNumber - 1 == 0 ? Episodes[Episodes.Count - 1] : Episodes[SelectedEpisode.IndexNumber.Value - 2];
-                                                          });
+            {
+                SelectedEpisode = SelectedEpisode.IndexNumber + 1 > Episodes.Count ? Episodes[0] : Episodes[SelectedEpisode.IndexNumber.Value];
+            });
+
+            PreviousEpisodeCommand = new RelayCommand(() =>
+            {
+                SelectedEpisode = SelectedEpisode.IndexNumber - 1 == 0 ? Episodes[Episodes.Count - 1] : Episodes[SelectedEpisode.IndexNumber.Value - 2];
+            });
 
             NavigateTo = new RelayCommand<BaseItemDto>(_navService.NavigateTo);
         }
@@ -180,17 +172,16 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             try
             {
-                _logger.LogFormat("Getting information for episode [{0}] ({1})", LogLevel.Info, SelectedEpisode.Name, SelectedEpisode.Id);
+                Log.Info("Getting information for episode [{0}] ({1})", SelectedEpisode.Name, SelectedEpisode.Id);
 
                 var episode = await _apiClient.GetItemAsync(SelectedEpisode.Id, App.Settings.LoggedInUser.Id);
                 return true;
             }
             catch (HttpException ex)
             {
-                _logger.Log(ex.Message, LogLevel.Fatal);
-                _logger.Log(ex.StackTrace, LogLevel.Fatal);
+                Log.ErrorException("GetEpisode()", ex);
 
-                App.ShowMessage("", AppResources.ErrorEpisodeDetails);
+                App.ShowMessage(AppResources.ErrorEpisodeDetails);
                 return false;
             }
         }
@@ -203,22 +194,23 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 {
                     UserId = App.Settings.LoggedInUser.Id,
                     ParentId = SelectedTvSeries.Id,
-                    Filters = new[] { ItemFilter.IsRecentlyAdded },
+                    Filters = new[] {ItemFilter.IsRecentlyAdded},
                     Fields = new[]
-                                                 {
-                                                     ItemFields.SeriesInfo,
-                                                     ItemFields.ParentId
-                                                 },
+                    {
+                        ItemFields.SeriesInfo,
+                        ItemFields.ParentId
+                    },
                     Recursive = true
                 };
 
-                _logger.LogFormat("Getting recent items for TV Show [{0}] ({1})", LogLevel.Info, SelectedTvSeries.Name, SelectedTvSeries.Id);
+                Log.Info("Getting recent items for TV Show [{0}] ({1})", SelectedTvSeries.Name, SelectedTvSeries.Id);
 
                 var recent = await _apiClient.GetItemsAsync(query);
                 if (recent != null && recent.Items != null)
                 {
                     RecentItems.Clear();
-                    recent.Items.OrderByDescending(x => x.DateCreated)
+                    recent.Items
+                          .OrderByDescending(x => x.DateCreated)
                           .Take(6)
                           .ToList()
                           .ForEach(recentItem => RecentItems.Add(recentItem));
@@ -227,10 +219,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
             catch (HttpException ex)
             {
-                _logger.Log(ex.Message, LogLevel.Fatal);
-                _logger.Log(ex.StackTrace, LogLevel.Fatal);
+                Log.ErrorException("GetRecentItems()", ex);
 
-                App.ShowMessage("", AppResources.ErrorRecentItems);
+                App.ShowMessage(AppResources.ErrorRecentItems);
                 return false;
             }
         }
@@ -244,13 +235,13 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     UserId = App.Settings.LoggedInUser.Id,
                     ParentId = SelectedTvSeries.Id,
                     Fields = new[]
-                                                 {
-                                                     ItemFields.SeriesInfo,
-                                                     ItemFields.ParentId
-                                                 }
+                    {
+                        ItemFields.SeriesInfo,
+                        ItemFields.ParentId
+                    }
                 };
 
-                _logger.LogFormat("Getting seasons for TV Show [{0}] ({1})", LogLevel.Info, SelectedTvSeries.Name, SelectedTvSeries.Id);
+                Log.Info("Getting seasons for TV Show [{0}] ({1})", SelectedTvSeries.Name, SelectedTvSeries.Id);
 
                 var seasons = await _apiClient.GetItemsAsync(query);
                 Seasons = seasons.Items.OrderBy(x => x.IndexNumber).ToList();
@@ -258,10 +249,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
             catch (HttpException ex)
             {
-                _logger.Log(ex.Message, LogLevel.Fatal);
-                _logger.Log(ex.StackTrace, LogLevel.Fatal);
+                Log.ErrorException("GetSeasons()", ex);
 
-                App.ShowMessage("", AppResources.ErrorSeasons);
+                App.ShowMessage(AppResources.ErrorSeasons);
                 return false;
             }
         }
@@ -275,14 +265,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     UserId = App.Settings.LoggedInUser.Id,
                     ParentId = SelectedSeason.Id,
                     Fields = new[]
-                                                 {
-                                                     ItemFields.SeriesInfo,
-                                                     ItemFields.ParentId,
-                                                     ItemFields.Overview, 
-                                                 }
+                    {
+                        ItemFields.SeriesInfo,
+                        ItemFields.ParentId,
+                        ItemFields.Overview
+                    }
                 };
 
-                _logger.LogFormat("Getting episodes for Season [{0}] ({1}) of TV Show [{2}] ({3})", LogLevel.Info, SelectedSeason.Name, SelectedSeason.Id, SelectedTvSeries.Name, SelectedTvSeries.Id);
+                Log.Info("Getting episodes for Season [{0}] ({1}) of TV Show [{2}] ({3})", SelectedSeason.Name, SelectedSeason.Id, SelectedTvSeries.Name, SelectedTvSeries.Id);
 
                 var episodes = await _apiClient.GetItemsAsync(query);
                 Episodes = episodes.Items.OrderBy(x => x.IndexNumber).ToList();
@@ -290,18 +280,17 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
             catch (HttpException ex)
             {
-                _logger.Log(ex.Message, LogLevel.Fatal);
-                _logger.Log(ex.StackTrace, LogLevel.Fatal);
+                Log.ErrorException("GetEpisodes()", ex);
 
-                App.ShowMessage("", AppResources.ErrorEpisodes);
+                App.ShowMessage(AppResources.ErrorEpisodes);
                 return false;
             }
         }
 
-        // UI properties
-        public string ProgressText { get; set; }
-        public bool ProgressIsVisible { get; set; }
-        public bool EpisodeNavigationEnabled { get { return Episodes.Count > 1; } }
+        public bool EpisodeNavigationEnabled
+        {
+            get { return Episodes.Count > 1; }
+        }
 
         public BaseItemDto SelectedTvSeries { get; set; }
         public List<BaseItemDto> Seasons { get; set; }

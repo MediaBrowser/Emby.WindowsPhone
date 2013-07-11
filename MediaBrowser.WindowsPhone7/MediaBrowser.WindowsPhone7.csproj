@@ -79,6 +79,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\MvvmLightLibs.4.1.27.0\lib\sl4-wp71\GalaSoft.MvvmLight.WP71.dll</HintPath>
     </Reference>
+    <Reference Include="JetBrains.Annotations">
+      <HintPath>..\packages\JetBrains.Annotations.7.0\lib\sl4-wp71\JetBrains.Annotations.dll</HintPath>
+    </Reference>
     <Reference Include="MediaBrowser.ApiInteraction.Portable">
       <HintPath>..\packages\MediaBrowser.ApiClient.3.0.0.141\lib\portable-net45+sl4+wp71+win8\MediaBrowser.ApiInteraction.Portable.dll</HintPath>
     </Reference>
@@ -222,7 +225,6 @@
     <Compile Include="Views\SearchView.xaml.cs">
       <DependentUpon>SearchView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WPLogger.cs" />
     <Compile Include="PhoneNameResolver.cs" />
     <Compile Include="SpecificSettings.cs" />
     <Compile Include="ThicknessAnimationX.cs" />
