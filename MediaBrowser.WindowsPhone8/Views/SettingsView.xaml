@@ -67,7 +67,8 @@
                               IsChecked="{Binding IncludeTrailersInRecent, Source={StaticResource SpecificSettings}, Mode=TwoWay}" />
                     <toolkit:ListPicker ItemsSource="{Binding GroupByItems, Source={StaticResource SpecificSettings}}"
                                         SelectedItem="{Binding DefaultGroupBy, Source={StaticResource SpecificSettings}, Mode=TwoWay}"
-                                        Header="Default grouping" />
+                                        Header="Default grouping" 
+                                        toolkit:TiltEffect.SuppressTilt="True"/>
                 </StackPanel>
             </phone:PivotItem>
 
