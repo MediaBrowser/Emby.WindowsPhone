@@ -172,7 +172,7 @@ namespace MediaBrowser.Windows8.ViewModel
         {
             Messenger.Default.Register<NotificationMessage>(this, async m =>
             {
-                if (m.Notification.Equals(Constants.MovieViewLoadedMsg))
+                if (m.Notification.Equals(Constants.Messages.MovieViewLoadedMsg))
                 {
                     var id = (string)m.Sender;
                     ProgressText = "Getting cast and crew...";
@@ -202,14 +202,14 @@ namespace MediaBrowser.Windows8.ViewModel
                     ProgressText = "";
                     ProgressVisibility = Visibility.Collapsed;
                 }
-                if (m.Notification.Equals(Constants.MovieViewBackMsg))
+                if (m.Notification.Equals(Constants.Messages.MovieViewBackMsg))
                 {
                     //var vm = History.Current.GetItem<MovieViewModel>(SelectedMovie.Id);
                     //CastAndCrew = vm.CastAndCrew;
                     //CastWidth = vm.CastWidth;
                     //Tagline = vm.Tagline;
                 }
-                if (m.Notification.Equals(Constants.ClearEverythingMsg))
+                if (m.Notification.Equals(Constants.Messages.ClearEverythingMsg))
                 {
                     Reset();
                 }

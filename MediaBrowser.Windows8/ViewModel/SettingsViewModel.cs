@@ -65,7 +65,7 @@ namespace MediaBrowser.Windows8.ViewModel
         {
             Messenger.Default.Register<NotificationMessage>(this, async m =>
                                                                       {
-                                                                          if (m.Notification.Equals(Constants.NotificationSettingsLoadedMsg))
+                                                                          if (m.Notification.Equals(Constants.Messages.NotificationSettingsLoadedMsg))
                                                                           {
                                                                               if (!ServerPluginInstalled)
                                                                               {
@@ -73,7 +73,7 @@ namespace MediaBrowser.Windows8.ViewModel
                                                                               }
                                                                           }
 
-                                                                          if (m.Notification.Equals(Constants.CheckForPushPluginMsg))
+                                                                          if (m.Notification.Equals(Constants.Messages.CheckForPushPluginMsg))
                                                                           {
                                                                               await CheckForServerPlugin();
                                                                           }

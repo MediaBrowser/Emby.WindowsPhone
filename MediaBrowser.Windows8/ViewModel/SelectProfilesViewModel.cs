@@ -66,7 +66,7 @@ namespace MediaBrowser.Windows8.ViewModel
         {
             Messenger.Default.Register<NotificationMessage>(this, async m =>
             {
-                if (m.Notification.Equals(Constants.ProfileViewLoadedMsg))
+                if (m.Notification.Equals(Constants.Messages.ProfileViewLoadedMsg))
                 {
                     if (_navigationService.IsNetworkAvailable)
                     {
@@ -79,7 +79,7 @@ namespace MediaBrowser.Windows8.ViewModel
                         ProgressVisibility = Visibility.Collapsed;
                     }
                 }
-                if (m.Notification.Equals(Constants.DoLoginMsg))
+                if (m.Notification.Equals(Constants.Messages.DoLoginMsg))
                 {
                     var loginObjects = m.Sender as object[];
                     var selectedUser = loginObjects[0] as UserDto;
@@ -99,7 +99,7 @@ namespace MediaBrowser.Windows8.ViewModel
                             if(saveUser)
                             {
                                 var storageHelper = new ObjectStorageHelper<UserSettingWrapper>(StorageType.Roaming);
-                                await storageHelper.SaveAsync(new UserSettingWrapper{ User = selectedUser, Pin = pinCode}, Constants.SelectedUserSetting);
+                                await storageHelper.SaveAsync(new UserSettingWrapper{ User = selectedUser, Pin = pinCode}, Constants.Settings.SelectedUserSetting);
 
                                 _logger.Info("User [{0}] has been saved", selectedUser.Name);
                             }
@@ -152,11 +152,11 @@ namespace MediaBrowser.Windows8.ViewModel
                 App.Settings.LoggedInUser = null;
                 App.Settings.PinCode = string.Empty;
 
-                Messenger.Default.Send(new NotificationMessage(Constants.ClearEverythingMsg));
+                Messenger.Default.Send(new NotificationMessage(Constants.Messages.ClearEverythingMsg));
 
                 History.Current.ClearAll();
 
-                await new ObjectStorageHelper<UserSettingWrapper>(StorageType.Roaming).DeleteAsync(Constants.SelectedUserSetting);
+                await new ObjectStorageHelper<UserSettingWrapper>(StorageType.Roaming).DeleteAsync(Constants.Settings.SelectedUserSetting);
 
                 _logger.Info("Signed out.");
 

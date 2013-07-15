@@ -88,7 +88,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             Messenger.Default.Register<NotificationMessage>(this, async m =>
             {
-                if (m.Notification.Equals(Constants.CheckForPushPluginMsg))
+                if (m.Notification.Equals(Constants.Messages.CheckForPushPluginMsg))
                 {
 
                 }
@@ -159,8 +159,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 {
                     if (!IsInDesignMode)
                     {
-                        ISettings.DeleteValue(Constants.SelectedUserSetting);
-                        ISettings.SetKeyValue(Constants.ConnectionSettings, App.Settings.ConnectionDetails);
+                        ISettings.DeleteValue(Constants.Settings.SelectedUserSetting);
+                        ISettings.SetKeyValue(Constants.Settings.ConnectionSettings, App.Settings.ConnectionDetails);
                     }
 
                     SetProgressBar(AppResources.SysTrayAuthenticating);

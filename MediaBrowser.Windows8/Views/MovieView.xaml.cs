@@ -23,7 +23,7 @@ namespace MediaBrowser.Windows8.Views
             Loaded += (sender, args) =>
                           {
                               var id = ((MovieViewModel) DataContext).SelectedMovie.Id;
-                              Messenger.Default.Send(new NotificationMessage(id, Constants.MovieViewLoadedMsg));
+                              Messenger.Default.Send(new NotificationMessage(id, Constants.Messages.MovieViewLoadedMsg));
                           };
         }
 

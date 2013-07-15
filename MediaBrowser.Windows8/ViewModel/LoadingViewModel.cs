@@ -62,7 +62,7 @@ namespace MediaBrowser.Windows8.ViewModel
         {
             TestConnectionCommand = new RelayCommand(async () =>
             {
-                Messenger.Default.Send(new NotificationMessage(Constants.ClearEverythingMsg));
+                Messenger.Default.Send(new NotificationMessage(Constants.Messages.ClearEverythingMsg));
 
                 _apiClient.ServerHostName = App.Settings.ConnectionDetails.HostName;
                 _apiClient.ServerApiPort = App.Settings.ConnectionDetails.PortNo;
@@ -75,7 +75,7 @@ namespace MediaBrowser.Windows8.ViewModel
                 }
 #endif
                 var userSettings = new ObjectStorageHelper<UserSettingWrapper>(StorageType.Roaming);
-                await userSettings.DeleteAsync(Constants.SelectedUserSetting);
+                await userSettings.DeleteAsync(Constants.Settings.SelectedUserSetting);
 
                 var connectionSuccess = await CheckForServer();
                 if (connectionSuccess)
@@ -86,7 +86,7 @@ namespace MediaBrowser.Windows8.ViewModel
                     {
                         HostName = App.Settings.ConnectionDetails.HostName,
                         PortNo = App.Settings.ConnectionDetails.PortNo
-                    }, Constants.ConnectionSettings);
+                    }, Constants.Settings.ConnectionSettings);
 
                 }
             });
@@ -94,7 +94,7 @@ namespace MediaBrowser.Windows8.ViewModel
             ClearConnectionSettingsCommand = new RelayCommand(async () =>
                                                                   {
                                                                       var connectionSettings = new ObjectStorageHelper<ConnectionDetails>(StorageType.Roaming);
-                                                                      await connectionSettings.DeleteAsync(Constants.ConnectionSettings);
+                                                                      await connectionSettings.DeleteAsync(Constants.Settings.ConnectionSettings);
                                                                       App.Settings.ConnectionDetails = new ConnectionDetails {PortNo = 8096};
                                                                   });
         }
@@ -129,7 +129,7 @@ namespace MediaBrowser.Windows8.ViewModel
         {
             Messenger.Default.Register<NotificationMessage>(this, async m=>
             {
-                if (m.Notification.Equals(Constants.LoadingPageLoadedMsg))
+                if (m.Notification.Equals(Constants.Messages.LoadingPageLoadedMsg))
                 {
                     _isFromSearch = (bool) m.Sender;
                     if (_isFromSearch)
@@ -139,7 +139,7 @@ namespace MediaBrowser.Windows8.ViewModel
 
                     var connectionSettings = new ObjectStorageHelper<ConnectionDetails>(StorageType.Roaming);
                     //await connectionSettings.DeleteAsync(Constants.ConnectionSettings);
-                    App.Settings.ConnectionDetails = await connectionSettings.LoadAsync(Constants.ConnectionSettings) ?? new ConnectionDetails {PortNo = 8096};
+                    App.Settings.ConnectionDetails = await connectionSettings.LoadAsync(Constants.Settings.ConnectionSettings) ?? new ConnectionDetails {PortNo = 8096};
 
                     _apiClient.ServerHostName = App.Settings.ConnectionDetails.HostName;
                     _apiClient.ServerApiPort = App.Settings.ConnectionDetails.PortNo;
@@ -149,7 +149,7 @@ namespace MediaBrowser.Windows8.ViewModel
                     await CheckForServer();
                 }
 
-                if (m.Notification.Equals(Constants.ClearEverythingMsg))
+                if (m.Notification.Equals(Constants.Messages.ClearEverythingMsg))
                 {
                     
                 }
@@ -187,14 +187,14 @@ namespace MediaBrowser.Windows8.ViewModel
 
             try
             {
-                var settings = await settingsLoader.LoadAsync(Constants.SpecificSettings);
+                var settings = await settingsLoader.LoadAsync(Constants.Settings.SpecificSettings);
                 if (settings != null)
                     await Utils.CopyItem(settings, SimpleIoc.Default.GetInstance<SpecificSettings>());
             }
             catch (Exception ex)
             {
                 _logger.Error("Failed to load settings", ex);
-                settingsLoader.DeleteAsync(Constants.SpecificSettings);
+                settingsLoader.DeleteAsync(Constants.Settings.SpecificSettings);
             }
 
             //await LoadPushSettings();
@@ -210,7 +210,7 @@ namespace MediaBrowser.Windows8.ViewModel
                 {
                     var storageHelper = new ObjectStorageHelper<UserSettingWrapper>(StorageType.Roaming);
                     //await storageHelper.DeleteAsync(Constants.SelectedUserSetting);
-                    var wrapper = await storageHelper.LoadAsync(Constants.SelectedUserSetting);
+                    var wrapper = await storageHelper.LoadAsync(Constants.Settings.SelectedUserSetting);
                     if (wrapper != null)
                     {
                         App.Settings.LoggedInUser = wrapper.User;

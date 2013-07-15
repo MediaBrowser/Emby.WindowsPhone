@@ -76,7 +76,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             Messenger.Default.Register<NotificationMessage>(this, m =>
             {
-                if (m.Notification.Equals(Constants.ClearEpisodesMsg))
+                if (m.Notification.Equals(Constants.Messages.ClearEpisodesMsg))
                 {
                     Episodes.Clear();
                 }

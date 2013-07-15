@@ -68,12 +68,12 @@ namespace MediaBrowser.Windows8.ViewModel
         {
             Messenger.Default.Register<NotificationMessage>(this, async m =>
                                                                       {
-                                                                          if (m.Notification.Equals(Constants.ChangeTrailerMsg))
+                                                                          if (m.Notification.Equals(Constants.Messages.ChangeTrailerMsg))
                                                                           {
                                                                               SelectedTrailer = (BaseItemDto) m.Sender;
                                                                               CastAndCrew = new ObservableCollection<Group<BaseItemPerson>>();
                                                                           }
-                                                                          if (m.Notification.Equals(Constants.TrailerPageLoadedMsg))
+                                                                          if (m.Notification.Equals(Constants.Messages.TrailerPageLoadedMsg))
                                                                           {
                                                                               if (SelectedTrailer != null)
                                                                               {
@@ -107,7 +107,7 @@ namespace MediaBrowser.Windows8.ViewModel
                                                                                   }
                                                                               }
                                                                           }
-                                                                          if (m.Notification.Equals(Constants.LeftTrailerMsg))
+                                                                          if (m.Notification.Equals(Constants.Messages.LeftTrailerMsg))
                                                                           {
                                                                               if (_displayRequest != null)
                                                                               {

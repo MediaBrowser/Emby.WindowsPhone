@@ -43,7 +43,7 @@ namespace MediaBrowser.Windows8.ViewModel
                                    {
                                        if (args.PropertyName.Equals("SelectedTvSeries"))
                                        {
-                                           if (!string.IsNullOrEmpty(SelectedTvSeries.SortName) && SelectedTvSeries.SortName.Equals(Constants.GetTvInformationMsg))
+                                           if (!string.IsNullOrEmpty(SelectedTvSeries.SortName) && SelectedTvSeries.SortName.Equals(Constants.Messages.GetTvInformationMsg))
                                            {
                                                //Utils.CopyItem(item, vm.SelectedTvSeries);
                                                SelectedTvSeries.Name = SelectedTvSeries.Name.Substring(0, SelectedTvSeries.Name.LastIndexOf("(", StringComparison.Ordinal) - 1);
@@ -145,7 +145,7 @@ namespace MediaBrowser.Windows8.ViewModel
         {
             Messenger.Default.Register<NotificationMessage>(this, async m =>
             {
-                if (m.Notification.Equals(Constants.TvShowPageLoadedMsg))
+                if (m.Notification.Equals(Constants.Messages.TvShowPageLoadedMsg))
                 {
                     if (_navigationService.IsNetworkAvailable && !ShowDataLoaded)
                     {
@@ -169,15 +169,15 @@ namespace MediaBrowser.Windows8.ViewModel
                         }
                     }
                 }
-                if (m.Notification.Equals(Constants.ClearTvSeriesMsg))
+                if (m.Notification.Equals(Constants.Messages.ClearTvSeriesMsg))
                 {
                     Reset();
                 }
-                if (m.Notification.Equals(Constants.TvSeasonSelectedMsg))
+                if (m.Notification.Equals(Constants.Messages.TvSeasonSelectedMsg))
                 {
                     SelectedSeason = (BaseItemDto)m.Sender;
                 }
-                if (m.Notification.Equals(Constants.TvSeasonPageLoadedMsg))
+                if (m.Notification.Equals(Constants.Messages.TvSeasonPageLoadedMsg))
                 {
                     if (_navigationService.IsNetworkAvailable && !SeasonDataLoaded)
                     {
@@ -193,7 +193,7 @@ namespace MediaBrowser.Windows8.ViewModel
                         }
                     }
                 }
-                if (m.Notification.Equals(Constants.TvEpisodePageLoadedMsg))
+                if (m.Notification.Equals(Constants.Messages.TvEpisodePageLoadedMsg))
                 {
                     if (SelectedSeason == null && _navigationService.IsNetworkAvailable)
                     {
@@ -213,13 +213,13 @@ namespace MediaBrowser.Windows8.ViewModel
                     SelectedEpisode = Episodes[Episode.IndexNumber.Value - 1];
 
                 }
-                if (m.Notification.Equals(Constants.ClearEpisodesMsg))
+                if (m.Notification.Equals(Constants.Messages.ClearEpisodesMsg))
                 {
                     Episodes = null;
                     SelectedSeason = null;
                     SeasonDataLoaded = false;
                 }
-                if (m.Notification.Equals(Constants.ClearEverythingMsg))
+                if (m.Notification.Equals(Constants.Messages.ClearEverythingMsg))
                 {
                     Reset();
                 }
@@ -330,7 +330,7 @@ namespace MediaBrowser.Windows8.ViewModel
                 _logger.Info("Getting seasons for TV Show [{0}] ({1})", SelectedTvSeries.Name, SelectedTvSeries.Id);
 
                 var seasons = await _apiClient.GetItemsAsync(query);
-                if (!string.IsNullOrEmpty(SelectedTvSeries.SortName) && SelectedTvSeries.SortName.Equals(Constants.GetTvInformationMsg))
+                if (!string.IsNullOrEmpty(SelectedTvSeries.SortName) && SelectedTvSeries.SortName.Equals(Constants.Messages.GetTvInformationMsg))
                 {
                     SelectedTvSeries = await _apiClient.GetItemAsync(SelectedTvSeries.Id, App.Settings.LoggedInUser.Id);
                 }

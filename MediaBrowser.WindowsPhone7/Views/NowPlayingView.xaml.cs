@@ -19,7 +19,7 @@ namespace MediaBrowser.WindowsPhone.Views
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
-            if(e.NavigationMode == NavigationMode.Back) Messenger.Default.Send(new NotificationMessage(Constants.PlaylistPageLeftMsg));
+            if(e.NavigationMode == NavigationMode.Back) Messenger.Default.Send(new NotificationMessage(Constants.Messages.PlaylistPageLeftMsg));
             base.OnNavigatedFrom(e);
         }
     }

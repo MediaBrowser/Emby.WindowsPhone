@@ -36,7 +36,7 @@ namespace MediaBrowser.Windows8.Views
 
         private void MainPageLoaded(object sender, RoutedEventArgs e)
         {
-            Messenger.Default.Send(new NotificationMessage(Constants.MainPageLoadedMsg));
+            Messenger.Default.Send(new NotificationMessage(Constants.Messages.MainPageLoadedMsg));
         }
 
         private void OnItemClick(object sender, ItemClickEventArgs e)

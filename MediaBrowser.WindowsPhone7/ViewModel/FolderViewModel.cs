@@ -80,22 +80,22 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             Messenger.Default.Register<NotificationMessage>(this, m =>
             {
-                if (m.Notification.Equals(Constants.ShowFolderMsg))
+                if (m.Notification.Equals(Constants.Messages.ShowFolderMsg))
                 {
                     SelectedFolder = m.Sender as BaseItemDto;
                     _dataLoaded = false;
                 }
-                else if (m.Notification.Equals(Constants.ChangeGroupingMsg))
+                else if (m.Notification.Equals(Constants.Messages.ChangeGroupingMsg))
                 {
                     GroupBy = (GroupBy) m.Sender;
                     SortList();
                 }
-                else if (m.Notification.Equals(Constants.ClearFoldersMsg))
+                else if (m.Notification.Equals(Constants.Messages.ClearFoldersMsg))
                 {
                     CurrentItems = null;
                     FolderGroupings = null;
                 }
-                else if (m.Notification.Equals(Constants.CollectionPinnedMsg))
+                else if (m.Notification.Equals(Constants.Messages.CollectionPinnedMsg))
                 {
                     var tileUrl = (string) m.Sender;
                     var tile = ShellTile.ActiveTiles.SingleOrDefault(x => x.NavigationUri.ToString() == tileUrl);

@@ -21,7 +21,7 @@ namespace MediaBrowser.Windows8.Views
         public SeasonView()
         {
             this.InitializeComponent();
-            Loaded += (sender, args) => Messenger.Default.Send(new NotificationMessage(Constants.TvSeasonPageLoadedMsg));
+            Loaded += (sender, args) => Messenger.Default.Send(new NotificationMessage(Constants.Messages.TvSeasonPageLoadedMsg));
         }
 
         /// <summary>

@@ -12,7 +12,7 @@ namespace MediaBrowser.Windows8.Views
         public AlbumView()
         {
             this.InitializeComponent();
-            Loaded += (sender, args) => Messenger.Default.Send(new NotificationMessage(Constants.AlbumViewLoadedMsg));
+            Loaded += (sender, args) => Messenger.Default.Send(new NotificationMessage(Constants.Messages.AlbumViewLoadedMsg));
         }
     }
 }

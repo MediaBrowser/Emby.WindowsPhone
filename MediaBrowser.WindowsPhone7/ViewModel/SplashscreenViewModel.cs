@@ -49,12 +49,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             Messenger.Default.Register<NotificationMessage>(this, async m =>
             {
-                if (m.Notification.Equals(Constants.SplashAnimationFinishedMsg))
+                if (m.Notification.Equals(Constants.Messages.SplashAnimationFinishedMsg))
                 {
                     SetProgressBar(AppResources.SysTrayLoadingSettings);
 
                     // Get settings from storage
-                    var connectionDetails = ISettings.GetKeyValue<ConnectionDetails>(Constants.ConnectionSettings);
+                    var connectionDetails = ISettings.GetKeyValue<ConnectionDetails>(Constants.Settings.ConnectionSettings);
                     if (connectionDetails == null)
                     {
                         App.Settings.ConnectionDetails = new ConnectionDetails
@@ -86,11 +86,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         App.Settings.ConnectionDetails = connectionDetails;
 
                         // Get and set the app specific settings 
-                        var specificSettings = ISettings.GetKeyValue<SpecificSettings>(Constants.SpecificSettings);
+                        var specificSettings = ISettings.GetKeyValue<SpecificSettings>(Constants.Settings.SpecificSettings);
                         if (specificSettings != null) Utils.CopyItem(specificSettings, App.SpecificSettings);
 
                         // See if there is a user already saved in isolated storage
-                        var user = ISettings.GetKeyValue<UserSettingWrapper>(Constants.SelectedUserSetting);
+                        var user = ISettings.GetKeyValue<UserSettingWrapper>(Constants.Settings.SelectedUserSetting);
                         if (user != null)
                         {
                             App.Settings.LoggedInUser = user.User;

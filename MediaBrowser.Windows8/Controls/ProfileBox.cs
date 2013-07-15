@@ -32,7 +32,7 @@ namespace MediaBrowser.Windows8.Controls
 
             Messenger.Default.Register<NotificationMessage>(this, async m=>
             {
-                if(m.Notification.Equals(Constants.ErrorLoggingInMsg))
+                if(m.Notification.Equals(Constants.Messages.ErrorLoggingInMsg))
                 {
                     var userId = (string)m.Sender;
                     if(userId == Profile.Id)
@@ -171,7 +171,7 @@ namespace MediaBrowser.Windows8.Controls
                                            passwordBox.Password,
                                            checkBox.IsChecked
                                        };
-            Messenger.Default.Send(new NotificationMessage(loginObjects, Constants.DoLoginMsg));
+            Messenger.Default.Send(new NotificationMessage(loginObjects, Constants.Messages.DoLoginMsg));
         }
     }
 }

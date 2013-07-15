@@ -28,7 +28,7 @@ namespace MediaBrowser.Windows8.Views
         {
             this.InitializeComponent();
             
-            Loaded += (sender, args) => Messenger.Default.Send(new NotificationMessage(_searchTerm, Constants.SearchPageLoadedMsg));
+            Loaded += (sender, args) => Messenger.Default.Send(new NotificationMessage(_searchTerm, Constants.Messages.SearchPageLoadedMsg));
             
             WireMessages();
         }
@@ -37,7 +37,7 @@ namespace MediaBrowser.Windows8.Views
         {
             Messenger.Default.Register<NotificationMessage>(this, m =>
             {
-                if (m.Notification.Equals(Constants.NoResultsMsg))
+                if (m.Notification.Equals(Constants.Messages.NoResultsMsg))
                 {
                     if (m.Sender.ToString().Equals(_searchTerm))
                     {
@@ -76,7 +76,7 @@ namespace MediaBrowser.Windows8.Views
                 // RadioButton representation used when not snapped to reflect the change
                 selectedFilter.Active = true;
 
-                Messenger.Default.Send(new NotificationMessage(selectedFilter, _searchTerm, Constants.ChangeFilteredResultsMsg));
+                Messenger.Default.Send(new NotificationMessage(selectedFilter, _searchTerm, Constants.Messages.ChangeFilteredResultsMsg));
             }
         }
 

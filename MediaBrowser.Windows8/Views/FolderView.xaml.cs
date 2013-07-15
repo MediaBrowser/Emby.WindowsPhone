@@ -18,7 +18,7 @@ namespace MediaBrowser.Windows8.Views
         public FolderView()
         {
             this.InitializeComponent();
-            Loaded += (sender, args) => Messenger.Default.Send(new NotificationMessage(Constants.FolderViewLoadedMsg));
+            Loaded += (sender, args) => Messenger.Default.Send(new NotificationMessage(Constants.Messages.FolderViewLoadedMsg));
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)

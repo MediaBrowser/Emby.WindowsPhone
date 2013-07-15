@@ -121,7 +121,7 @@ namespace MediaBrowser.WindowsPhone
 
         private void SaveSettings()
         {
-            ISettings.Set(Constants.SpecificSettings, SpecificSettings);
+            ISettings.Set(Constants.Settings.SpecificSettings, SpecificSettings);
         }
 
         // Code to execute when the application is closing (eg, user hit Back)

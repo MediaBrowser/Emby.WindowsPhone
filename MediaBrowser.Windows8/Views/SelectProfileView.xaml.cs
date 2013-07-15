@@ -18,7 +18,7 @@ namespace MediaBrowser.Windows8.Views
             this.InitializeComponent();
             Loaded +=
                 (s, e) =>
-                Messenger.Default.Send(new NotificationMessage(Constants.ProfileViewLoadedMsg));
+                Messenger.Default.Send(new NotificationMessage(Constants.Messages.ProfileViewLoadedMsg));
         }
 
         /// <summary>

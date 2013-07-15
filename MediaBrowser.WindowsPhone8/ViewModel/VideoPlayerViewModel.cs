@@ -35,7 +35,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             Messenger.Default.Register<NotificationMessage>(this, async m =>
             {
-                if (m.Notification.Equals(Constants.PlayVideoItemMsg))
+                if (m.Notification.Equals(Constants.Messages.PlayVideoItemMsg))
                 {
                     if (m.Sender != null)
                     {
@@ -47,7 +47,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     }
                 }
 
-                if (m.Notification.Equals(Constants.SendVideoTimeToServerMsg))
+                if (m.Notification.Equals(Constants.Messages.SendVideoTimeToServerMsg))
                 {
                     try
                     {

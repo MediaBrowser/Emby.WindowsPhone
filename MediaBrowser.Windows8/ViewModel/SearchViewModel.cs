@@ -83,12 +83,12 @@ namespace MediaBrowser.Windows8.ViewModel
         {
             Messenger.Default.Register<NotificationMessage>(this, async m =>
                                                                       {
-                                                                          if (m.Notification.Equals(Constants.SearchPageLoadedMsg))
+                                                                          if (m.Notification.Equals(Constants.Messages.SearchPageLoadedMsg))
                                                                           {
                                                                               await DoSearch(m.Sender.ToString());
                                                                           }
 
-                                                                          if (m.Notification.Equals(Constants.ChangeFilteredResultsMsg))
+                                                                          if (m.Notification.Equals(Constants.Messages.ChangeFilteredResultsMsg))
                                                                           {
                                                                               if (m.Target.ToString().Equals(SearchTerm))
                                                                               {
@@ -126,7 +126,7 @@ namespace MediaBrowser.Windows8.ViewModel
                         }
                         else
                         {
-                            Messenger.Default.Send(new NotificationMessage(Constants.NoResultsMsg));
+                            Messenger.Default.Send(new NotificationMessage(Constants.Messages.NoResultsMsg));
                         }
                     }
                     catch (HttpException ex)
@@ -173,7 +173,7 @@ namespace MediaBrowser.Windows8.ViewModel
             var items = SearchResults.Where(x => x.Type.Equals(filter.Name)).ToList();
             FilteredResults = items;
             if (!FilteredResults.Any())
-                Messenger.Default.Send(new NotificationMessage(SearchTerm, Constants.NoResultsMsg));
+                Messenger.Default.Send(new NotificationMessage(SearchTerm, Constants.Messages.NoResultsMsg));
         }
 
         public string ProgressText { get; set; }

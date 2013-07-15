@@ -31,7 +31,7 @@ namespace MediaBrowser.Windows8.Views
                                   await Utils.CopyItem(item, copy);
                                   vm.SelectedTvSeries = copy;
                                   DataContext = vm;
-                                  Messenger.Default.Send(new NotificationMessage(item.Id, Constants.TvShowPageLoadedMsg));
+                                  Messenger.Default.Send(new NotificationMessage(item.Id, Constants.Messages.TvShowPageLoadedMsg));
                               });
                           };
         }

@@ -208,14 +208,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             Messenger.Default.Register<NotificationMessage<List<PlaylistItem>>>(this, m =>
             {
-                if (m.Notification.Equals(Constants.AddToPlaylistMsg))
+                if (m.Notification.Equals(Constants.Messages.AddToPlaylistMsg))
                 {
                     _playlistHelper.AddToPlaylist(m.Content);
 
                     Log.Info("Adding {0} item(s) to the playlist", m.Content.Count);
                 }
 
-                if (m.Notification.Equals(Constants.SetPlaylistAsMsg))
+                if (m.Notification.Equals(Constants.Messages.SetPlaylistAsMsg))
                 {
                     _playlistHelper.ClearPlaylist();
 
@@ -229,7 +229,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     }
                 }
 
-                if (m.Notification.Equals(Constants.PlaylistPageLeftMsg))
+                if (m.Notification.Equals(Constants.Messages.PlaylistPageLeftMsg))
                 {
                     if (_playlistChecker.IsEnabled)
                     {

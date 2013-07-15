@@ -14,7 +14,7 @@ namespace MediaBrowser.WindowsPhone.Views
 
         private void ThePlayerMediaEnded(object sender, MediaPlayerActionEventArgs e)
         {
-            Messenger.Default.Send(new NotificationMessage(Constants.SendVideoTimeToServerMsg));
+            Messenger.Default.Send(new NotificationMessage(Constants.Messages.SendVideoTimeToServerMsg));
         }
 
         private void ThePlayerMediaFailed(object sender, ExceptionRoutedEventArgs e)
@@ -43,7 +43,7 @@ namespace MediaBrowser.WindowsPhone.Views
             var result = MessageBox.Show("Are you sure you want to exit the video player?", "Are you sure?", MessageBoxButton.OKCancel);
             if (result == MessageBoxResult.OK)
             {
-                Messenger.Default.Send(new NotificationMessage(Constants.SendVideoTimeToServerMsg));
+                Messenger.Default.Send(new NotificationMessage(Constants.Messages.SendVideoTimeToServerMsg));
             }
             else
             {

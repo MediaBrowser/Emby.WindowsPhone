@@ -83,7 +83,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             Messenger.Default.Register<NotificationMessage>(this, m =>
             {
-                if (m.Notification.Equals(Constants.MusicArtistChangedMsg))
+                if (m.Notification.Equals(Constants.Messages.MusicArtistChangedMsg))
                 {
                     Albums = new ObservableCollection<BaseItemDto>();
                     _artistTracks = new List<BaseItemDto>();
@@ -92,7 +92,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     _gotAlbums = false;
                 }
 
-                if (m.Notification.Equals(Constants.MusicAlbumChangedMsg))
+                if (m.Notification.Equals(Constants.Messages.MusicAlbumChangedMsg))
                 {
                     SelectedAlbum = (BaseItemDto) m.Sender;
                     if (_artistTracks != null)
@@ -156,7 +156,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                 var newList = ConvertTracks(albumTracks);
 
-                Messenger.Default.Send(new NotificationMessage<List<PlaylistItem>>(newList, Constants.SetPlaylistAsMsg));
+                Messenger.Default.Send(new NotificationMessage<List<PlaylistItem>>(newList, Constants.Messages.SetPlaylistAsMsg));
             });
 
             SelectionChangedCommand = new RelayCommand<SelectionChangedEventArgs>(args =>
@@ -189,7 +189,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                 var newList = ConvertTracks(SelectedTracks);
 
-                Messenger.Default.Send(new NotificationMessage<List<PlaylistItem>>(newList, Constants.AddToPlaylistMsg));
+                Messenger.Default.Send(new NotificationMessage<List<PlaylistItem>>(newList, Constants.Messages.AddToPlaylistMsg));
 
                 SelectedTracks = new List<BaseItemDto>();
 
@@ -202,7 +202,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 var newList = ConvertTracks(SelectedTracks);
 
-                Messenger.Default.Send(new NotificationMessage<List<PlaylistItem>>(newList, Constants.SetPlaylistAsMsg));
+                Messenger.Default.Send(new NotificationMessage<List<PlaylistItem>>(newList, Constants.Messages.SetPlaylistAsMsg));
             });
 
             PlaySongCommand = new RelayCommand<BaseItemDto>(song =>
@@ -217,7 +217,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     song.ToPlaylistItem(_apiClient)
                 };
 
-                Messenger.Default.Send(new NotificationMessage<List<PlaylistItem>>(playlist, Constants.SetPlaylistAsMsg));
+                Messenger.Default.Send(new NotificationMessage<List<PlaylistItem>>(playlist, Constants.Messages.SetPlaylistAsMsg));
             });
         }
 

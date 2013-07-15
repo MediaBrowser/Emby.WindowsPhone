@@ -15,7 +15,7 @@ namespace MediaBrowser.Windows8.SettingsViews
 
         private void PushNotificationsSettings_OnLoaded(object sender, RoutedEventArgs e)
         {
-            Messenger.Default.Send(new NotificationMessage(Constants.NotificationSettingsLoadedMsg));
+            Messenger.Default.Send(new NotificationMessage(Constants.Messages.NotificationSettingsLoadedMsg));
         }
     }
 }

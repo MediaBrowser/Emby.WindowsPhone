@@ -13,7 +13,7 @@ namespace MediaBrowser.Windows8.Views
         public LoadingView()
         {
             this.InitializeComponent();
-            Loaded += (s, e) => Messenger.Default.Send(new NotificationMessage(_isFromSearch, _searchTerm, Constants.LoadingPageLoadedMsg));
+            Loaded += (s, e) => Messenger.Default.Send(new NotificationMessage(_isFromSearch, _searchTerm, Constants.Messages.LoadingPageLoadedMsg));
         }
 
         /// <summary>

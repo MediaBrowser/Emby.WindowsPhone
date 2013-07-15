@@ -104,15 +104,15 @@ namespace MediaBrowser.Windows8.Model
                         Navigate<EpisodeView>(item);
                         break;
                     case "trailer":
-                        Messenger.Default.Send(new NotificationMessage(item, Constants.ChangeTrailerMsg));
+                        Messenger.Default.Send(new NotificationMessage(item, Constants.Messages.ChangeTrailerMsg));
                         Navigate<TrailerView>();
                         break;
                     case "musicartist":
-                        Messenger.Default.Send(new NotificationMessage(item, Constants.MusicArtistChangedMsg));
+                        Messenger.Default.Send(new NotificationMessage(item, Constants.Messages.MusicArtistChangedMsg));
                         Navigate<ArtistView>();
                         break;
                     case "musicalbum":
-                        Messenger.Default.Send(new NotificationMessage(item, Constants.MusicAlbumChangedMsg));
+                        Messenger.Default.Send(new NotificationMessage(item, Constants.Messages.MusicAlbumChangedMsg));
                         Navigate<AlbumView>();
                         break;
                     default:
@@ -127,7 +127,7 @@ namespace MediaBrowser.Windows8.Model
 
         public void PlayVideoItem(BaseItemDto item, bool isResume)
         {
-            Messenger.Default.Send(new NotificationMessage(item, isResume, Constants.PlayVideoItemMsg));
+            Messenger.Default.Send(new NotificationMessage(item, isResume, Constants.Messages.PlayVideoItemMsg));
             Navigate<VideoPlayer>();
         }
 

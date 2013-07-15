@@ -59,19 +59,19 @@ namespace MediaBrowser.Windows8.ViewModel
         {
             Messenger.Default.Register<NotificationMessage>(this, async m =>
             {
-                if (m.Notification.Equals(Constants.PlayVideoItemMsg))
+                if (m.Notification.Equals(Constants.Messages.PlayVideoItemMsg))
                 {
                     SelectedItem = (BaseItemDto)m.Sender;
                     if(m.Target != null)
                         _isResume = (bool) m.Target;
                     _isTrailer = false;
                 }
-                if (m.Notification.Equals(Constants.PlayTrailerMsg))
+                if (m.Notification.Equals(Constants.Messages.PlayTrailerMsg))
                 {
                     SelectedItem = (BaseItemDto) m.Sender;
                     _isTrailer = true;
                 }
-                if (m.Notification.Equals(Constants.VideoPlayerLoadedMsg))
+                if (m.Notification.Equals(Constants.Messages.VideoPlayerLoadedMsg))
                 {
                     if (_isTrailer)
                     {
@@ -143,7 +143,7 @@ namespace MediaBrowser.Windows8.ViewModel
                         }
                     }
                 }
-                if(m.Notification.Equals(Constants.SendVideoTimeToServerMsg))
+                if(m.Notification.Equals(Constants.Messages.SendVideoTimeToServerMsg))
                 {
                     try
                     {

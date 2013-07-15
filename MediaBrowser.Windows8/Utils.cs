@@ -40,7 +40,7 @@ namespace MediaBrowser.Windows8
                     if (ex.StatusCode.Value == HttpStatusCode.Unauthorized)
                     {
                         logger.Info("Login unsuccessful: Incorrect username or password");
-                        Messenger.Default.Send(new NotificationMessage(selectedUser.Id, Constants.ErrorLoggingInMsg));        
+                        Messenger.Default.Send(new NotificationMessage(selectedUser.Id, Constants.Messages.ErrorLoggingInMsg));        
                     }
                 }
             }

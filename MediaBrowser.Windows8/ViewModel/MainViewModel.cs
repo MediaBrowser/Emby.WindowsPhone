@@ -90,7 +90,7 @@ namespace MediaBrowser.Windows8.ViewModel
         {
             Messenger.Default.Register<NotificationMessage>(this, async m =>
             {
-                if (m.Notification.Equals(Constants.MainPageLoadedMsg))
+                if (m.Notification.Equals(Constants.Messages.MainPageLoadedMsg))
                 {
                     SelectedItem = null;
                     if (_navigationService.IsNetworkAvailable && !_dataLoaded)
@@ -121,7 +121,7 @@ namespace MediaBrowser.Windows8.ViewModel
                         ProgressVisibility = Visibility.Collapsed;
                     }
                 }
-                if(m.Notification.Equals(Constants.ClearEverythingMsg))
+                if(m.Notification.Equals(Constants.Messages.ClearEverythingMsg))
                 {
                     Reset();
                 }
@@ -185,7 +185,7 @@ namespace MediaBrowser.Windows8.ViewModel
 
             PlayTrailerCommand = new RelayCommand<BaseItemDto>(item =>
             {
-                Messenger.Default.Send(new NotificationMessage(item, Constants.PlayTrailerMsg));
+                Messenger.Default.Send(new NotificationMessage(item, Constants.Messages.PlayTrailerMsg));
                 _navigationService.Navigate<VideoPlayer>();
             });
 
@@ -376,7 +376,7 @@ namespace MediaBrowser.Windows8.ViewModel
                                                                                                      Id = series.Id,
                                                                                                      DateCreated = series.CreatedDate,
                                                                                                      Type = "Series",
-                                                                                                     SortName = Constants.GetTvInformationMsg,
+                                                                                                     SortName = Constants.Messages.GetTvInformationMsg,
                                                                                                      ImageTags = new Dictionary<ImageType, Guid>{{ImageType.Primary, Guid.NewGuid()}}
                                                                                                  }));
                                    }

@@ -104,7 +104,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     if (result == MessageBoxResult.OK)
                     {
                         existingTile.Delete();
-                        Messenger.Default.Send(new NotificationMessage(tileUrl, Constants.CollectionPinnedMsg));
+                        Messenger.Default.Send(new NotificationMessage(tileUrl, Constants.Messages.CollectionPinnedMsg));
                     }
                     return;
                 }
@@ -129,7 +129,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                                                             };
                                                                          ShellTile.Create(new Uri(tileUrl, UriKind.Relative), tileData);
 #endif
-                Messenger.Default.Send(new NotificationMessage(tileUrl, Constants.CollectionPinnedMsg));
+                Messenger.Default.Send(new NotificationMessage(tileUrl, Constants.Messages.CollectionPinnedMsg));
 
             });
 
@@ -137,7 +137,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 Log.Info("Playing {0} [{1}]", item.Type, item.Name);
 #if WP8
-                Messenger.Default.Send(new NotificationMessage(item, Constants.PlayVideoItemMsg));
+                Messenger.Default.Send(new NotificationMessage(item, Constants.Messages.PlayVideoItemMsg));
                 _navService.NavigateTo("/Views/VideoPlayerView.xaml");
 #else
                 var bounds = Application.Current.RootVisual.RenderSize;
@@ -198,12 +198,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             App.Settings.LoggedInUser = null;
             App.Settings.PinCode = string.Empty;
-            ISettings.DeleteValue(Constants.SelectedUserSetting);
-            ISettings.DeleteValue(Constants.SelectedUserPinSetting);
+            ISettings.DeleteValue(Constants.Settings.SelectedUserSetting);
+            ISettings.DeleteValue(Constants.Settings.SelectedUserPinSetting);
             _hasLoaded = false;
             Folders.Clear();
             RecentItems.Clear();
-            Messenger.Default.Send(new NotificationMessage(Constants.ResetAppMsg));
+            Messenger.Default.Send(new NotificationMessage(Constants.Messages.ResetAppMsg));
         }
 
         private async Task GetEverything(bool isRefresh)

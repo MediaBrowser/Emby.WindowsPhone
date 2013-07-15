@@ -16,7 +16,7 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
         public PlaylistHelper(IStorageService storageService)
         {
             _storageService = storageService;
-            _playlistFile = String.Format("{0}.json", Constants.CurrentPlaylist);
+            _playlistFile = String.Format("{0}.json", Constants.Messages.CurrentPlaylist);
         }
 
         public void ClearPlaylist()

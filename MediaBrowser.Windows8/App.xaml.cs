@@ -137,7 +137,7 @@ namespace MediaBrowser.Windows8
         {
             var deferral = e.SuspendingOperation.GetDeferral();
             var settingSaver = new ObjectStorageHelper<SpecificSettings>(StorageType.Roaming);
-            await settingSaver.SaveAsync(SimpleIoc.Default.GetInstance<SpecificSettings>(), Constants.SpecificSettings);
+            await settingSaver.SaveAsync(SimpleIoc.Default.GetInstance<SpecificSettings>(), Constants.Settings.SpecificSettings);
             deferral.Complete();
         }
 

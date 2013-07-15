@@ -81,7 +81,7 @@ namespace MediaBrowser.Windows8.ViewModel
         {
             Messenger.Default.Register<NotificationMessage>(this, async m =>
             {
-                if (m.Notification.Equals(Constants.MusicArtistChangedMsg))
+                if (m.Notification.Equals(Constants.Messages.MusicArtistChangedMsg))
                 {
                     Albums = new ObservableCollection<BaseItemDto>();
                     _artistTracks = new List<BaseItemDto>();
@@ -89,14 +89,14 @@ namespace MediaBrowser.Windows8.ViewModel
                     SelectedArtist = (BaseItemDto)m.Sender;
                     _gotAlbums = false;
                 }
-                if (m.Notification.Equals(Constants.MusicAlbumChangedMsg))
+                if (m.Notification.Equals(Constants.Messages.MusicAlbumChangedMsg))
                 {
                     SelectedAlbum = (BaseItemDto)m.Sender;
                     AlbumTracks = _artistTracks.Where(x => x.ParentId == SelectedAlbum.Id)
                         .OrderBy(x => x.ParentIndexNumber)
                         .ThenBy(x => x.IndexNumber).ToList();
                 }
-                if (m.Notification.Equals(Constants.ArtistViewLoadedMsg))
+                if (m.Notification.Equals(Constants.Messages.ArtistViewLoadedMsg))
                 {
                     if (_navigationService.IsNetworkAvailable && !_gotAlbums)
                     {
@@ -109,7 +109,7 @@ namespace MediaBrowser.Windows8.ViewModel
                         ProgressVisibility = Visibility.Collapsed;
                     }
                 }
-                if (m.Notification.Equals(Constants.AlbumViewLoadedMsg))
+                if (m.Notification.Equals(Constants.Messages.AlbumViewLoadedMsg))
                 {
 
                 }

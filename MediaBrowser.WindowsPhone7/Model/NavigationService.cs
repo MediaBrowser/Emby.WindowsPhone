@@ -57,15 +57,15 @@ namespace MediaBrowser.WindowsPhone.Model
                     NavigateTo("/Views/EpisodeView.xaml");
                     break;
                 case "trailer":
-                    Messenger.Default.Send(new NotificationMessage(Constants.ChangeTrailerMsg));
+                    Messenger.Default.Send(new NotificationMessage(Constants.Messages.ChangeTrailerMsg));
                     NavigateTo("/Views/TrailerView.xaml");
                     break;
                 case "musicartist":
-                    Messenger.Default.Send(new NotificationMessage(item, Constants.MusicArtistChangedMsg));
+                    Messenger.Default.Send(new NotificationMessage(item, Constants.Messages.MusicArtistChangedMsg));
                     NavigateTo("/Views/ArtistView.xaml");
                     break;
                 case "musicalbum":
-                    Messenger.Default.Send(new NotificationMessage(item, Constants.MusicAlbumChangedMsg));
+                    Messenger.Default.Send(new NotificationMessage(item, Constants.Messages.MusicAlbumChangedMsg));
                     NavigateTo("/Views/AlbumView.xaml");
                     break;
             }

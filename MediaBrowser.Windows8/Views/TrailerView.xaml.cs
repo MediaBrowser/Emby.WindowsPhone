@@ -21,7 +21,7 @@ namespace MediaBrowser.Windows8.Views
 
             this.InitializeComponent();
 
-            Loaded += (sender, args) => Messenger.Default.Send(new NotificationMessage(Constants.TrailerPageLoadedMsg));
+            Loaded += (sender, args) => Messenger.Default.Send(new NotificationMessage(Constants.Messages.TrailerPageLoadedMsg));
         }
 
         private void PlayerCanvas_OnSizeChanged(object sender, SizeChangedEventArgs e)
@@ -60,7 +60,7 @@ namespace MediaBrowser.Windows8.Views
         protected override void GoBack(object sender, RoutedEventArgs e)
         {
             base.GoBack(sender, e);
-            Messenger.Default.Send(new NotificationMessage(Constants.LeftTrailerMsg));
+            Messenger.Default.Send(new NotificationMessage(Constants.Messages.LeftTrailerMsg));
         }
     }
 }

@@ -20,7 +20,7 @@ namespace MediaBrowser.Windows8.Views
             _logger = LogManagerFactory.DefaultLogManager.GetLogger<VideoPlayer>();
 
             this.InitializeComponent();
-            Loaded += (sender, args) => Messenger.Default.Send(new NotificationMessage(Constants.VideoPlayerLoadedMsg));
+            Loaded += (sender, args) => Messenger.Default.Send(new NotificationMessage(Constants.Messages.VideoPlayerLoadedMsg));
 
             //(new HLSSource.HLSSourceAdapter()).RegisterHandlers("target_bitrate=1250000 user=1c22a826-ef45-40e1-aec7-af0219787cfd company=\"CN=Scott\" serial=6246-3c43-fc5c-e3f7-a66b-73a5-5778-5f52-7038-497a");
         }
@@ -38,7 +38,7 @@ namespace MediaBrowser.Windows8.Views
         protected override void GoBack(object sender, RoutedEventArgs e)
         {
             base.GoBack(sender, e);
-            Messenger.Default.Send(new NotificationMessage(Constants.SendVideoTimeToServerMsg));
+            Messenger.Default.Send(new NotificationMessage(Constants.Messages.SendVideoTimeToServerMsg));
         }
     }
 }

@@ -59,7 +59,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             Messenger.Default.Register<NotificationMessage>(this, m =>
             {
-                if (m.Notification.Equals(Constants.ResetAppMsg))
+                if (m.Notification.Equals(Constants.Messages.ResetAppMsg))
                 {
                     Profiles.Clear();
                 }
@@ -108,7 +108,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         SetUser(selectedUser);
                         if (saveUser)
                         {
-                            ISettings.SetKeyValue(Constants.SelectedUserSetting, new UserSettingWrapper
+                            ISettings.SetKeyValue(Constants.Settings.SelectedUserSetting, new UserSettingWrapper
                             {
                                 User = selectedUser,
                                 Pin = pinCode

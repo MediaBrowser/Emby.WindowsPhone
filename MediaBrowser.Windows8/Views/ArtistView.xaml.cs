@@ -15,7 +15,7 @@ namespace MediaBrowser.Windows8.Views
         public ArtistView()
         {
             this.InitializeComponent();
-            Loaded += (sender, args) => Messenger.Default.Send(new NotificationMessage(Constants.ArtistViewLoadedMsg));
+            Loaded += (sender, args) => Messenger.Default.Send(new NotificationMessage(Constants.Messages.ArtistViewLoadedMsg));
         }
 
         private void ListViewBase_OnItemClick(object sender, ItemClickEventArgs e)

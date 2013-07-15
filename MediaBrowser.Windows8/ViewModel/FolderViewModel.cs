@@ -102,12 +102,12 @@ namespace MediaBrowser.Windows8.ViewModel
         {
             Messenger.Default.Register<NotificationMessage>(this, async m =>
             {
-                if (m.Notification.Equals(Constants.ShowFolderMsg))
+                if (m.Notification.Equals(Constants.Messages.ShowFolderMsg))
                 {
                     SelectedCollection = (BaseItemDto)m.Sender;
                     _collectionLoaded = false;
                 }
-                else if (m.Notification.Equals(Constants.FolderViewLoadedMsg))
+                else if (m.Notification.Equals(Constants.Messages.FolderViewLoadedMsg))
                 {
                     if (SelectedCollection != null)
                         PageTitle = SelectedCollection.Name;
@@ -165,7 +165,7 @@ namespace MediaBrowser.Windows8.ViewModel
                         ProgressVisibility = Visibility.Collapsed;
                     }
                 }
-                else if (m.Notification.Equals(Constants.ClearEverythingMsg))
+                else if (m.Notification.Equals(Constants.Messages.ClearEverythingMsg))
                 {
                     Reset();
                 }

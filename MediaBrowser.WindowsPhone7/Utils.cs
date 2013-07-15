@@ -94,7 +94,7 @@ namespace MediaBrowser.WindowsPhone
             return '#'.ToString();
         }
 
-        internal static async Task Login(ScottIsAFool.WindowsPhone.Logging.ILog logger, UserDto selectedUser, string pinCode, Action successAction)
+        internal static async Task Login(ILog logger, UserDto selectedUser, string pinCode, Action successAction)
         {
             var client = SimpleIoc.Default.GetInstance<ExtendedApiClient>();
 
@@ -152,7 +152,7 @@ namespace MediaBrowser.WindowsPhone
                     Id = series.Id,
                     DateCreated = series.CreatedDate,
                     Type = "Series",
-                    SortName = Constants.GetTvInformationMsg,
+                    SortName = Constants.Messages.GetTvInformationMsg,
                     ImageTags = new Dictionary<ImageType, Guid> { { ImageType.Primary, Guid.NewGuid() } }
                 }));
             }
@@ -223,10 +223,14 @@ namespace MediaBrowser.WindowsPhone
             {
                 await Login(log, App.Settings.LoggedInUser, App.Settings.PinCode, () =>
                 {
-                    if (!String.IsNullOrEmpty(App.Action))
+                    if (!string.IsNullOrEmpty(App.Action))
+                    {
                         navigationService.NavigateTo(App.Action);
+                    }
                     else
+                    {
                         navigationService.NavigateTo("/Views/MainPage.xaml");
+                    }
                 });
             }
             else

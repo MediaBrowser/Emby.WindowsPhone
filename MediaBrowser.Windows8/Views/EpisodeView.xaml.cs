@@ -21,7 +21,7 @@ namespace MediaBrowser.Windows8.Views
         public EpisodeView()
         {
             this.InitializeComponent();
-            Loaded += (sender, args) => Messenger.Default.Send(new NotificationMessage(Constants.TvEpisodePageLoadedMsg));
+            Loaded += (sender, args) => Messenger.Default.Send(new NotificationMessage(Constants.Messages.TvEpisodePageLoadedMsg));
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)

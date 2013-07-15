@@ -63,7 +63,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             Messenger.Default.Register<NotificationMessage>(this, m =>
             {
-                if (m.Notification.Equals(Constants.ChangeTrailerMsg))
+                if (m.Notification.Equals(Constants.Messages.ChangeTrailerMsg))
                 {
                     SelectedTrailer = (BaseItemDto) App.SelectedItem;
                     _dataLoaded = false;
