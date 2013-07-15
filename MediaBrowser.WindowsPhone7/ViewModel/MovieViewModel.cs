@@ -81,7 +81,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                     if (SelectedMovie.ProviderIds != null)
                     {
-                        ImdbId = SelectedMovie.ProviderIds["Imdb"];
+                        if (SelectedMovie != null && SelectedMovie.ProviderIds != null && SelectedMovie.ProviderIds.ContainsKey("Imdb"))
+                        {
+                            ImdbId = SelectedMovie.ProviderIds["Imdb"];
+                        }
                     }
 
                     if (SelectedMovie.RunTimeTicks.HasValue)
