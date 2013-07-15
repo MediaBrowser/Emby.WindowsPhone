@@ -214,6 +214,7 @@
     <Compile Include="Model\MBLogger.cs" />
     <Compile Include="Model\SettingsService.cs" />
     <Compile Include="Model\GroupBy.cs" />
+    <Compile Include="ViewModel\NotificationsViewModel.cs" />
     <Compile Include="ViewModel\PlaylistViewModel.cs" />
     <Compile Include="ViewModel\SearchViewModel.cs" />
     <Compile Include="Views\FullPlaylistView.xaml.cs">

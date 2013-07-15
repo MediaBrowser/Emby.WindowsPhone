@@ -3,6 +3,7 @@ using System.Windows;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Net;
+using MediaBrowser.Model.Notifications;
 using MediaBrowser.Model.Querying;
 using MediaBrowser.WindowsPhone.Model;
 using GalaSoft.MvvmLight.Command;
@@ -122,12 +123,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 };
                 ShellTile.Create(new Uri(tileUrl, UriKind.Relative), tileDate, true);
 #else
-                                                                         var tileData = new StandardTileData
-                                                                                            {
-                                                                                                Title = collection.Name,
-                                                                                                BackBackgroundImage = new Uri("/Images/Logo.png", UriKind.Relative)
-                                                                                            };
-                                                                         ShellTile.Create(new Uri(tileUrl, UriKind.Relative), tileData);
+                var tileData = new StandardTileData
+                {
+                    Title = collection.Name,
+                    BackBackgroundImage = new Uri("/Images/Logo.png", UriKind.Relative)
+                };
+                ShellTile.Create(new Uri(tileUrl, UriKind.Relative), tileData);
 #endif
                 Messenger.Default.Send(new NotificationMessage(tileUrl, Constants.Messages.CollectionPinnedMsg));
 
@@ -214,7 +215,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
 
                 SetProgressBar(AppResources.SysTrayLoadingCollections);
-                
+
                 var folderLoaded = await GetFolders();
 
                 SetProgressBar(AppResources.SysTrayGettingRecentItems);
@@ -226,11 +227,25 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 var favouritesLoaded = await GetFavouriteItems();
 
                 _hasLoaded = (folderLoaded && recentLoaded && favouritesLoaded);
-                
-                SetProgressBar();
 
-                _hasLoaded = true;
+                //SetProgressBar("Checking notifications...");
+
+                //await GetNotificaitonsCount();
+
+                SetProgressBar();
             }
+        }
+
+        private async Task GetNotificaitonsCount()
+        {
+            var query = new NotificationQuery
+            {
+                Limit = 5,
+                StartIndex = 0,
+                UserId = new Guid(App.Settings.LoggedInUser.Id)
+            };
+            var summary = await _apiClient.GetNotificationsSummary(App.Settings.LoggedInUser.Id);
+            var notifications = await _apiClient.GetNotificationsAsync(query);
         }
 
         private async Task<bool> GetFavouriteItems()

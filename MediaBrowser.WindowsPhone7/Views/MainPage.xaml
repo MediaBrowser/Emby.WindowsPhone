@@ -192,6 +192,9 @@
                     </scott:PhoneListBox.ItemsPanel>
                 </scott:PhoneListBox>
             </controls:PanoramaItem>
+            <controls:PanoramaItem Header="notifications">
+                
+            </controls:PanoramaItem>
         </controls:Panorama>
     </Grid>
 
