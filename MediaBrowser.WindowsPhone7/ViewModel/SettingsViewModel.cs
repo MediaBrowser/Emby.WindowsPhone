@@ -17,7 +17,7 @@ using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Resources;
 using Microsoft.Phone.Net.NetworkInformation;
 using Microsoft.Phone.Notification;
-using ScottIsAFool.WindowsPhone.IsolatedStorage;
+
 using ScottIsAFool.WindowsPhone.ViewModel;
 using INavigationService = MediaBrowser.WindowsPhone.Model.INavigationService;
 

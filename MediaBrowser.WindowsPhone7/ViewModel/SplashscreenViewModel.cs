@@ -9,7 +9,7 @@ using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Resources;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
-using ScottIsAFool.WindowsPhone.IsolatedStorage;
+
 using MediaBrowser.Shared;
 using MediaBrowser.Model;
 using ScottIsAFool.WindowsPhone.ViewModel;

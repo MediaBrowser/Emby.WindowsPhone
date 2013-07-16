@@ -6,6 +6,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model.Net;
+using MediaBrowser.Model.Querying;
 using MediaBrowser.Windows8.Model;
 using MediaBrowser.Windows8.Views;
 using MetroLog;
@@ -117,7 +118,7 @@ namespace MediaBrowser.Windows8.ViewModel
             try
             {
                 _logger.Info("Getting profiles");
-                var profiles = await _apiClient.GetUsersAsync();
+                var profiles = await _apiClient.GetUsersAsync(new UserQuery());
 
                 Profiles.Clear();
 

@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 using MediaBrowser.WindowsPhone.Resources;
 using Microsoft.Phone.Shell;
 using Microsoft.Phone.Tasks;
-using ScottIsAFool.WindowsPhone.IsolatedStorage;
+
 using ScottIsAFool.WindowsPhone.ViewModel;
 using INavigationService = MediaBrowser.WindowsPhone.Model.INavigationService;
 
