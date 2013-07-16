@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using Cimbalino.Phone.Toolkit.Services;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Net;
@@ -16,6 +17,7 @@ using Microsoft.Phone.Shell;
 using Microsoft.Phone.Tasks;
 using ScottIsAFool.WindowsPhone.IsolatedStorage;
 using ScottIsAFool.WindowsPhone.ViewModel;
+using INavigationService = MediaBrowser.WindowsPhone.Model.INavigationService;
 
 namespace MediaBrowser.WindowsPhone.ViewModel
 {
@@ -32,16 +34,18 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     {
         private readonly INavigationService _navService;
         private readonly ExtendedApiClient _apiClient;
+        private readonly IApplicationSettingsService _applicationSettings;
         private bool _hasLoaded;
         private BaseItemDto[] _recentItems;
 
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
-        public MainViewModel(ExtendedApiClient apiClient, INavigationService navService)
+        public MainViewModel(ExtendedApiClient apiClient, INavigationService navService, IApplicationSettingsService applicationSettings)
         {
             _apiClient = apiClient;
             _navService = navService;
+            _applicationSettings = applicationSettings;
 
             Folders = new ObservableCollection<BaseItemDto>();
             RecentItems = new ObservableCollection<BaseItemDto>();
@@ -199,8 +203,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             App.Settings.LoggedInUser = null;
             App.Settings.PinCode = string.Empty;
-            ISettings.DeleteValue(Constants.Settings.SelectedUserSetting);
-            ISettings.DeleteValue(Constants.Settings.SelectedUserPinSetting);
+            
+            _applicationSettings.Reset(Constants.Settings.SelectedUserSetting);
+            _applicationSettings.Reset(Constants.Settings.SelectedUserPinSetting);
+            _applicationSettings.Save();
+
             _hasLoaded = false;
             Folders.Clear();
             RecentItems.Clear();

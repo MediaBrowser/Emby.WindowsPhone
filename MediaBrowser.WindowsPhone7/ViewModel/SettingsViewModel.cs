@@ -39,6 +39,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     {
         private readonly ExtendedApiClient _apiClient;
         private readonly INavigationService _navigationService;
+        private readonly IApplicationSettingsService _applicationSettings;
 
         private const string PushServiceName = "MediaBrowser.WindowsPhone.PushService";
 
@@ -47,10 +48,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         /// <summary>
         /// Initializes a new instance of the PushViewModel class.
         /// </summary>
-        public SettingsViewModel(ExtendedApiClient apiClient, INavigationService navigationService)
+        public SettingsViewModel(ExtendedApiClient apiClient, INavigationService navigationService, IApplicationSettingsService applicationSettings)
         {
             _apiClient = apiClient;
             _navigationService = navigationService;
+            _applicationSettings = applicationSettings;
 
             if (IsInDesignMode)
             {
@@ -148,8 +150,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 {
                     if (!IsInDesignMode)
                     {
-                        ISettings.DeleteValue(Constants.Settings.SelectedUserSetting);
-                        ISettings.SetKeyValue(Constants.Settings.ConnectionSettings, App.Settings.ConnectionDetails);
+                        _applicationSettings.Reset(Constants.Settings.SelectedUserSetting);
+                        SettingsSet(Constants.Settings.ConnectionSettings, App.Settings.ConnectionDetails);
                     }
 
                     SetProgressBar(AppResources.SysTrayAuthenticating);
@@ -276,10 +278,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         [UsedImplicitly]
         private void OnServerPluginInstalledChanged()
         {
-            if (!IsInDesignMode)
-            {
-                ISettings.Set("ServerPluginInstalled", ServerPluginInstalled);
-            }
+            SettingsSet("ServerPluginInstalled", ServerPluginInstalled);
         }
 
         [UsedImplicitly]
@@ -326,11 +325,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                     IsRegistered = false;
                 }
-                if (!IsInDesignMode)
-                {
-                    ISettings.Set("UseNotifications", UseNotifications);
-                }
 
+                SettingsSet("UseNotifications", UseNotifications);
+                
                 SetProgressBar();
             }
         }
@@ -345,10 +342,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         private void OnIsRegisteredChanged()
         {
             RegisteredText = IsRegistered ? AppResources.DeviceRegistered : AppResources.DeviceNotRegistered;
-            if (!IsInDesignMode)
-            {
-                ISettings.Set("IsRegistered", IsRegistered);
-            }
+
+            SettingsSet("IsRegistered", IsRegistered);
         }
 
         [UsedImplicitly]
@@ -366,10 +361,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 }
             }
 
-            if (!IsInDesignMode)
-            {
-                ISettings.Set("SendToastUpdates", SendToastUpdates);
-            }
+            SettingsSet("SendToastUpdates", SendToastUpdates);
         }
 
         [UsedImplicitly]
@@ -387,10 +379,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 }
             }
 
-            if (!IsInDesignMode)
-            {
-                ISettings.Set("SendTileUpdates", SendTileUpdates);
-            }
+            SettingsSet("SendTileUpdates", SendTileUpdates);
         }
 
         private async Task SubscribeToService()
@@ -476,6 +465,15 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 return id;
             }
             return "emulator";
+        }
+
+        private void SettingsSet(string key, object value)
+        {
+            if (!IsInDesignMode)
+            {
+                _applicationSettings.Set(key, value);
+                _applicationSettings.Save();
+            }
         }
     }
 }

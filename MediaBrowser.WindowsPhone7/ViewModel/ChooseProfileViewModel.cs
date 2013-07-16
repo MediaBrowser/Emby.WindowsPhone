@@ -1,15 +1,18 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using Cimbalino.Phone.Toolkit.Services;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model.Net;
+using MediaBrowser.Model.Querying;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.WindowsPhone.Resources;
 using ScottIsAFool.WindowsPhone.IsolatedStorage;
 using MediaBrowser.Shared;
 using ScottIsAFool.WindowsPhone.ViewModel;
+using INavigationService = MediaBrowser.WindowsPhone.Model.INavigationService;
 
 namespace MediaBrowser.WindowsPhone.ViewModel
 {
@@ -23,14 +26,17 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     {
         private readonly ExtendedApiClient _apiClient;
         private readonly INavigationService _navigationService;
+        private readonly IApplicationSettingsService _applicationSettings;
 
         /// <summary>
         /// Initializes a new instance of the ChooseProfileViewModel class.
         /// </summary>
-        public ChooseProfileViewModel(ExtendedApiClient apiClient, INavigationService navigationService)
+        public ChooseProfileViewModel(ExtendedApiClient apiClient, INavigationService navigationService, IApplicationSettingsService applicationSettings)
         {
             _apiClient = apiClient;
             _navigationService = navigationService;
+            _applicationSettings = applicationSettings;
+
             Profiles = new ObservableCollection<UserDto>();
             if (IsInDesignMode)
             {
@@ -78,7 +84,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                     try
                     {
-                        var profiles = await _apiClient.GetUsersAsync();
+                        var profiles = await _apiClient.GetUsersAsync(new UserQuery());
                         foreach (var profile in profiles)
                             Profiles.Add(profile);
                     }
@@ -108,11 +114,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         SetUser(selectedUser);
                         if (saveUser)
                         {
-                            ISettings.SetKeyValue(Constants.Settings.SelectedUserSetting, new UserSettingWrapper
+                            _applicationSettings.Set(Constants.Settings.SelectedUserSetting, new UserSettingWrapper
                             {
                                 User = selectedUser,
                                 Pin = pinCode
                             });
+                            _applicationSettings.Save();
                             Log.Info("User [{0}] has been saved", selectedUser.Name);
                         }
                     });
@@ -126,9 +133,13 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             App.Settings.LoggedInUser = profile;
             if (!string.IsNullOrEmpty(App.Action))
+            {
                 _navigationService.NavigateTo(App.Action);
+            }
             else
+            {
                 _navigationService.NavigateTo("/Views/MainPage.xaml");
+            }
         }
 
         public ObservableCollection<UserDto> Profiles { get; set; }

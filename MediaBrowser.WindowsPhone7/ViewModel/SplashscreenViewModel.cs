@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
+using Cimbalino.Phone.Toolkit.Services;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
@@ -12,6 +13,7 @@ using ScottIsAFool.WindowsPhone.IsolatedStorage;
 using MediaBrowser.Shared;
 using MediaBrowser.Model;
 using ScottIsAFool.WindowsPhone.ViewModel;
+using INavigationService = MediaBrowser.WindowsPhone.Model.INavigationService;
 
 namespace MediaBrowser.WindowsPhone.ViewModel
 {
@@ -25,14 +27,16 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     {
         private readonly ExtendedApiClient _apiClient;
         private readonly INavigationService _navigationService;
+        private readonly IApplicationSettingsService _applicationSettings;
 
         /// <summary>
         /// Initializes a new instance of the SplashscreenViewModel class.
         /// </summary>
-        public SplashscreenViewModel(ExtendedApiClient apiClient, INavigationService navigationService)
+        public SplashscreenViewModel(ExtendedApiClient apiClient, INavigationService navigationService, IApplicationSettingsService applicationSettings)
         {
             _apiClient = apiClient;
             _navigationService = navigationService;
+            _applicationSettings = applicationSettings;
 
             if (!IsInDesignMode)
             {
@@ -54,7 +58,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     SetProgressBar(AppResources.SysTrayLoadingSettings);
 
                     // Get settings from storage
-                    var connectionDetails = ISettings.GetKeyValue<ConnectionDetails>(Constants.Settings.ConnectionSettings);
+                    var connectionDetails = _applicationSettings.Get<ConnectionDetails>(Constants.Settings.ConnectionSettings);
                     if (connectionDetails == null)
                     {
                         App.Settings.ConnectionDetails = new ConnectionDetails
@@ -86,11 +90,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         App.Settings.ConnectionDetails = connectionDetails;
 
                         // Get and set the app specific settings 
-                        var specificSettings = ISettings.GetKeyValue<SpecificSettings>(Constants.Settings.SpecificSettings);
+                        var specificSettings = _applicationSettings.Get<SpecificSettings>(Constants.Settings.SpecificSettings);
                         if (specificSettings != null) Utils.CopyItem(specificSettings, App.SpecificSettings);
 
                         // See if there is a user already saved in isolated storage
-                        var user = ISettings.GetKeyValue<UserSettingWrapper>(Constants.Settings.SelectedUserSetting);
+                        var user = _applicationSettings.Get<UserSettingWrapper>(Constants.Settings.SelectedUserSetting);
                         if (user != null)
                         {
                             App.Settings.LoggedInUser = user.User;
@@ -129,16 +133,16 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             var settings = SimpleIoc.Default.GetInstance<SettingsViewModel>();
             settings.LoadingFromSettings = true;
 
-            settings.ServerPluginInstalled = ISettings.GetKeyValue<bool>("ServerPluginInstalled");
+            settings.ServerPluginInstalled = _applicationSettings.Get<bool>(Constants.Settings.ServerPluginInstalled);
 
             if (settings.ServerPluginInstalled)
             {
-                //settings.UseNotifications = ISettings.GetKeyValue<bool>("UseNotifications");
+                //settings.UseNotifications = _applicationSettings.Get<bool>(Constants.Settings.UseNotifications);
                 //if (settings.UseNotifications)
                 //{
                 //    App.SpecificSettings.DeviceSettings = await _apiClient.GetDeviceSettingsAsync(settings.DeviceId);
 
-                //    settings.IsRegistered = ISettings.GetKeyValue<bool>("IsRegistered");
+                //    settings.IsRegistered = _applicationSettings.Get<bool>(Constants.Settings.IsRegistered);
                 //    settings.SendTileUpdates = App.SpecificSettings.DeviceSettings.SendLiveTiles;
                 //    settings.SendToastUpdates = App.SpecificSettings.DeviceSettings.SendToasts;
 

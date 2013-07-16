@@ -3,7 +3,9 @@ using System.Windows;
 using System.Windows.Media;
 using System.Windows.Navigation;
 using Cimbalino.Phone.Toolkit.Helpers;
+using Cimbalino.Phone.Toolkit.Services;
 using Coding4Fun.Toolkit.Controls;
+using GalaSoft.MvvmLight.Ioc;
 using MediaBrowser.WindowsPhone.ViewModel;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
@@ -121,7 +123,9 @@ namespace MediaBrowser.WindowsPhone
 
         private void SaveSettings()
         {
-            ISettings.Set(Constants.Settings.SpecificSettings, SpecificSettings);
+            var ast = SimpleIoc.Default.GetInstance<IApplicationSettingsService>();
+            ast.Set(Constants.Settings.SpecificSettings, SpecificSettings);
+            ast.Save();
         }
 
         // Code to execute when the application is closing (eg, user hit Back)

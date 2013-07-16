@@ -14,6 +14,9 @@
             public const string SelectedUserPinSetting = "SelectedUserPin";
             public const string ConnectionSettings = "ConnectionSettings";
             public const string SpecificSettings = "SpecificSettings";
+            public const string ServerPluginInstalled = "ServerPluginInstalled";
+            public const string IsRegistered = "IsRegistered";
+            public const string UseNotifications = "UseNotifications";
         }
 
         public class Messages
