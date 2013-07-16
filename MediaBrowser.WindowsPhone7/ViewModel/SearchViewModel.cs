@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Command;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Net;
+using MediaBrowser.Model.Search;
 using MediaBrowser.WindowsPhone.Model;
 #if !WP8
 using ScottIsAFool.WindowsPhone;
@@ -72,9 +73,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 Log.Info("Searching for [{0}]", SearchText);
 
-                //var items = await _apiClient.
+                var items = await _apiClient.GetSearchHints(App.Settings.LoggedInUser.Id, SearchText, null, null);
 
-                GroupSearchResults(new List<BaseItemDto>());
+                if (items != null)
+                {
+                    GroupSearchResults(items.SearchHints.ToList());
+                }
             }
             catch (HttpException ex)
             {
@@ -84,21 +88,21 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
         }
 
-        private void GroupSearchResults(List<BaseItemDto> items)
+        private void GroupSearchResults(List<SearchHint> items)
         {
             if (items == null || !items.Any()) return;
 
-            var emptyGroups = new List<Group<BaseItemDto>>();
+            var emptyGroups = new List<Group<SearchHint>>();
 
             var types = items.Select(x => x.Type).Distinct().ToList();
 
-            types.ForEach(type => emptyGroups.Add(new Group<BaseItemDto>(type, new List<BaseItemDto>())));
+            types.ForEach(type => emptyGroups.Add(new Group<SearchHint>(type, new List<SearchHint>())));
 
             var groupedItems = (from t in items
                 group t by t.Type
                 into grp
                 orderby grp.Key
-                select new Group<BaseItemDto>(grp.Key, grp)).ToList();
+                select new Group<SearchHint>(grp.Key, grp)).ToList();
 #if WP8
             SearchResults = (from g in groupedItems.Union(emptyGroups)
                 orderby g.Title
@@ -112,7 +116,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
         public string SearchText { get; set; }
 
-        public List<Group<BaseItemDto>> SearchResults { get; set; }
+        public List<Group<SearchHint>> SearchResults { get; set; }
 
         public RelayCommand DoSearchCommand
         {
