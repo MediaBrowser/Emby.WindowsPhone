@@ -127,6 +127,9 @@
     <Compile Include="..\MediaBrowser.WindowsPhone7\Converters\LoggedInDateConverter.cs">
       <Link>Converters\LoggedInDateConverter.cs</Link>
     </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone7\Converters\NotificationLevelToBrushConverter.cs">
+      <Link>Converters\NotificationLevelToBrushConverter.cs</Link>
+    </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone7\Converters\NowPlayingConverter.cs">
       <Link>Converters\NowPlayingConverter.cs</Link>
     </Compile>
