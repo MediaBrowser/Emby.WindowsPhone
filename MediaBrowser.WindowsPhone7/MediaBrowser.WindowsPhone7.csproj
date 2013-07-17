@@ -228,6 +228,9 @@
     <Compile Include="Views\FullPlaylistView.xaml.cs">
       <DependentUpon>FullPlaylistView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\NotificationsView.xaml.cs">
+      <DependentUpon>NotificationsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\NowPlayingView.xaml.cs">
       <DependentUpon>NowPlayingView.xaml</DependentUpon>
     </Compile>
@@ -382,6 +385,10 @@
     </Page>
     <Page Include="Views\MusicCollectionView.xaml">
       <SubType>Form</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NotificationsView.xaml">
+      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\NowPlayingView.xaml">

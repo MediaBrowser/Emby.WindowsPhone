@@ -81,6 +81,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             SimpleIoc.Default.Register<MusicViewModel>(true);
             SimpleIoc.Default.Register<SearchViewModel>();
             SimpleIoc.Default.Register<PlaylistViewModel>(true);
+            SimpleIoc.Default.Register<NotificationsViewModel>();
         }
 
         /// <summary>
@@ -171,6 +172,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public PlaylistViewModel Playlist
         {
             get { return ServiceLocator.Current.GetInstance<PlaylistViewModel>(); }
+        }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
+            "CA1822:MarkMembersAsStatic",
+            Justification = "This non-static member is needed for data binding purposes.")]
+        public NotificationsViewModel Notifications
+        {
+            get { return ServiceLocator.Current.GetInstance<NotificationsViewModel>(); }
         }
 
         public static TvViewModel GetTvViewModel(string itemId)

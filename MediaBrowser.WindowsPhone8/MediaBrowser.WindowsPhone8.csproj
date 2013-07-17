@@ -206,6 +206,9 @@
     <Compile Include="..\MediaBrowser.WindowsPhone7\ViewModel\MusicViewModel.cs">
       <Link>ViewModel\MusicViewModel.cs</Link>
     </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone7\ViewModel\NotificationsViewModel.cs">
+      <Link>ViewModel\NotificationsViewModel.cs</Link>
+    </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone7\ViewModel\PlaylistViewModel.cs">
       <Link>ViewModel\PlaylistViewModel.cs</Link>
     </Compile>
@@ -262,6 +265,10 @@
     <Compile Include="..\MediaBrowser.WindowsPhone7\Views\MovieView.xaml.cs">
       <Link>Views\MovieView.xaml.cs</Link>
       <DependentUpon>MovieView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone7\Views\NotificationsView.xaml.cs">
+      <Link>Views\NotificationsView.xaml.cs</Link>
+      <DependentUpon>NotificationsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone7\Views\NowPlayingView.xaml.cs">
       <Link>Views\NowPlayingView.xaml.cs</Link>
@@ -404,6 +411,10 @@
     <Page Include="Views\MovieView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\NotificationsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\NowPlayingView.xaml">
       <SubType>Designer</SubType>
