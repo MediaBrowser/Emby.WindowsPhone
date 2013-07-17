@@ -249,7 +249,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 Limit = 5,
                 StartIndex = 0,
-                UserId = new Guid(App.Settings.LoggedInUser.Id)
+                UserId = App.Settings.LoggedInUser.Id
             };
             var summary = await _apiClient.GetNotificationsSummary(App.Settings.LoggedInUser.Id);
             var notifications = await _apiClient.GetNotificationsAsync(query);

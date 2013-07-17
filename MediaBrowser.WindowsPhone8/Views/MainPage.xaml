@@ -62,6 +62,10 @@
         <i:Interaction.Behaviors>
             <cimbalino:ApplicationBarBehavior Mode="Minimized"
                                               IsMenuEnabled="True">
+                <cimbalino:ApplicationBarIconButton Text="search"
+                                                    IconUri="/Icons/appbar.feature.search.rest.png"
+                                                    Command="{Binding NavigateToAPage}"
+                                                    CommandParameter="/Views/SearchView.xaml"/>
                 <cimbalino:ApplicationBarBehavior.MenuItems>
                     <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.MainAppBarRefreshInformation, Source={StaticResource LocalizedStrings}}"
                                                       Command="{Binding RefreshDataCommand}" />

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows;
 using GalaSoft.MvvmLight.Command;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Net;
@@ -58,13 +59,16 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             try
             {
                 Log.Info("Searching for [{0}]", SearchText);
+                SetProgressBar("Searching...");
 
                 var items = await _apiClient.GetSearchHints(App.Settings.LoggedInUser.Id, SearchText, null, null);
 
                 if (items != null)
                 {
-                    GroupSearchResults(items.SearchHints.ToList());
+                    await GroupSearchResults(items.SearchHints.ToList());
                 }
+
+                SetProgressBar();
             }
             catch (HttpException ex)
             {
@@ -74,30 +78,37 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
         }
 
-        private void GroupSearchResults(List<SearchHint> items)
+        private async Task GroupSearchResults(List<SearchHint> items)
         {
             if (items == null || !items.Any()) return;
 
-            var emptyGroups = new List<Group<SearchHint>>();
+            await TaskEx.Run(() =>
+            {
+                var emptyGroups = new List<Group<SearchHint>>();
 
-            var types = items.Select(x => x.Type).Distinct().ToList();
+                var types = items.Select(x => x.Type).Distinct().ToList();
 
-            types.ForEach(type => emptyGroups.Add(new Group<SearchHint>(type, new List<SearchHint>())));
+                types.ForEach(type => emptyGroups.Add(new Group<SearchHint>(type, new List<SearchHint>())));
 
-            var groupedItems = (from t in items
-                group t by t.Type
-                into grp
-                orderby grp.Key
-                select new Group<SearchHint>(grp.Key, grp)).ToList();
+                var groupedItems = (from t in items
+                    group t by t.Type
+                    into grp
+                    orderby grp.Key
+                    select new Group<SearchHint>(grp.Key, grp)).ToList();
+
+                Deployment.Current.Dispatcher.BeginInvoke(() =>
+                {
+                    SearchResults = (from g in groupedItems.Union(emptyGroups)
 #if WP8
-            SearchResults = (from g in groupedItems.Union(emptyGroups)
-                orderby g.Title
-                select g).ToList();
+                        where g.Count > 0
 #else
-            SearchResults = (from g in groupedItems.Union(emptyGroups)
-                             orderby g.Title
-                             select g).ToList();
+                                     where g.HasItems
+
 #endif
+                        orderby g.Title
+                        select g).ToList();
+                });
+            });
         }
 
         public string SearchText { get; set; }
@@ -110,7 +121,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 return new RelayCommand(async () =>
                 {
-                    if (string.IsNullOrEmpty(SearchText))
+                    if (string.IsNullOrEmpty(SearchText) || !_navigationService.IsNetworkAvailable)
                     {
                         return;
                     }
