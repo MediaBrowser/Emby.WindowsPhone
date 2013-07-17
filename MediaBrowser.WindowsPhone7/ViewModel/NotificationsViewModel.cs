@@ -39,6 +39,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 return new RelayCommand(async () =>
                 {
+                    if (Notifications != null)
+                    {
+                        Notifications.Clear();
+                    }
+
                     await GetNotifications();
                 });
             }
@@ -56,7 +61,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             var query = new NotificationQuery
             {
                 StartIndex = 0,
-                UserId = new Guid(App.Settings.LoggedInUser.Id)
+                UserId = App.Settings.LoggedInUser.Id
             };
 
             var notifications = await _apiClient.GetNotificationsAsync(query);

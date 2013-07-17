@@ -4,15 +4,11 @@ using System.Windows.Data;
 
 namespace MediaBrowser.WindowsPhone.Converters
 {
-    public class LoggedInDateConverter : IValueConverter
+    public class SimpleDaysAgoConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if(value != null)
-            {
-                return "Profile last used " + Utils.DaysAgo(value);
-            }
-            return string.Empty;
+            return Utils.DaysAgo(value);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

@@ -112,6 +112,9 @@
     <Compile Include="..\MediaBrowser.WindowsPhone7\Controls\ScrollableTextBlock.cs">
       <Link>Controls\ScrollableTextBlock.cs</Link>
     </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone7\Converters\AccentBrushConverter.cs">
+      <Link>Converters\AccentBrushConverter.cs</Link>
+    </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone7\Converters\EpisodeNumberVisibilityConverter.cs">
       <Link>Converters\EpisodeNumberVisibilityConverter.cs</Link>
     </Compile>
@@ -144,6 +147,9 @@
     </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone7\Converters\SettingsConverters.cs">
       <Link>Converters\SettingsConverters.cs</Link>
+    </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone7\Converters\SimpleDaysAgoConverter.cs">
+      <Link>Converters\SimpleDaysAgoConverter.cs</Link>
     </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone7\Converters\TicksToTimespanConverter.cs">
       <Link>Converters\TicksToTimespanConverter.cs</Link>
@@ -538,9 +544,9 @@
     <Reference Include="JetBrains.Annotations">
       <HintPath>..\packages\JetBrains.Annotations.7.0\lib\sl4-wp71\JetBrains.Annotations.dll</HintPath>
     </Reference>
-    <Reference Include="MediaBrowser.ApiInteraction.Portable, Version=3.0.4945.13554, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="MediaBrowser.ApiInteraction.Portable, Version=3.0.4946.31520, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MediaBrowser.ApiClient.3.0.0.149\lib\portable-net45+sl4+wp71+win8\MediaBrowser.ApiInteraction.Portable.dll</HintPath>
+      <HintPath>..\packages\MediaBrowser.ApiClient.3.0.0.150\lib\portable-net45+sl4+wp71+win8\MediaBrowser.ApiInteraction.Portable.dll</HintPath>
     </Reference>
     <Reference Include="MediaBrowser.Model, Version=3.0.4945.13294, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
