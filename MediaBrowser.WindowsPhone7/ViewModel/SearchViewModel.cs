@@ -32,34 +32,20 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             _apiClient = apiClient;
             _navigationService = navigationService;
 
-            SearchResults = new List<Group<BaseItemDto>>();
+            SearchResults = new List<Group<SearchHint>>();
 
             if (IsInDesignMode)
             {
-                var data = new List<BaseItemDto>
+                var data = new List<SearchHint>
                 {
-                    new BaseItemDto
+                    new SearchHint
                     {
-                        Id = "6536a66e10417d69105bae71d41a6e6f",
                         Name = "Jurassic Park",
-                        SortName = "Jurassic Park",
-                        Overview = "Lots of dinosaurs eating people!",
-                        People = new[]
-                        {
-                            new BaseItemPerson {Name = "Steven Spielberg", Type = "Director"},
-                            new BaseItemPerson {Name = "Sam Neill", Type = "Actor"},
-                            new BaseItemPerson {Name = "Richard Attenborough", Type = "Actor"},
-                            new BaseItemPerson {Name = "Laura Dern", Type = "Actor"}
-                        },
                         Type = "Movie"
                     },
-                    new BaseItemDto
+                    new SearchHint
                     {
-                        Id = "e252ea3059d140a0274282bc8cd194cc",
                         Name = "1x01 - Pilot",
-                        SortName = "1x01 - Pilot",
-                        Overview =
-                            "A Kindergarten teacher starts speaking gibberish and passed out in front of her class. What looks like a possible brain tumor does not respond to treatment and provides many more questions than answers for House and his team as they engage in a risky trial-and-error approach to her case. When the young teacher refuses any additional variations of treatment and her life starts slipping away, House must act against his code of conduct and make a personal visit to his patient to convince her to trust him one last time.",
                         Type = "Episode"
                     }
                 };
