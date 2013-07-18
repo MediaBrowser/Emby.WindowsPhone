@@ -130,5 +130,13 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 });
             }
         }
+
+        public RelayCommand<SearchHint> SearchItemTappedCommand
+        {
+            get
+            {
+                return new RelayCommand<SearchHint>(item => _navigationService.NavigateTo(item.ToBaseItemDto()));
+            }
+        }
     }
 }

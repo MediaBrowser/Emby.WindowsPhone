@@ -21,6 +21,7 @@
                 SupportedOrientations="Portrait"
                 Orientation="Portrait"
                 shell:SystemTray.IsVisible="True"
+                toolkit:TiltEffect.IsTiltEnabled="True"
                 DataContext="{Binding Search, Source={StaticResource Locator}}">
     <shell:SystemTray.ProgressIndicator>
         <shell:ProgressIndicator Text="{Binding ProgressText}"
@@ -118,7 +119,9 @@
                     <DataTemplate>
                         <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
                                          HorizontalContentAlignment="Left"
-                                         VerticalContentAlignment="Top">
+                                         VerticalContentAlignment="Top"
+                                         Command="{Binding Search.SearchItemTappedCommand, Source={StaticResource Locator}}"
+                                         CommandParameter="{Binding}">
                             <StackPanel Orientation="Horizontal"
                                         Margin="12,6,0,6">
                                 <Image Source="{Binding Converter={StaticResource ImageUrlConverter}}"

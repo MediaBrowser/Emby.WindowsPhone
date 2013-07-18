@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Media;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Logging;
+using MediaBrowser.Model.Search;
 using MediaBrowser.Shared;
 using MediaBrowser.WindowsPhone.Model;
 using ScottIsAFool.WindowsPhone.Logging;
@@ -95,6 +96,12 @@ namespace MediaBrowser.WindowsPhone
         {
             public double Value { get; set; }
             public TranslateTransform Transform { get; set; }
+        }
+
+        public static BaseItemDto ToBaseItemDto(this SearchHint searchHint)
+        {
+            
+            return new BaseItemDto();
         }
     }
 }
