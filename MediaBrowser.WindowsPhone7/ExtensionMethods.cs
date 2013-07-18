@@ -100,8 +100,14 @@ namespace MediaBrowser.WindowsPhone
 
         public static BaseItemDto ToBaseItemDto(this SearchHint searchHint)
         {
-            
-            return new BaseItemDto();
+            var item = new BaseItemDto
+            {
+                Type = searchHint.Type,
+                Name = searchHint.Name,
+                Id = searchHint.ItemId
+            };
+
+            return item;
         }
     }
 }
