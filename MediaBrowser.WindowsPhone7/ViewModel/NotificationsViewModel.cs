@@ -21,6 +21,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         private readonly ExtendedApiClient _apiClient;
         private readonly INavigationService _navigationService;
 
+        private bool _dataLoaded;
+
         /// <summary>
         /// Initializes a new instance of the NotificationsViewModel class.
         /// </summary>
@@ -31,7 +33,19 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             Notifications = new ObservableCollection<Notification>();
         }
 
+        public override void WireMessages()
+        {
+            Messenger.Default.Register<NotificationMessage>(this, m =>
+            {
+                if (m.Notification.Equals(Constants.Messages.NotifcationNavigationMsg))
+                {
+                    _dataLoaded = false;
+                }
+            });
+        }
+
         public ObservableCollection<Notification> Notifications { get; set; }
+        public Notification SelectedNotification { get; set; }
 
         public RelayCommand NotificationPageLoaded
         {
@@ -39,7 +53,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 return new RelayCommand(async () =>
                 {
-                    if (Notifications != null)
+                    if (Notifications != null && !_dataLoaded)
                     {
                         Notifications.Clear();
                     }
@@ -49,9 +63,27 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
         }
 
+        public RelayCommand<Notification> NotificationTappedCommand
+        {
+            get
+            {
+                return new RelayCommand<Notification>(notification =>
+                {
+                    if (notification == null)
+                    {
+                        return;
+                    }
+
+                    SelectedNotification = notification;
+
+                    _navigationService.NavigateTo("/Views/NotificationView.xaml");
+                });
+            }
+        }
+
         private async Task GetNotifications()
         {
-            if (!_navigationService.IsNetworkAvailable)
+            if (!_navigationService.IsNetworkAvailable || _dataLoaded)
             {
                 return;
             }
@@ -72,6 +104,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             var summary = await _apiClient.GetNotificationsSummary(App.Settings.LoggedInUser.Id);
 
             Messenger.Default.Send(new NotificationMessage(summary, Constants.Messages.NotificationCountMsg));
+
+            _dataLoaded = true;
 
             SetProgressBar();
         }

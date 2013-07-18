@@ -18,23 +18,25 @@
                 Orientation="Portrait"
                 mc:Ignorable="d"
                 shell:SystemTray.IsVisible="True"
+                toolkit:TiltEffect.IsTiltEnabled="True"
                 DataContext="{Binding Notifications, Source={StaticResource Locator}}">
     <shell:SystemTray.ProgressIndicator>
         <shell:ProgressIndicator Text="{Binding ProgressText}"
                                  IsVisible="{Binding ProgressIsVisible}"
-                                 IsIndeterminate="True"/>
+                                 IsIndeterminate="True" />
     </shell:SystemTray.ProgressIndicator>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
-            <command:EventToCommand Command="{Binding NotificationPageLoaded}"/>
+            <command:EventToCommand Command="{Binding NotificationPageLoaded}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
-    
+
     <scott:BasePage.Resources>
         <converters:AccentBrushConverter x:Key="AccentBrushConverter"
                                          TrueValue="{StaticResource PhoneForegroundBrush}"
-                                         FalseValue="{StaticResource PhoneAccentBrush}"/>
-        <converters:SimpleDaysAgoConverter x:Key="SimpleDaysAgoConverter"/>
+                                         FalseValue="{StaticResource PhoneAccentBrush}" />
+        <converters:SimpleDaysAgoConverter x:Key="SimpleDaysAgoConverter" />
+        <converters:NotificationLevelToBrushConverter x:Key="NotificationLevelToBrushConverter" />
     </scott:BasePage.Resources>
 
     <toolkit:TransitionService.NavigationInTransition>
@@ -78,19 +80,31 @@
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel"
               Grid.Row="1"
-              Margin="12,0,12,0">
+              Margin="0,0,12,0">
             <phone:LongListSelector ItemsSource="{Binding Notifications}">
                 <phone:LongListSelector.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Orientation="Vertical"
-                                    Margin="0,0,0,12">
-                            <TextBlock Text="{Binding Description}"
-                                       Style="{StaticResource PhoneTextNormalStyle}"
-                                       Foreground="{Binding IsRead, Converter={StaticResource AccentBrushConverter}}"
-                                       TextWrapping="Wrap"/>
-                            <TextBlock Text="{Binding Date, Converter={StaticResource SimpleDaysAgoConverter}}"
-                                       Style="{StaticResource PhoneTextSubtleStyle}"/>
-                        </StackPanel>
+                        <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                         HorizontalContentAlignment="Left"
+                                         Command="{Binding Notifications.NotificationTappedCommand, Source={StaticResource Locator}}"
+                                         CommandParameter="{Binding}">
+                            <StackPanel Orientation="Horizontal">
+                                <Rectangle Width="12"
+                                           Height="{Binding ActualHeight, ElementName=ContentStack}"
+                                           VerticalAlignment="Top"
+                                           Fill="{Binding Level, Converter={StaticResource NotificationLevelToBrushConverter}}" />
+                                <StackPanel Orientation="Vertical"
+                                            x:Name="ContentStack"
+                                            Margin="0,0,0,12">
+                                    <TextBlock Text="{Binding Description}"
+                                               Style="{StaticResource PhoneTextNormalStyle}"
+                                               Foreground="{Binding IsRead, Converter={StaticResource AccentBrushConverter}}"
+                                               TextWrapping="Wrap" />
+                                    <TextBlock Text="{Binding Date, Converter={StaticResource SimpleDaysAgoConverter}}"
+                                               Style="{StaticResource PhoneTextSubtleStyle}" />
+                                </StackPanel>
+                            </StackPanel>
+                        </HyperlinkButton>
                     </DataTemplate>
                 </phone:LongListSelector.ItemTemplate>
             </phone:LongListSelector>

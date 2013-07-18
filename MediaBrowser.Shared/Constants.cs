@@ -77,6 +77,7 @@
             public const string SetPlaylistAsMsg = "SetPlaylistAsMsg";
             public const string PlaylistPageLeftMsg = "PlaylistPageLeftMsg";
             public const string NotificationCountMsg = "NotificationCountMsg";
+            public const string NotifcationNavigationMsg = "NotifcationNavigationMsg";
         }
     }
 }

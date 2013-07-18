@@ -279,6 +279,10 @@
       <Link>Views\NotificationsView.xaml.cs</Link>
       <DependentUpon>NotificationsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone7\Views\NotificationView.xaml.cs">
+      <Link>Views\NotificationView.xaml.cs</Link>
+      <DependentUpon>NotificationView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone7\Views\NowPlayingView.xaml.cs">
       <Link>Views\NowPlayingView.xaml.cs</Link>
       <DependentUpon>NowPlayingView.xaml</DependentUpon>
@@ -424,6 +428,10 @@
     <Page Include="Views\NotificationsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NotificationView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\NowPlayingView.xaml">
       <SubType>Designer</SubType>

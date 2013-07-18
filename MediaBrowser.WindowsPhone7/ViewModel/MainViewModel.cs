@@ -190,6 +190,13 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             NavigateToPage = new RelayCommand<BaseItemDto>(_navService.NavigateTo);
 
             NavigateToAPage = new RelayCommand<string>(_navService.NavigateTo);
+
+            NavigateToNotificationsCommand = new RelayCommand(() =>
+            {
+                Messenger.Default.Send(new NotificationMessage(Constants.Messages.NotifcationNavigationMsg));
+
+                _navService.NavigateTo("/Views/NotificationsView.xaml");
+            });
         }
 
         private static ShellTile GetShellTile(BaseItemDto collection, out string url)
@@ -359,6 +366,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public RelayCommand RefreshDataCommand { get; set; }
         public RelayCommand<BaseItemDto> NavigateToPage { get; set; }
         public RelayCommand<string> NavigateToAPage { get; set; }
+        public RelayCommand NavigateToNotificationsCommand { get; set; }
         public RelayCommand<BaseItemDto> PinCollectionCommand { get; set; }
         public RelayCommand<BaseItemDto> PlayMovieCommand { get; set; }
         public ObservableCollection<BaseItemDto> Folders { get; set; }
