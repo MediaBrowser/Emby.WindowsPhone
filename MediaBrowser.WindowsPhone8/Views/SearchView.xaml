@@ -92,20 +92,12 @@
                         Grid.Row="0">
                 <TextBox Text="{Binding SearchText, Mode=TwoWay}"
                          HorizontalAlignment="Stretch"
-                         Width="378"
+                         Width="455"
                          InputScope="Search">
                     <i:Interaction.Behaviors>
                         <behaviours:UpdateTextBindingOnPropertyChanged EnterHitCommand="{Binding DoSearchCommand}" />
                     </i:Interaction.Behaviors>
                 </TextBox>
-                <Button Command="{Binding DoSearchCommand}">
-                    <Button.Content>
-                        <Image Source="/Icons/searchbutton.png"
-                               Height="30"
-                               Width="25"
-                               />
-                    </Button.Content>
-                </Button>
             </StackPanel>
 
             <phone:LongListSelector Grid.Row="1"
