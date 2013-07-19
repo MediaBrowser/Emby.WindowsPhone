@@ -20,6 +20,7 @@
                 SupportedOrientations="Portrait"
                 Orientation="Portrait"
                 shell:SystemTray.IsVisible="True"
+                toolkit:TiltEffect.IsTiltEnabled="True"
                 DataContext="{Binding Search, Source={StaticResource Locator}}">
     <shell:SystemTray.ProgressIndicator>
         <shell:ProgressIndicator Text="{Binding ProgressText}"
@@ -90,25 +91,26 @@
                         Grid.Row="0">
                 <TextBox Text="{Binding SearchText, Mode=TwoWay}"
                          HorizontalAlignment="Stretch"
-                         Width="378">
+                         Width="455"
+                         InputScope="Search">
                     <i:Interaction.Behaviors>
                         <behaviours:UpdateTextBindingOnPropertyChanged EnterHitCommand="{Binding DoSearchCommand}" />
                     </i:Interaction.Behaviors>
                 </TextBox>
-                <Button Content=" s " />
             </StackPanel>
 
             <toolkit:LongListSelector Grid.Row="1"
                                       Background="Transparent"
                                       ItemsSource="{Binding SearchResults}"
                                       GroupHeaderTemplate="{StaticResource LLSGroupHeaderTemplateLong}"
-                                      GroupItemTemplate="{StaticResource LLSGroupItemTemplateLong}"
-                                      GroupItemsPanel="{StaticResource StackPanelVerticalTemplate}">
+                                      GroupItemTemplate="{StaticResource LLSGroupItemTemplateLong}">
                 <toolkit:LongListSelector.ItemTemplate>
                     <DataTemplate>
                         <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
                                          HorizontalContentAlignment="Left"
-                                         VerticalContentAlignment="Top">
+                                         VerticalContentAlignment="Top"
+                                         Command="{Binding Search.SearchItemTappedCommand, Source={StaticResource Locator}}"
+                                         CommandParameter="{Binding}">
                             <StackPanel Orientation="Horizontal"
                                         Margin="12,6,0,6">
                                 <Image Source="{Binding Converter={StaticResource ImageUrlConverter}}"
