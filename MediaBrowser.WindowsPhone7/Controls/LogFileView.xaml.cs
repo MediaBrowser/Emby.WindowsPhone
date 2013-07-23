@@ -15,7 +15,7 @@ namespace MediaBrowser.WindowsPhone.Controls
         {
             new EmailComposeTask
             {
-                To = "scottisafool@live.co.uk",
+                To = "wpmb3@outlook.com",
                 Subject = string.Format("Media Browser 3 log file"),
                 Body = WPLogger.GetLogs()
             }.Show();
