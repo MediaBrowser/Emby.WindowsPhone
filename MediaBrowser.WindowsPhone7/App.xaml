@@ -28,16 +28,6 @@
 
             <sys:String x:Key="AppName">MediaBrowser</sys:String>
 
-            <!--<LinearGradientBrush SpreadMethod="Reflect"
-                                 ColorInterpolationMode="SRgbLinearInterpolation"
-                                 StartPoint="0,0"
-                                 EndPoint="0,1"
-                                 >
-                <GradientStop Color="#ff000000"
-                              Offset="0" />
-                <GradientStop Color="#ffbbbbbb"
-                              Offset="1" />
-            </LinearGradientBrush>-->
 
             <LinearGradientBrush SpreadMethod="Reflect"
                                  ColorInterpolationMode="SRgbLinearInterpolation"
