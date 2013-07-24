@@ -27,7 +27,7 @@
             <windowsPhone:SpecificSettings x:Key="SpecificSettings" />
 
             <sys:String x:Key="AppName">MediaBrowser</sys:String>
-
+            
             <LinearGradientBrush SpreadMethod="Reflect"
                                  ColorInterpolationMode="SRgbLinearInterpolation"
                                  StartPoint="0,0"

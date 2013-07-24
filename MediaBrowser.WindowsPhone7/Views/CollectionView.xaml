@@ -121,7 +121,7 @@
                     <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
                                      HorizontalContentAlignment="Left"
                                      VerticalAlignment="Bottom"
-                                     NavigateUri="/Views/FolderView.xaml"
+                                     Command="{Binding SeeMoreCommand}"
                                      Padding="0">
                         <TextBlock Text="show all items..."
                                    Style="{StaticResource PhoneTextLargeStyle}" />

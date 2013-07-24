@@ -143,6 +143,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 }
             });
 
+            SeeMoreCommand = new RelayCommand(() =>
+            {
+                App.SelectedItem = SelectedFolder;
+                _navService.NavigateTo("/Views/FolderView.xaml");
+            });
+
             NavigateTo = new RelayCommand<BaseItemDto>(_navService.NavigateTo);
         }
 
@@ -429,6 +435,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
         public RelayCommand PageLoaded { get; set; }
         public RelayCommand CollectionPageLoaded { get; set; }
+        public RelayCommand SeeMoreCommand { get; set; }
         public RelayCommand<BaseItemDto> NavigateTo { get; set; }
     }
 }
