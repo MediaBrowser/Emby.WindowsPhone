@@ -11,7 +11,7 @@
              d:DesignWidth="480">
 
     <Grid x:Name="LayoutRoot"
-          Background="{StaticResource PhoneChromeBrush}">
+          Background="Transparent">
         <StackPanel Orientation="Vertical">
             <TextBlock Style="{StaticResource PhoneTextNormalStyle}"
                        TextWrapping="Wrap"

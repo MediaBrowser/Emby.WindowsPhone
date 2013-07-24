@@ -65,7 +65,8 @@
       <logView:LogFileView xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                            xmlns:logView="clr-namespace:MediaBrowser.WindowsPhone.Controls;assembly=MediaBrowser.WindowsPhone"
                            HorizontalAlignment="Stretch"
-                           VerticalAlignment="Top"/>
+                           VerticalAlignment="Top"
+                           Background="Transparent"/>
     </Item>
   </Items>
 </About>
