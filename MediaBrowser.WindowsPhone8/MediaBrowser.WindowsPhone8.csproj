@@ -184,9 +184,6 @@
     <Compile Include="..\MediaBrowser.WindowsPhone7\PhoneNameResolver.cs">
       <Link>PhoneNameResolver.cs</Link>
     </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\PlaceImage.cs">
-      <Link>PlaceImage.cs</Link>
-    </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone7\SpecificSettings.cs">
       <Link>SpecificSettings.cs</Link>
     </Compile>

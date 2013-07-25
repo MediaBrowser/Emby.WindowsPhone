@@ -8,7 +8,6 @@
                 xmlns:ignore="http://www.ignore.com"
                 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
                 xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
-                xmlns:delay="clr-namespace:Delay"
                 xmlns:c4f="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
                 xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
                 xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP71"
@@ -88,10 +87,11 @@
                                             <Grid Width="150"
                                                   Height="150"
                                                   VerticalAlignment="Top">
-                                                <delay:PlaceImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
-                                                                  Height="150"
-                                                                  Width="150"
-                                                                  PlaceholderSource="/Images/DefaultAlbumCase.png" />
+                                                <c4f:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
+                                                                Height="150"
+                                                                Width="150"
+                                                                PlaceholderImageSource="/Images/DefaultAlbumCase.png"
+                                                                PlaceholderImageStretch="UniformToFill" />
                                                 <c4f:RoundButton ImageSource="/Icons/appbar.transport.play.rest.png"
                                                                  HorizontalAlignment="Center"
                                                                  VerticalAlignment="Center"

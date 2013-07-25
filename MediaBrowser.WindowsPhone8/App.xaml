@@ -10,8 +10,9 @@
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:scottConverters="clr-namespace:ScottIsAFool.WindowsPhone.Converters;assembly=ScottIsAFool.WindowsPhone"
              xmlns:converters="clr-namespace:MediaBrowser.WindowsPhone.Converters"
-             xmlns:delay="clr-namespace:Delay"
-             xmlns:windowsPhone="clr-namespace:MediaBrowser.WindowsPhone">
+             
+             xmlns:windowsPhone="clr-namespace:MediaBrowser.WindowsPhone"
+             xmlns:controls="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls">
 
     <!--Application Resources-->
     <Application.Resources>
@@ -27,7 +28,7 @@
             <windowsPhone:SpecificSettings x:Key="SpecificSettings" />
 
             <sys:String x:Key="AppName">MediaBrowser</sys:String>
-            
+
             <LinearGradientBrush SpreadMethod="Reflect"
                                  ColorInterpolationMode="SRgbLinearInterpolation"
                                  StartPoint="0,0"
@@ -46,7 +47,7 @@
             <scottConverters:InvertedVisibilityConverter x:Key="InvertedVisibilityConverter" />
             <scottConverters:StringCaseConverter x:Key="StringCaseConverter" />
             <scottConverters:IntToVisibilityConverter x:Key="IntToVisibilityConverter" />
-            <scottConverters:CountToEnabled x:Key="CountToEnabled"/>
+            <scottConverters:CountToEnabled x:Key="CountToEnabled" />
 
             <!-- Local Converters -->
             <converters:ImageUrlConverter x:Key="ImageUrlConverter" />
@@ -54,9 +55,9 @@
             <converters:RatingConverter x:Key="RatingConverter" />
             <converters:RandomColour x:Key="RandomColour" />
             <converters:FavouritesConverter x:Key="FavouritesConverter" />
-            <converters:PinnedItemConverter x:Key="PinnedItemConverter"/>
-            <converters:RuntimeConverter x:Key="RuntimeConverter"/>
-            <converters:TicksToTimespanConverter x:Key="TicksToTimespanConverter"/>
+            <converters:PinnedItemConverter x:Key="PinnedItemConverter" />
+            <converters:RuntimeConverter x:Key="RuntimeConverter" />
+            <converters:TicksToTimespanConverter x:Key="TicksToTimespanConverter" />
 
             <local:LocalizedStrings xmlns:local="clr-namespace:MediaBrowser.WindowsPhone"
                                     x:Key="LocalizedStrings" />
@@ -89,11 +90,11 @@
                                  Command="{Binding Main.NavigateToPage, Source={StaticResource Locator}}"
                                  CommandParameter="{Binding}">
                     <Grid MaxWidth="173">
-                        <delay:PlaceImage PlaceholderSource="/Images/Logo.png"
-                                          Source="{Binding Converter={StaticResource ImageUrlConverter}}"
-                                          Width="173"
-                                          Height="173"
-                                          Stretch="UniformToFill" />
+                        <controls:SuperImage PlaceholderImageSource="/Images/Logo.png"
+                                             Source="{Binding Converter={StaticResource ImageUrlConverter}}"
+                                             Width="173"
+                                             Height="173"
+                                             Stretch="UniformToFill" />
                         <Border Background="#C4000000"
                                 VerticalAlignment="Bottom">
                             <TextBlock Text="{Binding Name}"
@@ -122,11 +123,11 @@
             <DataTemplate x:Key="CrewTemplate">
                 <StackPanel Orientation="Horizontal"
                             Margin="12,0,0,12">
-                    <delay:PlaceImage Height="99"
-                                      Width="99"
-                                      PlaceholderSource="/Images/default_avatar.png"
-                                      Source="{Binding Converter={StaticResource ImageUrlConverter}}"
-                                      Stretch="Uniform" />
+                    <controls:SuperImage Height="99"
+                                         Width="99"
+                                         PlaceholderImageSource="/Images/default_avatar.png"
+                                         Source="{Binding Converter={StaticResource ImageUrlConverter}}"
+                                         Stretch="Uniform" />
                     <StackPanel Orientation="Vertical">
                         <TextBlock Text="{Binding Name, Converter={StaticResource StringCaseConverter}, ConverterParameter=false}"
                                    FontWeight="Bold"

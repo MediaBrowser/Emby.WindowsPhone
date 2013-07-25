@@ -7,7 +7,7 @@
                 xmlns:ignore="http://www.ignore.com"
                 xmlns:controls="clr-namespace:MediaBrowser.WindowsPhone.Controls"
                 xmlns:scott="clr-namespace:ScottIsAFool.WindowsPhone.Controls;assembly=ScottIsAFool.WindowsPhone"
-                xmlns:delay="clr-namespace:Delay"
+                
                 xmlns:c4f="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
                 xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
                 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
@@ -118,11 +118,12 @@
                         <StackPanel Orientation="Horizontal"
                                     Margin="0,0,0,12"
                                     HorizontalAlignment="Left">
-                            <delay:PlaceImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
+                            <c4f:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
                                               VerticalAlignment="Top"
                                               Height="150"
                                               Width="150"
-                                              PlaceholderSource="/Images/DefaultAlbumCase.png" />
+                                              PlaceholderImageSource="/Images/DefaultAlbumCase.png"
+                                            PlaceholderImageStretch="UniformToFill"/>
                             <StackPanel Orientation="Vertical"
                                         Margin="0,-6,0,0"
                                         HorizontalAlignment="Left"

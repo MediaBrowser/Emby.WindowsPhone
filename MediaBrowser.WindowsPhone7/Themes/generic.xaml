@@ -2,15 +2,14 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:MediaBrowser.WindowsPhone.Controls"
                     xmlns:converter="clr-namespace:MediaBrowser.WindowsPhone.Converters"
-                    xmlns:delay="clr-namespace:Delay"
                     xmlns:controls="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls">
-    
+
     <!-- Converters -->
     <converter:LoggedInDateConverter x:Key="LoggedInDateConverter" />
-    
+
     <Style TargetType="local:MediaBrowserLogo">
         <Setter Property="HorizontalAlignment"
-                Value="Stretch"/>
+                Value="Stretch" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:MediaBrowserLogo">
@@ -37,7 +36,7 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
+
     <Style TargetType="local:ScrollableTextBlock">
         <Setter Property="Foreground"
                 Value="{StaticResource PhoneForegroundBrush}" />
@@ -117,10 +116,11 @@
                         </Grid.ColumnDefinitions>
                         <Border Background="{StaticResource PhoneAccentBrush}"
                                 Grid.Column="0">
-                            <delay:PlaceImage PlaceholderSource="/Images/UserLoginDefault.png"
-                                Source="{Binding Converter={StaticResource ImageUrlConverter}}"
-                                   Stretch="UniformToFill"
-                                   AutomationProperties.Name="{Binding Name}" />
+                            <controls:SuperImage PlaceholderImageSource="/Images/UserLoginDefault.png"
+                                                 PlaceholderImageStretch="UniformToFill"
+                                                 Source="{Binding Converter={StaticResource ImageUrlConverter}}"
+                                                 Stretch="UniformToFill"
+                                                 AutomationProperties.Name="{Binding Name}" />
                         </Border>
                         <StackPanel VerticalAlignment="Top"
                                     Grid.Column="1"
@@ -134,7 +134,9 @@
                                        Style="{StaticResource PhoneTextSubtleStyle}"
                                        TextWrapping="Wrap"
                                        Margin="15,0,0,0" />
-							<CheckBox x:Name="chbxSaveUser" Content="Stay signed in" Margin="4,-19,0,0"/>
+                            <CheckBox x:Name="chbxSaveUser"
+                                      Content="Stay signed in"
+                                      Margin="4,-19,0,0" />
                             <Grid x:Name="passwordStack"
                                   Visibility="Collapsed"
                                   HorizontalAlignment="Stretch"
@@ -147,15 +149,15 @@
                                 <PasswordBox x:Name="passwordBox"
                                              Password="{TemplateBinding Password}"
                                              VerticalAlignment="Top"
-											 HorizontalAlignment="Stretch"
+                                             HorizontalAlignment="Stretch"
                                              Grid.Column="0" />
                                 <controls:RoundButton Grid.Column="1"
                                                       Padding="0"
                                                       x:Name="loginButton"
                                                       HorizontalContentAlignment="Left"
                                                       VerticalContentAlignment="Top"
-                                                      Margin="0,8,0,0" 
-                                                      ImageSource="/Icons/appbar.next.rest.png"/>
+                                                      Margin="0,8,0,0"
+                                                      ImageSource="/Icons/appbar.next.rest.png" />
                             </Grid>
                             <TextBlock Text="incorrect pin"
                                        x:Name="textIncorrectPin"

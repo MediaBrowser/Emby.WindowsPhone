@@ -253,7 +253,6 @@
     <Compile Include="Converters\EpisodeNumberVisibilityConverter.cs" />
     <Compile Include="Converters\ImageUrlConverter.cs" />
     <Compile Include="Converters\RatingConverter.cs" />
-    <Compile Include="PlaceImage.cs" />
     <Compile Include="Splashscreen.xaml.cs">
       <DependentUpon>Splashscreen.xaml</DependentUpon>
     </Compile>

@@ -10,7 +10,6 @@
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:cimbalino="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
-                xmlns:delay="clr-namespace:Delay"
                 xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP8"
                 xmlns:c4F="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
                 mc:Ignorable="d"
@@ -80,16 +79,16 @@
                         Command="{Binding Main.PlayMovieCommand, Source={StaticResource Locator}}"
                         CommandParameter="{Binding SelectedMovie}">
                     <Grid>
-                        <delay:PlaceImage Source="{Binding SelectedMovie, Converter={StaticResource ImageUrlConverter}, ConverterParameter=poster}"
-                                          PlaceholderSource="/Images/DefaultVideo.png"
-                                          Height="450"
-                                          HorizontalAlignment="Left"
-                                          VerticalAlignment="Top"
-                                          Margin="12,0,0,0" />
+                        <c4F:SuperImage Source="{Binding SelectedMovie, Converter={StaticResource ImageUrlConverter}, ConverterParameter=poster}"
+                                        PlaceholderImageSource="/Images/DefaultVideo.png"
+                                        Height="450"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Top"
+                                        Margin="12,0,0,0" />
                         <c4F:RoundButton ImageSource="/Icons/appbar.transport.play.rest.png"
-                                               IsHitTestVisible="False"
-                                               HorizontalAlignment="Center"
-                                               VerticalAlignment="Center" />
+                                         IsHitTestVisible="False"
+                                         HorizontalAlignment="Center"
+                                         VerticalAlignment="Center" />
                     </Grid>
                 </Button>
             </phone:PanoramaItem>
@@ -153,11 +152,12 @@
                                              Command="{Binding ElementName=PageRoot, Path=DataContext.ShowOtherFilmsCommand}"
                                              CommandParameter="{Binding}">
                                 <StackPanel Orientation="Horizontal">
-                                    <delay:PlaceImage Height="99"
-                                                      Width="99"
-                                                      PlaceholderSource="/Images/MBLogo.png"
-                                                      Source="{Binding Converter={StaticResource ImageUrlConverter}}"
-                                                      Stretch="Uniform" />
+                                    <c4F:SuperImage Height="99"
+                                                    Width="99"
+                                                    PlaceholderImageSource="/Images/Logo.png"
+                                                    Source="{Binding Converter={StaticResource ImageUrlConverter}}"
+                                                    Stretch="Uniform"
+                                                    PlaceholderImageStretch="UniformToFill"/>
                                     <StackPanel Orientation="Vertical">
                                         <TextBlock Text="{Binding Name, Converter={StaticResource StringCaseConverter}, ConverterParameter=false}"
                                                    FontWeight="Bold"

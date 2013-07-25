@@ -8,8 +8,9 @@
                 xmlns:scott="clr-namespace:ScottIsAFool.WindowsPhone.Controls;assembly=ScottIsAFool.WindowsPhone"
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                xmlns:delay="clr-namespace:Delay"
+                
                 xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP8"
+                xmlns:controls="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
                 mc:Ignorable="d"
                 d:DesignWidth="480"
                 d:DesignHeight="768"
@@ -82,7 +83,7 @@
                                                  Command="{Binding Main.NavigateToPage, Source={StaticResource Locator}}"
                                                  CommandParameter="{Binding}">
                                     <Grid>
-                                        <delay:PlaceImage PlaceholderSource="/Images/MBLogo.png"
+                                        <controls:SuperImage PlaceholderImageSource="/Images/MBLogo.png"
                                                           Source="{Binding Converter={StaticResource ImageUrlConverter}}"
                                                           Height="173"
                                                           MaxWidth="120" />

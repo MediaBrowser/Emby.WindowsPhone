@@ -6,11 +6,11 @@
                 xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
                 xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
                 xmlns:scott="clr-namespace:ScottIsAFool.WindowsPhone.Controls;assembly=ScottIsAFool.WindowsPhone"
-                xmlns:delay="clr-namespace:Delay"
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP71"
                 xmlns:cimbalino="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
+                xmlns:c4F="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
                 FontFamily="{StaticResource PhoneFontFamilyNormal}"
                 FontSize="{StaticResource PhoneFontSizeNormal}"
                 Foreground="{StaticResource PhoneForegroundBrush}"
@@ -124,11 +124,13 @@
                                     </toolkit:ContextMenu>
                                 </toolkit:ContextMenuService.ContextMenu>
                                 <StackPanel Orientation="Horizontal">
-                                    <delay:PlaceImage PlaceholderSource="/Images/Logo.png"
-                                                      Source="{Binding Converter={StaticResource ImageUrlConverter}}"
-                                                      Height="62"
-                                                      Width="62"
-                                                      VerticalAlignment="Top" />
+                                    <c4F:SuperImage PlaceholderImageSource="/Images/Logo.png"
+                                                    PlaceholderImageStretch="UniformToFill"
+                                                    Source="{Binding Converter={StaticResource ImageUrlConverter}}"
+                                                    Stretch="Uniform"
+                                                    Height="62"
+                                                    Width="62"
+                                                    VerticalAlignment="Top" />
                                     <StackPanel Orientation="Vertical"
                                                 VerticalAlignment="Center">
                                         <TextBlock Text="{Binding Name}"
