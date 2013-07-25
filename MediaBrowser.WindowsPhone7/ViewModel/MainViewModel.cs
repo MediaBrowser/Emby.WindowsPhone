@@ -53,7 +53,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             if (IsInDesignMode)
             {
-                Folders.Add(new BaseItemDto {Id = "78dbff5aa1c2101b98ebaf42b72a988d", Name = "Movies"});
+                Folders.Add(new BaseItemDto {Id = "78dbff5aa1c2101b98ebaf42b72a988d", Name = "Movies", RecursiveUnplayedItemCount = 6});
                 RecentItems.Add(new BaseItemDto {Id = "2fc6f321b5f8bbe842fcd0eed089561d", Name = "A Night To Remember"});
             }
             else

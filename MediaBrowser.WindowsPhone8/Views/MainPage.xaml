@@ -134,8 +134,8 @@
                                                 VerticalAlignment="Center">
                                         <TextBlock Text="{Binding Name}"
                                                    Style="{StaticResource PhoneTextLargeStyle}" />
-                                        <!--<TextBlock Text="{Binding RecentlyAddedUnPlayedItemCount, StringFormat='Unwatched items: \{0\}'}"
-                                                   Style="{StaticResource PhoneTextSubtleStyle}"/>-->
+                                        <TextBlock Text="{Binding RecursiveUnplayedItemCount, StringFormat='Unwatched items: \{0\}'}"
+                                                   Style="{StaticResource PhoneTextSubtleStyle}" />
                                     </StackPanel>
                                 </StackPanel>
                             </HyperlinkButton>
