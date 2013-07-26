@@ -6,7 +6,7 @@ using MediaBrowser.WindowsPhone.Resources;
 using MediaBrowser.WindowsPhone.ViewModel;
 using Microsoft.Phone.Controls;
 using GalaSoft.MvvmLight.Messaging;
-using MediaBrowser.Shared;
+
 
 namespace MediaBrowser.WindowsPhone.Views
 {

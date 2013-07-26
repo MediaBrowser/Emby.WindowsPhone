@@ -2,7 +2,8 @@
 using System.ComponentModel;
 using System.Linq;
 using GalaSoft.MvvmLight.Messaging;
-using MediaBrowser.Shared;
+using JetBrains.Annotations;
+using MediaBrowser.Model;
 using MediaBrowser.WindowsPhone.Model;
 
 namespace MediaBrowser.WindowsPhone
@@ -23,6 +24,7 @@ namespace MediaBrowser.WindowsPhone
         
         public event PropertyChangedEventHandler PropertyChanged;
         
+        [UsedImplicitly]
         private void NotifyPropertyChanged(string propertyName)
         {
             PropertyChangedEventHandler handler = PropertyChanged;

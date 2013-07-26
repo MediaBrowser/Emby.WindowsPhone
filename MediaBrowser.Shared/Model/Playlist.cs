@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
+using PropertyChanged;
 
-namespace MediaBrowser.Shared
+namespace MediaBrowser.Model
 {
-    public class Playlist : INotifyPropertyChanged
+    [ImplementPropertyChanged]
+    public class Playlist
     {
         public Playlist()
         {
@@ -15,7 +16,5 @@ namespace MediaBrowser.Shared
         public DateTime ModifiedDate { get; set; }
         public bool IsShuffled { get; set; }
         public bool IsOnRepeat { get; set; }
-
-        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

@@ -10,7 +10,7 @@ using MediaBrowser.WindowsPhone.Resources;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 
-using MediaBrowser.Shared;
+
 using MediaBrowser.Model;
 using ScottIsAFool.WindowsPhone.ViewModel;
 using INavigationService = MediaBrowser.WindowsPhone.Model.INavigationService;

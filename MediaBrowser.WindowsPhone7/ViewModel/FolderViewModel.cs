@@ -176,12 +176,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 UserId = App.Settings.LoggedInUser.Id,
                 Fields = new[]
                 {
-                    ItemFields.SeriesInfo,
                     ItemFields.DateCreated,
-                    ItemFields.UserData,
                     ItemFields.ProviderIds,
                     ItemFields.ParentId,
-                    ItemFields.AudioInfo
                 },
                 ParentId = SelectedFolder.Id,
                 Recursive = true
@@ -217,7 +214,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     UserId = App.Settings.LoggedInUser.Id,
                     SortBy = new[] {ItemSortBy.SortName},
                     SortOrder = SortOrder.Ascending,
-                    Fields = new[] {ItemFields.SortName, ItemFields.UserData, ItemFields.Genres, ItemFields.ProviderIds}
+                    Fields = new[]
+                    {
+                        ItemFields.SortName,
+                        ItemFields.Genres, 
+                        ItemFields.ProviderIds
+                    }
                 };
                 if (SelectedPerson != null)
                 {

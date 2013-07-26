@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Cimbalino.Phone.Toolkit.Services;
+using MediaBrowser.Model;
 using MediaBrowser.Shared;
 using Newtonsoft.Json;
 

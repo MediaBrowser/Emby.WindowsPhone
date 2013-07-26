@@ -12,6 +12,7 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
 using JetBrains.Annotations;
+using MediaBrowser.Model;
 using MediaBrowser.Model.Net;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Resources;

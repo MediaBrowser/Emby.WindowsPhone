@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
+using MediaBrowser.Model;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Querying;
-using MediaBrowser.Shared;
+
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Resources;
 using ScottIsAFool.WindowsPhone.ViewModel;
@@ -274,7 +275,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     UserId = App.Settings.LoggedInUser.Id,
                     Artists = new[] {SelectedArtist.Name},
                     Recursive = true,
-                    Fields = new[] {ItemFields.AudioInfo, ItemFields.ParentId,},
+                    Fields = new[] { ItemFields.ParentId,},
                     IncludeItemTypes = new[] {"Audio"}
                 };
 
@@ -305,7 +306,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     UserId = App.Settings.LoggedInUser.Id,
                     Artists = new[] {SelectedArtist.Name},
                     Recursive = true,
-                    Fields = new[] {ItemFields.AudioInfo, ItemFields.ParentId,},
+                    Fields = new[] { ItemFields.ParentId,},
                     IncludeItemTypes = new[] {"MusicAlbum"}
                 };
 

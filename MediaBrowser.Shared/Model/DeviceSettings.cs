@@ -1,16 +1,14 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel;
-using MediaBrowser.WindowsPhone.Model;
+using PropertyChanged;
 
-namespace MediaBrowser.Shared
+namespace MediaBrowser.Model
 {
-    public class DeviceSettings : INotifyPropertyChanged
+    [ImplementPropertyChanged]
+    public class DeviceSettings
     {
         public string DeviceId { get; set; }
         public bool SendToasts { get; set; }
         public bool SendLiveTiles { get; set; }
         public List<LiveTile> LiveTiles { get; set; }
-
-        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

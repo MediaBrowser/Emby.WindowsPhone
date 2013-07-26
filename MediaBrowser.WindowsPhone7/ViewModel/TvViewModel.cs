@@ -197,7 +197,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     Filters = new[] {ItemFilter.IsRecentlyAdded},
                     Fields = new[]
                     {
-                        ItemFields.SeriesInfo,
                         ItemFields.ParentId
                     },
                     Recursive = true
@@ -236,7 +235,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     ParentId = SelectedTvSeries.Id,
                     Fields = new[]
                     {
-                        ItemFields.SeriesInfo,
                         ItemFields.ParentId
                     }
                 };
@@ -266,7 +264,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     ParentId = SelectedSeason.Id,
                     Fields = new[]
                     {
-                        ItemFields.SeriesInfo,
                         ItemFields.ParentId,
                         ItemFields.Overview
                     }

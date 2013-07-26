@@ -1,8 +1,9 @@
-﻿using System.ComponentModel;
+﻿using PropertyChanged;
 
-namespace MediaBrowser.Shared
+namespace MediaBrowser.Model
 {
-    public class PlaylistItem : INotifyPropertyChanged
+    [ImplementPropertyChanged]
+    public class PlaylistItem 
     {
         public int Id { get; set; }
         public int OriginalId { get; set; }
@@ -14,7 +15,5 @@ namespace MediaBrowser.Shared
         public string TrackUrl { get; set; }
         public string MediaBrowserId { get; set; }
         public string ImageUrl { get; set; }
-
-        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

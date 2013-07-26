@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using MediaBrowser.ApiInteraction;
+using MediaBrowser.Model;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Logging;
 using MediaBrowser.Model.Web;
-using MediaBrowser.Shared;
+
 
 namespace MediaBrowser.WindowsPhone.Model
 {
     public class ExtendedApiClient : ApiClient
     {
-        public ExtendedApiClient(ILogger logger, IAsyncHttpClient httpClient, string serverHostName, int serverApiPort, string clientName, string deviceName, string deviceId, string appVersion)
-            : base(logger, httpClient, serverHostName, serverApiPort, clientName, deviceName, deviceId, appVersion)
+        public ExtendedApiClient(ILogger logger, string serverHostName, int serverApiPort, string clientName, string deviceName, string deviceId, string appVersion)
+            : base(logger, serverHostName, serverApiPort, clientName, deviceName, deviceId, appVersion)
         {
             
         }
@@ -23,15 +24,12 @@ namespace MediaBrowser.WindowsPhone.Model
         /// </summary>
         /// <param name="deviceId">The device id.</param>
         /// <param name="uri">The URI.</param>
-        /// <param name="deviceType">Type of the device.</param>
         /// <param name="sendTileUpdate">The send tile update.</param>
         /// <param name="sendToastUpdate">The send toast update.</param>
         /// <returns></returns>
-        /// <exception cref="System.ArgumentNullException">
-        /// deviceType
+        /// <exception cref="System.ArgumentNullException">deviceType
         /// or
-        /// deviceId
-        /// </exception>
+        /// deviceId</exception>
         public Task RegisterDeviceAsync(string deviceId, string uri, bool? sendTileUpdate = null, bool? sendToastUpdate = null)
         {
             if (string.IsNullOrEmpty(deviceId))
