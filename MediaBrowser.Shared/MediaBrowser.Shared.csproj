@@ -47,6 +47,14 @@
     <Reference Include="Cimbalino.Phone.Toolkit.Background">
       <HintPath>..\packages\Cimbalino.Phone.Toolkit.Background.3.1.0-rc\lib\sl4-wp71\Cimbalino.Phone.Toolkit.Background.dll</HintPath>
     </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Extras.WP71, Version=4.1.27.22669, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\MvvmLightLibs.4.1.27.0\lib\sl4-wp71\GalaSoft.MvvmLight.Extras.WP71.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.WP71, Version=4.1.27.22669, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\MvvmLightLibs.4.1.27.0\lib\sl4-wp71\GalaSoft.MvvmLight.WP71.dll</HintPath>
+    </Reference>
     <Reference Include="JetBrains.Annotations">
       <HintPath>..\packages\JetBrains.Annotations.7.0\lib\sl4-wp71\JetBrains.Annotations.dll</HintPath>
     </Reference>
@@ -55,6 +63,12 @@
     </Reference>
     <Reference Include="MediaBrowser.Model">
       <HintPath>..\packages\MediaBrowser.Common.3.0.155\lib\portable-net4+sl4+wp7+win8\MediaBrowser.Model.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Phone.Controls.Toolkit">
+      <HintPath>..\packages\WPToolkit.4.2013.06.11\lib\sl4-windowsphone71\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.4.1.27.0\lib\sl4-wp71\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Threading.Tasks">
       <HintPath>..\packages\Microsoft.Bcl.Async.1.0.16\lib\sl4-windowsphone71\Microsoft.Threading.Tasks.dll</HintPath>
@@ -71,6 +85,9 @@
     <Reference Include="PropertyChanged">
       <HintPath>..\packages\PropertyChanged.Fody.1.40.3\Lib\portable-net4+sl4+wp7+win8+MonoAndroid16+MonoTouch40\PropertyChanged.dll</HintPath>
       <Private>False</Private>
+    </Reference>
+    <Reference Include="ScottIsAFool.WindowsPhone">
+      <HintPath>..\packages\ScottIsAFool.WindowsPhone.1.0.16.5\lib\wp71\ScottIsAFool.WindowsPhone.dll</HintPath>
     </Reference>
     <Reference Include="System.IO">
       <HintPath>..\packages\Microsoft.Bcl.1.1.3\lib\sl4-windowsphone71\System.IO.dll</HintPath>
@@ -93,6 +110,9 @@
     <Reference Include="System.Windows" />
     <Reference Include="system" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Interactivity, Version=3.8.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.4.1.27.0\lib\sl4-wp71\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Net" />
     <Reference Include="mscorlib.extensions" />
@@ -101,22 +121,21 @@
     <Compile Include="Constants.cs" />
     <Compile Include="Design\ApplicationSettingsDesignService.cs" />
     <Compile Include="Design\StorageDesignService.cs" />
+    <Compile Include="ExtensionMethods.cs" />
     <Compile Include="History.cs" />
     <Compile Include="Model\ConnectionDetails.cs" />
     <Compile Include="Model\DeviceSettings.cs" />
     <Compile Include="Model\ExtendedApiClient.cs" />
     <Compile Include="Model\GroupBy.cs" />
-    <Compile Include="Model\INavigationService.cs" />
     <Compile Include="Model\ISettingsService.cs" />
     <Compile Include="Model\LiveTile.cs" />
-    <Compile Include="Model\MBLogger.cs" />
-    <Compile Include="Model\NavigationService.cs" />
     <Compile Include="Model\Playlist.cs" />
     <Compile Include="Model\PlaylistItem.cs" />
     <Compile Include="Model\SettingsService.cs" />
     <Compile Include="Model\UserSettingWrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RequestResult.cs" />
+    <Compile Include="Services\AuthenticationService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Fody.targets" />
@@ -124,6 +143,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="FodyWeavers.xml" />
+    <Content Include="README_FIRST.txt" />
+    <Content Include="Toolkit.Content\ApplicationBar.Cancel.png" />
+    <Content Include="Toolkit.Content\ApplicationBar.Check.png" />
+    <Content Include="Toolkit.Content\ApplicationBar.Delete.png" />
+    <Content Include="Toolkit.Content\ApplicationBar.Select.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />

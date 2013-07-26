@@ -156,7 +156,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     }
 
                     SetProgressBar(AppResources.SysTrayAuthenticating);
-                    await Utils.CheckProfiles(_navigationService, Log);
+                    Utils.CheckProfiles(_navigationService);
                 }
                 else
                 {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using MediaBrowser.Model;
 using MediaBrowser.Model.Logging;
 using ScottIsAFool.WindowsPhone.Logging;
 

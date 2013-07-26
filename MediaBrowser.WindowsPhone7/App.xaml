@@ -9,9 +9,9 @@
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:scottConverters="clr-namespace:ScottIsAFool.WindowsPhone.Converters;assembly=ScottIsAFool.WindowsPhone"
              xmlns:converters="clr-namespace:MediaBrowser.WindowsPhone.Converters"
-             xmlns:model="clr-namespace:MediaBrowser.Model"
              xmlns:windowsPhone="clr-namespace:MediaBrowser.WindowsPhone"
-             xmlns:controls="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls">
+             xmlns:controls="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
+             xmlns:model="clr-namespace:MediaBrowser.Model;assembly=MediaBrowser.Shared">
 
     <Application.Resources>
         <ResourceDictionary>

@@ -7,6 +7,7 @@ using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Querying;
+using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.WindowsPhone.Resources;
@@ -87,7 +88,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     {
                         var profiles = await _apiClient.GetUsersAsync(new UserQuery());
                         foreach (var profile in profiles)
+                        {
                             Profiles.Add(profile);
+                        }
                     }
                     catch (HttpException ex)
                     {
@@ -102,7 +105,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 var selectedUser = loginDetails[0] as UserDto;
                 var pinCode = loginDetails[1] as string;
-                var saveUser = (bool) loginDetails[2];
 
                 if (selectedUser != null)
                 {
@@ -110,37 +112,16 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                     SetProgressBar(AppResources.SysTrayAuthenticating);
 
-                    await Utils.Login(Log, selectedUser, pinCode, () =>
+                    await AuthenticationService.Current.LogIn(selectedUser, pinCode);
+                    if (AuthenticationService.Current.IsLoggedIn)
                     {
-                        SetUser(selectedUser);
-                        if (saveUser)
-                        {
-                            _applicationSettings.Set(Constants.Settings.SelectedUserSetting, new UserSettingWrapper
-                            {
-                                User = selectedUser,
-                                Pin = pinCode
-                            });
-                            _applicationSettings.Save();
-                            Log.Info("User [{0}] has been saved", selectedUser.Name);
-                        }
-                    });
+                        _navigationService.NavigateTo(!string.IsNullOrEmpty(App.Action) ? App.Action : Constants.Pages.HomePage);
+                    }
 
-                    SetProgressBar();
                 }
-            });
-        }
 
-        private void SetUser(UserDto profile)
-        {
-            App.Settings.LoggedInUser = profile;
-            if (!string.IsNullOrEmpty(App.Action))
-            {
-                _navigationService.NavigateTo(App.Action);
-            }
-            else
-            {
-                _navigationService.NavigateTo("/Views/MainPage.xaml");
-            }
+                SetProgressBar();
+            });
         }
 
         public ObservableCollection<UserDto> Profiles { get; set; }

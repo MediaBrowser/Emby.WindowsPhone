@@ -9,9 +9,11 @@ using Ailon.WP.Utils;
 using Cimbalino.Phone.Toolkit.Helpers;
 using Cimbalino.Phone.Toolkit.Services;
 using GalaSoft.MvvmLight.Ioc;
+using MediaBrowser.Model;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Net;
+using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Model;
 using Microsoft.Phone.Info;
 using ScottIsAFool.WindowsPhone.Logging;
@@ -93,30 +95,7 @@ namespace MediaBrowser.WindowsPhone
             }
             return '#'.ToString();
         }
-
-        internal static async Task Login(ILog logger, UserDto selectedUser, string pinCode, Action successAction)
-        {
-            var client = SimpleIoc.Default.GetInstance<ExtendedApiClient>();
-
-            try
-            {
-                logger.Info("Authenticating user [{0}]", selectedUser.Name);
-
-                await client.AuthenticateUserAsync(selectedUser.Id, pinCode.ToHash());
-
-                logger.Info("Logged in as [{0}]", selectedUser.Name);
-
-                if (successAction != null)
-                {
-                    successAction.Invoke();
-                }
-            }
-            catch (HttpException ex)
-            {
-                logger.ErrorException("Utils.Login()", ex);
-            }
-        }
-
+        
         internal static void CopyItem<T>(T source, T destination) where T : class
         {
             var type = typeof(T);
@@ -216,37 +195,12 @@ namespace MediaBrowser.WindowsPhone
             }
         }
 
-        internal static async Task CheckProfiles(INavigationService navigationService, ILog log)
+        internal static void CheckProfiles(INavigationService navigationService)
         {
             // If one exists, then authenticate that user.
-            if (App.Settings.LoggedInUser != null)
-            {
-                await Login(log, App.Settings.LoggedInUser, App.Settings.PinCode, () =>
-                {
-                    if (!string.IsNullOrEmpty(App.Action))
-                    {
-                        navigationService.NavigateTo(App.Action);
-                    }
-                    else
-                    {
-                        navigationService.NavigateTo("/Views/MainPage.xaml");
-                    }
-                });
-            }
-            else
-            {
-                navigationService.NavigateTo("/Views/ChooseProfileView.xaml");
-            }
+            navigationService.NavigateTo(AuthenticationService.Current.IsLoggedIn ? Constants.Pages.HomePage : Constants.Pages.ChooseProfileView);
         }
 
-        internal static byte[] ToHash(this string pinCode)
-        {
-            var sha1 = new SHA1Managed();
-            var encoding = new UTF8Encoding();
-            sha1.ComputeHash(encoding.GetBytes(pinCode));
-
-            return sha1.Hash;
-        }
 
         internal static ExtendedApiClient SetDeviceProperties(this ExtendedApiClient apiClient)
         {

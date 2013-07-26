@@ -4,7 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
+using MediaBrowser.Model;
 using MediaBrowser.Model.Notifications;
+using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Model;
 using ScottIsAFool.WindowsPhone.ViewModel;
 
@@ -93,15 +95,15 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             var query = new NotificationQuery
             {
                 StartIndex = 0,
-                UserId = App.Settings.LoggedInUser.Id
+                UserId = AuthenticationService.Current.LoggedInUser.Id
             };
 
             var notifications = await _apiClient.GetNotificationsAsync(query);
             Notifications = new ObservableCollection<Notification>(notifications.Notifications);
 
-            await _apiClient.MarkNotificationsRead(App.Settings.LoggedInUser.Id, Notifications.Select(x => x.Id), true);
+            await _apiClient.MarkNotificationsRead(AuthenticationService.Current.LoggedInUser.Id, Notifications.Select(x => x.Id), true);
 
-            var summary = await _apiClient.GetNotificationsSummary(App.Settings.LoggedInUser.Id);
+            var summary = await _apiClient.GetNotificationsSummary(AuthenticationService.Current.LoggedInUser.Id);
 
             Messenger.Default.Send(new NotificationMessage(summary, Constants.Messages.NotificationCountMsg));
 

@@ -2,16 +2,13 @@
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using MediaBrowser.ApiInteraction;
-using MediaBrowser.Model;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Logging;
 using MediaBrowser.Model.Web;
 
-
-namespace MediaBrowser.WindowsPhone.Model
+namespace MediaBrowser.Model
 {
-    public class ExtendedApiClient : ApiClient
+    public class ExtendedApiClient : ApiInteraction.ApiClient
     {
         public ExtendedApiClient(ILogger logger, string serverHostName, int serverApiPort, string clientName, string deviceName, string deviceId, string appVersion)
             : base(logger, serverHostName, serverApiPort, clientName, deviceName, deviceId, appVersion)
@@ -27,7 +24,7 @@ namespace MediaBrowser.WindowsPhone.Model
         /// <param name="sendTileUpdate">The send tile update.</param>
         /// <param name="sendToastUpdate">The send toast update.</param>
         /// <returns></returns>
-        /// <exception cref="System.ArgumentNullException">deviceType
+        /// <exception cref="ArgumentNullException">deviceType
         /// or
         /// deviceId</exception>
         public Task RegisterDeviceAsync(string deviceId, string uri, bool? sendTileUpdate = null, bool? sendToastUpdate = null)
@@ -63,7 +60,7 @@ namespace MediaBrowser.WindowsPhone.Model
         /// </summary>
         /// <param name="deviceId">The device id.</param>
         /// <returns></returns>
-        /// <exception cref="System.ArgumentNullException">deviceId</exception>
+        /// <exception cref="ArgumentNullException">deviceId</exception>
         public Task DeleteDeviceAsync(string deviceId)
         {
             if (string.IsNullOrEmpty(deviceId))
@@ -83,7 +80,7 @@ namespace MediaBrowser.WindowsPhone.Model
         /// <param name="sendTileUpdate">The send tile update.</param>
         /// <param name="sendToastUpdate">The send toast update.</param>
         /// <returns></returns>
-        /// <exception cref="System.ArgumentNullException">deviceId</exception>
+        /// <exception cref="ArgumentNullException">deviceId</exception>
         public Task UpdateDeviceAsync(string deviceId, bool? sendTileUpdate = null, bool? sendToastUpdate = null)
         {
             if (string.IsNullOrEmpty(deviceId))
@@ -108,7 +105,7 @@ namespace MediaBrowser.WindowsPhone.Model
         /// </summary>
         /// <param name="deviceId">The device id.</param>
         /// <returns></returns>
-        /// <exception cref="System.ArgumentNullException">deviceId</exception>
+        /// <exception cref="ArgumentNullException">deviceId</exception>
         public Task PushHeartbeatAsync(string deviceId)
         {
             if (string.IsNullOrEmpty(deviceId))
@@ -126,7 +123,7 @@ namespace MediaBrowser.WindowsPhone.Model
         /// </summary>
         /// <param name="deviceId">The device id.</param>
         /// <returns></returns>
-        /// <exception cref="System.ArgumentNullException">deviceId</exception>
+        /// <exception cref="ArgumentNullException">deviceId</exception>
         public async Task<DeviceSettings> GetDeviceSettingsAsync(string deviceId)
         {
             if (string.IsNullOrEmpty(deviceId))

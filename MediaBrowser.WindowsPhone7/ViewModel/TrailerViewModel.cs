@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
+using MediaBrowser.Model;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Net;
+using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Model;
 #if !WP8
 using ScottIsAFool.WindowsPhone;
@@ -83,7 +85,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     {
                         Log.Info("Getting information for trailer [{0}] ({1})", SelectedTrailer.Name, SelectedTrailer.Id);
 
-                        SelectedTrailer = await _apiClient.GetItemAsync(SelectedTrailer.Id, App.Settings.LoggedInUser.Id);
+                        SelectedTrailer = await _apiClient.GetItemAsync(SelectedTrailer.Id, AuthenticationService.Current.LoggedInUser.Id);
 
                         CastAndCrew = Utils.GroupCastAndCrew(SelectedTrailer.People);
 

@@ -217,6 +217,9 @@
     <Compile Include="Converters\SimpleDaysAgoConverter.cs" />
     <Compile Include="Converters\TicksToTimespanConverter.cs" />
     <Compile Include="ExtensionMethods.cs" />
+    <Compile Include="Model\INavigationService.cs" />
+    <Compile Include="Model\MBLogger.cs" />
+    <Compile Include="Model\NavigationService.cs" />
     <Compile Include="ViewModel\NotificationsViewModel.cs" />
     <Compile Include="ViewModel\PlaylistViewModel.cs" />
     <Compile Include="ViewModel\SearchViewModel.cs" />
@@ -482,9 +485,7 @@
       <Link>Resources\AppResources.resx</Link>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Model\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

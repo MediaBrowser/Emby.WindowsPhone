@@ -10,7 +10,7 @@ using MediaBrowser.Model;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Querying;
-
+using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Resources;
 using ScottIsAFool.WindowsPhone.ViewModel;
@@ -232,7 +232,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 {
 
                 };
-                SelectedArtist = await _apiClient.GetItemAsync(SelectedArtist.Id, App.Settings.LoggedInUser.Id);
+                SelectedArtist = await _apiClient.GetItemAsync(SelectedArtist.Id, AuthenticationService.Current.LoggedInUser.Id);
             }
             catch (HttpException ex)
             {
@@ -272,7 +272,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 var query = new ItemQuery
                 {
-                    UserId = App.Settings.LoggedInUser.Id,
+                    UserId = AuthenticationService.Current.LoggedInUser.Id,
                     Artists = new[] {SelectedArtist.Name},
                     Recursive = true,
                     Fields = new[] { ItemFields.ParentId,},
@@ -303,7 +303,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 var query = new ItemQuery
                 {
-                    UserId = App.Settings.LoggedInUser.Id,
+                    UserId = AuthenticationService.Current.LoggedInUser.Id,
                     Artists = new[] {SelectedArtist.Name},
                     Recursive = true,
                     Fields = new[] { ItemFields.ParentId,},

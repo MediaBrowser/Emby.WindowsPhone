@@ -6,6 +6,7 @@ using Cimbalino.Phone.Toolkit.Helpers;
 using Cimbalino.Phone.Toolkit.Services;
 using Coding4Fun.Toolkit.Controls;
 using GalaSoft.MvvmLight.Ioc;
+using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.ViewModel;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
@@ -105,7 +106,7 @@ namespace MediaBrowser.WindowsPhone
         // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
-            
+            AuthenticationService.Current.Start(SimpleIoc.Default.GetInstance<ExtendedApiClient>());
         }
 
         // Code to execute when the application is activated (brought to foreground)
@@ -126,6 +127,8 @@ namespace MediaBrowser.WindowsPhone
             var ast = SimpleIoc.Default.GetInstance<IApplicationSettingsService>();
             ast.Set(Constants.Settings.SpecificSettings, SpecificSettings);
             ast.Save();
+
+            AuthenticationService.Current.Stop();
         }
 
         // Code to execute when the application is closing (eg, user hit Back)

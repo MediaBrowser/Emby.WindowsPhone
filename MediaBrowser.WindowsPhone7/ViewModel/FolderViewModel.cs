@@ -2,9 +2,11 @@
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using MediaBrowser.Model;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Querying;
+using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Model;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
@@ -173,7 +175,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             var query = new ItemQuery
             {
                 Filters = new[] {ItemFilter.IsRecentlyAdded, ItemFilter.IsNotFolder},
-                UserId = App.Settings.LoggedInUser.Id,
+                UserId = AuthenticationService.Current.LoggedInUser.Id,
                 Fields = new[]
                 {
                     ItemFields.DateCreated,
@@ -211,7 +213,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 var query = new ItemQuery
                 {
-                    UserId = App.Settings.LoggedInUser.Id,
+                    UserId = AuthenticationService.Current.LoggedInUser.Id,
                     SortBy = new[] {ItemSortBy.SortName},
                     SortOrder = SortOrder.Ascending,
                     Fields = new[]
