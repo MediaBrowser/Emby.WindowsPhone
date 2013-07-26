@@ -1,11 +1,12 @@
 ﻿using MediaBrowser.Model.Configuration;
 using MediaBrowser.Model.Dto;
-using System.ComponentModel;
 using MediaBrowser.Model.System;
+using PropertyChanged;
 
 namespace MediaBrowser.Model
 {
-    public class SettingsService : ISettingsService, INotifyPropertyChanged
+    [ImplementPropertyChanged]
+    public class SettingsService : ISettingsService
     {
         public UserDto LoggedInUser { get; set; }
         public string PinCode { get; set; }
@@ -22,7 +23,5 @@ namespace MediaBrowser.Model
         {
             return !string.IsNullOrEmpty(ConnectionDetails.HostName);
         }
-        
-        public event PropertyChangedEventHandler PropertyChanged;
     }
 }
