@@ -201,7 +201,6 @@ namespace MediaBrowser.WindowsPhone
             navigationService.NavigateTo(AuthenticationService.Current.IsLoggedIn ? Constants.Pages.HomePage : Constants.Pages.ChooseProfileView);
         }
 
-
         internal static ExtendedApiClient SetDeviceProperties(this ExtendedApiClient apiClient)
         {
             var deviceName = DeviceStatus.DeviceName;

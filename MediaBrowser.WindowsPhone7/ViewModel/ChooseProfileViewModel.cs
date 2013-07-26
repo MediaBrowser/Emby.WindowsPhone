@@ -8,11 +8,8 @@ using MediaBrowser.Model;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Querying;
 using MediaBrowser.Services;
-using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.WindowsPhone.Resources;
-
-
 using ScottIsAFool.WindowsPhone.ViewModel;
 using INavigationService = MediaBrowser.WindowsPhone.Model.INavigationService;
 
@@ -28,7 +25,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     {
         private readonly ExtendedApiClient _apiClient;
         private readonly INavigationService _navigationService;
-        private readonly IApplicationSettingsService _applicationSettings;
 
         /// <summary>
         /// Initializes a new instance of the ChooseProfileViewModel class.
@@ -37,7 +33,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             _apiClient = apiClient;
             _navigationService = navigationService;
-            _applicationSettings = applicationSettings;
 
             Profiles = new ObservableCollection<UserDto>();
             if (IsInDesignMode)

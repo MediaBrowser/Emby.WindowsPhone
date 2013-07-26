@@ -73,10 +73,13 @@ namespace MediaBrowser.Services
             }
         }
 
-        public void LogOut()
+        public void Logout()
         {
             LoggedInUser = null;
             IsLoggedIn = false;
+
+            SettingsService.Reset(Constants.Settings.SelectedUserSetting);
+            SettingsService.Save();
         }
 
         public UserDto LoggedInUser { get; set; }

@@ -8,7 +8,6 @@ using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Notifications;
 using MediaBrowser.Model.Querying;
 using MediaBrowser.Services;
-using MediaBrowser.WindowsPhone.Model;
 using GalaSoft.MvvmLight.Command;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -98,7 +97,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                 Reset();
 
-                _navService.NavigateTo("/Views/ChooseProfileView.xaml");
+                _navService.NavigateTo(Constants.Pages.ChooseProfileView);
             });
 
             PinCollectionCommand = new RelayCommand<BaseItemDto>(collection =>
@@ -210,13 +209,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
         private void Reset()
         {
-            AuthenticationService.Current.LoggedInUser = null;
-            App.Settings.PinCode = string.Empty;
+            AuthenticationService.Current.Logout();
             
-            _applicationSettings.Reset(Constants.Settings.SelectedUserSetting);
-            _applicationSettings.Reset(Constants.Settings.SelectedUserPinSetting);
-            _applicationSettings.Save();
-
             _hasLoaded = false;
             Folders.Clear();
             RecentItems.Clear();
