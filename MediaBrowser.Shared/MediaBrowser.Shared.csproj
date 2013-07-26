@@ -99,13 +99,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants.cs" />
+    <Compile Include="Design\ApplicationSettingsDesignService.cs" />
+    <Compile Include="Design\StorageDesignService.cs" />
     <Compile Include="History.cs" />
     <Compile Include="Model\ConnectionDetails.cs" />
     <Compile Include="Model\DeviceSettings.cs" />
+    <Compile Include="Model\ExtendedApiClient.cs" />
+    <Compile Include="Model\GroupBy.cs" />
+    <Compile Include="Model\INavigationService.cs" />
     <Compile Include="Model\ISettingsService.cs" />
     <Compile Include="Model\LiveTile.cs" />
+    <Compile Include="Model\MBLogger.cs" />
+    <Compile Include="Model\NavigationService.cs" />
     <Compile Include="Model\Playlist.cs" />
     <Compile Include="Model\PlaylistItem.cs" />
+    <Compile Include="Model\SettingsService.cs" />
     <Compile Include="Model\UserSettingWrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RequestResult.cs" />

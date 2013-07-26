@@ -160,27 +160,6 @@
     <Compile Include="..\MediaBrowser.WindowsPhone7\ExtensionMethods.cs">
       <Link>ExtensionMethods.cs</Link>
     </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\Model\ApplicationSettingsDesignService.cs">
-      <Link>Model\ApplicationSettingsDesignService.cs</Link>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\Model\ExtendedApiClient.cs">
-      <Link>Model\ExtendedApiClient.cs</Link>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\Model\GroupBy.cs">
-      <Link>Model\GroupBy.cs</Link>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\Model\INavigationService.cs">
-      <Link>Model\INavigationService.cs</Link>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\Model\MBLogger.cs">
-      <Link>Model\MBLogger.cs</Link>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\Model\NavigationService.cs">
-      <Link>Model\NavigationService.cs</Link>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\Model\SettingsService.cs">
-      <Link>Model\SettingsService.cs</Link>
-    </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone7\PhoneNameResolver.cs">
       <Link>PhoneNameResolver.cs</Link>
     </Compile>

@@ -217,12 +217,6 @@
     <Compile Include="Converters\SimpleDaysAgoConverter.cs" />
     <Compile Include="Converters\TicksToTimespanConverter.cs" />
     <Compile Include="ExtensionMethods.cs" />
-    <Compile Include="Model\ApplicationSettingsDesignService.cs" />
-    <Compile Include="Model\ExtendedApiClient.cs" />
-    <Compile Include="Model\INavigationService.cs" />
-    <Compile Include="Model\MBLogger.cs" />
-    <Compile Include="Model\SettingsService.cs" />
-    <Compile Include="Model\GroupBy.cs" />
     <Compile Include="ViewModel\NotificationsViewModel.cs" />
     <Compile Include="ViewModel\PlaylistViewModel.cs" />
     <Compile Include="ViewModel\SearchViewModel.cs" />
@@ -286,7 +280,6 @@
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Model\NavigationService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
@@ -488,6 +481,9 @@
     <EmbeddedResource Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.resx">
       <Link>Resources\AppResources.resx</Link>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Model\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />

@@ -12,6 +12,7 @@
 using Cimbalino.Phone.Toolkit.Services;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
+using MediaBrowser.Design;
 using Microsoft.Practices.ServiceLocation;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.Model;
