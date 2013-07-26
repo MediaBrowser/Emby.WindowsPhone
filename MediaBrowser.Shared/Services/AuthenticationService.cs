@@ -50,7 +50,7 @@ namespace MediaBrowser.Services
             
         }
 
-        public async Task LogIn(UserDto selectedUser, string pinCode)
+        public async Task Login(UserDto selectedUser, string pinCode)
         {
             try
             {
@@ -69,7 +69,7 @@ namespace MediaBrowser.Services
             }
             catch (HttpException ex)
             {
-                _logger.ErrorException("Utils.Login()", ex);
+                _logger.ErrorException("Login()", ex);
             }
         }
 

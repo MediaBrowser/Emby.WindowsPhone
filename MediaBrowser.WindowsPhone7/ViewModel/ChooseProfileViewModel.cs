@@ -112,7 +112,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                     SetProgressBar(AppResources.SysTrayAuthenticating);
 
-                    await AuthenticationService.Current.LogIn(selectedUser, pinCode);
+                    await AuthenticationService.Current.Login(selectedUser, pinCode);
                     if (AuthenticationService.Current.IsLoggedIn)
                     {
                         _navigationService.NavigateTo(!string.IsNullOrEmpty(App.Action) ? App.Action : Constants.Pages.HomePage);

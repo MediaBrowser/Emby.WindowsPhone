@@ -84,6 +84,7 @@
         {
             public const string HomePage = "/Views/MainPage.xaml";
             public const string ChooseProfileView = "/Views/ChooseProfileView.xaml";
+            public const string SettingsView = "/Views/SettingsView.xaml";
             public const string SettingsViewConnection = "/Views/SettingsView.xaml?settingsPane=2";
         }
     }
