@@ -15,6 +15,11 @@ namespace MediaBrowser.WindowsPhone.Model
             _logger = new WPLogger(typeof(ExtendedApiClient));
         }
 
+        public MBLogger(Type type)
+        {
+            _logger = new WPLogger(type);
+        }
+
         public void Info(string message, params object[] paramList)
         {
             _logger.Info(message, paramList);
