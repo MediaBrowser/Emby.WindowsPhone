@@ -16,6 +16,7 @@ using MediaBrowser.Model.Net;
 using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Model;
 using Microsoft.Phone.Info;
+using ScottIsAFool.WindowsPhone;
 using ScottIsAFool.WindowsPhone.Logging;
 using INavigationService = MediaBrowser.WindowsPhone.Model.INavigationService;
 
