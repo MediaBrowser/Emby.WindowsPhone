@@ -206,6 +206,9 @@
     <Compile Include="..\MediaBrowser.WindowsPhone7\ViewModel\PlaylistViewModel.cs">
       <Link>ViewModel\PlaylistViewModel.cs</Link>
     </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone7\ViewModel\RemoteViewModel.cs">
+      <Link>ViewModel\RemoteViewModel.cs</Link>
+    </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone7\ViewModel\SearchViewModel.cs">
       <Link>ViewModel\SearchViewModel.cs</Link>
     </Compile>
@@ -271,6 +274,14 @@
     <Compile Include="..\MediaBrowser.WindowsPhone7\Views\NowPlayingView.xaml.cs">
       <Link>Views\NowPlayingView.xaml.cs</Link>
       <DependentUpon>NowPlayingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone7\Views\Remote\ChooseClientView.xaml.cs">
+      <Link>Views\Remote\ChooseClientView.xaml.cs</Link>
+      <DependentUpon>ChooseClientView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone7\Views\Remote\RemoteView.xaml.cs">
+      <Link>Views\Remote\RemoteView.xaml.cs</Link>
+      <DependentUpon>RemoteView.xaml</DependentUpon>
     </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone7\Views\SearchView.xaml.cs">
       <Link>Views\SearchView.xaml.cs</Link>
@@ -418,6 +429,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\NowPlayingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Remote\ChooseClientView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Remote\RemoteView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -616,6 +635,7 @@
       <Name>Microsoft Player Framework</Name>
     </SDKReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

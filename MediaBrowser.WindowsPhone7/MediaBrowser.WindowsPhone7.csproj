@@ -216,6 +216,7 @@
     <Compile Include="Model\NavigationService.cs" />
     <Compile Include="ViewModel\NotificationsViewModel.cs" />
     <Compile Include="ViewModel\PlaylistViewModel.cs" />
+    <Compile Include="ViewModel\RemoteViewModel.cs" />
     <Compile Include="ViewModel\SearchViewModel.cs" />
     <Compile Include="Views\FullPlaylistView.xaml.cs">
       <DependentUpon>FullPlaylistView.xaml</DependentUpon>
@@ -228,6 +229,12 @@
     </Compile>
     <Compile Include="Views\NowPlayingView.xaml.cs">
       <DependentUpon>NowPlayingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Remote\ChooseClientView.xaml.cs">
+      <DependentUpon>ChooseClientView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Remote\RemoteView.xaml.cs">
+      <DependentUpon>RemoteView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SearchView.xaml.cs">
       <DependentUpon>SearchView.xaml</DependentUpon>
@@ -389,6 +396,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\NowPlayingView.xaml">
+      <SubType>Form</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Remote\ChooseClientView.xaml">
+      <SubType>Form</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Remote\RemoteView.xaml">
       <SubType>Form</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
