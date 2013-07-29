@@ -93,6 +93,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="..\MediaBrowser.WindowsPhone7\Behaviours\EnterKeyBehaviour.cs">
+      <Link>Behaviours\EnterKeyBehaviour.cs</Link>
+    </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone7\Behaviours\OnTextPropertyChangedBehaviour.cs">
       <Link>Behaviours\OnTextPropertyChangedBehaviour.cs</Link>
     </Compile>
@@ -259,6 +262,10 @@
       <Link>Views\MainPage.xaml.cs</Link>
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone7\Views\ManualUsernameView.xaml.cs">
+      <Link>Views\ManualUsernameView.xaml.cs</Link>
+      <DependentUpon>ManualUsernameView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone7\Views\MovieView.xaml.cs">
       <Link>Views\MovieView.xaml.cs</Link>
       <DependentUpon>MovieView.xaml</DependentUpon>
@@ -331,6 +338,7 @@
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
     <Content Include="Icons\appbar.feature.search.rest.png" />
+    <Content Include="Icons\appbar.check.rest.png" />
     <Content Include="Icons\searchbutton.png" />
     <Content Include="README_FIRST.txt" />
     <Content Include="Toolkit.Content\ApplicationBar.Cancel.png" />
@@ -415,6 +423,10 @@
     <Page Include="Views\MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ManualUsernameView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MovieView.xaml">
       <Generator>MSBuild:Compile</Generator>

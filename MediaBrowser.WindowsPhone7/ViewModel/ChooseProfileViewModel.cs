@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Linq;
+using System.Threading.Tasks;
 using Cimbalino.Phone.Toolkit.Services;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
@@ -58,6 +60,17 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
         }
 
+        public string Username { get; set; }
+        public string Password { get; set; }
+
+        public bool CanLogin
+        {
+            get
+            {
+                return true;// !string.IsNullOrEmpty(Username);
+            }
+        }
+
         public override void WireMessages()
         {
             Messenger.Default.Register<NotificationMessage>(this, m =>
@@ -81,10 +94,15 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                     try
                     {
-                        var profiles = await _apiClient.GetUsersAsync(new UserQuery());
+                        var profiles = await _apiClient.GetPublicUsersAsync();
                         foreach (var profile in profiles)
                         {
                             Profiles.Add(profile);
+                        }
+
+                        if (!Profiles.Any())
+                        {
+                            _navigationService.NavigateTo(Constants.Pages.ManualUsernameView);
                         }
                     }
                     catch (HttpException ex)
@@ -98,30 +116,42 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             LoginCommand = new RelayCommand<object[]>(async loginDetails =>
             {
-                var selectedUser = loginDetails[0] as UserDto;
+                var selectedUser = loginDetails[0] as string;
                 var pinCode = loginDetails[1] as string;
-
-                if (selectedUser != null)
-                {
-                    Debug.WriteLine(selectedUser.Id);
-
-                    SetProgressBar(AppResources.SysTrayAuthenticating);
-
-                    await AuthenticationService.Current.Login(selectedUser, pinCode);
-                    if (AuthenticationService.Current.IsLoggedIn)
-                    {
-                        _navigationService.NavigateTo(!string.IsNullOrEmpty(App.Action) ? App.Action : Constants.Pages.HomePage);
-                    }
-
-                }
-
-                SetProgressBar();
+                
+                await DoLogin(selectedUser, pinCode);
             });
+
+            ManualLoginCommand = new RelayCommand(async () =>
+            {
+                await DoLogin(Username, Password);
+            });
+        }
+
+        private async Task DoLogin(string selectedUserName, string pinCode)
+        {
+            if (string.IsNullOrEmpty(selectedUserName))
+            {
+                return;
+            }
+
+            Debug.WriteLine(selectedUserName);
+
+            SetProgressBar(AppResources.SysTrayAuthenticating);
+
+            await AuthenticationService.Current.Login(selectedUserName, pinCode);
+            if (AuthenticationService.Current.IsLoggedIn)
+            {
+                _navigationService.NavigateTo(!string.IsNullOrEmpty(App.Action) ? App.Action : Constants.Pages.HomePage);
+            }
+            
+            SetProgressBar();
         }
 
         public ObservableCollection<UserDto> Profiles { get; set; }
 
         public RelayCommand ChooseProfilePageLoaded { get; set; }
         public RelayCommand<object[]> LoginCommand { get; set; }
+        public RelayCommand ManualLoginCommand { get; set; }
     }
 }

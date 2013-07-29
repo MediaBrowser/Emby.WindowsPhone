@@ -10,6 +10,7 @@ using Cimbalino.Phone.Toolkit.Helpers;
 using Cimbalino.Phone.Toolkit.Services;
 using GalaSoft.MvvmLight.Ioc;
 using MediaBrowser.Model;
+using MediaBrowser.Model.Configuration;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Net;
@@ -198,8 +199,10 @@ namespace MediaBrowser.WindowsPhone
 
         internal static void CheckProfiles(INavigationService navigationService)
         {
+            var clients = App.Settings.ServerConfiguration.ManualLoginClients;
+            var loginPage = clients.Contains(ManualLoginCategory.Mobile) ? Constants.Pages.ManualUsernameView : Constants.Pages.ChooseProfileView;
             // If one exists, then authenticate that user.
-            navigationService.NavigateTo(AuthenticationService.Current.IsLoggedIn ? Constants.Pages.HomePage : Constants.Pages.ChooseProfileView);
+            navigationService.NavigateTo(AuthenticationService.Current.IsLoggedIn ? Constants.Pages.HomePage : loginPage);
         }
 
         internal static string GetDeviceName()

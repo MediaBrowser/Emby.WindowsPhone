@@ -45,22 +45,22 @@ namespace MediaBrowser.Services
             
         }
 
-        public async Task Login(UserDto selectedUser, string pinCode)
+        public async Task Login(string selectedUserName, string pinCode)
         {
             try
             {
-                _logger.Info("Authenticating user [{0}]", selectedUser.Name);
+                _logger.Info("Authenticating user [{0}]", selectedUserName);
 
-                await _apiClient.AuthenticateUserAsync(selectedUser.Name, pinCode.ToHash());
+                var result = await _apiClient.AuthenticateUserAsync(selectedUserName, pinCode.ToHash());
 
-                _logger.Info("Logged in as [{0}]", selectedUser.Name);
+                _logger.Info("Logged in as [{0}]", selectedUserName);
 
-                LoggedInUser = selectedUser;
+                LoggedInUser = result.User;
                 IsLoggedIn = true;
 
-                SettingsService.Set(Constants.Settings.SelectedUserSetting, selectedUser);
+                SettingsService.Set(Constants.Settings.SelectedUserSetting, selectedUserName);
                 SettingsService.Save();
-                _logger.Info("User [{0}] has been saved", selectedUser.Name);
+                _logger.Info("User [{0}] has been saved", selectedUserName);
             }
             catch (HttpException ex)
             {
