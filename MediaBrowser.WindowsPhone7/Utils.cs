@@ -202,23 +202,22 @@ namespace MediaBrowser.WindowsPhone
             navigationService.NavigateTo(AuthenticationService.Current.IsLoggedIn ? Constants.Pages.HomePage : Constants.Pages.ChooseProfileView);
         }
 
-        internal static ExtendedApiClient SetDeviceProperties(this ExtendedApiClient apiClient)
+        internal static string GetDeviceName()
         {
             var deviceName = DeviceStatus.DeviceName;
             var deviceId = DeviceStatus.DeviceManufacturer;
-
             var phone = PhoneNameResolver.Resolve(deviceId, deviceName);
+            var deviceInfo = string.Format("{0} ({1})", phone.CanonicalModel, phone.CanonicalManufacturer);
 
-            var deviceInfo = String.Format("{0} ({1})", phone.CanonicalModel, phone.CanonicalManufacturer);
+            return deviceInfo;
+        }
 
-            apiClient.DeviceName = deviceInfo;
-
+        internal static string GetDeviceId()
+        {
             var uniqueId = SimpleIoc.Default.GetInstance<IDeviceExtendedPropertiesService>().DeviceUniqueId;
-            apiClient.DeviceId = Convert.ToBase64String(uniqueId, 0, uniqueId.Length);
+            var deviceId = Convert.ToBase64String(uniqueId, 0, uniqueId.Length);
 
-            apiClient.ApplicationVersion = ApplicationManifest.Current.App.Version;
-
-            return apiClient;
+            return deviceId;
         }
 
         public static string DaysAgo(object value)

@@ -18,6 +18,8 @@ using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.Model;
 using INavigationService = MediaBrowser.WindowsPhone.Model.INavigationService;
 using NavigationService = MediaBrowser.WindowsPhone.Model.NavigationService;
+using MediaBrowser.ApiInteraction;
+using Cimbalino.Phone.Toolkit.Helpers;
 
 namespace MediaBrowser.WindowsPhone.ViewModel
 {
@@ -41,7 +43,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             if (ViewModelBase.IsInDesignModeStatic)
             {
                 if (!SimpleIoc.Default.IsRegistered<ExtendedApiClient>())
-                    SimpleIoc.Default.Register(() => new ExtendedApiClient(new MBLogger(), "192.168.0.2", 8096, "Windows Phone", "dummy", "dummy", "1.0.0.0"));
+                    SimpleIoc.Default.Register(() => new ExtendedApiClient(new NullLogger(), "192.168.0.2", 8096, "Windows Phone", "dummy", "dummy", "1.0.0.0"));
                 SimpleIoc.Default.Register<INavigationService, NavigationService>();
                 SimpleIoc.Default.Register<FolderViewModel>();
                 SimpleIoc.Default.Register<MovieViewModel>();
@@ -56,7 +58,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 SimpleIoc.Default.Register<INavigationService, NavigationService>();
                 SimpleIoc.Default.Register<ISettingsService, SettingsService>();
                 if (!SimpleIoc.Default.IsRegistered<ExtendedApiClient>())
-                    SimpleIoc.Default.Register(() => new ExtendedApiClient(new MBLogger(), "dummy", 8096, "Windows Phone", "dummy", "dummy", "1.0.0.0").SetDeviceProperties());
+                    SimpleIoc.Default.Register(() => new ExtendedApiClient(new MBLogger(), "dummy", 8096, "Windows Phone", Utils.GetDeviceName(), Utils.GetDeviceId(), ApplicationManifest.Current.App.Version));
 
                 if (!SimpleIoc.Default.IsRegistered<IDeviceExtendedPropertiesService>())
                     SimpleIoc.Default.Register<IDeviceExtendedPropertiesService, DeviceExtendedPropertiesService>();
