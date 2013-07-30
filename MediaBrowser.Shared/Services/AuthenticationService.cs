@@ -18,7 +18,7 @@ namespace MediaBrowser.Services
         private static readonly IApplicationSettingsService SettingsService = new ApplicationSettingsService();
         private static ExtendedApiClient _apiClient;
         private static ILogger _logger;
-        
+
         public static AuthenticationService Current
         {
             get { return _current ?? (_current = new AuthenticationService()); }
@@ -43,11 +43,6 @@ namespace MediaBrowser.Services
             }
         }
 
-        public void Stop()
-        {
-            
-        }
-
         public async Task Login(string selectedUserName, string pinCode)
         {
             try
@@ -67,15 +62,7 @@ namespace MediaBrowser.Services
             }
             catch (HttpException ex)
             {
-                if (ex.StatusCode == HttpStatusCode.Forbidden)
-                {
-                    MessageBox.Show("Sorry, we were unable to sign you in, this is most likely due to your account being disabled.", "Unable to sign in", MessageBoxButton.OK);
-                    _logger.Error("UnauthorizedAccess for user [{0}]", selectedUserName);
-                }
-                else
-                {
-                    _logger.ErrorException("Login()", ex);
-                }
+                _logger.ErrorException("Login()", ex);
             }
         }
 

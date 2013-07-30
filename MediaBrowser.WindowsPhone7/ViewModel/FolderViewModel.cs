@@ -35,20 +35,20 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     /// </summary>
     public class FolderViewModel : ViewModelBase
     {
-        private readonly INavigationService _navService;
+        private readonly INavigationService _navigationService;
         private readonly ExtendedApiClient _apiClient;
         private bool _dataLoaded;
 
         /// <summary>
         /// Initializes a new instance of the FolderViewModel class.
         /// </summary>
-        public FolderViewModel(INavigationService navService, ExtendedApiClient apiClient)
+        public FolderViewModel(INavigationService navigationService, ExtendedApiClient apiClient)
         {
             RecentItems = new ObservableCollection<BaseItemDto>();
             RandomItems = new ObservableCollection<BaseItemDto>();
 
             _apiClient = apiClient;
-            _navService = navService;
+            _navigationService = navigationService;
 
             if (IsInDesignMode)
             {
@@ -110,7 +110,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             PageLoaded = new RelayCommand(async () =>
             {
-                if (_navService.IsNetworkAvailable && !_dataLoaded)
+                if (_navigationService.IsNetworkAvailable && !_dataLoaded)
                 {
                     SetProgressBar(AppResources.SysTrayGettingItems);
 
@@ -125,7 +125,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             CollectionPageLoaded = new RelayCommand(async () =>
             {
-                if (_navService.IsNetworkAvailable && !_dataLoaded && SelectedFolder != null)
+                if (_navigationService.IsNetworkAvailable && !_dataLoaded && SelectedFolder != null)
                 {
                     SetProgressBar(AppResources.SysTrayCheckingCollection);
 
@@ -147,10 +147,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             SeeMoreCommand = new RelayCommand(() =>
             {
                 App.SelectedItem = SelectedFolder;
-                _navService.NavigateTo("/Views/FolderView.xaml");
+                _navigationService.NavigateTo("/Views/FolderView.xaml");
             });
 
-            NavigateTo = new RelayCommand<BaseItemDto>(_navService.NavigateTo);
+            NavigateTo = new RelayCommand<BaseItemDto>(_navigationService.NavigateTo);
         }
 
         private void GetRandomItems()
@@ -201,7 +201,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
             catch (HttpException ex)
             {
-                Log.ErrorException("GetRecentCollectionItems()", ex);
+                Utils.HandleHttpException(ex, "GetRecentCollectionItems()", _navigationService, Log);
                 return false;
             }
         }

@@ -2,7 +2,9 @@
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
+using System.Windows;
 using Cimbalino.Phone.Toolkit.Services;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
@@ -107,7 +109,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     }
                     catch (HttpException ex)
                     {
-                        Log.ErrorException("GettingProfiles()", ex);
+                        Utils.HandleHttpException(ex, "GettingProfiles()", _navigationService, Log);
                     }
 
                     SetProgressBar();
@@ -144,6 +146,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 _navigationService.NavigateTo(!string.IsNullOrEmpty(App.Action) ? App.Action : Constants.Pages.HomePage);
                 Username = Password = string.Empty;
+            }
+            else
+            {
+                MessageBox.Show("We were unable to sign you in at this time, this could be due to an incorrect username/password, or your account has been disabled.", "Login unsuccessful", MessageBoxButton.OK);
             }
             
             SetProgressBar();

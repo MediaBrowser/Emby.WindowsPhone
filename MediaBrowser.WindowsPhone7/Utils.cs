@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using Ailon.WP.Utils;
 using Cimbalino.Phone.Toolkit.Helpers;
 using Cimbalino.Phone.Toolkit.Services;
@@ -203,6 +205,19 @@ namespace MediaBrowser.WindowsPhone
             var loginPage = clients.Contains(ManualLoginCategory.Mobile) ? Constants.Pages.ManualUsernameView : Constants.Pages.ChooseProfileView;
             // If one exists, then authenticate that user.
             navigationService.NavigateTo(AuthenticationService.Current.IsLoggedIn ? Constants.Pages.HomePage : loginPage);
+        }
+
+        internal static void HandleHttpException(HttpException ex, string message, INavigationService navigationService, ILog log)
+        {
+            if (ex.StatusCode == HttpStatusCode.Forbidden)
+            {
+                MessageBox.Show("Sorry, it looks like this account has been disabled. We will now take you back to the login screen", "Unable to sign in", MessageBoxButton.OK);
+                log.Error("UnauthorizedAccess for user [{0}]", AuthenticationService.Current.LoggedInUser.Name);
+            }
+            else
+            {
+                log.ErrorException(message, ex);
+            }
         }
 
         internal static string GetDeviceName()

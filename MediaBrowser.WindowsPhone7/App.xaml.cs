@@ -27,7 +27,7 @@ namespace MediaBrowser.WindowsPhone
         private static SettingsService _settings;
         public static SettingsService Settings
         {
-            get { return _settings ?? (_settings = (SettingsService) Current.Resources["AppSettings"]); }
+            get { return _settings ?? (_settings = (SettingsService)Current.Resources["AppSettings"]); }
         }
 
         private static SpecificSettings _specificSettings;
@@ -132,8 +132,6 @@ namespace MediaBrowser.WindowsPhone
             var ast = SimpleIoc.Default.GetInstance<IApplicationSettingsService>();
             ast.Set(Constants.Settings.SpecificSettings, SpecificSettings);
             ast.Save();
-
-            AuthenticationService.Current.Stop();
         }
 
         // Code to execute when the application is closing (eg, user hit Back)

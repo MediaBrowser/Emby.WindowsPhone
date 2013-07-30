@@ -29,17 +29,18 @@ namespace MediaBrowser.WindowsPhone
         }
 
         private static SettingsService _settings;
+        private static bool _popupOpen;
 
         public static SettingsService Settings
         {
-            get { return _settings ?? (_settings = (SettingsService) Current.Resources["AppSettings"]); }
+            get { return _settings ?? (_settings = (SettingsService)Current.Resources["AppSettings"]); }
         }
 
         private static SpecificSettings _specificSettings;
 
         public static SpecificSettings SpecificSettings
         {
-            get { return _specificSettings ?? (_specificSettings = (SpecificSettings) Current.Resources["SpecificSettings"]); }
+            get { return _specificSettings ?? (_specificSettings = (SpecificSettings)Current.Resources["SpecificSettings"]); }
         }
 
         public static object SelectedItem { get; set; }
@@ -48,6 +49,11 @@ namespace MediaBrowser.WindowsPhone
 
         public static void ShowMessage(string message, string title = "", Action action = null)
         {
+            if (_popupOpen)
+            {
+                return;
+            }
+
             var prompt = new ToastPrompt
             {
                 Title = title,
@@ -57,7 +63,16 @@ namespace MediaBrowser.WindowsPhone
             };
 
             if (action != null)
+            {
                 prompt.Tap += (s, e) => action();
+            }
+
+            prompt.Completed += (sender, eventArgs) =>
+            {
+                _popupOpen = false;
+            };
+
+            _popupOpen = true;
             prompt.Show();
         }
 
@@ -76,7 +91,7 @@ namespace MediaBrowser.WindowsPhone
         /// </summary>
         public App()
         {
-            _logger = new WPLogger(typeof (App));
+            _logger = new WPLogger(typeof(App));
 
             // Global handler for uncaught exceptions.
             UnhandledException += ApplicationUnhandledException;
