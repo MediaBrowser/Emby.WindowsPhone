@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Linq;
+using System.Threading.Tasks;
 using Cimbalino.Phone.Toolkit.Services;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Querying;
-using MediaBrowser.WindowsPhone.Model;
+using MediaBrowser.Services;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.WindowsPhone.Resources;
-
-using MediaBrowser.Shared;
 using ScottIsAFool.WindowsPhone.ViewModel;
 using INavigationService = MediaBrowser.WindowsPhone.Model.INavigationService;
 
@@ -27,7 +27,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     {
         private readonly ExtendedApiClient _apiClient;
         private readonly INavigationService _navigationService;
-        private readonly IApplicationSettingsService _applicationSettings;
 
         /// <summary>
         /// Initializes a new instance of the ChooseProfileViewModel class.
@@ -36,7 +35,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             _apiClient = apiClient;
             _navigationService = navigationService;
-            _applicationSettings = applicationSettings;
 
             Profiles = new ObservableCollection<UserDto>();
             if (IsInDesignMode)
@@ -59,6 +57,17 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             else
             {
                 WireCommands();
+            }
+        }
+
+        public string Username { get; set; }
+        public string Password { get; set; }
+
+        public bool CanLogin
+        {
+            get
+            {
+                return true;// !string.IsNullOrEmpty(Username);
             }
         }
 
@@ -85,9 +94,16 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                     try
                     {
-                        var profiles = await _apiClient.GetUsersAsync(new UserQuery());
+                        var profiles = await _apiClient.GetPublicUsersAsync();
                         foreach (var profile in profiles)
+                        {
                             Profiles.Add(profile);
+                        }
+
+                        if (!Profiles.Any())
+                        {
+                            _navigationService.NavigateTo(Constants.Pages.ManualUsernameView);
+                        }
                     }
                     catch (HttpException ex)
                     {
@@ -100,52 +116,43 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             LoginCommand = new RelayCommand<object[]>(async loginDetails =>
             {
-                var selectedUser = loginDetails[0] as UserDto;
+                var selectedUser = loginDetails[0] as string;
                 var pinCode = loginDetails[1] as string;
-                var saveUser = (bool) loginDetails[2];
+                
+                await DoLogin(selectedUser, pinCode);
+            });
 
-                if (selectedUser != null)
-                {
-                    Debug.WriteLine(selectedUser.Id);
-
-                    SetProgressBar(AppResources.SysTrayAuthenticating);
-
-                    await Utils.Login(Log, selectedUser, pinCode, () =>
-                    {
-                        SetUser(selectedUser);
-                        if (saveUser)
-                        {
-                            _applicationSettings.Set(Constants.Settings.SelectedUserSetting, new UserSettingWrapper
-                            {
-                                User = selectedUser,
-                                Pin = pinCode
-                            });
-                            _applicationSettings.Save();
-                            Log.Info("User [{0}] has been saved", selectedUser.Name);
-                        }
-                    });
-
-                    SetProgressBar();
-                }
+            ManualLoginCommand = new RelayCommand(async () =>
+            {
+                await DoLogin(Username, Password);
             });
         }
 
-        private void SetUser(UserDto profile)
+        private async Task DoLogin(string selectedUserName, string pinCode)
         {
-            App.Settings.LoggedInUser = profile;
-            if (!string.IsNullOrEmpty(App.Action))
+            if (string.IsNullOrEmpty(selectedUserName))
             {
-                _navigationService.NavigateTo(App.Action);
+                return;
             }
-            else
+
+            Debug.WriteLine(selectedUserName);
+
+            SetProgressBar(AppResources.SysTrayAuthenticating);
+
+            await AuthenticationService.Current.Login(selectedUserName, pinCode);
+            if (AuthenticationService.Current.IsLoggedIn)
             {
-                _navigationService.NavigateTo("/Views/MainPage.xaml");
+                _navigationService.NavigateTo(!string.IsNullOrEmpty(App.Action) ? App.Action : Constants.Pages.HomePage);
+                Username = Password = string.Empty;
             }
+            
+            SetProgressBar();
         }
 
         public ObservableCollection<UserDto> Profiles { get; set; }
 
         public RelayCommand ChooseProfilePageLoaded { get; set; }
         public RelayCommand<object[]> LoginCommand { get; set; }
+        public RelayCommand ManualLoginCommand { get; set; }
     }
 }

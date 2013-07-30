@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using GalaSoft.MvvmLight.Command;
+using MediaBrowser.Model;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Querying;
+using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Model;
 using GalaSoft.MvvmLight.Messaging;
 using System.Linq;
@@ -12,6 +14,7 @@ using MediaBrowser.WindowsPhone.Resources;
 #if !WP8
 using ScottIsAFool.WindowsPhone;
 #endif
+using ScottIsAFool.WindowsPhone;
 using ScottIsAFool.WindowsPhone.ViewModel;
 
 namespace MediaBrowser.WindowsPhone.ViewModel
@@ -105,7 +108,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         {
                             Log.Info("Getting information for TV Series [{0}] ({1})", SelectedTvSeries.Name, SelectedTvSeries.Id);
 
-                            SelectedTvSeries = await _apiClient.GetItemAsync(SelectedTvSeries.Id, App.Settings.LoggedInUser.Id);
+                            SelectedTvSeries = await _apiClient.GetItemAsync(SelectedTvSeries.Id, AuthenticationService.Current.LoggedInUser.Id);
                             CastAndCrew = Utils.GroupCastAndCrew(SelectedTvSeries.People);
                         }
                         catch (HttpException ex)
@@ -174,7 +177,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 Log.Info("Getting information for episode [{0}] ({1})", SelectedEpisode.Name, SelectedEpisode.Id);
 
-                var episode = await _apiClient.GetItemAsync(SelectedEpisode.Id, App.Settings.LoggedInUser.Id);
+                var episode = await _apiClient.GetItemAsync(SelectedEpisode.Id, AuthenticationService.Current.LoggedInUser.Id);
                 return true;
             }
             catch (HttpException ex)
@@ -192,12 +195,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 var query = new ItemQuery
                 {
-                    UserId = App.Settings.LoggedInUser.Id,
+                    UserId = AuthenticationService.Current.LoggedInUser.Id,
                     ParentId = SelectedTvSeries.Id,
                     Filters = new[] {ItemFilter.IsRecentlyAdded},
                     Fields = new[]
                     {
-                        ItemFields.SeriesInfo,
                         ItemFields.ParentId
                     },
                     Recursive = true
@@ -232,11 +234,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 var query = new ItemQuery
                 {
-                    UserId = App.Settings.LoggedInUser.Id,
+                    UserId = AuthenticationService.Current.LoggedInUser.Id,
                     ParentId = SelectedTvSeries.Id,
                     Fields = new[]
                     {
-                        ItemFields.SeriesInfo,
                         ItemFields.ParentId
                     }
                 };
@@ -262,11 +263,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 var query = new ItemQuery
                 {
-                    UserId = App.Settings.LoggedInUser.Id,
+                    UserId = AuthenticationService.Current.LoggedInUser.Id,
                     ParentId = SelectedSeason.Id,
                     Fields = new[]
                     {
-                        ItemFields.SeriesInfo,
                         ItemFields.ParentId,
                         ItemFields.Overview
                     }

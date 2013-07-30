@@ -6,6 +6,8 @@ using Cimbalino.Phone.Toolkit.Helpers;
 using Cimbalino.Phone.Toolkit.Services;
 using Coding4Fun.Toolkit.Controls;
 using GalaSoft.MvvmLight.Ioc;
+using MediaBrowser.Services;
+using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.ViewModel;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
@@ -18,7 +20,7 @@ namespace MediaBrowser.WindowsPhone
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
-    public partial class App : Application
+    public partial class App
     {
         private readonly ILog _logger;
 
@@ -66,7 +68,7 @@ namespace MediaBrowser.WindowsPhone
             _logger = new WPLogger(typeof(App));
 
             // Global handler for uncaught exceptions. 
-            UnhandledException += Application_UnhandledException;
+            UnhandledException += ApplicationUnhandledException;
 
             // Standard Silverlight initialization
             InitializeComponent();
@@ -83,7 +85,7 @@ namespace MediaBrowser.WindowsPhone
             if (System.Diagnostics.Debugger.IsAttached)
             {
                 // Display the current frame rate counters.
-                Application.Current.Host.Settings.EnableFrameRateCounter = true;
+                Current.Host.Settings.EnableFrameRateCounter = true;
 
                 // Show the areas of the app that are being redrawn in each frame.
                 //Application.Current.Host.Settings.EnableRedrawRegions = true;
@@ -103,20 +105,24 @@ namespace MediaBrowser.WindowsPhone
 
         // Code to execute when the application is launching (eg, from Start)
         // This code will not execute when the application is reactivated
-        private void Application_Launching(object sender, LaunchingEventArgs e)
+        private void ApplicationLaunching(object sender, LaunchingEventArgs e)
         {
-            
+            AuthenticationService.Current.Start(SimpleIoc.Default.GetInstance<ExtendedApiClient>(), new MBLogger(typeof(AuthenticationService)));
         }
 
         // Code to execute when the application is activated (brought to foreground)
         // This code will not execute when the application is first launched
-        private void Application_Activated(object sender, ActivatedEventArgs e)
+        private void ApplicationActivated(object sender, ActivatedEventArgs e)
         {
+            if (!e.IsApplicationInstancePreserved)
+            {
+                AuthenticationService.Current.Start(SimpleIoc.Default.GetInstance<ExtendedApiClient>(), new MBLogger(typeof(AuthenticationService)));
+            }
         }
 
         // Code to execute when the application is deactivated (sent to background)
         // This code will not execute when the application is closing
-        private void Application_Deactivated(object sender, DeactivatedEventArgs e)
+        private void ApplicationDeactivated(object sender, DeactivatedEventArgs e)
         {
             SaveSettings();
         }
@@ -126,18 +132,20 @@ namespace MediaBrowser.WindowsPhone
             var ast = SimpleIoc.Default.GetInstance<IApplicationSettingsService>();
             ast.Set(Constants.Settings.SpecificSettings, SpecificSettings);
             ast.Save();
+
+            AuthenticationService.Current.Stop();
         }
 
         // Code to execute when the application is closing (eg, user hit Back)
         // This code will not execute when the application is deactivated
-        private void Application_Closing(object sender, ClosingEventArgs e)
+        private void ApplicationClosing(object sender, ClosingEventArgs e)
         {
             SaveSettings();
             ViewModelLocator.Cleanup();
         }
 
         // Code to execute if a navigation fails
-        private void RootFrame_NavigationFailed(object sender, NavigationFailedEventArgs e)
+        private void RootFrameNavigationFailed(object sender, NavigationFailedEventArgs e)
         {
             if (System.Diagnostics.Debugger.IsAttached)
             {
@@ -149,7 +157,7 @@ namespace MediaBrowser.WindowsPhone
         }
 
         // Code to execute on Unhandled Exceptions
-        private void Application_UnhandledException(object sender, ApplicationUnhandledExceptionEventArgs e)
+        private void ApplicationUnhandledException(object sender, ApplicationUnhandledExceptionEventArgs e)
         {
             if (System.Diagnostics.Debugger.IsAttached)
             {
@@ -165,12 +173,12 @@ namespace MediaBrowser.WindowsPhone
         #region Phone application initialization
 
         // Avoid double-initialization
-        private bool phoneApplicationInitialized = false;
+        private bool _phoneApplicationInitialized;
 
         // Do not add any additional code to this method
         private void InitializePhoneApplication()
         {
-            if (phoneApplicationInitialized)
+            if (_phoneApplicationInitialized)
                 return;
 
             // Create the frame but don't set it as RootVisual yet; this allows the splash
@@ -182,10 +190,10 @@ namespace MediaBrowser.WindowsPhone
             RootFrame.Navigated += CompleteInitializePhoneApplication;
 
             // Handle navigation failures
-            RootFrame.NavigationFailed += RootFrame_NavigationFailed;
+            RootFrame.NavigationFailed += RootFrameNavigationFailed;
 
             // Ensure we don't initialize again
-            phoneApplicationInitialized = true;
+            _phoneApplicationInitialized = true;
         }
 
         // Do not add any additional code to this method

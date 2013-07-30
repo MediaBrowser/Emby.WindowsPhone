@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Command;
+using MediaBrowser.Model;
 using MediaBrowser.Model.Net;
+using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.Model.Dto;
 using GalaSoft.MvvmLight.Messaging;
@@ -10,6 +12,7 @@ using MediaBrowser.WindowsPhone.Resources;
 #if !WP8
 using ScottIsAFool.WindowsPhone;
 #endif
+using ScottIsAFool.WindowsPhone;
 using ScottIsAFool.WindowsPhone.ViewModel;
 
 namespace MediaBrowser.WindowsPhone.ViewModel
@@ -107,7 +110,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 {
                     CanUpdateFavourites = false;
 
-                    await _apiClient.UpdateFavoriteStatusAsync(SelectedMovie.Id, App.Settings.LoggedInUser.Id, !SelectedMovie.UserData.IsFavorite);
+                    await _apiClient.UpdateFavoriteStatusAsync(SelectedMovie.Id, AuthenticationService.Current.LoggedInUser.Id, !SelectedMovie.UserData.IsFavorite);
                     SelectedMovie.UserData.IsFavorite = !SelectedMovie.UserData.IsFavorite;
                 }
                 catch (HttpException ex)
@@ -134,7 +137,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 Log.Info("Getting details for movie [{0}] ({1})", SelectedMovie.Name, SelectedMovie.Id);
 
-                var item = await _apiClient.GetItemAsync(SelectedMovie.Id, App.Settings.LoggedInUser.Id);
+                var item = await _apiClient.GetItemAsync(SelectedMovie.Id, AuthenticationService.Current.LoggedInUser.Id);
                 SelectedMovie = item;
                 CastAndCrew = Utils.GroupCastAndCrew(item.People);
                 result = true;

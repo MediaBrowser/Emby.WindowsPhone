@@ -3,13 +3,16 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using GalaSoft.MvvmLight.Command;
+using MediaBrowser.Model;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Search;
+using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Model;
 #if !WP8
 using ScottIsAFool.WindowsPhone;
 #endif
+using ScottIsAFool.WindowsPhone;
 using ScottIsAFool.WindowsPhone.ViewModel;
 
 namespace MediaBrowser.WindowsPhone.ViewModel
@@ -61,7 +64,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 Log.Info("Searching for [{0}]", SearchText);
                 SetProgressBar("Searching...");
 
-                var items = await _apiClient.GetSearchHints(App.Settings.LoggedInUser.Id, SearchText, null, null);
+                var items = await _apiClient.GetSearchHints(AuthenticationService.Current.LoggedInUser.Id, SearchText, null, null);
 
                 if (items != null)
                 {

@@ -9,7 +9,7 @@ using Cimbalino.Phone.Toolkit.Services;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using JetBrains.Annotations;
-using MediaBrowser.Shared;
+using MediaBrowser.Model;
 using MediaBrowser.WindowsPhone.AudioAgent;
 using Microsoft.Phone.BackgroundAudio;
 using ScottIsAFool.WindowsPhone.ViewModel;

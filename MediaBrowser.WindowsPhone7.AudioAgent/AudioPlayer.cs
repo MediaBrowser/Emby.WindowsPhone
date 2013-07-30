@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using Cimbalino.Phone.Toolkit.Services;
-using MediaBrowser.Shared;
+using MediaBrowser.Model;
 using Microsoft.Phone.BackgroundAudio;
 
 namespace MediaBrowser.WindowsPhone.AudioAgent

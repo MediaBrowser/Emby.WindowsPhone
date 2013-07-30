@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using MediaBrowser.Model;
 using MediaBrowser.Shared;
 using Microsoft.Phone.BackgroundAudio;
 

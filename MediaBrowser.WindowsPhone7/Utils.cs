@@ -9,11 +9,15 @@ using Ailon.WP.Utils;
 using Cimbalino.Phone.Toolkit.Helpers;
 using Cimbalino.Phone.Toolkit.Services;
 using GalaSoft.MvvmLight.Ioc;
+using MediaBrowser.Model;
+using MediaBrowser.Model.Configuration;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Net;
+using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Model;
 using Microsoft.Phone.Info;
+using ScottIsAFool.WindowsPhone;
 using ScottIsAFool.WindowsPhone.Logging;
 using INavigationService = MediaBrowser.WindowsPhone.Model.INavigationService;
 
@@ -93,30 +97,7 @@ namespace MediaBrowser.WindowsPhone
             }
             return '#'.ToString();
         }
-
-        internal static async Task Login(ILog logger, UserDto selectedUser, string pinCode, Action successAction)
-        {
-            var client = SimpleIoc.Default.GetInstance<ExtendedApiClient>();
-
-            try
-            {
-                logger.Info("Authenticating user [{0}]", selectedUser.Name);
-
-                await client.AuthenticateUserAsync(selectedUser.Id, pinCode.ToHash());
-
-                logger.Info("Logged in as [{0}]", selectedUser.Name);
-
-                if (successAction != null)
-                {
-                    successAction.Invoke();
-                }
-            }
-            catch (HttpException ex)
-            {
-                logger.ErrorException("Utils.Login()", ex);
-            }
-        }
-
+        
         internal static void CopyItem<T>(T source, T destination) where T : class
         {
             var type = typeof(T);
@@ -216,55 +197,30 @@ namespace MediaBrowser.WindowsPhone
             }
         }
 
-        internal static async Task CheckProfiles(INavigationService navigationService, ILog log)
+        internal static void CheckProfiles(INavigationService navigationService)
         {
+            var clients = App.Settings.ServerConfiguration.ManualLoginClients;
+            var loginPage = clients.Contains(ManualLoginCategory.Mobile) ? Constants.Pages.ManualUsernameView : Constants.Pages.ChooseProfileView;
             // If one exists, then authenticate that user.
-            if (App.Settings.LoggedInUser != null)
-            {
-                await Login(log, App.Settings.LoggedInUser, App.Settings.PinCode, () =>
-                {
-                    if (!string.IsNullOrEmpty(App.Action))
-                    {
-                        navigationService.NavigateTo(App.Action);
-                    }
-                    else
-                    {
-                        navigationService.NavigateTo("/Views/MainPage.xaml");
-                    }
-                });
-            }
-            else
-            {
-                navigationService.NavigateTo("/Views/ChooseProfileView.xaml");
-            }
+            navigationService.NavigateTo(AuthenticationService.Current.IsLoggedIn ? Constants.Pages.HomePage : loginPage);
         }
 
-        internal static byte[] ToHash(this string pinCode)
-        {
-            var sha1 = new SHA1Managed();
-            var encoding = new UTF8Encoding();
-            sha1.ComputeHash(encoding.GetBytes(pinCode));
-
-            return sha1.Hash;
-        }
-
-        internal static ExtendedApiClient SetDeviceProperties(this ExtendedApiClient apiClient)
+        internal static string GetDeviceName()
         {
             var deviceName = DeviceStatus.DeviceName;
             var deviceId = DeviceStatus.DeviceManufacturer;
-
             var phone = PhoneNameResolver.Resolve(deviceId, deviceName);
+            var deviceInfo = string.Format("{0} ({1})", phone.CanonicalModel, phone.CanonicalManufacturer);
 
-            var deviceInfo = String.Format("{0} ({1})", phone.CanonicalModel, phone.CanonicalManufacturer);
+            return deviceInfo;
+        }
 
-            apiClient.DeviceName = deviceInfo;
-
+        internal static string GetDeviceId()
+        {
             var uniqueId = SimpleIoc.Default.GetInstance<IDeviceExtendedPropertiesService>().DeviceUniqueId;
-            apiClient.DeviceId = Convert.ToBase64String(uniqueId, 0, uniqueId.Length);
+            var deviceId = Convert.ToBase64String(uniqueId, 0, uniqueId.Length);
 
-            apiClient.ApplicationVersion = ApplicationManifest.Current.App.Version;
-
-            return apiClient;
+            return deviceId;
         }
 
         public static string DaysAgo(object value)

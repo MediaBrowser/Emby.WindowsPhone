@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using MediaBrowser.Model;
 using MediaBrowser.Model.Logging;
 using ScottIsAFool.WindowsPhone.Logging;
 
@@ -12,6 +13,11 @@ namespace MediaBrowser.WindowsPhone.Model
         public MBLogger()
         {
             _logger = new WPLogger(typeof(ExtendedApiClient));
+        }
+
+        public MBLogger(Type type)
+        {
+            _logger = new WPLogger(type);
         }
 
         public void Info(string message, params object[] paramList)

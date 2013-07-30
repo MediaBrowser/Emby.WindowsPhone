@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Media;
+using MediaBrowser.Model;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Logging;
 using MediaBrowser.Model.Search;
-using MediaBrowser.Shared;
+
 using MediaBrowser.WindowsPhone.Model;
 using ScottIsAFool.WindowsPhone.Logging;
 

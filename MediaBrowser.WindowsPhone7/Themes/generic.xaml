@@ -135,6 +135,7 @@
                                        TextWrapping="Wrap"
                                        Margin="15,0,0,0" />
                             <CheckBox x:Name="chbxSaveUser"
+                                      Visibility="Collapsed"
                                       Content="Stay signed in"
                                       Margin="4,-19,0,0" />
                             <Grid x:Name="passwordStack"

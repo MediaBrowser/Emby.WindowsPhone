@@ -2,9 +2,11 @@
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using MediaBrowser.Model;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Querying;
+using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Model;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
@@ -17,6 +19,7 @@ using Microsoft.Phone.Shell;
 #if !WP8
 using ScottIsAFool.WindowsPhone;
 #endif
+using ScottIsAFool.WindowsPhone;
 using ScottIsAFool.WindowsPhone.ViewModel;
 
 namespace MediaBrowser.WindowsPhone.ViewModel
@@ -108,7 +111,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             PageLoaded = new RelayCommand(async () =>
             {
-                if (_navService.IsNetworkAvailable && App.Settings.CheckHostAndPort() && !_dataLoaded)
+                if (_navService.IsNetworkAvailable && !_dataLoaded)
                 {
                     SetProgressBar(AppResources.SysTrayGettingItems);
 
@@ -173,15 +176,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             var query = new ItemQuery
             {
                 Filters = new[] {ItemFilter.IsRecentlyAdded, ItemFilter.IsNotFolder},
-                UserId = App.Settings.LoggedInUser.Id,
+                UserId = AuthenticationService.Current.LoggedInUser.Id,
                 Fields = new[]
                 {
-                    ItemFields.SeriesInfo,
                     ItemFields.DateCreated,
-                    ItemFields.UserData,
                     ItemFields.ProviderIds,
                     ItemFields.ParentId,
-                    ItemFields.AudioInfo
                 },
                 ParentId = SelectedFolder.Id,
                 Recursive = true
@@ -214,10 +214,15 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 var query = new ItemQuery
                 {
-                    UserId = App.Settings.LoggedInUser.Id,
+                    UserId = AuthenticationService.Current.LoggedInUser.Id,
                     SortBy = new[] {ItemSortBy.SortName},
                     SortOrder = SortOrder.Ascending,
-                    Fields = new[] {ItemFields.SortName, ItemFields.UserData, ItemFields.Genres, ItemFields.ProviderIds}
+                    Fields = new[]
+                    {
+                        ItemFields.SortName,
+                        ItemFields.Genres, 
+                        ItemFields.ProviderIds
+                    }
                 };
                 if (SelectedPerson != null)
                 {

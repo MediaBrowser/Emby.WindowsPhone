@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
+using MediaBrowser.Model;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Querying;
-using MediaBrowser.Shared;
+using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Resources;
+using ScottIsAFool.WindowsPhone;
 using ScottIsAFool.WindowsPhone.ViewModel;
 using INavigationService = MediaBrowser.WindowsPhone.Model.INavigationService;
 
@@ -231,7 +233,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 {
 
                 };
-                SelectedArtist = await _apiClient.GetItemAsync(SelectedArtist.Id, App.Settings.LoggedInUser.Id);
+                SelectedArtist = await _apiClient.GetItemAsync(SelectedArtist.Id, AuthenticationService.Current.LoggedInUser.Id);
             }
             catch (HttpException ex)
             {
@@ -271,10 +273,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 var query = new ItemQuery
                 {
-                    UserId = App.Settings.LoggedInUser.Id,
+                    UserId = AuthenticationService.Current.LoggedInUser.Id,
                     Artists = new[] {SelectedArtist.Name},
                     Recursive = true,
-                    Fields = new[] {ItemFields.AudioInfo, ItemFields.ParentId,},
+                    Fields = new[] { ItemFields.ParentId,},
                     IncludeItemTypes = new[] {"Audio"}
                 };
 
@@ -302,10 +304,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 var query = new ItemQuery
                 {
-                    UserId = App.Settings.LoggedInUser.Id,
+                    UserId = AuthenticationService.Current.LoggedInUser.Id,
                     Artists = new[] {SelectedArtist.Name},
                     Recursive = true,
-                    Fields = new[] {ItemFields.AudioInfo, ItemFields.ParentId,},
+                    Fields = new[] { ItemFields.ParentId,},
                     IncludeItemTypes = new[] {"MusicAlbum"}
                 };
 

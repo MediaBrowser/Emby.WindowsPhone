@@ -10,7 +10,7 @@ using MediaBrowser.WindowsPhone.Resources;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 
-using MediaBrowser.Shared;
+
 using MediaBrowser.Model;
 using ScottIsAFool.WindowsPhone.ViewModel;
 using INavigationService = MediaBrowser.WindowsPhone.Model.INavigationService;
@@ -92,15 +92,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         // Get and set the app specific settings 
                         var specificSettings = _applicationSettings.Get<SpecificSettings>(Constants.Settings.SpecificSettings);
                         if (specificSettings != null) Utils.CopyItem(specificSettings, App.SpecificSettings);
-
-                        // See if there is a user already saved in isolated storage
-                        var user = _applicationSettings.Get<UserSettingWrapper>(Constants.Settings.SelectedUserSetting);
-                        if (user != null)
-                        {
-                            App.Settings.LoggedInUser = user.User;
-                            App.Settings.PinCode = user.Pin;
-                        }
-
+                        
                         // See if we can find and communicate with the server
                         if (_navigationService.IsNetworkAvailable && App.Settings.ConnectionDetails != null)
                         {
@@ -113,12 +105,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                             {
                                 await SetPushSettings();
                                 SetProgressBar(AppResources.SysTrayAuthenticating);
-                                await Utils.CheckProfiles(_navigationService, Log);
+                                Utils.CheckProfiles(_navigationService);
                             }
                             else
                             {
                                 App.ShowMessage(AppResources.ErrorCouldNotFindServer);
-                                _navigationService.NavigateTo("/Views/SettingsView.xaml?settingsPane=2");
+                                _navigationService.NavigateTo(Constants.Pages.SettingsViewConnection);
                             }
                         }
 

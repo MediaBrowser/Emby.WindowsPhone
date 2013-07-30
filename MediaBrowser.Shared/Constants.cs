@@ -79,5 +79,14 @@
             public const string NotificationCountMsg = "NotificationCountMsg";
             public const string NotifcationNavigationMsg = "NotifcationNavigationMsg";
         }
+
+        public class Pages
+        {
+            public const string HomePage = "/Views/MainPage.xaml";
+            public const string ChooseProfileView = "/Views/ChooseProfileView.xaml";
+            public const string ManualUsernameView = "/Views/ManualUsernameView.xaml";
+            public const string SettingsView = "/Views/SettingsView.xaml";
+            public const string SettingsViewConnection = "/Views/SettingsView.xaml?settingsPane=2";
+        }
     }
 }

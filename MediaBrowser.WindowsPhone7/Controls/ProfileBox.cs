@@ -139,9 +139,8 @@ namespace MediaBrowser.WindowsPhone.Controls
             {
                 var loginDetails = new object[]
                                        {
-                                           Profile,
-                                           passwordBox.Password,
-                                           checkBox.IsChecked
+                                           Profile.Name,
+                                           passwordBox.Password
                                        };
                 LoginCommand.Execute(loginDetails);
             }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Data;
 using GalaSoft.MvvmLight.Ioc;
+using MediaBrowser.Model;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Search;

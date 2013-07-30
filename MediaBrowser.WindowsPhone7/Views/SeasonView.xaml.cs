@@ -2,7 +2,7 @@
 using MediaBrowser.Model.Dto;
 using MediaBrowser.WindowsPhone.ViewModel;
 using Microsoft.Phone.Controls;
-using MediaBrowser.Shared;
+
 
 namespace MediaBrowser.WindowsPhone.Views
 {

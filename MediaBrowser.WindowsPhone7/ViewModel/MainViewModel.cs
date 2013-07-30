@@ -2,11 +2,12 @@
 using System.Windows;
 using Cimbalino.Phone.Toolkit.Services;
 using GalaSoft.MvvmLight.Messaging;
+using MediaBrowser.Model;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Notifications;
 using MediaBrowser.Model.Querying;
-using MediaBrowser.WindowsPhone.Model;
+using MediaBrowser.Services;
 using GalaSoft.MvvmLight.Command;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -96,7 +97,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                 Reset();
 
-                _navService.NavigateTo("/Views/ChooseProfileView.xaml");
+                _navService.NavigateTo(Constants.Pages.ChooseProfileView);
             });
 
             PinCollectionCommand = new RelayCommand<BaseItemDto>(collection =>
@@ -169,7 +170,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 try
                 {
                     Log.Info("Telling the server about watching this video");
-                    await _apiClient.ReportPlaybackStartAsync(item.Id, App.Settings.LoggedInUser.Id).ConfigureAwait(true);
+                    await _apiClient.ReportPlaybackStartAsync(item.Id, AuthenticationService.Current.LoggedInUser.Id).ConfigureAwait(true);
                 }
                 catch (HttpException ex)
                 {
@@ -208,13 +209,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
         private void Reset()
         {
-            App.Settings.LoggedInUser = null;
-            App.Settings.PinCode = string.Empty;
+            AuthenticationService.Current.Logout();
             
-            _applicationSettings.Reset(Constants.Settings.SelectedUserSetting);
-            _applicationSettings.Reset(Constants.Settings.SelectedUserPinSetting);
-            _applicationSettings.Save();
-
             _hasLoaded = false;
             Folders.Clear();
             RecentItems.Clear();
@@ -224,7 +220,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         private async Task GetEverything(bool isRefresh)
         {
             if (_navService.IsNetworkAvailable
-                && App.Settings.CheckHostAndPort()
                 && (!_hasLoaded || isRefresh))
             {
 
@@ -256,9 +251,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 Limit = 5,
                 StartIndex = 0,
-                UserId = App.Settings.LoggedInUser.Id
+                UserId = AuthenticationService.Current.LoggedInUser.Id
             };
-            var summary = await _apiClient.GetNotificationsSummary(App.Settings.LoggedInUser.Id);
+            var summary = await _apiClient.GetNotificationsSummary(AuthenticationService.Current.LoggedInUser.Id);
             var notifications = await _apiClient.GetNotificationsAsync(query);
         }
 
@@ -267,11 +262,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             try
             {
                 FavouriteItems.Clear();
-                Log.Info("Getting favourites for user [{0}]", App.Settings.LoggedInUser.Name);
+                Log.Info("Getting favourites for user [{0}]", AuthenticationService.Current.LoggedInUser.Name);
 
                 var query = new ItemQuery
                 {
-                    UserId = App.Settings.LoggedInUser.Id,
+                    UserId = AuthenticationService.Current.LoggedInUser.Id,
                     Filters = new[] {ItemFilter.IsFavorite},
                     Recursive = true
                 };
@@ -301,14 +296,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 var query = new ItemQuery
                 {
                     Filters = new[] {ItemFilter.IsRecentlyAdded, ItemFilter.IsNotFolder},
-                    UserId = App.Settings.LoggedInUser.Id,
+                    UserId = AuthenticationService.Current.LoggedInUser.Id,
                     Fields = new[]
                     {
-                        ItemFields.SeriesInfo,
                         ItemFields.DateCreated,
-                        ItemFields.UserData,
                         ItemFields.ParentId,
-                        ItemFields.AudioInfo
                     },
                     Recursive = true
                 };
@@ -336,11 +328,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             try
             {
-                Log.Info("Getting collections for [{0}] ({1})", App.Settings.LoggedInUser.Name, App.Settings.LoggedInUser.Id);
+                Log.Info("Getting collections for [{0}] ({1})", AuthenticationService.Current.LoggedInUser.Name, AuthenticationService.Current.LoggedInUser.Id);
 
                 var query = new ItemQuery
                 {
-                    UserId = App.Settings.LoggedInUser.Id,
+                    UserId = AuthenticationService.Current.LoggedInUser.Id,
                     Fields = new[] {ItemFields.ItemCounts},
                     SortOrder = SortOrder.Ascending,
                     SortBy = new[] {ItemSortBy.SortName}
