@@ -220,7 +220,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         private async Task GetEverything(bool isRefresh)
         {
             if (_navService.IsNetworkAvailable
-                && App.Settings.CheckHostAndPort()
                 && (!_hasLoaded || isRefresh))
             {
 

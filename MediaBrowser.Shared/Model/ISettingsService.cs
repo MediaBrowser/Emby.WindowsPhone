@@ -6,8 +6,7 @@ namespace MediaBrowser.Model
 {
     public interface ISettingsService
     {
-        UserDto LoggedInUser { get; set; }
-        string PinCode { get; set; }
+        UserDto LoggedInUser { get; }
         ConnectionDetails ConnectionDetails { get; set; }
         ServerConfiguration ServerConfiguration { get; set; }
         SystemInfo SystemStatus { get; set; }

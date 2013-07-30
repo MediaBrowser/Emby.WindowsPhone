@@ -111,7 +111,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             PageLoaded = new RelayCommand(async () =>
             {
-                if (_navService.IsNetworkAvailable && App.Settings.CheckHostAndPort() && !_dataLoaded)
+                if (_navService.IsNetworkAvailable && !_dataLoaded)
                 {
                     SetProgressBar(AppResources.SysTrayGettingItems);
 

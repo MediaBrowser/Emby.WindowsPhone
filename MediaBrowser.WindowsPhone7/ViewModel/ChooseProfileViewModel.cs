@@ -143,6 +143,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             if (AuthenticationService.Current.IsLoggedIn)
             {
                 _navigationService.NavigateTo(!string.IsNullOrEmpty(App.Action) ? App.Action : Constants.Pages.HomePage);
+                Username = Password = string.Empty;
             }
             
             SetProgressBar();

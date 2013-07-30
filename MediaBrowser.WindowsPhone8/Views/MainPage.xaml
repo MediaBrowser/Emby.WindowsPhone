@@ -73,6 +73,7 @@
                                                       Command="{Binding Main.NavigateToAPage, Source={StaticResource Locator}}"
                                                       CommandParameter="/Views/NowPlayingView.xaml" />
                     <cimbalino:ApplicationBarMenuItem Text="notifications"
+                                                      IsVisible="{Binding LoggedInUser.Configuration.IsAdministrator, Source={StaticResource AppSettings}}"
                                                       Command="{Binding NavigateToNotificationsCommand}" />
                     <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.MainAppBarChangeProfile, Source={StaticResource LocalizedStrings}}"
                                                       Command="{Binding ChangeProfileCommand}" />

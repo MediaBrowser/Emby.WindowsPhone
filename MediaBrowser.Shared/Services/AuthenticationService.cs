@@ -1,4 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Net;
+using System.Threading.Tasks;
+using System.Windows;
 using Cimbalino.Phone.Toolkit.Services;
 using MediaBrowser.Model;
 using MediaBrowser.Model.Dto;
@@ -64,7 +67,15 @@ namespace MediaBrowser.Services
             }
             catch (HttpException ex)
             {
-                _logger.ErrorException("Login()", ex);
+                if (ex.StatusCode == HttpStatusCode.Forbidden)
+                {
+                    MessageBox.Show("Sorry, we were unable to sign you in, this is most likely due to your account being disabled.", "Unable to sign in", MessageBoxButton.OK);
+                    _logger.Error("UnauthorizedAccess for user [{0}]", selectedUserName);
+                }
+                else
+                {
+                    _logger.ErrorException("Login()", ex);
+                }
             }
         }
 
