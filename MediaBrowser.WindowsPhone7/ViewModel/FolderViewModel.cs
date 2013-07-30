@@ -101,8 +101,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 else if (m.Notification.Equals(Constants.Messages.CollectionPinnedMsg))
                 {
                     var tileUrl = (string) m.Sender;
-                    var tile = ShellTile.ActiveTiles.SingleOrDefault(x => x.NavigationUri.ToString() == tileUrl);
-                    CanPinCollection = tile == default(ShellTile);
+                    CanPinCollection = TileService.Current.TileExists(tileUrl);
                 }
             });
         }
@@ -131,9 +130,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     SetProgressBar(AppResources.SysTrayCheckingCollection);
 
                     var tileUrl = string.Format(Constants.PhoneCollectionTileUrlFormat, SelectedFolder.Id, SelectedFolder.Name);
-                    var shellExists = ShellTile.ActiveTiles.SingleOrDefault(x => x.NavigationUri.ToString() == tileUrl);
 
-                    CanPinCollection = shellExists == default(ShellTile);
+                    CanPinCollection = TileService.Current.TileExists(tileUrl);
 
                     _dataLoaded = await GetCollectionItems();
 

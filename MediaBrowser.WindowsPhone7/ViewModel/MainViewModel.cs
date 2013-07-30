@@ -102,9 +102,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             PinCollectionCommand = new RelayCommand<BaseItemDto>(collection =>
             {
-                string tileUrl;
-                var existingTile = GetShellTile(collection, out tileUrl);
-                if (existingTile != default(ShellTile))
+                var tileUrl = string.Format(Constants.PhoneCollectionTileUrlFormat, collection.Id, collection.Name);
+                var existingTile = TileService.Current.GetTile(tileUrl);
+                if (existingTile != default(ShellTileServiceTile))
                 {
                     var result = MessageBox.Show(AppResources.MessageBoxUnpinText, AppResources.MessageBoxHeaderAreYouSure, MessageBoxButton.OKCancel);
                     if (result == MessageBoxResult.OK)
@@ -116,7 +116,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 }
 
 #if WP8
-                var tileDate = new CycleTileData
+                var tileDate = new ShellTileServiceCycleTileData
                 {
                     Title = collection.Name,
                     CycleImages = new Collection<Uri>
@@ -126,14 +126,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     },
                     SmallBackgroundImage = new Uri("/Assets/Tiles/FlipCycleTileSmall.png", UriKind.Relative)
                 };
-                ShellTile.Create(new Uri(tileUrl, UriKind.Relative), tileDate, true);
+                TileService.Current.Create(new Uri(tileUrl, UriKind.Relative), tileDate, true);
 #else
-                var tileData = new StandardTileData
+                var tileData = new ShellTileServiceStandardTileData
                 {
                     Title = collection.Name,
                     BackBackgroundImage = new Uri("/Images/Logo.png", UriKind.Relative)
                 };
-                ShellTile.Create(new Uri(tileUrl, UriKind.Relative), tileData);
+                TileService.Current.Create(new Uri(tileUrl, UriKind.Relative), tileData, false);
 #endif
                 Messenger.Default.Send(new NotificationMessage(tileUrl, Constants.Messages.CollectionPinnedMsg));
 
@@ -196,15 +196,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 Messenger.Default.Send(new NotificationMessage(Constants.Messages.NotifcationNavigationMsg));
 
-                _navService.NavigateTo("/Views/NotificationsView.xaml");
+                _navService.NavigateTo(Constants.Pages.NotificationsView);
             });
-        }
-
-        private static ShellTile GetShellTile(BaseItemDto collection, out string url)
-        {
-            var tileUrl = string.Format(Constants.PhoneCollectionTileUrlFormat, collection.Id, collection.Name);
-            url = tileUrl;
-            return ShellTile.ActiveTiles.SingleOrDefault(x => x.NavigationUri.ToString() == tileUrl);
         }
 
         private void Reset()

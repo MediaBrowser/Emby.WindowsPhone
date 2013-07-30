@@ -87,6 +87,7 @@
             public const string ManualUsernameView = "/Views/ManualUsernameView.xaml";
             public const string SettingsView = "/Views/SettingsView.xaml";
             public const string SettingsViewConnection = "/Views/SettingsView.xaml?settingsPane=2";
+            public const string NotificationsView = "/Views/NotificationsView.xaml";
         }
     }
 }

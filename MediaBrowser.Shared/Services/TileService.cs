@@ -3,10 +3,9 @@ using Cimbalino.Phone.Toolkit.Services;
 
 namespace MediaBrowser.Services
 {
-    public class TileService
+    public class TileService : ShellTileService
     {
         private static TileService _current;
-        private static readonly ShellTileService ShellTileService = new ShellTileService();
 
         public static TileService Current
         {
@@ -15,8 +14,14 @@ namespace MediaBrowser.Services
 
         public bool TileExists(string uri)
         {
-            var tile = ShellTileService.ActiveTiles.FirstOrDefault(x => x.NavigationUri.ToString().Contains(uri));
+            var tile = ActiveTiles.FirstOrDefault(x => x.NavigationUri.ToString().Equals(uri));
             return tile != default(ShellTileServiceTile);
+        }
+
+        public IShellTileServiceTile GetTile(string uri)
+        {
+            var tile = ActiveTiles.FirstOrDefault(x => x.NavigationUri.ToString().Equals(uri));
+            return tile;
         }
     }
 }
