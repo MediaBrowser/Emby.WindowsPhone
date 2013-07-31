@@ -92,7 +92,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                     if (SelectedMovie.RunTimeTicks.HasValue)
                     {
-                        RunTime = TimeSpan.FromTicks(SelectedMovie.RunTimeTicks.Value).ToString();
+                        var ts = TimeSpan.FromTicks(SelectedMovie.RunTimeTicks.Value);
+                        var runtime = ts.Hours == 0 ? string.Format("{0}m", ts.Minutes) : string.Format("{0}h {1}m", ts.Hours, ts.Minutes);
+                        RunTime = runtime;
                     }
 
                     if (SelectedMovie.UserData == null)

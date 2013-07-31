@@ -11,7 +11,7 @@ namespace MediaBrowser.WindowsPhone.Converters
             {
                 var displayType = "normal";
                 if (parameter != null) displayType = (string) parameter;
-                var ticks = (long) value;
+                var ticks = long.Parse(value.ToString());
                 var ts = TimeSpan.FromTicks(ticks);
                 if (displayType == "normal")
                 {
