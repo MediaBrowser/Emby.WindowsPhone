@@ -91,7 +91,9 @@
                            Style="{StaticResource PhoneTextSubtleStyle}" />
                 <PasswordBox Password="{Binding Password, Mode=TwoWay}">
                     <i:Interaction.Behaviors>
-                        <scottBehaviours:UpdatePasswordBindingOnPropertyChanged EnterHitCommand="{Binding ManualLoginCommand}" />
+                        <scottBehaviours:UpdatePasswordBindingOnPropertyChanged />
+                        <behaviours1:EnterKeyHandler EnterKeyAction="ExecuteCommand"
+                                                     CommandString="ManualLoginCommand"/>
                     </i:Interaction.Behaviors>
                 </PasswordBox>
             </StackPanel>
