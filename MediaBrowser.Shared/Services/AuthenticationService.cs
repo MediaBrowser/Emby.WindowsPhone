@@ -56,7 +56,7 @@ namespace MediaBrowser.Services
                 LoggedInUser = result.User;
                 IsLoggedIn = true;
 
-                SettingsService.Set(Constants.Settings.SelectedUserSetting, selectedUserName);
+                SettingsService.Set(Constants.Settings.SelectedUserSetting, LoggedInUser);
                 SettingsService.Save();
                 _logger.Info("User [{0}] has been saved", selectedUserName);
             }

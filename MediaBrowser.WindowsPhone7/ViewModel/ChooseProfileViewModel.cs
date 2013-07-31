@@ -146,6 +146,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 _navigationService.NavigateTo(!string.IsNullOrEmpty(App.Action) ? App.Action : Constants.Pages.HomePage);
                 Username = Password = string.Empty;
+                _apiClient.CurrentUserId = AuthenticationService.Current.LoggedInUser.Id;
             }
             else
             {

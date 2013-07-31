@@ -76,7 +76,21 @@
         <Grid x:Name="ContentPanel"
               Grid.Row="1"
               Margin="12,0,0,0">
-            <scott:PhoneListBox ItemsSource="{Binding Profiles}">
+            <scott:PhoneListBox ItemsSource="{Binding Profiles}"
+                                Margin="12,0,0,0">
+                <scott:PhoneListBox.ListFooter>
+                    <StackPanel Orientation="Vertical"
+                                Margin="0,12">
+                        <TextBlock Text="Profile not listed?"
+                                   Style="{StaticResource PhoneTextNormalStyle}"
+                                   Margin="0" />
+                        <HyperlinkButton Content="Manually login"
+                                         HorizontalContentAlignment="Left"
+                                         NavigateUri="/Views/ManualUsernameView.xaml"
+                                         Margin="-12,0,0,0"
+                                         Foreground="{StaticResource PhoneAccentBrush}" />
+                    </StackPanel>
+                </scott:PhoneListBox.ListFooter>
                 <scott:PhoneListBox.ItemTemplate>
                     <DataTemplate>
                         <controls:ProfileBox Profile="{Binding}"
