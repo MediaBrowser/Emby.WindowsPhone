@@ -26,11 +26,16 @@
     </shell:SystemTray.ProgressIndicator>
     
     <i:Interaction.Behaviors>
-        <behaviors:ApplicationBarBehavior>
+        <behaviors:ApplicationBarBehavior IsMenuEnabled="True">
             <behaviors:ApplicationBarIconButton Text="login"
                                                 IconUri="/Icons/appbar.check.rest.png"
                                                 Command="{Binding ManualLoginCommand}"
                                                 IsEnabled="{Binding Text.Length, ElementName=UsernameTextBox, Converter={StaticResource CountToEnabled}, ConverterParameter=delete}"/>
+            <behaviors:ApplicationBarBehavior.MenuItems>
+                <behaviors:ApplicationBarMenuItem Text="settings"
+                                                  Command="{Binding Main.NavigateToAPage, Source={StaticResource Locator}}"
+                                                  CommandParameter="/Views/SettingsView.xaml" />
+            </behaviors:ApplicationBarBehavior.MenuItems>
         </behaviors:ApplicationBarBehavior>
     </i:Interaction.Behaviors>
 
