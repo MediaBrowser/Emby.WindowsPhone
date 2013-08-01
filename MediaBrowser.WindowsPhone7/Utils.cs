@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Reflection;
-using System.Security.Cryptography;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using Ailon.WP.Utils;
-using Cimbalino.Phone.Toolkit.Helpers;
 using Cimbalino.Phone.Toolkit.Services;
 using GalaSoft.MvvmLight.Ioc;
 using MediaBrowser.Model;
@@ -17,15 +15,10 @@ using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Services;
-using MediaBrowser.WindowsPhone.Model;
 using Microsoft.Phone.Info;
 using ScottIsAFool.WindowsPhone;
 using ScottIsAFool.WindowsPhone.Logging;
 using INavigationService = MediaBrowser.WindowsPhone.Model.INavigationService;
-
-#if !WP8
-using ScottIsAFool.WindowsPhone;
-#endif
 
 namespace MediaBrowser.WindowsPhone
 {
@@ -83,21 +76,32 @@ namespace MediaBrowser.WindowsPhone
 
         internal static string GetSortByNameHeader(BaseItemDto dtoBaseItem)
         {
-            var name = !String.IsNullOrEmpty(dtoBaseItem.SortName) ? dtoBaseItem.SortName : dtoBaseItem.Name;
+            if (string.IsNullOrEmpty(dtoBaseItem.Name) && string.IsNullOrEmpty(dtoBaseItem.SortName))
+            {
+                return '#'.ToString(CultureInfo.InvariantCulture);
+            }
+
+            var name = !string.IsNullOrEmpty(dtoBaseItem.SortName) ? dtoBaseItem.SortName : dtoBaseItem.Name;
             var words = name.Split(' ');
-            var l = name.ToLower()[0];
-            if (words[0].ToLower().Equals("the") ||
-                words[0].ToLower().Equals("a") ||
-                words[0].ToLower().Equals("an"))
+            try
             {
-                if (words.Length > 0)
-                    l = words[1].ToLower()[0];
+                var l = name.ToLower()[0];
+                if (words[0].ToLower().Equals("the") ||
+                    words[0].ToLower().Equals("a") ||
+                    words[0].ToLower().Equals("an"))
+                {
+                    if (words.Length > 0)
+                        l = words[1].ToLower()[0];
+                }
+                if (l >= 'a' && l <= 'z')
+                {
+                    return l.ToString(CultureInfo.InvariantCulture);
+                }
             }
-            if (l >= 'a' && l <= 'z')
+            catch
             {
-                return l.ToString();
             }
-            return '#'.ToString();
+            return '#'.ToString(CultureInfo.InvariantCulture);
         }
         
         internal static void CopyItem<T>(T source, T destination) where T : class
