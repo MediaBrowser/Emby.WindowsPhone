@@ -116,10 +116,12 @@
                         <StackPanel Orientation="Horizontal"
                                     Margin="0,0,0,12">
                             <c4F:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
-                                              VerticalAlignment="Top"
-                                              Height="150"
-                                              Width="150"
-                                              PlaceholderImageSource="/Images/DefaultAlbumCase.png" />
+                                            VerticalAlignment="Top"
+                                            Height="150"
+                                            Width="150"
+                                            PlaceholderImageStretch="UniformToFill"
+                                            Stretch="UniformToFill"
+                                            PlaceholderImageSource="/Images/DefaultAlbumCase.png" />
                             <StackPanel Orientation="Vertical"
                                         Margin="0,-6,0,0"
                                         HorizontalAlignment="Left"

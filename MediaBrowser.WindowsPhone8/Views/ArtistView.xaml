@@ -9,7 +9,6 @@
                 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
                 xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP8"
                 xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
-                
                 xmlns:c4f="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
                 xmlns:scott="clr-namespace:ScottIsAFool.WindowsPhone.Controls;assembly=ScottIsAFool.WindowsPhone"
                 mc:Ignorable="d ignore"
@@ -78,9 +77,11 @@
                                                   Height="150"
                                                   VerticalAlignment="Top">
                                                 <c4f:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
-                                                                  Height="150"
-                                                                  Width="150"
-                                                                  PlaceholderImageSource="/Images/DefaultAlbumCase.png" />
+                                                                Height="150"
+                                                                Width="150"
+                                                                Stretch="UniformToFill"
+                                                                PlaceholderImageStretch="UniformToFill"
+                                                                PlaceholderImageSource="/Images/DefaultAlbumCase.png" />
                                                 <c4f:RoundButton ImageSource="/Icons/appbar.transport.play.rest.png"
                                                                  HorizontalAlignment="Center"
                                                                  VerticalAlignment="Center"
