@@ -222,6 +222,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         ItemFields.ProviderIds
                     }
                 };
+                var isRecent = false;
                 if (SelectedPerson != null)
                 {
                     Log.Info("Getting items for {0}", SelectedPerson.Name);
@@ -238,6 +239,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         PageTitle = AppResources.Recent.ToLower();
                         query.Filters = new[] {ItemFilter.IsRecentlyAdded};
                         query.Recursive = true;
+                        isRecent = true;
                     }
                     else if (SelectedFolder.Type.Equals("Genre"))
                     {
@@ -254,7 +256,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     }
                 }
                 var items = await _apiClient.GetItemsAsync(query);
-                CurrentItems = items.Items.ToList();
+                
+                CurrentItems = isRecent ? await Utils.SortRecentItems(items.Items) : items.Items.ToList();
                 return true;
             }
             catch (HttpException ex)

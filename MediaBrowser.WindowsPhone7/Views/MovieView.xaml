@@ -154,7 +154,8 @@
                                                     Width="99"
                                                     PlaceholderImageSource="/Images/Logo.png"
                                                     Source="{Binding Converter={StaticResource ImageUrlConverter}}"
-                                                    Stretch="Uniform" />
+                                                    Stretch="Uniform"
+                                                    PlaceholderImageStretch="UniformToFill" />
                                     <StackPanel Orientation="Vertical">
                                         <TextBlock Text="{Binding Name, Converter={StaticResource StringCaseConverter}, ConverterParameter=false}"
                                                    FontWeight="Bold"

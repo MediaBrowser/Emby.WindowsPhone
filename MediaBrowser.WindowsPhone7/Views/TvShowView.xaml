@@ -82,6 +82,8 @@
                                     <Grid>
                                         <c4F:SuperImage PlaceholderImageSource="/Images/Logo.png"
                                                         Source="{Binding Converter={StaticResource ImageUrlConverter}}"
+                                                        Stretch="UniformToFill"
+                                                        PlaceholderImageStretch="UniformToFill"
                                                         Height="173"
                                                         MaxWidth="120" />
                                         <Border Background="#C4000000"
