@@ -11,15 +11,10 @@ using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Querying;
 using MediaBrowser.Services;
-using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Resources;
 using ScottIsAFool.WindowsPhone;
 using ScottIsAFool.WindowsPhone.ViewModel;
 using INavigationService = MediaBrowser.WindowsPhone.Model.INavigationService;
-
-#if !WP8
-using ScottIsAFool.WindowsPhone;
-#endif
 
 namespace MediaBrowser.WindowsPhone.ViewModel
 {
@@ -78,7 +73,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 WireCommands();
             }
-
         }
 
         public override void WireMessages()
