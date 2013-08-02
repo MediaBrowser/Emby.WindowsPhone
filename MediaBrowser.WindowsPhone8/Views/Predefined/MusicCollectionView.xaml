@@ -13,7 +13,8 @@
                 SupportedOrientations="Portrait"
                 Orientation="Portrait"
                 mc:Ignorable="d"
-                shell:SystemTray.IsVisible="True">
+                shell:SystemTray.IsVisible="True"
+                DataContext="{Binding MusicCollection, Source={StaticResource Locator}}">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot"

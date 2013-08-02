@@ -17,7 +17,7 @@
                 SupportedOrientations="Portrait"
                 Orientation="Portrait"
                 shell:SystemTray.IsVisible="True"
-                DataContext="{Binding ViewModelName, Source={StaticResource Locator}}">
+                DataContext="{Binding MusicCollection, Source={StaticResource Locator}}">
 
     <Grid x:Name="LayoutRoot"
           Background="{StaticResource MediaBrowserBackground}">

@@ -342,6 +342,9 @@
     </Content>
     <Content Include="Icons\appbar.check.rest.png" />
     <Content Include="Icons\appbar.feature.search.rest.png" />
+    <Content Include="Images\audiocollection.png" />
+    <Content Include="Images\moviecollection.png" />
+    <Content Include="Images\tvcollection.png" />
     <Content Include="README_FIRST.txt" />
     <Content Include="Toolkit.Content\ApplicationBar.Cancel.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Check.png" />

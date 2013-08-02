@@ -11,6 +11,7 @@
                 xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP8"
                 xmlns:cimbalino="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
                 xmlns:controls="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
+                xmlns:system="clr-namespace:System;assembly=mscorlib"
                 FontFamily="{StaticResource PhoneFontFamilyNormal}"
                 FontSize="{StaticResource PhoneFontSizeNormal}"
                 Foreground="{StaticResource PhoneForegroundBrush}"
@@ -34,6 +35,10 @@
             <command:EventToCommand Command="{Binding PageLoaded}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
+
+    <scott:BasePage.Resources>
+        <system:Double x:Key="ViewSize">140</system:Double>
+    </scott:BasePage.Resources>
 
     <toolkit:TransitionService.NavigationInTransition>
         <toolkit:NavigationInTransition>
@@ -104,17 +109,72 @@
                     </StackPanel>
                 </DataTemplate>
             </phone:Panorama.TitleTemplate>
+            <phone:PanoramaItem Header="views">
+                <StackPanel Orientation="Vertical"
+                            Margin="12,0,0,0">
+                    <HyperlinkButton NavigateUri="/Views/Predefined/MovieCollectionView.xaml"
+                                     Style="{StaticResource EmptyButtonStyle}"
+                                     HorizontalAlignment="Stretch"
+                                     HorizontalContentAlignment="Left"
+                                     Margin="0,0,0,12">
+                        <StackPanel Orientation="Horizontal">
+                            <Border Background="#0094FF">
+                                <Image Source="/Images/moviecollection.png"
+                                       Height="{StaticResource ViewSize}"
+                                       Width="{StaticResource ViewSize}"
+                                       Stretch="UniformToFill" />
+                            </Border>
+                            <TextBlock Text="MOVIES"
+                                       Style="{StaticResource PhoneTextTitle2Style}"
+                                       FontFamily="Segoe WP Black"
+                                       VerticalAlignment="Top" />
+                        </StackPanel>
+                    </HyperlinkButton>
+                    <HyperlinkButton NavigateUri="/Views/Predefined/TvCollectionView.xaml"
+                                     HorizontalAlignment="Stretch"
+                                     HorizontalContentAlignment="Left"
+                                     Style="{StaticResource EmptyButtonStyle}"
+                                     Margin="0,0,0,12">
+                        <StackPanel Orientation="Horizontal">
+                            <Border Background="#FF870F">
+                                <Image Source="/Images/tvcollection.png"
+                                       Height="{StaticResource ViewSize}"
+                                       Width="{StaticResource ViewSize}"
+                                       Stretch="UniformToFill" />
+                            </Border>
+                            <TextBlock Text="TV"
+                                       Style="{StaticResource PhoneTextTitle2Style}"
+                                       VerticalAlignment="Top"
+                                       FontFamily="Segoe WP Black" />
+                        </StackPanel>
+                    </HyperlinkButton>
+                    <HyperlinkButton NavigateUri="/Views/Predefined/MusicCollectionView.xaml"
+                                     HorizontalAlignment="Stretch"
+                                     HorizontalContentAlignment="Left"
+                                     Style="{StaticResource EmptyButtonStyle}">
+                        <StackPanel Orientation="Horizontal">
+                            <Border Background="#6FBD45">
+                                <Image Source="/Images/audiocollection.png"
+                                       Height="{StaticResource ViewSize}"
+                                       Width="{StaticResource ViewSize}"
+                                       Stretch="UniformToFill" />
+                            </Border>
+                            <TextBlock Text="MUSIC"
+                                       Style="{StaticResource PhoneTextTitle2Style}"
+                                       VerticalAlignment="Top"
+                                       FontFamily="Segoe WP Black" />
+                        </StackPanel>
+                    </HyperlinkButton>
+                </StackPanel>
+            </phone:PanoramaItem>
             <phone:PanoramaItem Header="{Binding LocalizedResources.Collections, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringCaseConverter}}">
-                <scott:PhoneListBox ItemsSource="{Binding Folders}"
-                                    Text="{Binding LocalizedResources.NoItemsFound, Source={StaticResource LocalizedStrings}}"
-                                    TextHorizontalAlignment="Center"
-                                    TextVerticalAlignment="Top"
-                                    TextStyle="{StaticResource PhoneTextLargeStyle}">
-                    <scott:PhoneListBox.ItemTemplate>
+                <phone:LongListSelector ItemsSource="{Binding Folders}">
+                    <phone:LongListSelector.ItemTemplate>
                         <DataTemplate>
                             <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
                                              Command="{Binding Main.NavigateToPage, Source={StaticResource Locator}}"
                                              CommandParameter="{Binding}"
+                                             HorizontalContentAlignment="Left"
                                              Margin="12,0,0,0">
                                 <toolkit:ContextMenuService.ContextMenu>
                                     <toolkit:ContextMenu>
@@ -141,8 +201,8 @@
                                 </StackPanel>
                             </HyperlinkButton>
                         </DataTemplate>
-                    </scott:PhoneListBox.ItemTemplate>
-                </scott:PhoneListBox>
+                    </phone:LongListSelector.ItemTemplate>
+                </phone:LongListSelector>
             </phone:PanoramaItem>
 
             <phone:PanoramaItem Header="recent"
