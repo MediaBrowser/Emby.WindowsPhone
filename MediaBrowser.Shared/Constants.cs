@@ -82,12 +82,28 @@
 
         public class Pages
         {
-            public const string HomePage = "/Views/MainPage.xaml";
-            public const string ChooseProfileView = "/Views/ChooseProfileView.xaml";
-            public const string ManualUsernameView = "/Views/ManualUsernameView.xaml";
-            public const string SettingsView = "/Views/SettingsView.xaml";
-            public const string SettingsViewConnection = "/Views/SettingsView.xaml?settingsPane=2";
-            public const string NotificationsView = "/Views/NotificationsView.xaml";
+            private const string ViewsPath = "/Views/";
+            public const string HomePage = ViewsPath + "MainPage.xaml";
+            public const string ChooseProfileView = ViewsPath + "ChooseProfileView.xaml";
+            public const string ManualUsernameView = ViewsPath + "ManualUsernameView.xaml";
+            public const string SettingsView = ViewsPath + "SettingsView.xaml";
+            public const string SettingsViewConnection = ViewsPath + "SettingsView.xaml?settingsPane=2";
+            public const string NotificationsView = ViewsPath + "NotificationsView.xaml";
+
+            public class Remote
+            {
+                private const string RemotePath = ViewsPath + "Remote/";
+                public const string RemoteView = RemotePath + "RemoteView.xaml";
+                public const string ChooseClientView = RemotePath + "ChooseClientView.xaml";
+            }
+
+            public class Predefined
+            {
+                private const string PredefinedPath = ViewsPath + "predefined/";
+                public const string MusicCollectionView = PredefinedPath + "MusicCollectionView.xaml";
+                public const string TvCollectionView = PredefinedPath + "TvCollectionView.xaml";
+                public const string MovieCollectionView = PredefinedPath + "MovieCollectionView.xaml";
+            }
         }
     }
 }

@@ -223,7 +223,10 @@
     <Compile Include="Model\NavigationService.cs" />
     <Compile Include="ViewModel\NotificationsViewModel.cs" />
     <Compile Include="ViewModel\PlaylistViewModel.cs" />
-    <Compile Include="ViewModel\RemoteViewModel.cs" />
+    <Compile Include="ViewModel\Predefined\MovieCollectionViewModel.cs" />
+    <Compile Include="ViewModel\Predefined\MusicCollectionViewModel.cs" />
+    <Compile Include="ViewModel\Predefined\TvCollectionViewModel.cs" />
+    <Compile Include="ViewModel\Remote\RemoteViewModel.cs" />
     <Compile Include="ViewModel\SearchViewModel.cs" />
     <Compile Include="Views\FullPlaylistView.xaml.cs">
       <DependentUpon>FullPlaylistView.xaml</DependentUpon>
@@ -239,6 +242,12 @@
     </Compile>
     <Compile Include="Views\NowPlayingView.xaml.cs">
       <DependentUpon>NowPlayingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Predefined\MovieCollectionView.xaml.cs">
+      <DependentUpon>MovieCollectionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Predefined\TvCollectionView.xaml.cs">
+      <DependentUpon>TvCollectionView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Remote\ChooseClientView.xaml.cs">
       <DependentUpon>ChooseClientView.xaml</DependentUpon>
@@ -300,7 +309,7 @@
     <Compile Include="Views\MovieView.xaml.cs">
       <DependentUpon>MovieView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MusicCollectionView.xaml.cs">
+    <Compile Include="Views\Predefined\MusicCollectionView.xaml.cs">
       <DependentUpon>MusicCollectionView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SeasonView.xaml.cs">
@@ -398,7 +407,7 @@
       <SubType>Form</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\MusicCollectionView.xaml">
+    <Page Include="Views\Predefined\MusicCollectionView.xaml">
       <SubType>Form</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -412,6 +421,14 @@
     </Page>
     <Page Include="Views\NowPlayingView.xaml">
       <SubType>Form</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Predefined\MovieCollectionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Predefined\TvCollectionView.xaml">
+      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Remote\ChooseClientView.xaml">

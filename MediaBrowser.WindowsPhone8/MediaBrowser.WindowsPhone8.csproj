@@ -209,8 +209,17 @@
     <Compile Include="..\MediaBrowser.WindowsPhone7\ViewModel\PlaylistViewModel.cs">
       <Link>ViewModel\PlaylistViewModel.cs</Link>
     </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\ViewModel\RemoteViewModel.cs">
-      <Link>ViewModel\RemoteViewModel.cs</Link>
+    <Compile Include="..\MediaBrowser.WindowsPhone7\ViewModel\Predefined\MovieCollectionViewModel.cs">
+      <Link>ViewModel\Predefined\MovieCollectionViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone7\ViewModel\Predefined\MusicCollectionViewModel.cs">
+      <Link>ViewModel\Predefined\MusicCollectionViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone7\ViewModel\Predefined\TvCollectionViewModel.cs">
+      <Link>ViewModel\Predefined\TvCollectionViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone7\ViewModel\Remote\RemoteViewModel.cs">
+      <Link>ViewModel\Remote\RemoteViewModel.cs</Link>
     </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone7\ViewModel\SearchViewModel.cs">
       <Link>ViewModel\SearchViewModel.cs</Link>
@@ -281,6 +290,15 @@
     <Compile Include="..\MediaBrowser.WindowsPhone7\Views\NowPlayingView.xaml.cs">
       <Link>Views\NowPlayingView.xaml.cs</Link>
       <DependentUpon>NowPlayingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone7\Views\Predefined\MovieCollectionView.xaml.cs">
+      <Link>Views\Predefined\MovieCollectionView.xaml.cs</Link>
+    </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone7\Views\Predefined\MusicCollectionView.xaml.cs">
+      <Link>Views\Predefined\MusicCollectionView.xaml.cs</Link>
+    </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone7\Views\Predefined\TvCollectionView.xaml.cs">
+      <Link>Views\Predefined\TvCollectionView.xaml.cs</Link>
     </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone7\Views\Remote\ChooseClientView.xaml.cs">
       <Link>Views\Remote\ChooseClientView.xaml.cs</Link>
@@ -441,6 +459,18 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\NowPlayingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Predefined\MovieCollectionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Predefined\MusicCollectionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Predefined\TvCollectionView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
