@@ -7,6 +7,8 @@
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
                 xmlns:mb="clr-namespace:MediaBrowser.WindowsPhone.Controls"
+                xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+                xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP8"
                 FontFamily="{StaticResource PhoneFontFamilyNormal}"
                 FontSize="{StaticResource PhoneFontSizeNormal}"
                 Foreground="{StaticResource PhoneForegroundBrush}"
@@ -15,6 +17,11 @@
                 mc:Ignorable="d"
                 shell:SystemTray.IsVisible="True"
                 DataContext="{Binding MovieCollection, Source={StaticResource Locator}}">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <command:EventToCommand Command="{Binding PageLoadedCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot"
@@ -42,12 +49,16 @@
 
                 <phone:PivotItem Header="genres">
                     <phone:LongListSelector ItemsSource="{Binding Genres}"
-                                            LayoutMode="Grid">
+                                            LayoutMode="Grid"
+                                            GridCellSize="173,173">
                         <phone:LongListSelector.ItemTemplate>
                             <DataTemplate>
                                 <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
                                                  Height="173"
                                                  Width="173">
+                                    <Image Source="{Binding Converter={StaticResource ImageUrlConverter}}"
+                                           Stretch="UniformToFill"
+                                           />
                                 </HyperlinkButton>
                             </DataTemplate>
                         </phone:LongListSelector.ItemTemplate>

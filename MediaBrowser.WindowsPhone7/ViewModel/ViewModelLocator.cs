@@ -226,9 +226,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             return ServiceLocator.Current.GetInstance<TvViewModel>(itemId);
         }
 
-        public static ExtendedApiClient ApiClient
+        public static IExtendedApiClient ApiClient
         {
-            get { return ServiceLocator.Current.GetInstance<ExtendedApiClient>(); }
+            get { return ServiceLocator.Current.GetInstance<IExtendedApiClient>(); }
         }
 
         public static INavigationService NavigationService
