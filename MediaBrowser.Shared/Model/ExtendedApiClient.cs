@@ -8,7 +8,7 @@ using MediaBrowser.Model.Web;
 
 namespace MediaBrowser.Model
 {
-    public class ExtendedApiClient : ApiInteraction.ApiClient
+    public class ExtendedApiClient : ApiInteraction.ApiClient, IExtendedApiClient
     {
         public ExtendedApiClient(ILogger logger, string serverHostName, int serverApiPort, string clientName, string deviceName, string deviceId, string appVersion)
             : base(logger, serverHostName, serverApiPort, clientName, deviceName, deviceId, appVersion)

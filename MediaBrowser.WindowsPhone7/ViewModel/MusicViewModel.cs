@@ -26,7 +26,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     /// </summary>
     public class MusicViewModel : ViewModelBase
     {
-        private readonly ExtendedApiClient _apiClient;
+        private readonly IExtendedApiClient _apiClient;
         private readonly INavigationService _navigationService;
 
         private List<BaseItemDto> _artistTracks;
@@ -35,7 +35,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         /// <summary>
         /// Initializes a new instance of the MusicViewModel class.
         /// </summary>
-        public MusicViewModel(ExtendedApiClient apiClient, INavigationService navigationService)
+        public MusicViewModel(IExtendedApiClient apiClient, INavigationService navigationService)
         {
             _navigationService = navigationService;
             _apiClient = apiClient;

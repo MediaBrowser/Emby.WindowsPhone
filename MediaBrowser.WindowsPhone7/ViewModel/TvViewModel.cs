@@ -11,9 +11,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.WindowsPhone.Resources;
-#if !WP8
-using ScottIsAFool.WindowsPhone;
-#endif
 using ScottIsAFool.WindowsPhone;
 using ScottIsAFool.WindowsPhone.ViewModel;
 
@@ -31,7 +28,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     public class TvViewModel : ViewModelBase
     {
         private readonly INavigationService _navService;
-        private readonly ExtendedApiClient _apiClient;
+        private readonly IExtendedApiClient _apiClient;
 
         public bool ShowDataLoaded;
         public bool SeasonDataLoaded;
@@ -39,7 +36,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         /// <summary>
         /// Initializes a new instance of the TvViewModel class.
         /// </summary>
-        public TvViewModel(INavigationService navService, ExtendedApiClient apiClient)
+        public TvViewModel(INavigationService navService, IExtendedApiClient apiClient)
         {
             _navService = navService;
             _apiClient = apiClient;

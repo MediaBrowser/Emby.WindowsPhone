@@ -19,7 +19,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     /// </summary>
     public class VideoPlayerViewModel : ViewModelBase
     {
-        private readonly ExtendedApiClient _apiClient;
+        private readonly IExtendedApiClient _apiClient;
         private readonly INavigationService _navigationService;
 
         private bool _isResume;
@@ -27,7 +27,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         /// <summary>
         /// Initializes a new instance of the VideoPlayerViewModel class.
         /// </summary>
-        public VideoPlayerViewModel(ExtendedApiClient apiClient, INavigationService navigationService)
+        public VideoPlayerViewModel(IExtendedApiClient apiClient, INavigationService navigationService)
         {
             _apiClient = apiClient;
             _navigationService = navigationService;

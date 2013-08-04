@@ -182,7 +182,7 @@ namespace MediaBrowser.WindowsPhone
 
         }
 
-        internal static async Task<bool> GetServerConfiguration(ExtendedApiClient apiClient, ILog logger)
+        internal static async Task<bool> GetServerConfiguration(IExtendedApiClient apiClient, ILog logger)
         {
             try
             {

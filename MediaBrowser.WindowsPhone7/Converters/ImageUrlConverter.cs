@@ -5,7 +5,6 @@ using MediaBrowser.Model;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Search;
-using MediaBrowser.WindowsPhone.Model;
 
 namespace MediaBrowser.WindowsPhone.Converters
 {

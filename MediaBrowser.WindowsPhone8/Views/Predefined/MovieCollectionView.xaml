@@ -5,6 +5,8 @@
                 xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+                xmlns:mb="clr-namespace:MediaBrowser.WindowsPhone.Controls"
                 FontFamily="{StaticResource PhoneFontFamilyNormal}"
                 FontSize="{StaticResource PhoneFontSizeNormal}"
                 Foreground="{StaticResource PhoneForegroundBrush}"
@@ -22,21 +24,44 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel Grid.Row="0"
-                    Margin="12,17,0,28">
-            <TextBlock Text="MY APPLICATION"
-                       Style="{StaticResource PhoneTextNormalStyle}" />
-            <TextBlock Text="page name"
-                       Margin="9,-7,0,0"
-                       Style="{StaticResource PhoneTextTitle1Style}" />
-        </StackPanel>
-
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel"
               Grid.Row="1"
-              Margin="12,0,12,0">
+              Margin="0,0,12,0">
+            <phone:Pivot>
+                <phone:Pivot.Title>
+                    <StackPanel Orientation="Horizontal"
+                                Margin="-12,0,0,0">
+                        <mb:MediaBrowserLogo />
+                        <TextBlock x:Name="ApplicationTitle"
+                                   Text="- MOVIES"
+                                   Margin="6,0,0,0"
+                                   Style="{StaticResource PhoneTextNormalStyle}" />
+                    </StackPanel>
+                </phone:Pivot.Title>
 
+                <phone:PivotItem Header="genres">
+                    <phone:LongListSelector ItemsSource="{Binding Genres}"
+                                            LayoutMode="Grid">
+                        <phone:LongListSelector.ItemTemplate>
+                            <DataTemplate>
+                                <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                                 Height="173"
+                                                 Width="173">
+                                </HyperlinkButton>
+                            </DataTemplate>
+                        </phone:LongListSelector.ItemTemplate>
+                    </phone:LongListSelector>
+                </phone:PivotItem>
+
+                <phone:PivotItem Header="albums">
+
+                </phone:PivotItem>
+
+                <phone:PivotItem Header="songs">
+
+                </phone:PivotItem>
+            </phone:Pivot>
         </Grid>
     </Grid>
 

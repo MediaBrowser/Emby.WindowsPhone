@@ -51,7 +51,7 @@ namespace MediaBrowser.WindowsPhone
             }
         }
 
-        internal static PlaylistItem ToPlaylistItem(this BaseItemDto item, ExtendedApiClient apiClient)
+        internal static PlaylistItem ToPlaylistItem(this BaseItemDto item, IExtendedApiClient apiClient)
         {
             var streamUrl = apiClient.GetAudioStreamUrl(new StreamOptions
                                                       {

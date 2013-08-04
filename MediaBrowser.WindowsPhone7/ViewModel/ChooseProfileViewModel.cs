@@ -2,7 +2,6 @@
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
-using System.Net;
 using System.Threading.Tasks;
 using System.Windows;
 using Cimbalino.Phone.Toolkit.Services;
@@ -10,7 +9,6 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model;
 using MediaBrowser.Model.Net;
-using MediaBrowser.Model.Querying;
 using MediaBrowser.Services;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.WindowsPhone.Resources;
@@ -27,13 +25,13 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     /// </summary>
     public class ChooseProfileViewModel : ViewModelBase
     {
-        private readonly ExtendedApiClient _apiClient;
+        private readonly IExtendedApiClient _apiClient;
         private readonly INavigationService _navigationService;
 
         /// <summary>
         /// Initializes a new instance of the ChooseProfileViewModel class.
         /// </summary>
-        public ChooseProfileViewModel(ExtendedApiClient apiClient, INavigationService navigationService, IApplicationSettingsService applicationSettings)
+        public ChooseProfileViewModel(IExtendedApiClient apiClient, INavigationService navigationService, IApplicationSettingsService applicationSettings)
         {
             _apiClient = apiClient;
             _navigationService = navigationService;

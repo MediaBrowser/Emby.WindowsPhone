@@ -14,10 +14,8 @@ using System.Linq;
 using MediaBrowser.Model.Dto;
 using System.Threading.Tasks;
 using MediaBrowser.WindowsPhone.Resources;
-using Microsoft.Phone.Shell;
-using Microsoft.Phone.Tasks;
-
 using ScottIsAFool.WindowsPhone.ViewModel;
+using Microsoft.Phone.Tasks;
 using INavigationService = MediaBrowser.WindowsPhone.Model.INavigationService;
 
 namespace MediaBrowser.WindowsPhone.ViewModel
@@ -34,7 +32,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     public class MainViewModel : ViewModelBase
     {
         private readonly INavigationService _navService;
-        private readonly ExtendedApiClient _apiClient;
+        private readonly IExtendedApiClient _apiClient;
         private readonly IApplicationSettingsService _applicationSettings;
         private bool _hasLoaded;
         private BaseItemDto[] _recentItems;
@@ -42,7 +40,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
-        public MainViewModel(ExtendedApiClient apiClient, INavigationService navService, IApplicationSettingsService applicationSettings)
+        public MainViewModel(IExtendedApiClient apiClient, INavigationService navService, IApplicationSettingsService applicationSettings)
         {
             _apiClient = apiClient;
             _navService = navService;

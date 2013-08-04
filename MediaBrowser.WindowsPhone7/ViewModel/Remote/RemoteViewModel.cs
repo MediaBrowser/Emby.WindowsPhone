@@ -13,12 +13,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     public class RemoteViewModel : ViewModelBase
     {
         private readonly INavigationService _navigationService;
-        private readonly ExtendedApiClient _apiClient;
+        private readonly IExtendedApiClient _apiClient;
 
         /// <summary>
         /// Initializes a new instance of the RemoteViewModel class.
         /// </summary>
-        public RemoteViewModel(INavigationService navigationService, ExtendedApiClient apiClient)
+        public RemoteViewModel(INavigationService navigationService, IExtendedApiClient apiClient)
         {
             _navigationService = navigationService;
             _apiClient = apiClient;
