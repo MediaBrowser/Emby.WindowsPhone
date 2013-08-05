@@ -50,18 +50,8 @@
                 <phone:PivotItem Header="genres">
                     <phone:LongListSelector ItemsSource="{Binding Genres}"
                                             LayoutMode="Grid"
-                                            GridCellSize="173,173">
-                        <phone:LongListSelector.ItemTemplate>
-                            <DataTemplate>
-                                <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                                 Height="173"
-                                                 Width="173">
-                                    <Image Source="{Binding Converter={StaticResource ImageUrlConverter}}"
-                                           Stretch="UniformToFill"
-                                           />
-                                </HyperlinkButton>
-                            </DataTemplate>
-                        </phone:LongListSelector.ItemTemplate>
+                                            GridCellSize="173,173"
+                                            ItemTemplate="{StaticResource TileItemStyle}">
                     </phone:LongListSelector>
                 </phone:PivotItem>
 

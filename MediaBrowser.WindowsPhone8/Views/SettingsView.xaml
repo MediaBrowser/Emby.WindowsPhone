@@ -69,6 +69,11 @@
                                         SelectedItem="{Binding DefaultGroupBy, Source={StaticResource SpecificSettings}, Mode=TwoWay}"
                                         Header="Default grouping" 
                                         toolkit:TiltEffect.SuppressTilt="True"/>
+                    <CheckBox IsChecked="{Binding JustShowFolderView, Source={StaticResource SpecificSettings}, Mode=TwoWay}">
+                        <TextBlock Text="Just show the list of items, not a collection view"
+                                   TextWrapping="Wrap"
+                                   VerticalAlignment="Top" />
+                    </CheckBox>
                 </StackPanel>
             </phone:PivotItem>
 

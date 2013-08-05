@@ -34,7 +34,14 @@ namespace MediaBrowser.WindowsPhone.Model
                 case "genre":
                 case "trailercollectionfolder":
                     //Messenger.Default.Send(new NotificationMessage(item, Constants.ShowFolderMsg));
-                    NavigateTo("/Views/CollectionView.xaml");
+                    if (App.SpecificSettings.JustShowFolderView)
+                    {
+                        NavigateTo("/Views/FolderView.xaml?id=" + item.Id);
+                    }
+                    else
+                    {
+                        NavigateTo("/Views/CollectionView.xaml");
+                    }
                     break;
                 case "folder":
                 case "boxset":

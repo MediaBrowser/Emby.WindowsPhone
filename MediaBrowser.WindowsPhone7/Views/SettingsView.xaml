@@ -68,6 +68,11 @@
                     <toolkit:ListPicker ItemsSource="{Binding GroupByItems, Source={StaticResource SpecificSettings}}"
                                         SelectedItem="{Binding DefaultGroupBy, Source={StaticResource SpecificSettings}, Mode=TwoWay}"
                                         Header="Default grouping" />
+                    <CheckBox IsChecked="{Binding JustShowFolderView, Source={StaticResource SpecificSettings}, Mode=TwoWay}">
+                        <TextBlock Text="Just show the list of items, not a collection view"
+                                   TextWrapping="Wrap"
+                                   VerticalAlignment="Top"/>
+                    </CheckBox>
                 </StackPanel>
             </controls:PivotItem>
 
