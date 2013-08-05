@@ -89,6 +89,20 @@
             public const string SettingsView = ViewsPath + "SettingsView.xaml";
             public const string SettingsViewConnection = ViewsPath + "SettingsView.xaml?settingsPane=2";
             public const string NotificationsView = ViewsPath + "NotificationsView.xaml";
+            public const string NotificationView = ViewsPath + "NotificationView.xaml";
+            public const string FolderView = ViewsPath + "FolderView.xaml?id=";
+            public const string CollectionView = ViewsPath + "CollectionView.xaml";
+            public const string MovieView = ViewsPath + "MovieView.xaml";
+            public const string TvShowView = ViewsPath + "TvShowView.xaml";
+            public const string SeasonView = ViewsPath + "SeasonView.xaml";
+            public const string EpisodeView = ViewsPath + "EpisodeView.xaml";
+            public const string TrailerView = ViewsPath + "TrailerView.xaml";
+            public const string ArtistView = ViewsPath + "ArtistView.xaml";
+            public const string AlbumView = ViewsPath + "AlbumView.xaml";
+            public const string NowPlayingView = ViewsPath + "NowPlayingView.xaml";
+            public const string FullPlaylistView = ViewsPath + "FullPlaylistView.xaml";
+            public const string SearchView = ViewsPath + "SearchView.xaml";
+            public const string VideoPlayerView = ViewsPath + "VideoPlayerView.xaml";
 
             public class Remote
             {
