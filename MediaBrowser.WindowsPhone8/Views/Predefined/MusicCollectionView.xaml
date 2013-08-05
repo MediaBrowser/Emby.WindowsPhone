@@ -83,8 +83,17 @@
                                             JumpListStyle="{StaticResource LLSGroupItemStyle}">
                         <phone:LongListSelector.ItemTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Name}"
-                                           Style="{StaticResource PhoneTextTitle2Style}" />
+                                <StackPanel Orientation="Horizontal"
+                                            Margin="0,0,0,12">
+                                    <c4F:RoundButton ImageSource="/Icons/appbar.transport.play.rest.png"
+                                                     HorizontalAlignment="Center"
+                                                     VerticalAlignment="Center"
+                                                     Margin="6"
+                                                     Command="{Binding Music.AlbumPlayTapped, Source={StaticResource Locator}}"
+                                                     CommandParameter="{Binding}" />
+                                    <TextBlock Text="{Binding Name}"
+                                               Style="{StaticResource PhoneTextTitle2Style}" />
+                                </StackPanel>
                             </DataTemplate>
                         </phone:LongListSelector.ItemTemplate>
                     </phone:LongListSelector>
