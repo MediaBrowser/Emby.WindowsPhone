@@ -48,7 +48,7 @@ namespace MediaBrowser.WindowsPhone
             return result;
         }
 
-        public static List<Group<BaseItemDto>> GroupArtistTracks(IEnumerable<BaseItemDto> tracks)
+        public static List<Group<BaseItemDto>> GroupItemsByName(IEnumerable<BaseItemDto> tracks)
         {
             var emptyGroups = new List<Group<BaseItemDto>>();
 
