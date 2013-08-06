@@ -62,7 +62,7 @@
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel"
               Grid.Row="1"
-              Margin="12,0,12,0">
+              Margin="0,0,12,0">
             <phone:Pivot SelectedIndex="{Binding PivotSelectedIndex, Mode=TwoWay}">
                 <phone:Pivot.Title>
                     <StackPanel Orientation="Horizontal"
@@ -152,11 +152,49 @@
                 </phone:PivotItem>
 
                 <phone:PivotItem Header="songs">
-
+                    <toolkit:LongListMultiSelector ItemsSource="{Binding Songs}"
+                                                   IsGroupingEnabled="True"
+                                                   GroupHeaderTemplate="{StaticResource LLSGroupHeaderTemplateName}"
+                                                   JumpListStyle="{StaticResource LLSGroupItemStyle}"
+                                                   >
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="SelectionChanged">
+                                <command:EventToCommand Command="{Binding SelectionChangedCommand}"
+                                                        PassEventArgsToCommand="True" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                        <toolkit:LongListMultiSelector.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Vertical"
+                                            Margin="0,6">
+                                    <TextBlock Text="{Binding Name}"
+                                               Style="{StaticResource PhoneTextTitle2Style}"/>
+                                    <TextBlock Text="{Binding AlbumArtist}"
+                                               Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </toolkit:LongListMultiSelector.ItemTemplate>
+                    </toolkit:LongListMultiSelector>
                 </phone:PivotItem>
 
                 <phone:PivotItem Header="genres">
-
+                    <phone:LongListSelector ItemsSource="{Binding Genres}">
+                        <phone:LongListSelector.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal"
+                                            Margin="0,0,0,12">
+                                    <c4F:RoundButton ImageSource="/Icons/appbar.transport.play.rest.png"
+                                                     HorizontalAlignment="Center"
+                                                     VerticalAlignment="Center"
+                                                     Margin="6"
+                                                     Command="{Binding Music.AlbumPlayTapped, Source={StaticResource Locator}}"
+                                                     CommandParameter="{Binding}" />
+                                    <TextBlock Text="{Binding Name}"
+                                               Style="{StaticResource PhoneTextTitle2Style}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </phone:LongListSelector.ItemTemplate>
+                    </phone:LongListSelector>
                 </phone:PivotItem>
             </phone:Pivot>
         </Grid>

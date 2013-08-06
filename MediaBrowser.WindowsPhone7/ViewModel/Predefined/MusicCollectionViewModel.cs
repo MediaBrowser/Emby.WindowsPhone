@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using GalaSoft.MvvmLight.Command;
 using JetBrains.Annotations;
 using MediaBrowser.Model;
@@ -51,6 +52,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
         public List<Group<BaseItemDto>> Songs { get; set; }
         public List<Group<BaseItemDto>> Artists { get; set; }
         public List<Group<BaseItemDto>> Albums { get; set; }
+        public List<BaseItemDto> SelectedTracks { get; set; }
         public int PivotSelectedIndex { get; set; }
 
         public RelayCommand PageLoadedCommand
@@ -60,6 +62,33 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                 return new RelayCommand(async () =>
                 {
                     await GetMusicCollection();
+                });
+            }
+        }
+
+        public RelayCommand<SelectionChangedEventArgs> SelectionChangedCommand
+        {
+            get
+            {
+                return new RelayCommand<SelectionChangedEventArgs>(args =>
+                {
+                    if (args.AddedItems != null)
+                    {
+                        foreach (var track in args.AddedItems.Cast<BaseItemDto>())
+                        {
+                            SelectedTracks.Add(track);
+                        }
+                    }
+
+                    if (args.RemovedItems != null)
+                    {
+                        foreach (var track in args.RemovedItems.Cast<BaseItemDto>())
+                        {
+                            SelectedTracks.Remove(track);
+                        }
+                    }
+
+                    SelectedTracks = SelectedTracks.OrderBy(x => x.IndexNumber).ToList();
                 });
             }
         }
@@ -81,6 +110,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
         [UsedImplicitly]
         private async void OnPivotSelectedIndexChanged()
         {
+            if (IsInDesignMode)
+            {
+                return;
+            }
+
             switch (PivotSelectedIndex)
             {
                 case 0: // Artists
