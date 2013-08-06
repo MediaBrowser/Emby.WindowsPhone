@@ -200,7 +200,7 @@
                         <toolkit:LongListMultiSelector.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Vertical"
-                                            Margin="0,6">
+                                            Margin="{Binding MusicCollection.SongsMargin, Source={StaticResource Locator}}">
                                     <TextBlock Text="{Binding Name}"
                                                Style="{StaticResource PhoneTextTitle2Style}"/>
                                     <TextBlock Text="{Binding AlbumArtist}"

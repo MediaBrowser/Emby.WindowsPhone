@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using GalaSoft.MvvmLight.Command;
 using JetBrains.Annotations;
@@ -62,6 +63,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
             get
             {
                 return IsSelectionEnabled ? ApplicationBarMode.Minimized : ApplicationBarMode.Default;
+            }
+        }
+
+        public Thickness SongsMargin
+        {
+            get
+            {
+                return IsSelectionEnabled ? new Thickness(0, 6, 0, 6) : new Thickness(-24, 6, 0, 6);
             }
         }
 
