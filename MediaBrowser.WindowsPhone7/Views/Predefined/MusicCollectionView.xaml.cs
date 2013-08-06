@@ -12,5 +12,15 @@
         {
             InitializeComponent();
         }
+
+        protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
+        {
+            base.OnBackKeyPress(e);
+            if (SongSelector.IsSelectionEnabled)
+            {
+                SongSelector.IsSelectionEnabled = false;
+                e.Cancel = true;
+            }
+        }
     }
 }

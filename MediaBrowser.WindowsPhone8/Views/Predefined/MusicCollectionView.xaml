@@ -11,6 +11,8 @@
                 xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP8"
                 xmlns:c4F="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
                 xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+                xmlns:behaviors="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
+                xmlns:converters="clr-namespace:ScottIsAFool.WindowsPhone.Converters;assembly=ScottIsAFool.WindowsPhone"
                 FontFamily="{StaticResource PhoneFontFamilyNormal}"
                 FontSize="{StaticResource PhoneFontSizeNormal}"
                 Foreground="{StaticResource PhoneForegroundBrush}"
@@ -29,6 +31,10 @@
             <command:EventToCommand Command="{Binding PageLoadedCommand}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
+    
+    <scott:BasePage.Resources>
+        <converters:InvertBoolean x:Key="InvertBoolean"/>
+    </scott:BasePage.Resources>
 
     <toolkit:TransitionService.NavigationInTransition>
         <toolkit:NavigationInTransition>
@@ -50,6 +56,33 @@
             </toolkit:NavigationOutTransition.Forward>
         </toolkit:NavigationOutTransition>
     </toolkit:TransitionService.NavigationOutTransition>
+    
+    <i:Interaction.Behaviors>
+        <behaviors:MultiApplicationBarBehavior SelectedIndex="{Binding PivotSelectedIndex}">
+            <behaviors:ApplicationBar IsVisible="False"/>
+            <behaviors:ApplicationBar IsVisible="False" />
+            <behaviors:ApplicationBar IsVisible="True"
+                                      IsMenuEnabled="{Binding IsSelectionEnabled}"
+                                      Mode="{Binding AppBarMode}">
+                <behaviors:ApplicationBarIconButton Text="select items"
+                                                    IconUri="/Icons/appbar.list.check.png"
+                                                    IsEnabled="{Binding Songs.Count, Converter={StaticResource CountToEnabled}, ConverterParameter=delete}"
+                                                    IsVisible="{Binding IsSelectionEnabled, Converter={StaticResource InvertBoolean}}"
+                                                    Command="{Binding SelectItemsCommand}"/>
+                <behaviors:ApplicationBarIconButton Text="play music"
+                                                    IconUri="/Icons/appbar.transport.play.png"
+                                                    IsEnabled="{Binding Songs.Count, Converter={StaticResource CountToEnabled}, ConverterParameter=delete}"
+                                                    IsVisible="{Binding IsSelectionEnabled, Converter={StaticResource InvertBoolean}}"
+                                                    Command="{Binding PlayMusicCommand}"/>
+                <behaviors:ApplicationBar.MenuItems>
+                    <behaviors:ApplicationBarMenuItem Text="add to now playing"
+                                                      IsVisible="{Binding IsSelectionEnabled}"
+                                                      IsEnabled="{Binding SelectedTracks.Count, Converter={StaticResource CountToEnabled}, ConverterParameter=delete}"/>
+                </behaviors:ApplicationBar.MenuItems>
+            </behaviors:ApplicationBar>
+            <behaviors:ApplicationBar IsVisible="False" />
+        </behaviors:MultiApplicationBarBehavior>
+    </i:Interaction.Behaviors>
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot"
@@ -156,7 +189,8 @@
                                                    IsGroupingEnabled="True"
                                                    GroupHeaderTemplate="{StaticResource LLSGroupHeaderTemplateName}"
                                                    JumpListStyle="{StaticResource LLSGroupItemStyle}"
-                                                   >
+                                                   x:Name="SongSelector"
+                                                   IsSelectionEnabled="{Binding IsSelectionEnabled, Mode=TwoWay}">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="SelectionChanged">
                                 <command:EventToCommand Command="{Binding SelectionChangedCommand}"

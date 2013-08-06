@@ -11,6 +11,7 @@ using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Querying;
 using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Model;
+using Microsoft.Phone.Shell;
 using ScottIsAFool.WindowsPhone;
 using ScottIsAFool.WindowsPhone.ViewModel;
 
@@ -27,7 +28,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
         private readonly INavigationService _navigationService;
         private readonly IExtendedApiClient _apiClient;
 
-        private bool _dataLoaded;
         private bool _artistsLoaded;
         private bool _albumsLoaded;
         private bool _songsLoaded;
@@ -40,6 +40,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
         {
             _navigationService = navigationService;
             _apiClient = apiClient;
+            SelectedTracks = new List<BaseItemDto>();
 
             if (IsInDesignMode)
             {
@@ -54,6 +55,15 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
         public List<Group<BaseItemDto>> Albums { get; set; }
         public List<BaseItemDto> SelectedTracks { get; set; }
         public int PivotSelectedIndex { get; set; }
+        public bool IsSelectionEnabled { get; set; }
+
+        public ApplicationBarMode AppBarMode
+        {
+            get
+            {
+                return IsSelectionEnabled ? ApplicationBarMode.Minimized : ApplicationBarMode.Default;
+            }
+        }
 
         public RelayCommand PageLoadedCommand
         {
@@ -93,9 +103,28 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
             }
         }
 
+        public RelayCommand SelectItemsCommand
+        {
+            get
+            {
+                return new RelayCommand(() => IsSelectionEnabled = true);
+            }
+        }
+
+        public RelayCommand PlayMusicCommand
+        {
+            get
+            {
+                return new RelayCommand(() =>
+                {
+
+                });
+            }
+        }
+
         private async Task GetMusicCollection()
         {
-            if (!_navigationService.IsNetworkAvailable || _dataLoaded)
+            if (!_navigationService.IsNetworkAvailable || _artistsLoaded)
             {
                 return;
             }
