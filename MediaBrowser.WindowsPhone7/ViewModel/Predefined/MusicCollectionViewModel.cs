@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 using JetBrains.Annotations;
 using MediaBrowser.Model;
 using MediaBrowser.Model.Dto;
@@ -120,7 +121,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
             }
         }
 
-        public RelayCommand PlayMusicCommand
+        public RelayCommand AddToNowPlayingCommand
         {
             get
             {
@@ -129,6 +130,95 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
 
                 });
             }
+        }
+
+        public RelayCommand<BaseItemDto> PlayItemCommand
+        {
+            get
+            {
+                return new RelayCommand<BaseItemDto>(async item =>
+                {
+                    switch (item.Type.ToLower())
+                    {
+                        case "genre":
+                            await GetGenreTracks(item.Name);
+                            break;
+                        case "musicalbum":
+                            //await GetAlbumTracks();
+                            break;
+                        case "musicartist":
+                            await GetArtistTracks(item.Name);
+                            break;
+                    }
+                });
+            }
+        }
+
+        public RelayCommand<BaseItemDto> NavigateToCommand
+        {
+            get
+            {
+                return new RelayCommand<BaseItemDto>(_navigationService.NavigateTo);
+            }
+        } 
+
+        private async Task GetArtistTracks(string artistName)
+        {
+            if (!_navigationService.IsNetworkAvailable)
+            {
+                return;
+            }
+
+            SetProgressBar("Getting artist tracks");
+
+            try
+            {
+                var query = new ItemQuery
+                {
+                    UserId = AuthenticationService.Current.LoggedInUser.Id,
+                    Artists = new[] {artistName},
+                    Recursive = true,
+                    Fields = new[] { ItemFields.ParentId,},
+                    IncludeItemTypes = new[] {"Audio"}
+                };
+
+                Log.Info("Getting tracks for artist [{0}]", artistName);
+
+                var itemResponse = await _apiClient.GetItemsAsync(query);
+
+                var items = itemResponse.Items.ToList();
+
+                var newList = items.ToPlayListItems(_apiClient);
+
+                Messenger.Default.Send(new NotificationMessage<List<PlaylistItem>>(newList, Constants.Messages.SetPlaylistAsMsg));
+            }
+            catch (HttpException ex)
+            {
+                Log.ErrorException(string.Format("GetArtistTracks({0})", artistName), ex);
+            }
+
+            SetProgressBar();
+        }
+
+        private async Task GetGenreTracks(string genreName)
+        {
+            if (!_navigationService.IsNetworkAvailable)
+            {
+                return;
+            }
+
+            SetProgressBar("Getting genre tracks");
+
+            try
+            {
+                //var itemResponse = await _apiClient
+            }
+            catch (HttpException ex)
+            {
+                Log.ErrorException(string.Format("GetGenreTracks({0})", genreName), ex);
+            }
+
+            SetProgressBar();
         }
 
         private async Task GetMusicCollection()

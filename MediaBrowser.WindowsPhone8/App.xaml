@@ -69,6 +69,8 @@
                         Value="Transparent" />
                 <Setter Property="Padding"
                         Value="0" />
+                <Setter Property="HorizontalAlignment"
+                        Value="Stretch"/>
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="ButtonBase">

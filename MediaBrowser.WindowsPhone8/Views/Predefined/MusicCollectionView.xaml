@@ -31,9 +31,9 @@
             <command:EventToCommand Command="{Binding PageLoadedCommand}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
-    
+
     <scott:BasePage.Resources>
-        <converters:InvertBoolean x:Key="InvertBoolean"/>
+        <converters:InvertBoolean x:Key="InvertBoolean" />
     </scott:BasePage.Resources>
 
     <toolkit:TransitionService.NavigationInTransition>
@@ -56,10 +56,10 @@
             </toolkit:NavigationOutTransition.Forward>
         </toolkit:NavigationOutTransition>
     </toolkit:TransitionService.NavigationOutTransition>
-    
+
     <i:Interaction.Behaviors>
         <behaviors:MultiApplicationBarBehavior SelectedIndex="{Binding PivotSelectedIndex}">
-            <behaviors:ApplicationBar IsVisible="False"/>
+            <behaviors:ApplicationBar IsVisible="False" />
             <behaviors:ApplicationBar IsVisible="False" />
             <behaviors:ApplicationBar IsVisible="True"
                                       IsMenuEnabled="{Binding IsSelectionEnabled}"
@@ -68,16 +68,12 @@
                                                     IconUri="/Icons/appbar.list.check.png"
                                                     IsEnabled="{Binding Songs.Count, Converter={StaticResource CountToEnabled}, ConverterParameter=delete}"
                                                     IsVisible="{Binding IsSelectionEnabled, Converter={StaticResource InvertBoolean}}"
-                                                    Command="{Binding SelectItemsCommand}"/>
-                <behaviors:ApplicationBarIconButton Text="play music"
-                                                    IconUri="/Icons/appbar.transport.play.png"
-                                                    IsEnabled="{Binding Songs.Count, Converter={StaticResource CountToEnabled}, ConverterParameter=delete}"
-                                                    IsVisible="{Binding IsSelectionEnabled, Converter={StaticResource InvertBoolean}}"
-                                                    Command="{Binding PlayMusicCommand}"/>
+                                                    Command="{Binding SelectItemsCommand}" />
                 <behaviors:ApplicationBar.MenuItems>
                     <behaviors:ApplicationBarMenuItem Text="add to now playing"
                                                       IsVisible="{Binding IsSelectionEnabled}"
-                                                      IsEnabled="{Binding SelectedTracks.Count, Converter={StaticResource CountToEnabled}, ConverterParameter=delete}"/>
+                                                      IsEnabled="{Binding SelectedTracks.Count, Converter={StaticResource CountToEnabled}, ConverterParameter=delete}"
+                                                      Command="{Binding AddToNowPlayingCommand}" />
                 </behaviors:ApplicationBar.MenuItems>
             </behaviors:ApplicationBar>
             <behaviors:ApplicationBar IsVisible="False" />
@@ -116,17 +112,23 @@
                                             JumpListStyle="{StaticResource LLSGroupItemStyle}">
                         <phone:LongListSelector.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel Orientation="Horizontal"
-                                            Margin="0,0,0,12">
-                                    <c4F:RoundButton ImageSource="/Icons/appbar.transport.play.rest.png"
-                                                     HorizontalAlignment="Center"
-                                                     VerticalAlignment="Center"
-                                                     Margin="6"
-                                                     Command="{Binding Music.AlbumPlayTapped, Source={StaticResource Locator}}"
-                                                     CommandParameter="{Binding}" />
-                                    <TextBlock Text="{Binding Name}"
-                                               Style="{StaticResource PhoneTextTitle2Style}" />
-                                </StackPanel>
+                                <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                                 HorizontalContentAlignment="Left"
+                                                 HorizontalAlignment="Stretch"
+                                                 Command="{Binding NavigateToCommand}"
+                                                 CommandParameter="{Binding}">
+                                    <StackPanel Orientation="Horizontal"
+                                                Margin="0,0,0,12">
+                                        <c4F:RoundButton ImageSource="/Icons/appbar.transport.play.rest.png"
+                                                         HorizontalAlignment="Center"
+                                                         VerticalAlignment="Center"
+                                                         Margin="6"
+                                                         Command="{Binding PlayItemCommand}"
+                                                         CommandParameter="{Binding}" />
+                                        <TextBlock Text="{Binding Name}"
+                                                   Style="{StaticResource PhoneTextTitle2Style}" />
+                                    </StackPanel>
+                                </HyperlinkButton>
                             </DataTemplate>
                         </phone:LongListSelector.ItemTemplate>
                     </phone:LongListSelector>
@@ -142,8 +144,7 @@
                                 <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
                                                  HorizontalContentAlignment="Left"
                                                  VerticalContentAlignment="Top"
-                                                 NavigateUri="/Views/AlbumView.xaml"
-                                                 Command="{Binding Music.AlbumTapped, Source={StaticResource Locator}}"
+                                                 Command="{Binding NavigateToCommand}"
                                                  CommandParameter="{Binding}">
                                     <StackPanel Orientation="Horizontal"
                                                 Margin="12,0,0,12">
@@ -160,7 +161,7 @@
                                                              HorizontalAlignment="Center"
                                                              VerticalAlignment="Center"
                                                              Margin="6"
-                                                             Command="{Binding Music.AlbumPlayTapped, Source={StaticResource Locator}}"
+                                                             Command="{Binding PlayItemCommand}"
                                                              CommandParameter="{Binding}" />
                                         </Grid>
                                         <StackPanel Orientation="Vertical"
@@ -175,7 +176,7 @@
                                                        LineHeight="2"
                                                        TextTrimming="WordEllipsis" />
                                             <TextBlock Text="{Binding AlbumArtist}"
-                                                       Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                                       Style="{StaticResource PhoneTextSubtleStyle}" />
                                         </StackPanel>
                                     </StackPanel>
                                 </HyperlinkButton>
@@ -202,9 +203,9 @@
                                 <StackPanel Orientation="Vertical"
                                             Margin="{Binding MusicCollection.SongsMargin, Source={StaticResource Locator}}">
                                     <TextBlock Text="{Binding Name}"
-                                               Style="{StaticResource PhoneTextTitle2Style}"/>
+                                               Style="{StaticResource PhoneTextTitle2Style}" />
                                     <TextBlock Text="{Binding AlbumArtist}"
-                                               Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                               Style="{StaticResource PhoneTextSubtleStyle}" />
                                 </StackPanel>
                             </DataTemplate>
                         </toolkit:LongListMultiSelector.ItemTemplate>
@@ -215,17 +216,23 @@
                     <phone:LongListSelector ItemsSource="{Binding Genres}">
                         <phone:LongListSelector.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel Orientation="Horizontal"
-                                            Margin="0,0,0,12">
-                                    <c4F:RoundButton ImageSource="/Icons/appbar.transport.play.rest.png"
-                                                     HorizontalAlignment="Center"
-                                                     VerticalAlignment="Center"
-                                                     Margin="6"
-                                                     Command="{Binding Music.AlbumPlayTapped, Source={StaticResource Locator}}"
-                                                     CommandParameter="{Binding}" />
-                                    <TextBlock Text="{Binding Name}"
-                                               Style="{StaticResource PhoneTextTitle2Style}" />
-                                </StackPanel>
+                                <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                                 HorizontalContentAlignment="Left"
+                                                 VerticalContentAlignment="Top"
+                                                 Command="{Binding NavigateToCommand}"
+                                                 CommandParameter="{Binding}">
+                                    <StackPanel Orientation="Horizontal"
+                                                Margin="0,0,0,12">
+                                        <c4F:RoundButton ImageSource="/Icons/appbar.transport.play.rest.png"
+                                                         HorizontalAlignment="Center"
+                                                         VerticalAlignment="Center"
+                                                         Margin="6"
+                                                         Command="{Binding PlayItemCommand}"
+                                                         CommandParameter="{Binding}" />
+                                        <TextBlock Text="{Binding Name}"
+                                                   Style="{StaticResource PhoneTextTitle2Style}" />
+                                    </StackPanel>
+                                </HyperlinkButton>
                             </DataTemplate>
                         </phone:LongListSelector.ItemTemplate>
                     </phone:LongListSelector>

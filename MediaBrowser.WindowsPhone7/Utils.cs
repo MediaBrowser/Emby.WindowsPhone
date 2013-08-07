@@ -242,6 +242,18 @@ namespace MediaBrowser.WindowsPhone
             return deviceId;
         }
 
+        internal static List<PlaylistItem> ToPlayListItems(this List<BaseItemDto> list, IExtendedApiClient apiClient)
+        {
+            var newList = new List<PlaylistItem>();
+            list.ForEach(item =>
+            {
+                var playlistItem = item.ToPlaylistItem(apiClient);
+                newList.Add(playlistItem);
+            });
+
+            return newList;
+        }
+
         public static string DaysAgo(object value)
         {
             const int SECOND = 1;
