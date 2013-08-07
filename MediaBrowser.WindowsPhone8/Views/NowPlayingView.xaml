@@ -118,8 +118,8 @@
                                              Height="300"
                                              Width="300"
                                              Margin="12,0,0,0"
-                                             Stretch="UniformToFill"
-                                             PlaceholderImageStretch="UniformToFill"
+                                             Stretch="Uniform"
+                                             PlaceholderImageStretch="Uniform"
                                              HorizontalAlignment="Left"
                                              VerticalAlignment="Top" />
                         <StackPanel HorizontalAlignment="Right"

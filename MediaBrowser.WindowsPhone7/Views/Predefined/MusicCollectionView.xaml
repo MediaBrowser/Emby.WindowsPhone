@@ -136,7 +136,8 @@
                 <controls:PivotItem Header="albums">
                     <toolkit:LongListSelector ItemsSource="{Binding Albums}"
                                               GroupHeaderTemplate="{StaticResource LLSGroupHeaderTemplateName}"
-                                              GroupItemTemplate="{StaticResource LLSGroupItemTemplate}">
+                                              GroupItemTemplate="{StaticResource LLSGroupItemTemplate}"
+                                              Background="Transparent">
                         <toolkit:LongListSelector.ItemTemplate>
                             <DataTemplate>
                                 <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"

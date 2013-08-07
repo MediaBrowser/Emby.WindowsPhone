@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using Coding4Fun.Toolkit.Controls;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using JetBrains.Annotations;
@@ -127,7 +128,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
             {
                 return new RelayCommand(() =>
                 {
+                    var itemsResponse = new ItemsResult
+                    {
+                        Items = SelectedTracks.ToArray()
+                    };
 
+                    SendItemsToPlaylist(itemsResponse);
                 });
             }
         }
@@ -144,23 +150,57 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                             await GetGenreTracks(item.Name);
                             break;
                         case "musicalbum":
-                            //await GetAlbumTracks();
+                            await GetAlbumTracks(item);
                             break;
-                        case "musicartist":
+                        case "artist":
                             await GetArtistTracks(item.Name);
                             break;
                     }
                 });
             }
         }
-
+        
         public RelayCommand<BaseItemDto> NavigateToCommand
         {
             get
             {
                 return new RelayCommand<BaseItemDto>(_navigationService.NavigateTo);
             }
-        } 
+        }
+        
+        private async Task GetAlbumTracks(BaseItemDto item)
+        {
+            if (!_navigationService.IsNetworkAvailable)
+            {
+                return;
+            }
+
+            SetProgressBar("Getting album tracks...");
+
+            try
+            {
+                var query = new ItemQuery
+                {
+                    UserId = AuthenticationService.Current.LoggedInUser.Id,
+                    Recursive = true,
+                    Fields = new[] { ItemFields.ParentId, },
+                    ParentId = item.Id,
+                    IncludeItemTypes = new[] { "Audio" }
+                };
+
+                Log.Info("Getting tracks for album [{0}] ({1})", item.Name, item.Id);
+
+                var itemResponse = await _apiClient.GetItemsAsync(query);
+
+                SendItemsToPlaylist(itemResponse);
+            }
+            catch (HttpException ex)
+            {
+                Log.ErrorException(string.Format("GetAlbumTracks({0})", item.Name), ex);
+            }
+
+            SetProgressBar();
+        }
 
         private async Task GetArtistTracks(string artistName)
         {
@@ -169,7 +209,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                 return;
             }
 
-            SetProgressBar("Getting artist tracks");
+            SetProgressBar("Getting artist tracks...");
 
             try
             {
@@ -186,11 +226,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
 
                 var itemResponse = await _apiClient.GetItemsAsync(query);
 
-                var items = itemResponse.Items.ToList();
-
-                var newList = items.ToPlayListItems(_apiClient);
-
-                Messenger.Default.Send(new NotificationMessage<List<PlaylistItem>>(newList, Constants.Messages.SetPlaylistAsMsg));
+                SendItemsToPlaylist(itemResponse);
             }
             catch (HttpException ex)
             {
@@ -211,7 +247,19 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
 
             try
             {
-                //var itemResponse = await _apiClient
+                var query = new ItemQuery
+                {
+                    UserId = AuthenticationService.Current.LoggedInUser.Id,
+                    Genres = new[] {genreName},
+                    Recursive = true,
+                    IncludeItemTypes = new[] {"Audio"}
+                };
+
+                Log.Info("Getting tracks for genre [{0}]", genreName);
+
+                var itemResponse = await _apiClient.GetItemsAsync(query);
+
+                SendItemsToPlaylist(itemResponse);
             }
             catch (HttpException ex)
             {
@@ -219,6 +267,22 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
             }
 
             SetProgressBar();
+        }
+
+        private void SendItemsToPlaylist(ItemsResult itemResponse)
+        {
+            if (itemResponse == null || !itemResponse.Items.Any())
+            {
+                return;
+            }
+
+            var items = itemResponse.Items.ToList();
+
+            var newList = items.ToPlayListItems(_apiClient);
+
+            Messenger.Default.Send(new NotificationMessage<List<PlaylistItem>>(newList, Constants.Messages.SetPlaylistAsMsg));
+
+            _navigationService.NavigateTo(Constants.Pages.NowPlayingView);
         }
 
         private async Task GetMusicCollection()
