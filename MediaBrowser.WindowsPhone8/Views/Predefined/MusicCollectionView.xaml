@@ -20,6 +20,7 @@
                 Orientation="Portrait"
                 mc:Ignorable="d"
                 shell:SystemTray.IsVisible="True"
+                toolkit:TiltEffect.IsTiltEnabled="True"
                 DataContext="{Binding MusicCollection, Source={StaticResource Locator}}">
     <shell:SystemTray.ProgressIndicator>
         <shell:ProgressIndicator IsVisible="{Binding ProgressIsVisible}"

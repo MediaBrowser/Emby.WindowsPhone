@@ -71,6 +71,8 @@
                         Value="0" />
                 <Setter Property="HorizontalAlignment"
                         Value="Stretch"/>
+                <Setter Property="HorizontalContentAlignment"
+                        Value="Left"/>
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="ButtonBase">
@@ -84,6 +86,13 @@
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
+            </Style>
+            
+            <Style TargetType="TextBlock"
+                   BasedOn="{StaticResource PhoneTextTitle2Style}"
+                   x:Key="HeaderTextStyle">
+                <Setter Property="FontFamily"
+                        Value="Segoe WP Black"/>
             </Style>
 
             <!-- DataTemplates -->
