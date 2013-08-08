@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Command;
+using JetBrains.Annotations;
 using MediaBrowser.Model;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Net;
@@ -32,6 +33,21 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
         {
             _navigationService = navigationService;
             _apiClient = apiClient;
+
+            if (IsInDesignMode)
+            {
+                NextUpList = new List<BaseItemDto>
+                {
+                    new BaseItemDto
+                    {
+                        Id = "e252ea3059d140a0274282bc8cd194cc",
+                        Name = "1x01 - Pilot",
+                        Overview =
+                            "A Kindergarten teacher starts speaking gibberish and passed out in front of her class. What looks like a possible brain tumor does not respond to treatment and provides many more questions than answers for House and his team as they engage in a risky trial-and-error approach to her case. When the young teacher refuses any additional variations of treatment and her life starts slipping away, House must act against his code of conduct and make a personal visit to his patient to convince her to trust him one last time.",
+                        SeriesName = "House M.D."
+                    }
+                };
+            }
         }
 
         public List<BaseItemDto> NextUpList { get; set; }
@@ -49,7 +65,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                         return;
                     }
 
-
+                    _nextUpLoaded = await GetNextUp();
                 });
             }
         }
@@ -68,10 +84,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                 Log.Info("Getting next up items");
 
                 var itemResponse = await _apiClient.GetNextUpAsync(query);
-
-                SetItems(itemResponse, NextUpList);
-
-                return true;
+                
+                return SetNextUpItems(itemResponse);
             }
             catch (HttpException ex)
             {
@@ -83,14 +97,24 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
             return false;
         }
 
-        private void SetItems(ItemsResult itemResponse, List<BaseItemDto> listToSet)
+        private bool SetNextUpItems(ItemsResult itemResponse)
         {
             if (itemResponse == null || !itemResponse.Items.Any())
             {
-                return;
+                return false;
             }
 
-            listToSet = itemResponse.Items.ToList();
+            NextUpList = itemResponse.Items.ToList();
+
+            SetProgressBar();
+
+            return true;
+        }
+
+        [UsedImplicitly]
+        private void OnPivotSelectedIndexChanged()
+        {
+            
         }
     }
 }

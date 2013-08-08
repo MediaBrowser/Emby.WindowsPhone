@@ -12,7 +12,8 @@
              
              xmlns:windowsPhone="clr-namespace:MediaBrowser.WindowsPhone"
              xmlns:controls="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
-             xmlns:model="clr-namespace:MediaBrowser.Model;assembly=MediaBrowser.Shared">
+             xmlns:model="clr-namespace:MediaBrowser.Model;assembly=MediaBrowser.Shared"
+             xmlns:cimbalino="clr-namespace:Cimbalino.Phone.Toolkit.Converters;assembly=Cimbalino.Phone.Toolkit">
 
     <!--Application Resources-->
     <Application.Resources>
@@ -48,7 +49,10 @@
             <scottConverters:StringCaseConverter x:Key="StringCaseConverter" />
             <scottConverters:IntToVisibilityConverter x:Key="IntToVisibilityConverter" />
             <scottConverters:CountToEnabled x:Key="CountToEnabled" />
-
+            
+            <!--Cimbalino Converters-->
+            <cimbalino:StringToUppercaseConverter x:Key="StringToUppercaseConverter"/>
+            
             <!-- Local Converters -->
             <converters:ImageUrlConverter x:Key="ImageUrlConverter" />
             <converters:EpisodeNumberVisibilityConverter x:Key="EpisodeNumberVisibilityConverter" />

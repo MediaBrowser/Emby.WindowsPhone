@@ -114,7 +114,6 @@
                         <phone:LongListSelector.ItemTemplate>
                             <DataTemplate>
                                 <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                                 HorizontalContentAlignment="Left"
                                                  Command="{Binding MusicCollection.NavigateToCommand, Source={StaticResource Locator}}"
                                                  CommandParameter="{Binding}">
                                     <StackPanel Orientation="Horizontal"
@@ -142,7 +141,6 @@
                         <phone:LongListSelector.ItemTemplate>
                             <DataTemplate>
                                 <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                                 HorizontalContentAlignment="Left"
                                                  VerticalContentAlignment="Top"
                                                  Command="{Binding MusicCollection.NavigateToCommand, Source={StaticResource Locator}}"
                                                  CommandParameter="{Binding}">

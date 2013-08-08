@@ -20,6 +20,11 @@
                 shell:SystemTray.IsVisible="True"
                 toolkit:TiltEffect.IsTiltEnabled="True"
                 DataContext="{Binding TvCollection, Source={StaticResource Locator}}">
+    <shell:SystemTray.ProgressIndicator>
+        <shell:ProgressIndicator IsVisible="{Binding ProgressIsVisible}"
+                                 IsIndeterminate="{Binding ProgressIsVisible}"
+                                 Text="{Binding ProgressText}" />
+    </shell:SystemTray.ProgressIndicator>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <command:EventToCommand Command="{Binding PageLoadedCommand}"/>
@@ -37,7 +42,7 @@
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel"
               Grid.Row="1"
-              Margin="12,0,12,0">
+              Margin="0,0,12,0">
             <phone:Pivot SelectedIndex="{Binding PivotSelectedIndex, Mode=TwoWay}" >
                 <phone:Pivot.Title>
                     <StackPanel Orientation="Horizontal"
@@ -52,19 +57,19 @@
 
                 <phone:PivotItem Header="next up">
                     <phone:LongListSelector ItemsSource="{Binding NextUpList}">
-                        <!--173x259-->
                         <phone:LongListSelector.ItemTemplate>
                             <DataTemplate>
-                                <HyperlinkButton Style="{StaticResource EmptyButtonStyle}">
+                                <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                                 Margin="12,6">
                                     <StackPanel Orientation="Horizontal">
                                         <controls:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
-                                                             Height="173"
-                                                             Width="259"
+                                                             Height="99"
+                                                             Width="148"
                                                              Stretch="Uniform"
                                                              VerticalAlignment="Top"/>
                                         <StackPanel Orientation="Vertical"
                                                     VerticalAlignment="Top">
-                                            <TextBlock Text="{Binding Name}"
+                                            <TextBlock Text="{Binding Name, Converter={StaticResource StringToUppercaseConverter}}"
                                                        Style="{StaticResource HeaderTextStyle}"/>
                                             <TextBlock Text="{Binding SeriesName}"
                                                        Style="{StaticResource PhoneTextSubtleStyle}"/>
@@ -77,6 +82,7 @@
                 </phone:PivotItem>
             </phone:Pivot>
         </Grid>
+        <!--<Image Source="/Assets/AlignmentGrid.png" VerticalAlignment="Top" Height="800" Width="480" Margin="0,-32,0,0" Grid.Row="0" Grid.RowSpan="2" IsHitTestVisible="False" />-->
     </Grid>
 
 </scott:BasePage>
