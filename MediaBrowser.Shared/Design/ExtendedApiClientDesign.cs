@@ -103,7 +103,7 @@ namespace MediaBrowser.Design
             throw new NotImplementedException();
         }
 
-        public Task<SearchHintResult> GetSearchHints(string userId, string searchTerm, int? startIndex = null, int? limit = null)
+        public Task<SearchHintResult> GetSearchHintsAsync(string userId, string searchTerm, int? startIndex = null, int? limit = null)
         {
             throw new NotImplementedException();
         }

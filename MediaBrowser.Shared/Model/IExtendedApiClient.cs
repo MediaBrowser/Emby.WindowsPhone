@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using MediaBrowser.ApiInteraction;
+using MediaBrowser.Model.ApiClient;
 
 namespace MediaBrowser.Model
 {
