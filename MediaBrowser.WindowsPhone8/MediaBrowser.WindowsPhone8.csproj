@@ -151,6 +151,9 @@
     <Compile Include="..\MediaBrowser.WindowsPhone7\Converters\RuntimeConverter.cs">
       <Link>Converters\RuntimeConverter.cs</Link>
     </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone7\Converters\SeasonEpisodeConverter.cs">
+      <Link>Converters\SeasonEpisodeConverter.cs</Link>
+    </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone7\Converters\SettingsConverters.cs">
       <Link>Converters\SettingsConverters.cs</Link>
     </Compile>

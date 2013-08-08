@@ -5,6 +5,7 @@ using GalaSoft.MvvmLight.Command;
 using JetBrains.Annotations;
 using MediaBrowser.Model;
 using MediaBrowser.Model.Dto;
+using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Querying;
 using MediaBrowser.Services;
@@ -25,6 +26,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
         private readonly IExtendedApiClient _apiClient;
 
         private bool _nextUpLoaded;
+        private bool _latestUnwatchedLoaded;
 
         /// <summary>
         /// Initializes a new instance of the TvCollectionViewModel class.
@@ -51,6 +53,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
         }
 
         public List<BaseItemDto> NextUpList { get; set; }
+        public List<BaseItemDto> LatestUnwatched { get; set; }
 
         public int PivotSelectedIndex { get; set; }
 
@@ -65,8 +68,16 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                         return;
                     }
 
-                    _nextUpLoaded = await GetNextUp();
+                    _nextUpLoaded = await GetLatestUnwatched();
                 });
+            }
+        }
+
+        public RelayCommand<BaseItemDto> NavigateToCommand
+        {
+            get
+            {
+                return new RelayCommand<BaseItemDto>(item => _navigationService.NavigateTo(item));
             }
         }
 
@@ -97,8 +108,58 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
             return false;
         }
 
+        private async Task<bool> GetLatestUnwatched()
+        {
+            try
+            {
+                SetProgressBar("Getting next up items...");
+
+                var query = new ItemQuery
+                {
+                    UserId = AuthenticationService.Current.LoggedInUser.Id,
+                    SortBy = new[] {"DateCreated"},
+                    SortOrder = SortOrder.Descending,
+                    IncludeItemTypes = new[] {"Episode"},
+                    Limit = 8,
+                    Fields = new[] {ItemFields.PrimaryImageAspectRatio},
+                    Filters = new[] {ItemFilter.IsUnplayed},
+                    Recursive = true
+                };
+
+                Log.Info("Getting next up items");
+
+                var itemResponse = await _apiClient.GetItemsAsync(query);
+
+                return SetLatestUnwatched(itemResponse);
+            }
+            catch (HttpException ex)
+            {
+                Log.ErrorException("GetLatestUnwatched()", ex);
+            }
+
+            SetProgressBar();
+
+            return false;
+        }
+
+        private bool SetLatestUnwatched(ItemsResult itemResponse)
+        {
+            SetProgressBar();
+
+            if (itemResponse == null || !itemResponse.Items.Any())
+            {
+                return false;
+            }
+
+            LatestUnwatched = itemResponse.Items.ToList();
+
+            return true;
+        }
+
         private bool SetNextUpItems(ItemsResult itemResponse)
         {
+            SetProgressBar(); 
+            
             if (itemResponse == null || !itemResponse.Items.Any())
             {
                 return false;
@@ -106,15 +167,35 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
 
             NextUpList = itemResponse.Items.ToList();
 
-            SetProgressBar();
-
             return true;
         }
 
         [UsedImplicitly]
-        private void OnPivotSelectedIndexChanged()
+        private async void OnPivotSelectedIndexChanged()
         {
-            
+            switch (PivotSelectedIndex)
+            {
+                case 0:
+                    if (!_navigationService.IsNetworkAvailable || _latestUnwatchedLoaded)
+                    {
+                        return;
+                    }
+
+                    SetProgressBar("Getting latest unwatched items...");
+                    _latestUnwatchedLoaded = await GetLatestUnwatched();
+                    SetProgressBar();
+                    break;
+                case 1:
+                    if (!_navigationService.IsNetworkAvailable || _nextUpLoaded)
+                    {
+                        return;
+                    }
+
+                    SetProgressBar("Getting next up items...");
+                    _nextUpLoaded = await GetNextUp();
+                    SetProgressBar();
+                    break;
+            }
         }
     }
 }

@@ -11,6 +11,8 @@
                 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
                 xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP8"
                 xmlns:controls="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
+                xmlns:behaviors="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
+                xmlns:converters="clr-namespace:MediaBrowser.WindowsPhone.Converters"
                 FontFamily="{StaticResource PhoneFontFamilyNormal}"
                 FontSize="{StaticResource PhoneFontSizeNormal}"
                 Foreground="{StaticResource PhoneForegroundBrush}"
@@ -30,6 +32,33 @@
             <command:EventToCommand Command="{Binding PageLoadedCommand}"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
+    
+    <scott:BasePage.Resources>
+        <converters:SeasonEpisodeConverter x:Key="SeasonEpisodeConverter"/>
+        <DataTemplate x:Key="EpisodeDataTemplate">
+            <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                             Margin="12,6,0,6"
+                             Command="{Binding TvCollection.NavigateToCommand, Source={StaticResource Locator}}"
+                             CommandParameter="{Binding}">
+                <StackPanel Orientation="Horizontal">
+                    <controls:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
+                                         Height="99"
+                                         Width="148"
+                                         Stretch="Uniform"
+                                         VerticalAlignment="Top" />
+                    <StackPanel Orientation="Vertical"
+                                VerticalAlignment="Top">
+                        <TextBlock Text="{Binding Name, Converter={StaticResource StringToUppercaseConverter}}"
+                                   Style="{StaticResource HeaderTextStyle}" />
+                        <TextBlock Text="{Binding SeriesName}"
+                                   Style="{StaticResource PhoneTextSubtleStyle}" />
+                        <TextBlock Text="{Binding Converter={StaticResource SeasonEpisodeConverter}}"
+                                   Style="{StaticResource PhoneTextSubtleStyle}"/>
+                    </StackPanel>
+                </StackPanel>
+            </HyperlinkButton>
+        </DataTemplate>
+    </scott:BasePage.Resources>
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot"
@@ -55,30 +84,14 @@
                     </StackPanel>
                 </phone:Pivot.Title>
 
+                <phone:PivotItem Header="latest unwatched">
+                    <phone:LongListSelector ItemsSource="{Binding LatestUnwatched}"
+                                            ItemTemplate="{StaticResource EpisodeDataTemplate}" />
+                </phone:PivotItem>
+                
                 <phone:PivotItem Header="next up">
-                    <phone:LongListSelector ItemsSource="{Binding NextUpList}">
-                        <phone:LongListSelector.ItemTemplate>
-                            <DataTemplate>
-                                <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                                 Margin="12,6">
-                                    <StackPanel Orientation="Horizontal">
-                                        <controls:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
-                                                             Height="99"
-                                                             Width="148"
-                                                             Stretch="Uniform"
-                                                             VerticalAlignment="Top"/>
-                                        <StackPanel Orientation="Vertical"
-                                                    VerticalAlignment="Top">
-                                            <TextBlock Text="{Binding Name, Converter={StaticResource StringToUppercaseConverter}}"
-                                                       Style="{StaticResource HeaderTextStyle}"/>
-                                            <TextBlock Text="{Binding SeriesName}"
-                                                       Style="{StaticResource PhoneTextSubtleStyle}"/>
-                                        </StackPanel>
-                                    </StackPanel>
-                                </HyperlinkButton>
-                            </DataTemplate>
-                        </phone:LongListSelector.ItemTemplate>
-                    </phone:LongListSelector>
+                    <phone:LongListSelector ItemsSource="{Binding NextUpList}"
+                                            ItemTemplate="{StaticResource EpisodeDataTemplate}"/>
                 </phone:PivotItem>
             </phone:Pivot>
         </Grid>
