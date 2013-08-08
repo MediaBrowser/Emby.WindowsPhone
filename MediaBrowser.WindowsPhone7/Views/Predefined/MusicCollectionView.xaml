@@ -108,7 +108,8 @@
                 <controls:PivotItem Header="artists">
                     <toolkit:LongListSelector ItemsSource="{Binding Artists}"
                                               GroupHeaderTemplate="{StaticResource LLSGroupHeaderTemplateName}"
-                                              GroupItemTemplate="{StaticResource LLSGroupItemTemplate}">
+                                              GroupItemTemplate="{StaticResource LLSGroupItemTemplate}"
+                                              Background="Transparent">
                         <toolkit:LongListSelector.ItemTemplate>
                             <DataTemplate>
                                 <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"

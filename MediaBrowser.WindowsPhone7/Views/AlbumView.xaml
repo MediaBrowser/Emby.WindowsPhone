@@ -121,9 +121,9 @@
                                             VerticalAlignment="Top"
                                             Height="150"
                                             Width="150"
-                                            Stretch="UniformToFill"
+                                            Stretch="Uniform"
                                             PlaceholderImageSource="/Images/DefaultAlbumCase.png"
-                                            PlaceholderImageStretch="UniformToFill" />
+                                            PlaceholderImageStretch="Uniform" />
                             <StackPanel Orientation="Vertical"
                                         Margin="0,-6,0,0"
                                         HorizontalAlignment="Left"
