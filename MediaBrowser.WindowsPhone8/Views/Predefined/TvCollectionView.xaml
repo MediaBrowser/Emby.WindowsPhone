@@ -11,7 +11,6 @@
                 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
                 xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP8"
                 xmlns:controls="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
-                xmlns:behaviors="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
                 xmlns:converters="clr-namespace:MediaBrowser.WindowsPhone.Converters"
                 FontFamily="{StaticResource PhoneFontFamilyNormal}"
                 FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -99,7 +98,28 @@
                                             HideEmptyGroups="False"
                                             GroupHeaderTemplate="{StaticResource LLSGroupHeaderTemplateName}"
                                             JumpListStyle="{StaticResource LLSGroupItemStyle}">
-                        
+                        <phone:LongListSelector.ItemTemplate>
+                            <DataTemplate>
+                                <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                                 Margin="12,6,0,6"
+                                                 Command="{Binding TvCollection.NavigateToCommand, Source={StaticResource Locator}}"
+                                                 CommandParameter="{Binding}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <controls:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
+                                                             Height="173"
+                                                             Width="136"
+                                                             Stretch="Uniform"
+                                                             PlaceholderImageSource="/Images/DefaultVideo.png"
+                                                             PlaceholderImageStretch="Uniform"
+                                                             VerticalAlignment="Top"/>
+                                        <StackPanel Orientation="Vertical">
+                                            <TextBlock Text="{Binding Name, Converter={StaticResource StringToUppercaseConverter}}"
+                                                       Style="{StaticResource HeaderTextStyle}"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </HyperlinkButton>
+                            </DataTemplate>
+                        </phone:LongListSelector.ItemTemplate>
                     </phone:LongListSelector>
                 </phone:PivotItem>
             </phone:Pivot>

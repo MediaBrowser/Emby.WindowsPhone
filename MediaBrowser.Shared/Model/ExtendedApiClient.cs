@@ -13,7 +13,6 @@ namespace MediaBrowser.Model
         public ExtendedApiClient(ILogger logger, string serverHostName, int serverApiPort, string clientName, string deviceName, string deviceId, string appVersion)
             : base(logger, serverHostName, serverApiPort, clientName, deviceName, deviceId, appVersion)
         {
-            
         }
 
         /// <summary>

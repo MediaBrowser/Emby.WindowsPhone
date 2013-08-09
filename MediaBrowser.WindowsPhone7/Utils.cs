@@ -50,7 +50,7 @@ namespace MediaBrowser.WindowsPhone
 
         public static async Task<List<Group<BaseItemDto>>> GroupItemsByName(IEnumerable<BaseItemDto> items)
         {
-            await TaskEx.Run(() =>
+            return await TaskEx.Run(() =>
             {
                 var emptyGroups = new List<Group<BaseItemDto>>();
 
@@ -77,8 +77,6 @@ namespace MediaBrowser.WindowsPhone
 
                 return result;
             });
-
-            return new List<Group<BaseItemDto>>();
         }
 
         internal static string GetSortByNameHeader(BaseItemDto dtoBaseItem)

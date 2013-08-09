@@ -66,7 +66,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
             {
                 return new RelayCommand(async () =>
                 {
-                    await GetSelectedData(true);
+                    await GetSelectedData(false);
                 });
             }
         }
@@ -225,7 +225,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
             switch (PivotSelectedIndex)
             {
                 case 0:
-                    if (!_navigationService.IsNetworkAvailable || _latestUnwatchedLoaded || isRefresh)
+                    if (!_navigationService.IsNetworkAvailable || (_latestUnwatchedLoaded && !isRefresh))
                     {
                         return;
                     }
@@ -233,7 +233,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                     _latestUnwatchedLoaded = await GetLatestUnwatched();
                     break;
                 case 1:
-                    if (!_navigationService.IsNetworkAvailable || _nextUpLoaded || isRefresh)
+                    if (!_navigationService.IsNetworkAvailable || (_nextUpLoaded && !isRefresh))
                     {
                         return;
                     }
@@ -241,7 +241,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                     _nextUpLoaded = await GetNextUp();
                     break;
                 case 2:
-                    if (!_navigationService.IsNetworkAvailable || _showsLoaded || isRefresh)
+                    if (!_navigationService.IsNetworkAvailable || (_showsLoaded && !isRefresh))
                     {
                         return;
                     }
