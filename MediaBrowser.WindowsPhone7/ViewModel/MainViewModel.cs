@@ -33,18 +33,16 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     {
         private readonly INavigationService _navService;
         private readonly IExtendedApiClient _apiClient;
-        private readonly IApplicationSettingsService _applicationSettings;
         private bool _hasLoaded;
         private BaseItemDto[] _recentItems;
 
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
-        public MainViewModel(IExtendedApiClient apiClient, INavigationService navService, IApplicationSettingsService applicationSettings)
+        public MainViewModel(IExtendedApiClient apiClient, INavigationService navService)
         {
             _apiClient = apiClient;
             _navService = navService;
-            _applicationSettings = applicationSettings;
 
             Folders = new ObservableCollection<BaseItemDto>();
             RecentItems = new ObservableCollection<BaseItemDto>();

@@ -163,6 +163,9 @@
     <Compile Include="..\MediaBrowser.WindowsPhone7\Converters\TicksToTimespanConverter.cs">
       <Link>Converters\TicksToTimespanConverter.cs</Link>
     </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone7\Converters\ZeroCountBrushConverter.cs">
+      <Link>Converters\ZeroCountBrushConverter.cs</Link>
+    </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone7\ExtensionMethods.cs">
       <Link>ExtensionMethods.cs</Link>
     </Compile>

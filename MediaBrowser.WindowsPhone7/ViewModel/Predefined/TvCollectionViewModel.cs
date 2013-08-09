@@ -79,6 +79,22 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
             }
         }
 
+        public RelayCommand<BaseItemDto> MarkAsWatchedCommand
+        {
+            get
+            {
+                return new RelayCommand<BaseItemDto>(async item =>
+                {
+                    if (!_navigationService.IsNetworkAvailable)
+                    {
+                        return;
+                    }
+
+                    //await _apiClient
+                });
+            }
+        }
+
         private async Task<bool> GetNextUp()
         {
             try

@@ -219,6 +219,7 @@
     <Compile Include="Converters\SettingsConverters.cs" />
     <Compile Include="Converters\SimpleDaysAgoConverter.cs" />
     <Compile Include="Converters\TicksToTimespanConverter.cs" />
+    <Compile Include="Converters\ZeroCountBrushConverter.cs" />
     <Compile Include="ExtensionMethods.cs" />
     <Compile Include="Model\INavigationService.cs" />
     <Compile Include="Model\MBLogger.cs" />
