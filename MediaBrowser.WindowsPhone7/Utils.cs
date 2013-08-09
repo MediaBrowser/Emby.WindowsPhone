@@ -48,30 +48,37 @@ namespace MediaBrowser.WindowsPhone
             return result;
         }
 
-        public static List<Group<BaseItemDto>> GroupItemsByName(IEnumerable<BaseItemDto> tracks)
+        public static async Task<List<Group<BaseItemDto>>> GroupItemsByName(IEnumerable<BaseItemDto> items)
         {
-            var emptyGroups = new List<Group<BaseItemDto>>();
+            await TaskEx.Run(() =>
+            {
+                var emptyGroups = new List<Group<BaseItemDto>>();
 
-            var headers = new List<string> { "#", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
-            headers.ForEach(item => emptyGroups.Add(new Group<BaseItemDto>(item, new List<BaseItemDto>())));
+                var headers = new List<string> {"#", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
+                headers.ForEach(item => emptyGroups.Add(new Group<BaseItemDto>(item, new List<BaseItemDto>())));
 
-            var groupedTracks = (from t in tracks
-                                 group t by GetSortByNameHeader(t)
-                                 into grp
-                                 orderby grp.Key
-                                 select new Group<BaseItemDto>(grp.Key, grp)).ToList();
+                var groupedTracks = (from t in items
+                    group t by GetSortByNameHeader(t)
+                    into grp
+                    orderby grp.Key
+                    select new Group<BaseItemDto>(grp.Key, grp)).ToList();
 
-            var result = (from g in groupedTracks.Union(emptyGroups)
+                var result = (from g in groupedTracks.Union(emptyGroups)
 #if WP8
-                          where g.Count > 0
+                    where g.Count > 0
 #else
                           where g.HasItems
 
-#endif
-                          orderby g.Title
-                          select g).ToList();
 
-            return result;
+
+#endif
+                    orderby g.Title
+                    select g).ToList();
+
+                return result;
+            });
+
+            return new List<Group<BaseItemDto>>();
         }
 
         internal static string GetSortByNameHeader(BaseItemDto dtoBaseItem)

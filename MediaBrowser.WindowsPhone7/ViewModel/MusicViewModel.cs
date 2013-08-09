@@ -67,7 +67,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 }.OrderBy(x => x.ParentIndexNumber)
                     .ThenBy(x => x.IndexNumber).ToList();
 
-                SortedTracks = Utils.GroupItemsByName(AlbumTracks);
+                SortedTracks = Utils.GroupItemsByName(AlbumTracks).Result;
             }
             else
             {
@@ -238,14 +238,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             await GetArtistTracks();
 
-            SortTracks();
+            await SortTracks();
         }
 
-        private void SortTracks()
+        private async Task SortTracks()
         {
             if (_artistTracks != null && _artistTracks.Any())
             {
-                SortedTracks = Utils.GroupItemsByName(_artistTracks);
+                SortedTracks = await Utils.GroupItemsByName(_artistTracks);
             }
         }
 

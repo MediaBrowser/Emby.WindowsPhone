@@ -48,7 +48,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
             if (IsInDesignMode)
             {
                 var artists = new List<BaseItemDto> {new BaseItemDto {Name = "John Williams"}, new BaseItemDto {Name = "Hans Zimmer"}};
-                Artists = Utils.GroupItemsByName(artists);
+                Artists = Utils.GroupItemsByName(artists).Result;
             }
         }
 
@@ -373,7 +373,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
 
                 var items = itemsResponse.Items.ToList();
 
-                Artists = Utils.GroupItemsByName(items);
+                Artists = await Utils.GroupItemsByName(items);
 
                 return true;
             }
@@ -439,7 +439,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
 
                 var items = itemsResponse.Items.ToList();
 
-                Songs = Utils.GroupItemsByName(items);
+                Songs = await Utils.GroupItemsByName(items);
 
                 return true;
             }
@@ -471,7 +471,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
 
                 var items = itemsResponse.Items.ToList();
 
-                Albums = Utils.GroupItemsByName(items);
+                Albums = await Utils.GroupItemsByName(items);
 
                 return true;
             }
