@@ -128,6 +128,13 @@
                                                  Margin="12,6,0,6"
                                                  Command="{Binding TvCollection.NavigateToCommand, Source={StaticResource Locator}}"
                                                  CommandParameter="{Binding}">
+                                    <toolkit:ContextMenuService.ContextMenu>
+                                        <toolkit:ContextMenu>
+                                            <toolkit:MenuItem Header="mark as watched"
+                                                              Command="{Binding TvCollection.MarkAsWatchedCommand, Source={StaticResource Locator}}"
+                                                              CommandParameter="{Binding}" />
+                                        </toolkit:ContextMenu>
+                                    </toolkit:ContextMenuService.ContextMenu>
                                     <StackPanel Orientation="Horizontal">
                                         <controls:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
                                                              Height="95"
