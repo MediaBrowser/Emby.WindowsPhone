@@ -110,7 +110,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
         {
             try
             {
-                SetProgressBar("Getting next up items...");
+                SetProgressBar("Getting latest unwatched items...");
 
                 var query = new ItemQuery
                 {
