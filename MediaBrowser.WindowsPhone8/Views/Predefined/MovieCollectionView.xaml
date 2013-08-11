@@ -31,6 +31,27 @@
         </i:EventTrigger>
     </i:Interaction.Triggers>
 
+    <toolkit:TransitionService.NavigationInTransition>
+        <toolkit:NavigationInTransition>
+            <toolkit:NavigationInTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardIn" />
+            </toolkit:NavigationInTransition.Backward>
+            <toolkit:NavigationInTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardIn" />
+            </toolkit:NavigationInTransition.Forward>
+        </toolkit:NavigationInTransition>
+    </toolkit:TransitionService.NavigationInTransition>
+    <toolkit:TransitionService.NavigationOutTransition>
+        <toolkit:NavigationOutTransition>
+            <toolkit:NavigationOutTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardOut" />
+            </toolkit:NavigationOutTransition.Backward>
+            <toolkit:NavigationOutTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardOut" />
+            </toolkit:NavigationOutTransition.Forward>
+        </toolkit:NavigationOutTransition>
+    </toolkit:TransitionService.NavigationOutTransition>
+
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot"
           Background="{StaticResource MediaBrowserBackground}">
@@ -60,19 +81,19 @@
                                             ListHeader="{Binding UnseenHeader}"
                                             LayoutMode="Grid"
                                             GridCellSize="205,286"
-                                            Margin="12,0,0,12">
+                                            Margin="12,0,0,0">
                         <phone:LongListSelector.ListHeaderTemplate>
                             <DataTemplate>
                                 <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                                 Command="{Binding Main.NavigateToPage, Source={StaticResource Locator}}"
+                                                 Command="{Binding MovieCollection.NavigateToCommand, Source={StaticResource Locator}}"
                                                  CommandParameter="{Binding}"
-                                                 >
+                                                 Margin="0,0,12,12">
                                     <Grid Height="173">
                                         <Image Source="{Binding Converter={StaticResource ImageUrlConverter}, ConverterParameter=backdropsmall}"
                                                Stretch="UniformToFill" />
                                         <Border VerticalAlignment="Bottom"
                                                 Background="#C4000000">
-                                            <TextBlock Text="{Binding Name, Converter={StaticResource StringCaseConverter}, ConverterParameter=false}"
+                                            <TextBlock Text="{Binding Name, Converter={StaticResource StringToUppercaseConverter}}"
                                                        Style="{StaticResource PhoneTextLargeStyle}"
                                                        HorizontalAlignment="Left" />
                                         </Border>
@@ -83,7 +104,7 @@
                         <phone:LongListSelector.ItemTemplate>
                             <DataTemplate >
                                 <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                                 Command="{Binding Main.NavigateToPage, Source={StaticResource Locator}}"
+                                                 Command="{Binding MovieCollection.NavigateToCommand, Source={StaticResource Locator}}"
                                                  CommandParameter="{Binding}"
                                                  Margin="0,0,12,12">
                                     <Grid>
