@@ -129,7 +129,45 @@
                 </phone:PivotItem>
                 
                 <phone:PivotItem Header="boxsets">
-
+                    <phone:LongListSelector ItemsSource="{Binding Boxsets}"
+                                            IsGroupingEnabled="True"
+                                            HideEmptyGroups="False"
+                                            GroupHeaderTemplate="{StaticResource LLSGroupHeaderTemplateName}"
+                                            JumpListStyle="{StaticResource LLSGroupItemStyle}">
+                        <phone:LongListSelector.ItemTemplate>
+                            <DataTemplate>
+                                <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                                 Margin="12,6,0,6"
+                                                 Command="{Binding TvCollection.NavigateToCommand, Source={StaticResource Locator}}"
+                                                 CommandParameter="{Binding}">
+                                    <!--<toolkit:ContextMenuService.ContextMenu>
+                                        <toolkit:ContextMenu>
+                                            <toolkit:MenuItem Header="mark as watched"
+                                                              Command="{Binding TvCollection.MarkAsWatchedCommand, Source={StaticResource Locator}}"
+                                                              CommandParameter="{Binding}" />
+                                        </toolkit:ContextMenu>
+                                    </toolkit:ContextMenuService.ContextMenu>-->
+                                    <StackPanel Orientation="Horizontal">
+                                        <controls:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
+                                                             Height="95"
+                                                             Width="75"
+                                                             Stretch="Uniform"
+                                                             PlaceholderImageSource="/Images/DefaultVideo.png"
+                                                             PlaceholderImageStretch="Uniform"
+                                                             VerticalAlignment="Top" />
+                                        <StackPanel Orientation="Vertical">
+                                            <TextBlock Text="{Binding Name, Converter={StaticResource StringToUppercaseConverter}}"
+                                                       Style="{StaticResource HeaderTextStyle}"
+                                                       FontSize="{StaticResource PhoneFontSizeMediumLarge}" />
+                                            <TextBlock Text="{Binding RecursiveUnplayedItemCount, StringFormat='Unwatched: \{0\}'}"
+                                                       Style="{StaticResource PhoneTextSubtleStyle}"
+                                                       Foreground="{Binding RecursiveUnplayedItemCount, Converter={StaticResource ZeroCountBrushConverter}}" />
+                                        </StackPanel>
+                                    </StackPanel>
+                                </HyperlinkButton>
+                            </DataTemplate>
+                        </phone:LongListSelector.ItemTemplate>
+                    </phone:LongListSelector>
                 </phone:PivotItem>
 
                 <phone:PivotItem Header="genres">

@@ -34,9 +34,6 @@
     
     <scott:BasePage.Resources>
         <converters:SeasonEpisodeConverter x:Key="SeasonEpisodeConverter"/>
-        <converters:ZeroCountBrushConverter x:Key="ZeroCountBrushConverter"
-                                            ZeroCountBrush="{StaticResource PhoneSubtleBrush}"
-                                            AltBrush="{StaticResource PhoneAccentBrush}"/>
         
         <DataTemplate x:Key="EpisodeDataTemplate">
             <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"

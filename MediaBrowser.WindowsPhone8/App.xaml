@@ -62,6 +62,9 @@
             <converters:PinnedItemConverter x:Key="PinnedItemConverter" />
             <converters:RuntimeConverter x:Key="RuntimeConverter" />
             <converters:TicksToTimespanConverter x:Key="TicksToTimespanConverter" />
+            <converters:ZeroCountBrushConverter x:Key="ZeroCountBrushConverter"
+                                                ZeroCountBrush="{StaticResource PhoneSubtleBrush}"
+                                                AltBrush="{StaticResource PhoneAccentBrush}" />
 
             <local:LocalizedStrings xmlns:local="clr-namespace:MediaBrowser.WindowsPhone"
                                     x:Key="LocalizedStrings" />
