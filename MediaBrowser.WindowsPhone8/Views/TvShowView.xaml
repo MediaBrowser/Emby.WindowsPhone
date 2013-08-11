@@ -85,7 +85,7 @@
                                         <controls:SuperImage PlaceholderImageSource="/Images/MBLogo.png"
                                                              Source="{Binding Converter={StaticResource ImageUrlConverter}}"
                                                              Stretch="UniformToFill"
-                                                             PlaceholderImageStretch="UniformToFill"
+                                                             PlaceholderImageStretch="Uniform"
                                                              Height="173"
                                                              MaxWidth="120" />
                                         <Border Background="#C4000000"

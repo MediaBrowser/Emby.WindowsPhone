@@ -96,7 +96,7 @@
                                                   Source="{Binding Converter={StaticResource ImageUrlConverter}, ConverterParameter=icon}"
                                                   Height="75"
                                                   Width="75"
-                                                  PlaceholderImageStretch="UniformToFill"
+                                                  PlaceholderImageStretch="Uniform"
                                                   Stretch="UniformToFill" />
                                 <TextBlock Text="{Binding Name}"
                                            Style="{StaticResource PhoneTextLargeStyle}"

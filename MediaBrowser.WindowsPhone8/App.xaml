@@ -107,7 +107,7 @@
                     <Grid MaxWidth="173">
                         <controls:SuperImage PlaceholderImageSource="/Images/Logo.png"
                                              Source="{Binding Converter={StaticResource ImageUrlConverter}}"
-                                             PlaceholderImageStretch="UniformToFill"
+                                             PlaceholderImageStretch="Uniform"
                                              Width="173"
                                              Height="173"
                                              Stretch="UniformToFill" />
@@ -141,7 +141,7 @@
                             Margin="12,0,0,12">
                     <controls:SuperImage Height="99"
                                          Width="99"
-                                         PlaceholderImageStretch="UniformToFill"
+                                         PlaceholderImageStretch="Uniform"
                                          PlaceholderImageSource="/Images/default_avatar.png"
                                          Source="{Binding Converter={StaticResource ImageUrlConverter}}"
                                          Stretch="Uniform" />

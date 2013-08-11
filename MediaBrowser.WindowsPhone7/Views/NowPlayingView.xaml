@@ -116,7 +116,7 @@
                     <Grid>
                         <controls:SuperImage Source="{Binding ImageUrl}"
                                              PlaceholderImageSource="/Images/DefaultAlbumCase.png"
-                                             PlaceholderImageStretch="UniformToFill"
+                                             PlaceholderImageStretch="Uniform"
                                              Stretch="UniformToFill"
                                              Height="300"
                                              Width="300"

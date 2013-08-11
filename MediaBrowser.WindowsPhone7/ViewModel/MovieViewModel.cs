@@ -52,7 +52,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         new BaseItemPerson {Name = "Richard Attenborough", Type = "Actor"},
                         new BaseItemPerson {Name = "Laura Dern", Type = "Actor"}
                     }
-
                 };
             }
             else

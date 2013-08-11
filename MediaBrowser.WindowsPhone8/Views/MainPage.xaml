@@ -175,7 +175,7 @@
                                 </toolkit:ContextMenuService.ContextMenu>
                                 <StackPanel Orientation="Horizontal">
                                     <controls:SuperImage PlaceholderImageSource="/Images/Logo.png"
-                                                         PlaceholderImageStretch="UniformToFill"
+                                                         PlaceholderImageStretch="Uniform"
                                                          Stretch="Uniform"
                                                          Source="{Binding Converter={StaticResource ImageUrlConverter}}"
                                                          Height="62"

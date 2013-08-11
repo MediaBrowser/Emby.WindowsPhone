@@ -44,7 +44,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             if (ViewModelBase.IsInDesignModeStatic)
             {
                 if (!SimpleIoc.Default.IsRegistered<IExtendedApiClient>())
-                    SimpleIoc.Default.Register<IExtendedApiClient, ExtendedApiClientDesign>();
+                    SimpleIoc.Default.Register<IExtendedApiClient>(() => new ExtendedApiClient(new MBLogger(), "scottisafool.homeserver.com", 8096, "Windows Phone", Utils.GetDeviceName(), Utils.GetDeviceId(), ApplicationManifest.Current.App.Version));
                 SimpleIoc.Default.Register<INavigationService, NavigationService>();
                 SimpleIoc.Default.Register<FolderViewModel>();
                 SimpleIoc.Default.Register<MovieViewModel>();

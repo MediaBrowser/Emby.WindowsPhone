@@ -9,6 +9,8 @@
                 xmlns:mb="clr-namespace:MediaBrowser.WindowsPhone.Controls"
                 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
                 xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP8"
+                xmlns:controls="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
+                xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
                 FontFamily="{StaticResource PhoneFontFamilyNormal}"
                 FontSize="{StaticResource PhoneFontSizeNormal}"
                 Foreground="{StaticResource PhoneForegroundBrush}"
@@ -16,7 +18,13 @@
                 Orientation="Portrait"
                 mc:Ignorable="d"
                 shell:SystemTray.IsVisible="True"
+                toolkit:TiltEffect.IsTiltEnabled="True"
                 DataContext="{Binding MovieCollection, Source={StaticResource Locator}}">
+    <shell:SystemTray.ProgressIndicator>
+        <shell:ProgressIndicator IsVisible="{Binding ProgressIsVisible}"
+                                 IsIndeterminate="{Binding ProgressIsVisible}"
+                                 Text="{Binding ProgressText}" />
+    </shell:SystemTray.ProgressIndicator>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <command:EventToCommand Command="{Binding PageLoadedCommand}"/>
@@ -35,7 +43,7 @@
         <Grid x:Name="ContentPanel"
               Grid.Row="1"
               Margin="0,0,12,0">
-            <phone:Pivot>
+            <phone:Pivot SelectedIndex="{Binding PivotSelectedIndex, Mode=TwoWay}">
                 <phone:Pivot.Title>
                     <StackPanel Orientation="Horizontal"
                                 Margin="-12,0,0,0">
@@ -47,20 +55,68 @@
                     </StackPanel>
                 </phone:Pivot.Title>
 
+                <phone:PivotItem Header="latest unseen">
+                    <phone:LongListSelector ItemsSource="{Binding LatestUnwatched}"
+                                            ListHeader="{Binding UnseenHeader}"
+                                            LayoutMode="Grid"
+                                            GridCellSize="205,286"
+                                            Margin="12,0,0,12">
+                        <phone:LongListSelector.ListHeaderTemplate>
+                            <DataTemplate>
+                                <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                                 Command="{Binding Main.NavigateToPage, Source={StaticResource Locator}}"
+                                                 CommandParameter="{Binding}"
+                                                 >
+                                    <Grid Height="173">
+                                        <Image Source="{Binding Converter={StaticResource ImageUrlConverter}, ConverterParameter=backdropsmall}"
+                                               Stretch="UniformToFill" />
+                                        <Border VerticalAlignment="Bottom"
+                                                Background="#C4000000">
+                                            <TextBlock Text="{Binding Name, Converter={StaticResource StringCaseConverter}, ConverterParameter=false}"
+                                                       Style="{StaticResource PhoneTextLargeStyle}"
+                                                       HorizontalAlignment="Left" />
+                                        </Border>
+                                    </Grid>
+                                </HyperlinkButton>
+                            </DataTemplate>
+                        </phone:LongListSelector.ListHeaderTemplate>
+                        <phone:LongListSelector.ItemTemplate>
+                            <DataTemplate >
+                                <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                                 Command="{Binding Main.NavigateToPage, Source={StaticResource Locator}}"
+                                                 CommandParameter="{Binding}"
+                                                 Margin="0,0,12,12">
+                                    <Grid>
+                                        <controls:SuperImage PlaceholderImageSource="/Images/Logo.png"
+                                                             Source="{Binding Converter={StaticResource ImageUrlConverter}}"
+                                                             PlaceholderImageStretch="Uniform"
+                                                             MaxWidth="210"
+                                                             Stretch="Uniform" />
+                                        <Border Background="#C4000000"
+                                                VerticalAlignment="Bottom">
+                                            <TextBlock Text="{Binding Name}"
+                                                       Style="{StaticResource PhoneTextNormalStyle}"
+                                                       FontWeight="Bold"
+                                                       TextWrapping="Wrap"
+                                                       Foreground="White" />
+                                        </Border>
+                                    </Grid>
+                                </HyperlinkButton>
+                            </DataTemplate>
+                        </phone:LongListSelector.ItemTemplate>
+                    </phone:LongListSelector>
+                </phone:PivotItem>
+                
+                <phone:PivotItem Header="boxsets">
+
+                </phone:PivotItem>
+
                 <phone:PivotItem Header="genres">
                     <phone:LongListSelector ItemsSource="{Binding Genres}"
                                             LayoutMode="Grid"
                                             GridCellSize="173,173"
                                             ItemTemplate="{StaticResource TileItemStyle}">
                     </phone:LongListSelector>
-                </phone:PivotItem>
-
-                <phone:PivotItem Header="albums">
-
-                </phone:PivotItem>
-
-                <phone:PivotItem Header="songs">
-
                 </phone:PivotItem>
             </phone:Pivot>
         </Grid>

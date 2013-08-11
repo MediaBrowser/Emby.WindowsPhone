@@ -188,7 +188,7 @@
                                 </toolkit:ContextMenuService.ContextMenu>
                                 <StackPanel Orientation="Horizontal">
                                     <c4F:SuperImage PlaceholderImageSource="/Images/Logo.png"
-                                                    PlaceholderImageStretch="UniformToFill"
+                                                    PlaceholderImageStretch="Uniform"
                                                     Source="{Binding Converter={StaticResource ImageUrlConverter}}"
                                                     Stretch="Uniform"
                                                     Height="62"

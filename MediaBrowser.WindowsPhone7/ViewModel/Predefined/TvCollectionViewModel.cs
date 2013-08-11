@@ -90,7 +90,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                         return;
                     }
 
-                    //await _apiClient
+                    //await _apiClient.
                 });
             }
         }

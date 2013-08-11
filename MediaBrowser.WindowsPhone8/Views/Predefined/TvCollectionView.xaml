@@ -107,7 +107,7 @@
                     </StackPanel>
                 </phone:Pivot.Title>
 
-                <phone:PivotItem Header="latest unwatched">
+                <phone:PivotItem Header="latest unseen">
                     <phone:LongListSelector ItemsSource="{Binding LatestUnwatched}"
                                             ItemTemplate="{StaticResource EpisodeDataTemplate}" />
                 </phone:PivotItem>

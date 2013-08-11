@@ -4,12 +4,23 @@ using System.Threading.Tasks;
 using MediaBrowser.ApiInteraction.WebSocket;
 using MediaBrowser.Model;
 using MediaBrowser.Model.Dto;
+using MediaBrowser.Model.Entities;
+using MediaBrowser.Model.Querying;
 using MediaBrowser.Model.Search;
+using MediaBrowser.Model.Web;
 
 namespace MediaBrowser.Design
 {
     public class ExtendedApiClientDesign : IExtendedApiClient
     {
+        protected string ApiUrl
+        {
+            get
+            {
+                return string.Format("http://{0}:{1}/mediabrowser", ServerHostName, ServerApiPort);
+            }
+        }
+
         public System.Threading.Tasks.Task RegisterDeviceAsync(string deviceId, string uri, bool? sendTileUpdate = null, bool? sendToastUpdate = null)
         {
             throw new NotImplementedException();
@@ -50,53 +61,13 @@ namespace MediaBrowser.Design
             throw new NotImplementedException();
         }
 
-        public string ClientName
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
+        public string ClientName { get; set; }
 
-        public string CurrentUserId
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
+        public string CurrentUserId { get; set; }
 
-        public string DeviceId
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
+        public string DeviceId { get; set; }
 
-        public string DeviceName
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
+        public string DeviceName { get; set; }
 
         public System.Threading.Tasks.Task<Model.Querying.AllThemeMediaResult> GetAllThemeMediaAsync(string userId, string itemId, bool inheritFromParents)
         {
@@ -217,12 +188,127 @@ namespace MediaBrowser.Design
 
         public string GetImageUrl(string itemId, Model.Dto.ImageOptions options)
         {
-            throw new NotImplementedException();
+            if (string.IsNullOrEmpty(itemId))
+            {
+                throw new ArgumentNullException("itemId");
+            }
+
+            var url = "Items/" + itemId + "/Images/" + options.ImageType;
+
+            return GetImageUrl(url, options, new QueryStringDictionary());
         }
 
-        public string GetImageUrl(Model.Dto.BaseItemDto item, Model.Dto.ImageOptions options)
+        public string GetImageUrl(BaseItemDto item, ImageOptions options)
         {
-            throw new NotImplementedException();
+            if (item == null)
+            {
+                throw new ArgumentNullException("item");
+            }
+
+            if (options == null)
+            {
+                throw new ArgumentNullException("options");
+            }
+
+            options.Tag = GetImageTag(item, options);
+
+            if (item.IsArtist)
+            {
+                return GetArtistImageUrl(item.Name, options);
+            }
+            if (item.IsGenre)
+            {
+                return GetGenreImageUrl(item.Name, options);
+            }
+            if (item.IsGameGenre)
+            {
+                return GetGameGenreImageUrl(item.Name, options);
+            }
+            if (item.IsMusicGenre)
+            {
+                return GetMusicGenreImageUrl(item.Name, options);
+            }
+            if (item.IsPerson)
+            {
+                return GetPersonImageUrl(item.Name, options);
+            }
+            if (item.IsStudio)
+            {
+                return GetStudioImageUrl(item.Name, options);
+            }
+
+            return GetImageUrl(item.Id, options);
+        }
+
+        private string GetImageUrl(string baseUrl, ImageOptions options, QueryStringDictionary queryParams)
+        {
+            if (options == null)
+            {
+                throw new ArgumentNullException("options");
+            }
+
+            if (queryParams == null)
+            {
+                throw new ArgumentNullException("queryParams");
+            }
+
+            if (options.ImageIndex.HasValue)
+            {
+                baseUrl += "/" + options.ImageIndex.Value;
+            }
+
+            queryParams.AddIfNotNull("Width", options.Width);
+            queryParams.AddIfNotNull("Height", options.Height);
+            queryParams.AddIfNotNull("MaxWidth", options.MaxWidth);
+            queryParams.AddIfNotNull("MaxHeight", options.MaxHeight);
+            queryParams.AddIfNotNull("Quality", options.Quality ?? ImageQuality);
+
+            queryParams.AddIfNotNull("Tag", options.Tag);
+
+            queryParams.AddIfNotNull("CropWhitespace", options.CropWhitespace);
+            queryParams.Add("EnableImageEnhancers", options.EnableImageEnhancers);
+
+            return GetApiUrl(baseUrl, queryParams);
+        }
+
+        protected string GetApiUrl(string handler)
+        {
+            return GetApiUrl(handler, new QueryStringDictionary());
+        }
+
+        protected string GetApiUrl(string handler, QueryStringDictionary queryString)
+        {
+            if (string.IsNullOrEmpty(handler))
+            {
+                throw new ArgumentNullException("handler");
+            }
+
+            if (queryString == null)
+            {
+                throw new ArgumentNullException("queryString");
+            }
+
+            return queryString.GetUrl(ApiUrl + "/" + handler);
+        }
+
+        private Guid GetImageTag(BaseItemDto item, ImageOptions options)
+        {
+            if (options.ImageType == ImageType.Backdrop)
+            {
+                return item.BackdropImageTags[options.ImageIndex ?? 0];
+            }
+
+            if (options.ImageType == ImageType.Screenshot)
+            {
+                //return item.scree[options.ImageIndex ?? 0];
+            }
+
+            if (options.ImageType == ImageType.Chapter)
+            {
+                return item.Chapters[options.ImageIndex ?? 0].ImageTag.Value;
+            }
+
+            return item.ImageTags[options.ImageType];
         }
 
         public System.Threading.Tasks.Task<Model.Plugins.PluginInfo[]> GetInstalledPluginsAsync()
@@ -246,6 +332,26 @@ namespace MediaBrowser.Design
         }
 
         public System.Threading.Tasks.Task<Model.Querying.ItemsResult> GetItemsAsync(Model.Querying.ItemQuery query)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<ItemsResult> GetInstantMixFromSongAsync(SimilarItemsQuery query)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<ItemsResult> GetInstantMixFromAlbumAsync(SimilarItemsQuery query)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<ItemsResult> GetInstantMixFromArtistAsync(SimilarItemsByNameQuery query)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<ItemsResult> GetInstantMixFromMusicGenreAsync(SimilarItemsByNameQuery query)
         {
             throw new NotImplementedException();
         }
@@ -501,26 +607,14 @@ namespace MediaBrowser.Design
 
         public int ServerApiPort
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
+            get { return 8096; }
+            set { }
         }
 
         public string ServerHostName
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
+            get { return "scottisafool.homeserver.com"; }
+            set { }
         }
 
         public System.Threading.Tasks.Task UpdateDisplayPreferencesAsync(Model.Entities.DisplayPreferences displayPreferences, string userId, string client)
