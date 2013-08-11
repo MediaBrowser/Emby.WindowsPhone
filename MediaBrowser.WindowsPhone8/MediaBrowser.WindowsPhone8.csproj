@@ -118,6 +118,9 @@
     <Compile Include="..\MediaBrowser.WindowsPhone7\Converters\AccentBrushConverter.cs">
       <Link>Converters\AccentBrushConverter.cs</Link>
     </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone7\Converters\CriticRatingConverter.cs">
+      <Link>Converters\CriticRatingConverter.cs</Link>
+    </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone7\Converters\EpisodeNumberVisibilityConverter.cs">
       <Link>Converters\EpisodeNumberVisibilityConverter.cs</Link>
     </Compile>
@@ -364,8 +367,14 @@
     <Content Include="..\MediaBrowser.WindowsPhone7\Images\audiocollection.png">
       <Link>Images\audiocollection.png</Link>
     </Content>
+    <Content Include="..\MediaBrowser.WindowsPhone7\Images\fresh.png">
+      <Link>Images\fresh.png</Link>
+    </Content>
     <Content Include="..\MediaBrowser.WindowsPhone7\Images\moviecollection.png">
       <Link>Images\moviecollection.png</Link>
+    </Content>
+    <Content Include="..\MediaBrowser.WindowsPhone7\Images\rotten.png">
+      <Link>Images\rotten.png</Link>
     </Content>
     <Content Include="..\MediaBrowser.WindowsPhone7\Images\tvcollection.png">
       <Link>Images\tvcollection.png</Link>

@@ -40,10 +40,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
 
             if (IsInDesignMode)
             {
-                Genres = new List<BaseItemDto>
-                {
-                    new BaseItemDto {Name = "Action", Type = "Genre"}
-                };
+                //Movies = new List<BaseItemDto>
+                //{
+                //    new BaseItemDto {Name = "Action", Type = "Genre"}
+                //};
 
                 UnseenHeader = new BaseItemDto
                 {
@@ -91,10 +91,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                         }
                     }
                 };
+
+                Movies = Utils.GroupItemsByName(LatestUnwatched).Result;
             }
         }
 
-        public List<BaseItemDto> Genres { get; set; }
+        public List<Group<BaseItemDto>> Movies { get; set; }
         public List<Group<BaseItemDto>> Boxsets { get; set; }
         public List<BaseItemDto> LatestUnwatched { get; set; }
 
@@ -160,19 +162,20 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                         return;
                     }
 
-                    _genresLoaded = await GetGenres();
+                    _genresLoaded = await GetMovies();
                     break;
             }
         }
 
-        private async Task<bool> GetGenres()
+        private async Task<bool> GetMovies()
         {
             try
             {
-                SetProgressBar("Getting genres...");
+                SetProgressBar("Getting movies...");
 
-                var query = new ItemsByNameQuery
+                var query = new ItemQuery
                 {
+                    UserId = AuthenticationService.Current.LoggedInUser.Id,
                     SortBy = new[] { "SortName" },
                     SortOrder = SortOrder.Ascending,
                     IncludeItemTypes = new[] { "Movie" },
@@ -180,11 +183,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                     Fields = new[] { ItemFields.ItemCounts, ItemFields.DateCreated }
                 };
 
-                var genresResponse = await _apiClient.GetGenresAsync(query);
+                var moviesResponse = await _apiClient.GetItemsAsync(query);
 
-                if (genresResponse != null)
+                if (moviesResponse != null)
                 {
-                    Genres = genresResponse.Items.ToList();
+                    Movies = await Utils.GroupItemsByName(moviesResponse.Items);
                 }
 
                 SetProgressBar();
@@ -193,7 +196,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
             }
             catch (HttpException ex)
             {
-                Log.ErrorException("GetGenres()", ex);
+                Log.ErrorException("GetMovies()", ex);
             }
 
             SetProgressBar();

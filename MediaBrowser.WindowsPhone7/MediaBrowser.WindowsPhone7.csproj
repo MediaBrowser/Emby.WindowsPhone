@@ -206,6 +206,7 @@
     <Compile Include="Controls\MediaBrowserLogo.cs" />
     <Compile Include="Controls\ProfileBox.cs" />
     <Compile Include="Converters\AccentBrushConverter.cs" />
+    <Compile Include="Converters\CriticRatingConverter.cs" />
     <Compile Include="Converters\DeviceIdToBooleanConverter.cs" />
     <Compile Include="Converters\FavouritesConverter.cs" />
     <Compile Include="Converters\LoggedInDateConverter.cs" />
@@ -346,7 +347,9 @@
     <Content Include="Icons\appbar.check.rest.png" />
     <Content Include="Icons\appbar.feature.search.rest.png" />
     <Content Include="Images\audiocollection.png" />
+    <Content Include="Images\fresh.png" />
     <Content Include="Images\moviecollection.png" />
+    <Content Include="Images\rotten.png" />
     <Content Include="Images\tvcollection.png" />
     <Content Include="README_FIRST.txt" />
     <Content Include="Toolkit.Content\ApplicationBar.Cancel.png" />

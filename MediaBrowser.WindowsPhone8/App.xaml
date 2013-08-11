@@ -49,6 +49,7 @@
             <scottConverters:StringCaseConverter x:Key="StringCaseConverter" />
             <scottConverters:IntToVisibilityConverter x:Key="IntToVisibilityConverter" />
             <scottConverters:CountToEnabled x:Key="CountToEnabled" />
+            <scottConverters:NullVisibilityConverter x:Key="NullVisibilityConverter"/>
             
             <!--Cimbalino Converters-->
             <cimbalino:StringToUppercaseConverter x:Key="StringToUppercaseConverter"/>
@@ -65,6 +66,7 @@
             <converters:ZeroCountBrushConverter x:Key="ZeroCountBrushConverter"
                                                 ZeroCountBrush="{StaticResource PhoneSubtleBrush}"
                                                 AltBrush="{StaticResource PhoneAccentBrush}" />
+            <converters:CriticRatingConverter x:Key="CriticRatingConverter"/>
 
             <local:LocalizedStrings xmlns:local="clr-namespace:MediaBrowser.WindowsPhone"
                                     x:Key="LocalizedStrings" />
