@@ -25,12 +25,12 @@
                                    Foreground="Green"
                                    Style="{StaticResource PhoneTextNormalStyle}"
                                    Margin="0" />
-                        <TextBlock Text="3"
+                        <!--<TextBlock Text="3"
                                    FontFamily="Euphemia"
                                    Foreground="Green"
                                    Margin="0,-10,0,0"
                                    Padding="0"
-                                   VerticalAlignment="Top" />
+                                   VerticalAlignment="Top" />-->
                     </StackPanel>
                 </ControlTemplate>
             </Setter.Value>

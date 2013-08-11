@@ -101,11 +101,11 @@
                                    Foreground="{StaticResource PhoneForegroundBrush}" />
                         <TextBlock Text="browser"
                                    Foreground="Green" />
-                        <TextBlock Text="3"
+                        <!--<TextBlock Text="3"
                                    Foreground="Green"
                                    FontFamily="Euphemia"
                                    Margin="0"
-                                   FontSize="133.333" />
+                                   FontSize="133.333" />-->
                     </StackPanel>
                 </DataTemplate>
             </phone:Panorama.TitleTemplate>
