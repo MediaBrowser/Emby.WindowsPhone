@@ -212,14 +212,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
 
                 var moviesResponse = await _apiClient.GetItemsAsync(query);
 
-                if (moviesResponse != null)
-                {
-                    Movies = await Utils.GroupItemsByName(moviesResponse.Items);
-                }
-
-                SetProgressBar();
-
-                return true;
+                return await SetMovies(moviesResponse);
             }
             catch (HttpException ex)
             {
@@ -229,6 +222,18 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
             SetProgressBar();
 
             return false;
+        }
+
+        private async Task<bool> SetMovies(ItemsResult moviesResponse)
+        {
+            if (moviesResponse != null)
+            {
+                Movies = await Utils.GroupItemsByName(moviesResponse.Items);
+            }
+
+            SetProgressBar();
+
+            return true;
         }
 
         private async Task<bool> GetBoxsets()
@@ -248,15 +253,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                 };
 
                 var itemResponse = await _apiClient.GetItemsAsync(query);
-                if (itemResponse == null || !itemResponse.Items.Any())
-                {
-                    return false;
-                }
-
-                Boxsets = await Utils.GroupItemsByName(itemResponse.Items);
-                SetProgressBar();
-
-                return true;
+                return await SetBoxsets(itemResponse);
             }
             catch (HttpException ex)
             {
@@ -266,6 +263,19 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
             SetProgressBar();
 
             return false;
+        }
+
+        private async Task<bool> SetBoxsets(ItemsResult itemResponse)
+        {
+            if (itemResponse == null || !itemResponse.Items.Any())
+            {
+                return false;
+            }
+
+            Boxsets = await Utils.GroupItemsByName(itemResponse.Items);
+            SetProgressBar();
+
+            return true;
         }
 
         private async Task<bool> GetLatestUnwatched()
@@ -290,19 +300,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
 
                 var itemResponse = await _apiClient.GetItemsAsync(query);
 
-                if (itemResponse != null && itemResponse.Items.Any())
-                {
-                    var items = itemResponse.Items.ToList();
-                    UnseenHeader = items[0];
-
-                    items.RemoveAt(0);
-
-                    LatestUnwatched = items;
-
-                    SetProgressBar();
-
-                    return true;
-                }
+                if (SetLatestUnwatched(itemResponse)) return true;
             }
             catch (HttpException ex)
             {
@@ -311,6 +309,24 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
 
             SetProgressBar();
 
+            return false;
+        }
+
+        private bool SetLatestUnwatched(ItemsResult itemResponse)
+        {
+            if (itemResponse != null && itemResponse.Items.Any())
+            {
+                var items = itemResponse.Items.ToList();
+                UnseenHeader = items[0];
+
+                items.RemoveAt(0);
+
+                LatestUnwatched = items;
+
+                SetProgressBar();
+
+                return true;
+            }
             return false;
         }
     }
