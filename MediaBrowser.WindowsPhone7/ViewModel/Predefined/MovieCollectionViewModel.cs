@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows;
 using GalaSoft.MvvmLight.Command;
 using JetBrains.Annotations;
 using MediaBrowser.Model;
@@ -120,6 +121,32 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
             get
             {
                 return new RelayCommand<BaseItemDto>(_navigationService.NavigateTo);
+            }
+        }
+
+        public RelayCommand<BaseItemDto> MarkAsWatchedCommand
+        {
+            get
+            {
+                return new RelayCommand<BaseItemDto>(async item =>
+                {
+                    if (!_navigationService.IsNetworkAvailable)
+                    {
+                        return;
+                    }
+
+                    try
+                    {
+                        await _apiClient.UpdatePlayedStatusAsync(item.Id, AuthenticationService.Current.LoggedInUser.Id, true);
+                        item.UserData.Played = true;
+                        item.RecursiveUnplayedItemCount = 0;
+                    }
+                    catch (HttpException ex)
+                    {
+                        MessageBox.Show("There was a problem updating this item, please try again later.", "Error", MessageBoxButton.OK);
+                        Log.ErrorException("MarkAsWatchedCommand", ex);
+                    }
+                });
             }
         }
 

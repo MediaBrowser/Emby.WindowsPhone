@@ -31,33 +31,6 @@
         </i:EventTrigger>
     </i:Interaction.Triggers>
 
-    <scott:BasePage.Resources>
-        <DataTemplate x:Key="ItemTemplate">
-            <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                             Margin="12,6,0,6"
-                             Command="{Binding TvCollection.NavigateToCommand, Source={StaticResource Locator}}"
-                             CommandParameter="{Binding}">
-                <StackPanel Orientation="Horizontal">
-                    <controls:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
-                                         Height="95"
-                                         Width="75"
-                                         Stretch="Uniform"
-                                         PlaceholderImageSource="/Images/DefaultVideo.png"
-                                         PlaceholderImageStretch="Uniform"
-                                         VerticalAlignment="Top" />
-                    <StackPanel Orientation="Vertical">
-                        <TextBlock Text="{Binding Name, Converter={StaticResource StringToUppercaseConverter}}"
-                                   Style="{StaticResource HeaderTextStyle}"
-                                   FontSize="{StaticResource PhoneFontSizeMediumLarge}" />
-                        <TextBlock Text="{Binding RecursiveUnplayedItemCount, StringFormat='Unwatched: \{0\}'}"
-                                   Style="{StaticResource PhoneTextSubtleStyle}"
-                                   Foreground="{Binding RecursiveUnplayedItemCount, Converter={StaticResource ZeroCountBrushConverter}}" />
-                    </StackPanel>
-                </StackPanel>
-            </HyperlinkButton>
-        </DataTemplate>
-    </scott:BasePage.Resources>
-
     <toolkit:TransitionService.NavigationInTransition>
         <toolkit:NavigationInTransition>
             <toolkit:NavigationInTransition.Backward>
@@ -160,8 +133,41 @@
                                             IsGroupingEnabled="True"
                                             HideEmptyGroups="False"
                                             GroupHeaderTemplate="{StaticResource LLSGroupHeaderTemplateName}"
-                                            JumpListStyle="{StaticResource LLSGroupItemStyle}"
-                                            ItemTemplate="{StaticResource ItemTemplate}" />
+                                            JumpListStyle="{StaticResource LLSGroupItemStyle}">
+                        <phone:LongListSelector.ItemTemplate>
+                            <DataTemplate>
+                                <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                                 Margin="12,6,0,6"
+                                                 Command="{Binding MovieCollection.NavigateToCommand, Source={StaticResource Locator}}"
+                                                 CommandParameter="{Binding}">
+                                    <toolkit:ContextMenuService.ContextMenu>
+                                        <toolkit:ContextMenu>
+                                            <toolkit:MenuItem Header="mark as watched"
+                                                              Command="{Binding MovieCollection.MarkAsWatchedCommand, Source={StaticResource Locator}}"
+                                                              CommandParameter="{Binding}" />
+                                        </toolkit:ContextMenu>
+                                    </toolkit:ContextMenuService.ContextMenu>
+                                    <StackPanel Orientation="Horizontal">
+                                        <controls:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
+                                                             Height="95"
+                                                             Width="75"
+                                                             Stretch="Uniform"
+                                                             PlaceholderImageSource="/Images/DefaultVideo.png"
+                                                             PlaceholderImageStretch="Uniform"
+                                                             VerticalAlignment="Top" />
+                                        <StackPanel Orientation="Vertical">
+                                            <TextBlock Text="{Binding Name, Converter={StaticResource StringToUppercaseConverter}}"
+                                                       Style="{StaticResource HeaderTextStyle}"
+                                                       FontSize="{StaticResource PhoneFontSizeMediumLarge}" />
+                                            <TextBlock Text="{Binding RecursiveUnplayedItemCount, StringFormat='Unwatched: \{0\}'}"
+                                                       Style="{StaticResource PhoneTextSubtleStyle}"
+                                                       Foreground="{Binding RecursiveUnplayedItemCount, Converter={StaticResource ZeroCountBrushConverter}}" />
+                                        </StackPanel>
+                                    </StackPanel>
+                                </HyperlinkButton>
+                            </DataTemplate>
+                        </phone:LongListSelector.ItemTemplate>
+                    </phone:LongListSelector>
                 </phone:PivotItem>
 
                 <phone:PivotItem Header="movies">
@@ -213,6 +219,20 @@
                                                                Style="{StaticResource PhoneTextSubtleStyle}"
                                                                Margin="6,0"/>
                                                 </StackPanel>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal"
+                                                        Margin="12,0,0,0">
+                                                <TextBlock Text="{Binding ProductionYear}"
+                                                           Style="{StaticResource PhoneTextSubtleStyle}"
+                                                           Margin="0,0,12,0"/>
+                                                <TextBlock Text="{Binding RunTimeTicks, Converter={StaticResource RuntimeConverter}}"
+                                                           Style="{StaticResource PhoneTextSubtleStyle}"
+                                                           Visibility="{Binding RunTimeTicks, Converter={StaticResource NullVisibilityConverter}}"
+                                                           Margin="0,0,12,0"/>
+                                                <TextBlock Text="{Binding OfficialRating}"
+                                                           Style="{StaticResource PhoneTextSubtleStyle}"
+                                                           Visibility="{Binding OfficialRating, Converter={StaticResource NullVisibilityConverter}}"
+                                                           Margin="0,0,12,0"/>
                                             </StackPanel>
                                         </StackPanel>
                                     </StackPanel>
