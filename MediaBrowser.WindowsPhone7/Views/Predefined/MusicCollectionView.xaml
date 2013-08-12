@@ -109,7 +109,8 @@
                 <phone:PivotItem Header="artists">
                     <toolkit:LongListSelector ItemsSource="{Binding Albums}"
                                               GroupHeaderTemplate="{StaticResource LLSGroupHeaderTemplateName}"
-                                              GroupItemTemplate="{StaticResource LLSGroupItemTemplate}">
+                                              GroupItemTemplate="{StaticResource LLSGroupItemTemplate}"
+                                              Background="Transparent">
                         <toolkit:LongListSelector.ItemTemplate>
                             <DataTemplate>
                                 <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
@@ -135,7 +136,8 @@
                 <phone:PivotItem Header="albums">
                     <toolkit:LongListSelector ItemsSource="{Binding Albums}"
                                               GroupHeaderTemplate="{StaticResource LLSGroupHeaderTemplateName}"
-                                              GroupItemTemplate="{StaticResource LLSGroupItemTemplate}">
+                                              GroupItemTemplate="{StaticResource LLSGroupItemTemplate}"
+                                              Background="Transparent">
                         <toolkit:LongListSelector.ItemTemplate>
                             <DataTemplate>
                                 <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
@@ -187,7 +189,8 @@
                                                      GroupHeaderTemplate="{StaticResource LLSGroupHeaderTemplateName}"
                                                      GroupPickerItemTemplate="{StaticResource LLSGroupItemTemplate}"
                                                      x:Name="SongSelector"
-                                                     IsCheckModeActive="{Binding IsSelectionEnabled, Mode=TwoWay}">
+                                                     IsCheckModeActive="{Binding IsSelectionEnabled, Mode=TwoWay}"
+                                                     Background="Transparent">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="SelectionChanged">
                                 <command:EventToCommand Command="{Binding SelectionChangedCommand}"

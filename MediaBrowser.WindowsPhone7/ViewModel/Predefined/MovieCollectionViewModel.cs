@@ -41,11 +41,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
 
             if (IsInDesignMode)
             {
-                //Movies = new List<BaseItemDto>
-                //{
-                //    new BaseItemDto {Name = "Action", Type = "Genre"}
-                //};
-
                 UnseenHeader = new BaseItemDto
                 {
                     Id = "6536a66e10417d69105bae71d41a6e6f",
@@ -300,7 +295,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
 
                 var itemResponse = await _apiClient.GetItemsAsync(query);
 
-                if (SetLatestUnwatched(itemResponse)) return true;
+                return SetLatestUnwatched(itemResponse);
             }
             catch (HttpException ex)
             {

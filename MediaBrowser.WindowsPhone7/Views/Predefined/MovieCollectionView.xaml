@@ -137,7 +137,8 @@
                 <phone:PivotItem Header="boxsets">
                     <toolkit:LongListSelector ItemsSource="{Binding Boxsets}"
                                               GroupHeaderTemplate="{StaticResource LLSGroupHeaderTemplateName}"
-                                              GroupItemTemplate="{StaticResource LLSGroupItemTemplate}">
+                                              GroupItemTemplate="{StaticResource LLSGroupItemTemplate}"
+                                              Background="Transparent">
                         <toolkit:LongListSelector.ItemTemplate>
                             <DataTemplate>
                                 <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
@@ -177,7 +178,8 @@
                 <phone:PivotItem Header="movies">
                     <toolkit:LongListSelector ItemsSource="{Binding Movies}"
                                               GroupHeaderTemplate="{StaticResource LLSGroupHeaderTemplateName}"
-                                              GroupItemTemplate="{StaticResource LLSGroupItemTemplate}">
+                                              GroupItemTemplate="{StaticResource LLSGroupItemTemplate}"
+                                              Background="Transparent">
                         <toolkit:LongListSelector.ItemTemplate>
                             <DataTemplate>
                                 <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
