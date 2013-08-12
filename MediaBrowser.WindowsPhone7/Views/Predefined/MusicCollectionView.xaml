@@ -5,7 +5,6 @@
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:scott="clr-namespace:ScottIsAFool.WindowsPhone.Controls;assembly=ScottIsAFool.WindowsPhone"
-                xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
                 xmlns:mb="clr-namespace:MediaBrowser.WindowsPhone.Controls"
                 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
                 xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP71"
@@ -13,7 +12,8 @@
                 xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
                 xmlns:behaviors="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
                 xmlns:converters="clr-namespace:ScottIsAFool.WindowsPhone.Converters;assembly=ScottIsAFool.WindowsPhone"
-                xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+                xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+                xmlns:telerikDataControls="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Data"
                 FontFamily="{StaticResource PhoneFontFamilyNormal}"
                 FontSize="{StaticResource PhoneFontSizeNormal}"
                 Foreground="{StaticResource PhoneForegroundBrush}"
@@ -21,6 +21,7 @@
                 Orientation="Portrait"
                 mc:Ignorable="d"
                 shell:SystemTray.IsVisible="True"
+                toolkit:TiltEffect.IsTiltEnabled="True"
                 DataContext="{Binding MusicCollection, Source={StaticResource Locator}}">
     <shell:SystemTray.ProgressIndicator>
         <shell:ProgressIndicator IsVisible="{Binding ProgressIsVisible}"
@@ -93,8 +94,8 @@
         <Grid x:Name="ContentPanel"
               Grid.Row="1"
               Margin="0,0,12,0">
-            <controls:Pivot SelectedIndex="{Binding PivotSelectedIndex, Mode=TwoWay}">
-                <controls:Pivot.Title>
+            <phone:Pivot SelectedIndex="{Binding PivotSelectedIndex, Mode=TwoWay}">
+                <phone:Pivot.Title>
                     <StackPanel Orientation="Horizontal"
                                 Margin="-12,0,0,0">
                         <mb:MediaBrowserLogo />
@@ -103,19 +104,16 @@
                                    Margin="6,0,0,0"
                                    Style="{StaticResource PhoneTextNormalStyle}" />
                     </StackPanel>
-                </controls:Pivot.Title>
+                </phone:Pivot.Title>
 
-                <controls:PivotItem Header="artists">
-                    <toolkit:LongListSelector ItemsSource="{Binding Artists}"
+                <phone:PivotItem Header="artists">
+                    <toolkit:LongListSelector ItemsSource="{Binding Albums}"
                                               GroupHeaderTemplate="{StaticResource LLSGroupHeaderTemplateName}"
-                                              GroupItemTemplate="{StaticResource LLSGroupItemTemplate}"
-                                              Background="Transparent">
+                                              GroupItemTemplate="{StaticResource LLSGroupItemTemplate}">
                         <toolkit:LongListSelector.ItemTemplate>
                             <DataTemplate>
                                 <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                                 HorizontalContentAlignment="Left"
-                                                 HorizontalAlignment="Stretch"
-                                                 Command="{Binding NavigateToCommand}"
+                                                 Command="{Binding MusicCollection.NavigateToCommand, Source={StaticResource Locator}}"
                                                  CommandParameter="{Binding}">
                                     <StackPanel Orientation="Horizontal"
                                                 Margin="0,0,0,12">
@@ -123,7 +121,7 @@
                                                          HorizontalAlignment="Center"
                                                          VerticalAlignment="Center"
                                                          Margin="6"
-                                                         Command="{Binding PlayItemCommand}"
+                                                         Command="{Binding MusicCollection.PlayItemCommand, Source={StaticResource Locator}}"
                                                          CommandParameter="{Binding}" />
                                         <TextBlock Text="{Binding Name}"
                                                    Style="{StaticResource PhoneTextTitle2Style}" />
@@ -132,19 +130,17 @@
                             </DataTemplate>
                         </toolkit:LongListSelector.ItemTemplate>
                     </toolkit:LongListSelector>
-                </controls:PivotItem>
+                </phone:PivotItem>
 
-                <controls:PivotItem Header="albums">
+                <phone:PivotItem Header="albums">
                     <toolkit:LongListSelector ItemsSource="{Binding Albums}"
                                               GroupHeaderTemplate="{StaticResource LLSGroupHeaderTemplateName}"
-                                              GroupItemTemplate="{StaticResource LLSGroupItemTemplate}"
-                                              Background="Transparent">
+                                              GroupItemTemplate="{StaticResource LLSGroupItemTemplate}">
                         <toolkit:LongListSelector.ItemTemplate>
                             <DataTemplate>
                                 <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                                 HorizontalContentAlignment="Left"
                                                  VerticalContentAlignment="Top"
-                                                 Command="{Binding NavigateToCommand}"
+                                                 Command="{Binding MusicCollection.NavigateToCommand, Source={StaticResource Locator}}"
                                                  CommandParameter="{Binding}">
                                     <StackPanel Orientation="Horizontal"
                                                 Margin="12,0,0,12">
@@ -161,7 +157,7 @@
                                                              HorizontalAlignment="Center"
                                                              VerticalAlignment="Center"
                                                              Margin="6"
-                                                             Command="{Binding PlayItemCommand}"
+                                                             Command="{Binding MusicCollection.PlayItemCommand, Source={StaticResource Locator}}"
                                                              CommandParameter="{Binding}" />
                                         </Grid>
                                         <StackPanel Orientation="Vertical"
@@ -183,19 +179,22 @@
                             </DataTemplate>
                         </toolkit:LongListSelector.ItemTemplate>
                     </toolkit:LongListSelector>
-                </controls:PivotItem>
+                </phone:PivotItem>
 
-                <controls:PivotItem Header="songs">
-                    <toolkit:MultiselectList ItemsSource="{Binding Songs}"
-                                             x:Name="SongSelector"
-                                             IsSelectionEnabled="{Binding IsSelectionEnabled, Mode=TwoWay}">
+                <phone:PivotItem Header="songs">
+                    <telerikDataControls:RadJumpList ItemsSource="{Binding Songs}"
+                                                     GroupCheckMode="None"
+                                                     GroupHeaderTemplate="{StaticResource LLSGroupHeaderTemplateName}"
+                                                     GroupPickerItemTemplate="{StaticResource LLSGroupItemTemplate}"
+                                                     x:Name="SongSelector"
+                                                     IsCheckModeActive="{Binding IsSelectionEnabled, Mode=TwoWay}">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="SelectionChanged">
                                 <command:EventToCommand Command="{Binding SelectionChangedCommand}"
                                                         PassEventArgsToCommand="True" />
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
-                        <toolkit:MultiselectList.ItemTemplate>
+                        <telerikDataControls:RadJumpList.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Vertical"
                                             Margin="{Binding MusicCollection.SongsMargin, Source={StaticResource Locator}}">
@@ -205,18 +204,17 @@
                                                Style="{StaticResource PhoneTextSubtleStyle}" />
                                 </StackPanel>
                             </DataTemplate>
-                        </toolkit:MultiselectList.ItemTemplate>
-                    </toolkit:MultiselectList>
-                </controls:PivotItem>
+                        </telerikDataControls:RadJumpList.ItemTemplate>
+                    </telerikDataControls:RadJumpList>
+                </phone:PivotItem>
 
-                <controls:PivotItem Header="genres">
-                    <toolkit:LongListSelector ItemsSource="{Binding Genres}">
-                        <toolkit:LongListSelector.ItemTemplate>
+                <phone:PivotItem Header="genres">
+                    <scott:PhoneListBox ItemsSource="{Binding Genres}">
+                        <scott:PhoneListBox.ItemTemplate>
                             <DataTemplate>
                                 <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                                 HorizontalContentAlignment="Left"
                                                  VerticalContentAlignment="Top"
-                                                 Command="{Binding NavigateToCommand}"
+                                                 Command="{Binding MusicCollection.NavigateToCommand, Source={StaticResource Locator}}"
                                                  CommandParameter="{Binding}">
                                     <StackPanel Orientation="Horizontal"
                                                 Margin="0,0,0,12">
@@ -224,17 +222,17 @@
                                                          HorizontalAlignment="Center"
                                                          VerticalAlignment="Center"
                                                          Margin="6"
-                                                         Command="{Binding PlayItemCommand}"
+                                                         Command="{Binding MusicCollection.PlayItemCommand, Source={StaticResource Locator}}"
                                                          CommandParameter="{Binding}" />
                                         <TextBlock Text="{Binding Name}"
                                                    Style="{StaticResource PhoneTextTitle2Style}" />
                                     </StackPanel>
                                 </HyperlinkButton>
                             </DataTemplate>
-                        </toolkit:LongListSelector.ItemTemplate>
-                    </toolkit:LongListSelector>
-                </controls:PivotItem>
-            </controls:Pivot>
+                        </scott:PhoneListBox.ItemTemplate>
+                    </scott:PhoneListBox>
+                </phone:PivotItem>
+            </phone:Pivot>
         </Grid>
     </Grid>
 

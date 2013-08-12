@@ -114,8 +114,6 @@
                             Margin="12,0,0,0">
                     <HyperlinkButton NavigateUri="/Views/Predefined/MovieCollectionView.xaml"
                                      Style="{StaticResource EmptyButtonStyle}"
-                                     HorizontalAlignment="Stretch"
-                                     HorizontalContentAlignment="Left"
                                      Margin="0,0,0,12">
                         <StackPanel Orientation="Horizontal">
                             <Border Background="#0094FF">
@@ -131,8 +129,6 @@
                         </StackPanel>
                     </HyperlinkButton>
                     <HyperlinkButton NavigateUri="/Views/Predefined/TvCollectionView.xaml"
-                                     HorizontalAlignment="Stretch"
-                                     HorizontalContentAlignment="Left"
                                      Style="{StaticResource EmptyButtonStyle}"
                                      Margin="0,0,0,12">
                         <StackPanel Orientation="Horizontal">
@@ -149,8 +145,6 @@
                         </StackPanel>
                     </HyperlinkButton>
                     <HyperlinkButton NavigateUri="/Views/Predefined/MusicCollectionView.xaml"
-                                     HorizontalAlignment="Stretch"
-                                     HorizontalContentAlignment="Left"
                                      Style="{StaticResource EmptyButtonStyle}">
                         <StackPanel Orientation="Horizontal">
                             <Border Background="#6FBD45">
