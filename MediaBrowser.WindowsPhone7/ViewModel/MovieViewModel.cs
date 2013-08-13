@@ -121,7 +121,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             ShowOtherFilmsCommand = new RelayCommand<BaseItemPerson>(person =>
             {
                 App.SelectedItem = person;
-                _navService.NavigateTo("/Views/FolderView.xaml");
+                _navService.NavigateTo(Constants.Pages.ActorView);
             });
 
             NavigateTopage = new RelayCommand<BaseItemDto>(_navService.NavigateTo);

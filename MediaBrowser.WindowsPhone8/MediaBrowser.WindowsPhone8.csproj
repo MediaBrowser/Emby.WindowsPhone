@@ -197,6 +197,9 @@
     <Compile Include="..\MediaBrowser.WindowsPhone7\Utils.cs">
       <Link>Utils.cs</Link>
     </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone7\ViewModel\ActorViewModel.cs">
+      <Link>ViewModel\ActorViewModel.cs</Link>
+    </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone7\ViewModel\ChooseProfileViewModel.cs">
       <Link>ViewModel\ChooseProfileViewModel.cs</Link>
     </Compile>
@@ -247,6 +250,10 @@
     </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone7\ViewModel\ViewModelLocator.cs">
       <Link>ViewModel\ViewModelLocator.cs</Link>
+    </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone7\Views\ActorView.xaml.cs">
+      <Link>Views\ActorView.xaml.cs</Link>
+      <DependentUpon>ActorView.xaml</DependentUpon>
     </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone7\Views\AlbumView.xaml.cs">
       <Link>Views\AlbumView.xaml.cs</Link>
@@ -429,6 +436,10 @@
     <Page Include="Themes\LongListSelectorTemplates.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ActorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\AlbumView.xaml">
       <SubType>Designer</SubType>

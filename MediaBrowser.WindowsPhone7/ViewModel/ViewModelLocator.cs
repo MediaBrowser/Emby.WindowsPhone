@@ -89,6 +89,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             SimpleIoc.Default.Register<MovieCollectionViewModel>();
             SimpleIoc.Default.Register<TvCollectionViewModel>();
             SimpleIoc.Default.Register<MusicCollectionViewModel>();
+            SimpleIoc.Default.Register<ActorViewModel>();
         }
 
         /// <summary>
@@ -219,6 +220,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public RemoteViewModel Remote
         {
             get { return ServiceLocator.Current.GetInstance<RemoteViewModel>(); }
+        }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
+            "CA1822:MarkMembersAsStatic",
+            Justification = "This non-static member is needed for data binding purposes.")]
+        public ActorViewModel Actor
+        {
+            get { return ServiceLocator.Current.GetInstance<ActorViewModel>(); }
         }
 
         public static TvViewModel GetTvViewModel(string itemId)

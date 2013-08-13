@@ -78,6 +78,7 @@
             public const string PlaylistPageLeftMsg = "PlaylistPageLeftMsg";
             public const string NotificationCountMsg = "NotificationCountMsg";
             public const string NotifcationNavigationMsg = "NotifcationNavigationMsg";
+            public const string ChangeActorMsg = "ChangeActorMsg";
         }
 
         public class Pages
@@ -103,6 +104,7 @@
             public const string FullPlaylistView = ViewsPath + "FullPlaylistView.xaml";
             public const string SearchView = ViewsPath + "SearchView.xaml";
             public const string VideoPlayerView = ViewsPath + "VideoPlayerView.xaml";
+            public const string ActorView = ViewsPath + "ActorView.xaml";
 
             public class Remote
             {
