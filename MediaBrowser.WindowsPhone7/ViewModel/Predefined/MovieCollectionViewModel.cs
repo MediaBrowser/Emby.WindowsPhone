@@ -262,7 +262,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
 
         private async Task<bool> SetBoxsets(ItemsResult itemResponse)
         {
-            if (itemResponse == null || !itemResponse.Items.Any())
+            if (itemResponse == null)
             {
                 return false;
             }
