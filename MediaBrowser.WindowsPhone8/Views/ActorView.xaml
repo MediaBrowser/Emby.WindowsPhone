@@ -83,7 +83,7 @@
                         <phone:LongListSelector.ListHeaderTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
-                                    <c4F:SuperImage Source="{Binding SelectedPerson}"
+                                    <c4F:SuperImage Source="{Binding SelectedPerson, Converter={StaticResource ImageUrlConverter}, ConverterParameter=true}"
                                                     Width="150"
                                                     Height="190"
                                                     PlaceholderImageSource="/Images/default_avatar.png"

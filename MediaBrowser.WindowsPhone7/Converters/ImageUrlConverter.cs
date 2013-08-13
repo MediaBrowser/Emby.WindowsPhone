@@ -30,7 +30,12 @@ namespace MediaBrowser.WindowsPhone.Converters
                     var person = (BaseItemPerson)value;
                     if (person.HasPrimaryImage)
                     {
-                        return apiClient.GetPersonImageUrl(person, new ImageOptions { MaxWidth = 99, Quality = 90 });
+                        var smallImageSize = parameter == null;
+                        return apiClient.GetPersonImageUrl(person, new ImageOptions
+                        {
+                            MaxWidth = smallImageSize ? 99 : 200, 
+                            Quality = 90
+                        });
                     }
                 }
                 
