@@ -13,7 +13,7 @@ namespace MediaBrowser.Services
     {
         private static AuthenticationService _current;
         private static readonly IApplicationSettingsService SettingsService = new ApplicationSettingsService();
-        private static ExtendedApiClient _apiClient;
+        private static IExtendedApiClient _apiClient;
         private static ILogger _logger;
 
         public static AuthenticationService Current
@@ -21,7 +21,7 @@ namespace MediaBrowser.Services
             get { return _current ?? (_current = new AuthenticationService()); }
         }
 
-        public void Start(ExtendedApiClient apiClient, ILogger logger)
+        public void Start(IExtendedApiClient apiClient, ILogger logger)
         {
             _apiClient = apiClient;
             _logger = logger;

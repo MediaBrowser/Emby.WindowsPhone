@@ -92,7 +92,7 @@
                                 <c4F:SuperImage PlaceholderImageSource="/Images/Logo.png"
                                                 Source="{Binding Converter={StaticResource ImageUrlConverter}, ConverterParameter=icon}"
                                                 Height="75"
-                                                PlaceholderImageStretch="UniformToFill"
+                                                PlaceholderImageStretch="Uniform"
                                                 Width="75"
                                                 Stretch="UniformToFill" />
                                 <TextBlock Text="{Binding Name}"

@@ -36,13 +36,13 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     public class FolderViewModel : ViewModelBase
     {
         private readonly INavigationService _navigationService;
-        private readonly ExtendedApiClient _apiClient;
+        private readonly IExtendedApiClient _apiClient;
         private bool _dataLoaded;
 
         /// <summary>
         /// Initializes a new instance of the FolderViewModel class.
         /// </summary>
-        public FolderViewModel(INavigationService navigationService, ExtendedApiClient apiClient)
+        public FolderViewModel(INavigationService navigationService, IExtendedApiClient apiClient)
         {
             RecentItems = new ObservableCollection<BaseItemDto>();
             RandomItems = new ObservableCollection<BaseItemDto>();

@@ -9,9 +9,6 @@ using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.Model.Dto;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.WindowsPhone.Resources;
-#if !WP8
-using ScottIsAFool.WindowsPhone;
-#endif
 using ScottIsAFool.WindowsPhone;
 using ScottIsAFool.WindowsPhone.ViewModel;
 
@@ -29,12 +26,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     public class MovieViewModel : ViewModelBase
     {
         private readonly INavigationService _navService;
-        private readonly ExtendedApiClient _apiClient;
+        private readonly IExtendedApiClient _apiClient;
 
         /// <summary>
         /// Initializes a new instance of the MovieViewModel class.
         /// </summary>
-        public MovieViewModel(INavigationService navService, ExtendedApiClient apiClient)
+        public MovieViewModel(INavigationService navService, IExtendedApiClient apiClient)
         {
             _navService = navService;
             _apiClient = apiClient;
@@ -55,7 +52,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         new BaseItemPerson {Name = "Richard Attenborough", Type = "Actor"},
                         new BaseItemPerson {Name = "Laura Dern", Type = "Actor"}
                     }
-
                 };
             }
             else

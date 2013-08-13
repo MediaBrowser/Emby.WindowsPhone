@@ -2,14 +2,11 @@
 using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Phone.Net.NetworkInformation;
 using MediaBrowser.Model.Dto;
-using ScottIsAFool.WindowsPhone.Logging;
 
 namespace MediaBrowser.WindowsPhone.Model
 {
     public class NavigationService : Cimbalino.Phone.Toolkit.Services.NavigationService, INavigationService
     {
-        private readonly ILog _logger = new WPLogger(typeof(INavigationService));
-        
         public bool IsNetworkAvailable
         {
             get
@@ -34,39 +31,46 @@ namespace MediaBrowser.WindowsPhone.Model
                 case "genre":
                 case "trailercollectionfolder":
                     //Messenger.Default.Send(new NotificationMessage(item, Constants.ShowFolderMsg));
-                    NavigateTo("/Views/CollectionView.xaml");
+                    if (App.SpecificSettings.JustShowFolderView)
+                    {
+                        NavigateTo(Constants.Pages.FolderView + item.Id);
+                    }
+                    else
+                    {
+                        NavigateTo(Constants.Pages.CollectionView);
+                    }
                     break;
                 case "folder":
                 case "boxset":
-                    NavigateTo("/Views/FolderView.xaml?id=" + item.Id);
+                    NavigateTo(Constants.Pages.FolderView + item.Id);
                     break;
                 case "movie":
                     //Messenger.Default.Send(new NotificationMessage(item, Constants.ShowMovieMsg));
-                    NavigateTo("/Views/MovieView.xaml");
+                    NavigateTo(Constants.Pages.MovieView);
                     break;
                 case "series":
                     //Messenger.Default.Send(new NotificationMessage(item, Constants.ShowTvSeries));
-                    NavigateTo("/Views/TvShowView.xaml");
+                    NavigateTo(Constants.Pages.TvShowView);
                     break;
                 case "season":
                     //Messenger.Default.Send(new NotificationMessage(item, Constants.ShowSeasonMsg));
-                    NavigateTo("/Views/SeasonView.xaml");
+                    NavigateTo(Constants.Pages.SeasonView);
                     break;
                 case "episode":
                     //Messenger.Default.Send(new NotificationMessage(item, Constants.ShowEpisodeMsg));
-                    NavigateTo("/Views/EpisodeView.xaml");
+                    NavigateTo(Constants.Pages.EpisodeView);
                     break;
                 case "trailer":
                     Messenger.Default.Send(new NotificationMessage(Constants.Messages.ChangeTrailerMsg));
-                    NavigateTo("/Views/TrailerView.xaml");
+                    NavigateTo(Constants.Pages.TrailerView);
                     break;
                 case "musicartist":
                     Messenger.Default.Send(new NotificationMessage(item, Constants.Messages.MusicArtistChangedMsg));
-                    NavigateTo("/Views/ArtistView.xaml");
+                    NavigateTo(Constants.Pages.ArtistView);
                     break;
                 case "musicalbum":
                     Messenger.Default.Send(new NotificationMessage(item, Constants.Messages.MusicAlbumChangedMsg));
-                    NavigateTo("/Views/AlbumView.xaml");
+                    NavigateTo(Constants.Pages.AlbumView);
                     break;
             }
         }

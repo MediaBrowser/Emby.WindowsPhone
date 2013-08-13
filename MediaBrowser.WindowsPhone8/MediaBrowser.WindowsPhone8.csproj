@@ -118,6 +118,9 @@
     <Compile Include="..\MediaBrowser.WindowsPhone7\Converters\AccentBrushConverter.cs">
       <Link>Converters\AccentBrushConverter.cs</Link>
     </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone7\Converters\CriticRatingConverter.cs">
+      <Link>Converters\CriticRatingConverter.cs</Link>
+    </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone7\Converters\EpisodeNumberVisibilityConverter.cs">
       <Link>Converters\EpisodeNumberVisibilityConverter.cs</Link>
     </Compile>
@@ -151,6 +154,9 @@
     <Compile Include="..\MediaBrowser.WindowsPhone7\Converters\RuntimeConverter.cs">
       <Link>Converters\RuntimeConverter.cs</Link>
     </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone7\Converters\SeasonEpisodeConverter.cs">
+      <Link>Converters\SeasonEpisodeConverter.cs</Link>
+    </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone7\Converters\SettingsConverters.cs">
       <Link>Converters\SettingsConverters.cs</Link>
     </Compile>
@@ -159,6 +165,9 @@
     </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone7\Converters\TicksToTimespanConverter.cs">
       <Link>Converters\TicksToTimespanConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone7\Converters\ZeroCountBrushConverter.cs">
+      <Link>Converters\ZeroCountBrushConverter.cs</Link>
     </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone7\ExtensionMethods.cs">
       <Link>ExtensionMethods.cs</Link>
@@ -209,8 +218,17 @@
     <Compile Include="..\MediaBrowser.WindowsPhone7\ViewModel\PlaylistViewModel.cs">
       <Link>ViewModel\PlaylistViewModel.cs</Link>
     </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\ViewModel\RemoteViewModel.cs">
-      <Link>ViewModel\RemoteViewModel.cs</Link>
+    <Compile Include="..\MediaBrowser.WindowsPhone7\ViewModel\Predefined\MovieCollectionViewModel.cs">
+      <Link>ViewModel\Predefined\MovieCollectionViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone7\ViewModel\Predefined\MusicCollectionViewModel.cs">
+      <Link>ViewModel\Predefined\MusicCollectionViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone7\ViewModel\Predefined\TvCollectionViewModel.cs">
+      <Link>ViewModel\Predefined\TvCollectionViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone7\ViewModel\Remote\RemoteViewModel.cs">
+      <Link>ViewModel\Remote\RemoteViewModel.cs</Link>
     </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone7\ViewModel\SearchViewModel.cs">
       <Link>ViewModel\SearchViewModel.cs</Link>
@@ -282,6 +300,15 @@
       <Link>Views\NowPlayingView.xaml.cs</Link>
       <DependentUpon>NowPlayingView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone7\Views\Predefined\MovieCollectionView.xaml.cs">
+      <Link>Views\Predefined\MovieCollectionView.xaml.cs</Link>
+    </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone7\Views\Predefined\MusicCollectionView.xaml.cs">
+      <Link>Views\Predefined\MusicCollectionView.xaml.cs</Link>
+    </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone7\Views\Predefined\TvCollectionView.xaml.cs">
+      <Link>Views\Predefined\TvCollectionView.xaml.cs</Link>
+    </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone7\Views\Remote\ChooseClientView.xaml.cs">
       <Link>Views\Remote\ChooseClientView.xaml.cs</Link>
       <DependentUpon>ChooseClientView.xaml</DependentUpon>
@@ -337,6 +364,21 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Content Include="..\MediaBrowser.WindowsPhone7\Images\audiocollection.png">
+      <Link>Images\audiocollection.png</Link>
+    </Content>
+    <Content Include="..\MediaBrowser.WindowsPhone7\Images\fresh.png">
+      <Link>Images\fresh.png</Link>
+    </Content>
+    <Content Include="..\MediaBrowser.WindowsPhone7\Images\moviecollection.png">
+      <Link>Images\moviecollection.png</Link>
+    </Content>
+    <Content Include="..\MediaBrowser.WindowsPhone7\Images\rotten.png">
+      <Link>Images\rotten.png</Link>
+    </Content>
+    <Content Include="..\MediaBrowser.WindowsPhone7\Images\tvcollection.png">
+      <Link>Images\tvcollection.png</Link>
+    </Content>
     <Content Include="Icons\appbar.feature.search.rest.png" />
     <Content Include="Icons\appbar.check.rest.png" />
     <Content Include="Icons\searchbutton.png" />
@@ -441,6 +483,18 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\NowPlayingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Predefined\MovieCollectionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Predefined\MusicCollectionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Predefined\TvCollectionView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -558,8 +612,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Cimbalino.Phone.Toolkit.UserInfo.3.1.0-rc\lib\wp8\Cimbalino.Phone.Toolkit.UserInfo.dll</HintPath>
     </Reference>
-    <Reference Include="Coding4Fun.Toolkit.Controls">
-      <HintPath>..\packages\Coding4Fun.Toolkit.Controls.2.0.6\lib\windowsphone8\Coding4Fun.Toolkit.Controls.dll</HintPath>
+    <Reference Include="Coding4Fun.Toolkit.Controls, Version=2.0.7.0, Culture=neutral, PublicKeyToken=c5fd7b72b1a17ce4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Coding4Fun.Toolkit.Controls.2.0.7\lib\windowsphone8\Coding4Fun.Toolkit.Controls.dll</HintPath>
     </Reference>
     <Reference Include="GalaSoft.MvvmLight.Extras.WP8, Version=4.1.27.22645, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -572,13 +627,13 @@
     <Reference Include="JetBrains.Annotations">
       <HintPath>..\packages\JetBrains.Annotations.7.0\lib\sl4-wp71\JetBrains.Annotations.dll</HintPath>
     </Reference>
-    <Reference Include="MediaBrowser.ApiInteraction.Portable, Version=3.0.4961.36343, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="MediaBrowser.ApiInteraction.Portable, Version=3.0.4969.39644, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MediaBrowser.ApiClient.3.0.0.172\lib\portable-net45+sl4+wp71+win8\MediaBrowser.ApiInteraction.Portable.dll</HintPath>
+      <HintPath>..\packages\MediaBrowser.ApiClient.3.0.0.179\lib\portable-net45+sl4+wp71+win8\MediaBrowser.ApiInteraction.Portable.dll</HintPath>
     </Reference>
-    <Reference Include="MediaBrowser.Model, Version=3.0.4958.28251, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="MediaBrowser.Model, Version=3.0.4969.39548, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MediaBrowser.Common.3.0.170\lib\portable-net4+sl4+wp71+win8\MediaBrowser.Model.dll</HintPath>
+      <HintPath>..\packages\MediaBrowser.Common.3.0.177\lib\portable-net4+sl4+wp71+win8\MediaBrowser.Model.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Phone.Controls.Toolkit">
       <HintPath>..\packages\WPToolkit.4.2013.06.11\lib\wp8\Microsoft.Phone.Controls.Toolkit.dll</HintPath>

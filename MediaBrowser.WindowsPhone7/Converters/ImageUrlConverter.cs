@@ -5,7 +5,6 @@ using MediaBrowser.Model;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Search;
-using MediaBrowser.WindowsPhone.Model;
 
 namespace MediaBrowser.WindowsPhone.Converters
 {
@@ -16,7 +15,7 @@ namespace MediaBrowser.WindowsPhone.Converters
             if (value != null)
             {
                 var type = value.GetType();
-                var apiClient = SimpleIoc.Default.GetInstance<ExtendedApiClient>();
+                var apiClient = SimpleIoc.Default.GetInstance<IExtendedApiClient>();
                 if (type == typeof(BaseItemDto))
                 {
 
@@ -78,7 +77,7 @@ namespace MediaBrowser.WindowsPhone.Converters
             return "";
         }
 
-        private static object GetDtoImage(BaseItemDto item, string imageType, ExtendedApiClient apiClient)
+        private static object GetDtoImage(BaseItemDto item, string imageType, IExtendedApiClient apiClient)
         {
             if (!item.HasPrimaryImage) return "";
             var imageOptions = new ImageOptions

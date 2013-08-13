@@ -1,0 +1,2282 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Telerik.Windows.Controls.DataVisualization</name>
+    </assembly>
+    <members>
+        <member name="T:Telerik.Windows.Controls.AdditionalMeasuresCollection`1">
+            <summary>
+            This collection is used insider RadBulletGraph and contains the additional comparative measures.
+            </summary>
+            <typeparam name="T">The type of the measures contained in the collection.</typeparam>
+        </member>
+        <member name="M:Telerik.Windows.Controls.AdditionalMeasuresCollection`1.InsertItem(System.Int32,`0)">
+            <summary>
+            Inserts an item into the collection at the specified index.
+            </summary>
+            <param name="index">The zero-based index at which item should be inserted.</param>
+            <param name="item">The object to insert.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.AdditionalMeasuresCollection`1.RemoveItem(System.Int32)">
+            <summary>
+            Removes the item at the specified index from the collection.
+            </summary>
+            <param name="index">The zero-based index of the item to remove.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.AdditionalMeasuresCollection`1.SetItem(System.Int32,`0)">
+            <summary>
+            Replaces the item at the specified index.
+            </summary>
+            <param name="index">The zero-based index of the item to replace.</param>
+            <param name="item">The new value for the item at the specified index.</param>
+            <exception cref="T:System.InvalidOperationException">
+            The method is being called in a System.Collections.ObjectModel.ObservableCollection.PropertyChanged
+            or System.Collections.ObjectModel.ObservableCollection.CollectionChanged
+            event handler.
+            </exception>
+        </member>
+        <member name="M:Telerik.Windows.Controls.AdditionalMeasuresCollection`1.ClearItems">
+            <summary>
+            Removes all items from the collection.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">
+            The method is being called in a System.Collections.ObjectModel.ObservableCollection.PropertyChanged
+            or System.Collections.ObjectModel.ObservableCollection.CollectionChanged
+            event handler.
+            </exception>
+        </member>
+        <member name="T:Telerik.Windows.Controls.BulletGraphComparativeMeasure">
+            <summary>
+            Represents a comparative measure in a RadBulletGraph.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.Bulletgraph.BulletGraphMeasureBase">
+            <summary>
+            The base class for RadBulletGraph's additional measures.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.Bulletgraph.BulletGraphMeasureBase.ValueProperty">
+            <summary>
+            Identifies the Value dependendcy property.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.Bulletgraph.BulletGraphMeasureBase.#ctor">
+            <summary>
+            Initializes a new instance of the BulletGraphMeasureBase class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.Bulletgraph.BulletGraphMeasureBase.CreateVisual">
+            <summary>
+            This is a factory method that is used to create specific visualizations for different bullet graph measures.
+            </summary>
+            <returns>Returns an object that will be used to visualize this measure.</returns>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Bulletgraph.BulletGraphMeasureBase.Value">
+            <summary>
+            Gets or sets the value of this measure.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.BulletGraphComparativeMeasure.TemplateProperty">
+            <summary>
+            Identifies the Template property.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.BulletGraphComparativeMeasure.CreateVisual">
+            <summary>
+            This is a factory method that is used to create specific visualizations for different bullet graph measures.
+            </summary>
+            <returns>Returns an object that will be used to visualize this measure.</returns>
+        </member>
+        <member name="P:Telerik.Windows.Controls.BulletGraphComparativeMeasure.Template">
+            <summary>
+            Gets or sets a data template that defines the look of this comparative measure instance.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.BulletGraphQualitativeRangeCollection">
+            <summary>
+            This collection is used in RadBulletGraph and contains its qualitative range segments.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.RadBulletGraph">
+            <summary>
+            A control that represents the bullet graph data visualization.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadBulletGraph.StartValueProperty">
+            <summary>
+            Identifies the StartValue dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadBulletGraph.EndValueProperty">
+            <summary>
+            Identifies the EndValue dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadBulletGraph.TickStepProperty">
+            <summary>
+            Identifies the TickStep dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadBulletGraph.LabelStepProperty">
+            <summary>
+            Identifies the LabelStep dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadBulletGraph.LabelOffsetProperty">
+            <summary>
+            Identifies the LabelOffset dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadBulletGraph.TickTemplateProperty">
+            <summary>
+            Identifies the TickTemplate dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadBulletGraph.LabelTemplateProperty">
+            <summary>
+            Identifies the LabelTemplate dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadBulletGraph.OrientationProperty">
+            <summary>
+            Identifies the Orientation dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadBulletGraph.FeaturedMeasureProperty">
+            <summary>
+            Identifies the FeaturedMeasure dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadBulletGraph.FeaturedMeasureStartValueProperty">
+            <summary>
+            Identifies the FeaturedMeasureStartValue dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadBulletGraph.FeaturedMeasureBrushProperty">
+            <summary>
+            Identifies the FeaturedMeasureBrush dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadBulletGraph.FeaturedMeasureThicknessProperty">
+            <summary>
+            Identifies the FeaturedMeasureThickness dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadBulletGraph.FeaturedMeasureAlternativeTemplateProperty">
+            <summary>
+            Identifies the FeaturedMeasureAlternativeTemplate dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadBulletGraph.ProjectedMeasureProperty">
+            <summary>
+            Identifies the ProjectedMeasure dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadBulletGraph.ProjectedMeasureBrushProperty">
+            <summary>
+            Identifies the ProjectedMeasureBrush dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadBulletGraph.ComparativeMeasureProperty">
+            <summary>
+            Identifies the ComparativeMeasure dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadBulletGraph.ComparativeMeasureTemplateProperty">
+            <summary>
+            Identifies the ComparativeMeasureTemplate dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadBulletGraph.IsAnimatedProperty">
+            <summary>
+            Identifies the IsAnimated dependency property.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadBulletGraph.#ctor">
+            <summary>
+            Initializes a new instance of the RadBulletGraph class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadBulletGraph.OnApplyTemplate">
+            <summary>
+            When overridden in a derived class, is invoked whenever application code or internal processes (such as a rebuilding layout pass) call <see cref="M:System.Windows.Controls.Control.ApplyTemplate"/>. In simplest terms, this means the method is called just before a UI element displays in an application. For more information, see Remarks.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadBulletGraph.IsAnimated">
+            <summary>
+            Gets a value that determines if the featured measure will be animated when its value changes.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadBulletGraph.StartValue">
+            <summary>
+            Gets or sets the start value of the bullet graph scale.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadBulletGraph.EndValue">
+            <summary>
+            Gets or sets the end value of the bullet graph scale.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadBulletGraph.TickStep">
+            <summary>
+            Gets or sets the tick step of the bullet graph scale.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadBulletGraph.LabelStep">
+            <summary>
+            Gets or sets the label step of the bullet graph scale.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadBulletGraph.LabelTemplate">
+            <summary>
+            Gets or sets the label template of the bullet graph scale.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadBulletGraph.TickTemplate">
+            <summary>
+            Gets or sets the tick template of the bullet graph scale.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadBulletGraph.LabelOffset">
+            <summary>
+            Gets or sets the label offset of the bullet graph scale. This offset moves the labels
+            relative to the ticks and the measures.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadBulletGraph.Orientation">
+            <summary>
+            Gets or sets the orientation of the bullet graph.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadBulletGraph.QualitativeRanges">
+            <summary>
+            Gets the collection that contains the qualitative ranges of the bullet graph.
+            New ranges can be added and old ones can be removed. There must be two ranges at minimum and
+            no more than 5. Otherwise an exception is thrown.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadBulletGraph.FeaturedMeasure">
+            <summary>
+            Gets or sets the value of the featured measure.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadBulletGraph.FeaturedMeasureStartValue">
+            <summary>
+            Gets or sets the start value of the featured measure.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadBulletGraph.FeaturedMeasureBrush">
+            <summary>
+            Gets or sets the color of the featured measure.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadBulletGraph.FeaturedMeasureThickness">
+            <summary>
+            Gets or sets the thickness of the featured measure.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadBulletGraph.FeaturedMeasureAlternativeTemplate">
+            <summary>
+            Gets or sets the template that determines the look of the alternative featured measure.
+            The alternative featured measure is visible when the StartValue of RadBulletGraph is non-zero.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadBulletGraph.ProjectedMeasure">
+            <summary>
+            Gets or sets the value of the projected measure.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadBulletGraph.ProjectedMeasureBrush">
+            <summary>
+            Gets or sets the color of the projected measure.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadBulletGraph.ComparativeMeasure">
+            <summary>
+            Gets or sets the value of the comparative measure.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadBulletGraph.ComparativeMeasureTemplate">
+            <summary>
+            Gets or sets a template that determines the look of the default comparative measure.
+            If not template is specified for the additional comparative measures this template will be used instead.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadBulletGraph.AdditionalComparativeMeasures">
+            <summary>
+            Gets a collection that contains any additional comparative measure.
+            All operations on this collection are supported.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadBulletGraph.IsProperlyTemplated">
+            <summary>
+            Gets a value indicating whether this control is properly templated.
+            </summary>
+            <value>
+            	<c>True</c> if this instance is properly templated; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:Telerik.Windows.Controls.Bulletgraph.ValueToVisibilityConverter">
+            <summary>
+            This class converts 0 to its Visibility property value and non-zero to the opposite of its Visibility property value.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.Bulletgraph.ValueToVisibilityConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts 0 to visibility.
+            </summary>
+            <param name="value">The value to convert.</param>
+            <param name="targetType">The type of the returned object.</param>
+            <param name="parameter">A parameter for custom data.</param>
+            <param name="culture">A culture object that can be used in the conversion.</param>
+            <returns>Returns an object of the target type that corresponds to the provided value.</returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.Bulletgraph.ValueToVisibilityConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Not implemented.
+            </summary>
+            <param name="value">The value to convert.</param>
+            <param name="targetType">The type of the returned object.</param>
+            <param name="parameter">A parameter for custom data.</param>
+            <param name="culture">A culture object that can be used in the conversion.</param>
+            <returns>Returns an object of the target type that corresponds to the provided value.</returns>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Bulletgraph.ValueToVisibilityConverter.Visibility">
+            <summary>
+            Gets or sets a value that is returned if the value to be converted is 0.
+            If the value to be converted is non-zero the oppositve of this property is returned.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.BarIndicatorSegment">
+            <summary>
+            This class represents a segment in a segmented bar indicator.
+            A segment can have a distinctive color, length and thickness.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.BarIndicatorSegment.LengthProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.BarIndicatorSegment.Length"/> property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.BarIndicatorSegment.ThicknessProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.BarIndicatorSegment.Thickness"/> property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.BarIndicatorSegment.StrokeProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.BarIndicatorSegment.Stroke"/> property.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.BarIndicatorSegment.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Windows.Controls.BarIndicatorSegment"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.BarIndicatorSegment.OnApplyTemplate">
+            <summary>
+            When overridden in a derived class, is invoked whenever application code or internal processes (such as a rebuilding layout pass) call <see cref="M:System.Windows.Controls.Control.ApplyTemplate"/>. In simplest terms, this means the method is called just before a UI element displays in an application. For more information, see Remarks.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.BarIndicatorSegment.Length">
+            <summary>
+            Gets or sets the length of the current segment.
+            </summary>
+            <remarks>
+            The length does not need to be an absolute value.
+            Internally a ratio is calculated that determines the
+            actual length of each segment.
+            For example if a segmented indicator has three segments
+            of length 1, they will be of evenly placed over the available indicator space.
+            This property is somewhat similar to the relative size of the Grid panel's columns and rows.
+            </remarks>
+        </member>
+        <member name="P:Telerik.Windows.Controls.BarIndicatorSegment.Stroke">
+            <summary>
+            Gets or sets the color of the segment.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.BarIndicatorSegment.Thickness">
+            <summary>
+            Gets or sets the thickness of the segment.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.GaugesInternal.CalculateAngleContext">
+            <summary>
+            Contains data to calculate an angle based on a value.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.GaugeColorValueRange">
+            <summary>
+            This class represents a color that
+            should be used only in visual elements
+            that are between the min and max values.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.GaugeColorValueRange.Color">
+            <summary>
+            The color of this particular rage.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.GaugeColorValueRange.MinValue">
+            <summary>
+            The bottom limit of the range.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.GaugeColorValueRange.MaxValue">
+            <summary>
+            The top limit of the range.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.GaugeValueToBrushConverter">
+            <summary>
+            This converter can be used to fill visual elements
+            in the ticks and labels with a color that depends on
+            the value of the tick or label.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.GaugeValueToBrushConverter.#ctor">
+            <summary>
+            Initializes a new instance of the GaugeValueToBrushConverter class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.GaugeValueToBrushConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a value to a specific brush.
+            </summary>
+            <param name="value">The value to convert.</param>
+            <param name="targetType">The type of the returned object.</param>
+            <param name="parameter">A parameter for custom data.</param>
+            <param name="culture">A culture object that can be used in the conversion.</param>
+            <returns>Returns an object of the target type that corresponds to the provided value.</returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.GaugeValueToBrushConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Not Supported.
+            </summary>
+            <param name="value">Not Supported.</param>
+            <param name="targetType">Not Supported.</param>
+            <param name="parameter">Not Supported.</param>
+            <param name="culture">Not Supported.</param>
+            <returns>Not Supported.</returns>
+        </member>
+        <member name="P:Telerik.Windows.Controls.GaugeValueToBrushConverter.Ranges">
+            <summary>
+            Gets a list of GaugeColorToValueRanges.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.GaugeValueToBrushConverter.DefaultColor">
+            <summary>
+            Gets or sets the default color of the conveter.
+            </summary>
+            <remarks>
+            If a value is passed that is not in the ranges list
+            the default color will be returned.
+            </remarks>
+        </member>
+        <member name="T:Telerik.Windows.Controls.GaugeValueToStringConverter">
+            <summary>
+            Converts a value to a string and vice versa providing
+            a Precision property to control the floating point precision
+            of the converted value.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.GaugeValueToStringConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a double value to a formatted string.
+            </summary>
+            <param name="value">The value to convert.</param>
+            <param name="targetType">The type of the returned object.</param>
+            <param name="parameter">A parameter for custom data.</param>
+            <param name="culture">A culture object that can be used in the conversion.</param>
+            <returns>Returns an object of the target type that corresponds to the provided value.</returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.GaugeValueToStringConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a string to a double value.
+            </summary>
+            <param name="value">The value to convert.</param>
+            <param name="targetType">The type of the returned object.</param>
+            <param name="parameter">A parameter for custom data.</param>
+            <param name="culture">A culture object that can be used in the conversion.</param>
+            <returns>Returns an object of the target type that corresponds to the provided value.</returns>
+        </member>
+        <member name="P:Telerik.Windows.Controls.GaugeValueToStringConverter.Precision">
+            <summary>
+            Gets or sets the number of digits to be displayed after the decimal sign.
+            This property is used only when converting a value to string, not vice versa.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.IndicatorValueChangedEventArgs">
+            <summary>
+            Event arguments for the ValueChanged event of GaugeIndicator.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.IndicatorValueChangedEventArgs.#ctor(System.Double,System.Double)">
+            <summary>
+            Initializes a new instance of the IndicatorValueChangedEventArgs class.
+            </summary>
+            <param name="newVal">The new value.</param>
+            <param name="oldVal">The old value.</param>
+        </member>
+        <member name="P:Telerik.Windows.Controls.IndicatorValueChangedEventArgs.NewValue">
+            <summary>
+            Gets the new indicator value.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.IndicatorValueChangedEventArgs.OldValue">
+            <summary>
+            Gets the old indicator value.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.GaugesInternal.UpdateArcContext">
+            <summary>
+            Contains data to update an arc based on an angle.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.DataVisualizationLocalizationManager">
+            <summary>
+            A singleton class that represents a localization manager responsible for localizing resources in the Telerik.Windows.Controls.DataVisualization assembly.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.DataVisualizationLocalizationManager.MaxValueInfinityOrNanExceptionKey">
+            <summary>
+            Defines the key for looking-up the exception string when a max value is set to infinity or nan.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.DataVisualizationLocalizationManager.MinValueInfinityOrNanExceptionKey">
+            <summary>
+            Defines the key for looking-up the exception string when a min value is set to infinity or nan.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.DataVisualizationLocalizationManager.ValueInfinityOrNanExceptionKey">
+            <summary>
+            Defines the key for looking-up the exception string when a value is set to infinity or nan.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.DataVisualizationLocalizationManager.Instance">
+            <summary>
+            Gets the only instance of the <see cref="T:Telerik.Windows.Controls.DataVisualizationLocalizationManager"/> class.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.DataVisualizationLocalizationManager.InvalidMaxValueMessage">
+            <summary>
+            Gets the localized string message corrsponding to the <see cref="F:Telerik.Windows.Controls.DataVisualizationLocalizationManager.MaxValueInfinityOrNanExceptionKey"/>.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.DataVisualizationLocalizationManager.InvalidMinValueMessage">
+            <summary>
+            Gets the localized string message corrsponding to the <see cref="F:Telerik.Windows.Controls.DataVisualizationLocalizationManager.MinValueInfinityOrNanExceptionKey"/>.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.DataVisualizationLocalizationManager.InvalidValueMessage">
+            <summary>
+            Gets the localized string message corrsponding to the <see cref="F:Telerik.Windows.Controls.DataVisualizationLocalizationManager.ValueInfinityOrNanExceptionKey"/>.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.GaugesInternal.GaugeRangeType">
+            <summary>
+            Represents the types the available gauge ranges.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.GaugesInternal.GaugeRangeType.Linear">
+            <summary>
+            Represetnts a linear range.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.GaugesInternal.GaugeRangeType.Radial">
+            <summary>
+            Represetnts a radial range.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.GaugesInternal.TickType">
+            <summary>
+            This enum represents the types that a GaugeTick can be created as.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.GaugesInternal.TickType.Minor">
+            <summary>
+            Represents a normal tick.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.GaugesInternal.TickType.Middle">
+            <summary>
+            Represents a Middle tick.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.GaugesInternal.TickType.Major">
+            <summary>
+            Represents a Major tick.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.GaugesInternal.TickType.Label">
+            <summary>
+            Represents a label.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.ArrowGaugeIndicator">
+            <summary>
+            This class represents and indicator in the form of an arrow with a circular tail.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.NeedleGaugeIndicator">
+            <summary>
+            Represents a base class for needle indicators. For example and arrow or some
+            other thin and pointy indicator. This class provides a rotation render transform.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.RadialGaugeIndicator">
+            <summary>
+            This is a base class for the radial indicators.
+            It keeps a cache of the attached properties of the radial
+            range. It defines neither visualization nor behavior so it is marked abstract.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.BarGaugeIndicator">
+            <summary>
+            A base class for bar indicators.
+            A bar has a thickness and a brush that defines its color.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.GaugeIndicator">
+            <summary>
+            This is the base class of the gauge indicators. It is abstract
+            because more concrete types must implement the arrange logic. Every indicator
+            knows how to arrange itself in its range container.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.GaugeIndicator.ValueProperty">
+            <summary>
+            Identifies the Value dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.GaugeIndicator.StartValueProperty">
+            <summary>
+            Identifies the StartValue dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.GaugeIndicator.IsAnimatedProperty">
+            <summary>
+            Identifies the IsAnimated dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.GaugeIndicator.AnimationEasingProperty">
+            <summary>
+            Identifies the AnimationEasing dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.GaugeIndicator.AnimationDurationProperty">
+            <summary>
+            Identifies the AnimationDuration dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.GaugeIndicator.ActualValueProperty">
+            <summary>
+            Identifies the ActualValue dependency property.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.GaugeIndicator.#ctor">
+            <summary>
+            Initializes a new instance of the GaugeIndicator class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.GaugeIndicator.Update(System.Windows.Size)">
+            <summary>
+            This method should be called whenever an indicator needs to be updated.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.GaugeIndicator.GetArrangeRect(System.Windows.Size)">
+            <summary>
+            This method defines how a particular indicator will
+            arrange itself in the parent range.
+            </summary>
+            <param name="finalSize">The size in which the indicator should arrange itself.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.GaugeIndicator.OnValueChanged(System.Double,System.Double)">
+            <summary>
+            A virtual method that is called when the value of this indicator changes.
+            </summary>
+            <param name="newValue">The new value.</param>
+            <param name="oldValue">The old value.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.GaugeIndicator.OnStartValueChanged(System.Double,System.Double)">
+            <summary>
+            A virtual method that is called when the start value of this indicator changes.
+            </summary>
+            <param name="newStartValue">The new start value.</param>
+            <param name="oldStartValue">The old start value.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.GaugeIndicator.OnOwnerChanged(Telerik.Windows.Controls.GaugeRange,Telerik.Windows.Controls.GaugeRange)">
+            <summary>
+            A virtual method that is called when the Owner of this indicator changes.
+            </summary>
+            <param name="newOwner">The new Owner.</param>
+            <param name="oldOwner">The old Owner.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.GaugeIndicator.OnIsAnimatedChanged(System.Boolean,System.Boolean)">
+            <summary>
+            A virtual method that is called when the IsAnimated property of this indicator changes.
+            </summary>
+            <param name="newIsAnimated">The new IsAnimated value.</param>
+            <param name="oldIsAnimated">The old IsAnimated value.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.GaugeIndicator.OnAnimationEasingChanged(System.Windows.Media.Animation.IEasingFunction,System.Windows.Media.Animation.IEasingFunction)">
+            <summary>
+            A virtual method that is called when the AnimationEasing property of this indicator changes.
+            </summary>
+            <param name="newEasing">The new AnimationEasing.</param>
+            <param name="oldEasing">The old AnimationEasing.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.GaugeIndicator.OnAnimationDurationChanged(System.Windows.Duration,System.Windows.Duration)">
+            <summary>
+            A virtual method that is called when the AnimationDuration property of this indicator changes.
+            </summary>
+            <param name="newDuration">The new AnimationDuration.</param>
+            <param name="oldDuration">The old AnimationDuration.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.GaugeIndicator.UpdateOverride(System.Windows.Size)">
+            <summary>
+            This is a virtual method that resets the state of the indicator.
+            The parent range is responsible to (indirectly) call this method when
+            a property of importance changes.
+            </summary>
+            <param name="availableSize">A size which can be used by the update logic.</param>
+            <remarks>
+            The linear range for example triggers the UpdateOverride() method
+            of its indicators when its Orientation property changes.
+            </remarks>
+        </member>
+        <member name="M:Telerik.Windows.Controls.GaugeIndicator.MeasureOverride(System.Windows.Size)">
+            <summary>
+            Called in the measure layout pass to determine the desired size.
+            </summary>
+            <param name="availableSize">The available size that was given by the layout system.</param>
+            <returns>Returns the desired size of the indicator.</returns>
+        </member>
+        <member name="E:Telerik.Windows.Controls.GaugeIndicator.ValueChanged">
+            <summary>
+            This event fires after the Value property changes.
+            The event arguments contain the new as well as the old value.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.GaugeIndicator.Value">
+            <summary>
+            Gets or sets the value of this indicator.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.GaugeIndicator.StartValue">
+            <summary>
+            Determines from where in the value range does the indicator start.
+            By default every indicator starts at 0. The Value and StartValue properties do the exact same
+            thing in the MarkerGaugeIndicator since it is always on a single point in the range.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.GaugeIndicator.Owner">
+            <summary>
+            Gets the owner range of this indicator.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.GaugeIndicator.IsAnimated">
+            <summary>
+            Gets or sets the IsAnimated property value. This
+            property enables and disables the animated transition
+            between values.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.GaugeIndicator.AnimationDuration">
+            <summary>
+            Gets or sets the duration of the animation when IsAnimated is true.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.GaugeIndicator.AnimationEasing">
+            <summary>
+            Gets or sets the easing of the animation when IsAnimated is true.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.GaugeIndicator.MeasureCallback">
+            <summary>
+            Callback for testing purposes.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.GaugeIndicator.ArrangeCallback">
+            <summary>
+            Callback for testing purposes.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.GaugeIndicator.ActualValue">
+            <summary>
+            Gets the actual value of the indicator.
+            Inheritors must use this property for their calculations, not the Value property.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.GaugeIndicator.MinMaxValueDifference">
+            <summary>
+            Gets the difference between the min and max value of the parent range.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.BarGaugeIndicator.BarThicknessProperty">
+            <summary>
+            Identifies the BarThickness dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.BarGaugeIndicator.BarBrushProperty">
+            <summary>
+            Identifies the BarBrush dependency property.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.BarGaugeIndicator.OnBarThicknessChanged(System.Double)">
+            <summary>
+            A virtual method that is called when the thickness of this indicator changes.
+            </summary>
+            <param name="newThickness">The new thickness.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.BarGaugeIndicator.OnBarBrushChanged(System.Windows.Media.Brush)">
+            <summary>
+            A virtual method that is called when the color of this indicator changes.
+            </summary>
+            <param name="newColor">The new color.</param>
+        </member>
+        <member name="P:Telerik.Windows.Controls.BarGaugeIndicator.BarThickness">
+            <summary>
+            Gets or sets the thickness of this bar indicator.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.BarGaugeIndicator.BarBrush">
+            <summary>
+            Gets or sets the color of this bar indicator.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadialGaugeIndicator.#ctor">
+            <summary>
+            Initializes a new instance of the RadialGaugeIndicator class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadialGaugeIndicator.MeasureOverride(System.Windows.Size)">
+            <summary>
+            Called in the measure layout pass to determine the desired size.
+            </summary>
+            <param name="availableSize">The available size that was given by the layout system.</param>
+            <returns>Returns the desired size of the indicator.</returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadialGaugeIndicator.UpdateOverride(System.Windows.Size)">
+            <summary>
+            This is a virtual method that resets the state of the indicator.
+            The parent range is responsible to (indirectly) call this method when
+            a property of importance changes.
+            <param name="availableSize">A size which can be used by the update logic.</param>
+            </summary>
+            <remarks>
+            The linear range for example triggers the UpdateOverride() method
+            of its indicators when its Orientation property changes.
+            </remarks>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadialGaugeIndicator.ArrangeOverride(System.Windows.Size)">
+            <summary>
+            Called in the arrange pass of the layout system.
+            </summary>
+            <param name="finalSize">The final size that was given by the layout system.</param>
+            <returns>The final size of the panel.</returns>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadialGaugeIndicator.SweepDirection">
+            <summary>
+            Gets a cached value of the sweep direction attached property.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadialGaugeIndicator.MinAngle">
+            <summary>
+            Gets a cached value of the MinAngle attached property.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadialGaugeIndicator.MaxAngle">
+            <summary>
+            Gets a cached value of the MaxAngle attached property.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadialGaugeIndicator.Center">
+            <summary>
+            Gets a cached value of the center of the parent range.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadialGaugeIndicator.Radius">
+            <summary>
+            Gets a cached value of the radius of the parent range.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadialGaugeIndicator.RadiusScale">
+            <summary>
+            Gets a cached value of the IndicatorRadiusScale attached property.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.NeedleGaugeIndicator.#ctor">
+            <summary>
+            Initializes a new instance of the NeedleGaugeIndicator class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.NeedleGaugeIndicator.OnApplyTemplate">
+            <summary>
+            When overridden in a derived class, is invoked whenever application code or internal processes (such as a rebuilding layout pass) call <see cref="M:System.Windows.Controls.Control.ApplyTemplate"/>. 
+            In simplest terms, this means the method is called just before a UI element displays in an application.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.NeedleGaugeIndicator.OnValueChanged(System.Double,System.Double)">
+            <summary>
+            A virtual method that is called when the value of this indicator changes.
+            </summary>
+            <param name="newValue">The new value.</param>
+            <param name="oldValue">The old value.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.NeedleGaugeIndicator.UpdateOverride(System.Windows.Size)">
+            <summary>
+            This is a virtual method that resets the state of the indicator.
+            The parent range is responsible to (indirectly) call this method when
+            a property of importance changes.
+            </summary>
+            <param name="availableSize">A size which can be used by the update logic.</param>
+            <remarks>
+            The linear range for example triggers the UpdateOverride() method
+            of its indicators when its Orientation property changes.
+            </remarks>
+        </member>
+        <member name="M:Telerik.Windows.Controls.NeedleGaugeIndicator.ArrangeOverride(System.Windows.Size)">
+            <summary>
+            Called in the arrange pass of the layout system.
+            </summary>
+            <param name="finalSize">The final size that was given by the layout system.</param>
+            <returns>The final size of the panel.</returns>
+        </member>
+        <member name="P:Telerik.Windows.Controls.NeedleGaugeIndicator.IsProperlyTemplated">
+            <summary>
+            Gets a value indicating whether this control is properly templated.
+            </summary>
+            <value>
+            	<c>True</c> if this instance is properly templated; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="F:Telerik.Windows.Controls.ArrowGaugeIndicator.ArrowBrushProperty">
+            <summary>
+            Identifies the ArrowColor dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.ArrowGaugeIndicator.ArrowThicknessProperty">
+            <summary>
+            Identifies the ArrowThickness dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.ArrowGaugeIndicator.ArrowTailRadiusProperty">
+            <summary>
+            Identifies the ArrowTailRadius dependency property.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.ArrowGaugeIndicator.#ctor">
+            <summary>
+            Initializes a new instance of the ArrowGaugeIndicator class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.ArrowGaugeIndicator.OnApplyTemplate">
+            <summary>
+            When overridden in a derived class, is invoked whenever application code or internal processes (such as a rebuilding layout pass) call <see cref="M:System.Windows.Controls.Control.ApplyTemplate"/>. 
+            In simplest terms, this means the method is called just before a UI element displays in an application.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.ArrowGaugeIndicator.ArrangeOverride(System.Windows.Size)">
+            <summary>
+            Called in the arrange pass of the layout system.
+            </summary>
+            <param name="finalSize">The final size that was given by the layout system.</param>
+            <returns>The final size of the panel.</returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.ArrowGaugeIndicator.UpdateOverride(System.Windows.Size)">
+            <summary>
+            This is a virtual method that resets the state of the indicator.
+            The parent range is responsible to (indirectly) call this method when
+            a property of importance changes.
+            </summary>
+            <param name="availableSize">A size which can be used by the update logic.</param>
+            <remarks>
+            The linear range for example triggers the UpdateOverride() method
+            of its indicators when its Orientation property changes.
+            </remarks>
+        </member>
+        <member name="M:Telerik.Windows.Controls.ArrowGaugeIndicator.OnArrowBrushChanged(System.Windows.Media.Brush,System.Windows.Media.Brush)">
+            <summary>
+            A virtual method that is called when the ArrowColor property changes.
+            </summary>
+            <param name="newArrowBrush">The new ArrowBrush.</param>
+            <param name="oldArrowBrush">The old ArrowBrush.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.ArrowGaugeIndicator.OnArrowThicknessChanged(System.Double,System.Double)">
+            <summary>
+            A virtual method that is called when the ArrowThickness property changes.
+            </summary>
+            <param name="newArrowThickness">The new ArrowThickness.</param>
+            <param name="oldArrowThickness">The old ArrowThickness.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.ArrowGaugeIndicator.OnArrowTailRadiusChanged(System.Double,System.Double)">
+            <summary>
+            A virtual method that is called when the ArrowTailRadius property changes.
+            </summary>
+            <param name="newArrowTailRadius">The new ArrowTailRadius.</param>
+            <param name="oldArrowTailRadius">The old ArrowTailRadius.</param>
+        </member>
+        <member name="P:Telerik.Windows.Controls.ArrowGaugeIndicator.ArrowBrush">
+            <summary>
+            Gets or sets the color of the arrow.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.ArrowGaugeIndicator.ArrowThickness">
+            <summary>
+            Gets or sets the thickness of the arrow.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.ArrowGaugeIndicator.ArrowTailRadius">
+            <summary>
+            Gets or sets the radius of the arrow tail.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.ArrowGaugeIndicator.IsProperlyTemplated">
+            <summary>
+            Gets a value indicating whether this control is properly templated.
+            </summary>
+            <value>
+            	<c>True</c> if this instance is properly templated; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:Telerik.Windows.Controls.LinearBarGaugeIndicator">
+            <summary>
+            Represents a line indicator with a specific color and thickness.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.LinearBarGaugeIndicator.#ctor">
+            <summary>
+            Initializes a new instance of the LinearBarGaugeIndicator class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.LinearBarGaugeIndicator.OnApplyTemplate">
+            <summary>
+            When overridden in a derived class, is invoked whenever application code or internal processes (such as a rebuilding layout pass) call <see cref="M:System.Windows.Controls.Control.ApplyTemplate"/>. 
+            In simplest terms, this means the method is called just before a UI element displays in an application.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.LinearBarGaugeIndicator.GetArrangeRect(System.Windows.Size)">
+            <summary>
+            This method defines how a particular indicator will
+            arrange itself in the parent range.
+            </summary>
+            <param name="finalSize">The size in which the indicator should arrange itself.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.LinearBarGaugeIndicator.OnOwnerChanged(Telerik.Windows.Controls.GaugeRange,Telerik.Windows.Controls.GaugeRange)">
+            <summary>
+            A virtual method that is called when the Owner of this indicator changes.
+            </summary>
+            <param name="newOwner">The new Owner.</param>
+            <param name="oldOwner">The old Owner.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.LinearBarGaugeIndicator.OnBarThicknessChanged(System.Double)">
+            <summary>
+            A virtual method that is called when the thickness of this indicator changes.
+            </summary>
+            <param name="newThickness">The new thickness.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.LinearBarGaugeIndicator.OnValueChanged(System.Double,System.Double)">
+            <summary>
+            A virtual method that is called when the value of this indicator changes.
+            </summary>
+            <param name="newValue">The new value.</param>
+            <param name="oldValue">The old value.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.LinearBarGaugeIndicator.OnStartValueChanged(System.Double,System.Double)">
+            <summary>
+            A virtual method that is called when the start value of this indicator changes.
+            </summary>
+            <param name="newStartValue">The new start value.</param>
+            <param name="oldStartValue">The old start value.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.LinearBarGaugeIndicator.UpdateOverride(System.Windows.Size)">
+            <summary>
+            This is a virtual method that resets the state of the indicator.
+            The parent range is responsible to (indirectly) call this method when
+            a property of importance changes.
+            </summary>
+            <param name="availableSize">A size which can be used by the update logic.</param>
+            <remarks>
+            The linear range for example triggers the UpdateOverride() method
+            of its indicators when its Orientation property changes.
+            </remarks>
+        </member>
+        <member name="P:Telerik.Windows.Controls.LinearBarGaugeIndicator.IsProperlyTemplated">
+            <summary>
+            Gets a value indicating whether this control is properly templated.
+            </summary>
+            <value>
+            	<c>True</c> if this instance is properly templated; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:Telerik.Windows.Controls.MarkerGaugeIndicator">
+            <summary>
+            This class represents a marker indicator that is
+            usually placed somewhere near the ticks of the owner range.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.MarkerGaugeIndicator.MarkerTemplateProperty">
+            <summary>
+            Identifies the MarkerTemplate dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.MarkerGaugeIndicator.IsMarkerRotatedProperty">
+            <summary>
+            Identifies the IsMarkerRotated dependency property.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.MarkerGaugeIndicator.#ctor">
+            <summary>
+            Initializes a new instance of the MarkerGaugeIndicator class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.MarkerGaugeIndicator.OnApplyTemplate">
+            <summary>
+            When overridden in a derived class, is invoked whenever application code or internal processes (such as a rebuilding layout pass) call <see cref="M:System.Windows.Controls.Control.ApplyTemplate"/>. 
+            In simplest terms, this means the method is called just before a UI element displays in an application.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.MarkerGaugeIndicator.OnValueChanged(System.Double,System.Double)">
+            <summary>
+            A virtual method that is called when the value of this indicator changes.
+            </summary>
+            <param name="newValue">The new value.</param>
+            <param name="oldValue">The old value.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.MarkerGaugeIndicator.OnStartValueChanged(System.Double,System.Double)">
+            <summary>
+            A virtual method that is called when the start value of this indicator changes.
+            </summary>
+            <param name="newStartValue">The new start value.</param>
+            <param name="oldStartValue">The old start value.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.MarkerGaugeIndicator.UpdateOverride(System.Windows.Size)">
+            <summary>
+            This is a virtual method that resets the state of the indicator.
+            The parent range is responsible to (indirectly) call this method when
+            a property of importance changes.
+            <param name="availableSize">A size which can be used by the update logic.</param>
+            </summary>
+            <remarks>
+            The linear range for example triggers the UpdateOverride() method
+            of its indicators when its Orientation property changes.
+            </remarks>
+        </member>
+        <member name="M:Telerik.Windows.Controls.MarkerGaugeIndicator.OnOwnerChanged(Telerik.Windows.Controls.GaugeRange,Telerik.Windows.Controls.GaugeRange)">
+            <summary>
+            A virtual method that is called when the Owner of this indicator changes.
+            </summary>
+            <param name="newOwner">The new Owner.</param>
+            <param name="oldOwner">The old Owner.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.MarkerGaugeIndicator.OnMarkerTemplateChanged(System.Windows.DataTemplate,System.Windows.DataTemplate)">
+            <summary>
+            A virtual method that is called when the MarkerTemplate property changes.
+            </summary>
+            <param name="newTemplate">The new MarkerTemplate.</param>
+            <param name="oldTemplate">The old MarkerTemplate.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.MarkerGaugeIndicator.OnIsMarkerRotatedChanged(System.Boolean,System.Boolean)">
+            <summary>
+            A virtual method that is called when the IsMarkerRotated property changes.
+            </summary>
+            <param name="newValue">The new IsMarkerRotated value.</param>
+            <param name="oldValue">The old IsMarkerRotated value.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.MarkerGaugeIndicator.MeasureOverride(System.Windows.Size)">
+            <summary>
+            Called in the measure layout pass to determine the desired size.
+            </summary>
+            <param name="availableSize">The available size that was given by the layout system.</param>
+            <returns>Returns the desired size of the indicator.</returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.MarkerGaugeIndicator.ArrangeOverride(System.Windows.Size)">
+            <summary>
+            Called in the arrange pass of the layout system.
+            </summary>
+            <param name="finalSize">The final size that was given by the layout system.</param>
+            <returns>The final size of the panel.</returns>
+        </member>
+        <member name="P:Telerik.Windows.Controls.MarkerGaugeIndicator.MarkerTemplate">
+            <summary>
+            Gets or sets the template for the marker.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.MarkerGaugeIndicator.IsMarkerRotated">
+            <summary>
+            Gets or sets a value that determines if the marker will rotate in place as well as around the center
+            of a radial range or whether it will rotate automatically in a linear range when its orientation is Vertical.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.MarkerGaugeIndicator.IsProperlyTemplated">
+            <summary>
+            Gets a value indicating whether this control is properly templated.
+            </summary>
+            <value>
+            	<c>True</c> if this instance is properly templated; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:Telerik.Windows.Controls.RadialBarGaugeIndicator">
+            <summary>
+            This class represents a radial bar gauge indicator.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadialBarGaugeIndicator.#ctor">
+            <summary>
+            Initializes a new instance of the RadialBarGaugeIndicator class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadialBarGaugeIndicator.UpdateArc(Telerik.Windows.Controls.GaugesInternal.UpdateArcContext)">
+            <summary>
+            Updates an arc segment with the provided data.
+            </summary>
+            <param name="context">A context for the arc to be updated. the arc to update is a part of the context.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadialBarGaugeIndicator.OnApplyTemplate">
+            <summary>
+            When overridden in a derived class, is invoked whenever application code or internal processes (such as a rebuilding layout pass) call <see cref="M:System.Windows.Controls.Control.ApplyTemplate"/>. 
+            In simplest terms, this means the method is called just before a UI element displays in an application.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadialBarGaugeIndicator.ArrangeOverride(System.Windows.Size)">
+            <summary>
+            Called in the arrange pass of the layout system.
+            </summary>
+            <param name="finalSize">The final size that was given by the layout system.</param>
+            <returns>The final size of the panel.</returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadialBarGaugeIndicator.OnValueChanged(System.Double,System.Double)">
+            <summary>
+            A virtual method that is called when the value of this indicator changes.
+            </summary>
+            <param name="newValue">The new value.</param>
+            <param name="oldValue">The old value.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadialBarGaugeIndicator.OnBarThicknessChanged(System.Double)">
+            <summary>
+            A virtual method that is called when the thickness of this indicator changes.
+            </summary>
+            <param name="newThickness">The new thickness.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadialBarGaugeIndicator.OnBarBrushChanged(System.Windows.Media.Brush)">
+            <summary>
+            A virtual method that is called when the color of this indicator changes.
+            </summary>
+            <param name="newColor">The new color.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadialBarGaugeIndicator.UpdateOverride(System.Windows.Size)">
+            <summary>
+            This is a virtual method that resets the state of the indicator.
+            The parent range is responsible to (indirectly) call this method when
+            a property of importance changes.
+            </summary>
+            <param name="availableSize">A size which can be used by the update logic.</param>
+            <remarks>
+            The linear range for example triggers the UpdateOverride() method
+            of its indicators when its Orientation property changes.
+            </remarks>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadialBarGaugeIndicator.IsProperlyTemplated">
+            <summary>
+            Gets a value indicating whether this control is properly templated.
+            </summary>
+            <value>
+            	<c>True</c> if this instance is properly templated; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:Telerik.Windows.Controls.SegmentedGaugeIndicator">
+            <summary>
+            This is the base class for the segmented indicators.
+            It defines a collection of segments and provides
+            a grid panel for the layout of the segments.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.SegmentedGaugeIndicator.#ctor">
+            <summary>
+            Initializes a new instance of the SegmentedGaugeIndicator class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.SegmentedGaugeIndicator.OnApplyTemplate">
+            <summary>
+            When overridden in a derived class, is invoked whenever application code or internal processes (such as a rebuilding layout pass) call <see cref="M:System.Windows.Controls.Control.ApplyTemplate"/>. 
+            In simplest terms, this means the method is called just before a UI element displays in an application.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.SegmentedGaugeIndicator.OnLoaded(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Occurs when a System.Windows.FrameworkElement has been constructed and added to the object tree.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.SegmentedGaugeIndicator.MeasureOverride(System.Windows.Size)">
+            <summary>
+            Called in the measure layout pass to determine the desired size.
+            </summary>
+            <param name="availableSize">The available size that was given by the layout system.</param>
+            <returns>Returns the desired size of the panel.</returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.SegmentedGaugeIndicator.UpdateOverride(System.Windows.Size)">
+            <summary>
+            This is a virtual method that resets the state of the indicator.
+            The parent range is responsible to (indirectly) call this method when
+            a property of importance changes.
+            </summary>
+            <param name="availableSize">A size which can be used by the update logic.</param>
+            <remarks>
+            The linear range for example triggers the UpdateOverride() method
+            of its indicators when its Orientation property changes.
+            </remarks>
+        </member>
+        <member name="M:Telerik.Windows.Controls.SegmentedGaugeIndicator.OnValueChanged(System.Double,System.Double)">
+            <summary>
+            A virtual method that is called when the value of this indicator changes.
+            </summary>
+            <param name="newValue">The new value.</param>
+            <param name="oldValue">The old value.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.SegmentedGaugeIndicator.ResetSegments(System.Windows.Size)">
+            <summary>
+            This method is called whenever the segments
+            need to recreate their visual representation.
+            </summary>
+            <param name="availableSize">The available size which the visual parts can occupy.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.SegmentedGaugeIndicator.SyncWithValue(System.Double)">
+            <summary>
+            This method is called so that a segmented indicator can synchronize
+            its visual state with its current value.
+            </summary>
+            <param name="value">The value to synchronize with.</param>
+        </member>
+        <member name="P:Telerik.Windows.Controls.SegmentedGaugeIndicator.Segments">
+            <summary>
+            Gets the segments collection.
+            </summary>
+            <remarks>
+            Segments can be added and removed from this collection.
+            Every such action triggers state resets and will be slow if
+            done often.
+            </remarks>
+        </member>
+        <member name="P:Telerik.Windows.Controls.SegmentedGaugeIndicator.IsProperlyTemplated">
+            <summary>
+            Gets a value indicating whether this control is properly templated.
+            </summary>
+            <value>
+            	<c>True</c> if this instance is properly templated; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Telerik.Windows.Controls.SegmentedGaugeIndicator.TotalSegmentLength">
+            <summary>
+            Gets the total length of the currently added segments.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.SegmentedGaugeIndicator.Layout">
+            <summary>
+            Gets the layout panel for this segmented indicator.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.SegmentedGaugeIndicator.SegmentInfos">
+            <summary>
+            Gets a list of SegmentInfos. These infos are 
+            used during the creation of the visual representation of
+            the segments.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.SegmentedGaugeIndicator.SegmentInfo">
+            <summary>
+            This class is internally created during
+            segment reset in order to provide information
+            during value synchronization.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.SegmentedGaugeIndicator.SegmentInfo.PathSegment">
+            <summary>
+            Gets or sets a path segment.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.SegmentedGaugeIndicator.SegmentInfo.Start">
+            <summary>
+            Gets or sets the start of the path segment.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.SegmentedGaugeIndicator.SegmentInfo.End">
+            <summary>
+            Gets or sets the end of the part segment.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.SegmentedLinearGaugeIndicator">
+            <summary>
+            This class represents a line indicator with different segments.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.SegmentedLinearGaugeIndicator.OnOwnerChanged(Telerik.Windows.Controls.GaugeRange,Telerik.Windows.Controls.GaugeRange)">
+            <summary>
+            A virtual method that is called when the Owner of this indicator changes.
+            </summary>
+            <param name="newOwner">The new Owner.</param>
+            <param name="oldOwner">The old Owner.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.SegmentedLinearGaugeIndicator.UpdateOverride(System.Windows.Size)">
+            <summary>
+            This is a virtual method that resets the state of the indicator.
+            The parent range is responsible to (indirectly) call this method when
+            a property of importance changes.
+            </summary>
+            <param name="availableSize">A size which can be used by the update logic.</param>
+            <remarks>
+            The linear range for example triggers the UpdateOverride() method
+            of its indicators when its Orientation property changes.
+            </remarks>
+        </member>
+        <member name="M:Telerik.Windows.Controls.SegmentedLinearGaugeIndicator.ResetSegments(System.Windows.Size)">
+            <summary>
+            This method is called whenever the segments
+            need to recreate their visual representation.
+            </summary>
+            <param name="availableSize">The available size which the visual parts can occupy.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.SegmentedLinearGaugeIndicator.SyncWithValue(System.Double)">
+            <summary>
+            This method is called so that a segmented indicator can synchronize
+            its visual state with its current value.
+            </summary>
+            <param name="value">The value to synchronize with.</param>
+        </member>
+        <member name="T:Telerik.Windows.Controls.SegmentedRadialGaugeIndicator">
+            <summary>
+            This class represents a circle indicator with different segments.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.SegmentedRadialGaugeIndicator.SyncWithValue(System.Double)">
+            <summary>
+            This method is called so that a segmented indicator can synchronize
+            its visual state with its current value.
+            </summary>
+            <param name="value">The calue to synchronize with.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.SegmentedRadialGaugeIndicator.ResetSegments(System.Windows.Size)">
+            <summary>
+            This method is called whenever the segments
+            need to recreate their visual representation.
+            </summary>
+            <param name="availableSize">The available size which the visual parts can occupy.</param>
+        </member>
+        <member name="T:Telerik.Windows.Controls.GaugeRange">
+            <summary>
+            Base class for the gauge ranges. Defines a value range (min and max value), tick and label steps and templates for the ticks and labels.
+            The class is abstract because the layout of the ticks and labels are defined in concrete types, for example the radial and linear ranges.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.GaugeRange.MinValueProperty">
+            <summary>
+            Identifies the MinValue property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.GaugeRange.MaxValueProperty">
+            <summary>
+            Identifies the MinValue property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.GaugeRange.TickTemplateProperty">
+            <summary>
+            Identifies the TickTemplate property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.GaugeRange.MiddleTickTemplateProperty">
+            <summary>
+            Identifies the MiddleTickTemplate property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.GaugeRange.MajorTickTemplateProperty">
+            <summary>
+            Identifies the MajorTickTemplate property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.GaugeRange.LabelTemplateProperty">
+            <summary>
+            Identifies the LabelTemplate property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.GaugeRange.TickStepProperty">
+            <summary>
+            Identifies the TickStep property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.GaugeRange.LabelStepProperty">
+            <summary>
+            Identifies the LabelStep property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.GaugeRange.MiddleTickStepProperty">
+            <summary>
+            Identifies the MiddleTickStep property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.GaugeRange.MajorTickStepProperty">
+            <summary>
+            Identifies the MajorTickStep property.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.GaugeRange.#ctor">
+            <summary>
+            Initializes a new instance of the GaugeRange class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.GaugeRange.MapLogicalToPhysicalValue(System.Double,System.Double,System.Double)">
+            <summary>
+            Converts a logical value from a value range to some kind of physical value in another range.
+            </summary>
+            <param name="logicalValue">The value to be converted.</param>
+            <param name="physicalValueMinMaxDifference">The difference of the min and max values of the expected metric's range.</param>
+            <param name="logicalValueMinMaxDifference">The difference between the min and max values.</param>
+            <returns>Returns a physical value that corresponds to the logical value in the physical value's respective range.</returns>
+            <remarks>
+            The other physical value can be an angle in the radial range and a distance in the linear range.
+            For example a value in the min/max value range can be converted to an angle in min/max angle range
+            or to a distance in the min/max distance range.
+            </remarks>
+        </member>
+        <member name="M:Telerik.Windows.Controls.GaugeRange.ArrangeTicksOverride(System.Windows.Size)">
+            <summary>
+            Defines the arrange logic for the ticks.
+            </summary>
+            <param name="finalSize">The size in which the ticks can be arranged.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.GaugeRange.ArrangeLabelsOverride(System.Windows.Size)">
+            <summary>
+            Defines the arrange logic for the labels.
+            </summary>
+            <param name="finalSize">The size in which the labels can be arranged.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.GaugeRange.GetTick(System.Int32)">
+            <summary>
+            Gets a tick at the specified index.
+            </summary>
+            <param name="index">The index at which the desired tick is.</param>
+            <returns>A GaugeTick.</returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.GaugeRange.GetLabel(System.Int32)">
+            <summary>
+            Gets a label at the specified index.
+            </summary>
+            <param name="index">The index at which the desired label is.</param>
+            <returns>A GaugeTick which represents a label.</returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.GaugeRange.TickCount">
+            <summary>
+            Gets the count of the currently created ticks.
+            </summary>
+            <returns>Returns the count of the currently created ticks.</returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.GaugeRange.LabelCount">
+            <summary>
+            Gets the count of the currently created labels.
+            </summary>
+            <returns>Returns the count of the currently created labels.</returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.GaugeRange.MeasureOverride(System.Windows.Size)">
+            <summary>
+            Called in the measure layout pass to determine the desired size.
+            </summary>
+            <param name="availableSize">The available size that was given by the layout system.</param>
+            <returns>Returns the desired size of the panel.</returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.GaugeRange.ArrangeOverride(System.Windows.Size)">
+            <summary>
+            Called in the arrange pass of the layout system.
+            </summary>
+            <param name="finalSize">The final size that was given by the layout system.</param>
+            <returns>The final size of the panel.</returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.GaugeRange.ArrangeIndicator(Telerik.Windows.Controls.GaugeIndicator,System.Windows.Size)">
+            <summary>
+            A virtual method that is called for each indicator in the arrange layout pass.
+            </summary>
+            <param name="indicator">The indicator to arrange.</param>
+            <param name="finalSize">The size in which to arrange the indicator.</param>
+            <remarks>
+            The Rect in which the indicator will be arranged should be retrieved from
+            the indicator itself via the GetArrangeRect() method.
+            </remarks>
+        </member>
+        <member name="M:Telerik.Windows.Controls.GaugeRange.OnMinValueChanged(System.Double,System.Double)">
+            <summary>
+            A virtual method that is called when the MinValue property changes.
+            </summary>
+            <param name="newMinValue">The new MinValue.</param>
+            <param name="oldMinValue">The old MinValue.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.GaugeRange.OnMaxValueChanged(System.Double,System.Double)">
+            <summary>
+            A virtual method that is called when the MaxValue property changes.
+            </summary>
+            <param name="newMaxValue">The new MaxValue.</param>
+            <param name="oldMaxValue">The old MaxValue.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.GaugeRange.OnLabelStepChanged(System.Double,System.Double)">
+            <summary>
+            A virtual method that is called when the LabelStep property changes.
+            </summary>
+            <param name="newLabelStep">The new LabelStep.</param>
+            <param name="oldLabelStep">The old LabelStep.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.GaugeRange.OnTickStepChanged(System.Double,System.Double)">
+            <summary>
+            A virtual method that is called when the TickStep property changes.
+            </summary>
+            <param name="newTickStep">The new TickStep.</param>
+            <param name="oldTickStep">The old TickStep.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.GaugeRange.OnMiddleTickStepChanged(System.Int32,System.Int32)">
+            <summary>
+            A virtual method that is called when the MiddleTickStep property changes.
+            </summary>
+            <param name="newStep">The new MiddleTickStep.</param>
+            <param name="oldStep">The old MiddleTickStep.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.GaugeRange.OnMajorTickStepChanged(System.Int32,System.Int32)">
+            <summary>
+            A virtual method that is called when the MajorTickStep property changes.
+            </summary>
+            <param name="newStep">The new MajorTickStep.</param>
+            <param name="oldStep">The old MajorTickStep.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.GaugeRange.OnTickTemplateChanged(System.Windows.DataTemplate,System.Windows.DataTemplate)">
+            <summary>
+            A virtual method that is called when the TickTemplate property changes.
+            </summary>
+            <param name="newTickTemplate">The new TickTemplate.</param>
+            <param name="oldTickTemplate">The old TickTemplate.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.GaugeRange.OnMiddleTickTemplateChanged(System.Windows.DataTemplate,System.Windows.DataTemplate)">
+            <summary>
+            A virtual method that is called when the MiddleTickTemplate property changes.
+            </summary>
+            <param name="newMiddleTickTemplate">The new MiddleTickTemplate.</param>
+            <param name="oldMiddleTickTemplate">The old MiddleTickTemplate.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.GaugeRange.OnMajorTickTemplateChanged(System.Windows.DataTemplate,System.Windows.DataTemplate)">
+            <summary>
+            A virtual method that is called when the MajorTickTemplate property changes.
+            </summary>
+            <param name="newMajorTickTemplate">The new MajorTickTemplate.</param>
+            <param name="oldMajorTickTemplate">The old MajorTickTemplate.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.GaugeRange.OnLabelTemplateChanged(System.Windows.DataTemplate,System.Windows.DataTemplate)">
+            <summary>
+            A virtual method that is called when the LabelTemplate property changes.
+            </summary>
+            <param name="newLabelTemplate">The new LabelTemplate.</param>
+            <param name="oldLabelTemplate">The old LabelTemplate.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.GaugeRange.CreateGaugeTick(Telerik.Windows.Controls.GaugesInternal.TickType)">
+            <summary>
+            A virtual method that can be overridden to create a more specific kind of GaugeTick.
+            </summary>
+            <param name="type">The type of the tick to create.</param>
+            <returns>Returns an instance of the GaugeTick type or of an inherited type.</returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.GaugeRange.CreateGaugeLabel">
+            <summary>
+            A virtual method that can be overridden to create a more specific kind of label.
+            </summary>
+            <returns>Returns an instance of GaugeTick or of a more specific type with TickType.Label.</returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.GaugeRange.InitializeTick(Telerik.Windows.Controls.GaugesInternal.GaugeTick,System.Double,System.Windows.DataTemplate)">
+            <summary>
+            A virtual method that can be overridden to provide different initialization logic for more specific tick or label types.
+            </summary>
+            <param name="tick">The tick to initialize.</param>
+            <param name="value">The value with which the tick is associated.</param>
+            <param name="dataTemplate">The content template of the tick.</param>
+        </member>
+        <member name="P:Telerik.Windows.Controls.GaugeRange.Indicators">
+            <summary>
+            Gets a collection that holds the indicators in this range.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.GaugeRange.MinValue">
+            <summary>
+            Gets or sets the minimum value that this range can represent.
+            </summary>
+            <remarks>
+            The indicators can not point to a value that is less than MinValue.
+            </remarks>
+        </member>
+        <member name="P:Telerik.Windows.Controls.GaugeRange.MaxValue">
+            <summary>
+            Gets or sets the maximum value that this range represent.
+            </summary>
+            <remarks>
+            The indicators can not point to a value that is larger than MaxValue.
+            </remarks>
+        </member>
+        <member name="P:Telerik.Windows.Controls.GaugeRange.TickStep">
+            <summary>
+            Gets or sets the tick step. 
+            </summary>
+            <remarks>
+            The tick step is used to determine how
+            the range ticks are spread over the value range.
+            In other words, it determines how many ticks will be created.
+            </remarks>
+        </member>
+        <member name="P:Telerik.Windows.Controls.GaugeRange.LabelStep">
+            <summary>
+            Gets or sets the label step. 
+            </summary>
+            <remarks>
+            This step used to determine how
+            the range labels will be spread over the value range.
+            </remarks>
+        </member>
+        <member name="P:Telerik.Windows.Controls.GaugeRange.MiddleTickStep">
+            <summary>
+            Gets or sets a step that is used to determine which ticks
+            will be middle ticks. 
+            </summary>
+            <remarks>
+            This step is used on top of the number of
+            created ticks, not the value range. Middle ticks will use the
+            middle tick template.
+            </remarks>
+        </member>
+        <member name="P:Telerik.Windows.Controls.GaugeRange.MajorTickStep">
+            <summary>
+            Gets or sets a step that is used to determine which ticks
+            will be major ticks. 
+            </summary>
+            <remarks>
+            This step is used on top of the number of
+            created ticks, not the value range. Major ticks will use the major
+            tick template.
+            </remarks>
+        </member>
+        <member name="P:Telerik.Windows.Controls.GaugeRange.TickTemplate">
+            <summary>
+            Gets or sets the template for the minor ticks.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.GaugeRange.MiddleTickTemplate">
+            <summary>
+            Gets or sets the template for the middle ticks.
+            </summary>
+            <remarks>
+            If this is null, the minor template will be used instead.
+            </remarks>
+        </member>
+        <member name="P:Telerik.Windows.Controls.GaugeRange.MajorTickTemplate">
+            <summary>
+            Gets or sets the template for the major ticks.
+            </summary>
+            <remarks>
+            If this is null, the minor template will be used instead.
+            </remarks>
+        </member>
+        <member name="P:Telerik.Windows.Controls.GaugeRange.LabelTemplate">
+            <summary>
+            Gets or sets the template that will represent the labels.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.GaugeRange.RangeType">
+            <summary>
+            Gets or sets the type of this range. It can be Radial or Linear.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.GaugesInternal.GaugeTick">
+            <summary>
+            A content presented that is used as a visual representation of range's ticks and labels.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.GaugesInternal.GaugeTick.ValueProperty">
+            <summary>
+            Identifies the Value dependency property.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.GaugesInternal.GaugeTick.TickType">
+            <summary>
+            Gets the type of the tick.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.GaugesInternal.GaugeTick.Value">
+            <summary>
+            Gets the value that this tick is associated with.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.LinearGaugeRange">
+            <summary>
+            Represents a linear range that arranges ints ticks
+            and labels in a straight line and defines attached
+            properties for the contained indicators.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.LinearGaugeRange.OrientationProperty">
+            <summary>
+            Identifies the Orientation property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.LinearGaugeRange.IndicatorOffsetProperty">
+            <summary>
+            Identifies the IndicatorOffset property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.LinearGaugeRange.LabelOffsetProperty">
+            <summary>
+            Identifies the LabelOffset property.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.LinearGaugeRange.#ctor">
+            <summary>
+            Initializes a new instance of the LinearGaugeRange class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.LinearGaugeRange.SetIndicatorOffset(Telerik.Windows.Controls.GaugeIndicator,System.Double)">
+            <summary>
+            Sets the IndicatorOffset attached property to the provided indicator.
+            </summary>
+            <param name="indicator">The indicator for which to set the offset.</param>
+            <param name="value">The offset of the indicator.</param>
+            <remarks>
+            Setting IndicatorOffset to 0 in horizontal mode will move the indicators to the top edge of the range.
+            Setting it to 2 on the other hand will move them to the bottom. In essence this is a factor
+            by which the position of the indicators will be multiplied by.
+            </remarks>
+        </member>
+        <member name="M:Telerik.Windows.Controls.LinearGaugeRange.GetIndicatorOffset(Telerik.Windows.Controls.GaugeIndicator)">
+            <summary>
+            Gets the IndicatorOffset of the provided indicator.
+            </summary>
+            <param name="indicator">The indicator from which the offset will be obtained.</param>
+            <returns>Returns the offset the provided indicator.</returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.LinearGaugeRange.ArrangeOverride(System.Windows.Size)">
+            <summary>
+            Called in the arrange pass of the layout system.
+            </summary>
+            <param name="finalSize">The final size that was given by the layout system.</param>
+            <returns>The final size of the panel.</returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.LinearGaugeRange.ArrangeTicksOverride(System.Windows.Size)">
+            <summary>
+            Defines the arrange logic for the ticks.
+            </summary>
+            <param name="finalSize">The size in which the ticks can be arranged.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.LinearGaugeRange.ArrangeLabelsOverride(System.Windows.Size)">
+            <summary>
+            Defines the arrange logic for the labels.
+            </summary>
+            <param name="finalSize">The size in which the labels can be arranged.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.LinearGaugeRange.OnLabelOffsetChanged(System.Double,System.Double)">
+            <summary>
+            A virtual method that is called when the LabelOffset property changes.
+            </summary>
+            <param name="newLabelOffset">The new LabelOffset.</param>
+            <param name="oldLabelOffset">The old LabelOffset.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.LinearGaugeRange.OnOrientationChanged(System.Windows.Controls.Orientation,System.Windows.Controls.Orientation)">
+            <summary>
+            A virtual method that is called when the Orientation property changes.
+            </summary>
+            <param name="newOrientation">The new Orientation.</param>
+            <param name="oldOrientation">The old Orientation.</param>
+        </member>
+        <member name="P:Telerik.Windows.Controls.LinearGaugeRange.Orientation">
+            <summary>
+            Gets or sets the orientation of the range. 
+            A linear range can display ticks, labels and indicators either horizontally
+            or vertically.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.LinearGaugeRange.LabelOffset">
+            <summary>
+            Gets or sets an offset that is used to nudge the labels to the right or left (top/bottom if Orientation is horizontal)
+            of the ticks.
+            </summary>
+            <remarks>
+            Setting LabelOffset to 0 in horizontal mode will move the labels to the top edge of the range.
+            Setting it to 2 on the other hand will move them to the bottom. In essence this is a factor
+            by which the position of the labels will be multiplied by.
+            </remarks>
+        </member>
+        <member name="P:Telerik.Windows.Controls.LinearGaugeRange.RangeType">
+            <summary>
+            Gets or sets the type of this range. For this type it is always Linear.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.RadialGaugeRange">
+            <summary>
+            Represents a radial range which arranges its ticks and labels
+            in a circle and defines attached properties for the contained
+            indicators.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadialGaugeRange.MaxAngleProperty">
+            <summary>
+            Identifies the MaxAngle attached property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadialGaugeRange.MinAngleProperty">
+            <summary>
+            Identifies the MinAngle attached property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadialGaugeRange.IndicatorRadiusScaleProperty">
+            <summary>
+            Identifies the IndicatorRadiusScale attached property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadialGaugeRange.TickRadiusScaleProperty">
+            <summary>
+            Identifies the TickRadiusScale property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadialGaugeRange.LabelRadiusScaleProperty">
+            <summary>
+            Identifies the LabelRadiusScale property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadialGaugeRange.SweepDirectionProperty">
+            <summary>
+            Identifies the SweepDirection property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadialGaugeRange.CenterModeProperty">
+            <summary>
+            Identifies the CenterMode property.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadialGaugeRange.#ctor">
+            <summary>
+            Initializes a new instance of the RadialGaugeRange class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadialGaugeRange.ConvertDegreesToRadians(System.Double)">
+            <summary>
+            Converts the provided value in degrees to radians.
+            </summary>
+            <param name="angleInDegrees">The angle in degrees to convert.</param>
+            <returns>Returns the provided value in degrees converted to radians.</returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadialGaugeRange.CalculateAngle(Telerik.Windows.Controls.GaugesInternal.CalculateAngleContext)">
+            <summary>
+            Calculates and angle in degrees based on a value, a value range, an angle range and a sweep direction.
+            </summary>
+            <param name="context">A context that contains the value to be converted to an angle.</param>
+            <returns>Returns an angle in radians that corresponds to the provided value in the context.</returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadialGaugeRange.GetSweepDirection(System.Windows.DependencyObject)">
+            <summary>
+            Gets the SweepDirection attached property.
+            </summary>
+            <param name="indicator">The indicator for which to obtain the SweepDirection.</param>
+            <returns>Returns the SweepDirection of the provided indicator.</returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadialGaugeRange.SetSweepDirection(System.Windows.DependencyObject,System.Windows.Media.SweepDirection)">
+            <summary>
+            Sets the SweepDirection attached property.
+            </summary>
+            <param name="indicator">The indicator on which to set the SweepDirection value.</param>
+            <param name="sweepDirection">The SweepDirection value which will be set on the indicator.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadialGaugeRange.GetMinAngle(System.Windows.DependencyObject)">
+            <summary>
+            Gets the MinAngle attached property.
+            </summary>
+            <param name="indicator">The indicator for which to obtain the MinAngle.</param>
+            <returns>Returns the MinAngle of the provided indicator.</returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadialGaugeRange.SetMinAngle(System.Windows.DependencyObject,System.Double)">
+            <summary>
+            Sets the MinAngle attached property.
+            </summary>
+            <param name="indicator">The indicator on which to set the MinAngle property.</param>
+            <param name="angle">The MinAngle value which will be set on the indicator.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadialGaugeRange.GetMaxAngle(System.Windows.DependencyObject)">
+            <summary>
+            Gets the MaxAngle attached property.
+            </summary>
+            <param name="indicator">The indicator for which to obtain the MaxAngle.</param>
+            <returns>Returns the MaxAngle of the provided indicator.</returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadialGaugeRange.SetMaxAngle(System.Windows.DependencyObject,System.Double)">
+            <summary>
+            Sets the MaxAngle attached property.
+            </summary>
+            <param name="indicator">The indicator on which to set the MaxAngle property.</param>
+            <param name="angle">The MaxAngle value which will be set on the indicator.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadialGaugeRange.GetIndicatorRadiusScale(System.Windows.DependencyObject)">
+            <summary>
+            Gets the IndicatorRadiusScale attached property.
+            </summary>
+            <param name="indicator">The indicator for which to obtain the IndicatorRadiusScale.</param>
+            <returns>Returns the IndicatorRadiusScale of the provided indicator.</returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadialGaugeRange.SetIndicatorRadiusScale(System.Windows.DependencyObject,System.Double)">
+            <summary>
+            Sets the IndicatorRadiusScale attached property.
+            </summary>
+            <param name="indicator">The indicator on which to set the IndicatorRadiusScale property.</param>
+            <param name="scale">The IndicatorRadiusScale value which will be set on the indicator.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadialGaugeRange.CreateRotatedPoint(System.Double,System.Double,System.Windows.Point,System.Double)">
+            <summary>
+            Creates a point rotated angle radians around the center. The point will
+            be radius * radiusScale away from the center.
+            </summary>
+            <param name="angle">Determines how much the resulting point will be rotated.</param>
+            <param name="radius">The radius of the circle over which to rotate the point.</param>
+            <param name="center">The center of rotation.</param>
+            <param name="radiusScale">A scale factor that the radius will be multiplied by.</param>
+            <returns>Returns a point rotated according to the parameters.</returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadialGaugeRange.ArrangeTicksOverride(System.Windows.Size)">
+            <summary>
+            Defines the arrange logic for the ticks.
+            </summary>
+            <param name="finalSize">The size in which the ticks can be arranged.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadialGaugeRange.ArrangeLabelsOverride(System.Windows.Size)">
+            <summary>
+            Defines the arrange logic for the labels.
+            </summary>
+            <param name="finalSize">The size in which the labels can be arranged.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadialGaugeRange.ArrangeIndicator(Telerik.Windows.Controls.GaugeIndicator,System.Windows.Size)">
+            <summary>
+            A virtual method that is called for each indicator in the arrange layout pass.
+            </summary>
+            <param name="indicator">The indicator to arrange.</param>
+            <param name="finalSize">The size in which to arrange the indicator.</param>
+            <remarks>
+            The rect in which the indicator will be arranged should be retrieved from
+            the indicator itself via the GetArrangeRect() method.
+            </remarks>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadialGaugeRange.OnCenterModeChanged(Telerik.Windows.Controls.PlacementMode,Telerik.Windows.Controls.PlacementMode)">
+            <summary>
+            A virtual method that is called when the CenterMode property changes.
+            </summary>
+            <param name="newMode">The new CenterMode.</param>
+            <param name="oldMode">The old CenterMode.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadialGaugeRange.OnMaxAngleChanged(System.Double,System.Double)">
+            <summary>
+            A virtual method that is called when the MaxAngle property changes.
+            </summary>
+            <param name="newMaxAngle">The new MaxAngle.</param>
+            <param name="oldMaxAngle">The old MaxAngle.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadialGaugeRange.OnMinAngleChanged(System.Double,System.Double)">
+            <summary>
+            A virtual method that is called when the MinAngle property changes.
+            </summary>
+            <param name="newMinAngle">The new MinAngle.</param>
+            <param name="oldMinAngle">The old MinAngle.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadialGaugeRange.OnTickRadiusScaleChanged(System.Double,System.Double)">
+            <summary>
+            A virtual method that is called when the TickRadiusScale property changes.
+            </summary>
+            <param name="newTickRadiusScale">The new TickRadiusScale.</param>
+            <param name="oldTickRadiusScale">The old TickRadiusScale.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadialGaugeRange.OnLabelRadiusScaleChanged(System.Double,System.Double)">
+            <summary>
+            A virtual method that is called when the LabelRadiusScale property changes.
+            </summary>
+            <param name="newLabelRadiusScale">The new LabelRadiusScale.</param>
+            <param name="oldLabelRadiusScale">The old LabelRadiusScale.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadialGaugeRange.OnSweepDirectionChanged(System.Windows.Media.SweepDirection,System.Windows.Media.SweepDirection)">
+            <summary>
+            A virtual method that is called when the SweepDirection property changes.
+            </summary>
+            <param name="newDirection">The new SweepDirection.</param>
+            <param name="oldDirection">The old SweepDirection.</param>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadialGaugeRange.CenterMode">
+            <summary>
+            Gets or sets the CenterMode. This property determines where is the center of the ticks, labels and indicators in
+            the range relative to the layout rectangle.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadialGaugeRange.MaxAngle">
+            <summary>
+            Gets or sets the maximum angle of this range.
+            </summary>
+            <remarks>
+            The maximum angle does not restrict the indicators, only the ticks and the labels.
+            </remarks>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadialGaugeRange.MinAngle">
+            <summary>
+            Gets or sets the minimum angle of this range.
+            </summary>
+            <remarks>
+            The minimum angle does not restrict the indicators, only the ticks and the labels.
+            </remarks>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadialGaugeRange.TickRadiusScale">
+            <summary>
+            Gets or sets a scale factor that will be multiplied by the radius
+            of this range in order to position the ticks.
+            </summary>
+            <remarks>
+            Setting this property to 1 will cause the ticks to be placed as
+            far away from the center as possible. Setting it to 0 will cause all
+            ticks to be placed at the center. The radius of the range is half
+            the value of the minimum between the width and height of the layout slot.
+            </remarks>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadialGaugeRange.LabelRadiusScale">
+            <summary>
+            Gets or sets a scale factor that will be multiplied by the radius
+            of this range in order to position the labels.
+            </summary>
+            <remarks>
+            Setting this property to 1 will cause the labels to be placed as
+            far away from the center as possible. Setting it to 0 will cause all
+            labels to be placed at the center. The radius of the range is half
+            the value of the minimum between the width and height of the layout slot.
+            </remarks>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadialGaugeRange.SweepDirection">
+            <summary>
+            Gets or sets the sweep direction of the ticks and the labels.
+            </summary>
+            <remarks>
+            This is also an attached property and can be used to modify the indicators
+            in the radial range.
+            </remarks>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadialGaugeRange.RangeType">
+            <summary>
+            Gets or sets the type of this range. For this class it is always Radial.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.RadGauge">
+            <summary>
+            RadGauge is a content control that
+            defines Value, MinValue, MaxValue and MainIndicator properties.
+            It also serves as the entry point for the
+            design-time gauge editors and gallery.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadGauge.ValueProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.RadGauge.Value">Value</see> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadGauge.MinValueProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.RadGauge.MinValue">MinValue</see> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadGauge.MaxValueProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.RadGauge.MaxValue">MaxValue</see> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadGauge.MainIndicatorProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.RadGauge.MainIndicator">MainIndicator</see> dependency property.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadGauge.OnMainIndicatorChanged(Telerik.Windows.Controls.GaugeIndicator,Telerik.Windows.Controls.GaugeIndicator)">
+            <summary>
+            A virtual callback that is invoked when the MainIndicator property changes.
+            </summary>
+            <param name="newIndicator">The new MainIndicator.</param>
+            <param name="oldIndicator">The old MainIndicator.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadGauge.OnValueChanged(System.Double,System.Double)">
+            <summary>
+            A virtual callback that is invoked when the Value property changes.
+            </summary>
+            <param name="newVal">The new Value.</param>
+            <param name="oldVal">The old Value.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadGauge.OnMinValueChanged(System.Double,System.Double)">
+            <summary>
+            A virtual callback that is invoked when the MinValue property changes.
+            </summary>
+            <param name="newVal">The new MinValue.</param>
+            <param name="oldVal">The old MinValue.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadGauge.OnMaxValueChanged(System.Double,System.Double)">
+            <summary>
+            A virtual callback that is invoked when the MaxValue property changes.
+            </summary>
+            <param name="newVal">The new MaxValue.</param>
+            <param name="oldVal">The old MaxValue.</param>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadGauge.Value">
+            <summary>
+            Gets or sets the value of the gauge's MainIndicator.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadGauge.MinValue">
+            <summary>
+            Gets or sets the MinValue of the gauges. The MainIndicator
+            and the indicators in the MainIndicator's range can not have
+            a value below this MinValue.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadGauge.MaxValue">
+            <summary>
+            Gets or sets the MaxValue of the gauges. The MainIndicator
+            and the indicators in the MainIndicator's range can not have
+            a value above this MaxValue.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadGauge.MainIndicator">
+            <summary>
+            Gets or sets the main indicator of the gauge.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadGauge.MainRange">
+            <summary>
+            Gets the parent range of the MainIndicator.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.DataVisualization.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.DataVisualization.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.DataVisualization.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.DataVisualization.Resources.MaxValueInfinityOrNanException">
+            <summary>
+              Looks up a localized string similar to MaxValue can not be set to Infinity or NaN..
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.DataVisualization.Resources.MinValueInfinityOrNanException">
+            <summary>
+              Looks up a localized string similar to MinValue can not be set to Infinity or NaN..
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.DataVisualization.Resources.ValueInfinityOrNanException">
+            <summary>
+              Looks up a localized string similar to Value can not be set to Infinity or NaN..
+            </summary>
+        </member>
+    </members>
+</doc>

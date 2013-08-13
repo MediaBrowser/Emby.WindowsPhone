@@ -109,7 +109,7 @@
                         <TextBlock Text="{Binding SelectedMovie.ProductionYear, StringFormat='Released in \{0\}'}"
                                    Style="{StaticResource PhoneTextNormalStyle}" />
 
-                        <toolkit:Rating VerticalAlignment="Top"
+                        <!--<toolkit:Rating VerticalAlignment="Top"
                                         Value="{Binding SelectedMovie.CommunityRating, Converter={StaticResource RatingConverter}}"
                                         Foreground="{StaticResource PhoneAccentBrush}"
                                         HorizontalAlignment="Left"
@@ -121,7 +121,7 @@
                                             Value="{StaticResource PhoneAccentBrush}" />
                                 </Style>
                             </toolkit:Rating.FilledItemStyle>
-                        </toolkit:Rating>
+                        </toolkit:Rating>-->
                         <HyperlinkButton Content="See film on imdb"
                                          NavigateUri="{Binding ImdbId, StringFormat='http://m.imdb.com/title/\{0\}'}"
                                          TargetName="_new"
@@ -133,6 +133,16 @@
                         <TextBlock Text="{Binding SelectedMovie.OfficialRating, StringFormat='Rating: \{0\}'}"
                                    Style="{StaticResource PhoneTextNormalStyle}"
                                    Margin="12,12,0,0" />
+                        <StackPanel Orientation="Horizontal"
+                                    Visibility="{Binding SelectedMovie.CriticRating, Converter={StaticResource NullVisibilityConverter}}">
+                            <Image Source="{Binding SelectedMovie.CriticRating, Converter={StaticResource CriticRatingConverter}}"
+                                   Height="25"
+                                   Width="25"
+                                   Stretch="UniformToFill" />
+                            <TextBlock Text="{Binding SelectedMovie.CriticRating, StringFormat='\{0\}%'}"
+                                       Style="{StaticResource PhoneTextSubtleStyle}"
+                                       Margin="6,0" />
+                        </StackPanel>
                     </StackPanel>
                 </Grid>
             </phone:PanoramaItem>
@@ -159,7 +169,7 @@
                                                     PlaceholderImageSource="/Images/Logo.png"
                                                     Source="{Binding Converter={StaticResource ImageUrlConverter}}"
                                                     Stretch="Uniform"
-                                                    PlaceholderImageStretch="UniformToFill"/>
+                                                    PlaceholderImageStretch="Uniform"/>
                                     <StackPanel Orientation="Vertical">
                                         <TextBlock Text="{Binding Name, Converter={StaticResource StringCaseConverter}, ConverterParameter=false}"
                                                    FontWeight="Bold"

@@ -7,9 +7,6 @@ using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Model;
-#if !WP8
-using ScottIsAFool.WindowsPhone;
-#endif
 using ScottIsAFool.WindowsPhone;
 using ScottIsAFool.WindowsPhone.ViewModel;
 
@@ -24,14 +21,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     public class TrailerViewModel : ViewModelBase
     {
         private readonly INavigationService _navigationService;
-        private readonly ExtendedApiClient _apiClient;
+        private readonly IExtendedApiClient _apiClient;
 
         private bool _dataLoaded;
 
         /// <summary>
         /// Initializes a new instance of the TrailerViewModel class.
         /// </summary>
-        public TrailerViewModel(INavigationService navigation, ExtendedApiClient apiClient)
+        public TrailerViewModel(INavigationService navigation, IExtendedApiClient apiClient)
         {
             _navigationService = navigation;
             _apiClient = apiClient;

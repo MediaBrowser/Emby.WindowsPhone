@@ -1,16 +1,10 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Cimbalino.Phone.Toolkit.Services;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
-using MediaBrowser.Model.Net;
-using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Resources;
 using Microsoft.Phone.Controls;
-using Microsoft.Phone.Shell;
-
-
 using MediaBrowser.Model;
 using ScottIsAFool.WindowsPhone.ViewModel;
 using INavigationService = MediaBrowser.WindowsPhone.Model.INavigationService;
@@ -25,14 +19,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     /// </summary>
     public class SplashscreenViewModel : ViewModelBase
     {
-        private readonly ExtendedApiClient _apiClient;
+        private readonly IExtendedApiClient _apiClient;
         private readonly INavigationService _navigationService;
         private readonly IApplicationSettingsService _applicationSettings;
 
         /// <summary>
         /// Initializes a new instance of the SplashscreenViewModel class.
         /// </summary>
-        public SplashscreenViewModel(ExtendedApiClient apiClient, INavigationService navigationService, IApplicationSettingsService applicationSettings)
+        public SplashscreenViewModel(IExtendedApiClient apiClient, INavigationService navigationService, IApplicationSettingsService applicationSettings)
         {
             _apiClient = apiClient;
             _navigationService = navigationService;

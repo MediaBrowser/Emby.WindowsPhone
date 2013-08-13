@@ -38,7 +38,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     /// </summary>
     public class SettingsViewModel : ViewModelBase
     {
-        private readonly ExtendedApiClient _apiClient;
+        private readonly IExtendedApiClient _apiClient;
         private readonly INavigationService _navigationService;
         private readonly IApplicationSettingsService _applicationSettings;
 
@@ -49,7 +49,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         /// <summary>
         /// Initializes a new instance of the PushViewModel class.
         /// </summary>
-        public SettingsViewModel(ExtendedApiClient apiClient, INavigationService navigationService, IApplicationSettingsService applicationSettings)
+        public SettingsViewModel(IExtendedApiClient apiClient, INavigationService navigationService, IApplicationSettingsService applicationSettings)
         {
             _apiClient = apiClient;
             _navigationService = navigationService;

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Command;
@@ -20,7 +19,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     /// </summary>
     public class NotificationsViewModel : ViewModelBase
     {
-        private readonly ExtendedApiClient _apiClient;
+        private readonly IExtendedApiClient _apiClient;
         private readonly INavigationService _navigationService;
 
         private bool _dataLoaded;
@@ -28,7 +27,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         /// <summary>
         /// Initializes a new instance of the NotificationsViewModel class.
         /// </summary>
-        public NotificationsViewModel(ExtendedApiClient apiClient, INavigationService navigationService)
+        public NotificationsViewModel(IExtendedApiClient apiClient, INavigationService navigationService)
         {
             _apiClient = apiClient;
             _navigationService = navigationService;

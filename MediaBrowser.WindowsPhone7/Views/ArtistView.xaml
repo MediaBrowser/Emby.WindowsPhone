@@ -82,7 +82,7 @@
                                                                 Width="150"
                                                                 Stretch="UniformToFill"
                                                                 PlaceholderImageSource="/Images/DefaultAlbumCase.png"
-                                                                PlaceholderImageStretch="UniformToFill" />
+                                                                PlaceholderImageStretch="Uniform" />
                                                 <c4f:RoundButton ImageSource="/Icons/appbar.transport.play.rest.png"
                                                                  HorizontalAlignment="Center"
                                                                  VerticalAlignment="Center"

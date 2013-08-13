@@ -13,6 +13,7 @@ using Cimbalino.Phone.Toolkit.Services;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using MediaBrowser.Design;
+using MediaBrowser.WindowsPhone.ViewModel.Predefined;
 using Microsoft.Practices.ServiceLocation;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.Model;
@@ -42,8 +43,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             if (ViewModelBase.IsInDesignModeStatic)
             {
-                if (!SimpleIoc.Default.IsRegistered<ExtendedApiClient>())
-                    SimpleIoc.Default.Register(() => new ExtendedApiClient(new NullLogger(), "192.168.0.2", 8096, "Windows Phone", "dummy", "dummy", "1.0.0.0"));
+                if (!SimpleIoc.Default.IsRegistered<IExtendedApiClient>())
+                    SimpleIoc.Default.Register<IExtendedApiClient>(() => new ExtendedApiClient(new MBLogger(), "scottisafool.homeserver.com", 8096, "Windows Phone", Utils.GetDeviceName(), Utils.GetDeviceId(), ApplicationManifest.Current.App.Version));
                 SimpleIoc.Default.Register<INavigationService, NavigationService>();
                 SimpleIoc.Default.Register<FolderViewModel>();
                 SimpleIoc.Default.Register<MovieViewModel>();
@@ -57,8 +58,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 SimpleIoc.Default.Register<INavigationService, NavigationService>();
                 SimpleIoc.Default.Register<ISettingsService, SettingsService>();
-                if (!SimpleIoc.Default.IsRegistered<ExtendedApiClient>())
-                    SimpleIoc.Default.Register(() => new ExtendedApiClient(new MBLogger(), "dummy", 8096, "Windows Phone", Utils.GetDeviceName(), Utils.GetDeviceId(), ApplicationManifest.Current.App.Version));
+                if (!SimpleIoc.Default.IsRegistered<IExtendedApiClient>())
+                    SimpleIoc.Default.Register<IExtendedApiClient>(() => new ExtendedApiClient(new MBLogger(), "dummy", 8096, "Windows Phone", Utils.GetDeviceName(), Utils.GetDeviceId(), ApplicationManifest.Current.App.Version));
 
                 if (!SimpleIoc.Default.IsRegistered<IDeviceExtendedPropertiesService>())
                     SimpleIoc.Default.Register<IDeviceExtendedPropertiesService, DeviceExtendedPropertiesService>();
@@ -85,6 +86,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             SimpleIoc.Default.Register<PlaylistViewModel>(true);
             SimpleIoc.Default.Register<NotificationsViewModel>();
             SimpleIoc.Default.Register<RemoteViewModel>();
+            SimpleIoc.Default.Register<MovieCollectionViewModel>();
+            SimpleIoc.Default.Register<TvCollectionViewModel>();
+            SimpleIoc.Default.Register<MusicCollectionViewModel>();
         }
 
         /// <summary>
@@ -188,6 +192,30 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
             "CA1822:MarkMembersAsStatic",
             Justification = "This non-static member is needed for data binding purposes.")]
+        public MovieCollectionViewModel MovieCollection
+        {
+            get { return ServiceLocator.Current.GetInstance<MovieCollectionViewModel>(); }
+        }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
+            "CA1822:MarkMembersAsStatic",
+            Justification = "This non-static member is needed for data binding purposes.")]
+        public MusicCollectionViewModel MusicCollection
+        {
+            get { return ServiceLocator.Current.GetInstance<MusicCollectionViewModel>(); }
+        }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
+            "CA1822:MarkMembersAsStatic",
+            Justification = "This non-static member is needed for data binding purposes.")]
+        public TvCollectionViewModel TvCollection
+        {
+            get { return ServiceLocator.Current.GetInstance<TvCollectionViewModel>(); }
+        }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
+            "CA1822:MarkMembersAsStatic",
+            Justification = "This non-static member is needed for data binding purposes.")]
         public RemoteViewModel Remote
         {
             get { return ServiceLocator.Current.GetInstance<RemoteViewModel>(); }
@@ -198,9 +226,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             return ServiceLocator.Current.GetInstance<TvViewModel>(itemId);
         }
 
-        public static ExtendedApiClient ApiClient
+        public static IExtendedApiClient ApiClient
         {
-            get { return ServiceLocator.Current.GetInstance<ExtendedApiClient>(); }
+            get { return ServiceLocator.Current.GetInstance<IExtendedApiClient>(); }
         }
 
         public static INavigationService NavigationService
@@ -213,11 +241,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         /// </summary>
         public static void Cleanup()
         {
-            ServiceLocator.Current.GetInstance<MainViewModel>().Cleanup();
-            //ServiceLocator.Current.GetInstance<FolderViewModel>().Cleanup();
-            //ServiceLocator.Current.GetInstance<MovieViewModel>().Cleanup();
-            ServiceLocator.Current.GetInstance<TvViewModel>().Cleanup();
-            ServiceLocator.Current.GetInstance<SplashscreenViewModel>().Cleanup();
+            foreach (var vm in ServiceLocator.Current.GetAllInstances<ScottIsAFool.WindowsPhone.ViewModel.ViewModelBase>())
+            {
+                vm.Cleanup();
+            }
         }
     }
 }

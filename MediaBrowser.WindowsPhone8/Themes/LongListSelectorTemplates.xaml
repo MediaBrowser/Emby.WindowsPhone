@@ -18,7 +18,7 @@
                     <Border Background="{Binding Converter={StaticResource BackgroundConverter}}"
                             Width="99"
                             Height="99"
-                            Margin="6">
+                            Margin="12">
                         <TextBlock Text="{Binding Title}"
                                    FontSize="36"
                                    Margin="{StaticResource PhoneTouchTargetOverhang}"

@@ -12,7 +12,8 @@
              
              xmlns:windowsPhone="clr-namespace:MediaBrowser.WindowsPhone"
              xmlns:controls="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
-             xmlns:model="clr-namespace:MediaBrowser.Model;assembly=MediaBrowser.Shared">
+             xmlns:model="clr-namespace:MediaBrowser.Model;assembly=MediaBrowser.Shared"
+             xmlns:cimbalino="clr-namespace:Cimbalino.Phone.Toolkit.Converters;assembly=Cimbalino.Phone.Toolkit">
 
     <!--Application Resources-->
     <Application.Resources>
@@ -48,7 +49,11 @@
             <scottConverters:StringCaseConverter x:Key="StringCaseConverter" />
             <scottConverters:IntToVisibilityConverter x:Key="IntToVisibilityConverter" />
             <scottConverters:CountToEnabled x:Key="CountToEnabled" />
-
+            <scottConverters:NullVisibilityConverter x:Key="NullVisibilityConverter"/>
+            
+            <!--Cimbalino Converters-->
+            <cimbalino:StringToUppercaseConverter x:Key="StringToUppercaseConverter"/>
+            
             <!-- Local Converters -->
             <converters:ImageUrlConverter x:Key="ImageUrlConverter" />
             <converters:EpisodeNumberVisibilityConverter x:Key="EpisodeNumberVisibilityConverter" />
@@ -58,6 +63,10 @@
             <converters:PinnedItemConverter x:Key="PinnedItemConverter" />
             <converters:RuntimeConverter x:Key="RuntimeConverter" />
             <converters:TicksToTimespanConverter x:Key="TicksToTimespanConverter" />
+            <converters:ZeroCountBrushConverter x:Key="ZeroCountBrushConverter"
+                                                ZeroCountBrush="{StaticResource PhoneSubtleBrush}"
+                                                AltBrush="{StaticResource PhoneAccentBrush}" />
+            <converters:CriticRatingConverter x:Key="CriticRatingConverter"/>
 
             <local:LocalizedStrings xmlns:local="clr-namespace:MediaBrowser.WindowsPhone"
                                     x:Key="LocalizedStrings" />
@@ -69,6 +78,10 @@
                         Value="Transparent" />
                 <Setter Property="Padding"
                         Value="0" />
+                <Setter Property="HorizontalAlignment"
+                        Value="Stretch"/>
+                <Setter Property="HorizontalContentAlignment"
+                        Value="Left"/>
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="ButtonBase">
@@ -83,6 +96,13 @@
                     </Setter.Value>
                 </Setter>
             </Style>
+            
+            <Style TargetType="TextBlock"
+                   BasedOn="{StaticResource PhoneTextTitle2Style}"
+                   x:Key="HeaderTextStyle">
+                <Setter Property="FontFamily"
+                        Value="Segoe WP Black"/>
+            </Style>
 
             <!-- DataTemplates -->
             <DataTemplate x:Key="TileItemStyle">
@@ -92,7 +112,7 @@
                     <Grid MaxWidth="173">
                         <controls:SuperImage PlaceholderImageSource="/Images/Logo.png"
                                              Source="{Binding Converter={StaticResource ImageUrlConverter}}"
-                                             PlaceholderImageStretch="UniformToFill"
+                                             PlaceholderImageStretch="Uniform"
                                              Width="173"
                                              Height="173"
                                              Stretch="UniformToFill" />
@@ -126,7 +146,7 @@
                             Margin="12,0,0,12">
                     <controls:SuperImage Height="99"
                                          Width="99"
-                                         PlaceholderImageStretch="UniformToFill"
+                                         PlaceholderImageStretch="Uniform"
                                          PlaceholderImageSource="/Images/default_avatar.png"
                                          Source="{Binding Converter={StaticResource ImageUrlConverter}}"
                                          Stretch="Uniform" />

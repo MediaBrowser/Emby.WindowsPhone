@@ -19,6 +19,7 @@ namespace MediaBrowser.WindowsPhone
         public bool IncludeTrailersInRecent { get; set; }
         public GroupBy DefaultGroupBy { get; set; }
         public List<GroupBy> GroupByItems { get; set; }
+        public bool JustShowFolderView { get; set; }
 
         public DeviceSettings DeviceSettings { get; set; }
         

@@ -15,9 +15,9 @@ namespace MediaBrowser.WindowsPhone.Converters
 
             if (type == "icon")
             {
-                return isPinned ?  new Uri("/Icons/appbar.pin.png", UriKind.Relative) : new Uri("/Icons/appbar.pin.remove.png", UriKind.Relative);
+                return !isPinned ?  new Uri("/Icons/appbar.pin.png", UriKind.Relative) : new Uri("/Icons/appbar.pin.remove.png", UriKind.Relative);
             }
-            return isPinned ? AppResources.PinToStart.ToLower() : AppResources.Unpin.ToLower();
+            return !isPinned ? AppResources.PinToStart.ToLower() : AppResources.Unpin.ToLower();
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
