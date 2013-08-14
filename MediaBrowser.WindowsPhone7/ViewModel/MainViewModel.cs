@@ -310,7 +310,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             RecentItems.Clear();
 
-            var recent = await Utils.SortRecentItems(items);
+            var recent = await Utils.SortRecentItems(items, App.SpecificSettings.IncludeTrailersInRecent);
             recent.ForEach(recentItem => RecentItems.Add(recentItem));
         }
 

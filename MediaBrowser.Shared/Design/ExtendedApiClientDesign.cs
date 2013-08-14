@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Threading;
 using System.Threading.Tasks;
 using MediaBrowser.ApiInteraction.WebSocket;
 using MediaBrowser.Model;
@@ -317,6 +319,11 @@ namespace MediaBrowser.Design
         }
 
         public System.Threading.Tasks.Task<string[]> GetIntrosAsync(string itemId, string userId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Stream> GetImageStreamAsync(string url, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }

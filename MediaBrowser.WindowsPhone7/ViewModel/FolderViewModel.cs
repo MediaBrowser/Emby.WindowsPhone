@@ -193,7 +193,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                 if (items != null && items.Items != null)
                 {
-                    var recent = await Utils.SortRecentItems(items.Items);
+                    var recent = await Utils.SortRecentItems(items.Items, App.SpecificSettings.IncludeTrailersInRecent);
                     recent.ForEach(item => RecentItems.Add(item));
                 }
 
@@ -257,7 +257,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 }
                 var items = await _apiClient.GetItemsAsync(query);
                 
-                CurrentItems = isRecent ? await Utils.SortRecentItems(items.Items) : items.Items.ToList();
+                CurrentItems = isRecent ? await Utils.SortRecentItems(items.Items, App.SpecificSettings.IncludeTrailersInRecent) : items.Items.ToList();
                 return true;
             }
             catch (HttpException ex)

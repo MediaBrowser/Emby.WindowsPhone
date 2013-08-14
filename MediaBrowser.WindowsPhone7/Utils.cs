@@ -122,7 +122,7 @@ namespace MediaBrowser.WindowsPhone
             }
         }
 
-        internal static async Task<List<BaseItemDto>> SortRecentItems(BaseItemDto[] items)
+        internal static async Task<List<BaseItemDto>> SortRecentItems(BaseItemDto[] items, bool includeTrailers)
         {
             return await TaskEx.Run(() =>
             {
@@ -177,7 +177,7 @@ namespace MediaBrowser.WindowsPhone
                     .Union(seriesList)
                     .Union(albumList)
                     .Select(x => x);
-                if (!App.SpecificSettings.IncludeTrailersInRecent)
+                if (!includeTrailers)
                 {
                     recent = recent.Where(x => x.Type != "Trailer");
                 }
