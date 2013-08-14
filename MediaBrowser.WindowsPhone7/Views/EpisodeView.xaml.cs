@@ -30,27 +30,5 @@ namespace MediaBrowser.WindowsPhone.Views
                 DataContext = vm;
             }
         }
-
-        private void GestureListenerDragStarted(object sender, DragStartedGestureEventArgs e)
-        {
-            var vm = (TvViewModel) DataContext;
-            if (vm.Episodes.Count <= 1) return;
-            // initialize the drag
-            //var fe = sender as FrameworkElement;
-            //fe.SetHorizontalOffset(0); 
-        }
-
-        private void GestureListenerDragDelta(object sender, DragDeltaGestureEventArgs e)
-        {
-            // handle the drag to offset the element
-            var fe = sender as FrameworkElement;
-            double offset = fe.GetHorizontalOffset().Value + e.HorizontalChange;
-            fe.SetHorizontalOffset(offset);
-        }
-
-        private void GestureListenerDragCompleted(object sender, DragCompletedGestureEventArgs e)
-        {
-            
-        }
     }
 }

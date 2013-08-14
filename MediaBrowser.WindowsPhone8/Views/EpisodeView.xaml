@@ -57,11 +57,6 @@
 
     <Grid x:Name="LayoutRoot"
           Background="{StaticResource MediaBrowserBackground}">
-        <toolkit:GestureService.GestureListener>
-            <toolkit:GestureListener DragStarted="GestureListenerDragStarted"
-                                     DragDelta="GestureListenerDragDelta"
-                                     DragCompleted="GestureListenerDragCompleted" />
-        </toolkit:GestureService.GestureListener>
         <i:Interaction.Behaviors>
             <cimbalino:ApplicationBarBehavior>
                 <cimbalino:ApplicationBarIconButton Command="{Binding PreviousEpisodeCommand}"
