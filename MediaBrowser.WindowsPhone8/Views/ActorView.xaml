@@ -122,7 +122,8 @@
                                                        FontSize="{StaticResource PhoneFontSizeMediumLarge}" />
                                             <TextBlock Text="{Binding Converter={StaticResource RoleConverter}}"
                                                        Style="{StaticResource PhoneTextNormalStyle}"
-                                                       Foreground="{StaticResource PhoneAccentBrush}"/>
+                                                       Foreground="{StaticResource PhoneAccentBrush}"
+                                                       Visibility="{Binding Path=Text, RelativeSource={RelativeSource Self}, Converter={StaticResource NullVisibilityConverter}}"/>
                                             <StackPanel Orientation="Horizontal"
                                                         Margin="12,0,0,0">
                                                 <TextBlock Text="{Binding ProductionYear}"
