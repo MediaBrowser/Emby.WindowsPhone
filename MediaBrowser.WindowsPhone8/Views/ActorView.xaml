@@ -35,6 +35,8 @@
     <scott:BasePage.Resources>
         <converters:RoleConverter x:Key="RoleConverter"
                                   SelectedPerson="{Binding SelectedPerson}"/>
+        <converters:DateTimeConverter x:Key="DateTimeConverter"/>
+        <converters:LocationConverter x:Key="LocationConverter"/>
     </scott:BasePage.Resources>
 
     <toolkit:TransitionService.NavigationInTransition>
@@ -76,7 +78,7 @@
                                 Margin="-12,0,0,0">
                         <TextBlock x:Name="ApplicationTitle"
                                    Text="{Binding SelectedPerson.Name, Converter={StaticResource StringToUppercaseConverter}}"
-                                   Margin="6,0,0,0"
+                                   Margin="12,0,0,0"
                                    Style="{StaticResource PhoneTextNormalStyle}" />
                     </StackPanel>
                 </phone:Pivot.Title>
@@ -99,6 +101,17 @@
                                                     PlaceholderImageStretch="Uniform"
                                                     Stretch="UniformToFill"
                                                     Margin="12,0,0,24" />
+                                    <StackPanel Orientation="Vertical"
+                                                MaxWidth="250">
+                                        <TextBlock Text="{Binding SelectedActor.PremiereDate, Converter={StaticResource DateTimeConverter}, StringFormat='Born: \{0\}'}"
+                                                   Style="{StaticResource PhoneTextNormalStyle}"/>
+                                        <TextBlock Text="{Binding SelectedActor.ProductionLocations, Converter={StaticResource LocationConverter}}"
+                                                   Style="{StaticResource PhoneTextNormalStyle}"
+                                                   TextWrapping="Wrap"/>
+                                        <TextBlock Text="{Binding SelectedActor.EndDate, Converter={StaticResource DateTimeConverter}, StringFormat='Died: \{0\}'}"
+                                                   Style="{StaticResource PhoneTextNormalStyle}"
+                                                   Visibility="{Binding SelectedActor.EndDate, Converter={StaticResource NullVisibilityConverter}}" />
+                                    </StackPanel>
                                 </StackPanel>
                             </DataTemplate>
                         </phone:LongListSelector.ListHeaderTemplate>

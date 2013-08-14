@@ -224,8 +224,10 @@
     <Compile Include="Controls\ProfileBox.cs" />
     <Compile Include="Converters\AccentBrushConverter.cs" />
     <Compile Include="Converters\CriticRatingConverter.cs" />
+    <Compile Include="Converters\DateTimeConverter.cs" />
     <Compile Include="Converters\DeviceIdToBooleanConverter.cs" />
     <Compile Include="Converters\FavouritesConverter.cs" />
+    <Compile Include="Converters\LocationConverter.cs" />
     <Compile Include="Converters\LoggedInDateConverter.cs" />
     <Compile Include="Converters\NotificationLevelToBrushConverter.cs" />
     <Compile Include="Converters\NowPlayingConverter.cs" />

@@ -121,6 +121,9 @@
     <Compile Include="..\MediaBrowser.WindowsPhone7\Converters\CriticRatingConverter.cs">
       <Link>Converters\CriticRatingConverter.cs</Link>
     </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone7\Converters\DateTimeConverter.cs">
+      <Link>Converters\DateTimeConverter.cs</Link>
+    </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone7\Converters\EpisodeNumberVisibilityConverter.cs">
       <Link>Converters\EpisodeNumberVisibilityConverter.cs</Link>
     </Compile>
@@ -129,6 +132,9 @@
     </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone7\Converters\ImageUrlConverter.cs">
       <Link>Converters\ImageUrlConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone7\Converters\LocationConverter.cs">
+      <Link>Converters\LocationConverter.cs</Link>
     </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone7\Converters\LoggedInDateConverter.cs">
       <Link>Converters\LoggedInDateConverter.cs</Link>
