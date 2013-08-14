@@ -111,15 +111,14 @@ namespace MediaBrowser.WindowsPhone
         
         internal static void CopyItem<T>(T source, T destination) where T : class
         {
-            var type = typeof(T);
-            var properties = type.GetProperties(BindingFlags.Public);
-
-            foreach (var fi in properties)
+            foreach (var sourcePropertyInfo in source.GetType().GetProperties())
             {
-                if (fi.CanWrite)
-                {
-                    fi.SetValue(destination, fi.GetValue(source, null), null);
-                }
+                var destPropertyInfo = source.GetType().GetProperty(sourcePropertyInfo.Name);
+
+                destPropertyInfo.SetValue(
+                    destination,
+                    sourcePropertyInfo.GetValue(source, null),
+                    null);
             }
         }
 
