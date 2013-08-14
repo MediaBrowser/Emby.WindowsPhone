@@ -86,9 +86,9 @@
 
                 <controls:PivotItem Header="profile">
                     <toolkit:LongListSelector ItemsSource="{Binding Films}"
-                                            GroupHeaderTemplate="{StaticResource LLSGroupHeaderTemplateName}"
-                                            GroupItemTemplate="{StaticResource LLSGroupItemTemplate}"
-                                            ListHeader="{Binding}"
+                                              GroupHeaderTemplate="{StaticResource LLSGroupHeaderTemplateName}"
+                                              GroupItemTemplate="{StaticResource LLSGroupItemTemplate}"
+                                              ListHeader="{Binding}"
                                               Background="Transparent">
                         <toolkit:LongListSelector.ListHeaderTemplate>
                             <DataTemplate>
