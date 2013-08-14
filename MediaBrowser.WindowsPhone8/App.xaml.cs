@@ -5,6 +5,7 @@ using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Navigation;
 using Cimbalino.Phone.Toolkit.Helpers;
+using Cimbalino.Phone.Toolkit.Services;
 using Coding4Fun.Toolkit.Controls;
 using GalaSoft.MvvmLight.Ioc;
 using MediaBrowser.Model;
@@ -153,13 +154,22 @@ namespace MediaBrowser.WindowsPhone
         // This code will not execute when the application is closing
         private void ApplicationDeactivated(object sender, DeactivatedEventArgs e)
         {
+            SaveSettings();
         }
 
         // Code to execute when the application is closing (eg, user hit Back)
         // This code will not execute when the application is deactivated
         private void ApplicationClosing(object sender, ClosingEventArgs e)
         {
+            SaveSettings();
             ViewModelLocator.Cleanup();
+        }
+
+        private void SaveSettings()
+        {
+            var ast = SimpleIoc.Default.GetInstance<IApplicationSettingsService>();
+            ast.Set(Constants.Settings.SpecificSettings, SpecificSettings);
+            ast.Save();
         }
 
         // Code to execute if a navigation fails
