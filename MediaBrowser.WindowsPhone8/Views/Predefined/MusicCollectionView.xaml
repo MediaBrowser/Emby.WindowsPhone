@@ -20,6 +20,7 @@
                 Orientation="Portrait"
                 mc:Ignorable="d"
                 shell:SystemTray.IsVisible="True"
+                shell:SystemTray.Opacity="0"
                 toolkit:TiltEffect.IsTiltEnabled="True"
                 DataContext="{Binding MusicCollection, Source={StaticResource Locator}}">
     <shell:SystemTray.ProgressIndicator>
@@ -92,7 +93,7 @@
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel"
               Grid.Row="1"
-              Margin="0,0,12,0">
+              Margin="0,32,12,0">
             <phone:Pivot SelectedIndex="{Binding PivotSelectedIndex, Mode=TwoWay}">
                 <phone:Pivot.Title>
                     <StackPanel Orientation="Horizontal"
