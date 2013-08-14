@@ -291,11 +291,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         ItemFields.DateCreated,
                         ItemFields.ParentId,
                     },
+                    ExcludeItemTypes = new []{"Photo"},
                     Recursive = true
                 };
                 var items = await _apiClient.GetItemsAsync(query);
                 _recentItems = items.Items;
-                await SortRecent(items.Items);
+                await SortRecent(_recentItems);
                 return true;
             }
             catch (HttpException ex)
