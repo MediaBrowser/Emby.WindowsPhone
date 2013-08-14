@@ -124,7 +124,9 @@ namespace MediaBrowser.WindowsPhone
 
         internal static async Task<List<BaseItemDto>> SortRecentItems(BaseItemDto[] items)
         {
-            var episodesBySeries = items
+            return await TaskEx.Run(() =>
+            {
+                var episodesBySeries = items
                     .Where(x => x.Type == "Episode")
                     .GroupBy(l => l.SeriesId)
                     .Select(g => new
@@ -134,56 +136,56 @@ namespace MediaBrowser.WindowsPhone
                         Count = g.Count(),
                         CreatedDate = g.OrderByDescending(l => l.DateCreated).First().DateCreated
                     }).ToList();
-            var seriesList = new List<BaseItemDto>();
-            if (episodesBySeries.Any())
-            {
-                seriesList.AddRange(episodesBySeries.Select(series => new BaseItemDto
+                var seriesList = new List<BaseItemDto>();
+                if (episodesBySeries.Any())
                 {
-                    Name = String.Format("{0} ({1} items)", series.Name, series.Count),
-                    Id = series.Id,
-                    DateCreated = series.CreatedDate,
-                    Type = "Series",
-                    SortName = Constants.Messages.GetTvInformationMsg,
-                    ImageTags = new Dictionary<ImageType, Guid> { { ImageType.Primary, Guid.NewGuid() } }
-                }));
-            }
+                    seriesList.AddRange(episodesBySeries.Select(series => new BaseItemDto
+                    {
+                        Name = String.Format("{0} ({1} items)", series.Name, series.Count),
+                        Id = series.Id,
+                        DateCreated = series.CreatedDate,
+                        Type = "Series",
+                        SortName = Constants.Messages.GetTvInformationMsg,
+                        ImageTags = new Dictionary<ImageType, Guid> {{ImageType.Primary, Guid.NewGuid()}}
+                    }));
+                }
 
-            var tracksByAlbum = items
-                .Where(x => x.Type == "Audio")
-                .GroupBy(x => x.Album)
-                .Select(g => new
-                                 {
-                                     Id = g.Select(l => l.ParentId).FirstOrDefault(),
-                                     Name = g.Key,
-                                     CreatedDate = g.OrderByDescending(l => l.DateCreated).First().DateCreated
-                                 }).ToList();
-            var albumList = new List<BaseItemDto>();
+                var tracksByAlbum = items
+                    .Where(x => x.Type == "Audio")
+                    .GroupBy(x => x.Album)
+                    .Select(g => new
+                    {
+                        Id = g.Select(l => l.ParentId).FirstOrDefault(),
+                        Name = g.Key,
+                        CreatedDate = g.OrderByDescending(l => l.DateCreated).First().DateCreated
+                    }).ToList();
+                var albumList = new List<BaseItemDto>();
 
-            if (tracksByAlbum.Any())
-            {
-                albumList.AddRange(tracksByAlbum.Select(album => new BaseItemDto
-                                                                     {
-                                                                         Name = album.Name,
-                                                                         Id = album.Id,
-                                                                         DateCreated = album.CreatedDate,
-                                                                         Type = "MusicAlbum",
-                                                                     }));
-            }
+                if (tracksByAlbum.Any())
+                {
+                    albumList.AddRange(tracksByAlbum.Select(album => new BaseItemDto
+                    {
+                        Name = album.Name,
+                        Id = album.Id,
+                        DateCreated = album.CreatedDate,
+                        Type = "MusicAlbum",
+                    }));
+                }
 
-            var recent = items
-                .Where(x => x.Type != "Episode" && x.Type != "Audio")
-                .Union(seriesList)
-                .Union(albumList)
-                .Select(x => x);
-            if (!App.SpecificSettings.IncludeTrailersInRecent)
-            {
-                recent = recent.Where(x => x.Type != "Trailer");
-            }
-            return recent
-                .OrderByDescending(x => x.DateCreated)
-                .Take(6)
-                .ToList();
-
+                var recent = items
+                    .Where(x => x.Type != "Episode" && x.Type != "Audio")
+                    .Union(seriesList)
+                    .Union(albumList)
+                    .Select(x => x);
+                if (!App.SpecificSettings.IncludeTrailersInRecent)
+                {
+                    recent = recent.Where(x => x.Type != "Trailer");
+                }
+                return recent
+                    .OrderByDescending(x => x.DateCreated)
+                    .Take(6)
+                    .ToList();
+            });
         }
 
         internal static async Task<bool> GetServerConfiguration(IExtendedApiClient apiClient, ILog logger)

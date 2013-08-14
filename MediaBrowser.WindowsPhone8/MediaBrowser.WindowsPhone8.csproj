@@ -151,6 +151,9 @@
     <Compile Include="..\MediaBrowser.WindowsPhone7\Converters\RatingConverter.cs">
       <Link>Converters\RatingConverter.cs</Link>
     </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone7\Converters\RoleConverter.cs">
+      <Link>Converters\RoleConverter.cs</Link>
+    </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone7\Converters\RuntimeConverter.cs">
       <Link>Converters\RuntimeConverter.cs</Link>
     </Compile>

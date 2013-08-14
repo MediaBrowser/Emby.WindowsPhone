@@ -231,6 +231,7 @@
     <Compile Include="Converters\PinnedItemConverter.cs" />
     <Compile Include="Converters\PlaylistCountConverter.cs" />
     <Compile Include="Converters\RandomColour.cs" />
+    <Compile Include="Converters\RoleConverter.cs" />
     <Compile Include="Converters\RuntimeConverter.cs" />
     <Compile Include="Converters\SeasonEpisodeConverter.cs" />
     <Compile Include="Converters\SettingsConverters.cs" />

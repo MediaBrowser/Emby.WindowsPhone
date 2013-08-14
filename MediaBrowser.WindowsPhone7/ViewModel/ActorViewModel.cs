@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
@@ -102,6 +103,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     UserId = AuthenticationService.Current.LoggedInUser.Id,
                     SortBy = new []{"SortName"},
                     SortOrder = SortOrder.Ascending,
+                    Fields = new[] { ItemFields.People },
                     Recursive = true
                 };
 
