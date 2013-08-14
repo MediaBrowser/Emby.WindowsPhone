@@ -49,6 +49,7 @@
             <scottConverters:StringCaseConverter x:Key="StringCaseConverter" />
             <scottConverters:IntToVisibilityConverter x:Key="IntToVisibilityConverter" />
             <scottConverters:CountToEnabled x:Key="CountToEnabled" />
+            <scottConverters:NullVisibilityConverter x:Key="NullVisibilityConverter"/>
             
             <!--Cimbalino Converters-->
             <cimbalino:StringToUppercaseConverter x:Key="StringToUppercaseConverter"/>
