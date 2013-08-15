@@ -1,29 +1,40 @@
 ﻿using System;
+using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Media.Imaging;
-using Windows.Phone.System.UserProfile;
 using Cimbalino.Phone.Toolkit.Services;
-using Coding4Fun.Toolkit.Controls.Common;
+using GalaSoft.MvvmLight.Ioc;
 using ImageTools;
 using ImageTools.IO.Png;
+using MediaBrowser.Model;
+using MediaBrowser.Model.Dto;
+using MediaBrowser.Model.Entities;
 
 namespace MediaBrowser.WindowsPhone.Services
 {
-    public class LockScreenService
+    public class LockScreenService : Cimbalino.Phone.Toolkit.Services.LockScreenService
     {
-        private const string LockScreenImageUrl = "ms-appx:///shared/shellcontent/MBWallpaper.png";
-        private const string LockScreenFile = "shared/shellcontent/MBWallpaper.png";
-        private const string DefaultLockScreenImageFormat = "ms-appx:///Images/LockScreenDefault.{0}.png";
+        private const string LockScreenImageUrl = "isostore:/shared/shellcontent/MBWallpaper.png";
+        private const string LockScreenFile = "shared\\shellcontent\\MBWallpaper.png";
+        private const string DefaultLockScreenImageFormat = "ms-appx:///DefaultLockScreen.jpg";
         private static LockScreenService _current;
         private readonly IAsyncStorageService _storageService = new AsyncStorageService();
 
         public static LockScreenService Current { get { return _current ?? (_current = new LockScreenService()); }}
 
-        public bool IsProvider { get { return LockScreenManager.IsProvidedByCurrentApplication; }}
-
-        public async Task RequestToBeProvider()
+        public ImageOptions LockScreenImageOptions
         {
-            await LockScreenManager.RequestAccessAsync();
+            get
+            {
+                return new ImageOptions
+                {
+                    ImageType = ImageType.Primary,
+                    MaxWidth = 480,
+                    Quality = 90
+                };
+            }
         }
 
         public async Task SetLockScreenImage(string uri)
@@ -31,38 +42,25 @@ namespace MediaBrowser.WindowsPhone.Services
             if (uri.StartsWith("http"))
             {
                 await DownloadImage(uri);
-                LockScreen.SetImageUri(new Uri(LockScreenImageUrl, UriKind.RelativeOrAbsolute));
+                ImageUri = new Uri(LockScreenImageUrl, UriKind.RelativeOrAbsolute);
             }
             else
             {
-                LockScreen.SetImageUri(new Uri(uri, UriKind.RelativeOrAbsolute));
+                ImageUri = new Uri(uri, UriKind.RelativeOrAbsolute);
             }
-        }
-
-        public Uri GetLockScreenUri()
-        {
-            return LockScreen.GetImageUri();
         }
 
         public async Task SetDefaultLockscreenImage()
         {
-            var scale = ApplicationSpace.ScaleFactor();
-            var imageSize = scale == 150 ? "720p" : "WXGA";
-
-            var imageUrl = string.Format(DefaultLockScreenImageFormat, imageSize);
-
-            await SetLockScreenImage(imageUrl);
+            await SetLockScreenImage(DefaultLockScreenImageFormat);
         }
 
         private async Task DownloadImage(string uri)
         {
             var bitmap = new BitmapImage();
-            await Task.Run(() =>
-            {
-                bitmap = new BitmapImage(new Uri(uri));
-            });
-            bitmap.CreateOptions = BitmapCreateOptions.None;
-
+            var client = new HttpClient();
+            var stream = await client.GetAsync(uri);
+            bitmap.SetSource(await stream.Content.ReadAsStreamAsync());
             var writeableBitmap = new WriteableBitmap(bitmap);
 
             using (var fileStream = await _storageService.CreateFileAsync(LockScreenFile))

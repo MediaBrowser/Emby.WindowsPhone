@@ -1,16 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Cimbalino.Phone.Toolkit.Services;
 using GalaSoft.MvvmLight.Command;
 using MediaBrowser.Model;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Services;
-using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.Model.Dto;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.WindowsPhone.Resources;
 using ScottIsAFool.WindowsPhone;
 using ScottIsAFool.WindowsPhone.ViewModel;
+using INavigationService = MediaBrowser.WindowsPhone.Model.INavigationService;
+using LockScreenService = MediaBrowser.WindowsPhone.Services.LockScreenService;
+#if WP8
+
+#endif
 
 namespace MediaBrowser.WindowsPhone.ViewModel
 {
@@ -125,6 +130,23 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             });
 
             NavigateTopage = new RelayCommand<BaseItemDto>(_navService.NavigateTo);
+
+            SetPosterAsLockScreenCommand = new RelayCommand(async () =>
+            {
+                if (!LockScreenService.Current.IsProvidedByCurrentApplication)
+                {
+                    var result = await LockScreenService.Current.RequestAccessAsync();
+
+                    if (result == LockScreenServiceRequestResult.Denied)
+                    {
+                        return;
+                    }
+                }
+
+                var url = _apiClient.GetImageUrl(SelectedMovie, LockScreenService.Current.LockScreenImageOptions);
+
+                await LockScreenService.Current.SetLockScreenImage(url);
+            });
         }
 
         private async Task<bool> GetMovieDetails()
@@ -165,5 +187,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public RelayCommand PlayMovieCommand { get; set; }
         public RelayCommand AddRemoveFavouriteCommand { get; set; }
         public RelayCommand<BaseItemPerson> ShowOtherFilmsCommand { get; set; }
+        public RelayCommand SetPosterAsLockScreenCommand { get; set; }
     }
 }
