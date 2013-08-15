@@ -101,7 +101,7 @@
   <ItemGroup>
     <Reference Include="Cimbalino.Phone.Toolkit.Background, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Cimbalino.Phone.Toolkit.Background.3.1.0-rc\lib\wp8\Cimbalino.Phone.Toolkit.Background.dll</HintPath>
+      <HintPath>..\packages\Cimbalino.Phone.Toolkit.Background.3.1.0\lib\wp8\Cimbalino.Phone.Toolkit.Background.dll</HintPath>
     </Reference>
     <Reference Include="MediaBrowser.Model, Version=3.0.4972.28759, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

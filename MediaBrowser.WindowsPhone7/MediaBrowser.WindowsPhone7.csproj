@@ -55,19 +55,19 @@
   <ItemGroup>
     <Reference Include="Cimbalino.Phone.Toolkit, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Cimbalino.Phone.Toolkit.3.1.0-rc\lib\sl4-wp71\Cimbalino.Phone.Toolkit.dll</HintPath>
+      <HintPath>..\packages\Cimbalino.Phone.Toolkit.3.1.0\lib\sl4-wp71\Cimbalino.Phone.Toolkit.dll</HintPath>
     </Reference>
     <Reference Include="Cimbalino.Phone.Toolkit.Background, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Cimbalino.Phone.Toolkit.Background.3.1.0-rc\lib\sl4-wp71\Cimbalino.Phone.Toolkit.Background.dll</HintPath>
+      <HintPath>..\packages\Cimbalino.Phone.Toolkit.Background.3.1.0\lib\sl4-wp71\Cimbalino.Phone.Toolkit.Background.dll</HintPath>
     </Reference>
     <Reference Include="Cimbalino.Phone.Toolkit.DeviceInfo, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Cimbalino.Phone.Toolkit.DeviceInfo.3.1.0-rc\lib\sl4-wp71\Cimbalino.Phone.Toolkit.DeviceInfo.dll</HintPath>
+      <HintPath>..\packages\Cimbalino.Phone.Toolkit.DeviceInfo.3.1.0\lib\sl4-wp71\Cimbalino.Phone.Toolkit.DeviceInfo.dll</HintPath>
     </Reference>
     <Reference Include="Cimbalino.Phone.Toolkit.UserInfo, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Cimbalino.Phone.Toolkit.UserInfo.3.1.0-rc\lib\sl4-wp71\Cimbalino.Phone.Toolkit.UserInfo.dll</HintPath>
+      <HintPath>..\packages\Cimbalino.Phone.Toolkit.UserInfo.3.1.0\lib\sl4-wp71\Cimbalino.Phone.Toolkit.UserInfo.dll</HintPath>
     </Reference>
     <Reference Include="Coding4Fun.Toolkit.Controls, Version=2.0.7.0, Culture=neutral, PublicKeyToken=c5fd7b72b1a17ce4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

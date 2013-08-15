@@ -44,8 +44,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Cimbalino.Phone.Toolkit.Background">
-      <HintPath>..\packages\Cimbalino.Phone.Toolkit.Background.3.1.0-rc\lib\sl4-wp71\Cimbalino.Phone.Toolkit.Background.dll</HintPath>
+    <Reference Include="Cimbalino.Phone.Toolkit.Background, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Cimbalino.Phone.Toolkit.Background.3.1.0\lib\sl4-wp71\Cimbalino.Phone.Toolkit.Background.dll</HintPath>
     </Reference>
     <Reference Include="JetBrains.Annotations">
       <HintPath>..\packages\JetBrains.Annotations.7.0\lib\sl4-wp71\JetBrains.Annotations.dll</HintPath>

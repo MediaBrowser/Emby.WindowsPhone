@@ -88,7 +88,7 @@
             public const string ChooseProfileView = ViewsPath + "ChooseProfileView.xaml";
             public const string ManualUsernameView = ViewsPath + "ManualUsernameView.xaml";
             public const string SettingsView = ViewsPath + "SettingsView.xaml";
-            public const string SettingsViewConnection = ViewsPath + "SettingsView.xaml?settingsPane=2";
+            public const string SettingsViewConnection = ViewsPath + "SettingsView.xaml?settingsPane=1";
             public const string NotificationsView = ViewsPath + "NotificationsView.xaml";
             public const string NotificationView = ViewsPath + "NotificationView.xaml";
             public const string FolderView = ViewsPath + "FolderView.xaml?id=";

@@ -73,7 +73,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         {
                             if (args.Result == CustomMessageBoxResult.LeftButton)
                             {
-                                _navigationService.NavigateTo("/Views/SettingsView.xaml?settingsPane=2");
+                                _navigationService.NavigateTo(Constants.Pages.SettingsViewConnection);
                             }
                         };
 
