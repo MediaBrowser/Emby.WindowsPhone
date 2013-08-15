@@ -67,8 +67,8 @@
                               IsChecked="{Binding IncludeTrailersInRecent, Source={StaticResource SpecificSettings}, Mode=TwoWay}" />
                     <toolkit:ListPicker ItemsSource="{Binding GroupByItems, Source={StaticResource SpecificSettings}}"
                                         SelectedItem="{Binding DefaultGroupBy, Source={StaticResource SpecificSettings}, Mode=TwoWay}"
-                                        Header="Default grouping" 
-                                        toolkit:TiltEffect.SuppressTilt="True"/>
+                                        Header="Default grouping"
+                                        toolkit:TiltEffect.SuppressTilt="True" />
                     <CheckBox IsChecked="{Binding JustShowFolderView, Source={StaticResource SpecificSettings}, Mode=TwoWay}">
                         <TextBlock Text="Just show the list of items, not a collection view"
                                    TextWrapping="Wrap"
@@ -77,7 +77,7 @@
                 </StackPanel>
             </phone:PivotItem>
 
-            <phone:PivotItem Header="push notifications">
+            <!--<phone:PivotItem Header="push notifications">
                 <Grid>
                     <StackPanel Orientation="Vertical"
                                 Visibility="{Binding ServerPluginInstalled, Converter={StaticResource VisibilityConverter}}">
@@ -101,7 +101,7 @@
                                    TextWrapping="Wrap" />
                     </StackPanel>
                 </Grid>
-            </phone:PivotItem>
+            </phone:PivotItem>-->
 
             <phone:PivotItem Header="connection">
                 <StackPanel Orientation="Vertical">
