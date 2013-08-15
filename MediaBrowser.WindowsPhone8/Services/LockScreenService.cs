@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Net.Http;
-using System.Threading;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Media.Imaging;
 using Cimbalino.Phone.Toolkit.Services;
-using GalaSoft.MvvmLight.Ioc;
 using ImageTools;
 using ImageTools.IO.Png;
-using MediaBrowser.Model;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
 
@@ -16,8 +12,10 @@ namespace MediaBrowser.WindowsPhone.Services
 {
     public class LockScreenService : Cimbalino.Phone.Toolkit.Services.LockScreenService
     {
-        private const string LockScreenImageUrl = "isostore:/shared/shellcontent/MBWallpaper.png";
+        private const string LockScreenImageUrl = "ms-appdata:///Local/shared/shellcontent/MBWallpaper.png";
+        private const string LockScreenImageUrl2 = "ms-appdata:///Local/shared/shellcontent/MBWallpaper2.png";
         private const string LockScreenFile = "shared\\shellcontent\\MBWallpaper.png";
+        private const string LockScreenFile2 = "shared\\shellcontent\\MBWallpaper2.png";
         private const string DefaultLockScreenImageFormat = "ms-appx:///DefaultLockScreen.jpg";
         private static LockScreenService _current;
         private readonly IAsyncStorageService _storageService = new AsyncStorageService();
@@ -32,7 +30,8 @@ namespace MediaBrowser.WindowsPhone.Services
                 {
                     ImageType = ImageType.Primary,
                     MaxWidth = 480,
-                    Quality = 90
+                    Quality = 90,
+                    EnableImageEnhancers = false
                 };
             }
         }
@@ -42,7 +41,8 @@ namespace MediaBrowser.WindowsPhone.Services
             if (uri.StartsWith("http"))
             {
                 await DownloadImage(uri);
-                ImageUri = new Uri(LockScreenImageUrl, UriKind.RelativeOrAbsolute);
+                var fileName = ImageUri.ToString().EndsWith("2.png") ? LockScreenImageUrl : LockScreenImageUrl2;
+                ImageUri = new Uri(fileName, UriKind.RelativeOrAbsolute);
             }
             else
             {
@@ -63,7 +63,9 @@ namespace MediaBrowser.WindowsPhone.Services
             bitmap.SetSource(await stream.Content.ReadAsStreamAsync());
             var writeableBitmap = new WriteableBitmap(bitmap);
 
-            using (var fileStream = await _storageService.CreateFileAsync(LockScreenFile))
+            var fileName = ImageUri.ToString().EndsWith("2.png") ? LockScreenFile : LockScreenFile2;
+
+            using (var fileStream = await _storageService.CreateFileAsync(fileName))
             {
                 var encoder = new PngEncoder();
                 var image = writeableBitmap.ToImage();

@@ -12,9 +12,9 @@ using MediaBrowser.WindowsPhone.Resources;
 using ScottIsAFool.WindowsPhone;
 using ScottIsAFool.WindowsPhone.ViewModel;
 using INavigationService = MediaBrowser.WindowsPhone.Model.INavigationService;
-using LockScreenService = MediaBrowser.WindowsPhone.Services.LockScreenService;
-#if WP8
 
+#if WP8
+using LockScreenService = MediaBrowser.WindowsPhone.Services.LockScreenService;
 #endif
 
 namespace MediaBrowser.WindowsPhone.ViewModel
@@ -131,6 +131,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             NavigateTopage = new RelayCommand<BaseItemDto>(_navService.NavigateTo);
 
+#if WP8
             SetPosterAsLockScreenCommand = new RelayCommand(async () =>
             {
                 if (!LockScreenService.Current.IsProvidedByCurrentApplication)
@@ -147,6 +148,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                 await LockScreenService.Current.SetLockScreenImage(url);
             });
+#endif
         }
 
         private async Task<bool> GetMovieDetails()
