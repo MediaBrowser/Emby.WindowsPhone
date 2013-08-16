@@ -26,6 +26,7 @@ using INavigationService = MediaBrowser.WindowsPhone.Model.INavigationService;
 using Windows.Networking;
 using Windows.Networking.Sockets;
 using Windows.Storage.Streams;
+using LockScreenService = MediaBrowser.WindowsPhone.Services.LockScreenService;
 #endif
 
 namespace MediaBrowser.WindowsPhone.ViewModel
@@ -98,7 +99,41 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public bool ServerPluginInstalled { get; set; }
         public bool UseNotifications { get; set; }
         public HttpNotificationChannel HttpNotificationChannel { get; set; }
-        
+
+#if WP8
+        public bool IsLockScreenProvider
+        {
+            get
+            {
+                return LockScreenService.Current.IsProvidedByCurrentApplication;
+            }
+        }
+
+        public string LockScreenText
+        {
+            get
+            {
+                return IsLockScreenProvider ? "Media Browser is the current lock screen provider" : "Media Browser is not the lock screen provider, would you like it to be? If so, tap the button below.";
+            }
+        }
+
+        public RelayCommand MakeLockScreenProviderCommand
+        {
+            get
+            {
+                return new RelayCommand(async () =>
+                {
+                    var result = await LockScreenService.Current.RequestAccessAsync();
+
+                    if (result == LockScreenServiceRequestResult.Granted)
+                    {
+                        RaisePropertyChanged(() => IsLockScreenProvider);
+                        RaisePropertyChanged(() => LockScreenText);
+                    }
+                });
+            }
+        }
+#endif 
         public RelayCommand SettingsPageLoaded
         {
             get

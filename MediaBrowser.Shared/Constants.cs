@@ -5,9 +5,7 @@
         public static string[] TileColours = { "D8502B", "009300", "A200A9", "0A58C1", "009FB0", "3290F5", "93009C", "AF1A3F" };
 
         public static string PhoneCollectionTileUrlFormat = "/Splashscreen.xaml?action=Collection&id={0}&name={1}";
-
-        public const string FanArtApiKey = "bcf6ad1169c39f89538c94d8c4529023";
-
+        
         public class Settings
         {
             public const string SelectedUserSetting = "SelectedUser";

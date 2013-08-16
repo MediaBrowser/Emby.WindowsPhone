@@ -102,7 +102,7 @@
                     </StackPanel>
                 </Grid>
             </phone:PivotItem>-->
-
+            
             <phone:PivotItem Header="connection">
                 <StackPanel Orientation="Vertical">
                     <TextBlock Text="Put the connection details in to point to the computer running Mediabrowser3. Then simply test them to confirm."
@@ -133,6 +133,24 @@
                     <Button Content="Find server"
                             Command="{Binding Main.NavigateToAPage, Source={StaticResource Locator}}"
                             CommandParameter="/Views/FindServerView.xaml" />
+                </StackPanel>
+            </phone:PivotItem>
+
+            <phone:PivotItem Header="lock screen">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="{Binding LockScreenText}"
+                               Style="{StaticResource PhoneTextNormalStyle}"
+                               TextWrapping="Wrap"/>
+                    <HyperlinkButton HorizontalContentAlignment="Left"
+                                     HorizontalAlignment="Left"
+                                     Content="Make us the lock screen provider"
+                                     Command="{Binding MakeLockScreenProviderCommand}"
+                                     Visibility="{Binding IsLockScreenProvider, Converter={StaticResource InvertedVisibilityConverter}}"/>
+                    <StackPanel Orientation="Vertical"
+                                Margin="0,12,0,0"
+                                Visibility="{Binding IsLockScreenProvider, Converter={StaticResource VisibilityConverter}}">
+                        
+                    </StackPanel>
                 </StackPanel>
             </phone:PivotItem>
         </phone:Pivot>
