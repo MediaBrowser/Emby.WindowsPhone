@@ -7,6 +7,7 @@ using ImageTools;
 using ImageTools.IO.Png;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
+using MediaBrowser.WindowsPhone.Model;
 using ScottIsAFool.WindowsPhone.Logging;
 
 namespace MediaBrowser.WindowsPhone.Services
@@ -24,7 +25,7 @@ namespace MediaBrowser.WindowsPhone.Services
 
         public static LockScreenService Current { get { return _current ?? (_current = new LockScreenService()); }}
 
-        public ImageOptions LockScreenImageOptions
+        public ImageOptions SinglePosterOptions
         {
             get
             {
@@ -35,6 +36,42 @@ namespace MediaBrowser.WindowsPhone.Services
                     Quality = 90,
                     EnableImageEnhancers = false
                 };
+            }
+        }
+
+        public ImageOptions MultiplePostersOptions
+        {
+            get
+            {
+                return new ImageOptions
+                {
+                    ImageType = ImageType.Primary,
+                    MaxWidth = 120,
+                    Quality = 90,
+                    EnableImageEnhancers = false
+                };
+            }
+        }
+
+        public bool ManuallySet { get; set; }
+
+        public async Task SetLockScreen(LockScreenType lockScreenType)
+        {
+            switch (lockScreenType)
+            {
+                case LockScreenType.Default:
+                    await SetDefaultLockscreenImage();
+                    break;
+                case LockScreenType.SinglePoster:
+                    if (ManuallySet)
+                    {
+                        ManuallySet = false;
+                        return;
+                    }
+                    break;
+                case LockScreenType.MultiplePosters:
+
+                    break;
             }
         }
 

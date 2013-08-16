@@ -356,7 +356,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\LockScreenTypeConverter.cs" />
     <Compile Include="LocalizedStrings.cs" />
+    <Compile Include="Model\LockScreenType.cs" />
     <Compile Include="Model\Server.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\AppResources.Designer.cs">

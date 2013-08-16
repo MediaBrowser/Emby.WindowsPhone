@@ -144,8 +144,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     }
                 }
 
-                var url = _apiClient.GetImageUrl(SelectedMovie, LockScreenService.Current.LockScreenImageOptions);
+                var url = _apiClient.GetImageUrl(SelectedMovie, LockScreenService.Current.SinglePosterOptions);
 
+                LockScreenService.Current.ManuallySet = true;
                 await LockScreenService.Current.SetLockScreenImage(url);
             });
 #endif

@@ -22,6 +22,16 @@ namespace MediaBrowser.WindowsPhone
         public bool JustShowFolderView { get; set; }
 
         public DeviceSettings DeviceSettings { get; set; }
+
+#if WP8
+        public LockScreenType LockScreenType { get; set; }
+
+        [UsedImplicitly]
+        private void OnLockScreenTypeChanged()
+        {
+            
+        }
+#endif
         
         public event PropertyChangedEventHandler PropertyChanged;
         

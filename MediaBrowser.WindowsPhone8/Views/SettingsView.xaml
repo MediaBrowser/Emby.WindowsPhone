@@ -12,6 +12,7 @@
                 xmlns:behaviours="clr-namespace:ScottIsAFool.WindowsPhone.Behaviours"
                 xmlns:controls="clr-namespace:MediaBrowser.WindowsPhone.Controls"
                 xmlns:coding4Fun="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
+                xmlns:converters="clr-namespace:MediaBrowser.WindowsPhone.Converters"
                 FontFamily="{StaticResource PhoneFontFamilyNormal}"
                 FontSize="{StaticResource PhoneFontSizeNormal}"
                 Foreground="{StaticResource PhoneForegroundBrush}"
@@ -55,6 +56,7 @@
     </toolkit:TransitionService.NavigationOutTransition>
 
     <scott:BasePage.Resources>
+        <converters:LockScreenTypeConverter x:Key="LockScreenTypeConverter"/>
         <Style x:Key="PhoneButtonBase"
                TargetType="ButtonBase">
             <Setter Property="Background"
@@ -353,7 +355,8 @@
                                         Grid.Row="0"
                                         Grid.Column="0"
                                         VerticalAlignment="Top">
-                                <RadioButton Style="{StaticResource RadioSelectionTemplate}">
+                                <RadioButton Style="{StaticResource RadioSelectionTemplate}"
+                                             IsChecked="{Binding LockScreenType, Source={StaticResource SpecificSettings}, Converter={StaticResource LockScreenTypeConverter}, ConverterParameter=Default}">
                                     <coding4Fun:LockScreenPreview ShowNotificationCount="False"
                                                                   LockScreenImageSource="/Images/LockScreenDefault.WXGA.png" />
                                 </RadioButton>
@@ -367,7 +370,8 @@
                                         Grid.Row="0"
                                         Grid.Column="1"
                                         VerticalAlignment="Top">
-                                <RadioButton Style="{StaticResource RadioSelectionTemplate}">
+                                <RadioButton Style="{StaticResource RadioSelectionTemplate}"
+                                             IsChecked="{Binding LockScreenType, Source={StaticResource SpecificSettings}, Converter={StaticResource LockScreenTypeConverter}, ConverterParameter=SinglePoster}">
                                     <coding4Fun:LockScreenPreview ShowNotificationCount="False"
                                                                   LockScreenImageSource="/Images/jp3d.jpg" />
                                 </RadioButton>
@@ -381,7 +385,8 @@
                                         Grid.Row="1"
                                         Grid.Column="0"
                                         VerticalAlignment="Top">
-                                <RadioButton Style="{StaticResource RadioSelectionTemplate}">
+                                <RadioButton Style="{StaticResource RadioSelectionTemplate}"
+                                             IsChecked="{Binding LockScreenType, Source={StaticResource SpecificSettings}, Converter={StaticResource LockScreenTypeConverter}, ConverterParameter=MultiplePosters}">
                                     <coding4Fun:LockScreenPreview ShowNotificationCount="False"
                                                                   LockScreenImageSource="/Images/LockScreenDefault.WXGA.png" />
                                 </RadioButton>
