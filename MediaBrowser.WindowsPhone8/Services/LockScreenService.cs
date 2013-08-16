@@ -7,6 +7,7 @@ using ImageTools;
 using ImageTools.IO.Png;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
+using ScottIsAFool.WindowsPhone.Logging;
 
 namespace MediaBrowser.WindowsPhone.Services
 {
@@ -19,6 +20,7 @@ namespace MediaBrowser.WindowsPhone.Services
         private const string DefaultLockScreenImageFormat = "ms-appx:///DefaultLockScreen.jpg";
         private static LockScreenService _current;
         private readonly IAsyncStorageService _storageService = new AsyncStorageService();
+        private readonly ILog _logger = new WPLogger(typeof(LockScreenService));
 
         public static LockScreenService Current { get { return _current ?? (_current = new LockScreenService()); }}
 
@@ -57,19 +59,26 @@ namespace MediaBrowser.WindowsPhone.Services
 
         private async Task DownloadImage(string uri)
         {
-            var bitmap = new BitmapImage();
-            var client = new HttpClient();
-            var stream = await client.GetAsync(uri);
-            bitmap.SetSource(await stream.Content.ReadAsStreamAsync());
-            var writeableBitmap = new WriteableBitmap(bitmap);
-
-            var fileName = ImageUri.ToString().EndsWith("2.png") ? LockScreenFile : LockScreenFile2;
-
-            using (var fileStream = await _storageService.CreateFileAsync(fileName))
+            try
             {
-                var encoder = new PngEncoder();
-                var image = writeableBitmap.ToImage();
-                encoder.Encode(image, fileStream);
+                var bitmap = new BitmapImage();
+                var client = new HttpClient();
+                var stream = await client.GetAsync(uri);
+                bitmap.SetSource(await stream.Content.ReadAsStreamAsync());
+                var writeableBitmap = new WriteableBitmap(bitmap);
+
+                var fileName = ImageUri.ToString().EndsWith("2.png") ? LockScreenFile : LockScreenFile2;
+
+                using (var fileStream = await _storageService.CreateFileAsync(fileName))
+                {
+                    var encoder = new PngEncoder();
+                    var image = writeableBitmap.ToImage();
+                    encoder.Encode(image, fileStream);
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.ErrorException("DownloadImage()", ex);
             }
         }
     }
