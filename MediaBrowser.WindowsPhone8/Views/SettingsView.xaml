@@ -349,33 +349,61 @@
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
 
-                            <RadioButton Grid.Row="0"
-                                         Grid.Column="0"
-                                         Style="{StaticResource RadioSelectionTemplate}">
-                                <coding4Fun:LockScreenPreview ShowNotificationCount="False"
-                                                              LockScreenImageSource="/Images/LockScreenDefault.WXGA.png" />
-                            </RadioButton>
+                            <StackPanel Orientation="Vertical"
+                                        Grid.Row="0"
+                                        Grid.Column="0"
+                                        VerticalAlignment="Top">
+                                <RadioButton Style="{StaticResource RadioSelectionTemplate}">
+                                    <coding4Fun:LockScreenPreview ShowNotificationCount="False"
+                                                                  LockScreenImageSource="/Images/LockScreenDefault.WXGA.png" />
+                                </RadioButton>
+                                <TextBlock Text="Default lock screen"
+                                           Style="{StaticResource PhoneTextSmallStyle}"
+                                           Foreground="White"
+                                           Margin="12,-12,12,0"/>
+                            </StackPanel>
 
-                            <RadioButton Grid.Row="0"
-                                         Grid.Column="1"
-                                         Style="{StaticResource RadioSelectionTemplate}">
-                                <coding4Fun:LockScreenPreview ShowNotificationCount="False"
-                                                              LockScreenImageSource="/Images/LockScreenDefault.WXGA.png" />
-                            </RadioButton>
+                            <StackPanel Orientation="Vertical"
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        VerticalAlignment="Top">
+                                <RadioButton Style="{StaticResource RadioSelectionTemplate}">
+                                    <coding4Fun:LockScreenPreview ShowNotificationCount="False"
+                                                                  LockScreenImageSource="/Images/LockScreenDefault.WXGA.png" />
+                                </RadioButton>
+                                <TextBlock Text="Single poster"
+                                           Style="{StaticResource PhoneTextSmallStyle}"
+                                           Foreground="White"
+                                           Margin="12,-12,12,0" />
+                            </StackPanel>
 
-                            <RadioButton Grid.Row="1"
-                                         Grid.Column="0"
-                                         Style="{StaticResource RadioSelectionTemplate}">
-                                <coding4Fun:LockScreenPreview ShowNotificationCount="False"
-                                                              LockScreenImageSource="/Images/LockScreenDefault.WXGA.png" />
-                            </RadioButton>
+                            <StackPanel Orientation="Vertical"
+                                        Grid.Row="1"
+                                        Grid.Column="0"
+                                        VerticalAlignment="Top">
+                                <RadioButton Style="{StaticResource RadioSelectionTemplate}">
+                                    <coding4Fun:LockScreenPreview ShowNotificationCount="False"
+                                                                  LockScreenImageSource="/Images/LockScreenDefault.WXGA.png" />
+                                </RadioButton>
+                                <TextBlock Text="Default lock screen"
+                                           Style="{StaticResource PhoneTextSmallStyle}"
+                                           Foreground="White"
+                                           Margin="12,-12,12,0" />
+                            </StackPanel>
 
-                            <RadioButton Grid.Row="1"
-                                         Grid.Column="1"
-                                         Style="{StaticResource RadioSelectionTemplate}">
-                                <coding4Fun:LockScreenPreview ShowNotificationCount="False"
-                                                              LockScreenImageSource="/Images/LockScreenDefault.WXGA.png" />
-                            </RadioButton>
+                            <StackPanel Orientation="Vertical"
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        VerticalAlignment="Top">
+                                <RadioButton Style="{StaticResource RadioSelectionTemplate}">
+                                    <coding4Fun:LockScreenPreview ShowNotificationCount="False"
+                                                                  LockScreenImageSource="/Images/LockScreenDefault.WXGA.png" />
+                                </RadioButton>
+                                <TextBlock Text="Default lock screen"
+                                           Style="{StaticResource PhoneTextSmallStyle}"
+                                           Foreground="White"
+                                           Margin="12,-12,12,0" />
+                            </StackPanel>
                         </Grid>
                     </ScrollViewer>
                 </Grid>
