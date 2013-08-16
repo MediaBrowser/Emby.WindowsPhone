@@ -22,8 +22,7 @@
         <TemplateType5>
           <BackgroundImageURI IsRelative="true" IsResource="false">Background.png</BackgroundImageURI>
           <Count>0</Count>
-          <Title>
-          </Title>
+          <Title>Media Browser</Title>
         </TemplateType5>
       </PrimaryToken>
     </Tokens>

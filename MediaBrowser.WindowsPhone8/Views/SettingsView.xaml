@@ -385,7 +385,7 @@
                                     <coding4Fun:LockScreenPreview ShowNotificationCount="False"
                                                                   LockScreenImageSource="/Images/LockScreenDefault.WXGA.png" />
                                 </RadioButton>
-                                <TextBlock Text="Default lock screen"
+                                <TextBlock Text="Random pictures from collection"
                                            Style="{StaticResource PhoneTextSmallStyle}"
                                            Foreground="White"
                                            Margin="12,-12,12,0" />
