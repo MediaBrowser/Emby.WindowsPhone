@@ -383,6 +383,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Content Include="..\MediaBrowser.WindowsPhone7\Images\3d.png">
+      <Link>Images\3d.png</Link>
+    </Content>
     <Content Include="..\MediaBrowser.WindowsPhone7\Images\audiocollection.png">
       <Link>Images\audiocollection.png</Link>
     </Content>
