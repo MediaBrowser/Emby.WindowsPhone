@@ -400,6 +400,7 @@
     <Content Include="Icons\appbar.feature.search.rest.png" />
     <Content Include="Icons\appbar.check.rest.png" />
     <Content Include="Icons\searchbutton.png" />
+    <Content Include="Images\jp3d.jpg" />
     <Content Include="Images\LockScreenDefault.720p.png" />
     <Content Include="Images\LockScreenDefault.WXGA.png" />
     <Content Include="README_FIRST.txt" />

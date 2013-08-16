@@ -369,7 +369,7 @@
                                         VerticalAlignment="Top">
                                 <RadioButton Style="{StaticResource RadioSelectionTemplate}">
                                     <coding4Fun:LockScreenPreview ShowNotificationCount="False"
-                                                                  LockScreenImageSource="/Images/LockScreenDefault.WXGA.png" />
+                                                                  LockScreenImageSource="/Images/jp3d.jpg" />
                                 </RadioButton>
                                 <TextBlock Text="Single poster"
                                            Style="{StaticResource PhoneTextSmallStyle}"
