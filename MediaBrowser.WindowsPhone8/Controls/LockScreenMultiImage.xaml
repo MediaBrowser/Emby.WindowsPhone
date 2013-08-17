@@ -1,0 +1,84 @@
+﻿<UserControl x:Class="MediaBrowser.WindowsPhone.Controls.LockScreenMultiImage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d"
+             FontFamily="{StaticResource PhoneFontFamilyNormal}"
+             FontSize="{StaticResource PhoneFontSizeNormal}"
+             Foreground="{StaticResource PhoneForegroundBrush}"
+             Height="800"
+             Width="480">
+
+    <UserControl.Resources>
+        <system:Double x:Key="PosterHeight">250</system:Double>
+        <system:Double x:Key="PosterWidth">167</system:Double>
+    </UserControl.Resources>
+
+    <Grid x:Name="LayoutRoot">
+        <Grid.Background>
+            <ImageBrush ImageSource="/Images/LockScreenBackground.jpg"/>
+        </Grid.Background>
+        <Grid.Clip>
+            <RectangleGeometry Rect="0,0,480,800" />
+        </Grid.Clip>
+
+        <!--ContentPanel - place additional content here-->
+        <Grid x:Name="ContentPanel"
+              Margin="12,0,12,0"
+              VerticalAlignment="Top"
+              Height="600">
+            <Image Width="{StaticResource PosterWidth}"
+                   Height="{StaticResource PosterHeight}"
+                   VerticalAlignment="Top"
+                   HorizontalAlignment="Left"
+                   RenderTransformOrigin="0.5,0.5"
+                   Margin="0,16,0,0"
+                   x:Name="ImageOne">
+                <Image.RenderTransform>
+                    <CompositeTransform Rotation="-28.61" />
+                </Image.RenderTransform>
+            </Image>
+
+            <Image Width="{StaticResource PosterWidth}"
+                   Height="{StaticResource PosterHeight}"
+                   VerticalAlignment="Top"
+                   HorizontalAlignment="Right"
+                   x:Name="ImageThree"
+                   RenderTransformOrigin="0.5,0.5"
+                   Margin="0,16,0,0">
+                <Image.RenderTransform>
+                    <CompositeTransform Rotation="28.61" />
+                </Image.RenderTransform>
+            </Image>
+            
+            <Image Width="{StaticResource PosterWidth}"
+                   Height="{StaticResource PosterHeight}"
+                   VerticalAlignment="Top"
+                   HorizontalAlignment="Center"
+                   x:Name="ImageTwo" />
+            
+            <Image Width="{StaticResource PosterWidth}"
+                   Height="{StaticResource PosterHeight}"
+                   VerticalAlignment="Top"
+                   HorizontalAlignment="Center"
+                   x:Name="ImageFour"
+                   Margin="-200,229,0,0" />
+
+            <Image Width="{StaticResource PosterWidth}"
+                   Height="{StaticResource PosterHeight}"
+                   VerticalAlignment="Top"
+                   HorizontalAlignment="Center"
+                   x:Name="ImageFive"
+                   Margin="200,229,0,0" />
+        </Grid>
+        <TextBlock VerticalAlignment="Bottom"
+                   HorizontalAlignment="Center"
+                   Style="{StaticResource PhoneTextLargeStyle}">
+				<Run Text="media" />
+				<Run Text="browser"
+                     Foreground="Green" />
+        </TextBlock>
+    </Grid>
+</UserControl>

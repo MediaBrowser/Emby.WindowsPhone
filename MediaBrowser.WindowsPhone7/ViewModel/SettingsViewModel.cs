@@ -117,6 +117,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
         }
 
+        public List<Stream> Posters { get; set; }
+
         public RelayCommand MakeLockScreenProviderCommand
         {
             get
@@ -133,6 +135,23 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 });
             }
         }
+
+        private void LoadPosterStreams()
+        {
+            var list = new List<Stream>();
+
+            for (var i = 1; i <= 5; i++)
+            {
+                var file = string.Format("Images/folder{0}.jpg", i);
+                var sri = Application.GetResourceStream(new Uri(file, UriKind.Relative));
+                if (sri != null)
+                {
+                    list.Add(sri.Stream);
+                }
+            }
+
+            Posters = list;
+        }
 #endif 
         public RelayCommand SettingsPageLoaded
         {
@@ -140,18 +159,21 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 return new RelayCommand(async () =>
                 {
-                    if (_navigationService.IsNetworkAvailable && !string.IsNullOrEmpty(_apiClient.ServerHostName))
-                    {
-                        try
-                        {
-                            //var result = await ApiClient.CheckForPushServer();
-                            //ServerPluginInstalled = true;
-                        }
-                        catch
-                        {
-                            ServerPluginInstalled = false;
-                        }
-                    }
+                    //if (_navigationService.IsNetworkAvailable && !string.IsNullOrEmpty(_apiClient.ServerHostName))
+                    //{
+                    //    try
+                    //    {
+                    //        //var result = await ApiClient.CheckForPushServer();
+                    //        //ServerPluginInstalled = true;
+                    //    }
+                    //    catch
+                    //    {
+                    //        ServerPluginInstalled = false;
+                    //    }
+                    //}
+#if WP8
+                    LoadPosterStreams();
+#endif
                 });
             }
         }

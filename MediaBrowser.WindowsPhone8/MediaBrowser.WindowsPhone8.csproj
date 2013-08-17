@@ -356,6 +356,12 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\LockScreenCollage.xaml.cs">
+      <DependentUpon>LockScreenCollage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\LockScreenMultiImage.xaml.cs">
+      <DependentUpon>LockScreenMultiImage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Converters\LockScreenTypeConverter.cs" />
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="Model\LockScreenType.cs" />
@@ -405,8 +411,15 @@
     <Content Include="Icons\appbar.feature.search.rest.png" />
     <Content Include="Icons\appbar.check.rest.png" />
     <Content Include="Icons\searchbutton.png" />
+    <Content Include="Images\folder1.jpg" />
+    <Content Include="Images\folder2.jpg" />
+    <Content Include="Images\folder3.jpg" />
+    <Content Include="Images\folder4.jpg" />
+    <Content Include="Images\folder5.jpg" />
     <Content Include="Images\jp3d.jpg" />
+    <Content Include="Images\LockScreenBackground.jpg" />
     <Content Include="Images\LockScreenDefault.720p.png" />
+    <Content Include="Images\LockScreenDefault.WVGA.png" />
     <Content Include="Images\LockScreenDefault.WXGA.png" />
     <Content Include="README_FIRST.txt" />
     <Content Include="Toolkit.Content\ApplicationBar.Add.png" />
@@ -453,6 +466,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Content>
+    <Page Include="Controls\LockScreenCollage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\LockScreenMultiImage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\LongListSelectorTemplates.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

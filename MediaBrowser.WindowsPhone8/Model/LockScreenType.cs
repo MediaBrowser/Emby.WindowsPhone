@@ -4,6 +4,7 @@
     {
         Default,
         SinglePoster,
-        MultiplePosters
+        MultiplePosters,
+        FullScreenCollage
     }
 }
