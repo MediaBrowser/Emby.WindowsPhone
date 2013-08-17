@@ -234,6 +234,10 @@
                                                            Style="{StaticResource PhoneTextSubtleStyle}"
                                                            Visibility="{Binding OfficialRating, Converter={StaticResource NullVisibilityConverter}}"
                                                            Margin="0,0,12,0"/>
+                                                <Image Source="/Images/3d.png"
+                                                       Height="35"
+                                                       Width="35"
+                                                       Visibility="{Binding Video3DFormat, Converter={StaticResource NullVisibilityConverter}}"/>
                                             </StackPanel>
                                         </StackPanel>
                                     </StackPanel>
