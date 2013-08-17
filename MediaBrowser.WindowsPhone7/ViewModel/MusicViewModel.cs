@@ -243,7 +243,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
         private async Task SortTracks()
         {
-            if (_artistTracks != null && _artistTracks.Any())
+            if (!_artistTracks.IsNullOrEmpty())
             {
                 SortedTracks = await Utils.GroupItemsByName(_artistTracks);
             }

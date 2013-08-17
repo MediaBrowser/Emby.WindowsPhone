@@ -203,7 +203,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
         {
             SetProgressBar();
 
-            if (itemResponse == null || !itemResponse.Items.Any())
+            if (itemResponse == null || itemResponse.Items.IsNullOrEmpty())
             {
                 return false;
             }

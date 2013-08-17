@@ -271,7 +271,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
 
         private void SendItemsToPlaylist(ItemsResult itemResponse)
         {
-            if (itemResponse == null || !itemResponse.Items.Any())
+            if (itemResponse == null || itemResponse.Items.IsNullOrEmpty())
             {
                 return;
             }

@@ -79,7 +79,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
         private async Task GroupSearchResults(List<SearchHint> items)
         {
-            if (items == null || !items.Any()) return;
+            if (items.IsNullOrEmpty())
+            {
+                return;
+            }
 
             await TaskEx.Run(() =>
             {

@@ -309,7 +309,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
 
         private bool SetLatestUnwatched(ItemsResult itemResponse)
         {
-            if (itemResponse != null && itemResponse.Items.Any())
+            if (itemResponse != null && !itemResponse.Items.IsNullOrEmpty())
             {
                 var items = itemResponse.Items.ToList();
                 UnseenHeader = items[0];

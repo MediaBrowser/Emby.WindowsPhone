@@ -260,6 +260,11 @@ namespace MediaBrowser.WindowsPhone
             return newList;
         }
 
+        internal static bool IsNullOrEmpty<T>(this IEnumerable<T> list)
+        {
+            return list == null || !list.Any();
+        }
+
         public static string DaysAgo(object value)
         {
             const int SECOND = 1;

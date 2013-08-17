@@ -138,7 +138,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     SetProgressBar();
                 }
 
-                if (CurrentItems != null && CurrentItems.Any())
+                if (!CurrentItems.IsNullOrEmpty())
                 {
                     GetRandomItems();
                 }
@@ -407,7 +407,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
         private bool CheckGenre(BaseItemDto dtoBaseItem)
         {
-            if (dtoBaseItem.Genres != null && dtoBaseItem.Genres.Any())
+            if (!dtoBaseItem.Genres.IsNullOrEmpty())
             {
                 return true;
             }
