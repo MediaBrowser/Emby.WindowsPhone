@@ -8,6 +8,8 @@
              FontFamily="{StaticResource PhoneFontFamilyNormal}"
              FontSize="{StaticResource PhoneFontSizeNormal}"
              Foreground="{StaticResource PhoneForegroundBrush}"
+             HorizontalAlignment="Left"
+             HorizontalContentAlignment="Left"
              Height="800"
              Width="480">
 
@@ -16,7 +18,11 @@
         <system:Double x:Key="PosterWidth">167</system:Double>
     </UserControl.Resources>
 
-    <Grid x:Name="LayoutRoot">
+    <Grid x:Name="LayoutRoot"
+          Height="800"
+          Width="480"
+          VerticalAlignment="Top"
+          HorizontalAlignment="Left">
         <Grid.Background>
             <ImageBrush ImageSource="/Images/LockScreenBackground.jpg"/>
         </Grid.Background>
@@ -26,9 +32,10 @@
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel"
-              Margin="12,0,12,0"
               VerticalAlignment="Top"
-              Height="600">
+              HorizontalAlignment="Left"
+              Height="600"
+              Width="480">
             <Image Width="{StaticResource PosterWidth}"
                    Height="{StaticResource PosterHeight}"
                    VerticalAlignment="Top"

@@ -20,6 +20,10 @@ using ScottIsAFool.WindowsPhone;
 using ScottIsAFool.WindowsPhone.Logging;
 using INavigationService = MediaBrowser.WindowsPhone.Model.INavigationService;
 
+#if WP8
+using MediaBrowser.WindowsPhone.Services;
+#endif
+
 namespace MediaBrowser.WindowsPhone
 {
     public static class Utils
@@ -213,6 +217,13 @@ namespace MediaBrowser.WindowsPhone
         {
             var clients = App.Settings.ServerConfiguration.ManualLoginClients;
             var loginPage = clients.Contains(ManualLoginCategory.Mobile) ? Constants.Pages.ManualUsernameView : Constants.Pages.ChooseProfileView;
+
+#if WP8
+            if (AuthenticationService.Current.IsLoggedIn)
+            {
+                Services.LockScreenService.Current.Start();
+            }
+#endif
             // If one exists, then authenticate that user.
             navigationService.NavigateTo(AuthenticationService.Current.IsLoggedIn ? Constants.Pages.HomePage : loginPage);
         }

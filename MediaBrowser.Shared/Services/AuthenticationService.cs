@@ -12,10 +12,10 @@ namespace MediaBrowser.Services
     public class AuthenticationService
     {
         private static AuthenticationService _current;
-        private static readonly IApplicationSettingsService SettingsService = new ApplicationSettingsService();
+        private IApplicationSettingsService _settingsService;
         private static IExtendedApiClient _apiClient;
         private static ILogger _logger;
-
+        
         public static AuthenticationService Current
         {
             get { return _current ?? (_current = new AuthenticationService()); }
@@ -25,13 +25,14 @@ namespace MediaBrowser.Services
         {
             _apiClient = apiClient;
             _logger = logger;
+            _settingsService = new ApplicationSettingsService();
 
             CheckIfUserSignedIn();
         }
 
         private void CheckIfUserSignedIn()
         {
-            var user = SettingsService.Get<UserDto>(Constants.Settings.SelectedUserSetting);
+            var user = _settingsService.Get<UserDto>(Constants.Settings.SelectedUserSetting);
 
             if (user != null)
             {
@@ -53,8 +54,8 @@ namespace MediaBrowser.Services
                 LoggedInUser = result.User;
                 IsLoggedIn = true;
 
-                SettingsService.Set(Constants.Settings.SelectedUserSetting, LoggedInUser);
-                SettingsService.Save();
+                _settingsService.Set(Constants.Settings.SelectedUserSetting, LoggedInUser);
+                _settingsService.Save();
                 _logger.Info("User [{0}] has been saved", selectedUserName);
             }
             catch (HttpException ex)
@@ -68,8 +69,8 @@ namespace MediaBrowser.Services
             LoggedInUser = null;
             IsLoggedIn = false;
 
-            SettingsService.Reset(Constants.Settings.SelectedUserSetting);
-            SettingsService.Save();
+            _settingsService.Reset(Constants.Settings.SelectedUserSetting);
+            _settingsService.Save();
         }
 
         public UserDto LoggedInUser { get; set; }

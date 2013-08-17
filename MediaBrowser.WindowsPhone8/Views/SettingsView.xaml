@@ -56,7 +56,7 @@
     </toolkit:TransitionService.NavigationOutTransition>
 
     <scott:BasePage.Resources>
-        <converters:LockScreenTypeConverter x:Key="LockScreenTypeConverter"/>
+        <converters:LockScreenTypeConverter x:Key="LockScreenTypeConverter" />
         <Style x:Key="PhoneButtonBase"
                TargetType="ButtonBase">
             <Setter Property="Background"
@@ -340,84 +340,90 @@
                                          Visibility="{Binding IsLockScreenProvider, Converter={StaticResource InvertedVisibilityConverter}}" />
                     </StackPanel>
                     <ScrollViewer Visibility="{Binding IsLockScreenProvider, Converter={StaticResource VisibilityConverter}}"
-                                  Grid.Row="1">
-                        <Grid Margin="0,12,0,0">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
+                                  Grid.Row="1"
+                                  Margin="0,12,0,0">
+                        <StackPanel>
+                            <toolkit:ListPicker Header="From collection (where applicable):">
 
-                            <StackPanel Orientation="Vertical"
-                                        Grid.Row="0"
-                                        Grid.Column="0"
-                                        VerticalAlignment="Top">
-                                <RadioButton Style="{StaticResource RadioSelectionTemplate}"
-                                             GroupName="LockScreen"
-                                             IsChecked="{Binding LockScreenType, Source={StaticResource SpecificSettings}, Converter={StaticResource LockScreenTypeConverter}, ConverterParameter=Default}">
-                                    <coding4Fun:LockScreenPreview ShowNotificationCount="False"
-                                                                  LockScreenImageSource="/Images/LockScreenDefault.WXGA.png" />
-                                </RadioButton>
-                                <TextBlock Text="Default lock screen"
-                                           Style="{StaticResource PhoneTextSmallStyle}"
-                                           Foreground="White"
-                                           Margin="12,-12,12,0"/>
-                            </StackPanel>
+                            </toolkit:ListPicker>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
 
-                            <StackPanel Orientation="Vertical"
-                                        Grid.Row="0"
-                                        Grid.Column="1"
-                                        VerticalAlignment="Top">
-                                <RadioButton Style="{StaticResource RadioSelectionTemplate}"
-                                             GroupName="LockScreen"
-                                             IsChecked="{Binding LockScreenType, Source={StaticResource SpecificSettings}, Converter={StaticResource LockScreenTypeConverter}, ConverterParameter=SinglePoster}">
-                                    <coding4Fun:LockScreenPreview ShowNotificationCount="False"
-                                                                  LockScreenImageSource="/Images/jp3d.jpg" />
-                                </RadioButton>
-                                <TextBlock Text="Single poster"
-                                           Style="{StaticResource PhoneTextSmallStyle}"
-                                           Foreground="White"
-                                           Margin="12,-12,12,0" />
-                            </StackPanel>
+                                <StackPanel Orientation="Vertical"
+                                            Grid.Row="0"
+                                            Grid.Column="0"
+                                            VerticalAlignment="Top">
+                                    <RadioButton Style="{StaticResource RadioSelectionTemplate}"
+                                                 GroupName="LockScreen"
+                                                 IsChecked="{Binding LockScreenType, Source={StaticResource SpecificSettings}, Mode=TwoWay, Converter={StaticResource LockScreenTypeConverter}, ConverterParameter=Default}">
+                                        <coding4Fun:LockScreenPreview ShowNotificationCount="False"
+                                                                      LockScreenImageSource="/Images/LockScreenDefault.WXGA.png" />
+                                    </RadioButton>
+                                    <TextBlock Text="Default lock screen"
+                                               Style="{StaticResource PhoneTextSmallStyle}"
+                                               Foreground="White"
+                                               Margin="12,-12,12,0" />
+                                </StackPanel>
 
-                            <StackPanel Orientation="Vertical"
-                                        Grid.Row="1"
-                                        Grid.Column="0"
-                                        VerticalAlignment="Top">
-                                <RadioButton Style="{StaticResource RadioSelectionTemplate}"
-                                             GroupName="LockScreen"
-                                             IsChecked="{Binding LockScreenType, Source={StaticResource SpecificSettings}, Converter={StaticResource LockScreenTypeConverter}, ConverterParameter=MultiplePosters}">
-                                    <coding4Fun:LockScreenPreview ShowNotificationCount="False">
-                                        <controls:LockScreenMultiImage ItemsSource="{Binding Posters}"/>
-                                    </coding4Fun:LockScreenPreview>
-                                </RadioButton>
-                                <TextBlock Text="Random pictures from collection"
-                                           Style="{StaticResource PhoneTextSmallStyle}"
-                                           Foreground="White"
-                                           TextWrapping="Wrap"
-                                           Margin="12,-12,12,0" />
-                            </StackPanel>
+                                <StackPanel Orientation="Vertical"
+                                            Grid.Row="0"
+                                            Grid.Column="1"
+                                            VerticalAlignment="Top">
+                                    <RadioButton Style="{StaticResource RadioSelectionTemplate}"
+                                                 GroupName="LockScreen"
+                                                 IsChecked="{Binding LockScreenType, Source={StaticResource SpecificSettings}, Mode=TwoWay, Converter={StaticResource LockScreenTypeConverter}, ConverterParameter=SinglePoster}">
+                                        <coding4Fun:LockScreenPreview ShowNotificationCount="False"
+                                                                      LockScreenImageSource="/Images/jp3d.jpg" />
+                                    </RadioButton>
+                                    <TextBlock Text="Single poster"
+                                               Style="{StaticResource PhoneTextSmallStyle}"
+                                               Foreground="White"
+                                               Margin="12,-12,12,0" />
+                                </StackPanel>
 
-                            <StackPanel Orientation="Vertical"
-                                        Grid.Row="1"
-                                        Grid.Column="1"
-                                        VerticalAlignment="Top">
-                                <RadioButton Style="{StaticResource RadioSelectionTemplate}"
-                                             GroupName="LockScreen"
-                                             IsChecked="{Binding LockScreenType, Source={StaticResource SpecificSettings}, Converter={StaticResource LockScreenTypeConverter}, ConverterParameter=MultiplePosters}">
-                                    <coding4Fun:LockScreenPreview ShowNotificationCount="False">
-                                        <controls:LockScreenCollage ItemsSource="{Binding Posters}"/>
-                                    </coding4Fun:LockScreenPreview>
-                                </RadioButton>
-                                <TextBlock Text="Full screen collage"
-                                           Style="{StaticResource PhoneTextSmallStyle}"
-                                           Foreground="White"
-                                           Margin="12,-12,12,0" />
-                            </StackPanel>
-                        </Grid>
+                                <StackPanel Orientation="Vertical"
+                                            Grid.Row="1"
+                                            Grid.Column="0"
+                                            VerticalAlignment="Top">
+                                    <RadioButton Style="{StaticResource RadioSelectionTemplate}"
+                                                 GroupName="LockScreen"
+                                                 IsChecked="{Binding LockScreenType, Source={StaticResource SpecificSettings}, Mode=TwoWay, Converter={StaticResource LockScreenTypeConverter}, ConverterParameter=MultiplePosters}">
+                                        <coding4Fun:LockScreenPreview ShowNotificationCount="False">
+                                            <controls:LockScreenMultiImage ItemsSource="{Binding Posters}" />
+                                        </coding4Fun:LockScreenPreview>
+                                    </RadioButton>
+                                    <TextBlock Text="Random pictures from collection"
+                                               Style="{StaticResource PhoneTextSmallStyle}"
+                                               Foreground="White"
+                                               TextWrapping="Wrap"
+                                               Margin="12,-12,12,0" />
+                                </StackPanel>
+
+                                <StackPanel Orientation="Vertical"
+                                            Grid.Row="1"
+                                            Grid.Column="1"
+                                            VerticalAlignment="Top">
+                                    <RadioButton Style="{StaticResource RadioSelectionTemplate}"
+                                                 GroupName="LockScreen"
+                                                 IsChecked="{Binding LockScreenType, Source={StaticResource SpecificSettings}, Mode=TwoWay, Converter={StaticResource LockScreenTypeConverter}, ConverterParameter=FullScreenCollage}">
+                                        <coding4Fun:LockScreenPreview ShowNotificationCount="False">
+                                            <controls:LockScreenCollage ItemsSource="{Binding Posters}" />
+                                        </coding4Fun:LockScreenPreview>
+                                    </RadioButton>
+                                    <TextBlock Text="Full screen collage"
+                                               Style="{StaticResource PhoneTextSmallStyle}"
+                                               Foreground="White"
+                                               Margin="12,-12,12,0" />
+                                </StackPanel>
+                            </Grid>
+                        </StackPanel>
                     </ScrollViewer>
                 </Grid>
             </phone:PivotItem>

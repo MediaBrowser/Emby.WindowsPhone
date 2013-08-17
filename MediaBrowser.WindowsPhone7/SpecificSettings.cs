@@ -5,6 +5,7 @@ using GalaSoft.MvvmLight.Messaging;
 using JetBrains.Annotations;
 using MediaBrowser.Model;
 using MediaBrowser.WindowsPhone.Model;
+using MediaBrowser.WindowsPhone.Services;
 
 namespace MediaBrowser.WindowsPhone
 {
@@ -25,11 +26,18 @@ namespace MediaBrowser.WindowsPhone
 
 #if WP8
         public LockScreenType LockScreenType { get; set; }
+        public string LockScreenCollectionId { get; set; }
 
         [UsedImplicitly]
-        private void OnLockScreenTypeChanged()
+        private void OnCollectionIdChanged()
         {
-            
+            LockScreenService.Current.CollectionId = LockScreenCollectionId;
+        }
+
+        [UsedImplicitly]
+        private async void OnLockScreenTypeChanged()
+        {
+            await LockScreenService.Current.SetLockScreen(LockScreenType);
         }
 #endif
         

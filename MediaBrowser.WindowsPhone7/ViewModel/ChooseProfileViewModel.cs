@@ -142,6 +142,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             await AuthenticationService.Current.Login(selectedUserName, pinCode);
             if (AuthenticationService.Current.IsLoggedIn)
             {
+#if WP8
+                Services.LockScreenService.Current.Start();
+#endif
                 _navigationService.NavigateTo(!string.IsNullOrEmpty(App.Action) ? App.Action : Constants.Pages.HomePage);
                 Username = Password = string.Empty;
                 _apiClient.CurrentUserId = AuthenticationService.Current.LoggedInUser.Id;
