@@ -139,7 +139,12 @@ namespace MediaBrowser.WindowsPhone.Services
         {
             try
             {
+                var itemResponse = await GetCollectionItems(12);
 
+                if (itemResponse != null && !itemResponse.Items.IsNullOrEmpty())
+                {
+                    await ProcessCollageImages(itemResponse.Items);
+                }
             }
             catch (HttpException ex)
             {
@@ -151,21 +156,7 @@ namespace MediaBrowser.WindowsPhone.Services
         {
             try
             {
-                var query = new ItemQuery
-                {
-                    IncludeItemTypes = new[] {"Season", "Series", "Movie"},
-                    Limit = 5,
-                    SortBy = new[] {ItemSortBy.Random},
-                    UserId = AuthenticationService.Current.LoggedInUser.Id,
-                    Recursive = true
-                };
-
-                if (!string.IsNullOrEmpty(CollectionId))
-                {
-                    query.ParentId = CollectionId;
-                }
-
-                var itemResponse = await _apiClient.GetItemsAsync(query);
+                var itemResponse = await GetCollectionItems(5);
 
                 if (itemResponse != null && !itemResponse.Items.IsNullOrEmpty())
                 {
@@ -178,6 +169,26 @@ namespace MediaBrowser.WindowsPhone.Services
             }
         }
 
+        private async Task<ItemsResult> GetCollectionItems(int limit)
+        {
+            var query = new ItemQuery
+            {
+                IncludeItemTypes = new[] {"Season", "Series", "Movie"},
+                Limit = limit,
+                SortBy = new[] {ItemSortBy.Random},
+                UserId = AuthenticationService.Current.LoggedInUser.Id,
+                Recursive = true
+            };
+
+            if (!string.IsNullOrEmpty(CollectionId))
+            {
+                query.ParentId = CollectionId;
+            }
+
+            var itemResponse = await _apiClient.GetItemsAsync(query);
+            return itemResponse;
+        }
+
         private async Task ProcessMultipleImages(IEnumerable<BaseItemDto> items)
         {
             var list = new List<Stream>();
@@ -185,29 +196,57 @@ namespace MediaBrowser.WindowsPhone.Services
             foreach (var item in items)
             {
                 var url = _apiClient.GetImageUrl(item, MultiplePostersOptions);
-                var stream = await _apiClient.GetImageStreamAsync(url);
-                list.Add(stream);
+                try
+                {
+                    var stream = await _apiClient.GetImageStreamAsync(url);
+                    list.Add(stream);
+                }
+                catch (HttpException ex)
+                {
+                    _logger.ErrorException("ProcessMultipleImages()", ex);
+                }
             }
-            var canvas = new Canvas
+
+            if (list.IsNullOrEmpty())
             {
-                Width = 480,
-                Height = 800
-            };
+                _logger.Debug("No images found, lockscreen image not changed");
+                return;
+            }
+
             var lockscreen = new LockScreenMultiImage {ItemsSource = list, Height = 800, Width = 480};
+            
+            await SaveImage(lockscreen);
 
-            canvas.Children.Add(lockscreen);
-            canvas.Background = new ImageBrush {ImageSource = new BitmapImage(new Uri("/Images/LockScreenBackground.jpg", UriKind.Relative))};
-            canvas.Measure(new Size(480, 800));
-            canvas.Arrange(new Rect {Width = 480, Height = 800});
-            canvas.UpdateLayout();
-            //lockscreen.Measure(new Size(480, 800));
-            //lockscreen.UpdateLayout();
+            await SetLockScreenImage(LockScreenImageUrl);
+        }
 
-            var bitmap = new WriteableBitmap(480, 800);
-            bitmap.Render(lockscreen, null);
-            bitmap.Invalidate();
+        private async Task ProcessCollageImages(IEnumerable<BaseItemDto> items)
+        {
+            var list = new List<Stream>();
 
-            await SaveImage(bitmap);
+            foreach (var item in items)
+            {
+                var url = _apiClient.GetImageUrl(item, CollageOptions);
+                try
+                {
+                    var stream = await _apiClient.GetImageStreamAsync(url);
+                    list.Add(stream);
+                }
+                catch (HttpException ex)
+                {
+                    _logger.ErrorException("ProcessCollageImages()", ex);
+                }
+            }
+
+            if (list.IsNullOrEmpty())
+            {
+                _logger.Debug("No images found, lockscreen image not changed");
+                return;
+            }
+
+            var lockscreen = new LockScreenCollage { ItemsSource = list, Height = 800, Width = 480 };
+
+            await SaveImage(lockscreen);
 
             await SetLockScreenImage(LockScreenImageUrl);
         }
@@ -250,8 +289,16 @@ namespace MediaBrowser.WindowsPhone.Services
             }
         }
 
-        private async Task SaveImage(WriteableBitmap bitmap)
+        private async Task SaveImage(UIElement element)
         {
+            element.InvalidateMeasure();
+            element.InvalidateArrange();
+            element.UpdateLayout();
+
+            var bitmap = new WriteableBitmap(480, 800);
+            bitmap.Render(element, null);
+            bitmap.Invalidate();
+
             if (await _storageService.FileExistsAsync(LockScreenFile))
             {
                 await _storageService.DeleteFileAsync(LockScreenFile);

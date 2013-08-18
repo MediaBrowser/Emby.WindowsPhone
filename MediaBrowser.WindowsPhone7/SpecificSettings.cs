@@ -5,7 +5,9 @@ using GalaSoft.MvvmLight.Messaging;
 using JetBrains.Annotations;
 using MediaBrowser.Model;
 using MediaBrowser.WindowsPhone.Model;
+#if WP8
 using MediaBrowser.WindowsPhone.Services;
+#endif
 
 namespace MediaBrowser.WindowsPhone
 {

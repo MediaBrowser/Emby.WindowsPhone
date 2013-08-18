@@ -13,22 +13,22 @@
              Height="800"
              Width="480">
 
-    <UserControl.Resources>
-        <system:Double x:Key="PosterHeight">250</system:Double>
-        <system:Double x:Key="PosterWidth">167</system:Double>
-    </UserControl.Resources>
-
     <Grid x:Name="LayoutRoot"
           Height="800"
           Width="480"
-          VerticalAlignment="Top"
-          HorizontalAlignment="Left">
+          VerticalAlignment="Stretch"
+          HorizontalAlignment="Stretch">
         <Grid.Background>
-            <ImageBrush ImageSource="/Images/LockScreenBackground.jpg"/>
+            <ImageBrush ImageSource="/Images/LockScreenBackground.jpg"
+                        Stretch="UniformToFill" />
         </Grid.Background>
         <Grid.Clip>
             <RectangleGeometry Rect="0,0,480,800" />
         </Grid.Clip>
+        <Grid.Resources>
+            <system:Double x:Key="PosterHeight">250</system:Double>
+            <system:Double x:Key="PosterWidth">167</system:Double>
+        </Grid.Resources>
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel"
@@ -59,13 +59,13 @@
                     <CompositeTransform Rotation="28.61" />
                 </Image.RenderTransform>
             </Image>
-            
+
             <Image Width="{StaticResource PosterWidth}"
                    Height="{StaticResource PosterHeight}"
                    VerticalAlignment="Top"
                    HorizontalAlignment="Center"
                    x:Name="ImageTwo" />
-            
+
             <Image Width="{StaticResource PosterWidth}"
                    Height="{StaticResource PosterHeight}"
                    VerticalAlignment="Top"
