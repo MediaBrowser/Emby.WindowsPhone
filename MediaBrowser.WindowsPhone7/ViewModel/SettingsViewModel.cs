@@ -120,6 +120,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         }
 
         public List<Stream> Posters { get; set; }
+        public ObservableCollection<BaseItemDto> Folders { get; set; }
+        public BaseItemDto SelectedCollection { get; set; }
 
         public RelayCommand MakeLockScreenProviderCommand
         {
@@ -142,7 +144,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             get
             {
-                return new RelayCommand<SelectionChangedEventArgs>(args =>
+                return new RelayCommand<SelectionChangedEventArgs>(async args =>
                 {
                     if (args == null)
                     {
@@ -151,6 +153,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                     var collection = (BaseItemDto) args.AddedItems[0];
                     App.SpecificSettings.LockScreenCollectionId = collection.Id;
+                    SelectedCollection = Folders.FirstOrDefault(x => x.Id == App.SpecificSettings.LockScreenCollectionId);
+                    await LockScreenService.Current.SetLockScreen(App.SpecificSettings.LockScreenType);
                 });
             }
         } 
@@ -171,6 +175,20 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             Posters = list;
         }
+
+        private void GetFolders()
+        {
+            var main = SimpleIoc.Default.GetInstance<MainViewModel>();
+            var folders = main.Folders;
+            if (folders.IsNullOrEmpty())
+            {
+                return;
+            }
+
+            Folders = folders;
+            SelectedCollection = Folders.FirstOrDefault(x => x.Id == App.SpecificSettings.LockScreenCollectionId);
+        }
+
 #endif 
         public RelayCommand SettingsPageLoaded
         {
@@ -192,6 +210,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     //}
 #if WP8
                     LoadPosterStreams();
+                    GetFolders();
 #endif
                 });
             }

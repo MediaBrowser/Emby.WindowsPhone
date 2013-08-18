@@ -31,10 +31,9 @@ namespace MediaBrowser.WindowsPhone
         public string LockScreenCollectionId { get; set; }
 
         [UsedImplicitly]
-        private async void OnLockScreenCollectionIdChanged()
+        private void OnLockScreenCollectionIdChanged()
         {
             LockScreenService.Current.CollectionId = LockScreenCollectionId;
-            await LockScreenService.Current.SetLockScreen(LockScreenType);
         }
 
         [UsedImplicitly]

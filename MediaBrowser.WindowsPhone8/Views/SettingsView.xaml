@@ -344,8 +344,9 @@
                                   Margin="0,12,0,0">
                         <StackPanel>
                             <toolkit:ListPicker Header="From collection (where applicable):"
-                                                ItemsSource="{Binding Main.Folders, Source={StaticResource Locator}}"
-                                                SelectionMode="Single">
+                                                ItemsSource="{Binding Folders}"
+                                                SelectionMode="Single"
+                                                SelectedItem="{Binding SelectedCollection, Mode=TwoWay}">
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="SelectionChanged">
                                         <command:EventToCommand Command="{Binding CollectionChangedCommand}"
