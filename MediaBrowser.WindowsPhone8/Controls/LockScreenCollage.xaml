@@ -8,29 +8,38 @@
              mc:Ignorable="d"
              FontFamily="{StaticResource PhoneFontFamilyNormal}"
              FontSize="{StaticResource PhoneFontSizeNormal}"
-             Foreground="{StaticResource PhoneForegroundBrush}"
-             Height="800"
-             Width="480">
-
-    <UserControl.Resources>
-        <system:Double x:Key="PosterHeight">240</system:Double>
-        <system:Double x:Key="PosterWidth">160</system:Double>
-    </UserControl.Resources>
+             Foreground="{StaticResource PhoneForegroundBrush}">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot">
-        <Grid.Background>
-            <ImageBrush ImageSource="/Images/LockScreenBackground.jpg" />
-        </Grid.Background>
+    <Grid x:Name="LayoutRoot"
+          VerticalAlignment="Stretch"
+          HorizontalAlignment="Stretch">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
         <Grid.Clip>
             <RectangleGeometry Rect="0,0,480,800" />
         </Grid.Clip>
+        <Grid.Resources>
+            <system:Double x:Key="PosterHeight">240</system:Double>
+            <system:Double x:Key="PosterWidth">160</system:Double>
+        </Grid.Resources>
+
+        <Image Source="/Images/LockScreenBackground.jpg"
+               Stretch="Fill" />
+
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel"
-              VerticalAlignment="Top">
+              VerticalAlignment="Top"
+              HorizontalAlignment="Stretch"
+              Grid.Row="0">
             <ListBox ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                      ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                     x:Name="ImageList">
+                     x:Name="ImageList"
+                     Height="800">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Image Height="{StaticResource PosterHeight}"
@@ -49,8 +58,8 @@
         </Grid>
         <TextBlock VerticalAlignment="Bottom"
                    HorizontalAlignment="Center"
-                   Margin="0,226,0,0"
-                   Style="{StaticResource PhoneTextLargeStyle}">
+                   Style="{StaticResource PhoneTextLargeStyle}"
+                   Grid.Row="0">
 				<Run Text="media" />
 				<Run Text="browser"
                      Foreground="Green" />

@@ -7,21 +7,13 @@
              mc:Ignorable="d"
              FontFamily="{StaticResource PhoneFontFamilyNormal}"
              FontSize="{StaticResource PhoneFontSizeNormal}"
-             Foreground="{StaticResource PhoneForegroundBrush}"
-             HorizontalAlignment="Left"
-             HorizontalContentAlignment="Left"
-             Height="800"
-             Width="480">
+             Foreground="{StaticResource PhoneForegroundBrush}">
 
     <Grid x:Name="LayoutRoot"
-          Height="800"
-          Width="480"
           VerticalAlignment="Stretch"
-          HorizontalAlignment="Stretch">
-        <Grid.Background>
-            <ImageBrush ImageSource="/Images/LockScreenBackground.jpg"
-                        Stretch="UniformToFill" />
-        </Grid.Background>
+          HorizontalAlignment="Stretch"
+          Width="480"
+          Height="800">
         <Grid.Clip>
             <RectangleGeometry Rect="0,0,480,800" />
         </Grid.Clip>
@@ -29,59 +21,88 @@
             <system:Double x:Key="PosterHeight">250</system:Double>
             <system:Double x:Key="PosterWidth">167</system:Double>
         </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="800" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="480" />
+        </Grid.ColumnDefinitions>
+
+        <Image Source="/Images/LockScreenBackground.jpg"
+               Stretch="Fill" />
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel"
-              VerticalAlignment="Top"
-              HorizontalAlignment="Left"
-              Height="600"
-              Width="480">
-            <Image Width="{StaticResource PosterWidth}"
-                   Height="{StaticResource PosterHeight}"
-                   VerticalAlignment="Top"
-                   HorizontalAlignment="Left"
-                   RenderTransformOrigin="0.5,0.5"
-                   Margin="0,16,0,0"
-                   x:Name="ImageOne">
-                <Image.RenderTransform>
-                    <CompositeTransform Rotation="-28.61" />
-                </Image.RenderTransform>
-            </Image>
+              Height="500"
+              VerticalAlignment="Top">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Image Width="{StaticResource PosterWidth}"
+                       Height="{StaticResource PosterHeight}"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Left"
+                       RenderTransformOrigin="0.5,0.5"
+                       Margin="0,16,0,0"
+                       x:Name="ImageOne">
+                    <Image.RenderTransform>
+                        <CompositeTransform Rotation="-28.61" />
+                    </Image.RenderTransform>
+                </Image>
 
-            <Image Width="{StaticResource PosterWidth}"
-                   Height="{StaticResource PosterHeight}"
-                   VerticalAlignment="Top"
-                   HorizontalAlignment="Right"
-                   x:Name="ImageThree"
-                   RenderTransformOrigin="0.5,0.5"
-                   Margin="0,16,0,0">
-                <Image.RenderTransform>
-                    <CompositeTransform Rotation="28.61" />
-                </Image.RenderTransform>
-            </Image>
+                <Image Width="{StaticResource PosterWidth}"
+                       Height="{StaticResource PosterHeight}"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Right"
+                       x:Name="ImageThree"
+                       RenderTransformOrigin="0.5,0.5"
+                       Margin="0,16,0,0"
+                       Grid.Column="2">
+                    <Image.RenderTransform>
+                        <CompositeTransform Rotation="28.61" />
+                    </Image.RenderTransform>
+                </Image>
 
-            <Image Width="{StaticResource PosterWidth}"
-                   Height="{StaticResource PosterHeight}"
-                   VerticalAlignment="Top"
-                   HorizontalAlignment="Center"
-                   x:Name="ImageTwo" />
+                <Image Width="{StaticResource PosterWidth}"
+                       Height="{StaticResource PosterHeight}"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Center"
+                       Grid.Column="1"
+                       x:Name="ImageTwo" />
+            </Grid>
 
-            <Image Width="{StaticResource PosterWidth}"
-                   Height="{StaticResource PosterHeight}"
-                   VerticalAlignment="Top"
-                   HorizontalAlignment="Center"
-                   x:Name="ImageFour"
-                   Margin="-200,229,0,0" />
+            <Grid Grid.Row="1"
+                  Margin="0,-25,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Image Width="{StaticResource PosterWidth}"
+                       Height="{StaticResource PosterHeight}"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Right"
+                       Margin="0,0,20,0"
+                       x:Name="ImageFour" />
 
-            <Image Width="{StaticResource PosterWidth}"
-                   Height="{StaticResource PosterHeight}"
-                   VerticalAlignment="Top"
-                   HorizontalAlignment="Center"
-                   x:Name="ImageFive"
-                   Margin="200,229,0,0" />
+                <Image Width="{StaticResource PosterWidth}"
+                       Height="{StaticResource PosterHeight}"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Left"
+                       x:Name="ImageFive"
+                       Margin="20,0,0,0"
+                       Grid.Column="1" />
+            </Grid>
         </Grid>
         <TextBlock VerticalAlignment="Bottom"
                    HorizontalAlignment="Center"
+                   Margin="0,0,0,0"
                    Style="{StaticResource PhoneTextLargeStyle}">
 				<Run Text="media" />
 				<Run Text="browser"

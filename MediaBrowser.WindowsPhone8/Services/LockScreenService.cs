@@ -4,8 +4,6 @@ using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Cimbalino.Phone.Toolkit.Services;
 using GalaSoft.MvvmLight.Ioc;
@@ -177,6 +175,7 @@ namespace MediaBrowser.WindowsPhone.Services
                 Limit = limit,
                 SortBy = new[] {ItemSortBy.Random},
                 UserId = AuthenticationService.Current.LoggedInUser.Id,
+                ImageTypes = new []{ImageType.Primary},
                 Recursive = true
             };
 
@@ -215,7 +214,7 @@ namespace MediaBrowser.WindowsPhone.Services
 
             var lockscreen = new LockScreenMultiImage {ItemsSource = list, Height = 800, Width = 480};
             
-            await SaveImage(lockscreen);
+            await ToImage(lockscreen);
 
             await SetLockScreenImage(LockScreenImageUrl);
         }
@@ -246,11 +245,41 @@ namespace MediaBrowser.WindowsPhone.Services
 
             var lockscreen = new LockScreenCollage { ItemsSource = list, Height = 800, Width = 480 };
 
-            await SaveImage(lockscreen);
+            await ToImage(lockscreen);
 
             await SetLockScreenImage(LockScreenImageUrl);
         }
 
+        private async Task ToImage(UIElement element)
+        {
+            element.Measure(new Size(480, 800));
+            element.Arrange(new Rect{ Height = 800, Width = 480});
+            //element.InvalidateMeasure();
+            //element.InvalidateArrange();
+            element.UpdateLayout();
+
+            var bitmap = new WriteableBitmap(480, 800);
+            bitmap.Render(element, null);
+            bitmap.Invalidate();
+
+            await SaveTheImage(bitmap);
+        }
+
+        private async Task SaveTheImage(WriteableBitmap bitmap)
+        {
+            if (await _storageService.FileExistsAsync(LockScreenFile))
+            {
+                await _storageService.DeleteFileAsync(LockScreenFile);
+            }
+
+            using (var fileStream = await _storageService.CreateFileAsync(LockScreenFile))
+            {
+                var encoder = new PngEncoder();
+                var image = bitmap.ToImage();
+                encoder.Encode(image, fileStream);
+            }
+        }
+        
         public async Task SetLockScreenImage(string uri)
         {
             if (uri.StartsWith("http"))
@@ -279,36 +308,13 @@ namespace MediaBrowser.WindowsPhone.Services
                 bitmap.SetSource(await stream.Content.ReadAsStreamAsync());
                 var writeableBitmap = new WriteableBitmap(bitmap);
 
-                await SaveImage(writeableBitmap);
+                await SaveTheImage(writeableBitmap);
 
                 await SetLockScreenImage(LockScreenImageUrl);
             }
             catch (Exception ex)
             {
                 _logger.ErrorException("DownloadImage()", ex);
-            }
-        }
-
-        private async Task SaveImage(UIElement element)
-        {
-            element.InvalidateMeasure();
-            element.InvalidateArrange();
-            element.UpdateLayout();
-
-            var bitmap = new WriteableBitmap(480, 800);
-            bitmap.Render(element, null);
-            bitmap.Invalidate();
-
-            if (await _storageService.FileExistsAsync(LockScreenFile))
-            {
-                await _storageService.DeleteFileAsync(LockScreenFile);
-            }
-
-            using (var fileStream = await _storageService.CreateFileAsync(LockScreenFile))
-            {
-                var encoder = new PngEncoder();
-                var image = bitmap.ToImage();
-                encoder.Encode(image, fileStream);
             }
         }
     }
