@@ -2,12 +2,14 @@
 using System.IO;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 
 namespace MediaBrowser.WindowsPhone.Controls
 {
     public partial class LockScreenCollage
     {
+        private readonly Image[] _imageItems;
         public static readonly DependencyProperty ItemsSourceProperty =
             DependencyProperty.Register("ItemsSource", typeof(IEnumerable<Stream>), typeof(LockScreenCollage), new PropertyMetadata(default(IEnumerable<Stream>), OnItemsSourceChanged));
 
@@ -20,6 +22,7 @@ namespace MediaBrowser.WindowsPhone.Controls
         public LockScreenCollage()
         {
             InitializeComponent();
+            _imageItems = new[] { ImageOne, ImageTwo, ImageThree, ImageFour, ImageFive, ImageSix, ImageSeven, ImageEight, ImageNine, ImageTen, ImageEleven, ImageTwelve };
         }
 
         private static void OnItemsSourceChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
@@ -31,12 +34,7 @@ namespace MediaBrowser.WindowsPhone.Controls
                 return;
             }
 
-            var bmpList = list.Select(x =>
-            {
-                var bmp = new BitmapImage();
-                bmp.SetSource(x);
-                return bmp;
-            }).ToList();
+            var bmpList = list.ToList();
 
             if (bmpList.Count < 12)
             {
@@ -57,7 +55,19 @@ namespace MediaBrowser.WindowsPhone.Controls
                 }
             }
 
-            lsmi.ImageList.ItemsSource = bmpList;
+            var i = 0;
+            foreach (var image in bmpList)
+            {
+                if (i >= lsmi._imageItems.Length)
+                {
+                    break;
+                }
+
+                var bitmap = new BitmapImage();
+                bitmap.SetSource(image);
+                lsmi._imageItems[i].Source = bitmap;
+                i++;
+            }
         }
     }
 }

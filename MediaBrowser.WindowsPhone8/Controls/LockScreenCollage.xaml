@@ -4,7 +4,6 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:system="clr-namespace:System;assembly=mscorlib"
-             xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
              mc:Ignorable="d"
              FontFamily="{StaticResource PhoneFontFamilyNormal}"
              FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -15,10 +14,10 @@
           VerticalAlignment="Stretch"
           HorizontalAlignment="Stretch">
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="800" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.Clip>
             <RectangleGeometry Rect="0,0,480,800" />
@@ -36,25 +35,113 @@
               VerticalAlignment="Top"
               HorizontalAlignment="Stretch"
               Grid.Row="0">
-            <ListBox ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                     ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                     x:Name="ImageList"
-                     Height="800">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <Image Height="{StaticResource PosterHeight}"
-                               Width="{StaticResource PosterWidth}"
-                               Source="{Binding}"
-                               Stretch="UniformToFill"
-                               Opacity="0.8"/>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-                <ListBox.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <toolkit:WrapPanel Orientation="Horizontal"/>
-                    </ItemsPanelTemplate>
-                </ListBox.ItemsPanel>
-            </ListBox>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="240" />
+                <RowDefinition Height="240" />
+                <RowDefinition Height="240" />
+                <RowDefinition Height="240" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Image Height="{StaticResource PosterHeight}"
+                   Width="{StaticResource PosterWidth}"
+                   Grid.Row="0"
+                   Grid.Column="0"
+                   Stretch="UniformToFill"
+                   x:Name="ImageOne"
+                   Opacity="0.8" />
+
+            <Image Height="{StaticResource PosterHeight}"
+                   Width="{StaticResource PosterWidth}"
+                   Grid.Row="0"
+                   Grid.Column="1"
+                   x:Name="ImageTwo"
+                   Stretch="UniformToFill"
+                   Opacity="0.8" />
+
+            <Image Height="{StaticResource PosterHeight}"
+                   Width="{StaticResource PosterWidth}"
+                   Grid.Row="0"
+                   Grid.Column="2"
+                   x:Name="ImageThree"
+                   Stretch="UniformToFill"
+                   Opacity="0.8" />
+
+            <Image Height="{StaticResource PosterHeight}"
+                   Width="{StaticResource PosterWidth}"
+                   Grid.Row="1"
+                   Grid.Column="0"
+                   x:Name="ImageFour"
+                   Stretch="UniformToFill"
+                   Opacity="0.8" />
+
+            <Image Height="{StaticResource PosterHeight}"
+                   Width="{StaticResource PosterWidth}"
+                   Grid.Row="1"
+                   Grid.Column="1"
+                   x:Name="ImageFive"
+                   Stretch="UniformToFill"
+                   Opacity="0.8" />
+
+            <Image Height="{StaticResource PosterHeight}"
+                   Width="{StaticResource PosterWidth}"
+                   Grid.Row="1"
+                   Grid.Column="2"
+                   x:Name="ImageSix"
+                   Stretch="UniformToFill"
+                   Opacity="0.8" />
+
+            <Image Height="{StaticResource PosterHeight}"
+                   Width="{StaticResource PosterWidth}"
+                   Grid.Row="2"
+                   Grid.Column="0"
+                   x:Name="ImageSeven"
+                   Stretch="UniformToFill"
+                   Opacity="0.8" />
+
+            <Image Height="{StaticResource PosterHeight}"
+                   Width="{StaticResource PosterWidth}"
+                   Grid.Row="2"
+                   Grid.Column="1"
+                   x:Name="ImageEight"
+                   Stretch="UniformToFill"
+                   Opacity="0.8" />
+
+            <Image Height="{StaticResource PosterHeight}"
+                   Width="{StaticResource PosterWidth}"
+                   Grid.Row="2"
+                   Grid.Column="2"
+                   x:Name="ImageNine"
+                   Stretch="UniformToFill"
+                   Opacity="0.8" />
+
+            <Image Height="{StaticResource PosterHeight}"
+                   Width="{StaticResource PosterWidth}"
+                   Grid.Row="3"
+                   Grid.Column="0"
+                   x:Name="ImageTen"
+                   Stretch="UniformToFill"
+                   Opacity="0.8" />
+
+            <Image Height="{StaticResource PosterHeight}"
+                   Width="{StaticResource PosterWidth}"
+                   Grid.Row="3"
+                   Grid.Column="1"
+                   x:Name="ImageEleven"
+                   Stretch="UniformToFill"
+                   Opacity="0.8" />
+
+            <Image Height="{StaticResource PosterHeight}"
+                   Width="{StaticResource PosterWidth}"
+                   Grid.Row="3"
+                   Grid.Column="2"
+                   x:Name="ImageTwelve"
+                   Stretch="UniformToFill"
+                   Opacity="0.8" />
         </Grid>
         <TextBlock VerticalAlignment="Bottom"
                    HorizontalAlignment="Center"
