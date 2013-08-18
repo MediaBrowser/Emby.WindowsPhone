@@ -7,12 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using Cimbalino.Phone.Toolkit.Services;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
 using JetBrains.Annotations;
 using MediaBrowser.Model;
+using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Net;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Resources;
@@ -135,6 +137,23 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 });
             }
         }
+
+        public RelayCommand<SelectionChangedEventArgs> CollectionChangedCommand
+        {
+            get
+            {
+                return new RelayCommand<SelectionChangedEventArgs>(args =>
+                {
+                    if (args == null)
+                    {
+                        return;
+                    }
+
+                    var collection = (BaseItemDto) args.AddedItems[0];
+                    App.SpecificSettings.LockScreenCollectionId = collection.Id;
+                });
+            }
+        } 
 
         private void LoadPosterStreams()
         {

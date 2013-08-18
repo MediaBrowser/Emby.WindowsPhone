@@ -50,7 +50,7 @@ namespace MediaBrowser.WindowsPhone.Controls
                 }
                 else
                 {
-                    var extra = bmpList.Take(difference);
+                    var extra = bmpList.Take(difference).ToList();
                     bmpList.AddRange(extra);
                 }
             }
