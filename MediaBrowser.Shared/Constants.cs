@@ -77,6 +77,7 @@
             public const string NotificationCountMsg = "NotificationCountMsg";
             public const string NotifcationNavigationMsg = "NotifcationNavigationMsg";
             public const string ChangeActorMsg = "ChangeActorMsg";
+            public const string GenericItemChangedMsg = "GenericItemChangedMsg";
         }
 
         public class Pages
@@ -103,6 +104,7 @@
             public const string SearchView = ViewsPath + "SearchView.xaml";
             public const string VideoPlayerView = ViewsPath + "VideoPlayerView.xaml";
             public const string ActorView = ViewsPath + "ActorView.xaml";
+            public const string GenericItemView = ViewsPath + "GenericItemView.xaml";
 
             public class Remote
             {

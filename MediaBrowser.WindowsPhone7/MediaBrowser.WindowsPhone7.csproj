@@ -247,6 +247,7 @@
     <Compile Include="Model\MBLogger.cs" />
     <Compile Include="Model\NavigationService.cs" />
     <Compile Include="ViewModel\ActorViewModel.cs" />
+    <Compile Include="ViewModel\GenericItemViewModel.cs" />
     <Compile Include="ViewModel\NotificationsViewModel.cs" />
     <Compile Include="ViewModel\PlaylistViewModel.cs" />
     <Compile Include="ViewModel\Predefined\MovieCollectionViewModel.cs" />
@@ -259,6 +260,9 @@
     </Compile>
     <Compile Include="Views\FullPlaylistView.xaml.cs">
       <DependentUpon>FullPlaylistView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GenericItemView.xaml.cs">
+      <DependentUpon>GenericItemView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ManualUsernameView.xaml.cs">
       <DependentUpon>ManualUsernameView.xaml</DependentUpon>
@@ -433,6 +437,10 @@
     </Page>
     <Page Include="Views\FullPlaylistView.xaml">
       <SubType>Form</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\GenericItemView.xaml">
+      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainPage.xaml">

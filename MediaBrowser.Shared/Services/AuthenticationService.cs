@@ -73,7 +73,15 @@ namespace MediaBrowser.Services
             _settingsService.Save();
         }
 
-        public UserDto LoggedInUser { get; set; }
+        public UserDto LoggedInUser { get; private set; }
         public bool IsLoggedIn { get; private set; }
+
+        public string LoggedInUserId
+        {
+            get
+            {
+                return LoggedInUser.Id;
+            }
+        }
     }
 }

@@ -109,7 +109,8 @@
                     </StackPanel>
                 </DataTemplate>
             </controls:Panorama.TitleTemplate>
-            <controls:PanoramaItem Header="views">
+            <controls:PanoramaItem Header="views" 
+                                   Visibility="Collapsed">
                 <StackPanel Orientation="Vertical"
                             Margin="12,0,0,0">
                     <HyperlinkButton NavigateUri="/Views/Predefined/MovieCollectionView.xaml"

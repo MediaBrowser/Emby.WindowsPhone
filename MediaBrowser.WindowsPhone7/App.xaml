@@ -53,7 +53,8 @@
             
             <!--Cimbalino Converters-->
             <cimbalino:StringToUppercaseConverter x:Key="StringToUppercaseConverter"/>
-            
+            <cimbalino:StringToLowercaseConverter x:Key="StringToLowercaseConverter" />
+
             <!-- Local Converters -->
             <converters:ImageUrlConverter x:Key="ImageUrlConverter" />
             <converters:EpisodeNumberVisibilityConverter x:Key="EpisodeNumberVisibilityConverter" />

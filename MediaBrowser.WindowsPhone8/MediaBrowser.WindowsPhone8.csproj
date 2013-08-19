@@ -215,6 +215,9 @@
     <Compile Include="..\MediaBrowser.WindowsPhone7\ViewModel\FolderViewModel.cs">
       <Link>ViewModel\FolderViewModel.cs</Link>
     </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone7\ViewModel\GenericItemViewModel.cs">
+      <Link>ViewModel\GenericItemViewModel.cs</Link>
+    </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone7\ViewModel\MainViewModel.cs">
       <Link>ViewModel\MainViewModel.cs</Link>
     </Compile>
@@ -291,6 +294,10 @@
     <Compile Include="..\MediaBrowser.WindowsPhone7\Views\FullPlaylistView.xaml.cs">
       <Link>Views\FullPlaylistView.xaml.cs</Link>
       <DependentUpon>FullPlaylistView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone7\Views\GenericItemView.xaml.cs">
+      <Link>Views\GenericItemView.xaml.cs</Link>
+      <DependentUpon>GenericItemView.xaml</DependentUpon>
     </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone7\Views\MainPage.xaml.cs">
       <Link>Views\MainPage.xaml.cs</Link>
@@ -511,6 +518,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\FullPlaylistView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\GenericItemView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

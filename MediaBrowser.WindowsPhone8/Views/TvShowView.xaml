@@ -63,19 +63,17 @@
                         TitleTemplate="{StaticResource LikeWp7TitleTemplate}">
             <phone:PanoramaItem Header="seasons">
                 <Grid>
-                    <scott:PhoneListBox ItemsSource="{Binding Seasons}"
-                                        Text="No seasons found"
-                                        TextHorizontalAlignment="Center"
-                                        TextVerticalAlignment="Top"
-                                        TextStyle="{StaticResource PhoneTextLargeStyle}">
-                        <scott:PhoneListBox.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <toolkit:WrapPanel MaxWidth="420"
-                                                   ItemHeight="200"
-                                                   ItemWidth="200" />
-                            </ItemsPanelTemplate>
-                        </scott:PhoneListBox.ItemsPanel>
-                        <scott:PhoneListBox.ItemTemplate>
+                    <phone:LongListSelector ItemsSource="{Binding Seasons}"
+                                        LayoutMode="Grid"
+                                            GridCellSize="200,200">
+                        <phone:LongListSelector.ListHeader>
+                            <TextBlock Text="No seasons found"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Top"
+                                       Style="{StaticResource PhoneTextLargeStyle}"
+                                       Visibility="{Binding Seasons.Count, Converter={StaticResource IntToVisibilityConverter}, ConverterParameter=true}"/>
+                        </phone:LongListSelector.ListHeader>
+                        <phone:LongListSelector.ItemTemplate>
                             <DataTemplate>
                                 <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
                                                  Margin="6"
@@ -84,7 +82,7 @@
                                     <Grid>
                                         <controls:SuperImage PlaceholderImageSource="/Images/MBLogo.png"
                                                              Source="{Binding Converter={StaticResource ImageUrlConverter}}"
-                                                             Stretch="UniformToFill"
+                                                             Stretch="Uniform"
                                                              PlaceholderImageStretch="Uniform"
                                                              Height="173"
                                                              MaxWidth="120" />
@@ -99,8 +97,8 @@
                                     </Grid>
                                 </HyperlinkButton>
                             </DataTemplate>
-                        </scott:PhoneListBox.ItemTemplate>
-                    </scott:PhoneListBox>
+                        </phone:LongListSelector.ItemTemplate>
+                    </phone:LongListSelector>
                 </Grid>
             </phone:PanoramaItem>
 

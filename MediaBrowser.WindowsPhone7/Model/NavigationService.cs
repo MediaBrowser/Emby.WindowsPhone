@@ -1,5 +1,7 @@
 ﻿using System.Windows;
+using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
+using MediaBrowser.WindowsPhone.ViewModel;
 using Microsoft.Phone.Net.NetworkInformation;
 using MediaBrowser.Model.Dto;
 
@@ -71,6 +73,17 @@ namespace MediaBrowser.WindowsPhone.Model
                 case "musicalbum":
                     Messenger.Default.Send(new NotificationMessage(item, Constants.Messages.MusicAlbumChangedMsg));
                     NavigateTo(Constants.Pages.AlbumView);
+                    break;
+                case "photo":
+
+                    break;
+                default:
+                    if (SimpleIoc.Default.GetInstance<GenericItemViewModel>() != null)
+                    {
+                        Messenger.Default.Send(new NotificationMessage(item, Constants.Messages.GenericItemChangedMsg));
+                    }
+
+                    NavigateTo(Constants.Pages.GenericItemView);
                     break;
             }
         }
