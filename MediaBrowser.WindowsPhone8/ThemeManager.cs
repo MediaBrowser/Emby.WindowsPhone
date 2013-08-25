@@ -1,5 +1,5 @@
 ﻿//
-// Copyright (c) 2012 Jeff Wilcox
+// Copyright © Jeff Wilcox
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -24,6 +24,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Markup;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using System.Windows.Resources;
 
 //
@@ -119,6 +120,8 @@ namespace Microsoft.Phone.Controls
     /// </summary>
     public static class ThemeManager
     {
+        private const double DefaultBackgroundBrushOpacity = 0.8d;
+
         static ThemeManager()
         {
             // The default system tray overriding value. This will have a 
@@ -137,8 +140,9 @@ namespace Microsoft.Phone.Controls
         public static ThemeManagerOverrideOptions OverrideOptions { get; set; }
 
         private static Color _chrome;
-        private static Color _background;
         private static Color _foreground;
+        private static Color _background;
+        private static Brush _backgroundBrush;
 
         private static bool _applied;
         private static Theme _themeAtStartup;
@@ -234,6 +238,38 @@ namespace Microsoft.Phone.Controls
         public static void ToDarkTheme()
         {
             OverrideTheme(Theme.Dark);
+        }
+
+        /// <summary>
+        /// Sets a brush as the default background brush for all pages.
+        /// </summary>
+        /// <param name="brush"></param>
+        public static void SetBackground(Brush brush)
+        {
+            _backgroundBrush = brush;
+        }
+
+        /// <summary>
+        /// Sets an image as the default background brush for all pages.
+        /// </summary>
+        /// <param name="background">Uri to the background.</param>
+        /// <param name="opacity">Opacity for the background image.</param>
+        public static void SetBackground(Uri background, double opacity)
+        {
+            SetBackground(new ImageBrush
+            {
+                ImageSource = new BitmapImage(background),
+                Opacity = opacity
+            });
+        }
+
+        /// <summary>
+        /// Sets an image as the default background brush for all pages.
+        /// </summary>
+        /// <param name="background">Uri to the background.</param>
+        public static void SetBackground(Uri background)
+        {
+            SetBackground(background, DefaultBackgroundBrushOpacity);
         }
 
         /// <summary>
@@ -643,7 +679,7 @@ namespace Microsoft.Phone.Controls
                         var asControl = frame as Control;
                         if (asControl != null)
                         {
-                            asControl.Background = new SolidColorBrush(background);
+                            asControl.Background = _backgroundBrush != null ? _backgroundBrush : new SolidColorBrush(background);
                         }
 
                         // Hook up to the navigation events for the tray.

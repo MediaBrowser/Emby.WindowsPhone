@@ -254,8 +254,6 @@ namespace MediaBrowser.WindowsPhone.Services
         {
             element.Measure(new Size(480, 800));
             element.Arrange(new Rect{ Height = 800, Width = 480});
-            //element.InvalidateMeasure();
-            //element.InvalidateArrange();
             element.UpdateLayout();
 
             var bitmap = new WriteableBitmap(480, 800);
