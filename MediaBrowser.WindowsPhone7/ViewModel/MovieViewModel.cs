@@ -113,8 +113,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 {
                     CanUpdateFavourites = false;
 
-                    await _apiClient.UpdateFavoriteStatusAsync(SelectedMovie.Id, AuthenticationService.Current.LoggedInUser.Id, !SelectedMovie.UserData.IsFavorite);
-                    SelectedMovie.UserData.IsFavorite = !SelectedMovie.UserData.IsFavorite;
+                    SelectedMovie.UserData = await _apiClient.UpdateFavoriteStatusAsync(SelectedMovie.Id, AuthenticationService.Current.LoggedInUser.Id, !SelectedMovie.UserData.IsFavorite);
                 }
                 catch (HttpException ex)
                 {

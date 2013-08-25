@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using MediaBrowser.ApiInteraction.WebSocket;
 using MediaBrowser.Model;
+using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Querying;
@@ -53,6 +54,11 @@ namespace MediaBrowser.Design
             throw new NotImplementedException();
         }
 
+        Task<UserItemDataDto> IApiClient.UpdateUserItemRatingAsync(string itemId, string userId, bool likes)
+        {
+            throw new NotImplementedException();
+        }
+
         public System.Threading.Tasks.Task<Model.Users.AuthenticationResult> AuthenticateUserAsync(string username, byte[] sha1Hash)
         {
             throw new NotImplementedException();
@@ -76,7 +82,27 @@ namespace MediaBrowser.Design
             throw new NotImplementedException();
         }
 
+        public Task<ItemReviewsResult> GetCriticReviews(string itemId, CancellationToken cancellationToken, int? startIndex = null, int? limit = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<ThemeMediaResult> GetThemeSongsAsync(string userId, string itemId, bool inheritFromParents, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<SearchHintResult> GetSearchHintsAsync(string userId, string searchTerm, int? startIndex = null, int? limit = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<ThemeMediaResult> GetThemeVideosAsync(string userId, string itemId, bool inheritFromParents, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<AllThemeMediaResult> GetAllThemeMediaAsync(string userId, string itemId, bool inheritFromParents, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
@@ -116,12 +142,27 @@ namespace MediaBrowser.Design
             throw new NotImplementedException();
         }
 
+        public Task<UserDto[]> GetPublicUsersAsync(CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
         public System.Threading.Tasks.Task<Model.Session.SessionInfoDto[]> GetClientSessionsAsync()
         {
             throw new NotImplementedException();
         }
 
         public System.Threading.Tasks.Task<Model.Globalization.CountryInfo[]> GetCountriesAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        Task<UserItemDataDto> IApiClient.UpdatePlayedStatusAsync(string itemId, string userId, bool wasPlayed)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task<UserItemDataDto> IApiClient.UpdateFavoriteStatusAsync(string itemId, string userId, bool isFavorite)
         {
             throw new NotImplementedException();
         }
@@ -607,6 +648,11 @@ namespace MediaBrowser.Design
             throw new NotImplementedException();
         }
 
+        Task<UserItemDataDto> IApiClient.ClearUserItemRatingAsync(string itemId, string userId)
+        {
+            throw new NotImplementedException();
+        }
+
         public System.Threading.Tasks.Task SendPlaystateCommandAsync(string sessionId, Model.Session.PlaystateRequest request)
         {
             throw new NotImplementedException();
@@ -622,6 +668,11 @@ namespace MediaBrowser.Design
         {
             get { return "scottisafool.homeserver.com"; }
             set { }
+        }
+
+        public Task<DisplayPreferences> GetDisplayPreferencesAsync(string id, string userId, string client, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
         }
 
         public System.Threading.Tasks.Task UpdateDisplayPreferencesAsync(Model.Entities.DisplayPreferences displayPreferences, string userId, string client)

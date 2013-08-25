@@ -132,9 +132,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
 
                     try
                     {
-                        await _apiClient.UpdatePlayedStatusAsync(item.Id, AuthenticationService.Current.LoggedInUser.Id, true);
-                        item.UserData.Played = true;
-                        item.RecursiveUnplayedItemCount = 0;
+                        item.UserData = await _apiClient.UpdatePlayedStatusAsync(item.Id, AuthenticationService.Current.LoggedInUser.Id, true);
                     }
                     catch (HttpException ex)
                     {
