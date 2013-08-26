@@ -67,6 +67,7 @@
             <converters:ZeroCountBrushConverter x:Key="ZeroCountBrushConverter"
                                                 ZeroCountBrush="{StaticResource PhoneSubtleBrush}"
                                                 AltBrush="{StaticResource PhoneAccentBrush}" />
+            <converters:CriticRatingConverter x:Key="CriticRatingConverter" />
 
             <local:LocalizedStrings xmlns:local="clr-namespace:MediaBrowser.WindowsPhone"
                                     x:Key="LocalizedStrings" />
