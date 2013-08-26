@@ -11,6 +11,7 @@
                 xmlns:controls="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
                 xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
                 xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+                xmlns:telerikInput="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Input"
                 FontFamily="{StaticResource PhoneFontFamilyNormal}"
                 FontSize="{StaticResource PhoneFontSizeNormal}"
                 Foreground="{StaticResource PhoneForegroundBrush}"
@@ -200,19 +201,11 @@
                                                        FontSize="{StaticResource PhoneFontSizeMediumLarge}" />
                                             <StackPanel Orientation="Horizontal"
                                                         Margin="12,0,0,0">
-                                                <!--<toolkit:Rating VerticalAlignment="Top"
-                                                                Value="{Binding CommunityRating}"
-                                                                Foreground="{StaticResource PhoneAccentBrush}"
-                                                                HorizontalAlignment="Left"
-                                                                Margin="12,12,0,0"
-                                                                Background="Transparent">
-                                                    <toolkit:Rating.FilledItemStyle>
-                                                        <Style TargetType="toolkit:RatingItem">
-                                                            <Setter Property="Foreground"
-                                                                    Value="{StaticResource PhoneAccentBrush}" />
-                                                        </Style>
-                                                    </toolkit:Rating.FilledItemStyle>
-                                                </toolkit:Rating>-->
+                                                <telerikInput:RadRating Value="{Binding CommunityRating, Converter={StaticResource RatingConverter}}"
+                                                                        IsReadOnly="True"
+                                                                        ItemShapeHeight="20"
+                                                                        Margin="12"
+                                                                        ItemShapeWidth="20" />
                                                 <StackPanel Orientation="Horizontal"
                                                             Visibility="{Binding CriticRating, Converter={StaticResource NullVisibilityConverter}}">
                                                     <Image Source="{Binding CriticRating, Converter={StaticResource CriticRatingConverter}}"
