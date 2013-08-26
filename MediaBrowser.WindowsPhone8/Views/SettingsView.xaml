@@ -408,7 +408,7 @@
                                                  GroupName="LockScreen"
                                                  IsChecked="{Binding LockScreenType, Source={StaticResource SpecificSettings}, Mode=TwoWay, Converter={StaticResource LockScreenTypeConverter}, ConverterParameter=Default}">
                                         <coding4Fun:LockScreenPreview ShowNotificationCount="False"
-                                                                      LockScreenImageSource="/Images/LockScreenDefault.WXGA.png" />
+                                                                      LockScreenImageSource="/DefaultLockScreen.jpg" />
                                     </RadioButton>
                                     <TextBlock Text="Default lock screen"
                                                Style="{StaticResource PhoneTextSmallStyle}"

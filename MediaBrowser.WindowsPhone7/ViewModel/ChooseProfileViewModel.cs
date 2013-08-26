@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using Cimbalino.Phone.Toolkit.Services;
@@ -94,7 +95,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                     try
                     {
-                        var profiles = await _apiClient.GetPublicUsersAsync();
+                        var profiles = await _apiClient.GetPublicUsersAsync(new CancellationToken());
                         foreach (var profile in profiles)
                         {
                             Profiles.Add(profile);
