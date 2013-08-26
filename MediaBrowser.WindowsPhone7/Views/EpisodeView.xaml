@@ -11,6 +11,7 @@
                 xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP71"
                 xmlns:controls="clr-namespace:MediaBrowser.WindowsPhone.Controls"
                 xmlns:controls1="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
+                xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
                 mc:Ignorable="d"
                 d:DesignWidth="480"
                 d:DesignHeight="696"
@@ -88,26 +89,33 @@
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel"
               Grid.Row="1">
-            <ScrollViewer>
-                <StackPanel Orientation="Vertical">
-                    <Button Style="{StaticResource EmptyButtonStyle}"
-                            HorizontalContentAlignment="Center"
-                            VerticalContentAlignment="Center"
-                            Command="{Binding Main.PlayMovieCommand, Source={StaticResource Locator}}"
-                            CommandParameter="{Binding SelectedEpisode}">
-                        <Grid>
-                            <Image Source="{Binding SelectedEpisode, Converter={StaticResource ImageUrlConverter}, ConverterParameter=episode}" />
-                            <controls1:RoundButton ImageSource="/Icons/appbar.transport.play.rest.png"
-                                                   IsHitTestVisible="False"
-                                                   HorizontalAlignment="Center"
-                                                   VerticalAlignment="Center" />
-                        </Grid>
-                    </Button>
-                    <TextBlock Text="{Binding SelectedEpisode.Overview}"
-                               TextWrapping="Wrap"
-                               Style="{StaticResource PhoneTextNormalStyle}" />
-                </StackPanel>
-            </ScrollViewer>
+            <telerikPrimitives:RadSlideView ItemsSource="{Binding Episodes}"
+                                            SelectedItem="{Binding SelectedEpisode, Mode=TwoWay}">
+                <telerikPrimitives:RadSlideView.ItemTemplate>
+                    <DataTemplate>
+                        <ScrollViewer>
+                            <StackPanel Orientation="Vertical">
+                                <Button Style="{StaticResource EmptyButtonStyle}"
+                                        HorizontalContentAlignment="Center"
+                                        VerticalContentAlignment="Center"
+                                        Command="{Binding Main.PlayMovieCommand, Source={StaticResource Locator}}"
+                                        CommandParameter="{Binding}">
+                                    <Grid>
+                                        <Image Source="{Binding Converter={StaticResource ImageUrlConverter}, ConverterParameter=episode}" />
+                                        <controls1:RoundButton ImageSource="/Icons/appbar.transport.play.rest.png"
+                                                               IsHitTestVisible="False"
+                                                               HorizontalAlignment="Center"
+                                                               VerticalAlignment="Center" />
+                                    </Grid>
+                                </Button>
+                                <TextBlock Text="{Binding Overview}"
+                                           TextWrapping="Wrap"
+                                           Style="{StaticResource PhoneTextNormalStyle}" />
+                            </StackPanel>
+                        </ScrollViewer>
+                    </DataTemplate>
+                </telerikPrimitives:RadSlideView.ItemTemplate>
+            </telerikPrimitives:RadSlideView>
         </Grid>
 
     </Grid>
