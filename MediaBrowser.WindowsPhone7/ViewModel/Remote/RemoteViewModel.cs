@@ -1,6 +1,11 @@
-﻿using GalaSoft.MvvmLight;
+﻿using System;
+using System.Threading.Tasks;
+using Cimbalino.Phone.Toolkit.Services;
+using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using MediaBrowser.Model;
-using MediaBrowser.WindowsPhone.Model;
+using MediaBrowser.Services;
+using INavigationService = MediaBrowser.WindowsPhone.Model.INavigationService;
 
 namespace MediaBrowser.WindowsPhone.ViewModel
 {
@@ -15,6 +20,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         private readonly INavigationService _navigationService;
         private readonly IExtendedApiClient _apiClient;
 
+        private bool _dataLoaded;
+
         /// <summary>
         /// Initializes a new instance of the RemoteViewModel class.
         /// </summary>
@@ -22,6 +29,58 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             _navigationService = navigationService;
             _apiClient = apiClient;
+        }
+
+        public bool IsLoading { get; set; }
+        public bool SendingCommand { get; set; }
+        public bool IsPinned { get; set; }
+
+        public RelayCommand PageLoadedCommand
+        {
+            get
+            {
+                return new RelayCommand(async () =>
+                {
+                    IsPinned = TileService.Current.TileExists(Constants.Pages.Remote.RemoteView);
+
+                    await GetClients(false);
+                });
+            }
+        }
+
+        private async Task GetClients(bool isRefresh)
+        {
+            if (!_navigationService.IsNetworkAvailable || (_dataLoaded && !isRefresh))
+            {
+                return;
+            }
+
+
+        }
+
+        public RelayCommand PinCommand
+        {
+            get
+            {
+                return new RelayCommand(() =>
+                {
+                    if (IsPinned)
+                    {
+                        // Unpin the tile
+                        var tile = TileService.Current.GetTile(Constants.Pages.Remote.RemoteView);
+                        tile.Delete();
+                    }
+                    else
+                    {
+                        var tileData = new ShellTileServiceFlipTileData
+                        {
+                            Title = "MB Remote"
+                        };
+
+                        TileService.Current.Create(new Uri(Constants.Pages.Remote.RemoteView, UriKind.Relative), tileData, false);
+                    }
+                });
+            }
         }
     }
 }
