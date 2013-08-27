@@ -14,6 +14,7 @@ using System.Linq;
 using MediaBrowser.Model.Dto;
 using System.Threading.Tasks;
 using MediaBrowser.WindowsPhone.Resources;
+using MediaBrowser.WindowsPhone.Services;
 using ScottIsAFool.WindowsPhone.ViewModel;
 using Microsoft.Phone.Tasks;
 using INavigationService = MediaBrowser.WindowsPhone.Model.INavigationService;

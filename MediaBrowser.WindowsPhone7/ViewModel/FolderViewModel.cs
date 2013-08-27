@@ -15,6 +15,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using MediaBrowser.WindowsPhone.Resources;
+using MediaBrowser.WindowsPhone.Services;
 using Microsoft.Phone.Shell;
 #if !WP8
 using ScottIsAFool.WindowsPhone;

@@ -124,7 +124,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RequestResult.cs" />
     <Compile Include="Services\AuthenticationService.cs" />
-    <Compile Include="Services\TileService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Fody.targets" />

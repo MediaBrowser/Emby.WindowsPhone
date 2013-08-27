@@ -380,6 +380,7 @@
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
     <Compile Include="Services\LockScreenService.cs" />
+    <Compile Include="Services\TileService.cs" />
     <Compile Include="ThemeManager.cs" />
     <Compile Include="ViewModel\VideoPlayerViewModel.cs" />
     <Compile Include="Views\FindServerView.xaml.cs">
@@ -414,6 +415,7 @@
     <Content Include="..\MediaBrowser.WindowsPhone7\Images\tvcollection.png">
       <Link>Images\tvcollection.png</Link>
     </Content>
+    <Content Include="Assets\Tiles\MBRemoteTile.png" />
     <Content Include="DefaultLockScreen.jpg" />
     <Content Include="Icons\appbar.feature.search.rest.png" />
     <Content Include="Icons\appbar.check.rest.png" />

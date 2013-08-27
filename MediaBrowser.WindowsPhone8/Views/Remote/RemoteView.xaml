@@ -60,7 +60,7 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             
-            <toolkit:ListPicker />
+            <toolkit:ListPicker ItemsSource="{Binding Clients}"/>
             
             <Grid Grid.Row="1">
                 

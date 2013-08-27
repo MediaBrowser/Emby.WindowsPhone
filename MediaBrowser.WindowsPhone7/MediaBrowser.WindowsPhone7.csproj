@@ -219,6 +219,9 @@
     <Compile Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.Designer.cs">
       <Link>Resources\AppResources.Designer.cs</Link>
     </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone8\Services\TileService.cs">
+      <Link>Services\TileService.cs</Link>
+    </Compile>
     <Compile Include="Behaviours\EnterKeyBehaviour.cs" />
     <Compile Include="Behaviours\OnTextPropertyChangedBehaviour.cs" />
     <Compile Include="Controls\DynamicTextBlock.cs" />
@@ -373,6 +376,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Content Include="..\MediaBrowser.WindowsPhone8\Assets\Tiles\MBRemoteTile.png">
+      <Link>Assets\Tiles\MBRemoteTile.png</Link>
+    </Content>
     <Content Include="Content\About\AboutStyles.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

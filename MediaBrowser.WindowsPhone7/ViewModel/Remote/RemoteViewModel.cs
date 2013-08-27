@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Cimbalino.Phone.Toolkit.Services;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MediaBrowser.Model;
 using MediaBrowser.Services;
+using MediaBrowser.WindowsPhone.Services;
 using INavigationService = MediaBrowser.WindowsPhone.Model.INavigationService;
 
 namespace MediaBrowser.WindowsPhone.ViewModel
@@ -34,6 +36,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public bool IsLoading { get; set; }
         public bool SendingCommand { get; set; }
         public bool IsPinned { get; set; }
+        public List<object> Clients { get; set; }
 
         public RelayCommand PageLoadedCommand
         {
@@ -69,15 +72,20 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         // Unpin the tile
                         var tile = TileService.Current.GetTile(Constants.Pages.Remote.RemoteView);
                         tile.Delete();
+
+                        IsPinned = false;
                     }
                     else
                     {
                         var tileData = new ShellTileServiceFlipTileData
                         {
-                            Title = "MB Remote"
+                            Title = "MB Remote",
+                            BackgroundImage = new Uri("/Assets/Tiles/MBRemoteTile.png", UriKind.Relative)
                         };
 
                         TileService.Current.Create(new Uri(Constants.Pages.Remote.RemoteView, UriKind.Relative), tileData, false);
+
+                        IsPinned = true;
                     }
                 });
             }

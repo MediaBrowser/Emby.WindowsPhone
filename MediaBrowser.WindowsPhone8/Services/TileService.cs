@@ -1,9 +1,9 @@
 ﻿using System.Linq;
 using Cimbalino.Phone.Toolkit.Services;
 
-namespace MediaBrowser.Services
+namespace MediaBrowser.WindowsPhone.Services
 {
-    public class TileService : ShellTileService
+    public class TileService : ShellTileWithCreateService 
     {
         private static TileService _current;
 
