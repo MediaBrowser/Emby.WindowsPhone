@@ -25,12 +25,6 @@
                                    Foreground="Green"
                                    Style="{StaticResource PhoneTextNormalStyle}"
                                    Margin="0" />
-                        <!--<TextBlock Text="3"
-                                   FontFamily="Euphemia"
-                                   Foreground="Green"
-                                   Margin="0,-10,0,0"
-                                   Padding="0"
-                                   VerticalAlignment="Top" />-->
                     </StackPanel>
                 </ControlTemplate>
             </Setter.Value>
@@ -142,7 +136,7 @@
                                   Visibility="Collapsed"
                                   HorizontalAlignment="Stretch"
                                   VerticalAlignment="Top"
-                                  Margin="4,-19,0,15">
+                                  Margin="4,0,0,15">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="5*" />
                                     <ColumnDefinition Width="2*" />
