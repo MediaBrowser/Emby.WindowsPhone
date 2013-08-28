@@ -126,7 +126,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 {
                     SetProgressBar(AppResources.SysTrayCheckingCollection);
 
-                    var tileUrl = string.Format(Constants.PhoneTileUrlFormat, SelectedFolder.Id, SelectedFolder.Name);
+                    var tileUrl = string.Format(Constants.PhoneTileUrlFormat, "Collection", SelectedFolder.Id, SelectedFolder.Name);
 
                     CanPinCollection = TileService.Current.TileExists(tileUrl);
 

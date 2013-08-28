@@ -10,6 +10,7 @@ using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Querying;
 using MediaBrowser.Model.Search;
+using MediaBrowser.Model.Session;
 using MediaBrowser.Model.Web;
 
 namespace MediaBrowser.Design
@@ -60,6 +61,11 @@ namespace MediaBrowser.Design
         }
 
         public System.Threading.Tasks.Task<Model.Users.AuthenticationResult> AuthenticateUserAsync(string username, byte[] sha1Hash)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task SendMessageCommandAsync(string sessionId, MessageCommand command)
         {
             throw new NotImplementedException();
         }
@@ -644,6 +650,11 @@ namespace MediaBrowser.Design
         }
 
         public System.Threading.Tasks.Task SendPlayCommandAsync(string sessionId, Model.Session.PlayRequest request)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task SendSystemCommandAsync(string sessionId, SystemCommand command)
         {
             throw new NotImplementedException();
         }

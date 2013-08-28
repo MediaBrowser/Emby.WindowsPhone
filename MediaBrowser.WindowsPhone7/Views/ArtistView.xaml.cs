@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Linq;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using MediaBrowser.WindowsPhone.ViewModel;
-using Microsoft.Phone.Controls;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using SharpGIS;
 
 namespace MediaBrowser.WindowsPhone.Views
 {
