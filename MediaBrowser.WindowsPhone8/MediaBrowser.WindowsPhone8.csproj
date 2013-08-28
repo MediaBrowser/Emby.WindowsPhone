@@ -93,287 +93,56 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\Behaviours\EnterKeyBehaviour.cs">
-      <Link>Behaviours\EnterKeyBehaviour.cs</Link>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\Behaviours\OnTextPropertyChangedBehaviour.cs">
-      <Link>Behaviours\OnTextPropertyChangedBehaviour.cs</Link>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\Controls\DynamicTextBlock.cs">
-      <Link>Controls\DynamicTextBlock.cs</Link>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\Controls\LogFileView.xaml.cs">
-      <Link>Controls\LogFileView.xaml.cs</Link>
-      <DependentUpon>LogFileView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\Controls\MediaBrowserLogo.cs">
-      <Link>Controls\MediaBrowserLogo.cs</Link>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\Controls\ProfileBox.cs">
-      <Link>Controls\ProfileBox.cs</Link>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\Controls\ScrollableTextBlock.cs">
-      <Link>Controls\ScrollableTextBlock.cs</Link>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\Converters\AccentBrushConverter.cs">
-      <Link>Converters\AccentBrushConverter.cs</Link>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\Converters\CriticRatingConverter.cs">
-      <Link>Converters\CriticRatingConverter.cs</Link>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\Converters\DateTimeConverter.cs">
-      <Link>Converters\DateTimeConverter.cs</Link>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\Converters\EpisodeNumberVisibilityConverter.cs">
-      <Link>Converters\EpisodeNumberVisibilityConverter.cs</Link>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\Converters\FavouritesConverter.cs">
-      <Link>Converters\FavouritesConverter.cs</Link>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\Converters\ImageUrlConverter.cs">
-      <Link>Converters\ImageUrlConverter.cs</Link>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\Converters\LocationConverter.cs">
-      <Link>Converters\LocationConverter.cs</Link>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\Converters\LoggedInDateConverter.cs">
-      <Link>Converters\LoggedInDateConverter.cs</Link>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\Converters\NotificationLevelToBrushConverter.cs">
-      <Link>Converters\NotificationLevelToBrushConverter.cs</Link>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\Converters\NowPlayingConverter.cs">
-      <Link>Converters\NowPlayingConverter.cs</Link>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\Converters\PinnedItemConverter.cs">
-      <Link>Converters\PinnedItemConverter.cs</Link>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\Converters\PlaylistCountConverter.cs">
-      <Link>Converters\PlaylistCountConverter.cs</Link>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\Converters\RandomColour.cs">
-      <Link>Converters\RandomColour.cs</Link>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\Converters\RatingConverter.cs">
-      <Link>Converters\RatingConverter.cs</Link>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\Converters\RoleConverter.cs">
-      <Link>Converters\RoleConverter.cs</Link>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\Converters\RuntimeConverter.cs">
-      <Link>Converters\RuntimeConverter.cs</Link>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\Converters\SeasonEpisodeConverter.cs">
-      <Link>Converters\SeasonEpisodeConverter.cs</Link>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\Converters\SettingsConverters.cs">
-      <Link>Converters\SettingsConverters.cs</Link>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\Converters\SimpleDaysAgoConverter.cs">
-      <Link>Converters\SimpleDaysAgoConverter.cs</Link>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\Converters\TicksToTimespanConverter.cs">
-      <Link>Converters\TicksToTimespanConverter.cs</Link>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\Converters\ZeroCountBrushConverter.cs">
-      <Link>Converters\ZeroCountBrushConverter.cs</Link>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\ExtensionMethods.cs">
-      <Link>ExtensionMethods.cs</Link>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\Model\INavigationService.cs">
-      <Link>Model\INavigationService.cs</Link>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\Model\MBLogger.cs">
-      <Link>Model\MBLogger.cs</Link>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\Model\NavigationService.cs">
-      <Link>Model\NavigationService.cs</Link>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\PhoneNameResolver.cs">
-      <Link>PhoneNameResolver.cs</Link>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\SpecificSettings.cs">
-      <Link>SpecificSettings.cs</Link>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\Splashscreen.xaml.cs">
-      <Link>Splashscreen.xaml.cs</Link>
-      <DependentUpon>Splashscreen.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\ThicknessAnimationX.cs">
-      <Link>ThicknessAnimationX.cs</Link>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\Utils.cs">
-      <Link>Utils.cs</Link>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\ViewModel\ActorViewModel.cs">
-      <Link>ViewModel\ActorViewModel.cs</Link>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\ViewModel\ChooseProfileViewModel.cs">
-      <Link>ViewModel\ChooseProfileViewModel.cs</Link>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\ViewModel\FolderViewModel.cs">
-      <Link>ViewModel\FolderViewModel.cs</Link>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\ViewModel\GenericItemViewModel.cs">
-      <Link>ViewModel\GenericItemViewModel.cs</Link>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\ViewModel\MainViewModel.cs">
-      <Link>ViewModel\MainViewModel.cs</Link>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\ViewModel\MovieViewModel.cs">
-      <Link>ViewModel\MovieViewModel.cs</Link>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\ViewModel\MusicViewModel.cs">
-      <Link>ViewModel\MusicViewModel.cs</Link>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\ViewModel\NotificationsViewModel.cs">
-      <Link>ViewModel\NotificationsViewModel.cs</Link>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\ViewModel\PlaylistViewModel.cs">
-      <Link>ViewModel\PlaylistViewModel.cs</Link>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\ViewModel\Predefined\MovieCollectionViewModel.cs">
-      <Link>ViewModel\Predefined\MovieCollectionViewModel.cs</Link>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\ViewModel\Predefined\MusicCollectionViewModel.cs">
-      <Link>ViewModel\Predefined\MusicCollectionViewModel.cs</Link>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\ViewModel\Predefined\TvCollectionViewModel.cs">
-      <Link>ViewModel\Predefined\TvCollectionViewModel.cs</Link>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\ViewModel\Remote\RemoteViewModel.cs">
-      <Link>ViewModel\Remote\RemoteViewModel.cs</Link>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\ViewModel\SearchViewModel.cs">
-      <Link>ViewModel\SearchViewModel.cs</Link>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\ViewModel\SettingsViewModel.cs">
-      <Link>ViewModel\SettingsViewModel.cs</Link>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\ViewModel\SplashscreenViewModel.cs">
-      <Link>ViewModel\SplashscreenViewModel.cs</Link>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\ViewModel\TrailerViewModel.cs">
-      <Link>ViewModel\TrailerViewModel.cs</Link>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\ViewModel\TvViewModel.cs">
-      <Link>ViewModel\TvViewModel.cs</Link>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\ViewModel\ViewModelLocator.cs">
-      <Link>ViewModel\ViewModelLocator.cs</Link>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\Views\ActorView.xaml.cs">
-      <Link>Views\ActorView.xaml.cs</Link>
-      <DependentUpon>ActorView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\Views\AlbumView.xaml.cs">
-      <Link>Views\AlbumView.xaml.cs</Link>
-      <DependentUpon>AlbumView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\Views\ArtistView.xaml.cs">
-      <Link>Views\ArtistView.xaml.cs</Link>
-      <DependentUpon>ArtistView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\Views\ChooseProfileView.xaml.cs">
-      <Link>Views\ChooseProfileView.xaml.cs</Link>
-      <DependentUpon>ChooseProfileView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\Views\CollectionView.xaml.cs">
-      <Link>Views\CollectionView.xaml.cs</Link>
-      <DependentUpon>CollectionView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\Views\EpisodeView.xaml.cs">
-      <Link>Views\EpisodeView.xaml.cs</Link>
-      <DependentUpon>EpisodeView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\Views\FolderView.xaml.cs">
-      <Link>Views\FolderView.xaml.cs</Link>
-      <DependentUpon>FolderView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\Views\FullPlaylistView.xaml.cs">
-      <Link>Views\FullPlaylistView.xaml.cs</Link>
-      <DependentUpon>FullPlaylistView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\Views\GenericItemView.xaml.cs">
-      <Link>Views\GenericItemView.xaml.cs</Link>
-      <DependentUpon>GenericItemView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\Views\MainPage.xaml.cs">
-      <Link>Views\MainPage.xaml.cs</Link>
-      <DependentUpon>MainPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\Views\ManualUsernameView.xaml.cs">
-      <Link>Views\ManualUsernameView.xaml.cs</Link>
-      <DependentUpon>ManualUsernameView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\Views\MovieView.xaml.cs">
-      <Link>Views\MovieView.xaml.cs</Link>
-      <DependentUpon>MovieView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\Views\NotificationsView.xaml.cs">
-      <Link>Views\NotificationsView.xaml.cs</Link>
-      <DependentUpon>NotificationsView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\Views\NotificationView.xaml.cs">
-      <Link>Views\NotificationView.xaml.cs</Link>
-      <DependentUpon>NotificationView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\Views\NowPlayingView.xaml.cs">
-      <Link>Views\NowPlayingView.xaml.cs</Link>
-      <DependentUpon>NowPlayingView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\Views\Predefined\MovieCollectionView.xaml.cs">
-      <Link>Views\Predefined\MovieCollectionView.xaml.cs</Link>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\Views\Predefined\MusicCollectionView.xaml.cs">
-      <Link>Views\Predefined\MusicCollectionView.xaml.cs</Link>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\Views\Predefined\TvCollectionView.xaml.cs">
-      <Link>Views\Predefined\TvCollectionView.xaml.cs</Link>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\Views\Remote\ChooseClientView.xaml.cs">
-      <Link>Views\Remote\ChooseClientView.xaml.cs</Link>
-      <DependentUpon>ChooseClientView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\Views\Remote\RemoteView.xaml.cs">
-      <Link>Views\Remote\RemoteView.xaml.cs</Link>
-      <DependentUpon>RemoteView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\Views\SearchView.xaml.cs">
-      <Link>Views\SearchView.xaml.cs</Link>
-      <DependentUpon>SearchView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\Views\SeasonView.xaml.cs">
-      <Link>Views\SeasonView.xaml.cs</Link>
-      <DependentUpon>SeasonView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\Views\SettingsView.xaml.cs">
-      <Link>Views\SettingsView.xaml.cs</Link>
-      <DependentUpon>SettingsView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\Views\TrailerView.xaml.cs">
-      <Link>Views\TrailerView.xaml.cs</Link>
-      <DependentUpon>TrailerView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7\Views\TvShowView.xaml.cs">
-      <Link>Views\TvShowView.xaml.cs</Link>
-      <DependentUpon>TvShowView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Behaviours\EnterKeyBehaviour.cs" />
+    <Compile Include="Behaviours\OnTextPropertyChangedBehaviour.cs" />
+    <Compile Include="Controls\DynamicTextBlock.cs" />
     <Compile Include="Controls\LockScreenCollage.xaml.cs">
       <DependentUpon>LockScreenCollage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\LockScreenMultiImage.xaml.cs">
       <DependentUpon>LockScreenMultiImage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\LogFileView.xaml.cs">
+      <DependentUpon>LogFileView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MediaBrowserLogo.cs" />
+    <Compile Include="Controls\ProfileBox.cs" />
+    <Compile Include="Controls\ScrollableTextBlock.cs" />
+    <Compile Include="Converters\AccentBrushConverter.cs" />
+    <Compile Include="Converters\CriticRatingConverter.cs" />
+    <Compile Include="Converters\DateTimeConverter.cs" />
+    <Compile Include="Converters\DeviceIdToBooleanConverter.cs" />
+    <Compile Include="Converters\EpisodeNumberVisibilityConverter.cs" />
+    <Compile Include="Converters\FavouritesConverter.cs" />
+    <Compile Include="Converters\ImageUrlConverter.cs" />
+    <Compile Include="Converters\LocationConverter.cs" />
     <Compile Include="Converters\LockScreenTypeConverter.cs" />
+    <Compile Include="Converters\LoggedInDateConverter.cs" />
+    <Compile Include="Converters\NotificationLevelToBrushConverter.cs" />
+    <Compile Include="Converters\NowPlayingConverter.cs" />
+    <Compile Include="Converters\PinnedItemConverter.cs" />
+    <Compile Include="Converters\PlaylistCountConverter.cs" />
+    <Compile Include="Converters\RandomColour.cs" />
+    <Compile Include="Converters\RatingConverter.cs" />
+    <Compile Include="Converters\RoleConverter.cs" />
+    <Compile Include="Converters\RuntimeConverter.cs" />
+    <Compile Include="Converters\SeasonEpisodeConverter.cs" />
+    <Compile Include="Converters\SettingsConverters.cs" />
+    <Compile Include="Converters\SimpleDaysAgoConverter.cs" />
+    <Compile Include="Converters\TicksToTimespanConverter.cs" />
+    <Compile Include="Converters\ZeroCountBrushConverter.cs" />
+    <Compile Include="ExtensionMethods.cs" />
     <Compile Include="LocalizedStrings.cs" />
+    <Compile Include="Model\INavigationService.cs" />
     <Compile Include="Model\LockScreenType.cs" />
+    <Compile Include="Model\MBLogger.cs" />
     <Compile Include="Model\MBUriMapper.cs" />
+    <Compile Include="Model\NavigationService.cs" />
     <Compile Include="Model\Server.cs" />
+    <Compile Include="PhoneNameResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\AppResources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -382,10 +151,110 @@
     </Compile>
     <Compile Include="Services\LockScreenService.cs" />
     <Compile Include="Services\TileService.cs" />
+    <Compile Include="SpecificSettings.cs" />
+    <Compile Include="Splashscreen.xaml.cs">
+      <DependentUpon>Splashscreen.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ThemeManager.cs" />
+    <Compile Include="ThicknessAnimationX.cs" />
+    <Compile Include="Utils.cs" />
+    <Compile Include="ViewModel\ActorViewModel.cs" />
+    <Compile Include="ViewModel\ChooseProfileViewModel.cs" />
+    <Compile Include="ViewModel\FolderViewModel.cs" />
+    <Compile Include="ViewModel\GenericItemViewModel.cs" />
+    <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\MovieViewModel.cs" />
+    <Compile Include="ViewModel\MusicViewModel.cs" />
+    <Compile Include="ViewModel\NotificationsViewModel.cs" />
+    <Compile Include="ViewModel\PlaylistViewModel.cs" />
+    <Compile Include="ViewModel\Predefined\MovieCollectionViewModel.cs" />
+    <Compile Include="ViewModel\Predefined\MusicCollectionViewModel.cs" />
+    <Compile Include="ViewModel\Predefined\TvCollectionViewModel.cs" />
+    <Compile Include="ViewModel\Remote\RemoteViewModel.cs" />
+    <Compile Include="ViewModel\SearchViewModel.cs" />
+    <Compile Include="ViewModel\SettingsViewModel.cs" />
+    <Compile Include="ViewModel\SplashscreenViewModel.cs" />
+    <Compile Include="ViewModel\TrailerViewModel.cs" />
+    <Compile Include="ViewModel\TvViewModel.cs" />
     <Compile Include="ViewModel\VideoPlayerViewModel.cs" />
+    <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="Views\ActorView.xaml.cs">
+      <DependentUpon>ActorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AlbumView.xaml.cs">
+      <DependentUpon>AlbumView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ArtistView.xaml.cs">
+      <DependentUpon>ArtistView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ChooseProfileView.xaml.cs">
+      <DependentUpon>ChooseProfileView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CollectionView.xaml.cs">
+      <DependentUpon>CollectionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EpisodeView.xaml.cs">
+      <DependentUpon>EpisodeView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\FindServerView.xaml.cs">
       <DependentUpon>FindServerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FolderView.xaml.cs">
+      <DependentUpon>FolderView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FullPlaylistView.xaml.cs">
+      <DependentUpon>FullPlaylistView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GenericItemView.xaml.cs">
+      <DependentUpon>GenericItemView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ManualUsernameView.xaml.cs">
+      <DependentUpon>ManualUsernameView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MovieView.xaml.cs">
+      <DependentUpon>MovieView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NotificationsView.xaml.cs">
+      <DependentUpon>NotificationsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NotificationView.xaml.cs">
+      <DependentUpon>NotificationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NowPlayingView.xaml.cs">
+      <DependentUpon>NowPlayingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Predefined\MovieCollectionView.xaml.cs">
+      <DependentUpon>MovieCollectionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Predefined\MusicCollectionView.xaml.cs">
+      <DependentUpon>MusicCollectionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Predefined\TvCollectionView.xaml.cs">
+      <DependentUpon>TvCollectionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Remote\ChooseClientView.xaml.cs">
+      <DependentUpon>ChooseClientView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Remote\RemoteView.xaml.cs">
+      <DependentUpon>RemoteView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SearchView.xaml.cs">
+      <DependentUpon>SearchView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SeasonView.xaml.cs">
+      <DependentUpon>SeasonView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SettingsView.xaml.cs">
+      <DependentUpon>SettingsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TrailerView.xaml.cs">
+      <DependentUpon>TrailerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TvShowView.xaml.cs">
+      <DependentUpon>TvShowView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\VideoPlayerView.xaml.cs">
       <DependentUpon>VideoPlayerView.xaml</DependentUpon>
@@ -398,81 +267,39 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
-    <Content Include="..\MediaBrowser.WindowsPhone7\Images\3d.png">
-      <Link>Images\3d.png</Link>
-    </Content>
-    <Content Include="..\MediaBrowser.WindowsPhone7\Images\audiocollection.png">
-      <Link>Images\audiocollection.png</Link>
-    </Content>
-    <Content Include="..\MediaBrowser.WindowsPhone7\Images\fresh.png">
-      <Link>Images\fresh.png</Link>
-    </Content>
-    <Content Include="..\MediaBrowser.WindowsPhone7\Images\moviecollection.png">
-      <Link>Images\moviecollection.png</Link>
-    </Content>
-    <Content Include="..\MediaBrowser.WindowsPhone7\Images\rotten.png">
-      <Link>Images\rotten.png</Link>
-    </Content>
-    <Content Include="..\MediaBrowser.WindowsPhone7\Images\tvcollection.png">
-      <Link>Images\tvcollection.png</Link>
-    </Content>
     <Content Include="Assets\Tiles\MBRemoteTile.png" />
     <Content Include="DefaultLockScreen.jpg" />
     <Content Include="Icons\appbar.feature.search.rest.png" />
     <Content Include="Icons\appbar.check.rest.png" />
     <Content Include="Icons\appbar.refresh.rest.png" />
     <Content Include="Icons\searchbutton.png" />
+    <Content Include="Images\3d.png" />
+    <Content Include="Images\appbar.repeat.png" />
+    <Content Include="Images\appbar.shuffle.png" />
+    <Content Include="Images\audiocollection.png" />
+    <Content Include="Images\DefaultAlbumCase.png" />
+    <Content Include="Images\DefaultVideo.png" />
+    <Content Include="Images\default_avatar.png" />
     <Content Include="Images\folder1.jpg" />
     <Content Include="Images\folder2.jpg" />
     <Content Include="Images\folder3.jpg" />
     <Content Include="Images\folder4.jpg" />
     <Content Include="Images\folder5.jpg" />
+    <Content Include="Images\fresh.png" />
     <Content Include="Images\jp3d.jpg" />
     <Content Include="Images\LockScreenBackground.jpg" />
-    <Content Include="Images\LockScreenDefault.720p.png" />
-    <Content Include="Images\LockScreenDefault.WVGA.png" />
-    <Content Include="Images\LockScreenDefault.WXGA.png" />
+    <Content Include="Images\Logo.png" />
+    <Content Include="Images\moviecollection.png" />
+    <Content Include="Images\Play128.png" />
+    <Content Include="Images\rotten.png" />
+    <Content Include="Images\tvcollection.png" />
+    <Content Include="Images\UserLoginDefault.png" />
     <Content Include="README_FIRST.txt" />
     <Content Include="Toolkit.Content\ApplicationBar.Add.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Cancel.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Check.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Delete.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Select.png" />
-    <Page Include="..\MediaBrowser.WindowsPhone7\Controls\LogFileView.xaml">
-      <Link>Controls\LogFileView.xaml</Link>
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="..\MediaBrowser.WindowsPhone7\Splashscreen.xaml">
-      <Link>Splashscreen.xaml</Link>
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="..\MediaBrowser.WindowsPhone7\Themes\generic.xaml">
-      <Link>Themes\generic.xaml</Link>
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="..\MediaBrowser.WindowsPhone7\Themes\UIResources.xaml">
-      <Link>Themes\UIResources.xaml</Link>
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Content Include="..\MediaBrowser.WindowsPhone7\Images\appbar.repeat.png">
-      <Link>Images\appbar.repeat.png</Link>
-    </Content>
-    <Content Include="..\MediaBrowser.WindowsPhone7\Images\appbar.shuffle.png">
-      <Link>Images\appbar.shuffle.png</Link>
-    </Content>
-    <Content Include="..\MediaBrowser.WindowsPhone7\Images\DefaultAlbumCase.png">
-      <Link>Images\DefaultAlbumCase.png</Link>
-    </Content>
-    <Content Include="..\MediaBrowser.WindowsPhone7\Images\DefaultVideo.png">
-      <Link>Images\DefaultVideo.png</Link>
-    </Content>
-    <Content Include="..\MediaBrowser.WindowsPhone7\Images\Play128.png">
-      <Link>Images\Play128.png</Link>
-    </Content>
     <Content Include="Content\About\AboutStyles.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -485,7 +312,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\LogFileView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Splashscreen.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Themes\LongListSelectorTemplates.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\UIResources.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -599,9 +442,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="..\MediaBrowser.WindowsPhone7\Fonts\MISTRAL.TTF">
-      <Link>Fonts\MISTRAL.TTF</Link>
-    </Resource>
     <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="Properties\AppManifest.xml" />
@@ -610,15 +450,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\MediaBrowser.WindowsPhone7\Images\default_avatar.png">
-      <Link>Images\default_avatar.png</Link>
-    </Content>
-    <Content Include="..\MediaBrowser.WindowsPhone7\Images\Logo.png">
-      <Link>Images\Logo.png</Link>
-    </Content>
-    <Content Include="..\MediaBrowser.WindowsPhone7\Images\UserLoginDefault.png">
-      <Link>Images\UserLoginDefault.png</Link>
-    </Content>
     <Content Include="Assets\AlignmentGrid.png" />
     <Content Include="Assets\ApplicationIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
