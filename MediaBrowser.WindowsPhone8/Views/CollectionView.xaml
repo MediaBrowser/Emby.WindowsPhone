@@ -77,13 +77,16 @@
                             <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
                                              Command="{Binding Main.NavigateToPage, Source={StaticResource Locator}}"
                                              CommandParameter="{Binding}"
-                                             HorizontalContentAlignment="Left"
                                              Margin="12,0,0,12">
                                 <Grid Height="173">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
                                     <Image Source="{Binding Converter={StaticResource ImageUrlConverter}, ConverterParameter=backdropsmall}"
                                            Stretch="UniformToFill" />
                                     <Border VerticalAlignment="Bottom"
-                                            Background="#C4000000">
+                                            Background="#C4000000"
+                                            HorizontalAlignment="Stretch">
                                         <TextBlock Text="{Binding Name, Converter={StaticResource StringCaseConverter}, ConverterParameter=false}"
                                                    Style="{StaticResource PhoneTextLargeStyle}"
                                                    HorizontalAlignment="Left" />
