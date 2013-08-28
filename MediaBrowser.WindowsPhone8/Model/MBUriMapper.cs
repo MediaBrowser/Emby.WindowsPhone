@@ -7,8 +7,7 @@ namespace MediaBrowser.WindowsPhone.Model
     {
         public override Uri MapUri(Uri uri)
         {
-            
-            return new Uri(" ");
+            return uri;
         }
     }
 }
