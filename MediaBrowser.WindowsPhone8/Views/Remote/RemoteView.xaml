@@ -11,6 +11,7 @@
                 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
                 xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP8"
                 xmlns:behaviors="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
+                xmlns:converters="clr-namespace:ScottIsAFool.WindowsPhone.Converters;assembly=ScottIsAFool.WindowsPhone"
                 mc:Ignorable="d ignore"
                 FontFamily="{StaticResource PhoneFontFamilyNormal}"
                 FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -26,11 +27,39 @@
     </i:Interaction.Triggers>
     <i:Interaction.Behaviors>
         <behaviors:ApplicationBarBehavior Mode="Minimized">
+            <behaviors:ApplicationBarIconButton IconUri="/Icons/appbar.back.rest.png"
+                                                Text="refresh clients"
+                                                Command="{Binding RefreshClientsCommand}"/>
             <behaviors:ApplicationBarIconButton IconUri="{Binding IsPinned, Converter={StaticResource PinnedItemConverter}, ConverterParameter=icon}"
                                                 Text="{Binding IsPinned, Converter={StaticResource PinnedItemConverter}, ConverterParameter=text}"
-                                                Command="{Binding PinCommand}"/>
+                                                Command="{Binding PinTileCommand}"/>
         </behaviors:ApplicationBarBehavior>
     </i:Interaction.Behaviors>
+
+    <toolkit:TransitionService.NavigationInTransition>
+        <toolkit:NavigationInTransition>
+            <toolkit:NavigationInTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardIn" />
+            </toolkit:NavigationInTransition.Backward>
+            <toolkit:NavigationInTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardIn" />
+            </toolkit:NavigationInTransition.Forward>
+        </toolkit:NavigationInTransition>
+    </toolkit:TransitionService.NavigationInTransition>
+    <toolkit:TransitionService.NavigationOutTransition>
+        <toolkit:NavigationOutTransition>
+            <toolkit:NavigationOutTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardOut" />
+            </toolkit:NavigationOutTransition.Backward>
+            <toolkit:NavigationOutTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardOut" />
+            </toolkit:NavigationOutTransition.Forward>
+        </toolkit:NavigationOutTransition>
+    </toolkit:TransitionService.NavigationOutTransition>
+    
+    <scott:BasePage.Resources>
+        <converters:OpacityConverter x:Key="OpacityConverter"/>
+    </scott:BasePage.Resources>
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot"
@@ -60,9 +89,18 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             
-            <toolkit:ListPicker ItemsSource="{Binding Clients}"/>
+            <toolkit:ListPicker ItemsSource="{Binding Clients}">
+                <toolkit:ListPicker.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding DeviceName}"
+                                   Style="{StaticResource PhoneTextNormalStyle}"/>
+                    </DataTemplate>
+                </toolkit:ListPicker.ItemTemplate>
+            </toolkit:ListPicker>
             
-            <Grid Grid.Row="1">
+            <Grid Grid.Row="1"
+                  IsHitTestVisible="{Binding CanUseRemote}"
+                  Opacity="{Binding CanUseRemote, Converter={StaticResource OpacityConverter}}">
                 
             </Grid>
         </Grid>

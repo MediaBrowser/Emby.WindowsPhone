@@ -16,10 +16,6 @@ using System.Linq;
 using System.Windows;
 using MediaBrowser.WindowsPhone.Resources;
 using MediaBrowser.WindowsPhone.Services;
-using Microsoft.Phone.Shell;
-#if !WP8
-using ScottIsAFool.WindowsPhone;
-#endif
 using ScottIsAFool.WindowsPhone;
 using ScottIsAFool.WindowsPhone.ViewModel;
 
@@ -130,7 +126,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 {
                     SetProgressBar(AppResources.SysTrayCheckingCollection);
 
-                    var tileUrl = string.Format(Constants.PhoneCollectionTileUrlFormat, SelectedFolder.Id, SelectedFolder.Name);
+                    var tileUrl = string.Format(Constants.PhoneTileUrlFormat, SelectedFolder.Id, SelectedFolder.Name);
 
                     CanPinCollection = TileService.Current.TileExists(tileUrl);
 

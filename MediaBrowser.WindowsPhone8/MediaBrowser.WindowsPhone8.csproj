@@ -419,6 +419,7 @@
     <Content Include="DefaultLockScreen.jpg" />
     <Content Include="Icons\appbar.feature.search.rest.png" />
     <Content Include="Icons\appbar.check.rest.png" />
+    <Content Include="Icons\appbar.refresh.rest.png" />
     <Content Include="Icons\searchbutton.png" />
     <Content Include="Images\folder1.jpg" />
     <Content Include="Images\folder2.jpg" />

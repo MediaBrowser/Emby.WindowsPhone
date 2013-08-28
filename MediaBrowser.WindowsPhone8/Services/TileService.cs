@@ -14,13 +14,13 @@ namespace MediaBrowser.WindowsPhone.Services
 
         public bool TileExists(string uri)
         {
-            var tile = ActiveTiles.FirstOrDefault(x => x.NavigationUri.ToString().Equals(uri));
+            var tile = ActiveTiles.FirstOrDefault(x => x.NavigationUri.ToString().Contains(uri));
             return tile != default(ShellTileServiceTile);
         }
 
         public IShellTileServiceTile GetTile(string uri)
         {
-            var tile = ActiveTiles.FirstOrDefault(x => x.NavigationUri.ToString().Equals(uri));
+            var tile = ActiveTiles.FirstOrDefault(x => x.NavigationUri.ToString().Contains(uri));
             return tile;
         }
     }

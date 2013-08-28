@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Cimbalino.Phone.Toolkit.Services;
-using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MediaBrowser.Model;
+using MediaBrowser.Model.Net;
+using MediaBrowser.Model.Session;
 using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Services;
+using ScottIsAFool.WindowsPhone.ViewModel;
 using INavigationService = MediaBrowser.WindowsPhone.Model.INavigationService;
 
 namespace MediaBrowser.WindowsPhone.ViewModel
@@ -36,7 +39,16 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public bool IsLoading { get; set; }
         public bool SendingCommand { get; set; }
         public bool IsPinned { get; set; }
-        public List<object> Clients { get; set; }
+        public List<SessionInfoDto> Clients { get; set; }
+        public SessionInfoDto SelectedClient { get; set; }
+
+        public bool CanUseRemote
+        {
+            get
+            {
+                return Clients != null && Clients.Any() && SelectedClient != null;
+            }
+        }
 
         public RelayCommand PageLoadedCommand
         {
@@ -51,6 +63,48 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
         }
 
+        public RelayCommand PinTileCommand
+        {
+            get
+            {
+                return new RelayCommand(PinTile);
+            }
+        }
+
+        public RelayCommand RefreshClientsCommand
+        {
+            get
+            {
+                return new RelayCommand(async () => await GetClients(true));
+            }
+        }
+
+        public RelayCommand<string> SendPlaystateCommand
+        {
+            get
+            {
+                return new RelayCommand<string>(async commandString =>
+                {
+                    var request = new PlaystateRequest
+                    {
+                        Command = commandString.ToPlaystateCommandEnum()
+                    };
+
+                    try
+                    {
+                        SendingCommand = true;
+                        await _apiClient.SendPlaystateCommandAsync(SelectedClient.Id.ToString(), request);
+                    }
+                    catch (HttpException ex)
+                    {
+                        Log.ErrorException("SendPlaystateCommand(" + commandString + ")", ex);
+                    }
+
+                    SendingCommand = false;
+                });
+            }
+        }
+
         private async Task GetClients(bool isRefresh)
         {
             if (!_navigationService.IsNetworkAvailable || (_dataLoaded && !isRefresh))
@@ -58,36 +112,41 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 return;
             }
 
+            try
+            {
+                var clients = await _apiClient.GetClientSessionsAsync();
 
+                Clients = clients.ToList();
+                _dataLoaded = true;
+            }
+            catch (HttpException ex)
+            {
+                Log.ErrorException("GetClients()", ex);
+            }
         }
 
-        public RelayCommand PinCommand
+        private void PinTile()
         {
-            get
+            if (IsPinned)
             {
-                return new RelayCommand(() =>
+                // Unpin the tile
+                var tile = TileService.Current.GetTile(Constants.Pages.Remote.RemoteView);
+                tile.Delete();
+
+                IsPinned = false;
+            }
+            else
+            {
+                var tileData = new ShellTileServiceFlipTileData
                 {
-                    if (IsPinned)
-                    {
-                        // Unpin the tile
-                        var tile = TileService.Current.GetTile(Constants.Pages.Remote.RemoteView);
-                        tile.Delete();
+                    Title = "MB Remote",
+                    BackgroundImage = new Uri("/Assets/Tiles/MBRemoteTile.png", UriKind.Relative)
+                };
 
-                        IsPinned = false;
-                    }
-                    else
-                    {
-                        var tileData = new ShellTileServiceFlipTileData
-                        {
-                            Title = "MB Remote",
-                            BackgroundImage = new Uri("/Assets/Tiles/MBRemoteTile.png", UriKind.Relative)
-                        };
+                var tileUrl = string.Format(Constants.PhoneTileUrlFormat, "Remote", string.Empty, "Remote Control");
+                TileService.Current.Create(new Uri(tileUrl, UriKind.Relative), tileData, false);
 
-                        TileService.Current.Create(new Uri(Constants.Pages.Remote.RemoteView, UriKind.Relative), tileData, false);
-
-                        IsPinned = true;
-                    }
-                });
+                IsPinned = true;
             }
         }
     }

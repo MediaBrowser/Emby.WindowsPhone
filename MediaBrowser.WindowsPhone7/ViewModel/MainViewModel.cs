@@ -99,7 +99,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             PinCollectionCommand = new RelayCommand<BaseItemDto>(collection =>
             {
-                var tileUrl = string.Format(Constants.PhoneCollectionTileUrlFormat, collection.Id, collection.Name);
+                var tileUrl = string.Format(Constants.PhoneTileUrlFormat, "Collection", collection.Id, collection.Name);
                 var existingTile = TileService.Current.GetTile(tileUrl);
                 if (existingTile != default(ShellTileServiceTile))
                 {

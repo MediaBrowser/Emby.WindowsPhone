@@ -14,6 +14,7 @@ using MediaBrowser.Model.Configuration;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Net;
+using MediaBrowser.Model.Session;
 using MediaBrowser.Services;
 using Microsoft.Phone.Info;
 using ScottIsAFool.WindowsPhone;
@@ -317,6 +318,25 @@ namespace MediaBrowser.WindowsPhone
             }
 
             return "date";
+        }
+
+        public static PlaystateCommand ToPlaystateCommandEnum(this string stringCommand)
+        {
+            PlaystateCommand playState;
+#if !WP8
+            try
+            {
+                playState = (PlaystateCommand)Enum.Parse(typeof (PlaystateCommand), stringCommand, true);
+            }
+            catch
+            {
+                playState = default(PlaystateCommand);
+            }
+#else
+            Enum.TryParse(stringCommand, out playState);
+#endif
+
+            return playState;
         }
     }
 }
