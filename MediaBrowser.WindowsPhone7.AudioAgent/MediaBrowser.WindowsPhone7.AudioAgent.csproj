@@ -91,9 +91,15 @@
     <Reference Include="mscorlib.extensions" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AudioPlayer.cs" />
-    <Compile Include="ExtensionMethods.cs" />
-    <Compile Include="PlaylistHelper.cs" />
+    <Compile Include="..\MediaBrowser.WindowsPhone8.AudioAgent\AudioPlayer.cs">
+      <Link>AudioPlayer.cs</Link>
+    </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone8.AudioAgent\ExtensionMethods.cs">
+      <Link>ExtensionMethods.cs</Link>
+    </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone8.AudioAgent\PlaylistHelper.cs">
+      <Link>PlaylistHelper.cs</Link>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

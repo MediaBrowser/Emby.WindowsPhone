@@ -87,15 +87,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\MediaBrowser.WindowsPhone7.AudioAgent\AudioPlayer.cs">
-      <Link>AudioPlayer.cs</Link>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7.AudioAgent\ExtensionMethods.cs">
-      <Link>ExtensionMethods.cs</Link>
-    </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone7.AudioAgent\PlaylistHelper.cs">
-      <Link>PlaylistHelper.cs</Link>
-    </Compile>
+    <Compile Include="AudioPlayer.cs" />
+    <Compile Include="ExtensionMethods.cs" />
+    <Compile Include="PlaylistHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
