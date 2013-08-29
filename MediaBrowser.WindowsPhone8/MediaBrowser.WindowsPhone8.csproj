@@ -292,7 +292,10 @@
     <Content Include="Images\Logo.png" />
     <Content Include="Images\moviecollection.png" />
     <Content Include="Images\Play128.png" />
+    <Content Include="Images\Remote\Pause.png" />
+    <Content Include="Images\Remote\Play.png" />
     <Content Include="Images\rotten.png" />
+    <Content Include="Images\stop.png" />
     <Content Include="Images\tvcollection.png" />
     <Content Include="Images\UserLoginDefault.png" />
     <Content Include="README_FIRST.txt" />

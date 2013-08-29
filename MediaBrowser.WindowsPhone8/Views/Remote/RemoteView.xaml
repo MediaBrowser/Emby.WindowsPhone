@@ -154,13 +154,59 @@
                                    Grid.Row="1"
                                    Style="{StaticResource PhoneTextTitle2Style}"
                                    HorizontalAlignment="Center"
-                                   FontWeight="ExtraBold"/>
+                                   FontWeight="ExtraBold" />
                     </Grid>
-                    
-                    <StackPanel Orientation="Horizontal"
-                                Grid.Row="1">
-                        <telerikPrimitives:RadImageButton ButtonShape="Image"/>
-                    </StackPanel>
+
+                    <Grid Grid.Row="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1.5*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="1.5*" />
+                        </Grid.ColumnDefinitions>
+
+                        <telerikPrimitives:RadImageButton ButtonShape="Image"
+                                                          ButtonBehavior="ToggleButton"
+                                                          RestStateImageSource="/Images/Remote/Play.png"
+                                                          PressedStateImageSource="/Images/Remote/Pause.png"
+                                                          Grid.Column="1"
+                                                          Grid.Row="0"
+                                                          toolkit:TiltEffect.IsTiltEnabled="True"
+                                                          HorizontalAlignment="Center" />
+
+                        <telerikPrimitives:RadImageButton Grid.Row="2"
+                                                          Grid.Column="1"
+                                                          RestStateImageSource="/Images/stop.png"
+                                                          ButtonShape="Ellipse"
+                                                          BorderThickness="0"
+                                                          HorizontalAlignment="Center"
+                                                          Foreground="Green"
+                                                          Background="White" />
+
+                        <telerikPrimitives:RadImageButton Grid.Row="1"
+                                                          Grid.Column="0"
+                                                          HorizontalAlignment="Right"
+                                                          RestStateImageSource="/Icons/transport.rew.png"
+                                                          ButtonShape="Ellipse"
+                                                          BorderThickness="0"
+                                                          Foreground="Green"
+                                                          Background="White"
+                                                          Margin="0,-34,0,0" />
+
+                        <telerikPrimitives:RadImageButton Grid.Row="1"
+                                                          Grid.Column="2"
+                                                          HorizontalAlignment="Left"
+                                                          RestStateImageSource="/Icons/transport.ff.png"
+                                                          ButtonShape="Ellipse"
+                                                          BorderThickness="0"
+                                                          Foreground="Green"
+                                                          Background="White"
+                                                          Margin="0,-34,0,0" />
+                    </Grid>
                 </Grid>
             </Grid>
         </Grid>
