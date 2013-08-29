@@ -12,6 +12,8 @@
                 xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP8"
                 xmlns:behaviors="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
                 xmlns:converters="clr-namespace:ScottIsAFool.WindowsPhone.Converters;assembly=ScottIsAFool.WindowsPhone"
+                xmlns:localConverters="clr-namespace:MediaBrowser.WindowsPhone.Converters"
+                xmlns:controls="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
                 mc:Ignorable="d ignore"
                 FontFamily="{StaticResource PhoneFontFamilyNormal}"
                 FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -19,25 +21,26 @@
                 SupportedOrientations="Portrait"
                 Orientation="Portrait"
                 shell:SystemTray.IsVisible="True"
+                shell:SystemTray.Opacity="0"
                 DataContext="{Binding Remote, Source={StaticResource Locator}}">
     <shell:SystemTray.ProgressIndicator>
         <shell:ProgressIndicator Text="{Binding ProgressText}"
                                  IsIndeterminate="{Binding ProgressIsVisible}"
-                                 IsVisible="{Binding ProgressIsVisible}"/>
+                                 IsVisible="{Binding ProgressIsVisible}" />
     </shell:SystemTray.ProgressIndicator>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
-            <command:EventToCommand Command="{Binding PageLoadedCommand}"/>
+            <command:EventToCommand Command="{Binding PageLoadedCommand}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
     <i:Interaction.Behaviors>
         <behaviors:ApplicationBarBehavior Mode="Minimized">
             <behaviors:ApplicationBarIconButton IconUri="/Icons/appbar.back.rest.png"
                                                 Text="refresh clients"
-                                                Command="{Binding RefreshClientsCommand}"/>
+                                                Command="{Binding RefreshClientsCommand}" />
             <behaviors:ApplicationBarIconButton IconUri="{Binding IsPinned, Converter={StaticResource PinnedItemConverter}, ConverterParameter=icon}"
                                                 Text="{Binding IsPinned, Converter={StaticResource PinnedItemConverter}, ConverterParameter=text}"
-                                                Command="{Binding PinTileCommand}"/>
+                                                Command="{Binding PinTileCommand}" />
         </behaviors:ApplicationBarBehavior>
     </i:Interaction.Behaviors>
 
@@ -61,14 +64,16 @@
             </toolkit:NavigationOutTransition.Forward>
         </toolkit:NavigationOutTransition>
     </toolkit:TransitionService.NavigationOutTransition>
-    
+
     <scott:BasePage.Resources>
-        <converters:OpacityConverter x:Key="OpacityConverter"/>
+        <converters:OpacityConverter x:Key="OpacityConverter" />
+        <localConverters:RemoteClientMultiConverter x:Key="ClientMultiConverter" />
     </scott:BasePage.Resources>
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot"
-          Background="{StaticResource MediaBrowserBackground}">
+          Background="{StaticResource MediaBrowserBackground}"
+          Margin="0,32,0,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -87,25 +92,70 @@
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel"
-              Grid.Row="1"
-              Margin="12,0,12,0">
+              Grid.Row="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            
-            <toolkit:ListPicker ItemsSource="{Binding Clients}">
+
+            <toolkit:ListPicker ItemsSource="{Binding Clients}"
+                                SelectedItem="{Binding SelectedClient, Mode=TwoWay}">
                 <toolkit:ListPicker.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding DeviceName}"/>
+                        <TextBlock>
+                            <i:Interaction.Behaviors>
+                                <behaviors:MultiBindingBehavior PropertyName="Text"
+                                                                Converter="{StaticResource ClientMultiConverter}">
+                                    <behaviors:MultiBindingItem Value="{Binding DeviceName}" />
+                                    <behaviors:MultiBindingItem Value="{Binding Client}" />
+                                </behaviors:MultiBindingBehavior>
+                            </i:Interaction.Behaviors>
+                        </TextBlock>
                     </DataTemplate>
                 </toolkit:ListPicker.ItemTemplate>
             </toolkit:ListPicker>
-            
+
             <Grid Grid.Row="1"
-                  IsHitTestVisible="{Binding CanUseRemote}"
+                  Visibility="{Binding CanUseRemote, Converter={StaticResource VisibilityConverter}}"
                   Opacity="{Binding CanUseRemote, Converter={StaticResource OpacityConverter}}">
-                
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Grid x:Name="NowPlayGrid">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <Image Source="{Binding SelectedClient.NowPlayingItem, Converter={StaticResource ImageUrlConverter}, ConverterParameter=backdrop}"
+                               MaxWidth="480"
+                               MaxHeight="280"
+                               Stretch="UniformToFill"
+                               HorizontalAlignment="Stretch"
+                               Grid.ColumnSpan="3"
+                               VerticalAlignment="Top"
+                               Opacity="0.2" />
+                        <controls:SuperImage Source="{Binding SelectedClient.NowPlayingItem, Converter={StaticResource ImageUrlConverter}}"
+                                             MaxHeight="280"
+                                             Grid.Row="0"
+                                             Stretch="Uniform"
+                                             PlaceholderImageSource="/Images/DefaultVideo.png"
+                                             PlaceholderImageStretch="Uniform"
+                                             HorizontalAlignment="Center"
+                                             Margin="0,24,0,0" />
+                        <TextBlock Text="{Binding SelectedClient.NowPlayingItem.Name}"
+                                   Grid.Row="1"
+                                   Style="{StaticResource PhoneTextTitle2Style}"
+                                   HorizontalAlignment="Center"
+                                   FontWeight="ExtraBold"/>
+                    </Grid>
+                </Grid>
             </Grid>
         </Grid>
 

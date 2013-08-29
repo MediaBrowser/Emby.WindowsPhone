@@ -19,7 +19,7 @@ namespace MediaBrowser.WindowsPhone.Converters
                 if (type == typeof(BaseItemDto))
                 {
 
-                    var imageType = parameter == null ? string.Empty : (string)parameter;
+                    var imageType = parameter == null ? string.Empty : (string) parameter;
                     // http://192.168.0.2:8096/mediabrowser/api/image?item.Id=d0aac36ee980d7dc0bcf8323b1884f70&maxheight=173&quality=90
                     var item = (BaseItemDto)value;
                     return GetDtoImage(item, imageType, apiClient);
@@ -77,6 +77,31 @@ namespace MediaBrowser.WindowsPhone.Converters
                         default:
                             return apiClient.GetImageUrl(searchHint.ItemId, imageOptions);
                     }
+                }
+                if (type == typeof (BaseItemInfo))
+                {
+                    var item = (BaseItemInfo) value;
+                    var imageType = parameter == null ? string.Empty : (string)parameter;
+                    var imageOptions = new ImageOptions
+                    {
+                        ImageType = ImageType.Primary
+                    };
+
+                    if (imageType.Equals("backdrop"))
+                    {
+                        imageOptions.ImageType = ImageType.Backdrop;
+                        imageOptions.MaxWidth = 480;
+                    }
+                    else
+                    {
+#if !WP8
+                        imageOptions.MaxHeight = 220;
+#else
+                        imageOptions.MaxHeight = 440;
+#endif
+                    }
+
+                    return apiClient.GetImageUrl(item.Id, imageOptions);
                 }
             }
             return "";

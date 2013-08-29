@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Media;
 using Cimbalino.Phone.Toolkit.Services;
 using GalaSoft.MvvmLight.Command;
+using JetBrains.Annotations;
 using MediaBrowser.Model;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Session;
@@ -106,16 +108,26 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
         }
 
-        public RelayCommand<SelectionChangedEventArgs> SelectionChangedCommand
+        [UsedImplicitly]
+        private async void OnSelectedClientChanged()
         {
-            get
+            if (SelectedClient == null)
             {
-                return new RelayCommand<SelectionChangedEventArgs>(async args =>
-                {
-                    
-                });
+                return;
             }
-        } 
+
+            await GetClientSession();
+        }
+
+        private async Task GetClientSession()
+        {
+            if (!_navigationService.IsNetworkAvailable)
+            {
+                return;
+            }
+
+            
+        }
 
         private async Task GetClients(bool isRefresh)
         {
@@ -130,7 +142,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 var clients = await _apiClient.GetClientSessionsAsync();
 
-                Clients = clients.ToList();
+                Clients = clients.Where(x => x.DeviceId != _apiClient.DeviceId).ToList();
                 _dataLoaded = true;
             }
             catch (HttpException ex)
