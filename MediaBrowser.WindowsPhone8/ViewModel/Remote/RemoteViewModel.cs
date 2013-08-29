@@ -143,6 +143,16 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 var clients = await _apiClient.GetClientSessionsAsync();
 
                 Clients = clients.Where(x => x.DeviceId != _apiClient.DeviceId).ToList();
+
+                if (SelectedClient != null)
+                {
+                    SelectedClient = Clients.FirstOrDefault(x => x.DeviceId == SelectedClient.DeviceId) ?? Clients[0];
+                }
+                else
+                {
+                    SelectedClient = Clients[0];
+                }
+
                 _dataLoaded = true;
             }
             catch (HttpException ex)

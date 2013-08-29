@@ -176,7 +176,8 @@
                                                           Grid.Column="1"
                                                           Grid.Row="0"
                                                           toolkit:TiltEffect.IsTiltEnabled="True"
-                                                          HorizontalAlignment="Center" />
+                                                          HorizontalAlignment="Center" 
+                                                          Margin="0,20,0,0"/>
 
                         <telerikPrimitives:RadImageButton Grid.Row="2"
                                                           Grid.Column="1"
@@ -184,8 +185,9 @@
                                                           ButtonShape="Ellipse"
                                                           BorderThickness="0"
                                                           HorizontalAlignment="Center"
-                                                          Foreground="Green"
-                                                          Background="White" />
+                                                          Foreground="{StaticResource PhoneAccentBrush}"
+                                                          Background="White"
+                                                          Margin="0,-20,0,0"/>
 
                         <telerikPrimitives:RadImageButton Grid.Row="1"
                                                           Grid.Column="0"
@@ -193,9 +195,9 @@
                                                           RestStateImageSource="/Icons/transport.rew.png"
                                                           ButtonShape="Ellipse"
                                                           BorderThickness="0"
-                                                          Foreground="Green"
+                                                          Foreground="{StaticResource PhoneAccentBrush}"
                                                           Background="White"
-                                                          Margin="0,-34,0,0" />
+                                                          Margin="0,-54,0,0" />
 
                         <telerikPrimitives:RadImageButton Grid.Row="1"
                                                           Grid.Column="2"
@@ -203,9 +205,29 @@
                                                           RestStateImageSource="/Icons/transport.ff.png"
                                                           ButtonShape="Ellipse"
                                                           BorderThickness="0"
-                                                          Foreground="Green"
+                                                          Foreground="{StaticResource PhoneAccentBrush}"
                                                           Background="White"
-                                                          Margin="0,-34,0,0" />
+                                                          Margin="0,-54,0,0" />
+
+                        <telerikPrimitives:RadImageButton Grid.Row="1"
+                                                          Grid.Column="2"
+                                                          HorizontalAlignment="Center"
+                                                          RestStateImageSource="/Images/Remote/appbar.navigate.next.png"
+                                                          ButtonShape="Ellipse"
+                                                          BorderThickness="0"
+                                                          Foreground="{StaticResource PhoneAccentBrush}"
+                                                          Background="White"
+                                                          Margin="24,-44,0,0" />
+                        
+                        <telerikPrimitives:RadImageButton Grid.Row="1"
+                                                          Grid.Column="0"
+                                                          HorizontalAlignment="Center"
+                                                          RestStateImageSource="/Images/Remote/appbar.navigate.previous.png"
+                                                          ButtonShape="Ellipse"
+                                                          BorderThickness="0"
+                                                          Foreground="{StaticResource PhoneAccentBrush}"
+                                                          Background="White"
+                                                          Margin="0,-44,24,0" />
                     </Grid>
                 </Grid>
             </Grid>
