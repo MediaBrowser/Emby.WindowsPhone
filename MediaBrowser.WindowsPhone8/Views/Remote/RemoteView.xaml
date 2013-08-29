@@ -14,6 +14,7 @@
                 xmlns:converters="clr-namespace:ScottIsAFool.WindowsPhone.Converters;assembly=ScottIsAFool.WindowsPhone"
                 xmlns:localConverters="clr-namespace:MediaBrowser.WindowsPhone.Converters"
                 xmlns:controls="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
+                xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
                 mc:Ignorable="d ignore"
                 FontFamily="{StaticResource PhoneFontFamilyNormal}"
                 FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -35,8 +36,8 @@
     </i:Interaction.Triggers>
     <i:Interaction.Behaviors>
         <behaviors:ApplicationBarBehavior Mode="Minimized">
-            <behaviors:ApplicationBarIconButton IconUri="/Icons/appbar.back.rest.png"
-                                                Text="refresh clients"
+            <behaviors:ApplicationBarIconButton IconUri="/Icons/appbar.refresh.rest.png"
+                                                Text="refresh"
                                                 Command="{Binding RefreshClientsCommand}" />
             <behaviors:ApplicationBarIconButton IconUri="{Binding IsPinned, Converter={StaticResource PinnedItemConverter}, ConverterParameter=icon}"
                                                 Text="{Binding IsPinned, Converter={StaticResource PinnedItemConverter}, ConverterParameter=text}"
@@ -155,6 +156,11 @@
                                    HorizontalAlignment="Center"
                                    FontWeight="ExtraBold"/>
                     </Grid>
+                    
+                    <StackPanel Orientation="Horizontal"
+                                Grid.Row="1">
+                        <telerikPrimitives:RadImageButton ButtonShape="Image"/>
+                    </StackPanel>
                 </Grid>
             </Grid>
         </Grid>
