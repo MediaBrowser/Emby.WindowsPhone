@@ -20,6 +20,11 @@
                 Orientation="Portrait"
                 shell:SystemTray.IsVisible="True"
                 DataContext="{Binding Remote, Source={StaticResource Locator}}">
+    <shell:SystemTray.ProgressIndicator>
+        <shell:ProgressIndicator Text="{Binding ProgressText}"
+                                 IsIndeterminate="{Binding ProgressIsVisible}"
+                                 IsVisible="{Binding ProgressIsVisible}"/>
+    </shell:SystemTray.ProgressIndicator>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <command:EventToCommand Command="{Binding PageLoadedCommand}"/>
@@ -92,8 +97,7 @@
             <toolkit:ListPicker ItemsSource="{Binding Clients}">
                 <toolkit:ListPicker.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding DeviceName}"
-                                   Style="{StaticResource PhoneTextNormalStyle}"/>
+                        <TextBlock Text="{Binding DeviceName}"/>
                     </DataTemplate>
                 </toolkit:ListPicker.ItemTemplate>
             </toolkit:ListPicker>

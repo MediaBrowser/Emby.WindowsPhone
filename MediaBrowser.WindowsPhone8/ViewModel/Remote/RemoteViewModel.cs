@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using Cimbalino.Phone.Toolkit.Services;
 using GalaSoft.MvvmLight.Command;
 using MediaBrowser.Model;
@@ -105,12 +106,25 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
         }
 
+        public RelayCommand<SelectionChangedEventArgs> SelectionChangedCommand
+        {
+            get
+            {
+                return new RelayCommand<SelectionChangedEventArgs>(async args =>
+                {
+                    
+                });
+            }
+        } 
+
         private async Task GetClients(bool isRefresh)
         {
             if (!_navigationService.IsNetworkAvailable || (_dataLoaded && !isRefresh))
             {
                 return;
             }
+
+            SetProgressBar("Getting clients...");
 
             try
             {
@@ -123,6 +137,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 Log.ErrorException("GetClients()", ex);
             }
+
+            SetProgressBar();
         }
 
         private void PinTile()

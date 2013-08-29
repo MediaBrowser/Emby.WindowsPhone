@@ -26,7 +26,7 @@
                 toolkit:TiltEffect.IsTiltEnabled="True"
                 DataContext="{Binding Main, Source={StaticResource Locator}}">
     <shell:SystemTray.ProgressIndicator>
-        <shell:ProgressIndicator IsIndeterminate="True"
+        <shell:ProgressIndicator IsIndeterminate="{Binding ProgressIsVisible}"
                                  IsVisible="{Binding ProgressIsVisible}"
                                  Text="{Binding ProgressText}" />
     </shell:SystemTray.ProgressIndicator>

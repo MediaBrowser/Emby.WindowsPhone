@@ -24,7 +24,7 @@
                 DataContext="{Binding Search, Source={StaticResource Locator}}">
     <shell:SystemTray.ProgressIndicator>
         <shell:ProgressIndicator Text="{Binding ProgressText}"
-                                 IsIndeterminate="True"
+                                 IsIndeterminate="{Binding ProgressIsVisible}"
                                  IsVisible="{Binding ProgressIsVisible}" />
     </shell:SystemTray.ProgressIndicator>
 

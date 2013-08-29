@@ -31,7 +31,7 @@
     <shell:SystemTray.ProgressIndicator>
         <shell:ProgressIndicator Text="{Binding ProgressText}"
                                  IsVisible="{Binding ProgressIsVisible}"
-                                 IsIndeterminate="True" />
+                                 IsIndeterminate="{Binding ProgressIsVisible}" />
     </shell:SystemTray.ProgressIndicator>
 
     <toolkit:TransitionService.NavigationInTransition>

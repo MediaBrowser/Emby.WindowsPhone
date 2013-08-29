@@ -28,7 +28,7 @@
     <shell:SystemTray.ProgressIndicator>
         <shell:ProgressIndicator Text="{Binding ProgressText}"
                                  IsVisible="{Binding ProgressIsVisible}"
-                                 IsIndeterminate="True" />
+                                 IsIndeterminate="{Binding ProgressIsVisible}" />
     </shell:SystemTray.ProgressIndicator>
 
     <!--LayoutRoot is the root grid where all page content is placed-->
