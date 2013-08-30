@@ -69,6 +69,7 @@
     <scott:BasePage.Resources>
         <converters:OpacityConverter x:Key="OpacityConverter" />
         <localConverters:RemoteClientMultiConverter x:Key="ClientMultiConverter" />
+        <localConverters:NowPlayingProgressConverter x:Key="NowPlayingProgressConverter"/>
     </scott:BasePage.Resources>
 
     <!--LayoutRoot is the root grid where all page content is placed-->
@@ -122,10 +123,15 @@
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
 
-                    <Grid x:Name="NowPlayGrid">
+                    <Grid x:Name="NowPlayGrid"
+                          Visibility="{Binding SelectedClient.NowPlayingItem, Converter={StaticResource NullVisibilityConverter}}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
@@ -156,8 +162,25 @@
                                    HorizontalAlignment="Center"
                                    FontWeight="ExtraBold" />
                     </Grid>
+                    
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Stretch"
+                                Grid.Row="1">
+                        <TextBlock Text="{Binding SelectedClient.NowPlayingPositionTicks, Converter={StaticResource RuntimeConverter}, ConverterParameter=audio}"
+                                   Style="{StaticResource PhoneTextNormalStyle}"
+                                   Margin="12,0,6,0"/>
+                        <ProgressBar Margin="0"
+                                     Width="300"
+                                     Foreground="{StaticResource PhoneAccentBrush}"
+                                     HorizontalAlignment="Stretch"
+                                     Value="{Binding SelectedClient, Converter={StaticResource NowPlayingProgressConverter}}"/>
+                        <TextBlock Text="{Binding SelectedClient.NowPlayingItem.RunTimeTicks, Converter={StaticResource RuntimeConverter}, ConverterParameter=audio}"
+                                   Style="{StaticResource PhoneTextNormalStyle}"
+                                   Margin="6,0,12,0" />
+                    </StackPanel>
 
-                    <Grid Grid.Row="1">
+                    <Grid Grid.Row="2"
+                          Visibility="{Binding SelectedClient.NowPlayingItem, Converter={StaticResource NullVisibilityConverter}}">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />

@@ -142,7 +142,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 var clients = await _apiClient.GetClientSessionsAsync();
 
-                Clients = clients.Where(x => x.DeviceId != _apiClient.DeviceId).ToList();
+                Clients = clients.Where(x => x.DeviceId != _apiClient.DeviceId && x.SupportsRemoteControl).ToList();
 
                 if (SelectedClient != null)
                 {
