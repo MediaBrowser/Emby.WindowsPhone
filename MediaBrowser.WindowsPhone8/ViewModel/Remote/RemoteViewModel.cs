@@ -108,6 +108,25 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
         }
 
+        public RelayCommand<string> SendPlayCommand
+        {
+            get
+            {
+                return new RelayCommand<string>(async id =>
+                {
+                    if (string.IsNullOrEmpty(id))
+                    {
+                        return;
+                    }
+                    
+                    var clientId = "";
+                    await _apiClient.SendPlayCommandAsync(clientId, new PlayRequest { ItemIds = new[] { id }, PlayCommand = PlayCommand.PlayNow });
+
+                    _navigationService.NavigateTo(Constants.Pages.Remote.RemoteView);
+                });
+            }
+        }
+
         [UsedImplicitly]
         private async void OnSelectedClientChanged()
         {
@@ -115,18 +134,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 return;
             }
-
-            await GetClientSession();
-        }
-
-        private async Task GetClientSession()
-        {
-            if (!_navigationService.IsNetworkAvailable)
-            {
-                return;
-            }
-
-            
         }
 
         private async Task GetClients(bool isRefresh)

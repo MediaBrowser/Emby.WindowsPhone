@@ -115,10 +115,15 @@
 
             public class Predefined
             {
-                private const string PredefinedPath = ViewsPath + "predefined/";
+                private const string PredefinedPath = ViewsPath + "Predefined/";
                 public const string MusicCollectionView = PredefinedPath + "MusicCollectionView.xaml";
                 public const string TvCollectionView = PredefinedPath + "TvCollectionView.xaml";
                 public const string MovieCollectionView = PredefinedPath + "MovieCollectionView.xaml";
+            }
+
+            public class FirstRun
+            {
+                private const string FirstRunPath = ViewsPath + "FirstRun/";
             }
         }
     }
