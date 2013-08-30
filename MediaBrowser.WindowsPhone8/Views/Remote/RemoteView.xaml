@@ -69,7 +69,7 @@
     <scott:BasePage.Resources>
         <converters:OpacityConverter x:Key="OpacityConverter" />
         <localConverters:RemoteClientMultiConverter x:Key="ClientMultiConverter" />
-        <localConverters:NowPlayingProgressConverter x:Key="NowPlayingProgressConverter"/>
+        <localConverters:NowPlayingProgressConverter x:Key="NowPlayingProgressConverter" />
     </scott:BasePage.Resources>
 
     <!--LayoutRoot is the root grid where all page content is placed-->
@@ -127,7 +127,7 @@
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
                     <Grid x:Name="NowPlayGrid"
@@ -162,22 +162,27 @@
                                    HorizontalAlignment="Center"
                                    FontWeight="ExtraBold" />
                     </Grid>
-                    
-                    <StackPanel Orientation="Horizontal"
-                                HorizontalAlignment="Stretch"
-                                Grid.Row="1">
+
+                    <Grid HorizontalAlignment="Stretch"
+                          Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
                         <TextBlock Text="{Binding SelectedClient.NowPlayingPositionTicks, Converter={StaticResource RuntimeConverter}, ConverterParameter=audio}"
                                    Style="{StaticResource PhoneTextNormalStyle}"
-                                   Margin="12,0,6,0"/>
+                                   Margin="12,0,6,0" />
                         <ProgressBar Margin="0"
-                                     Width="300"
+                                     Grid.Column="1"
                                      Foreground="{StaticResource PhoneAccentBrush}"
                                      HorizontalAlignment="Stretch"
-                                     Value="{Binding SelectedClient, Converter={StaticResource NowPlayingProgressConverter}}"/>
+                                     Value="{Binding SelectedClient, Converter={StaticResource NowPlayingProgressConverter}}" />
                         <TextBlock Text="{Binding SelectedClient.NowPlayingItem.RunTimeTicks, Converter={StaticResource RuntimeConverter}, ConverterParameter=audio}"
                                    Style="{StaticResource PhoneTextNormalStyle}"
+                                   Grid.Column="2"
                                    Margin="6,0,12,0" />
-                    </StackPanel>
+                    </Grid>
 
                     <Grid Grid.Row="2"
                           Visibility="{Binding SelectedClient.NowPlayingItem, Converter={StaticResource NullVisibilityConverter}}">
@@ -199,18 +204,18 @@
                                                           Grid.Column="1"
                                                           Grid.Row="0"
                                                           toolkit:TiltEffect.IsTiltEnabled="True"
-                                                          HorizontalAlignment="Center" 
-                                                          Margin="0,20,0,0"/>
+                                                          HorizontalAlignment="Center"
+                                                          Margin="0,20,0,0" />
 
                         <telerikPrimitives:RadImageButton Grid.Row="2"
                                                           Grid.Column="1"
-                                                          RestStateImageSource="/Images/stop.png"
+                                                          RestStateImageSource="/Images/Remote/appbar.control.stop.png"
                                                           ButtonShape="Ellipse"
                                                           BorderThickness="0"
                                                           HorizontalAlignment="Center"
                                                           Foreground="{StaticResource PhoneAccentBrush}"
                                                           Background="White"
-                                                          Margin="0,-20,0,0"/>
+                                                          Margin="0,-20,0,0" />
 
                         <telerikPrimitives:RadImageButton Grid.Row="1"
                                                           Grid.Column="0"
@@ -240,8 +245,8 @@
                                                           BorderThickness="0"
                                                           Foreground="{StaticResource PhoneAccentBrush}"
                                                           Background="White"
-                                                          Margin="24,-44,0,0" />
-                        
+                                                          Margin="44,-44,0,0" />
+
                         <telerikPrimitives:RadImageButton Grid.Row="1"
                                                           Grid.Column="0"
                                                           HorizontalAlignment="Center"
@@ -250,7 +255,7 @@
                                                           BorderThickness="0"
                                                           Foreground="{StaticResource PhoneAccentBrush}"
                                                           Background="White"
-                                                          Margin="0,-44,24,0" />
+                                                          Margin="0,-44,44,0" />
                     </Grid>
                 </Grid>
             </Grid>

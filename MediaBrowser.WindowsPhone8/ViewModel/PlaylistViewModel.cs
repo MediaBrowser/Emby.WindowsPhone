@@ -37,7 +37,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public PlaylistViewModel(INavigationService navigationService, IStorageService storageService)
         {
             _navigationService = navigationService;
-            _playlistHelper = new PlaylistHelper(storageService);
             _playlistChecker = new DispatcherTimer {Interval = new TimeSpan(0, 0, 3)};
             _playlistChecker.Tick += PlaylistCheckerOnTick;
 
@@ -55,6 +54,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
             else
             {
+                _playlistHelper = new PlaylistHelper(storageService);
                 BackgroundAudioPlayer.Instance.PlayStateChanged += OnPlayStateChanged;
             }
         }

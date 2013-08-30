@@ -276,6 +276,7 @@
     <Content Include="Icons\appbar.refresh.rest.png" />
     <Content Include="Icons\searchbutton.png" />
     <Content Include="Images\3d.png" />
+    <Content Include="Images\Remote\appbar.control.stop.png" />
     <Content Include="Images\Remote\appbar.navigate.next.png" />
     <Content Include="Images\Remote\appbar.navigate.previous.png" />
     <Content Include="Images\appbar.repeat.png" />
