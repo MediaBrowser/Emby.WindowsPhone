@@ -63,15 +63,18 @@ namespace MediaBrowser.WindowsPhone.Model
                     NavigateTo(Constants.Pages.EpisodeView);
                     break;
                 case "trailer":
-                    Messenger.Default.Send(new NotificationMessage(Constants.Messages.ChangeTrailerMsg));
+                    if (SimpleIoc.Default.GetInstance<TrailerViewModel>() != null)
+                        Messenger.Default.Send(new NotificationMessage(Constants.Messages.ChangeTrailerMsg));
                     NavigateTo(Constants.Pages.TrailerView);
                     break;
                 case "musicartist":
-                    Messenger.Default.Send(new NotificationMessage(item, Constants.Messages.MusicArtistChangedMsg));
+                    if (SimpleIoc.Default.GetInstance<MusicViewModel>() != null)
+                        Messenger.Default.Send(new NotificationMessage(item, Constants.Messages.MusicArtistChangedMsg));
                     NavigateTo(Constants.Pages.ArtistView);
                     break;
                 case "musicalbum":
-                    Messenger.Default.Send(new NotificationMessage(item, Constants.Messages.MusicAlbumChangedMsg));
+                    if (SimpleIoc.Default.GetInstance<MusicViewModel>() != null)
+                        Messenger.Default.Send(new NotificationMessage(item, Constants.Messages.MusicAlbumChangedMsg));
                     NavigateTo(Constants.Pages.AlbumView);
                     break;
                 case "photo":

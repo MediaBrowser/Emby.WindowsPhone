@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using Cimbalino.Phone.Toolkit.Services;
+using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model;
 using MediaBrowser.Model.Entities;
@@ -140,8 +141,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 Log.Info("Playing {0} [{1}]", item.Type, item.Name);
 #if WP8
-                Messenger.Default.Send(new NotificationMessage(item, Constants.Messages.PlayVideoItemMsg));
-                _navService.NavigateTo("/Views/VideoPlayerView.xaml");
+                if (SimpleIoc.Default.GetInstance<VideoPlayerViewModel>() != null)
+                {
+                    Messenger.Default.Send(new NotificationMessage(item, Constants.Messages.PlayVideoItemMsg));
+                    _navService.NavigateTo("/Views/VideoPlayerView.xaml");
+                }
 #else
                 var bounds = Application.Current.RootVisual.RenderSize;
                 var query = new VideoStreamOptions

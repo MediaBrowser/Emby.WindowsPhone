@@ -19,7 +19,6 @@ using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.Model;
 using INavigationService = MediaBrowser.WindowsPhone.Model.INavigationService;
 using NavigationService = MediaBrowser.WindowsPhone.Model.NavigationService;
-using MediaBrowser.ApiInteraction;
 using Cimbalino.Phone.Toolkit.Helpers;
 
 namespace MediaBrowser.WindowsPhone.ViewModel
@@ -45,13 +44,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 if (!SimpleIoc.Default.IsRegistered<IExtendedApiClient>())
                     SimpleIoc.Default.Register<IExtendedApiClient>(() => new ExtendedApiClient(new MBLogger(), "scottisafool.homeserver.com", 8096, "Windows Phone", Utils.GetDeviceName(), Utils.GetDeviceId(), ApplicationManifest.Current.App.Version));
+                    //SimpleIoc.Default.Register<IExtendedApiClient, ExtendedApiClientDesign>();
                 SimpleIoc.Default.Register<INavigationService, NavigationService>();
                 SimpleIoc.Default.Register<FolderViewModel>();
                 SimpleIoc.Default.Register<MovieViewModel>();
                 if(!SimpleIoc.Default.IsRegistered<IApplicationSettingsService>())
                     SimpleIoc.Default.Register<IApplicationSettingsService, ApplicationSettingsDesignService>();
 
-                if(!SimpleIoc.Default.IsRegistered<IStorageService>())
+                if (!SimpleIoc.Default.IsRegistered<IStorageService>())
                     SimpleIoc.Default.Register<IStorageService, StorageDesignService>();
             }
             else
@@ -74,14 +74,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     SimpleIoc.Default.Register<IStorageService, StorageService>();
             }
 
-            SimpleIoc.Default.Register<MainViewModel>(true);
-            SimpleIoc.Default.Register<VideoPlayerViewModel>(true);
+            SimpleIoc.Default.Register<MainViewModel>();
+            SimpleIoc.Default.Register<VideoPlayerViewModel>();
             SimpleIoc.Default.Register<SplashscreenViewModel>();
             SimpleIoc.Default.Register<ChooseProfileViewModel>();
             SimpleIoc.Default.Register<TvViewModel>();
-            SimpleIoc.Default.Register<TrailerViewModel>(true);
-            SimpleIoc.Default.Register<SettingsViewModel>(true);
-            SimpleIoc.Default.Register<MusicViewModel>(true);
+            SimpleIoc.Default.Register<TrailerViewModel>();
+            SimpleIoc.Default.Register<SettingsViewModel>();
+            SimpleIoc.Default.Register<MusicViewModel>();
             SimpleIoc.Default.Register<SearchViewModel>();
             SimpleIoc.Default.Register<PlaylistViewModel>(true);
             SimpleIoc.Default.Register<NotificationsViewModel>();
