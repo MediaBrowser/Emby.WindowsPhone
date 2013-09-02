@@ -15,6 +15,7 @@
             public const string ServerPluginInstalled = "ServerPluginInstalled";
             public const string IsRegistered = "IsRegistered";
             public const string UseNotifications = "UseNotifications";
+            public const string DoNotShowFirstRun = "DoNotShowFirstRun";
         }
 
         public class Messages
@@ -124,6 +125,7 @@
             public class FirstRun
             {
                 private const string FirstRunPath = ViewsPath + "FirstRun/";
+                public const string WelcomeView = FirstRunPath + "WelcomeView.xaml";
             }
         }
     }
