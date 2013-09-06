@@ -15,6 +15,7 @@
                 xmlns:localConverters="clr-namespace:MediaBrowser.WindowsPhone.Converters"
                 xmlns:controls="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
                 xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
+                xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
                 mc:Ignorable="d ignore"
                 FontFamily="{StaticResource PhoneFontFamilyNormal}"
                 FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -24,20 +25,10 @@
                 shell:SystemTray.IsVisible="True"
                 shell:SystemTray.Opacity="0"
                 DataContext="{Binding Remote, Source={StaticResource Locator}}">
-    <shell:SystemTray.ProgressIndicator>
-        <shell:ProgressIndicator Text="{Binding ProgressText}"
-                                 IsIndeterminate="{Binding ProgressIsVisible}"
-                                 IsVisible="{Binding ProgressIsVisible}" />
-    </shell:SystemTray.ProgressIndicator>
-    <i:Interaction.Triggers>
-        <i:EventTrigger EventName="Loaded">
-            <command:EventToCommand Command="{Binding PageLoadedCommand}" />
-        </i:EventTrigger>
-        <i:EventTrigger EventName="Unloaded">
-            <command:EventToCommand Command="{Binding PageUnloadedCommand}"/>
-        </i:EventTrigger>
-    </i:Interaction.Triggers>
     <i:Interaction.Behaviors>
+        <behaviours:MBSysTray Text="{Binding ProgressText}"
+                              IsVisible="{Binding ProgressIsVisible}"
+                              IsIndeterminate="{Binding ProgressIsVisible}" />
         <behaviors:ApplicationBarBehavior Mode="Minimized">
             <behaviors:ApplicationBarIconButton IconUri="/Icons/appbar.refresh.rest.png"
                                                 Text="refresh"
@@ -47,6 +38,14 @@
                                                 Command="{Binding PinTileCommand}" />
         </behaviors:ApplicationBarBehavior>
     </i:Interaction.Behaviors>
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <command:EventToCommand Command="{Binding PageLoadedCommand}" />
+        </i:EventTrigger>
+        <i:EventTrigger EventName="Unloaded">
+            <command:EventToCommand Command="{Binding PageUnloadedCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
 
     <toolkit:TransitionService.NavigationInTransition>
         <toolkit:NavigationInTransition>

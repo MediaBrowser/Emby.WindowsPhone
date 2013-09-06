@@ -9,7 +9,7 @@
                 xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
                 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
                 xmlns:behaviors="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
-                xmlns:behaviours1="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
+                xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
                 xmlns:scottBehaviours="clr-namespace:ScottIsAFool.WindowsPhone.Behaviours;assembly=ScottIsAFool.WindowsPhone"
                 FontFamily="{StaticResource PhoneFontFamilyNormal}"
                 FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -19,13 +19,10 @@
                 mc:Ignorable="d"
                 shell:SystemTray.IsVisible="True"
                 DataContext="{Binding Profile, Source={StaticResource Locator}}">
-    <shell:SystemTray.ProgressIndicator>
-        <shell:ProgressIndicator IsIndeterminate="{Binding ProgressIsVisible}"
-                                 IsVisible="{Binding ProgressIsVisible}"
-                                 Text="{Binding ProgressText}"/>
-    </shell:SystemTray.ProgressIndicator>
-    
     <i:Interaction.Behaviors>
+        <behaviours:MBSysTray Text="{Binding ProgressText}"
+                              IsVisible="{Binding ProgressIsVisible}"
+                              IsIndeterminate="{Binding ProgressIsVisible}" />
         <behaviors:ApplicationBarBehavior IsMenuEnabled="True">
             <behaviors:ApplicationBarIconButton Text="login"
                                                 IconUri="/Icons/appbar.check.rest.png"
@@ -89,7 +86,7 @@
                                       x:Name="UsernameTextBox">
                     <i:Interaction.Behaviors>
                         <scottBehaviours:UpdateTextBindingOnPropertyChanged />
-                        <behaviours1:EnterKeyHandler />
+                        <behaviours:EnterKeyHandler />
                     </i:Interaction.Behaviors>
                 </toolkit:PhoneTextBox>
                     <TextBlock Text="password:"
@@ -97,7 +94,7 @@
                 <PasswordBox Password="{Binding Password, Mode=TwoWay}">
                     <i:Interaction.Behaviors>
                         <scottBehaviours:UpdatePasswordBindingOnPropertyChanged />
-                        <behaviours1:EnterKeyHandler EnterKeyAction="ExecuteCommand"
+                        <behaviours:EnterKeyHandler EnterKeyAction="ExecuteCommand"
                                                      CommandString="ManualLoginCommand"/>
                     </i:Interaction.Behaviors>
                 </PasswordBox>

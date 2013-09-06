@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model;
+using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Notifications;
 using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Model;
@@ -91,22 +92,29 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             SetProgressBar("Getting notifications...");
 
-            var query = new NotificationQuery
+            try
             {
-                StartIndex = 0,
-                UserId = AuthenticationService.Current.LoggedInUser.Id
-            };
+                var query = new NotificationQuery
+                {
+                    StartIndex = 0,
+                    UserId = AuthenticationService.Current.LoggedInUser.Id
+                };
 
-            var notifications = await _apiClient.GetNotificationsAsync(query);
-            Notifications = new ObservableCollection<Notification>(notifications.Notifications);
+                var notifications = await _apiClient.GetNotificationsAsync(query);
+                Notifications = new ObservableCollection<Notification>(notifications.Notifications);
 
-            await _apiClient.MarkNotificationsRead(AuthenticationService.Current.LoggedInUser.Id, Notifications.Select(x => x.Id), true);
+                await _apiClient.MarkNotificationsRead(AuthenticationService.Current.LoggedInUser.Id, Notifications.Select(x => x.Id), true);
 
-            var summary = await _apiClient.GetNotificationsSummary(AuthenticationService.Current.LoggedInUser.Id);
+                var summary = await _apiClient.GetNotificationsSummary(AuthenticationService.Current.LoggedInUser.Id);
 
-            Messenger.Default.Send(new NotificationMessage(summary, Constants.Messages.NotificationCountMsg));
+                Messenger.Default.Send(new NotificationMessage(summary, Constants.Messages.NotificationCountMsg));
 
-            _dataLoaded = true;
+                _dataLoaded = true;
+            }
+            catch (HttpException ex)
+            {
+                Log.ErrorException("GetNotifications()", ex);
+            }
 
             SetProgressBar();
         }
