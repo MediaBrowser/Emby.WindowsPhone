@@ -8,6 +8,7 @@ using Cimbalino.Phone.Toolkit.Helpers;
 using Cimbalino.Phone.Toolkit.Services;
 using Coding4Fun.Toolkit.Controls;
 using GalaSoft.MvvmLight.Ioc;
+using MediaBrowser.ApiInteraction.WebSocket;
 using MediaBrowser.Model;
 using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Model;
@@ -47,6 +48,8 @@ namespace MediaBrowser.WindowsPhone
         public static object SelectedItem { get; set; }
 
         public static string Action { get; set; }
+
+        public static ApiWebSocket WebSocketClient { get; set; }
 
         public static void ShowMessage(string message, string title = "", Action action = null)
         {

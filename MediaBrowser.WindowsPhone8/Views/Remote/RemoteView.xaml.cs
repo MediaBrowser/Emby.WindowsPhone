@@ -1,5 +1,6 @@
 ﻿using MediaBrowser.WindowsPhone.Services;
 using MediaBrowser.WindowsPhone.ViewModel;
+using MediaBrowser.WindowsPhone.ViewModel.Remote;
 
 namespace MediaBrowser.WindowsPhone.Views.Remote
 {
@@ -13,7 +14,7 @@ namespace MediaBrowser.WindowsPhone.Views.Remote
         /// </summary>
         public RemoteView()
         {
-            InitializeComponent();
+            InitializeComponent(); 
         }
 
         protected override void InitialiseOnBack()

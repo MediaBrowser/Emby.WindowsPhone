@@ -78,6 +78,7 @@ namespace MediaBrowser.Design
         public string ClientName { get; set; }
 
         public string CurrentUserId { get; set; }
+        public event EventHandler ServerLocationChanged;
 
         public string DeviceId { get; set; }
 
@@ -619,6 +620,11 @@ namespace MediaBrowser.Design
             throw new NotImplementedException();
         }
 
+        public Task UpdateDisplayPreferencesAsync(DisplayPreferences displayPreferences, string userId, string client, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
         public System.Threading.Tasks.Task<T> PostAsync<T>(string url, Dictionary<string, string> args) where T : class
         {
             throw new NotImplementedException();
@@ -630,6 +636,11 @@ namespace MediaBrowser.Design
         }
 
         public System.Threading.Tasks.Task ReportPlaybackStartAsync(string itemId, string userId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task ReportPlaybackProgressAsync(string itemId, string userId, long? positionTicks, bool isPaused, bool isMuted)
         {
             throw new NotImplementedException();
         }

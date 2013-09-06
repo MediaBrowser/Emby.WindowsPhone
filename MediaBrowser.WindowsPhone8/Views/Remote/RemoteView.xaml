@@ -33,6 +33,9 @@
         <i:EventTrigger EventName="Loaded">
             <command:EventToCommand Command="{Binding PageLoadedCommand}" />
         </i:EventTrigger>
+        <i:EventTrigger EventName="Unloaded">
+            <command:EventToCommand Command="{Binding PageUnloadedCommand}"/>
+        </i:EventTrigger>
     </i:Interaction.Triggers>
     <i:Interaction.Behaviors>
         <behaviors:ApplicationBarBehavior Mode="Minimized">
@@ -170,14 +173,14 @@
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        <TextBlock Text="{Binding SelectedClient.NowPlayingPositionTicks, Converter={StaticResource RuntimeConverter}, ConverterParameter=audio}"
+                        <TextBlock Text="{Binding PlayedTicks, Converter={StaticResource RuntimeConverter}, ConverterParameter=audio}"
                                    Style="{StaticResource PhoneTextNormalStyle}"
                                    Margin="12,0,6,0" />
                         <ProgressBar Margin="0"
                                      Grid.Column="1"
                                      Foreground="{StaticResource PhoneAccentBrush}"
                                      HorizontalAlignment="Stretch"
-                                     Value="{Binding SelectedClient, Converter={StaticResource NowPlayingProgressConverter}}" />
+                                     Value="{Binding PlayedPercentage}" />
                         <TextBlock Text="{Binding SelectedClient.NowPlayingItem.RunTimeTicks, Converter={StaticResource RuntimeConverter}, ConverterParameter=audio}"
                                    Style="{StaticResource PhoneTextNormalStyle}"
                                    Grid.Column="2"

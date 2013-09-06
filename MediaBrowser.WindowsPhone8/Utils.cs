@@ -3,12 +3,17 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Net;
+using System.Net.Sockets;
 using System.Reflection;
+using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using Ailon.WP.Utils;
 using Cimbalino.Phone.Toolkit.Services;
 using GalaSoft.MvvmLight.Ioc;
+using MediaBrowser.ApiInteraction;
+using MediaBrowser.ApiInteraction.WebSocket;
 using MediaBrowser.Model;
 using MediaBrowser.Model.Configuration;
 using MediaBrowser.Model.Dto;
@@ -16,6 +21,7 @@ using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Session;
 using MediaBrowser.Services;
+using MediaBrowser.WindowsPhone.Model;
 using Microsoft.Phone.Info;
 using ScottIsAFool.WindowsPhone;
 using ScottIsAFool.WindowsPhone.Logging;
@@ -204,6 +210,18 @@ namespace MediaBrowser.WindowsPhone
                 
                 var config = await apiClient.GetServerConfigurationAsync();
                 App.Settings.ServerConfiguration = config;
+
+                logger.Info("Getting System information");
+
+                var sysInfo = await apiClient.GetSystemInfoAsync();
+                App.Settings.SystemStatus = sysInfo;
+
+                if (SimpleIoc.Default.IsRegistered<ApiWebSocket>())
+                {
+                    SimpleIoc.Default.Unregister<ApiWebSocket>();
+                }
+                
+                App.WebSocketClient = await ApiWebSocket.Create(new MBLogger(), new NewtonsoftJsonSerializer(), (ApiClient)apiClient, () => new WebSocketClient(), new CancellationToken());
                 
                 return true;
             }

@@ -2,20 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Windows.Controls;
-using System.Windows.Media;
+using System.Windows;
 using Cimbalino.Phone.Toolkit.Services;
 using GalaSoft.MvvmLight.Command;
 using JetBrains.Annotations;
+using MediaBrowser.ApiInteraction.WebSocket;
 using MediaBrowser.Model;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Session;
-using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Services;
 using ScottIsAFool.WindowsPhone.ViewModel;
 using INavigationService = MediaBrowser.WindowsPhone.Model.INavigationService;
 
-namespace MediaBrowser.WindowsPhone.ViewModel
+namespace MediaBrowser.WindowsPhone.ViewModel.Remote
 {
     /// <summary>
     /// This class contains properties that a View can data bind to.
@@ -44,6 +43,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public bool IsPinned { get; set; }
         public List<SessionInfoDto> Clients { get; set; }
         public SessionInfoDto SelectedClient { get; set; }
+        public double PlayedPercentage { get; set; }
+        public long? PlayedTicks { get; set; }
 
         public bool CanUseRemote
         {
@@ -61,7 +62,24 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 {
                     IsPinned = TileService.Current.TileExists(Constants.Pages.Remote.RemoteView);
 
+                    await App.WebSocketClient.StartReceivingSessionUpdates(750);
+
+                    App.WebSocketClient.SessionsUpdated += WebSocketClientOnSessionsUpdated;
+
                     await GetClients(false);
+                });
+            }
+        }
+
+        public RelayCommand PageUnloadedCommand
+        {
+            get
+            {
+                return new RelayCommand(async () =>
+                {
+                    App.WebSocketClient.SessionsUpdated -= WebSocketClientOnSessionsUpdated;
+
+                    await App.WebSocketClient.StopReceivingSessionUpdates();
                 });
             }
         }
@@ -160,6 +178,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     SelectedClient = Clients[0];
                 }
 
+                SetPlayedPercentage(SelectedClient);
+
                 _dataLoaded = true;
             }
             catch (HttpException ex)
@@ -168,6 +188,15 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
 
             SetProgressBar();
+        }
+
+        private void SetPlayedPercentage(SessionInfoDto selectedClient)
+        {
+            if (selectedClient.NowPlayingPositionTicks.HasValue &&  selectedClient.NowPlayingItem != null && selectedClient.NowPlayingItem.RunTimeTicks.HasValue)
+            {
+                PlayedTicks = selectedClient.NowPlayingPositionTicks;
+                PlayedPercentage = ((double) selectedClient.NowPlayingPositionTicks/(double) selectedClient.NowPlayingItem.RunTimeTicks)*100;
+            }
         }
 
         private void PinTile()
@@ -193,6 +222,18 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                 IsPinned = true;
             }
+        }
+
+        private void WebSocketClientOnSessionsUpdated(object sender, SessionUpdatesEventArgs e)
+        {
+            if (SelectedClient == null)
+            {
+                return;
+            }
+
+            var session = e.Sessions.First(x => x.DeviceId == SelectedClient.DeviceId);
+
+            Deployment.Current.Dispatcher.BeginInvoke(() => SetPlayedPercentage(session));
         }
     }
 }
