@@ -1,4 +1,5 @@
 ﻿using MediaBrowser.Model.Dto;
+using MediaBrowser.Model.Entities;
 
 namespace MediaBrowser.WindowsPhone.Model
 {
@@ -6,5 +7,6 @@ namespace MediaBrowser.WindowsPhone.Model
     {
         bool IsNetworkAvailable { get; }
         void NavigateTo(BaseItemDto item);
+        void NavigateTo(BaseItemInfo item);
     }
 }

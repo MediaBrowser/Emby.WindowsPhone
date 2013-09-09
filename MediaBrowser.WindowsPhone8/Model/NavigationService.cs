@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
+using MediaBrowser.Model.Entities;
 using MediaBrowser.WindowsPhone.ViewModel;
 using Microsoft.Phone.Net.NetworkInformation;
 using MediaBrowser.Model.Dto;
@@ -20,6 +21,18 @@ namespace MediaBrowser.WindowsPhone.Model
                 }
                 return result;
             }
+        }
+
+        public void NavigateTo(BaseItemInfo item)
+        {
+            var dto = new BaseItemDto
+            {
+                Id = item.Id,
+                Type = item.Type,
+                Name = item.Name
+            };
+
+            NavigateTo(dto);
         }
         
         public void NavigateTo(BaseItemDto item)

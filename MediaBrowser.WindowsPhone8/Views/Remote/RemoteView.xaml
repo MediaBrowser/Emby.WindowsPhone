@@ -43,7 +43,7 @@
             <command:EventToCommand Command="{Binding PageLoadedCommand}" />
         </i:EventTrigger>
         <i:EventTrigger EventName="Unloaded">
-            <command:EventToCommand Command="{Binding PageUnloadedCommand}"/>
+            <command:EventToCommand Command="{Binding PageUnloadedCommand}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
 
@@ -71,7 +71,6 @@
     <scott:BasePage.Resources>
         <converters:OpacityConverter x:Key="OpacityConverter" />
         <localConverters:RemoteClientMultiConverter x:Key="ClientMultiConverter" />
-        <localConverters:NowPlayingProgressConverter x:Key="NowPlayingProgressConverter" />
     </scott:BasePage.Resources>
 
     <!--LayoutRoot is the root grid where all page content is placed-->
@@ -150,14 +149,20 @@
                                Grid.ColumnSpan="3"
                                VerticalAlignment="Top"
                                Opacity="0.2" />
-                        <controls:SuperImage Source="{Binding SelectedClient.NowPlayingItem, Converter={StaticResource ImageUrlConverter}}"
-                                             MaxHeight="280"
-                                             Grid.Row="0"
-                                             Stretch="Uniform"
-                                             PlaceholderImageSource="/Images/DefaultVideo.png"
-                                             PlaceholderImageStretch="Uniform"
-                                             HorizontalAlignment="Center"
-                                             Margin="0,24,0,0" />
+                        <Button Style="{StaticResource EmptyButtonStyle}"
+                                Grid.Row="0"
+                                HorizontalContentAlignment="Center"
+                                HorizontalAlignment="Center"
+                                Command="{Binding NavigateToCommand}"
+                                CommandParameter="{Binding SelectedClient.NowPlayingItem}"
+                                toolkit:TiltEffect.IsTiltEnabled="True">
+                            <controls:SuperImage Source="{Binding SelectedClient.NowPlayingItem, Converter={StaticResource ImageUrlConverter}}"
+                                                 MaxHeight="280"
+                                                 Stretch="Uniform"
+                                                 PlaceholderImageSource="/Images/DefaultVideo.png"
+                                                 PlaceholderImageStretch="Uniform"
+                                                 Margin="0,24,0,0" />
+                        </Button>
                         <TextBlock Text="{Binding SelectedClient.NowPlayingItem.Name}"
                                    Grid.Row="1"
                                    Style="{StaticResource PhoneTextTitle2Style}"
@@ -166,9 +171,10 @@
                     </Grid>
 
                     <Grid HorizontalAlignment="Stretch"
-                          Grid.Row="1">
+                          Grid.Row="1"
+                          Visibility="{Binding SelectedClient.NowPlayingItem, Converter={StaticResource NullVisibilityConverter}}">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
@@ -205,8 +211,10 @@
                                                           PressedStateImageSource="/Images/Remote/Pause.png"
                                                           Grid.Column="1"
                                                           Grid.Row="0"
+                                                          IsChecked="{Binding IsPlaying}"
                                                           toolkit:TiltEffect.IsTiltEnabled="True"
                                                           HorizontalAlignment="Center"
+                                                          Command="{Binding PlayPauseCommand}"
                                                           Margin="0,20,0,0" />
 
                         <telerikPrimitives:RadImageButton Grid.Row="2"
@@ -217,6 +225,8 @@
                                                           HorizontalAlignment="Center"
                                                           Foreground="{StaticResource PhoneAccentBrush}"
                                                           Background="White"
+                                                          Command="{Binding SendPlaystateCommand}"
+                                                          CommandParameter="Stop"
                                                           Margin="0,-20,0,0" />
 
                         <telerikPrimitives:RadImageButton Grid.Row="1"
@@ -227,6 +237,8 @@
                                                           BorderThickness="0"
                                                           Foreground="{StaticResource PhoneAccentBrush}"
                                                           Background="White"
+                                                          Command="{Binding SeekCommand}"
+                                                          CommandParameter="-30"
                                                           Margin="0,-54,0,0" />
 
                         <telerikPrimitives:RadImageButton Grid.Row="1"
@@ -236,6 +248,8 @@
                                                           ButtonShape="Ellipse"
                                                           BorderThickness="0"
                                                           Foreground="{StaticResource PhoneAccentBrush}"
+                                                          Command="{Binding SeekCommand}"
+                                                          CommandParameter="30"
                                                           Background="White"
                                                           Margin="0,-54,0,0" />
 
@@ -246,6 +260,8 @@
                                                           ButtonShape="Ellipse"
                                                           BorderThickness="0"
                                                           Foreground="{StaticResource PhoneAccentBrush}"
+                                                          Command="{Binding SendPlaystateCommand}"
+                                                          CommandParameter="NextTrack"
                                                           Background="White"
                                                           Margin="44,-44,0,0" />
 
@@ -255,6 +271,8 @@
                                                           RestStateImageSource="/Images/Remote/appbar.navigate.previous.png"
                                                           ButtonShape="Ellipse"
                                                           BorderThickness="0"
+                                                          Command="{Binding SendPlaystateCommand}"
+                                                          CommandParameter="PreviousTrack"
                                                           Foreground="{StaticResource PhoneAccentBrush}"
                                                           Background="White"
                                                           Margin="0,-44,44,0" />

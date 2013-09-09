@@ -8,6 +8,7 @@ using GalaSoft.MvvmLight.Command;
 using JetBrains.Annotations;
 using MediaBrowser.ApiInteraction.WebSocket;
 using MediaBrowser.Model;
+using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Session;
 using MediaBrowser.WindowsPhone.Services;
@@ -45,6 +46,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
         public SessionInfoDto SelectedClient { get; set; }
         public double PlayedPercentage { get; set; }
         public long? PlayedTicks { get; set; }
+        public bool IsPlaying { get; set; }
 
         public bool CanUseRemote
         {
@@ -62,7 +64,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
                 {
                     IsPinned = TileService.Current.TileExists(Constants.Pages.Remote.RemoteView);
 
-                    await App.WebSocketClient.StartReceivingSessionUpdates(750);
+                    await App.WebSocketClient.StartReceivingSessionUpdates(1500);
 
                     App.WebSocketClient.SessionsUpdated += WebSocketClientOnSessionsUpdated;
 
@@ -106,24 +108,60 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
             {
                 return new RelayCommand<string>(async commandString =>
                 {
-                    var request = new PlaystateRequest
-                    {
-                        Command = commandString.ToPlaystateCommandEnum()
-                    };
-
-                    try
-                    {
-                        SendingCommand = true;
-                        await _apiClient.SendPlaystateCommandAsync(SelectedClient.Id.ToString(), request);
-                    }
-                    catch (HttpException ex)
-                    {
-                        Log.ErrorException("SendPlaystateCommand(" + commandString + ")", ex);
-                    }
-
-                    SendingCommand = false;
+                    await SendCommand(commandString);
                 });
             }
+        }
+
+        public RelayCommand PlayPauseCommand
+        {
+            get
+            {
+                return new RelayCommand(async () =>
+                {
+                    var playPause = IsPlaying ? "Pause" : "Unpause";
+
+                    await SendCommand(playPause);
+                });
+            }
+        }
+
+        public RelayCommand<int> SeekCommand
+        {
+            get
+            {
+                return new RelayCommand<int>(async seconds =>
+                {
+                    var ticks = TimeSpan.FromSeconds(seconds);
+
+                    await SendCommand("Seek", ticks.Ticks);
+                });
+            }
+        }
+
+        private async Task SendCommand(string commandString, long? seekAmount = null)
+        {
+            var request = new PlaystateRequest
+            {
+                Command = commandString.ToPlaystateCommandEnum()
+            };
+
+            if (seekAmount.HasValue)
+            {
+                request.SeekPositionTicks = SelectedClient.NowPlayingPositionTicks + seekAmount.Value;
+            }
+
+            try
+            {
+                SendingCommand = true;
+                await _apiClient.SendPlaystateCommandAsync(SelectedClient.Id, request);
+            }
+            catch (HttpException ex)
+            {
+                Log.ErrorException("SendPlaystateCommand(" + commandString + ")", ex);
+            }
+
+            SendingCommand = false;
         }
 
         public RelayCommand<string> SendPlayCommand
@@ -145,14 +183,13 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
             }
         }
 
-        [UsedImplicitly]
-        private async void OnSelectedClientChanged()
+        public RelayCommand<BaseItemInfo> NavigateToCommand
         {
-            if (SelectedClient == null)
+            get
             {
-                return;
+                return new RelayCommand<BaseItemInfo>(_navigationService.NavigateTo);
             }
-        }
+        } 
 
         private async Task GetClients(bool isRefresh)
         {
@@ -169,18 +206,21 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
 
                 Clients = clients.Where(x => x.DeviceId != _apiClient.DeviceId && x.SupportsRemoteControl).ToList();
 
-                if (SelectedClient != null)
+                if (!Clients.IsNullOrEmpty())
                 {
-                    SelectedClient = Clients.FirstOrDefault(x => x.DeviceId == SelectedClient.DeviceId) ?? Clients[0];
-                }
-                else
-                {
-                    SelectedClient = Clients[0];
-                }
+                    if (SelectedClient != null)
+                    {
+                        SelectedClient = Clients.FirstOrDefault(x => x.DeviceId == SelectedClient.DeviceId) ?? Clients[0];
+                    }
+                    else
+                    {
+                        SelectedClient = Clients[0];
+                    }
 
-                SetPlayedPercentage(SelectedClient);
+                    SetSessionDetails(SelectedClient);
 
-                _dataLoaded = true;
+                    _dataLoaded = true;
+                }
             }
             catch (HttpException ex)
             {
@@ -190,13 +230,15 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
             SetProgressBar();
         }
 
-        private void SetPlayedPercentage(SessionInfoDto selectedClient)
+        private void SetSessionDetails(SessionInfoDto selectedClient)
         {
             if (selectedClient.NowPlayingPositionTicks.HasValue &&  selectedClient.NowPlayingItem != null && selectedClient.NowPlayingItem.RunTimeTicks.HasValue)
             {
                 PlayedTicks = selectedClient.NowPlayingPositionTicks;
                 PlayedPercentage = ((double) selectedClient.NowPlayingPositionTicks/(double) selectedClient.NowPlayingItem.RunTimeTicks)*100;
             }
+
+            IsPlaying = !selectedClient.IsPaused;
         }
 
         private void PinTile()
@@ -233,7 +275,19 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
 
             var session = e.Sessions.First(x => x.DeviceId == SelectedClient.DeviceId);
 
-            Deployment.Current.Dispatcher.BeginInvoke(() => SetPlayedPercentage(session));
+
+            Deployment.Current.Dispatcher.BeginInvoke(() =>
+            {
+                if (SelectedClient.NowPlayingItem != null && session.NowPlayingItem != null && SelectedClient.NowPlayingItem.Id == session.NowPlayingItem.Id)
+                {
+                }
+                else
+                {
+                    SelectedClient.NowPlayingItem = session.NowPlayingItem;
+                }
+
+                SetSessionDetails(session);
+            });
         }
     }
 }
