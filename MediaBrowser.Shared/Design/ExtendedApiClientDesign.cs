@@ -760,5 +760,16 @@ namespace MediaBrowser.Design
                 throw new NotImplementedException();
             }
         }
+
+
+        string IApiClient.GetApiUrl(string handler)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<T> GetAsync<T>(string url, CancellationToken cancellationToken) where T : class
+        {
+            throw new NotImplementedException();
+        }
     }
 }

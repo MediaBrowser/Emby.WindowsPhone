@@ -122,5 +122,10 @@ namespace MediaBrowser.Model
         }
 
         public event EventHandler Closed;
+
+
+        public Action<string> OnReceive { get; set; }
+
+        public Action<byte[]> OnReceiveBytes { get; set; }
     }
 }
