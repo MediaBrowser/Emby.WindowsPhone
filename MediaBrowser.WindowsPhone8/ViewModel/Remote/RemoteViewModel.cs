@@ -83,6 +83,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
             }
         }
 
+        public RelayCommand ClientPageLoadedCommand
+        {
+            get
+            {
+                return new RelayCommand(async () => await GetClients(false));
+            }
+        }
+
         public RelayCommand PageUnloadedCommand
         {
             get
