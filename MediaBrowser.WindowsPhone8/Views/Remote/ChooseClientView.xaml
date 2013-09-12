@@ -11,6 +11,7 @@
                 xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP8"
                 xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
                 xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+                xmlns:converters="clr-namespace:MediaBrowser.WindowsPhone.Converters"
                 mc:Ignorable="d ignore"
                 FontFamily="{StaticResource PhoneFontFamilyNormal}"
                 FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -31,6 +32,10 @@
                               IsVisible="{Binding ProgressIsVisible}"
                               IsIndeterminate="{Binding ProgressIsVisible}" />
     </i:Interaction.Behaviors>
+    
+    <scott:BasePage.Resources>
+        <converters:ClientTypeIconConverter x:Key="ClientTypeIconConverter"/>
+    </scott:BasePage.Resources>
 
     <toolkit:TransitionService.NavigationInTransition>
         <toolkit:NavigationInTransition>
@@ -80,8 +85,13 @@
                     <DataTemplate>
                         <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
                                          Margin="0,0,0,12">
-                            <StackPanel>
-                                <TextBlock Text="{Binding ClientName}"/>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="{Binding Converter={StaticResource ClientTypeIconConverter}}"
+                                       Height="130"
+                                       Width="130"
+                                       Stretch="UniformToFill"/>
+                                <TextBlock Text="{Binding ClientName}"
+                                           Style="{StaticResource PhoneTextNormalStyle}"/>
                             </StackPanel>
                         </HyperlinkButton>
                     </DataTemplate>
