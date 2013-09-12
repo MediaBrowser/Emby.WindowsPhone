@@ -38,6 +38,7 @@ namespace MediaBrowser.Services
             {
                 LoggedInUser = user;
                 IsLoggedIn = true;
+                _apiClient.CurrentUserId = LoggedInUserId;
             }
         }
 
@@ -53,6 +54,7 @@ namespace MediaBrowser.Services
 
                 LoggedInUser = result.User;
                 IsLoggedIn = true;
+                _apiClient.CurrentUserId = LoggedInUserId;
 
                 _settingsService.Set(Constants.Settings.SelectedUserSetting, LoggedInUser);
                 _settingsService.Save();

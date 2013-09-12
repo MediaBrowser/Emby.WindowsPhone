@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using System.Windows;
 using Cimbalino.Phone.Toolkit.Services;
 using GalaSoft.MvvmLight.Command;
-using JetBrains.Annotations;
 using MediaBrowser.ApiInteraction.WebSocket;
 using MediaBrowser.Model;
 using MediaBrowser.Model.Entities;
@@ -37,6 +36,17 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
         {
             _navigationService = navigationService;
             _apiClient = apiClient;
+
+            if (IsInDesignMode)
+            {
+                Clients = new List<SessionInfoDto>
+                {
+                    new SessionInfoDto
+                    {
+                        Client = "Dashboard"
+                    }
+                };
+            }
         }
 
         public bool IsLoading { get; set; }

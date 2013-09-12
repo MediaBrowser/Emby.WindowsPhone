@@ -28,6 +28,26 @@
         <behaviours:MBSysTray Text="{Binding ProgressText}"
                               IsVisible="{Binding ProgressIsVisible}"
                               IsIndeterminate="{Binding ProgressIsVisible}" />
+        <behaviors:MultiApplicationBarBehavior SelectedIndex="{Binding PivotSelectedIndex}">
+            <behaviors:ApplicationBar IsVisible="False" />
+            <behaviors:ApplicationBar IsVisible="False" />
+            <behaviors:ApplicationBar IsVisible="True"
+                                      IsMenuEnabled="{Binding IsSelectionEnabled}"
+                                      Mode="{Binding AppBarMode}">
+                <behaviors:ApplicationBarIconButton Text="select items"
+                                                    IconUri="/Icons/appbar.list.check.png"
+                                                    IsEnabled="{Binding Songs.Count, Converter={StaticResource CountToEnabled}, ConverterParameter=delete}"
+                                                    IsVisible="{Binding IsSelectionEnabled, Converter={StaticResource InvertBoolean}}"
+                                                    Command="{Binding SelectItemsCommand}" />
+                <behaviors:ApplicationBar.MenuItems>
+                    <behaviors:ApplicationBarMenuItem Text="add to now playing"
+                                                      IsVisible="{Binding IsSelectionEnabled}"
+                                                      IsEnabled="{Binding SelectedTracks.Count, Converter={StaticResource CountToEnabled}, ConverterParameter=delete}"
+                                                      Command="{Binding AddToNowPlayingCommand}" />
+                </behaviors:ApplicationBar.MenuItems>
+            </behaviors:ApplicationBar>
+            <behaviors:ApplicationBar IsVisible="False" />
+        </behaviors:MultiApplicationBarBehavior>
     </i:Interaction.Behaviors>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
@@ -59,29 +79,6 @@
             </toolkit:NavigationOutTransition.Forward>
         </toolkit:NavigationOutTransition>
     </toolkit:TransitionService.NavigationOutTransition>
-
-    <i:Interaction.Behaviors>
-        <behaviors:MultiApplicationBarBehavior SelectedIndex="{Binding PivotSelectedIndex}">
-            <behaviors:ApplicationBar IsVisible="False" />
-            <behaviors:ApplicationBar IsVisible="False" />
-            <behaviors:ApplicationBar IsVisible="True"
-                                      IsMenuEnabled="{Binding IsSelectionEnabled}"
-                                      Mode="{Binding AppBarMode}">
-                <behaviors:ApplicationBarIconButton Text="select items"
-                                                    IconUri="/Icons/appbar.list.check.png"
-                                                    IsEnabled="{Binding Songs.Count, Converter={StaticResource CountToEnabled}, ConverterParameter=delete}"
-                                                    IsVisible="{Binding IsSelectionEnabled, Converter={StaticResource InvertBoolean}}"
-                                                    Command="{Binding SelectItemsCommand}" />
-                <behaviors:ApplicationBar.MenuItems>
-                    <behaviors:ApplicationBarMenuItem Text="add to now playing"
-                                                      IsVisible="{Binding IsSelectionEnabled}"
-                                                      IsEnabled="{Binding SelectedTracks.Count, Converter={StaticResource CountToEnabled}, ConverterParameter=delete}"
-                                                      Command="{Binding AddToNowPlayingCommand}" />
-                </behaviors:ApplicationBar.MenuItems>
-            </behaviors:ApplicationBar>
-            <behaviors:ApplicationBar IsVisible="False" />
-        </behaviors:MultiApplicationBarBehavior>
-    </i:Interaction.Behaviors>
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot"
