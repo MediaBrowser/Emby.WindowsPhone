@@ -80,7 +80,7 @@
                                                       CommandParameter="/Views/NowPlayingView.xaml" />
                     <cimbalino:ApplicationBarMenuItem Text="remote"
                                                       Command="{Binding NavigateToAPage}"
-                                                      CommandParameter="/Views/Remote/ChooseClientView.xaml" />
+                                                      CommandParameter="/Views/Remote/RemoteView.xaml" />
                     <cimbalino:ApplicationBarMenuItem Text="notifications"
                                                       IsVisible="{Binding LoggedInUser.Configuration.IsAdministrator, Source={StaticResource AppSettings}}"
                                                       Command="{Binding NavigateToNotificationsCommand}" />

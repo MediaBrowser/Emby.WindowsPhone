@@ -157,6 +157,23 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
             }
         }
 
+        public RelayCommand<SessionInfoDto> ClientSelectedCommand
+        {
+            get
+            {
+                return new RelayCommand<SessionInfoDto>(client =>
+                {
+                    if (client == null)
+                    {
+                        return;
+                    }
+
+                    SelectedClient = client;
+                    _navigationService.NavigateTo(Constants.Pages.Remote.RemoteView);
+                });
+            }
+        }
+
         private async Task SendCommand(string commandString, long? seekAmount = null)
         {
             var request = new PlaystateRequest

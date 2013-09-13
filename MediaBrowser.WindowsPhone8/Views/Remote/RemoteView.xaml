@@ -71,6 +71,65 @@
     <scott:BasePage.Resources>
         <converters:OpacityConverter x:Key="OpacityConverter" />
         <localConverters:RemoteClientMultiConverter x:Key="ClientMultiConverter" />
+        <localConverters:ClientTypeIconConverter x:Key="ClientTypeIconConverter" />
+        <ControlTemplate x:Key="ClientListPickerStyle"
+                         TargetType="toolkit:ListPicker">
+            <StackPanel>
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="PickerStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Highlighted">
+                            <Storyboard>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="UserControl"
+                                                               Storyboard.TargetProperty="Foreground"
+                                                               Duration="0">
+                                    <DiscreteObjectKeyFrame Value="{StaticResource PhoneTextBoxForegroundBrush}"
+                                                            KeyTime="0" />
+                                </ObjectAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </VisualState>
+                        <VisualState x:Name="Disabled">
+                            <Storyboard>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Border"
+                                                               Storyboard.TargetProperty="Background"
+                                                               Duration="0">
+                                    <DiscreteObjectKeyFrame Value="{StaticResource TransparentBrush}"
+                                                            KeyTime="0" />
+                                </ObjectAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+                <ContentControl Content="{TemplateBinding Header}"
+                                ContentTemplate="{TemplateBinding HeaderTemplate}"
+                                Foreground="{StaticResource PhoneSubtleBrush}"
+                                FontSize="{StaticResource PhoneFontSizeNormal}"
+                                HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                Margin="0 0 0 8" />
+                <Grid>
+                    <Border x:Name="Border"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <UserControl x:Name="UserControl"
+                                     Foreground="{TemplateBinding Foreground}">
+                            <StackPanel>
+                                <TextBlock x:Name="MultipleSelectionModeSummary"
+                                           Margin="8 8 0 8" />
+                                <Canvas x:Name="ItemsPresenterHost"
+                                        MinHeight="46">
+                                    <ItemsPresenter x:Name="ItemsPresenter">
+                                        <ItemsPresenter.RenderTransform>
+                                            <TranslateTransform x:Name="ItemsPresenterTranslateTransform" />
+                                        </ItemsPresenter.RenderTransform>
+                                    </ItemsPresenter>
+                                </Canvas>
+                            </StackPanel>
+                        </UserControl>
+                    </Border>
+                </Grid>
+            </StackPanel>
+        </ControlTemplate>
     </scott:BasePage.Resources>
 
     <!--LayoutRoot is the root grid where all page content is placed-->
@@ -93,191 +152,210 @@
                            Margin="6,0" />
             </StackPanel>
 
+            <toolkit:ListPicker ItemsSource="{Binding Clients}"
+                                SelectedItem="{Binding SelectedClient, Mode=TwoWay}"
+                                Grid.Row="0"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Right"
+                                ExpansionMode="FullScreenOnly"
+                                BorderThickness="0"
+                                toolkit:TiltEffect.IsTiltEnabled="True"
+                                FullModeHeader="CHOOSE A CLIENT"
+                                Template="{StaticResource ClientListPickerStyle}"
+                                Margin="0,-12,0,28">
+                <toolkit:ListPicker.ItemTemplate>
+                    <DataTemplate>
+                        <controls:SuperImage Source="{Binding Converter={StaticResource ClientTypeIconConverter}}"
+                                             PlaceholderImageSource="/Images/Logo.png"
+                                             PlaceholderImageStretch="UniformToFill"
+                                             Height="62"
+                                             Width="62"
+                                             VerticalAlignment="Top"
+                                             Stretch="UniformToFill" />
+                    </DataTemplate>
+                </toolkit:ListPicker.ItemTemplate>
+                <toolkit:ListPicker.FullModeItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="{Binding Converter={StaticResource ClientTypeIconConverter}}"
+                                   Height="99"
+                                   Width="99"
+                                   VerticalAlignment="Top"
+                                   Stretch="UniformToFill" />
+                            <StackPanel Orientation="Vertical"
+                                        VerticalAlignment="Top">
+                                <TextBlock Text="{Binding Client, Converter={StaticResource StringToUppercaseConverter}}"
+                                           Style="{StaticResource PhoneTextNormalStyle}"
+                                           VerticalAlignment="Top" />
+                                <TextBlock Text="{Binding DeviceName}"
+                                           Style="{StaticResource PhoneTextSubtleStyle}" />
+                            </StackPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </toolkit:ListPicker.FullModeItemTemplate>
+            </toolkit:ListPicker>
+
             <!--ContentPanel - place additional content here-->
             <Grid x:Name="ContentPanel"
                   Grid.Row="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-
-                <toolkit:ListPicker ItemsSource="{Binding Clients}"
-                                    SelectedItem="{Binding SelectedClient, Mode=TwoWay}">
-                    <toolkit:ListPicker.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock>
-                            <i:Interaction.Behaviors>
-                                <behaviors:MultiBindingBehavior PropertyName="Text"
-                                                                Converter="{StaticResource ClientMultiConverter}">
-                                    <behaviors:MultiBindingItem Value="{Binding DeviceName}" />
-                                    <behaviors:MultiBindingItem Value="{Binding Client}" />
-                                </behaviors:MultiBindingBehavior>
-                            </i:Interaction.Behaviors>
-                            </TextBlock>
-                        </DataTemplate>
-                    </toolkit:ListPicker.ItemTemplate>
-                </toolkit:ListPicker>
-
-                <Grid Grid.Row="1"
-                      Visibility="{Binding CanUseRemote, Converter={StaticResource VisibilityConverter}}"
+                <Grid Visibility="{Binding CanUseRemote, Converter={StaticResource VisibilityConverter}}"
                       Opacity="{Binding CanUseRemote, Converter={StaticResource OpacityConverter}}">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid x:Name="NowPlayGrid"
+                          Visibility="{Binding SelectedClient.NowPlayingItem, Converter={StaticResource NullVisibilityConverter}}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
 
-                        <Grid x:Name="NowPlayGrid"
-                              Visibility="{Binding SelectedClient.NowPlayingItem, Converter={StaticResource NullVisibilityConverter}}">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
-
-                            <Image Source="{Binding SelectedClient.NowPlayingItem, Converter={StaticResource ImageUrlConverter}, ConverterParameter=backdrop}"
-                                   MaxWidth="480"
-                                   MaxHeight="280"
-                                   Stretch="UniformToFill"
-                                   HorizontalAlignment="Stretch"
-                                   Grid.ColumnSpan="3"
-                                   VerticalAlignment="Top"
-                                   Opacity="0.2" />
-                            <Button Style="{StaticResource EmptyButtonStyle}"
-                                    Grid.Row="0"
-                                    HorizontalContentAlignment="Center"
-                                    HorizontalAlignment="Center"
-                                    Command="{Binding NavigateToCommand}"
-                                    CommandParameter="{Binding SelectedClient.NowPlayingItem}"
-                                    toolkit:TiltEffect.IsTiltEnabled="True">
-                                <controls:SuperImage Source="{Binding SelectedClient.NowPlayingItem, Converter={StaticResource ImageUrlConverter}}"
-                                                     MaxHeight="280"
-                                                     Stretch="Uniform"
-                                                     PlaceholderImageSource="/Images/DefaultVideo.png"
-                                                     PlaceholderImageStretch="Uniform"
-                                                     Margin="0,24,0,0" />
-                            </Button>
-                            <TextBlock Text="{Binding SelectedClient.NowPlayingItem.Name}"
-                                       Grid.Row="1"
-                                       Style="{StaticResource PhoneTextTitle2Style}"
-                                       HorizontalAlignment="Center"
-                                       FontWeight="ExtraBold" />
-                        </Grid>
-
-                        <Grid HorizontalAlignment="Stretch"
-                              Grid.Row="1"
-                              Visibility="{Binding SelectedClient.NowPlayingItem, Converter={StaticResource NullVisibilityConverter}}">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="{Binding PlayedTicks, Converter={StaticResource RuntimeConverter}, ConverterParameter=audio}"
-                                       Style="{StaticResource PhoneTextNormalStyle}"
-                                       Margin="12,0,6,0" />
-                            <ProgressBar Margin="0"
-                                         Grid.Column="1"
-                                         Foreground="{StaticResource PhoneAccentBrush}"
-                                         HorizontalAlignment="Stretch"
-                                         Value="{Binding PlayedPercentage}" />
-                            <TextBlock Text="{Binding SelectedClient.NowPlayingItem.RunTimeTicks, Converter={StaticResource RuntimeConverter}, ConverterParameter=audio}"
-                                       Style="{StaticResource PhoneTextNormalStyle}"
-                                       Grid.Column="2"
-                                       Margin="6,0,12,0" />
-                        </Grid>
-
-                        <Grid Grid.Row="2"
-                              Visibility="{Binding SelectedClient.NowPlayingItem, Converter={StaticResource NullVisibilityConverter}}">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="1.5*" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="1.5*" />
-                            </Grid.ColumnDefinitions>
-
-                            <telerikPrimitives:RadImageButton ButtonShape="Image"
-                                                              ButtonBehavior="ToggleButton"
-                                                              RestStateImageSource="/Images/Remote/Play.png"
-                                                              PressedStateImageSource="/Images/Remote/Pause.png"
-                                                              Grid.Column="1"
-                                                              Grid.Row="0"
-                                                              IsChecked="{Binding IsPlaying}"
-                                                              toolkit:TiltEffect.IsTiltEnabled="True"
-                                                              HorizontalAlignment="Center"
-                                                              Command="{Binding PlayPauseCommand}"
-                                                              Margin="0,20,0,0" />
-
-                            <telerikPrimitives:RadImageButton Grid.Row="2"
-                                                              Grid.Column="1"
-                                                              RestStateImageSource="/Images/Remote/appbar.control.stop.png"
-                                                              ButtonShape="Ellipse"
-                                                              BorderThickness="0"
-                                                              HorizontalAlignment="Center"
-                                                              Foreground="{StaticResource PhoneAccentBrush}"
-                                                              Background="White"
-                                                              Command="{Binding SendPlaystateCommand}"
-                                                              CommandParameter="Stop"
-                                                              Margin="0,-20,0,0" />
-
-                            <telerikPrimitives:RadImageButton Grid.Row="1"
-                                                              Grid.Column="0"
-                                                              HorizontalAlignment="Right"
-                                                              RestStateImageSource="/Icons/transport.rew.png"
-                                                              ButtonShape="Ellipse"
-                                                              BorderThickness="0"
-                                                              Foreground="{StaticResource PhoneAccentBrush}"
-                                                              Background="White"
-                                                              Command="{Binding SeekCommand}"
-                                                              CommandParameter="-30"
-                                                              Margin="0,-54,0,0" />
-
-                            <telerikPrimitives:RadImageButton Grid.Row="1"
-                                                              Grid.Column="2"
-                                                              HorizontalAlignment="Left"
-                                                              RestStateImageSource="/Icons/transport.ff.png"
-                                                              ButtonShape="Ellipse"
-                                                              BorderThickness="0"
-                                                              Foreground="{StaticResource PhoneAccentBrush}"
-                                                              Command="{Binding SeekCommand}"
-                                                              CommandParameter="30"
-                                                              Background="White"
-                                                              Margin="0,-54,0,0" />
-
-                            <telerikPrimitives:RadImageButton Grid.Row="1"
-                                                              Grid.Column="2"
-                                                              HorizontalAlignment="Center"
-                                                              RestStateImageSource="/Images/Remote/appbar.navigate.next.png"
-                                                              ButtonShape="Ellipse"
-                                                              BorderThickness="0"
-                                                              Foreground="{StaticResource PhoneAccentBrush}"
-                                                              Command="{Binding SendPlaystateCommand}"
-                                                              CommandParameter="NextTrack"
-                                                              Background="White"
-                                                              Margin="44,-44,0,0" />
-
-                            <telerikPrimitives:RadImageButton Grid.Row="1"
-                                                              Grid.Column="0"
-                                                              HorizontalAlignment="Center"
-                                                              RestStateImageSource="/Images/Remote/appbar.navigate.previous.png"
-                                                              ButtonShape="Ellipse"
-                                                              BorderThickness="0"
-                                                              Command="{Binding SendPlaystateCommand}"
-                                                              CommandParameter="PreviousTrack"
-                                                              Foreground="{StaticResource PhoneAccentBrush}"
-                                                              Background="White"
-                                                              Margin="0,-44,44,0" />
-                        </Grid>
+                        <Image Source="{Binding SelectedClient.NowPlayingItem, Converter={StaticResource ImageUrlConverter}, ConverterParameter=backdrop}"
+                               MaxWidth="480"
+                               MaxHeight="280"
+                               Stretch="UniformToFill"
+                               HorizontalAlignment="Stretch"
+                               Grid.ColumnSpan="3"
+                               VerticalAlignment="Top"
+                               Opacity="0.2" />
+                        <Button Style="{StaticResource EmptyButtonStyle}"
+                                Grid.Row="0"
+                                HorizontalContentAlignment="Center"
+                                HorizontalAlignment="Center"
+                                Command="{Binding NavigateToCommand}"
+                                CommandParameter="{Binding SelectedClient.NowPlayingItem}"
+                                toolkit:TiltEffect.IsTiltEnabled="True">
+                            <controls:SuperImage Source="{Binding SelectedClient.NowPlayingItem, Converter={StaticResource ImageUrlConverter}}"
+                                                 MaxHeight="280"
+                                                 Stretch="Uniform"
+                                                 PlaceholderImageSource="/Images/DefaultVideo.png"
+                                                 PlaceholderImageStretch="Uniform"
+                                                 Margin="0,24,0,0" />
+                        </Button>
+                        <TextBlock Text="{Binding SelectedClient.NowPlayingItem.Name}"
+                                   Grid.Row="1"
+                                   Style="{StaticResource PhoneTextTitle2Style}"
+                                   HorizontalAlignment="Center"
+                                   FontWeight="ExtraBold" />
                     </Grid>
+
+                    <Grid HorizontalAlignment="Stretch"
+                          Grid.Row="1"
+                          Visibility="{Binding SelectedClient.NowPlayingItem, Converter={StaticResource NullVisibilityConverter}}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding PlayedTicks, Converter={StaticResource RuntimeConverter}, ConverterParameter=audio}"
+                                   Style="{StaticResource PhoneTextNormalStyle}"
+                                   Margin="12,0,6,0" />
+                        <ProgressBar Margin="0"
+                                     Grid.Column="1"
+                                     Foreground="{StaticResource PhoneAccentBrush}"
+                                     HorizontalAlignment="Stretch"
+                                     Value="{Binding PlayedPercentage}" />
+                        <TextBlock Text="{Binding SelectedClient.NowPlayingItem.RunTimeTicks, Converter={StaticResource RuntimeConverter}, ConverterParameter=audio}"
+                                   Style="{StaticResource PhoneTextNormalStyle}"
+                                   Grid.Column="2"
+                                   Margin="6,0,12,0" />
+                    </Grid>
+
+                    <Grid Grid.Row="2"
+                          Visibility="{Binding SelectedClient.NowPlayingItem, Converter={StaticResource NullVisibilityConverter}}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1.5*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="1.5*" />
+                        </Grid.ColumnDefinitions>
+
+                        <telerikPrimitives:RadImageButton ButtonShape="Image"
+                                                          ButtonBehavior="ToggleButton"
+                                                          RestStateImageSource="/Images/Remote/Play.png"
+                                                          PressedStateImageSource="/Images/Remote/Pause.png"
+                                                          Grid.Column="1"
+                                                          Grid.Row="0"
+                                                          IsChecked="{Binding IsPlaying}"
+                                                          toolkit:TiltEffect.IsTiltEnabled="True"
+                                                          HorizontalAlignment="Center"
+                                                          Command="{Binding PlayPauseCommand}"
+                                                          Margin="0,20,0,0" />
+
+                        <telerikPrimitives:RadImageButton Grid.Row="2"
+                                                          Grid.Column="1"
+                                                          RestStateImageSource="/Images/Remote/appbar.control.stop.png"
+                                                          ButtonShape="Ellipse"
+                                                          BorderThickness="0"
+                                                          HorizontalAlignment="Center"
+                                                          Foreground="{StaticResource PhoneAccentBrush}"
+                                                          Background="White"
+                                                          Command="{Binding SendPlaystateCommand}"
+                                                          CommandParameter="Stop"
+                                                          Margin="0,-20,0,0" />
+
+                        <telerikPrimitives:RadImageButton Grid.Row="1"
+                                                          Grid.Column="0"
+                                                          HorizontalAlignment="Right"
+                                                          RestStateImageSource="/Icons/transport.rew.png"
+                                                          ButtonShape="Ellipse"
+                                                          BorderThickness="0"
+                                                          Foreground="{StaticResource PhoneAccentBrush}"
+                                                          Background="White"
+                                                          Command="{Binding SeekCommand}"
+                                                          CommandParameter="-30"
+                                                          Margin="0,-54,0,0" />
+
+                        <telerikPrimitives:RadImageButton Grid.Row="1"
+                                                          Grid.Column="2"
+                                                          HorizontalAlignment="Left"
+                                                          RestStateImageSource="/Icons/transport.ff.png"
+                                                          ButtonShape="Ellipse"
+                                                          BorderThickness="0"
+                                                          Foreground="{StaticResource PhoneAccentBrush}"
+                                                          Command="{Binding SeekCommand}"
+                                                          CommandParameter="30"
+                                                          Background="White"
+                                                          Margin="0,-54,0,0" />
+
+                        <telerikPrimitives:RadImageButton Grid.Row="1"
+                                                          Grid.Column="2"
+                                                          HorizontalAlignment="Center"
+                                                          RestStateImageSource="/Images/Remote/appbar.navigate.next.png"
+                                                          ButtonShape="Ellipse"
+                                                          BorderThickness="0"
+                                                          Foreground="{StaticResource PhoneAccentBrush}"
+                                                          Command="{Binding SendPlaystateCommand}"
+                                                          CommandParameter="NextTrack"
+                                                          Background="White"
+                                                          Margin="44,-44,0,0" />
+
+                        <telerikPrimitives:RadImageButton Grid.Row="1"
+                                                          Grid.Column="0"
+                                                          HorizontalAlignment="Center"
+                                                          RestStateImageSource="/Images/Remote/appbar.navigate.previous.png"
+                                                          ButtonShape="Ellipse"
+                                                          BorderThickness="0"
+                                                          Command="{Binding SendPlaystateCommand}"
+                                                          CommandParameter="PreviousTrack"
+                                                          Foreground="{StaticResource PhoneAccentBrush}"
+                                                          Background="White"
+                                                          Margin="0,-44,44,0" />
+                    </Grid>
+
                 </Grid>
             </Grid>
 

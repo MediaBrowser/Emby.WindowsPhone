@@ -1,4 +1,6 @@
-﻿namespace MediaBrowser.WindowsPhone.Views.Remote
+﻿using System.Windows.Navigation;
+
+namespace MediaBrowser.WindowsPhone.Views.Remote
 {
     /// <summary>
     /// Description for ChooseClientView.
@@ -11,6 +13,13 @@
         public ChooseClientView()
         {
             InitializeComponent();
+        }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            base.OnNavigatedFrom(e);
+            if (NavigationService.CanGoBack)
+                NavigationService.RemoveBackEntry();
         }
     }
 }
