@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Linq;
+using System.Windows;
+using Microsoft.Phone.Controls;
 using Microsoft.Phone.Tasks;
 using ScottIsAFool.WindowsPhone.Logging;
 
@@ -19,6 +22,11 @@ namespace MediaBrowser.WindowsPhone.Views
             {
                 var selectedIndex = int.Parse(settingPane);
                 settingsPivot.SelectedIndex = selectedIndex;
+                var pivotsToRemove = settingsPivot.Items.Cast<PivotItem>().Where(x => x.Header.ToString() != "connection").ToList();
+                foreach (var pivot in pivotsToRemove)
+                {
+                    settingsPivot.Items.Remove(pivot);
+                }
             }
         }
 
