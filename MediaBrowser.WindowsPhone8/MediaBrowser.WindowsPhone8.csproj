@@ -123,6 +123,8 @@
     <Compile Include="Converters\LocationConverter.cs" />
     <Compile Include="Converters\LockScreenTypeConverter.cs" />
     <Compile Include="Converters\LoggedInDateConverter.cs" />
+    <Compile Include="Converters\MuteIconColourConverter.cs" />
+    <Compile Include="Converters\MuteIconConverter.cs" />
     <Compile Include="Converters\NotificationLevelToBrushConverter.cs" />
     <Compile Include="Converters\NowPlayingConverter.cs" />
     <Compile Include="Converters\NowPlayingProgressConverter.cs" />
@@ -281,6 +283,7 @@
     <Content Include="Icons\appbar.refresh.rest.png" />
     <Content Include="Icons\searchbutton.png" />
     <Content Include="Images\3d.png" />
+    <Content Include="Images\Remote\add.png" />
     <Content Include="Images\Remote\appbar.control.stop.png" />
     <Content Include="Images\Remote\appbar.navigate.next.png" />
     <Content Include="Images\Remote\appbar.navigate.previous.png" />
@@ -301,6 +304,8 @@
     <Content Include="Images\Logo.png" />
     <Content Include="Images\moviecollection.png" />
     <Content Include="Images\Play128.png" />
+    <Content Include="Images\Remote\appbar.sound.3.png" />
+    <Content Include="Images\Remote\appbar.sound.mute.png" />
     <Content Include="Images\Remote\Clients\android.png" />
     <Content Include="Images\Remote\Clients\chrome.png" />
     <Content Include="Images\Remote\Clients\dlna.png" />
@@ -316,6 +321,7 @@
     <Content Include="Images\Remote\Clients\win8.png" />
     <Content Include="Images\Remote\Clients\windowsphone.png" />
     <Content Include="Images\Remote\Clients\windowsrt.png" />
+    <Content Include="Images\Remote\minus.png" />
     <Content Include="Images\Remote\Pause.png" />
     <Content Include="Images\Remote\Play.png" />
     <Content Include="Images\rotten.png" />

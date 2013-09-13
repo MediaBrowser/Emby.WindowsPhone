@@ -70,8 +70,17 @@
 
     <scott:BasePage.Resources>
         <converters:OpacityConverter x:Key="OpacityConverter" />
-        <localConverters:RemoteClientMultiConverter x:Key="ClientMultiConverter" />
         <localConverters:ClientTypeIconConverter x:Key="ClientTypeIconConverter" />
+        <localConverters:MuteIconColourConverter x:Key="MuteIconForegroundColourConverter"
+                                                 TrueValue="White"
+                                                 FalseValue="{StaticResource PhoneAccentBrush}"/>
+        <localConverters:MuteIconColourConverter x:Key="MuteIconBackgroundColourConverter"
+                                                 FalseValue="White"
+                                                 TrueValue="{StaticResource PhoneAccentBrush}"
+                                                 />
+        <localConverters:MuteIconConverter x:Key="MuteIconConverter"
+                                           TrueValue="/Images/Remote/appbar.sound.3.png"
+                                           FalseValue="/Images/Remote/appbar.sound.mute.png"/>
         <ControlTemplate x:Key="ClientListPickerStyle"
                          TargetType="toolkit:ListPicker">
             <StackPanel>
@@ -276,6 +285,7 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="1.5*" />
@@ -305,7 +315,7 @@
                                                           Background="White"
                                                           Command="{Binding SendPlaystateCommand}"
                                                           CommandParameter="Stop"
-                                                          Margin="0,-20,0,0" />
+                                                          Margin="0,-30,0,0" />
 
                         <telerikPrimitives:RadImageButton Grid.Row="1"
                                                           Grid.Column="0"
@@ -354,6 +364,37 @@
                                                           Foreground="{StaticResource PhoneAccentBrush}"
                                                           Background="White"
                                                           Margin="0,-44,44,0" />
+                        
+                        <StackPanel Orientation="Horizontal"
+                                    Grid.Row="3"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="4"
+                                    HorizontalAlignment="Center"
+                                    >
+                            <telerikPrimitives:RadImageButton BorderThickness="0"
+                                                              Foreground="{StaticResource PhoneAccentBrush}"
+                                                              Background="White"
+                                                              RestStateImageSource="/Images/Remote/minus.png"
+                                                              ButtonShape="Ellipse"
+                                                              Margin="0,0,24,0"
+                                                              MaxHeight="20"/>
+                            
+                            <telerikPrimitives:RadImageButton Foreground="{Binding SelectedClient.IsMuted, Converter={StaticResource MuteIconForegroundColourConverter}}"
+                                                              Background="Transparent"
+                                                              RestStateImageSource="{Binding SelectedClient.IsMuted, Converter={StaticResource MuteIconConverter}}"
+                                                              ButtonShape="Ellipse"
+                                                              BorderThickness="2"
+                                                              BorderBrush="{StaticResource PhoneAccentBrush}"/>
+
+                            <telerikPrimitives:RadImageButton BorderThickness="0"
+                                                              Foreground="{StaticResource PhoneAccentBrush}"
+                                                              Background="White"
+                                                              RestStateImageSource="/Images/Remote/add.png"
+                                                              ButtonShape="Ellipse"
+                                                              Margin="24,0,0,0"
+                                                              Height="20"
+                                                              />
+                        </StackPanel>
                     </Grid>
 
                 </Grid>
