@@ -240,6 +240,9 @@
     <Compile Include="..\MediaBrowser.WindowsPhone8\Converters\AccentBrushConverter.cs">
       <Link>Converters\AccentBrushConverter.cs</Link>
     </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone8\Converters\ClientTypeIconConverter.cs">
+      <Link>Converters\ClientTypeIconConverter.cs</Link>
+    </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone8\Converters\CriticRatingConverter.cs">
       <Link>Converters\CriticRatingConverter.cs</Link>
     </Compile>
@@ -264,11 +267,20 @@
     <Compile Include="..\MediaBrowser.WindowsPhone8\Converters\LoggedInDateConverter.cs">
       <Link>Converters\LoggedInDateConverter.cs</Link>
     </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone8\Converters\MuteIconColourConverter.cs">
+      <Link>Converters\MuteIconColourConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone8\Converters\MuteIconConverter.cs">
+      <Link>Converters\MuteIconConverter.cs</Link>
+    </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone8\Converters\NotificationLevelToBrushConverter.cs">
       <Link>Converters\NotificationLevelToBrushConverter.cs</Link>
     </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone8\Converters\NowPlayingConverter.cs">
       <Link>Converters\NowPlayingConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone8\Converters\NowPlayingProgressConverter.cs">
+      <Link>Converters\NowPlayingProgressConverter.cs</Link>
     </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone8\Converters\PinnedItemConverter.cs">
       <Link>Converters\PinnedItemConverter.cs</Link>
@@ -281,6 +293,9 @@
     </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone8\Converters\RatingConverter.cs">
       <Link>Converters\RatingConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone8\Converters\RemoteClientMultiConverter.cs">
+      <Link>Converters\RemoteClientMultiConverter.cs</Link>
     </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone8\Converters\RoleConverter.cs">
       <Link>Converters\RoleConverter.cs</Link>
@@ -525,6 +540,78 @@
     </Content>
     <Content Include="..\MediaBrowser.WindowsPhone8\Images\Play128.png">
       <Link>Images\Play128.png</Link>
+    </Content>
+    <Content Include="..\MediaBrowser.WindowsPhone8\Images\Remote\add.png">
+      <Link>Images\Remote\add.png</Link>
+    </Content>
+    <Content Include="..\MediaBrowser.WindowsPhone8\Images\Remote\appbar.control.stop.png">
+      <Link>Images\Remote\appbar.control.stop.png</Link>
+    </Content>
+    <Content Include="..\MediaBrowser.WindowsPhone8\Images\Remote\appbar.navigate.next.png">
+      <Link>Images\Remote\appbar.navigate.next.png</Link>
+    </Content>
+    <Content Include="..\MediaBrowser.WindowsPhone8\Images\Remote\appbar.navigate.previous.png">
+      <Link>Images\Remote\appbar.navigate.previous.png</Link>
+    </Content>
+    <Content Include="..\MediaBrowser.WindowsPhone8\Images\Remote\appbar.sound.3.png">
+      <Link>Images\Remote\appbar.sound.3.png</Link>
+    </Content>
+    <Content Include="..\MediaBrowser.WindowsPhone8\Images\Remote\appbar.sound.mute.png">
+      <Link>Images\Remote\appbar.sound.mute.png</Link>
+    </Content>
+    <Content Include="..\MediaBrowser.WindowsPhone8\Images\Remote\Clients\android.png">
+      <Link>Images\Remote\Clients\android.png</Link>
+    </Content>
+    <Content Include="..\MediaBrowser.WindowsPhone8\Images\Remote\Clients\chrome.png">
+      <Link>Images\Remote\Clients\chrome.png</Link>
+    </Content>
+    <Content Include="..\MediaBrowser.WindowsPhone8\Images\Remote\Clients\dlna.png">
+      <Link>Images\Remote\Clients\dlna.png</Link>
+    </Content>
+    <Content Include="..\MediaBrowser.WindowsPhone8\Images\Remote\Clients\firefox.png">
+      <Link>Images\Remote\Clients\firefox.png</Link>
+    </Content>
+    <Content Include="..\MediaBrowser.WindowsPhone8\Images\Remote\Clients\html5.png">
+      <Link>Images\Remote\Clients\html5.png</Link>
+    </Content>
+    <Content Include="..\MediaBrowser.WindowsPhone8\Images\Remote\Clients\ie.png">
+      <Link>Images\Remote\Clients\ie.png</Link>
+    </Content>
+    <Content Include="..\MediaBrowser.WindowsPhone8\Images\Remote\Clients\ios.png">
+      <Link>Images\Remote\Clients\ios.png</Link>
+    </Content>
+    <Content Include="..\MediaBrowser.WindowsPhone8\Images\Remote\Clients\mb.png">
+      <Link>Images\Remote\Clients\mb.png</Link>
+    </Content>
+    <Content Include="..\MediaBrowser.WindowsPhone8\Images\Remote\Clients\mbc.png">
+      <Link>Images\Remote\Clients\mbc.png</Link>
+    </Content>
+    <Content Include="..\MediaBrowser.WindowsPhone8\Images\Remote\Clients\mbkinect.png">
+      <Link>Images\Remote\Clients\mbkinect.png</Link>
+    </Content>
+    <Content Include="..\MediaBrowser.WindowsPhone8\Images\Remote\Clients\roku.jpg">
+      <Link>Images\Remote\Clients\roku.jpg</Link>
+    </Content>
+    <Content Include="..\MediaBrowser.WindowsPhone8\Images\Remote\Clients\safari.png">
+      <Link>Images\Remote\Clients\safari.png</Link>
+    </Content>
+    <Content Include="..\MediaBrowser.WindowsPhone8\Images\Remote\Clients\win8.png">
+      <Link>Images\Remote\Clients\win8.png</Link>
+    </Content>
+    <Content Include="..\MediaBrowser.WindowsPhone8\Images\Remote\Clients\windowsphone.png">
+      <Link>Images\Remote\Clients\windowsphone.png</Link>
+    </Content>
+    <Content Include="..\MediaBrowser.WindowsPhone8\Images\Remote\Clients\windowsrt.png">
+      <Link>Images\Remote\Clients\windowsrt.png</Link>
+    </Content>
+    <Content Include="..\MediaBrowser.WindowsPhone8\Images\Remote\minus.png">
+      <Link>Images\Remote\minus.png</Link>
+    </Content>
+    <Content Include="..\MediaBrowser.WindowsPhone8\Images\Remote\Pause.png">
+      <Link>Images\Remote\Pause.png</Link>
+    </Content>
+    <Content Include="..\MediaBrowser.WindowsPhone8\Images\Remote\Play.png">
+      <Link>Images\Remote\Play.png</Link>
     </Content>
     <Content Include="..\MediaBrowser.WindowsPhone8\Images\rotten.png">
       <Link>Images\rotten.png</Link>

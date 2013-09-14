@@ -74,10 +74,6 @@
         <localConverters:MuteIconColourConverter x:Key="MuteIconForegroundColourConverter"
                                                  TrueValue="White"
                                                  FalseValue="{StaticResource PhoneAccentBrush}"/>
-        <localConverters:MuteIconColourConverter x:Key="MuteIconBackgroundColourConverter"
-                                                 FalseValue="White"
-                                                 TrueValue="{StaticResource PhoneAccentBrush}"
-                                                 />
         <localConverters:MuteIconConverter x:Key="MuteIconConverter"
                                            TrueValue="/Images/Remote/appbar.sound.3.png"
                                            FalseValue="/Images/Remote/appbar.sound.mute.png"/>
@@ -368,7 +364,7 @@
                         <StackPanel Orientation="Horizontal"
                                     Grid.Row="3"
                                     Grid.Column="0"
-                                    Grid.ColumnSpan="4"
+                                    Grid.ColumnSpan="3"
                                     HorizontalAlignment="Center"
                                     >
                             <telerikPrimitives:RadImageButton BorderThickness="0"
@@ -376,8 +372,10 @@
                                                               Background="White"
                                                               RestStateImageSource="/Images/Remote/minus.png"
                                                               ButtonShape="Ellipse"
+                                                              VerticalAlignment="Center"
                                                               Margin="0,0,24,0"
-                                                              MaxHeight="20"/>
+                                                              MinHeight="30"
+                                                              MinWidth="30"/>
                             
                             <telerikPrimitives:RadImageButton Foreground="{Binding SelectedClient.IsMuted, Converter={StaticResource MuteIconForegroundColourConverter}}"
                                                               Background="Transparent"
@@ -389,11 +387,12 @@
                             <telerikPrimitives:RadImageButton BorderThickness="0"
                                                               Foreground="{StaticResource PhoneAccentBrush}"
                                                               Background="White"
+                                                              VerticalAlignment="Center"
                                                               RestStateImageSource="/Images/Remote/add.png"
                                                               ButtonShape="Ellipse"
                                                               Margin="24,0,0,0"
-                                                              Height="20"
-                                                              />
+                                                              MinHeight="30"
+                                                              MinWidth="30"/>
                         </StackPanel>
                     </Grid>
 

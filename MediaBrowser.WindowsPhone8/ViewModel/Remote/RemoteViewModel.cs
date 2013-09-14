@@ -28,6 +28,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
         private readonly IExtendedApiClient _apiClient;
 
         private bool _dataLoaded;
+        private string _videoId;
 
         /// <summary>
         /// Initializes a new instance of the RemoteViewModel class.
@@ -161,7 +162,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
         {
             get
             {
-                return new RelayCommand<SessionInfoDto>(client =>
+                return new RelayCommand<SessionInfoDto>(async client =>
                 {
                     if (client == null)
                     {
@@ -169,6 +170,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
                     }
 
                     SelectedClient = client;
+
+                    await _apiClient.SendPlayCommandAsync(SelectedClient.Id, new PlayRequest { ItemIds = new[] { _videoId }, PlayCommand = PlayCommand.PlayNow });
+
+                    _navigationService.NavigateTo(Constants.Pages.Remote.RemoteView);
+
                     _navigationService.NavigateTo(Constants.Pages.Remote.RemoteView);
                 });
             }
@@ -203,17 +209,15 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
         {
             get
             {
-                return new RelayCommand<string>(async id =>
+                return new RelayCommand<string>(id =>
                 {
                     if (string.IsNullOrEmpty(id))
                     {
                         return;
                     }
-                    
-                    var clientId = "";
-                    await _apiClient.SendPlayCommandAsync(clientId, new PlayRequest { ItemIds = new[] { id }, PlayCommand = PlayCommand.PlayNow });
 
-                    _navigationService.NavigateTo(Constants.Pages.Remote.RemoteView);
+                    _videoId = id;
+                    _navigationService.NavigateTo(Constants.Pages.Remote.ChooseClientView);
                 });
             }
         }
