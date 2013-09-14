@@ -80,6 +80,7 @@ namespace MediaBrowser.WindowsPhone
             InitializePhoneApplication();
 
             ThemeManager.OverrideTheme(Theme.Dark);
+            ThemeManager.SetAccentColor(Colors.Green);
             WPLogger.AppVersion = ApplicationManifest.Current.App.Version;
             WPLogger.LogConfiguration.LogType = LogType.WriteToFile;
             WPLogger.LogConfiguration.LoggingIsEnabled = true;
