@@ -169,13 +169,20 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
                         return;
                     }
 
-                    SelectedClient = client;
+                    try
+                    {
+                        SelectedClient = client;
 
-                    await _apiClient.SendPlayCommandAsync(SelectedClient.Id, new PlayRequest { ItemIds = new[] { _videoId }, PlayCommand = PlayCommand.PlayNow });
+                        await _apiClient.SendPlayCommandAsync(SelectedClient.Id, new PlayRequest {ItemIds = new[] {_videoId}, PlayCommand = PlayCommand.PlayNow});
 
-                    _navigationService.NavigateTo(Constants.Pages.Remote.RemoteView);
-
-                    _navigationService.NavigateTo(Constants.Pages.Remote.RemoteView);
+                        _navigationService.NavigateTo(Constants.Pages.Remote.RemoteView);
+                    }
+                    catch (HttpException ex)
+                    {
+                        Log.ErrorException("ClientSelectedCommand", ex);
+                        MessageBox.Show("Unable to start your item.", "Error", MessageBoxButton.OK);
+                        _navigationService.GoBack();
+                    }
                 });
             }
         }
@@ -186,7 +193,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
             {
                 return new RelayCommand(async () =>
                 {
-                    await _apiClient.SendSystemCommandAsync(SelectedClient.Id, SystemCommand.ToggleMute);
+                    try
+                    {
+                        await _apiClient.SendSystemCommandAsync(SelectedClient.Id, SystemCommand.ToggleMute);
+                    }
+                    catch (HttpException ex)
+                    {
+                        Log.ErrorException("SendMuteCommand", ex);
+                    }
                 });
             }
         }
@@ -197,7 +211,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
             {
                 return new RelayCommand<bool>(async isVolumeUp =>
                 {
-                    await _apiClient.SendSystemCommandAsync(SelectedClient.Id, isVolumeUp ? SystemCommand.VolumeUp : SystemCommand.VolumeDown);
+                    try
+                    {
+                        await _apiClient.SendSystemCommandAsync(SelectedClient.Id, isVolumeUp ? SystemCommand.VolumeUp : SystemCommand.VolumeDown);
+                    }
+                    catch (HttpException ex)
+                    {
+                        Log.ErrorException("AdjustVolumeCommand", ex);
+                    }
                 });
             }
         }
