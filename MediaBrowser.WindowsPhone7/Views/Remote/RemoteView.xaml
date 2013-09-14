@@ -374,14 +374,17 @@
                                                               VerticalAlignment="Center"
                                                               Margin="0,0,24,0"
                                                               MinHeight="30"
-                                                              MinWidth="30" />
+                                                              MinWidth="30"
+                                                              Command="{Binding AdjustVolumeCommand}"
+                                                              CommandParameter="False" />
 
                             <telerikPrimitives:RadImageButton Foreground="{Binding SelectedClient.IsMuted, Converter={StaticResource MuteIconForegroundColourConverter}}"
                                                               Background="Transparent"
                                                               RestStateImageSource="{Binding SelectedClient.IsMuted, Converter={StaticResource MuteIconConverter}}"
                                                               ButtonShape="Ellipse"
                                                               BorderThickness="2"
-                                                              BorderBrush="{StaticResource PhoneAccentBrush}" />
+                                                              BorderBrush="{StaticResource PhoneAccentBrush}"
+                                                              Command="{Binding SendMuteCommand}" />
 
                             <telerikPrimitives:RadImageButton BorderThickness="0"
                                                               Foreground="{StaticResource PhoneAccentBrush}"
@@ -391,7 +394,9 @@
                                                               ButtonShape="Ellipse"
                                                               Margin="24,0,0,0"
                                                               MinHeight="30"
-                                                              MinWidth="30" />
+                                                              MinWidth="30"
+                                                              Command="{Binding AdjustVolumeCommand}"
+                                                              CommandParameter="True" />
                         </StackPanel>
                     </Grid>
 

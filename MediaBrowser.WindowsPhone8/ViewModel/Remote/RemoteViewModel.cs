@@ -180,6 +180,28 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
             }
         }
 
+        public RelayCommand SendMuteCommand
+        {
+            get
+            {
+                return new RelayCommand(async () =>
+                {
+                    await _apiClient.SendSystemCommandAsync(SelectedClient.Id, SystemCommand.ToggleMute);
+                });
+            }
+        }
+
+        public RelayCommand<bool> AdjustVolumeCommand
+        {
+            get
+            {
+                return new RelayCommand<bool>(async isVolumeUp =>
+                {
+                    await _apiClient.SendSystemCommandAsync(SelectedClient.Id, isVolumeUp ? SystemCommand.VolumeUp : SystemCommand.VolumeDown);
+                });
+            }
+        }
+
         private async Task SendCommand(string commandString, long? seekAmount = null)
         {
             var request = new PlaystateRequest
