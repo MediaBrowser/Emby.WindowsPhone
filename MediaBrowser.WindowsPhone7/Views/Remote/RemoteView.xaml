@@ -295,6 +295,8 @@
                                                           PressedStateImageSource="/Images/Remote/Pause.png"
                                                           Grid.Column="1"
                                                           Grid.Row="0"
+                                                          MinHeight="84"
+                                                          MinWidth="84"
                                                           IsChecked="{Binding IsPlaying}"
                                                           toolkit:TiltEffect.IsTiltEnabled="True"
                                                           HorizontalAlignment="Center"
