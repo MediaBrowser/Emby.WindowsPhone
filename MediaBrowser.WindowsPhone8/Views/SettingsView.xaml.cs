@@ -21,7 +21,7 @@ namespace MediaBrowser.WindowsPhone.Views
             if (NavigationContext.QueryString.TryGetValue("settingsPane", out settingPane))
             {
                 var selectedIndex = int.Parse(settingPane);
-                if (selectedIndex > settingsPivot.Items.Count)
+                if (selectedIndex >= settingsPivot.Items.Count)
                 {
                     return;
                 }
