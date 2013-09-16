@@ -157,6 +157,7 @@
     </Compile>
     <Compile Include="Services\LockScreenService.cs" />
     <Compile Include="Services\TileService.cs" />
+    <Compile Include="Services\TrialService.cs" />
     <Compile Include="SpecificSettings.cs" />
     <Compile Include="Splashscreen.xaml.cs">
       <DependentUpon>Splashscreen.xaml</DependentUpon>
