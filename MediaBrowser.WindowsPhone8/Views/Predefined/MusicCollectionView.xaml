@@ -24,6 +24,9 @@
                 shell:SystemTray.Opacity="0"
                 toolkit:TiltEffect.IsTiltEnabled="True"
                 DataContext="{Binding MusicCollection, Source={StaticResource Locator}}">
+    <scott:BasePage.Resources>
+        <converters:InvertBoolean x:Key="InvertBoolean" />
+    </scott:BasePage.Resources>
     <i:Interaction.Behaviors>
         <behaviours:MBSysTray Text="{Binding ProgressText}"
                               IsVisible="{Binding ProgressIsVisible}"
@@ -54,10 +57,6 @@
             <command:EventToCommand Command="{Binding PageLoadedCommand}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
-
-    <scott:BasePage.Resources>
-        <converters:InvertBoolean x:Key="InvertBoolean" />
-    </scott:BasePage.Resources>
 
     <toolkit:TransitionService.NavigationInTransition>
         <toolkit:NavigationInTransition>
