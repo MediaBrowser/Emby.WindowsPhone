@@ -10,6 +10,7 @@
                 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
                 xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP71"
                 xmlns:controls="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
+                xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
                 FontFamily="{StaticResource PhoneFontFamilyNormal}"
                 FontSize="{StaticResource PhoneFontSizeNormal}"
                 Foreground="{StaticResource PhoneForegroundBrush}"
@@ -19,11 +20,11 @@
                 shell:SystemTray.IsVisible="True"
                 toolkit:TiltEffect.IsTiltEnabled="True"
                 DataContext="{Binding Generic, Source={StaticResource Locator}}">
-    <shell:SystemTray.ProgressIndicator>
-        <shell:ProgressIndicator IsVisible="{Binding ProgressIsVisible}"
-                                 IsIndeterminate="{Binding ProgressIsVisible}"
-                                 Text="{Binding ProgressText}" />
-    </shell:SystemTray.ProgressIndicator>
+    <i:Interaction.Behaviors>
+        <behaviours:MBSysTray Text="{Binding ProgressText}"
+                              IsVisible="{Binding ProgressIsVisible}"
+                              IsIndeterminate="{Binding ProgressIsVisible}" />
+    </i:Interaction.Behaviors>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <command:EventToCommand Command="{Binding PageLoadedCommand}" />

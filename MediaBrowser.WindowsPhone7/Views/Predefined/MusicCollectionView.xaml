@@ -14,6 +14,7 @@
                 xmlns:converters="clr-namespace:ScottIsAFool.WindowsPhone.Converters;assembly=ScottIsAFool.WindowsPhone"
                 xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
                 xmlns:telerikDataControls="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Data"
+                xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
                 FontFamily="{StaticResource PhoneFontFamilyNormal}"
                 FontSize="{StaticResource PhoneFontSizeNormal}"
                 Foreground="{StaticResource PhoneForegroundBrush}"
@@ -23,11 +24,31 @@
                 shell:SystemTray.IsVisible="True"
                 toolkit:TiltEffect.IsTiltEnabled="True"
                 DataContext="{Binding MusicCollection, Source={StaticResource Locator}}">
-    <shell:SystemTray.ProgressIndicator>
-        <shell:ProgressIndicator IsVisible="{Binding ProgressIsVisible}"
-                                 IsIndeterminate="{Binding ProgressIsVisible}"
-                                 Text="{Binding ProgressText}" />
-    </shell:SystemTray.ProgressIndicator>
+    <i:Interaction.Behaviors>
+        <behaviours:MBSysTray Text="{Binding ProgressText}"
+                              IsVisible="{Binding ProgressIsVisible}"
+                              IsIndeterminate="{Binding ProgressIsVisible}" />
+        <behaviors:MultiApplicationBarBehavior SelectedIndex="{Binding PivotSelectedIndex}">
+            <behaviors:ApplicationBar IsVisible="False" />
+            <behaviors:ApplicationBar IsVisible="False" />
+            <behaviors:ApplicationBar IsVisible="True"
+                                      IsMenuEnabled="{Binding IsSelectionEnabled}"
+                                      Mode="{Binding AppBarMode}">
+                <behaviors:ApplicationBarIconButton Text="select items"
+                                                    IconUri="/Icons/appbar.list.check.png"
+                                                    IsEnabled="{Binding Songs.Count, Converter={StaticResource CountToEnabled}, ConverterParameter=delete}"
+                                                    IsVisible="{Binding IsSelectionEnabled, Converter={StaticResource InvertBoolean}}"
+                                                    Command="{Binding SelectItemsCommand}" />
+                <behaviors:ApplicationBar.MenuItems>
+                    <behaviors:ApplicationBarMenuItem Text="add to now playing"
+                                                      IsVisible="{Binding IsSelectionEnabled}"
+                                                      IsEnabled="{Binding SelectedTracks.Count, Converter={StaticResource CountToEnabled}, ConverterParameter=delete}"
+                                                      Command="{Binding AddToNowPlayingCommand}" />
+                </behaviors:ApplicationBar.MenuItems>
+            </behaviors:ApplicationBar>
+            <behaviors:ApplicationBar IsVisible="False" />
+        </behaviors:MultiApplicationBarBehavior>
+    </i:Interaction.Behaviors>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <command:EventToCommand Command="{Binding PageLoadedCommand}" />
@@ -58,29 +79,6 @@
             </toolkit:NavigationOutTransition.Forward>
         </toolkit:NavigationOutTransition>
     </toolkit:TransitionService.NavigationOutTransition>
-
-    <i:Interaction.Behaviors>
-        <behaviors:MultiApplicationBarBehavior SelectedIndex="{Binding PivotSelectedIndex}">
-            <behaviors:ApplicationBar IsVisible="False" />
-            <behaviors:ApplicationBar IsVisible="False" />
-            <behaviors:ApplicationBar IsVisible="True"
-                                      IsMenuEnabled="{Binding IsSelectionEnabled}"
-                                      Mode="{Binding AppBarMode}">
-                <behaviors:ApplicationBarIconButton Text="select items"
-                                                    IconUri="/Icons/appbar.list.check.png"
-                                                    IsEnabled="{Binding Songs.Count, Converter={StaticResource CountToEnabled}, ConverterParameter=delete}"
-                                                    IsVisible="{Binding IsSelectionEnabled, Converter={StaticResource InvertBoolean}}"
-                                                    Command="{Binding SelectItemsCommand}" />
-                <behaviors:ApplicationBar.MenuItems>
-                    <behaviors:ApplicationBarMenuItem Text="add to now playing"
-                                                      IsVisible="{Binding IsSelectionEnabled}"
-                                                      IsEnabled="{Binding SelectedTracks.Count, Converter={StaticResource CountToEnabled}, ConverterParameter=delete}"
-                                                      Command="{Binding AddToNowPlayingCommand}" />
-                </behaviors:ApplicationBar.MenuItems>
-            </behaviors:ApplicationBar>
-            <behaviors:ApplicationBar IsVisible="False" />
-        </behaviors:MultiApplicationBarBehavior>
-    </i:Interaction.Behaviors>
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot"

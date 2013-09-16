@@ -12,6 +12,7 @@
                 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
                 xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP71"
                 xmlns:cimbalino="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
+                xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
                 mc:Ignorable="d ignore"
                 d:DesignWidth="480"
                 d:DesignHeight="768"
@@ -27,6 +28,11 @@
             <command:EventToCommand Command="{Binding AlbumPageLoaded}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
+    <i:Interaction.Behaviors>
+        <behaviours:MBSysTray Text="{Binding ProgressText}"
+                              IsVisible="{Binding ProgressIsVisible}"
+                              IsIndeterminate="{Binding ProgressIsVisible}" />
+    </i:Interaction.Behaviors>
 
     <toolkit:TransitionService.NavigationInTransition>
         <toolkit:NavigationInTransition>

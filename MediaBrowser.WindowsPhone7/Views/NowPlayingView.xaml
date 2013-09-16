@@ -14,6 +14,7 @@
                 xmlns:converters="clr-namespace:Cimbalino.Phone.Toolkit.Converters;assembly=Cimbalino.Phone.Toolkit"
                 xmlns:localConverters="clr-namespace:MediaBrowser.WindowsPhone.Converters"
                 xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP71"
+                xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
                 mc:Ignorable="d ignore"
                 d:DesignWidth="480"
                 d:DesignHeight="768"
@@ -30,7 +31,11 @@
             <command:EventToCommand Command="{Binding PlaylistPageLoaded}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
-
+    <i:Interaction.Behaviors>
+        <behaviours:MBSysTray Text="{Binding ProgressText}"
+                              IsVisible="{Binding ProgressIsVisible}"
+                              IsIndeterminate="{Binding ProgressIsVisible}" />
+    </i:Interaction.Behaviors>
 
     <scott:BasePage.Resources>
         <converters:BooleanToStringConverter x:Key="PlayIconConverter"

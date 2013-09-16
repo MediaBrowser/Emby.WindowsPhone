@@ -12,6 +12,7 @@
                 xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
                 xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
                 xmlns:telerikInput="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Input"
+                xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
                 FontFamily="{StaticResource PhoneFontFamilyNormal}"
                 FontSize="{StaticResource PhoneFontSizeNormal}"
                 Foreground="{StaticResource PhoneForegroundBrush}"
@@ -21,11 +22,11 @@
                 shell:SystemTray.IsVisible="True"
                 toolkit:TiltEffect.IsTiltEnabled="True"
                 DataContext="{Binding MovieCollection, Source={StaticResource Locator}}">
-    <shell:SystemTray.ProgressIndicator>
-        <shell:ProgressIndicator IsVisible="{Binding ProgressIsVisible}"
-                                 IsIndeterminate="{Binding ProgressIsVisible}"
-                                 Text="{Binding ProgressText}" />
-    </shell:SystemTray.ProgressIndicator>
+    <i:Interaction.Behaviors>
+        <behaviours:MBSysTray Text="{Binding ProgressText}"
+                              IsVisible="{Binding ProgressIsVisible}"
+                              IsIndeterminate="{Binding ProgressIsVisible}" />
+    </i:Interaction.Behaviors>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <command:EventToCommand Command="{Binding PageLoadedCommand}" />

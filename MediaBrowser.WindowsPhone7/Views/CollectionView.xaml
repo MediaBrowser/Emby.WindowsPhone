@@ -12,6 +12,7 @@
                 xmlns:cimbalino="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
                 xmlns:controls3="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
                 xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP71"
+                xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
                 mc:Ignorable="d ignore"
                 FontFamily="{StaticResource PhoneFontFamilyNormal}"
                 FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -27,11 +28,11 @@
             <command:EventToCommand Command="{Binding CollectionPageLoaded}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
-    <shell:SystemTray.ProgressIndicator>
-        <shell:ProgressIndicator Text="{Binding ProgressText}"
-                                 IsVisible="{Binding ProgressIsVisible}"
-                                 IsIndeterminate="{Binding ProgressIsVisible}" />
-    </shell:SystemTray.ProgressIndicator>
+    <i:Interaction.Behaviors>
+        <behaviours:MBSysTray Text="{Binding ProgressText}"
+                              IsVisible="{Binding ProgressIsVisible}"
+                              IsIndeterminate="{Binding ProgressIsVisible}" />
+    </i:Interaction.Behaviors>
 
     <toolkit:TransitionService.NavigationInTransition>
         <toolkit:NavigationInTransition>

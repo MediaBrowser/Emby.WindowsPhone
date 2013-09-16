@@ -10,6 +10,7 @@
                 xmlns:scott="clr-namespace:ScottIsAFool.WindowsPhone.Controls;assembly=ScottIsAFool.WindowsPhone"
                 xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP71"
                 xmlns:controls="clr-namespace:MediaBrowser.WindowsPhone.Controls"
+                xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
                 d:DesignWidth="480"
                 d:DesignHeight="768"
                 FontFamily="{StaticResource PhoneFontFamilyNormal}"
@@ -21,11 +22,11 @@
                 shell:SystemTray.BackgroundColor="Black"
                 toolkit:TiltEffect.IsTiltEnabled="True"
                 d:DataContext="{Binding Tv, Source={StaticResource Locator}}">
-    <shell:SystemTray.ProgressIndicator>
-        <shell:ProgressIndicator IsIndeterminate="{Binding ProgressIsVisible}"
-                                 Text="{Binding ProgressText}"
-                                 IsVisible="{Binding ProgressIsVisible}" />
-    </shell:SystemTray.ProgressIndicator>
+    <i:Interaction.Behaviors>
+        <behaviours:MBSysTray Text="{Binding ProgressText}"
+                              IsVisible="{Binding ProgressIsVisible}"
+                              IsIndeterminate="{Binding ProgressIsVisible}" />
+    </i:Interaction.Behaviors>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <command:EventToCommand Command="{Binding SeasonPageLoaded}" />

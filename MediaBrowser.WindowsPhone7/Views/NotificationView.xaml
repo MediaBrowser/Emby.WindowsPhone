@@ -7,6 +7,8 @@
                 xmlns:scott="clr-namespace:ScottIsAFool.WindowsPhone.Controls;assembly=ScottIsAFool.WindowsPhone"
                 xmlns:controls="clr-namespace:MediaBrowser.WindowsPhone.Controls"
                 xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+                xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+                xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
                 FontFamily="{StaticResource PhoneFontFamilyNormal}"
                 FontSize="{StaticResource PhoneFontSizeNormal}"
                 Foreground="{StaticResource PhoneForegroundBrush}"
@@ -15,7 +17,12 @@
                 mc:Ignorable="d"
                 shell:SystemTray.IsVisible="True"
                 DataContext="{Binding Notifications, Source={StaticResource Locator}}">
-
+    <i:Interaction.Behaviors>
+        <behaviours:MBSysTray Text="{Binding ProgressText}"
+                              IsVisible="{Binding ProgressIsVisible}"
+                              IsIndeterminate="{Binding ProgressIsVisible}" />
+    </i:Interaction.Behaviors>
+    
     <toolkit:TransitionService.NavigationInTransition>
         <toolkit:NavigationInTransition>
             <toolkit:NavigationInTransition.Backward>

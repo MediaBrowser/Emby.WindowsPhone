@@ -13,6 +13,7 @@
                 xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP71"
                 xmlns:c4F="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
                 xmlns:telerikInput="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Input"
+                xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
                 mc:Ignorable="d"
                 d:DesignWidth="480"
                 d:DesignHeight="696"
@@ -27,11 +28,11 @@
                 toolkit:TiltEffect.IsTiltEnabled="True"
                 x:Name="PageRoot"
                 d:DataContext="{Binding Movie, Source={StaticResource Locator}}">
-    <shell:SystemTray.ProgressIndicator>
-        <shell:ProgressIndicator IsIndeterminate="{Binding ProgressIsVisible}"
-                                 IsVisible="{Binding ProgressIsVisible}"
-                                 Text="{Binding ProgressText}" />
-    </shell:SystemTray.ProgressIndicator>
+    <i:Interaction.Behaviors>
+        <behaviours:MBSysTray Text="{Binding ProgressText}"
+                              IsVisible="{Binding ProgressIsVisible}"
+                              IsIndeterminate="{Binding ProgressIsVisible}" />
+    </i:Interaction.Behaviors>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <command:EventToCommand Command="{Binding MoviePageLoaded}" />
