@@ -13,6 +13,7 @@ using MediaBrowser.Model.Net;
 using MediaBrowser.Services;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.WindowsPhone.Resources;
+using MediaBrowser.WindowsPhone.Services;
 using ScottIsAFool.WindowsPhone.ViewModel;
 using INavigationService = MediaBrowser.WindowsPhone.Model.INavigationService;
 
@@ -146,7 +147,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 #if WP8
                 Services.LockScreenService.Current.Start();
 #endif
-                _navigationService.NavigateTo(!string.IsNullOrEmpty(App.Action) ? App.Action : Constants.Pages.HomePage);
+                var page = TileService.Current.PinnedPage();
+                _navigationService.NavigateTo(page);
                 Username = Password = string.Empty;
                 _apiClient.CurrentUserId = AuthenticationService.Current.LoggedInUser.Id;
             }

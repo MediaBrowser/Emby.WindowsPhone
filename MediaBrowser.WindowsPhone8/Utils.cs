@@ -241,7 +241,7 @@ namespace MediaBrowser.WindowsPhone
             }
 #endif
             // If one exists, then authenticate that user.
-            navigationService.NavigateTo(AuthenticationService.Current.IsLoggedIn ? Constants.Pages.HomePage : loginPage);
+            navigationService.NavigateTo(AuthenticationService.Current.IsLoggedIn ? TileService.Current.PinnedPage() : loginPage);
         }
 
         internal static void HandleHttpException(HttpException ex, string message, INavigationService navigationService, ILog log)

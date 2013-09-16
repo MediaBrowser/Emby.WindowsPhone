@@ -114,17 +114,25 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 }
 
 #if WP8
-                var tileDate = new ShellTileServiceCycleTileData
+                //var tileDate = new ShellTileServiceCycleTileData
+                //{
+                //    Title = collection.Name,
+                //    CycleImages = new Collection<Uri>
+                //    {
+                //        new Uri("/Assets/Tiles/FlipCycleTileLarge.png", UriKind.Relative),
+                //        new Uri("/Assets/Tiles/FlipCycleTileMedium.png", UriKind.Relative)
+                //    },
+                //    SmallBackgroundImage = new Uri("/Assets/Tiles/FlipCycleTileSmall.png", UriKind.Relative)
+                //};
+                var tileData = new ShellTileServiceFlipTileData
                 {
                     Title = collection.Name,
-                    CycleImages = new Collection<Uri>
-                    {
-                        new Uri("/Assets/Tiles/FlipCycleTileLarge.png", UriKind.Relative),
-                        new Uri("/Assets/Tiles/FlipCycleTileMedium.png", UriKind.Relative)
-                    },
-                    SmallBackgroundImage = new Uri("/Assets/Tiles/FlipCycleTileSmall.png", UriKind.Relative)
+                    BackgroundImage = new Uri("/Assets/Tiles/FlipCycleTileMedium.png", UriKind.Relative),
+                    SmallBackgroundImage = new Uri("/Assets/Tiles/FlipCycleTileSmall.png", UriKind.Relative),
+                    WideBackgroundImage = new Uri("/Assets/Tiles/FlipCycleTileLarge.png", UriKind.Relative)
                 };
-                TileService.Current.Create(new Uri(tileUrl, UriKind.Relative), tileDate, true);
+
+                TileService.Current.Create(new Uri(tileUrl, UriKind.Relative), tileData, true);
 #else
                 var tileData = new ShellTileServiceStandardTileData
                 {

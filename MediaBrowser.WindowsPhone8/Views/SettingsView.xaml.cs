@@ -21,6 +21,11 @@ namespace MediaBrowser.WindowsPhone.Views
             if (NavigationContext.QueryString.TryGetValue("settingsPane", out settingPane))
             {
                 var selectedIndex = int.Parse(settingPane);
+                if (selectedIndex > settingsPivot.Items.Count)
+                {
+                    return;
+                }
+
                 settingsPivot.SelectedIndex = selectedIndex;
                 var pivotsToRemove = settingsPivot.Items.Cast<PivotItem>().Where(x => x.Header.ToString() != "connection").ToList();
                 foreach (var pivot in pivotsToRemove)

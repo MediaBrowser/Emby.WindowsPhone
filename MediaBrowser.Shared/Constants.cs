@@ -106,6 +106,7 @@
             public const string VideoPlayerView = ViewsPath + "VideoPlayerView.xaml";
             public const string ActorView = ViewsPath + "ActorView.xaml";
             public const string GenericItemView = ViewsPath + "GenericItemView.xaml";
+            public const string MainPage = ViewsPath + "MainPage.xaml";
 
             public class Remote
             {
