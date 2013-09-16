@@ -19,14 +19,11 @@ using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Session;
 using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Model;
+using MediaBrowser.WindowsPhone.Services;
 using Microsoft.Phone.Info;
 using ScottIsAFool.WindowsPhone;
 using ScottIsAFool.WindowsPhone.Logging;
 using INavigationService = MediaBrowser.WindowsPhone.Model.INavigationService;
-
-#if WP8
-using MediaBrowser.WindowsPhone.Services;
-#endif
 
 namespace MediaBrowser.WindowsPhone
 {
