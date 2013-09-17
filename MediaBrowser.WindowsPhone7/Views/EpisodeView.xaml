@@ -60,7 +60,7 @@
     <Grid x:Name="LayoutRoot"
           Background="{StaticResource MediaBrowserBackground}">
         <i:Interaction.Behaviors>
-            <cimbalino:ApplicationBarBehavior>
+            <cimbalino:ApplicationBarBehavior IsMenuEnabled="True">
                 <cimbalino:ApplicationBarIconButton Command="{Binding PreviousEpisodeCommand}"
                                                     Text="previous"
                                                     IconUri="/icons/appbar.back.rest.png"
@@ -69,6 +69,12 @@
                                                     Command="{Binding NextEpisodeCommand}"
                                                     IconUri="/icons/appbar.next.rest.png"
                                                     IsEnabled="{Binding EpisodeNavigationEnabled}" />
+                <cimbalino:ApplicationBarBehavior.MenuItems>
+                    <cimbalino:ApplicationBarMenuItem Text="resume"
+                                                      IsEnabled="{Binding SelectedEpisode.CanResume}"
+                                                      Command="{Binding Main.ResumeMovieCommand, Source={StaticResource Locator}}"
+                                                      CommandParameter="{Binding SelectedEpisode}" />
+                </cimbalino:ApplicationBarBehavior.MenuItems>
             </cimbalino:ApplicationBarBehavior>
         </i:Interaction.Behaviors>
         <Grid.RowDefinitions>

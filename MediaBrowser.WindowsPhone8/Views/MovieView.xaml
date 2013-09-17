@@ -38,6 +38,10 @@
                                                 IconUri="{Binding SelectedMovie.UserData.IsFavorite, Converter={StaticResource FavouritesConverter}, ConverterParameter=icon}"
                                                 Command="{Binding AddRemoveFavouriteCommand}" />
             <cimbalino:ApplicationBarBehavior.MenuItems>
+                <cimbalino:ApplicationBarMenuItem Text="resume"
+                                                  IsEnabled="{Binding SelectedMovie.CanResume}"
+                                                  Command="{Binding Main.ResumeMovieCommand, Source={StaticResource Locator}}"
+                                                  CommandParameter="{Binding SelectedMovie}"/>
                 <cimbalino:ApplicationBarMenuItem Text="set poster as lock screen"
                                                   Command="{Binding SetPosterAsLockScreenCommand}" />
                 <cimbalino:ApplicationBarMenuItem Text="play on..."

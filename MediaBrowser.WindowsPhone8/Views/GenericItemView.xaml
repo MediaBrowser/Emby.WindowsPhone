@@ -11,6 +11,7 @@
                 xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP8"
                 xmlns:controls="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
                 xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
+                xmlns:cimbalino="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
                 FontFamily="{StaticResource PhoneFontFamilyNormal}"
                 FontSize="{StaticResource PhoneFontSizeNormal}"
                 Foreground="{StaticResource PhoneForegroundBrush}"
@@ -24,6 +25,15 @@
         <behaviours:MBSysTray Text="{Binding ProgressText}"
                               IsVisible="{Binding ProgressIsVisible}"
                               IsIndeterminate="{Binding ProgressIsVisible}" />
+        <cimbalino:ApplicationBarBehavior IsMenuEnabled="True"
+                                          Mode="Minimized">
+            <cimbalino:ApplicationBarBehavior.MenuItems>
+                <cimbalino:ApplicationBarMenuItem Text="resume"
+                                                  IsEnabled="{Binding SelectedItem.CanResume}"
+                                                  Command="{Binding Main.ResumeMovieCommand, Source={StaticResource Locator}}"
+                                                  CommandParameter="{Binding SelectedItem}" />
+            </cimbalino:ApplicationBarBehavior.MenuItems>
+        </cimbalino:ApplicationBarBehavior>
     </i:Interaction.Behaviors>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">

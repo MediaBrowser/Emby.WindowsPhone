@@ -148,21 +148,43 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             PlayMovieCommand = new RelayCommand<BaseItemDto>(async item =>
             {
-                Log.Info("Playing {0} [{1}]", item.Type, item.Name);
+                await PlayVideo(item);
+            });
+
+            ResumeMovieCommand = new RelayCommand<BaseItemDto>(async item =>
+            {
+                await PlayVideo(item, true);
+            });
+
+            NavigateToPage = new RelayCommand<BaseItemDto>(_navService.NavigateTo);
+
+            NavigateToAPage = new RelayCommand<string>(_navService.NavigateTo);
+
+            NavigateToNotificationsCommand = new RelayCommand(() =>
+            {
+                Messenger.Default.Send(new NotificationMessage(Constants.Messages.NotifcationNavigationMsg));
+
+                _navService.NavigateTo(Constants.Pages.NotificationsView);
+            });
+        }
+
+        private Task PlayVideo(BaseItemDto item, bool isResume = false)
+        {
+            Log.Info("Playing {0} [{1}]", item.Type, item.Name);
 #if WP8
-                if (!TrialHelper.Current.CanPlayVideo(item.Id))
+            if (!TrialHelper.Current.CanPlayVideo(item.Id))
+            {
+                TrialHelper.Current.ShowTrialMessage("In trial mode you can only play one video per day. Please try this tomorrow or purchase the full version.");
+            }
+            else
+            {
+                if (SimpleIoc.Default.GetInstance<VideoPlayerViewModel>() != null)
                 {
-                    TrialHelper.Current.ShowTrialMessage("In trial mode you can only play one video per day. Please try this tomorrow or purchase the full version.");
+                    Messenger.Default.Send(new NotificationMessage(item, isResume, Constants.Messages.PlayVideoItemMsg));
+                    TrialHelper.Current.SetNewVideoItem(item.Id);
+                    _navService.NavigateTo(Constants.Pages.VideoPlayerView);
                 }
-                else
-                {
-                    if (SimpleIoc.Default.GetInstance<VideoPlayerViewModel>() != null)
-                    {
-                        Messenger.Default.Send(new NotificationMessage(item, Constants.Messages.PlayVideoItemMsg));
-                        TrialHelper.Current.SetNewVideoItem(item.Id);
-                        _navService.NavigateTo(Constants.Pages.VideoPlayerView);
-                    }
-                }
+            }
 #else
                 var bounds = Application.Current.RootVisual.RenderSize;
                 var query = new VideoStreamOptions
@@ -204,18 +226,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 };
                 mediaPlayerLauncher.Show();
 #endif
-            });
-
-            NavigateToPage = new RelayCommand<BaseItemDto>(_navService.NavigateTo);
-
-            NavigateToAPage = new RelayCommand<string>(_navService.NavigateTo);
-
-            NavigateToNotificationsCommand = new RelayCommand(() =>
-            {
-                Messenger.Default.Send(new NotificationMessage(Constants.Messages.NotifcationNavigationMsg));
-
-                _navService.NavigateTo(Constants.Pages.NotificationsView);
-            });
         }
 
         private void Reset()
@@ -373,6 +383,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public RelayCommand NavigateToNotificationsCommand { get; set; }
         public RelayCommand<BaseItemDto> PinCollectionCommand { get; set; }
         public RelayCommand<BaseItemDto> PlayMovieCommand { get; set; }
+        public RelayCommand<BaseItemDto> ResumeMovieCommand { get; set; }
         public ObservableCollection<BaseItemDto> Folders { get; set; }
         public ObservableCollection<BaseItemDto> RecentItems { get; set; }
         public ObservableCollection<BaseItemDto> FavouriteItems { get; set; }

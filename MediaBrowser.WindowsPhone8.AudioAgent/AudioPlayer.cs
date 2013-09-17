@@ -11,7 +11,7 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
     {
         private static volatile bool _classInitialized;
         private PlaylistHelper _playlistHelper;
-
+        
         /// <remarks>
         /// AudioPlayer instances can share the same process. 
         /// Static fields can be used to share state between AudioPlayer instances

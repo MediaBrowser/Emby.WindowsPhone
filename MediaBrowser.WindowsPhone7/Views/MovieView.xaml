@@ -68,6 +68,12 @@
                 <cimbalino:ApplicationBarIconButton Text="{Binding SelectedMovie.UserData.IsFavorite, Converter={StaticResource FavouritesConverter}, ConverterParameter=text}"
                                                     IconUri="{Binding SelectedMovie.UserData.IsFavorite, Converter={StaticResource FavouritesConverter}, ConverterParameter=icon}"
                                                     Command="{Binding AddRemoveFavouriteCommand}" />
+                <cimbalino:ApplicationBarBehavior.MenuItems>
+                    <cimbalino:ApplicationBarMenuItem Text="resume"
+                                                      IsEnabled="{Binding SelectedMovie.CanResume}"
+                                                      Command="{Binding Main.ResumeMovieCommand, Source={StaticResource Locator}}"
+                                                      CommandParameter="{Binding SelectedMovie}" />
+                </cimbalino:ApplicationBarBehavior.MenuItems>
             </cimbalino:ApplicationBarBehavior>
         </i:Interaction.Behaviors>
         <controls:Panorama Title="{Binding SelectedMovie.Name, Converter={StaticResource StringCaseConverter}}"
