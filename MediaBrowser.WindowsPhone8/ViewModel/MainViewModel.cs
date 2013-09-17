@@ -16,6 +16,7 @@ using MediaBrowser.Model.Dto;
 using System.Threading.Tasks;
 using MediaBrowser.WindowsPhone.Resources;
 using MediaBrowser.WindowsPhone.Services;
+using Microsoft.Phone.Controls;
 using ScottIsAFool.WindowsPhone.ViewModel;
 using Microsoft.Phone.Tasks;
 using INavigationService = MediaBrowser.WindowsPhone.Model.INavigationService;
@@ -149,10 +150,18 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 Log.Info("Playing {0} [{1}]", item.Type, item.Name);
 #if WP8
-                if (SimpleIoc.Default.GetInstance<VideoPlayerViewModel>() != null)
+                if (!TrialHelper.Current.CanPlayVideo(item.Id))
                 {
-                    Messenger.Default.Send(new NotificationMessage(item, Constants.Messages.PlayVideoItemMsg));
-                    _navService.NavigateTo("/Views/VideoPlayerView.xaml");
+                    TrialHelper.Current.ShowTrialMessage("In trial mode you can only play one video per day. Please try this tomorrow or purchase the full version.");
+                }
+                else
+                {
+                    if (SimpleIoc.Default.GetInstance<VideoPlayerViewModel>() != null)
+                    {
+                        Messenger.Default.Send(new NotificationMessage(item, Constants.Messages.PlayVideoItemMsg));
+                        TrialHelper.Current.SetNewVideoItem(item.Id);
+                        _navService.NavigateTo(Constants.Pages.VideoPlayerView);
+                    }
                 }
 #else
                 var bounds = Application.Current.RootVisual.RenderSize;
