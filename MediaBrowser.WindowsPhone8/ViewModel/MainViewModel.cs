@@ -168,7 +168,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             });
         }
 
-        private Task PlayVideo(BaseItemDto item, bool isResume = false)
+        private async Task PlayVideo(BaseItemDto item, bool isResume = false)
         {
             Log.Info("Playing {0} [{1}]", item.Type, item.Name);
 #if WP8

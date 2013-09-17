@@ -84,7 +84,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     {
                         ticks = SelectedItem.UserData.PlaybackPositionTicks;
                     }
-                    StartTime = TimeSpan.FromTicks(ticks);
+                    
                     var query = new VideoStreamOptions
                     {
                         ItemId = SelectedItem.Id,
@@ -94,6 +94,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         VideoBitRate = 1000000,
                         AudioBitRate = 128000,
                         MaxAudioChannels = 2,
+                        StartTimeTicks = ticks,
                         Profile = "baseline",
                         Level = "3",
                         //FrameRate = 20,
@@ -103,6 +104,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                     VideoUrl = _apiClient.GetVideoStreamUrl(query);
                     Debug.WriteLine(VideoUrl);
+
+                    StartTime = TimeSpan.FromTicks(ticks);
 
                     Log.Info("Playing {0} [{1}] ({2})", SelectedItem.Type, SelectedItem.Name, SelectedItem.Id);
                     Log.Debug(VideoUrl);
