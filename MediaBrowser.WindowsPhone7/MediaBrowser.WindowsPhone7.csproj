@@ -352,8 +352,8 @@
     <Compile Include="..\MediaBrowser.WindowsPhone8\Services\TileService.cs">
       <Link>Services\TileService.cs</Link>
     </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone8\Services\TrialService.cs">
-      <Link>Services\TrialService.cs</Link>
+    <Compile Include="..\MediaBrowser.WindowsPhone8\Services\TrialHelper.cs">
+      <Link>Services\TrialHelper.cs</Link>
     </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone8\SpecificSettings.cs">
       <Link>SpecificSettings.cs</Link>
