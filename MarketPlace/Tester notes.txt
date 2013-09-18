@@ -1,0 +1,1 @@
+In order to test this app, you will need to point it to: scottisafool.homeserver.com and then use the scottisafool user. If you want to see the remote control in action, go to a movie first, then in the app bar, tap on play in, and choose a dashboard, then try the remote.
