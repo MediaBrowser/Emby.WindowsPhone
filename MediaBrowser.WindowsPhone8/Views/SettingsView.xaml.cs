@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Linq;
 using System.Windows;
-using Windows.System;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Tasks;
 using ScottIsAFool.WindowsPhone.Logging;
+
+#if WP8
+using Windows.System;
+#endif
 
 namespace MediaBrowser.WindowsPhone.Views
 {
