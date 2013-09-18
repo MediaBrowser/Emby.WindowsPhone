@@ -468,6 +468,8 @@
                                                Margin="12,-12,12,0" />
                                 </StackPanel>
                             </Grid>
+                            <Button Content="lock screen settings"
+                                    Click="ButtonBase_OnClick"/>
                         </StackPanel>
                     </ScrollViewer>
                 </Grid>

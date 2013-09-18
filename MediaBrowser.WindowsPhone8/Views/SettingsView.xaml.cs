@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Windows;
+using Windows.System;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Tasks;
 using ScottIsAFool.WindowsPhone.Logging;
@@ -44,5 +45,12 @@ namespace MediaBrowser.WindowsPhone.Views
                 Body = WPLogger.GetLogs()
             }.Show();
         }
+
+#if WP8
+        private async void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            await Launcher.LaunchUriAsync(new Uri("ms-settings-lock:", UriKind.Absolute));
+        }
+#endif
     }
 }
