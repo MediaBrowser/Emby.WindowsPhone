@@ -190,16 +190,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 var query = new VideoStreamOptions
                 {
                     ItemId = item.Id,
-                    VideoCodec = VideoCodecs.H264,
-                    OutputFileExtension = ".asf",
-                    //Static = true,
-                    AudioCodec = AudioCodecs.Mp3,
+                    VideoCodec = VideoCodecs.Wmv,
+                    //OutputFileExtension = ".wmv",
+                    AudioCodec = AudioCodecs.Wma,
                     VideoBitRate = 1000000,
                     AudioBitRate = 128000,
                     MaxAudioChannels = 2,
-                    //Profile = "baseline",
-                    //Level = "3",
-                    //FrameRate = 30,
                     MaxHeight = 480,// (int)bounds.Width,
                     MaxWidth = 800// (int)bounds.Height
                 };
@@ -210,7 +206,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 try
                 {
                     Log.Info("Telling the server about watching this video");
-                    await _apiClient.ReportPlaybackStartAsync(item.Id, AuthenticationService.Current.LoggedInUser.Id).ConfigureAwait(true);
+                    await _apiClient.ReportPlaybackStartAsync(item.Id, AuthenticationService.Current.LoggedInUser.Id);
                 }
                 catch (HttpException ex)
                 {

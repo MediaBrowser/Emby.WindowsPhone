@@ -2,7 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:System="clr-namespace:System;assembly=mscorlib"
                     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
-                    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone">
+                    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+                    xmlns:mb="clr-namespace:MediaBrowser.WindowsPhone.Controls;assembly=MediaBrowser.WindowsPhone8">
 
     <!-- About Page -->
     <Style x:Key="AboutPageStyle"
@@ -58,15 +59,14 @@
         <!-- Some eye-hurting sample values: -->
         <!-- Setting the background color of the pivot control/about page to DarkGreen, and the header color to Yellow
         <Setter Property="Background"
-                Value="DarkGreen" />
-        <Setter Property="HeaderTemplate">
+                Value="DarkGreen" />-->
+        <Setter Property="TitleTemplate">
             <Setter.Value>
                 <DataTemplate>
-                    <ContentControl Content="{Binding}"
-                                    Foreground="Yellow" />
+                    <mb:MediaBrowserLogo Margin="-12,0,0,0"/>
                 </DataTemplate>
             </Setter.Value>
-        </Setter>-->
+        </Setter>
     </Style>
 
     <Style x:Key="AboutPivotItemStyle"
@@ -78,7 +78,7 @@
            TargetType="TextBlock"
            BasedOn="{StaticResource PhoneTextExtraLargeStyle}">
         <Setter Property="Foreground"
-                Value="{StaticResource PhoneAccentColor}" />
+                Value="{StaticResource PhoneAccentBrush}" />
     </Style>
 
     <Style x:Key="AboutTextSubTitleStyle"
@@ -95,7 +95,7 @@
            TargetType="TextBlock"
            BasedOn="{StaticResource PhoneTextNormalStyle}">
         <Setter Property="Foreground"
-                Value="{StaticResource PhoneAccentColor}" />
+                Value="{StaticResource PhoneAccentBrush}" />
         <Setter Property="FontWeight"
                 Value="Bold" />
     </Style>
@@ -103,7 +103,7 @@
     <Style x:Key="AboutHyperlinkButtonStyle"
            TargetType="HyperlinkButton">
         <Setter Property="Foreground"
-                Value="{StaticResource PhoneAccentColor}" />
+                Value="{StaticResource PhoneAccentBrush}" />
     </Style>
 
     <!-- The style used for the buttons (e.g. the review button) -->
