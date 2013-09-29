@@ -164,11 +164,6 @@ namespace MediaBrowser.Design
             throw new NotImplementedException();
         }
 
-        Task<UserItemDataDto> IApiClient.UpdatePlayedStatusAsync(string itemId, string userId, bool wasPlayed)
-        {
-            throw new NotImplementedException();
-        }
-
         Task<UserItemDataDto> IApiClient.UpdateFavoriteStatusAsync(string itemId, string userId, bool isFavorite)
         {
             throw new NotImplementedException();
@@ -768,6 +763,32 @@ namespace MediaBrowser.Design
         }
 
         public Task<T> GetAsync<T>(string url, CancellationToken cancellationToken) where T : class
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public Task<SessionInfoDto[]> GetClientSessionsAsync(SessionQuery query)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<GameSystemSummary>> GetGameSystemSummariesAsync(CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<UserItemDataDto> MarkPlayedAsync(string itemId, string userId, DateTime? datePlayed)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<UserItemDataDto> MarkUnplayedAsync(string itemId, string userId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task ReportPlaybackStartAsync(string itemId, string userId, bool isSeekable, List<string> queueableMediaTypes)
         {
             throw new NotImplementedException();
         }

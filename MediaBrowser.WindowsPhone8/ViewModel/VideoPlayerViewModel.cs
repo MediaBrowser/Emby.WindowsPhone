@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
@@ -113,7 +114,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     try
                     {
                         Log.Info("Sending playback started message to the server.");
-                        await _apiClient.ReportPlaybackStartAsync(SelectedItem.Id, AuthenticationService.Current.LoggedInUser.Id);
+                        await _apiClient.ReportPlaybackStartAsync(SelectedItem.Id, AuthenticationService.Current.LoggedInUser.Id, false, new List<string>());
                     }
                     catch (HttpException ex)
                     {

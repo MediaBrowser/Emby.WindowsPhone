@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using Cimbalino.Phone.Toolkit.Services;
 using GalaSoft.MvvmLight.Ioc;
@@ -206,7 +207,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 try
                 {
                     Log.Info("Telling the server about watching this video");
-                    await _apiClient.ReportPlaybackStartAsync(item.Id, AuthenticationService.Current.LoggedInUser.Id);
+                    await _apiClient.ReportPlaybackStartAsync(item.Id, AuthenticationService.Current.LoggedInUser.Id, true, new List<string>());
                 }
                 catch (HttpException ex)
                 {
@@ -351,7 +352,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 var query = new ItemQuery
                 {
                     UserId = AuthenticationService.Current.LoggedInUser.Id,
-                    Fields = new[] {ItemFields.ItemCounts},
                     SortOrder = SortOrder.Ascending,
                     SortBy = new[] {ItemSortBy.SortName}
                 };

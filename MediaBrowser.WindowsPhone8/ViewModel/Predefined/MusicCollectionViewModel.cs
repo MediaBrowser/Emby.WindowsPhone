@@ -393,7 +393,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                 SortOrder = SortOrder.Ascending,
                 IncludeItemTypes = new[] { "Audio", "MusicVideo" },
                 Recursive = true,
-                Fields = new[] { ItemFields.ItemCounts, ItemFields.DateCreated },
+                Fields = new[] {  ItemFields.DateCreated },
                 UserId = AuthenticationService.Current.LoggedInUser.Id
             };
 

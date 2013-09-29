@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
@@ -93,7 +94,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
 
                     try
                     {
-                        item.UserData = await _apiClient.UpdatePlayedStatusAsync(item.Id, AuthenticationService.Current.LoggedInUser.Id, true);
+                        item.UserData = await _apiClient.MarkPlayedAsync(item.Id, AuthenticationService.Current.LoggedInUser.Id, DateTime.Now);
                     }
                     catch (HttpException ex)
                     {
@@ -177,7 +178,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                     SortBy = new[] { "SortName" },
                     SortOrder = SortOrder.Ascending,
                     IncludeItemTypes = new[] { "Series" },
-                    Fields = new[] { ItemFields.ItemCounts, ItemFields.DateCreated },
+                    Fields = new[] {  ItemFields.DateCreated },
                     Recursive = true
                 };
 

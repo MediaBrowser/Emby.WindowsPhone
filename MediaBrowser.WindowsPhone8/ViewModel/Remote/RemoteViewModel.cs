@@ -9,7 +9,9 @@ using MediaBrowser.ApiInteraction.WebSocket;
 using MediaBrowser.Model;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Net;
+using MediaBrowser.Model.Querying;
 using MediaBrowser.Model.Session;
+using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Services;
 using ScottIsAFool.WindowsPhone.ViewModel;
 using INavigationService = MediaBrowser.WindowsPhone.Model.INavigationService;
@@ -301,7 +303,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
 
             try
             {
-                var clients = await _apiClient.GetClientSessionsAsync();
+                var query = new SessionQuery
+                {
+                    ControllableByUserId = AuthenticationService.Current.LoggedInUserId,
+                    SupportsRemoteControl = true
+                };
+                var clients = await _apiClient.GetClientSessionsAsync(query);
 
                 Clients = clients.Where(x => x.DeviceId != _apiClient.DeviceId && x.SupportsRemoteControl).ToList();
 
