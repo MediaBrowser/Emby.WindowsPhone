@@ -621,12 +621,6 @@
     <Content Include="..\MediaBrowser.WindowsPhone8\Images\Remote\minus.png">
       <Link>Images\Remote\minus.png</Link>
     </Content>
-    <Content Include="..\MediaBrowser.WindowsPhone8\Images\Remote\Pause.png">
-      <Link>Images\Remote\Pause.png</Link>
-    </Content>
-    <Content Include="..\MediaBrowser.WindowsPhone8\Images\Remote\Play.png">
-      <Link>Images\Remote\Play.png</Link>
-    </Content>
     <Content Include="..\MediaBrowser.WindowsPhone8\Images\rotten.png">
       <Link>Images\rotten.png</Link>
     </Content>

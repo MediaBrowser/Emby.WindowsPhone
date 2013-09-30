@@ -353,8 +353,6 @@
     <Content Include="Images\Remote\Clients\windowsphone.png" />
     <Content Include="Images\Remote\Clients\windowsrt.png" />
     <Content Include="Images\Remote\minus.png" />
-    <Content Include="Images\Remote\Pause.png" />
-    <Content Include="Images\Remote\Play.png" />
     <Content Include="Images\rotten.png" />
     <Content Include="Images\stop.png" />
     <Content Include="Images\tvcollection.png" />

@@ -59,7 +59,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
         public SessionInfoDto SelectedClient { get; set; }
         public double PlayedPercentage { get; set; }
         public long? PlayedTicks { get; set; }
-        public bool IsPlaying { get; set; }
+        public bool IsPaused { get; set; }
+        public bool IsMuted { get; set; }
 
         public bool CanUseRemote
         {
@@ -140,7 +141,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
             {
                 return new RelayCommand(async () =>
                 {
-                    var playPause = IsPlaying ? "Pause" : "Unpause";
+                    var playPause = IsPaused ? "Unpause" : "Pause";
 
                     await SendCommand(playPause);
                 });
@@ -230,7 +231,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
 
         private bool CanSendCommand()
         {
-            if (TrialHelper.Current.CanRemoteControl(SelectedClient.DeviceName))
+            if (TrialHelper.Current.CanRemoteControl(SelectedClient.Client))
             {
                 return true;
             }
@@ -344,7 +345,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
                 PlayedPercentage = ((double)selectedClient.NowPlayingPositionTicks / (double)selectedClient.NowPlayingItem.RunTimeTicks) * 100;
             }
 
-            IsPlaying = !selectedClient.IsPaused;
+            IsPaused = selectedClient.IsPaused;
+            IsMuted = selectedClient.IsMuted;
         }
 
         private void PinTile()
@@ -381,11 +383,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
 
             var session = e.Sessions.First(x => x.DeviceId == SelectedClient.DeviceId);
 
+            //IsPaused = session.IsPaused;
+            //IsMuted = session.IsMuted;
 
             Deployment.Current.Dispatcher.BeginInvoke(() =>
             {
                 if (SelectedClient.NowPlayingItem != null && session.NowPlayingItem != null && SelectedClient.NowPlayingItem.Id == session.NowPlayingItem.Id)
                 {
+                    SelectedClient.NowPlayingPositionTicks = session.NowPlayingPositionTicks;
                 }
                 else
                 {

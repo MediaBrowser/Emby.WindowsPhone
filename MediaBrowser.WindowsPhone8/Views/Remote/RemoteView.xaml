@@ -74,9 +74,15 @@
         <localConverters:MuteIconColourConverter x:Key="MuteIconForegroundColourConverter"
                                                  TrueValue="White"
                                                  FalseValue="{StaticResource PhoneAccentBrush}"/>
+        <localConverters:MuteIconColourConverter x:Key="PlayIconForegroundColourConverter"
+                                                 FalseValue="White"
+                                                 TrueValue="{StaticResource PhoneAccentBrush}" />
         <localConverters:MuteIconConverter x:Key="MuteIconConverter"
                                            TrueValue="/Images/Remote/appbar.sound.3.png"
                                            FalseValue="/Images/Remote/appbar.sound.mute.png"/>
+        <localConverters:MuteIconConverter x:Key="PlayIconConverter"
+                                           FalseValue="/Icons/transport.pause.png"
+                                           TrueValue="/Icons/appbar.transport.play.png" />
         <ControlTemplate x:Key="ClientListPickerStyle"
                          TargetType="toolkit:ListPicker">
             <StackPanel>
@@ -289,16 +295,16 @@
                             <ColumnDefinition Width="1.5*" />
                         </Grid.ColumnDefinitions>
 
-                        <telerikPrimitives:RadImageButton ButtonShape="Image"
-                                                          ButtonBehavior="ToggleButton"
-                                                          RestStateImageSource="/Images/Remote/Play.png"
-                                                          PressedStateImageSource="/Images/Remote/Pause.png"
+                        <telerikPrimitives:RadImageButton ButtonShape="Ellipse"
+                                                          RestStateImageSource="{Binding IsPaused, Converter={StaticResource PlayIconConverter}}"
                                                           Grid.Column="1"
                                                           Grid.Row="0"
-                                                          IsChecked="{Binding IsPlaying}"
-                                                          toolkit:TiltEffect.IsTiltEnabled="True"
                                                           HorizontalAlignment="Center"
                                                           Command="{Binding PlayPauseCommand}"
+                                                          Background="{Binding IsPaused, Converter={StaticResource MuteIconForegroundColourConverter}}"
+                                                          Foreground="{Binding IsPaused, Converter={StaticResource PlayIconForegroundColourConverter}}"
+                                                          MinHeight="85"
+                                                          MinWidth="85"
                                                           Margin="0,20,0,0" />
 
                         <telerikPrimitives:RadImageButton Grid.Row="2"
@@ -379,9 +385,9 @@
                                                               Command="{Binding AdjustVolumeCommand}"
                                                               CommandParameter="False"/>
                             
-                            <telerikPrimitives:RadImageButton Foreground="{Binding SelectedClient.IsMuted, Converter={StaticResource MuteIconForegroundColourConverter}}"
+                            <telerikPrimitives:RadImageButton Foreground="{Binding IsMuted, Converter={StaticResource MuteIconForegroundColourConverter}}"
                                                               Background="Transparent"
-                                                              RestStateImageSource="{Binding SelectedClient.IsMuted, Converter={StaticResource MuteIconConverter}}"
+                                                              RestStateImageSource="{Binding IsMuted, Converter={StaticResource MuteIconConverter}}"
                                                               ButtonShape="Ellipse"
                                                               BorderThickness="2"
                                                               BorderBrush="{StaticResource PhoneAccentBrush}"
