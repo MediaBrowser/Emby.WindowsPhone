@@ -145,7 +145,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                     SortOrder = SortOrder.Descending,
                     IncludeItemTypes = new[] {"Episode"},
                     Limit = 8,
-                    Fields = new[] {ItemFields.PrimaryImageAspectRatio},
+                    Fields = new[] {ItemFields.PrimaryImageAspectRatio, ItemFields.ParentId},
                     Filters = new[] {ItemFilter.IsUnplayed},
                     Recursive = true
                 };

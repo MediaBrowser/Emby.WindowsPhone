@@ -216,7 +216,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     {
                         ItemFields.SortName,
                         ItemFields.Genres, 
-                        ItemFields.ProviderIds
+                        ItemFields.ProviderIds,
+                        ItemFields.ParentId
                     }
                 };
                 var isRecent = false;
