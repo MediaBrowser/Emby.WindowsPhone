@@ -8,8 +8,9 @@
                 xmlns:scott="clr-namespace:ScottIsAFool.WindowsPhone.Controls;assembly=ScottIsAFool.WindowsPhone"
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                xmlns:delay="clr-namespace:Delay"
                 xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP71"
+                xmlns:c4F="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
+                xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
                 mc:Ignorable="d"
                 d:DesignWidth="480"
                 d:DesignHeight="768"
@@ -23,11 +24,11 @@
                 shell:SystemTray.BackgroundColor="{StaticResource PhoneBackgroundColor}"
                 toolkit:TiltEffect.IsTiltEnabled="True"
                 d:DataContext="{Binding Tv, Source={StaticResource Locator}}">
-    <shell:SystemTray.ProgressIndicator>
-        <shell:ProgressIndicator IsIndeterminate="True"
-                                 IsVisible="{Binding ProgressIsVisible}"
-                                 Text="{Binding ProgressText}" />
-    </shell:SystemTray.ProgressIndicator>
+    <i:Interaction.Behaviors>
+        <behaviours:MBSysTray Text="{Binding ProgressText}"
+                              IsVisible="{Binding ProgressIsVisible}"
+                              IsIndeterminate="{Binding ProgressIsVisible}" />
+    </i:Interaction.Behaviors>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <command:EventToCommand Command="{Binding TvSeriesPageLoaded}" />
@@ -80,10 +81,12 @@
                                                  Command="{Binding Main.NavigateToPage, Source={StaticResource Locator}}"
                                                  CommandParameter="{Binding}">
                                     <Grid>
-                                        <delay:PlaceImage PlaceholderSource="/Images/Logo.png"
-                                                          Source="{Binding Converter={StaticResource ImageUrlConverter}}"
-                                                          Height="173"
-                                                          MaxWidth="120" />
+                                        <c4F:SuperImage PlaceholderImageSource="/Images/Logo.png"
+                                                        Source="{Binding Converter={StaticResource ImageUrlConverter}}"
+                                                        Stretch="UniformToFill"
+                                                        PlaceholderImageStretch="Uniform"
+                                                        Height="173"
+                                                        MaxWidth="120" />
                                         <Border Background="#C4000000"
                                                 VerticalAlignment="Bottom">
                                             <TextBlock Text="{Binding Name}"

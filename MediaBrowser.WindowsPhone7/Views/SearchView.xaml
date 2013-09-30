@@ -11,6 +11,7 @@
                 xmlns:behaviours="clr-namespace:ScottIsAFool.WindowsPhone.Behaviours;assembly=ScottIsAFool.WindowsPhone"
                 xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
                 xmlns:controls="clr-namespace:ScottIsAFool.WindowsPhone.Controls;assembly=ScottIsAFool.WindowsPhone"
+                xmlns:behaviours1="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
                 mc:Ignorable="d ignore"
                 d:DesignWidth="480"
                 d:DesignHeight="768"
@@ -20,13 +21,14 @@
                 SupportedOrientations="Portrait"
                 Orientation="Portrait"
                 shell:SystemTray.IsVisible="True"
+                toolkit:TiltEffect.IsTiltEnabled="True"
                 DataContext="{Binding Search, Source={StaticResource Locator}}">
-    <shell:SystemTray.ProgressIndicator>
-        <shell:ProgressIndicator Text="{Binding ProgressText}"
-                                 IsIndeterminate="True"
-                                 IsVisible="{Binding ProgressIsVisible}" />
-    </shell:SystemTray.ProgressIndicator>
-
+    <i:Interaction.Behaviors>
+        <behaviours1:MBSysTray Text="{Binding ProgressText}"
+                              IsVisible="{Binding ProgressIsVisible}"
+                              IsIndeterminate="{Binding ProgressIsVisible}" />
+    </i:Interaction.Behaviors> 
+    
     <scott:BasePage.Resources>
         <Style TargetType="TextBlock"
                BasedOn="{StaticResource PhoneTextNormalStyle}"
@@ -90,25 +92,26 @@
                         Grid.Row="0">
                 <TextBox Text="{Binding SearchText, Mode=TwoWay}"
                          HorizontalAlignment="Stretch"
-                         Width="378">
+                         Width="455"
+                         InputScope="Search">
                     <i:Interaction.Behaviors>
                         <behaviours:UpdateTextBindingOnPropertyChanged EnterHitCommand="{Binding DoSearchCommand}" />
                     </i:Interaction.Behaviors>
                 </TextBox>
-                <Button Content=" s " />
             </StackPanel>
 
             <toolkit:LongListSelector Grid.Row="1"
                                       Background="Transparent"
                                       ItemsSource="{Binding SearchResults}"
                                       GroupHeaderTemplate="{StaticResource LLSGroupHeaderTemplateLong}"
-                                      GroupItemTemplate="{StaticResource LLSGroupItemTemplateLong}"
-                                      GroupItemsPanel="{StaticResource StackPanelVerticalTemplate}">
+                                      GroupItemTemplate="{StaticResource LLSGroupItemTemplateLong}">
                 <toolkit:LongListSelector.ItemTemplate>
                     <DataTemplate>
                         <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
                                          HorizontalContentAlignment="Left"
-                                         VerticalContentAlignment="Top">
+                                         VerticalContentAlignment="Top"
+                                         Command="{Binding Search.SearchItemTappedCommand, Source={StaticResource Locator}}"
+                                         CommandParameter="{Binding}">
                             <StackPanel Orientation="Horizontal"
                                         Margin="12,6,0,6">
                                 <Image Source="{Binding Converter={StaticResource ImageUrlConverter}}"

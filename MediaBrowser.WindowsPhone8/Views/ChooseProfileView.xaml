@@ -3,6 +3,7 @@
                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                 xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
                 xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+                xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:ignore="http://www.ignore.com"
@@ -10,6 +11,8 @@
                 xmlns:scott="clr-namespace:ScottIsAFool.WindowsPhone.Controls;assembly=ScottIsAFool.WindowsPhone"
                 xmlns:controls="clr-namespace:MediaBrowser.WindowsPhone.Controls"
                 xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP8"
+                xmlns:behaviors="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
+                xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
                 mc:Ignorable="d ignore"
                 d:DesignWidth="480"
                 d:DesignHeight="768"
@@ -22,11 +25,19 @@
                 shell:SystemTray.BackgroundColor="Black"
                 toolkit:TiltEffect.IsTiltEnabled="True"
                 DataContext="{Binding Profile, Source={StaticResource Locator}}">
-    <shell:SystemTray.ProgressIndicator>
-        <shell:ProgressIndicator IsIndeterminate="True"
-                                 IsVisible="{Binding ProgressIsVisible}"
-                                 Text="{Binding ProgressText}" />
-    </shell:SystemTray.ProgressIndicator>
+    <i:Interaction.Behaviors>
+        <behaviours:MBSysTray Text="{Binding ProgressText}"
+                              IsVisible="{Binding ProgressIsVisible}"
+                              IsIndeterminate="{Binding ProgressIsVisible}" />
+        <behaviors:ApplicationBarBehavior Mode="Minimized"
+                                          IsMenuEnabled="True">
+            <behaviors:ApplicationBarBehavior.MenuItems>
+                <behaviors:ApplicationBarMenuItem Text="settings"
+                                                  Command="{Binding Main.NavigateToAPage, Source={StaticResource Locator}}"
+                                                  CommandParameter="/Views/SettingsView.xaml"/>
+            </behaviors:ApplicationBarBehavior.MenuItems>
+        </behaviors:ApplicationBarBehavior>
+    </i:Interaction.Behaviors>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <command:EventToCommand Command="{Binding ChooseProfilePageLoaded}" />
@@ -76,15 +87,28 @@
         <Grid x:Name="ContentPanel"
               Grid.Row="1"
               Margin="12,0,0,0">
-            <scott:PhoneListBox ItemsSource="{Binding Profiles}">
-                <scott:PhoneListBox.ItemTemplate>
+            <phone:LongListSelector ItemsSource="{Binding Profiles}"
+                                    Margin="12,0,0,0">
+                <phone:LongListSelector.ListFooter>
+                    <StackPanel Orientation="Vertical" Margin="0,12">
+                        <TextBlock Text="Profile not listed?"
+                                   Style="{StaticResource PhoneTextNormalStyle}"
+                                   Margin="0"/>
+                        <HyperlinkButton Content="Manually login"
+                                         HorizontalContentAlignment="Left"
+                                         NavigateUri="/Views/ManualUsernameView.xaml"
+                                         Margin="-12,0,0,0"
+                                         Foreground="{StaticResource PhoneAccentBrush}"/>
+                    </StackPanel>
+                </phone:LongListSelector.ListFooter>
+                <phone:LongListSelector.ItemTemplate>
                     <DataTemplate>
                         <controls:ProfileBox Profile="{Binding}"
                                              Margin="0,12,0,0"
                                              LoginCommand="{Binding Profile.LoginCommand, Source={StaticResource Locator}}" />
                     </DataTemplate>
-                </scott:PhoneListBox.ItemTemplate>
-            </scott:PhoneListBox>
+                </phone:LongListSelector.ItemTemplate>
+            </phone:LongListSelector>
         </Grid>
     </Grid>
 

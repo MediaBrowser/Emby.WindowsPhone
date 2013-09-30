@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Telerik.Windows.Behaviors</name>
+    </assembly>
+    <members>
+        <member name="T:Telerik.Windows.Controls.DataBoundListBoxPivotBehavior">
+            <summary>
+            Represents a <see cref="T:System.Windows.Interactivity.Behavior"/> class that blocks the pan effect on a <see cref="T:Microsoft.Phone.Controls.Pivot"/>
+            control that is parent of the attached <see cref="T:Telerik.Windows.Controls.RadDataBoundListBox"/> instance when the
+            <see cref="P:Telerik.Windows.Controls.RadDataBoundListBox.IsCheckModeActive"/> property is set to true.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.DataBoundListBoxPivotBehavior.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Windows.Controls.DataBoundListBoxPivotBehavior"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.DataBoundListBoxPivotBehavior.OnAttached">
+            <summary>
+            Called after the behavior is attached to an AssociatedObject.
+            </summary>
+            <remarks>Override this to hook up functionality to the AssociatedObject.</remarks>
+        </member>
+        <member name="M:Telerik.Windows.Controls.DataBoundListBoxPivotBehavior.OnDetaching">
+            <summary>
+            Called when the behavior is being detached from its AssociatedObject, but before it has actually occurred.
+            </summary>
+            <remarks>Override this to unhook functionality from the AssociatedObject.</remarks>
+        </member>
+        <member name="T:Telerik.Windows.Controls.PivotBlocker">
+            <summary>
+            This class provides infrastructure for blocking gestures on a <see cref="T:Microsoft.Phone.Controls.Pivot"/> control.
+            When gestures are blocked on a pivot control, the input is preserved for the content of the currently
+            visible item, but pan operations to switch between pivot items are forbidden. This imblies hiding of all other
+            headers and only leaving the selected pivot item's header visible.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.PivotBlocker.Start(Microsoft.Phone.Controls.Pivot)">
+            <summary>
+            Starts blocking the pan operations of the given target pivot.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.PivotBlocker.End">
+            <summary>
+            Stops blocking the current target.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.PivotBlocker.Target">
+            <summary>
+            Gets the current pivot that is blocked by this instance of <see cref="T:Telerik.Windows.Controls.PivotBlocker"/>.
+            </summary>
+        </member>
+    </members>
+</doc>

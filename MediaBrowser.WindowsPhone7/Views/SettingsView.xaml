@@ -11,6 +11,7 @@
                 xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP71"
                 xmlns:behaviours="clr-namespace:ScottIsAFool.WindowsPhone.Behaviours"
                 xmlns:controls2="clr-namespace:MediaBrowser.WindowsPhone.Controls"
+                xmlns:behaviours1="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
                 FontFamily="{StaticResource PhoneFontFamilyNormal}"
                 FontSize="{StaticResource PhoneFontSizeNormal}"
                 Foreground="{StaticResource PhoneForegroundBrush}"
@@ -26,11 +27,11 @@
             <command:EventToCommand Command="{Binding SettingsPageLoaded}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
-    <shell:SystemTray.ProgressIndicator>
-        <shell:ProgressIndicator Text="{Binding ProgressText}"
-                                 IsVisible="{Binding ProgressIsVisible}"
-                                 IsIndeterminate="True" />
-    </shell:SystemTray.ProgressIndicator>
+    <i:Interaction.Behaviors>
+        <behaviours1:MBSysTray Text="{Binding ProgressText}"
+                              IsVisible="{Binding ProgressIsVisible}"
+                              IsIndeterminate="{Binding ProgressIsVisible}" />
+    </i:Interaction.Behaviors>
 
     <toolkit:TransitionService.NavigationInTransition>
         <toolkit:NavigationInTransition>
@@ -68,10 +69,15 @@
                     <toolkit:ListPicker ItemsSource="{Binding GroupByItems, Source={StaticResource SpecificSettings}}"
                                         SelectedItem="{Binding DefaultGroupBy, Source={StaticResource SpecificSettings}, Mode=TwoWay}"
                                         Header="Default grouping" />
+                    <CheckBox IsChecked="{Binding JustShowFolderView, Source={StaticResource SpecificSettings}, Mode=TwoWay}">
+                        <TextBlock Text="Just show the list of items, not a collection view"
+                                   TextWrapping="Wrap"
+                                   VerticalAlignment="Top" />
+                    </CheckBox>
                 </StackPanel>
             </controls:PivotItem>
 
-            <controls:PivotItem Header="push notifications">
+            <!--<controls:PivotItem Header="push notifications">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -120,7 +126,7 @@
                                    TextWrapping="Wrap" />
                     </StackPanel>
                 </Grid>
-            </controls:PivotItem>
+            </controls:PivotItem>-->
 
             <controls:PivotItem Header="connection">
                 <StackPanel Orientation="Vertical">

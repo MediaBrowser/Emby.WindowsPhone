@@ -1,0 +1,155 @@
+﻿<UserControl x:Class="MediaBrowser.WindowsPhone.Controls.LockScreenCollage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d"
+             FontFamily="{StaticResource PhoneFontFamilyNormal}"
+             FontSize="{StaticResource PhoneFontSizeNormal}"
+             Foreground="{StaticResource PhoneForegroundBrush}">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot"
+          VerticalAlignment="Stretch"
+          HorizontalAlignment="Stretch">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="800" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.Clip>
+            <RectangleGeometry Rect="0,0,480,800" />
+        </Grid.Clip>
+        <Grid.Resources>
+            <system:Double x:Key="PosterHeight">240</system:Double>
+            <system:Double x:Key="PosterWidth">160</system:Double>
+        </Grid.Resources>
+
+        <Image Source="/Images/LockScreenBackground.jpg"
+               Stretch="Fill" />
+
+        <!--ContentPanel - place additional content here-->
+        <Grid x:Name="ContentPanel"
+              VerticalAlignment="Top"
+              HorizontalAlignment="Stretch"
+              Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="240" />
+                <RowDefinition Height="240" />
+                <RowDefinition Height="240" />
+                <RowDefinition Height="240" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Image Height="{StaticResource PosterHeight}"
+                   Width="{StaticResource PosterWidth}"
+                   Grid.Row="0"
+                   Grid.Column="0"
+                   Stretch="UniformToFill"
+                   x:Name="ImageOne"
+                   Opacity="0.8" />
+
+            <Image Height="{StaticResource PosterHeight}"
+                   Width="{StaticResource PosterWidth}"
+                   Grid.Row="0"
+                   Grid.Column="1"
+                   x:Name="ImageTwo"
+                   Stretch="UniformToFill"
+                   Opacity="0.8" />
+
+            <Image Height="{StaticResource PosterHeight}"
+                   Width="{StaticResource PosterWidth}"
+                   Grid.Row="0"
+                   Grid.Column="2"
+                   x:Name="ImageThree"
+                   Stretch="UniformToFill"
+                   Opacity="0.8" />
+
+            <Image Height="{StaticResource PosterHeight}"
+                   Width="{StaticResource PosterWidth}"
+                   Grid.Row="1"
+                   Grid.Column="0"
+                   x:Name="ImageFour"
+                   Stretch="UniformToFill"
+                   Opacity="0.8" />
+
+            <Image Height="{StaticResource PosterHeight}"
+                   Width="{StaticResource PosterWidth}"
+                   Grid.Row="1"
+                   Grid.Column="1"
+                   x:Name="ImageFive"
+                   Stretch="UniformToFill"
+                   Opacity="0.8" />
+
+            <Image Height="{StaticResource PosterHeight}"
+                   Width="{StaticResource PosterWidth}"
+                   Grid.Row="1"
+                   Grid.Column="2"
+                   x:Name="ImageSix"
+                   Stretch="UniformToFill"
+                   Opacity="0.8" />
+
+            <Image Height="{StaticResource PosterHeight}"
+                   Width="{StaticResource PosterWidth}"
+                   Grid.Row="2"
+                   Grid.Column="0"
+                   x:Name="ImageSeven"
+                   Stretch="UniformToFill"
+                   Opacity="0.8" />
+
+            <Image Height="{StaticResource PosterHeight}"
+                   Width="{StaticResource PosterWidth}"
+                   Grid.Row="2"
+                   Grid.Column="1"
+                   x:Name="ImageEight"
+                   Stretch="UniformToFill"
+                   Opacity="0.8" />
+
+            <Image Height="{StaticResource PosterHeight}"
+                   Width="{StaticResource PosterWidth}"
+                   Grid.Row="2"
+                   Grid.Column="2"
+                   x:Name="ImageNine"
+                   Stretch="UniformToFill"
+                   Opacity="0.8" />
+
+            <Image Height="{StaticResource PosterHeight}"
+                   Width="{StaticResource PosterWidth}"
+                   Grid.Row="3"
+                   Grid.Column="0"
+                   x:Name="ImageTen"
+                   Stretch="UniformToFill"
+                   Opacity="0.8" />
+
+            <Image Height="{StaticResource PosterHeight}"
+                   Width="{StaticResource PosterWidth}"
+                   Grid.Row="3"
+                   Grid.Column="1"
+                   x:Name="ImageEleven"
+                   Stretch="UniformToFill"
+                   Opacity="0.8" />
+
+            <Image Height="{StaticResource PosterHeight}"
+                   Width="{StaticResource PosterWidth}"
+                   Grid.Row="3"
+                   Grid.Column="2"
+                   x:Name="ImageTwelve"
+                   Stretch="UniformToFill"
+                   Opacity="0.8" />
+        </Grid>
+        <TextBlock VerticalAlignment="Bottom"
+                   HorizontalAlignment="Center"
+                   Style="{StaticResource PhoneTextLargeStyle}"
+                   Grid.Row="0">
+				<Run Text="media" />
+				<Run Text="browser"
+                     Foreground="Green" />
+        </TextBlock>
+    </Grid>
+</UserControl>

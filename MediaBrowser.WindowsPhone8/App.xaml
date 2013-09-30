@@ -6,12 +6,14 @@
              mc:Ignorable="d"
              xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
              xmlns:vm="clr-namespace:MediaBrowser.WindowsPhone.ViewModel"
-             xmlns:model="clr-namespace:MediaBrowser.Model"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:scottConverters="clr-namespace:ScottIsAFool.WindowsPhone.Converters;assembly=ScottIsAFool.WindowsPhone"
              xmlns:converters="clr-namespace:MediaBrowser.WindowsPhone.Converters"
-             xmlns:delay="clr-namespace:Delay"
-             xmlns:windowsPhone="clr-namespace:MediaBrowser.WindowsPhone">
+             
+             xmlns:windowsPhone="clr-namespace:MediaBrowser.WindowsPhone"
+             xmlns:controls="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
+             xmlns:model="clr-namespace:MediaBrowser.Model;assembly=MediaBrowser.Shared"
+             xmlns:cimbalino="clr-namespace:Cimbalino.Phone.Toolkit.Converters;assembly=Cimbalino.Phone.Toolkit">
 
     <!--Application Resources-->
     <Application.Resources>
@@ -35,7 +37,9 @@
                                  x:Key="MediaBrowserBackground">
                 <GradientStop Color="#ff000000"
                               Offset="0" />
-                <GradientStop Color="#ffbbbbbb"
+                <GradientStop Color="#ff333333"
+                              Offset=".5" />
+                <GradientStop Color="#ff000000"
                               Offset="1" />
             </LinearGradientBrush>
 
@@ -44,17 +48,26 @@
             <scottConverters:InvertedVisibilityConverter x:Key="InvertedVisibilityConverter" />
             <scottConverters:StringCaseConverter x:Key="StringCaseConverter" />
             <scottConverters:IntToVisibilityConverter x:Key="IntToVisibilityConverter" />
-            <scottConverters:CountToEnabled x:Key="CountToEnabled"/>
-
+            <scottConverters:CountToEnabled x:Key="CountToEnabled" />
+            <scottConverters:NullVisibilityConverter x:Key="NullVisibilityConverter"/>
+            
+            <!--Cimbalino Converters-->
+            <cimbalino:StringToUppercaseConverter x:Key="StringToUppercaseConverter"/>
+            <cimbalino:StringToLowercaseConverter x:Key="StringToLowercaseConverter"/>
+            
             <!-- Local Converters -->
             <converters:ImageUrlConverter x:Key="ImageUrlConverter" />
             <converters:EpisodeNumberVisibilityConverter x:Key="EpisodeNumberVisibilityConverter" />
             <converters:RatingConverter x:Key="RatingConverter" />
             <converters:RandomColour x:Key="RandomColour" />
             <converters:FavouritesConverter x:Key="FavouritesConverter" />
-            <converters:PinnedItemConverter x:Key="PinnedItemConverter"/>
-            <converters:RuntimeConverter x:Key="RuntimeConverter"/>
-            <converters:TicksToTimespanConverter x:Key="TicksToTimespanConverter"/>
+            <converters:PinnedItemConverter x:Key="PinnedItemConverter" />
+            <converters:RuntimeConverter x:Key="RuntimeConverter" />
+            <converters:TicksToTimespanConverter x:Key="TicksToTimespanConverter" />
+            <converters:ZeroCountBrushConverter x:Key="ZeroCountBrushConverter"
+                                                ZeroCountBrush="{StaticResource PhoneSubtleBrush}"
+                                                AltBrush="{StaticResource PhoneAccentBrush}" />
+            <converters:CriticRatingConverter x:Key="CriticRatingConverter"/>
 
             <local:LocalizedStrings xmlns:local="clr-namespace:MediaBrowser.WindowsPhone"
                                     x:Key="LocalizedStrings" />
@@ -66,6 +79,10 @@
                         Value="Transparent" />
                 <Setter Property="Padding"
                         Value="0" />
+                <Setter Property="HorizontalAlignment"
+                        Value="Stretch"/>
+                <Setter Property="HorizontalContentAlignment"
+                        Value="Left"/>
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="ButtonBase">
@@ -80,6 +97,13 @@
                     </Setter.Value>
                 </Setter>
             </Style>
+            
+            <Style TargetType="TextBlock"
+                   BasedOn="{StaticResource PhoneTextTitle2Style}"
+                   x:Key="HeaderTextStyle">
+                <Setter Property="FontFamily"
+                        Value="Segoe WP Black"/>
+            </Style>
 
             <!-- DataTemplates -->
             <DataTemplate x:Key="TileItemStyle">
@@ -87,11 +111,12 @@
                                  Command="{Binding Main.NavigateToPage, Source={StaticResource Locator}}"
                                  CommandParameter="{Binding}">
                     <Grid MaxWidth="173">
-                        <delay:PlaceImage PlaceholderSource="/Images/Logo.png"
-                                          Source="{Binding Converter={StaticResource ImageUrlConverter}}"
-                                          Width="173"
-                                          Height="173"
-                                          Stretch="UniformToFill" />
+                        <controls:SuperImage PlaceholderImageSource="/Images/Logo.png"
+                                             Source="{Binding Converter={StaticResource ImageUrlConverter}}"
+                                             PlaceholderImageStretch="Uniform"
+                                             Width="173"
+                                             Height="173"
+                                             Stretch="UniformToFill" />
                         <Border Background="#C4000000"
                                 VerticalAlignment="Bottom">
                             <TextBlock Text="{Binding Name}"
@@ -120,11 +145,12 @@
             <DataTemplate x:Key="CrewTemplate">
                 <StackPanel Orientation="Horizontal"
                             Margin="12,0,0,12">
-                    <delay:PlaceImage Height="99"
-                                      Width="99"
-                                      PlaceholderSource="/Images/default_avatar.png"
-                                      Source="{Binding Converter={StaticResource ImageUrlConverter}}"
-                                      Stretch="Uniform" />
+                    <controls:SuperImage Height="99"
+                                         Width="99"
+                                         PlaceholderImageStretch="Uniform"
+                                         PlaceholderImageSource="/Images/default_avatar.png"
+                                         Source="{Binding Converter={StaticResource ImageUrlConverter}}"
+                                         Stretch="Uniform" />
                     <StackPanel Orientation="Vertical">
                         <TextBlock Text="{Binding Name, Converter={StaticResource StringCaseConverter}, ConverterParameter=false}"
                                    FontWeight="Bold"
@@ -160,10 +186,10 @@
 
     <Application.ApplicationLifetimeObjects>
         <!--Required object that handles lifetime events for the application-->
-        <shell:PhoneApplicationService Launching="Application_Launching"
-                                       Closing="Application_Closing"
-                                       Activated="Application_Activated"
-                                       Deactivated="Application_Deactivated" />
+        <shell:PhoneApplicationService Launching="ApplicationLaunching"
+                                       Closing="ApplicationClosing"
+                                       Activated="ApplicationActivated"
+                                       Deactivated="ApplicationDeactivated" />
 
     </Application.ApplicationLifetimeObjects>
 

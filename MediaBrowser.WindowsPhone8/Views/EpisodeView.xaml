@@ -11,6 +11,8 @@
                 xmlns:cimbalino="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
                 xmlns:controls="clr-namespace:MediaBrowser.WindowsPhone.Controls"
                 xmlns:controls1="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
+                xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
+                xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
                 mc:Ignorable="d"
                 d:DesignWidth="480"
                 d:DesignHeight="696"
@@ -23,11 +25,11 @@
                 shell:SystemTray.BackgroundColor="Black"
                 toolkit:TiltEffect.IsTiltEnabled="True"
                 d:DataContext="{Binding Tv, Source={StaticResource Locator}}">
-    <shell:SystemTray.ProgressIndicator>
-        <shell:ProgressIndicator IsIndeterminate="True"
-                                 Text="{Binding ProgressText}"
-                                 IsVisible="{Binding ProgressIsVisible}" />
-    </shell:SystemTray.ProgressIndicator>
+    <i:Interaction.Behaviors>
+        <behaviours:MBSysTray Text="{Binding ProgressText}"
+                              IsVisible="{Binding ProgressIsVisible}"
+                              IsIndeterminate="{Binding ProgressIsVisible}" />
+    </i:Interaction.Behaviors>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <command:EventToCommand Command="{Binding EpisodePageLoaded}" />
@@ -57,19 +59,20 @@
 
     <Grid x:Name="LayoutRoot"
           Background="{StaticResource MediaBrowserBackground}">
-        <toolkit:GestureService.GestureListener>
-            <toolkit:GestureListener DragStarted="GestureListenerDragStarted"
-                                     DragDelta="GestureListenerDragDelta"
-                                     DragCompleted="GestureListenerDragCompleted" />
-        </toolkit:GestureService.GestureListener>
         <i:Interaction.Behaviors>
-            <cimbalino:ApplicationBarBehavior>
+            <cimbalino:ApplicationBarBehavior IsMenuEnabled="True">
                 <cimbalino:ApplicationBarIconButton Command="{Binding PreviousEpisodeCommand}"
                                                     Text="previous"
                                                     IconUri="/icons/appbar.back.rest.png" />
                 <cimbalino:ApplicationBarIconButton Text="next"
                                                     Command="{Binding NextEpisodeCommand}"
                                                     IconUri="/icons/appbar.next.rest.png" />
+                <cimbalino:ApplicationBarBehavior.MenuItems>
+                    <cimbalino:ApplicationBarMenuItem Text="resume"
+                                                      IsEnabled="{Binding SelectedEpisode.CanResume}"
+                                                      Command="{Binding Main.ResumeMovieCommand, Source={StaticResource Locator}}"
+                                                      CommandParameter="{Binding SelectedEpisode}" />
+                </cimbalino:ApplicationBarBehavior.MenuItems>
             </cimbalino:ApplicationBarBehavior>
         </i:Interaction.Behaviors>
         <Grid.RowDefinitions>
@@ -91,28 +94,34 @@
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel"
               Grid.Row="1">
-            <ScrollViewer>
-                <StackPanel Orientation="Vertical">
-                    <Button Style="{StaticResource EmptyButtonStyle}"
-                            HorizontalContentAlignment="Center"
-                            VerticalContentAlignment="Center"
-                            Command="{Binding Main.PlayMovieCommand, Source={StaticResource Locator}}"
-                            CommandParameter="{Binding SelectedEpisode}">
-                        <Grid>
-                            <Image Source="{Binding SelectedEpisode, Converter={StaticResource ImageUrlConverter}, ConverterParameter=episode}" />
-                            <controls1:RoundButton ImageSource="/Icons/appbar.transport.play.rest.png"
-                                                   IsHitTestVisible="False"
-                                                   HorizontalAlignment="Center"
-                                                   VerticalAlignment="Center" />
-                        </Grid>
-                    </Button>
-                    <TextBlock Text="{Binding SelectedEpisode.Overview}"
-                               TextWrapping="Wrap"
-                               Style="{StaticResource PhoneTextNormalStyle}" />
-                </StackPanel>
-            </ScrollViewer>
+            <telerikPrimitives:RadSlideView ItemsSource="{Binding Episodes}"
+                                            SelectedItem="{Binding SelectedEpisode, Mode=TwoWay}">
+                <telerikPrimitives:RadSlideView.ItemTemplate>
+                    <DataTemplate>
+                        <ScrollViewer>
+                            <StackPanel Orientation="Vertical">
+                                <Button Style="{StaticResource EmptyButtonStyle}"
+                                        HorizontalContentAlignment="Center"
+                                        VerticalContentAlignment="Center"
+                                        Command="{Binding Main.PlayMovieCommand, Source={StaticResource Locator}}"
+                                        CommandParameter="{Binding}">
+                                    <Grid>
+                                        <Image Source="{Binding Converter={StaticResource ImageUrlConverter}, ConverterParameter=episode}" />
+                                        <controls1:RoundButton ImageSource="/Icons/appbar.transport.play.rest.png"
+                                                               IsHitTestVisible="False"
+                                                               HorizontalAlignment="Center"
+                                                               VerticalAlignment="Center" />
+                                    </Grid>
+                                </Button>
+                                <TextBlock Text="{Binding Overview}"
+                                           TextWrapping="Wrap"
+                                           Style="{StaticResource PhoneTextNormalStyle}"
+                                           Margin="24,0,12,0"/>
+                            </StackPanel>
+                        </ScrollViewer>
+                    </DataTemplate>
+                </telerikPrimitives:RadSlideView.ItemTemplate>
+            </telerikPrimitives:RadSlideView>
         </Grid>
-
     </Grid>
-
 </scott:BasePage>

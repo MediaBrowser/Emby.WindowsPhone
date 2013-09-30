@@ -13,8 +13,8 @@
                 xmlns:cimbalino="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
                 xmlns:converters="clr-namespace:Cimbalino.Phone.Toolkit.Converters;assembly=Cimbalino.Phone.Toolkit"
                 xmlns:localConverters="clr-namespace:MediaBrowser.WindowsPhone.Converters"
-                xmlns:delay="clr-namespace:Delay"
                 xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP71"
+                xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
                 mc:Ignorable="d ignore"
                 d:DesignWidth="480"
                 d:DesignHeight="768"
@@ -31,7 +31,11 @@
             <command:EventToCommand Command="{Binding PlaylistPageLoaded}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
-
+    <i:Interaction.Behaviors>
+        <behaviours:MBSysTray Text="{Binding ProgressText}"
+                              IsVisible="{Binding ProgressIsVisible}"
+                              IsIndeterminate="{Binding ProgressIsVisible}" />
+    </i:Interaction.Behaviors>
 
     <scott:BasePage.Resources>
         <converters:BooleanToStringConverter x:Key="PlayIconConverter"
@@ -115,13 +119,15 @@
                     <TextBlock Text="{Binding Album}"
                                Style="{StaticResource PhoneTextNormalStyle}" />
                     <Grid>
-                        <delay:PlaceImage Source="{Binding ImageUrl}"
-                                          PlaceholderSource="/Images/DefaultAlbumCase.png"
-                                          Height="300"
-                                          Width="300"
-                                          Margin="12,0,0,0"
-                                          HorizontalAlignment="Left"
-                                          VerticalAlignment="Top" />
+                        <controls:SuperImage Source="{Binding ImageUrl}"
+                                             PlaceholderImageSource="/Images/DefaultAlbumCase.png"
+                                             PlaceholderImageStretch="Uniform"
+                                             Stretch="UniformToFill"
+                                             Height="300"
+                                             Width="300"
+                                             Margin="12,0,0,0"
+                                             HorizontalAlignment="Left"
+                                             VerticalAlignment="Top" />
                         <StackPanel HorizontalAlignment="Right"
                                     Orientation="Vertical"
                                     VerticalAlignment="Top"

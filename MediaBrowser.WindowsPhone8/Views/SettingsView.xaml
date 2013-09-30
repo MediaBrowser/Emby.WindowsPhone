@@ -11,6 +11,9 @@
                 xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP8"
                 xmlns:behaviours="clr-namespace:ScottIsAFool.WindowsPhone.Behaviours"
                 xmlns:controls="clr-namespace:MediaBrowser.WindowsPhone.Controls"
+                xmlns:coding4Fun="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
+                xmlns:converters="clr-namespace:MediaBrowser.WindowsPhone.Converters"
+                xmlns:behaviours1="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
                 FontFamily="{StaticResource PhoneFontFamilyNormal}"
                 FontSize="{StaticResource PhoneFontSizeNormal}"
                 Foreground="{StaticResource PhoneForegroundBrush}"
@@ -26,11 +29,11 @@
             <command:EventToCommand Command="{Binding SettingsPageLoaded}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
-    <shell:SystemTray.ProgressIndicator>
-        <shell:ProgressIndicator Text="{Binding ProgressText}"
-                                 IsVisible="{Binding ProgressIsVisible}"
-                                 IsIndeterminate="True" />
-    </shell:SystemTray.ProgressIndicator>
+    <i:Interaction.Behaviors>
+        <behaviours1:MBSysTray Text="{Binding ProgressText}"
+                              IsVisible="{Binding ProgressIsVisible}"
+                              IsIndeterminate="{Binding ProgressIsVisible}" />
+    </i:Interaction.Behaviors>
 
     <toolkit:TransitionService.NavigationInTransition>
         <toolkit:NavigationInTransition>
@@ -53,6 +56,190 @@
         </toolkit:NavigationOutTransition>
     </toolkit:TransitionService.NavigationOutTransition>
 
+    <scott:BasePage.Resources>
+        <converters:LockScreenTypeConverter x:Key="LockScreenTypeConverter" />
+        <Style x:Key="PhoneButtonBase"
+               TargetType="ButtonBase">
+            <Setter Property="Background"
+                    Value="Transparent" />
+            <Setter Property="BorderBrush"
+                    Value="{StaticResource PhoneForegroundBrush}" />
+            <Setter Property="Foreground"
+                    Value="{StaticResource PhoneForegroundBrush}" />
+            <Setter Property="BorderThickness"
+                    Value="{StaticResource PhoneBorderThickness}" />
+            <Setter Property="FontFamily"
+                    Value="{StaticResource PhoneFontFamilySemiBold}" />
+            <Setter Property="FontSize"
+                    Value="{StaticResource PhoneFontSizeMedium}" />
+            <Setter Property="Padding"
+                    Value="10,5,10,6" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ButtonBase">
+                        <Grid Background="Transparent">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal" />
+                                    <VisualState x:Name="MouseOver" />
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
+                                                                           Storyboard.TargetName="ContentContainer">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="{StaticResource PhoneButtonBasePressedForegroundBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background"
+                                                                           Storyboard.TargetName="ButtonBackground">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="{StaticResource PhoneAccentBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
+                                                                           Storyboard.TargetName="ContentContainer">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="{StaticResource PhoneDisabledBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush"
+                                                                           Storyboard.TargetName="ButtonBackground">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="{StaticResource PhoneDisabledBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background"
+                                                                           Storyboard.TargetName="ButtonBackground">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="Transparent" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Border x:Name="ButtonBackground"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    Background="{TemplateBinding Background}"
+                                    CornerRadius="0"
+                                    Margin="{StaticResource PhoneTouchTargetOverhang}">
+                                <ContentControl x:Name="ContentContainer"
+                                                ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                Content="{TemplateBinding Content}"
+                                                Foreground="{TemplateBinding Foreground}"
+                                                HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                Padding="{TemplateBinding Padding}"
+                                                VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="PhoneRadioButtonCheckBoxBase"
+               BasedOn="{StaticResource PhoneButtonBase}"
+               TargetType="ToggleButton">
+            <Setter Property="Background"
+                    Value="{StaticResource PhoneRadioCheckBoxBrush}" />
+            <Setter Property="BorderBrush"
+                    Value="{StaticResource PhoneRadioCheckBoxBorderBrush}" />
+            <Setter Property="FontSize"
+                    Value="{StaticResource PhoneFontSizeMedium}" />
+            <Setter Property="FontFamily"
+                    Value="{StaticResource PhoneFontFamilyNormal}" />
+            <Setter Property="HorizontalContentAlignment"
+                    Value="Left" />
+            <Setter Property="VerticalContentAlignment"
+                    Value="Center" />
+            <Setter Property="Padding"
+                    Value="0" />
+        </Style>
+        <Style x:Key="RadioSelectionTemplate"
+               BasedOn="{StaticResource PhoneRadioButtonCheckBoxBase}"
+               TargetType="RadioButton">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RadioButton">
+                        <Grid Background="Transparent">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal" />
+                                    <VisualState x:Name="Disabled">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity"
+                                                                           Storyboard.TargetName="ContainingGrid">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="0.7" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="CheckStates">
+                                    <VisualState x:Name="Checked">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility"
+                                                                           Storyboard.TargetName="IconBackground">
+                                                <DiscreteObjectKeyFrame KeyTime="0">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <Visibility>Visible</Visibility>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush"
+                                                                           Storyboard.TargetName="TheBorder">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="{StaticResource PhoneAccentBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Unchecked" />
+                                    <VisualState x:Name="Indeterminate" />
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Grid Margin="{StaticResource PhoneTouchTargetLargeOverhang}"
+                                  x:Name="ContainingGrid">
+                                <Border x:Name="TheBorder"
+                                        BorderThickness="3"
+                                        BorderBrush="Transparent">
+                                    <Grid>
+                                        <ContentControl x:Name="ContentContainer"
+                                                        ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                        Content="{TemplateBinding Content}"
+                                                        Grid.Column="1"
+                                                        Foreground="{TemplateBinding Foreground}"
+                                                        FontSize="{TemplateBinding FontSize}"
+                                                        FontFamily="{TemplateBinding FontFamily}"
+                                                        HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                        Padding="{TemplateBinding Padding}"
+                                                        VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
+                                        <Grid HorizontalAlignment="Right"
+                                              VerticalAlignment="Top"
+                                              x:Name="IconBackground"
+                                              Visibility="Collapsed">
+                                            <Polygon Points="0,0 32,0, 32,40"
+                                                     Fill="{StaticResource PhoneAccentBrush}"
+                                                     Stretch="Fill"
+                                                     Width="60"
+                                                     Height="60" />
+                                            <Path Data="F1M574.042,314.611L533.8,344.398 522.251,328.798 515.235,333.988 526.786,349.593 526.782,349.596 531.978,356.603 579.235,321.622 574.042,314.611z"
+                                                  Stretch="Uniform"
+                                                  Fill="#FFFFFFFF"
+                                                  Width="26"
+                                                  VerticalAlignment="Top"
+                                                  HorizontalAlignment="Right"
+                                                  Margin="0,8,4,0"
+                                                  Height="26" />
+                                        </Grid>
+                                    </Grid>
+                                </Border>
+                            </Grid>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </scott:BasePage.Resources>
+
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot"
           Background="{StaticResource MediaBrowserBackground}">
@@ -67,12 +254,17 @@
                               IsChecked="{Binding IncludeTrailersInRecent, Source={StaticResource SpecificSettings}, Mode=TwoWay}" />
                     <toolkit:ListPicker ItemsSource="{Binding GroupByItems, Source={StaticResource SpecificSettings}}"
                                         SelectedItem="{Binding DefaultGroupBy, Source={StaticResource SpecificSettings}, Mode=TwoWay}"
-                                        Header="Default grouping" 
-                                        toolkit:TiltEffect.SuppressTilt="True"/>
+                                        Header="Default grouping"
+                                        toolkit:TiltEffect.SuppressTilt="True" />
+                    <CheckBox IsChecked="{Binding JustShowFolderView, Source={StaticResource SpecificSettings}, Mode=TwoWay}">
+                        <TextBlock Text="Just show the list of items, not a collection view"
+                                   TextWrapping="Wrap"
+                                   VerticalAlignment="Top" />
+                    </CheckBox>
                 </StackPanel>
             </phone:PivotItem>
 
-            <phone:PivotItem Header="push notifications">
+            <!--<phone:PivotItem Header="push notifications">
                 <Grid>
                     <StackPanel Orientation="Vertical"
                                 Visibility="{Binding ServerPluginInstalled, Converter={StaticResource VisibilityConverter}}">
@@ -96,7 +288,7 @@
                                    TextWrapping="Wrap" />
                     </StackPanel>
                 </Grid>
-            </phone:PivotItem>
+            </phone:PivotItem>-->
 
             <phone:PivotItem Header="connection">
                 <StackPanel Orientation="Vertical">
@@ -129,6 +321,158 @@
                             Command="{Binding Main.NavigateToAPage, Source={StaticResource Locator}}"
                             CommandParameter="/Views/FindServerView.xaml" />
                 </StackPanel>
+            </phone:PivotItem>
+
+            <phone:PivotItem Header="lock screen">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <StackPanel Orientation="Vertical"
+                                Grid.Row="0">
+                        <TextBlock Text="{Binding LockScreenText}"
+                                   Style="{StaticResource PhoneTextNormalStyle}"
+                                   TextWrapping="Wrap" />
+                        <HyperlinkButton HorizontalContentAlignment="Left"
+                                         HorizontalAlignment="Left"
+                                         Content="Make us the lock screen provider"
+                                         Command="{Binding MakeLockScreenProviderCommand}"
+                                         Visibility="{Binding IsLockScreenProvider, Converter={StaticResource InvertedVisibilityConverter}}" />
+                    </StackPanel>
+                    <ScrollViewer Visibility="{Binding IsLockScreenProvider, Converter={StaticResource VisibilityConverter}}"
+                                  Grid.Row="1"
+                                  Margin="0,12,0,0">
+                        <StackPanel>
+                            <toolkit:ListPicker Header="From collection (where applicable):"
+                                                ItemsSource="{Binding Folders}"
+                                                SelectionMode="Single"
+                                                SelectedItem="{Binding SelectedCollection, Mode=TwoWay}">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="SelectionChanged">
+                                        <command:EventToCommand Command="{Binding CollectionChangedCommand}"
+                                                                PassEventArgsToCommand="True"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                                <toolkit:ListPicker.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <coding4Fun:SuperImage PlaceholderImageSource="/Images/Logo.png"
+                                                                   PlaceholderImageStretch="Uniform"
+                                                                   Stretch="Uniform"
+                                                                   Source="{Binding Converter={StaticResource ImageUrlConverter}}"
+                                                                   Height="25"
+                                                                   Width="25"
+                                                                   VerticalAlignment="Top" />
+                                            <StackPanel Orientation="Vertical"
+                                                        VerticalAlignment="Center">
+                                                <TextBlock Text="{Binding Name}"
+                                                           Style="{StaticResource PhoneTextNormalStyle}" />
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </toolkit:ListPicker.ItemTemplate>
+                                <toolkit:ListPicker.FullModeItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <coding4Fun:SuperImage PlaceholderImageSource="/Images/Logo.png"
+                                                                   PlaceholderImageStretch="Uniform"
+                                                                   Stretch="Uniform"
+                                                                   Source="{Binding Converter={StaticResource ImageUrlConverter}}"
+                                                                   Height="62"
+                                                                   Width="62"
+                                                                   VerticalAlignment="Top" />
+                                            <StackPanel Orientation="Vertical"
+                                                        VerticalAlignment="Center">
+                                                <TextBlock Text="{Binding Name}"
+                                                           Style="{StaticResource PhoneTextLargeStyle}" />
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </toolkit:ListPicker.FullModeItemTemplate>
+                            </toolkit:ListPicker>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Orientation="Vertical"
+                                            Grid.Row="0"
+                                            Grid.Column="0"
+                                            VerticalAlignment="Top">
+                                    <RadioButton Style="{StaticResource RadioSelectionTemplate}"
+                                                 GroupName="LockScreen"
+                                                 IsChecked="{Binding LockScreenType, Source={StaticResource SpecificSettings}, Mode=TwoWay, Converter={StaticResource LockScreenTypeConverter}, ConverterParameter=Default}">
+                                        <coding4Fun:LockScreenPreview ShowNotificationCount="False"
+                                                                      LockScreenImageSource="/DefaultLockScreen.jpg" />
+                                    </RadioButton>
+                                    <TextBlock Text="Default lock screen"
+                                               Style="{StaticResource PhoneTextSmallStyle}"
+                                               Foreground="White"
+                                               Margin="12,-12,12,0" />
+                                </StackPanel>
+
+                                <StackPanel Orientation="Vertical"
+                                            Grid.Row="0"
+                                            Grid.Column="1"
+                                            VerticalAlignment="Top">
+                                    <RadioButton Style="{StaticResource RadioSelectionTemplate}"
+                                                 GroupName="LockScreen"
+                                                 IsChecked="{Binding LockScreenType, Source={StaticResource SpecificSettings}, Mode=TwoWay, Converter={StaticResource LockScreenTypeConverter}, ConverterParameter=SinglePoster}">
+                                        <coding4Fun:LockScreenPreview ShowNotificationCount="False"
+                                                                      LockScreenImageSource="/Images/jp3d.jpg" />
+                                    </RadioButton>
+                                    <TextBlock Text="Single poster"
+                                               Style="{StaticResource PhoneTextSmallStyle}"
+                                               Foreground="White"
+                                               Margin="12,-12,12,0" />
+                                </StackPanel>
+
+                                <StackPanel Orientation="Vertical"
+                                            Grid.Row="1"
+                                            Grid.Column="0"
+                                            VerticalAlignment="Top">
+                                    <RadioButton Style="{StaticResource RadioSelectionTemplate}"
+                                                 GroupName="LockScreen"
+                                                 IsChecked="{Binding LockScreenType, Source={StaticResource SpecificSettings}, Mode=TwoWay, Converter={StaticResource LockScreenTypeConverter}, ConverterParameter=MultiplePosters}">
+                                        <coding4Fun:LockScreenPreview ShowNotificationCount="False">
+                                            <controls:LockScreenMultiImage ItemsSource="{Binding Posters}" />
+                                        </coding4Fun:LockScreenPreview>
+                                    </RadioButton>
+                                    <TextBlock Text="Random pictures from collection"
+                                               Style="{StaticResource PhoneTextSmallStyle}"
+                                               Foreground="White"
+                                               TextWrapping="Wrap"
+                                               Margin="12,-12,12,0" />
+                                </StackPanel>
+
+                                <StackPanel Orientation="Vertical"
+                                            Grid.Row="1"
+                                            Grid.Column="1"
+                                            VerticalAlignment="Top">
+                                    <RadioButton Style="{StaticResource RadioSelectionTemplate}"
+                                                 GroupName="LockScreen"
+                                                 IsChecked="{Binding LockScreenType, Source={StaticResource SpecificSettings}, Mode=TwoWay, Converter={StaticResource LockScreenTypeConverter}, ConverterParameter=FullScreenCollage}">
+                                        <coding4Fun:LockScreenPreview ShowNotificationCount="False">
+                                            <controls:LockScreenCollage ItemsSource="{Binding Posters}" />
+                                        </coding4Fun:LockScreenPreview>
+                                    </RadioButton>
+                                    <TextBlock Text="Full screen collage"
+                                               Style="{StaticResource PhoneTextSmallStyle}"
+                                               Foreground="White"
+                                               Margin="12,-12,12,0" />
+                                </StackPanel>
+                            </Grid>
+                            <Button Content="lock screen settings"
+                                    Click="ButtonBase_OnClick"/>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
             </phone:PivotItem>
         </phone:Pivot>
     </Grid>

@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
+using MediaBrowser.Model;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Net;
+using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Model;
 using ScottIsAFool.WindowsPhone.ViewModel;
 
@@ -17,14 +20,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     /// </summary>
     public class VideoPlayerViewModel : ViewModelBase
     {
-        private readonly ExtendedApiClient _apiClient;
+        private readonly IExtendedApiClient _apiClient;
         private readonly INavigationService _navigationService;
 
         private bool _isResume;
         /// <summary>
         /// Initializes a new instance of the VideoPlayerViewModel class.
         /// </summary>
-        public VideoPlayerViewModel(ExtendedApiClient apiClient, INavigationService navigationService)
+        public VideoPlayerViewModel(IExtendedApiClient apiClient, INavigationService navigationService)
         {
             _apiClient = apiClient;
             _navigationService = navigationService;
@@ -51,7 +54,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                         Log.Info("Sending current runtime [{0}] to the server", totalTicks);
 
-                        await _apiClient.ReportPlaybackStoppedAsync(SelectedItem.Id, App.Settings.LoggedInUser.Id, totalTicks);
+                        await _apiClient.ReportPlaybackStoppedAsync(SelectedItem.Id, AuthenticationService.Current.LoggedInUser.Id, totalTicks);
                         SelectedItem.UserData.PlaybackPositionTicks = totalTicks;
                     }
                     catch (HttpException ex)
@@ -106,7 +109,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     try
                     {
                         Log.Info("Sending playback started message to the server.");
-                        await _apiClient.ReportPlaybackStartAsync(SelectedItem.Id, App.Settings.LoggedInUser.Id);
+                        await _apiClient.ReportPlaybackStartAsync(SelectedItem.Id, AuthenticationService.Current.LoggedInUser.Id, false, new List<string>());
                     }
                     catch (HttpException ex)
                     {

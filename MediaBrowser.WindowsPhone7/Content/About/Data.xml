@@ -39,12 +39,15 @@
         <!-- By using different protocols like http or mailto you can invoke the respective applications -->
         <!-- The Label attribute defines an additional label placed in front of the hyperlink -->
         <!-- Use this to provide contact/support details for your app -->
-        <Link NavigateUri="http://www.example.com"
-              Content="http://www.example.com"
+        <Link NavigateUri="http://www.mediabrowser3.com"
+              Content="http://www.mediabrowser3.com"
               Label="Web:" />
-        <Link NavigateUri="mailto:support@example.com"
-              Content="support@example.com"
+        <Link NavigateUri="mailto:wpmb3@outlook.com"
+              Content="wpmb3@outlook.com"
               Label="Support:" />
+        <Link NavigationUri="https://github.com/MediaBrowser/MediaBrowser.WindowsPhone/issues/new"
+              Content="Raise an issue"
+              Label="Issues:"/>
       </Links>
     </MainItem>
     <!-- For each additional pivot item, add a separate Item entry. Ideas for items are: license, tutorial or help, version history, show room for other apps from you etc. -->
@@ -62,7 +65,8 @@
       <logView:LogFileView xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                            xmlns:logView="clr-namespace:MediaBrowser.WindowsPhone.Controls;assembly=MediaBrowser.WindowsPhone"
                            HorizontalAlignment="Stretch"
-                           VerticalAlignment="Top"/>
+                           VerticalAlignment="Top"
+                           Background="Transparent"/>
     </Item>
   </Items>
 </About>

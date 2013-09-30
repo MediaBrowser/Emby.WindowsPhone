@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows;
-using Microsoft.Phone.Controls;
 using Microsoft.Phone.Tasks;
 
 namespace MediaBrowser.WindowsPhone.Views

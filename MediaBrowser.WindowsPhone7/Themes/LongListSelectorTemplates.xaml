@@ -9,10 +9,8 @@
                   Width="75"
                   Height="75">
                 <Border BorderThickness="1"
-                        Background="{StaticResource PhoneAccentBrush}">
-                    <Border.BorderBrush>
-                        <SolidColorBrush Color="{StaticResource PhoneAccentColor}" />
-                    </Border.BorderBrush>
+                        Background="{StaticResource PhoneAccentBrush}"
+                        BorderBrush="{StaticResource PhoneAccentBrush}">
                 </Border>
                 <TextBlock Margin="12,0,0,10"
                            VerticalAlignment="Bottom"

@@ -6,11 +6,13 @@
                 xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
                 xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
                 xmlns:scott="clr-namespace:ScottIsAFool.WindowsPhone.Controls;assembly=ScottIsAFool.WindowsPhone"
-                xmlns:delay="clr-namespace:Delay"
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP8"
                 xmlns:cimbalino="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
+                xmlns:controls="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
+                xmlns:system="clr-namespace:System;assembly=mscorlib"
+                xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
                 FontFamily="{StaticResource PhoneFontFamilyNormal}"
                 FontSize="{StaticResource PhoneFontSizeNormal}"
                 Foreground="{StaticResource PhoneForegroundBrush}"
@@ -24,16 +26,20 @@
                 shell:SystemTray.BackgroundColor="Black"
                 toolkit:TiltEffect.IsTiltEnabled="True"
                 DataContext="{Binding Main, Source={StaticResource Locator}}">
-    <shell:SystemTray.ProgressIndicator>
-        <shell:ProgressIndicator IsIndeterminate="True"
-                                 IsVisible="{Binding ProgressIsVisible}"
-                                 Text="{Binding ProgressText}" />
-    </shell:SystemTray.ProgressIndicator>
+    <i:Interaction.Behaviors>
+        <behaviours:MBSysTray Text="{Binding ProgressText}"
+                              IsVisible="{Binding ProgressIsVisible}"
+                              IsIndeterminate="{Binding ProgressIsVisible}" />
+    </i:Interaction.Behaviors>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <command:EventToCommand Command="{Binding PageLoaded}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
+
+    <scott:BasePage.Resources>
+        <system:Double x:Key="ViewSize">140</system:Double>
+    </scott:BasePage.Resources>
 
     <toolkit:TransitionService.NavigationInTransition>
         <toolkit:NavigationInTransition>
@@ -65,15 +71,19 @@
                 <cimbalino:ApplicationBarIconButton Text="search"
                                                     IconUri="/Icons/appbar.feature.search.rest.png"
                                                     Command="{Binding NavigateToAPage}"
-                                                    CommandParameter="/Views/SearchView.xaml"/>
+                                                    CommandParameter="/Views/SearchView.xaml" />
                 <cimbalino:ApplicationBarBehavior.MenuItems>
                     <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.MainAppBarRefreshInformation, Source={StaticResource LocalizedStrings}}"
                                                       Command="{Binding RefreshDataCommand}" />
                     <cimbalino:ApplicationBarMenuItem Text="now playing"
                                                       Command="{Binding Main.NavigateToAPage, Source={StaticResource Locator}}"
                                                       CommandParameter="/Views/NowPlayingView.xaml" />
+                    <cimbalino:ApplicationBarMenuItem Text="remote"
+                                                      Command="{Binding NavigateToAPage}"
+                                                      CommandParameter="/Views/Remote/RemoteView.xaml" />
                     <cimbalino:ApplicationBarMenuItem Text="notifications"
-                                                      Command="{Binding NavigateToNotificationsCommand}"/>
+                                                      IsVisible="{Binding LoggedInUser.Configuration.IsAdministrator, Source={StaticResource AppSettings}}"
+                                                      Command="{Binding NavigateToNotificationsCommand}" />
                     <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.MainAppBarChangeProfile, Source={StaticResource LocalizedStrings}}"
                                                       Command="{Binding ChangeProfileCommand}" />
                     <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.Settings, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringCaseConverter}}"
@@ -95,21 +105,66 @@
                                    Foreground="{StaticResource PhoneForegroundBrush}" />
                         <TextBlock Text="browser"
                                    Foreground="Green" />
-                        <TextBlock Text="3"
+                        <!--<TextBlock Text="3"
                                    Foreground="Green"
                                    FontFamily="Euphemia"
                                    Margin="0"
-                                   FontSize="133.333" />
+                                   FontSize="133.333" />-->
                     </StackPanel>
                 </DataTemplate>
             </phone:Panorama.TitleTemplate>
+            <phone:PanoramaItem Header="views">
+                <StackPanel Orientation="Vertical"
+                            Margin="12,0,0,0">
+                    <HyperlinkButton NavigateUri="/Views/Predefined/MovieCollectionView.xaml"
+                                     Style="{StaticResource EmptyButtonStyle}"
+                                     Margin="0,0,0,12">
+                        <StackPanel Orientation="Horizontal">
+                            <Border Background="#0094FF">
+                                <Image Source="/Images/moviecollection.png"
+                                       Height="{StaticResource ViewSize}"
+                                       Width="{StaticResource ViewSize}"
+                                       Stretch="UniformToFill" />
+                            </Border>
+                            <TextBlock Text="MOVIES"
+                                       Style="{StaticResource HeaderTextStyle}"
+                                       VerticalAlignment="Top" />
+                        </StackPanel>
+                    </HyperlinkButton>
+                    <HyperlinkButton NavigateUri="/Views/Predefined/TvCollectionView.xaml"
+                                     Style="{StaticResource EmptyButtonStyle}"
+                                     Margin="0,0,0,12">
+                        <StackPanel Orientation="Horizontal">
+                            <Border Background="#FF870F">
+                                <Image Source="/Images/tvcollection.png"
+                                       Height="{StaticResource ViewSize}"
+                                       Width="{StaticResource ViewSize}"
+                                       Stretch="UniformToFill" />
+                            </Border>
+                            <TextBlock Text="TV"
+                                       Style="{StaticResource HeaderTextStyle}"
+                                       VerticalAlignment="Top" />
+                        </StackPanel>
+                    </HyperlinkButton>
+                    <HyperlinkButton NavigateUri="/Views/Predefined/MusicCollectionView.xaml"
+                                     Style="{StaticResource EmptyButtonStyle}">
+                        <StackPanel Orientation="Horizontal">
+                            <Border Background="#6FBD45">
+                                <Image Source="/Images/audiocollection.png"
+                                       Height="{StaticResource ViewSize}"
+                                       Width="{StaticResource ViewSize}"
+                                       Stretch="UniformToFill" />
+                            </Border>
+                            <TextBlock Text="MUSIC"
+                                       Style="{StaticResource HeaderTextStyle}"
+                                       VerticalAlignment="Top"/>
+                        </StackPanel>
+                    </HyperlinkButton>
+                </StackPanel>
+            </phone:PanoramaItem>
             <phone:PanoramaItem Header="{Binding LocalizedResources.Collections, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringCaseConverter}}">
-                <scott:PhoneListBox ItemsSource="{Binding Folders}"
-                                    Text="{Binding LocalizedResources.NoItemsFound, Source={StaticResource LocalizedStrings}}"
-                                    TextHorizontalAlignment="Center"
-                                    TextVerticalAlignment="Top"
-                                    TextStyle="{StaticResource PhoneTextLargeStyle}">
-                    <scott:PhoneListBox.ItemTemplate>
+                <phone:LongListSelector ItemsSource="{Binding Folders}">
+                    <phone:LongListSelector.ItemTemplate>
                         <DataTemplate>
                             <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
                                              Command="{Binding Main.NavigateToPage, Source={StaticResource Locator}}"
@@ -123,23 +178,25 @@
                                     </toolkit:ContextMenu>
                                 </toolkit:ContextMenuService.ContextMenu>
                                 <StackPanel Orientation="Horizontal">
-                                    <delay:PlaceImage PlaceholderSource="/Images/Logo.png"
-                                                      Source="{Binding Converter={StaticResource ImageUrlConverter}}"
-                                                      Height="62"
-                                                      Width="62"
-                                                      VerticalAlignment="Top" />
+                                    <controls:SuperImage PlaceholderImageSource="/Images/Logo.png"
+                                                         PlaceholderImageStretch="Uniform"
+                                                         Stretch="Uniform"
+                                                         Source="{Binding Converter={StaticResource ImageUrlConverter}}"
+                                                         Height="62"
+                                                         Width="62"
+                                                         VerticalAlignment="Top" />
                                     <StackPanel Orientation="Vertical"
                                                 VerticalAlignment="Center">
                                         <TextBlock Text="{Binding Name}"
                                                    Style="{StaticResource PhoneTextLargeStyle}" />
-                                        <!--<TextBlock Text="{Binding RecentlyAddedUnPlayedItemCount, StringFormat='Unwatched items: \{0\}'}"
-                                                   Style="{StaticResource PhoneTextSubtleStyle}"/>-->
+                                        <TextBlock Text="{Binding RecursiveUnplayedItemCount, StringFormat='Unwatched: \{0\}'}"
+                                                   Style="{StaticResource PhoneTextSubtleStyle}" />
                                     </StackPanel>
                                 </StackPanel>
                             </HyperlinkButton>
                         </DataTemplate>
-                    </scott:PhoneListBox.ItemTemplate>
-                </scott:PhoneListBox>
+                    </phone:LongListSelector.ItemTemplate>
+                </phone:LongListSelector>
             </phone:PanoramaItem>
 
             <phone:PanoramaItem Header="recent"

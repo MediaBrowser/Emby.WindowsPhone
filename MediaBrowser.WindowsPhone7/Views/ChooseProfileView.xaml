@@ -10,6 +10,8 @@
                 xmlns:scott="clr-namespace:ScottIsAFool.WindowsPhone.Controls;assembly=ScottIsAFool.WindowsPhone"
                 xmlns:controls="clr-namespace:MediaBrowser.WindowsPhone.Controls"
                 xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP71"
+                xmlns:behaviors="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
+                xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
                 mc:Ignorable="d ignore"
                 d:DesignWidth="480"
                 d:DesignHeight="768"
@@ -23,7 +25,7 @@
                 toolkit:TiltEffect.IsTiltEnabled="True"
                 DataContext="{Binding Profile, Source={StaticResource Locator}}">
     <shell:SystemTray.ProgressIndicator>
-        <shell:ProgressIndicator IsIndeterminate="True"
+        <shell:ProgressIndicator IsIndeterminate="{Binding ProgressIsVisible}"
                                  IsVisible="{Binding ProgressIsVisible}"
                                  Text="{Binding ProgressText}" />
     </shell:SystemTray.ProgressIndicator>
@@ -32,6 +34,19 @@
             <command:EventToCommand Command="{Binding ChooseProfilePageLoaded}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
+    <i:Interaction.Behaviors>
+        <behaviours:MBSysTray Text="{Binding ProgressText}"
+                              IsVisible="{Binding ProgressIsVisible}"
+                              IsIndeterminate="{Binding ProgressIsVisible}" />
+        <behaviors:ApplicationBarBehavior Mode="Minimized"
+                                          IsMenuEnabled="True">
+            <behaviors:ApplicationBarBehavior.MenuItems>
+                <behaviors:ApplicationBarMenuItem Text="settings"
+                                                  Command="{Binding Main.NavigateToAPage, Source={StaticResource Locator}}"
+                                                  CommandParameter="/Views/SettingsView.xaml" />
+            </behaviors:ApplicationBarBehavior.MenuItems>
+        </behaviors:ApplicationBarBehavior>
+    </i:Interaction.Behaviors>
 
     <toolkit:TransitionService.NavigationInTransition>
         <toolkit:NavigationInTransition>
@@ -76,7 +91,21 @@
         <Grid x:Name="ContentPanel"
               Grid.Row="1"
               Margin="12,0,0,0">
-            <scott:PhoneListBox ItemsSource="{Binding Profiles}">
+            <scott:PhoneListBox ItemsSource="{Binding Profiles}"
+                                Margin="12,0,0,0">
+                <scott:PhoneListBox.ListFooter>
+                    <StackPanel Orientation="Vertical"
+                                Margin="0,12">
+                        <TextBlock Text="Profile not listed?"
+                                   Style="{StaticResource PhoneTextNormalStyle}"
+                                   Margin="0" />
+                        <HyperlinkButton Content="Manually login"
+                                         HorizontalContentAlignment="Left"
+                                         NavigateUri="/Views/ManualUsernameView.xaml"
+                                         Margin="-12,0,0,0"
+                                         Foreground="{StaticResource PhoneAccentBrush}" />
+                    </StackPanel>
+                </scott:PhoneListBox.ListFooter>
                 <scott:PhoneListBox.ItemTemplate>
                     <DataTemplate>
                         <controls:ProfileBox Profile="{Binding}"
