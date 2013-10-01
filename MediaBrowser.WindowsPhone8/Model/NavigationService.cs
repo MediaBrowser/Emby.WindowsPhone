@@ -81,6 +81,7 @@ namespace MediaBrowser.WindowsPhone.Model
                     NavigateTo(Constants.Pages.TrailerView);
                     break;
                 case "musicartist":
+                case "artist":
                     if (SimpleIoc.Default.GetInstance<MusicViewModel>() != null)
                         Messenger.Default.Send(new NotificationMessage(item, Constants.Messages.MusicArtistChangedMsg));
                     NavigateTo(Constants.Pages.ArtistView);

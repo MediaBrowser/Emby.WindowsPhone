@@ -31,16 +31,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             _apiClient = apiClient;
             _navigationService = navigationService;
             _applicationSettings = applicationSettings;
-
-            if (!IsInDesignMode)
-            {
-                WireCommands();
-            }
-        }
-
-        private void WireCommands()
-        {
-
         }
 
         public override void WireMessages()
@@ -49,6 +39,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 if (m.Notification.Equals(Constants.Messages.SplashAnimationFinishedMsg))
                 {
+                    var doNotShowFirstRun = _applicationSettings.Get(Constants.Settings.DoNotShowFirstRun, false);
+
+                    if (!doNotShowFirstRun)
+                    {
+                        _navigationService.NavigateTo(Constants.Pages.FirstRun.WelcomeView);
+                        return;
+                    }
+
                     SetProgressBar(AppResources.SysTrayLoadingSettings);
 
                     // Get settings from storage

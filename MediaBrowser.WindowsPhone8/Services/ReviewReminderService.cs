@@ -17,6 +17,8 @@ namespace MediaBrowser.WindowsPhone.Services
         public ReviewReminderService()
         {
             RecurrencePerUsageCount = 8;
+            SkipFurtherRemindersOnYesPressed = true;
+            AllowUsersToSkipFurtherReminders = true;
         }
     }
 }

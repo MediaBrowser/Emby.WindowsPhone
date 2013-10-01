@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Data;
 using GalaSoft.MvvmLight.Ioc;
 using MediaBrowser.Model;
@@ -128,6 +129,12 @@ namespace MediaBrowser.WindowsPhone.Converters
             {
                 imageOptions.MaxHeight = 800;
                 imageOptions.ImageType = ImageType.Backdrop;
+
+                var images = apiClient.GetBackdropImageUrls(item, imageOptions);
+                if (!images.IsNullOrEmpty())
+                {
+                    return images.FirstOrDefault();
+                }
             }
             else if (imageType.Equals("backdropsmall", StringComparison.OrdinalIgnoreCase))
             {
@@ -137,6 +144,12 @@ namespace MediaBrowser.WindowsPhone.Converters
                         imageOptions.MaxHeight = 173;
 #endif
                 imageOptions.ImageType = ImageType.Backdrop;
+
+                var images = apiClient.GetBackdropImageUrls(item, imageOptions);
+                if (!images.IsNullOrEmpty())
+                {
+                    return images.FirstOrDefault();
+                }
             }
             else if (imageType.Equals("banner", StringComparison.OrdinalIgnoreCase))
             {

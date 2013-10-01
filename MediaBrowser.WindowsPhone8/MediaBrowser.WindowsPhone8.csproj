@@ -237,6 +237,9 @@
     <Compile Include="Views\FindServerView.xaml.cs">
       <DependentUpon>FindServerView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\FirstRun\ConfigureView.xaml.cs">
+      <DependentUpon>ConfigureView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\FirstRun\WelcomeView.xaml.cs">
       <DependentUpon>WelcomeView.xaml</DependentUpon>
     </Compile>
@@ -413,6 +416,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\FindServerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FirstRun\ConfigureView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
