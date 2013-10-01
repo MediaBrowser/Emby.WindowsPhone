@@ -350,6 +350,9 @@
     <Compile Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.Designer.cs">
       <Link>Resources\AppResources.Designer.cs</Link>
     </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone8\Services\ReviewReminderService.cs">
+      <Link>Services\ReviewReminderService.cs</Link>
+    </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone8\Services\TileService.cs">
       <Link>Services\TileService.cs</Link>
     </Compile>

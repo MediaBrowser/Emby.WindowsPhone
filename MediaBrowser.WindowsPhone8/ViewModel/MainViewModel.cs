@@ -84,6 +84,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             PageLoaded = new RelayCommand(async () =>
             {
                 await GetEverything(false);
+
+                if (!_hasLoaded)
+                {
+                    ReviewReminderService.Current.Notify();
+                }
             });
 
             RefreshDataCommand = new RelayCommand(async () =>

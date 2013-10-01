@@ -186,6 +186,7 @@
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
     <Compile Include="Services\LockScreenService.cs" />
+    <Compile Include="Services\ReviewReminderService.cs" />
     <Compile Include="Services\TileService.cs" />
     <Compile Include="Services\TrialHelper.cs" />
     <Compile Include="SpecificSettings.cs" />
