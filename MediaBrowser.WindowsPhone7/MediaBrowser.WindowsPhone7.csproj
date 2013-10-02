@@ -232,6 +232,9 @@
     <Compile Include="..\MediaBrowser.WindowsPhone8\Behaviours\OnTextPropertyChangedBehaviour.cs">
       <Link>Behaviours\OnTextPropertyChangedBehaviour.cs</Link>
     </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone8\Behaviours\PanoramaBackgroundBehaviour.cs">
+      <Link>Behaviours\PanoramaBackgroundBehaviour.cs</Link>
+    </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone8\Controls\DynamicTextBlock.cs">
       <Link>Controls\DynamicTextBlock.cs</Link>
     </Compile>

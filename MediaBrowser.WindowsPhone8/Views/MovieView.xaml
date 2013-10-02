@@ -84,6 +84,11 @@
                         x:Name="MainPanorama"
                         HeaderTemplate="{StaticResource LikeWp7ItemHeaderTemplate}"
                         TitleTemplate="{StaticResource LikeWp7TitleTemplate}">
+            <i:Interaction.Behaviors>
+                <behaviours:PanoramaBackgroundBehaviour Source="{Binding SelectedMovie, Converter={StaticResource ImageUrlConverter}, ConverterParameter=backdrop}"
+                                                        Stretch="UniformToFill"
+                                                        Opacity="0.2"/>
+            </i:Interaction.Behaviors>
             <phone:PanoramaItem Header="poster">
                 <Button Style="{StaticResource EmptyButtonStyle}"
                         VerticalContentAlignment="Top"

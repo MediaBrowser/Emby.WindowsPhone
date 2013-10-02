@@ -1,10 +1,6 @@
-﻿using System;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
+﻿using System.Windows.Navigation;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.WindowsPhone.ViewModel;
-using Microsoft.Phone.Controls;
 
 namespace MediaBrowser.WindowsPhone.Views
 {
@@ -19,23 +15,6 @@ namespace MediaBrowser.WindowsPhone.Views
         public CollectionView()
         {
             InitializeComponent();
-
-            Loaded += (s, e) =>
-            {
-                var item = (DataContext as FolderViewModel).SelectedFolder;
-                var url = (string)
-                          new Converters.ImageUrlConverter().
-                              Convert(item, typeof(string), "backdrop", null);
-                if (!string.IsNullOrEmpty(url))
-                {
-                    ThePanorama.Background = new ImageBrush
-                    {
-                        Stretch = Stretch.UniformToFill,
-                        Opacity = 0.2,
-                        ImageSource = new BitmapImage(new Uri(url))
-                    };
-                }
-            };
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
