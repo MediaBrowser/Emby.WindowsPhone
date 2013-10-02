@@ -74,6 +74,9 @@
                                                       IsEnabled="{Binding SelectedEpisode.CanResume}"
                                                       Command="{Binding Main.ResumeMovieCommand, Source={StaticResource Locator}}"
                                                       CommandParameter="{Binding SelectedEpisode}" />
+                    <cimbalino:ApplicationBarMenuItem Text="play on..."
+                                                      Command="{Binding Remote.SendPlayCommand, Source={StaticResource Locator}}"
+                                                      CommandParameter="{Binding SelectedEpisode.Id}" />
                 </cimbalino:ApplicationBarBehavior.MenuItems>
             </cimbalino:ApplicationBarBehavior>
         </i:Interaction.Behaviors>
