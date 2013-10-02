@@ -127,6 +127,7 @@
             {
                 private const string FirstRunPath = ViewsPath + "FirstRun/";
                 public const string WelcomeView = FirstRunPath + "WelcomeView.xaml";
+                public const string ConfigureView = FirstRunPath + "ConfigureView.xaml";
             }
         }
     }

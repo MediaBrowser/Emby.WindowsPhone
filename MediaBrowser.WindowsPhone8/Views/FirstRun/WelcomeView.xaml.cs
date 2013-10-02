@@ -1,6 +1,5 @@
-﻿using System.Windows.Navigation;
-using Cimbalino.Phone.Toolkit.Services;
-using GalaSoft.MvvmLight.Ioc;
+﻿using System;
+using System.Windows;
 
 namespace MediaBrowser.WindowsPhone.Views.FirstRun
 {
@@ -11,14 +10,9 @@ namespace MediaBrowser.WindowsPhone.Views.FirstRun
             InitializeComponent();
         }
 
-        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        private void NextButton_OnClick(object sender, RoutedEventArgs e)
         {
-            base.OnNavigatedFrom(e);
-
-            var appSettings = SimpleIoc.Default.GetInstance<IApplicationSettingsService>();
-
-            appSettings.Set(Constants.Settings.DoNotShowFirstRun, true);
-            appSettings.Save();
+            NavigationService.Navigate(new Uri(Constants.Pages.FirstRun.ConfigureView, UriKind.Relative));
         }
     }
 }
