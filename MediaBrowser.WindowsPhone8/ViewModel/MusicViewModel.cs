@@ -8,6 +8,7 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model;
 using MediaBrowser.Model.Dto;
+using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Querying;
 using MediaBrowser.Services;
@@ -123,16 +124,25 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                    
                     try
                     {
-                        await GetArtistInfo();
+                        if (SelectedArtist != null)
+                        {
+                            await GetArtistInfo();
 
-                        AlbumTracks = _artistTracks.Where(x => x.ParentId == SelectedAlbum.Id)
+                            AlbumTracks = _artistTracks.Where(x => x.ParentId == SelectedAlbum.Id)
                             .OrderBy(x => x.ParentIndexNumber)
                             .ThenBy(x => x.IndexNumber).ToList();
+                        }
+                        else
+                        {
+                            await GetAlbumTracks();
+                        }
                     }
                     catch (Exception ex)
                     {
                         Log.ErrorException("AlbumPageLoaded", ex);
                     }
+
+                    SetProgressBar();
                 }
             });
 
@@ -215,6 +225,32 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                 Messenger.Default.Send(new NotificationMessage<List<PlaylistItem>>(playlist, Constants.Messages.SetPlaylistAsMsg));
             });
+        }
+
+        private async Task GetAlbumTracks()
+        {
+            try
+            {
+                var query = new ItemQuery
+                {
+                    ParentId = SelectedAlbum.Id,
+                    UserId = AuthenticationService.Current.LoggedInUserId
+                };
+
+                var tracks = await _apiClient.GetItemsAsync(query);
+
+                if (tracks.Items.IsNullOrEmpty())
+                {
+                    return;
+                }
+
+                AlbumTracks = tracks.Items.OrderBy(x => x.ParentIndexNumber)
+                                          .ThenBy(x => x.IndexNumber).ToList();
+            }
+            catch (HttpException ex)
+            {
+                Log.ErrorException("GetAlbumTracks()", ex);
+            }
         }
 
         private async Task GetArtistInfo()
