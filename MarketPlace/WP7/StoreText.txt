@@ -1,4 +1,4 @@
-Media Browser is a way of browsing your own media collection, whether it be movies, tv or music, Media Browser will allow you to watch or listen to them on your Windows Phone. 
+Media Browser is a way of browsing your own media collection, whether it be movies, tv or music, Media Browser will allow you to listen to them on your Windows Phone or play them on another compatible Media Browser client.
 
 ****IMPORTANT INFORMATION****
 In order to use Media Browser, you need to have installed the Media Browser server from http://www.mediabrowser3.com/download and have it configured.
