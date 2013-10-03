@@ -450,6 +450,14 @@
     <Compile Include="..\MediaBrowser.WindowsPhone8\Views\EpisodeView.xaml.cs">
       <Link>Views\EpisodeView.xaml.cs</Link>
     </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone8\Views\FirstRun\ConfigureView.xaml.cs">
+      <Link>Views\FirstRun\ConfigureView.xaml.cs</Link>
+      <DependentUpon>ConfigureView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone8\Views\FirstRun\WelcomeView.xaml.cs">
+      <Link>Views\FirstRun\WelcomeView.xaml.cs</Link>
+      <DependentUpon>WelcomeView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone8\Views\FolderView.xaml.cs">
       <Link>Views\FolderView.xaml.cs</Link>
     </Compile>
@@ -548,6 +556,9 @@
     </Content>
     <Content Include="..\MediaBrowser.WindowsPhone8\Images\default_avatar.png">
       <Link>Images\default_avatar.png</Link>
+    </Content>
+    <Content Include="..\MediaBrowser.WindowsPhone8\Images\FirstRun\WelcomeBackground.jpg">
+      <Link>Images\FirstRun\WelcomeBackground.jpg</Link>
     </Content>
     <Content Include="..\MediaBrowser.WindowsPhone8\Images\fresh.png">
       <Link>Images\fresh.png</Link>
@@ -695,6 +706,14 @@
     </Page>
     <Page Include="Views\EpisodeView.xaml">
       <SubType>Form</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FirstRun\ConfigureView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FirstRun\WelcomeView.xaml">
+      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\FolderView.xaml">

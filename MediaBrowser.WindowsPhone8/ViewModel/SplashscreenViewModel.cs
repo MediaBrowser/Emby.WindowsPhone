@@ -39,6 +39,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 if (m.Notification.Equals(Constants.Messages.SplashAnimationFinishedMsg))
                 {
+                    App.Settings.ConnectionDetails = new ConnectionDetails
+                    {
+                        PortNo = 8096
+                    };
+
                     var doNotShowFirstRun = _applicationSettings.Get(Constants.Settings.DoNotShowFirstRun, false);
 
                     if (!doNotShowFirstRun)
@@ -53,11 +58,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     var connectionDetails = _applicationSettings.Get<ConnectionDetails>(Constants.Settings.ConnectionSettings);
                     if (connectionDetails == null)
                     {
-                        App.Settings.ConnectionDetails = new ConnectionDetails
-                        {
-                            PortNo = 8096
-                        };
-
                         var messageBox = new CustomMessageBox
                         {
                             Caption = "No connection details",

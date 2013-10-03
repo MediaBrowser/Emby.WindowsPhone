@@ -14,7 +14,7 @@
                 mc:Ignorable="d"
                 shell:SystemTray.IsVisible="True"
                 shell:SystemTray.Opacity="0">
-    
+
     <scott:BasePage.Resources>
         <Color x:Key="AppBarColour">Black</Color>
         <SolidColorBrush x:Key="AppBarBrush"
@@ -49,14 +49,14 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        
+
         <Image Source="/Images/FirstRun/WelcomeBackground.jpg"
                Grid.RowSpan="2"
                Grid.ColumnSpan="2"
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
                Stretch="UniformToFill"
-               Opacity="0.3"/>
+               Opacity="0.3" />
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel"
@@ -64,7 +64,7 @@
               Margin="12,68,12,0">
             <TextBlock Style="{StaticResource PhoneTextTitle3Style}"
                        TextWrapping="Wrap"
-                       Text="Welcome to Media Browser for Windows Phone. This app will allow you to browse your media collection, stream it to your phone and remotely control any of the controllable Media Browser clients."/>
+                       Text="Welcome to Media Browser for Windows Phone. This app will allow you to browse your media collection and remotely control any of the controllable Media Browser clients." />
         </Grid>
 
         <Grid VerticalAlignment="Bottom"
