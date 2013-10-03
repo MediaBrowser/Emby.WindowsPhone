@@ -4,6 +4,21 @@
         <name>Telerik.Windows.Core.Cloud</name>
     </assembly>
     <members>
+        <member name="T:Telerik.Windows.Cloud.CloudAppointmentSource">
+            <summary>
+            Represents a class used for management of appointments stored in the Cloud.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Cloud.CloudAppointmentSource.Init(Telerik.Windows.Cloud.ICloudAppointmentSource)">
+            <summary>
+            Inits the CloudAppointmentSource.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Cloud.CloudAppointmentSource.Current">
+            <summary>
+            Gets the current CloudAppointmentSource instance.
+            </summary>
+        </member>
         <member name="T:Telerik.Windows.Cloud.CloudException">
             <summary>
             A class used to throw Cloud-specific exceptions.
@@ -27,14 +42,106 @@
             <param name="message">The error message that explains the reason for the exception.</param>
             <param name="innerException">The exception that is the cause of the current exception, or a null reference (Nothing in Visual Basic) if no inner exception is specified.</param>
         </member>
-        <member name="T:Telerik.Windows.Cloud.EverliveNotificationItem">
+        <member name="T:Telerik.Windows.Cloud.ILocalStorage`1">
             <summary>
-            Represents a class used for the notification items managed by the <see cref="T:Telerik.Windows.Cloud.EverliveProvider"/>.
+            Defines the API used by the <see cref="T:Telerik.Windows.Cloud.ISynchronizationContext"/> to perform local storage operations.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:Telerik.Windows.Cloud.ILocalStorage`1.StoreAsync(System.Collections.Generic.IEnumerable{`0},Telerik.Windows.Cloud.SynchronizationProgress)">
+            <summary>
+            Stores a collection of <see cref="T:Telerik.Windows.Cloud.ISynchronizableCloudItem"/> implementations locally.
+            </summary>
+            <param name="items"></param>
+            <param name="progress">An instance of the <see cref="T:Telerik.Windows.Cloud.SynchronizationProgress"/> class used to track the changes being performed on items during sync.</param>
+        </member>
+        <member name="M:Telerik.Windows.Cloud.ILocalStorage`1.UpdateAsync(System.Collections.Generic.IEnumerable{`0},Telerik.Windows.Cloud.SynchronizationProgress)">
+            <summary>
+            Updates a collection of <see cref="T:Telerik.Windows.Cloud.ISynchronizableCloudItem"/> implementations locally.
+            </summary>
+            <param name="items">The items to update.</param>
+            <param name="progress">An instance of the <see cref="T:Telerik.Windows.Cloud.SynchronizationProgress"/> class used to track the changes being performed on items during sync.</param>
+        </member>
+        <member name="M:Telerik.Windows.Cloud.ILocalStorage`1.DeleteAsync(System.Collections.Generic.IEnumerable{`0},Telerik.Windows.Cloud.SynchronizationProgress)">
+            <summary>
+            Deletes the <see cref="T:Telerik.Windows.Cloud.ISynchronizableCloudItem"/> implementations provided in the collection from the local storage.
+            </summary>
+            <param name="items"></param>
+            <param name="progress">An instance of the <see cref="T:Telerik.Windows.Cloud.SynchronizationProgress"/> class used to track the changes being performed on items during sync.</param>
+        </member>
+        <member name="M:Telerik.Windows.Cloud.ILocalStorage`1.GetAllItemsAsync">
+            <summary>
+            Retrieves all stored <see cref="T:Telerik.Windows.Cloud.ISynchronizableCloudItem"/> implementations from the local storage.
+            </summary>
+            <returns>The retrieved items.</returns>
+        </member>
+        <member name="M:Telerik.Windows.Cloud.ILocalStorage`1.GetAllItemsIDsAsync">
+            <summary>
+            Gets the IDs all stored <see cref="T:Telerik.Windows.Cloud.ISynchronizableCloudItem"/> implementations from the local storage.
             </summary>
         </member>
-        <member name="T:Telerik.Windows.Cloud.EverliveDataItem">
+        <member name="M:Telerik.Windows.Cloud.ILocalStorage`1.GetAllDeletedItemsAsync">
             <summary>
-            Represents a class used for data items user by the <see cref="T:Telerik.Windows.Cloud.EverliveProvider"/>.
+            Retrieves all items that have been marked as deleted on the local storage.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Cloud.ILocalStorage`1.GetAllDeletedLocalOnlyItemsAsync">
+            <summary>
+            Retrieves all items that have been marked as deleted on the local storage and do not have server IDs.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Cloud.ILocalStorage`1.GetAllModifiedItemsAsync">
+            <summary>
+            Retrieves all items that have been modified, are stored locally and need to be updated on the server.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Cloud.ILocalStorage`1.GetLocalNewItemsAsync">
+            <summary>
+            Gets all local items that do not have server IDs and need to be created on the server.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Cloud.ILocalStorage`1.GetItemAsync(System.Guid)">
+            <summary>
+            Gets the item with the specified ID.
+            </summary>
+            <param name="id">The ID of the item.</param>
+        </member>
+        <member name="M:Telerik.Windows.Cloud.ILocalStorage`1.PurgeDataBase">
+            <summary>
+            Purges the contents of the table for the type.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Cloud.ILocalStorage`1.StoreLatestSyncDate(System.String,System.DateTime)">
+            <summary>
+            Stores the date on which the latest successful synchronization has been performed.
+            </summary>
+            <param name="contentTypeId">The identifier for the type being synchronized.</param>
+            <param name="date">An instance of the <see cref="T:System.DateTime"/> struct
+            representing the date.</param>
+        </member>
+        <member name="M:Telerik.Windows.Cloud.ILocalStorage`1.GetLatestSyncDate(System.String)">
+            <summary>
+            Gets the latest date on which a successful synchronization has been performed.
+            </summary>
+            <param name="contentTypeId">The identifier for the type being synchronized.</param>
+        </member>
+        <member name="P:Telerik.Windows.Cloud.ILocalStorage`1.LocalDatabase">
+            <summary>
+            Gets an implementation of the <see cref="T:System.Linq.IQueryable`1"/> interface that provides access
+            to the locally stored objects synchronized by the associated context.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Cloud.WinCoreSQLProvider`1.LocalDatabase">
+            <summary>
+            Gets the local database.
+            </summary>
+            <value>
+            The local database.
+            </value>
+        </member>
+        <member name="T:Telerik.Windows.Cloud.ICloudAppointment">
+            <summary>
+            Represents an interface for appointment stored in the cloud.
             </summary>
         </member>
         <member name="T:Telerik.Windows.Cloud.ICloudDataItem">
@@ -42,9 +149,20 @@
             An interface that the data items stored in the cloud by RadControls should implement.
             </summary>
         </member>
-        <member name="P:Telerik.Windows.Cloud.ICloudDataItem.Id">
+        <member name="M:Telerik.Windows.Cloud.ICloudDataItem.GetId">
             <summary>
-            Gets or sets the Id.
+            Gets a <see cref="T:System.Guid"/> representing the unique ID of the cloud item.
+            </summary>
+            <returns>The ID.</returns>
+        </member>
+        <member name="P:Telerik.Windows.Cloud.ICloudAppointment.Location">
+            <summary>
+            Gets or sets the location of the appointment.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Cloud.ICloudAppointment.Notes">
+            <summary>
+            Gets or sets the notes for the appointment.
             </summary>
         </member>
         <member name="T:Telerik.Windows.Cloud.ICloudNotificationItem">
@@ -77,41 +195,6 @@
             Gets or sets a value indicating whether this notification item is active. If it is not active, it will not be visible to the users.
             </summary>
         </member>
-        <member name="M:Telerik.Windows.Cloud.EverliveNotificationItem.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:Telerik.Windows.Cloud.EverliveNotificationItem"/> class.
-            </summary>
-        </member>
-        <member name="P:Telerik.Windows.Cloud.EverliveNotificationItem.Title">
-            <summary>
-            Gets or sets the notification title.
-            </summary>
-        </member>
-        <member name="P:Telerik.Windows.Cloud.EverliveNotificationItem.Message">
-            <summary>
-            Gets or sets the notification message.
-            </summary>
-        </member>
-        <member name="P:Telerik.Windows.Cloud.EverliveNotificationItem.TaskToExecute">
-            <summary>
-            Gets or sets the task that will be created if the user accept this notification.
-            </summary>
-        </member>
-        <member name="P:Telerik.Windows.Cloud.EverliveNotificationItem.TaskToExecuteArgs">
-            <summary>
-            Gets or sets the arguments that will be used by the <see cref="P:Telerik.Windows.Cloud.EverliveNotificationItem.TaskToExecute"/>.
-            </summary>
-        </member>
-        <member name="P:Telerik.Windows.Cloud.EverliveNotificationItem.IsActive">
-            <summary>
-            Gets or sets a value indicating whether this notification item is active. If it is not active, it will not be visible to the users.
-            </summary>
-        </member>
-        <member name="T:Telerik.Windows.Cloud.EverlivePictureItem">
-            <summary>
-            Everlive implementation of the ICloudPictureItem interface.
-            </summary>
-        </member>
         <member name="T:Telerik.Windows.Cloud.ICloudPictureItem">
             <summary>
             An interface that should be implemented by picture items.
@@ -137,80 +220,44 @@
             Gets the URI of the picture item's thumbnail image.
             </summary>
         </member>
-        <member name="P:Telerik.Windows.Cloud.EverlivePictureItem.PictureId">
+        <member name="T:Telerik.Windows.Cloud.ICloudAppointmentSource">
             <summary>
-            Gets or sets the id of the picture item.
+            Represents an interface for an AppointmentSource that manages appointments stored in the Cloud.
             </summary>
         </member>
-        <member name="P:Telerik.Windows.Cloud.EverlivePictureItem.PictureThumbnailId">
+        <member name="M:Telerik.Windows.Cloud.ICloudAppointmentSource.CreateAppointmentAsync(Telerik.Windows.Cloud.ICloudAppointment)">
             <summary>
-            Gets or sets the id of the picture item that contains thumbnail of the image.
+            Creates a new appointment async.
             </summary>
         </member>
-        <member name="P:Telerik.Windows.Cloud.EverlivePictureItem.PictureUri">
+        <member name="M:Telerik.Windows.Cloud.ICloudAppointmentSource.UpdateAppointmentAsync(Telerik.Windows.Cloud.ICloudAppointment)">
             <summary>
-            Gets the URI of the picture item.
+            Updates the provided appointment async.
             </summary>
         </member>
-        <member name="P:Telerik.Windows.Cloud.EverlivePictureItem.PictureThumbnailUri">
+        <member name="M:Telerik.Windows.Cloud.ICloudAppointmentSource.DeleteAppointmentAsync(Telerik.Windows.Cloud.ICloudAppointment)">
             <summary>
-            Gets the URI of the picture item's thumbnail image.
+            Deletes the provided appointment async.
             </summary>
         </member>
-        <member name="T:Telerik.Windows.Cloud.EverliveProviderSettings">
+        <member name="M:Telerik.Windows.Cloud.ICloudAppointmentSource.GetAppointments(System.Func{Telerik.Windows.Controls.IAppointment,System.Boolean})">
             <summary>
-            Everlive specific settings used to create a new <see cref="T:Telerik.Windows.Cloud.ICloudProvider"/> of <see cref="T:Telerik.Windows.Cloud.ProviderType"/> Everlive.
+            Gets the appointments that match the provided filter.
             </summary>
         </member>
-        <member name="T:Telerik.Windows.Cloud.ICloudProviderSettings">
+        <member name="P:Telerik.Windows.Cloud.ICloudAppointmentSource.AppointmentsType">
             <summary>
-            An interface to be used for providing setting for initialization of a cloud provider.
+            Gets the type of the appointments.
             </summary>
         </member>
-        <member name="P:Telerik.Windows.Cloud.ICloudProviderSettings.ApiKey">
+        <member name="P:Telerik.Windows.Cloud.ICloudAppointmentSource.SelectedDate">
             <summary>
-            Gets or sets the API key used for connection with a specific app.
+            Gets or sets the selected date.
             </summary>
         </member>
-        <member name="P:Telerik.Windows.Cloud.ICloudProviderSettings.UserType">
+        <member name="P:Telerik.Windows.Cloud.ICloudAppointmentSource.SelectedAppointment">
             <summary>
-            Gets or sets an instance of the <see cref="T:System.Type"/> class
-            describing the custom type used to store user information.
-            </summary>
-        </member>
-        <member name="P:Telerik.Windows.Cloud.ICloudProviderSettings.SettingsType">
-            <summary>
-            Gets or sets an instance of the <see cref="T:System.Type"/> class
-            describing the custom type used to store information about the application settings.
-            </summary>
-        </member>
-        <member name="P:Telerik.Windows.Cloud.ICloudProviderSettings.PicturesType">
-            <summary>
-            Gets or sets an instance of the <see cref="T:System.Type"/> class
-            describing the custom type used to store picture information.
-            </summary>
-        </member>
-        <member name="P:Telerik.Windows.Cloud.EverliveProviderSettings.ApiKey">
-            <summary>
-            Gets or sets the API key used for connection with a specific app.
-            </summary>
-        </member>
-        <member name="P:Telerik.Windows.Cloud.EverliveProviderSettings.UserType">
-            <summary>
-            Gets or sets an instance of the <see cref="T:System.Type"/> class
-            describing the custom type used to store user information.
-            </summary>
-        </member>
-        <member name="P:Telerik.Windows.Cloud.EverliveProviderSettings.SettingsType">
-            <summary>
-            Gets or sets an instance of the <see cref="T:System.Type"/> class
-            describing the custom type used to store information about the application settings.
-            </summary>
-        </member>
-        <member name="P:Telerik.Windows.Cloud.EverliveProviderSettings.PicturesType">
-            <summary>
-            Gets or sets an instance of the <see cref="T:System.Type"/> class
-            describing the custom type used to store picture information.
+            Gets or sets the selected appointment.
             </summary>
         </member>
         <member name="T:Telerik.Windows.Cloud.ICloudProviderInfo">
@@ -221,7 +268,25 @@
         <member name="P:Telerik.Windows.Cloud.ICloudProviderInfo.IsLoggedIn">
             <summary>
             Gets a boolean value that determines whether there is a logged user
-            in the current <see cref="T:Telerik.Windows.Cloud.EverliveProvider"/>.
+            in the current <see cref="T:Telerik.Windows.Cloud.CloudProvider"/>.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Cloud.ICloudProviderInfo.UserType">
+            <summary>
+            Gets an instance of the <see cref="T:System.Type"/> class
+            describing the custom type used to store user information.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Cloud.ICloudProviderInfo.SettingsType">
+            <summary>
+            Gets an instance of the <see cref="T:System.Type"/> class
+            describing the custom type used to store information about the application settings.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Cloud.ICloudProviderInfo.PicturesType">
+            <summary>
+            Gets an instance of the <see cref="T:System.Type"/> class
+            describing the custom type used to store picture information.
             </summary>
         </member>
         <member name="P:Telerik.Windows.Cloud.ICloudProviderInfo.CurrentUser">
@@ -239,6 +304,34 @@
             Gets a native connection to the cloud services used by this provider.
             </summary>
         </member>
+        <member name="T:Telerik.Windows.Cloud.CloudProviderSettings">
+            <summary>
+            An interface to be used for providing setting for initialization of a cloud provider.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Cloud.CloudProviderSettings.ApiKey">
+            <summary>
+            Gets or sets the API key used for connection with a specific app.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Cloud.CloudProviderSettings.UserType">
+            <summary>
+            Gets or sets an instance of the <see cref="T:System.Type"/> class
+            describing the custom type used to store user information.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Cloud.CloudProviderSettings.SettingsType">
+            <summary>
+            Gets or sets an instance of the <see cref="T:System.Type"/> class
+            describing the custom type used to store information about the application settings.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Cloud.CloudProviderSettings.PicturesType">
+            <summary>
+            Gets or sets an instance of the <see cref="T:System.Type"/> class
+            describing the custom type used to store picture information.
+            </summary>
+        </member>
         <member name="T:Telerik.Windows.Cloud.LoginResult">
             <summary>
             Enumeration for the possible results of a login operation.
@@ -252,6 +345,11 @@
         <member name="F:Telerik.Windows.Cloud.LoginResult.WrongUsernameOrPassword">
             <summary>
             The provided username and/or password are incorrect.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Cloud.LoginResult.ServerError">
+            <summary>
+            The server can't be found or returned an error.
             </summary>
         </member>
         <member name="F:Telerik.Windows.Cloud.LoginResult.UnknownFailure">
@@ -284,6 +382,11 @@
             A user with the provided username already exists.
             </summary>
         </member>
+        <member name="F:Telerik.Windows.Cloud.RegistrationResult.ServerError">
+            <summary>
+            The server can't be found or returned an error.
+            </summary>
+        </member>
         <member name="F:Telerik.Windows.Cloud.RegistrationResult.UnknownFailure">
             <summary>
             The registration is not successful and there are no further details available.
@@ -310,7 +413,7 @@
             Represents a class used for common cloud methods.
             </summary>
         </member>
-        <member name="M:Telerik.Windows.Cloud.CloudProvider.Init(Telerik.Windows.Cloud.ProviderType,Telerik.Windows.Cloud.ICloudProviderSettings)">
+        <member name="M:Telerik.Windows.Cloud.CloudProvider.Init(Telerik.Windows.Cloud.CloudProviderSettings)">
             <summary>
             Initializes a CloudProvider from the specified provider type with the specified provider settings.
             </summary>
@@ -360,56 +463,16 @@
             </returns>
             <exception cref="T:System.NotImplementedException"></exception>
         </member>
-        <member name="T:Telerik.Windows.Cloud.EverliveCloudDataService`1">
-            <summary>
-            Represents a class used for getting data from the cloud with applied filters.
-            </summary>
-        </member>
         <member name="T:Telerik.Windows.Cloud.ICloudDataService">
             <summary>
             An interface that is used to get data from the cloud for the cloud-related functionality of Telerik's CloudControls.
             </summary>
         </member>
-        <member name="M:Telerik.Windows.Cloud.ICloudDataService.GetItems">
+        <member name="M:Telerik.Windows.Cloud.ICloudDataService.GetItemsAsync">
             <summary>
-            Gets the items.
+            Gets the items asynchronously.
             </summary>
             <returns></returns>
-        </member>
-        <member name="M:Telerik.Windows.Cloud.EverliveCloudDataService`1.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:Telerik.Windows.Cloud.EverliveCloudDataService`1"/> class.
-            </summary>
-        </member>
-        <member name="M:Telerik.Windows.Cloud.EverliveCloudDataService`1.GetItems">
-            <summary>
-            Gets the items according to the provided Filter.
-            </summary>
-        </member>
-        <member name="P:Telerik.Windows.Cloud.EverliveCloudDataService`1.Filter">
-            <summary>
-            Gets or sets the filter that is applied when getting items from the service.
-            </summary>
-        </member>
-        <member name="T:Telerik.Windows.Cloud.EverliveDiagnosticsInfo">
-            <summary>
-            Provides a model for an object containing information about the application's state when an exception occurs.
-            </summary>
-        </member>
-        <member name="P:Telerik.Windows.Cloud.EverliveDiagnosticsInfo.StackTraceHashCode">
-            <summary>
-            Gets or sets the hashcode of the currently occured exception.
-            </summary>
-        </member>
-        <member name="P:Telerik.Windows.Cloud.EverliveDiagnosticsInfo.ExceptionInfo">
-            <summary>
-            Gets or sets the exception information.
-            </summary>
-        </member>
-        <member name="T:Telerik.Windows.Cloud.EverliveFeedbackItem">
-            <summary>
-            Represents a class used for the feedback items managed by the <see cref="T:Telerik.Windows.Cloud.EverliveProvider"/>.
-            </summary>
         </member>
         <member name="T:Telerik.Windows.Cloud.ICloudFeedbackItem">
             <summary>
@@ -446,41 +509,6 @@
             Gets or sets the date when this feedback item was created.
             </summary>
         </member>
-        <member name="P:Telerik.Windows.Cloud.EverliveFeedbackItem.IsSentByDeveloper">
-            <summary>
-            Gets or sets a value indicating whether this feedback item is sent by developer.
-            </summary>
-        </member>
-        <member name="P:Telerik.Windows.Cloud.EverliveFeedbackItem.UserId">
-            <summary>
-            Gets or sets the id of the user that is related to this feedback item.
-            </summary>
-        </member>
-        <member name="P:Telerik.Windows.Cloud.EverliveFeedbackItem.Message">
-            <summary>
-            Gets or sets the message.
-            </summary>
-        </member>
-        <member name="P:Telerik.Windows.Cloud.EverliveFeedbackItem.IsNew">
-            <summary>
-            Gets or sets a value indicating whether this feedback item is new.
-            </summary>
-        </member>
-        <member name="P:Telerik.Windows.Cloud.EverliveFeedbackItem.IsDeleted">
-            <summary>
-            Gets or sets a value indicating whether this feedback item is deleted by the user.
-            </summary>
-        </member>
-        <member name="P:Telerik.Windows.Cloud.EverliveFeedbackItem.CreationDate">
-            <summary>
-            Gets or sets the date when this feedback item was created.
-            </summary>
-        </member>
-        <member name="T:Telerik.Windows.Cloud.EverliveProvider">
-            <summary>
-            Represents a provider that will be used by Telerik's CloudControls to make their connection with Everlive.
-            </summary>
-        </member>
         <member name="T:Telerik.Windows.Cloud.ICloudProvider">
             <summary>
             An interface that is used to perform the cloud-related functionality of Telerik's CloudControls.
@@ -500,6 +528,27 @@
             <summary>
             Performs a login operation with the provided username and password.
             </summary>
+        </member>
+        <member name="M:Telerik.Windows.Cloud.ICloudProvider.LoginWithFacebook(System.String)">
+            <summary>
+            Provides a mechanism for authenticating a user with a Facebook account.
+            </summary>
+            <param name="token">The token provided by the Facbook OAuth SDK after a successful login.</param>
+            <returns>An instance of the <see cref="T:Telerik.Windows.Cloud.LoginResult"/> enum determining the result of the login operation.</returns>
+        </member>
+        <member name="M:Telerik.Windows.Cloud.ICloudProvider.LoginWithGoogle(System.String)">
+            <summary>
+            Provides a mechanism for authenticating a user with a Google account.
+            </summary>
+            <param name="token">The token provided by the Google OAuth SDK after a successful login.</param>
+            <returns>An instance of the <see cref="T:Telerik.Windows.Cloud.LoginResult"/> enum determining the result of the login operation.</returns>
+        </member>
+        <member name="M:Telerik.Windows.Cloud.ICloudProvider.LoginWithLiveId(System.String)">
+            <summary>
+            Provides a mechanism for authenticating a user with a LiveID account.
+            </summary>
+            <param name="token">The token provided by the LiveID OAuth SDK after a successful login.</param>
+            <returns>An instance of the <see cref="T:Telerik.Windows.Cloud.LoginResult"/> enum determining the result of the login operation.</returns>
         </member>
         <member name="M:Telerik.Windows.Cloud.ICloudProvider.LogoutAsync">
             <summary>
@@ -534,6 +583,11 @@
         <member name="M:Telerik.Windows.Cloud.ICloudProvider.CreateDataItemAsync(Telerik.Windows.Cloud.ICloudDataItem)">
             <summary>
             Saves the specified new data item to the cloud storage.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Cloud.ICloudProvider.CreateItemAsync(Telerik.Windows.Cloud.ICloudDataItem)">
+            <summary>
+            Saves the specified new data item to the cloud storage and returns its Id.
             </summary>
         </member>
         <member name="M:Telerik.Windows.Cloud.ICloudProvider.UpdateDataItemAsync(Telerik.Windows.Cloud.ICloudDataItem)">
@@ -622,232 +676,6 @@
             Gets the number of active notifications which haven’t been seen by the current user.
             </summary>
         </member>
-        <member name="P:Telerik.Windows.Cloud.ICloudProvider.UserType">
-            <summary>
-            Gets an instance of the <see cref="T:System.Type"/> class
-            describing the custom type used to store user information.
-            </summary>
-        </member>
-        <member name="P:Telerik.Windows.Cloud.ICloudProvider.SettingsType">
-            <summary>
-            Gets an instance of the <see cref="T:System.Type"/> class
-            describing the custom type used to store information about the application settings.
-            </summary>
-        </member>
-        <member name="P:Telerik.Windows.Cloud.ICloudProvider.PicturesType">
-            <summary>
-            Gets an instance of the <see cref="T:System.Type"/> class
-            describing the custom type used to store picture information.
-            </summary>
-        </member>
-        <member name="M:Telerik.Windows.Cloud.EverliveProvider.#ctor(System.String,System.Type,System.Type,System.Type)">
-            <summary>
-            Initializes a new instance of the <see cref="T:Telerik.Windows.Cloud.EverliveProvider"/> class.
-            </summary>
-            <param name="apiKey">The API key.</param>
-            <param name="userType">Type of the user.</param>
-            <param name="settingsType">Type of the settings.</param>
-            <param name="picturesType">Type of the pictures.</param>
-        </member>
-        <member name="M:Telerik.Windows.Cloud.EverliveProvider.#ctor(Telerik.Windows.Cloud.ICloudProviderSettings)">
-            <summary>
-            Initializes a new instance of the <see cref="T:Telerik.Windows.Cloud.EverliveProvider"/> class.
-            </summary>
-            <param name="providerSettings">The settings for the provider.</param>
-        </member>
-        <member name="M:Telerik.Windows.Cloud.EverliveProvider.CheckForExistingUser(System.String)">
-            <summary>
-            Checks whether a user with the provided username already exists.
-            </summary>
-        </member>
-        <member name="M:Telerik.Windows.Cloud.EverliveProvider.CheckForExistingEmail(System.String)">
-            <summary>
-            Checks whether a user with the provided email already exists.
-            </summary>
-        </member>
-        <member name="M:Telerik.Windows.Cloud.EverliveProvider.LoginAsync(System.String,System.String)">
-            <summary>
-            Performs a login operation with the provided username and password.
-            </summary>
-            <param name="username">The username.</param>
-            <param name="password">The password.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Telerik.Windows.Cloud.EverliveProvider.LogoutAsync">
-            <summary>
-            Performs a logout operation of the currently logged user.
-            </summary>
-        </member>
-        <member name="M:Telerik.Windows.Cloud.EverliveProvider.ResetPasswordForUserByEmailAsync(System.String)">
-            <summary>
-            Resets the password for the user with the provided email.
-            </summary>
-        </member>
-        <member name="M:Telerik.Windows.Cloud.EverliveProvider.ChangePasswordAsync(System.String,System.String)">
-            <summary>
-            Changes the password of the currently logged user.
-            </summary>
-        </member>
-        <member name="M:Telerik.Windows.Cloud.EverliveProvider.CreateNewUserAsync(Telerik.Windows.Cloud.ICloudUser)">
-            <summary>
-            Creates a new user.
-            </summary>
-        </member>
-        <member name="M:Telerik.Windows.Cloud.EverliveProvider.UpdateExistingUserAsync(Telerik.Windows.Cloud.ICloudUser)">
-            <summary>
-            Updates the existing user.
-            </summary>
-        </member>
-        <member name="M:Telerik.Windows.Cloud.EverliveProvider.GetItemsAsync``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
-            <summary>
-            Gets all items that meet the provided filtering rule.
-            </summary>
-        </member>
-        <member name="M:Telerik.Windows.Cloud.EverliveProvider.GetItemsByTypeAsync(System.Type)">
-            <summary>
-            Gets the items from the provided type.
-            </summary>
-        </member>
-        <member name="M:Telerik.Windows.Cloud.EverliveProvider.CreateDataItemAsync(Telerik.Windows.Cloud.ICloudDataItem)">
-            <summary>
-            Saves the specified new data item to the cloud storage.
-            </summary>
-        </member>
-        <member name="M:Telerik.Windows.Cloud.EverliveProvider.UpdateDataItemAsync(Telerik.Windows.Cloud.ICloudDataItem)">
-            <summary>
-            Updates the specified data item to the cloud storage.
-            </summary>
-        </member>
-        <member name="M:Telerik.Windows.Cloud.EverliveProvider.DeleteDataItemAsync(Telerik.Windows.Cloud.ICloudDataItem)">
-            <summary>
-            Deletes the specified data item from the cloud storage.
-            </summary>
-        </member>
-        <member name="M:Telerik.Windows.Cloud.EverliveProvider.DeleteDataItemsAsync(System.Collections.Generic.IEnumerable{Telerik.Windows.Cloud.ICloudDataItem})">
-            <summary>
-            Deletes the specified data items from the cloud storage.
-            </summary>
-        </member>
-        <member name="M:Telerik.Windows.Cloud.EverliveProvider.LoadCurrentSettingsAsync">
-            <summary>
-            Loads the application settings saved by the currently logged user. 
-            If there are no settings saved by the currently logged user or if there is no user logged the default settings are loaded.
-            </summary>
-        </member>
-        <member name="M:Telerik.Windows.Cloud.EverliveProvider.LoadSettings(Telerik.Windows.Cloud.ICloudSettings)">
-            <summary>
-            Loads the provided application settings.
-            </summary>
-        </member>
-        <member name="M:Telerik.Windows.Cloud.EverliveProvider.SaveSettingsAsync(Telerik.Windows.Cloud.ICloudSettings)">
-            <summary>
-            Saves the provided application settings for the currently logged user.
-            </summary>
-        </member>
-        <member name="M:Telerik.Windows.Cloud.EverliveProvider.UploadFileAsync(System.String,System.IO.Stream)">
-            <summary>
-            Saves the provided stream as a file to the Cloud and returns the id of the item, if the item is uploaded successfully or Guid.Empty otherwise.
-            </summary>
-        </member>
-        <member name="M:Telerik.Windows.Cloud.EverliveProvider.DeleteFileAsync(System.Guid)">
-            <summary>
-            Deletes the file with the provided id.
-            </summary>
-        </member>
-        <member name="M:Telerik.Windows.Cloud.EverliveProvider.GetFileDownloadUrl(System.Guid)">
-            <summary>
-            Gets the download URL for the image with the provided id.
-            </summary>
-        </member>
-        <member name="M:Telerik.Windows.Cloud.EverliveProvider.SendDiagnosticsInfoToCloudAsync(System.Int32,System.String)">
-            <summary>
-            Sends the diagnostics info to cloud.
-            </summary>
-        </member>
-        <member name="M:Telerik.Windows.Cloud.EverliveProvider.SendFeedbackAsync(Telerik.Windows.Cloud.ICloudFeedbackItem)">
-            <summary>
-            Sends the provided feedback item.
-            </summary>
-        </member>
-        <member name="M:Telerik.Windows.Cloud.EverliveProvider.DeleteFeedbackItemsAsync(System.Collections.IEnumerable)">
-            <summary>
-            Marks the provided feedback items as deleted so they are no longed displayed to the user.
-            </summary>
-        </member>
-        <member name="M:Telerik.Windows.Cloud.EverliveProvider.GetFeedbackItemsAsync(System.Type,System.Boolean)">
-            <summary>
-            Gets the existing feedback.
-            </summary>
-        </member>
-        <member name="M:Telerik.Windows.Cloud.EverliveProvider.GetNewFeedbackMessagesCount(System.Type)">
-            <summary>
-            Gets the number of new feedback messages sent from the developer to the current user.
-            </summary>
-        </member>
-        <member name="M:Telerik.Windows.Cloud.EverliveProvider.GetFirstNotification(System.Type,System.Collections.Generic.List{System.Guid},System.Nullable{System.TimeSpan})">
-            <summary>
-            Gets the first notification that hasn't been seen yet.
-            </summary>
-        </member>
-        <member name="M:Telerik.Windows.Cloud.EverliveProvider.GetNotificationItemsAsync(System.Type,System.Nullable{System.TimeSpan},System.Nullable{System.Int32})">
-            <summary>
-            Gets all existing notifications.
-            </summary>
-        </member>
-        <member name="M:Telerik.Windows.Cloud.EverliveProvider.GetNewNotificationItemsCountAsync(System.Type,System.Collections.Generic.List{System.Guid},System.Nullable{System.TimeSpan},System.Nullable{System.Int32})">
-            <summary>
-            Gets the number of active notifications which haven’t been seen by the current user.
-            </summary>
-        </member>
-        <member name="P:Telerik.Windows.Cloud.EverliveProvider.Application">
-            <summary>
-            Gets the associated <see cref="T:Telerik.Everlive.Sdk.Core.EverliveApp"/> instance.
-            </summary>
-        </member>
-        <member name="P:Telerik.Windows.Cloud.EverliveProvider.NativeConnection">
-            <summary>
-            Gets a native connection to the cloud services used by this provider.
-            </summary>
-        </member>
-        <member name="P:Telerik.Windows.Cloud.EverliveProvider.IsLoggedIn">
-            <summary>
-            Gets a boolean value that determines whether there is a logged user
-            in the current <see cref="T:Telerik.Windows.Cloud.EverliveProvider"/>.
-            </summary>
-        </member>
-        <member name="P:Telerik.Windows.Cloud.EverliveProvider.CurrentUser">
-            <summary>
-            Gets the current user.
-            </summary>
-        </member>
-        <member name="P:Telerik.Windows.Cloud.EverliveProvider.UserType">
-            <summary>
-            Gets or sets an instance of the <see cref="T:System.Type"/> class
-            describing the custom type used to store user information.
-            </summary>
-        </member>
-        <member name="P:Telerik.Windows.Cloud.EverliveProvider.SettingsType">
-            <summary>
-            Gets or sets an instance of the <see cref="T:System.Type"/> class
-            describing the custom type used to store information about the application settings.
-            </summary>
-        </member>
-        <member name="P:Telerik.Windows.Cloud.EverliveProvider.PicturesType">
-            <summary>
-            Gets or sets an instance of the <see cref="T:System.Type"/> class
-            describing the custom type used to store picture information.
-            </summary>
-        </member>
-        <member name="P:Telerik.Windows.Cloud.EverliveProvider.CurrentSettings">
-            <summary>
-            Gets the currently loaded application settings.
-            </summary>
-        </member>
-        <member name="T:Telerik.Windows.Cloud.EverliveSettings">
-            <summary>
-            Represents a class used for the application settings used by the <see cref="T:Telerik.Windows.Cloud.EverliveProvider"/>.
-            </summary>
-        </member>
         <member name="T:Telerik.Windows.Cloud.ICloudSettings">
             <summary>
             An interface that should be implemented by the class that defines the type of settings that will be used in an application that implement the ICloudApp interface.
@@ -856,11 +684,6 @@
         <member name="P:Telerik.Windows.Cloud.ICloudSettings.CreatedBy">
             <summary>
             The Id of the user that created these settings.
-            </summary>
-        </member>
-        <member name="T:Telerik.Windows.Cloud.EverliveUser">
-            <summary>
-            Represents a class used for users in the <see cref="T:Telerik.Windows.Cloud.EverliveProvider"/>.
             </summary>
         </member>
         <member name="T:Telerik.Windows.Cloud.ICloudUser">
@@ -885,25 +708,28 @@
             </summary>
             <typeparam name="T">The type with which the corresponding <see cref="T:Telerik.Windows.Cloud.ICloudService`1"/> impelmentation works.</typeparam>
         </member>
-        <member name="M:Telerik.Windows.Cloud.ICloudService`1.CreateAsync(System.Collections.Generic.IEnumerable{`0})">
+        <member name="M:Telerik.Windows.Cloud.ICloudService`1.CreateAsync(System.Collections.Generic.IEnumerable{`0},Telerik.Windows.Cloud.SynchronizationProgress)">
             <summary>
             Creates the provided items on the server.
             </summary>
             <param name="items">An <see cref="T:System.Collections.Generic.IEnumerable`1"/> implementation containing the items.</param>
+            <param name="progress">An instance of the <see cref="T:Telerik.Windows.Cloud.SynchronizationProgress"/> class used to track the changes being performed on items during sync.</param>
         </member>
-        <member name="M:Telerik.Windows.Cloud.ICloudService`1.UpdateAsync(System.Collections.Generic.IEnumerable{`0})">
+        <member name="M:Telerik.Windows.Cloud.ICloudService`1.UpdateAsync(System.Collections.Generic.IEnumerable{`0},Telerik.Windows.Cloud.SynchronizationProgress)">
             <summary>
             Updates the server counterpart of each item in the <see cref="T:System.Collections.Generic.IEnumerable`1"/> with the values
             stored in the local object.
             </summary>
             <param name="items">The items to update.</param>
+            <param name="progress">An instance of the <see cref="T:Telerik.Windows.Cloud.SynchronizationProgress"/> class used to track the changes being performed on items during sync.</param>
         </member>
-        <member name="M:Telerik.Windows.Cloud.ICloudService`1.DeleteAsync(System.Collections.Generic.IEnumerable{`0})">
+        <member name="M:Telerik.Windows.Cloud.ICloudService`1.DeleteAsync(System.Collections.Generic.IEnumerable{`0},Telerik.Windows.Cloud.SynchronizationProgress)">
             <summary>
             Marks the provided items as deleted. These items will be permanently deleted upon
             the next <see cref="M:Telerik.Windows.Cloud.ISynchronizable.SynchronizeAsync"/> call.
             </summary>
             <param name="items">The items to mark as deleted.</param>
+            <param name="progress">An instance of the <see cref="T:Telerik.Windows.Cloud.SynchronizationProgress"/> class used to track the changes being performed on items during sync.</param>
         </member>
         <member name="M:Telerik.Windows.Cloud.ICloudService`1.GetItemAsync(System.Guid)">
             <summary>
@@ -963,86 +789,6 @@
             Resets the synchronization GUID that uniquely identifies the application
             that uses the synchronization infrastructure.
             </summary>
-        </member>
-        <member name="T:Telerik.Windows.Cloud.ILocalStorage`1">
-            <summary>
-            Defines the API used by the <see cref="T:Telerik.Windows.Cloud.ISynchronizationContext"/> to perform local storage operations.
-            </summary>
-            <typeparam name="T"></typeparam>
-        </member>
-        <member name="M:Telerik.Windows.Cloud.ILocalStorage`1.StoreAsync(System.Collections.Generic.IEnumerable{`0})">
-            <summary>
-            Stores a collection of <see cref="T:Telerik.Windows.Cloud.ISynchronizableCloudItem"/> implementations locally.
-            </summary>
-            <param name="items"></param>
-        </member>
-        <member name="M:Telerik.Windows.Cloud.ILocalStorage`1.UpdateAsync(System.Collections.Generic.IEnumerable{`0})">
-            <summary>
-            Updates a collection of <see cref="T:Telerik.Windows.Cloud.ISynchronizableCloudItem"/> implementations locally.
-            </summary>
-            <param name="items">The items to update.</param>
-        </member>
-        <member name="M:Telerik.Windows.Cloud.ILocalStorage`1.DeleteAsync(System.Collections.Generic.IEnumerable{`0})">
-            <summary>
-            Deletes the <see cref="T:Telerik.Windows.Cloud.ISynchronizableCloudItem"/> implementations provided in the collection from the local storage.
-            </summary>
-            <param name="items"></param>
-        </member>
-        <member name="M:Telerik.Windows.Cloud.ILocalStorage`1.GetAllItemsAsync">
-            <summary>
-            Retrieves all stored <see cref="T:Telerik.Windows.Cloud.ISynchronizableCloudItem"/> implementations from the local storage.
-            </summary>
-            <returns>The retrieved items.</returns>
-        </member>
-        <member name="M:Telerik.Windows.Cloud.ILocalStorage`1.GetAllItemsIDsAsync">
-            <summary>
-            Gets the IDs all stored <see cref="T:Telerik.Windows.Cloud.ISynchronizableCloudItem"/> implementations from the local storage.
-            </summary>
-        </member>
-        <member name="M:Telerik.Windows.Cloud.ILocalStorage`1.GetAllDeletedItemsAsync">
-            <summary>
-            Retrieves all items that have been marked as deleted on the local storage.
-            </summary>
-        </member>
-        <member name="M:Telerik.Windows.Cloud.ILocalStorage`1.GetAllDeletedLocalOnlyItemsAsync">
-            <summary>
-            Retrieves all items that have been marked as deleted on the local storage and do not have server IDs.
-            </summary>
-        </member>
-        <member name="M:Telerik.Windows.Cloud.ILocalStorage`1.GetAllModifiedItemsAsync">
-            <summary>
-            Retrieves all items that have been modified, are stored locally and need to be updated on the server.
-            </summary>
-        </member>
-        <member name="M:Telerik.Windows.Cloud.ILocalStorage`1.GetLocalNewItemsAsync">
-            <summary>
-            Gets all local items that do not have server IDs and need to be created on the server.
-            </summary>
-        </member>
-        <member name="M:Telerik.Windows.Cloud.ILocalStorage`1.GetItemAsync(System.Guid)">
-            <summary>
-            Gets the item with the specified ID.
-            </summary>
-            <param name="id">The ID of the item.</param>
-        </member>
-        <member name="M:Telerik.Windows.Cloud.ILocalStorage`1.PurgeDataBase">
-            <summary>
-            Purges the contents of the table for the type.
-            </summary>
-        </member>
-        <member name="M:Telerik.Windows.Cloud.ILocalStorage`1.StoreLatestSyncDate(System.String,System.DateTime)">
-            <summary>
-            Stores the date on which the latest successful synchronization has been performed.
-            </summary>
-            <param name="contentTypeId">The identifier for the type being synchronized.</param>
-            <param name="date">An instance of the <see cref="T:System.DateTime"/> struct
-            representing the date.</param>
-        </member>
-        <member name="M:Telerik.Windows.Cloud.ILocalStorage`1.GetLatestSyncDate(System.String)">
-            <summary>
-            Gets the latest date on which a successful synchronization has been performed.
-            </summary>
-            <param name="contentTypeId">The identifier for the type being synchronized.</param>
         </member>
         <member name="T:Telerik.Windows.Cloud.ISynchronizable">
             <summary>
@@ -1338,14 +1084,14 @@
             describing the performed actions on the item.
             </summary>
         </member>
-        <member name="M:Telerik.Windows.Cloud.ReflectionHelper.SyncObjectProperyValues(System.Object,System.Object,System.Boolean)">
+        <member name="M:Telerik.Windows.Cloud.ReflectionHelper.SyncObjectProperyValues(System.Object,System.Object,System.Func{System.Reflection.PropertyInfo,System.Boolean})">
             <summary>
             Synchronizes the property values of target object with the source object if
             there are any differences.
             </summary>
             <param name="source">The object from which to take the property values.</param>
             <param name="target">The object which is synchronized with the source property values.</param>
-            <param name="includeDataItemProperties">Defines whether properties defined by the DataItem type are included into the iteration.</param>
+            <param name="shouldIgnoreProperty">A callback which defines whether a property should be considered when synchronizing values.</param>
         </member>
         <member name="T:Telerik.Windows.Core.Cloud.Synchronization.ReflectionHelperIgnoreAttribute">
             <summary>
@@ -1470,6 +1216,11 @@
             <summary>
             Gets or sets a value from the <see cref="T:Telerik.Windows.Cloud.CollisionResolutionMode"/> enum
             defining the way data collisions are resolved.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Cloud.SynchronizationContext`1.LocalDatabase">
+            <summary>
+            Gets an <see cref="T:System.Linq.IQueryable`1"/> implementatino that gives access to the locally stored objects.
             </summary>
         </member>
         <member name="P:Telerik.Windows.Cloud.SynchronizationContext`1.View">
@@ -1751,6 +1502,27 @@
         <member name="F:Telerik.Windows.Cloud.SynchronizationState.Deleted">
             <summary>
             Item has been deleted on the server.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Cloud.SynchronizationSettings">
+            <summary>
+            Contains the settings for a <see cref="T:Telerik.Windows.Cloud.SynchronizationContext`1"/> instance.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Cloud.SynchronizationSettings.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Windows.Cloud.SynchronizationSettings"/> class.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Cloud.SynchronizationSettings.LocalDatabaseName">
+            <summary>
+            Gets or sets the name of the local database where the synchronized objects are stored.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Cloud.SynchronizationSettings.ResolutionMode">
+            <summary>
+            Gets or sets a value from the <see cref="T:Telerik.Windows.Cloud.CollisionResolutionMode"/> enum
+            which determines how synchronization collisions will be resolved.
             </summary>
         </member>
         <member name="T:Telerik.Windows.Cloud.TaskToExecute">

@@ -681,6 +681,110 @@
             Gets or sets a the height that will be applied to the animation target during this animation.
             </summary>
         </member>
+        <member name="T:Telerik.Windows.Controls.RadScaleMoveAndFadeAnimation">
+            <summary>
+            Provides a pre-defined move, scale and fade animation.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.RadAnimationGroup">
+            <summary>
+            Represents composite animation, used for declaratively creating composite animations.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadAnimationGroup.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Windows.Controls.RadAnimationGroup"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadAnimationGroup.CreateOpposite">
+            <summary>
+            Creates a new instance of this animation that is the reverse of this instance.
+            </summary>
+            <returns>A new instance of this animation that is the reverse of this instance.</returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadAnimationGroup.ClearAnimation(System.Windows.UIElement)">
+            <summary>
+            Removes any property modifications, applied to the specified element by this instance.
+            </summary>
+            <param name="target">The element which property values are to be cleared.</param>
+            <remarks>
+            It is assumed that the element has been previously animated by this animation.
+            </remarks>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadAnimationGroup.ApplyInitialValues(System.Windows.UIElement)">
+            <summary>
+            Sets the initial animation values to the provided target element.
+            </summary>
+            <param name="target"></param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadAnimationGroup.ApplyAnimationValues(Telerik.Windows.Controls.Animation.PlayAnimationInfo)">
+            <summary>
+            Applies already stored (if any) animated values.
+            </summary>
+            <param name="info"></param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadAnimationGroup.CloneCore">
+            <summary>
+            Creates a clone animation of this instance.
+            </summary>
+            <returns>Returns a clone of this animation.</returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadAnimationGroup.CreateStoryboardOverride(System.Windows.UIElement)">
+            <summary>
+            Core create routine.
+            </summary>
+            <param name="target">The targeted element of the animation.</param>
+            <returns>The newly created animation.</returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadAnimationGroup.UpdateAnimationOverride(Telerik.Windows.Controls.Animation.AnimationContext)">
+            <summary>
+            Core update routine.
+            </summary>
+            <param name="context">The context that holds information about the animation.</param>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadAnimationGroup.Children">
+            <summary>
+            Gets a list of the children animation objects of this composite animation.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadScaleMoveAndFadeAnimation.#ctor">
+            <summary>
+            Initializes a new instance of the ScaleMoveAndFadeAnimation class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadScaleMoveAndFadeAnimation.CreateMoveAnimation">
+            <summary>
+            Called in the constructor to create the default move animation.
+            </summary>
+            <returns>Returns a new instance of RadMoveAnimation.</returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadScaleMoveAndFadeAnimation.CreateScaleAnimation">
+            <summary>
+            Called in the constructor to create the default scale animation.
+            </summary>
+            <returns>Returns a new instance of RadScaleAnimation.</returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadScaleMoveAndFadeAnimation.CreateFadeAnimation">
+            <summary>
+            Called in the constructor to create the default fade animation.
+            </summary>
+            <returns>Returns a new instance of RadFadeAnimation.</returns>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadScaleMoveAndFadeAnimation.ScaleAnimation">
+            <summary>
+            Gets the scale animation in this group.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadScaleMoveAndFadeAnimation.MoveAnimation">
+            <summary>
+            Gets the move animation in this group.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadScaleMoveAndFadeAnimation.FadeAnimation">
+            <summary>
+            Gets the fade animation in this group.
+            </summary>
+        </member>
         <member name="T:Telerik.Windows.Controls.RadScaleYAnimation">
             <summary>
             This animation animates an element only on its Y axis.
@@ -1053,67 +1157,6 @@
         <member name="T:Telerik.Windows.Controls.RadMoveAndFadeAnimation">
             <summary>
             Provides a pre-defined move and fade animation group.
-            </summary>
-        </member>
-        <member name="T:Telerik.Windows.Controls.RadAnimationGroup">
-            <summary>
-            Represents composite animation, used for declaratively creating composite animations.
-            </summary>
-        </member>
-        <member name="M:Telerik.Windows.Controls.RadAnimationGroup.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:Telerik.Windows.Controls.RadAnimationGroup"/> class.
-            </summary>
-        </member>
-        <member name="M:Telerik.Windows.Controls.RadAnimationGroup.CreateOpposite">
-            <summary>
-            Creates a new instance of this animation that is the reverse of this instance.
-            </summary>
-            <returns>A new instance of this animation that is the reverse of this instance.</returns>
-        </member>
-        <member name="M:Telerik.Windows.Controls.RadAnimationGroup.ClearAnimation(System.Windows.UIElement)">
-            <summary>
-            Removes any property modifications, applied to the specified element by this instance.
-            </summary>
-            <param name="target">The element which property values are to be cleared.</param>
-            <remarks>
-            It is assumed that the element has been previously animated by this animation.
-            </remarks>
-        </member>
-        <member name="M:Telerik.Windows.Controls.RadAnimationGroup.ApplyInitialValues(System.Windows.UIElement)">
-            <summary>
-            Sets the initial animation values to the provided target element.
-            </summary>
-            <param name="target"></param>
-        </member>
-        <member name="M:Telerik.Windows.Controls.RadAnimationGroup.ApplyAnimationValues(Telerik.Windows.Controls.Animation.PlayAnimationInfo)">
-            <summary>
-            Applies already stored (if any) animated values.
-            </summary>
-            <param name="info"></param>
-        </member>
-        <member name="M:Telerik.Windows.Controls.RadAnimationGroup.CloneCore">
-            <summary>
-            Creates a clone animation of this instance.
-            </summary>
-            <returns>Returns a clone of this animation.</returns>
-        </member>
-        <member name="M:Telerik.Windows.Controls.RadAnimationGroup.CreateStoryboardOverride(System.Windows.UIElement)">
-            <summary>
-            Core create routine.
-            </summary>
-            <param name="target">The targeted element of the animation.</param>
-            <returns>The newly created animation.</returns>
-        </member>
-        <member name="M:Telerik.Windows.Controls.RadAnimationGroup.UpdateAnimationOverride(Telerik.Windows.Controls.Animation.AnimationContext)">
-            <summary>
-            Core update routine.
-            </summary>
-            <param name="context">The context that holds information about the animation.</param>
-        </member>
-        <member name="P:Telerik.Windows.Controls.RadAnimationGroup.Children">
-            <summary>
-            Gets a list of the children animation objects of this composite animation.
             </summary>
         </member>
         <member name="M:Telerik.Windows.Controls.RadMoveAndFadeAnimation.#ctor">
@@ -1966,6 +2009,105 @@
             Since the target is a weak reference it can be garbage collected before we
             get its hash code for resource cleanup. See AnimationManager.RemoveAnimationInfo().
             </remarks>
+        </member>
+        <member name="T:Telerik.Windows.Controls.AppointmentSource">
+            <summary>
+            Defines basic logic for retrieving a collection of IAppointment objects.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.AppointmentSource.GetAppointments(System.Func{Telerik.Windows.Controls.IAppointment,System.Boolean})">
+            <summary>
+            Creates a collection of IAppointment objects based on an appointment predicate.
+            </summary>
+            <param name="appointmentFilter">A predicate that determines which appointments will be present in the resulting collection.</param>
+            <returns>Returns a collection of IAppointment objects.</returns>
+            <remarks>
+            Inheritors must populate the AllAppointments list, otherwise this method will always return an empty collection.
+            </remarks>
+        </member>
+        <member name="M:Telerik.Windows.Controls.AppointmentSource.FetchData(System.DateTime,System.DateTime)">
+            <summary>
+            An abstract method that inheritors must implement in order to
+            fetch new appointments from the native appointment source.
+            </summary>
+            <param name="startDate">The start date for the new appointments.</param>
+            <param name="endDate">The end date for the new appointments.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.AppointmentSource.OnDataLoaded">
+            <summary>
+            A method that must be called after the FetchData operation is finished.
+            </summary>
+        </member>
+        <member name="E:Telerik.Windows.Controls.AppointmentSource.DataLoaded">
+            <summary>
+            Occurs when appointment data has been loaded.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.AppointmentSource.AllAppointments">
+            <summary>
+            Gets a list of all the appointments from the real data source wrapped in IAppointment objects.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.DateTimeAppointment">
+            <summary>
+            A base Appointment class that implements IAppointment.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.IAppointment">
+            <summary>
+            An interface that defines the minimum properties that an appointment can have.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.IAppointment.StartDate">
+            <summary>
+            Gets the start date of the appointment.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.IAppointment.EndDate">
+            <summary>
+            Gets the end date of the appointment.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.IAppointment.Subject">
+            <summary>
+            Gets or sets the subject.
+            </summary>
+            <value>The subject.</value>
+        </member>
+        <member name="M:Telerik.Windows.Controls.DateTimeAppointment.#ctor(System.DateTime,System.DateTime)">
+            <summary>
+            Initializes a new instance of the DateTimeAppointment class.
+            </summary>
+            <param name="start">The start date of the appointment.</param>
+            <param name="end">The end date of the appointment.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.DateTimeAppointment.#ctor(System.DateTime,System.DateTime,System.String)">
+            <summary>
+            Initializes a new instance of the DateTimeAppointment class.
+            </summary>
+            <param name="start">The start date of the appointment.</param>
+            <param name="end">The end date of the appointment.</param>
+            <param name="description">The appointment description.</param>
+        </member>
+        <member name="P:Telerik.Windows.Controls.DateTimeAppointment.StartDate">
+            <summary>
+            Gets the start date of this appointment.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.DateTimeAppointment.EndDate">
+            <summary>
+            Gets the end date of this appointment.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.DateTimeAppointment.Description">
+            <summary>
+            Gets the description of this appointment.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.DateTimeAppointment.Subject">
+            <summary>
+            Gets the description of this appointment.
+            </summary>
         </member>
         <member name="T:Telerik.Windows.Controls.ApplicationUsageHelper">
             <summary>
@@ -4131,6 +4273,16 @@
             </summary>
             <param name="element">The element to start from.</param>
             <returns>True if all the ancestors are hit-test visible, false otherwise.</returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.ElementTreeHelper.TransformRectForFlowDirection(System.Windows.Rect,System.Windows.FlowDirection)">
+            <summary>
+            Transforms a rectangle according to the provided float direction. Since a <see cref="T:System.Windows.Rect"/>
+            struct has its origin always at the top left point, to make a <see cref="T:System.Windows.Rect"/> usable
+            in a RightToLeft scenario we need to offset its X coordinate with its width.
+            </summary>
+            <param name="source">The source rectangle to transform.</param>
+            <param name="direction">The flow direction to transform against.</param>
+            <returns>The transformed rectangle.</returns>
         </member>
         <member name="T:Telerik.Windows.Controls.WeakReferenceList`1">
             <summary>

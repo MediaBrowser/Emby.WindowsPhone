@@ -3384,6 +3384,14 @@
             Fires when the <see cref="P:Telerik.Windows.Controls.RadExpanderControl.IsExpanded"/> property is has changed.
             </summary>
         </member>
+        <member name="P:Telerik.Windows.Controls.RadExpanderControl.UseOptimizedMeasure">
+            <summary>
+            Gets or sets a boolean value which determines whether the expandable content is measured
+            only when the control is being expanded or at the initial layout pass for the whole control. When
+            an optimized measure pass is used, some delays in the expansion may occur depending on the complexity of 
+            the expandable content's template.
+            </summary>
+        </member>
         <member name="P:Telerik.Windows.Controls.RadExpanderControl.IsExpanded">
             <summary>
             Gets or sets a boolean value determining whether the expandable content is visible or not.
@@ -4580,32 +4588,25 @@
             <summary>
             Provides information when RadInputPrompt is closed.
             The information consists of the input of the prompt, the result of it - OK or Cancel,
-            the button that was clicked and if the checkbox in the message box is checked.
+            the button that was clicked and if the checkbox in the input prompt is checked.
             </summary>
         </member>
-        <member name="T:Telerik.Windows.Controls.MessageBoxClosedEventArgs">
-            <summary>
-            Provides information when RadMessageBox is closed.
-            The information consists of the result of the message box - OK or Cancel.
-            Also provided are the button that was clicked and if the checkbox in the message box is checked.
-            </summary>
-        </member>
-        <member name="P:Telerik.Windows.Controls.MessageBoxClosedEventArgs.ClickedButton">
+        <member name="P:Telerik.Windows.Controls.InputPromptClosedEventArgs.ClickedButton">
             <summary>
             Gets the button that was clicked. This property can return null if the message box is closed when the user presses the device back button.
             </summary>
         </member>
-        <member name="P:Telerik.Windows.Controls.MessageBoxClosedEventArgs.IsCheckBoxChecked">
+        <member name="P:Telerik.Windows.Controls.InputPromptClosedEventArgs.IsCheckBoxChecked">
             <summary>
             Gets a value indicating whether the checkbox in the message box is checked.
             </summary>
         </member>
-        <member name="P:Telerik.Windows.Controls.MessageBoxClosedEventArgs.Result">
+        <member name="P:Telerik.Windows.Controls.InputPromptClosedEventArgs.Result">
             <summary>
             Gets the result from the message box.
             </summary>
         </member>
-        <member name="P:Telerik.Windows.Controls.MessageBoxClosedEventArgs.ButtonIndex">
+        <member name="P:Telerik.Windows.Controls.InputPromptClosedEventArgs.ButtonIndex">
             <summary>
             Gets the index of the button in the button's parent Children collection.
             </summary>
@@ -7545,6 +7546,11 @@
             Fires the <see cref="E:Telerik.Windows.Controls.RadSlideView.RefreshRequested"/> event.
             </summary>
         </member>
+        <member name="M:Telerik.Windows.Controls.RadSlideView.OnSlideViewStateChanged(Telerik.Windows.Controls.SlideViewState,Telerik.Windows.Controls.SlideViewState)">
+            <summary>
+            Fires the <see cref="E:Telerik.Windows.Controls.RadSlideView.SlideViewStateChanged"/> event.
+            </summary>
+        </member>
         <member name="E:Telerik.Windows.Controls.RadSlideView.SelectionChanged">
             <summary>
             Occurs when the <see cref="P:Telerik.Windows.Controls.RadSlideView.SelectedItem"/> property has changed.
@@ -7564,6 +7570,13 @@
             <summary>
             Fires when the user pulls down the scrollable list to refresh the data. This event will fire
             when the <see cref="P:Telerik.Windows.Controls.RadSlideView.IsPullToRefreshEnabled"/> property is set to true.
+            </summary>
+        </member>
+        <member name="E:Telerik.Windows.Controls.RadSlideView.SlideViewStateChanged">
+            <summary>
+            Fires when <see cref="T:Telerik.Windows.Controls.RadSlideView"/> changes. 
+            When the control's ItemTemplate contains <see cref="T:Telerik.Windows.Controls.SlideView.PanAndZoomImage"/> it can go to PanAndZoom state. 
+            When the control's <see cref="P:Telerik.Windows.Controls.RadSlideView.IsFilmstripModeEnabled"/> is set to true, it can go to Filmstrip state.
             </summary>
         </member>
         <member name="P:Telerik.Windows.Controls.RadSlideView.AdjacentItemsPreviewMode">
@@ -7688,6 +7701,48 @@
             <value>
             	<c>True</c> if this instance is properly templated; otherwise, <c>false</c>.
             </value>
+        </member>
+        <member name="T:Telerik.Windows.Controls.SlideViewState">
+            <summary>
+            Defines possible states of <see cref="T:Telerik.Windows.Controls.RadSlideView"/>.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.SlideViewState.Standard">
+            <summary>
+            The standard state that the control has when its loaded.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.SlideViewState.PanAndZoom">
+            <summary>
+            The pan and zoom state which occurs when an image is zoomed in.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.SlideViewState.Filmstrip">
+            <summary>
+            The filmstrip state which occurs when an image that is fully displayed is zoomed further out.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.SlideViewStateChangedArgs">
+            <summary>
+            Event arguments for the SlideViewStateChanged event in <see cref="T:Telerik.Windows.Controls.RadSlideView"/>.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.SlideViewStateChangedArgs.#ctor(Telerik.Windows.Controls.SlideViewState,Telerik.Windows.Controls.SlideViewState)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Windows.Controls.SlideViewStateChangedArgs"/> class.
+            </summary>
+            <param name="oldState">The old state.</param>
+            <param name="newState">The new state.</param>
+        </member>
+        <member name="P:Telerik.Windows.Controls.SlideViewStateChangedArgs.OldState">
+            <summary>
+            Gets the old state.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.SlideViewStateChangedArgs.NewState">
+            <summary>
+            Gets the new state.
+            </summary>
         </member>
         <member name="T:Telerik.Windows.Controls.SlideView.ZoomableListBox">
             <summary>
@@ -8031,6 +8086,65 @@
             This means that the check has passed and the text was found to be invalid.
             </summary>
         </member>
+        <member name="T:Telerik.Windows.Controls.RadZoomTransition">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Windows.Controls.RadZoomTransition"/> class.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.RadTransition">
+            <summary>
+            Specifies the transition that will be used when changing content.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadTransition.ForwardInAnimation">
+            <summary>
+            Animation that will be played when the content has been loaded, when going forward.
+            </summary>
+            /// <remarks>
+            If not specified the animation will be autogenerated as a clone of the ForwardOutAnimation.
+            </remarks>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadTransition.ForwardOutAnimation">
+            <summary>
+            Animation that will be played when the content has been unloaded, when going forward.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadTransition.BackwardInAnimation">
+            <summary>
+            Animation that will be played when the content has been loaded, when going backward.
+            </summary>
+            <remarks>
+            If not specified the animation will be autogenerated as opposite to the ForwardOutAnimation.
+            </remarks>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadTransition.BackwardOutAnimation">
+            <summary>
+            Animation that will be played when the content has been loaded, when going forward.
+            </summary>
+            <remarks>
+            If not specified the animation will be autogenerated as opposite to the ForwardInAnimation.
+            </remarks>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadTransition.PlayMode">
+            <summary>
+            Gets or sets the play mode to be used when playing content animations.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadZoomTransition.ZoomPointProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.RadZoomTransition.ZoomPoint"/> dependency property.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadZoomTransition.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Windows.Controls.RadZoomTransition"/> class.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadZoomTransition.ZoomPoint">
+            <summary>
+            Gets or sets the point that will be zoomed to or zoomed out of.
+            </summary>
+        </member>
         <member name="T:Telerik.Windows.Controls.CollectionChangeItemReorderMode">
             <summary>
             Lists the possible item reordering directions when
@@ -8046,6 +8160,96 @@
             <summary>
             Moves the affected items up to make space for the new item.
             </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.VirtualizationStrategy">
+            <summary>
+            Represents a base class for all virtualization strategies supported by
+            <see cref="T:Telerik.Windows.Controls.RadVirtualizingDataControl"/>.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.VirtualizationStrategy.Orientation">
+            <summary>
+            Gets an instance of the <see cref="P:Telerik.Windows.Controls.VirtualizationStrategy.Orientation"/> enum
+            that represents the stack.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.VirtualizationStrategy.LayoutOrientation">
+            <summary>
+            This property returns a value from the Orientation enumeration
+            that represents the direction in which containers are virtualized.
+            In the case of the Wrap Strategy Horizontal orientaiton means Vertical layout orientation.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.DynamicGridVirtualizationStrategyDefinition">
+            <summary>
+            Represents a UI virtualization strategy definition for a <see cref="T:Telerik.Windows.Controls.DynamicGridVirtualizationStrategy"/> instance.
+            This virtualizatino strategy orders the visual items in a wrapped grid in which each wrapped item is exactly below or next to its stack predecessor.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.VirtualizationStrategyDefinition">
+            <summary>
+            Represents a base class for a definition of a UI virtualization strategy for <see cref="T:Telerik.Windows.Controls.RadDataBoundListBox"/>.
+            A UI virtualization strategy definition is a set of properties describing the configuration of a UI strategy. A definition
+            exposes an API to create an actual UI strategy based on the values set to these properties.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.VirtualizationStrategyDefinition.SynchStrategyProperties(Telerik.Windows.Controls.VirtualizationStrategy)">
+            <summary>
+            Synchronizes the properties of the provided <see cref="T:Telerik.Windows.Controls.VirtualizationStrategy"/> instance
+            with the current definition.
+            </summary>
+            <param name="strategy">The <see cref="T:Telerik.Windows.Controls.VirtualizationStrategy"/> instance which property values will
+            be synchronized with the ones defined by this <see cref="T:Telerik.Windows.Controls.VirtualizationStrategyDefinition"/> instance.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.VirtualizationStrategyDefinition.CreateStrategy">
+            <summary>
+            Creates an actual <see cref="T:Telerik.Windows.Controls.VirtualizationStrategy"/> instance
+            based on the properties defined on this <see cref="T:Telerik.Windows.Controls.VirtualizationStrategyDefinition"/> instance.
+            </summary>
+            <returns>An instance of the <see cref="T:Telerik.Windows.Controls.VirtualizationStrategy"/> class that
+            represents the UI virtualization strategy.</returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.VirtualizationStrategyDefinition.OnPropertyChanged(System.String)">
+            <summary>
+            Called when a property of this instance changes. Fires the <see cref="E:Telerik.Windows.Controls.VirtualizationStrategyDefinition.PropertyChanged"/> event.
+            </summary>
+            <param name="propertyName">Name of the property.</param>
+        </member>
+        <member name="E:Telerik.Windows.Controls.VirtualizationStrategyDefinition.PropertyChanged">
+            <summary>
+            Fired when a property of this instance changes.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.VirtualizationStrategyDefinition.Orientation">
+            <summary>
+            Gets or sets the orientation that the UI virtualization mechanism will use to order visual items.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.DynamicGridVirtualizationStrategyDefinition.SynchStrategyProperties(Telerik.Windows.Controls.VirtualizationStrategy)">
+            <summary>
+            Synchronizes the properties of the provided <see cref="T:Telerik.Windows.Controls.VirtualizationStrategy"/> instance
+            with the current definition.
+            </summary>
+            <param name="strategy">The <see cref="T:Telerik.Windows.Controls.VirtualizationStrategy"/> instance which property values will
+            be synchronized with the ones defined by this <see cref="T:Telerik.Windows.Controls.VirtualizationStrategyDefinition"/> instance.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.DynamicGridVirtualizationStrategyDefinition.CreateStrategy">
+            <summary>
+            Creates an actual <see cref="T:Telerik.Windows.Controls.VirtualizationStrategy"/> instance
+            based on the properties defined on this <see cref="T:Telerik.Windows.Controls.VirtualizationStrategyDefinition"/> instance.
+            </summary>
+            <returns>
+            An instance of the <see cref="T:Telerik.Windows.Controls.VirtualizationStrategy"/> class that
+            represents the UI virtualization strategy.
+            </returns>
+        </member>
+        <member name="P:Telerik.Windows.Controls.DynamicGridVirtualizationStrategyDefinition.StackCount">
+            <summary>
+            Gets or sets the item extent.
+            </summary>
+            <value>
+            The item extent.
+            </value>
         </member>
         <member name="T:Telerik.Windows.Controls.WindowOpenFailedEventArgs">
             <summary>
@@ -10434,6 +10638,36 @@
             Show Yes and No buttons.
             </summary>
         </member>
+        <member name="T:Telerik.Windows.Controls.MessageBoxClosedEventArgs">
+            <summary>
+            Provides information when RadMessageBox is closed.
+            The information consists of the result of the message box - OK or Cancel.
+            Also provided are the button that was clicked and if the checkbox in the message box is checked.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.MessageBoxClosedEventArgs.ClickedButton">
+            <summary>
+            Gets the button that was clicked. This property can return null if the message box is closed when the user presses the device back button.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.MessageBoxClosedEventArgs.IsCheckBoxChecked">
+            <summary>
+            Gets a value indicating whether the checkbox in the message box is checked.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.MessageBoxClosedEventArgs.Result">
+            <summary>
+            Gets the result from the message box.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.MessageBoxClosedEventArgs.ButtonIndex">
+            <summary>
+            Gets the index of the button in the button's parent Children collection.
+            </summary>
+            <remarks>
+            If the parent is not a panel or if ClickedButton is null, -1 is returned.
+            </remarks>
+        </member>
         <member name="T:Telerik.Windows.Controls.Dock">
             <summary>
             Specifies the Dock position of a child element that is inside a DockPanel.
@@ -11977,45 +12211,6 @@
             
             </summary>
         </member>
-        <member name="T:Telerik.Windows.Controls.RadTransition">
-            <summary>
-            Specifies the transition that will be used when changing content.
-            </summary>
-        </member>
-        <member name="P:Telerik.Windows.Controls.RadTransition.ForwardInAnimation">
-            <summary>
-            Animation that will be played when the content has been loaded, when going forward.
-            </summary>
-            /// <remarks>
-            If not specified the animation will be autogenerated as a clone of the ForwardOutAnimation.
-            </remarks>
-        </member>
-        <member name="P:Telerik.Windows.Controls.RadTransition.ForwardOutAnimation">
-            <summary>
-            Animation that will be played when the content has been unloaded, when going forward.
-            </summary>
-        </member>
-        <member name="P:Telerik.Windows.Controls.RadTransition.BackwardInAnimation">
-            <summary>
-            Animation that will be played when the content has been loaded, when going backward.
-            </summary>
-            <remarks>
-            If not specified the animation will be autogenerated as opposite to the ForwardOutAnimation.
-            </remarks>
-        </member>
-        <member name="P:Telerik.Windows.Controls.RadTransition.BackwardOutAnimation">
-            <summary>
-            Animation that will be played when the content has been loaded, when going forward.
-            </summary>
-            <remarks>
-            If not specified the animation will be autogenerated as opposite to the ForwardInAnimation.
-            </remarks>
-        </member>
-        <member name="P:Telerik.Windows.Controls.RadTransition.PlayMode">
-            <summary>
-            Gets or sets the play mode to be used when playing content animations.
-            </summary>
-        </member>
         <member name="M:Telerik.Windows.Controls.RadEmptyTransition.#ctor">
             <summary>
             Initializes a new instance of the <see cref="T:Telerik.Windows.Controls.RadEmptyTransition"/> class.
@@ -12860,67 +13055,9 @@
             Supports vertical and horizontal stack orientation.
             </summary>
         </member>
-        <member name="T:Telerik.Windows.Controls.VirtualizationStrategy">
-            <summary>
-            Represents a base class for all virtualization strategies supported by
-            <see cref="T:Telerik.Windows.Controls.RadVirtualizingDataControl"/>.
-            </summary>
-        </member>
-        <member name="P:Telerik.Windows.Controls.VirtualizationStrategy.Orientation">
-            <summary>
-            Gets an instance of the <see cref="P:Telerik.Windows.Controls.VirtualizationStrategy.Orientation"/> enum
-            that represents the stack.
-            </summary>
-        </member>
-        <member name="P:Telerik.Windows.Controls.VirtualizationStrategy.LayoutOrientation">
-            <summary>
-            This property returns a value from the Orientation enumeration
-            that represents the direction in which containers are virtualized.
-            In the case of the Wrap Strategy Horizontal orientaiton means Vertical layout orientation.
-            </summary>
-        </member>
         <member name="T:Telerik.Windows.Controls.StackVirtualizationStrategyDefinition">
             <summary>
             Represents a UI virtualization strategy definition for a <see cref="T:Telerik.Windows.Controls.StackVirtualizationStrategy"/> instance.
-            </summary>
-        </member>
-        <member name="T:Telerik.Windows.Controls.VirtualizationStrategyDefinition">
-            <summary>
-            Represents a base class for a definition of a UI virtualization strategy for <see cref="T:Telerik.Windows.Controls.RadDataBoundListBox"/>.
-            A UI virtualization strategy definition is a set of properties describing the configuration of a UI strategy. A definition
-            exposes an API to create an actual UI strategy based on the values set to these properties.
-            </summary>
-        </member>
-        <member name="M:Telerik.Windows.Controls.VirtualizationStrategyDefinition.SynchStrategyProperties(Telerik.Windows.Controls.VirtualizationStrategy)">
-            <summary>
-            Synchronizes the properties of the provided <see cref="T:Telerik.Windows.Controls.VirtualizationStrategy"/> instance
-            with the current definition.
-            </summary>
-            <param name="strategy">The <see cref="T:Telerik.Windows.Controls.VirtualizationStrategy"/> instance which property values will
-            be synchronized with the ones defined by this <see cref="T:Telerik.Windows.Controls.VirtualizationStrategyDefinition"/> instance.</param>
-        </member>
-        <member name="M:Telerik.Windows.Controls.VirtualizationStrategyDefinition.CreateStrategy">
-            <summary>
-            Creates an actual <see cref="T:Telerik.Windows.Controls.VirtualizationStrategy"/> instance
-            based on the properties defined on this <see cref="T:Telerik.Windows.Controls.VirtualizationStrategyDefinition"/> instance.
-            </summary>
-            <returns>An instance of the <see cref="T:Telerik.Windows.Controls.VirtualizationStrategy"/> class that
-            represents the UI virtualization strategy.</returns>
-        </member>
-        <member name="M:Telerik.Windows.Controls.VirtualizationStrategyDefinition.OnPropertyChanged(System.String)">
-            <summary>
-            Called when a property of this instance changes. Fires the <see cref="E:Telerik.Windows.Controls.VirtualizationStrategyDefinition.PropertyChanged"/> event.
-            </summary>
-            <param name="propertyName">Name of the property.</param>
-        </member>
-        <member name="E:Telerik.Windows.Controls.VirtualizationStrategyDefinition.PropertyChanged">
-            <summary>
-            Fired when a property of this instance changes.
-            </summary>
-        </member>
-        <member name="P:Telerik.Windows.Controls.VirtualizationStrategyDefinition.Orientation">
-            <summary>
-            Gets or sets the orientation that the UI virtualization mechanism will use to order visual items.
             </summary>
         </member>
         <member name="M:Telerik.Windows.Controls.StackVirtualizationStrategyDefinition.CreateStrategy">
