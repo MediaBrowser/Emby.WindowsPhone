@@ -154,7 +154,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             PlayMovieCommand = new RelayCommand<BaseItemDto>(async item =>
             {
+#if WP8
                 await PlayVideo(item);
+#endif
             });
 
             ResumeMovieCommand = new RelayCommand<BaseItemDto>(async item =>

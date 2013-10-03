@@ -72,7 +72,8 @@
                     <cimbalino:ApplicationBarMenuItem Text="resume"
                                                       IsEnabled="{Binding SelectedMovie.CanResume}"
                                                       Command="{Binding Main.ResumeMovieCommand, Source={StaticResource Locator}}"
-                                                      CommandParameter="{Binding SelectedMovie}" />
+                                                      CommandParameter="{Binding SelectedMovie}"
+                                                      IsVisible="False"/>
                     <cimbalino:ApplicationBarMenuItem Text="play on..."
                                                       Command="{Binding Remote.SendPlayCommand, Source={StaticResource Locator}}"
                                                       CommandParameter="{Binding SelectedMovie.Id}" />
@@ -103,7 +104,8 @@
                         <c4F:RoundButton ImageSource="/Icons/appbar.transport.play.rest.png"
                                          IsHitTestVisible="False"
                                          HorizontalAlignment="Center"
-                                         VerticalAlignment="Center" />
+                                         VerticalAlignment="Center"
+                                         Visibility="Collapsed"/>
                     </Grid>
                 </Button>
             </controls:PanoramaItem>

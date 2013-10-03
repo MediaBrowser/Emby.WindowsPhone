@@ -73,7 +73,8 @@
                     <cimbalino:ApplicationBarMenuItem Text="resume"
                                                       IsEnabled="{Binding SelectedEpisode.CanResume}"
                                                       Command="{Binding Main.ResumeMovieCommand, Source={StaticResource Locator}}"
-                                                      CommandParameter="{Binding SelectedEpisode}" />
+                                                      CommandParameter="{Binding SelectedEpisode}" 
+                                                      IsVisible="False"/>
                     <cimbalino:ApplicationBarMenuItem Text="play on..."
                                                       Command="{Binding Remote.SendPlayCommand, Source={StaticResource Locator}}"
                                                       CommandParameter="{Binding SelectedEpisode.Id}" />
@@ -115,7 +116,8 @@
                                         <controls1:RoundButton ImageSource="/Icons/appbar.transport.play.rest.png"
                                                                IsHitTestVisible="False"
                                                                HorizontalAlignment="Center"
-                                                               VerticalAlignment="Center" />
+                                                               VerticalAlignment="Center" 
+                                                               Visibility="Collapsed"/>
                                     </Grid>
                                 </Button>
                                 <TextBlock Text="{Binding Overview}"
