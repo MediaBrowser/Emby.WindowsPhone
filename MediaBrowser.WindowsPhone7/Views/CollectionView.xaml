@@ -68,6 +68,11 @@
         </i:Interaction.Behaviors>
         <controls3:Panorama Title="{Binding SelectedFolder.Name, Converter={StaticResource StringCaseConverter}}"
                             x:Name="ThePanorama">
+            <i:Interaction.Behaviors>
+                <behaviours:PanoramaBackgroundBehaviour Source="{Binding SelectedFolder, Converter={StaticResource ImageUrlConverter}, ConverterParameter=backdrop}"
+                                                        Stretch="UniformToFill"
+                                                        Opacity="0.2" />
+            </i:Interaction.Behaviors>
             <!--<phone:Panorama Title="movies">-->
             <controls3:PanoramaItem Header="recent">
                 <controls:PhoneListBox ItemsSource="{Binding RecentItems}"
@@ -92,9 +97,16 @@
                                     <Border VerticalAlignment="Bottom"
                                             Background="#C4000000"
                                             HorizontalAlignment="Stretch">
-                                        <TextBlock Text="{Binding Name, Converter={StaticResource StringCaseConverter}, ConverterParameter=false}"
-                                                   Style="{StaticResource PhoneTextLargeStyle}"
-                                                   HorizontalAlignment="Left" />
+                                        <Grid>
+                                            <Rectangle Fill="Transparent"
+                                                       HorizontalAlignment="Stretch"
+                                                       Height="1"
+                                                       Width="308" />
+                                            <TextBlock Text="{Binding Name, Converter={StaticResource StringCaseConverter}, ConverterParameter=false}"
+                                                       Style="{StaticResource PhoneTextLargeStyle}"
+                                                       HorizontalAlignment="Left" />
+                                        </Grid>
+
                                     </Border>
                                 </Grid>
                             </HyperlinkButton>

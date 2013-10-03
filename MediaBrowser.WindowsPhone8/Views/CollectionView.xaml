@@ -70,6 +70,11 @@
                         HeaderTemplate="{StaticResource LikeWp7ItemHeaderTemplate}"
                         TitleTemplate="{StaticResource LikeWp7TitleTemplate}"
                         x:Name="ThePanorama">
+            <i:Interaction.Behaviors>
+                <behaviours:PanoramaBackgroundBehaviour Source="{Binding SelectedFolder, Converter={StaticResource ImageUrlConverter}, ConverterParameter=backdrop}"
+                                                        Stretch="UniformToFill"
+                                                        Opacity="0.2" />
+            </i:Interaction.Behaviors>
             <!--<phone:Panorama Title="movies">-->
             <phone:PanoramaItem Header="recent">
                 <phone:LongListSelector ItemsSource="{Binding RecentItems}">
@@ -83,14 +88,22 @@
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
+                                    
                                     <Image Source="{Binding Converter={StaticResource ImageUrlConverter}, ConverterParameter=backdropsmall}"
                                            Stretch="UniformToFill" />
                                     <Border VerticalAlignment="Bottom"
                                             Background="#C4000000"
                                             HorizontalAlignment="Stretch">
-                                        <TextBlock Text="{Binding Name, Converter={StaticResource StringCaseConverter}, ConverterParameter=false}"
-                                                   Style="{StaticResource PhoneTextLargeStyle}"
-                                                   HorizontalAlignment="Left" />
+                                        <Grid>
+                                            <Rectangle Fill="Transparent"
+                                                       HorizontalAlignment="Stretch"
+                                                       Height="1"
+                                                       Width="308" />
+                                            <TextBlock Text="{Binding Name, Converter={StaticResource StringCaseConverter}, ConverterParameter=false}"
+                                                       Style="{StaticResource PhoneTextLargeStyle}"
+                                                       HorizontalAlignment="Left" />
+                                        </Grid>
+                                        
                                     </Border>
                                 </Grid>
                             </HyperlinkButton>

@@ -129,6 +129,7 @@
     <Compile Include="Behaviours\EnterKeyBehaviour.cs" />
     <Compile Include="Behaviours\MBSysTray.cs" />
     <Compile Include="Behaviours\OnTextPropertyChangedBehaviour.cs" />
+    <Compile Include="Behaviours\PanoramaBackgroundBehaviour.cs" />
     <Compile Include="Controls\DynamicTextBlock.cs" />
     <Compile Include="Controls\LockScreenCollage.xaml.cs">
       <DependentUpon>LockScreenCollage.xaml</DependentUpon>
@@ -186,6 +187,7 @@
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
     <Compile Include="Services\LockScreenService.cs" />
+    <Compile Include="Services\ReviewReminderService.cs" />
     <Compile Include="Services\TileService.cs" />
     <Compile Include="Services\TrialHelper.cs" />
     <Compile Include="SpecificSettings.cs" />
@@ -235,6 +237,9 @@
     </Compile>
     <Compile Include="Views\FindServerView.xaml.cs">
       <DependentUpon>FindServerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FirstRun\ConfigureView.xaml.cs">
+      <DependentUpon>ConfigureView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\FirstRun\WelcomeView.xaml.cs">
       <DependentUpon>WelcomeView.xaml</DependentUpon>
@@ -314,6 +319,7 @@
     <Content Include="Icons\appbar.refresh.rest.png" />
     <Content Include="Icons\searchbutton.png" />
     <Content Include="Images\3d.png" />
+    <Content Include="Images\FirstRun\WelcomeBackground.jpg" />
     <Content Include="Images\Remote\add.png" />
     <Content Include="Images\Remote\appbar.control.stop.png" />
     <Content Include="Images\Remote\appbar.navigate.next.png" />
@@ -412,6 +418,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\FindServerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FirstRun\ConfigureView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -610,13 +620,13 @@
     <Reference Include="JetBrains.Annotations">
       <HintPath>..\packages\JetBrains.Annotations.7.0\lib\sl4-wp71\JetBrains.Annotations.dll</HintPath>
     </Reference>
-    <Reference Include="MediaBrowser.ApiInteraction.Portable, Version=3.0.5017.21287, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="MediaBrowser.ApiInteraction.Portable, Version=3.0.5024.21503, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MediaBrowser.ApiClient.3.0.0.220\lib\portable-net45+sl4+wp71+win8\MediaBrowser.ApiInteraction.Portable.dll</HintPath>
+      <HintPath>..\packages\MediaBrowser.ApiClient.3.0.0.229\lib\portable-net45+sl4+wp71+win8\MediaBrowser.ApiInteraction.Portable.dll</HintPath>
     </Reference>
-    <Reference Include="MediaBrowser.Model, Version=3.0.5017.19982, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="MediaBrowser.Model, Version=3.0.5023.37142, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MediaBrowser.Common.3.0.209\lib\portable-net4+sl4+wp71+win8\MediaBrowser.Model.dll</HintPath>
+      <HintPath>..\packages\MediaBrowser.Common.3.0.217\lib\portable-net4+sl4+wp71+win8\MediaBrowser.Model.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Phone.Controls.Toolkit, Version=8.0.1.0, Culture=neutral, PublicKeyToken=b772ad94eb9ca604, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -647,9 +657,9 @@
       <HintPath>..\packages\PropertyChanged.Fody.1.41.0.0\Lib\portable-net4+sl4+wp7+win8+MonoAndroid16+MonoTouch40\PropertyChanged.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="protobuf-net, Version=2.0.0.666, Culture=neutral, PublicKeyToken=257b51d87d2e4d67, processorArchitecture=MSIL">
+    <Reference Include="protobuf-net, Version=2.0.0.668, Culture=neutral, PublicKeyToken=257b51d87d2e4d67, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\protobuf-net.2.0.0.666\lib\windowsphone8\protobuf-net.dll</HintPath>
+      <HintPath>..\packages\protobuf-net.2.0.0.668\lib\windowsphone8\protobuf-net.dll</HintPath>
     </Reference>
     <Reference Include="ScottIsAFool.WindowsPhone, Version=1.0.17.5, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -670,17 +680,14 @@
     <Reference Include="System.Windows.Interactivity, Version=3.9.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmLightLibs.4.1.27.1\lib\wp8\System.Windows.Interactivity.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Controls.Input, Version=2013.2.718.3040, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+    <Reference Include="Telerik.Windows.Controls.Input, Version=2013.3.1001.3040, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
       <HintPath>..\lib\RCWP\2013.2.718.3040\Telerik.Windows.Controls.Input.dll</HintPath>
-      <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.Windows.Controls.Primitives, Version=2013.2.718.3040, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+    <Reference Include="Telerik.Windows.Controls.Primitives, Version=2013.3.1001.3040, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
       <HintPath>..\lib\RCWP\2013.2.718.3040\Telerik.Windows.Controls.Primitives.dll</HintPath>
-      <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.Windows.Core, Version=2013.2.718.3040, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+    <Reference Include="Telerik.Windows.Core, Version=2013.3.1001.3040, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
       <HintPath>..\lib\RCWP\2013.2.718.3040\Telerik.Windows.Core.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="WebSocket4Net">
       <HintPath>..\packages\WebSocket4Net.0.8\lib\sl40-windowsphone71\WebSocket4Net.dll</HintPath>

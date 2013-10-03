@@ -60,6 +60,11 @@
           Background="{StaticResource MediaBrowserBackground}">
         <controls:Panorama Title="{Binding SelectedTvSeries.Name, Converter={StaticResource StringCaseConverter}}"
                            x:Name="MainPanorama">
+            <i:Interaction.Behaviors>
+                <behaviours:PanoramaBackgroundBehaviour Source="{Binding SelectedTvSeries, Converter={StaticResource ImageUrlConverter}, ConverterParameter=backdrop}"
+                                                        Stretch="UniformToFill"
+                                                        Opacity="0.2" />
+            </i:Interaction.Behaviors>
             <controls:PanoramaItem Header="seasons">
                 <Grid>
                     <scott:PhoneListBox ItemsSource="{Binding Seasons}"

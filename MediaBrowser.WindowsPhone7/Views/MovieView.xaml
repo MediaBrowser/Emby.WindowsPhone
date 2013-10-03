@@ -72,12 +72,21 @@
                     <cimbalino:ApplicationBarMenuItem Text="resume"
                                                       IsEnabled="{Binding SelectedMovie.CanResume}"
                                                       Command="{Binding Main.ResumeMovieCommand, Source={StaticResource Locator}}"
-                                                      CommandParameter="{Binding SelectedMovie}" />
+                                                      CommandParameter="{Binding SelectedMovie}"
+                                                      IsVisible="False"/>
+                    <cimbalino:ApplicationBarMenuItem Text="play on..."
+                                                      Command="{Binding Remote.SendPlayCommand, Source={StaticResource Locator}}"
+                                                      CommandParameter="{Binding SelectedMovie.Id}" />
                 </cimbalino:ApplicationBarBehavior.MenuItems>
             </cimbalino:ApplicationBarBehavior>
         </i:Interaction.Behaviors>
         <controls:Panorama Title="{Binding SelectedMovie.Name, Converter={StaticResource StringCaseConverter}}"
                            x:Name="MainPanorama">
+            <i:Interaction.Behaviors>
+                <behaviours:PanoramaBackgroundBehaviour Source="{Binding SelectedMovie, Converter={StaticResource ImageUrlConverter}, ConverterParameter=backdrop}"
+                                                        Stretch="UniformToFill"
+                                                        Opacity="0.2" />
+            </i:Interaction.Behaviors>
             <controls:PanoramaItem Header="poster">
                 <Button Style="{StaticResource EmptyButtonStyle}"
                         VerticalContentAlignment="Top"
@@ -95,7 +104,8 @@
                         <c4F:RoundButton ImageSource="/Icons/appbar.transport.play.rest.png"
                                          IsHitTestVisible="False"
                                          HorizontalAlignment="Center"
-                                         VerticalAlignment="Center" />
+                                         VerticalAlignment="Center"
+                                         Visibility="Collapsed"/>
                     </Grid>
                 </Button>
             </controls:PanoramaItem>

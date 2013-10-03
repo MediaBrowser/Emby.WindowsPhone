@@ -90,7 +90,8 @@
                                                       CommandParameter="/Views/SettingsView.xaml" />
                     <cimbalino:ApplicationBarMenuItem Text="video debug"
                                                       Command="{Binding NavigateToAPage}"
-                                                      CommandParameter="/Views/VideoDebugView.xaml" />
+                                                      CommandParameter="/Views/VideoDebugView.xaml" 
+                                                      IsVisible="False"/>
                     <cimbalino:ApplicationBarMenuItem Text="about"
                                                       Command="{Binding NavigateToAPage}"
                                                       CommandParameter="/YourLastAboutDialog;component/AboutPage.xaml" />

@@ -84,6 +84,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             PageLoaded = new RelayCommand(async () =>
             {
                 await GetEverything(false);
+
+                if (!_hasLoaded)
+                {
+                    ReviewReminderService.Current.Notify();
+                }
             });
 
             RefreshDataCommand = new RelayCommand(async () =>
@@ -149,7 +154,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             PlayMovieCommand = new RelayCommand<BaseItemDto>(async item =>
             {
+#if WP8
                 await PlayVideo(item);
+#endif
             });
 
             ResumeMovieCommand = new RelayCommand<BaseItemDto>(async item =>

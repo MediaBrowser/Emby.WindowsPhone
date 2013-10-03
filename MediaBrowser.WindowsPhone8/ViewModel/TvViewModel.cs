@@ -142,17 +142,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             EpisodePageLoaded = new RelayCommand(async () =>
             {
-                if (_navService.IsNetworkAvailable)
-                {
-                    if (SelectedEpisode != null)
-                    {
-                        SetProgressBar(AppResources.SysTrayGettingEpisodeDetails);
-
-                        //bool episodeLoaded = await GetEpisode();
-
-                        SetProgressBar();
-                    }
-                }
+                
             });
 
             NextEpisodeCommand = new RelayCommand(() =>
@@ -287,6 +277,42 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public bool EpisodeNavigationEnabled
         {
             get { return Episodes.Count > 1; }
+        }
+
+        public async Task GetEpisodeDetails()
+        {
+            if (_navService.IsNetworkAvailable)
+            {
+                if (SelectedEpisode != null && Episodes.IsNullOrEmpty())
+                {
+                    SetProgressBar(AppResources.SysTrayGettingEpisodeDetails);
+
+                    try
+                    {
+                        var query = new ItemQuery
+                        {
+                            UserId = AuthenticationService.Current.LoggedInUser.Id,
+                            ParentId = SelectedEpisode.ParentId,
+                            Fields = new[]
+                            {
+                                ItemFields.ParentId,
+                                ItemFields.Overview
+                            }
+                        };
+
+                        //Log.Info("Getting episodes for Season [{0}] ({1}) of TV Show [{2}] ({3})", SelectedSeason.Name, SelectedSeason.Id, SelectedTvSeries.Name, SelectedTvSeries.Id);
+
+                        var episodes = await _apiClient.GetItemsAsync(query);
+                        Episodes = episodes.Items.OrderBy(x => x.IndexNumber).ToList();
+                    }
+                    catch (HttpException ex)
+                    {
+                        
+                    }
+
+                    SetProgressBar();
+                }
+            }
         }
 
         public BaseItemDto SelectedTvSeries { get; set; }

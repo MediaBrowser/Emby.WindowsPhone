@@ -31,16 +31,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             _apiClient = apiClient;
             _navigationService = navigationService;
             _applicationSettings = applicationSettings;
-
-            if (!IsInDesignMode)
-            {
-                WireCommands();
-            }
-        }
-
-        private void WireCommands()
-        {
-
         }
 
         public override void WireMessages()
@@ -49,17 +39,25 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 if (m.Notification.Equals(Constants.Messages.SplashAnimationFinishedMsg))
                 {
+                    App.Settings.ConnectionDetails = new ConnectionDetails
+                    {
+                        PortNo = 8096
+                    };
+
+                    var doNotShowFirstRun = _applicationSettings.Get(Constants.Settings.DoNotShowFirstRun, false);
+
+                    if (!doNotShowFirstRun)
+                    {
+                        _navigationService.NavigateTo(Constants.Pages.FirstRun.WelcomeView);
+                        return;
+                    }
+
                     SetProgressBar(AppResources.SysTrayLoadingSettings);
 
                     // Get settings from storage
                     var connectionDetails = _applicationSettings.Get<ConnectionDetails>(Constants.Settings.ConnectionSettings);
                     if (connectionDetails == null)
                     {
-                        App.Settings.ConnectionDetails = new ConnectionDetails
-                        {
-                            PortNo = 8096
-                        };
-
                         var messageBox = new CustomMessageBox
                         {
                             Caption = "No connection details",

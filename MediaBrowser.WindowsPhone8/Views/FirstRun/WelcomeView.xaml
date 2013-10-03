@@ -5,6 +5,7 @@
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:scott="clr-namespace:ScottIsAFool.WindowsPhone.Controls;assembly=ScottIsAFool.WindowsPhone"
+                xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
                 FontFamily="{StaticResource PhoneFontFamilyNormal}"
                 FontSize="{StaticResource PhoneFontSizeNormal}"
                 Foreground="{StaticResource PhoneForegroundBrush}"
@@ -13,22 +14,69 @@
                 mc:Ignorable="d"
                 shell:SystemTray.IsVisible="True"
                 shell:SystemTray.Opacity="0">
+    
+    <scott:BasePage.Resources>
+        <Color x:Key="AppBarColour">Black</Color>
+        <SolidColorBrush x:Key="AppBarBrush"
+                         Color="{StaticResource AppBarColour}"
+                         Opacity="0.6" />
+    </scott:BasePage.Resources>
+
+    <toolkit:TransitionService.NavigationInTransition>
+        <toolkit:NavigationInTransition>
+            <toolkit:NavigationInTransition.Backward>
+                <toolkit:SlideTransition Mode="SlideRightFadeIn" />
+            </toolkit:NavigationInTransition.Backward>
+            <toolkit:NavigationInTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardIn" />
+            </toolkit:NavigationInTransition.Forward>
+        </toolkit:NavigationInTransition>
+    </toolkit:TransitionService.NavigationInTransition>
+    <toolkit:TransitionService.NavigationOutTransition>
+        <toolkit:NavigationOutTransition>
+            <toolkit:NavigationOutTransition.Backward>
+                <toolkit:SlideTransition Mode="SlideRightFadeOut" />
+            </toolkit:NavigationOutTransition.Backward>
+            <toolkit:NavigationOutTransition.Forward>
+                <toolkit:SlideTransition Mode="SlideLeftFadeOut" />
+            </toolkit:NavigationOutTransition.Forward>
+        </toolkit:NavigationOutTransition>
+    </toolkit:TransitionService.NavigationOutTransition>
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot"
-          Background="Transparent">
+          Background="{StaticResource MediaBrowserBackground}">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
+        
+        <Image Source="/Images/FirstRun/WelcomeBackground.jpg"
+               Grid.RowSpan="2"
+               Grid.ColumnSpan="2"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top"
+               Stretch="UniformToFill"
+               Opacity="0.3"/>
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel"
               Grid.Row="0"
-              Margin="12,0,12,0">
-
+              Margin="12,68,12,0">
+            <TextBlock Style="{StaticResource PhoneTextTitle3Style}"
+                       TextWrapping="Wrap"
+                       Text="Welcome to Media Browser for Windows Phone. This app will allow you to browse your media collection, stream it to your phone and remotely control any of the controllable Media Browser clients."/>
         </Grid>
-        
+
+        <Grid VerticalAlignment="Bottom"
+              HorizontalAlignment="Stretch"
+              Background="{StaticResource AppBarBrush}">
+            <Button Content="next"
+                    Width="240"
+                    HorizontalAlignment="Right"
+                    x:Name="NextButton"
+                    Click="NextButton_OnClick" />
+        </Grid>
+
     </Grid>
 
 </scott:BasePage>

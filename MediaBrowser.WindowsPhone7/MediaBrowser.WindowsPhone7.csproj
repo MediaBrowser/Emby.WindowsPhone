@@ -94,13 +94,13 @@
     <Reference Include="JetBrains.Annotations">
       <HintPath>..\packages\JetBrains.Annotations.7.0\lib\sl4-wp71\JetBrains.Annotations.dll</HintPath>
     </Reference>
-    <Reference Include="MediaBrowser.ApiInteraction.Portable, Version=3.0.5017.21287, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="MediaBrowser.ApiInteraction.Portable, Version=3.0.5024.21503, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MediaBrowser.ApiClient.3.0.0.220\lib\portable-net45+sl4+wp71+win8\MediaBrowser.ApiInteraction.Portable.dll</HintPath>
+      <HintPath>..\packages\MediaBrowser.ApiClient.3.0.0.229\lib\portable-net45+sl4+wp71+win8\MediaBrowser.ApiInteraction.Portable.dll</HintPath>
     </Reference>
-    <Reference Include="MediaBrowser.Model, Version=3.0.5017.19982, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="MediaBrowser.Model, Version=3.0.5023.37142, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MediaBrowser.Common.3.0.209\lib\portable-net4+sl4+wp71+win8\MediaBrowser.Model.dll</HintPath>
+      <HintPath>..\packages\MediaBrowser.Common.3.0.217\lib\portable-net4+sl4+wp71+win8\MediaBrowser.Model.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Phone.Controls, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Phone.Controls.Toolkit, Version=7.0.1.0, Culture=neutral, PublicKeyToken=b772ad94eb9ca604, processorArchitecture=MSIL">
@@ -149,9 +149,9 @@
       <HintPath>..\packages\PropertyChanged.Fody.1.41.0.0\Lib\portable-net4+sl4+wp7+win8+MonoAndroid16+MonoTouch40\PropertyChanged.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="protobuf-net, Version=2.0.0.666, Culture=neutral, PublicKeyToken=257b51d87d2e4d67, processorArchitecture=MSIL">
+    <Reference Include="protobuf-net, Version=2.0.0.668, Culture=neutral, PublicKeyToken=257b51d87d2e4d67, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\protobuf-net.2.0.0.666\lib\sl4-windowsphone71\protobuf-net.dll</HintPath>
+      <HintPath>..\packages\protobuf-net.2.0.0.668\lib\sl4-windowsphone71\protobuf-net.dll</HintPath>
     </Reference>
     <Reference Include="ScottIsAFool.WindowsPhone, Version=1.0.17.5, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -231,6 +231,9 @@
     </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone8\Behaviours\OnTextPropertyChangedBehaviour.cs">
       <Link>Behaviours\OnTextPropertyChangedBehaviour.cs</Link>
+    </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone8\Behaviours\PanoramaBackgroundBehaviour.cs">
+      <Link>Behaviours\PanoramaBackgroundBehaviour.cs</Link>
     </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone8\Controls\DynamicTextBlock.cs">
       <Link>Controls\DynamicTextBlock.cs</Link>
@@ -350,6 +353,9 @@
     <Compile Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.Designer.cs">
       <Link>Resources\AppResources.Designer.cs</Link>
     </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone8\Services\ReviewReminderService.cs">
+      <Link>Services\ReviewReminderService.cs</Link>
+    </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone8\Services\TileService.cs">
       <Link>Services\TileService.cs</Link>
     </Compile>
@@ -443,6 +449,14 @@
     </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone8\Views\EpisodeView.xaml.cs">
       <Link>Views\EpisodeView.xaml.cs</Link>
+    </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone8\Views\FirstRun\ConfigureView.xaml.cs">
+      <Link>Views\FirstRun\ConfigureView.xaml.cs</Link>
+      <DependentUpon>ConfigureView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone8\Views\FirstRun\WelcomeView.xaml.cs">
+      <Link>Views\FirstRun\WelcomeView.xaml.cs</Link>
+      <DependentUpon>WelcomeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone8\Views\FolderView.xaml.cs">
       <Link>Views\FolderView.xaml.cs</Link>
@@ -542,6 +556,9 @@
     </Content>
     <Content Include="..\MediaBrowser.WindowsPhone8\Images\default_avatar.png">
       <Link>Images\default_avatar.png</Link>
+    </Content>
+    <Content Include="..\MediaBrowser.WindowsPhone8\Images\FirstRun\WelcomeBackground.jpg">
+      <Link>Images\FirstRun\WelcomeBackground.jpg</Link>
     </Content>
     <Content Include="..\MediaBrowser.WindowsPhone8\Images\fresh.png">
       <Link>Images\fresh.png</Link>
@@ -689,6 +706,14 @@
     </Page>
     <Page Include="Views\EpisodeView.xaml">
       <SubType>Form</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FirstRun\ConfigureView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FirstRun\WelcomeView.xaml">
+      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\FolderView.xaml">

@@ -83,6 +83,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
                     App.WebSocketClient.SessionsUpdated += WebSocketClientOnSessionsUpdated;
 
                     await GetClients(false);
+
+                    ReviewReminderService.Current.Notify();
                 });
             }
         }
