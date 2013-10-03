@@ -38,8 +38,13 @@ namespace MediaBrowser.WindowsPhone.Behaviours
 
         private static void BackgroundChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
+            if (e.NewValue == null)
+            {
+                return;
+            }
+
             var pbb = sender as PanoramaBackgroundBehaviour;
-            if (pbb == null)
+            if (pbb == null || string.IsNullOrEmpty(pbb.Source))
             {
                 return;
             }
