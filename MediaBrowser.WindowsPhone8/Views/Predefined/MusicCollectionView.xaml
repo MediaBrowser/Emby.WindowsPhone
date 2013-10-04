@@ -196,13 +196,22 @@
                         </i:Interaction.Triggers>
                         <toolkit:LongListMultiSelector.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel Orientation="Vertical"
-                                            Margin="{Binding MusicCollection.SongsMargin, Source={StaticResource Locator}}">
-                                    <TextBlock Text="{Binding Name}"
-                                               Style="{StaticResource PhoneTextTitle2Style}" />
-                                    <TextBlock Text="{Binding AlbumArtist}"
-                                               Style="{StaticResource PhoneTextSubtleStyle}" />
+                                <StackPanel Orientation="Horizontal">
+                                    <c4F:RoundButton ImageSource="/Icons/appbar.transport.play.rest.png"
+                                                     HorizontalAlignment="Center"
+                                                     VerticalAlignment="Center"
+                                                     Margin="6"
+                                                     Command="{Binding MusicCollection.PlayItemCommand, Source={StaticResource Locator}}"
+                                                     CommandParameter="{Binding}" />
+                                    <StackPanel Orientation="Vertical"
+                                                Margin="{Binding MusicCollection.SongsMargin, Source={StaticResource Locator}}">
+                                        <TextBlock Text="{Binding Name}"
+                                                   Style="{StaticResource PhoneTextTitle2Style}" />
+                                        <TextBlock Text="{Binding AlbumArtist}"
+                                                   Style="{StaticResource PhoneTextSubtleStyle}" />
+                                    </StackPanel>
                                 </StackPanel>
+                                
                             </DataTemplate>
                         </toolkit:LongListMultiSelector.ItemTemplate>
                     </toolkit:LongListMultiSelector>
