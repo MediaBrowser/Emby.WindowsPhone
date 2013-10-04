@@ -215,10 +215,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     Fields = new[]
                     {
                         ItemFields.SortName,
-                        ItemFields.Genres, 
+                        ItemFields.Genres,
                         ItemFields.ProviderIds,
                         ItemFields.ParentId
-                    }
+                    },
+                    ExcludeItemTypes = new[] {"Season", "Series"}
                 };
                 var isRecent = false;
                 if (SelectedPerson != null)

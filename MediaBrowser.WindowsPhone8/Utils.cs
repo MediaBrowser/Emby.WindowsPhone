@@ -147,10 +147,10 @@ namespace MediaBrowser.WindowsPhone
                     seriesList.AddRange(episodesBySeries.Select(series => new BaseItemDto
                     {
                         Name = String.Format("{0} ({1} items)", series.Name, series.Count),
+                        SortName = series.Name,
                         Id = series.Id,
                         DateCreated = series.CreatedDate,
                         Type = "Series",
-                        SortName = Constants.Messages.GetTvInformationMsg,
                         ImageTags = new Dictionary<ImageType, Guid> {{ImageType.Primary, Guid.NewGuid()}}
                     }));
                 }
@@ -188,7 +188,6 @@ namespace MediaBrowser.WindowsPhone
                 }
                 return recent
                     .OrderByDescending(x => x.DateCreated)
-                    .Take(6)
                     .ToList();
             });
         }

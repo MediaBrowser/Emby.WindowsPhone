@@ -155,6 +155,17 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                         case "artist":
                             await GetArtistTracks(item.Name);
                             break;
+                        case "audio":
+                            var items = new ItemsResult
+                            {
+                                Items = new[]
+                                {
+                                    item
+                                }
+                            };
+
+                            SendItemsToPlaylist(items);
+                            break;
                     }
                 });
             }
