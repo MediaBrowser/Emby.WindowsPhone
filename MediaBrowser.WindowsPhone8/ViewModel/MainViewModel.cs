@@ -347,7 +347,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             RecentItems.Clear();
 
             var recent = await Utils.SortRecentItems(items, App.SpecificSettings.IncludeTrailersInRecent);
-            recent.ForEach(recentItem => RecentItems.Add(recentItem));
+            recent.Take(6).ToList().ForEach(recentItem => RecentItems.Add(recentItem));
         }
 
         private async Task<bool> GetFolders()
