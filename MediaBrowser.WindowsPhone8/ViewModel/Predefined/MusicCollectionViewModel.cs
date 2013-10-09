@@ -305,7 +305,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
 
             SetProgressBar("Getting artists...");
 
-            await GetArtists();
+            _artistsLoaded = await GetArtists();
 
             SetProgressBar();
         }
