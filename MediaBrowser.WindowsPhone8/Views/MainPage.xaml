@@ -180,7 +180,7 @@
                                     <controls:SuperImage PlaceholderImageSource="/Images/Logo.png"
                                                          PlaceholderImageStretch="Uniform"
                                                          Stretch="Uniform"
-                                                         Source="{Binding Converter={StaticResource ImageUrlConverter}}"
+                                                         Source="{Binding Converter={StaticResource ImageUrlConverter}, ConverterParameter=primaryorbackdrop}"
                                                          Height="62"
                                                          Width="62"
                                                          VerticalAlignment="Top" />
