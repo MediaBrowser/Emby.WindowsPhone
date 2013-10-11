@@ -15,8 +15,7 @@
     <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
     <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
     <SilverlightApplication>true</SilverlightApplication>
-    <SupportedCultures>
-    </SupportedCultures>
+    <SupportedCultures>en-US</SupportedCultures>
     <XapOutputs>true</XapOutputs>
     <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
     <XapFilename>MediaBrowser.WindowsPhone.WP8.xap</XapFilename>
@@ -185,6 +184,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\AppResources.en-US.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AppResources.en-US.resx</DependentUpon>
     </Compile>
     <Compile Include="Services\LockScreenService.cs" />
     <Compile Include="Services\ReviewReminderService.cs" />
@@ -564,6 +568,10 @@
     <Content Include="Icons\transport.rew.png" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\AppResources.en-US.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AppResources.en-US.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\AppResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResources.Designer.cs</LastGenOutput>

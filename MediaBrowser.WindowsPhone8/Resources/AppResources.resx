@@ -162,6 +162,9 @@
   <data name="Genre" xml:space="preserve">
     <value>genre</value>
   </data>
+  <data name="LabelAddToFavourites" xml:space="preserve">
+    <value>Add to favourites</value>
+  </data>
   <data name="MainAppBarChangeProfile" xml:space="preserve">
     <value>change profile</value>
   </data>

@@ -16,8 +16,7 @@
     <TargetFrameworkProfile>WindowsPhone71</TargetFrameworkProfile>
     <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
     <SilverlightApplication>true</SilverlightApplication>
-    <SupportedCultures>
-    </SupportedCultures>
+    <SupportedCultures>en-gb;en-us</SupportedCultures>
     <XapOutputs>true</XapOutputs>
     <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
     <XapFilename>MediaBrowser.WindowsPhone.WP7.xap</XapFilename>
@@ -846,6 +845,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.en-US.resx">
+      <Link>Resources\AppResources.en-US.resx</Link>
+    </EmbeddedResource>
     <EmbeddedResource Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.resx">
       <Link>Resources\AppResources.resx</Link>
     </EmbeddedResource>
