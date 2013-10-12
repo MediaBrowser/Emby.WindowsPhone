@@ -1,4 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
+using System.Windows;
+using Cimbalino.Phone.Toolkit.Helpers;
 using Cimbalino.Phone.Toolkit.Services;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Ioc;
@@ -53,6 +56,17 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     }
 
                     SetProgressBar(AppResources.SysTrayLoadingSettings);
+
+#if !DEBUG
+                    var marketPlace = new MarketplaceInformationService();
+                    var appInfo = await marketPlace.GetAppInformationAsync(ApplicationManifest.Current.App.ProductId);
+
+                    if (new Version(appInfo.Entry.Version) > new Version(ApplicationManifest.Current.App.Version) &&
+                        MessageBox.Show("There is a newer version, would you like to install it now?", "Update Available", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+                    {
+                        new MarketplaceDetailService().Show();
+                    }
+#endif
 
                     // Get settings from storage
                     var connectionDetails = _applicationSettings.Get<ConnectionDetails>(Constants.Settings.ConnectionSettings);
