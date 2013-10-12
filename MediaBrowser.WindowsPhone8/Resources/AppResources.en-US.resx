@@ -123,4 +123,7 @@
   <data name="ResourceLanguage" xml:space="preserve">
     <value>en-US</value>
   </data>
+  <data name="SysTrayGettingFavourites" xml:space="preserve">
+    <value>Getting favorites...</value>
+  </data>
 </root>
