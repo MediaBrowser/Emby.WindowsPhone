@@ -47,7 +47,7 @@ namespace MediaBrowser.WindowsPhone.Views
             }
             else
             {
-                e.Cancel = false;
+                e.Cancel = true;
             }
         }
     }
