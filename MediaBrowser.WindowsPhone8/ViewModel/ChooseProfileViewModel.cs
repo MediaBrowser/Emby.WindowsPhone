@@ -97,10 +97,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     try
                     {
                         var profiles = await _apiClient.GetPublicUsersAsync(new CancellationToken());
-                        if (profiles.Length > 0 && Profiles != null)
-                        {
-                            Profiles.Clear();
-                        }
+                        Profiles = new ObservableCollection<UserDto>();
 
                         foreach (var profile in profiles)
                         {
