@@ -130,7 +130,7 @@
                                                                    IsHitTestVisible="False"
                                                                    HorizontalAlignment="Center"
                                                                    VerticalAlignment="Center"
-                                                                   Visibility="Collapsed" />
+                                                                   Visibility="Visible" />
                                         </Grid>
                                     </Button>
                                     <TextBlock Text="{Binding Overview}"
