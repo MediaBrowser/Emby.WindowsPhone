@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Data;
+using MediaBrowser.WindowsPhone.Resources;
 
 namespace MediaBrowser.WindowsPhone.Converters
 {
@@ -7,15 +8,21 @@ namespace MediaBrowser.WindowsPhone.Converters
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            var textOrIcon = ((string) parameter).Equals("text");
+            var favouriteType = (string) parameter;
+            var textOrIcon = favouriteType.Contains("text");
             if (value == null)
             {
-                if(textOrIcon)return "add";
+                if(textOrIcon)return favouriteType.Contains("full") ? AppResources.AddToFavouritesFull : "add";
                 return new Uri("/Icons/appbar.star.add.png", UriKind.Relative);
             }
             var isFavourite = (bool) value;
             if (textOrIcon)
             {
+                if (favouriteType.Contains("full"))
+                {
+                    return isFavourite ? AppResources.RemoveFromFavouritesFull : AppResources.AddToFavouritesFull;
+                }
+
                 return isFavourite ? "remove" : "add";
             }
             return isFavourite ? new Uri("/Icons/appbar.star.minus.png", UriKind.Relative) : new Uri("/Icons/appbar.star.add.png", UriKind.Relative);

@@ -70,6 +70,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add to favourites.
+        /// </summary>
+        public static string AddToFavouritesFull {
+            get {
+                return ResourceManager.GetString("AddToFavouritesFull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Collections.
         /// </summary>
         public static string Collections {
@@ -300,6 +309,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string RemoveFavourite {
             get {
                 return ResourceManager.GetString("RemoveFavourite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove from favourites.
+        /// </summary>
+        public static string RemoveFromFavouritesFull {
+            get {
+                return ResourceManager.GetString("RemoveFromFavouritesFull", resourceCulture);
             }
         }
         

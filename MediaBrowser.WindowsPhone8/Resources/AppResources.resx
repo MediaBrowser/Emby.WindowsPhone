@@ -120,6 +120,9 @@
   <data name="AddFavourite" xml:space="preserve">
     <value>add</value>
   </data>
+  <data name="AddToFavouritesFull" xml:space="preserve">
+    <value>Add to favourites</value>
+  </data>
   <data name="Collections" xml:space="preserve">
     <value>Collections</value>
   </data>
@@ -197,6 +200,9 @@
   </data>
   <data name="RemoveFavourite" xml:space="preserve">
     <value>remove</value>
+  </data>
+  <data name="RemoveFromFavouritesFull" xml:space="preserve">
+    <value>Remove from favourites</value>
   </data>
   <data name="ResourceLanguage" xml:space="preserve">
     <value>en-GB</value>

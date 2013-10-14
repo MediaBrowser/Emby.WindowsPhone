@@ -13,7 +13,7 @@ namespace MediaBrowser.WindowsPhone.Views
             //BuildLocalizedApplicationBar();
         }
 
-        protected override void OnNavigatedFrom(System.Windows.Navigation.NavigationEventArgs e)
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
             if (NavigationService.CanGoBack && e.NavigationMode != NavigationMode.Back)

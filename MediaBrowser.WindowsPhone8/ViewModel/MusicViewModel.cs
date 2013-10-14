@@ -225,6 +225,21 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                 Messenger.Default.Send(new NotificationMessage<List<PlaylistItem>>(playlist, Constants.Messages.SetPlaylistAsMsg));
             });
+
+            AddRemoveFavouriteCommand = new RelayCommand<BaseItemDto>(async item =>
+            {
+                try
+                {
+                    CanUpdateFavourites = false;
+
+                    item.UserData = await _apiClient.UpdateFavoriteStatusAsync(item.Id, AuthenticationService.Current.LoggedInUser.Id, !item.UserData.IsFavorite);
+                }
+                catch (HttpException ex)
+                {
+                    Log.ErrorException("AddRemoveFavouriteCommand", ex);
+                }
+                CanUpdateFavourites = true;
+            });
         }
 
         private async Task GetAlbumTracks()
@@ -387,5 +402,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public RelayCommand<SelectionChangedEventArgs> SelectionChangedCommand { get; set; }
         public RelayCommand AddToNowPlayingCommand { get; set; }
         public RelayCommand PlayItemsCommand { get; set; }
+        public RelayCommand<BaseItemDto> AddRemoveFavouriteCommand { get; set; }
+        public bool CanUpdateFavourites { get; set; }
     }
 }
