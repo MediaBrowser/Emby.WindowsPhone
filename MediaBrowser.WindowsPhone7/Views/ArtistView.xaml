@@ -37,7 +37,7 @@
             <cimbalino:ApplicationBarBehavior.MenuItems>
                 <cimbalino:ApplicationBarMenuItem Text="play all tracks"
                                                   Command="{Binding PlayAllItemsCommand}" />
-                <cimbalino:ApplicationBarMenuItem Text="{Binding SelectedArtist.UserData.IsFavorite, Converter={StaticResource FavouritesConverter}, ConverterParameter=text}"
+                <cimbalino:ApplicationBarMenuItem Text="{Binding SelectedArtist.UserData.IsFavorite, Converter={StaticResource FavouritesConverter}, ConverterParameter=fulltext}"
                                                   Command="{Binding AddRemoveFavouriteCommand}"
                                                   CommandParameter="{Binding SelectedArtist}"
                                                   IsEnabled="{Binding CanUpdateFavourites}" />

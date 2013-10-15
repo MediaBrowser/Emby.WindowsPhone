@@ -32,7 +32,7 @@
         <cimbalino:ApplicationBarBehavior Mode="Minimized"
                                           IsMenuEnabled="True">
             <cimbalino:ApplicationBarBehavior.MenuItems>
-                <cimbalino:ApplicationBarMenuItem Text="{Binding SelectedTvSeries.UserData.IsFavorite, Converter={StaticResource FavouritesConverter}, ConverterParameter=text}"
+                <cimbalino:ApplicationBarMenuItem Text="{Binding SelectedTvSeries.UserData.IsFavorite, Converter={StaticResource FavouritesConverter}, ConverterParameter=fulltext}"
                                                   Command="{Binding AddRemoveFavouriteCommand}"
                                                   CommandParameter="{Binding SelectedTvSeries}"
                                                   IsEnabled="{Binding CanUpdateFavourites}" />
