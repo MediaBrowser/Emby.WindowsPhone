@@ -75,8 +75,8 @@
                     <cimbalino:ApplicationBarMenuItem Text="play on..."
                                                       Command="{Binding Remote.SendPlayCommand, Source={StaticResource Locator}}"
                                                       CommandParameter="{Binding SelectedEpisode.Id}" />
-                    <cimbalino:ApplicationBarMenuItem Text="{Binding SelectedEpisode.UserData.IsFavorite, Converter={StaticResource FavouritesConverter}, ConverterParameter=text}"
-                                                      Command="{Binding DataContext.AddRemoveFavouriteCommand, ElementName=LayoutRoot}"
+                    <cimbalino:ApplicationBarMenuItem Text="{Binding SelectedEpisode.UserData.IsFavorite, Converter={StaticResource FavouritesConverter}, ConverterParameter=fulltext}"
+                                                      Command="{Binding AddRemoveFavouriteCommand}"
                                                       CommandParameter="{Binding SelectedEpisode}"
                                                       IsEnabled="{Binding CanUpdateFavourites}" />
                 </cimbalino:ApplicationBarBehavior.MenuItems>
