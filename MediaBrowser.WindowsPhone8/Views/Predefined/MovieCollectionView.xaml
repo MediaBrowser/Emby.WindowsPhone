@@ -240,6 +240,12 @@
                         </phone:LongListSelector.ItemTemplate>
                     </phone:LongListSelector>
                 </phone:PivotItem>
+                
+                <phone:PivotItem Header="genres">
+                    <phone:LongListSelector>
+                        
+                    </phone:LongListSelector>
+                </phone:PivotItem>
             </phone:Pivot>
         </Grid>
     </Grid>

@@ -305,6 +305,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
             return false;
         }
 
+        private async Task<bool> GetGenres()
+        {
+
+            return false;
+        }
+
         private bool SetLatestUnwatched(ItemsResult itemResponse)
         {
             if (itemResponse != null && !itemResponse.Items.IsNullOrEmpty())
