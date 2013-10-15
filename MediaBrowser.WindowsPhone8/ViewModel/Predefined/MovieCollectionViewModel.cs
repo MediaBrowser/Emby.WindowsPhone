@@ -28,9 +28,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
         private readonly INavigationService _navigationService;
         private readonly IExtendedApiClient _apiClient;
 
-        private bool _genresLoaded;
+        private bool _moviesLoaded;
         private bool _boxsetsLoaded;
         private bool _latestUnwatchedLoaded;
+        private bool _genresLoaded;
 
         /// <summary>
         /// Initializes a new instance of the MovieCollectionViewModel class.
@@ -96,6 +97,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
         public List<Group<BaseItemDto>> Movies { get; set; }
         public List<Group<BaseItemDto>> Boxsets { get; set; }
         public List<BaseItemDto> LatestUnwatched { get; set; }
+        public List<BaseItemDto> Genres { get; set; }
 
         public BaseItemDto UnseenHeader { get; set; }
 
@@ -178,12 +180,20 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
 
                     break;
                 case 2:
+                    if (!_navigationService.IsNetworkAvailable || (_moviesLoaded && !isRefresh))
+                    {
+                        return;
+                    }
+
+                    _moviesLoaded = await GetMovies();
+                    break;
+                case 3:
                     if (!_navigationService.IsNetworkAvailable || (_genresLoaded && !isRefresh))
                     {
                         return;
                     }
 
-                    _genresLoaded = await GetMovies();
+                    _genresLoaded = await GetGenres();
                     break;
             }
         }
@@ -307,6 +317,30 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
 
         private async Task<bool> GetGenres()
         {
+            try
+            {
+                var query = new ItemsByNameQuery
+                {
+                    SortBy = new[] { "SortName" },
+                    SortOrder = SortOrder.Ascending,
+                    IncludeItemTypes = new[] { "Video" },
+                    Recursive = true,
+                    Fields = new[] { ItemFields.DateCreated },
+                    UserId = AuthenticationService.Current.LoggedInUser.Id
+                };
+
+                var items = await _apiClient.GetGenresAsync(query);
+
+                if (!items.Items.IsNullOrEmpty())
+                {
+                    Genres = items.Items.ToList();
+                    return true;
+                }
+            }
+            catch (HttpException ex)
+            {
+                Log.ErrorException("GetGenres()", ex);
+            }
 
             return false;
         }
