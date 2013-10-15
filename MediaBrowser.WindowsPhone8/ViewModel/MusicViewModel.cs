@@ -121,7 +121,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 if (AlbumTracks == null)
                 {
                     SetProgressBar("Getting tracks...");
-                   
+
                     try
                     {
                         if (SelectedArtist != null)
@@ -129,8 +129,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                             await GetArtistInfo();
 
                             AlbumTracks = _artistTracks.Where(x => x.ParentId == SelectedAlbum.Id)
-                            .OrderBy(x => x.ParentIndexNumber)
-                            .ThenBy(x => x.IndexNumber).ToList();
+                                                       .OrderBy(x => x.ParentIndexNumber)
+                                                       .ThenBy(x => x.IndexNumber).ToList();
                         }
                         else
                         {
@@ -239,6 +239,18 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     Log.ErrorException("AddRemoveFavouriteCommand", ex);
                 }
                 CanUpdateFavourites = true;
+            });
+
+            PlayAllItemsCommand = new RelayCommand(() =>
+            {
+                if (_artistTracks.IsNullOrEmpty())
+                {
+                    return;
+                }
+
+                var playlist = _artistTracks.ToPlayListItems(_apiClient);
+
+                Messenger.Default.Send(new NotificationMessage<List<PlaylistItem>>(playlist, Constants.Messages.SetPlaylistAsMsg));
             });
         }
 
@@ -402,6 +414,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public RelayCommand<SelectionChangedEventArgs> SelectionChangedCommand { get; set; }
         public RelayCommand AddToNowPlayingCommand { get; set; }
         public RelayCommand PlayItemsCommand { get; set; }
+        public RelayCommand PlayAllItemsCommand { get; set; }
         public RelayCommand<BaseItemDto> AddRemoveFavouriteCommand { get; set; }
         public bool CanUpdateFavourites { get; set; }
     }
