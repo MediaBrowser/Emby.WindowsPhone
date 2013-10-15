@@ -58,13 +58,20 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     SetProgressBar(AppResources.SysTrayLoadingSettings);
 
 #if !DEBUG
-                    var marketPlace = new MarketplaceInformationService();
-                    var appInfo = await marketPlace.GetAppInformationAsync(ApplicationManifest.Current.App.ProductId);
-
-                    if (new Version(appInfo.Entry.Version) > new Version(ApplicationManifest.Current.App.Version) &&
-                        MessageBox.Show("There is a newer version, would you like to install it now?", "Update Available", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+                    try
                     {
-                        new MarketplaceDetailService().Show();
+                        var marketPlace = new MarketplaceInformationService();
+                        var appInfo = await marketPlace.GetAppInformationAsync(ApplicationManifest.Current.App.ProductId);
+
+                        if (new Version(appInfo.Entry.Version) > new Version(ApplicationManifest.Current.App.Version) &&
+                            MessageBox.Show("There is a newer version, would you like to install it now?", "Update Available", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+                        {
+                            new MarketplaceDetailService().Show();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.ErrorException("GetAppInformationAsync()", ex);
                     }
 #endif
 
