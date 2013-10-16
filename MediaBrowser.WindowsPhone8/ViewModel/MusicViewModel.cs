@@ -42,6 +42,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             _apiClient = apiClient;
 
             SelectedTracks = new List<BaseItemDto>();
+            CanUpdateFavourites = true;
             if (IsInDesignMode)
             {
                 SelectedArtist = new BaseItemDto

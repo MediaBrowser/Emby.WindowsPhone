@@ -60,13 +60,16 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 #if !DEBUG
                     try
                     {
-                        var marketPlace = new MarketplaceInformationService();
-                        var appInfo = await marketPlace.GetAppInformationAsync(ApplicationManifest.Current.App.ProductId);
-
-                        if (new Version(appInfo.Entry.Version) > new Version(ApplicationManifest.Current.App.Version) &&
-                            MessageBox.Show("There is a newer version, would you like to install it now?", "Update Available", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+                        if (!ApplicationManifest.Current.App.Title.ToLower().Contains("beta"))
                         {
-                            new MarketplaceDetailService().Show();
+                            var marketPlace = new MarketplaceInformationService();
+                            var appInfo = await marketPlace.GetAppInformationAsync(ApplicationManifest.Current.App.ProductId);
+
+                            if (new Version(appInfo.Entry.Version) > new Version(ApplicationManifest.Current.App.Version) &&
+                                MessageBox.Show("There is a newer version, would you like to install it now?", "Update Available", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+                            {
+                                new MarketplaceDetailService().Show();
+                            }
                         }
                     }
                     catch (Exception ex)
@@ -75,7 +78,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     }
 #endif
 
-                    // Get settings from storage
+                    // Get settings from storage 
                     var connectionDetails = _applicationSettings.Get<ConnectionDetails>(Constants.Settings.ConnectionSettings);
                     if (connectionDetails == null)
                     {

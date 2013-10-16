@@ -43,6 +43,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             RecentItems = new ObservableCollection<BaseItemDto>();
             Episodes = new List<BaseItemDto>();
+            CanUpdateFavourites = true;
             if (IsInDesignMode)
             {
                 SelectedTvSeries = new BaseItemDto
