@@ -175,7 +175,7 @@
                                 <StackPanel Orientation="Horizontal">
                                     <c4F:SuperImage Height="99"
                                                     Width="99"
-                                                    PlaceholderImageSource="/Images/Logo.png"
+                                                    PlaceholderImageSource="/Images/default_avatar.png"
                                                     Source="{Binding Converter={StaticResource ImageUrlConverter}}"
                                                     Stretch="Uniform"
                                                     PlaceholderImageStretch="Uniform"/>
