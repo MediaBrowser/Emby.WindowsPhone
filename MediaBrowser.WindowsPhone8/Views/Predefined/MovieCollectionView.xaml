@@ -242,8 +242,12 @@
                 </phone:PivotItem>
                 
                 <phone:PivotItem Header="genres">
-                    <phone:LongListSelector>
-                        
+                    <phone:LongListSelector ItemsSource="{Binding Genres}">
+                        <phone:LongListSelector.ItemTemplate>
+                            <DataTemplate>
+                                
+                            </DataTemplate>
+                        </phone:LongListSelector.ItemTemplate>
                     </phone:LongListSelector>
                 </phone:PivotItem>
             </phone:Pivot>
