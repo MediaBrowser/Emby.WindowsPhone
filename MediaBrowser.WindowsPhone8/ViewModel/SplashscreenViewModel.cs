@@ -58,24 +58,24 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     SetProgressBar(AppResources.SysTrayLoadingSettings);
 
 #if !DEBUG
-                    try
-                    {
-                        if (!ApplicationManifest.Current.App.Title.ToLower().Contains("beta"))
-                        {
-                            var marketPlace = new MarketplaceInformationService();
-                            var appInfo = await marketPlace.GetAppInformationAsync(ApplicationManifest.Current.App.ProductId);
+                    //try
+                    //{
+                    //    if (!ApplicationManifest.Current.App.Title.ToLower().Contains("beta"))
+                    //    {
+                    //        var marketPlace = new MarketplaceInformationService();
+                    //        var appInfo = await marketPlace.GetAppInformationAsync(ApplicationManifest.Current.App.ProductId);
 
-                            if (new Version(appInfo.Entry.Version) > new Version(ApplicationManifest.Current.App.Version) &&
-                                MessageBox.Show("There is a newer version, would you like to install it now?", "Update Available", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
-                            {
-                                new MarketplaceDetailService().Show();
-                            }
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        Log.ErrorException("GetAppInformationAsync()", ex);
-                    }
+                    //        if (new Version(appInfo.Entry.Version) > new Version(ApplicationManifest.Current.App.Version) &&
+                    //            MessageBox.Show("There is a newer version, would you like to install it now?", "Update Available", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+                    //        {
+                    //            new MarketplaceDetailService().Show();
+                    //        }
+                    //    }
+                    //}
+                    //catch (Exception ex)
+                    //{
+                    //    Log.ErrorException("GetAppInformationAsync()", ex);
+                    //}
 #endif
 
                     // Get settings from storage 
