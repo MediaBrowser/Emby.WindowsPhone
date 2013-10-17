@@ -219,7 +219,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         ItemFields.ProviderIds,
                         ItemFields.ParentId
                     },
-                    ExcludeItemTypes = new[] {"Season", "Series"}
+                    ExcludeItemTypes = SelectedFolder != null && SelectedFolder.Name.ToLower().Contains("recent") ? new[] {"Season", "Series"} : null
                 };
                 var isRecent = false;
                 if (SelectedPerson != null)

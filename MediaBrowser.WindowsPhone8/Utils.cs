@@ -196,8 +196,7 @@ namespace MediaBrowser.WindowsPhone
         {
             try
             {
-                apiClient.ServerHostName = App.Settings.ConnectionDetails.HostName;
-                apiClient.ServerApiPort = App.Settings.ConnectionDetails.PortNo;
+                apiClient.ChangeServerLocation(App.Settings.ConnectionDetails.HostName, App.Settings.ConnectionDetails.PortNo);
                 
                 logger.Info("Getting server configuration. Hostname ({0}), Port ({1})", apiClient.ServerHostName, apiClient.ServerApiPort);
                 

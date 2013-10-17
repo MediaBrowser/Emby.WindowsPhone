@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Windows;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model;
 using MediaBrowser.Model.Dto;
+using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Model;
@@ -80,6 +82,16 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 return new RelayCommand(async () =>
                 {
+                    if (SelectedItem.VideoType != VideoType.VideoFile)
+                    {
+                        var result = MessageBox.Show("Playing this type of video is currently experimental, results may vary, do you wish to continue?", "Experimental", MessageBoxButton.OKCancel);
+                        if (result == MessageBoxResult.Cancel)
+                        {
+                            _navigationService.GoBack();
+                            return;
+                        }
+                    }
+
                     long ticks = 0;
                     if (SelectedItem.UserData != null && _isResume)
                     {

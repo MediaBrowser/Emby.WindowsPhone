@@ -43,6 +43,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             RecentItems = new ObservableCollection<BaseItemDto>();
             Episodes = new List<BaseItemDto>();
+            CanUpdateFavourites = true;
             if (IsInDesignMode)
             {
                 SelectedTvSeries = new BaseItemDto
@@ -153,6 +154,21 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             PreviousEpisodeCommand = new RelayCommand(() =>
             {
                 SelectedEpisode = SelectedEpisode.IndexNumber - 1 == 0 ? Episodes[Episodes.Count - 1] : Episodes[SelectedEpisode.IndexNumber.Value - 2];
+            });
+
+            AddRemoveFavouriteCommand = new RelayCommand<BaseItemDto>(async item =>
+            {
+                try
+                {
+                    CanUpdateFavourites = false;
+
+                    item.UserData = await _apiClient.UpdateFavoriteStatusAsync(item.Id, AuthenticationService.Current.LoggedInUser.Id, !item.UserData.IsFavorite);
+                }
+                catch (HttpException ex)
+                {
+                    Log.ErrorException("AddRemoveFavouriteCommand", ex);
+                }
+                CanUpdateFavourites = true;
             });
 
             NavigateTo = new RelayCommand<BaseItemDto>(_navService.NavigateTo);
@@ -330,5 +346,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public RelayCommand EpisodePageLoaded { get; set; }
         public RelayCommand NextEpisodeCommand { get; set; }
         public RelayCommand PreviousEpisodeCommand { get; set; }
+        public RelayCommand<BaseItemDto> AddRemoveFavouriteCommand { get; set; }
+        public bool CanUpdateFavourites { get; set; }
     }
 }

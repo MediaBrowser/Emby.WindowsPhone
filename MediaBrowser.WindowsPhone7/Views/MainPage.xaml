@@ -188,7 +188,7 @@
                                 <StackPanel Orientation="Horizontal">
                                     <c4F:SuperImage PlaceholderImageSource="/Images/Logo.png"
                                                     PlaceholderImageStretch="Uniform"
-                                                    Source="{Binding Converter={StaticResource ImageUrlConverter}}"
+                                                    Source="{Binding Converter={StaticResource ImageUrlConverter}, ConverterParameter=primaryorbackdrop}"
                                                     Stretch="Uniform"
                                                     Height="62"
                                                     Width="62"
@@ -220,6 +220,8 @@
                                         TextVerticalAlignment="Top"
                                         TextStyle="{StaticResource PhoneTextLargeStyle}"
                                         ItemTemplate="{StaticResource TileItemStyle}"
+                                        ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                                        ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                                         Grid.Row="0"
                                         Margin="12,0,0,0"
                                         x:Name="lbRecentItems">

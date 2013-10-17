@@ -42,6 +42,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             _apiClient = apiClient;
 
             SelectedTracks = new List<BaseItemDto>();
+            CanUpdateFavourites = true;
             if (IsInDesignMode)
             {
                 SelectedArtist = new BaseItemDto
@@ -121,7 +122,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 if (AlbumTracks == null)
                 {
                     SetProgressBar("Getting tracks...");
-                   
+
                     try
                     {
                         if (SelectedArtist != null)
@@ -129,8 +130,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                             await GetArtistInfo();
 
                             AlbumTracks = _artistTracks.Where(x => x.ParentId == SelectedAlbum.Id)
-                            .OrderBy(x => x.ParentIndexNumber)
-                            .ThenBy(x => x.IndexNumber).ToList();
+                                                       .OrderBy(x => x.ParentIndexNumber)
+                                                       .ThenBy(x => x.IndexNumber).ToList();
                         }
                         else
                         {
@@ -222,6 +223,33 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 {
                     song.ToPlaylistItem(_apiClient)
                 };
+
+                Messenger.Default.Send(new NotificationMessage<List<PlaylistItem>>(playlist, Constants.Messages.SetPlaylistAsMsg));
+            });
+
+            AddRemoveFavouriteCommand = new RelayCommand<BaseItemDto>(async item =>
+            {
+                try
+                {
+                    CanUpdateFavourites = false;
+
+                    item.UserData = await _apiClient.UpdateFavoriteStatusAsync(item.Id, AuthenticationService.Current.LoggedInUser.Id, !item.UserData.IsFavorite);
+                }
+                catch (HttpException ex)
+                {
+                    Log.ErrorException("AddRemoveFavouriteCommand", ex);
+                }
+                CanUpdateFavourites = true;
+            });
+
+            PlayAllItemsCommand = new RelayCommand(() =>
+            {
+                if (_artistTracks.IsNullOrEmpty())
+                {
+                    return;
+                }
+
+                var playlist = _artistTracks.ToPlayListItems(_apiClient);
 
                 Messenger.Default.Send(new NotificationMessage<List<PlaylistItem>>(playlist, Constants.Messages.SetPlaylistAsMsg));
             });
@@ -387,5 +415,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public RelayCommand<SelectionChangedEventArgs> SelectionChangedCommand { get; set; }
         public RelayCommand AddToNowPlayingCommand { get; set; }
         public RelayCommand PlayItemsCommand { get; set; }
+        public RelayCommand PlayAllItemsCommand { get; set; }
+        public RelayCommand<BaseItemDto> AddRemoveFavouriteCommand { get; set; }
+        public bool CanUpdateFavourites { get; set; }
     }
 }

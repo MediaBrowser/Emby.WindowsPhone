@@ -56,8 +56,22 @@
     <!-- Supported types are "text" and "xaml", where text is nicely formatted automatically, and XAML is handled by the built-in XamlReader -->
     <Item Title="history"
           Type="text">
-      1.0.0.0
-      This is the initial public version.      
+      7.0.0.39
+      Fixes:
+      - Don't allow recent items to be scrollable on front page
+      - Episode name doesn't swipe nicely
+      - Collection View -> TV -> Show all items... EMPTY
+      - Profile list doesn't clear before population
+      - Music View - Artist list scrolls back to beginning on back
+      Enhancements:
+      - Collection image not following hierarchy (only uses primary)
+      - Change Favourites to Favorites depending on client region
+      - Search Button more prominent on home page
+      - Play all on artist's page
+      - Option to mark items as Favourite (Favorite)
+
+      7.0.0.35
+      This is the initial public version.
     </Item>
 
     <Item Title="log file"

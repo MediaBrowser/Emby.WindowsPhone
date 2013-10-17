@@ -792,5 +792,26 @@ namespace MediaBrowser.Design
         {
             throw new NotImplementedException();
         }
+
+
+        public void ChangeServerLocation(string hostName, int apiPort)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<ItemIndex>> GetGamePlayerIndex(string userId, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task<ItemsResult> IApiClient.GetIntrosAsync(string itemId, string userId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<ItemIndex>> GetYearIndex(string userId, string[] includeItemTypes, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
