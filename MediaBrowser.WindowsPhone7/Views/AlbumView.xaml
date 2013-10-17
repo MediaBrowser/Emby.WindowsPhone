@@ -68,7 +68,7 @@
                         <cimbalino:ApplicationBarMenuItem Text="now playing"
                                                           Command="{Binding Main.NavigateToAPage, Source={StaticResource Locator}}"
                                                           CommandParameter="/Views/NowPlayingView.xaml" />
-                        <cimbalino:ApplicationBarMenuItem Text="{Binding SelectedArtist.UserData.IsFavorite, Converter={StaticResource FavouritesConverter}, ConverterParameter=text}"
+                        <cimbalino:ApplicationBarMenuItem Text="{Binding SelectedArtist.UserData.IsFavorite, Converter={StaticResource FavouritesConverter}, ConverterParameter=fulltext}"
                                                           Command="{Binding AddRemoveFavouriteCommand}"
                                                           CommandParameter="{Binding SelectedArtist}"
                                                           IsEnabled="{Binding CanUpdateFavourites}" />
