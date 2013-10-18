@@ -13,6 +13,7 @@
                 xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP8"
                 xmlns:cimbalino="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
                 xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
+                xmlns:c4F="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
                 mc:Ignorable="d ignore"
                 FontFamily="{StaticResource PhoneFontFamilyNormal}"
                 FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -86,11 +87,13 @@
                                              Margin="12,0,0,12">
                                 <Grid Height="173">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
-                                    
-                                    <Image Source="{Binding Converter={StaticResource ImageUrlConverter}, ConverterParameter=backdropsmall}"
-                                           Stretch="UniformToFill" />
+
+                                    <c4F:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}, ConverterParameter=backdropsmall}"
+                                                    Stretch="UniformToFill"
+                                                    PlaceholderImageSource="/Images/MBBackground.jpg"
+                                                    PlaceholderImageStretch="Uniform" />
                                     <Border VerticalAlignment="Bottom"
                                             Background="#C4000000"
                                             HorizontalAlignment="Stretch">
@@ -103,7 +106,7 @@
                                                        Style="{StaticResource PhoneTextLargeStyle}"
                                                        HorizontalAlignment="Left" />
                                         </Grid>
-                                        
+
                                     </Border>
                                 </Grid>
                             </HyperlinkButton>

@@ -563,6 +563,9 @@
     <Content Include="..\MediaBrowser.WindowsPhone8\Images\Logo.png">
       <Link>Images\Logo.png</Link>
     </Content>
+    <Content Include="..\MediaBrowser.WindowsPhone8\Images\MBBackground.jpg">
+      <Link>Images\MBBackground.jpg</Link>
+    </Content>
     <Content Include="..\MediaBrowser.WindowsPhone8\Images\moviecollection.png">
       <Link>Images\moviecollection.png</Link>
     </Content>

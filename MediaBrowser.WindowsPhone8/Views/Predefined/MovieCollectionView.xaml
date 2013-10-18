@@ -92,8 +92,10 @@
                                                  CommandParameter="{Binding}"
                                                  Margin="0,0,12,12">
                                     <Grid Height="173">
-                                        <Image Source="{Binding Converter={StaticResource ImageUrlConverter}, ConverterParameter=backdropsmall}"
-                                               Stretch="UniformToFill" />
+                                        <controls:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}, ConverterParameter=backdropsmall}"
+                                                             Stretch="UniformToFill"
+                                                             PlaceholderImageSource="/Images/MBBackground.jpg"
+                                                             PlaceholderImageStretch="Uniform" />
                                         <Border VerticalAlignment="Bottom"
                                                 Background="#C4000000">
                                             <TextBlock Text="{Binding Name, Converter={StaticResource StringToUppercaseConverter}}"
@@ -212,29 +214,67 @@
                                                            Stretch="UniformToFill" />
                                                     <TextBlock Text="{Binding CriticRating, StringFormat='\{0\}%'}"
                                                                Style="{StaticResource PhoneTextSubtleStyle}"
-                                                               Margin="6,0"/>
+                                                               Margin="6,0" />
                                                 </StackPanel>
                                             </StackPanel>
                                             <StackPanel Orientation="Horizontal"
                                                         Margin="12,0,0,0">
                                                 <TextBlock Text="{Binding ProductionYear}"
                                                            Style="{StaticResource PhoneTextSubtleStyle}"
-                                                           Margin="0,0,12,0"/>
+                                                           Margin="0,0,12,0" />
                                                 <TextBlock Text="{Binding RunTimeTicks, Converter={StaticResource RuntimeConverter}}"
                                                            Style="{StaticResource PhoneTextSubtleStyle}"
                                                            Visibility="{Binding RunTimeTicks, Converter={StaticResource NullVisibilityConverter}}"
-                                                           Margin="0,0,12,0"/>
+                                                           Margin="0,0,12,0" />
                                                 <TextBlock Text="{Binding OfficialRating}"
                                                            Style="{StaticResource PhoneTextSubtleStyle}"
                                                            Visibility="{Binding OfficialRating, Converter={StaticResource NullVisibilityConverter}}"
-                                                           Margin="0,0,12,0"/>
+                                                           Margin="0,0,12,0" />
                                                 <Image Source="/Images/3d.png"
                                                        Height="35"
                                                        Width="35"
-                                                       Visibility="{Binding Video3DFormat, Converter={StaticResource NullVisibilityConverter}}"/>
+                                                       Visibility="{Binding Video3DFormat, Converter={StaticResource NullVisibilityConverter}}" />
                                             </StackPanel>
                                         </StackPanel>
                                     </StackPanel>
+                                </HyperlinkButton>
+                            </DataTemplate>
+                        </phone:LongListSelector.ItemTemplate>
+                    </phone:LongListSelector>
+                </phone:PivotItem>
+
+                <phone:PivotItem Header="genres">
+                    <phone:LongListSelector ItemsSource="{Binding Genres}">
+                        <phone:LongListSelector.ItemTemplate>
+                            <DataTemplate>
+                                <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                                 Command="{Binding Main.NavigateToPage, Source={StaticResource Locator}}"
+                                                 CommandParameter="{Binding}"
+                                                 Margin="12,0,0,12">
+                                    <Grid Height="173">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <controls:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}, ConverterParameter=backdropsmall}"
+                                                             Stretch="UniformToFill"
+                                                             PlaceholderImageSource="/Images/MBBackground.jpg"
+                                                             PlaceholderImageStretch="Uniform"/>
+                                        <Border VerticalAlignment="Bottom"
+                                                Background="#C4000000"
+                                                HorizontalAlignment="Stretch">
+                                            <Grid>
+                                                <Rectangle Fill="Transparent"
+                                                           HorizontalAlignment="Stretch"
+                                                           Height="1"
+                                                           Width="308" />
+                                                <TextBlock Text="{Binding Name, Converter={StaticResource StringCaseConverter}, ConverterParameter=false}"
+                                                           Style="{StaticResource PhoneTextLargeStyle}"
+                                                           HorizontalAlignment="Left" />
+                                            </Grid>
+
+                                        </Border>
+                                    </Grid>
                                 </HyperlinkButton>
                             </DataTemplate>
                         </phone:LongListSelector.ItemTemplate>
