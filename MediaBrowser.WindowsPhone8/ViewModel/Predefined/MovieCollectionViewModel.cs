@@ -319,11 +319,13 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
         {
             try
             {
+                SetProgressBar("Getting genres...");
+
                 var query = new ItemsByNameQuery
                 {
                     SortBy = new[] { "SortName" },
                     SortOrder = SortOrder.Ascending,
-                    IncludeItemTypes = new[] { "Video" },
+                    IncludeItemTypes = new[] { "Movie", "Trailer" },
                     Recursive = true,
                     Fields = new[] { ItemFields.DateCreated },
                     UserId = AuthenticationService.Current.LoggedInUser.Id
