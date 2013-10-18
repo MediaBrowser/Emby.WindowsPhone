@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using GalaSoft.MvvmLight.Command;
+using JetBrains.Annotations;
 using MediaBrowser.Model;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Querying;
@@ -330,6 +331,13 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     SetProgressBar();
                 }
             }
+        }
+
+        [UsedImplicitly]
+        private void OnSelectedSeasonChanged()
+        {
+            Episodes = new List<BaseItemDto>();
+            SelectedEpisode = null;
         }
 
         public BaseItemDto SelectedTvSeries { get; set; }
