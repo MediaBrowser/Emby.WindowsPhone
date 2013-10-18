@@ -201,6 +201,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     UserId = AuthenticationService.Current.LoggedInUser.Id,
                     ParentId = SelectedTvSeries.Id,
                     Filters = new[] {ItemFilter.IsRecentlyAdded},
+                    ExcludeItemTypes = new []{ "Season" },
                     Fields = new[]
                     {
                         ItemFields.ParentId
