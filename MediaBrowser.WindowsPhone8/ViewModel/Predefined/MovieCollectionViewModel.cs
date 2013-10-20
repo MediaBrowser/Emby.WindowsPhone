@@ -335,7 +335,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
 
                 if (!items.Items.IsNullOrEmpty())
                 {
-                    Genres = items.Items.ToList();
+                    var genres = items.Items.ToList();
+                    genres.ForEach(genre => genre.Type = "Genre - Movies");
+
+                    Genres = genres;
 
                     SetProgressBar();
 

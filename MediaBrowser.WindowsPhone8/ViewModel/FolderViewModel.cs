@@ -240,12 +240,22 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         query.Recursive = true;
                         isRecent = true;
                     }
-                    else if (SelectedFolder.Type.Equals("Genre"))
+                    else if (SelectedFolder.Type.StartsWith("Genre"))
                     {
                         Log.Info("Getting items for genre [{0}]", SelectedFolder.Name);
                         PageTitle = SelectedFolder.Type.ToLower();
                         query.Genres = new[] {SelectedFolder.Name};
                         query.Recursive = true;
+
+                        if (SelectedFolder.Type.Contains(" - TV"))
+                        {
+                            query.IncludeItemTypes = new[] {"Series"};
+                        }
+                        else if (SelectedFolder.Type.Contains(" - Movies"))
+                        {
+                            query.ExcludeItemTypes = new[] { "Series" };
+                            query.IncludeItemTypes = new[] {"Movie", "Trailer"};
+                        }
                     }
                     else
                     {
