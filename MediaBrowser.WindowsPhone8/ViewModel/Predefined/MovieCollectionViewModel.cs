@@ -336,6 +336,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                 if (!items.Items.IsNullOrEmpty())
                 {
                     Genres = items.Items.ToList();
+
+                    SetProgressBar();
+
                     return true;
                 }
             }
@@ -343,6 +346,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
             {
                 Log.ErrorException("GetGenres()", ex);
             }
+
+            SetProgressBar();
 
             return false;
         }
