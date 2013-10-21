@@ -243,7 +243,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     else if (SelectedFolder.Type.StartsWith("Genre"))
                     {
                         Log.Info("Getting items for genre [{0}]", SelectedFolder.Name);
-                        PageTitle = SelectedFolder.Type.ToLower();
+                        PageTitle = SelectedFolder.Name.ToLower();
                         query.Genres = new[] {SelectedFolder.Name};
                         query.Recursive = true;
 

@@ -110,6 +110,11 @@ namespace MediaBrowser.WindowsPhone.Converters
 
         private static object GetDtoImage(BaseItemDto item, string imageType, IExtendedApiClient apiClient)
         {
+            if (item.ImageTags.IsNullOrEmpty())
+            {
+                return "";
+            }
+
             var imageOptions = new ImageOptions
             {
                 Quality = 90,
