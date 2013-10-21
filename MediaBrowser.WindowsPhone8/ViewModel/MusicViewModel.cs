@@ -8,7 +8,6 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model;
 using MediaBrowser.Model.Dto;
-using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Querying;
 using MediaBrowser.Services;
@@ -119,7 +118,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             AlbumPageLoaded = new RelayCommand(async () =>
             {
-                if (AlbumTracks == null)
+                if (_artistTracks.IsNullOrEmpty())
                 {
                     SetProgressBar("Getting tracks...");
 
@@ -262,6 +261,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 var query = new ItemQuery
                 {
                     ParentId = SelectedAlbum.Id,
+                    IncludeItemTypes = new[] { "Audio" },
                     UserId = AuthenticationService.Current.LoggedInUserId
                 };
 
