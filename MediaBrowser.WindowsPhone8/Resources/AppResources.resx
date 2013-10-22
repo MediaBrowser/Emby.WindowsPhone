@@ -213,6 +213,9 @@
   <data name="ShowAllItems" xml:space="preserve">
     <value>Show all items...</value>
   </data>
+  <data name="SysTrayAddingToFavourites" xml:space="preserve">
+    <value>Adding to favourites...</value>
+  </data>
   <data name="SysTrayAuthenticating" xml:space="preserve">
     <value>Authenticating...</value>
   </data>
