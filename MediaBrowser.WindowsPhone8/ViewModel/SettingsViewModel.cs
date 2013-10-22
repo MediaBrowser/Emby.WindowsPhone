@@ -5,6 +5,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -243,12 +244,23 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 Log.Info("Testing connection");
 
+
+#if WP8
                 var hostnameType = Uri.CheckHostName(App.Settings.ConnectionDetails.HostName);
                 if (hostnameType == UriHostNameType.Unknown)
                 {
                     MessageBox.Show("Sorry, your hostname is invalid, please make sure you don't have any spaces (for example) in it.", "Error", MessageBoxButton.OK);
                     return;
                 }
+#else
+                var regexItem = new Regex("^[a-zA-Z0-9]*$");
+
+                if (!regexItem.IsMatch(App.Settings.ConnectionDetails.HostName))
+                {
+                    MessageBox.Show("Sorry, your hostname is invalid, please make sure you don't have any spaces (for example) in it.", "Error", MessageBoxButton.OK);
+                    return;
+                }
+#endif
 
                 if (await Utils.GetServerConfiguration(_apiClient, Log))
                 {
