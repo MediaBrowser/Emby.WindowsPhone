@@ -70,9 +70,10 @@
                 <TextBlock Text="Before we can get started though, you need to make sure you're running the Media Browser server."
                            Style="{StaticResource PhoneTextTitle3Style}"
                            TextWrapping="Wrap" />
-                <HyperlinkButton NavigateUri="http://mediabrowser3.com/download"
-                                 Content="http://mediabrowser3.com/download"
-                                 HorizontalContentAlignment="Left" />
+                <HyperlinkButton Content="http://mediabrowser3.com/download"
+                                 HorizontalContentAlignment="Left"
+                                 x:Name="DownloadButton"
+                                 Click="DownloadButton_OnClick"/>
             </StackPanel>
 
             <TextBlock Text="Once the Media Browser server is configured, make sure it's accessible from where you are, whether that's being on your local wireless network, or an external static address."

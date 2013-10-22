@@ -242,6 +242,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             if (_navigationService.IsNetworkAvailable)
             {
                 Log.Info("Testing connection");
+
+                var hostnameType = Uri.CheckHostName(App.Settings.ConnectionDetails.HostName);
+                if (hostnameType == UriHostNameType.Unknown)
+                {
+                    MessageBox.Show("Sorry, your hostname is invalid, please make sure you don't have any spaces (for example) in it.", "Error", MessageBoxButton.OK);
+                    return;
+                }
+
                 if (await Utils.GetServerConfiguration(_apiClient, Log))
                 {
                     if (!IsInDesignMode)
