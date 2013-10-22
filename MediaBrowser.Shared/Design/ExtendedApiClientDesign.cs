@@ -381,6 +381,11 @@ namespace MediaBrowser.Design
             throw new NotImplementedException();
         }
 
+        public Task<ItemCounts> GetItemCountsAsync(ItemCountsQuery query)
+        {
+            throw new NotImplementedException();
+        }
+
         public System.Threading.Tasks.Task<Model.Querying.ItemsResult> GetItemsAsync(Model.Querying.ItemQuery query)
         {
             throw new NotImplementedException();
