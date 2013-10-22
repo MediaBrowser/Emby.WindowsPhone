@@ -13,6 +13,7 @@
                 xmlns:controls1="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
                 xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
                 xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
+                xmlns:converters="clr-namespace:MediaBrowser.WindowsPhone.Converters"
                 mc:Ignorable="d"
                 d:DesignWidth="480"
                 d:DesignHeight="696"
@@ -35,6 +36,11 @@
             <command:EventToCommand Command="{Binding EpisodePageLoaded}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
+    
+    <scott:BasePage.Resources>
+        <converters:VirtualConverter x:Key="VirtualConverter"/>
+        <converters:VirtualVisibilityConverter x:Key="VirtualVisibilityConverter"/>
+    </scott:BasePage.Resources>
 
     <toolkit:TransitionService.NavigationInTransition>
         <toolkit:NavigationInTransition>
@@ -122,6 +128,7 @@
                                     <Button Style="{StaticResource EmptyButtonStyle}"
                                             HorizontalContentAlignment="Center"
                                             VerticalContentAlignment="Center"
+                                            IsHitTestVisible="{Binding SelectedEpisode, Converter={StaticResource VirtualConverter}}"
                                             Command="{Binding Main.PlayMovieCommand, Source={StaticResource Locator}}"
                                             CommandParameter="{Binding}">
                                         <Grid>
@@ -130,7 +137,7 @@
                                                                    IsHitTestVisible="False"
                                                                    HorizontalAlignment="Center"
                                                                    VerticalAlignment="Center"
-                                                                   Visibility="Visible" />
+                                                                   Visibility="{Binding SelectedEpisode, Converter={StaticResource VirtualVisibilityConverter}}" />
                                         </Grid>
                                     </Button>
                                     <TextBlock Text="{Binding Overview}"

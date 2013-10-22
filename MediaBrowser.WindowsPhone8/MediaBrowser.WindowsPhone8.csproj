@@ -169,6 +169,7 @@
     <Compile Include="Converters\SettingsConverters.cs" />
     <Compile Include="Converters\SimpleDaysAgoConverter.cs" />
     <Compile Include="Converters\TicksToTimespanConverter.cs" />
+    <Compile Include="Converters\VirtualConverter.cs" />
     <Compile Include="Converters\ZeroCountBrushConverter.cs" />
     <Compile Include="ExtensionMethods.cs" />
     <Compile Include="LocalizedStrings.cs" />
