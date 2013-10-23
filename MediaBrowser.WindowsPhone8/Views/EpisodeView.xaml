@@ -128,7 +128,7 @@
                                     <Button Style="{StaticResource EmptyButtonStyle}"
                                             HorizontalContentAlignment="Center"
                                             VerticalContentAlignment="Center"
-                                            IsHitTestVisible="{Binding SelectedEpisode, Converter={StaticResource VirtualConverter}}"
+                                            IsHitTestVisible="{Binding Converter={StaticResource VirtualConverter}}"
                                             Command="{Binding Main.PlayMovieCommand, Source={StaticResource Locator}}"
                                             CommandParameter="{Binding}">
                                         <Grid>
@@ -137,7 +137,7 @@
                                                                    IsHitTestVisible="False"
                                                                    HorizontalAlignment="Center"
                                                                    VerticalAlignment="Center"
-                                                                   Visibility="{Binding SelectedEpisode, Converter={StaticResource VirtualVisibilityConverter}}" />
+                                                                   Visibility="{Binding Converter={StaticResource VirtualVisibilityConverter}}" />
                                         </Grid>
                                     </Button>
                                     <TextBlock Text="{Binding Overview}"
