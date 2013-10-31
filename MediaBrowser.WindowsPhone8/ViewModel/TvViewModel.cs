@@ -213,7 +213,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     {
                         ItemFields.ParentId
                     },
-                    Recursive = true
+                    Recursive = true,
+                    IsMissing = App.SpecificSettings.ShowMissingEpisodes,
+                    IsUnaired = App.SpecificSettings.ShowUnairedEpisodes
                 };
 
                 Log.Info("Getting recent items for TV Show [{0}] ({1})", SelectedTvSeries.Name, SelectedTvSeries.Id);
@@ -280,7 +282,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     {
                         ItemFields.ParentId,
                         ItemFields.Overview
-                    }
+                    },
+                    IsMissing = App.SpecificSettings.ShowMissingEpisodes,
+                    IsUnaired = App.SpecificSettings.ShowUnairedEpisodes
                 };
 
                 Log.Info("Getting episodes for Season [{0}] ({1}) of TV Show [{2}] ({3})", SelectedSeason.Name, SelectedSeason.Id, SelectedTvSeries.Name, SelectedTvSeries.Id);

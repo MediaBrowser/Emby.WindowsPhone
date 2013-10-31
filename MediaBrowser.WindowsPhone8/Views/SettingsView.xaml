@@ -261,6 +261,10 @@
                                    TextWrapping="Wrap"
                                    VerticalAlignment="Top" />
                     </CheckBox>
+                    <CheckBox IsChecked="{Binding ShowMissingEpisodes, Source={StaticResource SpecificSettings}, Mode=TwoWay}"
+                              Content="Show missing episodes"/>
+                    <CheckBox IsChecked="{Binding ShowUnairedEpisodes, Source={StaticResource SpecificSettings}, Mode=TwoWay}"
+                              Content="Show unaired episodes" />
                 </StackPanel>
             </phone:PivotItem>
 
