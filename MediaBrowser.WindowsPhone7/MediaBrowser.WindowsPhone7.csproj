@@ -153,6 +153,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\protobuf-net.2.0.0.668\lib\sl4-windowsphone71\protobuf-net.dll</HintPath>
     </Reference>
+    <Reference Include="ScottIsAFool.WindowsPhone, Version=1.0.17.5, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\ScottIsAFool.WindowsPhone.1.0.17.5\lib\wp71\ScottIsAFool.WindowsPhone.dll</HintPath>
+    </Reference>
     <Reference Include="System.IO, Version=1.5.11.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.Bcl.1.1.3\lib\sl4-windowsphone71\System.IO.dll</HintPath>

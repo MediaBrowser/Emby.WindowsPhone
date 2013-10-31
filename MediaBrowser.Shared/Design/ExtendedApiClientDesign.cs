@@ -119,6 +119,11 @@ namespace MediaBrowser.Design
             throw new NotImplementedException();
         }
 
+        public string GetThumbImageUrl(BaseItemDto item, ImageOptions options)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<BaseItemDto> GetMusicGenreAsync(string name)
         {
             throw new NotImplementedException();
