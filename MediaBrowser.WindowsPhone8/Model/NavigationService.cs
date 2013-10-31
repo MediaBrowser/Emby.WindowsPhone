@@ -40,6 +40,7 @@ namespace MediaBrowser.WindowsPhone.Model
             App.SelectedItem = item;
             var type = item.Type.ToLower();
             if (type.Contains("collectionfolder")) type = "collectionfolder";
+            if (type.StartsWith("genre")) type = "genre";
             switch (type)
             {
                 case "collectionfolder":

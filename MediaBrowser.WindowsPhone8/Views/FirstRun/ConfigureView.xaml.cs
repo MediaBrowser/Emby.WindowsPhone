@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Navigation;
 using Cimbalino.Phone.Toolkit.Services;
 using GalaSoft.MvvmLight.Ioc;
+using Microsoft.Phone.Tasks;
 
 namespace MediaBrowser.WindowsPhone.Views.FirstRun
 {
@@ -34,5 +35,13 @@ namespace MediaBrowser.WindowsPhone.Views.FirstRun
             Application.Current.Terminate();
         }
 #endif
+
+        private void DownloadButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            new WebBrowserTask
+            {
+                Uri = new Uri("http://mediabrowser3.com/download", UriKind.Absolute)
+            }.Show();
+        }
     }
 }

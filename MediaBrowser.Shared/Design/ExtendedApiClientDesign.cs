@@ -119,6 +119,11 @@ namespace MediaBrowser.Design
             throw new NotImplementedException();
         }
 
+        public string GetThumbImageUrl(BaseItemDto item, ImageOptions options)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<BaseItemDto> GetMusicGenreAsync(string name)
         {
             throw new NotImplementedException();
@@ -377,6 +382,11 @@ namespace MediaBrowser.Design
         }
 
         public System.Threading.Tasks.Task<Model.Dto.ItemCounts> GetItemCountsAsync(string userId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<ItemCounts> GetItemCountsAsync(ItemCountsQuery query)
         {
             throw new NotImplementedException();
         }
@@ -789,6 +799,27 @@ namespace MediaBrowser.Design
         }
 
         public Task ReportPlaybackStartAsync(string itemId, string userId, bool isSeekable, List<string> queueableMediaTypes)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public void ChangeServerLocation(string hostName, int apiPort)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<ItemIndex>> GetGamePlayerIndex(string userId, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task<ItemsResult> IApiClient.GetIntrosAsync(string itemId, string userId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<ItemIndex>> GetYearIndex(string userId, string[] includeItemTypes, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }

@@ -159,6 +159,44 @@
                         </phone:LongListSelector.ItemTemplate>
                     </phone:LongListSelector>
                 </phone:PivotItem>
+
+                <phone:PivotItem Header="genres">
+                    <phone:LongListSelector ItemsSource="{Binding Genres}">
+                        <phone:LongListSelector.ItemTemplate>
+                            <DataTemplate>
+                                <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                                 Command="{Binding Main.NavigateToPage, Source={StaticResource Locator}}"
+                                                 CommandParameter="{Binding}"
+                                                 Margin="12,0,0,12">
+                                    <Grid Height="173">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <controls:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}, ConverterParameter=backdropsmall}"
+                                                             Stretch="UniformToFill"
+                                                             PlaceholderImageSource="/Images/MBBackground.jpg"
+                                                             PlaceholderImageStretch="Uniform" />
+                                        <Border VerticalAlignment="Bottom"
+                                                Background="#C4000000"
+                                                HorizontalAlignment="Stretch">
+                                            <Grid>
+                                                <Rectangle Fill="Transparent"
+                                                           HorizontalAlignment="Stretch"
+                                                           Height="1"
+                                                           Width="308" />
+                                                <TextBlock Text="{Binding Name, Converter={StaticResource StringCaseConverter}, ConverterParameter=false}"
+                                                           Style="{StaticResource PhoneTextLargeStyle}"
+                                                           HorizontalAlignment="Left" />
+                                            </Grid>
+
+                                        </Border>
+                                    </Grid>
+                                </HyperlinkButton>
+                            </DataTemplate>
+                        </phone:LongListSelector.ItemTemplate>
+                    </phone:LongListSelector>
+                </phone:PivotItem>
             </phone:Pivot>
         </Grid>
         <!--<Image Source="/Assets/AlignmentGrid.png" VerticalAlignment="Top" Height="800" Width="480" Margin="0,-32,0,0" Grid.Row="0" Grid.RowSpan="2" IsHitTestVisible="False" />-->

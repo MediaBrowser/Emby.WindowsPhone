@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using GalaSoft.MvvmLight.Command;
+using JetBrains.Annotations;
 using MediaBrowser.Model;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Querying;
@@ -43,6 +44,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             RecentItems = new ObservableCollection<BaseItemDto>();
             Episodes = new List<BaseItemDto>();
+            CanUpdateFavourites = true;
             if (IsInDesignMode)
             {
                 SelectedTvSeries = new BaseItemDto
@@ -155,6 +157,27 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 SelectedEpisode = SelectedEpisode.IndexNumber - 1 == 0 ? Episodes[Episodes.Count - 1] : Episodes[SelectedEpisode.IndexNumber.Value - 2];
             });
 
+            AddRemoveFavouriteCommand = new RelayCommand<BaseItemDto>(async item =>
+            {
+                try
+                {
+                    SetProgressBar(AppResources.SysTrayAddingToFavourites); 
+                    
+                    CanUpdateFavourites = false;
+
+                    item.UserData = await _apiClient.UpdateFavoriteStatusAsync(item.Id, AuthenticationService.Current.LoggedInUser.Id, !item.UserData.IsFavorite);
+                }
+                catch (HttpException ex)
+                {
+                    Log.ErrorException("AddRemoveFavouriteCommand (TV)", ex);
+                    App.ShowMessage("Error making your changes");
+                }
+
+                SetProgressBar();
+
+                CanUpdateFavourites = true;
+            });
+
             NavigateTo = new RelayCommand<BaseItemDto>(_navService.NavigateTo);
         }
 
@@ -185,11 +208,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     UserId = AuthenticationService.Current.LoggedInUser.Id,
                     ParentId = SelectedTvSeries.Id,
                     Filters = new[] {ItemFilter.IsRecentlyAdded},
+                    ExcludeItemTypes = new []{ "Season" },
                     Fields = new[]
                     {
                         ItemFields.ParentId
                     },
-                    Recursive = true
+                    Recursive = true,
+                    IsMissing = App.SpecificSettings.ShowMissingEpisodes,
+                    IsUnaired = App.SpecificSettings.ShowUnairedEpisodes
                 };
 
                 Log.Info("Getting recent items for TV Show [{0}] ({1})", SelectedTvSeries.Name, SelectedTvSeries.Id);
@@ -256,7 +282,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     {
                         ItemFields.ParentId,
                         ItemFields.Overview
-                    }
+                    },
+                    IsMissing = App.SpecificSettings.ShowMissingEpisodes,
+                    IsUnaired = App.SpecificSettings.ShowUnairedEpisodes
                 };
 
                 Log.Info("Getting episodes for Season [{0}] ({1}) of TV Show [{2}] ({3})", SelectedSeason.Name, SelectedSeason.Id, SelectedTvSeries.Name, SelectedTvSeries.Id);
@@ -315,6 +343,13 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
         }
 
+        [UsedImplicitly]
+        private void OnSelectedSeasonChanged()
+        {
+            Episodes = new List<BaseItemDto>();
+            SelectedEpisode = null;
+        }
+
         public BaseItemDto SelectedTvSeries { get; set; }
         public List<BaseItemDto> Seasons { get; set; }
         public List<BaseItemDto> Episodes { get; set; }
@@ -330,5 +365,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public RelayCommand EpisodePageLoaded { get; set; }
         public RelayCommand NextEpisodeCommand { get; set; }
         public RelayCommand PreviousEpisodeCommand { get; set; }
+        public RelayCommand<BaseItemDto> AddRemoveFavouriteCommand { get; set; }
+        public bool CanUpdateFavourites { get; set; }
     }
 }

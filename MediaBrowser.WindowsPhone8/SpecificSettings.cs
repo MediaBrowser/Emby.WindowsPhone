@@ -23,6 +23,8 @@ namespace MediaBrowser.WindowsPhone
         public GroupBy DefaultGroupBy { get; set; }
         public List<GroupBy> GroupByItems { get; set; }
         public bool JustShowFolderView { get; set; }
+        public bool ShowMissingEpisodes { get; set; }
+        public bool ShowUnairedEpisodes { get; set; }
 
         public DeviceSettings DeviceSettings { get; set; }
 

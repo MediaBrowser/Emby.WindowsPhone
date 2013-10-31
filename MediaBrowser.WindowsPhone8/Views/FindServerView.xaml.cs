@@ -1,4 +1,4 @@
-﻿using Microsoft.Phone.Controls;
+﻿using System.Windows.Navigation;
 
 namespace MediaBrowser.WindowsPhone.Views
 {
@@ -13,11 +13,13 @@ namespace MediaBrowser.WindowsPhone.Views
             //BuildLocalizedApplicationBar();
         }
 
-        protected override void OnNavigatedFrom(System.Windows.Navigation.NavigationEventArgs e)
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            if (NavigationService.CanGoBack)
+            if (NavigationService.CanGoBack && e.NavigationMode != NavigationMode.Back)
+            {
                 NavigationService.RemoveBackEntry();
+            }
         }
     }
 }

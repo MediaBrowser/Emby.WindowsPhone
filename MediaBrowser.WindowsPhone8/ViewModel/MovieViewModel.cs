@@ -111,14 +111,20 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 try
                 {
+                    SetProgressBar(AppResources.SysTrayAddingToFavourites);
+
                     CanUpdateFavourites = false;
 
                     SelectedMovie.UserData = await _apiClient.UpdateFavoriteStatusAsync(SelectedMovie.Id, AuthenticationService.Current.LoggedInUser.Id, !SelectedMovie.UserData.IsFavorite);
                 }
                 catch (HttpException ex)
                 {
-                    Log.ErrorException("AddRemoveFavouriteCommand", ex);
+                    Log.ErrorException("AddRemoveFavouriteCommand (Movies)", ex);
+                    App.ShowMessage("Error making your changes");
                 }
+
+                SetProgressBar();
+
                 CanUpdateFavourites = true;
             });
 

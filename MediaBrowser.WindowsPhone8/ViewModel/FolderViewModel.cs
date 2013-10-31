@@ -219,7 +219,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         ItemFields.ProviderIds,
                         ItemFields.ParentId
                     },
-                    ExcludeItemTypes = new[] {"Season", "Series"}
+                    ExcludeItemTypes = SelectedFolder != null && SelectedFolder.Name.ToLower().Contains("recent") ? new[] {"Season", "Series"} : null
                 };
                 var isRecent = false;
                 if (SelectedPerson != null)
@@ -240,12 +240,22 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         query.Recursive = true;
                         isRecent = true;
                     }
-                    else if (SelectedFolder.Type.Equals("Genre"))
+                    else if (SelectedFolder.Type.StartsWith("Genre"))
                     {
                         Log.Info("Getting items for genre [{0}]", SelectedFolder.Name);
-                        PageTitle = SelectedFolder.Type.ToLower();
+                        PageTitle = SelectedFolder.Name.ToLower();
                         query.Genres = new[] {SelectedFolder.Name};
                         query.Recursive = true;
+
+                        if (SelectedFolder.Type.Contains(" - TV"))
+                        {
+                            query.IncludeItemTypes = new[] {"Series"};
+                        }
+                        else if (SelectedFolder.Type.Contains(" - Movies"))
+                        {
+                            query.ExcludeItemTypes = new[] { "Series" };
+                            query.IncludeItemTypes = new[] {"Movie", "Trailer"};
+                        }
                     }
                     else
                     {

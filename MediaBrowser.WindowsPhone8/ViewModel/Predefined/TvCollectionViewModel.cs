@@ -31,6 +31,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
         private bool _nextUpLoaded;
         private bool _latestUnwatchedLoaded;
         private bool _showsLoaded;
+        private bool _genresLoaded;
 
         /// <summary>
         /// Initializes a new instance of the TvCollectionViewModel class.
@@ -59,6 +60,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
         public List<BaseItemDto> NextUpList { get; set; }
         public List<BaseItemDto> LatestUnwatched { get; set; }
         public List<Group<BaseItemDto>> Shows { get; set; }
+        public List<BaseItemDto> Genres { get; set; }
 
         public int PivotSelectedIndex { get; set; }
 
@@ -198,6 +200,46 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
             return false;
         }
 
+        private async Task<bool> GetGenres()
+        {
+            try
+            {
+                SetProgressBar("Getting genres...");
+
+                var query = new ItemsByNameQuery
+                {
+                    SortBy = new[] { "SortName" },
+                    SortOrder = SortOrder.Ascending,
+                    IncludeItemTypes = new[] { "Series" },
+                    Recursive = true,
+                    Fields = new[] { ItemFields.DateCreated },
+                    UserId = AuthenticationService.Current.LoggedInUser.Id
+                };
+
+                var items = await _apiClient.GetGenresAsync(query);
+
+                if (!items.Items.IsNullOrEmpty())
+                {
+                    var genres = items.Items.ToList();
+                    genres.ForEach(genre => genre.Type = "Genre - TV");
+
+                    Genres = genres;
+
+                    SetProgressBar();
+
+                    return true;
+                }
+            }
+            catch (HttpException ex)
+            {
+                Log.ErrorException("GetGenres()", ex);
+            }
+
+            SetProgressBar();
+
+            return false;
+        }
+
         private async Task<bool> SetShows(ItemsResult itemResponse)
         {
             SetProgressBar();
@@ -273,6 +315,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                     }
 
                     _showsLoaded = await GetShows();
+                    break;
+                case 3:
+                    if (!_navigationService.IsNetworkAvailable || (_genresLoaded && !isRefresh))
+                    {
+                        return;
+                    }
+
+                    _genresLoaded = await GetGenres();
                     break;
             }
         }

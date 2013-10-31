@@ -8,7 +8,6 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model;
 using MediaBrowser.Model.Dto;
-using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Querying;
 using MediaBrowser.Services;
@@ -42,6 +41,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             _apiClient = apiClient;
 
             SelectedTracks = new List<BaseItemDto>();
+            CanUpdateFavourites = true;
             if (IsInDesignMode)
             {
                 SelectedArtist = new BaseItemDto
@@ -118,10 +118,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             AlbumPageLoaded = new RelayCommand(async () =>
             {
-                if (AlbumTracks == null)
+                if (_artistTracks.IsNullOrEmpty())
                 {
                     SetProgressBar("Getting tracks...");
-                   
+
                     try
                     {
                         if (SelectedArtist != null)
@@ -129,8 +129,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                             await GetArtistInfo();
 
                             AlbumTracks = _artistTracks.Where(x => x.ParentId == SelectedAlbum.Id)
-                            .OrderBy(x => x.ParentIndexNumber)
-                            .ThenBy(x => x.IndexNumber).ToList();
+                                                       .OrderBy(x => x.ParentIndexNumber)
+                                                       .ThenBy(x => x.IndexNumber).ToList();
                         }
                         else
                         {
@@ -225,6 +225,39 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                 Messenger.Default.Send(new NotificationMessage<List<PlaylistItem>>(playlist, Constants.Messages.SetPlaylistAsMsg));
             });
+
+            AddRemoveFavouriteCommand = new RelayCommand<BaseItemDto>(async item =>
+            {
+                try
+                {
+                    SetProgressBar(AppResources.SysTrayAddingToFavourites);
+
+                    CanUpdateFavourites = false;
+
+                    item.UserData = await _apiClient.UpdateFavoriteStatusAsync(item.Id, AuthenticationService.Current.LoggedInUser.Id, !item.UserData.IsFavorite);
+                }
+                catch (HttpException ex)
+                {
+                    Log.ErrorException("AddRemoveFavouriteCommand (Music)", ex);
+                    App.ShowMessage("Error making your changes");
+                }
+
+                SetProgressBar();
+
+                CanUpdateFavourites = true;
+            });
+
+            PlayAllItemsCommand = new RelayCommand(() =>
+            {
+                if (_artistTracks.IsNullOrEmpty())
+                {
+                    return;
+                }
+
+                var playlist = _artistTracks.ToPlayListItems(_apiClient);
+
+                Messenger.Default.Send(new NotificationMessage<List<PlaylistItem>>(playlist, Constants.Messages.SetPlaylistAsMsg));
+            });
         }
 
         private async Task GetAlbumTracks()
@@ -234,6 +267,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 var query = new ItemQuery
                 {
                     ParentId = SelectedAlbum.Id,
+                    IncludeItemTypes = new[] { "Audio" },
                     UserId = AuthenticationService.Current.LoggedInUserId
                 };
 
@@ -387,5 +421,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public RelayCommand<SelectionChangedEventArgs> SelectionChangedCommand { get; set; }
         public RelayCommand AddToNowPlayingCommand { get; set; }
         public RelayCommand PlayItemsCommand { get; set; }
+        public RelayCommand PlayAllItemsCommand { get; set; }
+        public RelayCommand<BaseItemDto> AddRemoveFavouriteCommand { get; set; }
+        public bool CanUpdateFavourites { get; set; }
     }
 }

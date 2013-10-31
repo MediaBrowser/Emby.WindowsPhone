@@ -110,7 +110,11 @@ namespace MediaBrowser.WindowsPhone.Converters
 
         private static object GetDtoImage(BaseItemDto item, string imageType, IExtendedApiClient apiClient)
         {
-            if (!item.HasPrimaryImage) return "";
+            if (item.ImageTags.IsNullOrEmpty())
+            {
+                return "";
+            }
+
             var imageOptions = new ImageOptions
             {
                 Quality = 90,
@@ -125,7 +129,7 @@ namespace MediaBrowser.WindowsPhone.Converters
             {
                 imageOptions.ImageType = ImageType.Logo;
             }
-            else if (imageType.Equals("backdrop", StringComparison.OrdinalIgnoreCase))
+            else if (imageType.Equals("backdrop"))
             {
                 imageOptions.MaxHeight = 800;
                 imageOptions.ImageType = ImageType.Backdrop;
@@ -134,6 +138,20 @@ namespace MediaBrowser.WindowsPhone.Converters
                 if (!images.IsNullOrEmpty())
                 {
                     return images.FirstOrDefault();
+                }
+            }
+            else if (imageType.Equals("primaryorbackdrop"))
+            {
+                if (!item.HasPrimaryImage)
+                {
+                    imageOptions.MaxHeight = 800;
+                    imageOptions.ImageType = ImageType.Backdrop;
+
+                    var images = apiClient.GetBackdropImageUrls(item, imageOptions);
+                    if (!images.IsNullOrEmpty())
+                    {
+                        return images.FirstOrDefault();
+                    }
                 }
             }
             else if (imageType.Equals("backdropsmall", StringComparison.OrdinalIgnoreCase))

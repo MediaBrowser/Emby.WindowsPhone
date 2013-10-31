@@ -11,6 +11,7 @@
                 xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP71"
                 xmlns:c4F="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
                 xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
+                xmlns:cimbalino="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
                 mc:Ignorable="d"
                 d:DesignWidth="480"
                 d:DesignHeight="768"
@@ -28,6 +29,15 @@
         <behaviours:MBSysTray Text="{Binding ProgressText}"
                               IsVisible="{Binding ProgressIsVisible}"
                               IsIndeterminate="{Binding ProgressIsVisible}" />
+        <cimbalino:ApplicationBarBehavior Mode="Minimized"
+                                          IsMenuEnabled="True">
+            <cimbalino:ApplicationBarBehavior.MenuItems>
+                <cimbalino:ApplicationBarMenuItem Text="{Binding SelectedTvSeries.UserData.IsFavorite, Converter={StaticResource FavouritesConverter}, ConverterParameter=fulltext}"
+                                                  Command="{Binding AddRemoveFavouriteCommand}"
+                                                  CommandParameter="{Binding SelectedTvSeries}"
+                                                  IsEnabled="{Binding CanUpdateFavourites}" />
+            </cimbalino:ApplicationBarBehavior.MenuItems>
+        </cimbalino:ApplicationBarBehavior>
     </i:Interaction.Behaviors>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">

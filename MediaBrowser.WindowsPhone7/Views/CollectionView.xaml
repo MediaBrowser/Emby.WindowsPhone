@@ -13,6 +13,7 @@
                 xmlns:controls3="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
                 xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP71"
                 xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
+                xmlns:controls1="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
                 mc:Ignorable="d ignore"
                 FontFamily="{StaticResource PhoneFontFamilyNormal}"
                 FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -92,8 +93,10 @@
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
-                                    <Image Source="{Binding Converter={StaticResource ImageUrlConverter}, ConverterParameter=backdropsmall}"
-                                           Stretch="UniformToFill" />
+                                    <controls1:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}, ConverterParameter=backdropsmall}"
+                                                         Stretch="UniformToFill"
+                                                         PlaceholderImageSource="/Images/MBBackground.jpg"
+                                                         PlaceholderImageStretch="Uniform" />
                                     <Border VerticalAlignment="Bottom"
                                             Background="#C4000000"
                                             HorizontalAlignment="Stretch">
