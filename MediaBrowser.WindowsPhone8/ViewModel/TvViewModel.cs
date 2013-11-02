@@ -252,7 +252,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     Fields = new[]
                     {
                         ItemFields.ParentId
-                    }
+                    },
+                    IsMissing = App.SpecificSettings.ShowMissingEpisodes,
+                    IsUnaired = App.SpecificSettings.ShowUnairedEpisodes
                 };
 
                 Log.Info("Getting seasons for TV Show [{0}] ({1})", SelectedTvSeries.Name, SelectedTvSeries.Id);
