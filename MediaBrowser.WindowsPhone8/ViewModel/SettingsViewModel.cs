@@ -253,11 +253,13 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     return;
                 }
 #else
-                var regexItem = new Regex("^[a-zA-Z0-9]*$");
+                var regexItem = new Regex(@"(?:[A-Za-z0-9][A-Za-z0-9\-]{0,61}[A-Za-z0-9]|[A-Za-z0-9])");
 
-                if (!regexItem.IsMatch(App.Settings.ConnectionDetails.HostName))
+                if (string.IsNullOrEmpty(App.Settings.ConnectionDetails.HostName) || App.Settings.ConnectionDetails.HostName.Contains(" ") || !regexItem.IsMatch(App.Settings.ConnectionDetails.HostName))
                 {
                     MessageBox.Show("Sorry, your hostname is invalid, please make sure you don't have any spaces (for example) in it.", "Error", MessageBoxButton.OK);
+
+                    SetProgressBar();
                     return;
                 }
 #endif
