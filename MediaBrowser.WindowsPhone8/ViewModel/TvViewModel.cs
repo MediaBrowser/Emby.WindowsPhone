@@ -313,6 +313,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             if (_navService.IsNetworkAvailable)
             {
+                var index = SelectedEpisode.IndexNumber;
                 if (SelectedEpisode != null && Episodes.IsNullOrEmpty())
                 {
                     SetProgressBar(AppResources.SysTrayGettingEpisodeDetails);
@@ -341,6 +342,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     }
 
                     SetProgressBar();
+                }
+                
+                if (SelectedEpisode != null)
+                {
+                    SelectedEpisode = Episodes.FirstOrDefault(x => x.IndexNumber == index);
                 }
             }
         }

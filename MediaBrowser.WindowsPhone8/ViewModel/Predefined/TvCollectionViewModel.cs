@@ -115,7 +115,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
 
                 var query = new NextUpQuery
                 {
-                    UserId = AuthenticationService.Current.LoggedInUser.Id
+                    UserId = AuthenticationService.Current.LoggedInUser.Id,
+                    Fields = new[] { ItemFields.PrimaryImageAspectRatio, ItemFields.ParentId },
                 };
 
                 Log.Info("Getting next up items");
@@ -149,6 +150,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                     Limit = 8,
                     Fields = new[] {ItemFields.PrimaryImageAspectRatio, ItemFields.ParentId},
                     Filters = new[] {ItemFilter.IsUnplayed},
+                    IsMissing = App.SpecificSettings.ShowMissingEpisodes,
+                    IsUnaired = App.SpecificSettings.ShowUnairedEpisodes,
                     Recursive = true
                 };
 
