@@ -56,7 +56,37 @@
     <!-- Supported types are "text" and "xaml", where text is nicely formatted automatically, and XAML is handled by the built-in XamlReader -->
     <Item Title="history"
           Type="text">
-      1.0.0.0
+      8.0.0.40
+      - Fixed link for MB3 server link on welcome screen
+      - Added checks for hostname
+      - Album page showing items that weren't tracks
+      - Artit name not appearing on album page
+      - TV show page was showing seasons in recent items
+      - Season episodes not refreshing when changing season
+      - Tracks not refreshing when changing album in the UI
+      Enhancements:
+      - Handle missing/future episodes
+      - Added genres to Movies and TV views
+      
+      8.0.0.39
+      Fixes:
+      - Don't allow recent items to be scrollable on front page
+      - Play icon missing on episodes
+      - Episode name doesn't swipe nicely
+      - Back press on video always navigating back
+      - Add experimental message for folder streaming
+      - Collection View -> TV -> Show all items... EMPTY
+      - Profile list doesn't clear before population
+      - Music View - Artist list scrolls back to beginning on back
+      - Settings backstack when searching for server
+      Enhancements:
+      - Collection image not following hierarchy (only uses primary)
+      - Change Favourites to Favorites depending on client region
+      - Search Button more prominent on home page
+      - Play all on artist's page
+      - Option to mark items as Favourite (Favorite)
+
+      8.0.0.35
       This is the initial public version.
     </Item>
 

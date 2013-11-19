@@ -22,7 +22,7 @@ namespace MediaBrowser.WindowsPhone.Converters
                 return false;
             }
 
-            return item.LocationType == LocationType.Virtual;
+            return item.LocationType != LocationType.Virtual;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
