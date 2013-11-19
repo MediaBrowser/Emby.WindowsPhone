@@ -56,7 +56,14 @@
     <!-- Supported types are "text" and "xaml", where text is nicely formatted automatically, and XAML is handled by the built-in XamlReader -->
     <Item Title="history"
           Type="text">
+      8.0.0.43
+      Fixes:
+      - Play button on TV episodes now working again.
+      - TV episodes in TV view no longer taking user to list of collections
+      - Added additional logging to try and get to the bottom of audio playback issues
+
       8.0.0.40
+      Fixes:
       - Fixed link for MB3 server link on welcome screen
       - Added checks for hostname
       - Album page showing items that weren't tracks
@@ -67,7 +74,7 @@
       Enhancements:
       - Handle missing/future episodes
       - Added genres to Movies and TV views
-      
+
       8.0.0.39
       Fixes:
       - Don't allow recent items to be scrollable on front page
