@@ -121,6 +121,7 @@
     <Compile Include="ExtensionMethods.cs" />
     <Compile Include="PlaylistHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WPLogger.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Cimbalino.Phone.Toolkit.Background">

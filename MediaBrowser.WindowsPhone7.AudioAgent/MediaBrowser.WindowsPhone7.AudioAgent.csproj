@@ -107,6 +107,9 @@
     <Compile Include="..\MediaBrowser.WindowsPhone8.AudioAgent\PlaylistHelper.cs">
       <Link>PlaylistHelper.cs</Link>
     </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone8.AudioAgent\WPLogger.cs">
+      <Link>WPLogger.cs</Link>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

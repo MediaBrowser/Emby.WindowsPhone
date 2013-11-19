@@ -9,6 +9,7 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
 {
     public class AudioPlayer : AudioPlayerAgent
     {
+        private readonly ILog _logger;
         private static volatile bool _classInitialized;
         private PlaylistHelper _playlistHelper;
         
@@ -20,6 +21,7 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
         public AudioPlayer()
         {
             _playlistHelper = new PlaylistHelper(new StorageService());
+            _logger = new WPLogger(GetType());
 
             if (!_classInitialized)
             {
@@ -40,6 +42,8 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
                 // An unhandled exception has occurred; break into the debugger
                 System.Diagnostics.Debugger.Break();
             }
+
+            _logger.ErrorException("Player Error", e.ExceptionObject);
         }
 
         /// <summary>
@@ -116,28 +120,35 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
                 case UserAction.Play:
                     if (player.PlayerState != PlayState.Playing)
                     {
+                        _logger.Info("OnUserAction.Play");
                         player.Play();
                     }
                     break;
                 case UserAction.Stop:
+                    _logger.Info("OnUserAction.Stop");
                     player.Stop();
                     break;
                 case UserAction.Pause:
+                    _logger.Info("OnUserAction.Pause");
                     player.Pause();
                     break;
                 case UserAction.FastForward:
+                    _logger.Info("OnUserAction.FastForward");
                     player.FastForward();
                     break;
                 case UserAction.Rewind:
+                    _logger.Info("OnUserAction.Rewind");
                     player.Rewind();
                     break;
                 case UserAction.Seek:
                     player.Position = (TimeSpan)param;
                     break;
                 case UserAction.SkipNext:
+                    _logger.Info("OnUserAction.SkipNext");
                     player.Track = GetNextTrack();
                     break;
                 case UserAction.SkipPrevious:
+                    _logger.Info("OnUserAction.SkipPrevious");
                     AudioTrack previousTrack = GetPreviousTrack();
                     if (previousTrack != null)
                     {
@@ -169,6 +180,7 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
 
             if (items == null || !items.Any()) return null;
 
+            _logger.Info("GetNextTrack() : Getting the current track");
             var currentTrack = items.FirstOrDefault(x => x.IsPlaying);
 
             PlaylistItem nextTrack;
@@ -184,17 +196,35 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
                 nextTrack = currentTrack.Id == items.Count ? items.FirstOrDefault() : items[currentTrack.Id];
             }
 
-            var track = nextTrack.ToAudioTrack();
+            if (nextTrack == null)
+            {
+                return null;
+            }
 
-            _playlistHelper.SetAllTracksToNotPlaying(items);
+            try
+            {
+                _logger.Info("GetNextTrack() : Getting the actual track details");
+                var track = nextTrack.ToAudioTrack();
 
-            items.FirstOrDefault(x => x.Id == nextTrack.Id).IsPlaying = true;
+                _playlistHelper.SetAllTracksToNotPlaying(items);
 
-            _playlistHelper.SavePlaylist(playlist);
+                var item = items.FirstOrDefault(x => x.Id == nextTrack.Id);
+                if (item != null)
+                {
+                    item.IsPlaying = true;
+                }
 
-            // specify the track
+                _playlistHelper.SavePlaylist(playlist);
 
-            return track;
+                // specify the track
+
+                return track;
+            }
+            catch (Exception ex)
+            {
+                _logger.ErrorException("GetNextTrack()", ex);
+                return null;
+            }
         }
 
 
