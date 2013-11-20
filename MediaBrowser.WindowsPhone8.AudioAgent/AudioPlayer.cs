@@ -4,12 +4,13 @@ using System.Windows;
 using Cimbalino.Phone.Toolkit.Services;
 using MediaBrowser.Model;
 using Microsoft.Phone.BackgroundAudio;
+using ScottIsAFool.WindowsPhone.Logging;
 
 namespace MediaBrowser.WindowsPhone.AudioAgent
 {
     public class AudioPlayer : AudioPlayerAgent
     {
-        private readonly ILog _logger;
+        private static ILog _logger;
         private static volatile bool _classInitialized;
         private PlaylistHelper _playlistHelper;
         
