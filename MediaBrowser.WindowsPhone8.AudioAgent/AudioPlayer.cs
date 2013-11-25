@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Windows;
+using Cimbalino.Phone.Toolkit.Helpers;
 using Cimbalino.Phone.Toolkit.Services;
 using MediaBrowser.Model;
 using Microsoft.Phone.BackgroundAudio;
@@ -23,6 +24,9 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
         {
             _playlistHelper = new PlaylistHelper(new StorageService());
             _logger = new WPLogger(GetType());
+            WPLogger.AppVersion = ApplicationManifest.Current.App.Version;
+            WPLogger.LogConfiguration.LogType = LogType.WriteToFile;
+            WPLogger.LogConfiguration.LoggingIsEnabled = true;
 
             if (!_classInitialized)
             {
