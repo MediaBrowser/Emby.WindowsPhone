@@ -89,7 +89,8 @@ namespace MediaBrowser.Design
             throw new NotImplementedException();
         }
 
-        public Task<ItemReviewsResult> GetCriticReviews(string itemId, CancellationToken cancellationToken, int? startIndex = null, int? limit = null)
+
+        public Task<QueryResult<ItemReview>> GetCriticReviews(string itemId, CancellationToken cancellationToken, int? startIndex = null, int? limit = null)
         {
             throw new NotImplementedException();
         }
@@ -170,11 +171,6 @@ namespace MediaBrowser.Design
         }
 
         Task<UserItemDataDto> IApiClient.UpdateFavoriteStatusAsync(string itemId, string userId, bool isFavorite)
-        {
-            throw new NotImplementedException();
-        }
-
-        public System.Threading.Tasks.Task<Model.Querying.ItemReviewsResult> GetCriticReviews(string itemId, int? startIndex = null, int? limit = null)
         {
             throw new NotImplementedException();
         }
@@ -387,6 +383,16 @@ namespace MediaBrowser.Design
         }
 
         public Task<ItemCounts> GetItemCountsAsync(ItemCountsQuery query)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<ItemsResult> GetEpisodesAsync(EpisodeQuery query)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<ItemsResult> GetSeasonsAsync(SeasonQuery query)
         {
             throw new NotImplementedException();
         }

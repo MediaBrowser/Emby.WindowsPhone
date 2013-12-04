@@ -72,17 +72,21 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
             switch (playState)
             {
                 case PlayState.TrackEnded:
+                    _logger.Info("PlayStateChanged.TrackEnded");
                     player.Track = GetNextTrack();
                     break;
                 case PlayState.TrackReady:
+                    _logger.Info("PlayStateChanged.TrackReady");
                     player.Play();
                     break;
                 case PlayState.Shutdown:
                     // TODO: Handle the shutdown state here (e.g. save state)
                     break;
                 case PlayState.Unknown:
+                    _logger.Info("PlayStateChanged.Unknown");
                     break;
                 case PlayState.Stopped:
+                    _logger.Info("PlayStateChanged.Stopped");
                     _playlistHelper.SetAllTracksToNotPlayingAndSave();
                     break;
                 case PlayState.Paused:
