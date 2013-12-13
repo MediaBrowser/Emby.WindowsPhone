@@ -13,7 +13,7 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
     {
         private static ILog _logger;
         private static volatile bool _classInitialized;
-        private PlaylistHelper _playlistHelper;
+        private readonly PlaylistHelper _playlistHelper;
         
         /// <remarks>
         /// AudioPlayer instances can share the same process. 
@@ -187,7 +187,11 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
 
             var items = playlist.PlaylistItems;
 
-            if (items == null || !items.Any()) return null;
+            if (items == null || !items.Any())
+            {
+                _logger.Info("GetNextTrack() : Playlist empty");
+                return null;
+            }
 
             _logger.Info("GetNextTrack() : Getting the current track");
             var currentTrack = items.FirstOrDefault(x => x.IsPlaying);
@@ -196,17 +200,25 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
 
             if (currentTrack == default(PlaylistItem))
             {
+                _logger.Info("GetNextTrack() : Get first track from playlist");
                 nextTrack = items.FirstOrDefault();
             }
             else
             {
-                if (!playlist.IsOnRepeat && currentTrack.Id == items.Count) return null;
+                if (!playlist.IsOnRepeat && currentTrack.Id == items.Count)
+                {
+                    _logger.Info("GetNextTrack() : End of playlist");
+                    return null;
+                }
 
+                _logger.Info("GetNextTrack() : Current track ID: " + currentTrack.Id + ", items in playlist: " + items.Count);
                 nextTrack = currentTrack.Id == items.Count ? items.FirstOrDefault() : items[currentTrack.Id];
+                _logger.Info("GetNextTrack() : Current track ID: " + currentTrack.Id + ", items in playlist: " + items.Count);
             }
 
             if (nextTrack == null)
             {
+                _logger.Info("GetNextTrack() : No track to play");
                 return null;
             }
 
@@ -253,32 +265,65 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
 
             var items = playlist.PlaylistItems;
 
-            if (items == null || !items.Any()) return null;
+            if (items == null || !items.Any())
+            {
+                _logger.Info("GetPreviousTrack() : Playlist empty");
+                return null;
+            }
 
+            _logger.Info("GetPreviousTrack() : Getting the current track");
             var currentTrack = items.FirstOrDefault(x => x.IsPlaying);
 
             PlaylistItem nextTrack;
 
             if (currentTrack == default(PlaylistItem))
             {
+                _logger.Info("GetPreviousTrack() : Get first track from playlist");
                 nextTrack = items.LastOrDefault();
             }
             else
             {
+                if (!playlist.IsOnRepeat && currentTrack.Id == items.Count)
+                {
+                    _logger.Info("GetPreviousTrack() : End of playlist");
+                    return null;
+                }
+
+                _logger.Info("GetPreviousTrack() : Current track ID: " + currentTrack.Id + ", items in playlist: " + items.Count);
                 nextTrack = currentTrack.Id - 1 == 0 ? items.LastOrDefault() : (items[currentTrack.Id - 1]);
+                _logger.Info("GetPreviousTrack() : Current track ID: " + currentTrack.Id + ", items in playlist: " + items.Count);
             }
 
-            var track = nextTrack.ToAudioTrack();
+            if (nextTrack == null)
+            {
+                _logger.Info("GetPreviousTrack() : No track to play");
+                return null;
+            }
 
-            _playlistHelper.SetAllTracksToNotPlaying(items);
+            try
+            {
+                _logger.Info("GetPreviousTrack() : Getting the actual track details");
+                var track = nextTrack.ToAudioTrack();
 
-            items.FirstOrDefault(x => x.Id == nextTrack.Id).IsPlaying = true;
+                _playlistHelper.SetAllTracksToNotPlaying(items);
 
-            _playlistHelper.SavePlaylist(playlist);
+                var item = items.FirstOrDefault(x => x.Id == nextTrack.Id);
+                if (item != null)
+                {
+                    item.IsPlaying = true;
+                }
 
-            // specify the track
+                _playlistHelper.SavePlaylist(playlist);
 
-            return track;
+                // specify the track
+
+                return track;
+            }
+            catch (Exception ex)
+            {
+                _logger.ErrorException("GetPreviousTrack()", ex);
+                return null;
+            }
         }
 
         /// <summary>
