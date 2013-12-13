@@ -53,45 +53,40 @@
         <Grid.Background>
             <ImageBrush ImageSource="/Images/LockScreenBackground.jpg" />
         </Grid.Background>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="LoadedStates">
                 <VisualState x:Name="IsLoaded">
                     <Storyboard x:Name="LoadAnimation"
                                 Completed="LoadAnimation_Completed">
                         <DoubleAnimation Duration="0:0:1"
-                                         windowsPhone:ThicknessAnimationX.To="0"
-                                         windowsPhone:ThicknessAnimationX.From="0,820,0,0"
-                                         windowsPhone:ThicknessAnimationX.Element="{Binding ElementName=MediaTextBlock}"
+                                         windowsPhone:ThicknessAnimationX.To="0,0,0,-30"
+                                         windowsPhone:ThicknessAnimationX.From="0,0,0,390"
+                                         windowsPhone:ThicknessAnimationX.Element="{Binding ElementName=Logo}"
                                          Storyboard.TargetProperty="(FrameworkElement.Opacity)"
-                                         Storyboard.TargetName="MediaTextBlock" />
+                                         Storyboard.TargetName="Logo" />
                         <DoubleAnimation Duration="0:0:1"
-                                         windowsPhone:ThicknessAnimationX.To="0"
-                                         windowsPhone:ThicknessAnimationX.From="0,0,0,820"
-                                         windowsPhone:ThicknessAnimationX.Element="{Binding ElementName=BrowserTextBlock}"
+                                         windowsPhone:ThicknessAnimationX.To="0,-20,0,0"
+                                         windowsPhone:ThicknessAnimationX.From="0,390,0,0"
+                                         windowsPhone:ThicknessAnimationX.Element="{Binding ElementName=Text}"
                                          Storyboard.TargetProperty="(FrameworkElement.Opacity)"
-                                         Storyboard.TargetName="BrowserTextBlock" />
-                        <!--<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
-                                                       Storyboard.TargetName="textBlock2">
-                            <EasingDoubleKeyFrame KeyTime="0:0:1.1"
-                                                  Value="0" />
-                            <EasingDoubleKeyFrame KeyTime="0:0:2"
-                                                  Value="1" />
-                        </DoubleAnimationUsingKeyFrames>-->
+                                         Storyboard.TargetName="Text" />
                     </Storyboard>
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
+
+		<Image Source="/Images/Logo.png" Width="173" Height="173" VerticalAlignment="Bottom" Margin="0,0,0,390" x:Name="Logo" />
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,390,0,0" Grid.Row="1" VerticalAlignment="Top" x:Name="Text">            
             <TextBlock x:Name="MediaTextBlock"
                        Text="media"
-                       Foreground="Black"
+                       Foreground="WhiteSmoke"
                        Style="{StaticResource PhoneTextTitle1Style}"
-                       Margin="0,820,0,0"
+                       Margin="0"
                        Grid.Column="0"
                        FontFamily="Euphemia"
                        VerticalAlignment="Center" />
@@ -100,19 +95,10 @@
                        Foreground="Green"
                        FontFamily="Euphemia"
                        Style="{StaticResource PhoneTextTitle1Style}"
-                       Margin="0,0,0,820"
+                       Margin="0"
                        Grid.Column="1"
                        VerticalAlignment="Center" />
-            <!--<TextBlock x:Name="textBlock2"
-                       Text="3"
-                       Foreground="Green"
-                       FontFamily="Euphemia"
-                       FontSize="48"
-                       Grid.Column="2"
-                       VerticalAlignment="Center"
-                       Margin="0,0,0,55"
-                       Opacity="0" />-->
-        </Grid>
+        </StackPanel>
 
     </Grid>
 
