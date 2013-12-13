@@ -31,8 +31,8 @@
     </i:Interaction.Triggers>
     <i:Interaction.Behaviors>
         <behaviours1:MBSysTray Text="{Binding ProgressText}"
-                              IsVisible="{Binding ProgressIsVisible}"
-                              IsIndeterminate="{Binding ProgressIsVisible}" />
+                               IsVisible="{Binding ProgressIsVisible}"
+                               IsIndeterminate="{Binding ProgressIsVisible}" />
     </i:Interaction.Behaviors>
 
     <toolkit:TransitionService.NavigationInTransition>
@@ -238,6 +238,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        
     </scott:BasePage.Resources>
 
     <!--LayoutRoot is the root grid where all page content is placed-->
@@ -262,7 +263,7 @@
                                    VerticalAlignment="Top" />
                     </CheckBox>
                     <CheckBox IsChecked="{Binding ShowMissingEpisodes, Source={StaticResource SpecificSettings}, Mode=TwoWay}"
-                              Content="Show missing episodes"/>
+                              Content="Show missing episodes" />
                     <CheckBox IsChecked="{Binding ShowUnairedEpisodes, Source={StaticResource SpecificSettings}, Mode=TwoWay}"
                               Content="Show unaired episodes" />
                 </StackPanel>
@@ -320,7 +321,8 @@
                                Margin="12,12,0,0" />
                     <Button Margin="0,12,0,0"
                             Content="Connect"
-                            Command="{Binding Settings.TestConnectionCommand, Source={StaticResource Locator}}" />
+                            Command="{Binding Settings.TestConnectionCommand, Source={StaticResource Locator}}"
+                            Style="{StaticResource ConnectButtonStyle}" />
                     <Button Content="Find server"
                             Command="{Binding Main.NavigateToAPage, Source={StaticResource Locator}}"
                             CommandParameter="/Views/FindServerView.xaml" />
@@ -355,7 +357,7 @@
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="SelectionChanged">
                                         <command:EventToCommand Command="{Binding CollectionChangedCommand}"
-                                                                PassEventArgsToCommand="True"/>
+                                                                PassEventArgsToCommand="True" />
                                     </i:EventTrigger>
                                 </i:Interaction.Triggers>
                                 <toolkit:ListPicker.ItemTemplate>
@@ -473,7 +475,7 @@
                                 </StackPanel>
                             </Grid>
                             <Button Content="lock screen settings"
-                                    Click="ButtonBase_OnClick"/>
+                                    Click="ButtonBase_OnClick" />
                         </StackPanel>
                     </ScrollViewer>
                 </Grid>
