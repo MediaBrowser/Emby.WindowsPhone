@@ -554,6 +554,9 @@
     <Content Include="..\MediaBrowser.WindowsPhone8\Images\fresh.png">
       <Link>Images\fresh.png</Link>
     </Content>
+    <Content Include="..\MediaBrowser.WindowsPhone8\Images\LockScreenBackground.jpg">
+      <Link>Images\LockScreenBackground.jpg</Link>
+    </Content>
     <Content Include="..\MediaBrowser.WindowsPhone8\Images\Logo.png">
       <Link>Images\Logo.png</Link>
     </Content>

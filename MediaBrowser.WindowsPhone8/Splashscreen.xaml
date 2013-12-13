@@ -20,7 +20,7 @@
                 Orientation="Portrait"
                 shell:SystemTray.IsVisible="True"
                 shell:SystemTray.Opacity="0"
-                shell:SystemTray.ForegroundColor="Black"
+                shell:SystemTray.ForegroundColor="WhiteSmoke"
                 DataContext="{Binding Splashscreen, Source={StaticResource Locator}}">
     <i:Interaction.Behaviors>
         <behaviours:MBSysTray Text="{Binding ProgressText}"
@@ -49,8 +49,10 @@
         </toolkit:NavigationOutTransition>
     </toolkit:TransitionService.NavigationOutTransition>
 
-    <Grid x:Name="LayoutRoot"
-          Background="White">
+    <Grid x:Name="LayoutRoot">
+        <Grid.Background>
+            <ImageBrush ImageSource="/Images/LockScreenBackground.jpg" />
+        </Grid.Background>
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="LoadedStates">
                 <VisualState x:Name="IsLoaded">
