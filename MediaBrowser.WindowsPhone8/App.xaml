@@ -7,13 +7,9 @@
              xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
              xmlns:vm="clr-namespace:MediaBrowser.WindowsPhone.ViewModel"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
-             xmlns:scottConverters="clr-namespace:ScottIsAFool.WindowsPhone.Converters;assembly=ScottIsAFool.WindowsPhone"
-             xmlns:converters="clr-namespace:MediaBrowser.WindowsPhone.Converters"
-             
              xmlns:windowsPhone="clr-namespace:MediaBrowser.WindowsPhone"
-             xmlns:controls="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
-             xmlns:model="clr-namespace:MediaBrowser.Model;assembly=MediaBrowser.Shared"
-             xmlns:cimbalino="clr-namespace:Cimbalino.Phone.Toolkit.Converters;assembly=Cimbalino.Phone.Toolkit">
+
+             xmlns:model="clr-namespace:MediaBrowser.Model;assembly=MediaBrowser.Shared">
 
     <!--Application Resources-->
     <Application.Resources>
@@ -29,137 +25,6 @@
             <windowsPhone:SpecificSettings x:Key="SpecificSettings" />
 
             <sys:String x:Key="AppName">MediaBrowser</sys:String>
-
-            <LinearGradientBrush SpreadMethod="Reflect"
-                                 ColorInterpolationMode="SRgbLinearInterpolation"
-                                 StartPoint="0,0"
-                                 EndPoint="0,1"
-                                 x:Key="MediaBrowserBackground">
-                <GradientStop Color="#ff000000"
-                              Offset="0" />
-                <GradientStop Color="#ff333333"
-                              Offset=".5" />
-                <GradientStop Color="#ff000000"
-                              Offset="1" />
-            </LinearGradientBrush>
-
-            <!-- Converters from ScottIsAFool.WindowsPhone.Converters -->
-            <scottConverters:VisibilityConverter x:Key="VisibilityConverter" />
-            <scottConverters:InvertedVisibilityConverter x:Key="InvertedVisibilityConverter" />
-            <scottConverters:StringCaseConverter x:Key="StringCaseConverter" />
-            <scottConverters:IntToVisibilityConverter x:Key="IntToVisibilityConverter" />
-            <scottConverters:CountToEnabled x:Key="CountToEnabled" />
-            <scottConverters:NullVisibilityConverter x:Key="NullVisibilityConverter"/>
-            
-            <!--Cimbalino Converters-->
-            <cimbalino:StringToUppercaseConverter x:Key="StringToUppercaseConverter"/>
-            <cimbalino:StringToLowercaseConverter x:Key="StringToLowercaseConverter"/>
-            
-            <!-- Local Converters -->
-            <converters:ImageUrlConverter x:Key="ImageUrlConverter" />
-            <converters:EpisodeNumberVisibilityConverter x:Key="EpisodeNumberVisibilityConverter" />
-            <converters:RatingConverter x:Key="RatingConverter" />
-            <converters:RandomColour x:Key="RandomColour" />
-            <converters:FavouritesConverter x:Key="FavouritesConverter" />
-            <converters:PinnedItemConverter x:Key="PinnedItemConverter" />
-            <converters:RuntimeConverter x:Key="RuntimeConverter" />
-            <converters:TicksToTimespanConverter x:Key="TicksToTimespanConverter" />
-            <converters:ZeroCountBrushConverter x:Key="ZeroCountBrushConverter"
-                                                ZeroCountBrush="{StaticResource PhoneSubtleBrush}"
-                                                AltBrush="{StaticResource PhoneAccentBrush}" />
-            <converters:CriticRatingConverter x:Key="CriticRatingConverter"/>
-
-            <local:LocalizedStrings xmlns:local="clr-namespace:MediaBrowser.WindowsPhone"
-                                    x:Key="LocalizedStrings" />
-
-            <!-- Control Styles -->
-            <Style x:Key="EmptyButtonStyle"
-                   TargetType="ButtonBase">
-                <Setter Property="Background"
-                        Value="Transparent" />
-                <Setter Property="Padding"
-                        Value="0" />
-                <Setter Property="HorizontalAlignment"
-                        Value="Stretch"/>
-                <Setter Property="HorizontalContentAlignment"
-                        Value="Left"/>
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="ButtonBase">
-                            <Border Background="{TemplateBinding Background}"
-                                    Padding="{TemplateBinding Padding}">
-                                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                                  Content="{TemplateBinding Content}"
-                                                  ContentTemplate="{TemplateBinding ContentTemplate}" />
-                            </Border>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
-            
-            <Style TargetType="TextBlock"
-                   BasedOn="{StaticResource PhoneTextTitle2Style}"
-                   x:Key="HeaderTextStyle">
-                <Setter Property="FontFamily"
-                        Value="Segoe WP Black"/>
-            </Style>
-
-            <!-- DataTemplates -->
-            <DataTemplate x:Key="TileItemStyle">
-                <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                 Command="{Binding Main.NavigateToPage, Source={StaticResource Locator}}"
-                                 CommandParameter="{Binding}">
-                    <Grid MaxWidth="173">
-                        <controls:SuperImage PlaceholderImageSource="/Images/Logo.png"
-                                             Source="{Binding Converter={StaticResource ImageUrlConverter}}"
-                                             PlaceholderImageStretch="Uniform"
-                                             Width="173"
-                                             Height="173"
-                                             Stretch="UniformToFill" />
-                        <Border Background="#C4000000"
-                                VerticalAlignment="Bottom">
-                            <TextBlock Text="{Binding Name}"
-                                       Style="{StaticResource PhoneTextNormalStyle}"
-                                       FontWeight="Bold"
-                                       TextWrapping="Wrap"
-                                       Foreground="White" />
-                        </Border>
-                        <Grid  Height="40"
-                               Width="40"
-                               HorizontalAlignment="Right"
-                               VerticalAlignment="Top"
-                               Visibility="{Binding Type, Converter={StaticResource EpisodeNumberVisibilityConverter}}">
-                            <Ellipse Fill="Green" />
-                            <TextBlock Text="{Binding IndexNumber}"
-                                       Foreground="White"
-                                       Style="{StaticResource PhoneTextNormalStyle}"
-                                       Margin="0,-3,0,0"
-                                       HorizontalAlignment="Center"
-                                       VerticalAlignment="Center" />
-                        </Grid>
-                    </Grid>
-                </HyperlinkButton>
-            </DataTemplate>
-
-            <DataTemplate x:Key="CrewTemplate">
-                <StackPanel Orientation="Horizontal"
-                            Margin="12,0,0,12">
-                    <controls:SuperImage Height="99"
-                                         Width="99"
-                                         PlaceholderImageStretch="Uniform"
-                                         PlaceholderImageSource="/Images/default_avatar.png"
-                                         Source="{Binding Converter={StaticResource ImageUrlConverter}}"
-                                         Stretch="Uniform" />
-                    <StackPanel Orientation="Vertical">
-                        <TextBlock Text="{Binding Name, Converter={StaticResource StringCaseConverter}, ConverterParameter=false}"
-                                   FontWeight="Bold"
-                                   Style="{StaticResource PhoneTextLargeStyle}" />
-                        <TextBlock Text="{Binding Role}"
-                                   Style="{StaticResource PhoneTextNormalStyle}" />
-                    </StackPanel>
-                </StackPanel>
-            </DataTemplate>
 
             <!--Panorama templates-->
             <DataTemplate x:Key="LikeWp7TitleTemplate">
