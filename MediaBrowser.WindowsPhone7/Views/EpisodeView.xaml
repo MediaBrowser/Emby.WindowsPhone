@@ -138,7 +138,8 @@
                                     </Button>
                                     <TextBlock Text="{Binding Overview}"
                                                TextWrapping="Wrap"
-                                               Style="{StaticResource PhoneTextNormalStyle}" />
+                                               Style="{StaticResource PhoneTextNormalStyle}" 
+                                               Margin="24,0"/>
                                 </StackPanel>
                             </ScrollViewer>
                         </Grid>
