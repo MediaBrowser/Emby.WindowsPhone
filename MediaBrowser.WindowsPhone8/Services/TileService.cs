@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -6,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media.Imaging;
 using Cimbalino.Phone.Toolkit.Extensions;
+using Cimbalino.Phone.Toolkit.Helpers;
 using Cimbalino.Phone.Toolkit.Services;
 using MediaBrowser.Model;
 using MediaBrowser.Model.Dto;
@@ -135,16 +137,29 @@ namespace MediaBrowser.WindowsPhone.Services
                 Width = 691
             };
             wideTile.UpdateBackground();
-            await ToImage(wideTile);
+            await wideTile.SetImages();
+            await ToImage(wideTile, 691, 336);
+
+            var primaryTile = ActiveTiles.First();
+
+            var tileData = new ShellTileServiceFlipTileData
+            {
+                Title = ApplicationManifest.Current.App.Title,
+                BackgroundImage = new Uri("/Assets/Tiles/FlipCycleTileMedium.png", UriKind.Relative),
+                SmallBackgroundImage = new Uri("/Assets/Tiles/FlipCycleTileSmall.png", UriKind.Relative),
+                WideBackgroundImage = new Uri("isostore:/" + WideTileUrl, UriKind.Absolute)
+            };
+
+            primaryTile.Update(tileData);
         }
 
-        private async Task ToImage(UIElement element)
+        private async Task ToImage(UIElement element, double width, double height)
         {
-            element.Measure(new Size(691, 336));
-            element.Arrange(new Rect { Height = 336, Width = 691 });
+            element.Measure(new Size(width, height));
+            element.Arrange(new Rect { Height = height, Width = width });
             element.UpdateLayout();
 
-            var bitmap = new WriteableBitmap(691, 336);
+            var bitmap = new WriteableBitmap((int)width, (int)height);
             bitmap.Render(element, null);
             bitmap.Invalidate();
 

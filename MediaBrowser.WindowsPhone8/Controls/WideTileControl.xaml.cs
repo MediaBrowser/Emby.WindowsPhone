@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using MediaBrowser.WindowsPhone.Behaviours;
 
 namespace MediaBrowser.WindowsPhone.Controls
 {
@@ -14,7 +16,7 @@ namespace MediaBrowser.WindowsPhone.Controls
         private readonly Image[] _imageItems;
 
         public static readonly DependencyProperty ItemsSourceProperty =
-            DependencyProperty.Register("ItemsSource", typeof(IEnumerable<Stream>), typeof(WideTileControl), new PropertyMetadata(default(IEnumerable<Stream>), OnItemsSourceChanged));
+            DependencyProperty.Register("ItemsSource", typeof(IEnumerable<Stream>), typeof(WideTileControl), new PropertyMetadata(default(IEnumerable<Stream>)));
 
         public IEnumerable<Stream> ItemsSource
         {
@@ -36,49 +38,48 @@ namespace MediaBrowser.WindowsPhone.Controls
             };
         }
 
-        private static void OnItemsSourceChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        public async Task SetImages()
         {
-            var wtc = sender as WideTileControl;
-            var list = e.NewValue as IEnumerable<Stream>;
-            if (wtc == null || list == null)
+            var bmpList = ItemsSource.ToList();
+
+            await Task.Factory.StartNew(() =>
             {
-                return;
-            }
-
-            var bmpList = list.ToList();
-
-            if (bmpList.Count < 9)
-            {
-                var difference = 9 - bmpList.Count;
-
-                if (difference > bmpList.Count)
+                if (bmpList.Count < 9)
                 {
-                    while (bmpList.Count < 9)
+                    var difference = 9 - bmpList.Count;
+
+                    if (difference > bmpList.Count)
                     {
-                        var extra = bmpList;
+                        while (bmpList.Count < 9)
+                        {
+                            var extra = bmpList;
+                            bmpList.AddRange(extra);
+                        }
+                    }
+                    else
+                    {
+                        var extra = bmpList.Take(difference).ToList();
                         bmpList.AddRange(extra);
                     }
                 }
-                else
-                {
-                    var extra = bmpList.Take(difference).ToList();
-                    bmpList.AddRange(extra);
-                }
-            }
 
-            var i = 0;
-            foreach (var image in bmpList)
-            {
-                if (i >= wtc._imageItems.Length)
+                Deployment.Current.Dispatcher.BeginInvoke(() =>
                 {
-                    break;
-                }
+                    var i = 0;
+                    foreach (var image in bmpList)
+                    {
+                        if (i >= _imageItems.Length)
+                        {
+                            break;
+                        }
 
-                var bitmap = new BitmapImage();
-                bitmap.SetSource(image);
-                wtc._imageItems[i].Source = bitmap;
-                i++;
-            }
+                        var bitmap = new BitmapImage();
+                        bitmap.SetSource(image);
+                        _imageItems[i].Source = bitmap;
+                        i++;
+                    }
+                });
+            });
         }
     }
 }
