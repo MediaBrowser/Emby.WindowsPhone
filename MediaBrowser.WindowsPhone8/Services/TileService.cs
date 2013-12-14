@@ -154,6 +154,21 @@ namespace MediaBrowser.WindowsPhone.Services
             primaryTile.Update(tileData);
         }
 
+        public void ResetWideTile()
+        {
+            var primaryTile = ActiveTiles.First();
+
+            var tileData = new ShellTileServiceFlipTileData
+            {
+                Title = ApplicationManifest.Current.App.Title,
+                BackgroundImage = new Uri("/Assets/Tiles/FlipCycleTileMedium.png", UriKind.Relative),
+                SmallBackgroundImage = new Uri("/Assets/Tiles/FlipCycleTileSmall.png", UriKind.Relative),
+                WideBackgroundImage = new Uri("/Assets/Tiles/FlipCycleTileLarge.png", UriKind.Relative)
+            };
+
+            primaryTile.Update(tileData);
+        }
+
         private async Task ToImage(UIElement element, double width, double height)
         {
             element.Measure(new Size(width, height));
@@ -195,6 +210,8 @@ namespace MediaBrowser.WindowsPhone.Services
             var itemResponse = await _apiClient.GetItemsAsync(query);
             return itemResponse;
         }
+
+
 #endif
     }
 }

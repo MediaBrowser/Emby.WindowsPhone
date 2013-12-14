@@ -235,7 +235,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         private void Reset()
         {
             AuthenticationService.Current.Logout();
-            
+#if WP8
+            TileService.Current.ResetWideTile();
+#endif
             _hasLoaded = false;
             Folders.Clear();
             RecentItems.Clear();
