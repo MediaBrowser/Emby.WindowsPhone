@@ -99,11 +99,7 @@
                 <phone:Pivot.Title>
                     <StackPanel Orientation="Horizontal"
                                 Margin="-12,0,0,0">
-                        <mb:MediaBrowserLogo />
-                        <TextBlock x:Name="ApplicationTitle"
-                                   Text="- TV"
-                                   Margin="6,0,0,0"
-                                   Style="{StaticResource PhoneTextNormalStyle}" />
+                        <mb:MediaBrowserLogo AltText="TV"/>
                     </StackPanel>
                 </phone:Pivot.Title>
 

@@ -3,10 +3,14 @@
                     xmlns:local="clr-namespace:MediaBrowser.WindowsPhone.Controls"
                     xmlns:converter="clr-namespace:MediaBrowser.WindowsPhone.Converters"
                     xmlns:controls="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
-                    xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives">
+                    xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
+                    xmlns:converters="clr-namespace:ScottIsAFool.WindowsPhone.Converters;assembly=ScottIsAFool.WindowsPhone">
 
     <!-- Converters -->
     <converter:LoggedInDateConverter x:Key="LoggedInDateConverter" />
+    <converters:NullVisibilityConverter x:Key="NullVisibilityConverter" />
+    <converters:NullVisibilityConverter Inverted="True"
+                                        x:Key="InvertedNullVisibilityConverter" />
 
     <Style TargetType="local:MediaBrowserLogo">
         <Setter Property="HorizontalAlignment"
@@ -16,16 +20,40 @@
                 <ControlTemplate TargetType="local:MediaBrowserLogo">
                     <StackPanel Orientation="Horizontal"
                                 VerticalAlignment="Top"
-                                Height="27"
-                                Margin="0">
-                        <TextBlock Text="MEDIA"
+                                Height="24"
+                                Margin="12,0">
+                        <Image Source="/Images/LogoNoPadding.png" VerticalAlignment="Center" Height="24" />
+                        <StackPanel Orientation="Horizontal"
+                                    VerticalAlignment="Center"
+                                    Tag="{TemplateBinding AltText}"
+                                    Visibility="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource InvertedNullVisibilityConverter}}" Margin="0,5,0,0">
+                                                        <TextBlock Text="MEDIA"
+                                       Foreground="{StaticResource PhoneForegroundBrush}"
+                                       Style="{StaticResource PhoneTextNormalStyle}"                                       
+                                       VerticalAlignment="Center" 
+									   Margin="6,0,0,0" FontFamily="Arial Narrow"/>
+                            <TextBlock Text="BROWSER"
+                                       Foreground="Green"
+                                       Style="{StaticResource PhoneTextNormalStyle}"
+                                       Margin="0"
+                                       VerticalAlignment="Center" FontFamily="Arial Narrow" />
+                        </StackPanel>
+                        <TextBlock Text="{TemplateBinding AltText}"
+                                   Foreground="Green"
+                                   Style="{StaticResource PhoneTextNormalStyle}"
+                                   Margin="6,0,0,0"
+                                   VerticalAlignment="Center"
+                                   FontSize="21.333"
+                                   Visibility="{Binding Text, RelativeSource={RelativeSource Self}, Converter={StaticResource NullVisibilityConverter}}"/>
+                        <!--<TextBlock Text="MEDIA"
                                    Foreground="{StaticResource PhoneForegroundBrush}"
                                    Style="{StaticResource PhoneTextNormalStyle}"
-                                   Margin="12,0,0,0" />
+                                   Margin="12,0,0,0" VerticalAlignment="Center" />
                         <TextBlock Text="BROWSER"
                                    Foreground="Green"
                                    Style="{StaticResource PhoneTextNormalStyle}"
-                                   Margin="0" />
+                                   Margin="0" VerticalAlignment="Center" />-->
+
                     </StackPanel>
                 </ControlTemplate>
             </Setter.Value>
@@ -155,7 +183,7 @@
                                                                   BorderBrush="White"
                                                                   MinHeight="40"
                                                                   MinWidth="40"
-                                                                  VerticalAlignment="Center"/>
+                                                                  VerticalAlignment="Center" />
                             </Grid>
                             <TextBlock Text="incorrect pin"
                                        x:Name="textIncorrectPin"

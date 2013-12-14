@@ -94,6 +94,7 @@ namespace MediaBrowser.WindowsPhone.Services
             return Constants.Pages.MainPage;
         }
 
+#if WP8
         public async Task CreateNewWideTileAsync()
         {
             var items = await GetCollectionItems(9);
@@ -194,5 +195,6 @@ namespace MediaBrowser.WindowsPhone.Services
             var itemResponse = await _apiClient.GetItemsAsync(query);
             return itemResponse;
         }
+#endif
     }
 }
