@@ -12,6 +12,7 @@ using MediaBrowser.ApiInteraction.WebSocket;
 using MediaBrowser.Model;
 using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Model;
+using MediaBrowser.WindowsPhone.Services;
 using MediaBrowser.WindowsPhone.ViewModel;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
@@ -140,7 +141,7 @@ namespace MediaBrowser.WindowsPhone
         // This code will not execute when the application is reactivated
         private void ApplicationLaunching(object sender, LaunchingEventArgs e)
         {
-            AuthenticationService.Current.Start(SimpleIoc.Default.GetInstance<IExtendedApiClient>(), new MBLogger(typeof(AuthenticationService)));
+            AppStartup();
             ApplicationUsageHelper.Init(ApplicationManifest.Current.App.Version);
         }
 
@@ -150,10 +151,17 @@ namespace MediaBrowser.WindowsPhone
         {
             if (!e.IsApplicationInstancePreserved)
             {
-                AuthenticationService.Current.Start(SimpleIoc.Default.GetInstance<IExtendedApiClient>(), new MBLogger(typeof(AuthenticationService)));
+                AppStartup();
             }
 
             ApplicationUsageHelper.OnApplicationActivated();
+        }
+
+        private static void AppStartup()
+        {
+            var client = SimpleIoc.Default.GetInstance<IExtendedApiClient>();
+            AuthenticationService.Current.Start(client, new MBLogger(typeof (AuthenticationService)));
+            TileService.Current.StartService(client, SimpleIoc.Default.GetInstance<IAsyncStorageService>());
         }
 
         // Code to execute when the application is deactivated (sent to background)

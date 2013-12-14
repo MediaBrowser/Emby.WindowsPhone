@@ -27,4 +27,25 @@ namespace MediaBrowser.WindowsPhone.Converters
             throw new NotImplementedException();
         }
     }
+
+    public class RandomOpacity : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            var r = new Random();
+            var i = r.NextDouble();
+
+            while (i > 0.5)
+            {
+                i = r.NextDouble();
+            }
+
+            return i;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

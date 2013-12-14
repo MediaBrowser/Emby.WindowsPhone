@@ -1,0 +1,82 @@
+﻿<UserControl x:Class="MediaBrowser.WindowsPhone.Controls.WideTileControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+             xmlns:controls="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
+             xmlns:converters="clr-namespace:MediaBrowser.WindowsPhone.Converters"
+             mc:Ignorable="d"
+             FontFamily="{StaticResource PhoneFontFamilyNormal}"
+             FontSize="{StaticResource PhoneFontSizeNormal}"
+             Foreground="{StaticResource PhoneForegroundBrush}"
+             Height="336"
+             Width="691">
+    
+    <UserControl.Resources>
+        <converters:RandomOpacity x:Key="RandomOpacity"/>
+    </UserControl.Resources>
+
+    <Grid x:Name="LayoutRoot">
+        <Grid.Background>
+            <ImageBrush ImageSource="/Assets/Tiles/WideTileBackground.png"></ImageBrush>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        
+        <Image Source="/Assets/Tiles/FlipCycleTileMedium.png"
+               HorizontalAlignment="Left"/>
+
+        <Grid Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions> 
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            
+            <Image x:Name="ImageOne"
+                   Stretch="UniformToFill"
+                   Grid.Column="0"
+                   Grid.Row="0"/>
+            <Image x:Name="ImageTwo"
+                   Stretch="UniformToFill"
+                   Grid.Column="0"
+                   Grid.Row="0" />
+            <Image x:Name="ImageThree"
+                   Stretch="UniformToFill"
+                   Grid.Column="0"
+                   Grid.Row="0" />
+            <Image x:Name="ImageFour"
+                   Stretch="UniformToFill"
+                   Grid.Column="0"
+                   Grid.Row="0" />
+            <Image x:Name="ImageFive"
+                   Stretch="UniformToFill"
+                   Grid.Column="0"
+                   Grid.Row="0" />
+            <Image x:Name="ImageSix"
+                   Stretch="UniformToFill"
+                   Grid.Column="0"
+                   Grid.Row="0" />
+            <Image x:Name="ImageSeven"
+                   Stretch="UniformToFill"
+                   Grid.Column="0"
+                   Grid.Row="0" />
+            <Image x:Name="ImageEight"
+                   Stretch="UniformToFill"
+                   Grid.Column="0"
+                   Grid.Row="0" />
+            <Image x:Name="ImageNine"
+                   Stretch="UniformToFill"
+                   Grid.Column="0"
+                   Grid.Row="0" />
+        </Grid>
+    </Grid>
+</UserControl>

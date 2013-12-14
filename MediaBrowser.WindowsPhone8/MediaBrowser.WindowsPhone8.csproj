@@ -142,6 +142,9 @@
     <Compile Include="Controls\MediaBrowserLogo.cs" />
     <Compile Include="Controls\ProfileBox.cs" />
     <Compile Include="Controls\ScrollableTextBlock.cs" />
+    <Compile Include="Controls\WideTileControl.xaml.cs">
+      <DependentUpon>WideTileControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Converters\AccentBrushConverter.cs" />
     <Compile Include="Converters\ClientTypeIconConverter.cs" />
     <Compile Include="Converters\CriticRatingConverter.cs" />
@@ -321,6 +324,7 @@
     <Content Include="Assets\MediaTextBlack.png" />
     <Content Include="Assets\MediaTextWhite.png" />
     <Content Include="Assets\Tiles\MBRemoteTile.png" />
+    <Content Include="Assets\Tiles\WideTileBackground.png" />
     <Content Include="DefaultLockScreen.jpg" />
     <Content Include="Icons\appbar.feature.search.rest.png" />
     <Content Include="Icons\appbar.check.rest.png" />
@@ -393,6 +397,10 @@
     <Page Include="Controls\LogFileView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\WideTileControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Splashscreen.xaml">
       <Generator>MSBuild:Compile</Generator>

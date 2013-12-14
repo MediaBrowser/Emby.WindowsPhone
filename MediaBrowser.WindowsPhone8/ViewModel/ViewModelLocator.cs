@@ -73,6 +73,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                 if(!SimpleIoc.Default.IsRegistered<IStorageService>())
                     SimpleIoc.Default.Register<IStorageService, StorageService>();
+
+                if(!SimpleIoc.Default.IsRegistered<IAsyncStorageService>())
+                    SimpleIoc.Default.Register<IAsyncStorageService, AsyncStorageService>();
             }
 
             SimpleIoc.Default.Register<MainViewModel>();
