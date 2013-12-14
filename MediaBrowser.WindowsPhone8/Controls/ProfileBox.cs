@@ -5,6 +5,8 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using Coding4Fun.Toolkit.Controls;
 using MediaBrowser.Model.Dto;
+using Telerik.Windows.Controls;
+using GestureEventArgs = System.Windows.Input.GestureEventArgs;
 
 namespace MediaBrowser.WindowsPhone.Controls
 {
@@ -15,7 +17,7 @@ namespace MediaBrowser.WindowsPhone.Controls
     public class ProfileBox : Control
     {
         private PasswordBox passwordBox;
-        private RoundButton loginButton;
+        private RadImageButton loginButton;
         private CheckBox checkBox;
         private bool passwordShowing;
         private bool checkboxTapped;
@@ -117,7 +119,7 @@ namespace MediaBrowser.WindowsPhone.Controls
                 };
             }
 
-            loginButton = GetTemplateChild("loginButton") as RoundButton;
+            loginButton = GetTemplateChild("loginButton") as RadImageButton;
             if(loginButton != null)
             {
                 loginButton.Click += (sender, args) => DoLogin();

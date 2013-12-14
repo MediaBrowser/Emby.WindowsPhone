@@ -2,7 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:MediaBrowser.WindowsPhone.Controls"
                     xmlns:converter="clr-namespace:MediaBrowser.WindowsPhone.Converters"
-                    xmlns:controls="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls">
+                    xmlns:controls="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
+                    xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives">
 
     <!-- Converters -->
     <converter:LoggedInDateConverter x:Key="LoggedInDateConverter" />
@@ -146,13 +147,19 @@
                                              VerticalAlignment="Top"
                                              HorizontalAlignment="Stretch"
                                              Grid.Column="0" />
-                                <controls:RoundButton Grid.Column="1"
+                                <telerikPrimitives:RadImageButton Grid.Column="1"
+                                                                  ButtonShape="Ellipse"
+                                                                  RestStateImageSource="/Icons/appbar.next.rest.png"
+                                                                  x:Name="loginButton"
+                                                                  BorderThickness="2"
+                                                                  BorderBrush="White"/>
+                                <!--<controls:RoundButton Grid.Column="1"
                                                       Padding="0"
                                                       x:Name="loginButton"
                                                       HorizontalContentAlignment="Left"
                                                       VerticalContentAlignment="Top"
                                                       Margin="0,8,0,0"
-                                                      ImageSource="/Icons/appbar.next.rest.png" />
+                                                      ImageSource="/Icons/appbar.next.rest.png" />-->
                             </Grid>
                             <TextBlock Text="incorrect pin"
                                        x:Name="textIncorrectPin"
