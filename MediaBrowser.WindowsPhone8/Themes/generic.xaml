@@ -152,14 +152,10 @@
                                                                   RestStateImageSource="/Icons/appbar.next.rest.png"
                                                                   x:Name="loginButton"
                                                                   BorderThickness="2"
-                                                                  BorderBrush="White"/>
-                                <!--<controls:RoundButton Grid.Column="1"
-                                                      Padding="0"
-                                                      x:Name="loginButton"
-                                                      HorizontalContentAlignment="Left"
-                                                      VerticalContentAlignment="Top"
-                                                      Margin="0,8,0,0"
-                                                      ImageSource="/Icons/appbar.next.rest.png" />-->
+                                                                  BorderBrush="White"
+                                                                  MinHeight="40"
+                                                                  MinWidth="40"
+                                                                  VerticalAlignment="Center"/>
                             </Grid>
                             <TextBlock Text="incorrect pin"
                                        x:Name="textIncorrectPin"
