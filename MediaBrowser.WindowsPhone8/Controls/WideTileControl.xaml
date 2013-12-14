@@ -6,6 +6,7 @@
              xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
              xmlns:controls="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
              xmlns:converters="clr-namespace:MediaBrowser.WindowsPhone.Converters"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d"
              FontFamily="{StaticResource PhoneFontFamilyNormal}"
              FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -14,7 +15,7 @@
              Width="691">
     
     <UserControl.Resources>
-        <converters:RandomOpacity x:Key="RandomOpacity"/>
+        <system:Double x:Key="Opacity">0.85</system:Double>
     </UserControl.Resources>
 
     <Grid x:Name="LayoutRoot">
@@ -47,45 +48,45 @@
                    Stretch="UniformToFill"
                    Grid.Column="0"
                    Grid.Row="0"
-                   Opacity="0.7"/>
+                   Opacity="{StaticResource Opacity}"/>
             <Image x:Name="ImageTwo"
                    Stretch="UniformToFill"
-                   Opacity="0.7"
+                   Opacity="{StaticResource Opacity}"
                    Grid.Column="1"
                    Grid.Row="0" />
             <Image x:Name="ImageThree"
                    Stretch="UniformToFill"
-                   Opacity="0.7"
+                   Opacity="{StaticResource Opacity}"
                    Grid.Column="2"
                    Grid.Row="0" />
             <Image x:Name="ImageFour"
                    Stretch="UniformToFill"
-                   Opacity="0.7"
+                   Opacity="{StaticResource Opacity}"
                    Grid.Column="0"
                    Grid.Row="1" />
             <Image x:Name="ImageFive"
                    Stretch="UniformToFill"
-                   Opacity="0.7"
+                   Opacity="{StaticResource Opacity}"
                    Grid.Column="1"
                    Grid.Row="1" />
             <Image x:Name="ImageSix"
                    Stretch="UniformToFill"
-                   Opacity="0.7"
+                   Opacity="{StaticResource Opacity}"
                    Grid.Column="2"
                    Grid.Row="1" />
             <Image x:Name="ImageSeven"
                    Stretch="UniformToFill"
-                   Opacity="0.7"
+                   Opacity="{StaticResource Opacity}"
                    Grid.Column="0"
                    Grid.Row="2" />
             <Image x:Name="ImageEight"
                    Stretch="UniformToFill"
-                   Opacity="0.7"
+                   Opacity="{StaticResource Opacity}"
                    Grid.Column="1"
                    Grid.Row="2" />
             <Image x:Name="ImageNine"
                    Stretch="UniformToFill"
-                   Opacity="0.7"
+                   Opacity="{StaticResource Opacity}"
                    Grid.Column="2"
                    Grid.Row="2" />
         </Grid>
