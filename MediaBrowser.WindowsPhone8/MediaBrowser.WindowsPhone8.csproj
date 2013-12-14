@@ -10,7 +10,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MediaBrowser.WindowsPhone</RootNamespace>
-    <AssemblyName>MediaBrowser.WindowsPhone8</AssemblyName>
+    <AssemblyName>MediaBrowser.WindowsPhone</AssemblyName>
     <TargetFrameworkIdentifier>WindowsPhone</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
     <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
@@ -317,6 +317,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Content Include="Assets\BrowserText.png" />
+    <Content Include="Assets\MediaTextBlack.png" />
+    <Content Include="Assets\MediaTextWhite.png" />
     <Content Include="Assets\Tiles\MBRemoteTile.png" />
     <Content Include="DefaultLockScreen.jpg" />
     <Content Include="Icons\appbar.feature.search.rest.png" />
@@ -552,7 +555,9 @@
     <Content Include="Assets\Tiles\IconicTileSmall.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\About\Data.xml" />
+    <Content Include="Content\About\Data.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Icons\appbar.back.rest.png" />
     <Content Include="Icons\appbar.delete.rest.png" />
     <Content Include="Icons\appbar.group.png" />

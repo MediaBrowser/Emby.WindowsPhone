@@ -93,7 +93,7 @@
     <Item Title="log file"
           Type="xaml">
       <logView:LogFileView xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                           xmlns:logView="clr-namespace:MediaBrowser.WindowsPhone.Controls;assembly=MediaBrowser.WindowsPhone8"
+                           xmlns:logView="clr-namespace:MediaBrowser.WindowsPhone.Controls;assembly=MediaBrowser.WindowsPhone"
                            HorizontalAlignment="Stretch"
                            VerticalAlignment="Top"
                            Background="Transparent"/>

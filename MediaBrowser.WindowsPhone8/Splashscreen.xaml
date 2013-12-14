@@ -53,10 +53,10 @@
         <Grid.Background>
             <ImageBrush ImageSource="/Images/LockScreenBackground.jpg" />
         </Grid.Background>
-		<Grid.RowDefinitions>
-			<RowDefinition Height="*"/>
-			<RowDefinition Height="*"/>
-		</Grid.RowDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="LoadedStates">
                 <VisualState x:Name="IsLoaded">
@@ -69,7 +69,7 @@
                                          Storyboard.TargetProperty="(FrameworkElement.Opacity)"
                                          Storyboard.TargetName="Logo" />
                         <DoubleAnimation Duration="0:0:1"
-                                         windowsPhone:ThicknessAnimationX.To="0,-20,0,0"
+                                         windowsPhone:ThicknessAnimationX.To="0"
                                          windowsPhone:ThicknessAnimationX.From="0,390,0,0"
                                          windowsPhone:ThicknessAnimationX.Element="{Binding ElementName=Text}"
                                          Storyboard.TargetProperty="(FrameworkElement.Opacity)"
@@ -79,25 +79,24 @@
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
 
-		<Image Source="/Images/Logo.png" Width="173" Height="173" VerticalAlignment="Bottom" Margin="0,0,0,390" x:Name="Logo" />
+        <Image Source="/Images/Logo.png"
+               Width="173"
+               Height="173"
+               VerticalAlignment="Bottom"
+               Margin="0,0,0,390"
+               x:Name="Logo" />
 
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,390,0,0" Grid.Row="1" VerticalAlignment="Top" x:Name="Text">            
-            <TextBlock x:Name="MediaTextBlock"
-                       Text="media"
-                       Foreground="WhiteSmoke"
-                       Style="{StaticResource PhoneTextTitle1Style}"
-                       Margin="0"
-                       Grid.Column="0"
-                       FontFamily="Euphemia"
-                       VerticalAlignment="Center" />
-            <TextBlock x:Name="BrowserTextBlock"
-                       Text="browser"
-                       Foreground="Green"
-                       FontFamily="Euphemia"
-                       Style="{StaticResource PhoneTextTitle1Style}"
-                       Margin="0"
-                       Grid.Column="1"
-                       VerticalAlignment="Center" />
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    Margin="0,390,0,0"
+                    Grid.Row="1"
+                    VerticalAlignment="Top"
+                    x:Name="Text">
+            <Image Source="/Assets/MediaTextWhite.png"
+                   Height="45"/>
+            <Image Source="/Assets/BrowserText.png"
+                   Height="45"/>
+            
         </StackPanel>
 
     </Grid>

@@ -524,6 +524,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Content Include="..\MediaBrowser.WindowsPhone8\Assets\BrowserText.png">
+      <Link>Assets\BrowserText.png</Link>
+    </Content>
+    <Content Include="..\MediaBrowser.WindowsPhone8\Assets\MediaTextBlack.png">
+      <Link>Assets\MediaTextBlack.png</Link>
+    </Content>
+    <Content Include="..\MediaBrowser.WindowsPhone8\Assets\MediaTextWhite.png">
+      <Link>Assets\MediaTextWhite.png</Link>
+    </Content>
     <Content Include="..\MediaBrowser.WindowsPhone8\Assets\Tiles\MBRemoteTile.png">
       <Link>Assets\Tiles\MBRemoteTile.png</Link>
     </Content>

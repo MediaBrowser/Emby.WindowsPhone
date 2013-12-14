@@ -3,7 +3,7 @@
                     xmlns:System="clr-namespace:System;assembly=mscorlib"
                     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
                     xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
-                    xmlns:mb="clr-namespace:MediaBrowser.WindowsPhone.Controls;assembly=MediaBrowser.WindowsPhone8">
+                    xmlns:mb="clr-namespace:MediaBrowser.WindowsPhone.Controls;assembly=MediaBrowser.WindowsPhone">
 
     <!-- About Page -->
     <Style x:Key="AboutPageStyle"
