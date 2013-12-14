@@ -14,6 +14,7 @@
                 xmlns:c4F="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
                 xmlns:telerikInput="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Input"
                 xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
+                xmlns:system="clr-namespace:System;assembly=mscorlib"
                 mc:Ignorable="d"
                 d:DesignWidth="480"
                 d:DesignHeight="696"
@@ -76,6 +77,11 @@
             </toolkit:NavigationOutTransition.Forward>
         </toolkit:NavigationOutTransition>
     </toolkit:TransitionService.NavigationOutTransition>
+    
+    <scott:BasePage.Resources>
+        <system:Double x:Key="PlayButtonSize">160</system:Double>
+        <system:Double x:Key="PlayButtonBackgroundSize">140</system:Double>
+    </scott:BasePage.Resources>
 
     <Grid x:Name="LayoutRoot"
           Background="{StaticResource MediaBrowserBackground}">
@@ -103,10 +109,35 @@
                                         HorizontalAlignment="Left"
                                         VerticalAlignment="Top"
                                         Margin="12,0,0,0" />
-                        <c4F:RoundButton ImageSource="/Icons/appbar.transport.play.rest.png"
-                                         IsHitTestVisible="False"
-                                         HorizontalAlignment="Center"
-                                         VerticalAlignment="Center" />
+                        <Grid>
+                            <Ellipse Height="{StaticResource PlayButtonBackgroundSize}"
+                                     Width="{StaticResource PlayButtonBackgroundSize}"
+                                     Fill="#83000000"
+                                     HorizontalAlignment="Center"
+                                     VerticalAlignment="Center"
+                                     x:Name="Background" />
+                            <Path Data="F1 M 38,0.791664C 58.5496,0.791664 75.2083,17.4504 75.2083,38C 75.2083,58.5496 58.5496,75.2083 38,75.2083C 17.4504,75.2083 0.791662,58.5496 0.791662,38C 0.791662,17.4504 17.4504,0.791664 38,0.791664 Z M 38,5.54166C 20.0738,5.54166 5.54167,20.0738 5.54167,38C 5.54167,55.9262 20.0738,70.4583 38,70.4583C 55.9262,70.4583 70.4583,55.9262 70.4583,38C 70.4583,20.0738 55.9262,5.54166 38,5.54166 Z "
+                                  Height="{StaticResource PlayButtonSize}"
+                                  Width="{StaticResource PlayButtonSize}"
+                                  Fill="White"
+                                  x:Name="BaseCircle"
+                                  HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"
+                                  Margin="0"
+                                  Stretch="Fill"
+                                  UseLayoutRounding="False">
+                            </Path>
+                            <Path Data="F1 M 30.0833,22.1667L 50.6665,37.6043L 50.6665,38.7918L 30.0833,53.8333L 30.0833,22.1667 Z "
+                                  Height="49"
+                                  Width="41.576"
+                                  x:Name="Play"
+                                  HorizontalAlignment="Center"
+                                  Fill="White"
+                                  VerticalAlignment="Center"
+                                  Margin="6,0,0,0"
+                                  Stretch="Fill"
+                                  UseLayoutRounding="False" />
+                        </Grid>
                     </Grid>
                 </Button>
             </phone:PanoramaItem>
@@ -169,9 +200,9 @@
                         <DataTemplate>
                             <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
                                              Margin="12,0,0,12"
-                                             HorizontalContentAlignment="Left"
                                              Command="{Binding ElementName=PageRoot, Path=DataContext.ShowOtherFilmsCommand}"
-                                             CommandParameter="{Binding}">
+                                             CommandParameter="{Binding}"
+                                             HorizontalContentAlignment="Left">
                                 <StackPanel Orientation="Horizontal">
                                     <c4F:SuperImage Height="99"
                                                     Width="99"
