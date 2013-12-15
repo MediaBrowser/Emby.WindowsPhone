@@ -245,21 +245,21 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             try
             {
-                var query = new ItemQuery
+                var query = new SeasonQuery
                 {
                     UserId = AuthenticationService.Current.LoggedInUser.Id,
-                    ParentId = SelectedTvSeries.Id,
+                    SeriesId = SelectedTvSeries.Id,
                     Fields = new[]
                     {
                         ItemFields.ParentId
                     },
                     IsMissing = App.SpecificSettings.ShowMissingEpisodes,
-                    IsUnaired = App.SpecificSettings.ShowUnairedEpisodes
+                    IsVirtualUnaired = App.SpecificSettings.ShowUnairedEpisodes
                 };
 
                 Log.Info("Getting seasons for TV Show [{0}] ({1})", SelectedTvSeries.Name, SelectedTvSeries.Id);
 
-                var seasons = await _apiClient.GetItemsAsync(query);
+                var seasons = await _apiClient.GetSeasonsAsync(query);
                 Seasons = seasons.Items.OrderBy(x => x.IndexNumber).ToList();
                 return true;
             }
@@ -276,22 +276,23 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             try
             {
-                var query = new ItemQuery
+                var query = new EpisodeQuery
                 {
                     UserId = AuthenticationService.Current.LoggedInUser.Id,
-                    ParentId = SelectedSeason.Id,
+                    SeasonId = SelectedSeason.Id,
+                    SeriesId = SelectedSeason.SeriesId,
                     Fields = new[]
                     {
                         ItemFields.ParentId,
                         ItemFields.Overview
                     },
                     IsMissing = App.SpecificSettings.ShowMissingEpisodes,
-                    IsUnaired = App.SpecificSettings.ShowUnairedEpisodes
+                    IsVirtualUnaired = App.SpecificSettings.ShowUnairedEpisodes
                 };
 
                 Log.Info("Getting episodes for Season [{0}] ({1}) of TV Show [{2}] ({3})", SelectedSeason.Name, SelectedSeason.Id, SelectedTvSeries.Name, SelectedTvSeries.Id);
 
-                var episodes = await _apiClient.GetItemsAsync(query);
+                var episodes = await _apiClient.GetEpisodesAsync(query);
                 Episodes = episodes.Items.OrderBy(x => x.IndexNumber).ToList();
                 return true;
             }
