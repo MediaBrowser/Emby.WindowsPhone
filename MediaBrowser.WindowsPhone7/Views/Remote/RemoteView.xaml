@@ -157,10 +157,7 @@
                         Grid.Row="0"
                         Orientation="Horizontal"
                         Margin="12,17,0,28">
-                <mb:MediaBrowserLogo />
-                <TextBlock Text="- REMOTE"
-                           Style="{StaticResource PhoneTextNormalStyle}"
-                           Margin="6,0" />
+                <mb:MediaBrowserLogo AltText="REMOTE" />
             </StackPanel>
 
             <toolkit:ListPicker ItemsSource="{Binding Clients}"
@@ -177,8 +174,6 @@
                 <toolkit:ListPicker.ItemTemplate>
                     <DataTemplate>
                         <controls:SuperImage Source="{Binding Converter={StaticResource ClientTypeIconConverter}}"
-                                             PlaceholderImageSource="/Images/Logo.png"
-                                             PlaceholderImageStretch="UniformToFill"
                                              Height="62"
                                              Width="62"
                                              VerticalAlignment="Top"

@@ -15,6 +15,7 @@ using Microsoft.Phone.Shell;
 using MediaBrowser.Model;
 
 using ScottIsAFool.WindowsPhone.Logging;
+using Telerik.Windows.Controls;
 
 namespace MediaBrowser.WindowsPhone
 {
@@ -110,6 +111,7 @@ namespace MediaBrowser.WindowsPhone
         private void ApplicationLaunching(object sender, LaunchingEventArgs e)
         {
             AuthenticationService.Current.Start(SimpleIoc.Default.GetInstance<IExtendedApiClient>(), new MBLogger(typeof(AuthenticationService)));
+            ApplicationUsageHelper.Init(ApplicationManifest.Current.App.Version);
         }
 
         // Code to execute when the application is activated (brought to foreground)
@@ -120,6 +122,8 @@ namespace MediaBrowser.WindowsPhone
             {
                 AuthenticationService.Current.Start(SimpleIoc.Default.GetInstance<IExtendedApiClient>(), new MBLogger(typeof(AuthenticationService)));
             }
+
+            ApplicationUsageHelper.OnApplicationActivated();
         }
 
         // Code to execute when the application is deactivated (sent to background)
