@@ -191,12 +191,13 @@
                                                              PlaceholderImageSource="/Images/DefaultVideo.png"
                                                              PlaceholderImageStretch="Uniform"
                                                              VerticalAlignment="Top" />
-                                        <StackPanel Orientation="Vertical">
-                                            <TextBlock Text="{Binding Name, Converter={StaticResource StringToUppercaseConverter}}"
+                                        <StackPanel Orientation="Vertical"
+                                                    Height="95">
+                                            <TextBlock Text="{Binding Name}"
                                                        Style="{StaticResource HeaderTextStyle}"
                                                        FontSize="{StaticResource PhoneFontSizeMediumLarge}" />
                                             <StackPanel Orientation="Horizontal"
-                                                        Margin="12,0,0,0">
+                                                        Margin="0,-6,0,0">
                                                 <telerikInput:RadRating Value="{Binding CommunityRating, Converter={StaticResource RatingConverter}}"
                                                                         IsReadOnly="True"
                                                                         ItemShapeHeight="20"
@@ -210,11 +211,12 @@
                                                            Stretch="UniformToFill" />
                                                     <TextBlock Text="{Binding CriticRating, StringFormat='\{0\}%'}"
                                                                Style="{StaticResource PhoneTextSubtleStyle}"
+                                                               VerticalAlignment="Center"
                                                                Margin="6,0" />
                                                 </StackPanel>
                                             </StackPanel>
                                             <StackPanel Orientation="Horizontal"
-                                                        Margin="12,0,0,0">
+                                                        Margin="12,-6,0,0">
                                                 <TextBlock Text="{Binding ProductionYear}"
                                                            Style="{StaticResource PhoneTextSubtleStyle}"
                                                            Margin="0,0,12,0" />
@@ -264,7 +266,7 @@
                                                            HorizontalAlignment="Stretch"
                                                            Height="1"
                                                            Width="308" />
-                                                <TextBlock Text="{Binding Name, Converter={StaticResource StringCaseConverter}, ConverterParameter=false}"
+                                                <TextBlock Text="{Binding Name}"
                                                            Style="{StaticResource PhoneTextLargeStyle}"
                                                            HorizontalAlignment="Left" />
                                             </Grid>

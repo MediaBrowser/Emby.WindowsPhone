@@ -79,7 +79,7 @@
            BasedOn="{StaticResource PhoneTextTitle2Style}"
            x:Key="HeaderTextStyle">
         <Setter Property="FontFamily"
-                Value="Segoe WP Black" />
+                Value="Segoe WP Semibold" />
     </Style>
 
     <!-- DataTemplates -->
