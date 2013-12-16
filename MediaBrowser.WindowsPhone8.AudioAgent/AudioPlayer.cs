@@ -262,7 +262,6 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
 
                 _logger.Info("GetNextTrack() : Current track ID: " + currentTrack.Id + ", items in playlist: " + items.Count);
                 nextTrack = currentTrack.Id == items.Count ? items.FirstOrDefault() : items[currentTrack.Id];
-                _logger.Info("GetNextTrack() : Current track ID: " + currentTrack.Id + ", items in playlist: " + items.Count);
             }
 
             if (nextTrack == null)
@@ -270,6 +269,8 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
                 _logger.Info("GetNextTrack() : No track to play");
                 return null;
             }
+
+            _logger.Info("GetNextTrack() : Next track ID: " + nextTrack.Id + ", items in playlist: " + items.Count);
 
             try
             {
