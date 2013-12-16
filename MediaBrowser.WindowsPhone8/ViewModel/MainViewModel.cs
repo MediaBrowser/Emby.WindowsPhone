@@ -186,7 +186,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
             else
             {
-                if (SimpleIoc.Default.GetInstance<VideoPlayerViewModel>() != null)
+                if (SimpleIoc.Default.GetInstance<VideoPlayerViewModel>() != null && item.LocationType != LocationType.Virtual)
                 {
                     Messenger.Default.Send(new NotificationMessage(item, isResume, Constants.Messages.PlayVideoItemMsg));
                     TrialHelper.Current.SetNewVideoItem(item.Id);

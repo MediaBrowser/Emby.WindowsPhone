@@ -6,8 +6,6 @@ using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using Ailon.WP.Utils;
-using Cimbalino.Phone.Toolkit.Services;
 using GalaSoft.MvvmLight.Ioc;
 using MediaBrowser.ApiInteraction;
 using MediaBrowser.ApiInteraction.WebSocket;
@@ -20,7 +18,6 @@ using MediaBrowser.Model.Session;
 using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Services;
-using Microsoft.Phone.Info;
 using ScottIsAFool.WindowsPhone;
 using ScottIsAFool.WindowsPhone.Logging;
 using INavigationService = MediaBrowser.WindowsPhone.Model.INavigationService;
@@ -251,24 +248,6 @@ namespace MediaBrowser.WindowsPhone
             {
                 log.ErrorException(message, ex);
             }
-        }
-
-        internal static string GetDeviceName()
-        {
-            var deviceName = DeviceStatus.DeviceName;
-            var deviceId = DeviceStatus.DeviceManufacturer;
-            var phone = PhoneNameResolver.Resolve(deviceId, deviceName);
-            var deviceInfo = string.Format("{0} ({1})", phone.CanonicalModel, phone.CanonicalManufacturer);
-
-            return deviceInfo;
-        }
-
-        internal static string GetDeviceId()
-        {
-            var uniqueId = SimpleIoc.Default.GetInstance<IDeviceExtendedPropertiesService>().DeviceUniqueId;
-            var deviceId = Convert.ToBase64String(uniqueId, 0, uniqueId.Length);
-
-            return deviceId;
         }
 
         internal static List<PlaylistItem> ToPlayListItems(this List<BaseItemDto> list, IExtendedApiClient apiClient)
