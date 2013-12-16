@@ -35,12 +35,9 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
             WPLogger.LogConfiguration.LogType = LogType.WriteToFile;
             WPLogger.LogConfiguration.LoggingIsEnabled = true;
 
-            //Deployment.Current.Dispatcher.BeginInvoke(() =>
-            //{
-            //    _dispatcherTimer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(5) };
-            //    _dispatcherTimer.Tick += DispatcherTimerOnTick;
-            //    _dispatcherTimer.Start();
-            //});
+            //_dispatcherTimer = new DispatcherTimer {Interval = TimeSpan.FromSeconds(5)};
+            //_dispatcherTimer.Tick += DispatcherTimerOnTick;
+            //_dispatcherTimer.Start();
 
             if (!_classInitialized)
             {
@@ -137,10 +134,11 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
                     break;
                 case PlayState.Stopped:
                     _logger.Info("PlayStateChanged.Stopped");
-                    _playlistHelper.SetAllTracksToNotPlayingAndSave();
+                    //_playlistHelper.SetAllTracksToNotPlayingAndSave();
                     break;
                 case PlayState.Paused:
                     _logger.Info("PlayStateChanged.Paused");
+                    _playlistHelper.SetAllTracksToNotPlayingAndSave();
                     break;
                 case PlayState.Playing:
                     break;
@@ -264,7 +262,6 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
 
                 _logger.Info("GetNextTrack() : Current track ID: " + currentTrack.Id + ", items in playlist: " + items.Count);
                 nextTrack = currentTrack.Id == items.Count ? items.FirstOrDefault() : items[currentTrack.Id];
-                _logger.Info("GetNextTrack() : Current track ID: " + currentTrack.Id + ", items in playlist: " + items.Count);
             }
 
             if (nextTrack == null)
@@ -272,6 +269,8 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
                 _logger.Info("GetNextTrack() : No track to play");
                 return null;
             }
+
+            _logger.Info("GetNextTrack() : Next track ID: " + nextTrack.Id + ", items in playlist: " + items.Count);
 
             try
             {
