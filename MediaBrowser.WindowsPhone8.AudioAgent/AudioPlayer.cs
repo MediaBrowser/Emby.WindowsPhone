@@ -30,14 +30,17 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
         {
             _playlistHelper = new PlaylistHelper(new StorageService());
             _logger = new WPLogger(GetType());
-            _apiClient = CreateClient();
+            //_apiClient = CreateClient();
             WPLogger.AppVersion = ApplicationManifest.Current.App.Version;
             WPLogger.LogConfiguration.LogType = LogType.WriteToFile;
             WPLogger.LogConfiguration.LoggingIsEnabled = true;
 
-            _dispatcherTimer = new DispatcherTimer {Interval = TimeSpan.FromSeconds(5)};
-            _dispatcherTimer.Tick += DispatcherTimerOnTick;
-            _dispatcherTimer.Start();
+            //Deployment.Current.Dispatcher.BeginInvoke(() =>
+            //{
+            //    _dispatcherTimer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(5) };
+            //    _dispatcherTimer.Tick += DispatcherTimerOnTick;
+            //    _dispatcherTimer.Start();
+            //});
 
             if (!_classInitialized)
             {
