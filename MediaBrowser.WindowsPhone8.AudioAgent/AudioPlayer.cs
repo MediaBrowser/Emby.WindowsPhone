@@ -50,17 +50,16 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
             }
         }
 
-        private async void DispatcherTimerOnTick(object sender, EventArgs eventArgs)
+        private static async void DispatcherTimerOnTick(object sender, EventArgs eventArgs)
         {
             if (_apiClient == null || BackgroundAudioPlayer.Instance.PlayerState != PlayState.Playing)
             {
                 return;
             }
 
-            var track = BackgroundAudioPlayer.Instance.Track;
-
             try
             {
+                var track = BackgroundAudioPlayer.Instance.Track;
                 await _apiClient.ReportPlaybackProgressAsync(track.Tag, _apiClient.CurrentUserId, BackgroundAudioPlayer.Instance.Position.Ticks, false, false);
             }
             catch (HttpException ex)
