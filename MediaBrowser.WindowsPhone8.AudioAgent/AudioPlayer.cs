@@ -134,10 +134,11 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
                     break;
                 case PlayState.Stopped:
                     _logger.Info("PlayStateChanged.Stopped");
-                    _playlistHelper.SetAllTracksToNotPlayingAndSave();
+                    //_playlistHelper.SetAllTracksToNotPlayingAndSave();
                     break;
                 case PlayState.Paused:
                     _logger.Info("PlayStateChanged.Paused");
+                    _playlistHelper.SetAllTracksToNotPlayingAndSave();
                     break;
                 case PlayState.Playing:
                     break;
