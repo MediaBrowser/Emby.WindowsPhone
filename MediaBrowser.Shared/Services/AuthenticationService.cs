@@ -2,9 +2,9 @@
 using Cimbalino.Phone.Toolkit.Services;
 using MediaBrowser.Model;
 using MediaBrowser.Model.Dto;
-using MediaBrowser.Model.Logging;
 using MediaBrowser.Model.Net;
 using PropertyChanged;
+using ScottIsAFool.WindowsPhone.Logging;
 
 namespace MediaBrowser.Services
 {
@@ -14,17 +14,21 @@ namespace MediaBrowser.Services
         private static AuthenticationService _current;
         private IApplicationSettingsService _settingsService;
         private static IExtendedApiClient _apiClient;
-        private static ILogger _logger;
+        private static ILog _logger;
         
         public static AuthenticationService Current
         {
             get { return _current ?? (_current = new AuthenticationService()); }
         }
 
-        public void Start(IExtendedApiClient apiClient, ILogger logger)
+        public AuthenticationService()
+        {
+            _logger = new WPLogger(typeof (AuthenticationService));
+        }
+
+        public void Start(IExtendedApiClient apiClient)
         {
             _apiClient = apiClient;
-            _logger = logger;
             _settingsService = new ApplicationSettingsService();
 
             CheckIfUserSignedIn();

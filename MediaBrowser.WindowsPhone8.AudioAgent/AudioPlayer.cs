@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Linq;
 using System.Windows;
+using System.Windows.Threading;
 using Cimbalino.Phone.Toolkit.Helpers;
 using Cimbalino.Phone.Toolkit.Services;
+using MediaBrowser.ApiInteraction;
 using MediaBrowser.Model;
+using MediaBrowser.Model.Net;
+using MediaBrowser.Services;
 using Microsoft.Phone.BackgroundAudio;
 using ScottIsAFool.WindowsPhone.Logging;
 
@@ -14,6 +18,8 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
         private static ILog _logger;
         private static volatile bool _classInitialized;
         private readonly PlaylistHelper _playlistHelper;
+        private static IExtendedApiClient _apiClient;
+        private static DispatcherTimer _dispatcherTimer;
         
         /// <remarks>
         /// AudioPlayer instances can share the same process. 
@@ -24,9 +30,14 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
         {
             _playlistHelper = new PlaylistHelper(new StorageService());
             _logger = new WPLogger(GetType());
+            _apiClient = CreateClient();
             WPLogger.AppVersion = ApplicationManifest.Current.App.Version;
             WPLogger.LogConfiguration.LogType = LogType.WriteToFile;
             WPLogger.LogConfiguration.LoggingIsEnabled = true;
+
+            _dispatcherTimer = new DispatcherTimer {Interval = TimeSpan.FromSeconds(5)};
+            _dispatcherTimer.Tick += DispatcherTimerOnTick;
+            _dispatcherTimer.Start();
 
             if (!_classInitialized)
             {
@@ -36,6 +47,43 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
                 {
                     Application.Current.UnhandledException += AudioPlayer_UnhandledException;
                 });
+            }
+        }
+
+        private async void DispatcherTimerOnTick(object sender, EventArgs eventArgs)
+        {
+            if (_apiClient == null || BackgroundAudioPlayer.Instance.PlayerState != PlayState.Playing)
+            {
+                return;
+            }
+
+            var track = BackgroundAudioPlayer.Instance.Track;
+
+            try
+            {
+                await _apiClient.ReportPlaybackProgressAsync(track.Tag, _apiClient.CurrentUserId, BackgroundAudioPlayer.Instance.Position.Ticks, false, false);
+            }
+            catch (HttpException ex)
+            {
+                _logger.FatalException("DispatcherTimerOnTick()", ex);
+            }
+        }
+
+        private static IExtendedApiClient CreateClient()
+        {
+            try
+            {
+                var applicationSettings = new ApplicationSettingsService();
+                var connectionDetails = applicationSettings.Get<ConnectionDetails>(Constants.Settings.ConnectionSettings);
+                var client = new ExtendedApiClient(new NullLogger(), connectionDetails.HostName, int.Parse(connectionDetails.HostName), "Windows Phone", SharedUtils.GetDeviceName() + " Audio Player", SharedUtils.GetDeviceId(), ApplicationManifest.Current.App.Version);
+                client.CurrentUserId = AuthenticationService.Current.LoggedInUserId;
+
+                return client;
+            }
+            catch (Exception ex)
+            {
+                _logger.FatalException("Error creating ApiClient", ex);
+                return null;
             }
         }
 
@@ -90,6 +138,7 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
                     _playlistHelper.SetAllTracksToNotPlayingAndSave();
                     break;
                 case PlayState.Paused:
+                    _logger.Info("PlayStateChanged.Paused");
                     break;
                 case PlayState.Playing:
                     break;

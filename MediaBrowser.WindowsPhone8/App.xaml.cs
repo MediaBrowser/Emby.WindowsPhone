@@ -160,7 +160,7 @@ namespace MediaBrowser.WindowsPhone
         private static void AppStartup()
         {
             var client = SimpleIoc.Default.GetInstance<IExtendedApiClient>();
-            AuthenticationService.Current.Start(client, new MBLogger(typeof (AuthenticationService)));
+            AuthenticationService.Current.Start(client);
             TileService.Current.StartService(client, SimpleIoc.Default.GetInstance<IAsyncStorageService>());
         }
 

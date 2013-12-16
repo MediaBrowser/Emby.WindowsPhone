@@ -110,7 +110,7 @@ namespace MediaBrowser.WindowsPhone
         // This code will not execute when the application is reactivated
         private void ApplicationLaunching(object sender, LaunchingEventArgs e)
         {
-            AuthenticationService.Current.Start(SimpleIoc.Default.GetInstance<IExtendedApiClient>(), new MBLogger(typeof(AuthenticationService)));
+            AuthenticationService.Current.Start(SimpleIoc.Default.GetInstance<IExtendedApiClient>());
             ApplicationUsageHelper.Init(ApplicationManifest.Current.App.Version);
         }
 
@@ -120,7 +120,7 @@ namespace MediaBrowser.WindowsPhone
         {
             if (!e.IsApplicationInstancePreserved)
             {
-                AuthenticationService.Current.Start(SimpleIoc.Default.GetInstance<IExtendedApiClient>(), new MBLogger(typeof(AuthenticationService)));
+                AuthenticationService.Current.Start(SimpleIoc.Default.GetInstance<IExtendedApiClient>());
             }
 
             ApplicationUsageHelper.OnApplicationActivated();
