@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Media;
 using GalaSoft.MvvmLight.Messaging;
 using Microsoft.PlayerFramework;
 
@@ -48,6 +49,15 @@ namespace MediaBrowser.WindowsPhone.Views
             else
             {
                 e.Cancel = true;
+            }
+        }
+
+        private void ThePlayer_OnCurrentStateChanged(object sender, RoutedEventArgs e)
+        {
+            if (thePlayer.CurrentState == MediaElementState.Playing || thePlayer.CurrentState == MediaElementState.Paused)
+            {
+                var isPaused = thePlayer.CurrentState == MediaElementState.Paused;
+                Messenger.Default.Send(new NotificationMessage(isPaused, Constants.Messages.VideoStateChangedMsg));
             }
         }
     }
