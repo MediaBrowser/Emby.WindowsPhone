@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2009/deployment" AppPlatformVersion="7.1">
-  <App xmlns="" ProductID="{dfe90205-defa-43df-8fee-161d9a79e0e3}" Title="Media Browser" RuntimeType="Silverlight" Version="7.0.0.47" Genre="apps.normal" Author="MediaBrowser.WindowsPhone author" Description="Windows phone 7 app for MediaBrowser3" Publisher="MediaBrowser.WindowsPhone publisher" BitsPerPixel="32">
+  <App xmlns="" ProductID="{dfe90205-defa-43df-8fee-161d9a79e0e3}" Title="Media Browser Beta" RuntimeType="Silverlight" Version="0.0.7.48" Genre="apps.normal" Author="MediaBrowser.WindowsPhone author" Description="Windows phone 7 app for MediaBrowser3" Publisher="MediaBrowser.WindowsPhone publisher" BitsPerPixel="32">
     <IconPath IsRelative="true" IsResource="false">ApplicationIcon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_IDENTITY_DEVICE" />
@@ -22,7 +22,7 @@
         <TemplateType5>
           <BackgroundImageURI IsRelative="true" IsResource="false">Background.png</BackgroundImageURI>
           <Count>0</Count>
-          <Title>Media Browser</Title>
+          <Title>Media Browser Beta</Title>
         </TemplateType5>
       </PrimaryToken>
     </Tokens>

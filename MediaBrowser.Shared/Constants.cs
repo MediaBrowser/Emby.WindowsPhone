@@ -80,6 +80,7 @@
             public const string ChangeActorMsg = "ChangeActorMsg";
             public const string GenericItemChangedMsg = "GenericItemChangedMsg";
             public const string VideoStateChangedMsg = "VideoStateChangedMsg";
+            public const string SetResumeMsg = "SetResumeMsg";
         }
 
         public class Pages

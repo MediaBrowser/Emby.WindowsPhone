@@ -50,6 +50,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 Log.Info("Sending current runtime [{0}] to the server", totalTicks);
 
                 await _apiClient.ReportPlaybackProgressAsync(SelectedItem.Id, AuthenticationService.Current.LoggedInUserId, totalTicks, false, false);
+                SelectedItem.UserData.PlaybackPositionTicks = totalTicks;
             }
             catch (HttpException ex)
             {
@@ -71,6 +72,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                             _isResume = (bool) m.Target;
                         }
                     }
+                }
+
+                if (m.Notification.Equals(Constants.Messages.SetResumeMsg))
+                {
+                    _isResume = true;
                 }
 
                 if (m.Notification.Equals(Constants.Messages.SendVideoTimeToServerMsg))
@@ -123,6 +129,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         Log.Info("Sending current runtime [{0}] to the server", totalTicks);
 
                         await _apiClient.ReportPlaybackProgressAsync(SelectedItem.Id, AuthenticationService.Current.LoggedInUserId, totalTicks, isPaused, false);
+                        SelectedItem.UserData.PlaybackPositionTicks = totalTicks;
                     }
                     catch (HttpException ex)
                     {

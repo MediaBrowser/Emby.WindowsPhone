@@ -13,6 +13,12 @@ namespace MediaBrowser.WindowsPhone.Views
             InitializeComponent();
         }
 
+        protected override void InitialiseOnBack()
+        {
+            base.InitialiseOnBack();
+            Messenger.Default.Send(new NotificationMessage(Constants.Messages.SetResumeMsg));
+        }
+
         private void ThePlayerMediaEnded(object sender, MediaPlayerActionEventArgs e)
         {
             Messenger.Default.Send(new NotificationMessage(Constants.Messages.SendVideoTimeToServerMsg));
