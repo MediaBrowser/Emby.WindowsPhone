@@ -104,6 +104,16 @@ namespace MediaBrowser.WindowsPhone.Converters
 
                     return apiClient.GetImageUrl(item.Id, imageOptions);
                 }
+                if (type == typeof (ChapterInfoDto))
+                {
+                    var item = (ChapterInfoDto) value;
+                    var imageOptions = new ImageOptions
+                    {
+                        ImageType = ImageType.Primary,
+                        MaxHeight = 173
+                    };
+
+                }
             }
             return "";
         }

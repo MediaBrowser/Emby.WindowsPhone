@@ -42,12 +42,12 @@
                 <cimbalino:ApplicationBarMenuItem Text="resume"
                                                   IsEnabled="{Binding SelectedMovie.CanResume}"
                                                   Command="{Binding Main.ResumeMovieCommand, Source={StaticResource Locator}}"
-                                                  CommandParameter="{Binding SelectedMovie}"/>
+                                                  CommandParameter="{Binding SelectedMovie}" />
                 <cimbalino:ApplicationBarMenuItem Text="set poster as lock screen"
                                                   Command="{Binding SetPosterAsLockScreenCommand}" />
                 <cimbalino:ApplicationBarMenuItem Text="play on..."
                                                   Command="{Binding Remote.SendPlayCommand, Source={StaticResource Locator}}"
-                                                  CommandParameter="{Binding SelectedMovie.Id}"/>
+                                                  CommandParameter="{Binding SelectedMovie.Id}" />
             </cimbalino:ApplicationBarBehavior.MenuItems>
         </cimbalino:ApplicationBarBehavior>
     </i:Interaction.Behaviors>
@@ -77,7 +77,7 @@
             </toolkit:NavigationOutTransition.Forward>
         </toolkit:NavigationOutTransition>
     </toolkit:TransitionService.NavigationOutTransition>
-    
+
     <scott:BasePage.Resources>
         <system:Double x:Key="PlayButtonSize">160</system:Double>
         <system:Double x:Key="PlayButtonBackgroundSize">140</system:Double>
@@ -85,7 +85,7 @@
 
     <Grid x:Name="LayoutRoot"
           Background="{StaticResource MediaBrowserBackground}">
-        
+
         <phone:Panorama Title="{Binding SelectedMovie.Name, Converter={StaticResource StringCaseConverter}}"
                         x:Name="MainPanorama"
                         HeaderTemplate="{StaticResource LikeWp7ItemHeaderTemplate}"
@@ -93,7 +93,7 @@
             <i:Interaction.Behaviors>
                 <behaviours:PanoramaBackgroundBehaviour Source="{Binding SelectedMovie, Converter={StaticResource ImageUrlConverter}, ConverterParameter=backdrop}"
                                                         Stretch="UniformToFill"
-                                                        Opacity="0.2"/>
+                                                        Opacity="0.2" />
             </i:Interaction.Behaviors>
             <phone:PanoramaItem Header="poster">
                 <Button Style="{StaticResource EmptyButtonStyle}"
@@ -209,7 +209,7 @@
                                                     PlaceholderImageSource="/Images/default_avatar.png"
                                                     Source="{Binding Converter={StaticResource ImageUrlConverter}}"
                                                     Stretch="Uniform"
-                                                    PlaceholderImageStretch="Uniform"/>
+                                                    PlaceholderImageStretch="Uniform" />
                                     <StackPanel Orientation="Vertical">
                                         <TextBlock Text="{Binding Name, Converter={StaticResource StringCaseConverter}, ConverterParameter=false}"
                                                    FontWeight="Bold"
@@ -219,6 +219,40 @@
                                     </StackPanel>
                                 </StackPanel>
                             </HyperlinkButton>
+                        </DataTemplate>
+                    </phone:LongListSelector.ItemTemplate>
+                </phone:LongListSelector>
+            </phone:PanoramaItem>
+
+            <phone:PanoramaItem Header="chapters">
+                <phone:LongListSelector ItemsSource="{Binding SelectedMovie.Chapters}">
+                    <phone:LongListSelector.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Height="173"
+                                  Tap="ChapterItem_OnTap">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <c4F:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}, ConverterParameter=backdropsmall}"
+                                                Stretch="UniformToFill"
+                                                PlaceholderImageSource="/Images/MBBackground.jpg"
+                                                PlaceholderImageStretch="Uniform" />
+                                <Border VerticalAlignment="Bottom"
+                                        Background="#C4000000"
+                                        HorizontalAlignment="Stretch">
+                                    <Grid>
+                                        <Rectangle Fill="Transparent"
+                                                   HorizontalAlignment="Stretch"
+                                                   Height="1"
+                                                   Width="308" />
+                                        <TextBlock Text="{Binding Name}"
+                                                   Style="{StaticResource PhoneTextLargeStyle}"
+                                                   HorizontalAlignment="Left" />
+                                    </Grid>
+
+                                </Border>
+                            </Grid>
                         </DataTemplate>
                     </phone:LongListSelector.ItemTemplate>
                 </phone:LongListSelector>
