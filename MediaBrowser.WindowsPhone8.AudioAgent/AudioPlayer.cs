@@ -17,6 +17,7 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
     {
         private static ILog _logger;
         private static volatile bool _classInitialized;
+        private static bool _isPlaying;
         private readonly PlaylistHelper _playlistHelper;
         private static IExtendedApiClient _apiClient;
         private static DispatcherTimer _dispatcherTimer;
@@ -124,7 +125,17 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
                     break;
                 case PlayState.TrackReady:
                     _logger.Info("PlayStateChanged.TrackReady");
-                    player.Play();
+                    if (_isPlaying)
+                    {
+                        try
+                        {
+                            player.Play();
+                        }
+                        catch (Exception ex)
+                        {
+                            _logger.ErrorException("OnPlayStateChanged.TrackReady", ex);
+                        }
+                    }
                     break;
                 case PlayState.Shutdown:
                     // TODO: Handle the shutdown state here (e.g. save state)
@@ -135,12 +146,22 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
                 case PlayState.Stopped:
                     _logger.Info("PlayStateChanged.Stopped");
                     //_playlistHelper.SetAllTracksToNotPlayingAndSave();
+                    if (_isPlaying)
+                    {
+                        try
+                        {
+                            player.Play();
+                        }
+                        catch{}
+                    }
                     break;
                 case PlayState.Paused:
                     _logger.Info("PlayStateChanged.Paused");
                     _playlistHelper.SetAllTracksToNotPlayingAndSave();
+                    _isPlaying = false;
                     break;
                 case PlayState.Playing:
+                    _isPlaying = true;
                     break;
                 case PlayState.BufferingStarted:
                     break;
