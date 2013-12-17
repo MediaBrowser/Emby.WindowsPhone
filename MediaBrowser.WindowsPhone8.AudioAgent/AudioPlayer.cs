@@ -152,7 +152,10 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
                         {
                             player.Play();
                         }
-                        catch{}
+                        catch(Exception ex)
+                        {
+                            _logger.ErrorException("PlayStateChanged.Stopped", ex);
+                        }
                     }
                     break;
                 case PlayState.Paused:
