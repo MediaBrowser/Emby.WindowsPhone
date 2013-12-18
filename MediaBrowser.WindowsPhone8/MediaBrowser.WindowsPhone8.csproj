@@ -176,6 +176,7 @@
     <Compile Include="Converters\ZeroCountBrushConverter.cs" />
     <Compile Include="ExtensionMethods.cs" />
     <Compile Include="LocalizedStrings.cs" />
+    <Compile Include="Model\Chapter.cs" />
     <Compile Include="Model\INavigationService.cs" />
     <Compile Include="Model\LockScreenType.cs" />
     <Compile Include="Model\MBLogger.cs" />

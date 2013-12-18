@@ -225,20 +225,21 @@
             </phone:PanoramaItem>
 
             <phone:PanoramaItem Header="chapters">
-                <phone:LongListSelector ItemsSource="{Binding SelectedMovie.Chapters}">
+                <phone:LongListSelector ItemsSource="{Binding Chapters}">
                     <phone:LongListSelector.ItemTemplate>
                         <DataTemplate>
                             <Grid Height="173"
-                                  Tap="ChapterItem_OnTap">
+                                  Tap="ChapterItem_OnTap"
+                                  Margin="12,6">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
 
-                                <c4F:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}, ConverterParameter=backdropsmall}"
+                                <c4F:SuperImage Source="{Binding ImageUrl}"
                                                 Stretch="UniformToFill"
                                                 PlaceholderImageSource="/Images/MBBackground.jpg"
-                                                PlaceholderImageStretch="Uniform" />
-                                <Border VerticalAlignment="Bottom"
+                                                PlaceholderImageStretch="Uniform"/>
+                                    <Border VerticalAlignment="Bottom"
                                         Background="#C4000000"
                                         HorizontalAlignment="Stretch">
                                     <Grid>
