@@ -329,6 +329,12 @@
     <Compile Include="..\MediaBrowser.WindowsPhone8\LocalizedStrings.cs">
       <Link>LocalizedStrings.cs</Link>
     </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone8\Messaging\VideoMessage.cs">
+      <Link>Messaging\VideoMessage.cs</Link>
+    </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone8\Model\Chapter.cs">
+      <Link>Model\Chapter.cs</Link>
+    </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone8\Model\INavigationService.cs">
       <Link>Model\INavigationService.cs</Link>
     </Compile>

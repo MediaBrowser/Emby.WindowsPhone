@@ -15,6 +15,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using MediaBrowser.Model.Dto;
 using System.Threading.Tasks;
+using MediaBrowser.WindowsPhone.Messaging;
 using MediaBrowser.WindowsPhone.Resources;
 using MediaBrowser.WindowsPhone.Services;
 using Microsoft.Phone.Controls;
@@ -188,7 +189,15 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 if (SimpleIoc.Default.GetInstance<VideoPlayerViewModel>() != null && item.LocationType != LocationType.Virtual)
                 {
-                    Messenger.Default.Send(new NotificationMessage(item, isResume, Constants.Messages.PlayVideoItemMsg));
+                    if (item.UserData != null)
+                    {
+                        Messenger.Default.Send(new VideoMessage(item, isResume, item.UserData.PlaybackPositionTicks));
+                    }
+                    else
+                    {
+                        Messenger.Default.Send(new VideoMessage(item, isResume));
+                    }
+
                     TrialHelper.Current.SetNewVideoItem(item.Id);
                     _navService.NavigateTo(Constants.Pages.VideoPlayerView);
                 }

@@ -1,7 +1,11 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
+using GalaSoft.MvvmLight.Ioc;
+using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model.Dto;
+using MediaBrowser.Model.Entities;
+using MediaBrowser.WindowsPhone.Messaging;
 using MediaBrowser.WindowsPhone.ViewModel;
 using Microsoft.Phone.Controls;
 using GestureEventArgs = System.Windows.Input.GestureEventArgs;
@@ -71,7 +75,14 @@ namespace MediaBrowser.WindowsPhone.Views
             };
             playFromMenuItem.Click += (o, args) =>
             {
-                
+                var vm = (DataContext as MovieViewModel);
+                if (vm != null)
+                {
+                    if (SimpleIoc.Default.GetInstance<VideoPlayerViewModel>() != null && vm.SelectedMovie.LocationType != LocationType.Virtual)
+                    {
+                        Messenger.Default.Send(new VideoMessage(vm.SelectedMovie, true, chapterInfo.StartPositionTicks));
+                    }
+                }
             };
 
             var playFromOnClientMenuItem = new MenuItem
@@ -90,5 +101,6 @@ namespace MediaBrowser.WindowsPhone.Views
 
             contextMenu.IsOpen = true;
         }
+
     }
 }

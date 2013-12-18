@@ -10,6 +10,7 @@ using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Services;
+using MediaBrowser.WindowsPhone.Messaging;
 using MediaBrowser.WindowsPhone.Model;
 using ScottIsAFool.WindowsPhone.ViewModel;
 
@@ -29,6 +30,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         private readonly DispatcherTimer _timer;
 
         private bool _isResume;
+        private long? _startPositionTicks;
 
         /// <summary>
         /// Initializes a new instance of the VideoPlayerViewModel class.
@@ -60,6 +62,16 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
         public override void WireMessages()
         {
+            Messenger.Default.Register<VideoMessage>(this, m =>
+            {
+                if (m.VideoItem != null)
+                {
+                    SelectedItem = m.VideoItem;
+                    _isResume = m.IsResume;
+                    _startPositionTicks = m.ResumeTicks;
+                }
+            });
+
             Messenger.Default.Register<NotificationMessage>(this, async m =>
             {
                 if (m.Notification.Equals(Constants.Messages.PlayVideoItemMsg))
