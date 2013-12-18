@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
 using GalaSoft.MvvmLight.Ioc;
@@ -32,7 +31,7 @@ namespace MediaBrowser.WindowsPhone.Views
             base.OnNavigatedTo(e);
             if(e.NavigationMode == NavigationMode.Back)
             {
-                DataContext = History.Current.GetLastItem<MovieViewModel>(GetType(), false);
+                DataContext = History.Current.GetLastItem<MovieViewModel>(GetType());
             }
             else if(e.NavigationMode == NavigationMode.New)
             {
@@ -71,6 +70,7 @@ namespace MediaBrowser.WindowsPhone.Views
                 contextMenu.Items.Clear();
             }
 
+#if !WP7
             var playFromMenuItem = new MenuItem
             {
                 Header = "play from"
@@ -86,6 +86,8 @@ namespace MediaBrowser.WindowsPhone.Views
                     }
                 }
             };
+            contextMenu.Items.Add(playFromMenuItem);
+#endif
 
             var playFromOnClientMenuItem = new MenuItem
             {
@@ -104,7 +106,6 @@ namespace MediaBrowser.WindowsPhone.Views
                 }
             };
 
-            contextMenu.Items.Add(playFromMenuItem);
             contextMenu.Items.Add(playFromOnClientMenuItem);
 
             ContextMenuService.SetContextMenu(item, contextMenu);
