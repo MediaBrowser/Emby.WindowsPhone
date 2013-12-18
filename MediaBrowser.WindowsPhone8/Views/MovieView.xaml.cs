@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
 using GalaSoft.MvvmLight.Ioc;
@@ -7,6 +8,7 @@ using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.WindowsPhone.Messaging;
 using MediaBrowser.WindowsPhone.ViewModel;
+using MediaBrowser.WindowsPhone.ViewModel.Remote;
 using Microsoft.Phone.Controls;
 using GestureEventArgs = System.Windows.Input.GestureEventArgs;
 
@@ -91,7 +93,15 @@ namespace MediaBrowser.WindowsPhone.Views
             };
             playFromOnClientMenuItem.Click += (o, args) =>
             {
-
+                var vm = (DataContext as MovieViewModel);
+                if (vm != null)
+                {
+                    if (SimpleIoc.Default.GetInstance<RemoteViewModel>() != null && vm.SelectedMovie.LocationType != LocationType.Virtual)
+                    {
+                        Messenger.Default.Send(new RemoteMessage(vm.SelectedMovie.Id, chapterInfo.StartPositionTicks));
+                        NavigationService.Navigate(new Uri(Constants.Pages.Remote.ChooseClientView, UriKind.Relative));
+                    }
+                }
             };
 
             contextMenu.Items.Add(playFromMenuItem);
