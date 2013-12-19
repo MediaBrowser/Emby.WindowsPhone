@@ -17,6 +17,7 @@ namespace MediaBrowser.WindowsPhone
         {
             GroupByItems = Enum<GroupBy>.GetNames();
             DefaultGroupBy = GroupByItems.FirstOrDefault(x => x == DefaultGroupBy);
+            EnableImageEnhancers = true;
         }
 
         public bool IncludeTrailersInRecent { get; set; }
@@ -25,6 +26,7 @@ namespace MediaBrowser.WindowsPhone
         public bool JustShowFolderView { get; set; }
         public bool ShowMissingEpisodes { get; set; }
         public bool ShowUnairedEpisodes { get; set; }
+        public bool EnableImageEnhancers { get; set; }
 
         public DeviceSettings DeviceSettings { get; set; }
 

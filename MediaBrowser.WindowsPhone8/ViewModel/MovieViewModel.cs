@@ -195,7 +195,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 MaxHeight = 173,
                 ImageIndex = SelectedMovie.Chapters.IndexOf(chapter),
                 ImageType = ImageType.Chapter,
-                Tag = chapter.ImageTag
+                Tag = chapter.ImageTag,
+                EnableImageEnhancers = App.SpecificSettings.EnableImageEnhancers
             };
 
             return _apiClient.GetImageUrl(SelectedMovie, imageOptions);

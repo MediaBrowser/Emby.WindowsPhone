@@ -35,7 +35,8 @@ namespace MediaBrowser.WindowsPhone.Converters
                         return apiClient.GetPersonImageUrl(person, new ImageOptions
                         {
                             MaxWidth = smallImageSize ? 99 : 200, 
-                            Quality = 90
+                            Quality = 90,
+                            EnableImageEnhancers = App.SpecificSettings.EnableImageEnhancers
                         });
                     }
                 }
@@ -55,6 +56,7 @@ namespace MediaBrowser.WindowsPhone.Converters
                     var searchHint = (SearchHint) value;
                     var imageOptions = new ImageOptions
                     {
+                        EnableImageEnhancers = App.SpecificSettings.EnableImageEnhancers,
 #if WP8
                         MaxHeight = 159,
                         MaxWidth = 159
@@ -85,6 +87,7 @@ namespace MediaBrowser.WindowsPhone.Converters
                     var imageType = parameter == null ? string.Empty : (string)parameter;
                     var imageOptions = new ImageOptions
                     {
+                        EnableImageEnhancers = App.SpecificSettings.EnableImageEnhancers,
                         ImageType = ImageType.Primary
                     };
 
@@ -117,6 +120,7 @@ namespace MediaBrowser.WindowsPhone.Converters
 
             var imageOptions = new ImageOptions
             {
+                EnableImageEnhancers = App.SpecificSettings.EnableImageEnhancers,
                 Quality = 90,
 #if WP8
                 MaxHeight = 336,
