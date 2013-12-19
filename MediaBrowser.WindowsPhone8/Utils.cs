@@ -250,14 +250,14 @@ namespace MediaBrowser.WindowsPhone
             }
         }
 
-        internal static List<PlaylistItem> ToPlayListItems(this List<BaseItemDto> list, IExtendedApiClient apiClient)
+        internal static async Task<List<PlaylistItem>> ToPlayListItems(this List<BaseItemDto> list, IExtendedApiClient apiClient)
         {
             var newList = new List<PlaylistItem>();
-            list.ForEach(item =>
+            await Task.Factory.StartNew(() => list.ForEach(item =>
             {
                 var playlistItem = item.ToPlaylistItem(apiClient);
                 newList.Add(playlistItem);
-            });
+            }));
 
             return newList;
         }

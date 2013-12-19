@@ -154,13 +154,13 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                            .ToList();
             });
 
-            AlbumPlayTapped = new RelayCommand<BaseItemDto>(album =>
+            AlbumPlayTapped = new RelayCommand<BaseItemDto>(async album =>
             {
                 var albumTracks = _artistTracks.Where(x => x.ParentId == album.Id)
                                                .OrderBy(x => x.IndexNumber)
                                                .ToList();
 
-                var newList = albumTracks.ToPlayListItems(_apiClient);
+                var newList = await albumTracks.ToPlayListItems(_apiClient);
 
                 Messenger.Default.Send(new NotificationMessage<List<PlaylistItem>>(newList, Constants.Messages.SetPlaylistAsMsg));
             });
@@ -186,14 +186,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 SelectedTracks = SelectedTracks.OrderBy(x => x.IndexNumber).ToList();
             });
 
-            AddToNowPlayingCommand = new RelayCommand(() =>
+            AddToNowPlayingCommand = new RelayCommand(async () =>
             {
                 if (!SelectedTracks.Any())
                 {
                     return;
                 }
 
-                var newList = SelectedTracks.ToPlayListItems(_apiClient);
+                var newList = await SelectedTracks.ToPlayListItems(_apiClient);
 
                 Messenger.Default.Send(new NotificationMessage<List<PlaylistItem>>(newList, Constants.Messages.AddToPlaylistMsg));
 
@@ -204,9 +204,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 IsInSelectionMode = false;
             });
 
-            PlayItemsCommand = new RelayCommand(() =>
+            PlayItemsCommand = new RelayCommand(async () =>
             {
-                var newList = SelectedTracks.ToPlayListItems(_apiClient);
+                var newList = await SelectedTracks.ToPlayListItems(_apiClient);
 
                 Messenger.Default.Send(new NotificationMessage<List<PlaylistItem>>(newList, Constants.Messages.SetPlaylistAsMsg));
             });
@@ -247,14 +247,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 CanUpdateFavourites = true;
             });
 
-            PlayAllItemsCommand = new RelayCommand(() =>
+            PlayAllItemsCommand = new RelayCommand(async () =>
             {
                 if (_artistTracks.IsNullOrEmpty())
                 {
                     return;
                 }
 
-                var playlist = _artistTracks.ToPlayListItems(_apiClient);
+                var playlist = await _artistTracks.ToPlayListItems(_apiClient);
 
                 Messenger.Default.Send(new NotificationMessage<List<PlaylistItem>>(playlist, Constants.Messages.SetPlaylistAsMsg));
             });
@@ -293,10 +293,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 Log.Info("Getting information for Artist [{0}] ({1})", SelectedArtist.Name, SelectedArtist.Id);
 
-                var artistQuery = new ArtistsQuery
-                {
-
-                };
                 SelectedArtist = await _apiClient.GetItemAsync(SelectedArtist.Id, AuthenticationService.Current.LoggedInUser.Id);
             }
             catch (HttpException ex)
@@ -328,7 +324,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     UserId = AuthenticationService.Current.LoggedInUser.Id,
                     Artists = new[] {SelectedArtist.Name},
                     Recursive = true,
-                    Fields = new[] { ItemFields.ParentId,},
+                    Fields = new[] { ItemFields.ParentId},
                     IncludeItemTypes = new[] {"Audio"}
                 };
 
@@ -359,7 +355,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     UserId = AuthenticationService.Current.LoggedInUser.Id,
                     Artists = new[] {SelectedArtist.Name},
                     Recursive = true,
-                    Fields = new[] { ItemFields.ParentId,},
+                    Fields = new[] { ItemFields.ParentId},
                     IncludeItemTypes = new[] {"MusicAlbum"}
                 };
 

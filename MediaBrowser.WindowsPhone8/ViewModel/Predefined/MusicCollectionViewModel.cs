@@ -15,6 +15,7 @@ using MediaBrowser.Model.Querying;
 using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Model;
 using Microsoft.Phone.Shell;
+using Microsoft.Xna.Framework.Media;
 using ScottIsAFool.WindowsPhone;
 using ScottIsAFool.WindowsPhone.ViewModel;
 
@@ -50,6 +51,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                 var artists = new List<BaseItemDto> {new BaseItemDto {Name = "John Williams"}, new BaseItemDto {Name = "Hans Zimmer"}};
                 Artists = Utils.GroupItemsByName(artists).Result;
             }
+
+            CanPlayAll = true;
         }
 
         public List<BaseItemDto> Genres { get; set; }
@@ -59,6 +62,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
         public List<BaseItemDto> SelectedTracks { get; set; }
         public int PivotSelectedIndex { get; set; }
         public bool IsSelectionEnabled { get; set; }
+        public bool CanPlayAll { get; set; }
 
         public ApplicationBarMode AppBarMode
         {
@@ -66,6 +70,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
             {
                 return IsSelectionEnabled ? ApplicationBarMode.Minimized : ApplicationBarMode.Default;
             }
+        }
+
+        public int AppBarIndex
+        {
+            get { return PivotSelectedIndex == 2 ? 1 : 0; }
         }
 
         public Thickness SongsMargin
@@ -126,14 +135,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
         {
             get
             {
-                return new RelayCommand(() =>
+                return new RelayCommand(async () =>
                 {
                     var itemsResponse = new ItemsResult
                     {
                         Items = SelectedTracks.ToArray()
                     };
 
-                    SendItemsToPlaylist(itemsResponse);
+                    await SendItemsToPlaylist(itemsResponse);
                 });
             }
         }
@@ -164,9 +173,44 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                                 }
                             };
 
-                            SendItemsToPlaylist(items);
+                            await SendItemsToPlaylist(items);
                             break;
                     }
+                });
+            }
+        }
+
+        public RelayCommand PlayAllCommand
+        {
+            get
+            {
+                return new RelayCommand(async () =>
+                {
+                    CanPlayAll = false;
+                    SetProgressBar("Getting all tracks...");
+
+                    if (Songs.IsNullOrEmpty())
+                    {
+                        _songsLoaded = await GetSongs();
+                    }
+                    
+                    if(_songsLoaded)
+                    {
+                        var itemResult = new ItemsResult();
+                        await Task.Factory.StartNew(async () =>
+                        {
+                            var tracks = Songs.SelectMany(x => x).ToArray();
+                            itemResult = new ItemsResult
+                            {
+                                Items = tracks
+                            };
+                        });
+
+                        await SendItemsToPlaylist(itemResult);
+                    }
+
+                    SetProgressBar();
+                    CanPlayAll = true;
                 });
             }
         }
@@ -194,7 +238,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                 {
                     UserId = AuthenticationService.Current.LoggedInUser.Id,
                     Recursive = true,
-                    Fields = new[] { ItemFields.ParentId, },
+                    Fields = new[] { ItemFields.ParentId },
                     ParentId = item.Id,
                     IncludeItemTypes = new[] { "Audio" }
                 };
@@ -203,7 +247,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
 
                 var itemResponse = await _apiClient.GetItemsAsync(query);
 
-                SendItemsToPlaylist(itemResponse);
+                await SendItemsToPlaylist(itemResponse);
             }
             catch (HttpException ex)
             {
@@ -229,7 +273,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                     UserId = AuthenticationService.Current.LoggedInUser.Id,
                     Artists = new[] {artistName},
                     Recursive = true,
-                    Fields = new[] { ItemFields.ParentId,},
+                    Fields = new[] { ItemFields.ParentId},
                     IncludeItemTypes = new[] {"Audio"}
                 };
 
@@ -237,7 +281,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
 
                 var itemResponse = await _apiClient.GetItemsAsync(query);
 
-                SendItemsToPlaylist(itemResponse);
+                await SendItemsToPlaylist(itemResponse);
             }
             catch (HttpException ex)
             {
@@ -270,7 +314,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
 
                 var itemResponse = await _apiClient.GetItemsAsync(query);
 
-                SendItemsToPlaylist(itemResponse);
+                await SendItemsToPlaylist(itemResponse);
             }
             catch (HttpException ex)
             {
@@ -280,7 +324,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
             SetProgressBar();
         }
 
-        private void SendItemsToPlaylist(ItemsResult itemResponse)
+        private async Task SendItemsToPlaylist(ItemsResult itemResponse)
         {
             if (itemResponse == null || itemResponse.Items.IsNullOrEmpty())
             {
@@ -289,11 +333,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
 
             var items = itemResponse.Items.ToList();
 
-            var newList = items.ToPlayListItems(_apiClient);
+            var newList = await items.ToPlayListItems(_apiClient);
 
             Messenger.Default.Send(new NotificationMessage<List<PlaylistItem>>(newList, Constants.Messages.SetPlaylistAsMsg));
 
-            _navigationService.NavigateTo(Constants.Pages.NowPlayingView);
+            Deployment.Current.Dispatcher.BeginInvoke(() => _navigationService.NavigateTo(Constants.Pages.NowPlayingView));
         }
 
         private async Task GetMusicCollection()
