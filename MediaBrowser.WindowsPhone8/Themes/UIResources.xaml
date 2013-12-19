@@ -46,6 +46,7 @@
                                         ZeroCountBrush="{StaticResource PhoneSubtleBrush}"
                                         AltBrush="{StaticResource PhoneAccentBrush}" />
     <converters:CriticRatingConverter x:Key="CriticRatingConverter" />
+    <converters:AlreadyPlayedConverter x:Key="AlreadyPlayedConverter"/>
 
     <local:LocalizedStrings xmlns:local="clr-namespace:MediaBrowser.WindowsPhone"
                             x:Key="LocalizedStrings" />
@@ -220,6 +221,8 @@
 
     <Style TargetType="ProgressBar"
            x:Key="CircularProgressBarStyle">
+        <Setter Property="Tag"
+                Value="22"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ProgressBar">
@@ -236,7 +239,7 @@
                                  Stroke="{StaticResource PhoneAccentBrush}"
                                  Opacity="0.4"
                                  Fill="Transparent"
-                                 StrokeThickness="22" />
+                                 StrokeThickness="{TemplateBinding Tag}" />
 
                         <progress:PiePiece CentreX="{Binding CentreX}"
                                             CentreY="{Binding CentreY}"

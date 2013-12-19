@@ -245,6 +245,9 @@
     <Compile Include="..\MediaBrowser.WindowsPhone8\Converters\AccentBrushConverter.cs">
       <Link>Converters\AccentBrushConverter.cs</Link>
     </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone8\Converters\AlreadyPlayedConverter.cs">
+      <Link>Converters\AlreadyPlayedConverter.cs</Link>
+    </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone8\Converters\ClientTypeIconConverter.cs">
       <Link>Converters\ClientTypeIconConverter.cs</Link>
     </Compile>
