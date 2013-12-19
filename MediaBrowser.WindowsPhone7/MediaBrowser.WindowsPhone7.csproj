@@ -344,6 +344,18 @@
     <Compile Include="..\MediaBrowser.WindowsPhone8\Model\NavigationService.cs">
       <Link>Model\NavigationService.cs</Link>
     </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone8\Progress\CircularProgressBarViewModel.cs">
+      <Link>Progress\CircularProgressBarViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone8\Progress\GridUtils.cs">
+      <Link>Progress\GridUtils.cs</Link>
+    </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone8\Progress\PiePiece.cs">
+      <Link>Progress\PiePiece.cs</Link>
+    </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone8\Progress\Utils.cs">
+      <Link>Progress\Utils.cs</Link>
+    </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.Designer.cs">
       <Link>Resources\AppResources.Designer.cs</Link>
     </Compile>

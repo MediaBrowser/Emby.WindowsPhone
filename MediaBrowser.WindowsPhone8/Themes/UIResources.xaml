@@ -4,7 +4,8 @@
 	xmlns:controls="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
 	xmlns:scottConverters="clr-namespace:ScottIsAFool.WindowsPhone.Converters;assembly=ScottIsAFool.WindowsPhone"
                     xmlns:converters="clr-namespace:MediaBrowser.WindowsPhone.Converters"
-                    xmlns:cimbalino="clr-namespace:Cimbalino.Phone.Toolkit.Converters;assembly=Cimbalino.Phone.Toolkit">
+                    xmlns:cimbalino="clr-namespace:Cimbalino.Phone.Toolkit.Converters;assembly=Cimbalino.Phone.Toolkit"
+                    xmlns:progress="clr-namespace:MediaBrowser.WindowsPhone.Progress">
 	<!-- Resource dictionary entries should be defined here. -->
 
     <LinearGradientBrush SpreadMethod="Reflect"
@@ -211,6 +212,52 @@
                                             Padding="{TemplateBinding Padding}"
                                             VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
                         </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="ProgressBar"
+           x:Key="CircularProgressBarStyle">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ProgressBar">
+                    <Grid x:Name="LayoutRoot">
+                        <!-- attach the view model -->
+                        <progress:CircularProgressBarViewModel.Attach>
+                            <progress:CircularProgressBarViewModel HoleSizeFactor="0.75" />
+                        </progress:CircularProgressBarViewModel.Attach>
+
+                        <Ellipse Width="{Binding Diameter}"
+                                 Height="{Binding Diameter}"
+                                 HorizontalAlignment="Center"
+                                 VerticalAlignment="Center"
+                                 Stroke="{StaticResource PhoneAccentBrush}"
+                                 Opacity="0.4"
+                                 Fill="Transparent"
+                                 StrokeThickness="22" />
+
+                        <progress:PiePiece CentreX="{Binding CentreX}"
+                                            CentreY="{Binding CentreY}"
+                                            RotationAngle="0"
+                                            WedgeAngle="{Binding Angle}"
+                                            Radius="{Binding Radius}"
+                                            InnerRadius="{Binding InnerRadius}"
+                                            Fill="{StaticResource PhoneAccentBrush}"
+                                            Opacity="0.7" />
+
+                        <Grid progress:GridUtils.RowDefinitions="*,2*,*"
+                              progress:GridUtils.ColumnDefinitions="*,2*,*">
+                            <Viewbox Grid.Row="1"
+                                     Grid.Column="1">
+                                <TextBlock Text="{Binding Percent, StringFormat=0%}"
+                                           Foreground="{StaticResource PhoneForegroundBrush}"
+                                           FontWeight="Bold"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Center" />
+                            </Viewbox>
+                        </Grid>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
