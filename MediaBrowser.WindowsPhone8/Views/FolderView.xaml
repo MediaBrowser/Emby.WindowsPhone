@@ -94,8 +94,8 @@
                             <StackPanel Orientation="Horizontal">
                                 <c4F:SuperImage PlaceholderImageSource="/Images/Logo.png"
                                                   Source="{Binding Converter={StaticResource ImageUrlConverter}, ConverterParameter=icon}"
-                                                  Height="95"
-                                                  Width="75"
+                                                  MaxHeight="95"
+                                                  MaxWidth="75"
                                                   PlaceholderImageStretch="Uniform"
                                                   Stretch="Uniform"
                                                 VerticalAlignment="Top"/>
@@ -103,7 +103,8 @@
                                             VerticalAlignment="Top"
                                             Height="95">
                                     <TextBlock Text="{Binding Name}"
-                                           Style="{StaticResource PhoneTextLargeStyle}"
+                                           Style="{StaticResource HeaderTextStyle}"
+                                                           FontSize="{StaticResource PhoneFontSizeMediumLarge}" 
                                            VerticalAlignment="Center" />
                                     <ProgressBar Value="{Binding Converter={StaticResource AlreadyPlayedConverter}}"
                                                      Style="{StaticResource CircularProgressBarStyle}"
@@ -111,7 +112,8 @@
                                                      Height="60"
                                                      Width="60"
                                                      Tag="20"
-                                                     HorizontalAlignment="Right"
+                                                 Margin="12,0"
+                                                     HorizontalAlignment="Left"
                                                      Visibility="{Binding Value, RelativeSource={RelativeSource Self}, Converter={StaticResource GreaterThanVisibilityConverter}, ConverterParameter=0}"/>
                                 </StackPanel>
                                 
