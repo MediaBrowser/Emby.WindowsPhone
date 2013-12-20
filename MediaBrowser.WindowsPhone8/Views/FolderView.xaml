@@ -88,20 +88,33 @@
                 <phone:LongListSelector.ItemTemplate>
                     <DataTemplate>
                         <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                         HorizontalContentAlignment="Left"
                                          Margin="12,6,0,6"
                                          Command="{Binding Main.NavigateToPage, Source={StaticResource Locator}}"
                                          CommandParameter="{Binding}">
                             <StackPanel Orientation="Horizontal">
                                 <c4F:SuperImage PlaceholderImageSource="/Images/Logo.png"
                                                   Source="{Binding Converter={StaticResource ImageUrlConverter}, ConverterParameter=icon}"
-                                                  Height="75"
+                                                  Height="95"
                                                   Width="75"
                                                   PlaceholderImageStretch="Uniform"
-                                                  Stretch="UniformToFill" />
-                                <TextBlock Text="{Binding Name}"
+                                                  Stretch="Uniform"
+                                                VerticalAlignment="Top"/>
+                                <StackPanel Orientation="Vertical"
+                                            VerticalAlignment="Top"
+                                            Height="95">
+                                    <TextBlock Text="{Binding Name}"
                                            Style="{StaticResource PhoneTextLargeStyle}"
                                            VerticalAlignment="Center" />
+                                    <ProgressBar Value="{Binding Converter={StaticResource AlreadyPlayedConverter}}"
+                                                     Style="{StaticResource CircularProgressBarStyle}"
+                                                     VerticalAlignment="Bottom"
+                                                     Height="60"
+                                                     Width="60"
+                                                     Tag="20"
+                                                     HorizontalAlignment="Right"
+                                                     Visibility="{Binding Value, RelativeSource={RelativeSource Self}, Converter={StaticResource GreaterThanVisibilityConverter}, ConverterParameter=0}"/>
+                                </StackPanel>
+                                
                             </StackPanel>
                         </HyperlinkButton>
                     </DataTemplate>
