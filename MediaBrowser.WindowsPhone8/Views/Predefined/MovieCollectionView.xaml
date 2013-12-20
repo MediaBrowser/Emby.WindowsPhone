@@ -245,7 +245,8 @@
                                                      Height="60"
                                                      Width="60"
                                                      Tag="20"
-                                                     HorizontalAlignment="Right" />
+                                                     HorizontalAlignment="Right"
+                                                     Visibility="{Binding Value, RelativeSource={RelativeSource Self}, Converter={StaticResource GreaterThanVisibilityConverter}, ConverterParameter=0}"/>
                                     </Grid>
                                 </HyperlinkButton>
                             </DataTemplate>
