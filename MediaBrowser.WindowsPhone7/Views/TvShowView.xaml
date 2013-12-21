@@ -85,7 +85,7 @@
                         <scott:PhoneListBox.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <toolkit:WrapPanel MaxWidth="420"
-                                                   ItemHeight="200"
+                                                   ItemHeight="300"
                                                    ItemWidth="200" />
                             </ItemsPanelTemplate>
                         </scott:PhoneListBox.ItemsPanel>
@@ -100,8 +100,7 @@
                                                         Source="{Binding Converter={StaticResource ImageUrlConverter}}"
                                                         Stretch="UniformToFill"
                                                         PlaceholderImageStretch="Uniform"
-                                                        Height="173"
-                                                        MaxWidth="120" />
+                                                        MaxHeight="280" />
                                         <Border Background="#C4000000"
                                                 VerticalAlignment="Bottom">
                                             <TextBlock Text="{Binding Name}"

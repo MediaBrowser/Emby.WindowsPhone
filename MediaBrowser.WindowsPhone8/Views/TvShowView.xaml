@@ -81,7 +81,7 @@
                 <Grid>
                     <phone:LongListSelector ItemsSource="{Binding Seasons}"
                                             LayoutMode="Grid"
-                                            GridCellSize="200,200">
+                                            GridCellSize="200,300">
                         <phone:LongListSelector.ListHeader>
                             <TextBlock Text="No seasons found"
                                        HorizontalAlignment="Center"
@@ -100,8 +100,7 @@
                                                              Source="{Binding Converter={StaticResource ImageUrlConverter}}"
                                                              Stretch="Uniform"
                                                              PlaceholderImageStretch="Uniform"
-                                                             Height="173"
-                                                             MaxWidth="120" />
+                                                             MaxHeight="300" />
                                         <Border Background="#C4000000"
                                                 VerticalAlignment="Bottom">
                                             <TextBlock Text="{Binding Name}"
