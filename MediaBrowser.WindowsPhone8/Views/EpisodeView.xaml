@@ -163,11 +163,19 @@
                         <!--TitlePanel contains the name of the application and page title-->
                         <StackPanel x:Name="TitlePanel"
                                     Grid.Row="0"
-                                    Margin="12,0,0,28">
+                                    Margin="12,0,0,28"
+                                    Orientation="Vertical">
                             <TextBlock x:Name="PageTitle"
                                        Text="{Binding Name, Converter={StaticResource StringCaseConverter}}"
                                        Margin="9,-7,0,0"
                                        Style="{StaticResource PhoneTextTitle1Style}" />
+                            <TextBlock Style="{StaticResource PhoneTextSubtleStyle}"
+                                       Margin="9,0,0,-12">
+                                <Run Text="Series"/>
+                                <Run Text="{Binding ParentIndexNumber, StringFormat='\{0\},'}"/>
+                                <Run Text="Episode"/>
+                                <Run Text="{Binding Converter={StaticResource EpisodeNumberConverter}}"/>
+                            </TextBlock>
                         </StackPanel>
 
                         <!--ContentPanel - place additional content here-->

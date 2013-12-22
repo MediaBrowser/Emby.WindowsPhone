@@ -151,6 +151,7 @@
     <Compile Include="Converters\CriticRatingConverter.cs" />
     <Compile Include="Converters\DateTimeConverter.cs" />
     <Compile Include="Converters\DeviceIdToBooleanConverter.cs" />
+    <Compile Include="Converters\EpisodeNumberConverter.cs" />
     <Compile Include="Converters\EpisodeNumberVisibilityConverter.cs" />
     <Compile Include="Converters\FavouritesConverter.cs" />
     <Compile Include="Converters\ImageUrlConverter.cs" />

@@ -48,6 +48,7 @@
     <converters:AlreadyPlayedConverter x:Key="AlreadyPlayedConverter" />
     <converters:LessThanVisibilityConverter x:Key="LessThanVisibilityConverter" />
     <converters:GreaterThanVisibilityConverter x:Key="GreaterThanVisibilityConverter" />
+    <converters:EpisodeNumberConverter x:Key="EpisodeNumberConverter" />
 
     <local:LocalizedStrings xmlns:local="clr-namespace:MediaBrowser.WindowsPhone"
                             x:Key="LocalizedStrings" />
@@ -133,7 +134,7 @@
                               Visibility="Visible">
                             <Rectangle x:Name="ProgressBarTrack"
                                        Fill="{TemplateBinding Foreground}"
-									   Opacity="0.5"
+                                       Opacity="0.5"
                                        Height="{TemplateBinding Height}" />
                             <Rectangle x:Name="ProgressBarIndicator"
                                        Fill="{TemplateBinding Foreground}"
@@ -205,7 +206,6 @@
                                        Foreground="White" />
                             <ProgressBar Value="{Binding Converter={StaticResource AlreadyPlayedConverter}}"
                                          HorizontalAlignment="Stretch"
-                                         Height="10"
                                          Margin="0"
                                          Visibility="{Binding Value, RelativeSource={RelativeSource Self}, Converter={StaticResource GreaterThanVisibilityConverter}, ConverterParameter=0}"
                                          Style="{StaticResource FullWidthProgressStyle}" />
@@ -218,12 +218,17 @@
                            VerticalAlignment="Top"
                            Visibility="{Binding Type, Converter={StaticResource EpisodeNumberVisibilityConverter}}">
                         <Ellipse Fill="Green" />
-                        <TextBlock Text="{Binding IndexNumber}"
-                                   Foreground="White"
-                                   Style="{StaticResource PhoneTextNormalStyle}"
-                                   Margin="0,-3,0,0"
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center" />
+                        <Viewbox Stretch="Uniform"
+                                 Height="35"
+                                 Width="35"
+                                 HorizontalAlignment="Center"
+                                 VerticalAlignment="Center">
+                            <TextBlock Text="{Binding Converter={StaticResource EpisodeNumberConverter}}"
+                                       Foreground="White"
+                                       Style="{StaticResource PhoneTextNormalStyle}"
+                                       Margin="0,-3,0,0"
+                                       />
+                        </Viewbox>
                     </Grid>
                 </Grid>
 
