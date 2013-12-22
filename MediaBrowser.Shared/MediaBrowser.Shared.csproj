@@ -20,7 +20,7 @@
     <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
-    <FodyPath>..\packages\Fody.1.18.0.0</FodyPath>
+    <FodyPath>..\packages\Fody.1.19.1.0</FodyPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -61,16 +61,16 @@
       <HintPath>..\packages\Cimbalino.Phone.Toolkit.DeviceInfo.3.2.1\lib\wp8\Cimbalino.Phone.Toolkit.DeviceInfo.dll</HintPath>
     </Reference>
     <Reference Include="JetBrains.Annotations">
-      <HintPath>..\packages\JetBrainsAnnotations.Fody.1.0.0\Lib\JetBrains.Annotations.dll</HintPath>
+      <HintPath>..\packages\JetBrainsAnnotations.Fody.1.0.1\Lib\JetBrains.Annotations.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="MediaBrowser.ApiInteraction.Portable, Version=3.0.5094.41990, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\MediaBrowser.ApiClient.3.0.0.280\lib\portable-net45+sl4+wp71+win8\MediaBrowser.ApiInteraction.Portable.dll</HintPath>
     </Reference>
-    <Reference Include="MediaBrowser.Model, Version=3.0.5096.23648, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="MediaBrowser.Model, Version=3.0.5104.1896, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MediaBrowser.Common.3.0.270\lib\portable-net4+sl4+wp71+win8\MediaBrowser.Model.dll</HintPath>
+      <HintPath>..\packages\MediaBrowser.Common.3.0.287\lib\portable-net4+sl4+wp71+win8\MediaBrowser.Model.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Phone" />
     <Reference Include="Microsoft.Threading.Tasks">
@@ -87,7 +87,7 @@
       <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\portable-net40+sl4+wp7+win8\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="PropertyChanged">
-      <HintPath>..\packages\PropertyChanged.Fody.1.42.0.0\Lib\portable-net4+sl4+wp7+win8+MonoAndroid16+MonoTouch40\PropertyChanged.dll</HintPath>
+      <HintPath>..\packages\PropertyChanged.Fody.1.43.1.0\Lib\portable-net4+sl4+wp7+win8+MonoAndroid16+MonoTouch40\PropertyChanged.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="ScottIsAFool.WindowsPhone.Background">

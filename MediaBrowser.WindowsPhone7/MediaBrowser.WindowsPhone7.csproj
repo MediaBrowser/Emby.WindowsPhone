@@ -28,7 +28,7 @@
     <RestorePackages>true</RestorePackages>
     <Utf8Output>true</Utf8Output>
     <ExpressionBlendVersion>4.0.30816.0</ExpressionBlendVersion>
-    <FodyPath>..\packages\Fody.1.18.0.0</FodyPath>
+    <FodyPath>..\packages\Fody.1.19.1.0</FodyPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -87,16 +87,16 @@
       <HintPath>..\packages\MvvmLightLibs.4.2.30.0\lib\sl4-wp71\GalaSoft.MvvmLight.WP71.dll</HintPath>
     </Reference>
     <Reference Include="JetBrains.Annotations">
-      <HintPath>..\packages\JetBrainsAnnotations.Fody.1.0.0\Lib\JetBrains.Annotations.dll</HintPath>
+      <HintPath>..\packages\JetBrainsAnnotations.Fody.1.0.1\Lib\JetBrains.Annotations.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="MediaBrowser.ApiInteraction.Portable, Version=3.0.5094.41990, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\MediaBrowser.ApiClient.3.0.0.280\lib\portable-net45+sl4+wp71+win8\MediaBrowser.ApiInteraction.Portable.dll</HintPath>
     </Reference>
-    <Reference Include="MediaBrowser.Model, Version=3.0.5096.23648, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="MediaBrowser.Model, Version=3.0.5104.1896, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MediaBrowser.Common.3.0.270\lib\portable-net4+sl4+wp71+win8\MediaBrowser.Model.dll</HintPath>
+      <HintPath>..\packages\MediaBrowser.Common.3.0.287\lib\portable-net4+sl4+wp71+win8\MediaBrowser.Model.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Phone.Controls, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Phone.Controls.Toolkit, Version=7.0.1.0, Culture=neutral, PublicKeyToken=b772ad94eb9ca604, processorArchitecture=MSIL">
@@ -140,7 +140,7 @@
       <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\portable-net40+sl4+wp7+win8\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="PropertyChanged">
-      <HintPath>..\packages\PropertyChanged.Fody.1.42.0.0\Lib\portable-net4+sl4+wp7+win8+MonoAndroid16+MonoTouch40\PropertyChanged.dll</HintPath>
+      <HintPath>..\packages\PropertyChanged.Fody.1.43.1.0\Lib\portable-net4+sl4+wp7+win8+MonoAndroid16+MonoTouch40\PropertyChanged.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="protobuf-net, Version=2.0.0.668, Culture=neutral, PublicKeyToken=257b51d87d2e4d67, processorArchitecture=MSIL">
