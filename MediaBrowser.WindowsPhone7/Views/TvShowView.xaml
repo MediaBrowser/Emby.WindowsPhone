@@ -99,7 +99,7 @@
                                         <c4F:SuperImage PlaceholderImageSource="/Images/Logo.png"
                                                         Source="{Binding Converter={StaticResource ImageUrlConverter}}"
                                                         Stretch="UniformToFill"
-                                                        PlaceholderImageStretch="Uniform"
+                                                        PlaceholderImageStretch="UniformToFill"
                                                         MaxHeight="280" />
                                         <Border Background="#C4000000"
                                                 VerticalAlignment="Bottom">

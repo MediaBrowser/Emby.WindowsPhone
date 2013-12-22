@@ -113,7 +113,7 @@ namespace MediaBrowser.WindowsPhone.Converters
 
         private static object GetDtoImage(BaseItemDto item, string imageType, IExtendedApiClient apiClient)
         {
-            if (item.ImageTags.IsNullOrEmpty())
+            if (item.ImageTags.IsNullOrEmpty() && item.BackdropImageTags.IsNullOrEmpty())
             {
                 return "";
             }
