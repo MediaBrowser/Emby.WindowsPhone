@@ -160,7 +160,8 @@ namespace MediaBrowser.WindowsPhone
                         Id = g.Select(l => l.ParentId).FirstOrDefault(),
                         Name = g.Key,
                         CreatedDate = g.OrderByDescending(l => l.DateCreated).First().DateCreated,
-                        ImageTags = g.SelectMany(x => x.ParentBackdropImageTags).Distinct().ToList()
+                        ImageTags = g.SelectMany(x => x.ParentBackdropImageTags).Distinct().ToList(),
+                        PrimaryImage = g.Select(l => new KeyValuePair<ImageType, Guid>(ImageType.Primary, l.AlbumPrimaryImageTag.HasValue ? l.AlbumPrimaryImageTag.Value : Guid.Empty)).Distinct().ToDictionary(y => y.Key, y => y.Value)
                     }).ToList();
                 var albumList = new List<BaseItemDto>();
 
@@ -172,8 +173,8 @@ namespace MediaBrowser.WindowsPhone
                         Id = album.Id,
                         DateCreated = album.CreatedDate,
                         Type = "MusicAlbum",
-                        BackdropImageTags = album.ImageTags
-
+                        BackdropImageTags = album.ImageTags,
+                        ImageTags = album.PrimaryImage
                     }));
                 }
 

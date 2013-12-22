@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Windows.Controls;
 using System.Windows.Data;
 using GalaSoft.MvvmLight.Ioc;
 using MediaBrowser.Model;
@@ -149,7 +150,7 @@ namespace MediaBrowser.WindowsPhone.Converters
                 if (!item.HasPrimaryImage)
                 {
                     imageOptions.MaxHeight = 800;
-                    imageOptions.ImageType = ImageType.Backdrop;
+                    imageOptions.ImageType = ImageType.Backdrop; 
 
                     var images = apiClient.GetBackdropImageUrls(item, imageOptions);
                     if (!images.IsNullOrEmpty())
