@@ -233,20 +233,41 @@
                                Grid.ColumnSpan="3"
                                VerticalAlignment="Top"
                                Opacity="0.2" />
-                        <Button Style="{StaticResource EmptyButtonStyle}"
-                                Grid.Row="0"
-                                HorizontalContentAlignment="Center"
-                                HorizontalAlignment="Center"
-                                Command="{Binding NavigateToCommand}"
-                                CommandParameter="{Binding SelectedClient.NowPlayingItem}"
-                                toolkit:TiltEffect.IsTiltEnabled="True">
-                            <controls:SuperImage Source="{Binding SelectedClient.NowPlayingItem, Converter={StaticResource ImageUrlConverter}}"
-                                                 MaxHeight="280"
-                                                 Stretch="Uniform"
-                                                 PlaceholderImageSource="/Images/DefaultVideo.png"
-                                                 PlaceholderImageStretch="Uniform"
-                                                 Margin="0,24,0,0" />
-                        </Button>
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Button Style="{StaticResource EmptyButtonStyle}"
+                                    HorizontalContentAlignment="Center"
+                                    HorizontalAlignment="Center"
+                                    Grid.Column="1"
+                                    Command="{Binding NavigateToCommand}"
+                                    CommandParameter="{Binding SelectedClient.NowPlayingItem}"
+                                    toolkit:TiltEffect.IsTiltEnabled="True">
+                                <controls:SuperImage Source="{Binding SelectedClient.NowPlayingItem, Converter={StaticResource ImageUrlConverter}}"
+                                                     MaxHeight="280"
+                                                     Stretch="Uniform"
+                                                     PlaceholderImageSource="/Images/DefaultVideo.png"
+                                                     PlaceholderImageStretch="Uniform"
+                                                     Margin="0,24,0,0" />
+                            </Button>
+
+                            <telerikPrimitives:RadImageButton Foreground="White"
+                                                              Background="Transparent"
+                                                              RestStateImageSource="/Images/appbar.book.hardcover.open.writing.png"
+                                                              ButtonShape="Ellipse"
+                                                              BorderThickness="2"
+                                                              Grid.Column="2"
+                                                              Margin="0,0,0,-10"
+                                                              VerticalAlignment="Bottom"
+                                                              HorizontalAlignment="Left"
+                                                              BorderBrush="White"
+                                                              x:Name="ChapterButton"
+                                                              Click="ChapterButton_OnClick"
+                                                              Visibility="{Binding Chapters, Converter={StaticResource NullVisibilityConverter}}" />
+                        </Grid>
                         <TextBlock Text="{Binding SelectedClient.NowPlayingItem.Name}"
                                    Grid.Row="1"
                                    Style="{StaticResource PhoneTextTitle2Style}"
@@ -405,6 +426,43 @@
             </Grid>
 
             <!--<Image Source="/Assets/AlignmentGrid.png" VerticalAlignment="Top" Height="800" Width="480" Margin="0,-32,0,0" Grid.Row="0" Grid.RowSpan="2" IsHitTestVisible="False" />-->
+            <mb:ChapterWindow x:Name="ChapterWindow"
+                              PlacementTarget="{Binding ElementName=LayoutRoot, Mode=OneTime}"
+                              Background="Black">
+                <Grid Background="{StaticResource MediaBrowserBackground}">
+                    <ListBox ItemsSource="{Binding Chapters}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Height="173"
+                                      Margin="12,6">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <controls:SuperImage Source="{Binding ImageUrl}"
+                                                         Stretch="UniformToFill"
+                                                         PlaceholderImageSource="/Images/MBBackground.jpg"
+                                                         PlaceholderImageStretch="Uniform" />
+                                    <Border VerticalAlignment="Bottom"
+                                            Background="#C4000000"
+                                            HorizontalAlignment="Stretch">
+                                        <Grid>
+                                            <Rectangle Fill="Transparent"
+                                                       HorizontalAlignment="Stretch"
+                                                       Height="1"
+                                                       Width="308" />
+                                            <TextBlock Text="{Binding Name}"
+                                                       Style="{StaticResource PhoneTextLargeStyle}"
+                                                       HorizontalAlignment="Left" />
+                                        </Grid>
+
+                                    </Border>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+            </mb:ChapterWindow>
         </Grid>
     </Grid>
 </scott:BasePage>

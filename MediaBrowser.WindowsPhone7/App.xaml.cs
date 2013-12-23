@@ -8,7 +8,6 @@ using Coding4Fun.Toolkit.Controls;
 using GalaSoft.MvvmLight.Ioc;
 using MediaBrowser.ApiInteraction.WebSocket;
 using MediaBrowser.Services;
-using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.ViewModel;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
@@ -58,7 +57,7 @@ namespace MediaBrowser.WindowsPhone
         }
 
         // Easy access to the root frame
-        public PhoneApplicationFrame RootFrame
+        public static PhoneApplicationFrame RootFrame
         {
             get;
             private set;

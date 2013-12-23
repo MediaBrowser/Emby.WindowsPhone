@@ -142,6 +142,7 @@
     <Compile Include="Controls\MediaBrowserLogo.cs" />
     <Compile Include="Controls\ProfileBox.cs" />
     <Compile Include="Controls\ScrollableTextBlock.cs" />
+    <Compile Include="Controls\ChapterWindow.cs" />
     <Compile Include="Controls\WideTileControl.xaml.cs">
       <DependentUpon>WideTileControl.xaml</DependentUpon>
     </Compile>
@@ -340,6 +341,7 @@
     <Content Include="Icons\appbar.refresh.rest.png" />
     <Content Include="Icons\searchbutton.png" />
     <Content Include="Images\3d.png" />
+    <Content Include="Images\appbar.book.hardcover.open.writing.png" />
     <Content Include="Images\FirstRun\WelcomeBackground.jpg" />
     <Content Include="Images\LogoNoPadding.png" />
     <Content Include="Images\MBBackground.jpg" />

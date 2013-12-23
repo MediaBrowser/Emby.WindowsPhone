@@ -8,6 +8,7 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model;
 using MediaBrowser.Model.ApiClient;
+using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Querying;
@@ -64,6 +65,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
         public long? PlayedTicks { get; set; }
         public bool IsPaused { get; set; }
         public bool IsMuted { get; set; }
+        public List<ChapterInfoDto> Chapters { get; set; }
 
         public bool CanUseRemote
         {
@@ -94,6 +96,17 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
                         SendCommand("Seek", _startPositionTicks.Value).ConfigureAwait(false);
                         _startPositionTicks = null;
                     }
+                });
+            }
+        }
+
+        public RelayCommand ShowChaptersCommand
+        {
+            get
+            {
+                return new RelayCommand(() =>
+                {
+                    
                 });
             }
         }
@@ -341,6 +354,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
                         SelectedClient = Clients[0];
                     }
 
+                    if (SelectedClient != null && SelectedClient.NowPlayingItem != null)
+                    {
+                        GetChapters(SelectedClient.NowPlayingItem).ConfigureAwait(false);
+                    }
+
                     SetSessionDetails(SelectedClient);
 
                     _dataLoaded = true;
@@ -412,10 +430,27 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
                 else
                 {
                     SelectedClient.NowPlayingItem = session.NowPlayingItem;
+                    GetChapters(session.NowPlayingItem).ConfigureAwait(false);
                 }
 
                 SetSessionDetails(session);
             });
+        }
+
+        private async Task GetChapters(BaseItemInfo item)
+        {
+            try
+            {
+                var result = await _apiClient.GetItemAsync(item.Id, AuthenticationService.Current.LoggedInUserId);
+                if (result != null)
+                {
+                    Chapters = result.Chapters;
+                }
+            }
+            catch (HttpException ex)
+            {
+                Log.ErrorException("GetChapters()", ex);
+            }
         }
 
         public override void WireMessages()
