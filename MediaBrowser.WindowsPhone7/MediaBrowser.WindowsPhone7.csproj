@@ -260,6 +260,9 @@
     <Compile Include="..\MediaBrowser.WindowsPhone8\Converters\DeviceIdToBooleanConverter.cs">
       <Link>Converters\DeviceIdToBooleanConverter.cs</Link>
     </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone8\Converters\EpisodeNumberConverter.cs">
+      <Link>Converters\EpisodeNumberConverter.cs</Link>
+    </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone8\Converters\EpisodeNumberVisibilityConverter.cs">
       <Link>Converters\EpisodeNumberVisibilityConverter.cs</Link>
     </Compile>
