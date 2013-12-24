@@ -1,6 +1,5 @@
-﻿using System.Windows;
-using GalaSoft.MvvmLight.Messaging;
-using MediaBrowser.WindowsPhone.Services;
+﻿using MediaBrowser.WindowsPhone.Services;
+using MediaBrowser.WindowsPhone.ViewModel;
 using MediaBrowser.WindowsPhone.ViewModel.Remote;
 
 namespace MediaBrowser.WindowsPhone.Views.Remote
@@ -15,36 +14,12 @@ namespace MediaBrowser.WindowsPhone.Views.Remote
         /// </summary>
         public RemoteView()
         {
-            InitializeComponent();
-
-            WireMessages();
-        }
-
-        private void WireMessages()
-        {
-            Messenger.Default.Register<NotificationMessage>(this, m =>
-            {
-                if (m.Notification.Equals(Constants.Messages.HideChapterWindowMsg))
-                {
-                    if (ChapterWindow.IsOpen)
-                    {
-                        ChapterWindow.IsOpen = false;
-                    }
-                }
-            });
+            InitializeComponent(); 
         }
 
         protected override void InitialiseOnBack()
         {
             ((RemoteViewModel) DataContext).IsPinned = TileService.Current.TileExists(Constants.Pages.Remote.RemoteView);
-        }
-
-        private void ChapterButton_OnClick(object sender, RoutedEventArgs e)
-        {
-            if (!ChapterWindow.IsOpen)
-            {
-                ChapterWindow.IsOpen = true;
-            }
         }
     }
 }
