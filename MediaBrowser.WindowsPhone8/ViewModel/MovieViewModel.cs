@@ -173,7 +173,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 CastAndCrew = Utils.GroupCastAndCrew(item.People);
                 Chapters = SelectedMovie.Chapters.Select(x => new Chapter(x)
                 {
-                    ImageUrl = GetChatperUrl(x)
+                    ImageUrl = GetChapterUrl(x)
                 }).ToList();
                 result = true;
             }
@@ -188,7 +188,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             return result;
         }
 
-        private string GetChatperUrl(ChapterInfoDto chapter)
+        private string GetChapterUrl(ChapterInfoDto chapter)
         {
             var imageOptions = new ImageOptions
             {
@@ -199,7 +199,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 EnableImageEnhancers = App.SpecificSettings.EnableImageEnhancers
             };
 
-            return _apiClient.GetImageUrl(SelectedMovie, imageOptions);
+            return chapter.HasImage ? _apiClient.GetImageUrl(SelectedMovie, imageOptions) : string.Empty;
         }
 
         public bool CanUpdateFavourites { get; set; }
