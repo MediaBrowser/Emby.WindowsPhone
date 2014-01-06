@@ -783,6 +783,11 @@ namespace MediaBrowser.Design
             throw new NotImplementedException();
         }
 
+        public Task ReportCapabilities(string sessionId, ClientCapabilities capabilities, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
 
         public Task<SessionInfoDto[]> GetClientSessionsAsync(SessionQuery query)
         {
