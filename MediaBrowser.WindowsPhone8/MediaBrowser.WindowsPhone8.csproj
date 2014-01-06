@@ -739,11 +739,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <SDKReference Include="Microsoft.PlayerFramework.WP8.Core, Version=1.8.1.0">
-      <Name>Microsoft Player Framework</Name>
+    <SDKReference Include="Microsoft.PlayerFramework.WP8.Core, Version=1.8.2.2">
+      <Name>Microsoft Player Framework %28Microsoft.PlayerFramework.WP8.Core, Version=1.8.2.2%29</Name>
     </SDKReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
