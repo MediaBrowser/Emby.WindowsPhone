@@ -27,10 +27,11 @@
     <scottConverters:IntToVisibilityConverter x:Key="IntToVisibilityConverter" />
     <scottConverters:CountToEnabled x:Key="CountToEnabled" />
     <scottConverters:NullVisibilityConverter x:Key="NullVisibilityConverter" />
-
+    
     <!--Cimbalino Converters-->
     <cimbalino:StringToUppercaseConverter x:Key="StringToUppercaseConverter" />
     <cimbalino:StringToLowercaseConverter x:Key="StringToLowercaseConverter" />
+    <cimbalino:NegativeBooleanConverter x:Key="NegativeBooleanConverter"/>
 
     <!-- Local Converters -->
     <converters:ImageUrlConverter x:Key="ImageUrlConverter" />

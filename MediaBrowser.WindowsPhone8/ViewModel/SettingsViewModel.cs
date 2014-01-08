@@ -5,7 +5,6 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -30,6 +29,8 @@ using Windows.Networking;
 using Windows.Networking.Sockets;
 using Windows.Storage.Streams;
 using LockScreenService = MediaBrowser.WindowsPhone.Services.LockScreenService;
+#else
+using System.Text.RegularExpressions;
 #endif
 
 namespace MediaBrowser.WindowsPhone.ViewModel

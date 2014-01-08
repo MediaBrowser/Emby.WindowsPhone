@@ -18,6 +18,10 @@ namespace MediaBrowser.WindowsPhone
             GroupByItems = Enum<GroupBy>.GetNames();
             DefaultGroupBy = GroupByItems.FirstOrDefault(x => x == DefaultGroupBy);
             EnableImageEnhancers = true;
+#if WP8
+            UseRichWideTile = true;
+            DisplayBackdropOnTile = true;
+#endif
         }
 
         public bool IncludeTrailersInRecent { get; set; }
@@ -33,7 +37,9 @@ namespace MediaBrowser.WindowsPhone
 #if WP8
         public LockScreenType LockScreenType { get; set; }
         public string LockScreenCollectionId { get; set; }
-
+        public bool DisplayBackdropOnTile { get; set; }
+        public bool UseRichWideTile { get; set; }
+        
         [UsedImplicitly]
         private void OnLockScreenCollectionIdChanged()
         {

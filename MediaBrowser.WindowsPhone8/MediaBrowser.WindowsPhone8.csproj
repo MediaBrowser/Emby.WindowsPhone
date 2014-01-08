@@ -178,6 +178,7 @@
     <Compile Include="Converters\VirtualConverter.cs" />
     <Compile Include="Converters\ZeroCountBrushConverter.cs" />
     <Compile Include="ExtensionMethods.cs" />
+    <Compile Include="Extensions\WriteableBitmapExt.cs" />
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="Messaging\VideoMessage.cs" />
     <Compile Include="Model\Chapter.cs" />
@@ -386,6 +387,7 @@
     <Content Include="Images\stop.png" />
     <Content Include="Images\tvcollection.png" />
     <Content Include="Images\UserLoginDefault.png" />
+    <Content Include="Images\WideTileSample.jpg" />
     <Content Include="README_FIRST.txt" />
     <Content Include="Toolkit.Content\ApplicationBar.Add.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Cancel.png" />
