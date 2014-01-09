@@ -339,6 +339,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         ItemFields.ParentId,
                     },
                     ExcludeItemTypes = new []{"Photo"},
+                    IsVirtualUnaired = App.SpecificSettings.ShowUnairedEpisodes,
+                    IsMissing = App.SpecificSettings.ShowMissingEpisodes,
                     Recursive = true
                 };
                 var items = await _apiClient.GetItemsAsync(query);
