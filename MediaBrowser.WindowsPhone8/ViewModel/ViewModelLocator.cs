@@ -61,10 +61,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 SimpleIoc.Default.Register<ISettingsService, SettingsService>();
                 if (!SimpleIoc.Default.IsRegistered<IExtendedApiClient>())
                     SimpleIoc.Default.Register<IExtendedApiClient>(() => new ExtendedApiClient(new MBLogger(), "dummy", 8096, "Windows Phone", SharedUtils.GetDeviceName(), SharedUtils.GetDeviceId(), ApplicationManifest.Current.App.Version));
-
-                if (!SimpleIoc.Default.IsRegistered<IDeviceExtendedPropertiesService>())
-                    SimpleIoc.Default.Register<IDeviceExtendedPropertiesService, DeviceExtendedPropertiesService>();
-
+                
                 if (!SimpleIoc.Default.IsRegistered<IUserExtendedPropertiesService>())
                     SimpleIoc.Default.Register<IUserExtendedPropertiesService, UserExtendedPropertiesService>();
                 
