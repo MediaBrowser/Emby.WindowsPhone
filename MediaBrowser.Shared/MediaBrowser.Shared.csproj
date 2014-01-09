@@ -58,8 +58,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Cimbalino.Phone.Toolkit.Background.3.2.2\lib\sl4-wp71\Cimbalino.Phone.Toolkit.Background.dll</HintPath>
     </Reference>
-    <Reference Include="Cimbalino.Phone.Toolkit.DeviceInfo">
-      <HintPath>..\packages\Cimbalino.Phone.Toolkit.DeviceInfo.3.2.1\lib\wp8\Cimbalino.Phone.Toolkit.DeviceInfo.dll</HintPath>
+    <Reference Include="Cimbalino.Phone.Toolkit.DeviceInfo, Version=3.2.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Cimbalino.Phone.Toolkit.DeviceInfo.3.2.2\lib\sl4-wp71\Cimbalino.Phone.Toolkit.DeviceInfo.dll</HintPath>
     </Reference>
     <Reference Include="JetBrains.Annotations">
       <HintPath>..\packages\JetBrainsAnnotations.Fody.1.0.1\Lib\JetBrains.Annotations.dll</HintPath>
