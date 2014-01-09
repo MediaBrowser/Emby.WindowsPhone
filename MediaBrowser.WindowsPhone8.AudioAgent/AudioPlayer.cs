@@ -30,15 +30,11 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
         {
             _playlistHelper = new PlaylistHelper(new StorageService());
             _logger = new WPLogger(GetType());
-            //_apiClient = CreateClient();
+            _apiClient = CreateClient();
             WPLogger.AppVersion = ApplicationManifest.Current.App.Version;
             WPLogger.LogConfiguration.LogType = LogType.WriteToFile;
             WPLogger.LogConfiguration.LoggingIsEnabled = true;
-
-            //_dispatcherTimer = new DispatcherTimer {Interval = TimeSpan.FromSeconds(5)};
-            //_dispatcherTimer.Tick += DispatcherTimerOnTick;
-            //_dispatcherTimer.Start();
-
+            
             if (!_classInitialized)
             {
                 _classInitialized = true;
@@ -46,6 +42,9 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
                 Deployment.Current.Dispatcher.BeginInvoke(delegate
                 {
                     Application.Current.UnhandledException += AudioPlayer_UnhandledException;
+                    _dispatcherTimer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(5) };
+                    _dispatcherTimer.Tick += DispatcherTimerOnTick;
+                    _dispatcherTimer.Start();
                 });
             }
         }
@@ -74,8 +73,11 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
             {
                 var applicationSettings = new ApplicationSettingsService();
                 var connectionDetails = applicationSettings.Get<ConnectionDetails>(Constants.Settings.ConnectionSettings);
-                var client = new ExtendedApiClient(new NullLogger(), connectionDetails.HostName, int.Parse(connectionDetails.HostName), "Windows Phone", SharedUtils.GetDeviceName() + " Audio Player", SharedUtils.GetDeviceId(), ApplicationManifest.Current.App.Version);
+                var client = new ExtendedApiClient(new NullLogger(), connectionDetails.HostName, connectionDetails.PortNo, "Windows Phone", SharedUtils.GetDeviceName() + " Audio Player", SharedUtils.GetDeviceId(), ApplicationManifest.Current.App.Version);
+
+                AuthenticationService.Current.Start(client);
                 client.CurrentUserId = AuthenticationService.Current.LoggedInUserId;
+                
 
                 return client;
             }
