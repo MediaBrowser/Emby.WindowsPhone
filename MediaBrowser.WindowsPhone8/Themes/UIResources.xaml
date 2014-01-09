@@ -237,6 +237,38 @@
         </HyperlinkButton>
     </DataTemplate>
 
+    <DataTemplate x:Key="FullTileItemStyle">
+        <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                         Command="{Binding Main.NavigateToPage, Source={StaticResource Locator}}"
+                         CommandParameter="{Binding}"
+                         VerticalContentAlignment="Top">
+            <StackPanel Orientation="Vertical">
+                <Grid>
+                    <controls:SuperImage PlaceholderImageSource="/Images/Logo.png"
+                                         Source="{Binding Converter={StaticResource ImageUrlConverter}}"
+                                         PlaceholderImageStretch="Uniform"
+                                         MaxHeight="300"
+                                         Stretch="Uniform" />
+                    <Border Background="#C4000000"
+                            VerticalAlignment="Bottom">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="{Binding Name}"
+                                       Style="{StaticResource PhoneTextNormalStyle}"
+                                       FontWeight="Bold"
+                                       TextWrapping="Wrap"
+                                       Foreground="White" />
+                            <ProgressBar Value="{Binding Converter={StaticResource AlreadyPlayedConverter}}"
+                                         HorizontalAlignment="Stretch"
+                                         Margin="0"
+                                         Visibility="{Binding Value, RelativeSource={RelativeSource Self}, Converter={StaticResource GreaterThanVisibilityConverter}, ConverterParameter=0}"
+                                         Style="{StaticResource FullWidthProgressStyle}" />
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </StackPanel>
+        </HyperlinkButton>
+    </DataTemplate>
+
     <DataTemplate x:Key="CrewTemplate">
         <StackPanel Orientation="Horizontal"
                     Margin="12,0,0,12">

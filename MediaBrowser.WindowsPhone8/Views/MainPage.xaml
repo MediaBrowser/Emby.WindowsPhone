@@ -13,6 +13,7 @@
                 xmlns:controls="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
                 xmlns:system="clr-namespace:System;assembly=mscorlib"
                 xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
+                xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
                 FontFamily="{StaticResource PhoneFontFamilyNormal}"
                 FontSize="{StaticResource PhoneFontSizeNormal}"
                 Foreground="{StaticResource PhoneForegroundBrush}"
@@ -156,7 +157,7 @@
                             </Border>
                             <TextBlock Text="MUSIC"
                                        Style="{StaticResource HeaderTextStyle}"
-                                       VerticalAlignment="Top"/>
+                                       VerticalAlignment="Top" />
                         </StackPanel>
                     </HyperlinkButton>
                 </StackPanel>
@@ -198,43 +199,32 @@
                 </phone:LongListSelector>
             </phone:PanoramaItem>
 
-            <phone:PanoramaItem Header="recent"
-                                Orientation="Horizontal">
+            <phone:PanoramaItem Header="recent">
                 <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="6*" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-                    <scott:PhoneListBox ItemsSource="{Binding RecentItems}"
-                                        Text="{Binding LocalizedResources.NoItemsFound, Source={StaticResource LocalizedStrings}}"
-                                        TextHorizontalAlignment="Center"
-                                        TextVerticalAlignment="Top"
-                                        TextStyle="{StaticResource PhoneTextLargeStyle}"
-                                        ItemTemplate="{StaticResource TileItemStyle}"
-                                        ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                                        ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                                        Grid.Row="0"
-                                        Margin="12,0,0,0"
-                                        x:Name="lbRecentItems">
-                        <scott:PhoneListBox.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <toolkit:WrapPanel ItemHeight="200"
-                                                   ItemWidth="200"
-                                                   MaxWidth="610" />
-                            </ItemsPanelTemplate>
-                        </scott:PhoneListBox.ItemsPanel>
-                    </scott:PhoneListBox>
-
-                    <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                     DataContext="{Binding DummyFolder}"
-                                     Command="{Binding Main.NavigateToPage, Source={StaticResource Locator}}"
-                                     CommandParameter="{Binding}"
-                                     Grid.Row="1"
-                                     HorizontalContentAlignment="Left"
-                                     Visibility="{Binding Path=Items.Count, ElementName=lbRecentItems, Converter={StaticResource IntToVisibilityConverter}, ConverterParameter=false}">
-                        <TextBlock Text="{Binding LocalizedResources.More, Source={StaticResource LocalizedStrings}}"
-                                   Style="{StaticResource PhoneTextLargeStyle}" />
-                    </HyperlinkButton>
+                    <phone:LongListSelector ItemsSource="{Binding RecentItems}"
+                                            ItemTemplate="{StaticResource FullTileItemStyle}"
+                                            Grid.Row="0"
+                                            x:Name="RecentItemsList"
+                                            LayoutMode="Grid"
+                                            GridCellSize="200,300">
+                        <phone:LongListSelector.ListHeader>
+                            <TextBlock Text="{Binding LocalizedResources.NoItemsFound, Source={StaticResource LocalizedStrings}}"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Top"
+                                       Style="{StaticResource PhoneTextLargeStyle}"
+                                       Visibility="{Binding RecentItems.Count, Converter={StaticResource IntToVisibilityConverter}, ConverterParameter=true}" />
+                        </phone:LongListSelector.ListHeader>
+                        <phone:LongListSelector.ListFooter>
+                            <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                             DataContext="{Binding DummyFolder}"
+                                             Command="{Binding Main.NavigateToPage, Source={StaticResource Locator}}"
+                                             CommandParameter="{Binding}"
+                                             Visibility="{Binding Path=ItemsSource.Count, ElementName=RecentItemsList, Converter={StaticResource IntToVisibilityConverter}, ConverterParameter=false}">
+                                <TextBlock Text="{Binding LocalizedResources.More, Source={StaticResource LocalizedStrings}}"
+                                           Style="{StaticResource PhoneTextLargeStyle}" />
+                            </HyperlinkButton>
+                        </phone:LongListSelector.ListFooter>
+                    </phone:LongListSelector>
                 </Grid>
             </phone:PanoramaItem>
 
