@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 using Cimbalino.Phone.Toolkit.Helpers;
@@ -20,7 +22,7 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
         private readonly PlaylistHelper _playlistHelper;
         private static IExtendedApiClient _apiClient;
         private static DispatcherTimer _dispatcherTimer;
-        
+
         /// <remarks>
         /// AudioPlayer instances can share the same process. 
         /// Static fields can be used to share state between AudioPlayer instances
@@ -34,7 +36,7 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
             WPLogger.AppVersion = ApplicationManifest.Current.App.Version;
             WPLogger.LogConfiguration.LogType = LogType.WriteToFile;
             WPLogger.LogConfiguration.LoggingIsEnabled = true;
-            
+
             if (!_classInitialized)
             {
                 _classInitialized = true;
@@ -77,7 +79,6 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
 
                 AuthenticationService.Current.Start(client);
                 client.CurrentUserId = AuthenticationService.Current.LoggedInUserId;
-                
 
                 return client;
             }
@@ -116,54 +117,96 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
         /// 
         /// Call NotifyComplete() only once, after the agent request has been completed, including async callbacks.
         /// </remarks>
-        protected override void OnPlayStateChanged(BackgroundAudioPlayer player, AudioTrack track, PlayState playState)
+        protected override async void OnPlayStateChanged(BackgroundAudioPlayer player, AudioTrack track, PlayState playState)
         {
             switch (playState)
             {
                 case PlayState.TrackEnded:
                     _logger.Info("PlayStateChanged.TrackEnded");
                     player.Track = GetNextTrack();
+                    await InformOfPlayingTrack();
                     break;
                 case PlayState.TrackReady:
                     _logger.Info("PlayStateChanged.TrackReady");
-                        try
-                        {
-                            player.Play();
-                        }
-                        catch (Exception ex)
-                        {
-                            _logger.ErrorException("OnPlayStateChanged.TrackReady", ex);
-                        }
+                    try
+                    {
+                        player.Play();
+                    }
+                    catch (Exception ex)
+                    {
+                        _logger.ErrorException("OnPlayStateChanged.TrackReady", ex);
+                    }
+                    NotifyComplete();
                     break;
                 case PlayState.Shutdown:
-                    // TODO: Handle the shutdown state here (e.g. save state)
+                    await InformOfStoppedTrack();
                     break;
                 case PlayState.Unknown:
                     _logger.Info("PlayStateChanged.Unknown");
+                    NotifyComplete();
                     break;
                 case PlayState.Stopped:
                     _logger.Info("PlayStateChanged.Stopped");
+                    NotifyComplete();
                     //_playlistHelper.SetAllTracksToNotPlayingAndSave();
                     break;
                 case PlayState.Paused:
                     _logger.Info("PlayStateChanged.Paused");
                     _playlistHelper.SetAllTracksToNotPlayingAndSave();
+                    await InformOfStoppedTrack();
                     break;
-                case PlayState.Playing:
+                default:
+                    NotifyComplete();
                     break;
-                case PlayState.BufferingStarted:
-                    break;
-                case PlayState.BufferingStopped:
-                    break;
-                case PlayState.Rewinding:
-                    break;
-                case PlayState.FastForwarding:
-                    break;
+            }
+
+        }
+
+        private async Task InformOfStoppedTrack()
+        {
+            if (_apiClient == null)
+            {
+                return;
+            }
+
+            try
+            {
+                var track = BackgroundAudioPlayer.Instance.Track;
+                if (track != null)
+                {
+                    await _apiClient.ReportPlaybackStoppedAsync(track.Tag, _apiClient.CurrentUserId, null);
+                }
+            }
+            catch (HttpException ex)
+            {
+                _logger.FatalException("InformOfStoppedTrack()", ex);
             }
 
             NotifyComplete();
         }
 
+        private async Task InformOfPlayingTrack()
+        {
+            if (_apiClient == null)
+            {
+                return;
+            }
+
+            try
+            {
+                var track = BackgroundAudioPlayer.Instance.Track;
+                if (track != null)
+                {
+                    await _apiClient.ReportPlaybackStartAsync(track.Tag, _apiClient.CurrentUserId, false, new List<string>());
+                }
+            }
+            catch (HttpException ex)
+            {
+                _logger.FatalException("InformOfPlayingTrack()", ex);
+            }
+
+            NotifyComplete();
+        }
 
         /// <summary>
         /// Called when the user requests an action using application/system provided UI
@@ -180,7 +223,7 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
         /// 
         /// Call NotifyComplete() only once, after the agent request has been completed, including async callbacks.
         /// </remarks>
-        protected override void OnUserAction(BackgroundAudioPlayer player, AudioTrack track, UserAction action, object param)
+        protected override async void OnUserAction(BackgroundAudioPlayer player, AudioTrack track, UserAction action, object param)
         {
             switch (action)
             {
@@ -212,15 +255,21 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
                     break;
                 case UserAction.SkipNext:
                     _logger.Info("OnUserAction.SkipNext");
-                    player.Track = GetNextTrack();
+                    var nextTrack = GetNextTrack();
+                    if (nextTrack != null)
+                    {
+                        player.Track = nextTrack;
+                    }
+                    await InformOfPlayingTrack();
                     break;
                 case UserAction.SkipPrevious:
                     _logger.Info("OnUserAction.SkipPrevious");
-                    AudioTrack previousTrack = GetPreviousTrack();
+                    var previousTrack = GetPreviousTrack();
                     if (previousTrack != null)
                     {
                         player.Track = previousTrack;
                     }
+                    await InformOfPlayingTrack();
                     break;
             }
 
