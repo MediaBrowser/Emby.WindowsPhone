@@ -100,6 +100,11 @@ namespace MediaBrowser.Design
             throw new NotImplementedException();
         }
 
+        public Task<SearchHintResult> GetSearchHintsAsync(SearchQuery query)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<SearchHintResult> GetSearchHintsAsync(string userId, string searchTerm, int? startIndex = null, int? limit = null)
         {
             throw new NotImplementedException();
@@ -503,6 +508,11 @@ namespace MediaBrowser.Design
         }
 
         public System.Threading.Tasks.Task<Model.Tasks.TaskInfo[]> GetScheduledTasksAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<T> PostAsync<T>(string url, Dictionary<string, string> args, CancellationToken cancellationToken) where T : class
         {
             throw new NotImplementedException();
         }

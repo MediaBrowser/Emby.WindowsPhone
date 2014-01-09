@@ -62,17 +62,21 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Cimbalino.Phone.Toolkit">
-      <HintPath>..\packages\Cimbalino.Phone.Toolkit.3.2.1\lib\sl4-wp71\Cimbalino.Phone.Toolkit.dll</HintPath>
+    <Reference Include="Cimbalino.Phone.Toolkit, Version=3.2.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Cimbalino.Phone.Toolkit.3.2.2\lib\sl4-wp71\Cimbalino.Phone.Toolkit.dll</HintPath>
     </Reference>
-    <Reference Include="Cimbalino.Phone.Toolkit.Background">
-      <HintPath>..\packages\Cimbalino.Phone.Toolkit.Background.3.2.1\lib\sl4-wp71\Cimbalino.Phone.Toolkit.Background.dll</HintPath>
+    <Reference Include="Cimbalino.Phone.Toolkit.Background, Version=3.2.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Cimbalino.Phone.Toolkit.Background.3.2.2\lib\sl4-wp71\Cimbalino.Phone.Toolkit.Background.dll</HintPath>
     </Reference>
-    <Reference Include="Cimbalino.Phone.Toolkit.DeviceInfo">
-      <HintPath>..\packages\Cimbalino.Phone.Toolkit.DeviceInfo.3.2.1\lib\sl4-wp71\Cimbalino.Phone.Toolkit.DeviceInfo.dll</HintPath>
+    <Reference Include="Cimbalino.Phone.Toolkit.DeviceInfo, Version=3.2.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Cimbalino.Phone.Toolkit.DeviceInfo.3.2.2\lib\sl4-wp71\Cimbalino.Phone.Toolkit.DeviceInfo.dll</HintPath>
     </Reference>
-    <Reference Include="Cimbalino.Phone.Toolkit.UserInfo">
-      <HintPath>..\packages\Cimbalino.Phone.Toolkit.UserInfo.3.2.1\lib\sl4-wp71\Cimbalino.Phone.Toolkit.UserInfo.dll</HintPath>
+    <Reference Include="Cimbalino.Phone.Toolkit.UserInfo, Version=3.2.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Cimbalino.Phone.Toolkit.UserInfo.3.2.2\lib\sl4-wp71\Cimbalino.Phone.Toolkit.UserInfo.dll</HintPath>
     </Reference>
     <Reference Include="Coding4Fun.Toolkit.Controls, Version=2.0.7.0, Culture=neutral, PublicKeyToken=c5fd7b72b1a17ce4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -90,13 +94,13 @@
       <HintPath>..\packages\JetBrainsAnnotations.Fody.1.0.1\Lib\JetBrains.Annotations.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="MediaBrowser.ApiInteraction.Portable, Version=3.0.5118.2324, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="MediaBrowser.ApiInteraction.Portable, Version=3.0.5120.27505, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MediaBrowser.ApiClient.3.0.0.281\lib\portable-net45+sl4+wp71+win8\MediaBrowser.ApiInteraction.Portable.dll</HintPath>
+      <HintPath>..\packages\MediaBrowser.ApiClient.3.0.0.282\lib\portable-net45+sl4+wp71+win8\MediaBrowser.ApiInteraction.Portable.dll</HintPath>
     </Reference>
-    <Reference Include="MediaBrowser.Model, Version=3.0.5118.2145, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="MediaBrowser.Model, Version=3.0.5120.27342, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MediaBrowser.Common.3.0.297\lib\portable-net4+sl4+wp71+win8\MediaBrowser.Model.dll</HintPath>
+      <HintPath>..\packages\MediaBrowser.Common.3.0.298\lib\portable-net4+sl4+wp71+win8\MediaBrowser.Model.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Phone.Controls, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Phone.Controls.Toolkit, Version=7.0.1.0, Culture=neutral, PublicKeyToken=b772ad94eb9ca604, processorArchitecture=MSIL">

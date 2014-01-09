@@ -51,7 +51,7 @@ namespace MediaBrowser.Model
 
             var url = GetApiUrl("PushNotification/Devices", dict);
 
-            return PostAsync<EmptyRequestResult>(url, new Dictionary<string, string>());
+            return PostAsync<EmptyRequestResult>(url, new Dictionary<string, string>(), default(CancellationToken));
         }
 
         /// <summary>
@@ -96,7 +96,7 @@ namespace MediaBrowser.Model
 
             var url = GetApiUrl("PushNotification/Devices/" + deviceId, dict);
 
-            return PostAsync<EmptyRequestResult>(url, new Dictionary<string, string>());
+            return PostAsync<EmptyRequestResult>(url, new Dictionary<string, string>(), default(CancellationToken));
         }
 
         /// <summary>
@@ -114,7 +114,7 @@ namespace MediaBrowser.Model
 
             var url = GetApiUrl("PushNotification/Devices/" + deviceId + "/Heartbeats");
 
-            return PostAsync<EmptyRequestResult>(url, new Dictionary<string, string>());
+            return PostAsync<EmptyRequestResult>(url, new Dictionary<string, string>(), default(CancellationToken));
         }
 
         /// <summary>
@@ -135,15 +135,6 @@ namespace MediaBrowser.Model
             using (var stream = await GetSerializedStreamAsync(url).ConfigureAwait(false))
             {
                 return DeserializeFromStream<DeviceSettings>(stream);
-            }
-        }
-
-        private async Task<T> GetStream<T>(string url) where T : class
-        {
-            using (var stream = await GetSerializedStreamAsync(url).ConfigureAwait(false))
-            {
-                //return DeserializeFromStream<T>(stream);
-                return (T)JsonSerializer.DeserializeFromStream(stream, typeof (T));
             }
         }
     }

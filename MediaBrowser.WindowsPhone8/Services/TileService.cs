@@ -16,9 +16,12 @@ using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Querying;
 using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Controls;
-using MediaBrowser.WindowsPhone.Extensions;
 using ScottIsAFool.WindowsPhone.Logging;
 using MediaBrowser.Model.ApiClient;
+
+#if WP8
+using MediaBrowser.WindowsPhone.Extensions;
+#endif
 
 namespace MediaBrowser.WindowsPhone.Services
 {

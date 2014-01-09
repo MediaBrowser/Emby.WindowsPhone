@@ -60,7 +60,13 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 Log.Info("Searching for [{0}]", SearchText);
                 SetProgressBar("Searching...");
 
-                var items = await _apiClient.GetSearchHintsAsync(AuthenticationService.Current.LoggedInUser.Id, SearchText, null, null);
+                var query = new SearchQuery
+                {
+                    UserId = AuthenticationService.Current.LoggedInUser.Id,
+                    SearchTerm = SearchText
+                };
+
+                var items = await _apiClient.GetSearchHintsAsync(query);
 
                 if (items != null)
                 {
