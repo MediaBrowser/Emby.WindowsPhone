@@ -56,26 +56,26 @@ namespace MediaBrowser.WindowsPhone
             {
                 var emptyGroups = new List<Group<BaseItemDto>>();
 
-                var headers = new List<string> {"#", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
+                var headers = new List<string> { "#", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
                 headers.ForEach(item => emptyGroups.Add(new Group<BaseItemDto>(item, new List<BaseItemDto>())));
 
                 var groupedTracks = (from t in items
-                    group t by GetSortByNameHeader(t)
-                    into grp
-                    orderby grp.Key
-                    select new Group<BaseItemDto>(grp.Key, grp)).ToList();
+                                     group t by GetSortByNameHeader(t)
+                                         into grp
+                                         orderby grp.Key
+                                         select new Group<BaseItemDto>(grp.Key, grp)).ToList();
 
                 var result = (from g in groupedTracks.Union(emptyGroups)
 #if WP8
-                    where g.Count > 0
+                              where g.Count > 0
 #else
                           where g.HasItems
 
 
 
 #endif
-                    orderby g.Title
-                    select g).ToList();
+                              orderby g.Title
+                              select g).ToList();
 
                 return result;
             });
@@ -110,7 +110,7 @@ namespace MediaBrowser.WindowsPhone
             }
             return '#'.ToString(CultureInfo.InvariantCulture);
         }
-        
+
         internal static void CopyItem<T>(T source, T destination) where T : class
         {
             foreach (var sourcePropertyInfo in source.GetType().GetProperties())
@@ -136,7 +136,8 @@ namespace MediaBrowser.WindowsPhone
                         Id = g.Key,
                         Name = g.Select(l => l.SeriesName).FirstOrDefault(),
                         Count = g.Count(),
-                        CreatedDate = g.OrderByDescending(l => l.DateCreated).First().DateCreated
+                        CreatedDate = g.OrderByDescending(l => l.DateCreated).First().DateCreated,
+                        UserData = new UserItemDataDto { Played = g.All(l => l.UserData.Played) }
                     }).ToList();
                 var seriesList = new List<BaseItemDto>();
                 if (episodesBySeries.Any())
@@ -148,7 +149,8 @@ namespace MediaBrowser.WindowsPhone
                         Id = series.Id,
                         DateCreated = series.CreatedDate,
                         Type = "Series",
-                        ImageTags = new Dictionary<ImageType, Guid> {{ImageType.Primary, Guid.NewGuid()}}
+                        ImageTags = new Dictionary<ImageType, Guid> { { ImageType.Primary, Guid.NewGuid() } },
+                        UserData = series.UserData
                     }));
                 }
 
@@ -198,9 +200,9 @@ namespace MediaBrowser.WindowsPhone
             try
             {
                 apiClient.ChangeServerLocation(App.Settings.ConnectionDetails.HostName, App.Settings.ConnectionDetails.PortNo);
-                
+
                 logger.Info("Getting server configuration. Hostname ({0}), Port ({1})", apiClient.ServerHostName, apiClient.ServerApiPort);
-                
+
                 var config = await apiClient.GetServerConfigurationAsync();
                 App.Settings.ServerConfiguration = config;
 
@@ -213,9 +215,9 @@ namespace MediaBrowser.WindowsPhone
                 {
                     SimpleIoc.Default.Unregister<ApiWebSocket>();
                 }
-                
+
                 App.WebSocketClient = await ApiWebSocket.Create(new MBLogger(), new NewtonsoftJsonSerializer(), (ApiClient)apiClient, () => new WebSocketClient(), new CancellationToken());
-                
+
                 return true;
             }
             catch (HttpException ex)

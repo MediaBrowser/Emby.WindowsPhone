@@ -240,6 +240,9 @@
     <Compile Include="..\MediaBrowser.WindowsPhone8\Controls\MediaBrowserLogo.cs">
       <Link>Controls\MediaBrowserLogo.cs</Link>
     </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone8\Controls\Played.cs">
+      <Link>Controls\Played.cs</Link>
+    </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone8\Controls\ProfileBox.cs">
       <Link>Controls\ProfileBox.cs</Link>
     </Compile>

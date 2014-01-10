@@ -4,7 +4,8 @@
                     xmlns:scottConverters="clr-namespace:ScottIsAFool.WindowsPhone.Converters;assembly=ScottIsAFool.WindowsPhone"
                     xmlns:converters="clr-namespace:MediaBrowser.WindowsPhone.Converters"
                     xmlns:cimbalino="clr-namespace:Cimbalino.Phone.Toolkit.Converters;assembly=Cimbalino.Phone.Toolkit"
-                    xmlns:progress="clr-namespace:MediaBrowser.WindowsPhone.Progress">
+                    xmlns:progress="clr-namespace:MediaBrowser.WindowsPhone.Progress"
+                    xmlns:local="clr-namespace:MediaBrowser.WindowsPhone.Controls">
     <!-- Resource dictionary entries should be defined here. -->
 
     <LinearGradientBrush SpreadMethod="Reflect"
@@ -19,6 +20,10 @@
         <GradientStop Color="#ff000000"
                       Offset="1" />
     </LinearGradientBrush>
+
+    <Color x:Key="BlackTransparentColor">#C4000000</Color>
+    <SolidColorBrush x:Key="BlackTransparentBrush"
+                     Color="{StaticResource BlackTransparentColor}"/>
 
     <!-- Converters from ScottIsAFool.WindowsPhone.Converters -->
     <scottConverters:VisibilityConverter x:Key="VisibilityConverter" />
@@ -197,7 +202,7 @@
                                          Width="173"
                                          Height="173"
                                          Stretch="UniformToFill" />
-                    <Border Background="#C4000000"
+                    <Border Background="{StaticResource BlackTransparentBrush}"
                             VerticalAlignment="Bottom">
                         <StackPanel Orientation="Vertical">
                             <TextBlock Text="{Binding Name}"
@@ -231,6 +236,8 @@
                                        />
                         </Viewbox>
                     </Grid>
+
+                    <local:Played Visibility="{Binding UserData.Played, Converter={StaticResource VisibilityConverter}}" />
                 </Grid>
 
             </StackPanel>
@@ -264,6 +271,8 @@
                                          Style="{StaticResource FullWidthProgressStyle}" />
                         </StackPanel>
                     </Border>
+
+                    <local:Played Visibility="{Binding UserData.Played, Converter={StaticResource VisibilityConverter}}" />
                 </Grid>
             </StackPanel>
         </HyperlinkButton>
