@@ -228,21 +228,19 @@
             </phone:PanoramaItem>
 
             <phone:PanoramaItem Header="{Binding LocalizedResources.Favourites, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringCaseConverter}}">
-                <scott:PhoneListBox ItemsSource="{Binding FavouriteItems}"
-                                    Text="{Binding LocalizedResources.NoItemsFound, Source={StaticResource LocalizedStrings}}"
-                                    TextHorizontalAlignment="Center"
-                                    TextVerticalAlignment="Top"
-                                    TextStyle="{StaticResource PhoneTextLargeStyle}"
-                                    ItemTemplate="{StaticResource TileItemStyle}"
-                                    Margin="12,0,0,0">
-                    <scott:PhoneListBox.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <toolkit:WrapPanel ItemHeight="200"
-                                               ItemWidth="200"
-                                               MaxWidth="470" />
-                        </ItemsPanelTemplate>
-                    </scott:PhoneListBox.ItemsPanel>
-                </scott:PhoneListBox>
+                <phone:LongListSelector ItemsSource="{Binding FavouriteItems}"
+                                        ItemTemplate="{StaticResource FullTileItemStyle}"
+                                        x:Name="FavouriteItemsList"
+                                        LayoutMode="Grid"
+                                        GridCellSize="200,300">
+                    <phone:LongListSelector.ListHeader>
+                        <TextBlock Text="{Binding LocalizedResources.NoItemsFound, Source={StaticResource LocalizedStrings}}"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Top"
+                                   Style="{StaticResource PhoneTextLargeStyle}"
+                                   Visibility="{Binding RecentItems.Count, Converter={StaticResource IntToVisibilityConverter}, ConverterParameter=true}" />
+                    </phone:LongListSelector.ListHeader>
+                </phone:LongListSelector>
             </phone:PanoramaItem>
         </phone:Panorama>
     </Grid>

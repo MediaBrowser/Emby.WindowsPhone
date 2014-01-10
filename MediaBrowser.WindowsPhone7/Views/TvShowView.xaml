@@ -12,6 +12,7 @@
                 xmlns:c4F="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
                 xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
                 xmlns:cimbalino="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
+                xmlns:local="clr-namespace:MediaBrowser.WindowsPhone.Controls"
                 mc:Ignorable="d"
                 d:DesignWidth="480"
                 d:DesignHeight="768"
@@ -109,6 +110,8 @@
                                                        TextWrapping="Wrap"
                                                        Foreground="White" />
                                         </Border>
+
+                                        <local:Played Visibility="{Binding UserData.Played, Converter={StaticResource VisibilityConverter}}" />
                                     </Grid>
                                 </HyperlinkButton>
                             </DataTemplate>
