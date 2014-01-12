@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
+using System.Linq;
 using System.Windows;
 using System.Windows.Threading;
 using GalaSoft.MvvmLight.Command;
@@ -177,6 +179,13 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     {
                         ticks = SelectedItem.UserData.PlaybackPositionTicks;
                     }
+
+                    //foreach (var stream in SelectedItem.MediaStreams)
+                    //{
+                    //    if(Path.GetExtension(stream.Path) == "mp4" 
+                    //        && stream.Codec == "h264"
+                    //        && stream.BitRate < )
+                    //}
                     
                     var query = new VideoStreamOptions
                     {
