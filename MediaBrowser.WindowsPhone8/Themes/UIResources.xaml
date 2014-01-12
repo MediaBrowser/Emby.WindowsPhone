@@ -222,25 +222,6 @@
                         </StackPanel>
 
                     </Border>
-                    <!--<Grid  Height="40"
-                           Width="40"
-                           HorizontalAlignment="Right"
-                           VerticalAlignment="Top"
-                           Visibility="{Binding Type, Converter={StaticResource EpisodeNumberVisibilityConverter}}">
-                        <Ellipse Fill="Green" />
-                        <Viewbox Stretch="Uniform"
-                                 Height="35"
-                                 Width="35"
-                                 HorizontalAlignment="Center"
-                                 VerticalAlignment="Center">
-                            <TextBlock Text="{Binding Converter={StaticResource EpisodeNumberConverter}}"
-                                       Foreground="White"
-                                       Style="{StaticResource PhoneTextNormalStyle}"
-                                       Margin="0,-3,0,0"
-                                       />
-                        </Viewbox>
-                    </Grid>-->
-
                     <local:Played Data="{Binding}" />
                 </Grid>
 
