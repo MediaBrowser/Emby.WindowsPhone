@@ -205,11 +205,15 @@
                     <Border Background="{StaticResource BlackTransparentBrush}"
                             VerticalAlignment="Bottom">
                         <StackPanel Orientation="Vertical">
-                            <TextBlock Text="{Binding Name}"
-                                       Style="{StaticResource PhoneTextNormalStyle}"
+                            <TextBlock Style="{StaticResource PhoneTextNormalStyle}"
                                        FontWeight="Bold"
                                        TextWrapping="Wrap"
-                                       Foreground="White" />
+                                       Foreground="White"
+                                       TextTrimming="WordEllipsis"
+                                       MaxHeight="86">
+                                <Run Text="{Binding Converter={StaticResource EpisodeNumberConverter}}"/>
+                                <Run Text="{Binding Name}"/>
+                            </TextBlock>
                             <ProgressBar Value="{Binding Converter={StaticResource AlreadyPlayedConverter}}"
                                          HorizontalAlignment="Stretch"
                                          Margin="0"
@@ -218,7 +222,7 @@
                         </StackPanel>
 
                     </Border>
-                    <Grid  Height="40"
+                    <!--<Grid  Height="40"
                            Width="40"
                            HorizontalAlignment="Right"
                            VerticalAlignment="Top"
@@ -235,9 +239,9 @@
                                        Margin="0,-3,0,0"
                                        />
                         </Viewbox>
-                    </Grid>
+                    </Grid>-->
 
-                    <local:Played Visibility="{Binding UserData.Played, Converter={StaticResource VisibilityConverter}}" />
+                    <local:Played Data="{Binding}" />
                 </Grid>
 
             </StackPanel>
@@ -272,7 +276,8 @@
                         </StackPanel>
                     </Border>
 
-                    <local:Played Visibility="{Binding UserData.Played, Converter={StaticResource VisibilityConverter}}" />
+                    <local:Played Data="{Binding}"
+                                  Visibility="Visible"/>
                 </Grid>
             </StackPanel>
         </HyperlinkButton>

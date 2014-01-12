@@ -111,7 +111,7 @@
                                                        Foreground="White" />
                                         </Border>
 
-                                        <local:Played Visibility="{Binding UserData.Played, Converter={StaticResource VisibilityConverter}}"/>
+                                        <local:Played Data="{Binding}" />
                                     </Grid>
                                 </HyperlinkButton>
                             </DataTemplate>
