@@ -10,7 +10,7 @@
                 xmlns:cimbalino="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
                 xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP71"
                 xmlns:controls="clr-namespace:MediaBrowser.WindowsPhone.Controls"
-                xmlns:controls1="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
+                xmlns:coding4Fun="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
                 xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
                 xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
                 mc:Ignorable="d"
@@ -110,11 +110,19 @@
                         <!--TitlePanel contains the name of the application and page title-->
                         <StackPanel x:Name="TitlePanel"
                                     Grid.Row="0"
-                                    Margin="12,0,0,28">
+                                    Margin="12,0,0,28"
+                                    Orientation="Vertical">
                             <TextBlock x:Name="PageTitle"
                                        Text="{Binding Name, Converter={StaticResource StringCaseConverter}}"
                                        Margin="9,-7,0,0"
                                        Style="{StaticResource PhoneTextTitle1Style}" />
+                            <TextBlock Style="{StaticResource PhoneTextSubtleStyle}"
+                                       Margin="9,0,0,-12">
+                                <Run Text="Series" />
+                                <Run Text="{Binding ParentIndexNumber, StringFormat='\{0\},'}" />
+                                <Run Text="Episode" />
+                                <Run Text="{Binding Converter={StaticResource EpisodeNumberConverter}}" />
+                            </TextBlock>
                         </StackPanel>
 
                         <!--ContentPanel - place additional content here-->
@@ -128,12 +136,12 @@
                                             Command="{Binding Main.PlayMovieCommand, Source={StaticResource Locator}}"
                                             CommandParameter="{Binding}">
                                         <Grid>
-                                            <Image Source="{Binding Converter={StaticResource ImageUrlConverter}, ConverterParameter=episode}" />
-                                            <controls1:RoundButton ImageSource="/Icons/appbar.transport.play.rest.png"
-                                                                   IsHitTestVisible="False"
-                                                                   HorizontalAlignment="Center"
-                                                                   VerticalAlignment="Center"
-                                                                   Visibility="Collapsed" />
+                                            <coding4Fun:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}, ConverterParameter=episode}"
+                                                                   MaxWidth="480"
+                                                                   Stretch="UniformToFill"
+                                                                   PlaceholderImageSource="/Images/MBBackground.jpg"
+                                                                   PlaceholderImageStretch="Uniform" />
+                                            <controls:Played Data="{Binding}" />
                                         </Grid>
                                     </Button>
                                     <TextBlock Text="{Binding Overview}"

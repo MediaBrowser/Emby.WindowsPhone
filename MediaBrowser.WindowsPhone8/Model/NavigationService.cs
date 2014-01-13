@@ -92,9 +92,9 @@ namespace MediaBrowser.WindowsPhone.Model
                         Messenger.Default.Send(new NotificationMessage(item, Constants.Messages.MusicAlbumChangedMsg));
                     NavigateTo(Constants.Pages.AlbumView);
                     break;
-                case "photo":
+                //case "photo":
 
-                    break;
+                //    break;
                 default:
                     if (SimpleIoc.Default.GetInstance<GenericItemViewModel>() != null)
                     {

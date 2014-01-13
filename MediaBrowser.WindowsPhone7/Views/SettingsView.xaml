@@ -78,6 +78,11 @@
                               Content="Show missing episodes" />
                     <CheckBox IsChecked="{Binding ShowUnairedEpisodes, Source={StaticResource SpecificSettings}, Mode=TwoWay}"
                               Content="Show unaired episodes" />
+                    <CheckBox IsChecked="{Binding EnableImageEnhancers, Source={StaticResource SpecificSettings}, Mode=TwoWay}">
+                        <TextBlock Text="Enable enhanced images (if installed on the server)"
+                                   TextWrapping="Wrap"
+                                   VerticalAlignment="Top" />
+                    </CheckBox>
                 </StackPanel>
             </controls:PivotItem>
 

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq;
 using System.Windows;
+using System.Windows.Navigation;
+using MediaBrowser.WindowsPhone.Services;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Tasks;
 using ScottIsAFool.WindowsPhone.Logging;
@@ -50,6 +52,16 @@ namespace MediaBrowser.WindowsPhone.Views
         }
 
 #if WP8
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            if (e.NavigationMode == NavigationMode.Back)
+            {
+                TileService.Current.UpdatePrimaryTile(App.SpecificSettings.DisplayBackdropOnTile, App.SpecificSettings.UseRichWideTile).ConfigureAwait(false);
+            }
+
+            base.OnNavigatedFrom(e);
+        }
+
         private async void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
             await Launcher.LaunchUriAsync(new Uri("ms-settings-lock:", UriKind.Absolute));

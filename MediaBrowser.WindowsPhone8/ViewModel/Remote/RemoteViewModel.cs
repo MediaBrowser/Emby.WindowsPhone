@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using Cimbalino.Phone.Toolkit.Services;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Entities;
@@ -12,6 +13,7 @@ using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Querying;
 using MediaBrowser.Model.Session;
 using MediaBrowser.Services;
+using MediaBrowser.WindowsPhone.Messaging;
 using MediaBrowser.WindowsPhone.Services;
 using ScottIsAFool.WindowsPhone.ViewModel;
 using INavigationService = MediaBrowser.WindowsPhone.Model.INavigationService;
@@ -31,6 +33,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
 
         private bool _dataLoaded;
         private string _videoId;
+        private long? _startPositionTicks;
 
         /// <summary>
         /// Initializes a new instance of the RemoteViewModel class.
@@ -85,6 +88,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
                     await GetClients(false);
 
                     ReviewReminderService.Current.Notify();
+
+                    if (_startPositionTicks.HasValue)
+                    {
+                        SendCommand("Seek", _startPositionTicks.Value).ConfigureAwait(false);
+                        _startPositionTicks = null;
+                    }
                 });
             }
         }
@@ -156,9 +165,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
             {
                 return new RelayCommand<int>(async seconds =>
                 {
-                    var ticks = TimeSpan.FromSeconds(seconds);
+                    var ticks = TimeSpan.FromSeconds(seconds).Ticks;
 
-                    await SendCommand("Seek", ticks.Ticks);
+                    if (SelectedClient != null && SelectedClient.NowPlayingPositionTicks.HasValue)
+                    {
+                        ticks += SelectedClient.NowPlayingPositionTicks.Value;
+                    }
+
+                    await SendCommand("Seek", ticks);
                 });
             }
         }
@@ -242,7 +256,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
             return false;
         }
 
-        private async Task SendCommand(string commandString, long? seekAmount = null)
+        private async Task SendCommand(string commandString, long? seekPosition = null)
         {
             if (CanSendCommand())
             {
@@ -251,9 +265,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
                     Command = commandString.ToPlaystateCommandEnum()
                 };
 
-                if (seekAmount.HasValue)
+                if (seekPosition.HasValue)
                 {
-                    request.SeekPositionTicks = SelectedClient.NowPlayingPositionTicks + seekAmount.Value;
+                    request.SeekPositionTicks = seekPosition;
                 }
 
                 try
@@ -282,6 +296,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
                     }
 
                     _videoId = id;
+                    _startPositionTicks = null;
                     _navigationService.NavigateTo(Constants.Pages.Remote.ChooseClientView);
                 });
             }
@@ -400,6 +415,15 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
                 }
 
                 SetSessionDetails(session);
+            });
+        }
+
+        public override void WireMessages()
+        {
+            Messenger.Default.Register<RemoteMessage>(this, m =>
+            {
+                _videoId = m.ItemId;
+                _startPositionTicks = m.StartPositionTicks;
             });
         }
     }

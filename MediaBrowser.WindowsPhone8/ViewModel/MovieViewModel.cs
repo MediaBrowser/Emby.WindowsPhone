@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Cimbalino.Phone.Toolkit.Services;
 using GalaSoft.MvvmLight.Command;
 using MediaBrowser.Model;
+using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Services;
 using MediaBrowser.Model.Dto;
 using GalaSoft.MvvmLight.Messaging;
+using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Resources;
 using ScottIsAFool.WindowsPhone;
 using ScottIsAFool.WindowsPhone.ViewModel;
@@ -168,6 +171,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 var item = await _apiClient.GetItemAsync(SelectedMovie.Id, AuthenticationService.Current.LoggedInUser.Id);
                 SelectedMovie = item;
                 CastAndCrew = Utils.GroupCastAndCrew(item.People);
+                Chapters = SelectedMovie.Chapters.Select(x => new Chapter(x)
+                {
+                    ImageUrl = GetChapterUrl(x)
+                }).ToList();
                 result = true;
             }
             catch (HttpException ex)
@@ -181,6 +188,20 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             return result;
         }
 
+        private string GetChapterUrl(ChapterInfoDto chapter)
+        {
+            var imageOptions = new ImageOptions
+            {
+                MaxHeight = 173,
+                ImageIndex = SelectedMovie.Chapters.IndexOf(chapter),
+                ImageType = ImageType.Chapter,
+                Tag = chapter.ImageTag,
+                EnableImageEnhancers = App.SpecificSettings.EnableImageEnhancers
+            };
+
+            return chapter.HasImage ? _apiClient.GetImageUrl(SelectedMovie, imageOptions) : string.Empty;
+        }
+
         public bool CanUpdateFavourites { get; set; }
         public string FavouriteText { get; set; }
         public Uri FavouriteIcon { get; set; }
@@ -189,6 +210,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public List<Group<BaseItemPerson>> CastAndCrew { get; set; }
         public string ImdbId { get; set; }
         public string RunTime { get; set; }
+        public List<Chapter> Chapters { get; set; }
 
         public RelayCommand<BaseItemDto> NavigateTopage { get; set; }
         public RelayCommand MoviePageLoaded { get; set; }

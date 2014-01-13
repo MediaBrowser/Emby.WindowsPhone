@@ -31,9 +31,12 @@
         <behaviours:MBSysTray Text="{Binding ProgressText}"
                               IsVisible="{Binding ProgressIsVisible}"
                               IsIndeterminate="{Binding ProgressIsVisible}" />
-        <behaviors:MultiApplicationBarBehavior SelectedIndex="{Binding PivotSelectedIndex}">
-            <behaviors:ApplicationBar IsVisible="False" />
-            <behaviors:ApplicationBar IsVisible="False" />
+        <behaviors:MultiApplicationBarBehavior SelectedIndex="{Binding AppBarIndex}">
+            <behaviors:ApplicationBar>
+                <behaviors:ApplicationBarIconButton Text="play all"
+                                                    IconUri="/Icons/appbar.transport.play.png"
+                                                    Command="{Binding PlayAllCommand}" />
+            </behaviors:ApplicationBar>
             <behaviors:ApplicationBar IsVisible="True"
                                       IsMenuEnabled="{Binding IsSelectionEnabled}"
                                       Mode="{Binding AppBarMode}">
@@ -42,6 +45,9 @@
                                                     IsEnabled="{Binding Songs.Count, Converter={StaticResource CountToEnabled}, ConverterParameter=delete}"
                                                     IsVisible="{Binding IsSelectionEnabled, Converter={StaticResource InvertBoolean}}"
                                                     Command="{Binding SelectItemsCommand}" />
+                <behaviors:ApplicationBarIconButton Text="play all"
+                                                    IconUri="/Icons/appbar.transport.play.png"
+                                                    Command="{Binding PlayAllCommand}"/>
                 <behaviors:ApplicationBar.MenuItems>
                     <behaviors:ApplicationBarMenuItem Text="add to now playing"
                                                       IsVisible="{Binding IsSelectionEnabled}"
@@ -49,7 +55,6 @@
                                                       Command="{Binding AddToNowPlayingCommand}" />
                 </behaviors:ApplicationBar.MenuItems>
             </behaviors:ApplicationBar>
-            <behaviors:ApplicationBar IsVisible="False" />
         </behaviors:MultiApplicationBarBehavior>
     </i:Interaction.Behaviors>
     <i:Interaction.Triggers>

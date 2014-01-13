@@ -41,6 +41,7 @@
                                      MediaStarted="ThePlayer_OnMediaStarted"
                                      IsTimeElapsedVisible="True"
                                      IsDurationVisible="False"
+                                     CurrentStateChanged="ThePlayer_OnCurrentStateChanged"
                                      StartTime="{Binding StartTime}"
                                      Position="{Binding PlayedVideoDuration, Mode=TwoWay}"
                                      EndTime="{Binding SelectedItem.RunTimeTicks, Converter={StaticResource TicksToTimespanConverter}}" />

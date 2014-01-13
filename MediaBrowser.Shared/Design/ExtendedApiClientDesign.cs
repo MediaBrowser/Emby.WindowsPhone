@@ -100,6 +100,11 @@ namespace MediaBrowser.Design
             throw new NotImplementedException();
         }
 
+        public Task<SearchHintResult> GetSearchHintsAsync(SearchQuery query)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<SearchHintResult> GetSearchHintsAsync(string userId, string searchTerm, int? startIndex = null, int? limit = null)
         {
             throw new NotImplementedException();
@@ -507,6 +512,11 @@ namespace MediaBrowser.Design
             throw new NotImplementedException();
         }
 
+        public Task<T> PostAsync<T>(string url, Dictionary<string, string> args, CancellationToken cancellationToken) where T : class
+        {
+            throw new NotImplementedException();
+        }
+
         public System.Threading.Tasks.Task<System.IO.Stream> GetSerializedStreamAsync(string url)
         {
             throw new NotImplementedException();
@@ -779,6 +789,11 @@ namespace MediaBrowser.Design
         }
 
         public Task<T> GetAsync<T>(string url, CancellationToken cancellationToken) where T : class
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task ReportCapabilities(string sessionId, ClientCapabilities capabilities, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }

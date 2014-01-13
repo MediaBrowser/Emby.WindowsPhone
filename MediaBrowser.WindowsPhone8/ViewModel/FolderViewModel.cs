@@ -170,7 +170,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             var query = new ItemQuery
             {
-                Filters = new[] {ItemFilter.IsRecentlyAdded, ItemFilter.IsNotFolder},
+                Filters = new[] { ItemFilter.IsNotFolder},
                 UserId = AuthenticationService.Current.LoggedInUser.Id,
                 Fields = new[]
                 {
@@ -179,7 +179,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     ItemFields.ParentId,
                 },
                 ParentId = SelectedFolder.Id,
-                Recursive = true
+                Recursive = true,
+                Limit = 15,
+                SortBy = new []{ItemSortBy.DateCreated},
+                SortOrder = SortOrder.Descending
             };
 
             try

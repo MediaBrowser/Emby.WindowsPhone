@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Windows.Controls;
 using System.Windows.Data;
 using GalaSoft.MvvmLight.Ioc;
 using MediaBrowser.Model;
@@ -35,7 +36,8 @@ namespace MediaBrowser.WindowsPhone.Converters
                         return apiClient.GetPersonImageUrl(person, new ImageOptions
                         {
                             MaxWidth = smallImageSize ? 99 : 200, 
-                            Quality = 90
+                            Quality = 90,
+                            EnableImageEnhancers = App.SpecificSettings.EnableImageEnhancers
                         });
                     }
                 }
@@ -55,6 +57,7 @@ namespace MediaBrowser.WindowsPhone.Converters
                     var searchHint = (SearchHint) value;
                     var imageOptions = new ImageOptions
                     {
+                        EnableImageEnhancers = App.SpecificSettings.EnableImageEnhancers,
 #if WP8
                         MaxHeight = 159,
                         MaxWidth = 159
@@ -85,6 +88,7 @@ namespace MediaBrowser.WindowsPhone.Converters
                     var imageType = parameter == null ? string.Empty : (string)parameter;
                     var imageOptions = new ImageOptions
                     {
+                        EnableImageEnhancers = App.SpecificSettings.EnableImageEnhancers,
                         ImageType = ImageType.Primary
                     };
 
@@ -110,13 +114,14 @@ namespace MediaBrowser.WindowsPhone.Converters
 
         private static object GetDtoImage(BaseItemDto item, string imageType, IExtendedApiClient apiClient)
         {
-            if (item.ImageTags.IsNullOrEmpty())
+            if (item.ImageTags.IsNullOrEmpty() && item.BackdropImageTags.IsNullOrEmpty())
             {
                 return "";
             }
 
             var imageOptions = new ImageOptions
             {
+                EnableImageEnhancers = App.SpecificSettings.EnableImageEnhancers,
                 Quality = 90,
 #if WP8
                 MaxHeight = 336,
@@ -145,7 +150,7 @@ namespace MediaBrowser.WindowsPhone.Converters
                 if (!item.HasPrimaryImage)
                 {
                     imageOptions.MaxHeight = 800;
-                    imageOptions.ImageType = ImageType.Backdrop;
+                    imageOptions.ImageType = ImageType.Backdrop; 
 
                     var images = apiClient.GetBackdropImageUrls(item, imageOptions);
                     if (!images.IsNullOrEmpty())

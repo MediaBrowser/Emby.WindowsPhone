@@ -17,6 +17,11 @@ namespace MediaBrowser.WindowsPhone
         {
             GroupByItems = Enum<GroupBy>.GetNames();
             DefaultGroupBy = GroupByItems.FirstOrDefault(x => x == DefaultGroupBy);
+            EnableImageEnhancers = true;
+#if WP8
+            UseRichWideTile = true;
+            DisplayBackdropOnTile = true;
+#endif
         }
 
         public bool IncludeTrailersInRecent { get; set; }
@@ -25,13 +30,16 @@ namespace MediaBrowser.WindowsPhone
         public bool JustShowFolderView { get; set; }
         public bool ShowMissingEpisodes { get; set; }
         public bool ShowUnairedEpisodes { get; set; }
+        public bool EnableImageEnhancers { get; set; }
 
         public DeviceSettings DeviceSettings { get; set; }
 
 #if WP8
         public LockScreenType LockScreenType { get; set; }
         public string LockScreenCollectionId { get; set; }
-
+        public bool DisplayBackdropOnTile { get; set; }
+        public bool UseRichWideTile { get; set; }
+        
         [UsedImplicitly]
         private void OnLockScreenCollectionIdChanged()
         {

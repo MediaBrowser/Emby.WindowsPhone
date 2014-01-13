@@ -238,7 +238,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        
+
     </scott:BasePage.Resources>
 
     <!--LayoutRoot is the root grid where all page content is placed-->
@@ -246,7 +246,8 @@
           Background="{StaticResource MediaBrowserBackground}">
         <phone:Pivot x:Name="settingsPivot">
             <phone:Pivot.Title>
-                <controls:MediaBrowserLogo Margin="-12,0,0,0" />
+                <controls:MediaBrowserLogo Margin="-12,0,0,0"
+                                           AltText="SETTINGS"/>
             </phone:Pivot.Title>
 
             <phone:PivotItem Header="general">
@@ -266,6 +267,11 @@
                               Content="Show missing episodes" />
                     <CheckBox IsChecked="{Binding ShowUnairedEpisodes, Source={StaticResource SpecificSettings}, Mode=TwoWay}"
                               Content="Show unaired episodes" />
+                    <CheckBox IsChecked="{Binding EnableImageEnhancers, Source={StaticResource SpecificSettings}, Mode=TwoWay}">
+                        <TextBlock Text="Enable enhanced images (if installed on the server)"
+                                   TextWrapping="Wrap"
+                                   VerticalAlignment="Top"/>
+                    </CheckBox>
                 </StackPanel>
             </phone:PivotItem>
 
@@ -327,6 +333,30 @@
                             Command="{Binding Main.NavigateToAPage, Source={StaticResource Locator}}"
                             CommandParameter="/Views/FindServerView.xaml" />
                 </StackPanel>
+            </phone:PivotItem>
+
+            <phone:PivotItem Header="tile">
+                <ScrollViewer>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="To show off some of the great artwork available for the media you have, the tile will use some of the artwork, he you can choose how that tile will look"
+                               TextWrapping="Wrap"
+                               Style="{StaticResource PhoneTextNormalStyle}"/>
+                        <CheckBox IsChecked="{Binding DisplayBackdropOnTile, Source={StaticResource SpecificSettings}, Mode=TwoWay}">
+                            <TextBlock Text="Display random backdrop images on the back of the tile"
+                                   TextWrapping="Wrap"/>
+                        </CheckBox>
+
+                        <RadioButton Style="{StaticResource RadioSelectionTemplate}"
+                                     IsChecked="{Binding UseRichWideTile, Source={StaticResource SpecificSettings}, Mode=TwoWay}">
+                            <Image Source="/Images/WideTileSample.jpg"/>
+                        </RadioButton>
+                        
+                        <RadioButton Style="{StaticResource RadioSelectionTemplate}"
+                                     IsChecked="{Binding UseRichWideTile, Source={StaticResource SpecificSettings}, Mode=TwoWay, Converter={StaticResource NegativeBooleanConverter}}">
+                            <Image Source="/Assets/Tiles/FlipCycleTileLarge.png"/>
+                        </RadioButton>
+                    </StackPanel>
+                </ScrollViewer>
             </phone:PivotItem>
 
             <phone:PivotItem Header="lock screen">

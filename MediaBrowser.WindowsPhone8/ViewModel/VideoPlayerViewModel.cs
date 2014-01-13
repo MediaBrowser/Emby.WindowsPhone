@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
+using System.Linq;
 using System.Windows;
+using System.Windows.Threading;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model;
@@ -9,6 +12,7 @@ using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Services;
+using MediaBrowser.WindowsPhone.Messaging;
 using MediaBrowser.WindowsPhone.Model;
 using ScottIsAFool.WindowsPhone.ViewModel;
 
@@ -25,7 +29,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         private readonly IExtendedApiClient _apiClient;
         private readonly INavigationService _navigationService;
 
+        private readonly DispatcherTimer _timer;
+
         private bool _isResume;
+        private long? _startPositionTicks;
 
         /// <summary>
         /// Initializes a new instance of the VideoPlayerViewModel class.
@@ -34,10 +41,39 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             _apiClient = apiClient;
             _navigationService = navigationService;
+            _timer = new DispatcherTimer{Interval = TimeSpan.FromSeconds(10)};
+            _timer.Tick += TimerOnTick;
+        }
+
+        private async void TimerOnTick(object sender, EventArgs eventArgs)
+        {
+            try
+            {
+                var totalTicks = _isResume && StartTime.HasValue ? StartTime.Value.Ticks + PlayedVideoDuration.Ticks : PlayedVideoDuration.Ticks;
+
+                Log.Info("Sending current runtime [{0}] to the server", totalTicks);
+
+                await _apiClient.ReportPlaybackProgressAsync(SelectedItem.Id, AuthenticationService.Current.LoggedInUserId, totalTicks, false, false);
+                SelectedItem.UserData.PlaybackPositionTicks = totalTicks;
+            }
+            catch (HttpException ex)
+            {
+                Log.ErrorException("TimerOnTick()", ex);
+            }
         }
 
         public override void WireMessages()
         {
+            Messenger.Default.Register<VideoMessage>(this, m =>
+            {
+                if (m.VideoItem != null)
+                {
+                    SelectedItem = m.VideoItem;
+                    _isResume = m.IsResume;
+                    _startPositionTicks = m.ResumeTicks;
+                }
+            });
+
             Messenger.Default.Register<NotificationMessage>(this, async m =>
             {
                 if (m.Notification.Equals(Constants.Messages.PlayVideoItemMsg))
@@ -52,6 +88,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     }
                 }
 
+                if (m.Notification.Equals(Constants.Messages.SetResumeMsg))
+                {
+                    _isResume = true;
+                }
+
                 if (m.Notification.Equals(Constants.Messages.SendVideoTimeToServerMsg))
                 {
                     try
@@ -60,12 +101,53 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                         Log.Info("Sending current runtime [{0}] to the server", totalTicks);
 
-                        await _apiClient.ReportPlaybackStoppedAsync(SelectedItem.Id, AuthenticationService.Current.LoggedInUser.Id, totalTicks);
+                        await _apiClient.ReportPlaybackStoppedAsync(SelectedItem.Id, AuthenticationService.Current.LoggedInUserId, totalTicks);
                         SelectedItem.UserData.PlaybackPositionTicks = totalTicks;
+
+                        if (_timer != null && _timer.IsEnabled)
+                        {
+                            _timer.Stop();
+                        }
                     }
                     catch (HttpException ex)
                     {
                         Log.ErrorException("SendVideoTimeToServer", ex);
+                    }
+                }
+
+                if (m.Notification.Equals(Constants.Messages.VideoStateChangedMsg))
+                {
+                    try
+                    {
+                        var totalTicks = _isResume && StartTime.HasValue ? StartTime.Value.Ticks + PlayedVideoDuration.Ticks : PlayedVideoDuration.Ticks;
+                        var isPaused = m.Sender != null && (bool) m.Sender;
+
+                        if (_timer != null)
+                        {
+                            if (isPaused)
+                            {
+                                if (_timer.IsEnabled)
+                                {
+                                    _timer.Stop();
+                                }
+                            }
+                            else
+                            {
+                                if (!_timer.IsEnabled)
+                                {
+                                    _timer.Start();
+                                }
+                            }
+                        }
+
+                        Log.Info("Sending current runtime [{0}] to the server", totalTicks);
+
+                        await _apiClient.ReportPlaybackProgressAsync(SelectedItem.Id, AuthenticationService.Current.LoggedInUserId, totalTicks, isPaused, false);
+                        SelectedItem.UserData.PlaybackPositionTicks = totalTicks;
+                    }
+                    catch (HttpException ex)
+                    {
+                        Log.ErrorException("VideoStateChanged", ex);
                     }
                 }
             });
@@ -97,6 +179,13 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     {
                         ticks = SelectedItem.UserData.PlaybackPositionTicks;
                     }
+
+                    //foreach (var stream in SelectedItem.MediaStreams)
+                    //{
+                    //    if(Path.GetExtension(stream.Path) == "mp4" 
+                    //        && stream.Codec == "h264"
+                    //        && stream.BitRate < )
+                    //}
                     
                     var query = new VideoStreamOptions
                     {
@@ -120,13 +209,18 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                     StartTime = TimeSpan.FromTicks(ticks);
 
+                    if (_timer != null && !_timer.IsEnabled)
+                    {
+                        _timer.Start();
+                    }
+
                     Log.Info("Playing {0} [{1}] ({2})", SelectedItem.Type, SelectedItem.Name, SelectedItem.Id);
                     Log.Debug(VideoUrl);
 
                     try
                     {
                         Log.Info("Sending playback started message to the server.");
-                        await _apiClient.ReportPlaybackStartAsync(SelectedItem.Id, AuthenticationService.Current.LoggedInUser.Id, false, new List<string>());
+                        await _apiClient.ReportPlaybackStartAsync(SelectedItem.Id, AuthenticationService.Current.LoggedInUserId, false, new List<string>());
                     }
                     catch (HttpException ex)
                     {

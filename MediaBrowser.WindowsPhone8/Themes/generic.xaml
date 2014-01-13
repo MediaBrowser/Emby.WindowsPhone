@@ -22,21 +22,26 @@
                                 VerticalAlignment="Top"
                                 Height="24"
                                 Margin="12,0">
-                        <Image Source="/Images/LogoNoPadding.png" VerticalAlignment="Center" Height="24" />
+                        <Image Source="/Images/LogoNoPadding.png"
+                               VerticalAlignment="Center"
+                               Height="24" />
                         <StackPanel Orientation="Horizontal"
                                     VerticalAlignment="Center"
                                     Tag="{TemplateBinding AltText}"
-                                    Visibility="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource InvertedNullVisibilityConverter}}" Margin="0,5,0,0">
-                                                        <TextBlock Text="MEDIA"
+                                    Visibility="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource InvertedNullVisibilityConverter}}"
+                                    Margin="0,5,0,0">
+                            <TextBlock Text="MEDIA"
                                        Foreground="{StaticResource PhoneForegroundBrush}"
-                                       Style="{StaticResource PhoneTextNormalStyle}"                                       
-                                       VerticalAlignment="Center" 
-									   Margin="6,0,0,0" FontFamily="Arial Narrow"/>
+                                       Style="{StaticResource PhoneTextNormalStyle}"
+                                       VerticalAlignment="Center"
+                                       Margin="6,0,0,0"
+                                       FontFamily="Arial Narrow" />
                             <TextBlock Text="BROWSER"
                                        Foreground="Green"
                                        Style="{StaticResource PhoneTextNormalStyle}"
                                        Margin="0"
-                                       VerticalAlignment="Center" FontFamily="Arial Narrow" />
+                                       VerticalAlignment="Center"
+                                       FontFamily="Arial Narrow" />
                         </StackPanel>
                         <TextBlock Text="{TemplateBinding AltText}"
                                    Foreground="Green"
@@ -44,16 +49,7 @@
                                    Margin="6,0,0,0"
                                    VerticalAlignment="Center"
                                    FontSize="21.333"
-                                   Visibility="{Binding Text, RelativeSource={RelativeSource Self}, Converter={StaticResource NullVisibilityConverter}}"/>
-                        <!--<TextBlock Text="MEDIA"
-                                   Foreground="{StaticResource PhoneForegroundBrush}"
-                                   Style="{StaticResource PhoneTextNormalStyle}"
-                                   Margin="12,0,0,0" VerticalAlignment="Center" />
-                        <TextBlock Text="BROWSER"
-                                   Foreground="Green"
-                                   Style="{StaticResource PhoneTextNormalStyle}"
-                                   Margin="0" VerticalAlignment="Center" />-->
-
+                                   Visibility="{Binding Text, RelativeSource={RelativeSource Self}, Converter={StaticResource NullVisibilityConverter}}" />
                     </StackPanel>
                 </ControlTemplate>
             </Setter.Value>
@@ -192,6 +188,97 @@
                                        Visibility="Collapsed" />
                         </StackPanel>
                     </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="local:Played">
+        <Setter Property="Height"
+                Value="40" />
+        <Setter Property="Width"
+                Value="40" />
+        <Setter Property="HorizontalAlignment"
+                Value="Left" />
+        <Setter Property="VerticalAlignment"
+                Value="Top" />
+        <Setter Property="Foreground"
+                Value="{StaticResource PhoneAccentBrush}" />
+        <Setter Property="Margin"
+                Value="5" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:Played">
+                    <Grid Height="{TemplateBinding Height}"
+                          Width="{TemplateBinding Width}"
+                          HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                          VerticalAlignment="{TemplateBinding VerticalAlignment}">
+                        <Ellipse Fill="Green"
+                                 Stretch="Fill"
+                                 x:Name="TheEllipse" />
+                        <TextBlock x:Name="WatchedPath"
+                                   Text="&#xE10B;"
+                                   Style="{StaticResource PhoneTextNormalStyle}"
+                                   FontFamily="Segoe UI Symbol"
+                                   Margin="0"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center" />
+                        <TextBlock x:Name="UnwatchedText"
+                                   Text="{Binding RecursiveUnplayedItemCount}"
+                                   Foreground="White"
+                                   Style="{StaticResource PhoneTextNormalStyle}"
+                                   Margin="0,-3,0,0"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="local:PlayButton">
+        <Setter Property="HorizontalAlignment"
+                Value="Center" />
+        <Setter Property="VerticalAlignment"
+                Value="Center" />
+        <Setter Property="Height"
+                Value="130" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:PlayButton">
+                    <Viewbox Stretch="Uniform"
+                             Height="{TemplateBinding Height}"
+                             Width="{TemplateBinding Height}">
+                        <Grid>
+                            <Ellipse Height="{TemplateBinding Height}"
+                                     Width="{TemplateBinding Height}"
+                                     Fill="#83000000"
+                                     HorizontalAlignment="Center"
+                                     VerticalAlignment="Center"
+                                     x:Name="Background" />
+                            <Path Data="F1 M 38,0.791664C 58.5496,0.791664 75.2083,17.4504 75.2083,38C 75.2083,58.5496 58.5496,75.2083 38,75.2083C 17.4504,75.2083 0.791662,58.5496 0.791662,38C 0.791662,17.4504 17.4504,0.791664 38,0.791664 Z M 38,5.54166C 20.0738,5.54166 5.54167,20.0738 5.54167,38C 5.54167,55.9262 20.0738,70.4583 38,70.4583C 55.9262,70.4583 70.4583,55.9262 70.4583,38C 70.4583,20.0738 55.9262,5.54166 38,5.54166 Z "
+                                  Height="{TemplateBinding Height}"
+                                  Width="{TemplateBinding Height}"
+                                  Fill="White"
+                                  x:Name="BaseCircle"
+                                  HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"
+                                  Margin="0"
+                                  Stretch="Fill"
+                                  UseLayoutRounding="False">
+                            </Path>
+                            <Path Data="F1 M 30.0833,22.1667L 50.6665,37.6043L 50.6665,38.7918L 30.0833,53.8333L 30.0833,22.1667 Z "
+                                  Height="49"
+                                  Width="41.576"
+                                  x:Name="Play"
+                                  HorizontalAlignment="Center"
+                                  Fill="White"
+                                  VerticalAlignment="Center"
+                                  Margin="6,0,0,0"
+                                  Stretch="Fill"
+                                  UseLayoutRounding="False" />
+                        </Grid>
+                    </Viewbox>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
