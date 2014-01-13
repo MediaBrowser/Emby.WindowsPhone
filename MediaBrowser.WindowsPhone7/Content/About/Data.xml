@@ -56,6 +56,28 @@
     <!-- Supported types are "text" and "xaml", where text is nicely formatted automatically, and XAML is handled by the built-in XamlReader -->
     <Item Title="history"
           Type="text">
+      7.0.0.51
+      Fixes:
+      - Music Collection - Recent items show no background artwork
+      - Audio playback now reports back to the server when tracks change
+      - Music Collection - Tapping a "Recent" item shows album &amp; tracks but no album cover
+      - Added chapter support for movies
+      - Main page recent items bringing back missing/virtual episodes
+      - Specials within a TV season not in the correct order
+      Enhancements:
+      - Option to Disable Enhanced Images
+      - Show progress for resumable items
+      - Handle double episodes for TV
+      - Watched/Unwatched status while browsing
+      - Basic support for the MB Photo server plugin
+      
+      7.0.0.47
+      Fixes:
+      - Music tracks no longer getting stuck
+      - Unwatched label changed to unplayed
+      Enhancements:
+      - Various UI changes based on a design consultation
+      
       7.0.0.40
       Fixes:
       - Fixed link for MB3 server link on welcome screen
