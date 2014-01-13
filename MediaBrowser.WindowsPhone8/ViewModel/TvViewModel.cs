@@ -295,7 +295,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 Log.Info("Getting episodes for Season [{0}] ({1}) of TV Show [{2}] ({3})", SelectedSeason.Name, SelectedSeason.Id, SelectedTvSeries.Name, SelectedTvSeries.Id);
 
                 var episodes = await _apiClient.GetEpisodesAsync(query);
-                Episodes = episodes.Items.OrderBy(x => x.IndexNumber).ToList();
+                Episodes = episodes.Items.ToList();
                 return true;
             }
             catch (HttpException ex)
