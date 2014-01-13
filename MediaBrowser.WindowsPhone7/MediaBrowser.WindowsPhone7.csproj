@@ -239,6 +239,9 @@
     <Compile Include="..\MediaBrowser.WindowsPhone8\Controls\MediaBrowserLogo.cs">
       <Link>Controls\MediaBrowserLogo.cs</Link>
     </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone8\Controls\PlayButton.cs">
+      <Link>Controls\PlayButton.cs</Link>
+    </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone8\Controls\Played.cs">
       <Link>Controls\Played.cs</Link>
     </Compile>

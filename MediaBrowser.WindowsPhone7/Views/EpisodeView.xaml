@@ -137,11 +137,7 @@
                                             CommandParameter="{Binding}">
                                         <Grid>
                                             <Image Source="{Binding Converter={StaticResource ImageUrlConverter}, ConverterParameter=episode}" />
-                                            <controls1:RoundButton ImageSource="/Icons/appbar.transport.play.rest.png"
-                                                                   IsHitTestVisible="False"
-                                                                   HorizontalAlignment="Center"
-                                                                   VerticalAlignment="Center"
-                                                                   Visibility="Collapsed" />
+                                            <controls:Played Data="{Binding}" />
                                         </Grid>
                                     </Button>
                                     <TextBlock Text="{Binding Overview}"

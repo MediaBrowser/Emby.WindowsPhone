@@ -129,6 +129,7 @@
     <Compile Include="Behaviours\MBSysTray.cs" />
     <Compile Include="Behaviours\OnTextPropertyChangedBehaviour.cs" />
     <Compile Include="Behaviours\PanoramaBackgroundBehaviour.cs" />
+    <Compile Include="Controls\PlayButton.cs" />
     <Compile Include="Controls\DynamicTextBlock.cs" />
     <Compile Include="Controls\LockScreenCollage.xaml.cs">
       <DependentUpon>LockScreenCollage.xaml</DependentUpon>
