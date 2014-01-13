@@ -78,11 +78,6 @@
         </toolkit:NavigationOutTransition>
     </toolkit:TransitionService.NavigationOutTransition>
 
-    <scott:BasePage.Resources>
-        <system:Double x:Key="PlayButtonSize">160</system:Double>
-        <system:Double x:Key="PlayButtonBackgroundSize">140</system:Double>
-    </scott:BasePage.Resources>
-
     <Grid x:Name="LayoutRoot"
           Background="{StaticResource MediaBrowserBackground}">
 
