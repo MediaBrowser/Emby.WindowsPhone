@@ -15,6 +15,7 @@
                 xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
                 xmlns:converters="clr-namespace:MediaBrowser.WindowsPhone.Converters"
                 xmlns:system="clr-namespace:System;assembly=mscorlib"
+                xmlns:converters1="clr-namespace:Cimbalino.Phone.Toolkit.Converters;assembly=Cimbalino.Phone.Toolkit"
                 mc:Ignorable="d"
                 d:DesignWidth="480"
                 d:DesignHeight="696"
@@ -41,6 +42,9 @@
     <scott:BasePage.Resources>
         <converters:VirtualConverter x:Key="VirtualConverter" />
         <converters:VirtualVisibilityConverter x:Key="VirtualVisibilityConverter" />
+        <converters1:BooleanToStringConverter x:Key="MarkAsWatchedConverter"
+                                              TrueValue="mark as unwatched"
+                                              FalseValue="mark as unwatched"/>
     </scott:BasePage.Resources>
 
     <toolkit:TransitionService.NavigationInTransition>
@@ -86,6 +90,9 @@
                                                       Command="{Binding AddRemoveFavouriteCommand}"
                                                       CommandParameter="{Binding SelectedEpisode}"
                                                       IsEnabled="{Binding CanUpdateFavourites}" />
+                    <!--<cimbalino:ApplicationBarMenuItem Text="{Binding SelectedEpisode.UserData.Played, Converter={StaticResource MarkAsWatchedConverter}}"
+                                                      Command="{Binding DataContext.MarkAsWatchedEpisodeViewCommand, ElementName=LayoutRoot}"
+                                                      CommandParameter="{Binding SelectedEpisode}"/>-->
                 </cimbalino:ApplicationBarBehavior.MenuItems>
             </cimbalino:ApplicationBarBehavior>
         </i:Interaction.Behaviors>
@@ -145,7 +152,9 @@
                                         <Grid>
                                             <coding4Fun:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}, ConverterParameter=episode}"
                                                                    MaxWidth="480"
-                                                                   Stretch="UniformToFill" />
+                                                                   Stretch="UniformToFill"
+                                                                   PlaceholderImageSource="/Images/MBBackground.jpg"
+                                                                   PlaceholderImageStretch="Uniform" />
                                             <controls:PlayButton Visibility="{Binding Tv.SelectedEpisode, Source={StaticResource Locator}, Converter={StaticResource VirtualVisibilityConverter}}" />
                                             
                                             <controls:Played Data="{Binding}"/>

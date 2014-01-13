@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Windows;
 using GalaSoft.MvvmLight.Command;
 using JetBrains.Annotations;
 using MediaBrowser.Model;
@@ -28,7 +30,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     /// </summary>
     public class TvViewModel : ViewModelBase
     {
-        private readonly INavigationService _navService;
+        private readonly INavigationService _navigationService;
         private readonly IExtendedApiClient _apiClient;
 
         public bool ShowDataLoaded;
@@ -37,9 +39,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         /// <summary>
         /// Initializes a new instance of the TvViewModel class.
         /// </summary>
-        public TvViewModel(INavigationService navService, IExtendedApiClient apiClient)
+        public TvViewModel(INavigationService navigationService, IExtendedApiClient apiClient)
         {
-            _navService = navService;
+            _navigationService = navigationService;
             _apiClient = apiClient;
 
             RecentItems = new ObservableCollection<BaseItemDto>();
@@ -97,7 +99,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                 };
 
-                if (_navService.IsNetworkAvailable && !ShowDataLoaded)
+                if (_navigationService.IsNetworkAvailable && !ShowDataLoaded)
                 {
                     if (SelectedTvSeries != null)
                     {
@@ -129,7 +131,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             SeasonPageLoaded = new RelayCommand(async () =>
             {
-                if (_navService.IsNetworkAvailable && !SeasonDataLoaded)
+                if (_navigationService.IsNetworkAvailable && !SeasonDataLoaded)
                 {
                     if (SelectedSeason != null)
                     {
@@ -178,7 +180,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 CanUpdateFavourites = true;
             });
 
-            NavigateTo = new RelayCommand<BaseItemDto>(_navService.NavigateTo);
+            NavigateTo = new RelayCommand<BaseItemDto>(_navigationService.NavigateTo);
         }
 
         private async Task<bool> GetEpisode()
@@ -312,7 +314,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
         public async Task GetEpisodeDetails()
         {
-            if (_navService.IsNetworkAvailable)
+            if (_navigationService.IsNetworkAvailable)
             {
                 var index = SelectedEpisode.IndexNumber;
                 if (SelectedEpisode != null && Episodes.IsNullOrEmpty())
@@ -357,6 +359,38 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             Episodes = new List<BaseItemDto>();
             SelectedEpisode = null;
+        }
+
+        public RelayCommand<BaseItemDto> MarkAsWatchedEpisodeViewCommand
+        {
+            get
+            {
+                return new RelayCommand<BaseItemDto>(async item =>
+                {
+                    await MarkAsWatched(item);
+                    RaisePropertyChanged(() => SelectedEpisode.UserData);
+                });
+            }
+        }
+
+        private async Task MarkAsWatched(BaseItemDto item)
+        {
+            if (!_navigationService.IsNetworkAvailable)
+            {
+                return;
+            }
+
+            try
+            {
+                item.UserData = item.UserData.Played 
+                    ? await _apiClient.MarkUnplayedAsync(item.Id, AuthenticationService.Current.LoggedInUserId) 
+                    : await _apiClient.MarkPlayedAsync(item.Id, AuthenticationService.Current.LoggedInUserId, DateTime.Now);
+            }
+            catch (HttpException ex)
+            {
+                MessageBox.Show("There was a problem updating this item, please try again later.", "Error", MessageBoxButton.OK);
+                Log.ErrorException("MarkAsWatchedCommand", ex);
+            }
         }
 
         public BaseItemDto SelectedTvSeries { get; set; }

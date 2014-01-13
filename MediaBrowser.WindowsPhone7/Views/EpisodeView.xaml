@@ -10,7 +10,7 @@
                 xmlns:cimbalino="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
                 xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP71"
                 xmlns:controls="clr-namespace:MediaBrowser.WindowsPhone.Controls"
-                xmlns:controls1="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
+                xmlns:coding4Fun="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
                 xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
                 xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
                 mc:Ignorable="d"
@@ -136,7 +136,11 @@
                                             Command="{Binding Main.PlayMovieCommand, Source={StaticResource Locator}}"
                                             CommandParameter="{Binding}">
                                         <Grid>
-                                            <Image Source="{Binding Converter={StaticResource ImageUrlConverter}, ConverterParameter=episode}" />
+                                            <coding4Fun:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}, ConverterParameter=episode}"
+                                                                   MaxWidth="480"
+                                                                   Stretch="UniformToFill"
+                                                                   PlaceholderImageSource="/Images/MBBackground.jpg"
+                                                                   PlaceholderImageStretch="Uniform" />
                                             <controls:Played Data="{Binding}" />
                                         </Grid>
                                     </Button>
