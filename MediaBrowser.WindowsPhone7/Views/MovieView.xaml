@@ -188,6 +188,34 @@
                     </toolkit:LongListSelector.ItemTemplate>
                 </toolkit:LongListSelector>
             </controls:PanoramaItem>
+
+            <controls:PanoramaItem Header="trailers">
+                <toolkit:LongListSelector ItemsSource="{Binding Trailers}">
+                    <toolkit:LongListSelector.ListHeader>
+                        <TextBlock Text="{Binding LocalizedResources.NoItemsFound, Source={StaticResource LocalizedStrings}}"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Top"
+                                   Style="{StaticResource PhoneTextLargeStyle}"
+                                   Visibility="{Binding Trailers.Count, Converter={StaticResource IntToVisibilityConverter}, ConverterParameter=true}" />
+                    </toolkit:LongListSelector.ListHeader>
+                    <toolkit:LongListSelector.ItemTemplate>
+                        <DataTemplate>
+                            <Button Style="{StaticResource EmptyButtonStyle}"
+                                    VerticalContentAlignment="Top"
+                                    Command="{Binding Main.PlayMovieCommand, Source={StaticResource Locator}}"
+                                    CommandParameter="{Binding}">
+                                <Grid>
+                                    <c4F:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
+                                                    Width="400"
+                                                    Height="200"
+                                                    Stretch="Fill" />
+                                    <local:PlayButton Height="60" />
+                                </Grid>
+                            </Button>
+                        </DataTemplate>
+                    </toolkit:LongListSelector.ItemTemplate>
+                </toolkit:LongListSelector>
+            </controls:PanoramaItem>
         </controls:Panorama>
     </Grid>
 

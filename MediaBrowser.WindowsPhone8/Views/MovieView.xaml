@@ -104,7 +104,7 @@
                                         HorizontalAlignment="Left"
                                         VerticalAlignment="Top"
                                         Margin="12,0,0,0" />
-                        <local:PlayButton/>
+                        <local:PlayButton />
                     </Grid>
                 </Button>
             </phone:PanoramaItem>
@@ -190,6 +190,34 @@
                 </phone:LongListSelector>
             </phone:PanoramaItem>
 
+            <phone:PanoramaItem Header="trailers">
+                <phone:LongListSelector ItemsSource="{Binding Trailers}">
+                    <phone:LongListSelector.ListHeader>
+                        <TextBlock Text="{Binding LocalizedResources.NoItemsFound, Source={StaticResource LocalizedStrings}}"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Top"
+                                   Style="{StaticResource PhoneTextLargeStyle}"
+                                   Visibility="{Binding Trailers.Count, Converter={StaticResource IntToVisibilityConverter}, ConverterParameter=true}" />
+                    </phone:LongListSelector.ListHeader>
+                    <phone:LongListSelector.ItemTemplate>
+                        <DataTemplate>
+                            <Button Style="{StaticResource EmptyButtonStyle}"
+                                    VerticalContentAlignment="Top"
+                                    Command="{Binding Main.PlayMovieCommand, Source={StaticResource Locator}}"
+                                    CommandParameter="{Binding}">
+                                <Grid>
+                                    <c4F:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
+                                                    Width="400"
+                                                    Height="200"
+                                                    Stretch="Fill" />
+                                    <local:PlayButton Height="60" />
+                                </Grid>
+                            </Button>
+                        </DataTemplate>
+                    </phone:LongListSelector.ItemTemplate>
+                </phone:LongListSelector>
+            </phone:PanoramaItem>
+
             <phone:PanoramaItem Header="chapters">
                 <phone:LongListSelector ItemsSource="{Binding Chapters}">
                     <phone:LongListSelector.ItemTemplate>
@@ -204,8 +232,8 @@
                                 <c4F:SuperImage Source="{Binding ImageUrl}"
                                                 Stretch="UniformToFill"
                                                 PlaceholderImageSource="/Images/MBBackground.jpg"
-                                                PlaceholderImageStretch="Uniform"/>
-                                    <Border VerticalAlignment="Bottom"
+                                                PlaceholderImageStretch="Uniform" />
+                                <Border VerticalAlignment="Bottom"
                                         Background="#C4000000"
                                         HorizontalAlignment="Stretch">
                                     <Grid>
