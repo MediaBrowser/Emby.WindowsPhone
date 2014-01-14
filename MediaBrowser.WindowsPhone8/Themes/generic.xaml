@@ -74,8 +74,21 @@
                                   BorderBrush="{TemplateBinding BorderBrush}"
                                   BorderThickness="{TemplateBinding BorderThickness}"
                                   Padding="{TemplateBinding Padding}">
-                        <StackPanel Orientation="Vertical"
-                                    x:Name="StackPanel" />
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            
+                            <ContentControl Content="{TemplateBinding Header}"
+                                            VerticalAlignment="Top"
+                                            HorizontalAlignment="Left"/>
+
+                            <StackPanel Orientation="Vertical"
+                                        x:Name="StackPanel"
+                                        Grid.Row="1"/>
+                        </Grid>
+                        
                     </ScrollViewer>
                 </ControlTemplate>
             </Setter.Value>

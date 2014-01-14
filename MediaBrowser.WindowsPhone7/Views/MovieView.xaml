@@ -114,44 +114,43 @@
                 <Grid>
                     <local:ScrollableTextBlock Text="{Binding SelectedMovie.Overview}"
                                                Foreground="{StaticResource PhoneForegroundBrush}"
-                                               Padding="12,6,6,12" />
-                </Grid>
-            </controls:PanoramaItem>
+                                               Padding="12,6,6,12">
+                        <local:ScrollableTextBlock.Header>
+                            <StackPanel Orientation="Vertical"
+                                        Margin="-12,0,0,12">
+                                <TextBlock Text="{Binding SelectedMovie.ProductionYear, StringFormat='Released in \{0\}'}"
+                                           Style="{StaticResource PhoneTextNormalStyle}" />
 
-            <controls:PanoramaItem Header="details">
-                <Grid>
-                    <StackPanel Orientation="Vertical">
-                        <TextBlock Text="{Binding SelectedMovie.ProductionYear, StringFormat='Released in \{0\}'}"
-                                   Style="{StaticResource PhoneTextNormalStyle}" />
-
-                        <telerikInput:RadRating Value="{Binding SelectedMovie.CommunityRating, Converter={StaticResource RatingConverter}}"
-                                                IsReadOnly="True"
-                                                ItemShapeHeight="20"
-                                                Margin="12"
-                                                ItemShapeWidth="20" />
-                        <StackPanel Orientation="Horizontal"
-                                    Visibility="{Binding SelectedMovie.CriticRating, Converter={StaticResource NullVisibilityConverter}}"
-                                    Margin="12,0">
-                            <Image Source="{Binding SelectedMovie.CriticRating, Converter={StaticResource CriticRatingConverter}}"
-                                   Height="25"
-                                   Width="25"
-                                   Stretch="UniformToFill" />
-                            <TextBlock Text="{Binding SelectedMovie.CriticRating, StringFormat='\{0\}%'}"
-                                       Style="{StaticResource PhoneTextSubtleStyle}"
-                                       Margin="6,0" />
-                        </StackPanel>
-                        <HyperlinkButton Content="See film on imdb"
-                                         NavigateUri="{Binding ImdbId, StringFormat='http://m.imdb.com/title/\{0\}'}"
-                                         TargetName="_new"
-                                         HorizontalAlignment="Left"
-                                         Margin="0,12,0,0" />
-                        <TextBlock Text="{Binding RunTime, StringFormat='Running time: \{0\}'}"
-                                   Style="{StaticResource PhoneTextNormalStyle}"
-                                   Margin="12,12,0,0" />
-                        <TextBlock Text="{Binding SelectedMovie.OfficialRating, StringFormat='Rating: \{0\}'}"
-                                   Style="{StaticResource PhoneTextNormalStyle}"
-                                   Margin="12,12,0,0" />
-                    </StackPanel>
+                                <telerikInput:RadRating Value="{Binding SelectedMovie.CommunityRating, Converter={StaticResource RatingConverter}}"
+                                                        IsReadOnly="True"
+                                                        ItemShapeHeight="20"
+                                                        Margin="12"
+                                                        ItemShapeWidth="20" />
+                                <StackPanel Orientation="Horizontal"
+                                            Visibility="{Binding SelectedMovie.CriticRating, Converter={StaticResource NullVisibilityConverter}}"
+                                            Margin="12,0">
+                                    <Image Source="{Binding SelectedMovie.CriticRating, Converter={StaticResource CriticRatingConverter}}"
+                                           Height="25"
+                                           Width="25"
+                                           Stretch="UniformToFill" />
+                                    <TextBlock Text="{Binding SelectedMovie.CriticRating, StringFormat='\{0\}%'}"
+                                               Style="{StaticResource PhoneTextSubtleStyle}"
+                                               Margin="6,0" />
+                                </StackPanel>
+                                <HyperlinkButton Content="See film on imdb"
+                                                 NavigateUri="{Binding ImdbId, StringFormat='http://m.imdb.com/title/\{0\}'}"
+                                                 TargetName="_new"
+                                                 HorizontalAlignment="Left"
+                                                 Margin="0,12,0,0" />
+                                <TextBlock Text="{Binding RunTime, StringFormat='Running time: \{0\}'}"
+                                           Style="{StaticResource PhoneTextNormalStyle}"
+                                           Margin="12,12,0,0" />
+                                <TextBlock Text="{Binding SelectedMovie.OfficialRating, StringFormat='Rating: \{0\}'}"
+                                           Style="{StaticResource PhoneTextNormalStyle}"
+                                           Margin="12,12,0,0" />
+                            </StackPanel>
+                        </local:ScrollableTextBlock.Header>
+                    </local:ScrollableTextBlock>
                 </Grid>
             </controls:PanoramaItem>
 
