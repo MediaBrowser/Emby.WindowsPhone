@@ -216,6 +216,41 @@
                     </toolkit:LongListSelector.ItemTemplate>
                 </toolkit:LongListSelector>
             </controls:PanoramaItem>
+
+            <controls:PanoramaItem Header="chapters">
+                <toolkit:LongListSelector ItemsSource="{Binding Chapters}">
+                    <toolkit:LongListSelector.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Height="173"
+                                  Tap="ChapterItem_OnTap"
+                                  Margin="12,6">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <c4F:SuperImage Source="{Binding ImageUrl}"
+                                                Stretch="UniformToFill"
+                                                PlaceholderImageSource="/Images/MBBackground.jpg"
+                                                PlaceholderImageStretch="Uniform" />
+                                <Border VerticalAlignment="Bottom"
+                                        Background="#C4000000"
+                                        HorizontalAlignment="Stretch">
+                                    <Grid>
+                                        <Rectangle Fill="Transparent"
+                                                   HorizontalAlignment="Stretch"
+                                                   Height="1"
+                                                   Width="308" />
+                                        <TextBlock Text="{Binding Name}"
+                                                   Style="{StaticResource PhoneTextLargeStyle}"
+                                                   HorizontalAlignment="Left" />
+                                    </Grid>
+
+                                </Border>
+                            </Grid>
+                        </DataTemplate>
+                    </toolkit:LongListSelector.ItemTemplate>
+                </toolkit:LongListSelector>
+            </controls:PanoramaItem>
         </controls:Panorama>
     </Grid>
 
