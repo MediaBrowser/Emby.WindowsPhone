@@ -221,6 +221,9 @@
     <Compile Include="ViewModel\ChooseProfileViewModel.cs" />
     <Compile Include="ViewModel\FolderViewModel.cs" />
     <Compile Include="ViewModel\GenericItemViewModel.cs" />
+    <Compile Include="ViewModel\LiveTv\ChannelsViewModel.cs" />
+    <Compile Include="ViewModel\LiveTv\GuideViewModel.cs" />
+    <Compile Include="ViewModel\LiveTv\ScheduleViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\MovieViewModel.cs" />
     <Compile Include="ViewModel\MusicViewModel.cs" />
@@ -272,6 +275,15 @@
     </Compile>
     <Compile Include="Views\GenericItemView.xaml.cs">
       <DependentUpon>GenericItemView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LiveTv\ChannelsView.xaml.cs">
+      <DependentUpon>ChannelsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LiveTv\GuideView.xaml.cs">
+      <DependentUpon>GuideView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LiveTv\ScheduleView.xaml.cs">
+      <DependentUpon>ScheduleView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -477,6 +489,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\GenericItemView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LiveTv\ChannelsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LiveTv\GuideView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LiveTv\ScheduleView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -760,6 +784,7 @@
       <Name>Microsoft Player Framework %28Microsoft.PlayerFramework.WP8.Core, Version=1.8.2.2%29</Name>
     </SDKReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

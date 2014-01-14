@@ -21,6 +21,9 @@ using MediaBrowser.Model;
 using INavigationService = MediaBrowser.WindowsPhone.Model.INavigationService;
 using NavigationService = MediaBrowser.WindowsPhone.Model.NavigationService;
 using Cimbalino.Phone.Toolkit.Helpers;
+#if WP8
+using MediaBrowser.WindowsPhone.ViewModel.LiveTv;
+#endif
 
 namespace MediaBrowser.WindowsPhone.ViewModel
 {
@@ -92,6 +95,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             SimpleIoc.Default.Register<MusicCollectionViewModel>();
             SimpleIoc.Default.Register<ActorViewModel>();
             SimpleIoc.Default.Register<GenericItemViewModel>();
+#if WP8
+            SimpleIoc.Default.Register<ChannelsViewModel>();
+            SimpleIoc.Default.Register<GuideViewModel>();
+            SimpleIoc.Default.Register<ScheduleViewModel>();
+#endif
         }
 
         /// <summary>
@@ -239,6 +247,32 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             get { return ServiceLocator.Current.GetInstance<GenericItemViewModel>(); }
         }
+
+#if WP8
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
+            "CA1822:MarkMembersAsStatic",
+            Justification = "This non-static member is needed for data binding purposes.")]
+        public ChannelsViewModel Channels
+        {
+            get { return ServiceLocator.Current.GetInstance<ChannelsViewModel>(); }
+        }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
+            "CA1822:MarkMembersAsStatic",
+            Justification = "This non-static member is needed for data binding purposes.")]
+        public GuideViewModel Guide
+        {
+            get { return ServiceLocator.Current.GetInstance<GuideViewModel>(); }
+        }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
+            "CA1822:MarkMembersAsStatic",
+            Justification = "This non-static member is needed for data binding purposes.")]
+        public ScheduleViewModel Schedule
+        {
+            get { return ServiceLocator.Current.GetInstance<ScheduleViewModel>(); }
+        }
+#endif
 
         public static TvViewModel GetTvViewModel(string itemId)
         {
