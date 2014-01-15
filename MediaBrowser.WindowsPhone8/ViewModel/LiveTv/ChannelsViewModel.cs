@@ -153,7 +153,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                                     group c by Utils.GetSortByNameHeader(c)
                                         into grp
                                         orderby grp.Key
-                                        select new Group<BaseItemDto>(grp.Key, grp)).ToList();
+                                        select new Group<ChannelInfoDto>(grp.Key, grp)).ToList();
 
             GroupedChannels = groupedNameItems;
         }

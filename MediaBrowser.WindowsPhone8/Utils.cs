@@ -13,6 +13,7 @@ using MediaBrowser.Model;
 using MediaBrowser.Model.Configuration;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
+using MediaBrowser.Model.LiveTv;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Session;
 using MediaBrowser.Services;
@@ -89,6 +90,22 @@ namespace MediaBrowser.WindowsPhone
             }
 
             var name = !string.IsNullOrEmpty(dtoBaseItem.SortName) ? dtoBaseItem.SortName : dtoBaseItem.Name;
+            return SortByNameHeader(name);
+        }
+
+        internal static string GetSortByNameHeader(ChannelInfoDto channelInfoDto)
+        {
+            if (string.IsNullOrEmpty(channelInfoDto.Name))
+            {
+                return "#".ToString(CultureInfo.InvariantCulture);
+            }
+
+            var name = channelInfoDto.Name;
+            return SortByNameHeader(name);
+        }
+
+        private static string SortByNameHeader(string name)
+        {
             var words = name.Split(' ');
             try
             {
