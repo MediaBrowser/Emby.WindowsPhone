@@ -81,7 +81,9 @@
                     </phone:LongListSelector.ListHeader>
                     <phone:LongListSelector.ItemTemplate>
                         <DataTemplate>
-                            <Button Style="{StaticResource EmptyButtonStyle}">
+                            <Button Style="{StaticResource EmptyButtonStyle}"
+                                    Command="{Binding Channels.ChannelTappedCommand, Source={StaticResource Locator}}"
+                                    CommandParameter="{Binding}">
                                 <StackPanel Orientation="Horizontal">
                                     <c4F:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
                                                     Stretch="UniformToFill"

@@ -248,6 +248,9 @@
     <Compile Include="..\MediaBrowser.WindowsPhone8\Controls\ProfileBox.cs">
       <Link>Controls\ProfileBox.cs</Link>
     </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone8\Controls\ScheduledRecording.cs">
+      <Link>Controls\ScheduledRecording.cs</Link>
+    </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone8\Controls\ScrollableTextBlock.cs">
       <Link>Controls\ScrollableTextBlock.cs</Link>
     </Compile>

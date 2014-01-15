@@ -6,6 +6,10 @@ using MediaBrowser.WindowsPhone.ViewModel;
 using Microsoft.Phone.Net.NetworkInformation;
 using MediaBrowser.Model.Dto;
 
+#if WP8
+using MediaBrowser.WindowsPhone.ViewModel.LiveTv;
+#endif
+
 namespace MediaBrowser.WindowsPhone.Model
 {
     public class NavigationService : Cimbalino.Phone.Toolkit.Services.NavigationService, INavigationService
@@ -95,6 +99,13 @@ namespace MediaBrowser.WindowsPhone.Model
                 //case "photo":
 
                 //    break;
+#if WP8
+                case "channel":
+                    if (SimpleIoc.Default.GetInstance<GuideViewModel>() != null)
+                        Messenger.Default.Send(new NotificationMessage(item, Constants.Messages.ChangeChannelMsg));
+                    NavigateTo(Constants.Pages.LiveTv.GuideView);
+                    break;
+#endif
                 default:
                     if (SimpleIoc.Default.GetInstance<GenericItemViewModel>() != null)
                     {

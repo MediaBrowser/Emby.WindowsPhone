@@ -142,6 +142,7 @@
     </Compile>
     <Compile Include="Controls\MediaBrowserLogo.cs" />
     <Compile Include="Controls\ProfileBox.cs" />
+    <Compile Include="Controls\ScheduledRecording.cs" />
     <Compile Include="Controls\ScrollableTextBlock.cs" />
     <Compile Include="Controls\Played.cs" />
     <Compile Include="Controls\WideTileControl.xaml.cs">

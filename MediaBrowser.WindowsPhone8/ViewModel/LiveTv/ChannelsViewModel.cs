@@ -4,6 +4,8 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Ioc;
+using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.LiveTv;
@@ -50,7 +52,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                         Name = "BBC Two"
                     }
                 };
-                GroupChannels();
+                GroupChannels().ConfigureAwait(false);
             }
         }
 
@@ -87,6 +89,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                 {
                     _channelsLoaded = await GetChannels();
                 });
+            }
+        }
+
+        public RelayCommand<BaseItemDto> ChannelTappedCommand
+        {
+            get
+            {
+                return new RelayCommand<BaseItemDto>(_navigationService.NavigateTo);
             }
         }
 

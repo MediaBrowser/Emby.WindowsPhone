@@ -81,6 +81,7 @@
             public const string GenericItemChangedMsg = "GenericItemChangedMsg";
             public const string VideoStateChangedMsg = "VideoStateChangedMsg";
             public const string SetResumeMsg = "SetResumeMsg";
+            public const string ChangeChannelMsg = "ChangeChannelMsg";
         }
 
         public class Pages
@@ -109,6 +110,14 @@
             public const string ActorView = ViewsPath + "ActorView.xaml";
             public const string GenericItemView = ViewsPath + "GenericItemView.xaml";
             public const string MainPage = ViewsPath + "MainPage.xaml";
+
+            public class LiveTv
+            {
+                private const string LiveTvPath = ViewsPath + "LiveTv/";
+                public const string ChannelsView = LiveTvPath + "ChannelsView.xaml";
+                public const string GuideView = LiveTvPath + "GuideView.xaml";
+                public const string ScheduleView = LiveTvPath + "ScheduleView.xaml";
+            }
 
             public class Remote
             {
