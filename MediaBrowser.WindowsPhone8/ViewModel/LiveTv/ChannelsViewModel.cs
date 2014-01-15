@@ -41,23 +41,25 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
 
             if (IsInDesignMode)
             {
-                Channels = new List<BaseItemDto>
+                Channels = new List<ChannelInfoDto>
                 {
-                    new BaseItemDto
+                    new ChannelInfoDto
                     {
-                        Name = "BBC One"
+                        Name = "BBC One",
+                        Number = "1"
                     },
-                    new BaseItemDto
+                    new ChannelInfoDto
                     {
-                        Name = "BBC Two"
+                        Name = "BBC Two",
+                        Number = "2"
                     }
                 };
                 GroupChannels().ConfigureAwait(false);
             }
         }
 
-        public List<BaseItemDto> Channels { get; set; }
-        public List<Group<BaseItemDto>> GroupedChannels { get; set; }
+        public List<ChannelInfoDto> Channels { get; set; }
+        public List<Group<ChannelInfoDto>> GroupedChannels { get; set; }
 
         public RelayCommand<string> NavigateToPage
         {
@@ -92,11 +94,16 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
             }
         }
 
-        public RelayCommand<BaseItemDto> ChannelTappedCommand
+        public RelayCommand<ChannelInfoDto> ChannelTappedCommand
         {
             get
             {
-                return new RelayCommand<BaseItemDto>(_navigationService.NavigateTo);
+                return new RelayCommand<ChannelInfoDto>(channel =>
+                {
+                    if (SimpleIoc.Default.GetInstance<GuideViewModel>() != null)
+                        Messenger.Default.Send(new NotificationMessage(channel, Constants.Messages.ChangeChannelMsg));
+                    _navigationService.NavigateTo(Constants.Pages.LiveTv.GuideView);
+                });
             }
         }
 
@@ -121,6 +128,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
 
                 if (items != null && !items.Items.IsNullOrEmpty())
                 {
+                    Channels = items.Items.ToList();
                     await GroupChannels();
                 }
 
@@ -138,9 +146,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
 
         private async Task GroupChannels()
         {
-            var emptyGroups = new List<Group<BaseItemDto>>();
+            var emptyGroups = new List<Group<ChannelInfoDto>>();
             var headers = new List<string> { "#", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
-            headers.ForEach(item => emptyGroups.Add(new Group<BaseItemDto>(item, new List<BaseItemDto>())));
+            headers.ForEach(item => emptyGroups.Add(new Group<ChannelInfoDto>(item, new List<ChannelInfoDto>())));
             var groupedNameItems = (from c in Channels
                                     group c by Utils.GetSortByNameHeader(c)
                                         into grp

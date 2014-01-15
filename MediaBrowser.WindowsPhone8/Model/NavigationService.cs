@@ -99,13 +99,6 @@ namespace MediaBrowser.WindowsPhone.Model
                 //case "photo":
 
                 //    break;
-#if WP8
-                case "channel":
-                    if (SimpleIoc.Default.GetInstance<GuideViewModel>() != null)
-                        Messenger.Default.Send(new NotificationMessage(item, Constants.Messages.ChangeChannelMsg));
-                    NavigateTo(Constants.Pages.LiveTv.GuideView);
-                    break;
-#endif
                 default:
                     if (SimpleIoc.Default.GetInstance<GenericItemViewModel>() != null)
                     {
