@@ -355,6 +355,7 @@
     <Content Include="Icons\appbar.refresh.rest.png" />
     <Content Include="Icons\searchbutton.png" />
     <Content Include="Images\3d.png" />
+    <Content Include="Images\DefaultChannel.png" />
     <Content Include="Images\FirstRun\WelcomeBackground.jpg" />
     <Content Include="Images\LogoNoPadding.png" />
     <Content Include="Images\MBBackground.jpg" />

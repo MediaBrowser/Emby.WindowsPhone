@@ -8,6 +8,7 @@ using MediaBrowser.Model;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
+using MediaBrowser.Model.LiveTv;
 using MediaBrowser.Model.Querying;
 using MediaBrowser.Model.Search;
 using MediaBrowser.Model.Session;
@@ -230,6 +231,26 @@ namespace MediaBrowser.Design
             throw new NotImplementedException();
         }
 
+        public Task<LiveTvInfo> GetLiveTvInfoAsync(CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<QueryResult<ChannelInfoDto>> GetLiveTvChannelsAsync(ChannelQuery query, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<QueryResult<RecordingInfoDto>> GetLiveTvRecordingsAsync(RecordingQuery query, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<QueryResult<RecordingGroupDto>> GetLiveTvRecordingGroupsAsync(RecordingGroupQuery query, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
         public ApiWebSocket WebSocketConnection { get; set; }
 
         public System.Threading.Tasks.Task<System.IO.Stream> GetImageStreamAsync(string url)
@@ -237,7 +258,12 @@ namespace MediaBrowser.Design
             throw new NotImplementedException();
         }
 
-        public string GetImageUrl(string itemId, Model.Dto.ImageOptions options)
+        public string GetImageUrl(RecordingInfoDto item, ImageOptions options)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string GetImageUrl(string itemId, ImageOptions options)
         {
             if (string.IsNullOrEmpty(itemId))
             {
@@ -289,6 +315,11 @@ namespace MediaBrowser.Design
             }
 
             return GetImageUrl(item.Id, options);
+        }
+
+        public string GetImageUrl(ChannelInfoDto item, ImageOptions options)
+        {
+            throw new NotImplementedException();
         }
 
         private string GetImageUrl(string baseUrl, ImageOptions options, QueryStringDictionary queryParams)
