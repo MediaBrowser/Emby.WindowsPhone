@@ -37,7 +37,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public PlaylistViewModel(INavigationService navigationService, IStorageService storageService)
         {
             _navigationService = navigationService;
-            _playlistChecker = new DispatcherTimer {Interval = new TimeSpan(0, 0, 3)};
+            _playlistChecker = new DispatcherTimer { Interval = new TimeSpan(0, 0, 3) };
             _playlistChecker.Tick += PlaylistCheckerOnTick;
 
             Playlist = new ObservableCollection<PlaylistItem>();
@@ -65,10 +65,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             get
             {
-                return Playlist.Where(x => !x.IsPlaying)
-                               .OrderBy(x => x.Id)
-                               .Take(3)
-                               .ToList();
+                return NowPlayingItem == null
+                    ? null 
+                    : Playlist.Where(x => !x.IsPlaying && x.Id > NowPlayingItem.Id)
+                              .OrderBy(x => x.Id)
+                              .Take(3)
+                              .ToList();
             }
         }
 

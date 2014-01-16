@@ -124,7 +124,7 @@
     <value>Add to favourites</value>
   </data>
   <data name="Collections" xml:space="preserve">
-    <value>Media Folders</value>
+    <value>Folders</value>
   </data>
   <data name="DeviceNotRegistered" xml:space="preserve">
     <value>Device not registered</value>

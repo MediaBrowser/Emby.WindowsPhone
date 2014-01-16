@@ -79,7 +79,7 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Media Folders.
+        ///   Looks up a localized string similar to Folders.
         /// </summary>
         public static string Collections {
             get {
