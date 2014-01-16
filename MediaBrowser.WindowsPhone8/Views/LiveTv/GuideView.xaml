@@ -31,17 +31,61 @@
             <StackPanel x:Name="TitlePanel"
                         Grid.Row="0"
                         Margin="12,17,0,28">
-                <controls:MediaBrowserLogo />
-                <TextBlock Text="page name"
-                           Margin="9,-7,0,0"
-                           Style="{StaticResource PhoneTextTitle1Style}" />
+                <controls:MediaBrowserLogo AltText="{Binding SelectedChannel.Name}" />
             </StackPanel>
 
             <!--ContentPanel - place additional content here-->
             <Grid x:Name="ContentPanel"
                   Grid.Row="1"
                   Margin="12,0,12,0">
-
+                <phone:LongListSelector ItemsSource="{Binding Programmes}">
+                    <phone:LongListSelector.ListHeader>
+                        <TextBlock Text="{Binding LocalizedResources.NoItemsFound, Source={StaticResource LocalizedStrings}}"
+                                   Style="{StaticResource PhoneTextTitle3Style}"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Top"
+                                   Visibility="{Binding Programmes.Count, Converter={StaticResource IntToVisibilityConverter}, ConverterParameter=true}" />
+                    </phone:LongListSelector.ListHeader>
+                    <phone:LongListSelector.ItemTemplate>
+                        <DataTemplate>
+                            <Grid d:DataContext="{Binding Guide.Programmes[0], Source={StaticResource Locator}}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="3*"/>
+                                </Grid.ColumnDefinitions>
+                                
+                                <TextBlock Text="{Binding StartDate, StringFormat='\{0:hh:mm\}'}"
+                                           Style="{StaticResource PhoneTextTitle2Style}"
+                                           VerticalAlignment="Top"
+                                           Grid.Column="0"/>
+                                
+                                <StackPanel Orientation="Vertical"
+                                            Grid.Column="1">
+                                    <TextBlock Text="{Binding Name}"
+                                               Style="{StaticResource PhoneTextTitle2Style}"
+                                               FontWeight="Bold"
+                                               Tag="{Binding Converter={StaticResource IsOnNowConverter}}"
+                                               Foreground="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource InvertedAccentBrushConverter}}"/>
+                                    <TextBlock Text="{Binding EpisodeTitle}"
+                                               Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                    <TextBlock Text="{Binding Overview}"
+                                               TextWrapping="Wrap"
+                                               Style="{StaticResource PhoneTextNormalStyle}"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="HD"
+                                                   Style="{StaticResource PhoneTextTitle3Style}"
+                                                   FontWeight="ExtraBold"
+                                                   Visibility="{Binding IsHD, Converter={StaticResource VisibilityConverter}}"/>
+                                        <TextBlock Text="R"
+                                                   Style="{StaticResource PhoneTextTitle3Style}"
+                                                   FontWeight="ExtraBold"
+                                                   Visibility="{Binding IsRepeat, Converter={StaticResource VisibilityConverter}}"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Grid>
+                        </DataTemplate>
+                    </phone:LongListSelector.ItemTemplate>
+                </phone:LongListSelector>
             </Grid>
         </Grid>
         <!--Uncomment to see an alignment grid to help ensure your controls are

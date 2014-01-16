@@ -32,9 +32,6 @@
     </i:Interaction.Triggers>
 
     <scott:BasePage.Resources>
-        <converters:AccentBrushConverter x:Key="AccentBrushConverter"
-                                         TrueValue="{StaticResource PhoneForegroundBrush}"
-                                         FalseValue="{StaticResource PhoneAccentBrush}" />
         <converters:SimpleDaysAgoConverter x:Key="SimpleDaysAgoConverter" />
         <converters:NotificationLevelToBrushConverter x:Key="NotificationLevelToBrushConverter" />
     </scott:BasePage.Resources>

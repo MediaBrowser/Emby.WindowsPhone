@@ -55,6 +55,13 @@
     <converters:LessThanVisibilityConverter x:Key="LessThanVisibilityConverter" />
     <converters:GreaterThanVisibilityConverter x:Key="GreaterThanVisibilityConverter" />
     <converters:EpisodeNumberConverter x:Key="EpisodeNumberConverter" />
+    <converters:AccentBrushConverter x:Key="AccentBrushConverter"
+                                     TrueValue="{StaticResource PhoneForegroundBrush}"
+                                     FalseValue="{StaticResource PhoneAccentBrush}" />
+    <converters:AccentBrushConverter x:Key="InvertedAccentBrushConverter"
+                                     FalseValue="{StaticResource PhoneForegroundBrush}"
+                                     TrueValue="{StaticResource PhoneAccentBrush}" />
+    <converters:IsOnNowConverter x:Key="IsOnNowConverter"/>
 
     <local:LocalizedStrings xmlns:local="clr-namespace:MediaBrowser.WindowsPhone"
                             x:Key="LocalizedStrings" />

@@ -284,6 +284,9 @@
     <Compile Include="..\MediaBrowser.WindowsPhone8\Converters\ImageUrlConverter.cs">
       <Link>Converters\ImageUrlConverter.cs</Link>
     </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone8\Converters\IsOnNowConverter.cs">
+      <Link>Converters\IsOnNowConverter.cs</Link>
+    </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone8\Converters\LessThanVisibilityConverter.cs">
       <Link>Converters\LessThanVisibilityConverter.cs</Link>
     </Compile>
