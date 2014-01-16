@@ -259,7 +259,7 @@
                                         Header="Default grouping"
                                         toolkit:TiltEffect.SuppressTilt="True" />
                     <CheckBox IsChecked="{Binding JustShowFolderView, Source={StaticResource SpecificSettings}, Mode=TwoWay}">
-                        <TextBlock Text="Just show the list of items, not a collection view"
+                        <TextBlock Text="Just show the list of items, not a media folder view"
                                    TextWrapping="Wrap"
                                    VerticalAlignment="Top" />
                     </CheckBox>
