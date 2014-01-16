@@ -6,6 +6,7 @@ using GalaSoft.MvvmLight.Ioc;
 using MediaBrowser.Model;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Dto;
+using MediaBrowser.Model.LiveTv;
 using MediaBrowser.Model.Search;
 
 namespace MediaBrowser.WindowsPhone.Converters
@@ -107,6 +108,17 @@ namespace MediaBrowser.WindowsPhone.Converters
                     }
 
                     return apiClient.GetImageUrl(item.Id, imageOptions);
+                }
+                if (type == typeof (ChannelInfoDto))
+                {
+                    var item = (ChannelInfoDto) value;
+                    var imageOptions = new ImageOptions
+                    {
+                        ImageType = ImageType.Primary,
+                        MaxHeight = 122
+                    };
+
+                    return apiClient.GetImageUrl(item, imageOptions);
                 }
             }
             return "";

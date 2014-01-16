@@ -33,7 +33,7 @@
                 <behaviors:ApplicationBarIconButton IconUri="/Icons/appbar.refresh.rest.png"
                                                     Command="{Binding RefreshChannelsCommand}"
                                                     Text="refresh"
-                                                    IsEnabled="{Binding ProgressIsVisible, Converter={StaticResource NegativeBooleanConverter}}"/>
+                                                    IsEnabled="{Binding ProgressIsVisible, Converter={StaticResource NegativeBooleanConverter}}" />
             </behaviors:ApplicationBarBehavior.Buttons>
         </behaviors:ApplicationBarBehavior>
     </i:Interaction.Behaviors>
@@ -83,15 +83,27 @@
                         <DataTemplate>
                             <Button Style="{StaticResource EmptyButtonStyle}"
                                     Command="{Binding Channels.ChannelTappedCommand, Source={StaticResource Locator}}"
-                                    CommandParameter="{Binding}">
+                                    CommandParameter="{Binding}"
+                                    Margin="0,0,0,12">
                                 <StackPanel Orientation="Horizontal">
                                     <c4F:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
                                                     Stretch="UniformToFill"
                                                     PlaceholderImageSource="/Images/DefaultChannel.png"
                                                     PlaceholderImageStretch="UniformToFill"
+                                                    VerticalAlignment="Top"
                                                     Height="122" />
-                                    <TextBlock Text="{Binding Name}"
-                                               Style="{StaticResource PhoneTextNormalStyle}" />
+                                    <StackPanel Orientation="Vertical"
+                                                VerticalAlignment="Top">
+                                        <TextBlock Style="{StaticResource PhoneTextNormalStyle}"
+                                                   FontWeight="Bold">
+                                            <Run Text="{Binding Number, StringFormat='\{0\}.'}" />
+                                            <Run Text="{Binding Name}" />
+                                        </TextBlock>
+                                        <TextBlock Style="{StaticResource PhoneTextSubtleStyle}">
+                                            <Run Text="On now:"/>
+                                            <Run Text="{Binding CurrentProgram.Name}"/>
+                                        </TextBlock>
+                                    </StackPanel>
                                 </StackPanel>
                             </Button>
                         </DataTemplate>

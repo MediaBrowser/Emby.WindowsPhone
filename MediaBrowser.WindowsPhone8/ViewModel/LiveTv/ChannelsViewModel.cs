@@ -46,12 +46,20 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                     new ChannelInfoDto
                     {
                         Name = "BBC One",
-                        Number = "1"
+                        Number = "1",
+                        CurrentProgram = new ProgramInfoDto
+                        {
+                            Name = "Sherlock"
+                        }
                     },
                     new ChannelInfoDto
                     {
                         Name = "BBC Two",
-                        Number = "2"
+                        Number = "2",
+                        CurrentProgram = new ProgramInfoDto
+                        {
+                            Name = "Top Gear"
+                        }
                     }
                 };
                 GroupChannels().ConfigureAwait(false);
