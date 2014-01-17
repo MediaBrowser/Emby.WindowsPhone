@@ -13,7 +13,7 @@
                 xmlns:controls="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
                 xmlns:system="clr-namespace:System;assembly=mscorlib"
                 xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
-                xmlns:controls1="clr-namespace:MediaBrowser.WindowsPhone.Controls"
+                xmlns:local="clr-namespace:MediaBrowser.WindowsPhone.Controls"
                 FontFamily="{StaticResource PhoneFontFamilyNormal}"
                 FontSize="{StaticResource PhoneFontSizeNormal}"
                 Foreground="{StaticResource PhoneForegroundBrush}"
@@ -114,68 +114,71 @@
                 </DataTemplate>
             </phone:Panorama.TitleTemplate>
             <phone:PanoramaItem Header="views">
-                <StackPanel Orientation="Vertical"
-                            Margin="12,0,0,0">
-                    <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                     Margin="0,0,0,12">
-                        <StackPanel Orientation="Horizontal">
-                            <Border Background="Red"
-                                    Height="{StaticResource ViewSize}"
-                                    Width="{StaticResource ViewSize}">
-                                <controls1:ScheduledRecording Foreground="White"
-                                                              Height="70"
-                                                              Width="70"/>
-                            </Border>
-                            <TextBlock Text="LIVE TV"
-                                       Style="{StaticResource HeaderTextStyle}"
-                                       VerticalAlignment="Top" />
-                        </StackPanel>
-                    </HyperlinkButton>
-                    <HyperlinkButton NavigateUri="/Views/Predefined/MovieCollectionView.xaml"
-                                     Style="{StaticResource EmptyButtonStyle}"
-                                     Margin="0,0,0,12">
-                        <StackPanel Orientation="Horizontal">
-                            <Border Background="#0094FF">
-                                <Image Source="/Images/moviecollection.png"
-                                       Height="{StaticResource ViewSize}"
-                                       Width="{StaticResource ViewSize}"
-                                       Stretch="UniformToFill" />
-                            </Border>
-                            <TextBlock Text="MOVIES"
-                                       Style="{StaticResource HeaderTextStyle}"
-                                       VerticalAlignment="Top" />
-                        </StackPanel>
-                    </HyperlinkButton>
-                    <HyperlinkButton NavigateUri="/Views/Predefined/TvCollectionView.xaml"
-                                     Style="{StaticResource EmptyButtonStyle}"
-                                     Margin="0,0,0,12">
-                        <StackPanel Orientation="Horizontal">
-                            <Border Background="#FF870F">
-                                <Image Source="/Images/tvcollection.png"
-                                       Height="{StaticResource ViewSize}"
-                                       Width="{StaticResource ViewSize}"
-                                       Stretch="UniformToFill" />
-                            </Border>
-                            <TextBlock Text="TV"
-                                       Style="{StaticResource HeaderTextStyle}"
-                                       VerticalAlignment="Top" />
-                        </StackPanel>
-                    </HyperlinkButton>
-                    <HyperlinkButton NavigateUri="/Views/Predefined/MusicCollectionView.xaml"
-                                     Style="{StaticResource EmptyButtonStyle}">
-                        <StackPanel Orientation="Horizontal">
-                            <Border Background="#6FBD45">
-                                <Image Source="/Images/audiocollection.png"
-                                       Height="{StaticResource ViewSize}"
-                                       Width="{StaticResource ViewSize}"
-                                       Stretch="UniformToFill" />
-                            </Border>
-                            <TextBlock Text="MUSIC"
-                                       Style="{StaticResource HeaderTextStyle}"
-                                       VerticalAlignment="Top" />
-                        </StackPanel>
-                    </HyperlinkButton>
-                </StackPanel>
+                <ScrollViewer>
+                    <StackPanel Orientation="Vertical"
+                                Margin="12,0,0,0">
+                        <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                         Margin="0,0,0,12"
+                                         Visibility="{Binding SupportsLiveTv, Source={StaticResource AppSettings}, Converter={StaticResource VisibilityConverter}}">
+                            <StackPanel Orientation="Horizontal">
+                                <Border Background="#FFD100FF"
+                                        Height="{StaticResource ViewSize}"
+                                        Width="{StaticResource ViewSize}">
+                                    <local:ScheduledRecording Foreground="White"
+                                                                  Height="70"
+                                                                  Width="70" />
+                                </Border>
+                                <TextBlock Text="LIVE TV"
+                                           Style="{StaticResource HeaderTextStyle}"
+                                           VerticalAlignment="Top" />
+                            </StackPanel>
+                        </HyperlinkButton>
+                        <HyperlinkButton NavigateUri="/Views/Predefined/MovieCollectionView.xaml"
+                                         Style="{StaticResource EmptyButtonStyle}"
+                                         Margin="0,0,0,12">
+                            <StackPanel Orientation="Horizontal">
+                                <Border Background="#0094FF">
+                                    <Image Source="/Images/moviecollection.png"
+                                           Height="{StaticResource ViewSize}"
+                                           Width="{StaticResource ViewSize}"
+                                           Stretch="UniformToFill" />
+                                </Border>
+                                <TextBlock Text="MOVIES"
+                                           Style="{StaticResource HeaderTextStyle}"
+                                           VerticalAlignment="Top" />
+                            </StackPanel>
+                        </HyperlinkButton>
+                        <HyperlinkButton NavigateUri="/Views/Predefined/TvCollectionView.xaml"
+                                         Style="{StaticResource EmptyButtonStyle}"
+                                         Margin="0,0,0,12">
+                            <StackPanel Orientation="Horizontal">
+                                <Border Background="#FF870F">
+                                    <Image Source="/Images/tvcollection.png"
+                                           Height="{StaticResource ViewSize}"
+                                           Width="{StaticResource ViewSize}"
+                                           Stretch="UniformToFill" />
+                                </Border>
+                                <TextBlock Text="TV"
+                                           Style="{StaticResource HeaderTextStyle}"
+                                           VerticalAlignment="Top" />
+                            </StackPanel>
+                        </HyperlinkButton>
+                        <HyperlinkButton NavigateUri="/Views/Predefined/MusicCollectionView.xaml"
+                                         Style="{StaticResource EmptyButtonStyle}">
+                            <StackPanel Orientation="Horizontal">
+                                <Border Background="#6FBD45">
+                                    <Image Source="/Images/audiocollection.png"
+                                           Height="{StaticResource ViewSize}"
+                                           Width="{StaticResource ViewSize}"
+                                           Stretch="UniformToFill" />
+                                </Border>
+                                <TextBlock Text="MUSIC"
+                                           Style="{StaticResource HeaderTextStyle}"
+                                           VerticalAlignment="Top" />
+                            </StackPanel>
+                        </HyperlinkButton>
+                    </StackPanel>
+                </ScrollViewer>
             </phone:PanoramaItem>
             <phone:PanoramaItem Header="{Binding LocalizedResources.Collections, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringCaseConverter}}">
                 <phone:LongListSelector ItemsSource="{Binding Folders}">
