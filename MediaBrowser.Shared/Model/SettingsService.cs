@@ -20,5 +20,6 @@ namespace MediaBrowser.Model
         public ConnectionDetails ConnectionDetails { get; set; }
         public ServerConfiguration ServerConfiguration { get; set; }
         public SystemInfo SystemStatus { get; set; }
+        public bool SupportsLiveTv { get; set; }
     }
 }

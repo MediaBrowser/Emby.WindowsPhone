@@ -228,6 +228,13 @@ namespace MediaBrowser.WindowsPhone
                 var sysInfo = await apiClient.GetSystemInfoAsync();
                 App.Settings.SystemStatus = sysInfo;
 
+                logger.Info("Checking if live TV is supported");
+
+#if WP8
+                var liveTv = await apiClient.GetLiveTvInfoAsync(default(CancellationToken));
+                App.Settings.SupportsLiveTv = liveTv != null && liveTv.Services != null && liveTv.Services.Any(x => x.Status == LiveTvServiceStatus.Ok);
+#endif
+
                 if (SimpleIoc.Default.IsRegistered<ApiWebSocket>())
                 {
                     SimpleIoc.Default.Unregister<ApiWebSocket>();

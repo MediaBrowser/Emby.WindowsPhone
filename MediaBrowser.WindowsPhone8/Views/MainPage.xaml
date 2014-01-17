@@ -13,6 +13,7 @@
                 xmlns:controls="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
                 xmlns:system="clr-namespace:System;assembly=mscorlib"
                 xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
+                xmlns:controls1="clr-namespace:MediaBrowser.WindowsPhone.Controls"
                 FontFamily="{StaticResource PhoneFontFamilyNormal}"
                 FontSize="{StaticResource PhoneFontSizeNormal}"
                 Foreground="{StaticResource PhoneForegroundBrush}"
@@ -115,6 +116,21 @@
             <phone:PanoramaItem Header="views">
                 <StackPanel Orientation="Vertical"
                             Margin="12,0,0,0">
+                    <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                     Margin="0,0,0,12">
+                        <StackPanel Orientation="Horizontal">
+                            <Border Background="Red"
+                                    Height="{StaticResource ViewSize}"
+                                    Width="{StaticResource ViewSize}">
+                                <controls1:ScheduledRecording Foreground="White"
+                                                              Height="70"
+                                                              Width="70"/>
+                            </Border>
+                            <TextBlock Text="LIVE TV"
+                                       Style="{StaticResource HeaderTextStyle}"
+                                       VerticalAlignment="Top" />
+                        </StackPanel>
+                    </HyperlinkButton>
                     <HyperlinkButton NavigateUri="/Views/Predefined/MovieCollectionView.xaml"
                                      Style="{StaticResource EmptyButtonStyle}"
                                      Margin="0,0,0,12">
