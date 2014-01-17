@@ -84,8 +84,9 @@
                             <Button Style="{StaticResource EmptyButtonStyle}"
                                     Command="{Binding Channels.ChannelTappedCommand, Source={StaticResource Locator}}"
                                     CommandParameter="{Binding}"
-                                    Margin="12,0,0,12">
-                                <StackPanel Orientation="Horizontal">
+                                    Margin="12">
+                                <StackPanel Orientation="Horizontal"
+                                            d:DataContext="{Binding Channels.Channels[0], Source={StaticResource Locator}}">
                                     <c4F:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
                                                     Stretch="UniformToFill"
                                                     PlaceholderImageSource="/Images/DefaultChannel.png"
@@ -94,11 +95,14 @@
                                                     Height="75"
                                                     Width="75"/>
                                     <StackPanel Orientation="Vertical"
-                                                VerticalAlignment="Top">
+                                                VerticalAlignment="Top"
+                                                Margin="0,-12,0,0">
                                         <TextBlock Style="{StaticResource HeaderTextStyle}"
-                                                   FontWeight="Bold">
-                                            <Run Text="{Binding Number, StringFormat='\{0\}.'}" />
-                                            <Run Text="{Binding Name, Converter={StaticResource StringCaseConverter}, ConverterParameter=false}" />
+                                                   FontWeight="Bold"
+                                                   Text="{Binding Name, Converter={StaticResource StringCaseConverter}, ConverterParameter=false}"/>
+                                        <TextBlock Style="{StaticResource PhoneTextSubtleStyle}">
+                                            <Run Text="Ch"/>
+                                            <Run Text="{Binding Number}"/>
                                         </TextBlock>
                                         <TextBlock Style="{StaticResource PhoneTextSubtleStyle}">
                                             <Run Text="On now:" />

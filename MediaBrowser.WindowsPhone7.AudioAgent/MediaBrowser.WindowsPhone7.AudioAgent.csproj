@@ -59,9 +59,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Cimbalino.Phone.Toolkit.Background.3.2.2\lib\sl4-wp71\Cimbalino.Phone.Toolkit.Background.dll</HintPath>
     </Reference>
-    <Reference Include="MediaBrowser.ApiInteraction.Portable, Version=3.0.5129.21746, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MediaBrowser.ApiClient.3.0.0.285\lib\portable-net45+sl4+wp71+win8\MediaBrowser.ApiInteraction.Portable.dll</HintPath>
+    <Reference Include="MediaBrowser.ApiInteraction.Portable">
+      <HintPath>..\packages\MediaBrowser.ApiClient.3.0.0.286\lib\portable-net45+sl4+wp71+win8\MediaBrowser.ApiInteraction.Portable.dll</HintPath>
     </Reference>
     <Reference Include="MediaBrowser.Model, Version=3.0.5129.21423, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
