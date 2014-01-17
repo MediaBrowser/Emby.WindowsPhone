@@ -454,6 +454,11 @@ namespace MediaBrowser.Design
             throw new NotImplementedException();
         }
 
+        public string GetImageUrl(ProgramInfoDto item, ImageOptions options)
+        {
+            throw new NotImplementedException();
+        }
+
         public string GetImageUrl(string itemId, ImageOptions options)
         {
             throw new NotImplementedException();
@@ -590,6 +595,16 @@ namespace MediaBrowser.Design
         }
 
         public Task<QueryResult<TimerInfoDto>> GetLiveTvTimersAsync(TimerQuery query, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<QueryResult<ProgramInfoDto>> GetLiveTvProgramsAsync(ProgramQuery query, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<QueryResult<ProgramInfoDto>> GetRecommendedLiveTvProgramsAsync(RecommendedProgramQuery query, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
