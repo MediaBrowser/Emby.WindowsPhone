@@ -104,7 +104,8 @@
                                             <Run Text="Ch"/>
                                             <Run Text="{Binding Number}"/>
                                         </TextBlock>
-                                        <TextBlock Style="{StaticResource PhoneTextSubtleStyle}">
+                                        <TextBlock Style="{StaticResource PhoneTextSubtleStyle}"
+                                                   Visibility="{Binding CurrentProgram, Converter={StaticResource NullVisibilityConverter}}">
                                             <Run Text="On now:" />
                                             <Run Text="{Binding CurrentProgram.Name}"/>
                                         </TextBlock>

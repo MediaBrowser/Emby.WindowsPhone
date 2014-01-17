@@ -225,6 +225,7 @@
     <Compile Include="ViewModel\GenericItemViewModel.cs" />
     <Compile Include="ViewModel\LiveTv\ChannelsViewModel.cs" />
     <Compile Include="ViewModel\LiveTv\GuideViewModel.cs" />
+    <Compile Include="ViewModel\LiveTv\LiveTvViewModel.cs" />
     <Compile Include="ViewModel\LiveTv\ScheduleViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\MovieViewModel.cs" />
@@ -283,6 +284,9 @@
     </Compile>
     <Compile Include="Views\LiveTv\GuideView.xaml.cs">
       <DependentUpon>GuideView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LiveTv\LiveTvView.xaml.cs">
+      <DependentUpon>LiveTvView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LiveTv\ScheduleView.xaml.cs">
       <DependentUpon>ScheduleView.xaml</DependentUpon>
@@ -503,6 +507,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\LiveTv\LiveTvView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\LiveTv\ScheduleView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -693,6 +701,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\MediaBrowser.Common.3.0.303\lib\portable-net4+sl4+wp71+win8\MediaBrowser.Model.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Phone.Controls, Version=8.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Phone.Controls.Toolkit, Version=8.0.1.0, Culture=neutral, PublicKeyToken=b772ad94eb9ca604, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\WPtoolkit.4.2013.08.16\lib\wp8\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
