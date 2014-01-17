@@ -105,11 +105,6 @@
                                    Foreground="{StaticResource PhoneForegroundBrush}" />
                         <TextBlock Text="browser"
                                    Foreground="Green" />
-                        <!--<TextBlock Text="3"
-                                   Foreground="Green"
-                                   FontFamily="Euphemia"
-                                   Margin="0"
-                                   FontSize="133.333" />-->
                     </StackPanel>
                 </DataTemplate>
             </phone:Panorama.TitleTemplate>
@@ -119,6 +114,7 @@
                                 Margin="12,0,0,0">
                         <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
                                          Margin="0,0,0,12"
+                                         NavigateUri="/Views/LiveTv/ChannelsView.xaml"
                                          Visibility="{Binding SupportsLiveTv, Source={StaticResource AppSettings}, Converter={StaticResource VisibilityConverter}}">
                             <StackPanel Orientation="Horizontal">
                                 <Border Background="#FFD100FF"
