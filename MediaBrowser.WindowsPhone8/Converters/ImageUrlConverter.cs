@@ -118,7 +118,7 @@ namespace MediaBrowser.WindowsPhone.Converters
                         MaxHeight = 122
                     };
 
-                    return apiClient.GetImageUrl(item, imageOptions);
+                    return item.ImageTags.IsNullOrEmpty() ? string.Empty : apiClient.GetImageUrl(item, imageOptions);
                 }
             }
             return "";

@@ -114,8 +114,8 @@
                                 Margin="12,0,0,0">
                         <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
                                          Margin="0,0,0,12"
-                                         NavigateUri="/Views/LiveTv/ChannelsView.xaml"
-                                         Visibility="{Binding SupportsLiveTv, Source={StaticResource AppSettings}, Converter={StaticResource VisibilityConverter}}">
+                                         NavigateUri="/Views/LiveTv/ChannelsView.xaml">
+                                         <!--Visibility="{Binding SupportsLiveTv, Source={StaticResource AppSettings}, Converter={StaticResource VisibilityConverter}}">-->
                             <StackPanel Orientation="Horizontal">
                                 <Border Background="#FFD100FF"
                                         Height="{StaticResource ViewSize}"
