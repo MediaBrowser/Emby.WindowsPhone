@@ -67,7 +67,12 @@
             </phone:PanoramaItem>
 
             <phone:PanoramaItem Header="other">
-                <Grid />
+                <StackPanel Orientation="Vertical">
+                    <HyperlinkButton Style="{StaticResource EmptyButtonStyle}">
+                        <TextBlock Text="Channels"
+                                   Style="{StaticResource PhoneTextTitle2Style}"/>
+                    </HyperlinkButton>
+                </StackPanel>
             </phone:PanoramaItem>
         </phone:Panorama>
     </Grid>
