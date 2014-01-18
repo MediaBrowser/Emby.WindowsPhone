@@ -205,6 +205,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to play all.
+        /// </summary>
+        public static string AppBarPlayAll {
+            get {
+                return ResourceManager.GetString("AppBarPlayAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to play all tracks.
         /// </summary>
         public static string AppBarPlayAllTracks {
@@ -246,6 +255,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string AppBarPrevious {
             get {
                 return ResourceManager.GetString("AppBarPrevious", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to refresh.
+        /// </summary>
+        public static string AppBarRefresh {
+            get {
+                return ResourceManager.GetString("AppBarRefresh", resourceCulture);
             }
         }
         
@@ -439,6 +457,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Choose a client.
+        /// </summary>
+        public static string HeaderChooseClient {
+            get {
+                return ResourceManager.GetString("HeaderChooseClient", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Default grouping.
         /// </summary>
         public static string HeaderDefaultGrouping {
@@ -475,11 +502,29 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to artists.
+        /// </summary>
+        public static string LabelArtists {
+            get {
+                return ResourceManager.GetString("LabelArtists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to bio.
         /// </summary>
         public static string LabelBio {
             get {
                 return ResourceManager.GetString("LabelBio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to boxsets.
+        /// </summary>
+        public static string LabelBoxsets {
+            get {
+                return ResourceManager.GetString("LabelBoxsets", resourceCulture);
             }
         }
         
@@ -628,6 +673,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to genres.
+        /// </summary>
+        public static string LabelGenres {
+            get {
+                return ResourceManager.GetString("LabelGenres", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hostname:.
         /// </summary>
         public static string LabelHostname {
@@ -660,6 +714,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string LabelJustShowList {
             get {
                 return ResourceManager.GetString("LabelJustShowList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to latest unseen.
+        /// </summary>
+        public static string LabelLatestUnseen {
+            get {
+                return ResourceManager.GetString("LabelLatestUnseen", resourceCulture);
             }
         }
         
@@ -732,6 +795,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string LabelMusic {
             get {
                 return ResourceManager.GetString("LabelMusic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to next up.
+        /// </summary>
+        public static string LabelNextUp {
+            get {
+                return ResourceManager.GetString("LabelNextUp", resourceCulture);
             }
         }
         
@@ -880,6 +952,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Remote.
+        /// </summary>
+        public static string LabelRemote {
+            get {
+                return ResourceManager.GetString("LabelRemote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Running time:.
         /// </summary>
         public static string LabelRunningTime {
@@ -921,6 +1002,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string LabelShowAllItems {
             get {
                 return ResourceManager.GetString("LabelShowAllItems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to shows.
+        /// </summary>
+        public static string LabelShows {
+            get {
+                return ResourceManager.GetString("LabelShows", resourceCulture);
             }
         }
         
@@ -993,6 +1083,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string LabelUnairedEpisodes {
             get {
                 return ResourceManager.GetString("LabelUnairedEpisodes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unwatched:.
+        /// </summary>
+        public static string LabelUnwatched {
+            get {
+                return ResourceManager.GetString("LabelUnwatched", resourceCulture);
             }
         }
         

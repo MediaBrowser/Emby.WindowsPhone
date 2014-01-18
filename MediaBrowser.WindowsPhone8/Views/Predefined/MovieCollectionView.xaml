@@ -71,11 +71,11 @@
                 <phone:Pivot.Title>
                     <StackPanel Orientation="Horizontal"
                                 Margin="-12,0,0,0">
-                        <mb:MediaBrowserLogo AltText="MOVIES" />
+                        <mb:MediaBrowserLogo AltText="{Binding LocalizedResources.LabelMovies, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToUppercaseConverter}}" />
                     </StackPanel>
                 </phone:Pivot.Title>
 
-                <phone:PivotItem Header="latest unseen">
+                <phone:PivotItem Header="{Binding LocalizedResources.LabelLatestUnseen, Source={StaticResource LocalizedStrings}}">
                     <phone:LongListSelector ItemsSource="{Binding LatestUnwatched}"
                                             ListHeader="{Binding UnseenHeader}"
                                             LayoutMode="Grid"
@@ -87,7 +87,8 @@
                                                  Command="{Binding MovieCollection.NavigateToCommand, Source={StaticResource Locator}}"
                                                  CommandParameter="{Binding}"
                                                  Margin="0,0,12,12">
-                                    <Grid Height="173">
+                                    <Grid Height="173"
+                                          d:DataContext="{Binding MovieCollection.LatestUnwatched[0], Source={StaticResource Locator}}">
                                         <controls:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}, ConverterParameter=backdropsmall}"
                                                              Stretch="UniformToFill"
                                                              PlaceholderImageSource="/Images/MBBackground.jpg"
@@ -108,7 +109,7 @@
                                                  Command="{Binding MovieCollection.NavigateToCommand, Source={StaticResource Locator}}"
                                                  CommandParameter="{Binding}"
                                                  Margin="0,0,12,12">
-                                    <Grid>
+                                    <Grid d:DataContext="{Binding MovieCollection.LatestUnwatched[0], Source={StaticResource Locator}}">
                                         <controls:SuperImage PlaceholderImageSource="/Images/Logo.png"
                                                              Source="{Binding Converter={StaticResource ImageUrlConverter}}"
                                                              PlaceholderImageStretch="Uniform"
@@ -129,7 +130,7 @@
                     </phone:LongListSelector>
                 </phone:PivotItem>
 
-                <phone:PivotItem Header="boxsets">
+                <phone:PivotItem Header="{Binding LocalizedResources.LabelBoxsets, Source={StaticResource LocalizedStrings}}">
                     <phone:LongListSelector ItemsSource="{Binding Boxsets}"
                                             IsGroupingEnabled="True"
                                             HideEmptyGroups="False"
@@ -143,12 +144,13 @@
                                                  CommandParameter="{Binding}">
                                     <toolkit:ContextMenuService.ContextMenu>
                                         <toolkit:ContextMenu>
-                                            <toolkit:MenuItem Header="mark as watched"
+                                            <toolkit:MenuItem Header="{Binding LocalizedResources.AppBarMarkAsWatched, Source={StaticResource LocalizedStrings}}"
                                                               Command="{Binding MovieCollection.MarkAsWatchedCommand, Source={StaticResource Locator}}"
                                                               CommandParameter="{Binding}" />
                                         </toolkit:ContextMenu>
                                     </toolkit:ContextMenuService.ContextMenu>
-                                    <StackPanel Orientation="Horizontal">
+                                    <StackPanel Orientation="Horizontal"
+                                                d:DataContext="{Binding MovieCollection.Boxsets[0], Source={StaticResource Locator}}">
                                         <controls:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
                                                              Height="95"
                                                              Width="75"
@@ -162,7 +164,10 @@
                                                        FontSize="{StaticResource PhoneFontSizeMediumLarge}" />
                                             <TextBlock Text="{Binding RecursiveUnplayedItemCount, StringFormat='Unwatched: \{0\}'}"
                                                        Style="{StaticResource PhoneTextSubtleStyle}"
-                                                       Foreground="{Binding RecursiveUnplayedItemCount, Converter={StaticResource ZeroCountBrushConverter}}" />
+                                                       Foreground="{Binding RecursiveUnplayedItemCount, Converter={StaticResource ZeroCountBrushConverter}}">
+                                                <Run Text="{Binding LocalizedResources.LabelUnwatched, Source={StaticResource LocalizedStrings}}"/>
+                                                <Run Text="{Binding RecursiveUnplayedItemCount}"/>
+                                            </TextBlock>
                                         </StackPanel>
                                     </StackPanel>
                                 </HyperlinkButton>
@@ -171,7 +176,7 @@
                     </phone:LongListSelector>
                 </phone:PivotItem>
 
-                <phone:PivotItem Header="movies">
+                <phone:PivotItem Header="{Binding LocalizedResources.LabelMovies, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
                     <phone:LongListSelector ItemsSource="{Binding Movies}"
                                             IsGroupingEnabled="True"
                                             HideEmptyGroups="False"
@@ -184,7 +189,8 @@
                                                  Command="{Binding TvCollection.NavigateToCommand, Source={StaticResource Locator}}"
                                                  CommandParameter="{Binding}"
                                                  HorizontalContentAlignment="Stretch">
-                                    <Grid HorizontalAlignment="Stretch">
+                                    <Grid HorizontalAlignment="Stretch"
+                                          d:DataContext="{Binding MovieCollection.Movies[0], Source={StaticResource Locator}}">
                                         <StackPanel Orientation="Horizontal"
                                                     HorizontalAlignment="Stretch">
                                             <controls:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
@@ -254,7 +260,7 @@
                     </phone:LongListSelector>
                 </phone:PivotItem>
 
-                <phone:PivotItem Header="genres">
+                <phone:PivotItem Header="{Binding LocalizedResources.LabelGenres, Source={StaticResource LocalizedStrings}}">
                     <phone:LongListSelector ItemsSource="{Binding Genres}">
                         <phone:LongListSelector.ItemTemplate>
                             <DataTemplate>
@@ -262,7 +268,8 @@
                                                  Command="{Binding Main.NavigateToPage, Source={StaticResource Locator}}"
                                                  CommandParameter="{Binding}"
                                                  Margin="12,0,0,12">
-                                    <Grid Height="173">
+                                    <Grid Height="173"
+                                          d:DataContext="{Binding MovieCollection.Genres[0], Source={StaticResource Locator}}">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*" />
                                         </Grid.ColumnDefinitions>
