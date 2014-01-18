@@ -238,7 +238,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     if (SelectedFolder.Name.Contains("recent"))
                     {
                         Log.Info("Getting recent items");
-                        PageTitle = AppResources.Recent.ToLower();
+                        PageTitle = AppResources.LabelRecent.ToLower();
                         query.Filters = new[] {ItemFilter.IsRecentlyAdded};
                         query.Recursive = true;
                         isRecent = true;

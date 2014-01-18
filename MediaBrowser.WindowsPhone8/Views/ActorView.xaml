@@ -84,7 +84,7 @@
                     </StackPanel>
                 </phone:Pivot.Title>
 
-                <phone:PivotItem Header="profile">
+                <phone:PivotItem Header="{Binding LocalizedResources.LabelProfile, Source={StaticResource LocalizedStrings}}">
                     <phone:LongListSelector ItemsSource="{Binding Films}"
                                             IsGroupingEnabled="True"
                                             HideEmptyGroups="False"
@@ -122,7 +122,8 @@
                                                  Margin="12,6,0,6"
                                                  Command="{Binding DataContext.NavigateToCommand, ElementName=LayoutRoot}"
                                                  CommandParameter="{Binding}">
-                                    <StackPanel Orientation="Horizontal">
+                                    <StackPanel Orientation="Horizontal"
+                                                d:DataContext="{Binding Actor.SelectedActor, Source={StaticResource Locator}}">
                                         <c4F:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
                                                         MaxHeight="95"
                                                         Width="75"
@@ -164,7 +165,7 @@
                     </phone:LongListSelector>
                 </phone:PivotItem>
 
-                <phone:PivotItem Header="bio">
+                <phone:PivotItem Header="{Binding LocalizedResources.LabelBio, Source={StaticResource LocalizedStrings}}">
                     <ScrollViewer>
                         <TextBlock Text="{Binding SelectedActor.Overview}"
                                    Style="{StaticResource PhoneTextNormalStyle}"

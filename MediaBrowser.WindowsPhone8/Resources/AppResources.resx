@@ -123,6 +123,72 @@
   <data name="AddToFavouritesFull" xml:space="preserve">
     <value>Add to favourites</value>
   </data>
+  <data name="AppBarAbout" xml:space="preserve">
+    <value>about</value>
+  </data>
+  <data name="AppBarAddToNowPlaying" xml:space="preserve">
+    <value>add to now playing</value>
+  </data>
+  <data name="AppBarChangeProfile" xml:space="preserve">
+    <value>change profile</value>
+  </data>
+  <data name="AppBarDeleteItems" xml:space="preserve">
+    <value>delete items</value>
+  </data>
+  <data name="AppBarGroupBy" xml:space="preserve">
+    <value>group by</value>
+  </data>
+  <data name="AppBarLogin" xml:space="preserve">
+    <value>login</value>
+  </data>
+  <data name="AppBarMarkAsUnwatched" xml:space="preserve">
+    <value>mark as unwatched</value>
+  </data>
+  <data name="AppBarMarkAsWatched" xml:space="preserve">
+    <value>mark as watched</value>
+  </data>
+  <data name="AppBarNext" xml:space="preserve">
+    <value>next</value>
+  </data>
+  <data name="AppBarNotifications" xml:space="preserve">
+    <value>notifications</value>
+  </data>
+  <data name="AppBarNowPlaying" xml:space="preserve">
+    <value>now playing</value>
+  </data>
+  <data name="AppBarPlayAllTracks" xml:space="preserve">
+    <value>play all tracks</value>
+  </data>
+  <data name="AppBarPlayItems" xml:space="preserve">
+    <value>play items</value>
+  </data>
+  <data name="AppBarPlayOn" xml:space="preserve">
+    <value>play on...</value>
+  </data>
+  <data name="AppBarPosterLockscreen" xml:space="preserve">
+    <value>set poster as lock screen</value>
+  </data>
+  <data name="AppBarPrevious" xml:space="preserve">
+    <value>previous</value>
+  </data>
+  <data name="AppBarRefreshInformation" xml:space="preserve">
+    <value>refresh information</value>
+  </data>
+  <data name="AppBarRemote" xml:space="preserve">
+    <value>remote</value>
+  </data>
+  <data name="AppBarResume" xml:space="preserve">
+    <value>resume</value>
+  </data>
+  <data name="AppBarSearch" xml:space="preserve">
+    <value>search</value>
+  </data>
+  <data name="AppBarSelectItems" xml:space="preserve">
+    <value>select items</value>
+  </data>
+  <data name="AppBarSettings" xml:space="preserve">
+    <value>settings</value>
+  </data>
   <data name="Collections" xml:space="preserve">
     <value>Folders</value>
   </data>
@@ -168,11 +234,98 @@
   <data name="LabelAddToFavourites" xml:space="preserve">
     <value>Add to favourites</value>
   </data>
-  <data name="MainAppBarChangeProfile" xml:space="preserve">
-    <value>change profile</value>
+  <data name="LabelAlbums" xml:space="preserve">
+    <value>albums</value>
   </data>
-  <data name="MainAppBarRefreshInformation" xml:space="preserve">
-    <value>refresh information</value>
+  <data name="LabelBio" xml:space="preserve">
+    <value>bio</value>
+  </data>
+  <data name="LabelCastCrew" xml:space="preserve">
+    <value>cast + crew</value>
+  </data>
+  <data name="LabelChapters" xml:space="preserve">
+    <value>chapters</value>
+  </data>
+  <data name="LabelEpisode" xml:space="preserve">
+    <value>Episode</value>
+  </data>
+  <data name="LabelFindServer" xml:space="preserve">
+    <value>find server</value>
+  </data>
+  <data name="LabelImdb" xml:space="preserve">
+    <value>See film on imdb</value>
+  </data>
+  <data name="LabelLiveTv" xml:space="preserve">
+    <value>Live TV</value>
+  </data>
+  <data name="LabelManuallyLogin" xml:space="preserve">
+    <value>Manually login</value>
+  </data>
+  <data name="LabelMovies" xml:space="preserve">
+    <value>Movies</value>
+  </data>
+  <data name="LabelMusic" xml:space="preserve">
+    <value>Music</value>
+  </data>
+  <data name="LabelNotifications" xml:space="preserve">
+    <value>notifications</value>
+  </data>
+  <data name="LabelOverview" xml:space="preserve">
+    <value>overview</value>
+  </data>
+  <data name="LabelPassword" xml:space="preserve">
+    <value>password:</value>
+  </data>
+  <data name="LabelPoster" xml:space="preserve">
+    <value>poster</value>
+  </data>
+  <data name="LabelProfile" xml:space="preserve">
+    <value>profile</value>
+  </data>
+  <data name="LabelProfileNotListed" xml:space="preserve">
+    <value>Profile not listed?</value>
+  </data>
+  <data name="LabelProfiles" xml:space="preserve">
+    <value>profiles</value>
+  </data>
+  <data name="LabelRandomItems" xml:space="preserve">
+    <value>Random Items</value>
+  </data>
+  <data name="LabelRating" xml:space="preserve">
+    <value>Rating:</value>
+  </data>
+  <data name="LabelRecent" xml:space="preserve">
+    <value>Recent</value>
+  </data>
+  <data name="LabelRunningTime" xml:space="preserve">
+    <value>Running time:</value>
+  </data>
+  <data name="LabelSeries" xml:space="preserve">
+    <value>Series</value>
+  </data>
+  <data name="LabelShowAllItems" xml:space="preserve">
+    <value>show all items...</value>
+  </data>
+  <data name="LabelSongs" xml:space="preserve">
+    <value>songs</value>
+  </data>
+  <data name="LabelTrailers" xml:space="preserve">
+    <value>trailers</value>
+  </data>
+  <data name="LabelTv" xml:space="preserve">
+    <value>TV</value>
+  </data>
+  <data name="LabelUsername" xml:space="preserve">
+    <value>username:</value>
+  </data>
+  <data name="LabelViews" xml:space="preserve">
+    <value>Views</value>
+  </data>
+  <data name="MenuPlayFrom" xml:space="preserve">
+    <value>play from</value>
+  </data>
+  <data name="MenuPlayFromOn" xml:space="preserve">
+    <value>play from on</value>
   </data>
   <data name="MessageBoxHeaderAreYouSure" xml:space="preserve">
     <value>Are you sure?</value>
@@ -195,9 +348,6 @@
   <data name="ProductionYear" xml:space="preserve">
     <value>production year</value>
   </data>
-  <data name="Recent" xml:space="preserve">
-    <value>Recent</value>
-  </data>
   <data name="RemoveFavourite" xml:space="preserve">
     <value>remove</value>
   </data>
@@ -209,9 +359,6 @@
   </data>
   <data name="Settings" xml:space="preserve">
     <value>Settings</value>
-  </data>
-  <data name="ShowAllItems" xml:space="preserve">
-    <value>Show all items...</value>
   </data>
   <data name="SysTrayAddingToFavourites" xml:space="preserve">
     <value>Adding to favourites...</value>
@@ -276,5 +423,8 @@
   </data>
   <data name="Unpin" xml:space="preserve">
     <value>Unpin</value>
+  </data>
+  <data name="WatermarkEnterUsername" xml:space="preserve">
+    <value>enter a username</value>
   </data>
 </root>

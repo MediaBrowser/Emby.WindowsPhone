@@ -59,12 +59,12 @@
         <i:Interaction.Behaviors>
             <cimbalino:MultiApplicationBarBehavior SelectedIndex="{Binding SelectedAppBarIndex}">
                 <cimbalino:ApplicationBar>
-                    <cimbalino:ApplicationBarIconButton Text="select items"
+                    <cimbalino:ApplicationBarIconButton Text="{Binding LocalizedResources.AppBarSelectItems, Source={StaticResource LocalizedStrings}}"
                                                         IconUri="/Icons/appbar.list.check.png"
                                                         Click="ApplicationBarIconButton_OnClick"
                                                         IsEnabled="{Binding AlbumTracks.Count, Converter={StaticResource CountToEnabled}, ConverterParameter=delete}" />
                     <cimbalino:ApplicationBar.MenuItems>
-                        <cimbalino:ApplicationBarMenuItem Text="now playing"
+                        <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarNowPlaying, Source={StaticResource LocalizedStrings}}"
                                                           Command="{Binding Main.NavigateToAPage, Source={StaticResource Locator}}"
                                                           CommandParameter="/Views/NowPlayingView.xaml" />
                         <cimbalino:ApplicationBarMenuItem Text="{Binding SelectedAlbum.UserData.IsFavorite, Converter={StaticResource FavouritesConverter}, ConverterParameter=fulltext}"
@@ -74,16 +74,16 @@
                     </cimbalino:ApplicationBar.MenuItems>
                 </cimbalino:ApplicationBar>
                 <cimbalino:ApplicationBar>
-                    <cimbalino:ApplicationBarIconButton Text="play items"
+                    <cimbalino:ApplicationBarIconButton Text="{Binding LocalizedResources.AppBarPlayItems, Source={StaticResource LocalizedStrings}}"
                                                         IconUri="/Icons/appbar.transport.play.png"
                                                         Command="{Binding PlayItemsCommand}"
                                                         IsEnabled="{Binding SelectedTracks.Count, Converter={StaticResource CountToEnabled}, ConverterParameter=delete}" />
                     <cimbalino:ApplicationBar.MenuItems>
-                        <cimbalino:ApplicationBarMenuItem Text="add to now playing"
+                        <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarAddToNowPlaying, Source={StaticResource LocalizedStrings}}"
                                                           Command="{Binding AddToNowPlayingCommand}"
                                                           CommandParameter="{Binding SelectedItems, ElementName=MultiSelectList}"
                                                           IsEnabled="{Binding SelectedTracks.Count, Converter={StaticResource CountToEnabled}, ConverterParameter=delete}" />
-                        <cimbalino:ApplicationBarMenuItem Text="now playing"
+                        <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarNowPlaying, Source={StaticResource LocalizedStrings}}"
                                                           Command="{Binding Main.NavigateToAPage, Source={StaticResource Locator}}"
                                                           CommandParameter="/Views/NowPlayingView.xaml" />
                     </cimbalino:ApplicationBar.MenuItems>

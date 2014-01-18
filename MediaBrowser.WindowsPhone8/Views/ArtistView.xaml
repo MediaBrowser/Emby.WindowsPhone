@@ -29,7 +29,7 @@
         <cimbalino:ApplicationBarBehavior Mode="Minimized"
                                           IsMenuEnabled="True">
             <cimbalino:ApplicationBarBehavior.MenuItems>
-                <cimbalino:ApplicationBarMenuItem Text="play all tracks"
+                <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarPlayAllTracks, Source={StaticResource LocalizedStrings}}"
                                                   Command="{Binding PlayAllItemsCommand}"/>
                 <cimbalino:ApplicationBarMenuItem Text="{Binding SelectedArtist.UserData.IsFavorite, Converter={StaticResource FavouritesConverter}, ConverterParameter=fulltext}"
                                                   Command="{Binding AddRemoveFavouriteCommand}"
@@ -79,12 +79,11 @@
                   Grid.Row="1">
                 <phone:Pivot Title="{Binding SelectedArtist.Name, Converter={StaticResource StringCaseConverter}, ConverterParameter=false}"
                              x:Name="MainPivot">
-                    <phone:PivotItem Header="albums">
+                    <phone:PivotItem Header="{Binding LocalizedResources.LabelAlbums, Source={StaticResource LocalizedStrings}}">
                         <phone:LongListSelector ItemsSource="{Binding Albums}">
                             <phone:LongListSelector.ItemTemplate>
                                 <DataTemplate>
                                     <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                                     HorizontalContentAlignment="Left"
                                                      VerticalContentAlignment="Top"
                                                      NavigateUri="/Views/AlbumView.xaml"
                                                      Command="{Binding Music.AlbumTapped, Source={StaticResource Locator}}"
@@ -123,7 +122,7 @@
                         </phone:LongListSelector>
                     </phone:PivotItem>
 
-                    <phone:PivotItem Header="songs">
+                    <phone:PivotItem Header="{Binding LocalizedResources.LabelSongs, Source={StaticResource LocalizedStrings}}">
                         <toolkit:LongListMultiSelector ItemsSource="{Binding SortedTracks}"
                                                        JumpListStyle="{StaticResource LLSGroupItemStyle}"
                                                        GroupHeaderTemplate="{StaticResource LLSGroupHeaderTemplateName}"
@@ -150,7 +149,7 @@
                         </toolkit:LongListMultiSelector>
                     </phone:PivotItem>
 
-                    <phone:PivotItem Header="bio">
+                    <phone:PivotItem Header="{Binding LocalizedResources.LabelBio, Source={StaticResource LocalizedStrings}}">
                         <TextBlock Text="{Binding SelectedArtist.Overview}"
                                    Style="{StaticResource PhoneTextNormalStyle}"
                                    TextWrapping="Wrap" />

@@ -64,7 +64,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 DummyFolder = new BaseItemDto
                 {
                     Type = "folder",
-                    Name = AppResources.Recent.ToLower()
+                    Name = AppResources.LabelRecent.ToLower()
                 };
             }
         }

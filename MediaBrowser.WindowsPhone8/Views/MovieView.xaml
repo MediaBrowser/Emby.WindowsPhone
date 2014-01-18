@@ -39,13 +39,13 @@
                                                 IconUri="{Binding SelectedMovie.UserData.IsFavorite, Converter={StaticResource FavouritesConverter}, ConverterParameter=icon}"
                                                 Command="{Binding AddRemoveFavouriteCommand}" />
             <cimbalino:ApplicationBarBehavior.MenuItems>
-                <cimbalino:ApplicationBarMenuItem Text="resume"
+                <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarResume, Source={StaticResource LocalizedStrings}}"
                                                   IsEnabled="{Binding SelectedMovie.CanResume}"
                                                   Command="{Binding Main.ResumeMovieCommand, Source={StaticResource Locator}}"
                                                   CommandParameter="{Binding SelectedMovie}" />
-                <cimbalino:ApplicationBarMenuItem Text="set poster as lock screen"
+                <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarPosterLockscreen, Source={StaticResource LocalizedStrings}}"
                                                   Command="{Binding SetPosterAsLockScreenCommand}" />
-                <cimbalino:ApplicationBarMenuItem Text="play on..."
+                <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarPlayOn, Source={StaticResource LocalizedStrings}}"
                                                   Command="{Binding Remote.SendPlayCommand, Source={StaticResource Locator}}"
                                                   CommandParameter="{Binding SelectedMovie.Id}" />
             </cimbalino:ApplicationBarBehavior.MenuItems>
@@ -90,7 +90,7 @@
                                                         Stretch="UniformToFill"
                                                         Opacity="0.2" />
             </i:Interaction.Behaviors>
-            <phone:PanoramaItem Header="poster">
+            <phone:PanoramaItem Header="{Binding LocalizedResources.LabelPoster, Source={StaticResource LocalizedStrings}}">
                 <Button Style="{StaticResource EmptyButtonStyle}"
                         VerticalContentAlignment="Top"
                         Command="{Binding Main.PlayMovieCommand, Source={StaticResource Locator}}"
@@ -109,7 +109,7 @@
                 </Button>
             </phone:PanoramaItem>
 
-            <phone:PanoramaItem Header="overview">
+            <phone:PanoramaItem Header="{Binding LocalizedResources.LabelOverview, Source={StaticResource LocalizedStrings}}">
                 <Grid>
                     <local:ScrollableTextBlock Text="{Binding SelectedMovie.Overview}"
                                                Foreground="{StaticResource PhoneForegroundBrush}"
@@ -141,19 +141,23 @@
                                                  TargetName="_new"
                                                  HorizontalAlignment="Left"
                                                  Margin="0,12,0,0" />
-                                <TextBlock Text="{Binding RunTime, StringFormat='Running time: \{0\}'}"
-                                           Style="{StaticResource PhoneTextNormalStyle}"
-                                           Margin="12,12,0,0" />
-                                <TextBlock Text="{Binding SelectedMovie.OfficialRating, StringFormat='Rating: \{0\}'}"
-                                           Style="{StaticResource PhoneTextNormalStyle}"
-                                           Margin="12,12,0,0" />
+                                <TextBlock Style="{StaticResource PhoneTextNormalStyle}"
+                                           Margin="12,12,0,0">
+                                    <Run Text="{Binding LocalizedResources.LabelRunningTime, Source={StaticResource LocalizedStrings}}"/>
+                                    <Run Text="{Binding RunTime}"/>
+                                </TextBlock>
+                                <TextBlock Style="{StaticResource PhoneTextNormalStyle}"
+                                           Margin="12,12,0,0">
+                                    <Run Text="{Binding LocalizedResources.LabelRating, Source={StaticResource LocalizedStrings}}"/>
+                                    <Run Text="{Binding SelectedMovie.OfficialRating}"/>
+                                </TextBlock>
                             </StackPanel>
                         </local:ScrollableTextBlock.Header>
                     </local:ScrollableTextBlock>
                 </Grid>
             </phone:PanoramaItem>
 
-            <phone:PanoramaItem Header="cast + crew">
+            <phone:PanoramaItem Header="{Binding LocalizedResources.LabelCastCrew, Source={StaticResource LocalizedStrings}}">
                 <phone:LongListSelector ItemsSource="{Binding CastAndCrew}"
                                         GroupHeaderTemplate="{StaticResource LLSGroupHeaderTemplateLong}"
                                         JumpListStyle="{StaticResource LLSGroupItemLongStyle}"
@@ -167,8 +171,7 @@
                             <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
                                              Margin="12,0,0,12"
                                              Command="{Binding ElementName=PageRoot, Path=DataContext.ShowOtherFilmsCommand}"
-                                             CommandParameter="{Binding}"
-                                             HorizontalContentAlignment="Left">
+                                             CommandParameter="{Binding}">
                                 <StackPanel Orientation="Horizontal">
                                     <c4F:SuperImage Height="99"
                                                     Width="99"
@@ -190,7 +193,7 @@
                 </phone:LongListSelector>
             </phone:PanoramaItem>
 
-            <phone:PanoramaItem Header="trailers">
+            <phone:PanoramaItem Header="{Binding LocalizedResources.LabelTrailers, Source={StaticResource LocalizedStrings}}">
                 <phone:LongListSelector ItemsSource="{Binding Trailers}">
                     <phone:LongListSelector.ListHeader>
                         <TextBlock Text="{Binding LocalizedResources.NoItemsFound, Source={StaticResource LocalizedStrings}}"
@@ -218,7 +221,7 @@
                 </phone:LongListSelector>
             </phone:PanoramaItem>
 
-            <phone:PanoramaItem Header="chapters">
+            <phone:PanoramaItem Header="{Binding LocalizedResources.LabelChapters, Source={StaticResource LocalizedStrings}}">
                 <phone:LongListSelector ItemsSource="{Binding Chapters}">
                     <phone:LongListSelector.ItemTemplate>
                         <DataTemplate>

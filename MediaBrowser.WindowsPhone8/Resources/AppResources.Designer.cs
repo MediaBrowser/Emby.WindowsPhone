@@ -79,6 +79,204 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to about.
+        /// </summary>
+        public static string AppBarAbout {
+            get {
+                return ResourceManager.GetString("AppBarAbout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to add to now playing.
+        /// </summary>
+        public static string AppBarAddToNowPlaying {
+            get {
+                return ResourceManager.GetString("AppBarAddToNowPlaying", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to change profile.
+        /// </summary>
+        public static string AppBarChangeProfile {
+            get {
+                return ResourceManager.GetString("AppBarChangeProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to delete items.
+        /// </summary>
+        public static string AppBarDeleteItems {
+            get {
+                return ResourceManager.GetString("AppBarDeleteItems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to group by.
+        /// </summary>
+        public static string AppBarGroupBy {
+            get {
+                return ResourceManager.GetString("AppBarGroupBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to login.
+        /// </summary>
+        public static string AppBarLogin {
+            get {
+                return ResourceManager.GetString("AppBarLogin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to mark as unwatched.
+        /// </summary>
+        public static string AppBarMarkAsUnwatched {
+            get {
+                return ResourceManager.GetString("AppBarMarkAsUnwatched", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to mark as watched.
+        /// </summary>
+        public static string AppBarMarkAsWatched {
+            get {
+                return ResourceManager.GetString("AppBarMarkAsWatched", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to next.
+        /// </summary>
+        public static string AppBarNext {
+            get {
+                return ResourceManager.GetString("AppBarNext", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to notifications.
+        /// </summary>
+        public static string AppBarNotifications {
+            get {
+                return ResourceManager.GetString("AppBarNotifications", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to now playing.
+        /// </summary>
+        public static string AppBarNowPlaying {
+            get {
+                return ResourceManager.GetString("AppBarNowPlaying", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to play all tracks.
+        /// </summary>
+        public static string AppBarPlayAllTracks {
+            get {
+                return ResourceManager.GetString("AppBarPlayAllTracks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to play items.
+        /// </summary>
+        public static string AppBarPlayItems {
+            get {
+                return ResourceManager.GetString("AppBarPlayItems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to play on....
+        /// </summary>
+        public static string AppBarPlayOn {
+            get {
+                return ResourceManager.GetString("AppBarPlayOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to set poster as lock screen.
+        /// </summary>
+        public static string AppBarPosterLockscreen {
+            get {
+                return ResourceManager.GetString("AppBarPosterLockscreen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to previous.
+        /// </summary>
+        public static string AppBarPrevious {
+            get {
+                return ResourceManager.GetString("AppBarPrevious", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to refresh information.
+        /// </summary>
+        public static string AppBarRefreshInformation {
+            get {
+                return ResourceManager.GetString("AppBarRefreshInformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to remote.
+        /// </summary>
+        public static string AppBarRemote {
+            get {
+                return ResourceManager.GetString("AppBarRemote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to resume.
+        /// </summary>
+        public static string AppBarResume {
+            get {
+                return ResourceManager.GetString("AppBarResume", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to search.
+        /// </summary>
+        public static string AppBarSearch {
+            get {
+                return ResourceManager.GetString("AppBarSearch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to select items.
+        /// </summary>
+        public static string AppBarSelectItems {
+            get {
+                return ResourceManager.GetString("AppBarSelectItems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to settings.
+        /// </summary>
+        public static string AppBarSettings {
+            get {
+                return ResourceManager.GetString("AppBarSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Folders.
         /// </summary>
         public static string Collections {
@@ -214,20 +412,281 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to change profile.
+        ///   Looks up a localized string similar to albums.
         /// </summary>
-        public static string MainAppBarChangeProfile {
+        public static string LabelAlbums {
             get {
-                return ResourceManager.GetString("MainAppBarChangeProfile", resourceCulture);
+                return ResourceManager.GetString("LabelAlbums", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to refresh information.
+        ///   Looks up a localized string similar to bio.
         /// </summary>
-        public static string MainAppBarRefreshInformation {
+        public static string LabelBio {
             get {
-                return ResourceManager.GetString("MainAppBarRefreshInformation", resourceCulture);
+                return ResourceManager.GetString("LabelBio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to cast + crew.
+        /// </summary>
+        public static string LabelCastCrew {
+            get {
+                return ResourceManager.GetString("LabelCastCrew", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to chapters.
+        /// </summary>
+        public static string LabelChapters {
+            get {
+                return ResourceManager.GetString("LabelChapters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Episode.
+        /// </summary>
+        public static string LabelEpisode {
+            get {
+                return ResourceManager.GetString("LabelEpisode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to find server.
+        /// </summary>
+        public static string LabelFindServer {
+            get {
+                return ResourceManager.GetString("LabelFindServer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to See film on imdb.
+        /// </summary>
+        public static string LabelImdb {
+            get {
+                return ResourceManager.GetString("LabelImdb", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Live TV.
+        /// </summary>
+        public static string LabelLiveTv {
+            get {
+                return ResourceManager.GetString("LabelLiveTv", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manually login.
+        /// </summary>
+        public static string LabelManuallyLogin {
+            get {
+                return ResourceManager.GetString("LabelManuallyLogin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Movies.
+        /// </summary>
+        public static string LabelMovies {
+            get {
+                return ResourceManager.GetString("LabelMovies", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Music.
+        /// </summary>
+        public static string LabelMusic {
+            get {
+                return ResourceManager.GetString("LabelMusic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to notifications.
+        /// </summary>
+        public static string LabelNotifications {
+            get {
+                return ResourceManager.GetString("LabelNotifications", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to overview.
+        /// </summary>
+        public static string LabelOverview {
+            get {
+                return ResourceManager.GetString("LabelOverview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to password:.
+        /// </summary>
+        public static string LabelPassword {
+            get {
+                return ResourceManager.GetString("LabelPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to poster.
+        /// </summary>
+        public static string LabelPoster {
+            get {
+                return ResourceManager.GetString("LabelPoster", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to profile.
+        /// </summary>
+        public static string LabelProfile {
+            get {
+                return ResourceManager.GetString("LabelProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Profile not listed?.
+        /// </summary>
+        public static string LabelProfileNotListed {
+            get {
+                return ResourceManager.GetString("LabelProfileNotListed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to profiles.
+        /// </summary>
+        public static string LabelProfiles {
+            get {
+                return ResourceManager.GetString("LabelProfiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Random Items.
+        /// </summary>
+        public static string LabelRandomItems {
+            get {
+                return ResourceManager.GetString("LabelRandomItems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rating:.
+        /// </summary>
+        public static string LabelRating {
+            get {
+                return ResourceManager.GetString("LabelRating", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recent.
+        /// </summary>
+        public static string LabelRecent {
+            get {
+                return ResourceManager.GetString("LabelRecent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Running time:.
+        /// </summary>
+        public static string LabelRunningTime {
+            get {
+                return ResourceManager.GetString("LabelRunningTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Series.
+        /// </summary>
+        public static string LabelSeries {
+            get {
+                return ResourceManager.GetString("LabelSeries", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to show all items....
+        /// </summary>
+        public static string LabelShowAllItems {
+            get {
+                return ResourceManager.GetString("LabelShowAllItems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to songs.
+        /// </summary>
+        public static string LabelSongs {
+            get {
+                return ResourceManager.GetString("LabelSongs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to trailers.
+        /// </summary>
+        public static string LabelTrailers {
+            get {
+                return ResourceManager.GetString("LabelTrailers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TV.
+        /// </summary>
+        public static string LabelTv {
+            get {
+                return ResourceManager.GetString("LabelTv", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to username:.
+        /// </summary>
+        public static string LabelUsername {
+            get {
+                return ResourceManager.GetString("LabelUsername", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Views.
+        /// </summary>
+        public static string LabelViews {
+            get {
+                return ResourceManager.GetString("LabelViews", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to play from.
+        /// </summary>
+        public static string MenuPlayFrom {
+            get {
+                return ResourceManager.GetString("MenuPlayFrom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to play from on.
+        /// </summary>
+        public static string MenuPlayFromOn {
+            get {
+                return ResourceManager.GetString("MenuPlayFromOn", resourceCulture);
             }
         }
         
@@ -295,15 +754,6 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Recent.
-        /// </summary>
-        public static string Recent {
-            get {
-                return ResourceManager.GetString("Recent", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to remove.
         /// </summary>
         public static string RemoveFavourite {
@@ -336,15 +786,6 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string Settings {
             get {
                 return ResourceManager.GetString("Settings", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Show all items....
-        /// </summary>
-        public static string ShowAllItems {
-            get {
-                return ResourceManager.GetString("ShowAllItems", resourceCulture);
             }
         }
         
@@ -534,6 +975,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string Unpin {
             get {
                 return ResourceManager.GetString("Unpin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to enter a username.
+        /// </summary>
+        public static string WatermarkEnterUsername {
+            get {
+                return ResourceManager.GetString("WatermarkEnterUsername", resourceCulture);
             }
         }
     }
