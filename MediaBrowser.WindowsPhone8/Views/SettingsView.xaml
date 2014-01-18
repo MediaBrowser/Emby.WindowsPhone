@@ -14,6 +14,7 @@
                 xmlns:coding4Fun="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
                 xmlns:converters="clr-namespace:MediaBrowser.WindowsPhone.Converters"
                 xmlns:behaviours1="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
+                xmlns:behaviors="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
                 FontFamily="{StaticResource PhoneFontFamilyNormal}"
                 FontSize="{StaticResource PhoneFontSizeNormal}"
                 Foreground="{StaticResource PhoneForegroundBrush}"
@@ -33,6 +34,14 @@
         <behaviours1:MBSysTray Text="{Binding ProgressText}"
                                IsVisible="{Binding ProgressIsVisible}"
                                IsIndeterminate="{Binding ProgressIsVisible}" />
+        <behaviors:ApplicationBarBehavior Mode="Minimized"
+                                          IsMenuEnabled="True">
+            <behaviors:ApplicationBarBehavior.MenuItems>
+                <behaviors:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarSendLogs, Source={StaticResource LocalizedStrings}}"
+                                                  x:Name="EmailLogs"
+                                                  Click="EmailLogs_OnClick" />
+            </behaviors:ApplicationBarBehavior.MenuItems>
+        </behaviors:ApplicationBarBehavior>
     </i:Interaction.Behaviors>
 
     <toolkit:TransitionService.NavigationInTransition>
@@ -247,28 +256,28 @@
         <phone:Pivot x:Name="settingsPivot">
             <phone:Pivot.Title>
                 <controls:MediaBrowserLogo Margin="-12,0,0,0"
-                                           AltText="SETTINGS"/>
+                                           AltText="{Binding LocalizedResources.Settings, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToUppercaseConverter}}"/>
             </phone:Pivot.Title>
 
-            <phone:PivotItem Header="general">
+            <phone:PivotItem Header="{Binding LocalizedResources.LabelGeneral, Source={StaticResource LocalizedStrings}}">
                 <StackPanel>
-                    <CheckBox Content="Show trailers in recent items"
+                    <CheckBox Content="{Binding LocalizedResources.LabelShowTrailers, Source={StaticResource LocalizedStrings}}"
                               IsChecked="{Binding IncludeTrailersInRecent, Source={StaticResource SpecificSettings}, Mode=TwoWay}" />
                     <toolkit:ListPicker ItemsSource="{Binding GroupByItems, Source={StaticResource SpecificSettings}}"
                                         SelectedItem="{Binding DefaultGroupBy, Source={StaticResource SpecificSettings}, Mode=TwoWay}"
-                                        Header="Default grouping"
+                                        Header="{Binding LocalizedResources.HeaderDefaultGrouping, Source={StaticResource LocalizedStrings}}"
                                         toolkit:TiltEffect.SuppressTilt="True" />
                     <CheckBox IsChecked="{Binding JustShowFolderView, Source={StaticResource SpecificSettings}, Mode=TwoWay}">
-                        <TextBlock Text="Just show the list of items, not a media folder view"
+                        <TextBlock Text="{Binding LocalizedResources.LabelJustShowList, Source={StaticResource LocalizedStrings}}"
                                    TextWrapping="Wrap"
                                    VerticalAlignment="Top" />
                     </CheckBox>
                     <CheckBox IsChecked="{Binding ShowMissingEpisodes, Source={StaticResource SpecificSettings}, Mode=TwoWay}"
-                              Content="Show missing episodes" />
+                              Content="{Binding LocalizedResources.LabelMissingEpisodes, Source={StaticResource LocalizedStrings}}" />
                     <CheckBox IsChecked="{Binding ShowUnairedEpisodes, Source={StaticResource SpecificSettings}, Mode=TwoWay}"
-                              Content="Show unaired episodes" />
+                              Content="{Binding LocalizedResources.LabelUnairedEpisodes, Source={StaticResource LocalizedStrings}}" />
                     <CheckBox IsChecked="{Binding EnableImageEnhancers, Source={StaticResource SpecificSettings}, Mode=TwoWay}">
-                        <TextBlock Text="Enable enhanced images (if installed on the server)"
+                        <TextBlock Text="{Binding LocalizedResources.LabelImageEnhancers, Source={StaticResource LocalizedStrings}}"
                                    TextWrapping="Wrap"
                                    VerticalAlignment="Top"/>
                     </CheckBox>
@@ -301,12 +310,12 @@
                 </Grid>
             </phone:PivotItem>-->
 
-            <phone:PivotItem Header="connection">
+            <phone:PivotItem Header="{Binding LocalizedResources.LabelConnection, Source={StaticResource LocalizedStrings}}">
                 <StackPanel Orientation="Vertical">
-                    <TextBlock Text="Put the connection details in to point to the computer running Mediabrowser3. Then simply test them to confirm."
+                    <TextBlock Text="{Binding LocalizedResources.LabelConnectionDetails, Source={StaticResource LocalizedStrings}}"
                                TextWrapping="Wrap"
                                Style="{StaticResource PhoneTextNormalStyle}" />
-                    <TextBlock Text="Hostname:"
+                    <TextBlock Text="{Binding LocalizedResources.LabelHostname, Source={StaticResource LocalizedStrings}}"
                                Margin="12,12,0,0"
                                Style="{StaticResource PhoneTextNormalStyle}" />
                     <TextBox Text="{Binding ConnectionDetails.HostName, Source={StaticResource AppSettings}, Mode=TwoWay}"
@@ -315,34 +324,34 @@
                             <behaviours:UpdateTextBindingOnPropertyChanged EnterHitCommand="{Binding Settings.TestConnectionCommand, Source={StaticResource Locator}}" />
                         </i:Interaction.Behaviors>
                     </TextBox>
-                    <TextBlock Text="Port:"
+                    <TextBlock Text="{Binding LocalizedResources.LabelPort, Source={StaticResource LocalizedStrings}}"
                                Margin="12,12,0,0"
                                Style="{StaticResource PhoneTextNormalStyle}" />
                     <TextBox Text="{Binding ConnectionDetails.PortNo, Source={StaticResource AppSettings}, Mode=TwoWay}"
                              InputScope="Number" />
-                    <TextBlock Text="WARNING: Changing the hostname will remove any saved profiles."
+                    <TextBlock Text="{Binding LocalizedResources.LabelConnectionWarning, Source={StaticResource LocalizedStrings}}"
                                TextWrapping="Wrap"
                                FontWeight="ExtraBold"
                                Style="{StaticResource PhoneTextNormalStyle}"
                                Margin="12,12,0,0" />
                     <Button Margin="0,12,0,0"
-                            Content="Connect"
+                            Content="{Binding LocalizedResources.LabelConnect, Source={StaticResource LocalizedStrings}}"
                             Command="{Binding Settings.TestConnectionCommand, Source={StaticResource Locator}}"
                             Style="{StaticResource ConnectButtonStyle}" />
-                    <Button Content="Find server"
+                    <Button Content="{Binding LocalizedResources.LabelFindServer, Source={StaticResource LocalizedStrings}}"
                             Command="{Binding Main.NavigateToAPage, Source={StaticResource Locator}}"
                             CommandParameter="/Views/FindServerView.xaml" />
                 </StackPanel>
             </phone:PivotItem>
 
-            <phone:PivotItem Header="tile">
+            <phone:PivotItem Header="{Binding LocalizedResources.LabelTile, Source={StaticResource LocalizedStrings}}">
                 <ScrollViewer>
                     <StackPanel Orientation="Vertical">
-                        <TextBlock Text="To show off some of the great artwork available for the media you have, the tile will use some of the artwork, he you can choose how that tile will look"
+                        <TextBlock Text="{Binding LocalizedResources.LabelTileBackInformation, Source={StaticResource LocalizedStrings}}"
                                TextWrapping="Wrap"
                                Style="{StaticResource PhoneTextNormalStyle}"/>
                         <CheckBox IsChecked="{Binding DisplayBackdropOnTile, Source={StaticResource SpecificSettings}, Mode=TwoWay}">
-                            <TextBlock Text="Display random backdrop images on the back of the tile"
+                            <TextBlock Text="{Binding LocalizedResources.LabelDisplayRandomImages, Source={StaticResource LocalizedStrings}}"
                                    TextWrapping="Wrap"/>
                         </CheckBox>
 
@@ -359,7 +368,7 @@
                 </ScrollViewer>
             </phone:PivotItem>
 
-            <phone:PivotItem Header="lock screen">
+            <phone:PivotItem Header="{Binding LocalizedResources.LabelLockScreen, Source={StaticResource LocalizedStrings}}">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -372,7 +381,7 @@
                                    TextWrapping="Wrap" />
                         <HyperlinkButton HorizontalContentAlignment="Left"
                                          HorizontalAlignment="Left"
-                                         Content="Make us the lock screen provider"
+                                         Content="{Binding LocalizedResources.LabelMakeLockScreenProvider, Source={StaticResource LocalizedStrings}}"
                                          Command="{Binding MakeLockScreenProviderCommand}"
                                          Visibility="{Binding IsLockScreenProvider, Converter={StaticResource InvertedVisibilityConverter}}" />
                     </StackPanel>
@@ -380,7 +389,7 @@
                                   Grid.Row="1"
                                   Margin="0,12,0,0">
                         <StackPanel>
-                            <toolkit:ListPicker Header="From collection (where applicable):"
+                            <toolkit:ListPicker Header="{Binding LocalizedResources.HeaderFromCollection, Source={StaticResource LocalizedStrings}}"
                                                 ItemsSource="{Binding Folders}"
                                                 SelectionMode="Single"
                                                 SelectedItem="{Binding SelectedCollection, Mode=TwoWay}">
@@ -447,7 +456,7 @@
                                         <coding4Fun:LockScreenPreview ShowNotificationCount="False"
                                                                       LockScreenImageSource="/DefaultLockScreen.jpg" />
                                     </RadioButton>
-                                    <TextBlock Text="Default lock screen"
+                                    <TextBlock Text="{Binding LocalizedResources.LabelDefaultLockScreen, Source={StaticResource LocalizedStrings}}"
                                                Style="{StaticResource PhoneTextSmallStyle}"
                                                Foreground="White"
                                                Margin="12,-12,12,0" />
@@ -463,7 +472,7 @@
                                         <coding4Fun:LockScreenPreview ShowNotificationCount="False"
                                                                       LockScreenImageSource="/Images/jp3d.jpg" />
                                     </RadioButton>
-                                    <TextBlock Text="Single poster"
+                                    <TextBlock Text="{Binding LocalizedResources.LabelSinglePoster, Source={StaticResource LocalizedStrings}}"
                                                Style="{StaticResource PhoneTextSmallStyle}"
                                                Foreground="White"
                                                Margin="12,-12,12,0" />
@@ -480,7 +489,7 @@
                                             <controls:LockScreenMultiImage ItemsSource="{Binding Posters}" />
                                         </coding4Fun:LockScreenPreview>
                                     </RadioButton>
-                                    <TextBlock Text="Random pictures from collection"
+                                    <TextBlock Text="{Binding LocalizedResources.LabelRandomPictures, Source={StaticResource LocalizedStrings}}"
                                                Style="{StaticResource PhoneTextSmallStyle}"
                                                Foreground="White"
                                                TextWrapping="Wrap"
@@ -498,13 +507,13 @@
                                             <controls:LockScreenCollage ItemsSource="{Binding Posters}" />
                                         </coding4Fun:LockScreenPreview>
                                     </RadioButton>
-                                    <TextBlock Text="Full screen collage"
+                                    <TextBlock Text="{Binding LocalizedResources.LabelCollage, Source={StaticResource LocalizedStrings}}"
                                                Style="{StaticResource PhoneTextSmallStyle}"
                                                Foreground="White"
                                                Margin="12,-12,12,0" />
                                 </StackPanel>
                             </Grid>
-                            <Button Content="lock screen settings"
+                            <Button Content="{Binding LocalizedResources.LabelLockScreenSettinsg, Source={StaticResource LocalizedStrings}}"
                                     Click="ButtonBase_OnClick" />
                         </StackPanel>
                     </ScrollViewer>
@@ -512,16 +521,5 @@
             </phone:PivotItem>
         </phone:Pivot>
     </Grid>
-
-    <scott:BasePage.ApplicationBar>
-        <shell:ApplicationBar IsMenuEnabled="True"
-                              Mode="Minimized">
-            <shell:ApplicationBar.MenuItems>
-                <shell:ApplicationBarMenuItem Text="email logs"
-                                              x:Name="EmailLogs"
-                                              Click="EmailLogs_OnClick" />
-            </shell:ApplicationBar.MenuItems>
-        </shell:ApplicationBar>
-    </scott:BasePage.ApplicationBar>
 
 </scott:BasePage>

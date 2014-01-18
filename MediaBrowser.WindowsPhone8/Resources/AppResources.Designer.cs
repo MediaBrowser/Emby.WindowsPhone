@@ -106,6 +106,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to clear now playing.
+        /// </summary>
+        public static string AppBarClearNowPlaying {
+            get {
+                return ResourceManager.GetString("AppBarClearNowPlaying", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to delete items.
         /// </summary>
         public static string AppBarDeleteItems {
@@ -174,6 +183,24 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string AppBarNowPlaying {
             get {
                 return ResourceManager.GetString("AppBarNowPlaying", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to pause.
+        /// </summary>
+        public static string AppBarPause {
+            get {
+                return ResourceManager.GetString("AppBarPause", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to play.
+        /// </summary>
+        public static string AppBarPlay {
+            get {
+                return ResourceManager.GetString("AppBarPlay", resourceCulture);
             }
         }
         
@@ -264,6 +291,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string AppBarSelectItems {
             get {
                 return ResourceManager.GetString("AppBarSelectItems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to send logs.
+        /// </summary>
+        public static string AppBarSendLogs {
+            get {
+                return ResourceManager.GetString("AppBarSendLogs", resourceCulture);
             }
         }
         
@@ -403,6 +439,24 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Default grouping.
+        /// </summary>
+        public static string HeaderDefaultGrouping {
+            get {
+                return ResourceManager.GetString("HeaderDefaultGrouping", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to From collection (where applicable):.
+        /// </summary>
+        public static string HeaderFromCollection {
+            get {
+                return ResourceManager.GetString("HeaderFromCollection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add to favourites.
         /// </summary>
         public static string LabelAddToFavourites {
@@ -448,6 +502,78 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Full screen collage.
+        /// </summary>
+        public static string LabelCollage {
+            get {
+                return ResourceManager.GetString("LabelCollage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Connect.
+        /// </summary>
+        public static string LabelConnect {
+            get {
+                return ResourceManager.GetString("LabelConnect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to connection.
+        /// </summary>
+        public static string LabelConnection {
+            get {
+                return ResourceManager.GetString("LabelConnection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Put the connection details in to point to the computer running Media Browser 3. Then simply test them to confirm..
+        /// </summary>
+        public static string LabelConnectionDetails {
+            get {
+                return ResourceManager.GetString("LabelConnectionDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to WARNING: Changing the hostname will remove any saved profiles..
+        /// </summary>
+        public static string LabelConnectionWarning {
+            get {
+                return ResourceManager.GetString("LabelConnectionWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Default lock screen.
+        /// </summary>
+        public static string LabelDefaultLockScreen {
+            get {
+                return ResourceManager.GetString("LabelDefaultLockScreen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to details.
+        /// </summary>
+        public static string LabelDetails {
+            get {
+                return ResourceManager.GetString("LabelDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Display random backdrop images on the back of the tile.
+        /// </summary>
+        public static string LabelDisplayRandomImages {
+            get {
+                return ResourceManager.GetString("LabelDisplayRandomImages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Episode.
         /// </summary>
         public static string LabelEpisode {
@@ -466,11 +592,74 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Once the Media Browser server is configured, make sure it&apos;s accessible from where you are, whether that&apos;s being on your local wireless network, or an external static address..
+        /// </summary>
+        public static string LabelFirstRunAccessible {
+            get {
+                return ResourceManager.GetString("LabelFirstRunAccessible", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If you&apos;re happy with what you&apos;ve configured, click the settings button and enter your server&apos;s details, else you can just quit the app from here..
+        /// </summary>
+        public static string LabelFirstRunHappyConfiguration {
+            get {
+                return ResourceManager.GetString("LabelFirstRunHappyConfiguration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Before we can get started though, you need to make sure you&apos;re running the Media Browser server..
+        /// </summary>
+        public static string LabelFirstRunServerInfo {
+            get {
+                return ResourceManager.GetString("LabelFirstRunServerInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to general.
+        /// </summary>
+        public static string LabelGeneral {
+            get {
+                return ResourceManager.GetString("LabelGeneral", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hostname:.
+        /// </summary>
+        public static string LabelHostname {
+            get {
+                return ResourceManager.GetString("LabelHostname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable enhanced images (if installed on the server).
+        /// </summary>
+        public static string LabelImageEnhancers {
+            get {
+                return ResourceManager.GetString("LabelImageEnhancers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to See film on imdb.
         /// </summary>
         public static string LabelImdb {
             get {
                 return ResourceManager.GetString("LabelImdb", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Just show the list of items, not a media folder view.
+        /// </summary>
+        public static string LabelJustShowList {
+            get {
+                return ResourceManager.GetString("LabelJustShowList", resourceCulture);
             }
         }
         
@@ -484,11 +673,47 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to lock screen.
+        /// </summary>
+        public static string LabelLockScreen {
+            get {
+                return ResourceManager.GetString("LabelLockScreen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to lock screen settings.
+        /// </summary>
+        public static string LabelLockScreenSettinsg {
+            get {
+                return ResourceManager.GetString("LabelLockScreenSettinsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Make us the lock screen provider.
+        /// </summary>
+        public static string LabelMakeLockScreenProvider {
+            get {
+                return ResourceManager.GetString("LabelMakeLockScreenProvider", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Manually login.
         /// </summary>
         public static string LabelManuallyLogin {
             get {
                 return ResourceManager.GetString("LabelManuallyLogin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show missing episodes.
+        /// </summary>
+        public static string LabelMissingEpisodes {
+            get {
+                return ResourceManager.GetString("LabelMissingEpisodes", resourceCulture);
             }
         }
         
@@ -511,11 +736,38 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No episodes to show.
+        /// </summary>
+        public static string LabelNoEpisodes {
+            get {
+                return ResourceManager.GetString("LabelNoEpisodes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No seasons found.
+        /// </summary>
+        public static string LabelNoSeasonsFound {
+            get {
+                return ResourceManager.GetString("LabelNoSeasonsFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to notifications.
         /// </summary>
         public static string LabelNotifications {
             get {
                 return ResourceManager.GetString("LabelNotifications", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to now playing.
+        /// </summary>
+        public static string LabelNowPlaying {
+            get {
+                return ResourceManager.GetString("LabelNowPlaying", resourceCulture);
             }
         }
         
@@ -534,6 +786,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string LabelPassword {
             get {
                 return ResourceManager.GetString("LabelPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Port:.
+        /// </summary>
+        public static string LabelPort {
+            get {
+                return ResourceManager.GetString("LabelPort", resourceCulture);
             }
         }
         
@@ -574,11 +835,29 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to quit.
+        /// </summary>
+        public static string LabelQuit {
+            get {
+                return ResourceManager.GetString("LabelQuit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Random Items.
         /// </summary>
         public static string LabelRandomItems {
             get {
                 return ResourceManager.GetString("LabelRandomItems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Random pictures from collection.
+        /// </summary>
+        public static string LabelRandomPictures {
+            get {
+                return ResourceManager.GetString("LabelRandomPictures", resourceCulture);
             }
         }
         
@@ -610,6 +889,24 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to search.
+        /// </summary>
+        public static string LabelSearch {
+            get {
+                return ResourceManager.GetString("LabelSearch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to seasons.
+        /// </summary>
+        public static string LabelSeasons {
+            get {
+                return ResourceManager.GetString("LabelSeasons", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Series.
         /// </summary>
         public static string LabelSeries {
@@ -628,11 +925,47 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Show trailers in recent items.
+        /// </summary>
+        public static string LabelShowTrailers {
+            get {
+                return ResourceManager.GetString("LabelShowTrailers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Single poster.
+        /// </summary>
+        public static string LabelSinglePoster {
+            get {
+                return ResourceManager.GetString("LabelSinglePoster", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to songs.
         /// </summary>
         public static string LabelSongs {
             get {
                 return ResourceManager.GetString("LabelSongs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to tile.
+        /// </summary>
+        public static string LabelTile {
+            get {
+                return ResourceManager.GetString("LabelTile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To show off some of the great artwork available for the media you have, the tile will use some of that artwork, here you can choose how that tile will look.
+        /// </summary>
+        public static string LabelTileBackInformation {
+            get {
+                return ResourceManager.GetString("LabelTileBackInformation", resourceCulture);
             }
         }
         
@@ -655,6 +988,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Show unaired episodes.
+        /// </summary>
+        public static string LabelUnairedEpisodes {
+            get {
+                return ResourceManager.GetString("LabelUnairedEpisodes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to username:.
         /// </summary>
         public static string LabelUsername {
@@ -669,6 +1011,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string LabelViews {
             get {
                 return ResourceManager.GetString("LabelViews", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Welcome to Media Browser for Windows Phone. This app will allow you to browse your media collection, stream it to your phone and remotely control any of the controllable Media Browser clients..
+        /// </summary>
+        public static string LabelWelcomeText {
+            get {
+                return ResourceManager.GetString("LabelWelcomeText", resourceCulture);
             }
         }
         

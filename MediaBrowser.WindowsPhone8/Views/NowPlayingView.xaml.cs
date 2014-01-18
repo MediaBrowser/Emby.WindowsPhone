@@ -1,6 +1,5 @@
 ﻿using System.Windows.Navigation;
 using GalaSoft.MvvmLight.Messaging;
-using Microsoft.Phone.Controls;
 
 namespace MediaBrowser.WindowsPhone.Views
 {

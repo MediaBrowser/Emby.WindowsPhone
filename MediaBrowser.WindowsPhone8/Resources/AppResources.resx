@@ -132,6 +132,9 @@
   <data name="AppBarChangeProfile" xml:space="preserve">
     <value>change profile</value>
   </data>
+  <data name="AppBarClearNowPlaying" xml:space="preserve">
+    <value>clear now playing</value>
+  </data>
   <data name="AppBarDeleteItems" xml:space="preserve">
     <value>delete items</value>
   </data>
@@ -155,6 +158,12 @@
   </data>
   <data name="AppBarNowPlaying" xml:space="preserve">
     <value>now playing</value>
+  </data>
+  <data name="AppBarPause" xml:space="preserve">
+    <value>pause</value>
+  </data>
+  <data name="AppBarPlay" xml:space="preserve">
+    <value>play</value>
   </data>
   <data name="AppBarPlayAllTracks" xml:space="preserve">
     <value>play all tracks</value>
@@ -185,6 +194,9 @@
   </data>
   <data name="AppBarSelectItems" xml:space="preserve">
     <value>select items</value>
+  </data>
+  <data name="AppBarSendLogs" xml:space="preserve">
+    <value>send logs</value>
   </data>
   <data name="AppBarSettings" xml:space="preserve">
     <value>settings</value>
@@ -231,6 +243,12 @@
   <data name="Genre" xml:space="preserve">
     <value>genre</value>
   </data>
+  <data name="HeaderDefaultGrouping" xml:space="preserve">
+    <value>Default grouping</value>
+  </data>
+  <data name="HeaderFromCollection" xml:space="preserve">
+    <value>From collection (where applicable):</value>
+  </data>
   <data name="LabelAddToFavourites" xml:space="preserve">
     <value>Add to favourites</value>
   </data>
@@ -246,20 +264,77 @@
   <data name="LabelChapters" xml:space="preserve">
     <value>chapters</value>
   </data>
+  <data name="LabelCollage" xml:space="preserve">
+    <value>Full screen collage</value>
+  </data>
+  <data name="LabelConnect" xml:space="preserve">
+    <value>Connect</value>
+  </data>
+  <data name="LabelConnection" xml:space="preserve">
+    <value>connection</value>
+  </data>
+  <data name="LabelConnectionDetails" xml:space="preserve">
+    <value>Put the connection details in to point to the computer running Media Browser 3. Then simply test them to confirm.</value>
+  </data>
+  <data name="LabelConnectionWarning" xml:space="preserve">
+    <value>WARNING: Changing the hostname will remove any saved profiles.</value>
+  </data>
+  <data name="LabelDefaultLockScreen" xml:space="preserve">
+    <value>Default lock screen</value>
+  </data>
+  <data name="LabelDetails" xml:space="preserve">
+    <value>details</value>
+  </data>
+  <data name="LabelDisplayRandomImages" xml:space="preserve">
+    <value>Display random backdrop images on the back of the tile</value>
+  </data>
   <data name="LabelEpisode" xml:space="preserve">
     <value>Episode</value>
   </data>
   <data name="LabelFindServer" xml:space="preserve">
     <value>find server</value>
   </data>
+  <data name="LabelFirstRunAccessible" xml:space="preserve">
+    <value>Once the Media Browser server is configured, make sure it's accessible from where you are, whether that's being on your local wireless network, or an external static address.</value>
+  </data>
+  <data name="LabelFirstRunHappyConfiguration" xml:space="preserve">
+    <value>If you're happy with what you've configured, click the settings button and enter your server's details, else you can just quit the app from here.</value>
+  </data>
+  <data name="LabelFirstRunServerInfo" xml:space="preserve">
+    <value>Before we can get started though, you need to make sure you're running the Media Browser server.</value>
+  </data>
+  <data name="LabelGeneral" xml:space="preserve">
+    <value>general</value>
+  </data>
+  <data name="LabelHostname" xml:space="preserve">
+    <value>Hostname:</value>
+  </data>
+  <data name="LabelImageEnhancers" xml:space="preserve">
+    <value>Enable enhanced images (if installed on the server)</value>
+  </data>
   <data name="LabelImdb" xml:space="preserve">
     <value>See film on imdb</value>
+  </data>
+  <data name="LabelJustShowList" xml:space="preserve">
+    <value>Just show the list of items, not a media folder view</value>
   </data>
   <data name="LabelLiveTv" xml:space="preserve">
     <value>Live TV</value>
   </data>
+  <data name="LabelLockScreen" xml:space="preserve">
+    <value>lock screen</value>
+  </data>
+  <data name="LabelLockScreenSettinsg" xml:space="preserve">
+    <value>lock screen settings</value>
+  </data>
+  <data name="LabelMakeLockScreenProvider" xml:space="preserve">
+    <value>Make us the lock screen provider</value>
+  </data>
   <data name="LabelManuallyLogin" xml:space="preserve">
     <value>Manually login</value>
+  </data>
+  <data name="LabelMissingEpisodes" xml:space="preserve">
+    <value>Show missing episodes</value>
   </data>
   <data name="LabelMovies" xml:space="preserve">
     <value>Movies</value>
@@ -267,14 +342,26 @@
   <data name="LabelMusic" xml:space="preserve">
     <value>Music</value>
   </data>
+  <data name="LabelNoEpisodes" xml:space="preserve">
+    <value>No episodes to show</value>
+  </data>
+  <data name="LabelNoSeasonsFound" xml:space="preserve">
+    <value>No seasons found</value>
+  </data>
   <data name="LabelNotifications" xml:space="preserve">
     <value>notifications</value>
+  </data>
+  <data name="LabelNowPlaying" xml:space="preserve">
+    <value>now playing</value>
   </data>
   <data name="LabelOverview" xml:space="preserve">
     <value>overview</value>
   </data>
   <data name="LabelPassword" xml:space="preserve">
     <value>password:</value>
+  </data>
+  <data name="LabelPort" xml:space="preserve">
+    <value>Port:</value>
   </data>
   <data name="LabelPoster" xml:space="preserve">
     <value>poster</value>
@@ -291,6 +378,9 @@
   <data name="LabelRandomItems" xml:space="preserve">
     <value>Random Items</value>
   </data>
+  <data name="LabelRandomPictures" xml:space="preserve">
+    <value>Random pictures from collection</value>
+  </data>
   <data name="LabelRating" xml:space="preserve">
     <value>Rating:</value>
   </data>
@@ -300,20 +390,41 @@
   <data name="LabelRunningTime" xml:space="preserve">
     <value>Running time:</value>
   </data>
+  <data name="LabelSearch" xml:space="preserve">
+    <value>search</value>
+  </data>
+  <data name="LabelSeasons" xml:space="preserve">
+    <value>seasons</value>
+  </data>
   <data name="LabelSeries" xml:space="preserve">
     <value>Series</value>
   </data>
   <data name="LabelShowAllItems" xml:space="preserve">
     <value>show all items...</value>
   </data>
+  <data name="LabelShowTrailers" xml:space="preserve">
+    <value>Show trailers in recent items</value>
+  </data>
+  <data name="LabelSinglePoster" xml:space="preserve">
+    <value>Single poster</value>
+  </data>
   <data name="LabelSongs" xml:space="preserve">
     <value>songs</value>
+  </data>
+  <data name="LabelTile" xml:space="preserve">
+    <value>tile</value>
+  </data>
+  <data name="LabelTileBackInformation" xml:space="preserve">
+    <value>To show off some of the great artwork available for the media you have, the tile will use some of that artwork, here you can choose how that tile will look</value>
   </data>
   <data name="LabelTrailers" xml:space="preserve">
     <value>trailers</value>
   </data>
   <data name="LabelTv" xml:space="preserve">
     <value>TV</value>
+  </data>
+  <data name="LabelUnairedEpisodes" xml:space="preserve">
+    <value>Show unaired episodes</value>
   </data>
   <data name="LabelUsername" xml:space="preserve">
     <value>username:</value>
