@@ -378,6 +378,12 @@
     <Compile Include="..\MediaBrowser.WindowsPhone8\Progress\Utils.cs">
       <Link>Progress\Utils.cs</Link>
     </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.Designer.cs">
+      <Link>Resources\AppResources.Designer.cs</Link>
+      <DependentUpon>AppResources.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.en-US.Designer.cs">
       <Link>Resources\AppResources.en-US.Designer.cs</Link>
       <DependentUpon>AppResources.en-US.resx</DependentUpon>
@@ -911,6 +917,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.resx">
       <Link>Resources\AppResources.resx</Link>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
