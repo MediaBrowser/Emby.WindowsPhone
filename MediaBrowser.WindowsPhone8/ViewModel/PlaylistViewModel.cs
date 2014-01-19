@@ -11,6 +11,7 @@ using GalaSoft.MvvmLight.Messaging;
 using JetBrains.Annotations;
 using MediaBrowser.Model;
 using MediaBrowser.WindowsPhone.AudioAgent;
+using MediaBrowser.WindowsPhone.Resources;
 using Microsoft.Phone.BackgroundAudio;
 using ScottIsAFool.WindowsPhone.ViewModel;
 using INavigationService = MediaBrowser.WindowsPhone.Model.INavigationService;
@@ -111,7 +112,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 return new RelayCommand(() =>
                 {
-                    var result = MessageBox.Show("Are you sure you want to clear your playlist?", "Are you sure?", MessageBoxButton.OKCancel);
+                    var result = MessageBox.Show(AppResources.MessageClearPlayList, AppResources.MessageAreYouSureTitle, MessageBoxButton.OKCancel);
 
                     if (result == MessageBoxResult.OK)
                     {
@@ -155,7 +156,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 return new RelayCommand(() =>
                 {
-                    var result = MessageBox.Show("Are you sure you wish to delete these items? This cannot be undone.", "Are you sure?", MessageBoxButton.OKCancel);
+                    var result = MessageBox.Show(AppResources.MessageDeletePlaylistItems, AppResources.MessageAreYouSureTitle, MessageBoxButton.OKCancel);
                     if (result == MessageBoxResult.OK)
                     {
                         _playlistHelper.RemoveFromPlaylist(SelectedItems);
@@ -223,7 +224,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                     _playlistHelper.AddToPlaylist(m.Content);
 
-                    _navigationService.NavigateTo("/Views/NowPlayingView.xaml");
+                    _navigationService.NavigateTo(Constants.Pages.NowPlayingView);
 
                     if (BackgroundAudioPlayer.Instance.PlayerState != PlayState.Playing)
                     {

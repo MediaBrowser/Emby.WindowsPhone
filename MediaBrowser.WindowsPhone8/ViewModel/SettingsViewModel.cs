@@ -117,7 +117,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             get
             {
-                return IsLockScreenProvider ? "Media Browser is the current lock screen provider" : "Media Browser is not the lock screen provider, would you like it to be? If so, tap the button below.";
+                return IsLockScreenProvider ? AppResources.LabelIsLockScreenProvider : AppResources.LabelIsNotLockScreenProvider;
             }
         }
 
@@ -250,7 +250,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 var hostnameType = Uri.CheckHostName(App.Settings.ConnectionDetails.HostName);
                 if (hostnameType == UriHostNameType.Unknown)
                 {
-                    MessageBox.Show("Sorry, your hostname is invalid, please make sure you don't have any spaces (for example) in it.", "Error", MessageBoxButton.OK);
+                    MessageBox.Show(AppResources.ErrorInvalidHostname, AppResources.ErrorTitle, MessageBoxButton.OK);
                     return;
                 }
 #else
@@ -258,7 +258,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                 if (string.IsNullOrEmpty(App.Settings.ConnectionDetails.HostName) || App.Settings.ConnectionDetails.HostName.Contains(" ") || !regexItem.IsMatch(App.Settings.ConnectionDetails.HostName))
                 {
-                    MessageBox.Show("Sorry, your hostname is invalid, please make sure you don't have any spaces (for example) in it.", "Error", MessageBoxButton.OK);
+                    MessageBox.Show(AppResources.ErrorInvalidHostname, AppResources.ErrorTitle, MessageBoxButton.OK);
 
                     SetProgressBar();
                     return;
@@ -306,7 +306,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         return;
                     }
 
-                    SetProgressBar("Attempting to find your server...");
+                    SetProgressBar(AppResources.SysTrayFindingServer);
 
                     Log.Info("Sending UDP broadcast");
                     await SendMessage("who is MediaBrowserServer?", 7359);

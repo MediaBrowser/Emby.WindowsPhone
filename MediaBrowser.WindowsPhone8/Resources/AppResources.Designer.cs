@@ -367,11 +367,47 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No connection details have been set, would you like to set them now?.
+        /// </summary>
+        public static string ErrorConnectionDetailsMessage {
+            get {
+                return ResourceManager.GetString("ErrorConnectionDetailsMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No connection details.
+        /// </summary>
+        public static string ErrorConnectionDetailsTitle {
+            get {
+                return ResourceManager.GetString("ErrorConnectionDetailsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Could not find your server..
         /// </summary>
         public static string ErrorCouldNotFindServer {
             get {
                 return ResourceManager.GetString("ErrorCouldNotFindServer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sorry, it looks like this account has been disabled. We will now take you back to the login screen..
+        /// </summary>
+        public static string ErrorDisabledUser {
+            get {
+                return ResourceManager.GetString("ErrorDisabledUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to sign in.
+        /// </summary>
+        public static string ErrorDisabledUserTitle {
+            get {
+                return ResourceManager.GetString("ErrorDisabledUserTitle", resourceCulture);
             }
         }
         
@@ -394,6 +430,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Failed to run search.
+        /// </summary>
+        public static string ErrorFailedToSearch {
+            get {
+                return ResourceManager.GetString("ErrorFailedToSearch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error getting data.
         /// </summary>
         public static string ErrorGettingData {
@@ -412,11 +457,47 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unable to get the trailer information.
+        /// </summary>
+        public static string ErrorGettingTrailerDetails {
+            get {
+                return ResourceManager.GetString("ErrorGettingTrailerDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sorry, your hostname is invalid, please make sure you don&apos;t have any spaces (for example) in it..
+        /// </summary>
+        public static string ErrorInvalidHostname {
+            get {
+                return ResourceManager.GetString("ErrorInvalidHostname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error making your changes.
+        /// </summary>
+        public static string ErrorMakingChanges {
+            get {
+                return ResourceManager.GetString("ErrorMakingChanges", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No connection settings, tap to set.
         /// </summary>
         public static string ErrorNoConnectionSettings {
             get {
                 return ResourceManager.GetString("ErrorNoConnectionSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There was a problem updating this item, please try again later..
+        /// </summary>
+        public static string ErrorProblemUpdatingItem {
+            get {
+                return ResourceManager.GetString("ErrorProblemUpdatingItem", resourceCulture);
             }
         }
         
@@ -435,6 +516,33 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string ErrorSeasons {
             get {
                 return ResourceManager.GetString("ErrorSeasons", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error.
+        /// </summary>
+        public static string ErrorTitle {
+            get {
+                return ResourceManager.GetString("ErrorTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We were unable to sign you in at this time, this could be due to an incorrect username/password, or your account has been disabled..
+        /// </summary>
+        public static string ErrorUnableToSignIn {
+            get {
+                return ResourceManager.GetString("ErrorUnableToSignIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Login unsuccessful.
+        /// </summary>
+        public static string ErrorUnableToSignInTitle {
+            get {
+                return ResourceManager.GetString("ErrorUnableToSignInTitle", resourceCulture);
             }
         }
         
@@ -484,6 +592,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Actor.
+        /// </summary>
+        public static string LabelActor {
+            get {
+                return ResourceManager.GetString("LabelActor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add to favourites.
         /// </summary>
         public static string LabelAddToFavourites {
@@ -498,6 +615,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string LabelAlbums {
             get {
                 return ResourceManager.GetString("LabelAlbums", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to an hour ago.
+        /// </summary>
+        public static string LabelAnHourAgo {
+            get {
+                return ResourceManager.GetString("LabelAnHourAgo", resourceCulture);
             }
         }
         
@@ -592,6 +718,24 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to date.
+        /// </summary>
+        public static string LabelDate {
+            get {
+                return ResourceManager.GetString("LabelDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} days ago.
+        /// </summary>
+        public static string LabelDaysAgo {
+            get {
+                return ResourceManager.GetString("LabelDaysAgo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Default lock screen.
         /// </summary>
         public static string LabelDefaultLockScreen {
@@ -606,6 +750,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string LabelDetails {
             get {
                 return ResourceManager.GetString("LabelDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Director.
+        /// </summary>
+        public static string LabelDirector {
+            get {
+                return ResourceManager.GetString("LabelDirector", resourceCulture);
             }
         }
         
@@ -691,6 +844,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} hours ago.
+        /// </summary>
+        public static string LabelHoursAgo {
+            get {
+                return ResourceManager.GetString("LabelHoursAgo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enable enhanced images (if installed on the server).
         /// </summary>
         public static string LabelImageEnhancers {
@@ -705,6 +867,24 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string LabelImdb {
             get {
                 return ResourceManager.GetString("LabelImdb", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Media Browser is the current lock screen provider.
+        /// </summary>
+        public static string LabelIsLockScreenProvider {
+            get {
+                return ResourceManager.GetString("LabelIsLockScreenProvider", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Media Browser is not the lock screen provider.
+        /// </summary>
+        public static string LabelIsNotLockScreenProvider {
+            get {
+                return ResourceManager.GetString("LabelIsNotLockScreenProvider", resourceCulture);
             }
         }
         
@@ -772,11 +952,29 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} minutes ago.
+        /// </summary>
+        public static string LabelMinutesAgo {
+            get {
+                return ResourceManager.GetString("LabelMinutesAgo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Show missing episodes.
         /// </summary>
         public static string LabelMissingEpisodes {
             get {
                 return ResourceManager.GetString("LabelMissingEpisodes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} months ago.
+        /// </summary>
+        public static string LabelMonthsAgo {
+            get {
+                return ResourceManager.GetString("LabelMonthsAgo", resourceCulture);
             }
         }
         
@@ -808,11 +1006,29 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to no.
+        /// </summary>
+        public static string LabelNo {
+            get {
+                return ResourceManager.GetString("LabelNo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No episodes to show.
         /// </summary>
         public static string LabelNoEpisodes {
             get {
                 return ResourceManager.GetString("LabelNoEpisodes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to none.
+        /// </summary>
+        public static string LabelNone {
+            get {
+                return ResourceManager.GetString("LabelNone", resourceCulture);
             }
         }
         
@@ -840,6 +1056,42 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string LabelNowPlaying {
             get {
                 return ResourceManager.GetString("LabelNowPlaying", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to one minute ago.
+        /// </summary>
+        public static string LabelOneMinuteAgo {
+            get {
+                return ResourceManager.GetString("LabelOneMinuteAgo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to one month ago.
+        /// </summary>
+        public static string LabelOneMonthAgo {
+            get {
+                return ResourceManager.GetString("LabelOneMonthAgo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to one second ago.
+        /// </summary>
+        public static string LabelOneSecondAgo {
+            get {
+                return ResourceManager.GetString("LabelOneSecondAgo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Other.
+        /// </summary>
+        public static string LabelOther {
+            get {
+                return ResourceManager.GetString("LabelOther", resourceCulture);
             }
         }
         
@@ -876,6 +1128,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string LabelPoster {
             get {
                 return ResourceManager.GetString("LabelPoster", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Producer.
+        /// </summary>
+        public static string LabelProducer {
+            get {
+                return ResourceManager.GetString("LabelProducer", resourceCulture);
             }
         }
         
@@ -984,6 +1245,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string LabelSeasons {
             get {
                 return ResourceManager.GetString("LabelSeasons", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} seconds ago.
+        /// </summary>
+        public static string LabelSecondsAgo {
+            get {
+                return ResourceManager.GetString("LabelSecondsAgo", resourceCulture);
             }
         }
         
@@ -1123,6 +1393,33 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Writer.
+        /// </summary>
+        public static string LabelWriter {
+            get {
+                return ResourceManager.GetString("LabelWriter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to yes.
+        /// </summary>
+        public static string LabelYes {
+            get {
+                return ResourceManager.GetString("LabelYes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to yesterday.
+        /// </summary>
+        public static string LabelYesterday {
+            get {
+                return ResourceManager.GetString("LabelYesterday", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to play from.
         /// </summary>
         public static string MenuPlayFrom {
@@ -1143,9 +1440,9 @@ namespace MediaBrowser.WindowsPhone.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Are you sure?.
         /// </summary>
-        public static string MessageBoxHeaderAreYouSure {
+        public static string MessageAreYouSureTitle {
             get {
-                return ResourceManager.GetString("MessageBoxHeaderAreYouSure", resourceCulture);
+                return ResourceManager.GetString("MessageAreYouSureTitle", resourceCulture);
             }
         }
         
@@ -1155,6 +1452,51 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string MessageBoxUnpinText {
             get {
                 return ResourceManager.GetString("MessageBoxUnpinText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to clear your playlist?.
+        /// </summary>
+        public static string MessageClearPlayList {
+            get {
+                return ResourceManager.GetString("MessageClearPlayList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you wish to delete these items? This cannot be undone..
+        /// </summary>
+        public static string MessageDeletePlaylistItems {
+            get {
+                return ResourceManager.GetString("MessageDeletePlaylistItems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Experimental.
+        /// </summary>
+        public static string MessageExperimentalTitle {
+            get {
+                return ResourceManager.GetString("MessageExperimentalTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Playing this type of video is currently experimental, results may vary, do you wish to continue?.
+        /// </summary>
+        public static string MessageExperimentalVideo {
+            get {
+                return ResourceManager.GetString("MessageExperimentalVideo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} tracks added successfully..
+        /// </summary>
+        public static string MessageTracksAddedSuccessfully {
+            get {
+                return ResourceManager.GetString("MessageTracksAddedSuccessfully", resourceCulture);
             }
         }
         
@@ -1276,11 +1618,29 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Attempting to find your server....
+        /// </summary>
+        public static string SysTrayFindingServer {
+            get {
+                return ResourceManager.GetString("SysTrayFindingServer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Getting albums....
         /// </summary>
         public static string SysTrayGettingAlbums {
             get {
                 return ResourceManager.GetString("SysTrayGettingAlbums", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Getting details....
+        /// </summary>
+        public static string SysTrayGettingDetails {
+            get {
+                return ResourceManager.GetString("SysTrayGettingDetails", resourceCulture);
             }
         }
         
@@ -1330,6 +1690,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Getting notifications....
+        /// </summary>
+        public static string SysTrayGettingNotifications {
+            get {
+                return ResourceManager.GetString("SysTrayGettingNotifications", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Getting profiles....
         /// </summary>
         public static string SysTrayGettingProfiles {
@@ -1362,6 +1731,24 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string SysTrayGettingShowInformation {
             get {
                 return ResourceManager.GetString("SysTrayGettingShowInformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Getting tracks....
+        /// </summary>
+        public static string SysTrayGettingTracks {
+            get {
+                return ResourceManager.GetString("SysTrayGettingTracks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Getting trailer details....
+        /// </summary>
+        public static string SysTrayGettingTrailerDetails {
+            get {
+                return ResourceManager.GetString("SysTrayGettingTrailerDetails", resourceCulture);
             }
         }
         
@@ -1402,11 +1789,29 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Searching....
+        /// </summary>
+        public static string SysTraySearching {
+            get {
+                return ResourceManager.GetString("SysTraySearching", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unregistering device....
         /// </summary>
         public static string SysTrayUnregisteringDevice {
             get {
                 return ResourceManager.GetString("SysTrayUnregisteringDevice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In trial mode you can only play one video per day. Please try this tomorrow or purchase the full version..
+        /// </summary>
+        public static string TrialVideoMessage {
+            get {
+                return ResourceManager.GetString("TrialVideoMessage", resourceCulture);
             }
         }
         

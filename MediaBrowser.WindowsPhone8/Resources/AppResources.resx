@@ -228,11 +228,20 @@
   <data name="ErrorEpisodes" xml:space="preserve">
     <value>Error getting episodes</value>
   </data>
+  <data name="ErrorFailedToSearch" xml:space="preserve">
+    <value>Failed to run search</value>
+  </data>
   <data name="ErrorGettingData" xml:space="preserve">
     <value>Error getting data</value>
   </data>
   <data name="ErrorGettingExtraInfo" xml:space="preserve">
     <value>Error getting extra information</value>
+  </data>
+  <data name="ErrorInvalidHostname" xml:space="preserve">
+    <value>Sorry, your hostname is invalid, please make sure you don't have any spaces (for example) in it.</value>
+  </data>
+  <data name="ErrorMakingChanges" xml:space="preserve">
+    <value>Error making your changes</value>
   </data>
   <data name="ErrorNoConnectionSettings" xml:space="preserve">
     <value>No connection settings, tap to set</value>
@@ -242,6 +251,15 @@
   </data>
   <data name="ErrorSeasons" xml:space="preserve">
     <value>Error getting seasons</value>
+  </data>
+  <data name="ErrorTitle" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="ErrorUnableToSignIn" xml:space="preserve">
+    <value>We were unable to sign you in at this time, this could be due to an incorrect username/password, or your account has been disabled.</value>
+  </data>
+  <data name="ErrorUnableToSignInTitle" xml:space="preserve">
+    <value>Login unsuccessful</value>
   </data>
   <data name="Favourites" xml:space="preserve">
     <value>Favourites</value>
@@ -333,6 +351,12 @@
   <data name="LabelImdb" xml:space="preserve">
     <value>See film on imdb</value>
   </data>
+  <data name="LabelIsLockScreenProvider" xml:space="preserve">
+    <value>Media Browser is the current lock screen provider</value>
+  </data>
+  <data name="LabelIsNotLockScreenProvider" xml:space="preserve">
+    <value>Media Browser is not the lock screen provider</value>
+  </data>
   <data name="LabelJustShowList" xml:space="preserve">
     <value>Just show the list of items, not a media folder view</value>
   </data>
@@ -368,6 +392,9 @@
   </data>
   <data name="LabelNoEpisodes" xml:space="preserve">
     <value>No episodes to show</value>
+  </data>
+  <data name="LabelNone" xml:space="preserve">
+    <value>none</value>
   </data>
   <data name="LabelNoSeasonsFound" xml:space="preserve">
     <value>No seasons found</value>
@@ -477,11 +504,20 @@
   <data name="MenuPlayFromOn" xml:space="preserve">
     <value>play from on</value>
   </data>
-  <data name="MessageBoxHeaderAreYouSure" xml:space="preserve">
+  <data name="MessageAreYouSureTitle" xml:space="preserve">
     <value>Are you sure?</value>
   </data>
   <data name="MessageBoxUnpinText" xml:space="preserve">
     <value>Are you sure you wish to unpin this tile?</value>
+  </data>
+  <data name="MessageClearPlayList" xml:space="preserve">
+    <value>Are you sure you want to clear your playlist?</value>
+  </data>
+  <data name="MessageDeletePlaylistItems" xml:space="preserve">
+    <value>Are you sure you wish to delete these items? This cannot be undone.</value>
+  </data>
+  <data name="MessageTracksAddedSuccessfully" xml:space="preserve">
+    <value>{0} tracks added successfully.</value>
   </data>
   <data name="More" xml:space="preserve">
     <value>more...</value>
@@ -522,8 +558,14 @@
   <data name="SysTrayCheckingConnection" xml:space="preserve">
     <value>Checking connection...</value>
   </data>
+  <data name="SysTrayFindingServer" xml:space="preserve">
+    <value>Attempting to find your server...</value>
+  </data>
   <data name="SysTrayGettingAlbums" xml:space="preserve">
     <value>Getting albums...</value>
+  </data>
+  <data name="SysTrayGettingDetails" xml:space="preserve">
+    <value>Getting details...</value>
   </data>
   <data name="SysTrayGettingEpisodeDetails" xml:space="preserve">
     <value>Getting episode details...</value>
@@ -540,6 +582,9 @@
   <data name="SysTrayGettingMovieInfo" xml:space="preserve">
     <value>Getting movie information...</value>
   </data>
+  <data name="SysTrayGettingNotifications" xml:space="preserve">
+    <value>Getting notifications...</value>
+  </data>
   <data name="SysTrayGettingProfiles" xml:space="preserve">
     <value>Getting profiles...</value>
   </data>
@@ -551,6 +596,9 @@
   </data>
   <data name="SysTrayGettingShowInformation" xml:space="preserve">
     <value>Getting show information...</value>
+  </data>
+  <data name="SysTrayGettingTracks" xml:space="preserve">
+    <value>Getting tracks...</value>
   </data>
   <data name="SysTrayLoadingCollections" xml:space="preserve">
     <value>Loading collections...</value>
@@ -564,8 +612,14 @@
   <data name="SysTrayRegrouping" xml:space="preserve">
     <value>Re-grouping...</value>
   </data>
+  <data name="SysTraySearching" xml:space="preserve">
+    <value>Searching...</value>
+  </data>
   <data name="SysTrayUnregisteringDevice" xml:space="preserve">
     <value>Unregistering device...</value>
+  </data>
+  <data name="TrialVideoMessage" xml:space="preserve">
+    <value>In trial mode you can only play one video per day. Please try this tomorrow or purchase the full version.</value>
   </data>
   <data name="TvShowRecentItemsTitle" xml:space="preserve">
     <value>{0}'s recent items</value>

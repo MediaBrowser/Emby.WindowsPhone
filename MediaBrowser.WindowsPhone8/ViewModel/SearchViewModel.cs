@@ -8,6 +8,7 @@ using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Search;
 using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Model;
+using MediaBrowser.WindowsPhone.Resources;
 using ScottIsAFool.WindowsPhone;
 using ScottIsAFool.WindowsPhone.ViewModel;
 
@@ -58,7 +59,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             try
             {
                 Log.Info("Searching for [{0}]", SearchText);
-                SetProgressBar("Searching...");
+                SetProgressBar(AppResources.SysTraySearching);
 
                 var query = new SearchQuery
                 {
@@ -79,7 +80,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 Log.ErrorException("DoSearch()", ex);
 
-                App.ShowMessage("Failed to run search");
+                App.ShowMessage(AppResources.ErrorFailedToSearch);
             }
         }
 

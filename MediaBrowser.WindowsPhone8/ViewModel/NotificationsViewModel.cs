@@ -8,6 +8,7 @@ using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Notifications;
 using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Model;
+using MediaBrowser.WindowsPhone.Resources;
 using ScottIsAFool.WindowsPhone.ViewModel;
 
 namespace MediaBrowser.WindowsPhone.ViewModel
@@ -78,7 +79,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                     SelectedNotification = notification;
 
-                    _navigationService.NavigateTo("/Views/NotificationView.xaml");
+                    _navigationService.NavigateTo(Constants.Pages.NotificationView);
                 });
             }
         }
@@ -90,7 +91,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 return;
             }
 
-            SetProgressBar("Getting notifications...");
+            SetProgressBar(AppResources.SysTrayGettingNotifications);
 
             try
             {

@@ -7,6 +7,7 @@ using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Model;
+using MediaBrowser.WindowsPhone.Resources;
 using ScottIsAFool.WindowsPhone;
 using ScottIsAFool.WindowsPhone.ViewModel;
 
@@ -77,7 +78,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 if (_navigationService.IsNetworkAvailable && !_dataLoaded)
                 {
-                    SetProgressBar("Getting trailer details...");
+                    SetProgressBar(AppResources.SysTrayGettingTrailerDetails);
 
                     try
                     {
@@ -93,7 +94,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     {
                         Log.ErrorException("TrailerPageLoaded", ex);
 
-                        App.ShowMessage("Unable to get the trailer information.");
+                        App.ShowMessage(AppResources.ErrorGettingTrailerDetails);
                     }
 
                     SetProgressBar();

@@ -112,7 +112,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 var existingTile = TileService.Current.GetTile(tileUrl);
                 if (existingTile != default(ShellTileServiceTile))
                 {
-                    var result = MessageBox.Show(AppResources.MessageBoxUnpinText, AppResources.MessageBoxHeaderAreYouSure, MessageBoxButton.OKCancel);
+                    var result = MessageBox.Show(AppResources.MessageBoxUnpinText, AppResources.MessageAreYouSureTitle, MessageBoxButton.OKCancel);
                     if (result == MessageBoxResult.OK)
                     {
                         existingTile.Delete();
@@ -183,7 +183,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 #if WP8
             if (!TrialHelper.Current.CanPlayVideo(item.Id))
             {
-                TrialHelper.Current.ShowTrialMessage("In trial mode you can only play one video per day. Please try this tomorrow or purchase the full version.");
+                TrialHelper.Current.ShowTrialMessage(AppResources.TrialVideoMessage);
             }
             else
             {
