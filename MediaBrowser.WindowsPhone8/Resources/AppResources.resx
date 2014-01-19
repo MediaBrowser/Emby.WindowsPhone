@@ -117,12 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AddFavourite" xml:space="preserve">
-    <value>add</value>
-  </data>
-  <data name="AddToFavouritesFull" xml:space="preserve">
-    <value>Add to favourites</value>
-  </data>
   <data name="AppBarAbout" xml:space="preserve">
     <value>about</value>
   </data>
@@ -219,8 +213,20 @@
   <data name="ErrorConnectionDetailsInvalid" xml:space="preserve">
     <value>Connection details are invalid, please try again.</value>
   </data>
+  <data name="ErrorConnectionDetailsMessage" xml:space="preserve">
+    <value>No connection details have been set, would you like to set them now?</value>
+  </data>
+  <data name="ErrorConnectionDetailsTitle" xml:space="preserve">
+    <value>No connection details</value>
+  </data>
   <data name="ErrorCouldNotFindServer" xml:space="preserve">
     <value>Could not find your server.</value>
+  </data>
+  <data name="ErrorDisabledUser" xml:space="preserve">
+    <value>Sorry, it looks like this account has been disabled. We will now take you back to the login screen.</value>
+  </data>
+  <data name="ErrorDisabledUserTitle" xml:space="preserve">
+    <value>Unable to sign in</value>
   </data>
   <data name="ErrorEpisodeDetails" xml:space="preserve">
     <value>Error downloading episode details</value>
@@ -237,6 +243,9 @@
   <data name="ErrorGettingExtraInfo" xml:space="preserve">
     <value>Error getting extra information</value>
   </data>
+  <data name="ErrorGettingTrailerDetails" xml:space="preserve">
+    <value>Unable to get the trailer information</value>
+  </data>
   <data name="ErrorInvalidHostname" xml:space="preserve">
     <value>Sorry, your hostname is invalid, please make sure you don't have any spaces (for example) in it.</value>
   </data>
@@ -245,6 +254,9 @@
   </data>
   <data name="ErrorNoConnectionSettings" xml:space="preserve">
     <value>No connection settings, tap to set</value>
+  </data>
+  <data name="ErrorProblemUpdatingItem" xml:space="preserve">
+    <value>There was a problem updating this item, please try again later.</value>
   </data>
   <data name="ErrorRecentItems" xml:space="preserve">
     <value>Error getting recent items</value>
@@ -276,11 +288,20 @@
   <data name="HeaderFromCollection" xml:space="preserve">
     <value>From collection (where applicable):</value>
   </data>
+  <data name="LabelActor" xml:space="preserve">
+    <value>Actor</value>
+  </data>
+  <data name="LabelAdd" xml:space="preserve">
+    <value>add</value>
+  </data>
   <data name="LabelAddToFavourites" xml:space="preserve">
     <value>Add to favourites</value>
   </data>
   <data name="LabelAlbums" xml:space="preserve">
     <value>albums</value>
+  </data>
+  <data name="LabelAnHourAgo" xml:space="preserve">
+    <value>an hour ago</value>
   </data>
   <data name="LabelArtists" xml:space="preserve">
     <value>artists</value>
@@ -312,11 +333,20 @@
   <data name="LabelConnectionWarning" xml:space="preserve">
     <value>WARNING: Changing the hostname will remove any saved profiles.</value>
   </data>
+  <data name="LabelDate" xml:space="preserve">
+    <value>date</value>
+  </data>
+  <data name="LabelDaysAgo" xml:space="preserve">
+    <value>{0} days ago</value>
+  </data>
   <data name="LabelDefaultLockScreen" xml:space="preserve">
     <value>Default lock screen</value>
   </data>
   <data name="LabelDetails" xml:space="preserve">
     <value>details</value>
+  </data>
+  <data name="LabelDirector" xml:space="preserve">
+    <value>Director</value>
   </data>
   <data name="LabelDisplayRandomImages" xml:space="preserve">
     <value>Display random backdrop images on the back of the tile</value>
@@ -344,6 +374,9 @@
   </data>
   <data name="LabelHostname" xml:space="preserve">
     <value>Hostname:</value>
+  </data>
+  <data name="LabelHoursAgo" xml:space="preserve">
+    <value>{0} hours ago</value>
   </data>
   <data name="LabelImageEnhancers" xml:space="preserve">
     <value>Enable enhanced images (if installed on the server)</value>
@@ -378,8 +411,14 @@
   <data name="LabelManuallyLogin" xml:space="preserve">
     <value>Manually login</value>
   </data>
+  <data name="LabelMinutesAgo" xml:space="preserve">
+    <value>{0} minutes ago</value>
+  </data>
   <data name="LabelMissingEpisodes" xml:space="preserve">
     <value>Show missing episodes</value>
+  </data>
+  <data name="LabelMonthsAgo" xml:space="preserve">
+    <value>{0} months ago</value>
   </data>
   <data name="LabelMovies" xml:space="preserve">
     <value>Movies</value>
@@ -389,6 +428,9 @@
   </data>
   <data name="LabelNextUp" xml:space="preserve">
     <value>next up</value>
+  </data>
+  <data name="LabelNo" xml:space="preserve">
+    <value>no</value>
   </data>
   <data name="LabelNoEpisodes" xml:space="preserve">
     <value>No episodes to show</value>
@@ -405,6 +447,18 @@
   <data name="LabelNowPlaying" xml:space="preserve">
     <value>now playing</value>
   </data>
+  <data name="LabelOneMinuteAgo" xml:space="preserve">
+    <value>one minute ago</value>
+  </data>
+  <data name="LabelOneMonthAgo" xml:space="preserve">
+    <value>one month ago</value>
+  </data>
+  <data name="LabelOneSecondAgo" xml:space="preserve">
+    <value>one second ago</value>
+  </data>
+  <data name="LabelOther" xml:space="preserve">
+    <value>Other</value>
+  </data>
   <data name="LabelOverview" xml:space="preserve">
     <value>overview</value>
   </data>
@@ -416,6 +470,9 @@
   </data>
   <data name="LabelPoster" xml:space="preserve">
     <value>poster</value>
+  </data>
+  <data name="LabelProducer" xml:space="preserve">
+    <value>Producer</value>
   </data>
   <data name="LabelProfile" xml:space="preserve">
     <value>profile</value>
@@ -444,6 +501,9 @@
   <data name="LabelRemote" xml:space="preserve">
     <value>Remote</value>
   </data>
+  <data name="LabelRemove" xml:space="preserve">
+    <value>remove</value>
+  </data>
   <data name="LabelRunningTime" xml:space="preserve">
     <value>Running time:</value>
   </data>
@@ -452,6 +512,9 @@
   </data>
   <data name="LabelSeasons" xml:space="preserve">
     <value>seasons</value>
+  </data>
+  <data name="LabelSecondsAgo" xml:space="preserve">
+    <value>{0} seconds ago</value>
   </data>
   <data name="LabelSeries" xml:space="preserve">
     <value>Series</value>
@@ -498,6 +561,15 @@
   <data name="LabelWelcomeText" xml:space="preserve">
     <value>Welcome to Media Browser for Windows Phone. This app will allow you to browse your media collection, stream it to your phone and remotely control any of the controllable Media Browser clients.</value>
   </data>
+  <data name="LabelWriter" xml:space="preserve">
+    <value>Writer</value>
+  </data>
+  <data name="LabelYes" xml:space="preserve">
+    <value>yes</value>
+  </data>
+  <data name="LabelYesterday" xml:space="preserve">
+    <value>yesterday</value>
+  </data>
   <data name="MenuPlayFrom" xml:space="preserve">
     <value>play from</value>
   </data>
@@ -516,6 +588,12 @@
   <data name="MessageDeletePlaylistItems" xml:space="preserve">
     <value>Are you sure you wish to delete these items? This cannot be undone.</value>
   </data>
+  <data name="MessageExperimentalTitle" xml:space="preserve">
+    <value>Experimental</value>
+  </data>
+  <data name="MessageExperimentalVideo" xml:space="preserve">
+    <value>Playing this type of video is currently experimental, results may vary, do you wish to continue?</value>
+  </data>
   <data name="MessageTracksAddedSuccessfully" xml:space="preserve">
     <value>{0} tracks added successfully.</value>
   </data>
@@ -533,9 +611,6 @@
   </data>
   <data name="ProductionYear" xml:space="preserve">
     <value>production year</value>
-  </data>
-  <data name="RemoveFavourite" xml:space="preserve">
-    <value>remove</value>
   </data>
   <data name="RemoveFromFavouritesFull" xml:space="preserve">
     <value>Remove from favourites</value>
@@ -564,6 +639,21 @@
   <data name="SysTrayGettingAlbums" xml:space="preserve">
     <value>Getting albums...</value>
   </data>
+  <data name="SysTrayGettingAlbumTracks" xml:space="preserve">
+    <value>Getting album tracks...</value>
+  </data>
+  <data name="SysTrayGettingAllTracks" xml:space="preserve">
+    <value>Getting all tracks...</value>
+  </data>
+  <data name="SysTrayGettingArtists" xml:space="preserve">
+    <value>Getting artists...</value>
+  </data>
+  <data name="SysTrayGettingArtistTracks" xml:space="preserve">
+    <value>Getting artist tracks...</value>
+  </data>
+  <data name="SysTrayGettingBoxsets" xml:space="preserve">
+    <value>Getting boxsets...</value>
+  </data>
   <data name="SysTrayGettingDetails" xml:space="preserve">
     <value>Getting details...</value>
   </data>
@@ -576,11 +666,23 @@
   <data name="SysTrayGettingFavourites" xml:space="preserve">
     <value>Getting favourites...</value>
   </data>
+  <data name="SysTrayGettingGenres" xml:space="preserve">
+    <value>Getting genres...</value>
+  </data>
+  <data name="SysTrayGettingGenreTracks" xml:space="preserve">
+    <value>Getting genre tracks...</value>
+  </data>
   <data name="SysTrayGettingItems" xml:space="preserve">
     <value>Getting items...</value>
   </data>
   <data name="SysTrayGettingMovieInfo" xml:space="preserve">
     <value>Getting movie information...</value>
+  </data>
+  <data name="SysTrayGettingMovies" xml:space="preserve">
+    <value>Getting movies...</value>
+  </data>
+  <data name="SysTrayGettingNextUp" xml:space="preserve">
+    <value>Getting next up items...</value>
   </data>
   <data name="SysTrayGettingNotifications" xml:space="preserve">
     <value>Getting notifications...</value>
@@ -597,8 +699,20 @@
   <data name="SysTrayGettingShowInformation" xml:space="preserve">
     <value>Getting show information...</value>
   </data>
+  <data name="SysTrayGettingShows" xml:space="preserve">
+    <value>Getting TV shows...</value>
+  </data>
+  <data name="SysTrayGettingSongs" xml:space="preserve">
+    <value>Getting songs...</value>
+  </data>
   <data name="SysTrayGettingTracks" xml:space="preserve">
     <value>Getting tracks...</value>
+  </data>
+  <data name="SysTrayGettingTrailerDetails" xml:space="preserve">
+    <value>Getting trailer details...</value>
+  </data>
+  <data name="SysTrayGettingUnwatchedItems" xml:space="preserve">
+    <value>Getting latest unwatched items...</value>
   </data>
   <data name="SysTrayLoadingCollections" xml:space="preserve">
     <value>Loading collections...</value>

@@ -61,24 +61,6 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to add.
-        /// </summary>
-        public static string AddFavourite {
-            get {
-                return ResourceManager.GetString("AddFavourite", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Add to favourites.
-        /// </summary>
-        public static string AddToFavouritesFull {
-            get {
-                return ResourceManager.GetString("AddToFavouritesFull", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to about.
         /// </summary>
         public static string AppBarAbout {
@@ -597,6 +579,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string LabelActor {
             get {
                 return ResourceManager.GetString("LabelActor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to add.
+        /// </summary>
+        public static string LabelAdd {
+            get {
+                return ResourceManager.GetString("LabelAdd", resourceCulture);
             }
         }
         
@@ -1222,6 +1213,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to remove.
+        /// </summary>
+        public static string LabelRemove {
+            get {
+                return ResourceManager.GetString("LabelRemove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Running time:.
         /// </summary>
         public static string LabelRunningTime {
@@ -1542,15 +1542,6 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string ProductionYear {
             get {
                 return ResourceManager.GetString("ProductionYear", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to remove.
-        /// </summary>
-        public static string RemoveFavourite {
-            get {
-                return ResourceManager.GetString("RemoveFavourite", resourceCulture);
             }
         }
         
