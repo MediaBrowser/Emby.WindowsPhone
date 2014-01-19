@@ -69,10 +69,9 @@
                                 <Image Source="{Binding SelectedTrailer, Converter={StaticResource ImageUrlConverter}}"
                                        Stretch="UniformToFill"
                                        HorizontalAlignment="Center" />
-                                <Image Source="/Images/Play128.png"
-                                       MaxWidth="63"
-                                       HorizontalAlignment="Center"
-                                       VerticalAlignment="Center" />
+                                <controls:PlayButton Height="63"
+                                                     HorizontalAlignment="Center"
+                                                     VerticalAlignment="Center"/>
                             </Grid>
                         </Button>
                         <phone:LongListSelector Grid.Column="1"

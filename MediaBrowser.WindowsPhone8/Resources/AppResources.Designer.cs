@@ -925,6 +925,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Log In.
+        /// </summary>
+        public static string LabelLogIn {
+            get {
+                return ResourceManager.GetString("LabelLogIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Make us the lock screen provider.
         /// </summary>
         public static string LabelMakeLockScreenProvider {
@@ -1222,6 +1231,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Released in.
+        /// </summary>
+        public static string LabelReleasedIn {
+            get {
+                return ResourceManager.GetString("LabelReleasedIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Remote.
         /// </summary>
         public static string LabelRemote {
@@ -1416,6 +1434,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string LabelWelcomeText {
             get {
                 return ResourceManager.GetString("LabelWelcomeText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Welcome to Media Browser for Windows Phone. This app will allow you to browse your media collection and remotely control any of the controllable Media Browser clients..
+        /// </summary>
+        public static string LabelWelcomeTextPhone7 {
+            get {
+                return ResourceManager.GetString("LabelWelcomeTextPhone7", resourceCulture);
             }
         }
         
@@ -1965,6 +1992,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string WatermarkEnterUsername {
             get {
                 return ResourceManager.GetString("WatermarkEnterUsername", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to enter a password.
+        /// </summary>
+        public static string WatermarkPassword {
+            get {
+                return ResourceManager.GetString("WatermarkPassword", resourceCulture);
             }
         }
     }

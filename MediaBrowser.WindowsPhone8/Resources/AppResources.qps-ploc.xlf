@@ -843,6 +843,35 @@
           <source>enter a username</source>
           <target state="new">enter a username</target>
         </trans-unit>
+        <trans-unit translate="yes" id="Resx/WatermarkPassword" xml:space="preserve">
+          <source>enter a password</source>
+          <target state="new">enter a password</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelWelcomeTextPhone7" xml:space="preserve">
+          <source>Welcome to Media Browser for Windows Phone. This app will allow you to browse your media collection and remotely control any of the controllable Media Browser clients.</source>
+          <target state="new">Welcome to Media Browser for Windows Phone. This app will allow you to browse your media collection and remotely control any of the controllable Media Browser clients.</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelReleasedIn" xml:space="preserve">
+          <source>Released in</source>
+          <target state="new">Released in</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">eg, Released in 1993</note>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelUnplayedItems" xml:space="preserve">
+          <source>Unplayed:</source>
+          <target state="new">Unplayed:</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelNothingInPlaylist" xml:space="preserve">
+          <source>Nothing in your playlist</source>
+          <target state="new">Nothing in your playlist</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelNoFoldersFound" xml:space="preserve">
+          <source>No folders found</source>
+          <target state="new">No folders found</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelLogIn" xml:space="preserve">
+          <source>Log In</source>
+          <target state="new">Log In</target>
+        </trans-unit>
       </group>
     </body>
   </file>

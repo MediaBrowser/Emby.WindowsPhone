@@ -745,6 +745,9 @@
   <data name="WatermarkEnterUsername" xml:space="preserve">
     <value>enter a username</value>
   </data>
+  <data name="LabelLogIn" xml:space="preserve">
+    <value>Log In</value>
+  </data>
   <data name="LabelNoFoldersFound" xml:space="preserve">
     <value>No folders found</value>
   </data>
@@ -753,5 +756,15 @@
   </data>
   <data name="LabelUnplayedItems" xml:space="preserve">
     <value>Unplayed:</value>
+  </data>
+  <data name="WatermarkPassword" xml:space="preserve">
+    <value>enter a password</value>
+  </data>
+  <data name="LabelReleasedIn" xml:space="preserve">
+    <value>Released in</value>
+    <comment>eg, Released in 1993</comment>
+  </data>
+  <data name="LabelWelcomeTextPhone7" xml:space="preserve">
+    <value>Welcome to Media Browser for Windows Phone. This app will allow you to browse your media collection and remotely control any of the controllable Media Browser clients.</value>
   </data>
 </root>

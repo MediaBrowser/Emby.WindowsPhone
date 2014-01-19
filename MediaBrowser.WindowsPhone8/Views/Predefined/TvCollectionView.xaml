@@ -146,9 +146,11 @@
                                                        FontSize="{StaticResource PhoneFontSizeMediumLarge}"/>
                                             <TextBlock Text="{Binding ProductionYear}"
                                                        Style="{StaticResource PhoneTextSubtleStyle}"/>
-                                            <TextBlock Text="{Binding RecursiveUnplayedItemCount, StringFormat='Unwatched: \{0\}'}"
-                                                       Style="{StaticResource PhoneTextSubtleStyle}"
-                                                       Foreground="{Binding RecursiveUnplayedItemCount, Converter={StaticResource ZeroCountBrushConverter}}"/>
+                                            <TextBlock Style="{StaticResource PhoneTextSubtleStyle}"
+                                                       Foreground="{Binding RecursiveUnplayedItemCount, Converter={StaticResource ZeroCountBrushConverter}}">
+                                                <Run Text="{Binding LocalizedResources.LabelUnwatched, Source={StaticResource LocalizedStrings}}" />
+                                                <Run Text="{Binding RecursiveUnplayedItemCount}" />
+                                            </TextBlock>
                                         </StackPanel>
                                     </StackPanel>
                                 </HyperlinkButton>

@@ -12,6 +12,7 @@
                 xmlns:behaviours="clr-namespace:ScottIsAFool.WindowsPhone.Behaviours"
                 xmlns:controls2="clr-namespace:MediaBrowser.WindowsPhone.Controls"
                 xmlns:behaviours1="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
+                xmlns:behaviors="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
                 FontFamily="{StaticResource PhoneFontFamilyNormal}"
                 FontSize="{StaticResource PhoneFontSizeNormal}"
                 Foreground="{StaticResource PhoneForegroundBrush}"
@@ -31,6 +32,14 @@
         <behaviours1:MBSysTray Text="{Binding ProgressText}"
                               IsVisible="{Binding ProgressIsVisible}"
                               IsIndeterminate="{Binding ProgressIsVisible}" />
+        <behaviors:ApplicationBarBehavior Mode="Minimized"
+                                          IsMenuEnabled="True">
+            <behaviors:ApplicationBarBehavior.MenuItems>
+                <behaviors:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarSendLogs, Source={StaticResource LocalizedStrings}}"
+                                                  x:Name="EmailLogs"
+                                                  Click="EmailLogs_OnClick" />
+            </behaviors:ApplicationBarBehavior.MenuItems>
+        </behaviors:ApplicationBarBehavior>
     </i:Interaction.Behaviors>
 
     <toolkit:TransitionService.NavigationInTransition>
@@ -62,24 +71,24 @@
                 <controls2:MediaBrowserLogo Margin="-12,0,0,0" />
             </controls:Pivot.Title>
 
-            <controls:PivotItem Header="general">
+            <controls:PivotItem Header="{Binding LocalizedResources.LabelGeneral, Source={StaticResource LocalizedStrings}}">
                 <StackPanel>
-                    <CheckBox Content="Show trailers in recent items"
+                    <CheckBox Content="{Binding LocalizedResources.LabelShowTrailers, Source={StaticResource LocalizedStrings}}"
                               IsChecked="{Binding IncludeTrailersInRecent, Source={StaticResource SpecificSettings}, Mode=TwoWay}" />
                     <toolkit:ListPicker ItemsSource="{Binding GroupByItems, Source={StaticResource SpecificSettings}}"
                                         SelectedItem="{Binding DefaultGroupBy, Source={StaticResource SpecificSettings}, Mode=TwoWay}"
-                                        Header="Default grouping" />
+                                        Header="{Binding LocalizedResources.HeaderDefaultGrouping, Source={StaticResource LocalizedStrings}}" />
                     <CheckBox IsChecked="{Binding JustShowFolderView, Source={StaticResource SpecificSettings}, Mode=TwoWay}">
-                        <TextBlock Text="Just show the list of items, not a collection view"
+                        <TextBlock Text="{Binding LocalizedResources.LabelJustShowList, Source={StaticResource LocalizedStrings}}"
                                    TextWrapping="Wrap"
                                    VerticalAlignment="Top" />
                     </CheckBox>
                     <CheckBox IsChecked="{Binding ShowMissingEpisodes, Source={StaticResource SpecificSettings}, Mode=TwoWay}"
-                              Content="Show missing episodes" />
+                              Content="{Binding LocalizedResources.LabelMissingEpisodes, Source={StaticResource LocalizedStrings}}" />
                     <CheckBox IsChecked="{Binding ShowUnairedEpisodes, Source={StaticResource SpecificSettings}, Mode=TwoWay}"
-                              Content="Show unaired episodes" />
+                              Content="{Binding LocalizedResources.LabelUnairedEpisodes, Source={StaticResource LocalizedStrings}}" />
                     <CheckBox IsChecked="{Binding EnableImageEnhancers, Source={StaticResource SpecificSettings}, Mode=TwoWay}">
-                        <TextBlock Text="Enable enhanced images (if installed on the server)"
+                        <TextBlock Text="{Binding LocalizedResources.LabelImageEnhancers, Source={StaticResource LocalizedStrings}}"
                                    TextWrapping="Wrap"
                                    VerticalAlignment="Top" />
                     </CheckBox>
@@ -137,12 +146,12 @@
                 </Grid>
             </controls:PivotItem>-->
 
-            <controls:PivotItem Header="connection">
+            <controls:PivotItem Header="{Binding LocalizedResources.LabelConnection, Source={StaticResource LocalizedStrings}}">
                 <StackPanel Orientation="Vertical">
-                    <TextBlock Text="Put the connection details in to point to the computer running Mediabrowser3. Then simply test them to confirm."
+                    <TextBlock Text="{Binding LocalizedResources.LabelConnectionDetails, Source={StaticResource LocalizedStrings}}"
                                TextWrapping="Wrap"
                                Style="{StaticResource PhoneTextNormalStyle}" />
-                    <TextBlock Text="Hostname:"
+                    <TextBlock Text="{Binding LocalizedResources.LabelHostname, Source={StaticResource LocalizedStrings}}"
                                Margin="12,12,0,0"
                                Style="{StaticResource PhoneTextNormalStyle}" />
                     <TextBox Text="{Binding ConnectionDetails.HostName, Source={StaticResource AppSettings}, Mode=TwoWay}"
@@ -151,18 +160,18 @@
                             <behaviours:UpdateTextBindingOnPropertyChanged EnterHitCommand="{Binding Settings.TestConnectionCommand, Source={StaticResource Locator}}" />
                         </i:Interaction.Behaviors>
                     </TextBox>
-                    <TextBlock Text="Port:"
+                    <TextBlock Text="{Binding LocalizedResources.LabelPort, Source={StaticResource LocalizedStrings}}"
                                Margin="12,12,0,0"
                                Style="{StaticResource PhoneTextNormalStyle}" />
                     <TextBox Text="{Binding ConnectionDetails.PortNo, Source={StaticResource AppSettings}, Mode=TwoWay}"
                              InputScope="Number" />
-                    <TextBlock Text="WARNING: Changing the hostname will remove any saved profiles."
+                    <TextBlock Text="{Binding LocalizedResources.LabelConnectionWarning, Source={StaticResource LocalizedStrings}}"
                                TextWrapping="Wrap"
                                FontWeight="ExtraBold"
                                Style="{StaticResource PhoneTextNormalStyle}"
                                Margin="12,12,0,0" />
                     <Button Margin="0,12,0,0"
-                            Content="Connect"
+                            Content="{Binding LocalizedResources.LabelConnect, Source={StaticResource LocalizedStrings}}"
                             Command="{Binding Settings.TestConnectionCommand, Source={StaticResource Locator}}"
                             Style="{StaticResource ConnectButtonStyle}" />
                 </StackPanel>
@@ -171,15 +180,4 @@
 
 
     </Grid>
-
-    <scott:BasePage.ApplicationBar>
-        <shell:ApplicationBar IsMenuEnabled="True"
-                              Mode="Minimized">
-            <shell:ApplicationBar.MenuItems>
-                <shell:ApplicationBarMenuItem Text="email logs"
-                                              x:Name="EmailLogs"
-                                              Click="EmailLogs_OnClick" />
-            </shell:ApplicationBar.MenuItems>
-        </shell:ApplicationBar>
-    </scott:BasePage.ApplicationBar>
 </scott:BasePage>

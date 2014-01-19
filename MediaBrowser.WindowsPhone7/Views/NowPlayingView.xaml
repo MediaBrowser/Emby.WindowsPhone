@@ -42,8 +42,8 @@
                                              FalseValue="/Icons/appbar.transport.play.rest.png"
                                              TrueValue="/Icons/appbar.transport.pause.rest.png" />
         <converters:BooleanToStringConverter x:Key="PlayTextConverter"
-                                             TrueValue="pause"
-                                             FalseValue="play" />
+                                             TrueValue="{Binding LocalizedResources.AppBarPause, Source={StaticResource LocalizedStrings}}"
+                                             FalseValue="{Binding LocalizedResources.AppBarPlay, Source={StaticResource LocalizedStrings}}" />
         <localConverters:PlaylistCountConverter x:Key="PlaylistCountConverter" />
     </scott:BasePage.Resources>
 
@@ -72,7 +72,7 @@
           Background="{StaticResource MediaBrowserBackground}">
         <i:Interaction.Behaviors>
             <cimbalino:ApplicationBarBehavior IsMenuEnabled="True">
-                <cimbalino:ApplicationBarIconButton Text="previous"
+                <cimbalino:ApplicationBarIconButton Text="{Binding LocalizedResources.AppBarPrevious, Source={StaticResource LocalizedStrings}}"
                                                     IconUri="/Icons/appbar.transport.rew.rest.png"
                                                     IsEnabled="{Binding Playlist.Count, Converter={StaticResource PlaylistCountConverter}}"
                                                     Command="{Binding PreviousTrackCommand}" />
@@ -80,12 +80,12 @@
                                                     IconUri="{Binding IsPlaying, Converter={StaticResource PlayIconConverter}}"
                                                     IsEnabled="{Binding Playlist.Count, Converter={StaticResource PlaylistCountConverter}, ConverterParameter=true}"
                                                     Command="{Binding PlayPauseCommand}" />
-                <cimbalino:ApplicationBarIconButton Text="next"
+                <cimbalino:ApplicationBarIconButton Text="{Binding LocalizedResources.AppBarNext, Source={StaticResource LocalizedStrings}}"
                                                     IconUri="/Icons/appbar.transport.ff.rest.png"
                                                     IsEnabled="{Binding Playlist.Count, Converter={StaticResource PlaylistCountConverter}}"
                                                     Command="{Binding NextTrackCommand}" />
                 <cimbalino:ApplicationBarBehavior.MenuItems>
-                    <cimbalino:ApplicationBarMenuItem Text="clear now playing"
+                    <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarClearNowPlaying, Source={StaticResource LocalizedStrings}}"
                                                       Command="{Binding ClearPlaylistCommand}" />
                 </cimbalino:ApplicationBarBehavior.MenuItems>
             </cimbalino:ApplicationBarBehavior>
@@ -101,7 +101,7 @@
                     Margin="12,17,0,28">
             <mb:MediaBrowserLogo />
             <TextBlock x:Name="PageTitle"
-                       Text="now playing"
+                       Text="{Binding LocalizedResources.LabelNowPlaying, Source={StaticResource LocalizedStrings}}"
                        Margin="9,-7,0,0"
                        Style="{StaticResource PhoneTextTitle1Style}" />
         </StackPanel>
@@ -148,8 +148,7 @@
                                Style="{StaticResource PhoneTextNormalStyle}" />
                 </StackPanel>
                 <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                 NavigateUri="/Views/FullPlaylistView.xaml"
-                                 HorizontalContentAlignment="Left">
+                                 NavigateUri="/Views/FullPlaylistView.xaml">
                     <ListBox ItemsSource="{Binding SmallList}"
                              IsHitTestVisible="False">
                         <ListBox.ItemTemplate>

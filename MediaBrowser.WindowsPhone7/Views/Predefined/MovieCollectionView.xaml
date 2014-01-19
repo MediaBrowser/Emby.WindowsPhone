@@ -70,15 +70,11 @@
                 <phone:Pivot.Title>
                     <StackPanel Orientation="Horizontal"
                                 Margin="-12,0,0,0">
-                        <mb:MediaBrowserLogo />
-                        <TextBlock x:Name="ApplicationTitle"
-                                   Text="- MOVIES"
-                                   Margin="6,0,0,0"
-                                   Style="{StaticResource PhoneTextNormalStyle}" />
+                        <mb:MediaBrowserLogo AltText="{Binding LocalizedResources.LabelMovies, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToUppercaseConverter}}" />
                     </StackPanel>
                 </phone:Pivot.Title>
 
-                <phone:PivotItem Header="latest unseen">
+                <phone:PivotItem Header="{Binding LocalizedResources.LabelLatestUnseen, Source={StaticResource LocalizedStrings}}">
                     <scott:PhoneListBox ItemsSource="{Binding LatestUnwatched}"
                                               ListHeader="{Binding UnseenHeader}"
                                               Margin="12,0,0,0">
@@ -136,7 +132,7 @@
                     </scott:PhoneListBox>
                 </phone:PivotItem>
 
-                <phone:PivotItem Header="boxsets">
+                <phone:PivotItem Header="{Binding LocalizedResources.LabelBoxsets, Source={StaticResource LocalizedStrings}}">
                     <toolkit:LongListSelector ItemsSource="{Binding Boxsets}"
                                               GroupHeaderTemplate="{StaticResource LLSGroupHeaderTemplateName}"
                                               GroupItemTemplate="{StaticResource LLSGroupItemTemplate}"
@@ -149,7 +145,7 @@
                                                  CommandParameter="{Binding}">
                                     <toolkit:ContextMenuService.ContextMenu>
                                         <toolkit:ContextMenu>
-                                            <toolkit:MenuItem Header="mark as watched"
+                                            <toolkit:MenuItem Header="{Binding LocalizedResources.AppBarMarkAsWatched, Source={StaticResource LocalizedStrings}}"
                                                               Command="{Binding MovieCollection.MarkAsWatchedCommand, Source={StaticResource Locator}}"
                                                               CommandParameter="{Binding}" />
                                         </toolkit:ContextMenu>
@@ -166,9 +162,11 @@
                                             <TextBlock Text="{Binding Name, Converter={StaticResource StringToUppercaseConverter}}"
                                                        Style="{StaticResource HeaderTextStyle}"
                                                        FontSize="{StaticResource PhoneFontSizeMediumLarge}" />
-                                            <TextBlock Text="{Binding RecursiveUnplayedItemCount, StringFormat='Unwatched: \{0\}'}"
-                                                       Style="{StaticResource PhoneTextSubtleStyle}"
-                                                       Foreground="{Binding RecursiveUnplayedItemCount, Converter={StaticResource ZeroCountBrushConverter}}" />
+                                            <TextBlock Style="{StaticResource PhoneTextSubtleStyle}"
+                                                       Foreground="{Binding RecursiveUnplayedItemCount, Converter={StaticResource ZeroCountBrushConverter}}">
+                                                <Run Text="{Binding LocalizedResources.LabelUnwatched, Source={StaticResource LocalizedStrings}}" />
+                                                <Run Text="{Binding RecursiveUnplayedItemCount}" />
+                                            </TextBlock>
                                         </StackPanel>
                                     </StackPanel>
                                 </HyperlinkButton>
@@ -177,7 +175,7 @@
                     </toolkit:LongListSelector>
                 </phone:PivotItem>
 
-                <phone:PivotItem Header="movies">
+                <phone:PivotItem Header="{Binding LocalizedResources.LabelMovies, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
                     <toolkit:LongListSelector ItemsSource="{Binding Movies}"
                                               GroupHeaderTemplate="{StaticResource LLSGroupHeaderTemplateName}"
                                               GroupItemTemplate="{StaticResource LLSGroupItemTemplate}"

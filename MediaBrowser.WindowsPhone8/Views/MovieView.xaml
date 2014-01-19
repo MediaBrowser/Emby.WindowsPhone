@@ -117,8 +117,10 @@
                         <local:ScrollableTextBlock.Header>
                             <StackPanel Orientation="Vertical"
                                         Margin="-12,0,0,12">
-                                <TextBlock Text="{Binding SelectedMovie.ProductionYear, StringFormat='Released in \{0\}'}"
-                                           Style="{StaticResource PhoneTextNormalStyle}" />
+                                <TextBlock Style="{StaticResource PhoneTextNormalStyle}">
+                                    <Run Text="{Binding LocalizedResources.LabelReleasedIn, Source={StaticResource LocalizedStrings}}"/>
+                                    <Run Text="{Binding SelectedMovie.ProductionYear}"/>
+                                </TextBlock>
 
                                 <telerikInput:RadRating Value="{Binding SelectedMovie.CommunityRating, Converter={StaticResource RatingConverter}}"
                                                         IsReadOnly="True"

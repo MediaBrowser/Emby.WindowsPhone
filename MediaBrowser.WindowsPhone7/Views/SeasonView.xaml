@@ -77,7 +77,7 @@
               Grid.Row="1"
               Margin="12,0,12,0">
             <scott:PhoneListBox ItemsSource="{Binding Episodes}"
-                                Text="No episodes to show"
+                                Text="{Binding LocalizedResources.LabelNoEpisodes, Source={StaticResource LocalizedStrings}}"
                                 TextStyle="{StaticResource PhoneTextLargeStyle}"
                                 ItemTemplate="{StaticResource TileItemStyle}">
                 <scott:PhoneListBox.ItemsPanel>
@@ -90,17 +90,5 @@
             </scott:PhoneListBox>
         </Grid>
     </Grid>
-
-    <!--Sample code showing usage of ApplicationBar-->
-    <!--<scott:BasePage.ApplicationBar>
-        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button1.png" Text="Button 1"/>
-            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button2.png" Text="Button 2"/>
-            <shell:ApplicationBar.MenuItems>
-                <shell:ApplicationBarMenuItem Text="MenuItem 1"/>
-                <shell:ApplicationBarMenuItem Text="MenuItem 2"/>
-            </shell:ApplicationBar.MenuItems>
-        </shell:ApplicationBar>
-    </scott:BasePage.ApplicationBar>-->
 
 </scott:BasePage>
