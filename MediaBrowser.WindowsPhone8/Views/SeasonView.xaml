@@ -77,7 +77,7 @@
               Grid.Row="1"
               Margin="12,0,12,0">
             <scott:PhoneListBox ItemsSource="{Binding Episodes}"
-                                Text="No episodes to show"
+                                Text="{Binding LocalizedResources.LabelNoEpisodes, Source={StaticResource LocalizedStrings}}"
                                 TextStyle="{StaticResource PhoneTextLargeStyle}"
                                 ItemTemplate="{StaticResource TileItemStyle}">
                 <scott:PhoneListBox.ItemsPanel>

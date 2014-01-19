@@ -71,7 +71,7 @@
             <StackPanel x:Name="TitlePanel"
                         Grid.Row="0"
                         Margin="12,17,0,28">
-                <TextBlock Text="CHOOSE A CLIENT"
+                <TextBlock Text="{Binding LocalizedResources.HeaderChooseClient, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToUppercaseConverter}}"
                            Style="{StaticResource PhoneTextNormalStyle}"
                            Margin="12,0" />
             </StackPanel>

@@ -172,7 +172,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 catch (HttpException ex)
                 {
                     Log.ErrorException("AddRemoveFavouriteCommand (TV)", ex);
-                    App.ShowMessage("Error making your changes");
+                    App.ShowMessage(AppResources.ErrorMakingChanges);
                 }
 
                 SetProgressBar();
@@ -388,7 +388,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
             catch (HttpException ex)
             {
-                MessageBox.Show("There was a problem updating this item, please try again later.", "Error", MessageBoxButton.OK);
+                MessageBox.Show(AppResources.ErrorProblemUpdatingItem, AppResources.ErrorTitle, MessageBoxButton.OK);
                 Log.ErrorException("MarkAsWatchedCommand", ex);
             }
         }

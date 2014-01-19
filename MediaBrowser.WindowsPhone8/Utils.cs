@@ -18,6 +18,7 @@ using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Session;
 using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Model;
+using MediaBrowser.WindowsPhone.Resources;
 using MediaBrowser.WindowsPhone.Services;
 using ScottIsAFool.WindowsPhone;
 using ScottIsAFool.WindowsPhone.Logging;
@@ -30,11 +31,11 @@ namespace MediaBrowser.WindowsPhone
         public static List<Group<BaseItemPerson>> GroupCastAndCrew(IEnumerable<BaseItemPerson> people)
         {
             var emptyGroups = new List<Group<BaseItemPerson>>();
-            var headers = new List<string> { "Director", "Actor", "Writer", "Producer" };
+            var headers = new List<string> { AppResources.LabelDirector, AppResources.LabelActor, AppResources.LabelWriter, AppResources.LabelProducer, AppResources.LabelOther };
             headers.ForEach(item => emptyGroups.Add(new Group<BaseItemPerson>(item, new List<BaseItemPerson>())));
 
             var groupedPeople = (from p in people
-                                 group p by p.Type
+                                 group p by GetPersonType(p.Type)
                                      into grp
                                      orderby grp.Key
                                      select new Group<BaseItemPerson>(grp.Key, grp)).ToList();
@@ -126,6 +127,23 @@ namespace MediaBrowser.WindowsPhone
             {
             }
             return '#'.ToString(CultureInfo.InvariantCulture);
+        }
+
+        internal static string GetPersonType(string type)
+        {
+            switch (type)
+            {
+                case "Director":
+                    return AppResources.LabelDirector;
+                case "Actor":
+                    return AppResources.LabelActor;
+                case "Writer":
+                    return AppResources.LabelWriter;
+                case "Producer":
+                    return AppResources.LabelProducer;
+            }
+
+            return AppResources.LabelOther;
         }
 
         internal static void CopyItem<T>(T source, T destination) where T : class
@@ -271,7 +289,7 @@ namespace MediaBrowser.WindowsPhone
         {
             if (ex.StatusCode == HttpStatusCode.Forbidden)
             {
-                MessageBox.Show("Sorry, it looks like this account has been disabled. We will now take you back to the login screen", "Unable to sign in", MessageBoxButton.OK);
+                MessageBox.Show(AppResources.ErrorDisabledUser, AppResources.ErrorDisabledUserTitle, MessageBoxButton.OK);
                 log.Error("UnauthorizedAccess for user [{0}]", AuthenticationService.Current.LoggedInUser.Name);
             }
             else
@@ -314,30 +332,30 @@ namespace MediaBrowser.WindowsPhone
 
             // Less than one minute
             if (seconds < 1 * MINUTE)
-                return ts.Seconds == 1 ? "one second ago" : ts.Seconds + " seconds ago";
+                return ts.Seconds == 1 ? AppResources.LabelOneSecondAgo : string.Format(AppResources.LabelSecondsAgo, ts.Seconds);
 
             if (seconds < 60 * MINUTE)
-                return ts.Minutes + " minutes ago";
+                return ts.Minutes == 1 ? AppResources.LabelOneMinuteAgo : string.Format(AppResources.LabelMinutesAgo, ts.Minutes);
 
             if (seconds < 120 * MINUTE)
-                return "an hour ago";
+                return AppResources.LabelAnHourAgo;
 
             if (seconds < 24 * HOUR)
-                return ts.Hours + " hours ago";
+                return string.Format(AppResources.LabelHoursAgo, ts.Hours);
 
             if (seconds < 48 * HOUR)
-                return "yesterday";
+                return AppResources.LabelYesterday;
 
             if (seconds < 30 * DAY)
-                return ts.Days + " days ago";
+                return string.Format(AppResources.LabelDaysAgo, ts.Days);
 
             if (seconds < 12 * MONTH)
             {
-                int months = System.Convert.ToInt32(Math.Floor((double)ts.Days / 30));
-                return months <= 1 ? "one month ago" : months + " months ago";
+                int months = Convert.ToInt32(Math.Floor((double)ts.Days / 30));
+                return months <= 1 ? AppResources.LabelOneMonthAgo : string.Format(AppResources.LabelMonthsAgo, months);
             }
 
-            return "date";
+            return AppResources.LabelDate;
         }
 
         public static PlaystateCommand ToPlaystateCommandEnum(this string stringCommand)

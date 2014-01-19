@@ -14,6 +14,7 @@ using MediaBrowser.Model.Net;
 using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Messaging;
 using MediaBrowser.WindowsPhone.Model;
+using MediaBrowser.WindowsPhone.Resources;
 using ScottIsAFool.WindowsPhone.ViewModel;
 
 namespace MediaBrowser.WindowsPhone.ViewModel
@@ -166,7 +167,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 {
                     if (SelectedItem.VideoType != VideoType.VideoFile)
                     {
-                        var result = MessageBox.Show("Playing this type of video is currently experimental, results may vary, do you wish to continue?", "Experimental", MessageBoxButton.OKCancel);
+                        var result = MessageBox.Show(AppResources.MessageExperimentalVideo, AppResources.MessageExperimentalTitle, MessageBoxButton.OKCancel);
                         if (result == MessageBoxResult.Cancel)
                         {
                             _navigationService.GoBack();

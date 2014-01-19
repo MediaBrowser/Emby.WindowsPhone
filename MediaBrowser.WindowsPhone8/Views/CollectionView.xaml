@@ -77,7 +77,7 @@
                                                         Opacity="0.2" />
             </i:Interaction.Behaviors>
             <!--<phone:Panorama Title="movies">-->
-            <phone:PanoramaItem Header="recent">
+            <phone:PanoramaItem Header="{Binding LocalizedResources.LabelRecent, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
                 <phone:LongListSelector ItemsSource="{Binding RecentItems}">
                     <phone:LongListSelector.ItemTemplate>
                         <DataTemplate>
@@ -115,11 +115,11 @@
                 </phone:LongListSelector>
             </phone:PanoramaItem>
 
-            <phone:PanoramaItem Header="random items"
+            <phone:PanoramaItem Header="{Binding LocalizedResources.LabelRandomItems, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                 Orientation="Horizontal">
                 <Grid>
                     <controls:PhoneListBox ItemsSource="{Binding RandomItems}"
-                                           Text="No items found"
+                                           Text="{Binding LocalizedResources.NoItemsFound, Source={StaticResource LocalizedStrings}}"
                                            TextHorizontalAlignment="Center"
                                            TextVerticalAlignment="Top"
                                            TextStyle="{StaticResource PhoneTextLargeStyle}"
@@ -136,9 +136,8 @@
 
                     <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
                                      VerticalAlignment="Bottom"
-                                     HorizontalContentAlignment="Left"
                                      Command="{Binding SeeMoreCommand}">
-                        <TextBlock Text="show all items..."
+                        <TextBlock Text="{Binding LocalizedResources.LabelShowAllItems, Source={StaticResource LocalizedStrings}}"
                                    Style="{StaticResource PhoneTextLargeStyle}" />
                     </HyperlinkButton>
                 </Grid>

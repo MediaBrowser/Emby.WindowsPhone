@@ -16,7 +16,7 @@
     <TargetFrameworkProfile>WindowsPhone71</TargetFrameworkProfile>
     <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
     <SilverlightApplication>true</SilverlightApplication>
-    <SupportedCultures>en-gb;en-us</SupportedCultures>
+    <SupportedCultures>en-US%3bde</SupportedCultures>
     <XapOutputs>true</XapOutputs>
     <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
     <XapFilename>MediaBrowser.WindowsPhone.WP7.xap</XapFilename>
@@ -60,6 +60,9 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Label="MultilingualAppToolkit">
+    <ToolkitRevision>2</ToolkitRevision>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Cimbalino.Phone.Toolkit, Version=3.2.2.0, Culture=neutral, processorArchitecture=MSIL">
@@ -382,6 +385,15 @@
     </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.Designer.cs">
       <Link>Resources\AppResources.Designer.cs</Link>
+      <DependentUpon>AppResources.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.en-US.Designer.cs">
+      <Link>Resources\AppResources.en-US.Designer.cs</Link>
+      <DependentUpon>AppResources.en-US.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone8\Services\ReviewReminderService.cs">
       <Link>Services\ReviewReminderService.cs</Link>
@@ -894,14 +906,52 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.de.resx">
+      <Link>Resources\AppResources.de.resx</Link>
+      <DependentUpon>AppResources.de.xlf</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </EmbeddedResource>
     <EmbeddedResource Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.en-US.resx">
       <Link>Resources\AppResources.en-US.resx</Link>
+      <DependentUpon>AppResources.en-US.xlf</DependentUpon>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AppResources.en-US.Designer.cs</LastGenOutput>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.qps-ploc.resx">
+      <Link>Resources\AppResources.qps-ploc.resx</Link>
+      <DependentUpon>AppResources.qps-ploc.xlf</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
     </EmbeddedResource>
     <EmbeddedResource Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.resx">
       <Link>Resources\AppResources.resx</Link>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Fakes Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.en-US.xlf">
+      <Link>Resources\AppResources.en-US.xlf</Link>
+      <Generator>XliffResxGenerator</Generator>
+      <LastGenOutput>AppResources.en-US.resx</LastGenOutput>
+    </Fakes>
+    <Fakes Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.qps-ploc.xlf">
+      <Link>Resources\AppResources.qps-ploc.xlf</Link>
+      <Generator>XliffResxGenerator</Generator>
+      <LastGenOutput>AppResources.qps-ploc.resx</LastGenOutput>
+    </Fakes>
+  </ItemGroup>
+  <ItemGroup>
+    <Fakes Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.de.xlf">
+      <Link>Resources\AppResources.de.xlf</Link>
+      <Generator>XliffResxGenerator</Generator>
+      <LastGenOutput>AppResources.de.resx</LastGenOutput>
+    </Fakes>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -919,4 +969,5 @@
     <Error Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.13\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
   </Target>
   <Import Project="Fody.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Multilingual App Toolkit\Microsoft.Multilingual.WindowsPhone.targets" Label="MultilingualAppToolkitForWindowsPhone" />
 </Project>

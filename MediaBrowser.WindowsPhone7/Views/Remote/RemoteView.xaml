@@ -31,7 +31,7 @@
                               IsIndeterminate="{Binding ProgressIsVisible}" />
         <behaviors:ApplicationBarBehavior Mode="Minimized">
             <behaviors:ApplicationBarIconButton IconUri="/Icons/appbar.refresh.rest.png"
-                                                Text="refresh"
+                                                Text="{Binding LocalizedResources.AppBarRefresh, Source={StaticResource LocalizedStrings}}"
                                                 Command="{Binding RefreshClientsCommand}" />
             <behaviors:ApplicationBarIconButton IconUri="{Binding IsPinned, Converter={StaticResource PinnedItemConverter}, ConverterParameter=icon}"
                                                 Text="{Binding IsPinned, Converter={StaticResource PinnedItemConverter}, ConverterParameter=text}"
@@ -157,7 +157,7 @@
                         Grid.Row="0"
                         Orientation="Horizontal"
                         Margin="12,17,0,28">
-                <mb:MediaBrowserLogo AltText="REMOTE" />
+                <mb:MediaBrowserLogo AltText="{Binding LocalizedResources.LabelRemote, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToUppercaseConverter}}" />
             </StackPanel>
 
             <toolkit:ListPicker ItemsSource="{Binding Clients}"
@@ -168,7 +168,7 @@
                                 ExpansionMode="FullScreenOnly"
                                 BorderThickness="0"
                                 toolkit:TiltEffect.IsTiltEnabled="True"
-                                FullModeHeader="CHOOSE A CLIENT"
+                                FullModeHeader="{Binding LocalizedResources.HeaderChooseClient, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToUppercaseConverter}}"
                                 Template="{StaticResource ClientListPickerStyle}"
                                 Margin="0,-12,0,28">
                 <toolkit:ListPicker.ItemTemplate>

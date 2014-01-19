@@ -85,7 +85,7 @@
                     </StackPanel>
                 </controls:Pivot.Title>
 
-                <controls:PivotItem Header="profile">
+                <controls:PivotItem Header="{Binding LocalizedResources.LabelProfile, Source={StaticResource LocalizedStrings}}">
                     <toolkit:LongListSelector ItemsSource="{Binding Films}"
                                               GroupHeaderTemplate="{StaticResource LLSGroupHeaderTemplateName}"
                                               GroupItemTemplate="{StaticResource LLSGroupItemTemplate}"
@@ -164,7 +164,7 @@
                     </toolkit:LongListSelector>
                 </controls:PivotItem>
 
-                <controls:PivotItem Header="bio">
+                <controls:PivotItem Header="{Binding LocalizedResources.LabelBio, Source={StaticResource LocalizedStrings}}">
                     <ScrollViewer>
                         <TextBlock Text="{Binding SelectedActor.Overview}"
                                    Style="{StaticResource PhoneTextNormalStyle}"

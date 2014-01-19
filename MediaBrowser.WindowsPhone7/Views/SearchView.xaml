@@ -74,7 +74,7 @@
                     Margin="12,17,0,28">
             <mb:MediaBrowserLogo />
             <TextBlock x:Name="PageTitle"
-                       Text="search"
+                       Text="{Binding LocalizedResources.LabelSearch, Source={StaticResource LocalizedStrings}}"
                        Margin="9,-7,0,0"
                        Style="{StaticResource PhoneTextTitle1Style}" />
         </StackPanel>
@@ -108,7 +108,6 @@
                 <toolkit:LongListSelector.ItemTemplate>
                     <DataTemplate>
                         <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                         HorizontalContentAlignment="Left"
                                          VerticalContentAlignment="Top"
                                          Command="{Binding Search.SearchItemTappedCommand, Source={StaticResource Locator}}"
                                          CommandParameter="{Binding}">

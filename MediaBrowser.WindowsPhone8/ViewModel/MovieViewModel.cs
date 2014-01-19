@@ -123,7 +123,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 catch (HttpException ex)
                 {
                     Log.ErrorException("AddRemoveFavouriteCommand (Movies)", ex);
-                    App.ShowMessage("Error making your changes");
+                    App.ShowMessage(AppResources.ErrorMakingChanges);
                 }
 
                 SetProgressBar();

@@ -24,12 +24,12 @@
                               IsVisible="{Binding ProgressIsVisible}"
                               IsIndeterminate="{Binding ProgressIsVisible}" />
         <behaviors:ApplicationBarBehavior IsMenuEnabled="True">
-            <behaviors:ApplicationBarIconButton Text="login"
+            <behaviors:ApplicationBarIconButton Text="{Binding LocalizedResources.AppBarLogin, Source={StaticResource LocalizedStrings}}"
                                                 IconUri="/Icons/appbar.check.rest.png"
                                                 Command="{Binding ManualLoginCommand}"
                                                 IsEnabled="{Binding Text.Length, ElementName=UsernameTextBox, Converter={StaticResource CountToEnabled}, ConverterParameter=delete}"/>
             <behaviors:ApplicationBarBehavior.MenuItems>
-                <behaviors:ApplicationBarMenuItem Text="settings"
+                <behaviors:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarSettings, Source={StaticResource LocalizedStrings}}"
                                                   Command="{Binding Main.NavigateToAPage, Source={StaticResource Locator}}"
                                                   CommandParameter="/Views/SettingsView.xaml" />
             </behaviors:ApplicationBarBehavior.MenuItems>
@@ -69,7 +69,7 @@
         <StackPanel Grid.Row="0"
                     Margin="12,17,0,28">
             <mb:MediaBrowserLogo />
-            <TextBlock Text="log in"
+            <TextBlock Text="{Binding LocalizedResources.LabelLogIn, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                        Margin="9,-7,0,0"
                        Style="{StaticResource PhoneTextTitle1Style}" />
         </StackPanel>
@@ -79,9 +79,9 @@
               Grid.Row="1"
               Margin="12,0,12,0">
             <StackPanel Orientation="Vertical">
-                <TextBlock Text="username:"
+                <TextBlock Text="{Binding LocalizedResources.LabelUsername, Source={StaticResource LocalizedStrings}}"
                            Style="{StaticResource PhoneTextSubtleStyle}"/>
-                <toolkit:PhoneTextBox Hint="enter a username"
+                <toolkit:PhoneTextBox Hint="{Binding LocalizedResources.WatermarkEnterUsername, Source={StaticResource LocalizedStrings}}"
                                       Text="{Binding Username, Mode=TwoWay}"
                                       x:Name="UsernameTextBox">
                     <i:Interaction.Behaviors>
@@ -89,7 +89,7 @@
                         <behaviours:EnterKeyHandler />
                     </i:Interaction.Behaviors>
                 </toolkit:PhoneTextBox>
-                    <TextBlock Text="password:"
+                <TextBlock Text="{Binding LocalizedResources.LabelPassword, Source={StaticResource LocalizedStrings}}"
                            Style="{StaticResource PhoneTextSubtleStyle}" />
                 <PasswordBox Password="{Binding Password, Mode=TwoWay}">
                     <i:Interaction.Behaviors>

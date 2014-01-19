@@ -26,9 +26,10 @@
                               IsVisible="{Binding ProgressIsVisible}"
                               IsIndeterminate="{Binding ProgressIsVisible}" />
         <cimbalino:ApplicationBarBehavior IsMenuEnabled="True"
-                                          Mode="Minimized">
+                                          Mode="Minimized"
+                                          IsVisible="False">
             <cimbalino:ApplicationBarBehavior.MenuItems>
-                <cimbalino:ApplicationBarMenuItem Text="resume"
+                <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarResume, Source={StaticResource LocalizedStrings}}"
                                                   IsEnabled="{Binding SelectedItem.CanResume}"
                                                   Command="{Binding Main.ResumeMovieCommand, Source={StaticResource Locator}}"
                                                   CommandParameter="{Binding SelectedItem}" />
@@ -77,7 +78,8 @@
                                                   IsHitTestVisible="False"
                                                   HorizontalAlignment="Center"
                                                   VerticalAlignment="Center"
-                                                  Visibility="{Binding SelectedItem.IsVideo, Converter={StaticResource VisibilityConverter}}" />
+                                                  Visibility="Collapsed"/>
+                                                  <!--Visibility="{Binding SelectedItem.IsVideo, Converter={StaticResource VisibilityConverter}}" />-->
                         </Grid>
                     </Button>
 

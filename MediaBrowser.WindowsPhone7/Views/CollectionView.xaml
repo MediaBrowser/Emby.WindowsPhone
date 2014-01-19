@@ -75,9 +75,9 @@
                                                         Opacity="0.2" />
             </i:Interaction.Behaviors>
             <!--<phone:Panorama Title="movies">-->
-            <controls3:PanoramaItem Header="recent">
+            <controls3:PanoramaItem Header="{Binding LocalizedResources.LabelRecent, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
                 <controls:PhoneListBox ItemsSource="{Binding RecentItems}"
-                                       Text="No items found"
+                                       Text="{Binding LocalizedResources.NoItemsFound, Source={StaticResource LocalizedStrings}}"
                                        TextHorizontalAlignment="Center"
                                        TextVerticalAlignment="Top"
                                        TextStyle="{StaticResource PhoneTextLargeStyle}"
@@ -87,7 +87,6 @@
                             <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
                                              Command="{Binding Main.NavigateToPage, Source={StaticResource Locator}}"
                                              CommandParameter="{Binding}"
-                                             HorizontalContentAlignment="Left"
                                              Margin="12,0,0,12">
                                 <Grid Height="173">
                                     <Grid.ColumnDefinitions>
@@ -118,12 +117,12 @@
                 </controls:PhoneListBox>
             </controls3:PanoramaItem>
 
-            <controls3:PanoramaItem Header="random items"
+            <controls3:PanoramaItem Header="{Binding LocalizedResources.LabelRandomItems, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                     Orientation="Horizontal">
                 <Grid>
 
                     <controls:PhoneListBox ItemsSource="{Binding RandomItems}"
-                                           Text="No items found"
+                                           Text="{Binding LocalizedResources.NoItemsFound, Source={StaticResource LocalizedStrings}}"
                                            TextHorizontalAlignment="Center"
                                            TextVerticalAlignment="Top"
                                            TextStyle="{StaticResource PhoneTextLargeStyle}"
@@ -139,11 +138,9 @@
                     </controls:PhoneListBox>
 
                     <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                     HorizontalContentAlignment="Left"
                                      VerticalAlignment="Bottom"
-                                     Command="{Binding SeeMoreCommand}"
-                                     Padding="0">
-                        <TextBlock Text="show all items..."
+                                     Command="{Binding SeeMoreCommand}">
+                        <TextBlock Text="{Binding LocalizedResources.LabelShowAllItems, Source={StaticResource LocalizedStrings}}"
                                    Style="{StaticResource PhoneTextLargeStyle}" />
                     </HyperlinkButton>
                 </Grid>
