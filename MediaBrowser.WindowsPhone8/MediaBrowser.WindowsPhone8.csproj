@@ -15,7 +15,7 @@
     <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
     <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
     <SilverlightApplication>true</SilverlightApplication>
-    <SupportedCultures>en-US;qps-ploc</SupportedCultures>
+    <SupportedCultures>de;en-US;qps-ploc</SupportedCultures>
     <XapOutputs>true</XapOutputs>
     <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
     <XapFilename>MediaBrowser.WindowsPhone.WP8.xap</XapFilename>
@@ -597,6 +597,12 @@
     <Content Include="Icons\transport.rew.png" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\AppResources.de.resx">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AppResources.de.xlf</DependentUpon>
+      <culture>de</culture>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\AppResources.en-US.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResources.en-US.Designer.cs</LastGenOutput>
@@ -771,6 +777,10 @@
     </SDKReference>
   </ItemGroup>
   <ItemGroup>
+    <XliffResource Include="Resources\AppResources.de.xlf">
+      <Generator>XliffResxGenerator</Generator>
+      <LastGenOutput>AppResources.de.resx</LastGenOutput>
+    </XliffResource>
     <XliffResource Include="Resources\AppResources.en-US.xlf">
       <Generator>XliffResxGenerator</Generator>
       <LastGenOutput>AppResources.en-US.resx</LastGenOutput>

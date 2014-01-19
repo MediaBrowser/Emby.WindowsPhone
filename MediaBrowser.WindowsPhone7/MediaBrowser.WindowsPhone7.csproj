@@ -16,8 +16,7 @@
     <TargetFrameworkProfile>WindowsPhone71</TargetFrameworkProfile>
     <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
     <SilverlightApplication>true</SilverlightApplication>
-    <SupportedCultures>
-    </SupportedCultures>
+    <SupportedCultures>en-US%3bde</SupportedCultures>
     <XapOutputs>true</XapOutputs>
     <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
     <XapFilename>MediaBrowser.WindowsPhone.WP7.xap</XapFilename>
@@ -901,6 +900,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.de.resx">
+      <Link>Resources\AppResources.de.resx</Link>
+      <DependentUpon>AppResources.de.xlf</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </EmbeddedResource>
     <EmbeddedResource Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.en-US.resx">
       <Link>Resources\AppResources.en-US.resx</Link>
       <DependentUpon>AppResources.en-US.xlf</DependentUpon>
@@ -932,6 +937,13 @@
       <Link>Resources\AppResources.qps-ploc.xlf</Link>
       <Generator>XliffResxGenerator</Generator>
       <LastGenOutput>AppResources.qps-ploc.resx</LastGenOutput>
+    </Fakes>
+  </ItemGroup>
+  <ItemGroup>
+    <Fakes Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.de.xlf">
+      <Link>Resources\AppResources.de.xlf</Link>
+      <Generator>XliffResxGenerator</Generator>
+      <LastGenOutput>AppResources.de.resx</LastGenOutput>
     </Fakes>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />

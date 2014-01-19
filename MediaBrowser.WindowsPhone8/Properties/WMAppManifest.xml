@@ -2,6 +2,7 @@
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2012/deployment" AppPlatformVersion="8.0">
   <DefaultLanguage xmlns="" code="en-GB" />
   <Languages xmlns="">
+    <Language code="de" />
     <Language code="en-US" />
     <Language code="qps-ploc" />
   </Languages>
