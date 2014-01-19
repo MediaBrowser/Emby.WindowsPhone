@@ -184,8 +184,10 @@
                                                 VerticalAlignment="Center">
                                         <TextBlock Text="{Binding Name}"
                                                    Style="{StaticResource PhoneTextLargeStyle}" />
-                                        <TextBlock Text="{Binding RecursiveUnplayedItemCount, StringFormat='Unplayed: \{0\}'}"
-                                                   Style="{StaticResource PhoneTextSubtleStyle}" />
+                                        <TextBlock Style="{StaticResource PhoneTextSubtleStyle}">
+                                            <Run Text="{Binding LocalizedResources.LabelUnplayedItems, Source={StaticResource LocalizedStrings}}"/>
+                                            <Run Text="{Binding RecursiveUnplayedItemCount}"/>
+                                        </TextBlock>
                                     </StackPanel>
                                 </StackPanel>
                             </HyperlinkButton>

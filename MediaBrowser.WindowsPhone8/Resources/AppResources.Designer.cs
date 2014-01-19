@@ -1015,6 +1015,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No folders found.
+        /// </summary>
+        public static string LabelNoFoldersFound {
+            get {
+                return ResourceManager.GetString("LabelNoFoldersFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to none.
         /// </summary>
         public static string LabelNone {
@@ -1029,6 +1038,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string LabelNoSeasonsFound {
             get {
                 return ResourceManager.GetString("LabelNoSeasonsFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nothing in your playlist.
+        /// </summary>
+        public static string LabelNothingInPlaylist {
+            get {
+                return ResourceManager.GetString("LabelNothingInPlaylist", resourceCulture);
             }
         }
         
@@ -1353,6 +1371,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string LabelUnairedEpisodes {
             get {
                 return ResourceManager.GetString("LabelUnairedEpisodes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unplayed:.
+        /// </summary>
+        public static string LabelUnplayedItems {
+            get {
+                return ResourceManager.GetString("LabelUnplayedItems", resourceCulture);
             }
         }
         

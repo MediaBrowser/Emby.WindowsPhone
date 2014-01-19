@@ -745,4 +745,13 @@
   <data name="WatermarkEnterUsername" xml:space="preserve">
     <value>enter a username</value>
   </data>
+  <data name="LabelNoFoldersFound" xml:space="preserve">
+    <value>No folders found</value>
+  </data>
+  <data name="LabelNothingInPlaylist" xml:space="preserve">
+    <value>Nothing in your playlist</value>
+  </data>
+  <data name="LabelUnplayedItems" xml:space="preserve">
+    <value>Unplayed:</value>
+  </data>
 </root>
