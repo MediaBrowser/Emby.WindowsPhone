@@ -8,6 +8,11 @@
                 xmlns:ignore="http://www.ignore.com"
                 xmlns:scott="clr-namespace:ScottIsAFool.WindowsPhone.Controls;assembly=ScottIsAFool.WindowsPhone"
                 xmlns:controls="clr-namespace:MediaBrowser.WindowsPhone.Controls"
+                xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+                xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP8"
+                xmlns:behaviors="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
+                xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
+                xmlns:converters="clr-namespace:MediaBrowser.WindowsPhone.Converters"
                 mc:Ignorable="d ignore"
                 FontFamily="{StaticResource PhoneFontFamilyNormal}"
                 FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -17,6 +22,29 @@
                 shell:SystemTray.IsVisible="True"
                 shell:SystemTray.Opacity="0"
                 DataContext="{Binding Guide, Source={StaticResource Locator}}">
+    <i:Interaction.Behaviors>
+        <behaviours:MBSysTray IsVisible="{Binding ProgressIsVisible}"
+                              IsIndeterminate="{Binding ProgressIsVisible}"
+                              Text="{Binding ProgressText}" />
+        <behaviors:ApplicationBarBehavior>
+            <behaviors:ApplicationBarBehavior.Buttons>
+                <behaviors:ApplicationBarIconButton IconUri="/Icons/appbar.refresh.rest.png"
+                                                    Command="{Binding RefreshGuideCommand}"
+                                                    Text="refresh"
+                                                    IsEnabled="{Binding ProgressIsVisible, Converter={StaticResource NegativeBooleanConverter}}" />
+            </behaviors:ApplicationBarBehavior.Buttons>
+        </behaviors:ApplicationBarBehavior>
+    </i:Interaction.Behaviors>
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <command:EventToCommand Command="{Binding GuidePageLoaded}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    
+    <scott:BasePage.Resources>
+        <converters:DateTimeConverter ShowTime="True"
+                                      x:Key="TimeConverter"/>
+    </scott:BasePage.Resources>
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot"
@@ -44,30 +72,36 @@
                                    Style="{StaticResource PhoneTextTitle3Style}"
                                    HorizontalAlignment="Center"
                                    VerticalAlignment="Top"
-                                   Visibility="{Binding Programmes.Count, Converter={StaticResource IntToVisibilityConverter}, ConverterParameter=true}" />
+                                   Visibility="{Binding Programmes.Count, Converter={StaticResource HeaderVisibilityConverter}, ConverterParameter=1}" />
                     </phone:LongListSelector.ListHeader>
                     <phone:LongListSelector.ItemTemplate>
                         <DataTemplate>
                             <Grid d:DataContext="{Binding Guide.Programmes[0], Source={StaticResource Locator}}">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="1*"/>
                                     <ColumnDefinition Width="3*"/>
                                 </Grid.ColumnDefinitions>
                                 
-                                <TextBlock Text="{Binding StartDate, StringFormat='\{0:hh:mm\}'}"
+                                <TextBlock Text="{Binding StartDate, Converter={StaticResource TimeConverter}}"
                                            Style="{StaticResource PhoneTextTitle2Style}"
                                            VerticalAlignment="Top"
-                                           Grid.Column="0"/>
+                                           Grid.Column="0"
+                                           TextWrapping="Wrap"
+                                           Tag="{Binding Converter={StaticResource IsOnNowConverter}}"
+                                           Foreground="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource InvertedAccentBrushConverter}}" 
+                                           Margin="12,0,0,0"/>
                                 
                                 <StackPanel Orientation="Vertical"
                                             Grid.Column="1">
                                     <TextBlock Text="{Binding Name}"
                                                Style="{StaticResource PhoneTextTitle2Style}"
                                                FontWeight="Bold"
+                                               TextWrapping="Wrap"
                                                Tag="{Binding Converter={StaticResource IsOnNowConverter}}"
                                                Foreground="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource InvertedAccentBrushConverter}}"/>
                                     <TextBlock Text="{Binding EpisodeTitle}"
-                                               Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                               Style="{StaticResource PhoneTextSubtleStyle}"
+                                               Visibility="{Binding EpisodeTitle, Converter={StaticResource NullVisibilityConverter}}"/>
                                     <TextBlock Text="{Binding Overview}"
                                                TextWrapping="Wrap"
                                                Style="{StaticResource PhoneTextNormalStyle}"/>

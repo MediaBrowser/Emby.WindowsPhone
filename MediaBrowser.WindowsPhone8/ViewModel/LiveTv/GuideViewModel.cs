@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
+using Cimbalino.Phone.Toolkit.Extensions;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model;
 using MediaBrowser.Model.LiveTv;
 using MediaBrowser.Model.Net;
+using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Model;
 using ScottIsAFool.WindowsPhone.ViewModel;
 
@@ -72,6 +76,28 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
             }
         }
 
+        public RelayCommand GuidePageLoaded
+        {
+            get
+            {
+                return new RelayCommand(async () =>
+                {
+                    _programmesLoaded = await GetProgrammes(false);
+                });
+            }
+        }
+
+        public RelayCommand RefreshGuideCommand
+        {
+            get
+            {
+                return new RelayCommand(async () =>
+                {
+                    _programmesLoaded = await GetProgrammes(true);
+                });
+            }
+        }
+
         public override void WireMessages()
         {
             Messenger.Default.Register<NotificationMessage>(this, m =>
@@ -80,27 +106,44 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                 {
                     _programmesLoaded = false;
                     SelectedChannel = (ChannelInfoDto) m.Sender;
+                    Programmes = null;
                 }
             });
         }
 
-        private async Task<bool> GetProgrammes()
+        private async Task<bool> GetProgrammes(bool refresh)
         {
-            if (!_navigationService.IsNetworkAvailable)
+            if ((!_navigationService.IsNetworkAvailable || _programmesLoaded) && !refresh)
             {
                 return false;
             }
 
             try
             {
-                //var items = await _apiClient.
+                SetProgressBar("Getting programmes...");
 
+                var query = new ProgramQuery
+                {
+                    UserId = AuthenticationService.Current.LoggedInUserId,
+                    ChannelIdList = new[] {SelectedChannel.Id},
+                    //MaxEndDate = DateTime.Now.AddDays(1).Date
+                };
+                var items = await _apiClient.GetLiveTvProgramsAsync(query, default(CancellationToken));
+
+                if (items != null && !items.Items.IsNullOrEmpty())
+                {
+                    Programmes = items.Items.ToObservableCollection();
+                }
+
+                SetProgressBar();
                 return true;
             }
             catch (HttpException ex)
             {
                 Log.ErrorException("GetProgrammes()", ex);
             }
+
+            SetProgressBar();
 
             return false;
         }

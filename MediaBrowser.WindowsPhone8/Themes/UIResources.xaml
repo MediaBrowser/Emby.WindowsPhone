@@ -62,6 +62,8 @@
                                      FalseValue="{StaticResource PhoneForegroundBrush}"
                                      TrueValue="{StaticResource PhoneAccentBrush}" />
     <converters:IsOnNowConverter x:Key="IsOnNowConverter"/>
+    <converters:LessThanVisibilityConverter x:Key="HeaderVisibilityConverter"
+                                            NullIsVisible="True"/>
 
     <local:LocalizedStrings xmlns:local="clr-namespace:MediaBrowser.WindowsPhone"
                             x:Key="LocalizedStrings" />
