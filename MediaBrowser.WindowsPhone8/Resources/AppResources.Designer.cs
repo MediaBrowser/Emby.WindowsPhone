@@ -1636,6 +1636,51 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Getting album tracks....
+        /// </summary>
+        public static string SysTrayGettingAlbumTracks {
+            get {
+                return ResourceManager.GetString("SysTrayGettingAlbumTracks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Getting all tracks....
+        /// </summary>
+        public static string SysTrayGettingAllTracks {
+            get {
+                return ResourceManager.GetString("SysTrayGettingAllTracks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Getting artists....
+        /// </summary>
+        public static string SysTrayGettingArtists {
+            get {
+                return ResourceManager.GetString("SysTrayGettingArtists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Getting artist tracks....
+        /// </summary>
+        public static string SysTrayGettingArtistTracks {
+            get {
+                return ResourceManager.GetString("SysTrayGettingArtistTracks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Getting boxsets....
+        /// </summary>
+        public static string SysTrayGettingBoxsets {
+            get {
+                return ResourceManager.GetString("SysTrayGettingBoxsets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Getting details....
         /// </summary>
         public static string SysTrayGettingDetails {
@@ -1672,6 +1717,24 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Getting genres....
+        /// </summary>
+        public static string SysTrayGettingGenres {
+            get {
+                return ResourceManager.GetString("SysTrayGettingGenres", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Getting genre tracks....
+        /// </summary>
+        public static string SysTrayGettingGenreTracks {
+            get {
+                return ResourceManager.GetString("SysTrayGettingGenreTracks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Getting items....
         /// </summary>
         public static string SysTrayGettingItems {
@@ -1686,6 +1749,24 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string SysTrayGettingMovieInfo {
             get {
                 return ResourceManager.GetString("SysTrayGettingMovieInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Getting movies....
+        /// </summary>
+        public static string SysTrayGettingMovies {
+            get {
+                return ResourceManager.GetString("SysTrayGettingMovies", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Getting next up items....
+        /// </summary>
+        public static string SysTrayGettingNextUp {
+            get {
+                return ResourceManager.GetString("SysTrayGettingNextUp", resourceCulture);
             }
         }
         
@@ -1735,6 +1816,24 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Getting TV shows....
+        /// </summary>
+        public static string SysTrayGettingShows {
+            get {
+                return ResourceManager.GetString("SysTrayGettingShows", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Getting songs....
+        /// </summary>
+        public static string SysTrayGettingSongs {
+            get {
+                return ResourceManager.GetString("SysTrayGettingSongs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Getting tracks....
         /// </summary>
         public static string SysTrayGettingTracks {
@@ -1749,6 +1848,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string SysTrayGettingTrailerDetails {
             get {
                 return ResourceManager.GetString("SysTrayGettingTrailerDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Getting latest unwatched items....
+        /// </summary>
+        public static string SysTrayGettingUnwatchedItems {
+            get {
+                return ResourceManager.GetString("SysTrayGettingUnwatchedItems", resourceCulture);
             }
         }
         

@@ -12,6 +12,7 @@ using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Querying;
 using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Model;
+using MediaBrowser.WindowsPhone.Resources;
 using ScottIsAFool.WindowsPhone;
 using ScottIsAFool.WindowsPhone.ViewModel;
 
@@ -139,7 +140,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                     }
                     catch (HttpException ex)
                     {
-                        MessageBox.Show("There was a problem updating this item, please try again later.", "Error", MessageBoxButton.OK);
+                        MessageBox.Show(AppResources.ErrorProblemUpdatingItem, AppResources.ErrorTitle, MessageBoxButton.OK);
                         Log.ErrorException("MarkAsWatchedCommand", ex);
                     }
                 });
@@ -202,7 +203,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
         {
             try
             {
-                SetProgressBar("Getting movies...");
+                SetProgressBar(AppResources.SysTrayGettingMovies);
 
                 var query = new ItemQuery
                 {
@@ -244,7 +245,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
         {
             try
             {
-                SetProgressBar("Getting boxsets...");
+                SetProgressBar(AppResources.SysTrayGettingBoxsets);
 
                 var query = new ItemQuery
                 {
@@ -285,7 +286,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
         {
             try
             {
-                SetProgressBar("Getting latest unwatched items...");
+                SetProgressBar(AppResources.SysTrayGettingUnwatchedItems);
 
                 var query = new ItemQuery
                 {
@@ -319,7 +320,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
         {
             try
             {
-                SetProgressBar("Getting genres...");
+                SetProgressBar(AppResources.SysTrayGettingGenres);
 
                 var query = new ItemsByNameQuery
                 {
@@ -336,7 +337,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                 if (!items.Items.IsNullOrEmpty())
                 {
                     var genres = items.Items.ToList();
-                    genres.ForEach(genre => genre.Type = "Genre - Movies");
+                    genres.ForEach(genre => genre.Type = "Genre - " + AppResources.LabelMovies.ToUpper());
 
                     Genres = genres;
 

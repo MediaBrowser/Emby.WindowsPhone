@@ -14,6 +14,7 @@ using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Querying;
 using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Model;
+using MediaBrowser.WindowsPhone.Resources;
 using Microsoft.Phone.Shell;
 using Microsoft.Xna.Framework.Media;
 using ScottIsAFool.WindowsPhone;
@@ -187,7 +188,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                 return new RelayCommand(async () =>
                 {
                     CanPlayAll = false;
-                    SetProgressBar("Getting all tracks...");
+                    SetProgressBar(AppResources.SysTrayGettingAllTracks);
 
                     if (Songs.IsNullOrEmpty())
                     {
@@ -230,7 +231,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                 return;
             }
 
-            SetProgressBar("Getting album tracks...");
+            SetProgressBar(AppResources.SysTrayGettingAlbumTracks);
 
             try
             {
@@ -264,7 +265,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                 return;
             }
 
-            SetProgressBar("Getting artist tracks...");
+            SetProgressBar(AppResources.SysTrayGettingArtistTracks);
 
             try
             {
@@ -298,7 +299,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                 return;
             }
 
-            SetProgressBar("Getting genre tracks");
+            SetProgressBar(AppResources.SysTrayGettingGenreTracks);
 
             try
             {
@@ -347,7 +348,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                 return;
             }
 
-            SetProgressBar("Getting artists...");
+            SetProgressBar(AppResources.SysTrayGettingArtists);
 
             _artistsLoaded = await GetArtists();
 
@@ -370,7 +371,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                         return;
                     }
 
-                    SetProgressBar("Getting artists...");
+                    SetProgressBar(AppResources.SysTrayGettingArtists);
                     _artistsLoaded = await GetArtists();
                     SetProgressBar();
                     break;
@@ -380,7 +381,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                         return;
                     }
 
-                    SetProgressBar("Getting albums...");
+                    SetProgressBar(AppResources.SysTrayGettingAlbums);
                     _albumsLoaded = await GetAlbums();
                     SetProgressBar();
                     break;
@@ -390,7 +391,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                         return;
                     }
 
-                    SetProgressBar("Getting songs...");
+                    SetProgressBar(AppResources.SysTrayGettingSongs);
                     _songsLoaded = await GetSongs();
                     SetProgressBar();
                     break;
@@ -400,7 +401,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                         return;
                     }
 
-                    SetProgressBar("Getting genres...");
+                    SetProgressBar(AppResources.SysTrayGettingGenres);
                     _genresLoaded = await GetGenres();
                     SetProgressBar();
                     break;
