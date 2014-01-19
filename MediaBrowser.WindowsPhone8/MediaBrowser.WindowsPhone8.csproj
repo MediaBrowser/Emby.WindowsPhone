@@ -149,6 +149,7 @@
     </Compile>
     <Compile Include="Converters\AccentBrushConverter.cs" />
     <Compile Include="Converters\AlreadyPlayedConverter.cs" />
+    <Compile Include="Converters\BooleanToValueConverter.cs" />
     <Compile Include="Converters\ClientTypeIconConverter.cs" />
     <Compile Include="Converters\CriticRatingConverter.cs" />
     <Compile Include="Converters\DateTimeConverter.cs" />

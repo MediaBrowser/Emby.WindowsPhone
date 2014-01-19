@@ -15,7 +15,6 @@
                 xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
                 xmlns:converters="clr-namespace:MediaBrowser.WindowsPhone.Converters"
                 xmlns:system="clr-namespace:System;assembly=mscorlib"
-                xmlns:converters1="clr-namespace:Cimbalino.Phone.Toolkit.Converters;assembly=Cimbalino.Phone.Toolkit"
                 mc:Ignorable="d"
                 d:DesignWidth="480"
                 d:DesignHeight="696"
@@ -42,7 +41,7 @@
     <scott:BasePage.Resources>
         <converters:VirtualConverter x:Key="VirtualConverter" />
         <converters:VirtualVisibilityConverter x:Key="VirtualVisibilityConverter" />
-        <converters1:BooleanToStringConverter x:Key="MarkAsWatchedConverter"
+        <converters:BooleanToStringConverter x:Key="MarkAsWatchedConverter"
                                               TrueValue="{Binding LocalizedResources.AppBarMarkAsWatched, Source={StaticResource LocalizedStrings}}"
                                               FalseValue="{Binding LocalizedResources.AppBarMarkAsUnwatched, Source={StaticResource LocalizedStrings}}"/>
     </scott:BasePage.Resources>
