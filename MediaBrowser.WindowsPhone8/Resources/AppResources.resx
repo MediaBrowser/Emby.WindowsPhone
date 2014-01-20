@@ -788,4 +788,10 @@
   <data name="SysTrayGettingProgrammes" xml:space="preserve">
     <value>Getting programmes...</value>
   </data>
+  <data name="SysTrayGettingSeriesRecordings" xml:space="preserve">
+    <value>Getting series recordings...</value>
+  </data>
+  <data name="SysTrayGettingUpcomingRecordings" xml:space="preserve">
+    <value>Getting upcoming recordings...</value>
+  </data>
 </root>

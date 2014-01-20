@@ -10,6 +10,8 @@
                 xmlns:controls="clr-namespace:MediaBrowser.WindowsPhone.Controls"
                 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
                 xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP8"
+                xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
+                xmlns:behaviors="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
                 mc:Ignorable="d ignore"
                 FontFamily="{StaticResource PhoneFontFamilyNormal}"
                 FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -24,32 +26,35 @@
             <command:EventToCommand Command="{Binding SchedulePageLoaded}"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
+    <i:Interaction.Behaviors>
+        <behaviours:MBSysTray IsIndeterminate="{Binding ProgressIsVisible}"
+                              IsVisible="{Binding ProgressIsVisible}"
+                              Text="{Binding ProgressText}"/>
+        <behaviors:ApplicationBarBehavior>
+            <behaviors:ApplicationBarBehavior.Buttons>
+                <behaviors:ApplicationBarIconButton IconUri="/Icons/appbar.refresh.rest.png"
+                                                    Text="{Binding LocalizedResources.AppBarRefresh, Source={StaticResource LocalizedStrings}}"/>
+            </behaviors:ApplicationBarBehavior.Buttons>
+        </behaviors:ApplicationBarBehavior>
+    </i:Interaction.Behaviors>
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot"
           Background="{StaticResource MediaBrowserBackground}">
         <Grid Margin="0,32,0,0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-
-            <!--TitlePanel contains the name of the application and page title-->
-            <StackPanel x:Name="TitlePanel"
-                        Grid.Row="0"
-                        Margin="12,17,0,28">
-                <controls:MediaBrowserLogo />
-                <TextBlock Text="{Binding LocalizedResources.LabelScheduledRecording, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
-                           Margin="9,-7,0,0"
-                           Style="{StaticResource PhoneTextTitle1Style}" />
-            </StackPanel>
-
-            <!--ContentPanel - place additional content here-->
-            <Grid x:Name="ContentPanel"
-                  Grid.Row="1"
-                  Margin="12,0,12,0">
-
-            </Grid>
+            <phone:Pivot Margin="12,0"
+                         SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}">
+                <phone:Pivot.Title>
+                    <controls:MediaBrowserLogo AltText="{Binding LocalizedResources.LabelScheduledRecording, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToUppercaseConverter}}"
+                                               Margin="-12,0,0,0"/>
+                </phone:Pivot.Title>
+                <phone:PivotItem Header="{Binding LocalizedResources.LabelSeries, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
+                    <Grid></Grid>
+                </phone:PivotItem>
+                <phone:PivotItem Header="{Binding LocalizedResources.LabelUpcoming, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
+                    <Grid></Grid>
+                </phone:PivotItem>
+            </phone:Pivot>
         </Grid>
         <!--Uncomment to see an alignment grid to help ensure your controls are
             aligned on common boundaries.  The image has a top margin of -32px to

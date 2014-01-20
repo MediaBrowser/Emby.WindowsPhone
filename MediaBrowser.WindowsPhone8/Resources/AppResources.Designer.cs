@@ -1906,6 +1906,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Getting series recordings....
+        /// </summary>
+        public static string SysTrayGettingSeriesRecordings {
+            get {
+                return ResourceManager.GetString("SysTrayGettingSeriesRecordings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Getting server details....
         /// </summary>
         public static string SysTrayGettingServerDetails {
@@ -1965,6 +1974,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string SysTrayGettingUnwatchedItems {
             get {
                 return ResourceManager.GetString("SysTrayGettingUnwatchedItems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Getting upcoming recordings....
+        /// </summary>
+        public static string SysTrayGettingUpcomingRecordings {
+            get {
+                return ResourceManager.GetString("SysTrayGettingUpcomingRecordings", resourceCulture);
             }
         }
         

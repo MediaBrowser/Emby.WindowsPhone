@@ -81,7 +81,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
             {
                 return new RelayCommand(async () =>
                 {
-                    _programmesLoaded = await GetProgrammes(false);
+                    await GetProgrammes(false);
                 });
             }
         }
@@ -92,7 +92,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
             {
                 return new RelayCommand(async () =>
                 {
-                    _programmesLoaded = await GetProgrammes(true);
+                    await GetProgrammes(true);
                 });
             }
         }

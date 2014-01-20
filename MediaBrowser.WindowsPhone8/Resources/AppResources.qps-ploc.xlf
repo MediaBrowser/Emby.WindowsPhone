@@ -855,6 +855,22 @@
           <source>What's On</source>
           <target state="new">What's On</target>
         </trans-unit>
+        <trans-unit translate="yes" id="Resx/SysTrayGettingUpcomingRecordings" xml:space="preserve">
+          <source>Getting upcoming recordings...</source>
+          <target state="new">Getting upcoming recordings...</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SysTrayGettingSeriesRecordings" xml:space="preserve">
+          <source>Getting series recordings...</source>
+          <target state="new">Getting series recordings...</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SysTrayGettingProgrammes" xml:space="preserve">
+          <source>Getting programmes...</source>
+          <target state="new">Getting programmes...</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SysTrayGettingChannels" xml:space="preserve">
+          <source>Getting channels...</source>
+          <target state="new">Getting channels...</target>
+        </trans-unit>
         <trans-unit translate="yes" id="Resx/LabelUpcoming" xml:space="preserve">
           <source>Upcoming</source>
           <target state="new">Upcoming</target>
