@@ -39,7 +39,7 @@
     </i:Interaction.Triggers>
 
     <scott:BasePage.Resources>
-        <system:Double x:Key="ViewSize">140</system:Double>
+        <system:Double x:Key="ViewSize">120</system:Double>
     </scott:BasePage.Resources>
 
     <toolkit:TransitionService.NavigationInTransition>
@@ -84,11 +84,11 @@
                     <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarNotifications, Source={StaticResource LocalizedStrings}}"
                                                       IsVisible="{Binding LoggedInUser.Configuration.IsAdministrator, Source={StaticResource AppSettings}}"
                                                       Command="{Binding NavigateToNotificationsCommand}" />
-                    <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarChangeProfile, Source={StaticResource LocalizedStrings}}"
-                                                      Command="{Binding ChangeProfileCommand}" />
                     <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarSettings, Source={StaticResource LocalizedStrings}}"
                                                       Command="{Binding NavigateToAPage}"
                                                       CommandParameter="/Views/SettingsView.xaml" />
+                    <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarChangeProfile, Source={StaticResource LocalizedStrings}}"
+                                                      Command="{Binding ChangeProfileCommand}" />
                     <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarAbout, Source={StaticResource LocalizedStrings}}"
                                                       Command="{Binding NavigateToAPage}"
                                                       CommandParameter="/YourLastAboutDialog;component/AboutPage.xaml" />
@@ -114,7 +114,7 @@
                                 Margin="12,0,0,0">
                         <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
                                          Margin="0,0,0,12"
-                                         NavigateUri="/Views/LiveTv/ChannelsView.xaml"
+                                         NavigateUri="/Views/LiveTv/LiveTvView.xaml"
                                          Visibility="{Binding SupportsLiveTv, Source={StaticResource AppSettings}, Converter={StaticResource VisibilityConverter}}">
                             <StackPanel Orientation="Horizontal">
                                 <Border Background="#FFD100FF"

@@ -655,6 +655,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Channels.
+        /// </summary>
+        public static string LabelChannels {
+            get {
+                return ResourceManager.GetString("LabelChannels", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to chapters.
         /// </summary>
         public static string LabelChapters {
@@ -1231,6 +1240,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Recorded TV.
+        /// </summary>
+        public static string LabelRecordedTv {
+            get {
+                return ResourceManager.GetString("LabelRecordedTv", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Released in.
         /// </summary>
         public static string LabelReleasedIn {
@@ -1263,6 +1281,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string LabelRunningTime {
             get {
                 return ResourceManager.GetString("LabelRunningTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Scheduled recordings.
+        /// </summary>
+        public static string LabelScheduledRecording {
+            get {
+                return ResourceManager.GetString("LabelScheduledRecording", resourceCulture);
             }
         }
         
@@ -1411,6 +1438,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Upcoming.
+        /// </summary>
+        public static string LabelUpcoming {
+            get {
+                return ResourceManager.GetString("LabelUpcoming", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to username:.
         /// </summary>
         public static string LabelUsername {
@@ -1443,6 +1479,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string LabelWelcomeTextPhone7 {
             get {
                 return ResourceManager.GetString("LabelWelcomeTextPhone7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What&apos;s On.
+        /// </summary>
+        public static string LabelWhatsOn {
+            get {
+                return ResourceManager.GetString("LabelWhatsOn", resourceCulture);
             }
         }
         
@@ -1726,6 +1771,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Getting channels....
+        /// </summary>
+        public static string SysTrayGettingChannels {
+            get {
+                return ResourceManager.GetString("SysTrayGettingChannels", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Getting details....
         /// </summary>
         public static string SysTrayGettingDetails {
@@ -1830,6 +1884,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string SysTrayGettingProfiles {
             get {
                 return ResourceManager.GetString("SysTrayGettingProfiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Getting programmes....
+        /// </summary>
+        public static string SysTrayGettingProgrammes {
+            get {
+                return ResourceManager.GetString("SysTrayGettingProgrammes", resourceCulture);
             }
         }
         

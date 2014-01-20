@@ -8,6 +8,8 @@
                 xmlns:ignore="http://www.ignore.com"
                 xmlns:scott="clr-namespace:ScottIsAFool.WindowsPhone.Controls;assembly=ScottIsAFool.WindowsPhone"
                 xmlns:controls="clr-namespace:MediaBrowser.WindowsPhone.Controls"
+                xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+                xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP8"
                 mc:Ignorable="d ignore"
                 FontFamily="{StaticResource PhoneFontFamilyNormal}"
                 FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -17,6 +19,11 @@
                 shell:SystemTray.IsVisible="True"
                 shell:SystemTray.Opacity="0"
                 DataContext="{Binding Schedule, Source={StaticResource Locator}}">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <command:EventToCommand Command="{Binding SchedulePageLoaded}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot"
@@ -32,7 +39,7 @@
                         Grid.Row="0"
                         Margin="12,17,0,28">
                 <controls:MediaBrowserLogo />
-                <TextBlock Text="page name"
+                <TextBlock Text="{Binding LocalizedResources.LabelScheduledRecording, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                            Margin="9,-7,0,0"
                            Style="{StaticResource PhoneTextTitle1Style}" />
             </StackPanel>

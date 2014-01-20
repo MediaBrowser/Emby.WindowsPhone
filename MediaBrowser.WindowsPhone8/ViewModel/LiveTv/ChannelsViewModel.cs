@@ -12,6 +12,7 @@ using MediaBrowser.Model.LiveTv;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Model;
+using MediaBrowser.WindowsPhone.Resources;
 using ScottIsAFool.WindowsPhone;
 using Telerik.Windows.Controls;
 using ViewModelBase = ScottIsAFool.WindowsPhone.ViewModel.ViewModelBase;
@@ -83,10 +84,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
             {
                 return new RelayCommand(async () =>
                 {
-                    if (!_channelsLoaded)
-                    {
-                        _channelsLoaded = await GetChannels();
-                    }
+                    await GetChannels(false);
                 });
             }
         }
@@ -97,7 +95,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
             {
                 return new RelayCommand(async () =>
                 {
-                    _channelsLoaded = await GetChannels();
+                    await GetChannels(true);
                 });
             }
         }
@@ -115,16 +113,16 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
             }
         }
 
-        private async Task<bool> GetChannels()
+        private async Task GetChannels(bool isRefresh)
         {
-            if (!_navigationService.IsNetworkAvailable)
+            if (!_navigationService.IsNetworkAvailable || (_channelsLoaded && !isRefresh))
             {
-                return false;
+                return;
             }
 
             try
             {
-                SetProgressBar("Getting channels...");
+                SetProgressBar(AppResources.SysTrayGettingChannels);
 
                 var query = new ChannelQuery
                 {
@@ -140,16 +138,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                     await GroupChannels();
                 }
 
-                SetProgressBar();
-                return true;
+                _channelsLoaded = true;
             }
             catch (HttpException ex)
             {
-                Log.ErrorException("GetChannels()", ex);
+                Utils.HandleHttpException(ex, "GetChannels()", _navigationService, Log);
             }
 
             SetProgressBar();
-            return false;
         }
 
         private async Task GroupChannels()

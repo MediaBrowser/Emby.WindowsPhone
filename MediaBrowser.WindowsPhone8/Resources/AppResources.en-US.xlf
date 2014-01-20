@@ -750,6 +750,26 @@
           <source>Welcome to Media Browser for Windows Phone. This app will allow you to browse your media collection and remotely control any of the controllable Media Browser clients.</source>
           <target state="new">Welcome to Media Browser for Windows Phone. This app will allow you to browse your media collection and remotely control any of the controllable Media Browser clients.</target>
         </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelWhatsOn" xml:space="preserve">
+          <source>What's On</source>
+          <target state="new">What's On</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelUpcoming" xml:space="preserve">
+          <source>Upcoming</source>
+          <target state="new">Upcoming</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelChannels" xml:space="preserve">
+          <source>Channels</source>
+          <target state="new">Channels</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelScheduledRecording" xml:space="preserve">
+          <source>Scheduled recordings</source>
+          <target state="new">Scheduled recordings</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelRecordedTv" xml:space="preserve">
+          <source>Recorded TV</source>
+          <target state="new">Recorded TV</target>
+        </trans-unit>
         <trans-unit translate="yes" id="Resx/LabelReleasedIn" xml:space="preserve">
           <source>Released in</source>
           <target state="new">Released in</target>

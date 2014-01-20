@@ -14,6 +14,7 @@ using MediaBrowser.Model.Configuration;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.LiveTv;
+using MediaBrowser.Model.Logging;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Session;
 using MediaBrowser.Services;
@@ -296,6 +297,11 @@ namespace MediaBrowser.WindowsPhone
             {
                 log.ErrorException(message, ex);
             }
+        }
+
+        internal static void HandleHttpException(string message, HttpException ex, INavigationService navigationService, ILog log)
+        {
+            HandleHttpException(ex, message, navigationService, log);
         }
 
         internal static async Task<List<PlaylistItem>> ToPlayListItems(this List<BaseItemDto> list, IExtendedApiClient apiClient)

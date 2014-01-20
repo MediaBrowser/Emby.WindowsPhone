@@ -57,7 +57,7 @@
                         Grid.Row="0"
                         Margin="12,17,0,28">
                 <controls:MediaBrowserLogo />
-                <TextBlock Text="channels"
+                <TextBlock Text="{Binding LocalizedResources.LabelChannels, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                            Margin="9,-7,0,0"
                            Style="{StaticResource PhoneTextTitle1Style}" />
             </StackPanel>

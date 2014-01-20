@@ -767,4 +767,25 @@
   <data name="LabelWelcomeTextPhone7" xml:space="preserve">
     <value>Welcome to Media Browser for Windows Phone. This app will allow you to browse your media collection and remotely control any of the controllable Media Browser clients.</value>
   </data>
+  <data name="LabelChannels" xml:space="preserve">
+    <value>Channels</value>
+  </data>
+  <data name="LabelRecordedTv" xml:space="preserve">
+    <value>Recorded TV</value>
+  </data>
+  <data name="LabelScheduledRecording" xml:space="preserve">
+    <value>Scheduled recordings</value>
+  </data>
+  <data name="LabelUpcoming" xml:space="preserve">
+    <value>Upcoming</value>
+  </data>
+  <data name="LabelWhatsOn" xml:space="preserve">
+    <value>What's On</value>
+  </data>
+  <data name="SysTrayGettingChannels" xml:space="preserve">
+    <value>Getting channels...</value>
+  </data>
+  <data name="SysTrayGettingProgrammes" xml:space="preserve">
+    <value>Getting programmes...</value>
+  </data>
 </root>

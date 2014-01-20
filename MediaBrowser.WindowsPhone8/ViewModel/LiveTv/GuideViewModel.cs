@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Cimbalino.Phone.Toolkit.Extensions;
@@ -12,6 +10,7 @@ using MediaBrowser.Model.LiveTv;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Model;
+using MediaBrowser.WindowsPhone.Resources;
 using ScottIsAFool.WindowsPhone.ViewModel;
 
 namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
@@ -111,22 +110,22 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
             });
         }
 
-        private async Task<bool> GetProgrammes(bool refresh)
+        private async Task GetProgrammes(bool refresh)
         {
-            if ((!_navigationService.IsNetworkAvailable || _programmesLoaded) && !refresh)
+            if (!_navigationService.IsNetworkAvailable || (_programmesLoaded && !refresh))
             {
-                return false;
+                return;
             }
 
             try
             {
-                SetProgressBar("Getting programmes...");
+                SetProgressBar(AppResources.SysTrayGettingProgrammes);
 
                 var query = new ProgramQuery
                 {
                     UserId = AuthenticationService.Current.LoggedInUserId,
                     ChannelIdList = new[] {SelectedChannel.Id},
-                    //MaxEndDate = DateTime.Now.AddDays(1).Date
+                    MaxEndDate = DateTime.Now.AddDays(1).Date
                 };
                 var items = await _apiClient.GetLiveTvProgramsAsync(query, default(CancellationToken));
 
@@ -135,17 +134,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                     Programmes = items.Items.ToObservableCollection();
                 }
 
-                SetProgressBar();
-                return true;
+                _programmesLoaded = true;
             }
             catch (HttpException ex)
             {
-                Log.ErrorException("GetProgrammes()", ex);
+                Utils.HandleHttpException(ex, "GetProgrammes()", _navigationService, Log);
             }
 
             SetProgressBar();
-
-            return false;
         }
     }
 }
