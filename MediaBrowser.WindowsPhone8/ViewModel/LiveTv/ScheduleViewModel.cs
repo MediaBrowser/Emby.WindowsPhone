@@ -9,7 +9,6 @@ using MediaBrowser.Model.LiveTv;
 using MediaBrowser.Model.Net;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Resources;
-using Microsoft.Phone.Reactive;
 using ScottIsAFool.WindowsPhone.ViewModel;
 
 namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
@@ -40,6 +39,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
         public int SelectedIndex { get; set; }
         public List<SeriesTimerInfoDto> Series { get; set; }
         public List<TimerInfoDto> Upcoming { get; set; }
+        public SeriesTimerInfoDto SelectedSeries { get; set; }
 
         public RelayCommand<string> NavigateToPage
         {
@@ -67,6 +67,29 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                 return new RelayCommand(async () =>
                 {
                     await GetData(true);
+                });
+            }
+        }
+
+        public RelayCommand<SeriesTimerInfoDto> CancelSeriesCommand
+        {
+            get
+            {
+                return new RelayCommand<SeriesTimerInfoDto>(async series =>
+                {
+                    
+                });
+            }
+        }
+
+        public RelayCommand<SeriesTimerInfoDto> ShowSeriesCommand
+        {
+            get
+            {
+                return new RelayCommand<SeriesTimerInfoDto>(series =>
+                {
+                    SelectedSeries = series;
+                    _navigationService.NavigateTo(Constants.Pages.LiveTv.ScheduledSeriesView);
                 });
             }
         }

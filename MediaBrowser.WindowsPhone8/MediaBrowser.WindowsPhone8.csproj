@@ -150,9 +150,12 @@
     </Compile>
     <Compile Include="Converters\AccentBrushConverter.cs" />
     <Compile Include="Converters\AlreadyPlayedConverter.cs" />
+    <Compile Include="Converters\AnyChannelConverter.cs" />
+    <Compile Include="Converters\AnyTimeConverter.cs" />
     <Compile Include="Converters\ClientTypeIconConverter.cs" />
     <Compile Include="Converters\CriticRatingConverter.cs" />
     <Compile Include="Converters\DateTimeConverter.cs" />
+    <Compile Include="Converters\DayPatternConverter.cs" />
     <Compile Include="Converters\DeviceIdToBooleanConverter.cs" />
     <Compile Include="Converters\EpisodeNumberConverter.cs" />
     <Compile Include="Converters\EpisodeNumberVisibilityConverter.cs" />
@@ -182,6 +185,7 @@
     <Compile Include="Converters\VirtualConverter.cs" />
     <Compile Include="Converters\ZeroCountBrushConverter.cs" />
     <Compile Include="ExtensionMethods.cs" />
+    <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Extensions\WriteableBitmapExt.cs" />
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="Messaging\VideoMessage.cs" />
@@ -287,6 +291,9 @@
     </Compile>
     <Compile Include="Views\LiveTv\LiveTvView.xaml.cs">
       <DependentUpon>LiveTvView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LiveTv\ScheduledSeriesView.xaml.cs">
+      <DependentUpon>ScheduledSeriesView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LiveTv\ScheduleView.xaml.cs">
       <DependentUpon>ScheduleView.xaml</DependentUpon>
@@ -508,6 +515,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\LiveTv\LiveTvView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LiveTv\ScheduledSeriesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

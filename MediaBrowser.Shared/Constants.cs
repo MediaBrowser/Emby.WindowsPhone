@@ -117,6 +117,8 @@
                 public const string ChannelsView = LiveTvPath + "ChannelsView.xaml";
                 public const string GuideView = LiveTvPath + "GuideView.xaml";
                 public const string ScheduleView = LiveTvPath + "ScheduleView.xaml";
+                public const string TvView = LiveTvPath + "TvView.xaml";
+                public const string ScheduledSeriesView = LiveTvPath + "ScheduledSeriesView.xaml";
             }
 
             public class Remote

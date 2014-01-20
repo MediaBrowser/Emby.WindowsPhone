@@ -322,6 +322,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to cancel series.
+        /// </summary>
+        public static string ContextCancelSeries {
+            get {
+                return ResourceManager.GetString("ContextCancelSeries", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Device not registered.
         /// </summary>
         public static string DeviceNotRegistered {
@@ -1285,11 +1294,56 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Any channel.
+        /// </summary>
+        public static string LabelScheduleAnyChannel {
+            get {
+                return ResourceManager.GetString("LabelScheduleAnyChannel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Any time.
+        /// </summary>
+        public static string LabelScheduleAnyTime {
+            get {
+                return ResourceManager.GetString("LabelScheduleAnyTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Daily.
+        /// </summary>
+        public static string LabelScheduleDaily {
+            get {
+                return ResourceManager.GetString("LabelScheduleDaily", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Scheduled recordings.
         /// </summary>
         public static string LabelScheduledRecording {
             get {
                 return ResourceManager.GetString("LabelScheduledRecording", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Weekdays.
+        /// </summary>
+        public static string LabelScheduleWeekdays {
+            get {
+                return ResourceManager.GetString("LabelScheduleWeekdays", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Weekends.
+        /// </summary>
+        public static string LabelScheduleWeekends {
+            get {
+                return ResourceManager.GetString("LabelScheduleWeekends", resourceCulture);
             }
         }
         

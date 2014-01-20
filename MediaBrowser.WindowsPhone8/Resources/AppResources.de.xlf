@@ -880,6 +880,30 @@
           <source>Getting upcoming recordings...</source>
           <target state="new">Getting upcoming recordings...</target>
         </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelScheduleWeekends" xml:space="preserve">
+          <source>Weekends</source>
+          <target state="new">Weekends</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelScheduleWeekdays" xml:space="preserve">
+          <source>Weekdays</source>
+          <target state="new">Weekdays</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelScheduleDaily" xml:space="preserve">
+          <source>Daily</source>
+          <target state="new">Daily</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelScheduleAnyTime" xml:space="preserve">
+          <source>Any time</source>
+          <target state="new">Any time</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelScheduleAnyChannel" xml:space="preserve">
+          <source>Any channel</source>
+          <target state="new">Any channel</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/ContextCancelSeries" xml:space="preserve">
+          <source>cancel series</source>
+          <target state="new">cancel series</target>
+        </trans-unit>
         <trans-unit translate="yes" id="Resx/SysTrayGettingSeriesRecordings" xml:space="preserve">
           <source>Getting series recordings...</source>
           <target state="new">Getting series recordings...</target>

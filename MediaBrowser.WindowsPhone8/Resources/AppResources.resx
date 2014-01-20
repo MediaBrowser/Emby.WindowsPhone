@@ -794,4 +794,22 @@
   <data name="SysTrayGettingUpcomingRecordings" xml:space="preserve">
     <value>Getting upcoming recordings...</value>
   </data>
+  <data name="ContextCancelSeries" xml:space="preserve">
+    <value>cancel series</value>
+  </data>
+  <data name="LabelScheduleAnyChannel" xml:space="preserve">
+    <value>Any channel</value>
+  </data>
+  <data name="LabelScheduleAnyTime" xml:space="preserve">
+    <value>Any time</value>
+  </data>
+  <data name="LabelScheduleDaily" xml:space="preserve">
+    <value>Daily</value>
+  </data>
+  <data name="LabelScheduleWeekdays" xml:space="preserve">
+    <value>Weekdays</value>
+  </data>
+  <data name="LabelScheduleWeekends" xml:space="preserve">
+    <value>Weekends</value>
+  </data>
 </root>
