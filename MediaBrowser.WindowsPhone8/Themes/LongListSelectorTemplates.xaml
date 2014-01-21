@@ -92,7 +92,7 @@
                   Width="450"
                   Height="50"
                   Background="{StaticResource PhoneAccentBrush}">
-                <TextBlock VerticalAlignment="Bottom"
+                <TextBlock VerticalAlignment="Center"
                            TextWrapping="Wrap"
                            Foreground="White"
                            Style="{StaticResource PhoneTextLargeStyle}"
