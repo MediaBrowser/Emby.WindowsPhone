@@ -64,6 +64,7 @@
     <converters:IsOnNowConverter x:Key="IsOnNowConverter"/>
     <converters:LessThanVisibilityConverter x:Key="HeaderVisibilityConverter"
                                             NullIsVisible="True"/>
+    <converters:CollectionVisibilityConverter x:Key="CollectionVisibilityConverter"/>
 
     <local:LocalizedStrings xmlns:local="clr-namespace:MediaBrowser.WindowsPhone"
                             x:Key="LocalizedStrings" />
@@ -78,7 +79,7 @@
         <Setter Property="HorizontalAlignment"
                 Value="Stretch" />
         <Setter Property="HorizontalContentAlignment"
-                Value="Left" />
+                Value="Stretch" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ButtonBase">

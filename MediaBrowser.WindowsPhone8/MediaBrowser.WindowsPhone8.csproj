@@ -153,6 +153,7 @@
     <Compile Include="Converters\AnyChannelConverter.cs" />
     <Compile Include="Converters\AnyTimeConverter.cs" />
     <Compile Include="Converters\ClientTypeIconConverter.cs" />
+    <Compile Include="Converters\CollectionVisibilityConverter.cs" />
     <Compile Include="Converters\CriticRatingConverter.cs" />
     <Compile Include="Converters\DateTimeConverter.cs" />
     <Compile Include="Converters\DayPatternConverter.cs" />
@@ -178,6 +179,7 @@
     <Compile Include="Converters\RemoteClientMultiConverter.cs" />
     <Compile Include="Converters\RoleConverter.cs" />
     <Compile Include="Converters\RuntimeConverter.cs" />
+    <Compile Include="Converters\ScheduledRecordingTimeConverter.cs" />
     <Compile Include="Converters\SeasonEpisodeConverter.cs" />
     <Compile Include="Converters\SettingsConverters.cs" />
     <Compile Include="Converters\SimpleDaysAgoConverter.cs" />

@@ -806,6 +806,12 @@
   <data name="LabelScheduleDaily" xml:space="preserve">
     <value>Daily</value>
   </data>
+  <data name="LabelScheduleToday" xml:space="preserve">
+    <value>Today</value>
+  </data>
+  <data name="LabelScheduleTomorrow" xml:space="preserve">
+    <value>Tomorrow</value>
+  </data>
   <data name="LabelScheduleWeekdays" xml:space="preserve">
     <value>Weekdays</value>
   </data>

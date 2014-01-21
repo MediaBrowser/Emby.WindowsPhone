@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Command;
@@ -9,6 +11,7 @@ using MediaBrowser.Model.LiveTv;
 using MediaBrowser.Model.Net;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Resources;
+using ScottIsAFool.WindowsPhone;
 using ScottIsAFool.WindowsPhone.ViewModel;
 
 namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
@@ -38,7 +41,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
 
         public int SelectedIndex { get; set; }
         public List<SeriesTimerInfoDto> Series { get; set; }
-        public List<TimerInfoDto> Upcoming { get; set; }
+        public List<Group<TimerInfoDto>> Upcoming { get; set; }
         public SeriesTimerInfoDto SelectedSeries { get; set; }
 
         public RelayCommand<string> NavigateToPage
@@ -156,7 +159,15 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
 
                 if (items != null && !items.Items.IsNullOrEmpty())
                 {
-                    Upcoming = items.Items.ToList();
+                    var upcomingItems = items.Items;
+                    var groupedItems = (from u in upcomingItems
+                        group u by u.StartDate
+                        into grp
+                        orderby grp.Key
+                        select new Group<TimerInfoDto>(CoolDateName(grp.Key), grp)).ToList();
+
+
+                    Upcoming = groupedItems;
 
                     _upcomingLoaded = true;
                 }
@@ -167,6 +178,18 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
             }
 
             SetProgressBar();
+        }
+
+        private static string CoolDateName(DateTime dateTime)
+        {
+            var theDate = dateTime.Date;
+            var today = DateTime.Now.Date;
+            if (theDate == today)
+            {
+                return AppResources.LabelScheduleToday;
+            }
+
+            return theDate == today.AddDays(1) ? AppResources.LabelScheduleTomorrow : theDate.ToLongDateString();
         }
     }
 }

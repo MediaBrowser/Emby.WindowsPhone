@@ -770,6 +770,14 @@
           <source>Daily</source>
           <target state="new">Daily</target>
         </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelScheduleTomorrow" xml:space="preserve">
+          <source>Tomorrow</source>
+          <target state="new">Tomorrow</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelScheduleToday" xml:space="preserve">
+          <source>Today</source>
+          <target state="new">Today</target>
+        </trans-unit>
         <trans-unit translate="yes" id="Resx/LabelScheduleAnyTime" xml:space="preserve">
           <source>Any time</source>
           <target state="new">Any time</target>

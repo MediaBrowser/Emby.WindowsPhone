@@ -264,6 +264,9 @@
     <Compile Include="..\MediaBrowser.WindowsPhone8\Converters\ClientTypeIconConverter.cs">
       <Link>Converters\ClientTypeIconConverter.cs</Link>
     </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone8\Converters\CollectionVisibilityConverter.cs">
+      <Link>Converters\CollectionVisibilityConverter.cs</Link>
+    </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone8\Converters\CriticRatingConverter.cs">
       <Link>Converters\CriticRatingConverter.cs</Link>
     </Compile>

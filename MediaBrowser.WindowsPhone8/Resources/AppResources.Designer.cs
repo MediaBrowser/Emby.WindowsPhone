@@ -1330,6 +1330,24 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Today.
+        /// </summary>
+        public static string LabelScheduleToday {
+            get {
+                return ResourceManager.GetString("LabelScheduleToday", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tomorrow.
+        /// </summary>
+        public static string LabelScheduleTomorrow {
+            get {
+                return ResourceManager.GetString("LabelScheduleTomorrow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Weekdays.
         /// </summary>
         public static string LabelScheduleWeekdays {
