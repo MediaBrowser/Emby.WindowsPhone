@@ -117,222 +117,660 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   <data name="ResourceLanguage" xml:space="preserve">
     <value>de</value>
   </data>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+  <data name="AppBarAbout">
+    <value>über</value>
+  </data>
+  <data name="AppBarAddToNowPlaying">
+    <value>zur Wiedergabe hinzufügen</value>
+  </data>
+  <data name="AppBarChangeProfile">
+    <value>Profil wechseln</value>
+  </data>
+  <data name="AppBarClearNowPlaying">
+    <value>Wiedergabe zurücksetzen</value>
+  </data>
+  <data name="AppBarDeleteItems">
+    <value>Elemente löschen</value>
+  </data>
+  <data name="AppBarGroupBy">
+    <value>sortieren nach</value>
+  </data>
+  <data name="AppBarLogin">
+    <value>Login</value>
+  </data>
+  <data name="AppBarMarkAsUnwatched">
+    <value>als ungesehen markieren</value>
+  </data>
+  <data name="AppBarMarkAsWatched">
+    <value>als gesehen markieren</value>
+  </data>
+  <data name="AppBarNext">
+    <value>nächste(s)</value>
+  </data>
+  <data name="AppBarNotifications">
+    <value>Benachrichtigungen</value>
+  </data>
+  <data name="AppBarNowPlaying">
+    <value>Wiedergabe</value>
+  </data>
+  <data name="AppBarPause">
+    <value>Pause</value>
+  </data>
+  <data name="AppBarPlay">
+    <value>abspielen</value>
+  </data>
+  <data name="AppBarPlayAll">
+    <value>alle abspielen</value>
+  </data>
+  <data name="AppBarPlayAllTracks">
+    <value>alle Tracks abspielen</value>
+  </data>
+  <data name="AppBarPlayItems">
+    <value>Elemente abspielen</value>
+  </data>
+  <data name="AppBarPlayOn">
+    <value>Wiedergeben auf…</value>
+  </data>
+  <data name="AppBarPosterLockscreen">
+    <value>Poster als Sperrbildschirm einstellen</value>
+  </data>
+  <data name="AppBarPrevious">
+    <value>vorherige(s)</value>
+  </data>
+  <data name="AppBarRefresh">
+    <value>Aktualisieren</value>
+  </data>
+  <data name="AppBarRefreshInformation">
+    <value>Informationen aktualisieren</value>
+  </data>
+  <data name="AppBarRemote">
+    <value>Fernbedienung</value>
+  </data>
+  <data name="AppBarResume">
+    <value>fortsetzen</value>
+  </data>
+  <data name="AppBarSearch">
+    <value>suchen</value>
+  </data>
+  <data name="AppBarSelectItems">
+    <value>Elemente auswählen</value>
+  </data>
+  <data name="AppBarSendLogs">
+    <value>Log-Dateien senden</value>
+  </data>
+  <data name="AppBarSettings">
+    <value>Einstellungen</value>
+  </data>
+  <data name="Collections">
+    <value>Ordner</value>
+  </data>
+  <data name="DeviceNotRegistered">
+    <value>Das Gerät wurde nicht registriert</value>
+  </data>
+  <data name="DeviceRegistered">
+    <value>Das Gerät wurde registriert</value>
+  </data>
+  <data name="ErrorConnectionDetailsInvalid">
+    <value>Die Verbindungsdetails sind ungültig, bitte versuchen Sie es erneut.</value>
+  </data>
+  <data name="ErrorConnectionDetailsMessage">
+    <value>Es wurden keine Verbindungsdetails eingestellt, möchten Sie sie jetzt einstellen?</value>
+  </data>
+  <data name="ErrorConnectionDetailsTitle">
+    <value>Keine Verbindungsdetails</value>
+  </data>
+  <data name="ErrorCouldNotFindServer">
+    <value>Konnte Ihren Server nicht finden.</value>
+  </data>
+  <data name="ErrorDisabledUser">
+    <value>Entschuldigung, es sieht so aus, als sei dieses Benutzerkonto deaktiviert. Wir bringen Sie nun zurück zum Anmeldebildschirm.</value>
+  </data>
+  <data name="ErrorDisabledUserTitle">
+    <value>Anmeldung fehlgeschlagen</value>
+  </data>
+  <data name="ErrorEpisodeDetails">
+    <value>Der Download von Details zur Episode ist fehlgeschlagen</value>
+  </data>
+  <data name="ErrorEpisodes">
+    <value>Der Abruf von Episoden ist fehlgeschlagen</value>
+  </data>
+  <data name="ErrorFailedToSearch">
+    <value>Das Ausführen der Suche ist fehlgeschlagen</value>
+  </data>
+  <data name="ErrorGettingData">
+    <value>Der Abruf der Daten ist fehlgeschlagen</value>
+  </data>
+  <data name="ErrorGettingExtraInfo">
+    <value>Der Abruf zusätzlicher Informationen ist fehlgeschlagen</value>
+  </data>
+  <data name="ErrorGettingTrailerDetails">
+    <value>Kann die Trailer Informationen nicht abrufen</value>
+  </data>
+  <data name="ErrorInvalidHostname">
+    <value>Entschuldigung, Ihr Hostname ist ungültig. Bitte stellen Sie sicher, dass er beispielsweise keine Leerzeichen enthält.</value>
+  </data>
+  <data name="ErrorMakingChanges">
+    <value>Übernehmen Ihrer Änderungen fehlgeschlagen</value>
+  </data>
+  <data name="ErrorNoConnectionSettings">
+    <value>Keine Verbindungs-Einstellungen, tippen Sie hier, um diese nun vorzunehmen</value>
+  </data>
+  <data name="ErrorProblemUpdatingItem">
+    <value>Es gab ein Problem dieses Element zu aktualisieren. Bitte versuchen Sie es später erneut.</value>
+  </data>
+  <data name="ErrorRecentItems">
+    <value>Abruf der letzten Elemente fehlgeschlagen</value>
+  </data>
+  <data name="ErrorSeasons">
+    <value>Abruf der Seasons fehlgeschlagen</value>
+  </data>
+  <data name="ErrorTitle">
+    <value>Fehler</value>
+  </data>
+  <data name="ErrorUnableToSignIn">
+    <value>Wir können Sie derzeit nicht anmelden. Dies könnte an einem falschen Benutzernamen/Passwort oder an
+ einem deaktivierten Benutzerkonto liegen.</value>
+  </data>
+  <data name="ErrorUnableToSignInTitle">
+    <value>Anmeldung fehlgeschlagen</value>
+  </data>
+  <data name="Favourites">
+    <value>Favoriten</value>
+  </data>
+  <data name="Genre">
+    <value>Genre</value>
+  </data>
+  <data name="HeaderChooseClient">
+    <value>Client wählen</value>
+  </data>
+  <data name="HeaderDefaultGrouping">
+    <value>Standard-Sortierung</value>
+  </data>
+  <data name="HeaderFromCollection">
+    <value>Aus Sammlung (wenn zutreffend)</value>
+  </data>
+  <data name="LabelActor">
+    <value>Darsteller</value>
+  </data>
+  <data name="LabelAdd">
+    <value>hinzufügen</value>
+  </data>
+  <data name="LabelAddToFavourites">
+    <value>Zu Favoriten hinzufügen</value>
+  </data>
+  <data name="LabelAlbums">
+    <value>Alben</value>
+  </data>
+  <data name="LabelAnHourAgo">
+    <value>vor einer Stunde</value>
+  </data>
+  <data name="LabelArtists">
+    <value>Künstler</value>
+  </data>
+  <data name="LabelBio">
+    <value>Bio</value>
+  </data>
+  <data name="LabelBoxsets">
+    <value>Boxset</value>
+  </data>
+  <data name="LabelCastCrew">
+    <value>Cast &amp; Crew</value>
+  </data>
+  <data name="LabelChapters">
+    <value>Kapitel</value>
+  </data>
+  <data name="LabelCollage">
+    <value>Vollbild Collage</value>
+  </data>
+  <data name="LabelConnect">
+    <value>Verbinden</value>
+  </data>
+  <data name="LabelConnection">
+    <value>Verbindung</value>
+  </data>
+  <data name="LabelConnectionDetails">
+    <value>Tragen Sie die Verbindungsdetails zu dem Rechner ein, auf dem Media Browser 3 läuft. Führen Sie 
+anschließend zur Bestätigung dieser den Test aus.</value>
+  </data>
+  <data name="LabelConnectionWarning">
+    <value>WARNUNG: das Ändern des Hostnamens entfernt sämtliche gespeicherten Profile.</value>
+  </data>
+  <data name="LabelDate">
+    <value>Datum</value>
+  </data>
+  <data name="LabelDaysAgo">
+    <value>vor {0} Tagen</value>
+  </data>
+  <data name="LabelDefaultLockScreen">
+    <value>Standard Sperrbildschirm</value>
+  </data>
+  <data name="LabelDetails">
+    <value>Details</value>
+  </data>
+  <data name="LabelDirector">
+    <value>Regisseur</value>
+  </data>
+  <data name="LabelDisplayRandomImages">
+    <value>Zufälliges Hintergrundbild auf der Rückseite des Tiles anzeigen</value>
+  </data>
+  <data name="LabelEpisode">
+    <value>Episode</value>
+  </data>
+  <data name="LabelFindServer">
+    <value>Server finden</value>
+  </data>
+  <data name="LabelFirstRunAccessible">
+    <value>Stellen Sie sicher, dass der Media Browser Server erreichbar ist, sobald er konfiguriert wurde. Sei dies im lokalen
+Netzwerk, oder extern über eine statische IP-Adresse.</value>
+  </data>
+  <data name="LabelFirstRunHappyConfiguration">
+    <value>Wenn Sie mit den von Ihnen gemachten Einstellungen zufrieden sind, tippen Sie auf den Einstellungen-Button
+und geben Sie die Server-Details ein. Ansonsten können Sie die App von hier aus beenden.</value>
+  </data>
+  <data name="LabelFirstRunServerInfo">
+    <value>Bevor wir loslegen können, müssen Sie sicherstellen, dass Sie den Media Browser Server in Verwendung haben.</value>
+  </data>
+  <data name="LabelGeneral">
+    <value>Allgemein</value>
+  </data>
+  <data name="LabelGenres">
+    <value>Genres</value>
+  </data>
+  <data name="LabelHostname">
+    <value>Hostname:</value>
+  </data>
+  <data name="LabelHoursAgo">
+    <value>vor {0} Stunden</value>
+  </data>
+  <data name="LabelImageEnhancers">
+    <value>Verbesserte Bilder aktivieren (sofern auf dem Server installiert)</value>
+  </data>
+  <data name="LabelImdb">
+    <value>Film auf imdb nachschlagen</value>
+  </data>
+  <data name="LabelIsLockScreenProvider">
+    <value>Media Browser ist derzeit für Ihren Sperrbildschirm eingestellt</value>
+  </data>
+  <data name="LabelIsNotLockScreenProvider">
+    <value>Media Browser ist derzeit nicht für Ihren Sperrbildschirm eingestellt</value>
+  </data>
+  <data name="LabelJustShowList">
+    <value>Zeige nur die Liste von Elementen, keine Medianordner-Ansicht</value>
+  </data>
+  <data name="LabelLatestUnseen">
+    <value>letzte ungesehene</value>
+  </data>
+  <data name="LabelLiveTv">
+    <value>Live TV</value>
+  </data>
+  <data name="LabelLockScreen">
+    <value>Sperrbildschirm</value>
+  </data>
+  <data name="LabelLockScreenSettinsg">
+    <value>Sperrbildschirm Einstellungen</value>
+  </data>
+  <data name="LabelLogIn">
+    <value>Anmelden</value>
+  </data>
+  <data name="LabelMakeLockScreenProvider">
+    <value>Stellen Sie uns für Ihren Sperrbildschirm ein</value>
+  </data>
+  <data name="LabelManuallyLogin">
+    <value>Manuell anmelden</value>
+  </data>
+  <data name="LabelMinutesAgo">
+    <value>vor {0} Minuten</value>
+  </data>
+  <data name="LabelMissingEpisodes">
+    <value>Fehlende Episoden anzeigen</value>
+  </data>
+  <data name="LabelMonthsAgo">
+    <value>vor {0} Monaten</value>
+  </data>
+  <data name="LabelMovies">
+    <value>Filme</value>
+  </data>
+  <data name="LabelMusic">
+    <value>Musik</value>
+  </data>
+  <data name="LabelNextUp">
+    <value>als nächstes</value>
+  </data>
+  <data name="LabelNo">
+    <value>nein</value>
+  </data>
+  <data name="LabelNoEpisodes">
+    <value>Keine anzuzeigenden Episoden</value>
+  </data>
+  <data name="LabelNoFoldersFound">
+    <value>Keine Ordner gefunden</value>
+  </data>
+  <data name="LabelNone">
+    <value>Keine</value>
+  </data>
+  <data name="LabelNoSeasonsFound">
+    <value>Keine Seasons gefunden</value>
+  </data>
+  <data name="LabelNothingInPlaylist">
+    <value>Es befindet sich nichts in Ihrer Wiedergabeliste</value>
+  </data>
+  <data name="LabelNotifications">
+    <value>Benachrichtigungen</value>
+  </data>
+  <data name="LabelNowPlaying">
+    <value>Wiedergabe</value>
+  </data>
+  <data name="LabelOneMinuteAgo">
+    <value>vor einer Minute</value>
+  </data>
+  <data name="LabelOneMonthAgo">
+    <value>vor einem Monat</value>
+  </data>
+  <data name="LabelOneSecondAgo">
+    <value>vor einer Sekunde</value>
+  </data>
+  <data name="LabelOther">
+    <value>Andere</value>
+  </data>
+  <data name="LabelOverview">
+    <value>Übersicht</value>
+  </data>
+  <data name="LabelPassword">
+    <value>Passwort:</value>
+  </data>
+  <data name="LabelPort">
+    <value>Port:</value>
+  </data>
+  <data name="LabelPoster">
+    <value>Poster</value>
+  </data>
+  <data name="LabelProducer">
+    <value>Produzent</value>
+  </data>
+  <data name="LabelProfile">
+    <value>Profil</value>
+  </data>
+  <data name="LabelProfileNotListed">
+    <value>Profil nicht in der Liste?</value>
+  </data>
+  <data name="LabelProfiles">
+    <value>Profile</value>
+  </data>
+  <data name="LabelQuit">
+    <value>Beenden</value>
+  </data>
+  <data name="LabelRandomItems">
+    <value>Zufällige Elemente</value>
+  </data>
+  <data name="LabelRandomPictures">
+    <value>Zufällige Bilder aus der Sammlung</value>
+  </data>
+  <data name="LabelRating">
+    <value>Bewertung:</value>
+  </data>
+  <data name="LabelRecent">
+    <value>Zuletzt</value>
+  </data>
+  <data name="LabelReleasedIn">
+    <value>Veröffentlicht</value>
+  </data>
+  <data name="LabelRemote">
+    <value>Fernbedienung</value>
+  </data>
+  <data name="LabelRemove">
+    <value>entfernen</value>
+  </data>
+  <data name="LabelRunningTime">
+    <value>Spieldauer:</value>
+  </data>
+  <data name="LabelSearch">
+    <value>suchen</value>
+  </data>
+  <data name="LabelSeasons">
+    <value>Seasons</value>
+  </data>
+  <data name="LabelSecondsAgo">
+    <value>vor {0} Sekunden</value>
+  </data>
+  <data name="LabelSeries">
+    <value>Serien</value>
+  </data>
+  <data name="LabelShowAllItems">
+    <value>alle Elemente anzeigen…</value>
+  </data>
+  <data name="LabelShows">
+    <value>Shows</value>
+  </data>
+  <data name="LabelShowTrailers">
+    <value>Trailer in den letzten Elementen anzeigen</value>
+  </data>
+  <data name="LabelSinglePoster">
+    <value>Einzelnes Poster</value>
+  </data>
+  <data name="LabelSongs">
+    <value>Songs</value>
+  </data>
+  <data name="LabelTile">
+    <value>Tile</value>
+  </data>
+  <data name="LabelTileBackInformation">
+    <value>Um einiges des großartigen Artworks Ihrer Sammlung zu zeigen, wird dieses auf dem Tile dargestellt. Hier 
+können Sie einstellen, wie es aussehen soll.</value>
+  </data>
+  <data name="LabelTrailers">
+    <value>Trailer</value>
+  </data>
+  <data name="LabelTv">
+    <value>TV</value>
+  </data>
+  <data name="LabelUnairedEpisodes">
+    <value>Nicht ausgestrahlte Episoden anzeigen</value>
+  </data>
+  <data name="LabelUnplayedItems">
+    <value>nicht wiedergegeben:</value>
+  </data>
+  <data name="LabelUnwatched">
+    <value>ungesehen:</value>
+  </data>
+  <data name="LabelUsername">
+    <value>Benutzername:</value>
+  </data>
+  <data name="LabelViews">
+    <value>Ansichten</value>
+  </data>
+  <data name="LabelWelcomeText">
+    <value>Willkommen beim Media Browser für Windows Phone. Mit dieser App können Sie Ihre Mediensammlung
+durchstöbern, sie auf Ihr Smartphone streamen und jeden verfügbaren Media Browser Client fernbedienen.</value>
+  </data>
+  <data name="LabelWelcomeTextPhone7">
+    <value>Willkommen beim Media Browser für Windows Phone. Mit dieser App können Sie Ihre Mediensammlung
+durchstöbern und jeden verfügbaren Media Browser Client fernbedienen.</value>
+  </data>
+  <data name="LabelWriter">
+    <value>Schreiber</value>
+  </data>
+  <data name="LabelYes">
+    <value>ja</value>
+  </data>
+  <data name="LabelYesterday">
+    <value>gestern</value>
+  </data>
+  <data name="MenuPlayFrom">
+    <value>abspielen von</value>
+  </data>
+  <data name="MenuPlayFromOn">
+    <value>abspielen ab</value>
+  </data>
+  <data name="MessageAreYouSureTitle">
+    <value>Sind Sie sicher?</value>
+  </data>
+  <data name="MessageBoxUnpinText">
+    <value>Wollen Sie dieses Tile wirklich vom Startbildschirm entfernen?</value>
+  </data>
+  <data name="MessageClearPlayList">
+    <value>Wollen Sie Ihre Wiedergabeliste wirklich löschen?</value>
+  </data>
+  <data name="MessageDeletePlaylistItems">
+    <value>Wollen Sie diese Elemente wirklich löschen? Dies kann nicht rückgängig gemacht werden.</value>
+  </data>
+  <data name="MessageExperimentalTitle">
+    <value>Experimentell</value>
+  </data>
+  <data name="MessageExperimentalVideo">
+    <value>Die Wiedergabe dieser Art von Videos ist derzeit experimentell. Die Resultate können variieren. Sind Sie sicher?</value>
+  </data>
+  <data name="MessageTracksAddedSuccessfully">
+    <value>{0} Tracks erfolgreich hinzugefügt.</value>
+  </data>
+  <data name="More">
+    <value>mehr…</value>
+  </data>
+  <data name="NameLabel">
+    <value>Name</value>
+  </data>
+  <data name="NoItemsFound">
+    <value>Keine Elemente gefunden</value>
+  </data>
+  <data name="PinToStart">
+    <value>An Start anheften</value>
+  </data>
+  <data name="ProductionYear">
+    <value>Produktionsjahr</value>
+  </data>
+  <data name="RemoveFromFavouritesFull">
+    <value>Aus Favoriten entfernen</value>
+  </data>
+  <data name="Settings">
+    <value>Einstellungen</value>
+  </data>
+  <data name="SysTrayAddingToFavourites">
+    <value>Füge zu Favoriten hinzu…</value>
+  </data>
+  <data name="SysTrayAuthenticating">
+    <value>Authentifizierung…</value>
+  </data>
+  <data name="SysTrayCheckingCollection">
+    <value>Überprüfe Sammlung…</value>
+  </data>
+  <data name="SysTrayCheckingConnection">
+    <value>Überprüfe Verbindung…</value>
+  </data>
+  <data name="SysTrayFindingServer">
+    <value>Versuche Ihren Server zu finden…</value>
+  </data>
+  <data name="SysTrayGettingAlbums">
+    <value>Rufe Alben ab…</value>
+  </data>
+  <data name="SysTrayGettingAlbumTracks">
+    <value>Rufe Album Tracks ab…</value>
+  </data>
+  <data name="SysTrayGettingAllTracks">
+    <value>Rufe alle Tracks ab…</value>
+  </data>
+  <data name="SysTrayGettingArtists">
+    <value>Rufe Künstler ab…</value>
+  </data>
+  <data name="SysTrayGettingArtistTracks">
+    <value>Rufe Tracks des Künstlers ab…</value>
+  </data>
+  <data name="SysTrayGettingBoxsets">
+    <value>Rufe Boxsets ab…</value>
+  </data>
+  <data name="SysTrayGettingDetails">
+    <value>Rufe Details ab…</value>
+  </data>
+  <data name="SysTrayGettingEpisodeDetails">
+    <value>Rufe Details der Episode ab…</value>
+  </data>
+  <data name="SysTrayGettingEpisodes">
+    <value>Rufe Episoden ab…</value>
+  </data>
+  <data name="SysTrayGettingFavourites">
+    <value>Rufe Favoriten ab…</value>
+  </data>
+  <data name="SysTrayGettingGenres">
+    <value>Rufe Genres ab…</value>
+  </data>
+  <data name="SysTrayGettingGenreTracks">
+    <value>Rufe Tracks des Genres ab…</value>
+  </data>
+  <data name="SysTrayGettingItems">
+    <value>Rufe Elemente ab…</value>
+  </data>
+  <data name="SysTrayGettingMovieInfo">
+    <value>Rufe Film-Informationen ab…</value>
+  </data>
+  <data name="SysTrayGettingMovies">
+    <value>Rufe Filme ab…</value>
+  </data>
+  <data name="SysTrayGettingNextUp">
+    <value>Rufe "als nächstes" Elemente ab…</value>
+  </data>
+  <data name="SysTrayGettingNotifications">
+    <value>Rufe Benachrichtigungen ab…</value>
+  </data>
+  <data name="SysTrayGettingProfiles">
+    <value>Rufe Profile ab…</value>
+  </data>
+  <data name="SysTrayGettingRecentItems">
+    <value>Rufe letzte Elemente ab…</value>
+  </data>
+  <data name="SysTrayGettingServerDetails">
+    <value>Rufe Serverdetails ab…</value>
+  </data>
+  <data name="SysTrayGettingShowInformation">
+    <value>Rufe Show-Informationen ab…</value>
+  </data>
+  <data name="SysTrayGettingShows">
+    <value>Rufe TV-Shows ab…</value>
+  </data>
+  <data name="SysTrayGettingSongs">
+    <value>Rufe Songs ab…</value>
+  </data>
+  <data name="SysTrayGettingTracks">
+    <value>Rufe Tracks ab…</value>
+  </data>
+  <data name="SysTrayGettingTrailerDetails">
+    <value>Rufe Trailer-Details ab…</value>
+  </data>
+  <data name="SysTrayGettingUnwatchedItems">
+    <value>Rufe letzte ungesehene Elemente ab…</value>
+  </data>
+  <data name="SysTrayLoadingCollections">
+    <value>Lade Sammlungen…</value>
+  </data>
+  <data name="SysTrayLoadingSettings">
+    <value>Lade Einstellungen…</value>
+  </data>
+  <data name="SysTrayRegisteringDevice">
+    <value>Registriere Gerät…</value>
+  </data>
+  <data name="SysTrayRegrouping">
+    <value>Sortiere…</value>
+  </data>
+  <data name="SysTraySearching">
+    <value>Suche…</value>
+  </data>
+  <data name="SysTrayUnregisteringDevice">
+    <value>Entferne Geräte-Registrierung…</value>
+  </data>
+  <data name="TrialVideoMessage">
+    <value>In der Trial-Version können Sie nur ein Video pro Tag abspielen. Bitte versuchen Sie es morgen erneut oder 
+erwerben Sie die Vollversion.</value>
+  </data>
+  <data name="TvShowRecentItemsTitle">
+    <value>{0}'s letzte Elemente</value>
+  </data>
+  <data name="Unpin">
+    <value>Tile entfernen</value>
+  </data>
+  <data name="WatermarkEnterUsername">
+    <value>Geben Sie einen Benutzernamen ein</value>
+  </data>
+  <data name="WatermarkPassword">
+    <value>Geben Sie ein Passwort ein</value>
+  </data>
 </root>
