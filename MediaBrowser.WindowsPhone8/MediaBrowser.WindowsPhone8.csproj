@@ -166,6 +166,7 @@
     <Compile Include="Converters\ImageUrlConverter.cs" />
     <Compile Include="Converters\IsOnNowConverter.cs" />
     <Compile Include="Converters\LessThanVisibilityConverter.cs" />
+    <Compile Include="Converters\LiveTvInfoConverter.cs" />
     <Compile Include="Converters\LocationConverter.cs" />
     <Compile Include="Converters\LockScreenTypeConverter.cs" />
     <Compile Include="Converters\LoggedInDateConverter.cs" />

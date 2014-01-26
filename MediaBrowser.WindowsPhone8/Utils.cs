@@ -251,7 +251,7 @@ namespace MediaBrowser.WindowsPhone
 
 #if WP8
                 var liveTv = await apiClient.GetLiveTvInfoAsync(default(CancellationToken));
-                App.Settings.SupportsLiveTv = liveTv != null && liveTv.Services != null && liveTv.Services.Any();
+                App.Settings.LiveTvInfo = liveTv;
 #endif
 
                 if (SimpleIoc.Default.IsRegistered<ApiWebSocket>())

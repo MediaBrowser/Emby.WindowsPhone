@@ -14,6 +14,7 @@
                 xmlns:system="clr-namespace:System;assembly=mscorlib"
                 xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
                 xmlns:local="clr-namespace:MediaBrowser.WindowsPhone.Controls"
+                xmlns:converters="clr-namespace:MediaBrowser.WindowsPhone.Converters"
                 FontFamily="{StaticResource PhoneFontFamilyNormal}"
                 FontSize="{StaticResource PhoneFontSizeNormal}"
                 Foreground="{StaticResource PhoneForegroundBrush}"
@@ -40,6 +41,7 @@
 
     <scott:BasePage.Resources>
         <system:Double x:Key="ViewSize">120</system:Double>
+        <converters:LiveTvInfoConverter x:Key="LiveTvInfoConverter"/>
     </scott:BasePage.Resources>
 
     <toolkit:TransitionService.NavigationInTransition>
@@ -115,7 +117,7 @@
                         <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
                                          Margin="0,0,0,12"
                                          NavigateUri="/Views/LiveTv/LiveTvView.xaml"
-                                         Visibility="{Binding SupportsLiveTv, Source={StaticResource AppSettings}, Converter={StaticResource VisibilityConverter}}">
+                                         Visibility="{Binding LiveTvInfo, Source={StaticResource AppSettings}, Converter={StaticResource LiveTvInfoConverter}}">
                             <StackPanel Orientation="Horizontal">
                                 <Border Background="#FFD100FF"
                                         Height="{StaticResource ViewSize}"

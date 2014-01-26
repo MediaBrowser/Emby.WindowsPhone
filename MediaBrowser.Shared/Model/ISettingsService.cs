@@ -1,5 +1,6 @@
 ﻿using MediaBrowser.Model.Configuration;
 using MediaBrowser.Model.Dto;
+using MediaBrowser.Model.LiveTv;
 using MediaBrowser.Model.System;
 
 namespace MediaBrowser.Model
@@ -10,5 +11,6 @@ namespace MediaBrowser.Model
         ConnectionDetails ConnectionDetails { get; set; }
         ServerConfiguration ServerConfiguration { get; set; }
         SystemInfo SystemStatus { get; set; }
+        LiveTvInfo LiveTvInfo { get; set; }
     }
 }
