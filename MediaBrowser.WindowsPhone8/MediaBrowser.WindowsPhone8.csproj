@@ -26,7 +26,7 @@
     <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
-    <FodyPath>..\packages\Fody.1.19.1.0</FodyPath>
+    <FodyPath>..\packages\Fody.1.20.0.0</FodyPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -150,8 +150,10 @@
     </Compile>
     <Compile Include="Converters\AccentBrushConverter.cs" />
     <Compile Include="Converters\AlreadyPlayedConverter.cs" />
+    <Compile Include="Converters\BooleanToValueConverter.cs" />
     <Compile Include="Converters\AnyChannelConverter.cs" />
     <Compile Include="Converters\AnyTimeConverter.cs" />
+    <Compile Include="Converters\CanStreamConverter.cs" />
     <Compile Include="Converters\ClientTypeIconConverter.cs" />
     <Compile Include="Converters\CollectionVisibilityConverter.cs" />
     <Compile Include="Converters\CriticRatingConverter.cs" />
@@ -767,7 +769,7 @@
       <HintPath>..\packages\ImageTools.0.3.1\lib\sl3-wp\PhoneCodeContractsAssemblies.dll</HintPath>
     </Reference>
     <Reference Include="PropertyChanged">
-      <HintPath>..\packages\PropertyChanged.Fody.1.43.1.0\Lib\portable-net4+sl4+wp7+win8+MonoAndroid16+MonoTouch40\PropertyChanged.dll</HintPath>
+      <HintPath>..\packages\PropertyChanged.Fody.1.45.0.0\Lib\portable-net4+sl4+wp7+win8+MonoAndroid16+MonoTouch40\PropertyChanged.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="protobuf-net, Version=2.0.0.668, Culture=neutral, PublicKeyToken=257b51d87d2e4d67, processorArchitecture=MSIL">
