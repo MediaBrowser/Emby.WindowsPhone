@@ -1,0 +1,768 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ResourceLanguage" xml:space="preserve">
+    <value>nl</value>
+  </data>
+  <data name="AppBarAbout">
+    <value>over</value>
+  </data>
+  <data name="AppBarAddToNowPlaying">
+    <value>toevoegen aan nu afspelen</value>
+  </data>
+  <data name="AppBarChangeProfile">
+    <value>wissel profiel</value>
+  </data>
+  <data name="AppBarClearNowPlaying">
+    <value>nu afspelen legen</value>
+  </data>
+  <data name="AppBarDeleteItems">
+    <value>verwijder items</value>
+  </data>
+  <data name="AppBarGroupBy">
+    <value>groepeer op</value>
+  </data>
+  <data name="AppBarLogin">
+    <value>inloggen</value>
+  </data>
+  <data name="AppBarMarkAsUnwatched">
+    <value>markeer onbekeken</value>
+  </data>
+  <data name="AppBarMarkAsWatched">
+    <value>markeer bekeken</value>
+  </data>
+  <data name="AppBarNext">
+    <value>volgende</value>
+  </data>
+  <data name="AppBarNotifications">
+    <value>notificaties</value>
+  </data>
+  <data name="AppBarNowPlaying">
+    <value>speelt nu</value>
+  </data>
+  <data name="AppBarPause">
+    <value>pauze</value>
+  </data>
+  <data name="AppBarPlay">
+    <value>afspelen</value>
+  </data>
+  <data name="AppBarPlayAll">
+    <value>alles afspelen</value>
+  </data>
+  <data name="AppBarPlayAllTracks">
+    <value>alle tracks afspelen</value>
+  </data>
+  <data name="AppBarPlayItems">
+    <value>speel items</value>
+  </data>
+  <data name="AppBarPlayOn">
+    <value>afspelen op…</value>
+  </data>
+  <data name="AppBarPosterLockscreen">
+    <value>stel poster in als lock screen</value>
+  </data>
+  <data name="AppBarPrevious">
+    <value>vorige</value>
+  </data>
+  <data name="AppBarRefresh">
+    <value>verversen</value>
+  </data>
+  <data name="AppBarRefreshInformation">
+    <value>ververs informatie</value>
+  </data>
+  <data name="AppBarRemote">
+    <value>afstandsbediening</value>
+  </data>
+  <data name="AppBarResume">
+    <value>hervatten</value>
+  </data>
+  <data name="AppBarSearch">
+    <value>zoeken</value>
+  </data>
+  <data name="AppBarSelectItems">
+    <value>selecteer items</value>
+  </data>
+  <data name="AppBarSendLogs">
+    <value>logs versturen</value>
+  </data>
+  <data name="AppBarSettings">
+    <value>instellingen</value>
+  </data>
+  <data name="Collections">
+    <value>Mappen</value>
+  </data>
+  <data name="DeviceNotRegistered">
+    <value>Apparaat niet geregistreerd</value>
+  </data>
+  <data name="DeviceRegistered">
+    <value>Apparaat geregistreerd</value>
+  </data>
+  <data name="ErrorConnectionDetailsInvalid">
+    <value>Verbindingsgegevens zijn ongeldig, probeer het opnieuw.</value>
+  </data>
+  <data name="ErrorConnectionDetailsMessage">
+    <value>Er zijn geen verbindingsgegevens ingesteld. Wilt u dit nu doen?</value>
+  </data>
+  <data name="ErrorConnectionDetailsTitle">
+    <value>Geen verbindingsgegevens</value>
+  </data>
+  <data name="ErrorCouldNotFindServer">
+    <value>Kan uw server niet vinden</value>
+  </data>
+  <data name="ErrorDisabledUser">
+    <value>Sorry, het lijkt erop dat dit account is uitgeschakeld. We zullen nu u terug brengn naar het inlogscherm.</value>
+  </data>
+  <data name="ErrorDisabledUserTitle">
+    <value>Aanmelden niet mogelijk</value>
+  </data>
+  <data name="ErrorEpisodeDetails">
+    <value>Fout bij het downloaden afleveringsdetails</value>
+  </data>
+  <data name="ErrorEpisodes">
+    <value>Fout bij het ophalen afleveringen</value>
+  </data>
+  <data name="ErrorFailedToSearch">
+    <value>Mislukt zoekopdracht uit te voeren</value>
+  </data>
+  <data name="ErrorGettingData">
+    <value>Fout bij het ophalen data</value>
+  </data>
+  <data name="ErrorGettingExtraInfo">
+    <value>Fout bij het ophalen extra informatie</value>
+  </data>
+  <data name="ErrorGettingTrailerDetails">
+    <value>Niet in staat om de trailer informatie te krijgen</value>
+  </data>
+  <data name="ErrorInvalidHostname">
+    <value>Sorry , uw hostname is ongeldig, zorg ervoor dat u bijv. geen spaties gebruikt .</value>
+  </data>
+  <data name="ErrorMakingChanges">
+    <value>Fout bij het maken van uw wijzigingen</value>
+  </data>
+  <data name="ErrorNoConnectionSettings">
+    <value>Geen verbinding , tik om in te stellen</value>
+  </data>
+  <data name="ErrorProblemUpdatingItem">
+    <value>Er was een probleem het bijwerken van dit item , Probeer het later opnieuw .</value>
+  </data>
+  <data name="ErrorRecentItems">
+    <value>Fout bij het ophalen recente items</value>
+  </data>
+  <data name="ErrorSeasons">
+    <value>Fout bij het ophalen seizoenen</value>
+  </data>
+  <data name="ErrorTitle">
+    <value>Fout</value>
+  </data>
+  <data name="ErrorUnableToSignIn">
+    <value>We waren niet in staat om u aan te melden op dit moment, kan dit te wijten zijn aan een onjuiste gebruikersnaam en / of wachtwoord , of uw account is uitgeschakeld .</value>
+  </data>
+  <data name="ErrorUnableToSignInTitle">
+    <value>Inloggen mislukt</value>
+  </data>
+  <data name="Favourites">
+    <value>Favorieten</value>
+  </data>
+  <data name="Genre">
+    <value>genre</value>
+  </data>
+  <data name="HeaderChooseClient">
+    <value>Kies een cliënt</value>
+  </data>
+  <data name="HeaderDefaultGrouping">
+    <value>Standaard groepering</value>
+  </data>
+  <data name="HeaderFromCollection">
+    <value>Uit de collectie ( indien van toepassing ) :</value>
+  </data>
+  <data name="LabelActor">
+    <value>Acteur</value>
+  </data>
+  <data name="LabelAdd">
+    <value>toevoegen</value>
+  </data>
+  <data name="LabelAddToFavourites">
+    <value>Toevoegen aan favorieten</value>
+  </data>
+  <data name="LabelAlbums">
+    <value>albums</value>
+  </data>
+  <data name="LabelAnHourAgo">
+    <value>een uur geleden</value>
+  </data>
+  <data name="LabelArtists">
+    <value>artiesten</value>
+  </data>
+  <data name="LabelBio">
+    <value>biografie</value>
+  </data>
+  <data name="LabelBoxsets">
+    <value>boxsets</value>
+  </data>
+  <data name="LabelCastCrew">
+    <value>cast + crew</value>
+  </data>
+  <data name="LabelChapters">
+    <value>hoofdstukken</value>
+  </data>
+  <data name="LabelCollage">
+    <value>Volledigscherm collage</value>
+  </data>
+  <data name="LabelConnect">
+    <value>Verbinden</value>
+  </data>
+  <data name="LabelConnection">
+    <value>verbinding</value>
+  </data>
+  <data name="LabelConnectionDetails">
+    <value>Stel de verbinding gegevens in naar de computer waarop Media Browser 3 draait . Dan gewoon testen om te bevestigen .</value>
+  </data>
+  <data name="LabelConnectionWarning">
+    <value>WAARSCHUWING : Wijziging van de hostnaam zal alle opgeslagen profielen  verwijderen .</value>
+  </data>
+  <data name="LabelDate">
+    <value>datum</value>
+  </data>
+  <data name="LabelDaysAgo">
+    <value>{ 0 } dagen geleden</value>
+  </data>
+  <data name="LabelDefaultLockScreen">
+    <value>Standaard lock screen</value>
+  </data>
+  <data name="LabelDetails">
+    <value>details</value>
+  </data>
+  <data name="LabelDirector">
+    <value>Regiseur</value>
+  </data>
+  <data name="LabelDisplayRandomImages">
+    <value>Toon willekeurige achtergrond afbeeldingen achter de tegels</value>
+  </data>
+  <data name="LabelEpisode">
+    <value>Aflevering</value>
+  </data>
+  <data name="LabelFindServer">
+    <value>Vind server</value>
+  </data>
+  <data name="LabelFirstRunAccessible">
+    <value>Zodra de Media Browser server is geconfigureerd , zorg ervoor dat het toegankelijk is van waar je bent , of dat nu uw lokale draadloze netwerk is , of een extern statisch adres .</value>
+  </data>
+  <data name="LabelFirstRunHappyConfiguration">
+    <value>Wanneer u tevreden bent met uw instellingen , klikt dan op de instellingen knop en voer de gegevens van uw server in , anders kunt u de app gewoon sluiten vanaf hier.</value>
+  </data>
+  <data name="LabelFirstRunServerInfo">
+    <value>Voordat we echter aan de slag kunnen , moet u ervoor zorgen dat u gebruik maakt van een werkende Media Browser server .</value>
+  </data>
+  <data name="LabelGeneral">
+    <value>algemeen</value>
+  </data>
+  <data name="LabelGenres">
+    <value>genres</value>
+  </data>
+  <data name="LabelHostname">
+    <value>Hostnaam:</value>
+  </data>
+  <data name="LabelHoursAgo">
+    <value>{ 0 } uur geleden</value>
+  </data>
+  <data name="LabelImageEnhancers">
+    <value>Inschakelen uitgebruide afbeeldingen ( indien geïnstalleerd op de server )</value>
+  </data>
+  <data name="LabelImdb">
+    <value>Zie film op IMDB</value>
+  </data>
+  <data name="LabelIsLockScreenProvider">
+    <value>Media Browser is de huidige lock screen provider</value>
+  </data>
+  <data name="LabelIsNotLockScreenProvider">
+    <value>Media Browser is niet de lock screen provider</value>
+  </data>
+  <data name="LabelJustShowList">
+    <value>Vertoon een lijst met items , geen media mapweergave</value>
+  </data>
+  <data name="LabelLatestUnseen">
+    <value>laatste ongeziene</value>
+  </data>
+  <data name="LabelLiveTv">
+    <value>live TV</value>
+  </data>
+  <data name="LabelLockScreen">
+    <value>lock screen</value>
+  </data>
+  <data name="LabelLockScreenSettinsg">
+    <value>lock screen instellingen</value>
+  </data>
+  <data name="LabelLogIn">
+    <value>inloggen</value>
+  </data>
+  <data name="LabelMakeLockScreenProvider">
+    <value>Maak ons ​​de lock screen provider</value>
+  </data>
+  <data name="LabelManuallyLogin">
+    <value>handmatig inloggen</value>
+  </data>
+  <data name="LabelMinutesAgo">
+    <value>{ 0 } minuten  geleden</value>
+  </data>
+  <data name="LabelMissingEpisodes">
+    <value>Toon ontbrekende afleveringen</value>
+  </data>
+  <data name="LabelMonthsAgo">
+    <value>{ 0 } maanden geleden</value>
+  </data>
+  <data name="LabelMovies">
+    <value>Films</value>
+  </data>
+  <data name="LabelMusic">
+    <value>Muziek</value>
+  </data>
+  <data name="LabelNextUp">
+    <value>Eerst volgende aflevering</value>
+  </data>
+  <data name="LabelNo">
+    <value>geen</value>
+  </data>
+  <data name="LabelNoEpisodes">
+    <value>Geen afleveringen te tonen</value>
+  </data>
+  <data name="LabelNoFoldersFound">
+    <value>Geen mappen gevonden</value>
+  </data>
+  <data name="LabelNone">
+    <value>geen</value>
+  </data>
+  <data name="LabelNoSeasonsFound">
+    <value>Geen seizoenen gevonden</value>
+  </data>
+  <data name="LabelNothingInPlaylist">
+    <value>Niets in je afspeellijst</value>
+  </data>
+  <data name="LabelNotifications">
+    <value>kennisgevingen</value>
+  </data>
+  <data name="LabelNowPlaying">
+    <value>speelt nu</value>
+  </data>
+  <data name="LabelOneMinuteAgo">
+    <value>een minuut geleden</value>
+  </data>
+  <data name="LabelOneMonthAgo">
+    <value>een maand geleden</value>
+  </data>
+  <data name="LabelOneSecondAgo">
+    <value>een seconde geleden</value>
+  </data>
+  <data name="LabelOther">
+    <value>Overig</value>
+  </data>
+  <data name="LabelOverview">
+    <value>overzicht</value>
+  </data>
+  <data name="LabelPassword">
+    <value>wachtwoord :</value>
+  </data>
+  <data name="LabelPort">
+    <value>poort:</value>
+  </data>
+  <data name="LabelPoster">
+    <value>poster</value>
+  </data>
+  <data name="LabelProducer">
+    <value>Producent</value>
+  </data>
+  <data name="LabelProfile">
+    <value>profiel</value>
+  </data>
+  <data name="LabelProfileNotListed">
+    <value>Het profiel is niet vermeld ?</value>
+  </data>
+  <data name="LabelProfiles">
+    <value>profielen</value>
+  </data>
+  <data name="LabelQuit">
+    <value>verlaten</value>
+  </data>
+  <data name="LabelRandomItems">
+    <value>Willekeurige items</value>
+  </data>
+  <data name="LabelRandomPictures">
+    <value>Willekeurige afbeeldingen uit de collectie</value>
+  </data>
+  <data name="LabelRating">
+    <value>Waardering :</value>
+  </data>
+  <data name="LabelRecent">
+    <value>Recent</value>
+  </data>
+  <data name="LabelReleasedIn">
+    <value>Uitgebracht in</value>
+  </data>
+  <data name="LabelRemote">
+    <value>afstandsbediening</value>
+  </data>
+  <data name="LabelRemove">
+    <value>verwijderen</value>
+  </data>
+  <data name="LabelRunningTime">
+    <value>Looptijd:</value>
+  </data>
+  <data name="LabelSearch">
+    <value>zoeken</value>
+  </data>
+  <data name="LabelSeasons">
+    <value>seizoenen</value>
+  </data>
+  <data name="LabelSecondsAgo">
+    <value>{ 0 } seconden geleden</value>
+  </data>
+  <data name="LabelSeries">
+    <value>Series</value>
+  </data>
+  <data name="LabelShowAllItems">
+    <value>toon alle items ...</value>
+  </data>
+  <data name="LabelShows">
+    <value>shows</value>
+  </data>
+  <data name="LabelShowTrailers">
+    <value>Toon trailers in recente items</value>
+  </data>
+  <data name="LabelSinglePoster">
+    <value>Single poster</value>
+  </data>
+  <data name="LabelSongs">
+    <value>liedjes</value>
+  </data>
+  <data name="LabelTile">
+    <value>tegel</value>
+  </data>
+  <data name="LabelTileBackInformation">
+    <value>Om enkele van de fantastische Artworks uit uw collectie te laten zien, worden deze weergegeven op de tegel. hier kunt u aangeven hoe u deze wilt weergeven</value>
+  </data>
+  <data name="LabelTrailers">
+    <value>trailers</value>
+  </data>
+  <data name="LabelTv">
+    <value>TV</value>
+  </data>
+  <data name="LabelUnairedEpisodes">
+    <value>Toon nog niet uitgezinden afleveringen</value>
+  </data>
+  <data name="LabelUnplayedItems">
+    <value>Niet afgespeeld :</value>
+  </data>
+  <data name="LabelUnwatched">
+    <value>Onbekeken:</value>
+  </data>
+  <data name="LabelUsername">
+    <value>gebruikersnaam :</value>
+  </data>
+  <data name="LabelViews">
+    <value>Bekeken</value>
+  </data>
+  <data name="LabelWelcomeText">
+    <value>Welkom bij Media Browser voor Windows Phone . Deze app zal u in staat stellen om door uw mediacollectie te bladeren , naar uw telefoon te streamen en  Media Browser clients op afstand te bedienen.</value>
+  </data>
+  <data name="LabelWelcomeTextPhone7">
+    <value>Welkom bij Media Browser voor Windows Phone . Deze app zal u in staat stellen om door uw mediacollectie te bladeren en  Media Browser clients op afstand te bedienen.</value>
+  </data>
+  <data name="LabelWriter">
+    <value>Schrijver</value>
+  </data>
+  <data name="LabelYes">
+    <value>ja</value>
+  </data>
+  <data name="LabelYesterday">
+    <value>gisteren</value>
+  </data>
+  <data name="MenuPlayFrom">
+    <value>spelen van</value>
+  </data>
+  <data name="MenuPlayFromOn">
+    <value>spelen van op</value>
+  </data>
+  <data name="MessageAreYouSureTitle">
+    <value>Weet je het zeker ?</value>
+  </data>
+  <data name="MessageBoxUnpinText">
+    <value>Weet u zeker dat u deze tegel wil losmaken ?</value>
+  </data>
+  <data name="MessageClearPlayList">
+    <value>Weet u zeker dat u uw afspeellijst wil wissen ?</value>
+  </data>
+  <data name="MessageDeletePlaylistItems">
+    <value>Weet u zeker dat u deze items wilt verwijderen ? Dit kan niet ongedaan worden gemaakt .</value>
+  </data>
+  <data name="MessageExperimentalTitle">
+    <value>experimenteel</value>
+  </data>
+  <data name="MessageExperimentalVideo">
+    <value>Het spelen van dit soort video is momenteel experimenteel,resultaten  kunnen  variëren , wilt u doorgaan?</value>
+  </data>
+  <data name="MessageTracksAddedSuccessfully">
+    <value>{ 0 } tracks succesvol toegevoegd.</value>
+  </data>
+  <data name="More">
+    <value>meer ...</value>
+  </data>
+  <data name="NameLabel">
+    <value>Naam</value>
+  </data>
+  <data name="NoItemsFound">
+    <value>Geen items  gevonden</value>
+  </data>
+  <data name="PinToStart">
+    <value>Vastmaken om te beginnen</value>
+  </data>
+  <data name="ProductionYear">
+    <value>productiejaar</value>
+  </data>
+  <data name="RemoveFromFavouritesFull">
+    <value>Verwijderen uit favorieten</value>
+  </data>
+  <data name="Settings">
+    <value>Instellingen</value>
+  </data>
+  <data name="SysTrayAddingToFavourites">
+    <value>Toevoegen aan favorieten ...</value>
+  </data>
+  <data name="SysTrayAuthenticating">
+    <value>Verifiëren ...</value>
+  </data>
+  <data name="SysTrayCheckingCollection">
+    <value>Collectie controleren ...</value>
+  </data>
+  <data name="SysTrayCheckingConnection">
+    <value>Aansluiting controleren  ...</value>
+  </data>
+  <data name="SysTrayFindingServer">
+    <value>Poging om uw server te vinden ...</value>
+  </data>
+  <data name="SysTrayGettingAlbums">
+    <value>albums ophalen...</value>
+  </data>
+  <data name="SysTrayGettingAlbumTracks">
+    <value>album tracks ophalen...</value>
+  </data>
+  <data name="SysTrayGettingAllTracks">
+    <value>Alle tracks ophalen...</value>
+  </data>
+  <data name="SysTrayGettingArtists">
+    <value>Artiesten ophalen...</value>
+  </data>
+  <data name="SysTrayGettingArtistTracks">
+    <value>Artiesten tracks ophalen...</value>
+  </data>
+  <data name="SysTrayGettingBoxsets">
+    <value>Boxsets ophalen...</value>
+  </data>
+  <data name="SysTrayGettingDetails">
+    <value>Informatie ophalen...</value>
+  </data>
+  <data name="SysTrayGettingEpisodeDetails">
+    <value>Episodedetails ophalen...</value>
+  </data>
+  <data name="SysTrayGettingEpisodes">
+    <value>Afleveringen  ophalen...</value>
+  </data>
+  <data name="SysTrayGettingFavourites">
+    <value>Favorieten  ophalen...</value>
+  </data>
+  <data name="SysTrayGettingGenres">
+    <value>Genres  ophalen...</value>
+  </data>
+  <data name="SysTrayGettingGenreTracks">
+    <value>Genre tracks  ophalen...</value>
+  </data>
+  <data name="SysTrayGettingItems">
+    <value>Items  ophalen...</value>
+  </data>
+  <data name="SysTrayGettingMovieInfo">
+    <value>Film informatie  ophalen...</value>
+  </data>
+  <data name="SysTrayGettingMovies">
+    <value>Films  ophalen...</value>
+  </data>
+  <data name="SysTrayGettingNextUp">
+    <value>Eerst volgende aflevering items  ophalen...</value>
+  </data>
+  <data name="SysTrayGettingNotifications">
+    <value>Meldingen  ophalen...</value>
+  </data>
+  <data name="SysTrayGettingProfiles">
+    <value>Profielen  ophalen...</value>
+  </data>
+  <data name="SysTrayGettingRecentItems">
+    <value>Recente artikelen  ophalen...</value>
+  </data>
+  <data name="SysTrayGettingServerDetails">
+    <value>Server details  ophalen...</value>
+  </data>
+  <data name="SysTrayGettingShowInformation">
+    <value>Show informatie  ophalen...</value>
+  </data>
+  <data name="SysTrayGettingShows">
+    <value>Tv-programma's  ophalen...</value>
+  </data>
+  <data name="SysTrayGettingSongs">
+    <value>Liedjes  ophalen...</value>
+  </data>
+  <data name="SysTrayGettingTracks">
+    <value>Tracks  ophalen...</value>
+  </data>
+  <data name="SysTrayGettingTrailerDetails">
+    <value>Trailer details  ophalen...</value>
+  </data>
+  <data name="SysTrayGettingUnwatchedItems">
+    <value>Nieuwste niet-bekeken items  ophalen...</value>
+  </data>
+  <data name="SysTrayLoadingCollections">
+    <value>Collecties laden...</value>
+  </data>
+  <data name="SysTrayLoadingSettings">
+    <value>Instellingen laden ...</value>
+  </data>
+  <data name="SysTrayRegisteringDevice">
+    <value>Apparaat registreren ...</value>
+  </data>
+  <data name="SysTrayRegrouping">
+    <value>Hergroeperen</value>
+  </data>
+  <data name="SysTraySearching">
+    <value>Zoeken…</value>
+  </data>
+  <data name="SysTrayUnregisteringDevice">
+    <value>Apparaat afmelden</value>
+  </data>
+  <data name="TrialVideoMessage">
+    <value>In deze proefversie kun je slechts één video per dag afspelen . Probeer deze morgen opnieuw of koop de volledige versie.</value>
+  </data>
+  <data name="TvShowRecentItemsTitle">
+    <value>{0}'s recente items</value>
+  </data>
+  <data name="Unpin">
+    <value>losmaken</value>
+  </data>
+  <data name="WatermarkEnterUsername">
+    <value>gebruikersnaam</value>
+  </data>
+  <data name="WatermarkPassword">
+    <value>wachtwoord</value>
+  </data>
+</root>

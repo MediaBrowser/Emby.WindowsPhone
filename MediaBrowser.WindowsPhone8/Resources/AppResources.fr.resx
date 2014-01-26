@@ -1,0 +1,768 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ResourceLanguage" xml:space="preserve">
+    <value>fr</value>
+  </data>
+  <data name="AppBarAbout">
+    <value>A propos</value>
+  </data>
+  <data name="AppBarAddToNowPlaying">
+    <value>ajouter à la liste de lecture</value>
+  </data>
+  <data name="AppBarChangeProfile">
+    <value>changer de profil</value>
+  </data>
+  <data name="AppBarClearNowPlaying">
+    <value>effacer la liste de lecture</value>
+  </data>
+  <data name="AppBarDeleteItems">
+    <value>effacer</value>
+  </data>
+  <data name="AppBarGroupBy">
+    <value>grouper par</value>
+  </data>
+  <data name="AppBarLogin">
+    <value>se connecter</value>
+  </data>
+  <data name="AppBarMarkAsUnwatched">
+    <value>marquer comme non vu</value>
+  </data>
+  <data name="AppBarMarkAsWatched">
+    <value>marquer comme vu</value>
+  </data>
+  <data name="AppBarNext">
+    <value>suivant</value>
+  </data>
+  <data name="AppBarNotifications">
+    <value>notifications</value>
+  </data>
+  <data name="AppBarNowPlaying">
+    <value>en cours de lecture</value>
+  </data>
+  <data name="AppBarPause">
+    <value>pause</value>
+  </data>
+  <data name="AppBarPlay">
+    <value>jouer</value>
+  </data>
+  <data name="AppBarPlayAll">
+    <value>tout jouer</value>
+  </data>
+  <data name="AppBarPlayAllTracks">
+    <value>jouer tous les morceaux</value>
+  </data>
+  <data name="AppBarPlayItems">
+    <value>jouer la selection</value>
+  </data>
+  <data name="AppBarPlayOn">
+    <value>jouer sur...</value>
+  </data>
+  <data name="AppBarPosterLockscreen">
+    <value>Utiliser le poster comme écran de verrouillage</value>
+  </data>
+  <data name="AppBarPrevious">
+    <value>précédant</value>
+  </data>
+  <data name="AppBarRefresh">
+    <value>rafraîchir</value>
+  </data>
+  <data name="AppBarRefreshInformation">
+    <value>rafraîchir l'information</value>
+  </data>
+  <data name="AppBarRemote">
+    <value>télécommande</value>
+  </data>
+  <data name="AppBarResume">
+    <value>reprendre</value>
+  </data>
+  <data name="AppBarSearch">
+    <value>chercher</value>
+  </data>
+  <data name="AppBarSelectItems">
+    <value>selectionner les éléments</value>
+  </data>
+  <data name="AppBarSendLogs">
+    <value>envoyer les logs</value>
+  </data>
+  <data name="AppBarSettings">
+    <value>paramètres</value>
+  </data>
+  <data name="Collections">
+    <value>dossiers</value>
+  </data>
+  <data name="DeviceNotRegistered">
+    <value>appareil non enregistré</value>
+  </data>
+  <data name="DeviceRegistered">
+    <value>appareil enregistré</value>
+  </data>
+  <data name="ErrorConnectionDetailsInvalid">
+    <value>Détails de connections invalides, veuillez réessayer</value>
+  </data>
+  <data name="ErrorConnectionDetailsMessage">
+    <value>Aucuns détails de connexions n'ont été enregistrés, voulez-vous le faire maintenant?</value>
+  </data>
+  <data name="ErrorConnectionDetailsTitle">
+    <value>Aucuns détails de connexion</value>
+  </data>
+  <data name="ErrorCouldNotFindServer">
+    <value>Serveur non trouvé</value>
+  </data>
+  <data name="ErrorDisabledUser">
+    <value>Désolé, il semblerai que ce compte ait été désactivé. Vous allez être ramenés à l'écran de connexion.</value>
+  </data>
+  <data name="ErrorDisabledUserTitle">
+    <value>Impossible de se connecter</value>
+  </data>
+  <data name="ErrorEpisodeDetails">
+    <value>Erreur lors du téléchargement des détails de l'épisode</value>
+  </data>
+  <data name="ErrorEpisodes">
+    <value>Erreur lors du téléchargement des épisodes</value>
+  </data>
+  <data name="ErrorFailedToSearch">
+    <value>Impossible d'effectuer une recherche</value>
+  </data>
+  <data name="ErrorGettingData">
+    <value>Erreur lors du téléchargement des données</value>
+  </data>
+  <data name="ErrorGettingExtraInfo">
+    <value>Erreur lors du téléchargement des informations supplémentaires</value>
+  </data>
+  <data name="ErrorGettingTrailerDetails">
+    <value>Impossible d'avoir les informations sur la bande-annonce</value>
+  </data>
+  <data name="ErrorInvalidHostname">
+    <value>Désolé, votre nom d'hôte est invalide, veuillez vous assurer qu'il n'y a pas d'espaces (par exemple)</value>
+  </data>
+  <data name="ErrorMakingChanges">
+    <value>Erreur lors de l'enregistrement des modifications</value>
+  </data>
+  <data name="ErrorNoConnectionSettings">
+    <value>Aucun paramètre de connexion, tapper pour les régler</value>
+  </data>
+  <data name="ErrorProblemUpdatingItem">
+    <value>Il y a eu un problème lors de la mise à jour de cet élément, veuillez essayer plus tard.</value>
+  </data>
+  <data name="ErrorRecentItems">
+    <value>Erreur lors du téléchargement des nouveaux éléments</value>
+  </data>
+  <data name="ErrorSeasons">
+    <value>Erreur lors du téléchargement des saisons</value>
+  </data>
+  <data name="ErrorTitle">
+    <value>Erreur</value>
+  </data>
+  <data name="ErrorUnableToSignIn">
+    <value>Nous étions incapables de vous connecter actuellement, ceci peut être du à une erreur de nom de compte/mot de passe, ou votre compte a été désactivé.</value>
+  </data>
+  <data name="ErrorUnableToSignInTitle">
+    <value>Connexion échouée</value>
+  </data>
+  <data name="Favourites">
+    <value>Favoris</value>
+  </data>
+  <data name="Genre">
+    <value>Genre</value>
+  </data>
+  <data name="HeaderChooseClient">
+    <value>Choisissez un client</value>
+  </data>
+  <data name="HeaderDefaultGrouping">
+    <value>Groupement par défaut</value>
+  </data>
+  <data name="HeaderFromCollection">
+    <value>Depuis la collection (si applicable):</value>
+  </data>
+  <data name="LabelActor">
+    <value>Acteur</value>
+  </data>
+  <data name="LabelAdd">
+    <value>Ajouter</value>
+  </data>
+  <data name="LabelAddToFavourites">
+    <value>Ajouter aux favoris</value>
+  </data>
+  <data name="LabelAlbums">
+    <value>Albums</value>
+  </data>
+  <data name="LabelAnHourAgo">
+    <value>il y a une heure</value>
+  </data>
+  <data name="LabelArtists">
+    <value>artistes</value>
+  </data>
+  <data name="LabelBio">
+    <value>biographie</value>
+  </data>
+  <data name="LabelBoxsets">
+    <value>boxset</value>
+  </data>
+  <data name="LabelCastCrew">
+    <value>équipe</value>
+  </data>
+  <data name="LabelChapters">
+    <value>chapitres</value>
+  </data>
+  <data name="LabelCollage">
+    <value>Collage plein écran</value>
+  </data>
+  <data name="LabelConnect">
+    <value>Connecter</value>
+  </data>
+  <data name="LabelConnection">
+    <value>connexion</value>
+  </data>
+  <data name="LabelConnectionDetails">
+    <value>Mettez les détails de connexion afin de pointer vers le PC ayant Media Browser 3. Après, simplement testez les pour confirmer</value>
+  </data>
+  <data name="LabelConnectionWarning">
+    <value>ATTENTION: Changer le nom d'hôte enlèverai des profils enregistrés.</value>
+  </data>
+  <data name="LabelDate">
+    <value>date</value>
+  </data>
+  <data name="LabelDaysAgo">
+    <value>il y a {0} jours</value>
+  </data>
+  <data name="LabelDefaultLockScreen">
+    <value>Ecran de verrouillage par défaut</value>
+  </data>
+  <data name="LabelDetails">
+    <value>détails</value>
+  </data>
+  <data name="LabelDirector">
+    <value>Directeur</value>
+  </data>
+  <data name="LabelDisplayRandomImages">
+    <value>Afficher des "backdrop" aléatoires sur l'arrière de la tuile</value>
+  </data>
+  <data name="LabelEpisode">
+    <value>Episode</value>
+  </data>
+  <data name="LabelFindServer">
+    <value>Trouver le serveur</value>
+  </data>
+  <data name="LabelFirstRunAccessible">
+    <value>Une fois que le serveur de Media Browser a été configuré, veuillez vous assurer qu'il est accessible depuis là où vous vous trouvez, que ce soit sur votre réseau sans-fil local, ou une adresse statique externe</value>
+  </data>
+  <data name="LabelFirstRunHappyConfiguration">
+    <value>Si vous êtes satisfaits de ce que vous avez configuré, cliquer sur le bouton "paramètres" et entrez vos détails du serveur, ou bien vous pouvez quitter l'application.</value>
+  </data>
+  <data name="LabelFirstRunServerInfo">
+    <value>Avant que nous commencions, assurez-vous que vous utiliser le serveur Media Browser</value>
+  </data>
+  <data name="LabelGeneral">
+    <value>Général</value>
+  </data>
+  <data name="LabelGenres">
+    <value>genres</value>
+  </data>
+  <data name="LabelHostname">
+    <value>Nom d'hôte</value>
+  </data>
+  <data name="LabelHoursAgo">
+    <value>il y a {0} heures</value>
+  </data>
+  <data name="LabelImageEnhancers">
+    <value>Activer images améliorées (si installé sur le serveur)</value>
+  </data>
+  <data name="LabelImdb">
+    <value>Voir le film sur IMDB</value>
+  </data>
+  <data name="LabelIsLockScreenProvider">
+    <value>Media Browser est la source d'écran de verrouillage</value>
+  </data>
+  <data name="LabelIsNotLockScreenProvider">
+    <value>Media Browser n'est pas la source d'écran de verrouillage</value>
+  </data>
+  <data name="LabelJustShowList">
+    <value>Montrer uniquement une list des éléments, et non pas une vue des dossiers médias</value>
+  </data>
+  <data name="LabelLatestUnseen">
+    <value>Dernier non-vu</value>
+  </data>
+  <data name="LabelLiveTv">
+    <value>TV en direct</value>
+  </data>
+  <data name="LabelLockScreen">
+    <value>Ecran de verrouillage</value>
+  </data>
+  <data name="LabelLockScreenSettinsg">
+    <value>Paramètres de l'écran de verrouillage</value>
+  </data>
+  <data name="LabelLogIn">
+    <value>Se connecter</value>
+  </data>
+  <data name="LabelMakeLockScreenProvider">
+    <value>Nous utiliser comme source d'écran de verrouillage</value>
+  </data>
+  <data name="LabelManuallyLogin">
+    <value>Se connecter manuellement</value>
+  </data>
+  <data name="LabelMinutesAgo">
+    <value>il y a {0} minutes</value>
+  </data>
+  <data name="LabelMissingEpisodes">
+    <value>Montrer les épisodes manquants</value>
+  </data>
+  <data name="LabelMonthsAgo">
+    <value>il y a {0} mois</value>
+  </data>
+  <data name="LabelMovies">
+    <value>Films</value>
+  </data>
+  <data name="LabelMusic">
+    <value>Musique</value>
+  </data>
+  <data name="LabelNextUp">
+    <value>Prochain</value>
+  </data>
+  <data name="LabelNo">
+    <value>Non</value>
+  </data>
+  <data name="LabelNoEpisodes">
+    <value>aucun épisode à montrer</value>
+  </data>
+  <data name="LabelNoFoldersFound">
+    <value>aucun dossier trouvé</value>
+  </data>
+  <data name="LabelNone">
+    <value>aucun</value>
+  </data>
+  <data name="LabelNoSeasonsFound">
+    <value>aucune saison trouvée</value>
+  </data>
+  <data name="LabelNothingInPlaylist">
+    <value>il n'y a rien dans votre liste de lecture</value>
+  </data>
+  <data name="LabelNotifications">
+    <value>notifications</value>
+  </data>
+  <data name="LabelNowPlaying">
+    <value>en cours de lecture</value>
+  </data>
+  <data name="LabelOneMinuteAgo">
+    <value>il y a une minute</value>
+  </data>
+  <data name="LabelOneMonthAgo">
+    <value>il y a un mois</value>
+  </data>
+  <data name="LabelOneSecondAgo">
+    <value>il y a une seconde</value>
+  </data>
+  <data name="LabelOther">
+    <value>autre</value>
+  </data>
+  <data name="LabelOverview">
+    <value>vue d'ensemble</value>
+  </data>
+  <data name="LabelPassword">
+    <value>mot de passe:</value>
+  </data>
+  <data name="LabelPort">
+    <value>port:</value>
+  </data>
+  <data name="LabelPoster">
+    <value>poster</value>
+  </data>
+  <data name="LabelProducer">
+    <value>Producteur</value>
+  </data>
+  <data name="LabelProfile">
+    <value>Profil</value>
+  </data>
+  <data name="LabelProfileNotListed">
+    <value>Le profil ne se trouve pas dans la liste</value>
+  </data>
+  <data name="LabelProfiles">
+    <value>Profils</value>
+  </data>
+  <data name="LabelQuit">
+    <value>quitter</value>
+  </data>
+  <data name="LabelRandomItems">
+    <value>Element au hasard</value>
+  </data>
+  <data name="LabelRandomPictures">
+    <value>images au hasard depuis la collection</value>
+  </data>
+  <data name="LabelRating">
+    <value>Note:</value>
+  </data>
+  <data name="LabelRecent">
+    <value>Récent</value>
+  </data>
+  <data name="LabelReleasedIn">
+    <value>Sorti en</value>
+  </data>
+  <data name="LabelRemote">
+    <value>Télécommande</value>
+  </data>
+  <data name="LabelRemove">
+    <value>retirer</value>
+  </data>
+  <data name="LabelRunningTime">
+    <value>durée</value>
+  </data>
+  <data name="LabelSearch">
+    <value>chercher</value>
+  </data>
+  <data name="LabelSeasons">
+    <value>saisons</value>
+  </data>
+  <data name="LabelSecondsAgo">
+    <value>il y a {0} secondes</value>
+  </data>
+  <data name="LabelSeries">
+    <value>séries</value>
+  </data>
+  <data name="LabelShowAllItems">
+    <value>montrer tous les éléments</value>
+  </data>
+  <data name="LabelShows">
+    <value>shows</value>
+  </data>
+  <data name="LabelShowTrailers">
+    <value>Montrer les bandes-annonces dans les éléments récents</value>
+  </data>
+  <data name="LabelSinglePoster">
+    <value>Simple poster</value>
+  </data>
+  <data name="LabelSongs">
+    <value>chansons</value>
+  </data>
+  <data name="LabelTile">
+    <value>tuile</value>
+  </data>
+  <data name="LabelTileBackInformation">
+    <value>Pour montrer quelques Artworks de votre collection, la tuile en utilisera certains, ici vous pouvez choisir de quoi la tuile aura l'air</value>
+  </data>
+  <data name="LabelTrailers">
+    <value>bandes-annonces</value>
+  </data>
+  <data name="LabelTv">
+    <value>TV</value>
+  </data>
+  <data name="LabelUnairedEpisodes">
+    <value>Montrer les épisodes non diffusés</value>
+  </data>
+  <data name="LabelUnplayedItems">
+    <value>Non joué:</value>
+  </data>
+  <data name="LabelUnwatched">
+    <value>Non vu:</value>
+  </data>
+  <data name="LabelUsername">
+    <value>nom d'utilisateur</value>
+  </data>
+  <data name="LabelViews">
+    <value>Vues</value>
+  </data>
+  <data name="LabelWelcomeText">
+    <value>Bienvenue sur Media Browser pour Windows phone. Cette application vous permettra de parcourir votre collection, la regarder en streaming sur votre téléphone, et de télécommander d'autres clients Media Browser</value>
+  </data>
+  <data name="LabelWelcomeTextPhone7">
+    <value>Bienvenue sur Media Browser pour Windows phone. Cette application vous permettra de parcourir votre collection et de télécommander d'autres clients Media Browser</value>
+  </data>
+  <data name="LabelWriter">
+    <value>Ecrivain</value>
+  </data>
+  <data name="LabelYes">
+    <value>Oui</value>
+  </data>
+  <data name="LabelYesterday">
+    <value>hier</value>
+  </data>
+  <data name="MenuPlayFrom">
+    <value>jouer depuis</value>
+  </data>
+  <data name="MenuPlayFromOn">
+    <value>jouer depuis sur</value>
+  </data>
+  <data name="MessageAreYouSureTitle">
+    <value>Etes-vous sûr?</value>
+  </data>
+  <data name="MessageBoxUnpinText">
+    <value>Etes-vous sûr de vouloir retirer l'épingle de cette tuile?</value>
+  </data>
+  <data name="MessageClearPlayList">
+    <value>Etes-vous sûr de vouloir nettoyer votre liste de lecture?</value>
+  </data>
+  <data name="MessageDeletePlaylistItems">
+    <value>Etes-vous sûr de voulois supprimer ces éléments? Ceci est définitif.</value>
+  </data>
+  <data name="MessageExperimentalTitle">
+    <value>Expérimental</value>
+  </data>
+  <data name="MessageExperimentalVideo">
+    <value>Jouer ce type de vidéo est pour l'instant expérimental, les résultats peuvent être différents. Voulez-vous continuer?</value>
+  </data>
+  <data name="MessageTracksAddedSuccessfully">
+    <value>{0} morceaux ajoutés</value>
+  </data>
+  <data name="More">
+    <value>plus...</value>
+  </data>
+  <data name="NameLabel">
+    <value>nom</value>
+  </data>
+  <data name="NoItemsFound">
+    <value>aucun élément trouvé</value>
+  </data>
+  <data name="PinToStart">
+    <value>épingler à l'écran d'accueil</value>
+  </data>
+  <data name="ProductionYear">
+    <value>année de production</value>
+  </data>
+  <data name="RemoveFromFavouritesFull">
+    <value>retirer des favoris</value>
+  </data>
+  <data name="Settings">
+    <value>Paramètres</value>
+  </data>
+  <data name="SysTrayAddingToFavourites">
+    <value>Ajouter aux favoris</value>
+  </data>
+  <data name="SysTrayAuthenticating">
+    <value>En cours d'authentifications</value>
+  </data>
+  <data name="SysTrayCheckingCollection">
+    <value>Collection en cours de vérification...</value>
+  </data>
+  <data name="SysTrayCheckingConnection">
+    <value>Connexion en cours de vérification...</value>
+  </data>
+  <data name="SysTrayFindingServer">
+    <value>Recherche de votre serveur...</value>
+  </data>
+  <data name="SysTrayGettingAlbums">
+    <value>Recherche des albums...</value>
+  </data>
+  <data name="SysTrayGettingAlbumTracks">
+    <value>Recherches des morceaux sur l'album...</value>
+  </data>
+  <data name="SysTrayGettingAllTracks">
+    <value>Recherche de tous les morceaux...</value>
+  </data>
+  <data name="SysTrayGettingArtists">
+    <value>Recherche des artistes...</value>
+  </data>
+  <data name="SysTrayGettingArtistTracks">
+    <value>Recherches des morceaux de l'artiste...</value>
+  </data>
+  <data name="SysTrayGettingBoxsets">
+    <value>Recherche des boxsets...</value>
+  </data>
+  <data name="SysTrayGettingDetails">
+    <value>Recherche des détails...</value>
+  </data>
+  <data name="SysTrayGettingEpisodeDetails">
+    <value>Recherche des détails de l'épisode...</value>
+  </data>
+  <data name="SysTrayGettingEpisodes">
+    <value>Recherche des épisodes...</value>
+  </data>
+  <data name="SysTrayGettingFavourites">
+    <value>Recherche des favoris...</value>
+  </data>
+  <data name="SysTrayGettingGenres">
+    <value>Recherche des genres...</value>
+  </data>
+  <data name="SysTrayGettingGenreTracks">
+    <value>Recherche des genres de morceaux...</value>
+  </data>
+  <data name="SysTrayGettingItems">
+    <value>Recherche des éléments...</value>
+  </data>
+  <data name="SysTrayGettingMovieInfo">
+    <value>Recherche des informations sur le film...</value>
+  </data>
+  <data name="SysTrayGettingMovies">
+    <value>Recherche des films...</value>
+  </data>
+  <data name="SysTrayGettingNextUp">
+    <value>Recherche des prochains éléments...</value>
+  </data>
+  <data name="SysTrayGettingNotifications">
+    <value>Recherche des notifications...</value>
+  </data>
+  <data name="SysTrayGettingProfiles">
+    <value>Recherche des profils...</value>
+  </data>
+  <data name="SysTrayGettingRecentItems">
+    <value>Recherche des éléments récents...</value>
+  </data>
+  <data name="SysTrayGettingServerDetails">
+    <value>Recherche des détails du serveur...</value>
+  </data>
+  <data name="SysTrayGettingShowInformation">
+    <value>Recherche des informations sur le show...</value>
+  </data>
+  <data name="SysTrayGettingShows">
+    <value>Recherche des séries TV</value>
+  </data>
+  <data name="SysTrayGettingSongs">
+    <value>Recherche des chansons...</value>
+  </data>
+  <data name="SysTrayGettingTracks">
+    <value>Recherche des morceaux...</value>
+  </data>
+  <data name="SysTrayGettingTrailerDetails">
+    <value>Recherche des détails de la bande-annonce...</value>
+  </data>
+  <data name="SysTrayGettingUnwatchedItems">
+    <value>Recherche des derniers éléments non vus...</value>
+  </data>
+  <data name="SysTrayLoadingCollections">
+    <value>Chargement des collections...</value>
+  </data>
+  <data name="SysTrayLoadingSettings">
+    <value>Chargement des paramètres...</value>
+  </data>
+  <data name="SysTrayRegisteringDevice">
+    <value>Appareil en cours d'enregistrement...</value>
+  </data>
+  <data name="SysTrayRegrouping">
+    <value>Regroupement...</value>
+  </data>
+  <data name="SysTraySearching">
+    <value>Cherche...</value>
+  </data>
+  <data name="SysTrayUnregisteringDevice">
+    <value>Appareil en cours de desenregistrement...</value>
+  </data>
+  <data name="TrialVideoMessage">
+    <value>En mode d'essai vous ne pouvez vois qu'une video par jour. Veuillez essayer demain ou acheter la version complète.</value>
+  </data>
+  <data name="TvShowRecentItemsTitle">
+    <value>{0} nouveaux éléments</value>
+  </data>
+  <data name="Unpin">
+    <value>retirer l'épingle</value>
+  </data>
+  <data name="WatermarkEnterUsername">
+    <value>entrer un nom d'utilisateur</value>
+  </data>
+  <data name="WatermarkPassword">
+    <value>entrer un mot de passe</value>
+  </data>
+</root>
