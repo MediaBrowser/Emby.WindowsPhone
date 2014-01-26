@@ -102,7 +102,8 @@
                     </HyperlinkButton>
                     <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
                                      Margin="0,0,0,12"
-                                     NavigateUri="/Views/LiveTv/ScheduleView.xaml">
+                                     NavigateUri="/Views/LiveTv/ScheduleView.xaml"
+                                     Visibility="{Binding LoggedInUser.Configuration.EnableLiveTvManagement, Source={StaticResource AppSettings}, Converter={StaticResource VisibilityConverter}}">
                         <TextBlock Text="{Binding LocalizedResources.LabelScheduledRecording, Source={StaticResource LocalizedStrings}}"
                                    Style="{StaticResource PhoneTextTitle2Style}"/>
                     </HyperlinkButton>

@@ -8,6 +8,7 @@
                 xmlns:controls="clr-namespace:MediaBrowser.WindowsPhone.Controls"
                 xmlns:scott="clr-namespace:ScottIsAFool.WindowsPhone.Controls;assembly=ScottIsAFool.WindowsPhone"
                 xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+                xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
                 mc:Ignorable="d ignore"
                 FontFamily="{StaticResource PhoneFontFamilyNormal}"
                 FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -53,7 +54,7 @@
                         Grid.Row="0"
                         Margin="12,17,0,28">
                 <controls:MediaBrowserLogo />
-                <TextBlock Text="{Binding SelectedSeries.Name, Converter={StaticResource StringToLowercaseConverter}}"
+                <TextBlock Text="{Binding SelectedSeries.Name, Converter={StaticResource StringToLowercaseConverter}, FallbackValue='some title'}"
                            Margin="9,-7,0,0"
                            Style="{StaticResource PhoneTextTitle1Style}" />
             </StackPanel>
@@ -61,16 +62,19 @@
             <!--ContentPanel - place additional content here-->
             <Grid x:Name="ContentPanel"
                   Grid.Row="1"
-                  Margin="12,0,12,0">
-
-                <TextBlock Text="{Binding WelcomeTitle}"
-                           Style="{StaticResource PhoneTextNormalStyle}"
-                           HorizontalAlignment="Center"
-                           VerticalAlignment="Center"
-                           TextAlignment="Center"
-                           TextWrapping="Wrap"
-                           FontSize="40" />
-
+                  Margin="0,-36,12,0">
+                <phone:Pivot>
+                    <phone:Pivot.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}"
+                                       Style="{StaticResource PhoneTextTitle3Style}"
+                                       Margin="2,0"/>
+                        </DataTemplate>
+                    </phone:Pivot.HeaderTemplate>
+                    <phone:PivotItem Header="settings"></phone:PivotItem>
+                    <phone:PivotItem Header="recordings"></phone:PivotItem>
+                    <phone:PivotItem Header="scheduled"></phone:PivotItem>
+                </phone:Pivot>
             </Grid>
         </Grid>
         <!--Uncomment to see an alignment grid to help ensure your controls are

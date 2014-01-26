@@ -41,7 +41,7 @@
 
     <scott:BasePage.Resources>
         <system:Double x:Key="ViewSize">120</system:Double>
-        <converters:LiveTvInfoConverter x:Key="LiveTvInfoConverter"/>
+        <converters:LiveTvInfoVisibilityConverter x:Key="LiveTvInfoConverter"/>
     </scott:BasePage.Resources>
 
     <toolkit:TransitionService.NavigationInTransition>

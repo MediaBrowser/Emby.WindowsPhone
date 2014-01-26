@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Globalization;
-using System.Linq;
 using System.Windows;
 using System.Windows.Data;
 using MediaBrowser.Model.LiveTv;
 using MediaBrowser.Services;
+using MediaBrowser.WindowsPhone.Extensions;
 
 namespace MediaBrowser.WindowsPhone.Converters
 {
-    public class LiveTvInfoConverter : IValueConverter
+    public class LiveTvInfoVisibilityConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
@@ -18,14 +18,12 @@ namespace MediaBrowser.WindowsPhone.Converters
             }
 
             var tvInfo = value as LiveTvInfo;
-            if (tvInfo == null || tvInfo.ActiveServiceName.IsNullOrEmpty())
+            if (tvInfo == null)
             {
                 return Visibility.Collapsed;
             }
 
-            var allowedUser = tvInfo.EnabledUsers.FirstOrDefault(x => x == AuthenticationService.Current.LoggedInUserId);
-
-            return allowedUser != null ? Visibility.Visible : Visibility.Collapsed;
+            return tvInfo.UserCanHasLiveTv(AuthenticationService.Current.LoggedInUserId);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
