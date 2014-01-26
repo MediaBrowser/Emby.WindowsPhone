@@ -84,12 +84,12 @@ namespace MediaBrowser.WindowsPhone
 
         internal static string GetSortByNameHeader(BaseItemDto dtoBaseItem)
         {
-            if (string.IsNullOrEmpty(dtoBaseItem.Name) && string.IsNullOrEmpty(dtoBaseItem.SortName))
+            if (String.IsNullOrEmpty(dtoBaseItem.Name) && String.IsNullOrEmpty(dtoBaseItem.SortName))
             {
                 return '#'.ToString(CultureInfo.InvariantCulture);
             }
 
-            var name = !string.IsNullOrEmpty(dtoBaseItem.SortName) ? dtoBaseItem.SortName : dtoBaseItem.Name;
+            var name = !String.IsNullOrEmpty(dtoBaseItem.SortName) ? dtoBaseItem.SortName : dtoBaseItem.Name;
             var words = name.Split(' ');
             try
             {
@@ -253,7 +253,7 @@ namespace MediaBrowser.WindowsPhone
 #if WP8
             if (AuthenticationService.Current.IsLoggedIn)
             {
-                Services.LockScreenService.Current.Start();
+                LockScreenService.Current.Start();
                 TileService.Current.UpdatePrimaryTile(App.SpecificSettings.DisplayBackdropOnTile, App.SpecificSettings.UseRichWideTile).ConfigureAwait(false);
             }
 #endif
@@ -308,27 +308,27 @@ namespace MediaBrowser.WindowsPhone
 
             // Less than one minute
             if (seconds < 1 * MINUTE)
-                return ts.Seconds == 1 ? AppResources.LabelOneSecondAgo : string.Format(AppResources.LabelSecondsAgo, ts.Seconds);
+                return ts.Seconds == 1 ? AppResources.LabelOneSecondAgo : String.Format(AppResources.LabelSecondsAgo, ts.Seconds);
 
             if (seconds < 60 * MINUTE)
-                return ts.Minutes == 1 ? AppResources.LabelOneMinuteAgo : string.Format(AppResources.LabelMinutesAgo, ts.Minutes);
+                return ts.Minutes == 1 ? AppResources.LabelOneMinuteAgo : String.Format(AppResources.LabelMinutesAgo, ts.Minutes);
 
             if (seconds < 120 * MINUTE)
                 return AppResources.LabelAnHourAgo;
 
             if (seconds < 24 * HOUR)
-                return string.Format(AppResources.LabelHoursAgo, ts.Hours);
+                return String.Format(AppResources.LabelHoursAgo, ts.Hours);
 
             if (seconds < 48 * HOUR)
                 return AppResources.LabelYesterday;
 
             if (seconds < 30 * DAY)
-                return string.Format(AppResources.LabelDaysAgo, ts.Days);
+                return String.Format(AppResources.LabelDaysAgo, ts.Days);
 
             if (seconds < 12 * MONTH)
             {
                 int months = Convert.ToInt32(Math.Floor((double)ts.Days / 30));
-                return months <= 1 ? AppResources.LabelOneMonthAgo : string.Format(AppResources.LabelMonthsAgo, months);
+                return months <= 1 ? AppResources.LabelOneMonthAgo : String.Format(AppResources.LabelMonthsAgo, months);
             }
 
             return AppResources.LabelDate;
@@ -351,6 +351,32 @@ namespace MediaBrowser.WindowsPhone
 #endif
 
             return playState;
+        }
+
+        public static bool CanStream(object value)
+        {
+            if (!App.Settings.LoggedInUser.Configuration.EnableMediaPlayback)
+            {
+                return false;
+            }
+
+            if (value == null)
+            {
+                return false;
+            }
+
+            var item = value as BaseItemDto;
+            if (item == null)
+            {
+                return false;
+            }
+
+            if (item.LocationType == LocationType.Virtual || !item.IsVideo)
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }

@@ -144,7 +144,7 @@
                                             HorizontalContentAlignment="Center"
                                             VerticalContentAlignment="Center"
                                             VerticalAlignment="Top"
-                                            IsHitTestVisible="{Binding Converter={StaticResource VirtualConverter}}"
+                                            IsHitTestVisible="{Binding Converter={StaticResource CanStreamConverter}}"
                                             Command="{Binding Main.PlayMovieCommand, Source={StaticResource Locator}}"
                                             CommandParameter="{Binding}"
                                             toolkit:TiltEffect.IsTiltEnabled="{Binding Tv.SelectedEpisode, Source={StaticResource Locator}, Converter={StaticResource VirtualConverter}}">
@@ -154,10 +154,9 @@
                                                                    Stretch="UniformToFill"
                                                                    PlaceholderImageSource="/Images/MBBackground.jpg"
                                                                    PlaceholderImageStretch="Uniform" />
-                                            <controls:PlayButton Visibility="{Binding Tv.SelectedEpisode, Source={StaticResource Locator}, Converter={StaticResource VirtualVisibilityConverter}}" />
+                                            <controls:PlayButton Visibility="{Binding Tv.SelectedEpisode, Source={StaticResource Locator}, Converter={StaticResource CanStreamVisibilityConverter}}"/>
                                             
                                             <controls:Played Data="{Binding}"/>
-                                            
                                         </Grid>
                                     </Button>
                                     <TextBlock Text="{Binding Overview}"

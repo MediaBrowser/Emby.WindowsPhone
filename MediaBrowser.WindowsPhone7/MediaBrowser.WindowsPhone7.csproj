@@ -260,6 +260,9 @@
     <Compile Include="..\MediaBrowser.WindowsPhone8\Converters\AlreadyPlayedConverter.cs">
       <Link>Converters\AlreadyPlayedConverter.cs</Link>
     </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone8\Converters\CanStreamConverter.cs">
+      <Link>Converters\CanStreamConverter.cs</Link>
+    </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone8\Converters\ClientTypeIconConverter.cs">
       <Link>Converters\ClientTypeIconConverter.cs</Link>
     </Compile>

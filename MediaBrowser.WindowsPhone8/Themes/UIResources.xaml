@@ -55,6 +55,8 @@
     <converters:LessThanVisibilityConverter x:Key="LessThanVisibilityConverter" />
     <converters:GreaterThanVisibilityConverter x:Key="GreaterThanVisibilityConverter" />
     <converters:EpisodeNumberConverter x:Key="EpisodeNumberConverter" />
+    <converters:CanStreamVisibilityConverter x:Key="CanStreamVisibilityConverter"/>
+    <converters:CanStreamConverter x:Key="CanStreamConverter"/>
 
     <local:LocalizedStrings xmlns:local="clr-namespace:MediaBrowser.WindowsPhone"
                             x:Key="LocalizedStrings" />
