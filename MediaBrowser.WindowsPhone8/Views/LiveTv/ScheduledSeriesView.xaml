@@ -17,7 +17,7 @@
                 Orientation="Portrait"
                 shell:SystemTray.IsVisible="True"
                 shell:SystemTray.Opacity="0"
-                DataContext="{Binding Schedule, Source={StaticResource Locator}}">
+                DataContext="{Binding ScheduledSeries, Source={StaticResource Locator}}">
 
     <toolkit:TransitionService.NavigationInTransition>
         <toolkit:NavigationInTransition>
@@ -71,9 +71,19 @@
                                        Margin="2,0"/>
                         </DataTemplate>
                     </phone:Pivot.HeaderTemplate>
-                    <phone:PivotItem Header="settings"></phone:PivotItem>
-                    <phone:PivotItem Header="recordings"></phone:PivotItem>
-                    <phone:PivotItem Header="scheduled"></phone:PivotItem>
+                    <phone:PivotItem Header="{Binding LocalizedResources.HeaderSettings, Source={StaticResource LocalizedStrings}}">
+                        <StackPanel Orientation="Vertical">
+                            <ListBox ItemsSource="{Binding DaysOfWeekList}">
+                                
+                            </ListBox>
+                        </StackPanel>
+                    </phone:PivotItem>
+                    <phone:PivotItem Header="{Binding LocalizedResources.HeaderRecordings, Source={StaticResource LocalizedStrings}}">
+                        
+                    </phone:PivotItem>
+                    <phone:PivotItem Header="{Binding LocalizedResources.HeaderScheduled, Source={StaticResource LocalizedStrings}}">
+                        
+                    </phone:PivotItem>
                 </phone:Pivot>
             </Grid>
         </Grid>

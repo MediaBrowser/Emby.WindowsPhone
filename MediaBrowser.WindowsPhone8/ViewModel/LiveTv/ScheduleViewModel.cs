@@ -5,6 +5,8 @@ using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Ioc;
+using GalaSoft.MvvmLight.Messaging;
 using JetBrains.Annotations;
 using MediaBrowser.Model;
 using MediaBrowser.Model.LiveTv;
@@ -91,7 +93,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
             {
                 return new RelayCommand<SeriesTimerInfoDto>(series =>
                 {
-                    SelectedSeries = series;
+                    if(SimpleIoc.Default.GetInstance<ScheduledSeriesViewModel>() != null)
+                        Messenger.Default.Send(new NotificationMessage(series, Constants.Messages.ScheduledSeriesChangedMsg));
+
                     _navigationService.NavigateTo(Constants.Pages.LiveTv.ScheduledSeriesView);
                 });
             }

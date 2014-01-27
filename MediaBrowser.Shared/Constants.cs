@@ -82,6 +82,7 @@
             public const string VideoStateChangedMsg = "VideoStateChangedMsg";
             public const string SetResumeMsg = "SetResumeMsg";
             public const string ChangeChannelMsg = "ChangeChannelMsg";
+            public const string ScheduledSeriesChangedMsg = "ScheduledSeriesChangedMsg";
         }
 
         public class Pages
