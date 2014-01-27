@@ -762,6 +762,18 @@
           <source>Weekends</source>
           <target state="new">Weekends</target>
         </trans-unit>
+        <trans-unit translate="yes" id="Resx/HeaderSettings" xml:space="preserve">
+          <source>settings</source>
+          <target state="new">settings</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/HeaderScheduled" xml:space="preserve">
+          <source>scheduled</source>
+          <target state="new">scheduled</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/HeaderRecordings" xml:space="preserve">
+          <source>recordings</source>
+          <target state="new">recordings</target>
+        </trans-unit>
         <trans-unit translate="yes" id="Resx/LabelScheduleWeekdays" xml:space="preserve">
           <source>Weekdays</source>
           <target state="new">Weekdays</target>

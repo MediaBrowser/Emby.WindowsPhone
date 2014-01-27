@@ -583,6 +583,33 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to recordings.
+        /// </summary>
+        public static string HeaderRecordings {
+            get {
+                return ResourceManager.GetString("HeaderRecordings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to scheduled.
+        /// </summary>
+        public static string HeaderScheduled {
+            get {
+                return ResourceManager.GetString("HeaderScheduled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to settings.
+        /// </summary>
+        public static string HeaderSettings {
+            get {
+                return ResourceManager.GetString("HeaderSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Actor.
         /// </summary>
         public static string LabelActor {

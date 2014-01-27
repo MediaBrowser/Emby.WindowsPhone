@@ -818,4 +818,13 @@
   <data name="LabelScheduleWeekends" xml:space="preserve">
     <value>Weekends</value>
   </data>
+  <data name="HeaderRecordings" xml:space="preserve">
+    <value>recordings</value>
+  </data>
+  <data name="HeaderScheduled" xml:space="preserve">
+    <value>scheduled</value>
+  </data>
+  <data name="HeaderSettings" xml:space="preserve">
+    <value>settings</value>
+  </data>
 </root>
