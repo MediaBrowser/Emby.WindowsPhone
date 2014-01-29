@@ -858,7 +858,13 @@
   <data name="LabelPrePaddingRequired" xml:space="preserve">
     <value>Pre-padding is required in order to record</value>
   </data>
+  <data name="SysTrayCancellingSeriesRecording" xml:space="preserve">
+    <value>Cancelling series link...</value>
+  </data>
   <data name="SysTrayGettingRecordedItems" xml:space="preserve">
     <value>Getting recorded items...</value>
+  </data>
+  <data name="AppBarDelete" xml:space="preserve">
+    <value>delete</value>
   </data>
 </root>

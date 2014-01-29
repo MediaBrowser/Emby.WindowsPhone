@@ -106,6 +106,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to delete.
+        /// </summary>
+        public static string AppBarDelete {
+            get {
+                return ResourceManager.GetString("AppBarDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to delete items.
         /// </summary>
         public static string AppBarDeleteItems {
@@ -1875,6 +1884,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string SysTrayAuthenticating {
             get {
                 return ResourceManager.GetString("SysTrayAuthenticating", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancelling series link....
+        /// </summary>
+        public static string SysTrayCancellingSeriesRecording {
+            get {
+                return ResourceManager.GetString("SysTrayCancellingSeriesRecording", resourceCulture);
             }
         }
         

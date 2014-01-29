@@ -32,6 +32,9 @@
                     <behaviors:ApplicationBarIconButton IconUri="/Icons/appbar.save.png"
                                                         Text="{Binding LocalizedResources.AppBarSave, Source={StaticResource LocalizedStrings}}"
                                                         Command="{Binding SaveCommand}"/>
+                    <behaviors:ApplicationBarIconButton IconUri="/Icons/appbar.delete.rest.png"
+                                                        Text="{Binding LocalizedResources.AppBarDelete, Source={StaticResource LocalizedStrings}}"
+                                                        Command="{Binding DeleteCommand}" />
                 </behaviors:ApplicationBar.Buttons>
             </behaviors:ApplicationBar>
             <behaviors:ApplicationBar>
@@ -39,6 +42,19 @@
                     <behaviors:ApplicationBarIconButton IconUri="/Icons/appbar.refresh.rest.png" 
                                                         Text="{Binding LocalizedResources.AppBarRefresh, Source={StaticResource LocalizedStrings}}"
                                                         Command="{Binding RefreshCommand}"/>
+                    <behaviors:ApplicationBarIconButton IconUri="/Icons/appbar.delete.rest.png"
+                                                        Text="{Binding LocalizedResources.AppBarDelete, Source={StaticResource LocalizedStrings}}"
+                                                        Command="{Binding DeleteCommand}" />
+                </behaviors:ApplicationBar.Buttons>
+            </behaviors:ApplicationBar>
+            <behaviors:ApplicationBar>
+                <behaviors:ApplicationBar.Buttons>
+                    <behaviors:ApplicationBarIconButton IconUri="/Icons/appbar.refresh.rest.png"
+                                                        Text="{Binding LocalizedResources.AppBarRefresh, Source={StaticResource LocalizedStrings}}"
+                                                        Command="{Binding RefreshCommand}" />
+                    <behaviors:ApplicationBarIconButton IconUri="/Icons/appbar.delete.rest.png"
+                                                        Text="{Binding LocalizedResources.AppBarDelete, Source={StaticResource LocalizedStrings}}"
+                                                        Command="{Binding DeleteCommand}" />
                 </behaviors:ApplicationBar.Buttons>
             </behaviors:ApplicationBar>
         </behaviors:MultiApplicationBarBehavior>

@@ -145,6 +145,7 @@
     <Compile Include="Controls\ScheduledRecording.cs" />
     <Compile Include="Controls\ScrollableTextBlock.cs" />
     <Compile Include="Controls\Played.cs" />
+    <Compile Include="Controls\AsyncMessageBox.cs" />
     <Compile Include="Controls\WideTileControl.xaml.cs">
       <DependentUpon>WideTileControl.xaml</DependentUpon>
     </Compile>
@@ -192,6 +193,7 @@
     <Compile Include="ExtensionMethods.cs" />
     <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Extensions\LiveTvExtensions.cs" />
+    <Compile Include="Extensions\ToolkitExtensions.cs" />
     <Compile Include="Extensions\WriteableBitmapExt.cs" />
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="Messaging\VideoMessage.cs" />

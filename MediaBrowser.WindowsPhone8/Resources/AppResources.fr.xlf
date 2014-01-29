@@ -896,6 +896,35 @@
           <source>Record programme on all channels</source>
           <target state="new">Record programme on all channels</target>
         </trans-unit>
+        <trans-unit translate="yes" id="Resx/SysTrayGettingRecordedItems" xml:space="preserve">
+          <source>Getting recorded items...</source>
+          <target state="new">Getting recorded items...</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelPrePaddingRequired" xml:space="preserve">
+          <source>Pre-padding is required in order to record</source>
+          <target state="new">Pre-padding is required in order to record</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SysTrayCancellingSeriesRecording" xml:space="preserve">
+          <source>Cancelling series link...</source>
+          <target state="new">Cancelling series link...</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelPrePaddingMinutes" xml:space="preserve">
+          <source>Pre-padding minutes:</source>
+          <target state="new">Pre-padding minutes:</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Pre-padding = how long before programme's scheduled start time to record</note>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelPostPaddingRequired" xml:space="preserve">
+          <source>Post-padding is required in order to record</source>
+          <target state="new">Post-padding is required in order to record</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelPostPaddingMinutes" xml:space="preserve">
+          <source>Post-padding minutes:</source>
+          <target state="new">Post-padding minutes:</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/AppBarCancel" xml:space="preserve">
+          <source>cancel</source>
+          <target state="new">cancel</target>
+        </trans-unit>
         <trans-unit translate="yes" id="Resx/LabelRecordOnlyNewEpisodes" xml:space="preserve">
           <source>Record only new episodes</source>
           <target state="new">Record only new episodes</target>

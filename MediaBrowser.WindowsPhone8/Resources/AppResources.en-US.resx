@@ -135,4 +135,4 @@
   <data name="SysTrayGettingFavourites" xml:space="preserve">
     <value>Getting favorites...</value>
   </data>
-<data name="LabelRecordProgrammeAtAnyTime" xml:space="preserve"><value>Record program at any time</value></data></root>
+<data name="LabelRecordProgrammeAtAnyTime" xml:space="preserve"><value>Record program at any time</value></data><data name="LabelRecordProgrammeOnAllChannels" xml:space="preserve"><value>Record program on all channels</value></data><data name="SysTrayCancellingSeriesRecording" xml:space="preserve"><value>Canceling series link...</value></data></root>

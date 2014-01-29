@@ -232,6 +232,9 @@
     <Compile Include="..\MediaBrowser.WindowsPhone8\Behaviours\PanoramaBackgroundBehaviour.cs">
       <Link>Behaviours\PanoramaBackgroundBehaviour.cs</Link>
     </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone8\Controls\AsyncMessageBox.cs">
+      <Link>Controls\AsyncMessageBox.cs</Link>
+    </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone8\Controls\DynamicTextBlock.cs">
       <Link>Controls\DynamicTextBlock.cs</Link>
     </Compile>
@@ -358,6 +361,9 @@
     </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone8\ExtensionMethods.cs">
       <Link>ExtensionMethods.cs</Link>
+    </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone8\Extensions\ToolkitExtensions.cs">
+      <Link>Extensions\ToolkitExtensions.cs</Link>
     </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone8\LocalizedStrings.cs">
       <Link>LocalizedStrings.cs</Link>
