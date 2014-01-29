@@ -842,6 +842,9 @@
   <data name="LabelRecordProgrammeOnAllChannels" xml:space="preserve">
     <value>Record programme on all channels</value>
   </data>
+  <data name="AppBarCancel" xml:space="preserve">
+    <value>cancel</value>
+  </data>
   <data name="LabelPostPaddingMinutes" xml:space="preserve">
     <value>Post-padding minutes:</value>
   </data>
@@ -854,5 +857,8 @@
   </data>
   <data name="LabelPrePaddingRequired" xml:space="preserve">
     <value>Pre-padding is required in order to record</value>
+  </data>
+  <data name="SysTrayGettingRecordedItems" xml:space="preserve">
+    <value>Getting recorded items...</value>
   </data>
 </root>

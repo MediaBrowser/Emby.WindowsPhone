@@ -79,6 +79,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to cancel.
+        /// </summary>
+        public static string AppBarCancel {
+            get {
+                return ResourceManager.GetString("AppBarCancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to change profile.
         /// </summary>
         public static string AppBarChangeProfile {
@@ -2082,6 +2091,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string SysTrayGettingRecentItems {
             get {
                 return ResourceManager.GetString("SysTrayGettingRecentItems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Getting recorded items....
+        /// </summary>
+        public static string SysTrayGettingRecordedItems {
+            get {
+                return ResourceManager.GetString("SysTrayGettingRecordedItems", resourceCulture);
             }
         }
         

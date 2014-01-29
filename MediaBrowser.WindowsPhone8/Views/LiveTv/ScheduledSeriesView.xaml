@@ -9,6 +9,9 @@
                 xmlns:scott="clr-namespace:ScottIsAFool.WindowsPhone.Controls;assembly=ScottIsAFool.WindowsPhone"
                 xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
                 xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+                xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+                xmlns:behaviors="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
+                xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
                 mc:Ignorable="d ignore"
                 FontFamily="{StaticResource PhoneFontFamilyNormal}"
                 FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -19,6 +22,27 @@
                 shell:SystemTray.Opacity="0"
                 toolkit:TiltEffect.IsTiltEnabled="True"
                 DataContext="{Binding ScheduledSeries, Source={StaticResource Locator}}">
+    <i:Interaction.Behaviors>
+        <behaviours:MBSysTray Text="{Binding ProgressText}"
+                              IsVisible="{Binding ProgressIsVisible}"
+                              IsIndeterminate="{Binding ProgressIsVisible}"/>
+        <behaviors:MultiApplicationBarBehavior SelectedIndex="{Binding SelectedPivotIndex}">
+            <behaviors:ApplicationBar>
+                <behaviors:ApplicationBar.Buttons>
+                    <behaviors:ApplicationBarIconButton IconUri="/Icons/appbar.save.png"
+                                                        Text="{Binding LocalizedResources.AppBarSave, Source={StaticResource LocalizedStrings}}"
+                                                        Command="{Binding SaveCommand}"/>
+                </behaviors:ApplicationBar.Buttons>
+            </behaviors:ApplicationBar>
+            <behaviors:ApplicationBar>
+                <behaviors:ApplicationBar.Buttons>
+                    <behaviors:ApplicationBarIconButton IconUri="/Icons/appbar.refresh.rest.png" 
+                                                        Text="{Binding LocalizedResources.AppBarRefresh, Source={StaticResource LocalizedStrings}}"
+                                                        Command="{Binding RefreshCommand}"/>
+                </behaviors:ApplicationBar.Buttons>
+            </behaviors:ApplicationBar>
+        </behaviors:MultiApplicationBarBehavior>
+    </i:Interaction.Behaviors>
 
     <toolkit:TransitionService.NavigationInTransition>
         <toolkit:NavigationInTransition>
@@ -64,7 +88,7 @@
             <Grid x:Name="ContentPanel"
                   Grid.Row="1"
                   Margin="0,-36,12,0">
-                <phone:Pivot>
+                <phone:Pivot SelectedIndex="{Binding SelectedPivotIndex, Mode=TwoWay}">
                     <phone:Pivot.HeaderTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding}"
