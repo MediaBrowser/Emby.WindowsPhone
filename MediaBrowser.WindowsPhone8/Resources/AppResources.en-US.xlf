@@ -786,6 +786,10 @@
           <source>Getting recorded items...</source>
           <target state="new">Getting recorded items...</target>
         </trans-unit>
+        <trans-unit translate="yes" id="Resx/AppBarDelete" xml:space="preserve">
+          <source>delete</source>
+          <target state="new">delete</target>
+        </trans-unit>
         <trans-unit translate="yes" id="Resx/LabelPrePaddingRequired" xml:space="preserve">
           <source>Pre-padding is required in order to record</source>
           <target state="new">Pre-padding is required in order to record</target>

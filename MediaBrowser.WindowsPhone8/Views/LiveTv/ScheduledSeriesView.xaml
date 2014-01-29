@@ -115,10 +115,11 @@
                     <phone:PivotItem Header="{Binding LocalizedResources.HeaderSettings, Source={StaticResource LocalizedStrings}}">
                         <ScrollViewer>
                             <StackPanel Orientation="Vertical"
-                                        Margin="12,0">
+                                        >
                                 <TextBlock Text="{Binding LocalizedResources.LabelDays, Source={StaticResource LocalizedStrings}}"
                                            Style="{StaticResource PhoneTextSubtleStyle}"/>
-                                <phone:LongListSelector ItemsSource="{Binding DaysOfWeekList}">
+                                <phone:LongListSelector ItemsSource="{Binding DaysOfWeekList}"
+                                                        Margin="12,0">
                                     <phone:LongListSelector.ItemTemplate>
                                         <DataTemplate>
                                             <Grid d:DataContext="{Binding DaysOfWeekList[0]}">
@@ -135,14 +136,14 @@
 
                                 <CheckBox Content="{Binding LocalizedResources.LabelRecordOnlyNewEpisodes, Source={StaticResource LocalizedStrings}}"
                                           IsChecked="{Binding SelectedSeries.RecordNewOnly, Mode=TwoWay}" 
-                                          Margin="0,12"/>
+                                          Margin="0,6"/>
 
                                 <CheckBox Content="{Binding LocalizedResources.LabelRecordProgrammeAtAnyTime, Source={StaticResource LocalizedStrings}}"
-                                          Margin="0,12"
+                                          Margin="0,6"
                                           IsChecked="{Binding SelectedSeries.RecordAnyTime, Mode=TwoWay}" />
                                 
                                 <CheckBox Content="{Binding LocalizedResources.LabelRecordProgrammeOnAllChannels, Source={StaticResource LocalizedStrings}}"
-                                          Margin="0,12"
+                                          Margin="0,6"
                                           IsChecked="{Binding SelectedSeries.RecordAnyChannel, Mode=TwoWay}" />
                             </StackPanel>
                         </ScrollViewer>
