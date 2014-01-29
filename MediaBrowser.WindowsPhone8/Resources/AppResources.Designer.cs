@@ -277,6 +277,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to save.
+        /// </summary>
+        public static string AppBarSave {
+            get {
+                return ResourceManager.GetString("AppBarSave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to search.
         /// </summary>
         public static string AppBarSearch {
@@ -763,6 +772,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Days:.
+        /// </summary>
+        public static string LabelDays {
+            get {
+                return ResourceManager.GetString("LabelDays", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} days ago.
         /// </summary>
         public static string LabelDaysAgo {
@@ -1195,6 +1213,42 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Post-padding minutes:.
+        /// </summary>
+        public static string LabelPostPaddingMinutes {
+            get {
+                return ResourceManager.GetString("LabelPostPaddingMinutes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Post-padding is required in order to record.
+        /// </summary>
+        public static string LabelPostPaddingRequired {
+            get {
+                return ResourceManager.GetString("LabelPostPaddingRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pre-padding minutes:.
+        /// </summary>
+        public static string LabelPrePaddingMinutes {
+            get {
+                return ResourceManager.GetString("LabelPrePaddingMinutes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pre-padding is required in order to record.
+        /// </summary>
+        public static string LabelPrePaddingRequired {
+            get {
+                return ResourceManager.GetString("LabelPrePaddingRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Producer.
         /// </summary>
         public static string LabelProducer {
@@ -1281,6 +1335,33 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string LabelRecordedTv {
             get {
                 return ResourceManager.GetString("LabelRecordedTv", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Record only new episodes.
+        /// </summary>
+        public static string LabelRecordOnlyNewEpisodes {
+            get {
+                return ResourceManager.GetString("LabelRecordOnlyNewEpisodes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Record programme at any time.
+        /// </summary>
+        public static string LabelRecordProgrammeAtAnyTime {
+            get {
+                return ResourceManager.GetString("LabelRecordProgrammeAtAnyTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Record programme on all channels.
+        /// </summary>
+        public static string LabelRecordProgrammeOnAllChannels {
+            get {
+                return ResourceManager.GetString("LabelRecordProgrammeOnAllChannels", resourceCulture);
             }
         }
         

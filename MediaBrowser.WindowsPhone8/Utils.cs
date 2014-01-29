@@ -21,6 +21,7 @@ using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Resources;
 using MediaBrowser.WindowsPhone.Services;
+using Newtonsoft.Json;
 using ScottIsAFool.WindowsPhone;
 using ScottIsAFool.WindowsPhone.Logging;
 using INavigationService = MediaBrowser.WindowsPhone.Model.INavigationService;
@@ -407,6 +408,21 @@ namespace MediaBrowser.WindowsPhone
             }
 
             return true;
+        }
+
+        public static async Task<TReturnType> Clone<TReturnType>(this TReturnType item)
+        {
+#if WP8
+            var json = await JsonConvert.SerializeObjectAsync(item);
+            return await JsonConvert.DeserializeObjectAsync<TReturnType>(json);
+#else
+            await TaskEx.Run(() =>
+            {
+                var json = JsonConvert.SerializeObject(item);
+                return JsonConvert.DeserializeObject<TReturnType>(json);
+            });
+            return item;
+#endif
         }
     }
 }

@@ -135,4 +135,4 @@
   <data name="SysTrayGettingFavourites" xml:space="preserve">
     <value>Getting favorites...</value>
   </data>
-</root>
+<data name="LabelRecordProgrammeAtAnyTime" xml:space="preserve"><value>Record program at any time</value></data></root>

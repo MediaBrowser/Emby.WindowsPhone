@@ -1,4 +1,7 @@
-﻿namespace MediaBrowser.WindowsPhone.Views.LiveTv
+﻿using System.ComponentModel;
+using GalaSoft.MvvmLight.Messaging;
+
+namespace MediaBrowser.WindowsPhone.Views.LiveTv
 {
     public partial class ScheduledSeriesView
     {
@@ -6,6 +9,13 @@
         public ScheduledSeriesView()
         {
             InitializeComponent();
+        }
+
+        protected override void OnBackKeyPress(CancelEventArgs e)
+        {
+            base.OnBackKeyPress(e);
+
+            Messenger.Default.Send(new NotificationMessage(Constants.Messages.ScheduledSeriesCancelChangesMsg));
         }
     }
 }

@@ -130,6 +130,7 @@
     <Compile Include="ExtensionMethods.cs" />
     <Compile Include="History.cs" />
     <Compile Include="Model\ConnectionDetails.cs" />
+    <Compile Include="Model\Day.cs" />
     <Compile Include="Model\DeviceSettings.cs" />
     <Compile Include="Model\ExtendedApiClient.cs" />
     <Compile Include="Model\GroupBy.cs" />

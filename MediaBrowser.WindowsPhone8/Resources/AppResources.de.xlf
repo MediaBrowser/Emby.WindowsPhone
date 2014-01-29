@@ -888,6 +888,26 @@
           <source>settings</source>
           <target state="new">settings</target>
         </trans-unit>
+        <trans-unit translate="yes" id="Resx/AppBarSave" xml:space="preserve">
+          <source>save</source>
+          <target state="new">save</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelDays" xml:space="preserve">
+          <source>Days:</source>
+          <target state="new">Days:</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelRecordProgrammeAtAnyTime" xml:space="preserve">
+          <source>Record programme at any time</source>
+          <target state="new">Record programme at any time</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelRecordProgrammeOnAllChannels" xml:space="preserve">
+          <source>Record programme on all channels</source>
+          <target state="new">Record programme on all channels</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelRecordOnlyNewEpisodes" xml:space="preserve">
+          <source>Record only new episodes</source>
+          <target state="new">Record only new episodes</target>
+        </trans-unit>
         <trans-unit translate="yes" id="Resx/HeaderScheduled" xml:space="preserve">
           <source>scheduled</source>
           <target state="new">scheduled</target>

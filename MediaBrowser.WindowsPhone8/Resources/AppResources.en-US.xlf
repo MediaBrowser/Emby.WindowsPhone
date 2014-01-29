@@ -766,6 +766,26 @@
           <source>settings</source>
           <target state="new">settings</target>
         </trans-unit>
+        <trans-unit translate="yes" id="Resx/AppBarSave" xml:space="preserve">
+          <source>save</source>
+          <target state="new">save</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelDays" xml:space="preserve">
+          <source>Days:</source>
+          <target state="new">Days:</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelRecordProgrammeAtAnyTime" xml:space="preserve">
+          <source>Record programme at any time</source>
+          <target state="translated">Record program at any time</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelRecordProgrammeOnAllChannels" xml:space="preserve">
+          <source>Record programme on all channels</source>
+          <target state="translated">Record program on all channels</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelRecordOnlyNewEpisodes" xml:space="preserve">
+          <source>Record only new episodes</source>
+          <target state="new">Record only new episodes</target>
+        </trans-unit>
         <trans-unit translate="yes" id="Resx/HeaderScheduled" xml:space="preserve">
           <source>scheduled</source>
           <target state="new">scheduled</target>
@@ -833,8 +853,8 @@
         <trans-unit translate="yes" id="Resx/LabelReleasedIn" xml:space="preserve">
           <source>Released in</source>
           <target state="new">Released in</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">eg, Released in 1993</note>
-        </trans-unit>
+          
+        <note from="MultilingualBuild" annotates="source" priority="2">eg, Released in 1993</note></trans-unit>
         <trans-unit translate="yes" id="Resx/LabelUnplayedItems" xml:space="preserve">
           <source>Unplayed:</source>
           <target state="new">Unplayed:</target>

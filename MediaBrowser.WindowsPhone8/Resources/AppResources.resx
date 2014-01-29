@@ -827,4 +827,32 @@
   <data name="HeaderSettings" xml:space="preserve">
     <value>settings</value>
   </data>
+  <data name="AppBarSave" xml:space="preserve">
+    <value>save</value>
+  </data>
+  <data name="LabelDays" xml:space="preserve">
+    <value>Days:</value>
+  </data>
+  <data name="LabelRecordOnlyNewEpisodes" xml:space="preserve">
+    <value>Record only new episodes</value>
+  </data>
+  <data name="LabelRecordProgrammeAtAnyTime" xml:space="preserve">
+    <value>Record programme at any time</value>
+  </data>
+  <data name="LabelRecordProgrammeOnAllChannels" xml:space="preserve">
+    <value>Record programme on all channels</value>
+  </data>
+  <data name="LabelPostPaddingMinutes" xml:space="preserve">
+    <value>Post-padding minutes:</value>
+  </data>
+  <data name="LabelPostPaddingRequired" xml:space="preserve">
+    <value>Post-padding is required in order to record</value>
+  </data>
+  <data name="LabelPrePaddingMinutes" xml:space="preserve">
+    <value>Pre-padding minutes:</value>
+    <comment>Pre-padding = how long before programme's scheduled start time to record</comment>
+  </data>
+  <data name="LabelPrePaddingRequired" xml:space="preserve">
+    <value>Pre-padding is required in order to record</value>
+  </data>
 </root>

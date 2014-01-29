@@ -83,6 +83,7 @@
             public const string SetResumeMsg = "SetResumeMsg";
             public const string ChangeChannelMsg = "ChangeChannelMsg";
             public const string ScheduledSeriesChangedMsg = "ScheduledSeriesChangedMsg";
+            public const string ScheduledSeriesCancelChangesMsg = "ScheduledSeriesCancelChangesMsg";
         }
 
         public class Pages
