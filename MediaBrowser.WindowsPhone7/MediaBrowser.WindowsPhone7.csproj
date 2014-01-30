@@ -266,6 +266,9 @@
     <Compile Include="..\MediaBrowser.WindowsPhone8\Converters\AlreadyPlayedConverter.cs">
       <Link>Converters\AlreadyPlayedConverter.cs</Link>
     </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone8\Converters\BooleanToValueConverter.cs">
+      <Link>Converters\BooleanToValueConverter.cs</Link>
+    </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone8\Converters\CanStreamConverter.cs">
       <Link>Converters\CanStreamConverter.cs</Link>
     </Compile>

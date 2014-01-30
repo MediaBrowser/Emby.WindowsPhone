@@ -98,7 +98,7 @@ namespace MediaBrowser.WindowsPhone
 
         internal static string GetSortByNameHeader(ChannelInfoDto channelInfoDto)
         {
-            if (string.IsNullOrEmpty(channelInfoDto.Name))
+            if (String.IsNullOrEmpty(channelInfoDto.Name))
             {
                 return "#".ToString(CultureInfo.InvariantCulture);
             }
@@ -423,6 +423,18 @@ namespace MediaBrowser.WindowsPhone
             });
             return item;
 #endif
+        }
+
+        internal static string CoolDateName(DateTime dateTime)
+        {
+            var theDate = dateTime.Date;
+            var today = DateTime.Now.Date;
+            if (theDate == today)
+            {
+                return AppResources.LabelScheduleToday;
+            }
+
+            return theDate == today.AddDays(1) ? AppResources.LabelScheduleTomorrow : theDate.ToLongDateString();
         }
     }
 }

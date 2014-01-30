@@ -168,7 +168,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                         group u by u.StartDate
                         into grp
                         orderby grp.Key
-                        select new Group<TimerInfoDto>(CoolDateName(grp.Key), grp)).ToList();
+                        select new Group<TimerInfoDto>(Utils.CoolDateName(grp.Key), grp)).ToList();
 
 
                     Upcoming = groupedItems;
@@ -182,18 +182,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
             }
 
             SetProgressBar();
-        }
-
-        private static string CoolDateName(DateTime dateTime)
-        {
-            var theDate = dateTime.Date;
-            var today = DateTime.Now.Date;
-            if (theDate == today)
-            {
-                return AppResources.LabelScheduleToday;
-            }
-
-            return theDate == today.AddDays(1) ? AppResources.LabelScheduleTomorrow : theDate.ToLongDateString();
         }
     }
 }

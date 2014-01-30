@@ -873,6 +873,9 @@
   <data name="LabelChannel" xml:space="preserve">
     <value>Channel:</value>
   </data>
+  <data name="LabelNew" xml:space="preserve">
+    <value>New</value>
+  </data>
   <data name="LabelPrePostPadding" xml:space="preserve">
     <value>Pre/Post Padding</value>
   </data>

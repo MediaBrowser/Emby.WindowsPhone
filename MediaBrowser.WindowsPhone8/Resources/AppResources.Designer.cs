@@ -1096,6 +1096,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New.
+        /// </summary>
+        public static string LabelNew {
+            get {
+                return ResourceManager.GetString("LabelNew", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to next up.
         /// </summary>
         public static string LabelNextUp {

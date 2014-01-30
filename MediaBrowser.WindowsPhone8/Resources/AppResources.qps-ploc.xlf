@@ -903,6 +903,10 @@
           <source>Channel:</source>
           <target state="new">Channel:</target>
         </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelNew" xml:space="preserve">
+          <source>New</source>
+          <target state="new">New</target>
+        </trans-unit>
         <trans-unit translate="yes" id="Resx/LabelPrePostPadding" xml:space="preserve">
           <source>Pre/Post Padding</source>
           <target state="new">Pre/Post Padding</target>

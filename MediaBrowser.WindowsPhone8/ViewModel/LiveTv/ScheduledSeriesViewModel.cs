@@ -16,6 +16,7 @@ using MediaBrowser.WindowsPhone.Extensions;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Resources;
 using Microsoft.Phone.Controls;
+using ScottIsAFool.WindowsPhone;
 using ScottIsAFool.WindowsPhone.ViewModel;
 using CustomMessageBox = MediaBrowser.WindowsPhone.Controls.CustomMessageBox;
 
@@ -51,7 +52,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
         public SeriesTimerInfoDto SelectedSeries { get; set; }
         public List<Day> DaysOfWeekList { get; set; }
         public int SelectedPivotIndex { get; set; }
-        public List<TimerInfoDto> ScheduledRecordings { get; set; }
+        public List<Group<TimerInfoDto>> ScheduledRecordings { get; set; }
         public List<RecordingInfoDto> Recordings { get; set; }
 
         public int AppBarIndex
@@ -197,7 +198,15 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
 
                 if (items != null && !items.Items.IsNullOrEmpty())
                 {
-                    ScheduledRecordings = items.Items.ToList();
+                    var upcomingItems = items.Items;
+                    var groupedItems = (from u in upcomingItems
+                                        group u by u.StartDate
+                                            into grp
+                                            orderby grp.Key
+                                            select new Group<TimerInfoDto>(Utils.CoolDateName(grp.Key), grp)).ToList();
+
+
+                    ScheduledRecordings = groupedItems;
                 }
 
                 SetProgressBar();

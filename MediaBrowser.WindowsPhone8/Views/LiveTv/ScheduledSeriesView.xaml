@@ -58,7 +58,7 @@
         <converters:AccentBrushConverter x:Key="ChannelColourConverter"
                                          TrueValue="{StaticResource PhoneForegroundBrush}"
                                          FalseValue="{StaticResource PhoneAccentBrush}" />
-        <converters:RecordingNameConverter x:Key="RecordingNameConverter"/>
+        <converters:RecordingNameConverter x:Key="RecordingNameConverter" />
     </scott:BasePage.Resources>
 
     <toolkit:TransitionService.NavigationInTransition>
@@ -104,14 +104,14 @@
             <!--ContentPanel - place additional content here-->
             <Grid x:Name="ContentPanel"
                   Grid.Row="1"
-                  Margin="0,-36,12,0">
+                  Margin="0,-36,0,0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
                 <StackPanel Orientation="Horizontal"
-                            Margin="12,6,12,0">
+                            Margin="12,12,12,0">
                     <TextBlock Text="{Binding LocalizedResources.LabelChannel, Source={StaticResource LocalizedStrings}}"
                                Style="{StaticResource PhoneTextSubtleStyle}" />
                     <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
@@ -179,43 +179,91 @@
                         </ScrollViewer>
                     </phone:PivotItem>
                     <phone:PivotItem Header="{Binding LocalizedResources.HeaderRecordings, Source={StaticResource LocalizedStrings}}">
-                        <phone:LongListSelector ItemsSource="{Binding Recordings}">
+                        <phone:LongListSelector ItemsSource="{Binding Recordings}"
+                                                LayoutMode="Grid"
+                                                GridCellSize="215,185"
+                                                Margin="12,0,0,0">
                             <phone:LongListSelector.ItemTemplate>
                                 <DataTemplate>
-                                    <Grid Height="220"
-                                          Width="220">
-                                        <coding4Fun:SuperImage PlaceholderImageSource="/Images/Logo.png"
-                                                               Source="{Binding Converter={StaticResource ImageUrlConverter}}"
-                                                               PlaceholderImageStretch="Uniform"
-                                                               Width="220"
-                                                               Height="173"
-                                                               Stretch="UniformToFill" />
-                                        <Border Background="{StaticResource BlackTransparentBrush}"
-                                                VerticalAlignment="Bottom">
-                                            <StackPanel Orientation="Vertical">
-                                                <TextBlock Style="{StaticResource PhoneTextNormalStyle}"
-                                                           FontWeight="Bold"
-                                                           TextWrapping="Wrap"
-                                                           Foreground="White"
-                                                           TextTrimming="WordEllipsis"
-                                                           MaxHeight="86"
-                                                           Text="{Binding Converter={StaticResource RecordingNameConverter}}"/>
-                                                <ProgressBar Value="{Binding Converter={StaticResource AlreadyPlayedConverter}}"
-                                                             HorizontalAlignment="Stretch"
-                                                             Margin="0"
-                                                             Visibility="{Binding Value, RelativeSource={RelativeSource Self}, Converter={StaticResource GreaterThanVisibilityConverter}, ConverterParameter=0}"
-                                                             Style="{StaticResource FullWidthProgressStyle}" />
-                                            </StackPanel>
+                                    <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                                     Margin="0,0,12,12">
+                                        <Grid Height="173"
+                                              Width="215">
+                                            <coding4Fun:SuperImage PlaceholderImageSource="/Images/Logo.png"
+                                                                   Source="{Binding Converter={StaticResource ImageUrlConverter}}"
+                                                                   PlaceholderImageStretch="Uniform"
+                                                                   Width="215"
+                                                                   Height="173"
+                                                                   Stretch="UniformToFill" />
+                                            <Border Background="{StaticResource BlackTransparentBrush}"
+                                                    VerticalAlignment="Bottom">
+                                                <StackPanel Orientation="Vertical">
+                                                    <TextBlock Style="{StaticResource PhoneTextNormalStyle}"
+                                                               FontWeight="Bold"
+                                                               Foreground="White"
+                                                               TextTrimming="WordEllipsis"
+                                                               MaxHeight="86"
+                                                               Text="{Binding Converter={StaticResource RecordingNameConverter}}" />
+                                                    <ProgressBar Value="{Binding Converter={StaticResource AlreadyPlayedConverter}}"
+                                                                 HorizontalAlignment="Stretch"
+                                                                 Margin="0"
+                                                                 Visibility="{Binding Value, RelativeSource={RelativeSource Self}, Converter={StaticResource GreaterThanVisibilityConverter}, ConverterParameter=0}"
+                                                                 Style="{StaticResource FullWidthProgressStyle}" />
+                                                </StackPanel>
 
-                                        </Border>
-                                        <controls:Played Data="{Binding}" />
-                                    </Grid>
+                                            </Border>
+                                            <controls:Played Data="{Binding}" />
+                                        </Grid>
+                                    </HyperlinkButton>
                                 </DataTemplate>
                             </phone:LongListSelector.ItemTemplate>
                         </phone:LongListSelector>
                     </phone:PivotItem>
                     <phone:PivotItem Header="{Binding LocalizedResources.HeaderScheduled, Source={StaticResource LocalizedStrings}}">
+                        <phone:LongListSelector ItemsSource="{Binding ScheduledRecordings}"
+                                                IsGroupingEnabled="True"
+                                                JumpListStyle="{StaticResource LLSGroupItemLongStyle}"
+                                                HideEmptyGroups="False"
+                                                GroupHeaderTemplate="{StaticResource LLSGroupHeaderTemplateLong}">
+                            <phone:LongListSelector.ItemTemplate>
+                                <DataTemplate>
+                                    <Button Style="{StaticResource EmptyButtonStyle}"
+                                            Margin="0,6">
+                                        <Grid HorizontalAlignment="Stretch"
+                                              VerticalAlignment="Top"
+                                              d:DataContext="{Binding ScheduledSeries.ScheduledRecordings[0], Source={StaticResource Locator}}">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*" />
+                                                <RowDefinition Height="*" />
+                                            </Grid.RowDefinitions>
 
+                                            <TextBlock Text="{Binding ProgramInfo.EpisodeTitle}"
+                                                       TextTrimming="WordEllipsis"
+                                                       HorizontalAlignment="Stretch"
+                                                       Style="{StaticResource HeaderTextStyle}"
+                                                       Grid.Row="0" />
+
+                                            <StackPanel Orientation="Horizontal"
+                                                        Grid.Row="1"
+                                                        HorizontalAlignment="Left">
+                                                <TextBlock Text="{Binding LocalizedResources.LabelNew, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToUppercaseConverter}}"
+                                                           Style="{StaticResource PhoneTextNormalStyle}"
+                                                           Foreground="{StaticResource PhoneAccentBrush}"
+                                                           Visibility="{Binding IsNew, Converter={StaticResource VisibilityConverter}}"/>
+                                                <TextBlock Text="{Binding Converter={StaticResource RecordingTimeConverter}}"
+                                                           Style="{StaticResource PhoneTextSubtleStyle}" />
+                                            </StackPanel>
+                                            <controls:ScheduledRecording HorizontalAlignment="Right"
+                                                                         VerticalAlignment="Top"
+                                                                         Height="30"
+                                                                         Width="30"
+                                                                         Grid.Row="1"
+                                                                         Visibility="{Binding SeriesTimerId, Converter={StaticResource NullVisibilityConverter}}" />
+                                        </Grid>
+                                    </Button>
+                                </DataTemplate>
+                            </phone:LongListSelector.ItemTemplate>
+                        </phone:LongListSelector>
                     </phone:PivotItem>
                 </phone:Pivot>
             </Grid>

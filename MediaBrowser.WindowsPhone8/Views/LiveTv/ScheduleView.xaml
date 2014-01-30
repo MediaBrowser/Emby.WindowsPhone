@@ -43,10 +43,7 @@
     </i:Interaction.Behaviors>
 
     <scott:BasePage.Resources>
-        <converters:DayPatternConverter x:Key="DayPatternConverter" />
-        <converters:AnyTimeConverter x:Key="AnyTimeConverter" />
-        <converters:AnyChannelConverter x:Key="AnyChannelConverter" />
-        <converters:ScheduledRecordingTimeConverter x:Key="RecordingTimeConverter" />
+        
     </scott:BasePage.Resources>
 
     <toolkit:TransitionService.NavigationInTransition>
