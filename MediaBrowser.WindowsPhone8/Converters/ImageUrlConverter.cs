@@ -120,6 +120,19 @@ namespace MediaBrowser.WindowsPhone.Converters
 
                     return item.ImageTags.IsNullOrEmpty() ? string.Empty : apiClient.GetImageUrl(item, imageOptions);
                 }
+
+                if (type == typeof (RecordingInfoDto))
+                {
+                    var item = (RecordingInfoDto) value;
+
+                    var imageOptions = new ImageOptions
+                    {
+                        ImageType = ImageType.Primary,
+                        MaxHeight = 250
+                    };
+
+                    return item.ImageTags.IsNullOrEmpty() ? string.Empty : apiClient.GetImageUrl(item, imageOptions);
+                }
             }
             return "";
         }
