@@ -180,6 +180,7 @@
     <Compile Include="Converters\PlaylistCountConverter.cs" />
     <Compile Include="Converters\RandomColour.cs" />
     <Compile Include="Converters\RatingConverter.cs" />
+    <Compile Include="Converters\RecordingNameConverter.cs" />
     <Compile Include="Converters\RemoteClientMultiConverter.cs" />
     <Compile Include="Converters\RoleConverter.cs" />
     <Compile Include="Converters\RuntimeConverter.cs" />

@@ -13,6 +13,7 @@
                 xmlns:behaviors="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
                 xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
                 xmlns:converters="clr-namespace:MediaBrowser.WindowsPhone.Converters"
+                xmlns:coding4Fun="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
                 mc:Ignorable="d ignore"
                 FontFamily="{StaticResource PhoneFontFamilyNormal}"
                 FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -26,13 +27,13 @@
     <i:Interaction.Behaviors>
         <behaviours:MBSysTray Text="{Binding ProgressText}"
                               IsVisible="{Binding ProgressIsVisible}"
-                              IsIndeterminate="{Binding ProgressIsVisible}"/>
+                              IsIndeterminate="{Binding ProgressIsVisible}" />
         <behaviors:MultiApplicationBarBehavior SelectedIndex="{Binding AppBarIndex}">
             <behaviors:ApplicationBar>
                 <behaviors:ApplicationBar.Buttons>
                     <behaviors:ApplicationBarIconButton IconUri="/Icons/appbar.save.png"
                                                         Text="{Binding LocalizedResources.AppBarSave, Source={StaticResource LocalizedStrings}}"
-                                                        Command="{Binding SaveCommand}"/>
+                                                        Command="{Binding SaveCommand}" />
                     <behaviors:ApplicationBarIconButton IconUri="/Icons/appbar.delete.rest.png"
                                                         Text="{Binding LocalizedResources.AppBarDelete, Source={StaticResource LocalizedStrings}}"
                                                         Command="{Binding DeleteCommand}" />
@@ -40,9 +41,9 @@
             </behaviors:ApplicationBar>
             <behaviors:ApplicationBar>
                 <behaviors:ApplicationBar.Buttons>
-                    <behaviors:ApplicationBarIconButton IconUri="/Icons/appbar.refresh.rest.png" 
+                    <behaviors:ApplicationBarIconButton IconUri="/Icons/appbar.refresh.rest.png"
                                                         Text="{Binding LocalizedResources.AppBarRefresh, Source={StaticResource LocalizedStrings}}"
-                                                        Command="{Binding RefreshCommand}"/>
+                                                        Command="{Binding RefreshCommand}" />
                     <behaviors:ApplicationBarIconButton IconUri="/Icons/appbar.delete.rest.png"
                                                         Text="{Binding LocalizedResources.AppBarDelete, Source={StaticResource LocalizedStrings}}"
                                                         Command="{Binding DeleteCommand}" />
@@ -50,13 +51,14 @@
             </behaviors:ApplicationBar>
         </behaviors:MultiApplicationBarBehavior>
     </i:Interaction.Behaviors>
-    
+
     <scott:BasePage.Resources>
         <converters:AnyChannelConverter x:Key="AnyChannelConverter" />
         <converters:AnyTimeConverter x:Key="AnyTimeConverter" />
         <converters:AccentBrushConverter x:Key="ChannelColourConverter"
                                          TrueValue="{StaticResource PhoneForegroundBrush}"
-                                         FalseValue="{StaticResource PhoneAccentBrush}"/>
+                                         FalseValue="{StaticResource PhoneAccentBrush}" />
+        <converters:RecordingNameConverter x:Key="RecordingNameConverter"/>
     </scott:BasePage.Resources>
 
     <toolkit:TransitionService.NavigationInTransition>
@@ -104,29 +106,29 @@
                   Grid.Row="1"
                   Margin="0,-36,12,0">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                
+
                 <StackPanel Orientation="Horizontal"
                             Margin="12,6,12,0">
                     <TextBlock Text="{Binding LocalizedResources.LabelChannel, Source={StaticResource LocalizedStrings}}"
-                               Style="{StaticResource PhoneTextSubtleStyle}"/>
+                               Style="{StaticResource PhoneTextSubtleStyle}" />
                     <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
                                      IsHitTestVisible="{Binding SelectedSeries.RecordAnyChannel, Converter={StaticResource NegativeBooleanConverter}}">
                         <TextBlock Text="{Binding SelectedSeries, Converter={StaticResource AnyChannelConverter}}"
                                    Style="{StaticResource PhoneTextNormalStyle}"
                                    Foreground="{Binding SelectedSeries.RecordAnyChannel, Converter={StaticResource ChannelColourConverter}}"
-                                   Margin="0"/>
+                                   Margin="0" />
                     </HyperlinkButton>
-                    
+
                     <TextBlock Text="{Binding LocalizedResources.LabelTime, Source={StaticResource LocalizedStrings}}"
-                               Style="{StaticResource PhoneTextSubtleStyle}"/>
+                               Style="{StaticResource PhoneTextSubtleStyle}" />
                     <TextBlock Text="{Binding SelectedSeries, Converter={StaticResource AnyTimeConverter}}"
                                Style="{StaticResource PhoneTextNormalStyle}"
-                               Margin="0"/>
+                               Margin="0" />
                 </StackPanel>
-                
+
                 <phone:Pivot SelectedIndex="{Binding SelectedPivotIndex, Mode=TwoWay}"
                              Grid.Row="1">
                     <phone:Pivot.HeaderTemplate>
@@ -140,9 +142,9 @@
                         <ScrollViewer>
                             <StackPanel Orientation="Vertical">
                                 <TextBlock Text="{Binding LocalizedResources.LabelGeneral, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToUppercaseConverter}}"
-                                           Style="{StaticResource HeaderTextStyle}"/>
+                                           Style="{StaticResource HeaderTextStyle}" />
                                 <TextBlock Text="{Binding LocalizedResources.LabelDays, Source={StaticResource LocalizedStrings}}"
-                                           Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                           Style="{StaticResource PhoneTextSubtleStyle}" />
                                 <phone:LongListSelector ItemsSource="{Binding DaysOfWeekList}"
                                                         Margin="12,0">
                                     <phone:LongListSelector.ItemTemplate>
@@ -160,13 +162,13 @@
                                 </phone:LongListSelector>
 
                                 <CheckBox Content="{Binding LocalizedResources.LabelRecordOnlyNewEpisodes, Source={StaticResource LocalizedStrings}}"
-                                          IsChecked="{Binding SelectedSeries.RecordNewOnly, Mode=TwoWay}" 
-                                          Margin="0,6"/>
+                                          IsChecked="{Binding SelectedSeries.RecordNewOnly, Mode=TwoWay}"
+                                          Margin="0,6" />
 
                                 <CheckBox Content="{Binding LocalizedResources.LabelRecordProgrammeAtAnyTime, Source={StaticResource LocalizedStrings}}"
                                           Margin="0,6"
                                           IsChecked="{Binding SelectedSeries.RecordAnyTime, Mode=TwoWay}" />
-                                
+
                                 <CheckBox Content="{Binding LocalizedResources.LabelRecordProgrammeOnAllChannels, Source={StaticResource LocalizedStrings}}"
                                           Margin="0,6"
                                           IsChecked="{Binding SelectedSeries.RecordAnyChannel, Mode=TwoWay}" />
@@ -177,7 +179,40 @@
                         </ScrollViewer>
                     </phone:PivotItem>
                     <phone:PivotItem Header="{Binding LocalizedResources.HeaderRecordings, Source={StaticResource LocalizedStrings}}">
+                        <phone:LongListSelector ItemsSource="{Binding Recordings}">
+                            <phone:LongListSelector.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Height="220"
+                                          Width="220">
+                                        <coding4Fun:SuperImage PlaceholderImageSource="/Images/Logo.png"
+                                                               Source="{Binding Converter={StaticResource ImageUrlConverter}}"
+                                                               PlaceholderImageStretch="Uniform"
+                                                               Width="220"
+                                                               Height="173"
+                                                               Stretch="UniformToFill" />
+                                        <Border Background="{StaticResource BlackTransparentBrush}"
+                                                VerticalAlignment="Bottom">
+                                            <StackPanel Orientation="Vertical">
+                                                <TextBlock Style="{StaticResource PhoneTextNormalStyle}"
+                                                           FontWeight="Bold"
+                                                           TextWrapping="Wrap"
+                                                           Foreground="White"
+                                                           TextTrimming="WordEllipsis"
+                                                           MaxHeight="86"
+                                                           Text="{Binding Converter={StaticResource RecordingNameConverter}}"/>
+                                                <ProgressBar Value="{Binding Converter={StaticResource AlreadyPlayedConverter}}"
+                                                             HorizontalAlignment="Stretch"
+                                                             Margin="0"
+                                                             Visibility="{Binding Value, RelativeSource={RelativeSource Self}, Converter={StaticResource GreaterThanVisibilityConverter}, ConverterParameter=0}"
+                                                             Style="{StaticResource FullWidthProgressStyle}" />
+                                            </StackPanel>
 
+                                        </Border>
+                                        <controls:Played Data="{Binding}" />
+                                    </Grid>
+                                </DataTemplate>
+                            </phone:LongListSelector.ItemTemplate>
+                        </phone:LongListSelector>
                     </phone:PivotItem>
                     <phone:PivotItem Header="{Binding LocalizedResources.HeaderScheduled, Source={StaticResource LocalizedStrings}}">
 

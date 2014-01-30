@@ -164,20 +164,20 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
             switch (SelectedPivotIndex)
             {
                 case 1:
-                    if (_scheduledLoaded && !isRefresh)
-                    {
-                        return;
-                    }
-
-                    _scheduledLoaded = await GetScheduledRecordings();
-                    break;
-                case 2:
                     if (_recordingsLoaded && !isRefresh)
                     {
                         return;
                     }
 
                     _recordingsLoaded = await GetAlreadyRecorded();
+                    break;
+                case 2:
+                    if (_scheduledLoaded && !isRefresh)
+                    {
+                        return;
+                    }
+
+                    _scheduledLoaded = await GetScheduledRecordings();
                     break;
             }
         }
