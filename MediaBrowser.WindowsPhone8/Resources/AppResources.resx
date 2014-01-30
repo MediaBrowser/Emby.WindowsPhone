@@ -867,6 +867,18 @@
   <data name="AppBarDelete" xml:space="preserve">
     <value>delete</value>
   </data>
+  <data name="ErrorDeletingSeriesRecording" xml:space="preserve">
+    <value>Sorry, there was an error cancelling this series at this time.</value>
+  </data>
+  <data name="LabelChannel" xml:space="preserve">
+    <value>Channel:</value>
+  </data>
+  <data name="LabelPrePostPadding" xml:space="preserve">
+    <value>Pre/Post Padding</value>
+  </data>
+  <data name="LabelTime" xml:space="preserve">
+    <value>Time:</value>
+  </data>
   <data name="MessageDeleteSeriesRecording" xml:space="preserve">
     <value>Are you sure you want to cancel this series link? This cannot be undone.</value>
   </data>

@@ -4,6 +4,7 @@ using System.Linq;
 using System.ServiceModel.Channels;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using JetBrains.Annotations;
@@ -64,6 +65,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
             {
                 return new RelayCommand(async () =>
                 {
+                    var days = DaysOfWeekList.Where(x => x.IsSelected)
+                                             .Select(x => x.DayOfWeek)
+                                             .ToList();
+
+                    SelectedSeries.Days = days;
                 });
             }
         }
@@ -93,11 +99,16 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                         SetProgressBar(AppResources.SysTrayCancellingSeriesRecording);
 
                         await _apiClient.CancelLiveTvSeriesTimerAsync(SelectedSeries.Id, default(CancellationToken));
+
+                        if (_navigationService.CanGoBack)
+                        {
+                            _navigationService.GoBack();
+                        }
                     }
                     catch (HttpException ex)
                     {
                         Utils.HandleHttpException(ex, "CancelSeriesRecording", _navigationService, Log);
-                        // TODO: show error
+                        MessageBox.Show(AppResources.ErrorDeletingSeriesRecording, AppResources.ErrorTitle, MessageBoxButton.OK);
                     }
 
                     SetProgressBar();

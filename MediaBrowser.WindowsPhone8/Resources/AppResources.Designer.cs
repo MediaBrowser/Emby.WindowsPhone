@@ -412,6 +412,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sorry, there was an error cancelling this series at this time..
+        /// </summary>
+        public static string ErrorDeletingSeriesRecording {
+            get {
+                return ResourceManager.GetString("ErrorDeletingSeriesRecording", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sorry, it looks like this account has been disabled. We will now take you back to the login screen..
         /// </summary>
         public static string ErrorDisabledUser {
@@ -714,6 +723,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string LabelCastCrew {
             get {
                 return ResourceManager.GetString("LabelCastCrew", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Channel:.
+        /// </summary>
+        public static string LabelChannel {
+            get {
+                return ResourceManager.GetString("LabelChannel", resourceCulture);
             }
         }
         
@@ -1267,6 +1285,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Pre/Post Padding.
+        /// </summary>
+        public static string LabelPrePostPadding {
+            get {
+                return ResourceManager.GetString("LabelPrePostPadding", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Producer.
         /// </summary>
         public static string LabelProducer {
@@ -1587,6 +1614,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string LabelTileBackInformation {
             get {
                 return ResourceManager.GetString("LabelTileBackInformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Time:.
+        /// </summary>
+        public static string LabelTime {
+            get {
+                return ResourceManager.GetString("LabelTime", resourceCulture);
             }
         }
         

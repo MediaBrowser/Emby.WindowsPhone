@@ -790,6 +790,26 @@
           <source>delete</source>
           <target state="new">delete</target>
         </trans-unit>
+        <trans-unit translate="yes" id="Resx/MessageDeleteSeriesRecording" xml:space="preserve">
+          <source>Are you sure you want to cancel this series link? This cannot be undone.</source>
+          <target state="new">Are you sure you want to cancel this series link? This cannot be undone.</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/ErrorDeletingSeriesRecording" xml:space="preserve">
+          <source>Sorry, there was an error cancelling this series at this time.</source>
+          <target state="translated">Sorry, there was an error canceling this series at this time.</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelChannel" xml:space="preserve">
+          <source>Channel:</source>
+          <target state="new">Channel:</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelPrePostPadding" xml:space="preserve">
+          <source>Pre/Post Padding</source>
+          <target state="new">Pre/Post Padding</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelTime" xml:space="preserve">
+          <source>Time:</source>
+          <target state="new">Time:</target>
+        </trans-unit>
         <trans-unit translate="yes" id="Resx/LabelPrePaddingRequired" xml:space="preserve">
           <source>Pre-padding is required in order to record</source>
           <target state="new">Pre-padding is required in order to record</target>
