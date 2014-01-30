@@ -867,4 +867,7 @@
   <data name="AppBarDelete" xml:space="preserve">
     <value>delete</value>
   </data>
+  <data name="MessageDeleteSeriesRecording" xml:space="preserve">
+    <value>Are you sure you want to cancel this series link? This cannot be undone.</value>
+  </data>
 </root>

@@ -1771,6 +1771,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to cancel this series link? This cannot be undone..
+        /// </summary>
+        public static string MessageDeleteSeriesRecording {
+            get {
+                return ResourceManager.GetString("MessageDeleteSeriesRecording", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Experimental.
         /// </summary>
         public static string MessageExperimentalTitle {

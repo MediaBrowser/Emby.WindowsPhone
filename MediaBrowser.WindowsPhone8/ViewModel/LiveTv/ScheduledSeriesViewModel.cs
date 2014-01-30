@@ -53,6 +53,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
         public List<TimerInfoDto> ScheduledRecordings { get; set; }
         public List<RecordingInfoDto> Recordings { get; set; }
 
+        public int AppBarIndex
+        {
+            get { return SelectedPivotIndex >= 1 ? 1 : 0; }
+        }
+
         public RelayCommand SaveCommand
         {
             get
@@ -72,7 +77,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                     var messageBox = new CustomMessageBox
                     {
                         Title = AppResources.MessageAreYouSureTitle,
-                        Message = "",
+                        Message = AppResources.MessageDeleteSeriesRecording,
                         LeftButtonContent = AppResources.LabelYes,
                         RightButtonContent = AppResources.LabelNo
                     };
