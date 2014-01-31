@@ -9,6 +9,7 @@
                 xmlns:scott="clr-namespace:ScottIsAFool.WindowsPhone.Controls;assembly=ScottIsAFool.WindowsPhone"
                 xmlns:controls="clr-namespace:MediaBrowser.WindowsPhone.Controls"
                 xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+                xmlns:coding4Fun="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
                 mc:Ignorable="d ignore"
                 FontFamily="{StaticResource PhoneFontFamilyNormal}"
                 FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -54,17 +55,42 @@
                         Grid.Row="0"
                         Margin="12,17,0,28">
                 <controls:MediaBrowserLogo/>
-                <TextBlock Text="{Binding SelectedRecording.ProgramInfo.Name}"
+                <TextBlock Text="{Binding SelectedRecording.ProgramInfo.Name, FallbackValue='episode name'}"
                            Margin="9,-7,0,0"
                            Style="{StaticResource PhoneTextTitle1Style}" />
             </StackPanel>
 
             <!--ContentPanel - place additional content here-->
-            <Grid x:Name="ContentPanel"
-                  Grid.Row="1"
-                  Margin="12,0,12,0">
-
-            </Grid>
+            <phone:Pivot Grid.Row="1">
+                <phone:Pivot.HeaderTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding}"
+                                   Style="{StaticResource PhoneTextTitle3Style}"
+                                   Margin="2,0" />
+                    </DataTemplate>
+                </phone:Pivot.HeaderTemplate>
+                <phone:PivotItem Header="{Binding LocalizedResources.LabelOverview, Source={StaticResource LocalizedStrings}}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        
+                        <StackPanel Orientation="Horizontal"
+                                    HorizontalAlignment="Left">
+                            <coding4Fun:SuperImage PlaceholderImageSource="/Images/Logo.png"
+                                                   Source="{Binding SelectedRecording, Converter={StaticResource ImageUrlConverter}}"
+                                                   PlaceholderImageStretch="Uniform"
+                                                   Width="215"
+                                                   Height="173"
+                                                   Stretch="UniformToFill" />
+                        </StackPanel>
+                    </Grid>
+                </phone:PivotItem>
+                <phone:PivotItem Header="{Binding LocalizedResources.LabelPrePostPadding, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
+                    
+                </phone:PivotItem>
+            </phone:Pivot>
         </Grid>
         <!--Uncomment to see an alignment grid to help ensure your controls are
             aligned on common boundaries.  The image has a top margin of -32px to

@@ -118,7 +118,7 @@ namespace MediaBrowser.WindowsPhone.Converters
                         MaxHeight = 122
                     };
 
-                    return item.ImageTags.IsNullOrEmpty() ? string.Empty : apiClient.GetImageUrl(item, imageOptions);
+                    return item.HasPrimaryImage ? apiClient.GetImageUrl(item, imageOptions) : string.Empty;
                 }
 
                 if (type == typeof (RecordingInfoDto))
@@ -131,7 +131,19 @@ namespace MediaBrowser.WindowsPhone.Converters
                         MaxHeight = 250
                     };
 
-                    return item.ImageTags.IsNullOrEmpty() ? string.Empty : apiClient.GetImageUrl(item, imageOptions);
+                    return item.HasPrimaryImage ? apiClient.GetImageUrl(item, imageOptions) : string.Empty;
+                }
+
+                if (type == typeof (TimerInfoDto))
+                {
+                    var item = (TimerInfoDto) value;
+                    var imageOptions = new ImageOptions
+                    {
+                        ImageType = ImageType.Primary,
+                        MaxHeight = 250
+                    };
+
+                    return item.ProgramInfo.HasPrimaryImage ? apiClient.GetImageUrl(item.ProgramInfo, imageOptions) : string.Empty;
                 }
             }
             return "";
