@@ -236,6 +236,13 @@
                                                 <RowDefinition Height="*" />
                                                 <RowDefinition Height="*" />
                                             </Grid.RowDefinitions>
+                                            <toolkit:ContextMenuService.ContextMenu>
+                                                <toolkit:ContextMenu>
+                                                    <toolkit:MenuItem Header="{Binding LocalizedResources.MenuCancelRecording, Source={StaticResource LocalizedStrings}}"
+                                                                      Command="{Binding ScheduledSeries.CancelRecordingCommand, Source={StaticResource Locator}}"
+                                                                      CommandParameter="{Binding}"/>
+                                                </toolkit:ContextMenu>
+                                            </toolkit:ContextMenuService.ContextMenu>
 
                                             <TextBlock Text="{Binding ProgramInfo.EpisodeTitle}"
                                                        TextTrimming="WordEllipsis"

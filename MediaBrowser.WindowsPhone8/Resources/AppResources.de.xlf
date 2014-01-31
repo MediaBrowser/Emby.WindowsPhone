@@ -936,6 +936,10 @@
           <source>Time:</source>
           <target state="new">Time:</target>
         </trans-unit>
+        <trans-unit translate="yes" id="Resx/MenuCancelRecording" xml:space="preserve">
+          <source>Cancel Recording</source>
+          <target state="new">Cancel Recording</target>
+        </trans-unit>
         <trans-unit translate="yes" id="Resx/LabelPrePaddingRequired" xml:space="preserve">
           <source>Pre-padding is required in order to record</source>
           <target state="new">Pre-padding is required in order to record</target>

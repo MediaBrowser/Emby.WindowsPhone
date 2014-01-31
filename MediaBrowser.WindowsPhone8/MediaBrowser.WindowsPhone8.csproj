@@ -302,6 +302,9 @@
     <Compile Include="Views\LiveTv\LiveTvView.xaml.cs">
       <DependentUpon>LiveTvView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\LiveTv\ScheduledRecordingView.xaml.cs">
+      <DependentUpon>ScheduledRecordingView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\LiveTv\ScheduledSeriesView.xaml.cs">
       <DependentUpon>ScheduledSeriesView.xaml</DependentUpon>
     </Compile>
@@ -530,6 +533,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\LiveTv\LiveTvView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LiveTv\ScheduledRecordingView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

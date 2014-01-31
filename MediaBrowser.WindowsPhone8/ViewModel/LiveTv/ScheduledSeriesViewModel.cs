@@ -75,6 +75,17 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
             }
         }
 
+        public RelayCommand<TimerInfoDto> CancelRecordingCommand
+        {
+            get
+            {
+                return new RelayCommand<TimerInfoDto>(async item =>
+                {
+                    
+                });
+            }
+        }
+
         public RelayCommand DeleteCommand
         {
             get

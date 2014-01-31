@@ -882,6 +882,9 @@
   <data name="LabelTime" xml:space="preserve">
     <value>Time:</value>
   </data>
+  <data name="MenuCancelRecording" xml:space="preserve">
+    <value>Cancel Recording</value>
+  </data>
   <data name="MessageDeleteSeriesRecording" xml:space="preserve">
     <value>Are you sure you want to cancel this series link? This cannot be undone.</value>
   </data>

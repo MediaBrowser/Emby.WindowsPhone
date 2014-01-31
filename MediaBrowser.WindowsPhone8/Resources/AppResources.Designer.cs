@@ -1762,6 +1762,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel Recording.
+        /// </summary>
+        public static string MenuCancelRecording {
+            get {
+                return ResourceManager.GetString("MenuCancelRecording", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to play from.
         /// </summary>
         public static string MenuPlayFrom {
