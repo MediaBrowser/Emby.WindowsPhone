@@ -129,7 +129,9 @@
                             <phone:LongListSelector.ItemTemplate>
                                 <DataTemplate>
                                     <Button Style="{StaticResource EmptyButtonStyle}"
-                                            Margin="0,6">
+                                            Margin="0,6"
+                                            Command="{Binding Schedule.RecordingTappedCommand, Source={StaticResource Locator}}"
+                                            CommandParameter="{Binding}">
                                         <Grid HorizontalAlignment="Stretch"
                                               VerticalAlignment="Top"
                                               d:DataContext="{Binding Schedule.Upcoming[0], Source={StaticResource Locator}}">
@@ -137,6 +139,14 @@
                                                 <RowDefinition Height="*" />
                                                 <RowDefinition Height="*" />
                                             </Grid.RowDefinitions>
+
+                                            <toolkit:ContextMenuService.ContextMenu>
+                                                <toolkit:ContextMenu>
+                                                    <toolkit:MenuItem Header="{Binding LocalizedResources.MenuCancelRecording, Source={StaticResource LocalizedStrings}}"
+                                                                      Command="{Binding Schedule.CancelRecordingCommand, Source={StaticResource Locator}}"
+                                                                      CommandParameter="{Binding}" />
+                                                </toolkit:ContextMenu>
+                                            </toolkit:ContextMenuService.ContextMenu>
 
                                             <StackPanel Orientation="Vertical"
                                                         Grid.Row="0">

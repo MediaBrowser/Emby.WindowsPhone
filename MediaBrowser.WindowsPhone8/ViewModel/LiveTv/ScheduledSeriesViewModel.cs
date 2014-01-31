@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
 using JetBrains.Annotations;
 using MediaBrowser.Model;
@@ -82,6 +83,20 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                 return new RelayCommand<TimerInfoDto>(async item =>
                 {
                     
+                });
+            }
+        }
+
+        public RelayCommand<TimerInfoDto> RecordingTappedCommand
+        {
+            get
+            {
+                return new RelayCommand<TimerInfoDto>(item =>
+                {
+                    if(SimpleIoc.Default.GetInstance<ScheduledRecordingViewModel>() != null)
+                        Messenger.Default.Send(new NotificationMessage(item, Constants.Messages.ScheduledRecordingChangedMsg));
+
+                    _navigationService.NavigateTo(Constants.Pages.LiveTv.ScheduledRecordingView);
                 });
             }
         }

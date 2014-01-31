@@ -228,7 +228,9 @@
                             <phone:LongListSelector.ItemTemplate>
                                 <DataTemplate>
                                     <Button Style="{StaticResource EmptyButtonStyle}"
-                                            Margin="0,6">
+                                            Margin="0,6"
+                                            Command="{Binding ScheduledSeries.RecordingTappedCommand, Source={StaticResource Locator}}"
+                                            CommandParameter="{Binding}">
                                         <Grid HorizontalAlignment="Stretch"
                                               VerticalAlignment="Top"
                                               d:DataContext="{Binding ScheduledSeries.ScheduledRecordings[0], Source={StaticResource Locator}}">

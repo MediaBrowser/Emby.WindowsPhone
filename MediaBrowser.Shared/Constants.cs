@@ -84,6 +84,7 @@
             public const string ChangeChannelMsg = "ChangeChannelMsg";
             public const string ScheduledSeriesChangedMsg = "ScheduledSeriesChangedMsg";
             public const string ScheduledSeriesCancelChangesMsg = "ScheduledSeriesCancelChangesMsg";
+            public const string ScheduledRecordingChangedMsg = "ScheduledRecordingChangedMsg";
         }
 
         public class Pages
@@ -121,6 +122,7 @@
                 public const string ScheduleView = LiveTvPath + "ScheduleView.xaml";
                 public const string TvView = LiveTvPath + "TvView.xaml";
                 public const string ScheduledSeriesView = LiveTvPath + "ScheduledSeriesView.xaml";
+                public const string ScheduledRecordingView = LiveTvPath + "ScheduledRecordingView.xaml";
             }
 
             public class Remote

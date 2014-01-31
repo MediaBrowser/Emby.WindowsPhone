@@ -87,6 +87,17 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
             }
         }
 
+        public RelayCommand<TimerInfoDto> CancelRecordingCommand
+        {
+            get
+            {
+                return new RelayCommand<TimerInfoDto>(async item =>
+                {
+
+                });
+            }
+        }
+
         public RelayCommand<SeriesTimerInfoDto> ShowSeriesCommand
         {
             get
@@ -97,6 +108,20 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                         Messenger.Default.Send(new NotificationMessage(series, Constants.Messages.ScheduledSeriesChangedMsg));
 
                     _navigationService.NavigateTo(Constants.Pages.LiveTv.ScheduledSeriesView);
+                });
+            }
+        }
+
+        public RelayCommand<TimerInfoDto> RecordingTappedCommand
+        {
+            get
+            {
+                return new RelayCommand<TimerInfoDto>(item =>
+                {
+                    if (SimpleIoc.Default.GetInstance<ScheduledRecordingViewModel>() != null)
+                        Messenger.Default.Send(new NotificationMessage(item, Constants.Messages.ScheduledRecordingChangedMsg));
+
+                    _navigationService.NavigateTo(Constants.Pages.LiveTv.ScheduledRecordingView);
                 });
             }
         }

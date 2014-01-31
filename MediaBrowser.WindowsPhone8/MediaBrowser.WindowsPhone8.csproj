@@ -239,6 +239,7 @@
     <Compile Include="ViewModel\LiveTv\ChannelsViewModel.cs" />
     <Compile Include="ViewModel\LiveTv\GuideViewModel.cs" />
     <Compile Include="ViewModel\LiveTv\LiveTvViewModel.cs" />
+    <Compile Include="ViewModel\LiveTv\ScheduledRecordingViewModel.cs" />
     <Compile Include="ViewModel\LiveTv\ScheduledSeriesViewModel.cs" />
     <Compile Include="ViewModel\LiveTv\ScheduleViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />

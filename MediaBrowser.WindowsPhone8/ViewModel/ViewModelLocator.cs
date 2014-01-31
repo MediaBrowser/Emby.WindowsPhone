@@ -101,6 +101,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             SimpleIoc.Default.Register<ScheduleViewModel>();
             SimpleIoc.Default.Register<LiveTvViewModel>();
             SimpleIoc.Default.Register<ScheduledSeriesViewModel>();
+            SimpleIoc.Default.Register<ScheduledRecordingViewModel>();
 #endif
         }
 
@@ -289,6 +290,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public ScheduledSeriesViewModel ScheduledSeries
         {
             get { return ServiceLocator.Current.GetInstance<ScheduledSeriesViewModel>(); }
+        }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
+            "CA1822:MarkMembersAsStatic",
+            Justification = "This non-static member is needed for data binding purposes.")]
+        public ScheduledRecordingViewModel ScheduledRecording
+        {
+            get { return ServiceLocator.Current.GetInstance<ScheduledRecordingViewModel>(); }
         }
 #endif
 
