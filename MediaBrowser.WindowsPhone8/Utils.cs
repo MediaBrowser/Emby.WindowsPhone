@@ -13,6 +13,7 @@ using MediaBrowser.Model;
 using MediaBrowser.Model.Configuration;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
+using MediaBrowser.Model.Library;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Session;
 using MediaBrowser.Services;
@@ -371,7 +372,7 @@ namespace MediaBrowser.WindowsPhone
                 return false;
             }
 
-            if (item.LocationType == LocationType.Virtual || !item.IsVideo)
+            if (item.LocationType == LocationType.Virtual || !item.IsVideo || item.PlayAccess != PlayAccess.Full)
             {
                 return false;
             }
