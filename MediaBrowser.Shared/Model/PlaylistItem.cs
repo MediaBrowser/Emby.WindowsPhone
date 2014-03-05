@@ -15,5 +15,6 @@ namespace MediaBrowser.Model
         public string TrackUrl { get; set; }
         public string MediaBrowserId { get; set; }
         public string ImageUrl { get; set; }
+        public string BackgroundImageUrl { get; set; }
     }
 }

@@ -83,76 +83,78 @@
                 </cimbalino:ApplicationBarBehavior.MenuItems>
             </cimbalino:ApplicationBarBehavior>
         </i:Interaction.Behaviors>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
+        <Grid x:Name="GridForBackground">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
 
-        <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel x:Name="TitlePanel"
-                    Grid.Row="0"
-                    Margin="12,17,0,28">
-            <mb:MediaBrowserLogo />
-            <TextBlock x:Name="PageTitle"
-                       Text="{Binding LocalizedResources.LabelNowPlaying, Source={StaticResource LocalizedStrings}}"
-                       Margin="9,-7,0,0"
-                       Style="{StaticResource PhoneTextTitle1Style}" />
-        </StackPanel>
-
-        <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel"
-              Grid.Row="1"
-              Margin="12,0,12,0">
-            <StackPanel Orientation="Vertical"
-                        VerticalAlignment="Top">
-                <StackPanel Orientation="Vertical"
-                            DataContext="{Binding NowPlayingItem}">
-                    <TextBlock Text="{Binding Artist}"
-                               Style="{StaticResource PhoneTextGroupHeaderStyle}" />
-                    <TextBlock Text="{Binding Album}"
-                               Style="{StaticResource PhoneTextNormalStyle}" />
-                    <Grid>
-                        <controls:SuperImage Source="{Binding ImageUrl}"
-                                             PlaceholderImageSource="/Images/DefaultAlbumCase.png"
-                                             Height="300"
-                                             Width="300"
-                                             Margin="12,0,0,0"
-                                             Stretch="Uniform"
-                                             PlaceholderImageStretch="Uniform"
-                                             HorizontalAlignment="Left"
-                                             VerticalAlignment="Top" />
-                        <StackPanel HorizontalAlignment="Right"
-                                    Orientation="Vertical"
-                                    VerticalAlignment="Top"
-                                    Margin="0,30,100,0">
-                            <controls:OpacityToggleButton VerticalAlignment="Top"
-                                                          IsChecked="{Binding Playlist.IsShuffled, Source={StaticResource Locator}, Mode=TwoWay}"
-                                                          ImageSource="/Images/appbar.shuffle.png"
-                                                          ButtonHeight="32"
-                                                          ButtonWidth="32" />
-                            <controls:OpacityToggleButton Margin="0,40,0,0"
-                                                          ImageSource="/Images/appbar.repeat.png"
-                                                          ButtonHeight="32"
-                                                          ButtonWidth="32"
-                                                          IsChecked="{Binding Playlist.IsOnRepeat, Source={StaticResource Locator}, Mode=TwoWay}" />
-                        </StackPanel>
-                    </Grid>
-                    <TextBlock Text="{Binding TrackName}"
-                               Style="{StaticResource PhoneTextNormalStyle}" />
-                </StackPanel>
-                <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                 NavigateUri="/Views/FullPlaylistView.xaml">
-                    <ListBox ItemsSource="{Binding SmallList}"
-                             IsHitTestVisible="False">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding TrackName}"
-                                           Style="{StaticResource PhoneTextSmallStyle}" />
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-                </HyperlinkButton>
+            <!--TitlePanel contains the name of the application and page title-->
+            <StackPanel x:Name="TitlePanel"
+                        Grid.Row="0"
+                        Margin="12,17,0,28">
+                <mb:MediaBrowserLogo />
+                <TextBlock x:Name="PageTitle"
+                           Text="{Binding LocalizedResources.LabelNowPlaying, Source={StaticResource LocalizedStrings}}"
+                           Margin="9,-7,0,0"
+                           Style="{StaticResource PhoneTextTitle1Style}" />
             </StackPanel>
+
+            <!--ContentPanel - place additional content here-->
+            <Grid x:Name="ContentPanel"
+                  Grid.Row="1"
+                  Margin="12,0,12,0">
+                <StackPanel Orientation="Vertical"
+                            VerticalAlignment="Top">
+                    <StackPanel Orientation="Vertical"
+                                DataContext="{Binding NowPlayingItem}">
+                        <TextBlock Text="{Binding Artist}"
+                                   Style="{StaticResource PhoneTextGroupHeaderStyle}" />
+                        <TextBlock Text="{Binding Album}"
+                                   Style="{StaticResource PhoneTextNormalStyle}" />
+                        <Grid>
+                            <controls:SuperImage Source="{Binding ImageUrl}"
+                                                 PlaceholderImageSource="/Images/DefaultAlbumCase.png"
+                                                 Height="300"
+                                                 Width="300"
+                                                 Margin="12,0,0,0"
+                                                 Stretch="Uniform"
+                                                 PlaceholderImageStretch="Uniform"
+                                                 HorizontalAlignment="Left"
+                                                 VerticalAlignment="Top" />
+                            <StackPanel HorizontalAlignment="Right"
+                                        Orientation="Vertical"
+                                        VerticalAlignment="Top"
+                                        Margin="0,30,100,0">
+                                <controls:OpacityToggleButton VerticalAlignment="Top"
+                                                              IsChecked="{Binding Playlist.IsShuffled, Source={StaticResource Locator}, Mode=TwoWay}"
+                                                              ImageSource="/Images/appbar.shuffle.png"
+                                                              ButtonHeight="32"
+                                                              ButtonWidth="32" />
+                                <controls:OpacityToggleButton Margin="0,40,0,0"
+                                                              ImageSource="/Images/appbar.repeat.png"
+                                                              ButtonHeight="32"
+                                                              ButtonWidth="32"
+                                                              IsChecked="{Binding Playlist.IsOnRepeat, Source={StaticResource Locator}, Mode=TwoWay}" />
+                            </StackPanel>
+                        </Grid>
+                        <TextBlock Text="{Binding TrackName}"
+                                   Style="{StaticResource PhoneTextNormalStyle}" />
+                    </StackPanel>
+                    <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                     NavigateUri="/Views/FullPlaylistView.xaml">
+                        <ListBox ItemsSource="{Binding SmallList}"
+                                 IsHitTestVisible="False">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding TrackName}"
+                                               Style="{StaticResource PhoneTextSmallStyle}" />
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </HyperlinkButton>
+                </StackPanel>
+            </Grid>
         </Grid>
     </Grid>
 
