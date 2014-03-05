@@ -31,6 +31,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
 
         private bool _nextUpLoaded;
         private bool _latestUnwatchedLoaded;
+        private bool _upcomingLoaded;
         private bool _showsLoaded;
         private bool _genresLoaded;
 
@@ -60,6 +61,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
 
         public List<BaseItemDto> NextUpList { get; set; }
         public List<BaseItemDto> LatestUnwatched { get; set; }
+        public List<Group<BaseItemDto>> Upcoming { get; set; }
         public List<Group<BaseItemDto>> Shows { get; set; }
         public List<BaseItemDto> Genres { get; set; }
 
@@ -123,12 +125,45 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                 Log.Info("Getting next up items");
 
                 var itemResponse = await _apiClient.GetNextUpAsync(query);
-                
+
                 return SetNextUpItems(itemResponse);
             }
             catch (HttpException ex)
             {
                 Log.ErrorException("GetNextUp()", ex);
+            }
+
+            SetProgressBar();
+
+            return false;
+        }
+
+        private async Task<bool> GetUpcoming()
+        {
+            try
+            {
+                SetProgressBar(AppResources.SysTrayGettingUpcoming);
+
+                var query = new ItemQuery
+                {
+                    UserId = AuthenticationService.Current.LoggedInUser.Id,
+                    SortBy = new[] { ItemSortBy.PremiereDate, ItemSortBy.AirTime, ItemSortBy.SortName },
+                    Fields = new[] { ItemFields.ParentId },
+                    IncludeItemTypes = new[] { "Episode" },
+                    Limit = 30,
+                    Recursive = true,
+                    IsUnaired = false
+                };
+
+                Log.Info("Getting upcoming items");
+
+                var itemResponse = await _apiClient.GetItemsAsync(query);
+
+                return SetUpcomingItems(itemResponse);
+            }
+            catch (HttpException ex)
+            {
+                Utils.HandleHttpException(ex, "GetUpcoming()", _navigationService, Log);
             }
 
             SetProgressBar();
@@ -145,12 +180,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                 var query = new ItemQuery
                 {
                     UserId = AuthenticationService.Current.LoggedInUser.Id,
-                    SortBy = new[] {"DateCreated"},
+                    SortBy = new[] { "DateCreated" },
                     SortOrder = SortOrder.Descending,
-                    IncludeItemTypes = new[] {"Episode"},
+                    IncludeItemTypes = new[] { "Episode" },
                     Limit = 8,
-                    Fields = new[] {ItemFields.PrimaryImageAspectRatio, ItemFields.ParentId},
-                    Filters = new[] {ItemFilter.IsUnplayed},
+                    Fields = new[] { ItemFields.PrimaryImageAspectRatio, ItemFields.ParentId },
+                    Filters = new[] { ItemFilter.IsUnplayed },
                     IsMissing = App.SpecificSettings.ShowMissingEpisodes,
                     IsUnaired = App.SpecificSettings.ShowUnairedEpisodes,
                     Recursive = true
@@ -184,7 +219,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                     SortBy = new[] { "SortName" },
                     SortOrder = SortOrder.Ascending,
                     IncludeItemTypes = new[] { "Series" },
-                    Fields = new[] {  ItemFields.DateCreated },
+                    Fields = new[] { ItemFields.DateCreated },
                     Recursive = true
                 };
 
@@ -274,14 +309,35 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
 
         private bool SetNextUpItems(ItemsResult itemResponse)
         {
-            SetProgressBar(); 
-            
+            SetProgressBar();
+
             if (itemResponse == null || !itemResponse.Items.Any())
             {
                 return false;
             }
 
             NextUpList = itemResponse.Items.ToList();
+
+            return true;
+        }
+
+        private bool SetUpcomingItems(ItemsResult itemResponse)
+        {
+            SetProgressBar();
+
+            if (itemResponse == null || !itemResponse.Items.Any())
+            {
+                return false;
+            }
+
+            var upcomingItems = itemResponse.Items;
+            var groupedItems = (from u in upcomingItems
+                                group u by u.PremiereDate
+                                    into grp
+                                    orderby grp.Key
+                                    select new Group<BaseItemDto>(Utils.CoolDateName(grp.Key), grp)).ToList();
+
+            Upcoming = groupedItems;
 
             return true;
         }
@@ -313,6 +369,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                     _nextUpLoaded = await GetNextUp();
                     break;
                 case 2:
+                    if (!_navigationService.IsNetworkAvailable || (_upcomingLoaded && !isRefresh))
+                    {
+                        return;
+                    }
+
+                    _upcomingLoaded = await GetUpcoming();
+                    break;
+                case 3:
                     if (!_navigationService.IsNetworkAvailable || (_showsLoaded && !isRefresh))
                     {
                         return;
@@ -320,7 +384,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
 
                     _showsLoaded = await GetShows();
                     break;
-                case 3:
+                case 4:
                     if (!_navigationService.IsNetworkAvailable || (_genresLoaded && !isRefresh))
                     {
                         return;

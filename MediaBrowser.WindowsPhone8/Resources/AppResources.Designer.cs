@@ -1267,6 +1267,24 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Today.
+        /// </summary>
+        public static string LabelScheduleToday {
+            get {
+                return ResourceManager.GetString("LabelScheduleToday", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tomorrow.
+        /// </summary>
+        public static string LabelScheduleTomorrow {
+            get {
+                return ResourceManager.GetString("LabelScheduleTomorrow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to search.
         /// </summary>
         public static string LabelSearch {
@@ -1407,6 +1425,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string LabelUnwatched {
             get {
                 return ResourceManager.GetString("LabelUnwatched", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to upcoming.
+        /// </summary>
+        public static string LabelUpcoming {
+            get {
+                return ResourceManager.GetString("LabelUpcoming", resourceCulture);
             }
         }
         
@@ -1902,6 +1929,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string SysTrayGettingUnwatchedItems {
             get {
                 return ResourceManager.GetString("SysTrayGettingUnwatchedItems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Getting upcoming episodes....
+        /// </summary>
+        public static string SysTrayGettingUpcoming {
+            get {
+                return ResourceManager.GetString("SysTrayGettingUpcoming", resourceCulture);
             }
         }
         

@@ -2,7 +2,7 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
   <file datatype="xml" source-language="en-GB" target-language="qps-ploc" original="AppResources.resx" tool-id="MultilingualAppToolkit" product-name="MediaBrowser.WindowsPhone8" product-version="1.0.0.0" build-num="0">
     <header>
-      <tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="2.1.2010.0" tool-company="Microsoft" />
+      <tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="2.2.1212.0" tool-company="Microsoft" />
     </header>
     <body>
       <group id="Resx">
@@ -850,6 +850,22 @@
         <trans-unit translate="yes" id="Resx/LabelWelcomeTextPhone7" xml:space="preserve">
           <source>Welcome to Media Browser for Windows Phone. This app will allow you to browse your media collection and remotely control any of the controllable Media Browser clients.</source>
           <target state="new">Welcome to Media Browser for Windows Phone. This app will allow you to browse your media collection and remotely control any of the controllable Media Browser clients.</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SysTrayGettingUpcoming" xml:space="preserve">
+          <source>Getting upcoming episodes...</source>
+          <target state="new">Getting upcoming episodes...</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelScheduleTomorrow" xml:space="preserve">
+          <source>Tomorrow</source>
+          <target state="new">Tomorrow</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelScheduleToday" xml:space="preserve">
+          <source>Today</source>
+          <target state="new">Today</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelUpcoming" xml:space="preserve">
+          <source>upcoming</source>
+          <target state="new">upcoming</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/LabelReleasedIn" xml:space="preserve">
           <source>Released in</source>

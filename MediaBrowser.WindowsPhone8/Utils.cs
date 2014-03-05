@@ -382,5 +382,22 @@ namespace MediaBrowser.WindowsPhone
 
             return true;
         }
+
+        internal static string CoolDateName(DateTime? dateTime)
+        {
+            if (!dateTime.HasValue)
+            {
+                return string.Empty;
+            }
+
+            var theDate = dateTime.Value.Date;
+            var today = DateTime.Now.Date;
+            if (theDate == today)
+            {
+                return AppResources.LabelScheduleToday;
+            }
+
+            return theDate == today.AddDays(1) ? AppResources.LabelScheduleTomorrow : theDate.ToLongDateString();
+        }
     }
 }
