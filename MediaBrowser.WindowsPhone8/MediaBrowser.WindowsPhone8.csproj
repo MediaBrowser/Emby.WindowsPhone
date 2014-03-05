@@ -15,7 +15,7 @@
     <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
     <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
     <SilverlightApplication>true</SilverlightApplication>
-    <SupportedCultures>de;en-US;fr;nl;pt;qps-ploc;sv</SupportedCultures>
+    <SupportedCultures>de;el-GR;en-US;fr;hi-IN;nl;pt;qps-ploc;sv</SupportedCultures>
     <XapOutputs>true</XapOutputs>
     <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
     <XapFilename>MediaBrowser.WindowsPhone.WP8.xap</XapFilename>
@@ -605,6 +605,12 @@
       <DependentUpon>AppResources.de.xlf</DependentUpon>
       <culture>de</culture>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\AppResources.el-GR.resx">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AppResources.el-GR.xlf</DependentUpon>
+      <culture>el-GR</culture>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\AppResources.en-US.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResources.en-US.Designer.cs</LastGenOutput>
@@ -618,6 +624,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.fr.xlf</DependentUpon>
       <culture>fr</culture>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\AppResources.hi-IN.resx">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AppResources.hi-IN.xlf</DependentUpon>
+      <culture>hi-IN</culture>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\AppResources.nl.resx">
       <AutoGen>True</AutoGen>
@@ -807,6 +819,10 @@
       <Generator>XliffResxGenerator</Generator>
       <LastGenOutput>AppResources.de.resx</LastGenOutput>
     </XliffResource>
+    <XliffResource Include="Resources\AppResources.el-GR.xlf">
+      <Generator>XliffResxGenerator</Generator>
+      <LastGenOutput>AppResources.el-GR.resx</LastGenOutput>
+    </XliffResource>
     <XliffResource Include="Resources\AppResources.en-US.xlf">
       <Generator>XliffResxGenerator</Generator>
       <LastGenOutput>AppResources.en-US.resx</LastGenOutput>
@@ -814,6 +830,10 @@
     <XliffResource Include="Resources\AppResources.fr.xlf">
       <Generator>XliffResxGenerator</Generator>
       <LastGenOutput>AppResources.fr.resx</LastGenOutput>
+    </XliffResource>
+    <XliffResource Include="Resources\AppResources.hi-IN.xlf">
+      <Generator>XliffResxGenerator</Generator>
+      <LastGenOutput>AppResources.hi-IN.resx</LastGenOutput>
     </XliffResource>
     <XliffResource Include="Resources\AppResources.nl.xlf">
       <Generator>XliffResxGenerator</Generator>

@@ -3,8 +3,10 @@
   <DefaultLanguage xmlns="" code="en-GB" />
   <Languages xmlns="">
     <Language code="de" />
+    <Language code="el-GR" />
     <Language code="en-US" />
     <Language code="fr" />
+    <Language code="hi-IN" />
     <Language code="nl" />
     <Language code="pt" />
     <Language code="qps-ploc" />
