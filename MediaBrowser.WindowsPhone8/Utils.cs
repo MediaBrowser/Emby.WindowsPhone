@@ -372,7 +372,10 @@ namespace MediaBrowser.WindowsPhone
                 return false;
             }
 
-            if (item.LocationType == LocationType.Virtual || !item.IsVideo || item.PlayAccess != PlayAccess.Full)
+            if (item.LocationType == LocationType.Virtual
+                || !item.IsVideo 
+                || item.PlayAccess != PlayAccess.Full 
+                || (item.IsPlaceHolder.HasValue && item.IsPlaceHolder.Value))
             {
                 return false;
             }
