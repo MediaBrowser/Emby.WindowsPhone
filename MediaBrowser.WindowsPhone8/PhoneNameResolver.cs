@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2013 by Alan Mendelevich
  * 
  * Licensed under MIT license.
@@ -6,7 +6,10 @@
  * See license.txt for details.
 */
 
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
 namespace Ailon.WP.Utils
 {
@@ -26,6 +29,8 @@ namespace Ailon.WP.Utils
                     return ResolveSamsung(manufacturer, model);
                 case "LG":
                     return ResolveLg(manufacturer, model);
+                case "HUAWEI":
+                    return ResolveHuawei(manufacturer, model);
                 default:
                     return new CanonicalPhoneName()
                     {
@@ -38,6 +43,52 @@ namespace Ailon.WP.Utils
 
             }
         }
+
+
+        
+        private static CanonicalPhoneName ResolveHuawei(string manufacturer, string model)
+        {
+            var modelNormalized = model.Trim().ToUpper();
+
+            var result = new CanonicalPhoneName()
+            {
+                ReportedManufacturer = manufacturer,
+                ReportedModel = model,
+                CanonicalManufacturer = "HUAWEI",
+                CanonicalModel = model,
+                IsResolved = false
+            };
+
+            
+            var lookupValue = modelNormalized;
+
+            if (lookupValue.StartsWith("HUAWEI H883G"))
+            {
+                lookupValue = "HUAWEI H883G";
+            }
+
+            if (lookupValue.StartsWith("HUAWEI W1"))
+            {
+                lookupValue = "HUAWEI W1";
+            }
+
+            if (modelNormalized.StartsWith("HUAWEI W2"))
+            {
+                lookupValue = "HUAWEI W2";
+            }
+
+            if (huaweiLookupTable.ContainsKey(lookupValue))
+            {
+                var modelMetadata = huaweiLookupTable[lookupValue];
+                    result.CanonicalModel = modelMetadata.CanonicalModel;
+                    result.Comments = modelMetadata.Comments;
+                    result.IsResolved = true;
+            }
+
+            return result;
+        }
+
+
 
         private static CanonicalPhoneName ResolveLg(string manufacturer, string model)
         {
@@ -177,13 +228,25 @@ namespace Ailon.WP.Utils
             if (nokiaLookupTable.ContainsKey(lookupValue))
             {
                 var modelMetadata = nokiaLookupTable[lookupValue];
-                result.CanonicalModel = modelMetadata.CanonicalModel;
-                result.Comments = modelMetadata.Comments;
-                result.IsResolved = true;
+                    result.CanonicalModel = modelMetadata.CanonicalModel;
+                    result.Comments = modelMetadata.Comments;
+                    result.IsResolved = true;
             }
 
             return result;
         }
+
+
+        private static Dictionary<string, CanonicalPhoneName> huaweiLookupTable = new Dictionary<string, CanonicalPhoneName>()
+        {
+            // Huawei W1
+            { "HUAWEI H883G", new CanonicalPhoneName() { CanonicalModel = "Ascend W1" } },
+            { "HUAWEI W1", new CanonicalPhoneName() { CanonicalModel = "Ascend W1" } },
+            
+            // Huawei Ascend W2
+            { "HUAWEI W2", new CanonicalPhoneName() { CanonicalModel = "Ascend W2" } },
+        };
+
 
         private static Dictionary<string, CanonicalPhoneName> lgLookupTable = new Dictionary<string, CanonicalPhoneName>()
         {
@@ -231,6 +294,11 @@ namespace Ailon.WP.Utils
 
             // ATIV Odyssey
             { "SCH-I930", new CanonicalPhoneName() { CanonicalModel = "ATIV Odyssey" } },
+            { "SCH-R860U", new CanonicalPhoneName() { CanonicalModel = "ATIV Odyssey", Comments="US Cellular" } },
+
+            // ATIV S Neo
+            { "SPH-I800", new CanonicalPhoneName() { CanonicalModel = "ATIV S Neo", Comments="Sprint" } },
+            { "SGH-I187", new CanonicalPhoneName() { CanonicalModel = "ATIV S Neo", Comments="AT&T" } },
         };
 
         private static Dictionary<string, CanonicalPhoneName> htcLookupTable = new Dictionary<string, CanonicalPhoneName>()
@@ -297,6 +365,9 @@ namespace Ailon.WP.Utils
             { "HTC6990LVW", new CanonicalPhoneName() { CanonicalModel = "8X", Comments="Verizon" } },
             { "PM23300", new CanonicalPhoneName() { CanonicalModel = "8X", Comments="AT&T" } },
             { "WINDOWS PHONE 8X BY HTC", new CanonicalPhoneName() { CanonicalModel = "8X" } },
+
+            // 8XT
+            { "HTCPO881 SPRINT", new CanonicalPhoneName() { CanonicalModel = "8XT", Comments="Sprint" } },
 
             // Titan
             { "ETERNITY", new CanonicalPhoneName() { CanonicalModel = "Titan", Comments = "China" } },
@@ -372,11 +443,29 @@ namespace Ailon.WP.Utils
             // Lumia 925
             { "RM-892", new CanonicalPhoneName() { CanonicalModel = "Lumia 925" } },
             { "RM-893", new CanonicalPhoneName() { CanonicalModel = "Lumia 925" } },
-            { "RM-910", new CanonicalPhoneName() { CanonicalModel = "Lumia 925", Comments="China 925T" } },
+            { "RM-910", new CanonicalPhoneName() { CanonicalModel = "Lumia 925" } },
+            { "RM-955", new CanonicalPhoneName() { CanonicalModel = "Lumia 925", Comments="China 925T" } },
             // Lumia 1020
             { "RM-875", new CanonicalPhoneName() { CanonicalModel = "Lumia 1020" } },
             { "RM-876", new CanonicalPhoneName() { CanonicalModel = "Lumia 1020" } },
             { "RM-877", new CanonicalPhoneName() { CanonicalModel = "Lumia 1020" } },
+            // Lumia 625
+            { "RM-941", new CanonicalPhoneName() { CanonicalModel = "Lumia 625" } },
+            { "RM-942", new CanonicalPhoneName() { CanonicalModel = "Lumia 625" } },
+            { "RM-943", new CanonicalPhoneName() { CanonicalModel = "Lumia 625" } },
+            // Lumia 1520
+            { "RM-937", new CanonicalPhoneName() { CanonicalModel = "Lumia 1520" } },
+            { "RM-938", new CanonicalPhoneName() { CanonicalModel = "Lumia 1520", Comments="AT&T" } },
+            { "RM-939", new CanonicalPhoneName() { CanonicalModel = "Lumia 1520" } },
+            { "RM-940", new CanonicalPhoneName() { CanonicalModel = "Lumia 1520", Comments="AT&T" } },
+            // Lumia 525
+            { "RM-998", new CanonicalPhoneName() { CanonicalModel = "Lumia 525" } },
+            // Lumia 1320
+            { "RM-994", new CanonicalPhoneName() { CanonicalModel = "Lumia 1320" } },
+            { "RM-995", new CanonicalPhoneName() { CanonicalModel = "Lumia 1320" } },
+            { "RM-996", new CanonicalPhoneName() { CanonicalModel = "Lumia 1320" } },
+            // Lumia Icon
+            { "RM-927", new CanonicalPhoneName() { CanonicalModel = "Lumia Icon", Comments="Verizon" } },
         };
     }
 
@@ -396,4 +485,3 @@ namespace Ailon.WP.Utils
     }
 
 }
-
