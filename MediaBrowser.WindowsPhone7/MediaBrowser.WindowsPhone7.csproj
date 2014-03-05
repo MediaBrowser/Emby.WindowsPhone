@@ -16,7 +16,7 @@
     <TargetFrameworkProfile>WindowsPhone71</TargetFrameworkProfile>
     <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
     <SilverlightApplication>true</SilverlightApplication>
-    <SupportedCultures>de;en-US;fr;nl;qps-ploc</SupportedCultures>
+    <SupportedCultures>de;en-US;fr;nl;pt;qps-ploc;sv</SupportedCultures>
     <XapOutputs>true</XapOutputs>
     <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
     <XapFilename>MediaBrowser.WindowsPhone.WP7.xap</XapFilename>
@@ -931,6 +931,13 @@
       <DependentUpon>AppResources.nl.xlf</DependentUpon>
       <culture>nl</culture>
     </EmbeddedResource>
+    <EmbeddedResource Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.pt.resx">
+      <Link>Resources\AppResources.pt.resx</Link>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AppResources.pt.xlf</DependentUpon>
+      <culture>pt</culture>
+    </EmbeddedResource>
     <EmbeddedResource Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.qps-ploc.resx">
       <Link>Resources\AppResources.qps-ploc.resx</Link>
       <DependentUpon>AppResources.qps-ploc.xlf</DependentUpon>
@@ -942,6 +949,13 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.sv.resx">
+      <Link>Resources\AppResources.sv.resx</Link>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AppResources.sv.xlf</DependentUpon>
+      <culture>sv</culture>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -973,6 +987,16 @@
       <Link>Resources\AppResources.nl.xlf</Link>
       <Generator>XliffResxGenerator</Generator>
       <LastGenOutput>AppResources.nl.resx</LastGenOutput>
+    </XliffResource>
+    <XliffResource Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.pt.xlf">
+      <Link>Resources\AppResources.pt.xlf</Link>
+      <Generator>XliffResxGenerator</Generator>
+      <LastGenOutput>AppResources.pt.resx</LastGenOutput>
+    </XliffResource>
+    <XliffResource Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.sv.xlf">
+      <Link>Resources\AppResources.sv.xlf</Link>
+      <Generator>XliffResxGenerator</Generator>
+      <LastGenOutput>AppResources.sv.resx</LastGenOutput>
     </XliffResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />

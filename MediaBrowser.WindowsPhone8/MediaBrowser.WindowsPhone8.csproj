@@ -15,7 +15,7 @@
     <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
     <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
     <SilverlightApplication>true</SilverlightApplication>
-    <SupportedCultures>de;en-US;fr;nl;qps-ploc</SupportedCultures>
+    <SupportedCultures>de;en-US;fr;nl;pt;qps-ploc;sv</SupportedCultures>
     <XapOutputs>true</XapOutputs>
     <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
     <XapFilename>MediaBrowser.WindowsPhone.WP8.xap</XapFilename>
@@ -625,6 +625,12 @@
       <DependentUpon>AppResources.nl.xlf</DependentUpon>
       <culture>nl</culture>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\AppResources.pt.resx">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AppResources.pt.xlf</DependentUpon>
+      <culture>pt</culture>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\AppResources.qps-ploc.resx">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -635,6 +641,12 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\AppResources.sv.resx">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AppResources.sv.xlf</DependentUpon>
+      <culture>sv</culture>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -807,9 +819,17 @@
       <Generator>XliffResxGenerator</Generator>
       <LastGenOutput>AppResources.nl.resx</LastGenOutput>
     </XliffResource>
+    <XliffResource Include="Resources\AppResources.pt.xlf">
+      <Generator>XliffResxGenerator</Generator>
+      <LastGenOutput>AppResources.pt.resx</LastGenOutput>
+    </XliffResource>
     <XliffResource Include="Resources\AppResources.qps-ploc.xlf">
       <Generator>XliffResxGenerator</Generator>
       <LastGenOutput>AppResources.qps-ploc.resx</LastGenOutput>
+    </XliffResource>
+    <XliffResource Include="Resources\AppResources.sv.xlf">
+      <Generator>XliffResxGenerator</Generator>
+      <LastGenOutput>AppResources.sv.resx</LastGenOutput>
     </XliffResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />

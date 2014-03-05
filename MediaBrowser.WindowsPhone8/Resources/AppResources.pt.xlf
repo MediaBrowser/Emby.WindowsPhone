@@ -1,0 +1,894 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
+  <file datatype="xml" source-language="en-GB" target-language="pt" original="AppResources.resx" tool-id="MultilingualAppToolkit" product-name="MediaBrowser.WindowsPhone8" product-version="1.0.0.0" build-num="0">
+    <header>
+      <tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="2.2.1212.0" tool-company="Microsoft" />
+    </header>
+    <body>
+      <group id="Resx">
+        <trans-unit id="Resx/AppBarAbout" translate="yes" xml:space="preserve">
+          <source>about</source>
+          <target state="new">about</target>
+        </trans-unit>
+        <trans-unit id="Resx/AppBarAddToNowPlaying" translate="yes" xml:space="preserve">
+          <source>add to now playing</source>
+          <target state="new">add to now playing</target>
+        </trans-unit>
+        <trans-unit id="Resx/AppBarChangeProfile" translate="yes" xml:space="preserve">
+          <source>change profile</source>
+          <target state="new">change profile</target>
+        </trans-unit>
+        <trans-unit id="Resx/AppBarClearNowPlaying" translate="yes" xml:space="preserve">
+          <source>clear now playing</source>
+          <target state="new">clear now playing</target>
+        </trans-unit>
+        <trans-unit id="Resx/AppBarDeleteItems" translate="yes" xml:space="preserve">
+          <source>delete items</source>
+          <target state="new">delete items</target>
+        </trans-unit>
+        <trans-unit id="Resx/AppBarGroupBy" translate="yes" xml:space="preserve">
+          <source>group by</source>
+          <target state="new">group by</target>
+        </trans-unit>
+        <trans-unit id="Resx/AppBarLogin" translate="yes" xml:space="preserve">
+          <source>login</source>
+          <target state="new">login</target>
+        </trans-unit>
+        <trans-unit id="Resx/AppBarMarkAsUnwatched" translate="yes" xml:space="preserve">
+          <source>mark as unwatched</source>
+          <target state="new">mark as unwatched</target>
+        </trans-unit>
+        <trans-unit id="Resx/AppBarMarkAsWatched" translate="yes" xml:space="preserve">
+          <source>mark as watched</source>
+          <target state="new">mark as watched</target>
+        </trans-unit>
+        <trans-unit id="Resx/AppBarNext" translate="yes" xml:space="preserve">
+          <source>next</source>
+          <target state="new">next</target>
+        </trans-unit>
+        <trans-unit id="Resx/AppBarNotifications" translate="yes" xml:space="preserve">
+          <source>notifications</source>
+          <target state="new">notifications</target>
+        </trans-unit>
+        <trans-unit id="Resx/AppBarNowPlaying" translate="yes" xml:space="preserve">
+          <source>now playing</source>
+          <target state="new">now playing</target>
+        </trans-unit>
+        <trans-unit id="Resx/AppBarPause" translate="yes" xml:space="preserve">
+          <source>pause</source>
+          <target state="new">pause</target>
+        </trans-unit>
+        <trans-unit id="Resx/AppBarPlay" translate="yes" xml:space="preserve">
+          <source>play</source>
+          <target state="new">play</target>
+        </trans-unit>
+        <trans-unit id="Resx/AppBarPlayAll" translate="yes" xml:space="preserve">
+          <source>play all</source>
+          <target state="new">play all</target>
+        </trans-unit>
+        <trans-unit id="Resx/AppBarPlayAllTracks" translate="yes" xml:space="preserve">
+          <source>play all tracks</source>
+          <target state="new">play all tracks</target>
+        </trans-unit>
+        <trans-unit id="Resx/AppBarPlayItems" translate="yes" xml:space="preserve">
+          <source>play items</source>
+          <target state="new">play items</target>
+        </trans-unit>
+        <trans-unit id="Resx/AppBarPlayOn" translate="yes" xml:space="preserve">
+          <source>play on...</source>
+          <target state="new">play on...</target>
+        </trans-unit>
+        <trans-unit id="Resx/AppBarPosterLockscreen" translate="yes" xml:space="preserve">
+          <source>set poster as lock screen</source>
+          <target state="new">set poster as lock screen</target>
+        </trans-unit>
+        <trans-unit id="Resx/AppBarPrevious" translate="yes" xml:space="preserve">
+          <source>previous</source>
+          <target state="new">previous</target>
+        </trans-unit>
+        <trans-unit id="Resx/AppBarRefresh" translate="yes" xml:space="preserve">
+          <source>refresh</source>
+          <target state="new">refresh</target>
+        </trans-unit>
+        <trans-unit id="Resx/AppBarRefreshInformation" translate="yes" xml:space="preserve">
+          <source>refresh information</source>
+          <target state="new">refresh information</target>
+        </trans-unit>
+        <trans-unit id="Resx/AppBarRemote" translate="yes" xml:space="preserve">
+          <source>remote</source>
+          <target state="new">remote</target>
+        </trans-unit>
+        <trans-unit id="Resx/AppBarResume" translate="yes" xml:space="preserve">
+          <source>resume</source>
+          <target state="new">resume</target>
+        </trans-unit>
+        <trans-unit id="Resx/AppBarSearch" translate="yes" xml:space="preserve">
+          <source>search</source>
+          <target state="new">search</target>
+        </trans-unit>
+        <trans-unit id="Resx/AppBarSelectItems" translate="yes" xml:space="preserve">
+          <source>select items</source>
+          <target state="new">select items</target>
+        </trans-unit>
+        <trans-unit id="Resx/AppBarSendLogs" translate="yes" xml:space="preserve">
+          <source>send logs</source>
+          <target state="new">send logs</target>
+        </trans-unit>
+        <trans-unit id="Resx/AppBarSettings" translate="yes" xml:space="preserve">
+          <source>settings</source>
+          <target state="new">settings</target>
+        </trans-unit>
+        <trans-unit id="Resx/Collections" translate="yes" xml:space="preserve">
+          <source>Folders</source>
+          <target state="new">Folders</target>
+        </trans-unit>
+        <trans-unit id="Resx/DeviceNotRegistered" translate="yes" xml:space="preserve">
+          <source>Device not registered</source>
+          <target state="new">Device not registered</target>
+        </trans-unit>
+        <trans-unit id="Resx/DeviceRegistered" translate="yes" xml:space="preserve">
+          <source>Device registered</source>
+          <target state="new">Device registered</target>
+        </trans-unit>
+        <trans-unit id="Resx/ErrorConnectionDetailsInvalid" translate="yes" xml:space="preserve">
+          <source>Connection details are invalid, please try again.</source>
+          <target state="new">Connection details are invalid, please try again.</target>
+        </trans-unit>
+        <trans-unit id="Resx/ErrorConnectionDetailsMessage" translate="yes" xml:space="preserve">
+          <source>No connection details have been set, would you like to set them now?</source>
+          <target state="new">No connection details have been set, would you like to set them now?</target>
+        </trans-unit>
+        <trans-unit id="Resx/ErrorConnectionDetailsTitle" translate="yes" xml:space="preserve">
+          <source>No connection details</source>
+          <target state="new">No connection details</target>
+        </trans-unit>
+        <trans-unit id="Resx/ErrorCouldNotFindServer" translate="yes" xml:space="preserve">
+          <source>Could not find your server.</source>
+          <target state="new">Could not find your server.</target>
+        </trans-unit>
+        <trans-unit id="Resx/ErrorDisabledUser" translate="yes" xml:space="preserve">
+          <source>Sorry, it looks like this account has been disabled. We will now take you back to the login screen.</source>
+          <target state="new">Sorry, it looks like this account has been disabled. We will now take you back to the login screen.</target>
+        </trans-unit>
+        <trans-unit id="Resx/ErrorDisabledUserTitle" translate="yes" xml:space="preserve">
+          <source>Unable to sign in</source>
+          <target state="new">Unable to sign in</target>
+        </trans-unit>
+        <trans-unit id="Resx/ErrorEpisodeDetails" translate="yes" xml:space="preserve">
+          <source>Error downloading episode details</source>
+          <target state="new">Error downloading episode details</target>
+        </trans-unit>
+        <trans-unit id="Resx/ErrorEpisodes" translate="yes" xml:space="preserve">
+          <source>Error getting episodes</source>
+          <target state="new">Error getting episodes</target>
+        </trans-unit>
+        <trans-unit id="Resx/ErrorFailedToSearch" translate="yes" xml:space="preserve">
+          <source>Failed to run search</source>
+          <target state="new">Failed to run search</target>
+        </trans-unit>
+        <trans-unit id="Resx/ErrorGettingData" translate="yes" xml:space="preserve">
+          <source>Error getting data</source>
+          <target state="new">Error getting data</target>
+        </trans-unit>
+        <trans-unit id="Resx/ErrorGettingExtraInfo" translate="yes" xml:space="preserve">
+          <source>Error getting extra information</source>
+          <target state="new">Error getting extra information</target>
+        </trans-unit>
+        <trans-unit id="Resx/ErrorGettingTrailerDetails" translate="yes" xml:space="preserve">
+          <source>Unable to get the trailer information</source>
+          <target state="new">Unable to get the trailer information</target>
+        </trans-unit>
+        <trans-unit id="Resx/ErrorInvalidHostname" translate="yes" xml:space="preserve">
+          <source>Sorry, your hostname is invalid, please make sure you don't have any spaces (for example) in it.</source>
+          <target state="new">Sorry, your hostname is invalid, please make sure you don't have any spaces (for example) in it.</target>
+        </trans-unit>
+        <trans-unit id="Resx/ErrorMakingChanges" translate="yes" xml:space="preserve">
+          <source>Error making your changes</source>
+          <target state="new">Error making your changes</target>
+        </trans-unit>
+        <trans-unit id="Resx/ErrorNoConnectionSettings" translate="yes" xml:space="preserve">
+          <source>No connection settings, tap to set</source>
+          <target state="new">No connection settings, tap to set</target>
+        </trans-unit>
+        <trans-unit id="Resx/ErrorProblemUpdatingItem" translate="yes" xml:space="preserve">
+          <source>There was a problem updating this item, please try again later.</source>
+          <target state="new">There was a problem updating this item, please try again later.</target>
+        </trans-unit>
+        <trans-unit id="Resx/ErrorRecentItems" translate="yes" xml:space="preserve">
+          <source>Error getting recent items</source>
+          <target state="new">Error getting recent items</target>
+        </trans-unit>
+        <trans-unit id="Resx/ErrorSeasons" translate="yes" xml:space="preserve">
+          <source>Error getting seasons</source>
+          <target state="new">Error getting seasons</target>
+        </trans-unit>
+        <trans-unit id="Resx/ErrorTitle" translate="yes" xml:space="preserve">
+          <source>Error</source>
+          <target state="new">Error</target>
+        </trans-unit>
+        <trans-unit id="Resx/ErrorUnableToSignIn" translate="yes" xml:space="preserve">
+          <source>We were unable to sign you in at this time, this could be due to an incorrect username/password, or your account has been disabled.</source>
+          <target state="new">We were unable to sign you in at this time, this could be due to an incorrect username/password, or your account has been disabled.</target>
+        </trans-unit>
+        <trans-unit id="Resx/ErrorUnableToSignInTitle" translate="yes" xml:space="preserve">
+          <source>Login unsuccessful</source>
+          <target state="new">Login unsuccessful</target>
+        </trans-unit>
+        <trans-unit id="Resx/Favourites" translate="yes" xml:space="preserve">
+          <source>Favourites</source>
+          <target state="new">Favourites</target>
+        </trans-unit>
+        <trans-unit id="Resx/Genre" translate="yes" xml:space="preserve">
+          <source>genre</source>
+          <target state="new">genre</target>
+        </trans-unit>
+        <trans-unit id="Resx/HeaderChooseClient" translate="yes" xml:space="preserve">
+          <source>Choose a client</source>
+          <target state="new">Choose a client</target>
+        </trans-unit>
+        <trans-unit id="Resx/HeaderDefaultGrouping" translate="yes" xml:space="preserve">
+          <source>Default grouping</source>
+          <target state="new">Default grouping</target>
+        </trans-unit>
+        <trans-unit id="Resx/HeaderFromCollection" translate="yes" xml:space="preserve">
+          <source>From collection (where applicable):</source>
+          <target state="new">From collection (where applicable):</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelActor" translate="yes" xml:space="preserve">
+          <source>Actor</source>
+          <target state="new">Actor</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelAdd" translate="yes" xml:space="preserve">
+          <source>add</source>
+          <target state="new">add</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelAddToFavourites" translate="yes" xml:space="preserve">
+          <source>Add to favourites</source>
+          <target state="new">Add to favourites</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelAlbums" translate="yes" xml:space="preserve">
+          <source>albums</source>
+          <target state="new">albums</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelAnHourAgo" translate="yes" xml:space="preserve">
+          <source>an hour ago</source>
+          <target state="new">an hour ago</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelArtists" translate="yes" xml:space="preserve">
+          <source>artists</source>
+          <target state="new">artists</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelBio" translate="yes" xml:space="preserve">
+          <source>bio</source>
+          <target state="new">bio</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelBoxsets" translate="yes" xml:space="preserve">
+          <source>boxsets</source>
+          <target state="new">boxsets</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelCastCrew" translate="yes" xml:space="preserve">
+          <source>cast + crew</source>
+          <target state="new">cast + crew</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelChapters" translate="yes" xml:space="preserve">
+          <source>chapters</source>
+          <target state="new">chapters</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelCollage" translate="yes" xml:space="preserve">
+          <source>Full screen collage</source>
+          <target state="new">Full screen collage</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelConnect" translate="yes" xml:space="preserve">
+          <source>Connect</source>
+          <target state="new">Connect</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelConnection" translate="yes" xml:space="preserve">
+          <source>connection</source>
+          <target state="new">connection</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelConnectionDetails" translate="yes" xml:space="preserve">
+          <source>Put the connection details in to point to the computer running Media Browser 3. Then simply test them to confirm.</source>
+          <target state="new">Put the connection details in to point to the computer running Media Browser 3. Then simply test them to confirm.</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelConnectionWarning" translate="yes" xml:space="preserve">
+          <source>WARNING: Changing the hostname will remove any saved profiles.</source>
+          <target state="new">WARNING: Changing the hostname will remove any saved profiles.</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelDate" translate="yes" xml:space="preserve">
+          <source>date</source>
+          <target state="new">date</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelDaysAgo" translate="yes" xml:space="preserve">
+          <source>{0} days ago</source>
+          <target state="new">{0} days ago</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelDefaultLockScreen" translate="yes" xml:space="preserve">
+          <source>Default lock screen</source>
+          <target state="new">Default lock screen</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelDetails" translate="yes" xml:space="preserve">
+          <source>details</source>
+          <target state="new">details</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelDirector" translate="yes" xml:space="preserve">
+          <source>Director</source>
+          <target state="new">Director</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelDisplayRandomImages" translate="yes" xml:space="preserve">
+          <source>Display random backdrop images on the back of the tile</source>
+          <target state="new">Display random backdrop images on the back of the tile</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelEpisode" translate="yes" xml:space="preserve">
+          <source>Episode</source>
+          <target state="new">Episode</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelFindServer" translate="yes" xml:space="preserve">
+          <source>find server</source>
+          <target state="new">find server</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelFirstRunAccessible" translate="yes" xml:space="preserve">
+          <source>Once the Media Browser server is configured, make sure it's accessible from where you are, whether that's being on your local wireless network, or an external static address.</source>
+          <target state="new">Once the Media Browser server is configured, make sure it's accessible from where you are, whether that's being on your local wireless network, or an external static address.</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelFirstRunHappyConfiguration" translate="yes" xml:space="preserve">
+          <source>If you're happy with what you've configured, click the settings button and enter your server's details, else you can just quit the app from here.</source>
+          <target state="new">If you're happy with what you've configured, click the settings button and enter your server's details, else you can just quit the app from here.</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelFirstRunServerInfo" translate="yes" xml:space="preserve">
+          <source>Before we can get started though, you need to make sure you're running the Media Browser server.</source>
+          <target state="new">Before we can get started though, you need to make sure you're running the Media Browser server.</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelGeneral" translate="yes" xml:space="preserve">
+          <source>general</source>
+          <target state="new">general</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelGenres" translate="yes" xml:space="preserve">
+          <source>genres</source>
+          <target state="new">genres</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelHostname" translate="yes" xml:space="preserve">
+          <source>Hostname:</source>
+          <target state="new">Hostname:</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelHoursAgo" translate="yes" xml:space="preserve">
+          <source>{0} hours ago</source>
+          <target state="new">{0} hours ago</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelImageEnhancers" translate="yes" xml:space="preserve">
+          <source>Enable enhanced images (if installed on the server)</source>
+          <target state="new">Enable enhanced images (if installed on the server)</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelImdb" translate="yes" xml:space="preserve">
+          <source>See film on imdb</source>
+          <target state="new">See film on imdb</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelIsLockScreenProvider" translate="yes" xml:space="preserve">
+          <source>Media Browser is the current lock screen provider</source>
+          <target state="new">Media Browser is the current lock screen provider</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelIsNotLockScreenProvider" translate="yes" xml:space="preserve">
+          <source>Media Browser is not the lock screen provider</source>
+          <target state="new">Media Browser is not the lock screen provider</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelJustShowList" translate="yes" xml:space="preserve">
+          <source>Just show the list of items, not a media folder view</source>
+          <target state="new">Just show the list of items, not a media folder view</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelLatestUnseen" translate="yes" xml:space="preserve">
+          <source>latest unseen</source>
+          <target state="new">latest unseen</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelLiveTv" translate="yes" xml:space="preserve">
+          <source>Live TV</source>
+          <target state="new">Live TV</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelLockScreen" translate="yes" xml:space="preserve">
+          <source>lock screen</source>
+          <target state="new">lock screen</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelLockScreenSettinsg" translate="yes" xml:space="preserve">
+          <source>lock screen settings</source>
+          <target state="new">lock screen settings</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelMakeLockScreenProvider" translate="yes" xml:space="preserve">
+          <source>Make us the lock screen provider</source>
+          <target state="new">Make us the lock screen provider</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelManuallyLogin" translate="yes" xml:space="preserve">
+          <source>Manually login</source>
+          <target state="new">Manually login</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelMinutesAgo" translate="yes" xml:space="preserve">
+          <source>{0} minutes ago</source>
+          <target state="new">{0} minutes ago</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelMissingEpisodes" translate="yes" xml:space="preserve">
+          <source>Show missing episodes</source>
+          <target state="new">Show missing episodes</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelMonthsAgo" translate="yes" xml:space="preserve">
+          <source>{0} months ago</source>
+          <target state="new">{0} months ago</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelMovies" translate="yes" xml:space="preserve">
+          <source>Movies</source>
+          <target state="new">Movies</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelMusic" translate="yes" xml:space="preserve">
+          <source>Music</source>
+          <target state="new">Music</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelNextUp" translate="yes" xml:space="preserve">
+          <source>next up</source>
+          <target state="new">next up</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelNo" translate="yes" xml:space="preserve">
+          <source>no</source>
+          <target state="new">no</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelNoEpisodes" translate="yes" xml:space="preserve">
+          <source>No episodes to show</source>
+          <target state="new">No episodes to show</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelNone" translate="yes" xml:space="preserve">
+          <source>none</source>
+          <target state="new">none</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelNoSeasonsFound" translate="yes" xml:space="preserve">
+          <source>No seasons found</source>
+          <target state="new">No seasons found</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelNotifications" translate="yes" xml:space="preserve">
+          <source>notifications</source>
+          <target state="new">notifications</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelNowPlaying" translate="yes" xml:space="preserve">
+          <source>now playing</source>
+          <target state="new">now playing</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelOneMinuteAgo" translate="yes" xml:space="preserve">
+          <source>one minute ago</source>
+          <target state="new">one minute ago</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelOneMonthAgo" translate="yes" xml:space="preserve">
+          <source>one month ago</source>
+          <target state="new">one month ago</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelOneSecondAgo" translate="yes" xml:space="preserve">
+          <source>one second ago</source>
+          <target state="new">one second ago</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelOther" translate="yes" xml:space="preserve">
+          <source>Other</source>
+          <target state="new">Other</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelOverview" translate="yes" xml:space="preserve">
+          <source>overview</source>
+          <target state="new">overview</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelPassword" translate="yes" xml:space="preserve">
+          <source>password:</source>
+          <target state="new">password:</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelPort" translate="yes" xml:space="preserve">
+          <source>Port:</source>
+          <target state="new">Port:</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelPoster" translate="yes" xml:space="preserve">
+          <source>poster</source>
+          <target state="new">poster</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelProducer" translate="yes" xml:space="preserve">
+          <source>Producer</source>
+          <target state="new">Producer</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelProfile" translate="yes" xml:space="preserve">
+          <source>profile</source>
+          <target state="new">profile</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelProfileNotListed" translate="yes" xml:space="preserve">
+          <source>Profile not listed?</source>
+          <target state="new">Profile not listed?</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelProfiles" translate="yes" xml:space="preserve">
+          <source>profiles</source>
+          <target state="new">profiles</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelQuit" translate="yes" xml:space="preserve">
+          <source>quit</source>
+          <target state="new">quit</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelRandomItems" translate="yes" xml:space="preserve">
+          <source>Random Items</source>
+          <target state="new">Random Items</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelRandomPictures" translate="yes" xml:space="preserve">
+          <source>Random pictures from collection</source>
+          <target state="new">Random pictures from collection</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelRating" translate="yes" xml:space="preserve">
+          <source>Rating:</source>
+          <target state="new">Rating:</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelRecent" translate="yes" xml:space="preserve">
+          <source>Recent</source>
+          <target state="new">Recent</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelRemote" translate="yes" xml:space="preserve">
+          <source>Remote</source>
+          <target state="new">Remote</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelRemove" translate="yes" xml:space="preserve">
+          <source>remove</source>
+          <target state="new">remove</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelRunningTime" translate="yes" xml:space="preserve">
+          <source>Running time:</source>
+          <target state="new">Running time:</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelSearch" translate="yes" xml:space="preserve">
+          <source>search</source>
+          <target state="new">search</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelSeasons" translate="yes" xml:space="preserve">
+          <source>seasons</source>
+          <target state="new">seasons</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelSecondsAgo" translate="yes" xml:space="preserve">
+          <source>{0} seconds ago</source>
+          <target state="new">{0} seconds ago</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelSeries" translate="yes" xml:space="preserve">
+          <source>Series</source>
+          <target state="new">Series</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelShowAllItems" translate="yes" xml:space="preserve">
+          <source>show all items...</source>
+          <target state="new">show all items...</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelShows" translate="yes" xml:space="preserve">
+          <source>shows</source>
+          <target state="new">shows</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelShowTrailers" translate="yes" xml:space="preserve">
+          <source>Show trailers in recent items</source>
+          <target state="new">Show trailers in recent items</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelSinglePoster" translate="yes" xml:space="preserve">
+          <source>Single poster</source>
+          <target state="new">Single poster</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelSongs" translate="yes" xml:space="preserve">
+          <source>songs</source>
+          <target state="new">songs</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelTile" translate="yes" xml:space="preserve">
+          <source>tile</source>
+          <target state="new">tile</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelTileBackInformation" translate="yes" xml:space="preserve">
+          <source>To show off some of the great artwork available for the media you have, the tile will use some of that artwork, here you can choose how that tile will look</source>
+          <target state="new">To show off some of the great artwork available for the media you have, the tile will use some of that artwork, here you can choose how that tile will look</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelTrailers" translate="yes" xml:space="preserve">
+          <source>trailers</source>
+          <target state="new">trailers</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelTv" translate="yes" xml:space="preserve">
+          <source>TV</source>
+          <target state="new">TV</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelUnairedEpisodes" translate="yes" xml:space="preserve">
+          <source>Show unaired episodes</source>
+          <target state="new">Show unaired episodes</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelUnwatched" translate="yes" xml:space="preserve">
+          <source>Unwatched:</source>
+          <target state="new">Unwatched:</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelUsername" translate="yes" xml:space="preserve">
+          <source>username:</source>
+          <target state="new">username:</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelViews" translate="yes" xml:space="preserve">
+          <source>Views</source>
+          <target state="new">Views</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelWelcomeText" translate="yes" xml:space="preserve">
+          <source>Welcome to Media Browser for Windows Phone. This app will allow you to browse your media collection, stream it to your phone and remotely control any of the controllable Media Browser clients.</source>
+          <target state="new">Welcome to Media Browser for Windows Phone. This app will allow you to browse your media collection, stream it to your phone and remotely control any of the controllable Media Browser clients.</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelWriter" translate="yes" xml:space="preserve">
+          <source>Writer</source>
+          <target state="new">Writer</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelYes" translate="yes" xml:space="preserve">
+          <source>yes</source>
+          <target state="new">yes</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelYesterday" translate="yes" xml:space="preserve">
+          <source>yesterday</source>
+          <target state="new">yesterday</target>
+        </trans-unit>
+        <trans-unit id="Resx/MenuPlayFrom" translate="yes" xml:space="preserve">
+          <source>play from</source>
+          <target state="new">play from</target>
+        </trans-unit>
+        <trans-unit id="Resx/MenuPlayFromOn" translate="yes" xml:space="preserve">
+          <source>play from on</source>
+          <target state="new">play from on</target>
+        </trans-unit>
+        <trans-unit id="Resx/MessageAreYouSureTitle" translate="yes" xml:space="preserve">
+          <source>Are you sure?</source>
+          <target state="new">Are you sure?</target>
+        </trans-unit>
+        <trans-unit id="Resx/MessageBoxUnpinText" translate="yes" xml:space="preserve">
+          <source>Are you sure you wish to unpin this tile?</source>
+          <target state="new">Are you sure you wish to unpin this tile?</target>
+        </trans-unit>
+        <trans-unit id="Resx/MessageClearPlayList" translate="yes" xml:space="preserve">
+          <source>Are you sure you want to clear your playlist?</source>
+          <target state="new">Are you sure you want to clear your playlist?</target>
+        </trans-unit>
+        <trans-unit id="Resx/MessageDeletePlaylistItems" translate="yes" xml:space="preserve">
+          <source>Are you sure you wish to delete these items? This cannot be undone.</source>
+          <target state="new">Are you sure you wish to delete these items? This cannot be undone.</target>
+        </trans-unit>
+        <trans-unit id="Resx/MessageExperimentalTitle" translate="yes" xml:space="preserve">
+          <source>Experimental</source>
+          <target state="new">Experimental</target>
+        </trans-unit>
+        <trans-unit id="Resx/MessageExperimentalVideo" translate="yes" xml:space="preserve">
+          <source>Playing this type of video is currently experimental, results may vary, do you wish to continue?</source>
+          <target state="new">Playing this type of video is currently experimental, results may vary, do you wish to continue?</target>
+        </trans-unit>
+        <trans-unit id="Resx/MessageTracksAddedSuccessfully" translate="yes" xml:space="preserve">
+          <source>{0} tracks added successfully.</source>
+          <target state="new">{0} tracks added successfully.</target>
+        </trans-unit>
+        <trans-unit id="Resx/More" translate="yes" xml:space="preserve">
+          <source>more...</source>
+          <target state="new">more...</target>
+        </trans-unit>
+        <trans-unit id="Resx/NameLabel" translate="yes" xml:space="preserve">
+          <source>Name</source>
+          <target state="new">Name</target>
+        </trans-unit>
+        <trans-unit id="Resx/NoItemsFound" translate="yes" xml:space="preserve">
+          <source>No items found</source>
+          <target state="new">No items found</target>
+        </trans-unit>
+        <trans-unit id="Resx/PinToStart" translate="yes" xml:space="preserve">
+          <source>Pin to start</source>
+          <target state="new">Pin to start</target>
+        </trans-unit>
+        <trans-unit id="Resx/ProductionYear" translate="yes" xml:space="preserve">
+          <source>production year</source>
+          <target state="new">production year</target>
+        </trans-unit>
+        <trans-unit id="Resx/RemoveFromFavouritesFull" translate="yes" xml:space="preserve">
+          <source>Remove from favourites</source>
+          <target state="new">Remove from favourites</target>
+        </trans-unit>
+        <trans-unit id="Resx/ResourceLanguage" translate="yes" xml:space="preserve">
+          <source>en-GB</source>
+          <target state="translated">pt</target>
+        </trans-unit>
+        <trans-unit id="Resx/Settings" translate="yes" xml:space="preserve">
+          <source>Settings</source>
+          <target state="new">Settings</target>
+        </trans-unit>
+        <trans-unit id="Resx/SysTrayAddingToFavourites" translate="yes" xml:space="preserve">
+          <source>Adding to favourites...</source>
+          <target state="new">Adding to favourites...</target>
+        </trans-unit>
+        <trans-unit id="Resx/SysTrayAuthenticating" translate="yes" xml:space="preserve">
+          <source>Authenticating...</source>
+          <target state="new">Authenticating...</target>
+        </trans-unit>
+        <trans-unit id="Resx/SysTrayCheckingCollection" translate="yes" xml:space="preserve">
+          <source>Checking collection...</source>
+          <target state="new">Checking collection...</target>
+        </trans-unit>
+        <trans-unit id="Resx/SysTrayCheckingConnection" translate="yes" xml:space="preserve">
+          <source>Checking connection...</source>
+          <target state="new">Checking connection...</target>
+        </trans-unit>
+        <trans-unit id="Resx/SysTrayFindingServer" translate="yes" xml:space="preserve">
+          <source>Attempting to find your server...</source>
+          <target state="new">Attempting to find your server...</target>
+        </trans-unit>
+        <trans-unit id="Resx/SysTrayGettingAlbums" translate="yes" xml:space="preserve">
+          <source>Getting albums...</source>
+          <target state="new">Getting albums...</target>
+        </trans-unit>
+        <trans-unit id="Resx/SysTrayGettingAlbumTracks" translate="yes" xml:space="preserve">
+          <source>Getting album tracks...</source>
+          <target state="new">Getting album tracks...</target>
+        </trans-unit>
+        <trans-unit id="Resx/SysTrayGettingAllTracks" translate="yes" xml:space="preserve">
+          <source>Getting all tracks...</source>
+          <target state="new">Getting all tracks...</target>
+        </trans-unit>
+        <trans-unit id="Resx/SysTrayGettingArtists" translate="yes" xml:space="preserve">
+          <source>Getting artists...</source>
+          <target state="new">Getting artists...</target>
+        </trans-unit>
+        <trans-unit id="Resx/SysTrayGettingArtistTracks" translate="yes" xml:space="preserve">
+          <source>Getting artist tracks...</source>
+          <target state="new">Getting artist tracks...</target>
+        </trans-unit>
+        <trans-unit id="Resx/SysTrayGettingBoxsets" translate="yes" xml:space="preserve">
+          <source>Getting boxsets...</source>
+          <target state="new">Getting boxsets...</target>
+        </trans-unit>
+        <trans-unit id="Resx/SysTrayGettingDetails" translate="yes" xml:space="preserve">
+          <source>Getting details...</source>
+          <target state="new">Getting details...</target>
+        </trans-unit>
+        <trans-unit id="Resx/SysTrayGettingEpisodeDetails" translate="yes" xml:space="preserve">
+          <source>Getting episode details...</source>
+          <target state="new">Getting episode details...</target>
+        </trans-unit>
+        <trans-unit id="Resx/SysTrayGettingEpisodes" translate="yes" xml:space="preserve">
+          <source>Getting episodes...</source>
+          <target state="new">Getting episodes...</target>
+        </trans-unit>
+        <trans-unit id="Resx/SysTrayGettingFavourites" translate="yes" xml:space="preserve">
+          <source>Getting favourites...</source>
+          <target state="new">Getting favourites...</target>
+        </trans-unit>
+        <trans-unit id="Resx/SysTrayGettingGenres" translate="yes" xml:space="preserve">
+          <source>Getting genres...</source>
+          <target state="new">Getting genres...</target>
+        </trans-unit>
+        <trans-unit id="Resx/SysTrayGettingGenreTracks" translate="yes" xml:space="preserve">
+          <source>Getting genre tracks...</source>
+          <target state="new">Getting genre tracks...</target>
+        </trans-unit>
+        <trans-unit id="Resx/SysTrayGettingItems" translate="yes" xml:space="preserve">
+          <source>Getting items...</source>
+          <target state="new">Getting items...</target>
+        </trans-unit>
+        <trans-unit id="Resx/SysTrayGettingMovieInfo" translate="yes" xml:space="preserve">
+          <source>Getting movie information...</source>
+          <target state="new">Getting movie information...</target>
+        </trans-unit>
+        <trans-unit id="Resx/SysTrayGettingMovies" translate="yes" xml:space="preserve">
+          <source>Getting movies...</source>
+          <target state="new">Getting movies...</target>
+        </trans-unit>
+        <trans-unit id="Resx/SysTrayGettingNextUp" translate="yes" xml:space="preserve">
+          <source>Getting next up items...</source>
+          <target state="new">Getting next up items...</target>
+        </trans-unit>
+        <trans-unit id="Resx/SysTrayGettingNotifications" translate="yes" xml:space="preserve">
+          <source>Getting notifications...</source>
+          <target state="new">Getting notifications...</target>
+        </trans-unit>
+        <trans-unit id="Resx/SysTrayGettingProfiles" translate="yes" xml:space="preserve">
+          <source>Getting profiles...</source>
+          <target state="new">Getting profiles...</target>
+        </trans-unit>
+        <trans-unit id="Resx/SysTrayGettingRecentItems" translate="yes" xml:space="preserve">
+          <source>Getting recent items...</source>
+          <target state="new">Getting recent items...</target>
+        </trans-unit>
+        <trans-unit id="Resx/SysTrayGettingServerDetails" translate="yes" xml:space="preserve">
+          <source>Getting server details...</source>
+          <target state="new">Getting server details...</target>
+        </trans-unit>
+        <trans-unit id="Resx/SysTrayGettingShowInformation" translate="yes" xml:space="preserve">
+          <source>Getting show information...</source>
+          <target state="new">Getting show information...</target>
+        </trans-unit>
+        <trans-unit id="Resx/SysTrayGettingShows" translate="yes" xml:space="preserve">
+          <source>Getting TV shows...</source>
+          <target state="new">Getting TV shows...</target>
+        </trans-unit>
+        <trans-unit id="Resx/SysTrayGettingSongs" translate="yes" xml:space="preserve">
+          <source>Getting songs...</source>
+          <target state="new">Getting songs...</target>
+        </trans-unit>
+        <trans-unit id="Resx/SysTrayGettingTracks" translate="yes" xml:space="preserve">
+          <source>Getting tracks...</source>
+          <target state="new">Getting tracks...</target>
+        </trans-unit>
+        <trans-unit id="Resx/SysTrayGettingTrailerDetails" translate="yes" xml:space="preserve">
+          <source>Getting trailer details...</source>
+          <target state="new">Getting trailer details...</target>
+        </trans-unit>
+        <trans-unit id="Resx/SysTrayGettingUnwatchedItems" translate="yes" xml:space="preserve">
+          <source>Getting latest unwatched items...</source>
+          <target state="new">Getting latest unwatched items...</target>
+        </trans-unit>
+        <trans-unit id="Resx/SysTrayLoadingCollections" translate="yes" xml:space="preserve">
+          <source>Loading collections...</source>
+          <target state="new">Loading collections...</target>
+        </trans-unit>
+        <trans-unit id="Resx/SysTrayLoadingSettings" translate="yes" xml:space="preserve">
+          <source>Loading settings...</source>
+          <target state="new">Loading settings...</target>
+        </trans-unit>
+        <trans-unit id="Resx/SysTrayRegisteringDevice" translate="yes" xml:space="preserve">
+          <source>Registering device...</source>
+          <target state="new">Registering device...</target>
+        </trans-unit>
+        <trans-unit id="Resx/SysTrayRegrouping" translate="yes" xml:space="preserve">
+          <source>Re-grouping...</source>
+          <target state="new">Re-grouping...</target>
+        </trans-unit>
+        <trans-unit id="Resx/SysTraySearching" translate="yes" xml:space="preserve">
+          <source>Searching...</source>
+          <target state="new">Searching...</target>
+        </trans-unit>
+        <trans-unit id="Resx/SysTrayUnregisteringDevice" translate="yes" xml:space="preserve">
+          <source>Unregistering device...</source>
+          <target state="new">Unregistering device...</target>
+        </trans-unit>
+        <trans-unit id="Resx/TrialVideoMessage" translate="yes" xml:space="preserve">
+          <source>In trial mode you can only play one video per day. Please try this tomorrow or purchase the full version.</source>
+          <target state="new">In trial mode you can only play one video per day. Please try this tomorrow or purchase the full version.</target>
+        </trans-unit>
+        <trans-unit id="Resx/TvShowRecentItemsTitle" translate="yes" xml:space="preserve">
+          <source>{0}'s recent items</source>
+          <target state="new">{0}'s recent items</target>
+          
+        <note from="MultilingualBuild" annotates="source" priority="2">{0} is the name of the tv show</note></trans-unit>
+        <trans-unit id="Resx/Unpin" translate="yes" xml:space="preserve">
+          <source>Unpin</source>
+          <target state="new">Unpin</target>
+        </trans-unit>
+        <trans-unit id="Resx/WatermarkEnterUsername" translate="yes" xml:space="preserve">
+          <source>enter a username</source>
+          <target state="new">enter a username</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelLogIn" translate="yes" xml:space="preserve">
+          <source>Log In</source>
+          <target state="new">Log In</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelNoFoldersFound" translate="yes" xml:space="preserve">
+          <source>No folders found</source>
+          <target state="new">No folders found</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelNothingInPlaylist" translate="yes" xml:space="preserve">
+          <source>Nothing in your playlist</source>
+          <target state="new">Nothing in your playlist</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelUnplayedItems" translate="yes" xml:space="preserve">
+          <source>Unplayed:</source>
+          <target state="new">Unplayed:</target>
+        </trans-unit>
+        <trans-unit id="Resx/WatermarkPassword" translate="yes" xml:space="preserve">
+          <source>enter a password</source>
+          <target state="new">enter a password</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelReleasedIn" translate="yes" xml:space="preserve">
+          <source>Released in</source>
+          <target state="new">Released in</target>
+          
+        <note from="MultilingualBuild" annotates="source" priority="2">eg, Released in 1993</note></trans-unit>
+        <trans-unit id="Resx/LabelWelcomeTextPhone7" translate="yes" xml:space="preserve">
+          <source>Welcome to Media Browser for Windows Phone. This app will allow you to browse your media collection and remotely control any of the controllable Media Browser clients.</source>
+          <target state="new">Welcome to Media Browser for Windows Phone. This app will allow you to browse your media collection and remotely control any of the controllable Media Browser clients.</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelUpcoming" translate="yes" xml:space="preserve">
+          <source>upcoming</source>
+          <target state="new">upcoming</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelScheduleToday" translate="yes" xml:space="preserve">
+          <source>Today</source>
+          <target state="new">Today</target>
+        </trans-unit>
+        <trans-unit id="Resx/LabelScheduleTomorrow" translate="yes" xml:space="preserve">
+          <source>Tomorrow</source>
+          <target state="new">Tomorrow</target>
+        </trans-unit>
+        <trans-unit id="Resx/SysTrayGettingUpcoming" translate="yes" xml:space="preserve">
+          <source>Getting upcoming episodes...</source>
+          <target state="new">Getting upcoming episodes...</target>
+        </trans-unit>
+      </group>
+    </body>
+  </file>
+</xliff>
