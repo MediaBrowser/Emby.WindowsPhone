@@ -14,7 +14,6 @@
                 xmlns:c4F="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
                 xmlns:telerikInput="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Input"
                 xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
-                xmlns:system="clr-namespace:System;assembly=mscorlib"
                 mc:Ignorable="d"
                 d:DesignWidth="480"
                 d:DesignHeight="696"
