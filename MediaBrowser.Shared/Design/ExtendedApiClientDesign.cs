@@ -887,11 +887,6 @@ namespace MediaBrowser.Design
             throw new NotImplementedException();
         }
 
-        Task<ItemsResult> IApiClient.GetNextUpAsync(NextUpQuery query)
-        {
-            throw new NotImplementedException();
-        }
-
         Task<NotificationResult> IApiClient.GetNotificationsAsync(NotificationQuery query)
         {
             throw new NotImplementedException();
@@ -1053,6 +1048,17 @@ namespace MediaBrowser.Design
         }
 
         Task<UserItemDataDto> IApiClient.UpdateUserItemRatingAsync(string itemId, string userId, bool likes)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public Task<ItemsResult> GetNextUpEpisodesAsync(NextUpQuery query)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<ItemsResult> GetUpcomingEpisodesAsync(NextUpQuery query)
         {
             throw new NotImplementedException();
         }

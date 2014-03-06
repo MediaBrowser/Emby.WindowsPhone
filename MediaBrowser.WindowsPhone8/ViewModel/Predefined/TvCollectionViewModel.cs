@@ -124,7 +124,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
 
                 Log.Info("Getting next up items");
 
-                var itemResponse = await _apiClient.GetNextUpAsync(query);
+                var itemResponse = await _apiClient.GetNextUpEpisodesAsync(query);
 
                 return SetNextUpItems(itemResponse);
             }
@@ -144,20 +144,16 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
             {
                 SetProgressBar(AppResources.SysTrayGettingUpcoming);
 
-                var query = new ItemQuery
+                var query = new NextUpQuery
                 {
                     UserId = AuthenticationService.Current.LoggedInUser.Id,
-                    SortBy = new[] { ItemSortBy.PremiereDate, ItemSortBy.AirTime, ItemSortBy.SortName },
                     Fields = new[] { ItemFields.ParentId },
-                    IncludeItemTypes = new[] { "Episode" },
                     Limit = 30,
-                    Recursive = true,
-                    IsUnaired = false
                 };
 
                 Log.Info("Getting upcoming items");
 
-                var itemResponse = await _apiClient.GetItemsAsync(query);
+                var itemResponse = await _apiClient.GetUpcomingEpisodesAsync(query);
 
                 return SetUpcomingItems(itemResponse);
             }
