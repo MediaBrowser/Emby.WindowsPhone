@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.ServiceModel.Channels;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -82,7 +81,28 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
             {
                 return new RelayCommand<TimerInfoDto>(async item =>
                 {
-                    
+                    var messageBox = new CustomMessageBox
+                    {
+                        Title = AppResources.MessageAreYouSureTitle,
+                        Message = AppResources.MessageCancelRecording,
+                        LeftButtonContent = AppResources.LabelYes,
+                        RightButtonContent = AppResources.LabelNo
+                    };
+
+                    var result = await messageBox.ShowAsync();
+                    if (result == CustomMessageBoxResult.RightButton)
+                    {
+                        return;
+                    }
+
+                    try
+                    {
+                        await _apiClient.CancelLiveTvTimerAsync(item.Id, default(CancellationToken));
+                    }
+                    catch (HttpException ex)
+                    {
+                        Utils.HandleHttpException(ex, "CancelRecordingCommand", _navigationService, Log);
+                    }
                 });
             }
         }

@@ -891,4 +891,7 @@
   <data name="SysTrayGettingUpcoming" xml:space="preserve">
     <value>Getting upcoming episodes...</value>
   </data>
+  <data name="MessageCancelRecording" xml:space="preserve">
+    <value>Are you sure you want to cancel this recording? This cannot be undone.</value>
+  </data>
 </root>

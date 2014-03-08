@@ -135,7 +135,7 @@
                         <DataTemplate>
                             <TextBlock Text="{Binding}"
                                        Style="{StaticResource PhoneTextTitle3Style}"
-                                       Margin="2,0" />
+                                       Margin="3,0" />
                         </DataTemplate>
                     </phone:Pivot.HeaderTemplate>
                     <phone:PivotItem Header="{Binding LocalizedResources.HeaderSettings, Source={StaticResource LocalizedStrings}}">
