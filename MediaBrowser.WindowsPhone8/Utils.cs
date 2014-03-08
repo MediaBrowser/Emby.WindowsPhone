@@ -13,6 +13,7 @@ using MediaBrowser.Model;
 using MediaBrowser.Model.Configuration;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
+using MediaBrowser.Model.Library;
 using MediaBrowser.Model.LiveTv;
 using MediaBrowser.Model.Logging;
 using MediaBrowser.Model.Net;
@@ -402,7 +403,10 @@ namespace MediaBrowser.WindowsPhone
                 return false;
             }
 
-            if (item.LocationType == LocationType.Virtual || !item.IsVideo)
+            if (item.LocationType == LocationType.Virtual
+                || !item.IsVideo 
+                || item.PlayAccess != PlayAccess.Full 
+                || (item.IsPlaceHolder.HasValue && item.IsPlaceHolder.Value))
             {
                 return false;
             }
@@ -425,9 +429,14 @@ namespace MediaBrowser.WindowsPhone
 #endif
         }
 
-        internal static string CoolDateName(DateTime dateTime)
+        internal static string CoolDateName(DateTime? dateTime)
         {
-            var theDate = dateTime.Date;
+            if (!dateTime.HasValue)
+            {
+                return string.Empty;
+            }
+
+            var theDate = dateTime.Value.Date;
             var today = DateTime.Now.Date;
             if (theDate == today)
             {

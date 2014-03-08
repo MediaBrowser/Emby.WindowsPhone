@@ -60,6 +60,8 @@ namespace MediaBrowser.WindowsPhone
                                                           ItemId = item.Id,
                                                           OutputFileExtension = "mp3",
                                                       });
+
+            var converter = new Converters.ImageUrlConverter();
             return new PlaylistItem
                        {
                            Album = item.Album,
@@ -68,7 +70,8 @@ namespace MediaBrowser.WindowsPhone
                            TrackUrl = streamUrl,
                            MediaBrowserId = item.Id,
                            IsJustAdded = true,
-                           ImageUrl = (string)new Converters.ImageUrlConverter().Convert(item, typeof(string), null, null),
+                           ImageUrl = (string)converter.Convert(item, typeof(string), null, null),
+                           BackgroundImageUrl = (string)converter.Convert(item, typeof(string), "backdrop", null)
                        };
         }
 

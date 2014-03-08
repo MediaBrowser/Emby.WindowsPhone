@@ -16,7 +16,7 @@
     <TargetFrameworkProfile>WindowsPhone71</TargetFrameworkProfile>
     <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
     <SilverlightApplication>true</SilverlightApplication>
-    <SupportedCultures>de;en-US;fr;nl;qps-ploc</SupportedCultures>
+    <SupportedCultures>de;el-GR;en-US;fr;hi-IN;nl;pt;qps-ploc;sv</SupportedCultures>
     <XapOutputs>true</XapOutputs>
     <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
     <XapFilename>MediaBrowser.WindowsPhone.WP7.xap</XapFilename>
@@ -97,13 +97,13 @@
       <HintPath>..\packages\JetBrainsAnnotations.Fody.1.0.1\Lib\JetBrains.Annotations.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="MediaBrowser.ApiInteraction.Portable, Version=3.0.5142.38092, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="MediaBrowser.ApiInteraction.Portable, Version=3.0.5178.758, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MediaBrowser.ApiClient.3.0.0.290\lib\portable-net45+sl4+wp71+win8\MediaBrowser.ApiInteraction.Portable.dll</HintPath>
+      <HintPath>..\packages\MediaBrowser.ApiClient.3.0.0.294\lib\portable-net45+sl4+wp71+win8\MediaBrowser.ApiInteraction.Portable.dll</HintPath>
     </Reference>
-    <Reference Include="MediaBrowser.Model, Version=3.0.5142.22120, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="MediaBrowser.Model, Version=3.0.5178.654, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MediaBrowser.Common.3.0.310\lib\portable-net4+sl4+wp71+win8\MediaBrowser.Model.dll</HintPath>
+      <HintPath>..\packages\MediaBrowser.Common.3.0.336\lib\portable-net4+sl4+wp71+win8\MediaBrowser.Model.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Phone.Controls, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Phone.Controls.Toolkit, Version=7.0.1.0, Culture=neutral, PublicKeyToken=b772ad94eb9ca604, processorArchitecture=MSIL">
@@ -927,6 +927,13 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </EmbeddedResource>
+    <EmbeddedResource Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.el-GR.resx">
+      <Link>Resources\AppResources.el-GR.resx</Link>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AppResources.el-GR.xlf</DependentUpon>
+      <culture>el-GR</culture>
+    </EmbeddedResource>
     <EmbeddedResource Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.en-US.resx">
       <Link>Resources\AppResources.en-US.resx</Link>
       <DependentUpon>AppResources.en-US.xlf</DependentUpon>
@@ -942,12 +949,26 @@
       <DependentUpon>AppResources.fr.xlf</DependentUpon>
       <culture>fr</culture>
     </EmbeddedResource>
+    <EmbeddedResource Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.hi-IN.resx">
+      <Link>Resources\AppResources.hi-IN.resx</Link>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AppResources.hi-IN.xlf</DependentUpon>
+      <culture>hi-IN</culture>
+    </EmbeddedResource>
     <EmbeddedResource Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.nl.resx">
       <Link>Resources\AppResources.nl.resx</Link>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.nl.xlf</DependentUpon>
       <culture>nl</culture>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.pt.resx">
+      <Link>Resources\AppResources.pt.resx</Link>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AppResources.pt.xlf</DependentUpon>
+      <culture>pt</culture>
     </EmbeddedResource>
     <EmbeddedResource Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.qps-ploc.resx">
       <Link>Resources\AppResources.qps-ploc.resx</Link>
@@ -960,6 +981,13 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.sv.resx">
+      <Link>Resources\AppResources.sv.resx</Link>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AppResources.sv.xlf</DependentUpon>
+      <culture>sv</culture>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -982,15 +1010,35 @@
     </Fakes>
   </ItemGroup>
   <ItemGroup>
+    <XliffResource Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.el-GR.xlf">
+      <Link>Resources\AppResources.el-GR.xlf</Link>
+      <Generator>XliffResxGenerator</Generator>
+      <LastGenOutput>AppResources.el-GR.resx</LastGenOutput>
+    </XliffResource>
     <XliffResource Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.fr.xlf">
       <Link>Resources\AppResources.fr.xlf</Link>
       <Generator>XliffResxGenerator</Generator>
       <LastGenOutput>AppResources.fr.resx</LastGenOutput>
     </XliffResource>
+    <XliffResource Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.hi-IN.xlf">
+      <Link>Resources\AppResources.hi-IN.xlf</Link>
+      <Generator>XliffResxGenerator</Generator>
+      <LastGenOutput>AppResources.hi-IN.resx</LastGenOutput>
+    </XliffResource>
     <XliffResource Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.nl.xlf">
       <Link>Resources\AppResources.nl.xlf</Link>
       <Generator>XliffResxGenerator</Generator>
       <LastGenOutput>AppResources.nl.resx</LastGenOutput>
+    </XliffResource>
+    <XliffResource Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.pt.xlf">
+      <Link>Resources\AppResources.pt.xlf</Link>
+      <Generator>XliffResxGenerator</Generator>
+      <LastGenOutput>AppResources.pt.resx</LastGenOutput>
+    </XliffResource>
+    <XliffResource Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.sv.xlf">
+      <Link>Resources\AppResources.sv.xlf</Link>
+      <Generator>XliffResxGenerator</Generator>
+      <LastGenOutput>AppResources.sv.resx</LastGenOutput>
     </XliffResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />

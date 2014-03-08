@@ -888,4 +888,7 @@
   <data name="MessageDeleteSeriesRecording" xml:space="preserve">
     <value>Are you sure you want to cancel this series link? This cannot be undone.</value>
   </data>
+  <data name="SysTrayGettingUpcoming" xml:space="preserve">
+    <value>Getting upcoming episodes...</value>
+  </data>
 </root>

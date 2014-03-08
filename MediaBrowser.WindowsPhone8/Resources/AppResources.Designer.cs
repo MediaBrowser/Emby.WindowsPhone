@@ -2257,6 +2257,14 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+
+///   Looks up a localized string similar to Getting upcoming episodes....
+        /// </summary>
+        public static string SysTrayGettingUpcoming {
+            get {
+                return ResourceManager.GetString("SysTrayGettingUpcoming", resourceCulture);
+            }
+        }
         ///   Looks up a localized string similar to Getting upcoming recordings....
         /// </summary>
         public static string SysTrayGettingUpcomingRecordings {

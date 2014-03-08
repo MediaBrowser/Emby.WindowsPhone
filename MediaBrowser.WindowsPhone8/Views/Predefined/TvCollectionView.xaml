@@ -112,6 +112,14 @@
                     <phone:LongListSelector ItemsSource="{Binding NextUpList}"
                                             ItemTemplate="{StaticResource EpisodeDataTemplate}"/>
                 </phone:PivotItem>
+                <phone:PivotItem Header="{Binding LocalizedResources.LabelUpcoming, Source={StaticResource LocalizedStrings}}">
+                    <phone:LongListSelector ItemsSource="{Binding Upcoming}"
+                                            IsGroupingEnabled="True"
+                                            JumpListStyle="{StaticResource LLSGroupItemLongStyle}"
+                                            HideEmptyGroups="False"
+                                            GroupHeaderTemplate="{StaticResource LLSGroupHeaderTemplateLong}"
+                                            ItemTemplate="{StaticResource EpisodeDataTemplate}" />
+                </phone:PivotItem>
                 <phone:PivotItem Header="{Binding LocalizedResources.LabelShows, Source={StaticResource LocalizedStrings}}">
                     <phone:LongListSelector ItemsSource="{Binding Shows}"
                                             IsGroupingEnabled="True"
