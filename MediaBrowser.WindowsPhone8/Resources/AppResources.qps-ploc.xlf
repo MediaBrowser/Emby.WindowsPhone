@@ -855,6 +855,10 @@
           <source>Getting upcoming episodes...</source>
           <target state="new">Getting upcoming episodes...</target>
         </trans-unit>
+        <trans-unit translate="yes" id="Resx/MessageCancelRecording" xml:space="preserve">
+          <source>Are you sure you want to cancel this recording? This cannot be undone.</source>
+          <target state="new">Are you sure you want to cancel this recording? This cannot be undone.</target>
+        </trans-unit>
         <trans-unit translate="yes" id="Resx/LabelWhatsOn" xml:space="preserve">
           <source>What's On</source>
           <target state="new">What's On</target>

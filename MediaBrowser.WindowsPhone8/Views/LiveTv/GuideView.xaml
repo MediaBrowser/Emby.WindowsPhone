@@ -22,6 +22,7 @@
                 Orientation="Portrait"
                 shell:SystemTray.IsVisible="True"
                 shell:SystemTray.Opacity="0"
+                toolkit:TiltEffect.IsTiltEnabled="True"
                 DataContext="{Binding Guide, Source={StaticResource Locator}}">
     <i:Interaction.Behaviors>
         <behaviours:MBSysTray IsVisible="{Binding ProgressIsVisible}"
@@ -41,10 +42,10 @@
             <command:EventToCommand Command="{Binding GuidePageLoaded}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
-    
+
     <scott:BasePage.Resources>
         <converters:DateTimeConverter ShowTime="True"
-                                      x:Key="TimeConverter"/>
+                                      x:Key="TimeConverter" />
     </scott:BasePage.Resources>
 
     <toolkit:TransitionService.NavigationInTransition>
@@ -98,47 +99,51 @@
                     </phone:LongListSelector.ListHeader>
                     <phone:LongListSelector.ItemTemplate>
                         <DataTemplate>
-                            <Grid d:DataContext="{Binding Guide.Programmes[0], Source={StaticResource Locator}}">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="3*"/>
-                                </Grid.ColumnDefinitions>
-                                
-                                <TextBlock Text="{Binding StartDate, Converter={StaticResource TimeConverter}}"
-                                           Style="{StaticResource PhoneTextTitle2Style}"
-                                           VerticalAlignment="Top"
-                                           Grid.Column="0"
-                                           TextWrapping="Wrap"
-                                           Tag="{Binding Converter={StaticResource IsOnNowConverter}}"
-                                           Foreground="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource InvertedAccentBrushConverter}}" 
-                                           Margin="12,0,0,0"/>
-                                
-                                <StackPanel Orientation="Vertical"
-                                            Grid.Column="1">
-                                    <TextBlock Text="{Binding Name}"
+                            <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                             Command="{Binding Guide.GuideItemTappedCommand, Source={StaticResource Locator}}"
+                                             CommandParameter="{Binding}">
+                                <Grid d:DataContext="{Binding Guide.Programmes[0], Source={StaticResource Locator}}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*" />
+                                        <ColumnDefinition Width="3*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Text="{Binding StartDate, Converter={StaticResource TimeConverter}}"
                                                Style="{StaticResource PhoneTextTitle2Style}"
-                                               FontWeight="Bold"
+                                               VerticalAlignment="Top"
+                                               Grid.Column="0"
                                                TextWrapping="Wrap"
                                                Tag="{Binding Converter={StaticResource IsOnNowConverter}}"
-                                               Foreground="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource InvertedAccentBrushConverter}}"/>
-                                    <TextBlock Text="{Binding EpisodeTitle}"
-                                               Style="{StaticResource PhoneTextSubtleStyle}"
-                                               Visibility="{Binding EpisodeTitle, Converter={StaticResource NullVisibilityConverter}}"/>
-                                    <TextBlock Text="{Binding Overview}"
-                                               TextWrapping="Wrap"
-                                               Style="{StaticResource PhoneTextNormalStyle}"/>
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="HD"
-                                                   Style="{StaticResource PhoneTextTitle3Style}"
-                                                   FontWeight="ExtraBold"
-                                                   Visibility="{Binding IsHD, Converter={StaticResource VisibilityConverter}}"/>
-                                        <TextBlock Text="R"
-                                                   Style="{StaticResource PhoneTextTitle3Style}"
-                                                   FontWeight="ExtraBold"
-                                                   Visibility="{Binding IsRepeat, Converter={StaticResource VisibilityConverter}}"/>
+                                               Foreground="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource InvertedAccentBrushConverter}}"
+                                               Margin="12,0,0,0" />
+
+                                    <StackPanel Orientation="Vertical"
+                                                Grid.Column="1">
+                                        <TextBlock Text="{Binding Name}"
+                                                   Style="{StaticResource PhoneTextTitle2Style}"
+                                                   FontWeight="Bold"
+                                                   TextWrapping="Wrap"
+                                                   Tag="{Binding Converter={StaticResource IsOnNowConverter}}"
+                                                   Foreground="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource InvertedAccentBrushConverter}}" />
+                                        <TextBlock Text="{Binding EpisodeTitle}"
+                                                   Style="{StaticResource PhoneTextSubtleStyle}"
+                                                   Visibility="{Binding EpisodeTitle, Converter={StaticResource NullVisibilityConverter}}" />
+                                        <TextBlock Text="{Binding Overview}"
+                                                   TextWrapping="Wrap"
+                                                   Style="{StaticResource PhoneTextNormalStyle}" />
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="HD"
+                                                       Style="{StaticResource PhoneTextTitle3Style}"
+                                                       FontWeight="ExtraBold"
+                                                       Visibility="{Binding IsHD, Converter={StaticResource VisibilityConverter}}" />
+                                            <TextBlock Text="R"
+                                                       Style="{StaticResource PhoneTextTitle3Style}"
+                                                       FontWeight="ExtraBold"
+                                                       Visibility="{Binding IsRepeat, Converter={StaticResource VisibilityConverter}}" />
+                                        </StackPanel>
                                     </StackPanel>
-                                </StackPanel>
-                            </Grid>
+                                </Grid>
+                            </HyperlinkButton>
                         </DataTemplate>
                     </phone:LongListSelector.ItemTemplate>
                 </phone:LongListSelector>

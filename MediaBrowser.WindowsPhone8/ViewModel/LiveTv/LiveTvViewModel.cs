@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Command;
 using MediaBrowser.Model;
 using MediaBrowser.Model.LiveTv;
 using MediaBrowser.Model.Net;
+using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Model;
 using ScottIsAFool.WindowsPhone.ViewModel;
 
@@ -50,14 +52,20 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
         {
             try
             {
+                var query = new RecommendedProgramQuery
+                {
+                    HasAired = false,
+                    Limit = 6,
+                    UserId = AuthenticationService.Current.LoggedInUserId
+                };
 
-                //var items = await _apiClient.livetv
+                var items = await _apiClient.GetRecommendedLiveTvProgramsAsync(query, default(CancellationToken));
 
                 return true;
             }
             catch (HttpException ex)
             {
-                Log.ErrorException("GetUpcoming()", ex);
+                Utils.HandleHttpException("GetUpcoming()", ex, _navigationService, Log);
             }
 
             return false;
@@ -67,12 +75,19 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
         {
             try
             {
+                var query = new RecommendedProgramQuery
+                {
+                    IsAiring = true,
+                    Limit = 6,
+                    UserId = AuthenticationService.Current.LoggedInUserId
+                };
 
+                var items = await _apiClient.GetRecommendedLiveTvProgramsAsync(query, default(CancellationToken));
                 return true;
             }
             catch (HttpException ex)
             {
-                Log.ErrorException("GetUpcoming()", ex);
+                Utils.HandleHttpException("GetUpcoming()", ex, _navigationService, Log);
             }
 
             return false;

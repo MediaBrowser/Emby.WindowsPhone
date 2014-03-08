@@ -67,6 +67,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
         public ChannelInfoDto SelectedChannel { get; set; }
         public ObservableCollection<ProgramInfoDto> Programmes { get; set; }
 
+        public ProgramInfoDto SelectedProgramme { get; set; }
+
         public RelayCommand<string> NavigateToPage
         {
             get
@@ -93,6 +95,23 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                 return new RelayCommand(async () =>
                 {
                     await GetProgrammes(true);
+                });
+            }
+        }
+
+        public RelayCommand<ProgramInfoDto> GuideItemTappedCommand
+        {
+            get
+            {
+                return new RelayCommand<ProgramInfoDto>(item =>
+                {
+                    if (item == null)
+                    {
+                        return;
+                    }
+
+                    SelectedProgramme = item;
+                    _navigationService.NavigateTo(Constants.Pages.LiveTv.GuideItemView);
                 });
             }
         }
