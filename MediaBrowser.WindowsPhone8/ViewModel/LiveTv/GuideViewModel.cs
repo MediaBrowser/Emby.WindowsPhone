@@ -116,6 +116,28 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
             }
         }
 
+        public RelayCommand<ProgramInfoDto> RecordProgrammeCommand
+        {
+            get
+            {
+                return new RelayCommand<ProgramInfoDto>(async item =>
+                {
+                    
+                });
+            }
+        }
+
+        public RelayCommand<ProgramInfoDto> CreateSeriesLinkCommand
+        {
+            get
+            {
+                return new RelayCommand<ProgramInfoDto>(async item =>
+                {
+
+                });
+            }
+        } 
+
         public override void WireMessages()
         {
             Messenger.Default.Register<NotificationMessage>(this, m =>

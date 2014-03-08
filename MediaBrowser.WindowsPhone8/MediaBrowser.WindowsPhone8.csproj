@@ -164,6 +164,7 @@
     <Compile Include="Converters\EpisodeNumberConverter.cs" />
     <Compile Include="Converters\EpisodeNumberVisibilityConverter.cs" />
     <Compile Include="Converters\FavouritesConverter.cs" />
+    <Compile Include="Converters\HasAiredConverter.cs" />
     <Compile Include="Converters\ImageUrlConverter.cs" />
     <Compile Include="Converters\IsOnNowConverter.cs" />
     <Compile Include="Converters\LessThanVisibilityConverter.cs" />

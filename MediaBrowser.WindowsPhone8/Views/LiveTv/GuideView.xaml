@@ -14,6 +14,7 @@
                 xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
                 xmlns:converters="clr-namespace:MediaBrowser.WindowsPhone.Converters"
                 xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+                xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
                 mc:Ignorable="d ignore"
                 FontFamily="{StaticResource PhoneFontFamilyNormal}"
                 FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -46,6 +47,7 @@
     <scott:BasePage.Resources>
         <converters:DateTimeConverter ShowTime="True"
                                       x:Key="TimeConverter" />
+        <converters:HasAiredConverter x:Key="HasAiredConverter"/>
     </scott:BasePage.Resources>
 
     <toolkit:TransitionService.NavigationInTransition>
@@ -107,6 +109,18 @@
                                         <ColumnDefinition Width="1*" />
                                         <ColumnDefinition Width="3*" />
                                     </Grid.ColumnDefinitions>
+                                    <telerikPrimitives:RadContextMenu.ContextMenu>
+                                        <telerikPrimitives:RadContextMenu>
+                                            <telerikPrimitives:RadContextMenuItem Content="{Binding LocalizedResources.MenuRecord, Source={StaticResource LocalizedStrings}}"
+                                                                                  Command="{Binding Guide.RecordProgrammeCommand, Source={StaticResource Locator}}" 
+                                                                                  CommandParameter="{Binding}"
+                                                                                  IsEnabled="{Binding Converter={StaticResource HasAiredConverter}}"/>
+                                            <telerikPrimitives:RadContextMenuItem Content="{Binding LocalizedResources.MenuRecordSeries, Source={StaticResource LocalizedStrings}}"
+                                                                                  Command="{Binding Guide.CreateSeriesLinkCommand, Source={StaticResource Locator}}"
+                                                                                  CommandParameter="{Binding}"
+                                                                                  Visibility="{Binding IsSeries, Converter={StaticResource VisibilityConverter}}"/>
+                                        </telerikPrimitives:RadContextMenu>
+                                    </telerikPrimitives:RadContextMenu.ContextMenu>
 
                                     <TextBlock Text="{Binding StartDate, Converter={StaticResource TimeConverter}}"
                                                Style="{StaticResource PhoneTextTitle2Style}"

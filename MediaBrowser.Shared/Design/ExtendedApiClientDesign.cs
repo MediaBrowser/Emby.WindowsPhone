@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using MediaBrowser.Model;
 using MediaBrowser.Model.ApiClient;
@@ -483,6 +484,11 @@ namespace MediaBrowser.Design
             throw new NotImplementedException();
         }
 
+        public Task<SeriesTimerInfoDto> GetDefaultLiveTvTimerInfo(string programId, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
         public IJsonSerializer JsonSerializer { get; set; }
         public string ServerHostName { get; private set; }
         public int ServerApiPort { get; private set; }
@@ -493,6 +499,16 @@ namespace MediaBrowser.Design
         public event EventHandler ServerLocationChanged;
         public event EventHandler<HttpResponseEventArgs> HttpResponseReceived;
         public System.Threading.Tasks.Task DeleteLiveTvRecordingAsync(string id, System.Threading.CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<SeriesTimerInfoDto> GetDefaultLiveTvTimerInfo(CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<GuideInfo> GetLiveTvGuideInfo(CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
@@ -517,12 +533,37 @@ namespace MediaBrowser.Design
             throw new NotImplementedException();
         }
 
+        public Task UpdateLiveTvSeriesTimerAsync(SeriesTimerInfoDto timer, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
         public System.Threading.Tasks.Task GetLiveTvTimerAsync(string id, System.Threading.CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
+        public Task<ProgramInfoDto> GetLiveTvProgramAsync(string id, string userId, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
         public System.Threading.Tasks.Task GetRecommendedLiveTvProgramsAsync(RecommendedProgramQuery query, System.Threading.CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task CreateLiveTvTimerAsync(TimerInfoDto timer, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task UpdateLiveTvTimerAsync(TimerInfoDto timer, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task CreateLiveTvSeriesTimerAsync(SeriesTimerInfoDto timer, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }

@@ -1789,6 +1789,24 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to record.
+        /// </summary>
+        public static string MenuRecord {
+            get {
+                return ResourceManager.GetString("MenuRecord", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to record series.
+        /// </summary>
+        public static string MenuRecordSeries {
+            get {
+                return ResourceManager.GetString("MenuRecordSeries", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Are you sure?.
         /// </summary>
         public static string MessageAreYouSureTitle {
@@ -2316,6 +2334,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string SysTrayRegrouping {
             get {
                 return ResourceManager.GetString("SysTrayRegrouping", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Saving....
+        /// </summary>
+        public static string SysTraySaving {
+            get {
+                return ResourceManager.GetString("SysTraySaving", resourceCulture);
             }
         }
         

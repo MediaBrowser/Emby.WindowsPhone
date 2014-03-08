@@ -894,4 +894,13 @@
   <data name="MessageCancelRecording" xml:space="preserve">
     <value>Are you sure you want to cancel this recording? This cannot be undone.</value>
   </data>
+  <data name="SysTraySaving" xml:space="preserve">
+    <value>Saving...</value>
+  </data>
+  <data name="MenuRecord" xml:space="preserve">
+    <value>record</value>
+  </data>
+  <data name="MenuRecordSeries" xml:space="preserve">
+    <value>record series</value>
+  </data>
 </root>
