@@ -11,7 +11,6 @@
                 xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
                 xmlns:controls="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
                 xmlns:cimbalino="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
-                xmlns:converters="clr-namespace:Cimbalino.Phone.Toolkit.Converters;assembly=Cimbalino.Phone.Toolkit"
                 xmlns:localConverters="clr-namespace:MediaBrowser.WindowsPhone.Converters"
                 xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP71"
                 xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
@@ -38,10 +37,10 @@
     </i:Interaction.Behaviors>
 
     <scott:BasePage.Resources>
-        <converters:BooleanToStringConverter x:Key="PlayIconConverter"
+        <localConverters:BooleanToStringConverter x:Key="PlayIconConverter"
                                              FalseValue="/Icons/appbar.transport.play.rest.png"
                                              TrueValue="/Icons/appbar.transport.pause.rest.png" />
-        <converters:BooleanToStringConverter x:Key="PlayTextConverter"
+        <localConverters:BooleanToStringConverter x:Key="PlayTextConverter"
                                              TrueValue="{Binding LocalizedResources.AppBarPause, Source={StaticResource LocalizedStrings}}"
                                              FalseValue="{Binding LocalizedResources.AppBarPlay, Source={StaticResource LocalizedStrings}}" />
         <localConverters:PlaylistCountConverter x:Key="PlaylistCountConverter" />
