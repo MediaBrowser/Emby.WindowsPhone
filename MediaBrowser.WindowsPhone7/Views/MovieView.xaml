@@ -83,7 +83,7 @@
         <controls:Panorama Title="{Binding SelectedMovie.Name, Converter={StaticResource StringCaseConverter}}"
                            x:Name="MainPanorama">
             <i:Interaction.Behaviors>
-                <behaviours:PanoramaBackgroundBehaviour Source="{Binding SelectedMovie, Converter={StaticResource ImageUrlConverter}, ConverterParameter=backdrop}"
+                <behaviours:ControlBackgroundBehaviour Source="{Binding SelectedMovie, Converter={StaticResource ImageUrlConverter}, ConverterParameter=backdrop}"
                                                         Stretch="UniformToFill"
                                                         Opacity="0.2" />
             </i:Interaction.Behaviors>

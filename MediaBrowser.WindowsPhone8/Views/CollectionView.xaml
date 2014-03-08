@@ -72,7 +72,7 @@
                         TitleTemplate="{StaticResource LikeWp7TitleTemplate}"
                         x:Name="ThePanorama">
             <i:Interaction.Behaviors>
-                <behaviours:PanoramaBackgroundBehaviour Source="{Binding SelectedFolder, Converter={StaticResource ImageUrlConverter}, ConverterParameter=backdrop}"
+                <behaviours:ControlBackgroundBehaviour Source="{Binding SelectedFolder, Converter={StaticResource ImageUrlConverter}, ConverterParameter=backdrop}"
                                                         Stretch="UniformToFill"
                                                         Opacity="0.2" />
             </i:Interaction.Behaviors>
