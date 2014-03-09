@@ -179,6 +179,7 @@
     <Compile Include="Converters\NowPlayingProgressConverter.cs" />
     <Compile Include="Converters\PinnedItemConverter.cs" />
     <Compile Include="Converters\PlaylistCountConverter.cs" />
+    <Compile Include="Converters\ProgrammeTypeToColourConverter.cs" />
     <Compile Include="Converters\RandomColour.cs" />
     <Compile Include="Converters\RatingConverter.cs" />
     <Compile Include="Converters\RecordingNameConverter.cs" />

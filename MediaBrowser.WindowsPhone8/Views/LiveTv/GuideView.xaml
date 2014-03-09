@@ -44,12 +44,6 @@
         </i:EventTrigger>
     </i:Interaction.Triggers>
 
-    <scott:BasePage.Resources>
-        <converters:DateTimeConverter ShowTime="True"
-                                      x:Key="TimeConverter" />
-        <converters:HasAiredConverter x:Key="HasAiredConverter"/>
-    </scott:BasePage.Resources>
-
     <toolkit:TransitionService.NavigationInTransition>
         <toolkit:NavigationInTransition>
             <toolkit:NavigationInTransition.Backward>
@@ -90,7 +84,7 @@
             <!--ContentPanel - place additional content here-->
             <Grid x:Name="ContentPanel"
                   Grid.Row="1"
-                  Margin="12,0,12,0">
+                  Margin="0,0,12,0">
                 <phone:LongListSelector ItemsSource="{Binding Programmes}">
                     <phone:LongListSelector.ListHeader>
                         <TextBlock Text="{Binding LocalizedResources.NoItemsFound, Source={StaticResource LocalizedStrings}}"
@@ -103,12 +97,15 @@
                         <DataTemplate>
                             <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
                                              Command="{Binding Guide.GuideItemTappedCommand, Source={StaticResource Locator}}"
-                                             CommandParameter="{Binding}">
+                                             CommandParameter="{Binding}"
+                                             Margin="0,0,0,12">
                                 <Grid d:DataContext="{Binding Guide.Programmes[0], Source={StaticResource Locator}}">
                                     <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="12"/>
                                         <ColumnDefinition Width="1*" />
                                         <ColumnDefinition Width="3*" />
                                     </Grid.ColumnDefinitions>
+                                    
                                     <telerikPrimitives:RadContextMenu.ContextMenu>
                                         <telerikPrimitives:RadContextMenu>
                                             <telerikPrimitives:RadContextMenuItem Content="{Binding LocalizedResources.MenuRecord, Source={StaticResource LocalizedStrings}}"
@@ -122,17 +119,22 @@
                                         </telerikPrimitives:RadContextMenu>
                                     </telerikPrimitives:RadContextMenu.ContextMenu>
 
+                                    <Rectangle Width="12"
+                                               Grid.Column="0"
+                                               Fill="{Binding Converter={StaticResource TypeToColourConverter}}"
+                                               VerticalAlignment="Stretch"/>
+                                    
                                     <TextBlock Text="{Binding StartDate, Converter={StaticResource TimeConverter}}"
                                                Style="{StaticResource PhoneTextTitle2Style}"
                                                VerticalAlignment="Top"
-                                               Grid.Column="0"
+                                               Grid.Column="1"
                                                TextWrapping="Wrap"
                                                Tag="{Binding Converter={StaticResource IsOnNowConverter}}"
                                                Foreground="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource InvertedAccentBrushConverter}}"
                                                Margin="12,0,0,0" />
 
                                     <StackPanel Orientation="Vertical"
-                                                Grid.Column="1">
+                                                Grid.Column="2">
                                         <TextBlock Text="{Binding Name}"
                                                    Style="{StaticResource PhoneTextTitle2Style}"
                                                    FontWeight="Bold"

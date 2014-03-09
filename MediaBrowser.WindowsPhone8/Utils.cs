@@ -398,17 +398,24 @@ namespace MediaBrowser.WindowsPhone
             }
 
             var item = value as BaseItemDto;
-            if (item == null)
+            if (item != null)
             {
-                return false;
+                if (item.LocationType == LocationType.Virtual
+                    || !item.IsVideo
+                    || item.PlayAccess != PlayAccess.Full
+                    || (item.IsPlaceHolder.HasValue && item.IsPlaceHolder.Value))
+                {
+                    return false;
+                }
+
+                return true;
             }
 
-            if (item.LocationType == LocationType.Virtual
-                || !item.IsVideo 
-                || item.PlayAccess != PlayAccess.Full 
-                || (item.IsPlaceHolder.HasValue && item.IsPlaceHolder.Value))
+            var programme = value as ProgramInfoDto;
+            if (programme != null)
             {
-                return false;
+                var now = DateTime.Now;
+                return programme.StartDate < now && programme.EndDate > now;
             }
 
             return true;

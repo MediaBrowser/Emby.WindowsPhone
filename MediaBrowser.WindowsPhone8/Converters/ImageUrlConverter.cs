@@ -145,7 +145,20 @@ namespace MediaBrowser.WindowsPhone.Converters
 
                     return item.ProgramInfo.HasPrimaryImage ? apiClient.GetImageUrl(item.ProgramInfo, imageOptions) : string.Empty;
                 }
+
+                if (type == typeof (ProgramInfoDto))
+                {
+                    var item = (ProgramInfoDto) value;
+                    var imageOptions = new ImageOptions
+                    {
+                        ImageType = ImageType.Primary,
+                        MaxHeight = 250
+                    };
+
+                    return item.HasPrimaryImage ? apiClient.GetImageUrl(item, imageOptions) : string.Empty;
+                }
             }
+
             return "";
         }
 

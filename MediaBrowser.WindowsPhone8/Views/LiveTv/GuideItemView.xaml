@@ -8,6 +8,7 @@
                 xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
                 xmlns:scott="clr-namespace:ScottIsAFool.WindowsPhone.Controls;assembly=ScottIsAFool.WindowsPhone"
                 xmlns:controls="clr-namespace:MediaBrowser.WindowsPhone.Controls"
+                xmlns:coding4Fun="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
                 mc:Ignorable="d ignore"
                 FontFamily="{StaticResource PhoneFontFamilyNormal}"
                 FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -60,7 +61,16 @@
         <Grid x:Name="ContentPanel"
               Grid.Row="1"
               Margin="12,0,12,0">
-
+            <Button Style="{StaticResource EmptyButtonStyle}">
+                <Grid VerticalAlignment="Top">
+                    <coding4Fun:SuperImage Source="{Binding SelectedProgramme, Converter={StaticResource ImageUrlConverter}, ConverterParameter=episode}"
+                                           MaxWidth="480"
+                                           Stretch="UniformToFill"
+                                           PlaceholderImageSource="/Images/MBBackground.jpg"
+                                           PlaceholderImageStretch="Uniform" />
+                    <controls:PlayButton Visibility="{Binding SelectedProgramme, Converter={StaticResource CanStreamVisibilityConverter}}" />
+                </Grid>
+            </Button>
         </Grid>
 
         <!--Uncomment to see an alignment grid to help ensure your controls are
