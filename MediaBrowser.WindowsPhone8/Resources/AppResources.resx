@@ -909,4 +909,7 @@
   <data name="LabelReallyShortMinutes" xml:space="preserve">
     <value>m</value>
   </data>
+  <data name="LabelLive" xml:space="preserve">
+    <value>Live</value>
+  </data>
 </root>

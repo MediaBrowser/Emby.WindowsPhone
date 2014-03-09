@@ -997,6 +997,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Live.
+        /// </summary>
+        public static string LabelLive {
+            get {
+                return ResourceManager.GetString("LabelLive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Live TV.
         /// </summary>
         public static string LabelLiveTv {

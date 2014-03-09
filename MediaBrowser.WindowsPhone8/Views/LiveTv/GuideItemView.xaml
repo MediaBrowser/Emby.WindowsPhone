@@ -83,6 +83,27 @@
                         <TextBlock Text="{Binding SelectedProgramme.RunTimeTicks, Converter={StaticResource RuntimeConverter}, ConverterParameter=livetv}"
                                    Style="{StaticResource PhoneTextSubtleStyle}"/>
                     </StackPanel>
+
+                    <TextBlock Text="{Binding SelectedProgramme.EpisodeTitle}"
+                               Style="{StaticResource PhoneTextSubtleStyle}"
+                               Margin="24,12,0,0"
+                               Visibility="{Binding SelectedProgramme.EpisodeTitle, Converter={StaticResource NullVisibilityConverter}}" />
+
+                    <StackPanel Orientation="Horizontal"
+                                Margin="12,12,0,0">
+                        <TextBlock Text="{Binding LocalizedResources.LabelLive, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToUppercaseConverter}}"
+                                   Style="{StaticResource PhoneTextNormalStyle}"
+                                   Foreground="{StaticResource LiveTvProgrammeBrush}"
+                                   Visibility="{Binding SelectedProgramme.IsLive, Converter={StaticResource VisibilityConverter}}"/>
+                        <TextBlock Text="{Binding SelectedProgramme.ChannelName}"
+                                   Style="{StaticResource PhoneTextNormalStyle}"
+                                   FontWeight="SemiBold"/>
+                    </StackPanel>
+
+                    <TextBlock Text="{Binding SelectedProgramme.Overview}"
+                               TextWrapping="Wrap"
+                               Margin="24,12,0,0"
+                               Style="{StaticResource PhoneTextNormalStyle}" />
                 </StackPanel>
             </ScrollViewer>
         </Grid>

@@ -770,6 +770,10 @@
           <source>m</source>
           <target state="new">m</target>
         </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelLive" xml:space="preserve">
+          <source>Live</source>
+          <target state="new">Live</target>
+        </trans-unit>
         <trans-unit translate="yes" id="Resx/LabelReallyShortHours" xml:space="preserve">
           <source>h</source>
           <target state="new">h</target>
