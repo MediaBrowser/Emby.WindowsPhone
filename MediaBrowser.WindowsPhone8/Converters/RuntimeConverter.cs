@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Data;
+using MediaBrowser.WindowsPhone.Resources;
 
 namespace MediaBrowser.WindowsPhone.Converters
 {
@@ -17,11 +18,12 @@ namespace MediaBrowser.WindowsPhone.Converters
                 {
                     if (ts.Hours == 0)
                     {
-                        return string.Format("{0}m", ts.Minutes);
+                        return string.Format("{0}{1}", ts.Minutes, AppResources.LabelReallyShortMinutes);
                     }
-                    return string.Format("{0}h {1}m", ts.Hours, ts.Minutes);
+                    return string.Format("{0}{1} {2}{3}", ts.Hours, AppResources.LabelReallyShortHours, ts.Minutes, AppResources.LabelReallyShortMinutes);
                 }
-                else if (displayType == "audio")
+
+                if (displayType == "audio")
                 {
                     if (ts.Hours == 0)
                     {
@@ -29,7 +31,13 @@ namespace MediaBrowser.WindowsPhone.Converters
                     }
                     return string.Format("{0:00}:{1:00}:{2:00}", ts.Hours, ts.Minutes, ts.Seconds);
                 }
+
+                if (displayType == "livetv")
+                {
+                    return string.Format("{0}{1}", ts.TotalMinutes, AppResources.LabelReallyShortMinutes);
+                }
             }
+
             return null;
         }
 

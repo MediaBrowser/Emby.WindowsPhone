@@ -1375,6 +1375,24 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to h.
+        /// </summary>
+        public static string LabelReallyShortHours {
+            get {
+                return ResourceManager.GetString("LabelReallyShortHours", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to m.
+        /// </summary>
+        public static string LabelReallyShortMinutes {
+            get {
+                return ResourceManager.GetString("LabelReallyShortMinutes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Recent.
         /// </summary>
         public static string LabelRecent {

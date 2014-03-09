@@ -903,4 +903,10 @@
   <data name="MenuRecordSeries" xml:space="preserve">
     <value>record series</value>
   </data>
+  <data name="LabelReallyShortHours" xml:space="preserve">
+    <value>h</value>
+  </data>
+  <data name="LabelReallyShortMinutes" xml:space="preserve">
+    <value>m</value>
+  </data>
 </root>

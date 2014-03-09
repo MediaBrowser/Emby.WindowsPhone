@@ -888,6 +888,14 @@
           <source>record series</source>
           <target state="new">record series</target>
         </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelReallyShortMinutes" xml:space="preserve">
+          <source>m</source>
+          <target state="new">m</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelReallyShortHours" xml:space="preserve">
+          <source>h</source>
+          <target state="new">h</target>
+        </trans-unit>
         <trans-unit translate="yes" id="Resx/MenuRecord" xml:space="preserve">
           <source>record</source>
           <target state="new">record</target>
