@@ -195,6 +195,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                 {
                     SelectedSeries = (SeriesTimerInfoDto) m.Sender;
                     _originalTimer = await SelectedSeries.Clone();
+                    _scheduledLoaded = false;
+                    _recordingsLoaded = false;
 
                     foreach (var day in SelectedSeries.Days)
                     {
@@ -266,10 +268,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
 
 
                     ScheduledRecordings = groupedItems;
+                    
+                    SetProgressBar();
+                    return true;
                 }
-
-                SetProgressBar();
-                return true;
             }
             catch (HttpException ex)
             {
@@ -297,10 +299,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                 if (items != null && !items.Items.IsNullOrEmpty())
                 {
                     Recordings = items.Items.ToList();
+                    SetProgressBar();
+                    return true;
                 }
-
-                SetProgressBar();
-                return true;
             }
             catch (HttpException ex)
             {
