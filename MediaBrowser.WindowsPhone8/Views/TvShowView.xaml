@@ -74,7 +74,7 @@
                         HeaderTemplate="{StaticResource LikeWp7ItemHeaderTemplate}"
                         TitleTemplate="{StaticResource LikeWp7TitleTemplate}">
             <i:Interaction.Behaviors>
-                <behaviours:PanoramaBackgroundBehaviour Source="{Binding SelectedTvSeries, Converter={StaticResource ImageUrlConverter}, ConverterParameter=backdrop}"
+                <behaviours:ControlBackgroundBehaviour Source="{Binding SelectedTvSeries, Converter={StaticResource ImageUrlConverter}, ConverterParameter=backdrop}"
                                                         Stretch="UniformToFill"
                                                         Opacity="0.2" />
             </i:Interaction.Behaviors>

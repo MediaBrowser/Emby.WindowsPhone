@@ -13,6 +13,7 @@
                 xmlns:controls="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
                 xmlns:cimbalino="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
                 xmlns:localConverters="clr-namespace:MediaBrowser.WindowsPhone.Converters"
+                xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
                 mc:Ignorable="d ignore"
                 d:DesignWidth="480"
                 d:DesignHeight="768"
@@ -84,6 +85,11 @@
             </cimbalino:ApplicationBarBehavior>
         </i:Interaction.Behaviors>
         <Grid x:Name="GridForBackground">
+            <i:Interaction.Behaviors>
+                <behaviours:PanelBackgroundBehaviour Source="{Binding NowPlayingItem.BackgroundImageUrl}"
+                                                        Stretch="UniformToFill"
+                                                        Opacity="0.2" />
+            </i:Interaction.Behaviors>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
