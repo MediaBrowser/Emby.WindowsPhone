@@ -242,6 +242,9 @@
     <Compile Include="..\MediaBrowser.WindowsPhone8\Controls\MediaBrowserLogo.cs">
       <Link>Controls\MediaBrowserLogo.cs</Link>
     </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone8\Controls\NowPlayingBar.cs">
+      <Link>Controls\NowPlayingBar.cs</Link>
+    </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone8\Controls\PlayButton.cs">
       <Link>Controls\PlayButton.cs</Link>
     </Compile>

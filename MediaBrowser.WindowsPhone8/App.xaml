@@ -8,8 +8,9 @@
              xmlns:vm="clr-namespace:MediaBrowser.WindowsPhone.ViewModel"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:windowsPhone="clr-namespace:MediaBrowser.WindowsPhone"
-
-             xmlns:model="clr-namespace:MediaBrowser.Model;assembly=MediaBrowser.Shared">
+             xmlns:model="clr-namespace:MediaBrowser.Model;assembly=MediaBrowser.Shared"
+             xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+             xmlns:controls="clr-namespace:MediaBrowser.WindowsPhone.Controls">
 
     <!--Application Resources-->
     <Application.Resources>
@@ -46,6 +47,56 @@
                     </TextBlock>
                 </Grid>
             </DataTemplate>
+
+            <Style TargetType="toolkit:TransitionFrame">
+                <Setter Property="Background"
+                        Value="{StaticResource PhoneBackgroundBrush}" />
+                <Setter Property="BorderBrush"
+                        Value="Transparent" />
+                <Setter Property="BorderThickness"
+                        Value="0" />
+                <Setter Property="HorizontalContentAlignment"
+                        Value="Stretch" />
+                <Setter Property="VerticalContentAlignment"
+                        Value="Stretch" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="toolkit:TransitionFrame">
+                            <Border x:Name="ClientArea"
+                                    Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    Margin="{TemplateBinding Margin}">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <ContentPresenter x:Name="FirstContentPresenter"
+                                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                      Grid.Row="0" />
+                                    <ContentPresenter x:Name="SecondContentPresenter"
+                                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                      Grid.Row="0" />
+
+                                    <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                                     Grid.Row="1"
+                                                     VerticalAlignment="Stretch"
+                                                     NavigateUri="/Views/NowPlayingView.xaml"
+                                                     Visibility="{Binding Playlist.NowPlayingItem, Source={StaticResource Locator}, Converter={StaticResource NullVisibilityConverter}}">
+
+                                        <controls:NowPlayingBar ImageUrl="{Binding Playlist.NowPlayingItem, Source={StaticResource Locator}}"
+                                                                Artist="{Binding Playlist.NowPlayingItem.Artist, Source={StaticResource Locator}}"
+                                                                TrackName="{Binding Playlist.NowPlayingItem.TrackName, Source={StaticResource Locator}}" />
+                                    </HyperlinkButton>
+                                </Grid>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 

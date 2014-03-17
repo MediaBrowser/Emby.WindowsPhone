@@ -23,6 +23,11 @@ namespace MediaBrowser.WindowsPhone.Views
             {
                 var item = (DataContext as PlaylistViewModel).NowPlayingItem;
 
+                if (item == null)
+                {
+                    return;
+                }
+
                 var url = item.BackgroundImageUrl;
 
                 if (!string.IsNullOrEmpty(url))
