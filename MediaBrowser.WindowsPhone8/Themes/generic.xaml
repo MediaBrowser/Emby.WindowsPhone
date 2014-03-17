@@ -5,7 +5,9 @@
                     xmlns:controls="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
                     xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
                     xmlns:converters="clr-namespace:ScottIsAFool.WindowsPhone.Converters;assembly=ScottIsAFool.WindowsPhone"
-                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+                    xmlns:system="clr-namespace:System;assembly=mscorlib"
+                    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+                    xmlns:model="clr-namespace:MediaBrowser.WindowsPhone.Model">
 
     <!-- Converters -->
     <converter:LoggedInDateConverter x:Key="LoggedInDateConverter" />
@@ -310,6 +312,7 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="75" />
                             <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="75" />
                         </Grid.ColumnDefinitions>
                         <Grid.Resources>
                             <system:String x:Key="MusicCase">./Images/DefaultAlbumCase.png</system:String>
@@ -335,6 +338,26 @@
                                        Text="{Binding Tag, RelativeSource={RelativeSource Self}, FallbackValue='Blur'}"
                                        Style="{StaticResource PhoneTextSubtleStyle}" />
                         </StackPanel>
+                        
+                        <Button Grid.Column="2"
+                                controls:TiltEffect.IsTiltEnabled="True"
+                                Style="{StaticResource EmptyButtonStyle}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Tap">
+                                    <model:EventToCommand Command="{Binding Playlist.PlayPauseCommand, Source={StaticResource Locator}}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            
+                            <Grid Background="SlateGray">
+                                <Path Width="75"
+                                      Height="75"
+                                      Fill="White"
+                                      Data="{TemplateBinding PlayPauseImage}"
+                                      Margin="0"
+                                      HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"/>
+                            </Grid>
+                        </Button>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

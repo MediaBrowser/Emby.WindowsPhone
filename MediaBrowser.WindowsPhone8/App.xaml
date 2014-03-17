@@ -10,7 +10,8 @@
              xmlns:windowsPhone="clr-namespace:MediaBrowser.WindowsPhone"
              xmlns:model="clr-namespace:MediaBrowser.Model;assembly=MediaBrowser.Shared"
              xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
-             xmlns:controls="clr-namespace:MediaBrowser.WindowsPhone.Controls">
+             xmlns:controls="clr-namespace:MediaBrowser.WindowsPhone.Controls"
+             xmlns:converters="clr-namespace:Cimbalino.Phone.Toolkit.Converters;assembly=Cimbalino.Phone.Toolkit">
 
     <!--Application Resources-->
     <Application.Resources>
@@ -86,10 +87,15 @@
                                                      VerticalAlignment="Stretch"
                                                      NavigateUri="/Views/NowPlayingView.xaml"
                                                      Visibility="{Binding Playlist.NowPlayingItem, Source={StaticResource Locator}, Converter={StaticResource NullVisibilityConverter}}">
-
+                                        <HyperlinkButton.Resources>
+                                            <converters:BooleanToStringConverter x:Key="PlayPauseImage"
+                                                                                 TrueValue="F1 M 26.9167,23.75L 33.25,23.75L 33.25,52.25L 26.9167,52.25L 26.9167,23.75 Z M 42.75,23.75L 49.0833,23.75L 49.0833,52.25L 42.75,52.25L 42.75,23.75 Z "
+                                                                                 FalseValue="F1 M 30.0833,22.1667L 50.6665,37.6043L 50.6665,38.7918L 30.0833,53.8333L 30.0833,22.1667 Z "/>
+                                        </HyperlinkButton.Resources>
                                         <controls:NowPlayingBar ImageUrl="{Binding Playlist.NowPlayingItem, Source={StaticResource Locator}}"
                                                                 Artist="{Binding Playlist.NowPlayingItem.Artist, Source={StaticResource Locator}}"
-                                                                TrackName="{Binding Playlist.NowPlayingItem.TrackName, Source={StaticResource Locator}}" />
+                                                                TrackName="{Binding Playlist.NowPlayingItem.TrackName, Source={StaticResource Locator}}"
+                                                                PlayPauseImage="{Binding Playlist.IsPlaying, Source={StaticResource Locator}, Converter={StaticResource PlayPauseImage}}"/>
                                     </HyperlinkButton>
                                 </Grid>
                             </Border>
