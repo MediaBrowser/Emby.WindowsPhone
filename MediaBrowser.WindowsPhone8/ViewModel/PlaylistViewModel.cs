@@ -57,6 +57,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 _playlistHelper = new PlaylistHelper(storageService);
                 BackgroundAudioPlayer.Instance.PlayStateChanged += OnPlayStateChanged;
+                GetPlaylistItems();
             }
         }
 
