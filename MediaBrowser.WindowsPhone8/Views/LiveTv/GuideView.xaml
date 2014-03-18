@@ -95,35 +95,35 @@
                     </phone:LongListSelector.ListHeader>
                     <phone:LongListSelector.ItemTemplate>
                         <DataTemplate>
-                            <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                             Command="{Binding Guide.GuideItemTappedCommand, Source={StaticResource Locator}}"
-                                             CommandParameter="{Binding}"
-                                             Margin="0,0,0,12">
+                            <controls:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                                            TapCommand="{Binding Guide.GuideItemTappedCommand, Source={StaticResource Locator}}"
+                                                            CommandParameter="{Binding}"
+                                                            Margin="0,0,0,12">
                                 <Grid d:DataContext="{Binding Guide.Programmes[0], Source={StaticResource Locator}}">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="12"/>
+                                        <ColumnDefinition Width="12" />
                                         <ColumnDefinition Width="1*" />
                                         <ColumnDefinition Width="3*" />
                                     </Grid.ColumnDefinitions>
-                                    
+
                                     <telerikPrimitives:RadContextMenu.ContextMenu>
                                         <telerikPrimitives:RadContextMenu>
                                             <telerikPrimitives:RadContextMenuItem Content="{Binding LocalizedResources.MenuRecord, Source={StaticResource LocalizedStrings}}"
-                                                                                  Command="{Binding Guide.RecordProgrammeCommand, Source={StaticResource Locator}}" 
+                                                                                  Command="{Binding Guide.RecordProgrammeCommand, Source={StaticResource Locator}}"
                                                                                   CommandParameter="{Binding}"
-                                                                                  IsEnabled="{Binding Converter={StaticResource HasAiredConverter}}"/>
+                                                                                  IsEnabled="{Binding Converter={StaticResource HasAiredConverter}}" />
                                             <telerikPrimitives:RadContextMenuItem Content="{Binding LocalizedResources.MenuRecordSeries, Source={StaticResource LocalizedStrings}}"
                                                                                   Command="{Binding Guide.CreateSeriesLinkCommand, Source={StaticResource Locator}}"
                                                                                   CommandParameter="{Binding}"
-                                                                                  Visibility="{Binding IsSeries, Converter={StaticResource VisibilityConverter}}"/>
+                                                                                  Visibility="{Binding IsSeries, Converter={StaticResource VisibilityConverter}}" />
                                         </telerikPrimitives:RadContextMenu>
                                     </telerikPrimitives:RadContextMenu.ContextMenu>
 
                                     <Rectangle Width="12"
                                                Grid.Column="0"
                                                Fill="{Binding Converter={StaticResource TypeToColourConverter}}"
-                                               VerticalAlignment="Stretch"/>
-                                    
+                                               VerticalAlignment="Stretch" />
+
                                     <TextBlock Text="{Binding StartDate, Converter={StaticResource TimeConverter}}"
                                                Style="{StaticResource PhoneTextTitle2Style}"
                                                VerticalAlignment="Top"
@@ -159,7 +159,7 @@
                                         </StackPanel>
                                     </StackPanel>
                                 </Grid>
-                            </HyperlinkButton>
+                            </controls:CustomHyperlinkButton>
                         </DataTemplate>
                     </phone:LongListSelector.ItemTemplate>
                 </phone:LongListSelector>

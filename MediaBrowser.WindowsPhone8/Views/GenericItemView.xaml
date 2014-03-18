@@ -64,24 +64,24 @@
               Margin="12,0">
             <ScrollViewer>
                 <StackPanel Orientation="Vertical">
-                    <Button Style="{StaticResource EmptyButtonStyle}"
-                            HorizontalContentAlignment="Center"
-                            VerticalContentAlignment="Center"
-                            IsHitTestVisible="{Binding SelectedItem, Converter={StaticResource CanStreamConverter}}"
-                            Command="{Binding Main.PlayMovieCommand, Source={StaticResource Locator}}"
-                            CommandParameter="{Binding SelectedItem}"
-                            Margin="-12,0">
+                    <mb:CustomButton Style="{StaticResource EmptyButtonStyle}"
+                                     HorizontalContentAlignment="Center"
+                                     VerticalContentAlignment="Center"
+                                     IsHitTestVisible="{Binding SelectedItem, Converter={StaticResource CanStreamConverter}}"
+                                     TapCommand="{Binding Main.PlayMovieCommand, Source={StaticResource Locator}}"
+                                     CommandParameter="{Binding SelectedItem}"
+                                     Margin="-12,0">
                         <Grid>
                             <Image Source="{Binding SelectedItem, Converter={StaticResource ImageUrlConverter}, ConverterParameter=episode}" />
-                            
+
                             <mb:PlayButton Visibility="{Binding SelectedItem, Converter={StaticResource CanStreamVisibilityConverter}}"
-                                           Height="76"/>
+                                           Height="76" />
                         </Grid>
-                    </Button>
-                    
+                    </mb:CustomButton>
+
                     <TextBlock Text="{Binding SelectedItem.Overview}"
                                Style="{StaticResource PhoneTextNormalStyle}"
-                               TextWrapping="Wrap"/>
+                               TextWrapping="Wrap" />
                 </StackPanel>
             </ScrollViewer>
         </Grid>

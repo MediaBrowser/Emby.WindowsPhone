@@ -10,8 +10,8 @@
                 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
                 xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP71"
                 xmlns:behaviours="clr-namespace:ScottIsAFool.WindowsPhone.Behaviours"
-                xmlns:controls2="clr-namespace:MediaBrowser.WindowsPhone.Controls"
-                xmlns:behaviours1="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
+                xmlns:local="clr-namespace:MediaBrowser.WindowsPhone.Controls"
+                xmlns:localBehaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
                 xmlns:behaviors="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
                 FontFamily="{StaticResource PhoneFontFamilyNormal}"
                 FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -29,7 +29,7 @@
         </i:EventTrigger>
     </i:Interaction.Triggers>
     <i:Interaction.Behaviors>
-        <behaviours1:MBSysTray Text="{Binding ProgressText}"
+        <localBehaviours:MBSysTray Text="{Binding ProgressText}"
                               IsVisible="{Binding ProgressIsVisible}"
                               IsIndeterminate="{Binding ProgressIsVisible}" />
         <behaviors:ApplicationBarBehavior Mode="Minimized"
@@ -68,7 +68,7 @@
           Background="{StaticResource MediaBrowserBackground}">
         <controls:Pivot x:Name="settingsPivot">
             <controls:Pivot.Title>
-                <controls2:MediaBrowserLogo Margin="-12,0,0,0" />
+                <local:MediaBrowserLogo Margin="-12,0,0,0" />
             </controls:Pivot.Title>
 
             <controls:PivotItem Header="{Binding LocalizedResources.LabelGeneral, Source={StaticResource LocalizedStrings}}">
@@ -170,7 +170,7 @@
                                FontWeight="ExtraBold"
                                Style="{StaticResource PhoneTextNormalStyle}"
                                Margin="12,12,0,0" />
-                    <Button Margin="0,12,0,0"
+                    <local:CustomButton Margin="0,12,0,0"
                             Content="{Binding LocalizedResources.LabelConnect, Source={StaticResource LocalizedStrings}}"
                             Command="{Binding Settings.TestConnectionCommand, Source={StaticResource Locator}}"
                             Style="{StaticResource ConnectButtonStyle}" />

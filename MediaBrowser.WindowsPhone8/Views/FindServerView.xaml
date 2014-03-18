@@ -79,16 +79,16 @@
             <phone:LongListSelector ItemsSource="{Binding FoundServers}">
                 <phone:LongListSelector.ItemTemplate>
                     <DataTemplate>
-                        <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                         Command="{Binding Settings.ServerTappedCommand, Source={StaticResource Locator}}"
-                                         CommandParameter="{Binding}">
+                        <controls:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                                        TapCommand="{Binding Settings.ServerTappedCommand, Source={StaticResource Locator}}"
+                                                        CommandParameter="{Binding}">
                             <controls1:HeaderAndDetail HeaderText="{Binding IpAddress}"
                                                        HeaderTextForeground="{StaticResource PhoneAccentBrush}"
                                                        HeaderTextStyle="{StaticResource PhoneTextTitle2Style}"
                                                        DetailText="{Binding PortNo}"
                                                        DetailTextStyle="{StaticResource PhoneTextSubtleStyle}"
                                                        DetailTextForeground="{StaticResource PhoneSubtleBrush}" />
-                        </HyperlinkButton>
+                        </controls:CustomHyperlinkButton>
                     </DataTemplate>
                 </phone:LongListSelector.ItemTemplate>
             </phone:LongListSelector>

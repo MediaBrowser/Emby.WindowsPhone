@@ -99,11 +99,11 @@
                         <TextBlock Text="{Binding LocalizedResources.LabelProfileNotListed, Source={StaticResource LocalizedStrings}}"
                                    Style="{StaticResource PhoneTextNormalStyle}"
                                    Margin="0" />
-                        <HyperlinkButton Content="{Binding LocalizedResources.LabelManuallyLogin, Source={StaticResource LocalizedStrings}}"
-                                         HorizontalContentAlignment="Left"
-                                         NavigateUri="/Views/ManualUsernameView.xaml"
-                                         Margin="-12,0,0,0"
-                                         Foreground="{StaticResource PhoneAccentBrush}" />
+                        <controls:CustomHyperlinkButton Content="{Binding LocalizedResources.LabelManuallyLogin, Source={StaticResource LocalizedStrings}}"
+                                                        HorizontalContentAlignment="Left"
+                                                        NavigateUri="/Views/ManualUsernameView.xaml"
+                                                        Margin="-12,0,0,0"
+                                                        Foreground="{StaticResource PhoneAccentBrush}" />
                     </StackPanel>
                 </scott:PhoneListBox.ListFooter>
                 <scott:PhoneListBox.ItemTemplate>

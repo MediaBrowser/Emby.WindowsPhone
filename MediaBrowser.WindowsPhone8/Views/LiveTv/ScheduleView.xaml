@@ -88,10 +88,10 @@
                             </phone:LongListSelector.ListHeader>
                             <phone:LongListSelector.ItemTemplate>
                                 <DataTemplate>
-                                    <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                                     Margin="0,0,0,12"
-                                                     Command="{Binding Schedule.ShowSeriesCommand, Source={StaticResource Locator}}"
-                                                     CommandParameter="{Binding}">
+                                    <controls:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                                                    Margin="0,0,0,12"
+                                                                    TapCommand="{Binding Schedule.ShowSeriesCommand, Source={StaticResource Locator}}"
+                                                                    CommandParameter="{Binding}">
                                         <toolkit:ContextMenuService.ContextMenu>
                                             <toolkit:ContextMenu>
                                                 <toolkit:MenuItem Header="{Binding LocalizedResources.ContextCancelSeries, Source={StaticResource LocalizedStrings}}"
@@ -113,7 +113,7 @@
                                             <TextBlock Text="{Binding Converter={StaticResource AnyChannelConverter}}"
                                                        Style="{StaticResource PhoneTextSubtleStyle}" />
                                         </StackPanel>
-                                    </HyperlinkButton>
+                                    </controls:CustomHyperlinkButton>
                                 </DataTemplate>
                             </phone:LongListSelector.ItemTemplate>
                         </phone:LongListSelector>
@@ -128,10 +128,10 @@
                                                 GroupHeaderTemplate="{StaticResource LLSGroupHeaderTemplateLong}">
                             <phone:LongListSelector.ItemTemplate>
                                 <DataTemplate>
-                                    <Button Style="{StaticResource EmptyButtonStyle}"
-                                            Margin="0,6"
-                                            Command="{Binding Schedule.RecordingTappedCommand, Source={StaticResource Locator}}"
-                                            CommandParameter="{Binding}">
+                                    <controls:CustomButton Style="{StaticResource EmptyButtonStyle}"
+                                                           Margin="0,6"
+                                                           TapCommand="{Binding Schedule.RecordingTappedCommand, Source={StaticResource Locator}}"
+                                                           CommandParameter="{Binding}">
                                         <Grid HorizontalAlignment="Stretch"
                                               VerticalAlignment="Top"
                                               d:DataContext="{Binding Schedule.Upcoming[0], Source={StaticResource Locator}}">
@@ -153,13 +153,13 @@
                                                 <TextBlock Text="{Binding Name}"
                                                            TextTrimming="WordEllipsis"
                                                            HorizontalAlignment="Stretch"
-                                                           Style="{StaticResource HeaderTextStyle}"/>
+                                                           Style="{StaticResource HeaderTextStyle}" />
 
                                                 <TextBlock Text="{Binding ProgramInfo.EpisodeTitle}"
                                                            TextTrimming="WordEllipsis"
                                                            HorizontalAlignment="Stretch"
                                                            Style="{StaticResource PhoneTextSubtleStyle}"
-                                                           Visibility="{Binding ProgramInfo.EpisodeTitle, Converter={StaticResource NullVisibilityConverter}}"/>
+                                                           Visibility="{Binding ProgramInfo.EpisodeTitle, Converter={StaticResource NullVisibilityConverter}}" />
                                             </StackPanel>
 
                                             <StackPanel Orientation="Horizontal"
@@ -179,7 +179,7 @@
                                                                          Grid.Row="1"
                                                                          Visibility="{Binding SeriesTimerId, Converter={StaticResource NullVisibilityConverter}}" />
                                         </Grid>
-                                    </Button>
+                                    </controls:CustomButton>
                                 </DataTemplate>
                             </phone:LongListSelector.ItemTemplate>
                         </phone:LongListSelector>

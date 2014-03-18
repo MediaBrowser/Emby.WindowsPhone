@@ -113,13 +113,13 @@
                             Margin="12,12,12,0">
                     <TextBlock Text="{Binding LocalizedResources.LabelChannel, Source={StaticResource LocalizedStrings}}"
                                Style="{StaticResource PhoneTextSubtleStyle}" />
-                    <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                     IsHitTestVisible="{Binding SelectedSeries.RecordAnyChannel, Converter={StaticResource NegativeBooleanConverter}}">
+                    <controls:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                                    IsHitTestVisible="{Binding SelectedSeries.RecordAnyChannel, Converter={StaticResource NegativeBooleanConverter}}">
                         <TextBlock Text="{Binding SelectedSeries, Converter={StaticResource AnyChannelConverter}}"
                                    Style="{StaticResource PhoneTextNormalStyle}"
                                    Foreground="{Binding SelectedSeries.RecordAnyChannel, Converter={StaticResource ChannelColourConverter}}"
                                    Margin="0" />
-                    </HyperlinkButton>
+                    </controls:CustomHyperlinkButton>
 
                     <TextBlock Text="{Binding LocalizedResources.LabelTime, Source={StaticResource LocalizedStrings}}"
                                Style="{StaticResource PhoneTextSubtleStyle}" />
@@ -184,8 +184,8 @@
                                                 Margin="12,0,0,0">
                             <phone:LongListSelector.ItemTemplate>
                                 <DataTemplate>
-                                    <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                                     Margin="0,0,12,12">
+                                    <controls:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                                                    Margin="0,0,12,12">
                                         <Grid Height="173"
                                               Width="215">
                                             <coding4Fun:SuperImage PlaceholderImageSource="/Images/Logo.png"
@@ -213,7 +213,7 @@
                                             </Border>
                                             <controls:Played Data="{Binding}" />
                                         </Grid>
-                                    </HyperlinkButton>
+                                    </controls:CustomHyperlinkButton>
                                 </DataTemplate>
                             </phone:LongListSelector.ItemTemplate>
                         </phone:LongListSelector>
@@ -226,10 +226,10 @@
                                                 GroupHeaderTemplate="{StaticResource LLSGroupHeaderTemplateLong}">
                             <phone:LongListSelector.ItemTemplate>
                                 <DataTemplate>
-                                    <Button Style="{StaticResource EmptyButtonStyle}"
-                                            Margin="0,6"
-                                            Command="{Binding ScheduledSeries.RecordingTappedCommand, Source={StaticResource Locator}}"
-                                            CommandParameter="{Binding}">
+                                    <controls:CustomButton Style="{StaticResource EmptyButtonStyle}"
+                                                           Margin="0,6"
+                                                           TapCommand="{Binding ScheduledSeries.RecordingTappedCommand, Source={StaticResource Locator}}"
+                                                           CommandParameter="{Binding}">
                                         <Grid HorizontalAlignment="Stretch"
                                               VerticalAlignment="Top"
                                               d:DataContext="{Binding ScheduledSeries.ScheduledRecordings[0], Source={StaticResource Locator}}">
@@ -241,7 +241,7 @@
                                                 <toolkit:ContextMenu>
                                                     <toolkit:MenuItem Header="{Binding LocalizedResources.MenuCancelRecording, Source={StaticResource LocalizedStrings}}"
                                                                       Command="{Binding ScheduledSeries.CancelRecordingCommand, Source={StaticResource Locator}}"
-                                                                      CommandParameter="{Binding}"/>
+                                                                      CommandParameter="{Binding}" />
                                                 </toolkit:ContextMenu>
                                             </toolkit:ContextMenuService.ContextMenu>
 
@@ -257,7 +257,7 @@
                                                 <TextBlock Text="{Binding LocalizedResources.LabelNew, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToUppercaseConverter}}"
                                                            Style="{StaticResource PhoneTextNormalStyle}"
                                                            Foreground="{StaticResource PhoneAccentBrush}"
-                                                           Visibility="{Binding IsNew, Converter={StaticResource VisibilityConverter}}"/>
+                                                           Visibility="{Binding IsNew, Converter={StaticResource VisibilityConverter}}" />
                                                 <TextBlock Text="{Binding Converter={StaticResource RecordingTimeConverter}}"
                                                            Style="{StaticResource PhoneTextSubtleStyle}" />
                                             </StackPanel>
@@ -268,7 +268,7 @@
                                                                          Grid.Row="1"
                                                                          Visibility="{Binding SeriesTimerId, Converter={StaticResource NullVisibilityConverter}}" />
                                         </Grid>
-                                    </Button>
+                                    </controls:CustomButton>
                                 </DataTemplate>
                             </phone:LongListSelector.ItemTemplate>
                         </phone:LongListSelector>

@@ -41,8 +41,8 @@
         <converters:VirtualConverter x:Key="VirtualConverter" />
         <converters:VirtualVisibilityConverter x:Key="VirtualVisibilityConverter" />
         <converters:BooleanToStringConverter x:Key="MarkAsWatchedConverter"
-                                              TrueValue="{Binding LocalizedResources.AppBarMarkAsWatched, Source={StaticResource LocalizedStrings}}"
-                                              FalseValue="{Binding LocalizedResources.AppBarMarkAsUnwatched, Source={StaticResource LocalizedStrings}}"/>
+                                             TrueValue="{Binding LocalizedResources.AppBarMarkAsWatched, Source={StaticResource LocalizedStrings}}"
+                                             FalseValue="{Binding LocalizedResources.AppBarMarkAsUnwatched, Source={StaticResource LocalizedStrings}}" />
     </scott:BasePage.Resources>
 
     <toolkit:TransitionService.NavigationInTransition>
@@ -127,10 +127,10 @@
                                        Style="{StaticResource PhoneTextTitle1Style}" />
                             <TextBlock Style="{StaticResource PhoneTextSubtleStyle}"
                                        Margin="9,0,0,-12">
-                                <Run Text="{Binding LocalizedResources.LabelSeries, Source={StaticResource LocalizedStrings}}"/>
-                                <Run Text="{Binding ParentIndexNumber, StringFormat='\{0\},'}"/>
-                                <Run Text="{Binding LocalizedResources.LabelEpisode, Source={StaticResource LocalizedStrings}}"/>
-                                <Run Text="{Binding Converter={StaticResource EpisodeNumberConverter}}"/>
+                                <Run Text="{Binding LocalizedResources.LabelSeries, Source={StaticResource LocalizedStrings}}" />
+                                <Run Text="{Binding ParentIndexNumber, StringFormat='\{0\},'}" />
+                                <Run Text="{Binding LocalizedResources.LabelEpisode, Source={StaticResource LocalizedStrings}}" />
+                                <Run Text="{Binding Converter={StaticResource EpisodeNumberConverter}}" />
                             </TextBlock>
                         </StackPanel>
 
@@ -139,25 +139,25 @@
                               Grid.Row="1">
                             <ScrollViewer>
                                 <StackPanel Orientation="Vertical">
-                                    <Button Style="{StaticResource EmptyButtonStyle}"
-                                            HorizontalContentAlignment="Center"
-                                            VerticalContentAlignment="Center"
-                                            VerticalAlignment="Top"
-                                            IsHitTestVisible="{Binding Converter={StaticResource CanStreamConverter}}"
-                                            Command="{Binding Main.PlayMovieCommand, Source={StaticResource Locator}}"
-                                            CommandParameter="{Binding}"
-                                            toolkit:TiltEffect.IsTiltEnabled="{Binding DataContext.SelectedEpisode, ElementName=LayoutRoot, Converter={StaticResource VirtualConverter}}">
+                                    <controls:CustomButton Style="{StaticResource EmptyButtonStyle}"
+                                                           HorizontalContentAlignment="Center"
+                                                           VerticalContentAlignment="Center"
+                                                           VerticalAlignment="Top"
+                                                           IsHitTestVisible="{Binding Converter={StaticResource CanStreamConverter}}"
+                                                           TapCommand="{Binding Main.PlayMovieCommand, Source={StaticResource Locator}}"
+                                                           CommandParameter="{Binding}"
+                                                           toolkit:TiltEffect.IsTiltEnabled="{Binding DataContext.SelectedEpisode, ElementName=LayoutRoot, Converter={StaticResource VirtualConverter}}">
                                         <Grid>
                                             <coding4Fun:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}, ConverterParameter=episode}"
                                                                    MaxWidth="480"
                                                                    Stretch="UniformToFill"
                                                                    PlaceholderImageSource="/Images/MBBackground.jpg"
                                                                    PlaceholderImageStretch="Uniform" />
-                                            <controls:PlayButton Visibility="{Binding DataContext.SelectedEpisode, ElementName=LayoutRoot, Converter={StaticResource CanStreamVisibilityConverter}}"/>
-                                            
-                                            <controls:Played Data="{Binding}"/>
+                                            <controls:PlayButton Visibility="{Binding DataContext.SelectedEpisode, ElementName=LayoutRoot, Converter={StaticResource CanStreamVisibilityConverter}}" />
+
+                                            <controls:Played Data="{Binding}" />
                                         </Grid>
-                                    </Button>
+                                    </controls:CustomButton>
                                     <TextBlock Text="{Binding Overview}"
                                                TextWrapping="Wrap"
                                                Style="{StaticResource PhoneTextNormalStyle}"

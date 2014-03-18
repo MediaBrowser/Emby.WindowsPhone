@@ -102,10 +102,10 @@
                     </phone:LongListSelector.ListHeader>
                     <phone:LongListSelector.ItemTemplate>
                         <DataTemplate>
-                            <Button Style="{StaticResource EmptyButtonStyle}"
-                                    Command="{Binding Channels.ChannelTappedCommand, Source={StaticResource Locator}}"
-                                    CommandParameter="{Binding}"
-                                    Margin="12">
+                            <controls:CustomButton Style="{StaticResource EmptyButtonStyle}"
+                                                   TapCommand="{Binding Channels.ChannelTappedCommand, Source={StaticResource Locator}}"
+                                                   CommandParameter="{Binding}"
+                                                   Margin="12">
                                 <StackPanel Orientation="Horizontal"
                                             d:DataContext="{Binding Channels.Channels[0], Source={StaticResource Locator}}">
                                     <c4F:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
@@ -114,25 +114,25 @@
                                                     PlaceholderImageStretch="Uniform"
                                                     VerticalAlignment="Top"
                                                     Height="75"
-                                                    Width="75"/>
+                                                    Width="75" />
                                     <StackPanel Orientation="Vertical"
                                                 VerticalAlignment="Top"
                                                 Margin="0,-12,0,0">
                                         <TextBlock Style="{StaticResource HeaderTextStyle}"
                                                    FontWeight="Bold"
-                                                   Text="{Binding Name, Converter={StaticResource StringCaseConverter}, ConverterParameter=false}"/>
+                                                   Text="{Binding Name, Converter={StaticResource StringCaseConverter}, ConverterParameter=false}" />
                                         <TextBlock Style="{StaticResource PhoneTextSubtleStyle}">
-                                            <Run Text="Ch"/>
-                                            <Run Text="{Binding Number}"/>
+                                            <Run Text="Ch" />
+                                            <Run Text="{Binding Number}" />
                                         </TextBlock>
                                         <TextBlock Style="{StaticResource PhoneTextSubtleStyle}"
                                                    Visibility="{Binding CurrentProgram, Converter={StaticResource NullVisibilityConverter}}">
                                             <Run Text="On now:" />
-                                            <Run Text="{Binding CurrentProgram.Name}"/>
+                                            <Run Text="{Binding CurrentProgram.Name}" />
                                         </TextBlock>
                                     </StackPanel>
                                 </StackPanel>
-                            </Button>
+                            </controls:CustomButton>
                         </DataTemplate>
                     </phone:LongListSelector.ItemTemplate>
                 </phone:LongListSelector>

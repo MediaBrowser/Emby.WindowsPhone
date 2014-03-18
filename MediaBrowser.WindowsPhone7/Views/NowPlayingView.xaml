@@ -38,11 +38,11 @@
 
     <scott:BasePage.Resources>
         <localConverters:BooleanToStringConverter x:Key="PlayIconConverter"
-                                             FalseValue="/Icons/appbar.transport.play.rest.png"
-                                             TrueValue="/Icons/appbar.transport.pause.rest.png" />
+                                                  FalseValue="/Icons/appbar.transport.play.rest.png"
+                                                  TrueValue="/Icons/appbar.transport.pause.rest.png" />
         <localConverters:BooleanToStringConverter x:Key="PlayTextConverter"
-                                             TrueValue="{Binding LocalizedResources.AppBarPause, Source={StaticResource LocalizedStrings}}"
-                                             FalseValue="{Binding LocalizedResources.AppBarPlay, Source={StaticResource LocalizedStrings}}" />
+                                                  TrueValue="{Binding LocalizedResources.AppBarPause, Source={StaticResource LocalizedStrings}}"
+                                                  FalseValue="{Binding LocalizedResources.AppBarPlay, Source={StaticResource LocalizedStrings}}" />
         <localConverters:PlaylistCountConverter x:Key="PlaylistCountConverter" />
     </scott:BasePage.Resources>
 
@@ -152,8 +152,8 @@
                         <TextBlock Text="{Binding TrackName}"
                                    Style="{StaticResource PhoneTextNormalStyle}" />
                     </StackPanel>
-                    <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                     NavigateUri="/Views/FullPlaylistView.xaml">
+                    <mb:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                              NavigateUri="/Views/FullPlaylistView.xaml">
                         <ListBox ItemsSource="{Binding SmallList}"
                                  IsHitTestVisible="False">
                             <ListBox.ItemTemplate>
@@ -163,7 +163,7 @@
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>
-                    </HyperlinkButton>
+                    </mb:CustomHyperlinkButton>
                 </StackPanel>
             </Grid>
         </Grid>

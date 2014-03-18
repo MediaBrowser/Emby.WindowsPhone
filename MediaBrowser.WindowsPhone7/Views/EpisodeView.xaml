@@ -130,11 +130,11 @@
                               Grid.Row="1">
                             <ScrollViewer>
                                 <StackPanel Orientation="Vertical">
-                                    <Button Style="{StaticResource EmptyButtonStyle}"
-                                            HorizontalContentAlignment="Center"
-                                            VerticalContentAlignment="Center"
-                                            Command="{Binding Main.PlayMovieCommand, Source={StaticResource Locator}}"
-                                            CommandParameter="{Binding}">
+                                    <controls:CustomButton Style="{StaticResource EmptyButtonStyle}"
+                                                           HorizontalContentAlignment="Center"
+                                                           VerticalContentAlignment="Center"
+                                                           TapCommand="{Binding Main.PlayMovieCommand, Source={StaticResource Locator}}"
+                                                           CommandParameter="{Binding}">
                                         <Grid>
                                             <coding4Fun:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}, ConverterParameter=episode}"
                                                                    MaxWidth="480"
@@ -143,11 +143,11 @@
                                                                    PlaceholderImageStretch="Uniform" />
                                             <controls:Played Data="{Binding}" />
                                         </Grid>
-                                    </Button>
+                                    </controls:CustomButton>
                                     <TextBlock Text="{Binding Overview}"
                                                TextWrapping="Wrap"
-                                               Style="{StaticResource PhoneTextNormalStyle}" 
-                                               Margin="24,0"/>
+                                               Style="{StaticResource PhoneTextNormalStyle}"
+                                               Margin="24,0" />
                                 </StackPanel>
                             </ScrollViewer>
                         </Grid>

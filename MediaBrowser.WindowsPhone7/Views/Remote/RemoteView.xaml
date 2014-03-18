@@ -233,11 +233,11 @@
                                Grid.ColumnSpan="3"
                                VerticalAlignment="Top"
                                Opacity="0.2" />
-                        <Button Style="{StaticResource EmptyButtonStyle}"
+                        <mb:CustomButton Style="{StaticResource EmptyButtonStyle}"
                                 Grid.Row="0"
                                 HorizontalContentAlignment="Center"
                                 HorizontalAlignment="Center"
-                                Command="{Binding NavigateToCommand}"
+                                TapCommand="{Binding NavigateToCommand}"
                                 CommandParameter="{Binding SelectedClient.NowPlayingItem}"
                                 toolkit:TiltEffect.IsTiltEnabled="True">
                             <controls:SuperImage Source="{Binding SelectedClient.NowPlayingItem, Converter={StaticResource ImageUrlConverter}}"
@@ -246,7 +246,7 @@
                                                  PlaceholderImageSource="/Images/DefaultVideo.png"
                                                  PlaceholderImageStretch="Uniform"
                                                  Margin="0,24,0,0" />
-                        </Button>
+                        </mb:CustomButton>
                         <TextBlock Text="{Binding SelectedClient.NowPlayingItem.Name}"
                                    Grid.Row="1"
                                    Style="{StaticResource PhoneTextTitle2Style}"

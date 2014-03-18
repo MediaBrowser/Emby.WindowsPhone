@@ -10,10 +10,11 @@
                 xmlns:controls="clr-namespace:ScottIsAFool.WindowsPhone.Controls;assembly=ScottIsAFool.WindowsPhone"
                 xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
                 xmlns:cimbalino="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
-                xmlns:controls3="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+                xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
                 xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP71"
                 xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
-                xmlns:controls1="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
+                xmlns:coding4Fun="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
+                xmlns:local="clr-namespace:MediaBrowser.WindowsPhone.Controls"
                 mc:Ignorable="d ignore"
                 FontFamily="{StaticResource PhoneFontFamilyNormal}"
                 FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -67,15 +68,15 @@
                                                     CommandParameter="{Binding SelectedFolder}" />
             </cimbalino:ApplicationBarBehavior>
         </i:Interaction.Behaviors>
-        <controls3:Panorama Title="{Binding SelectedFolder.Name, Converter={StaticResource StringCaseConverter}}"
-                            x:Name="ThePanorama">
+        <phone:Panorama Title="{Binding SelectedFolder.Name, Converter={StaticResource StringCaseConverter}}"
+                        x:Name="ThePanorama">
             <i:Interaction.Behaviors>
                 <behaviours:ControlBackgroundBehaviour Source="{Binding SelectedFolder, Converter={StaticResource ImageUrlConverter}, ConverterParameter=backdrop}"
-                                                        Stretch="UniformToFill"
-                                                        Opacity="0.2" />
+                                                       Stretch="UniformToFill"
+                                                       Opacity="0.2" />
             </i:Interaction.Behaviors>
             <!--<phone:Panorama Title="movies">-->
-            <controls3:PanoramaItem Header="{Binding LocalizedResources.LabelRecent, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
+            <phone:PanoramaItem Header="{Binding LocalizedResources.LabelRecent, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
                 <controls:PhoneListBox ItemsSource="{Binding RecentItems}"
                                        Text="{Binding LocalizedResources.NoItemsFound, Source={StaticResource LocalizedStrings}}"
                                        TextHorizontalAlignment="Center"
@@ -84,18 +85,18 @@
                                        Margin="12,0,0,0">
                     <controls:PhoneListBox.ItemTemplate>
                         <DataTemplate>
-                            <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                             Command="{Binding Main.NavigateToPage, Source={StaticResource Locator}}"
-                                             CommandParameter="{Binding}"
-                                             Margin="12,0,0,12">
+                            <local:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                                         TapCommand="{Binding Main.NavigateToPage, Source={StaticResource Locator}}"
+                                                         CommandParameter="{Binding}"
+                                                         Margin="12,0,0,12">
                                 <Grid Height="173">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
-                                    <controls1:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}, ConverterParameter=backdropsmall}"
-                                                         Stretch="UniformToFill"
-                                                         PlaceholderImageSource="/Images/MBBackground.jpg"
-                                                         PlaceholderImageStretch="Uniform" />
+                                    <coding4Fun:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}, ConverterParameter=backdropsmall}"
+                                                           Stretch="UniformToFill"
+                                                           PlaceholderImageSource="/Images/MBBackground.jpg"
+                                                           PlaceholderImageStretch="Uniform" />
                                     <Border VerticalAlignment="Bottom"
                                             Background="#C4000000"
                                             HorizontalAlignment="Stretch">
@@ -111,14 +112,14 @@
 
                                     </Border>
                                 </Grid>
-                            </HyperlinkButton>
+                            </local:CustomHyperlinkButton>
                         </DataTemplate>
                     </controls:PhoneListBox.ItemTemplate>
                 </controls:PhoneListBox>
-            </controls3:PanoramaItem>
+            </phone:PanoramaItem>
 
-            <controls3:PanoramaItem Header="{Binding LocalizedResources.LabelRandomItems, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
-                                    Orientation="Horizontal">
+            <phone:PanoramaItem Header="{Binding LocalizedResources.LabelRandomItems, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                Orientation="Horizontal">
                 <Grid>
 
                     <controls:PhoneListBox ItemsSource="{Binding RandomItems}"
@@ -137,15 +138,15 @@
                         </controls:PhoneListBox.ItemsPanel>
                     </controls:PhoneListBox>
 
-                    <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                     VerticalAlignment="Bottom"
-                                     Command="{Binding SeeMoreCommand}">
+                    <local:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                                 VerticalAlignment="Bottom"
+                                                 TapCommand="{Binding SeeMoreCommand}">
                         <TextBlock Text="{Binding LocalizedResources.LabelShowAllItems, Source={StaticResource LocalizedStrings}}"
                                    Style="{StaticResource PhoneTextLargeStyle}" />
-                    </HyperlinkButton>
+                    </local:CustomHyperlinkButton>
                 </Grid>
-            </controls3:PanoramaItem>
-        </controls3:Panorama>
+            </phone:PanoramaItem>
+        </phone:Panorama>
 
         <!--Uncomment to see an alignment grid to help ensure your controls are
             aligned on common boundaries.  The image has a top margin of -32px to

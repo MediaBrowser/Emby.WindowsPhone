@@ -60,20 +60,20 @@
                             <ColumnDefinition Width="3*" />
                             <ColumnDefinition Width="5*" />
                         </Grid.ColumnDefinitions>
-                        <Button Style="{StaticResource EmptyButtonStyle}"
-                                Grid.Column="0"
-                                Command="{Binding Main.PlayMovieCommand, Source={StaticResource Locator}}"
-                                CommandParameter="{Binding SelectedTrailer}"
-                                VerticalAlignment="Top">
+                        <controls:CustomButton Style="{StaticResource EmptyButtonStyle}"
+                                               Grid.Column="0"
+                                               TapCommand="{Binding Main.PlayMovieCommand, Source={StaticResource Locator}}"
+                                               CommandParameter="{Binding SelectedTrailer}"
+                                               VerticalAlignment="Top">
                             <Grid VerticalAlignment="Top">
                                 <Image Source="{Binding SelectedTrailer, Converter={StaticResource ImageUrlConverter}}"
                                        Stretch="UniformToFill"
                                        HorizontalAlignment="Center" />
                                 <controls:PlayButton Height="63"
                                                      HorizontalAlignment="Center"
-                                                     VerticalAlignment="Center"/>
+                                                     VerticalAlignment="Center" />
                             </Grid>
-                        </Button>
+                        </controls:CustomButton>
                         <phone:LongListSelector Grid.Column="1"
                                                 Background="Transparent"
                                                 IsHitTestVisible="False"

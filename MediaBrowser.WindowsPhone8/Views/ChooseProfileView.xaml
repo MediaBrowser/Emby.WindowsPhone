@@ -34,7 +34,7 @@
             <behaviors:ApplicationBarBehavior.MenuItems>
                 <behaviors:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarSettings, Source={StaticResource LocalizedStrings}}"
                                                   Command="{Binding Main.NavigateToAPage, Source={StaticResource Locator}}"
-                                                  CommandParameter="/Views/SettingsView.xaml"/>
+                                                  CommandParameter="/Views/SettingsView.xaml" />
             </behaviors:ApplicationBarBehavior.MenuItems>
         </behaviors:ApplicationBarBehavior>
     </i:Interaction.Behaviors>
@@ -90,15 +90,16 @@
             <phone:LongListSelector ItemsSource="{Binding Profiles}"
                                     Margin="12,0,0,0">
                 <phone:LongListSelector.ListFooter>
-                    <StackPanel Orientation="Vertical" Margin="0,12">
+                    <StackPanel Orientation="Vertical"
+                                Margin="0,12">
                         <TextBlock Text="{Binding LocalizedResources.LabelProfileNotListed, Source={StaticResource LocalizedStrings}}"
                                    Style="{StaticResource PhoneTextNormalStyle}"
-                                   Margin="0"/>
-                        <HyperlinkButton Content="{Binding LocalizedResources.LabelManuallyLogin, Source={StaticResource LocalizedStrings}}"
-                                         HorizontalContentAlignment="Left"
-                                         NavigateUri="/Views/ManualUsernameView.xaml"
-                                         Margin="-12,0,0,0"
-                                         Foreground="{StaticResource PhoneAccentBrush}"/>
+                                   Margin="0" />
+                        <controls:CustomHyperlinkButton Content="{Binding LocalizedResources.LabelManuallyLogin, Source={StaticResource LocalizedStrings}}"
+                                                        HorizontalContentAlignment="Left"
+                                                        NavigateUri="/Views/ManualUsernameView.xaml"
+                                                        Margin="-12,0,0,0"
+                                                        Foreground="{StaticResource PhoneAccentBrush}" />
                     </StackPanel>
                 </phone:LongListSelector.ListFooter>
                 <phone:LongListSelector.ItemTemplate>
