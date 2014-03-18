@@ -128,6 +128,7 @@
     <Compile Include="Behaviours\MBSysTray.cs" />
     <Compile Include="Behaviours\OnTextPropertyChangedBehaviour.cs" />
     <Compile Include="Behaviours\PanoramaBackgroundBehaviour.cs" />
+    <Compile Include="Controls\NowPlayingBar.cs" />
     <Compile Include="Controls\PlayButton.cs" />
     <Compile Include="Controls\DynamicTextBlock.cs" />
     <Compile Include="Controls\LockScreenCollage.xaml.cs">
@@ -200,6 +201,7 @@
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="Messaging\VideoMessage.cs" />
     <Compile Include="Model\Chapter.cs" />
+    <Compile Include="Model\EventToCommand.cs" />
     <Compile Include="Model\INavigationService.cs" />
     <Compile Include="Model\LockScreenType.cs" />
     <Compile Include="Model\MBLogger.cs" />
