@@ -41,7 +41,7 @@
 
     <scott:BasePage.Resources>
         <system:Double x:Key="ViewSize">120</system:Double>
-        <converters:LiveTvInfoVisibilityConverter x:Key="LiveTvInfoConverter"/>
+        <converters:LiveTvInfoVisibilityConverter x:Key="LiveTvInfoConverter" />
     </scott:BasePage.Resources>
 
     <toolkit:TransitionService.NavigationInTransition>
@@ -114,26 +114,26 @@
                 <ScrollViewer>
                     <StackPanel Orientation="Vertical"
                                 Margin="12,0,0,0">
-                        <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                         Margin="0,0,0,12"
-                                         NavigateUri="/Views/LiveTv/LiveTvView.xaml"
-                                         Visibility="{Binding LiveTvInfo, Source={StaticResource AppSettings}, Converter={StaticResource LiveTvInfoConverter}}">
+                        <local:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                                     Margin="0,0,0,12"
+                                                     NavigateUri="/Views/LiveTv/LiveTvView.xaml"
+                                                     Visibility="{Binding LiveTvInfo, Source={StaticResource AppSettings}, Converter={StaticResource LiveTvInfoConverter}}">
                             <StackPanel Orientation="Horizontal">
                                 <Border Background="#FFD100FF"
                                         Height="{StaticResource ViewSize}"
                                         Width="{StaticResource ViewSize}">
                                     <local:ScheduledRecording Foreground="White"
-                                                                  Height="70"
-                                                                  Width="70" />
+                                                              Height="70"
+                                                              Width="70" />
                                 </Border>
                                 <TextBlock Text="{Binding LocalizedResources.LabelLiveTv, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToUppercaseConverter}}"
                                            Style="{StaticResource HeaderTextStyle}"
                                            VerticalAlignment="Top" />
                             </StackPanel>
-                        </HyperlinkButton>
-                        <HyperlinkButton NavigateUri="/Views/Predefined/MovieCollectionView.xaml"
-                                         Style="{StaticResource EmptyButtonStyle}"
-                                         Margin="0,0,0,12">
+                        </local:CustomHyperlinkButton>
+                        <local:CustomHyperlinkButton NavigateUri="/Views/Predefined/MovieCollectionView.xaml"
+                                                     Style="{StaticResource EmptyButtonStyle}"
+                                                     Margin="0,0,0,12">
                             <StackPanel Orientation="Horizontal">
                                 <Border Background="#0094FF">
                                     <Image Source="/Images/moviecollection.png"
@@ -145,10 +145,10 @@
                                            Style="{StaticResource HeaderTextStyle}"
                                            VerticalAlignment="Top" />
                             </StackPanel>
-                        </HyperlinkButton>
-                        <HyperlinkButton NavigateUri="/Views/Predefined/TvCollectionView.xaml"
-                                         Style="{StaticResource EmptyButtonStyle}"
-                                         Margin="0,0,0,12">
+                        </local:CustomHyperlinkButton>
+                        <local:CustomHyperlinkButton NavigateUri="/Views/Predefined/TvCollectionView.xaml"
+                                                     Style="{StaticResource EmptyButtonStyle}"
+                                                     Margin="0,0,0,12">
                             <StackPanel Orientation="Horizontal">
                                 <Border Background="#FF870F">
                                     <Image Source="/Images/tvcollection.png"
@@ -160,9 +160,9 @@
                                            Style="{StaticResource HeaderTextStyle}"
                                            VerticalAlignment="Top" />
                             </StackPanel>
-                        </HyperlinkButton>
-                        <HyperlinkButton NavigateUri="/Views/Predefined/MusicCollectionView.xaml"
-                                         Style="{StaticResource EmptyButtonStyle}">
+                        </local:CustomHyperlinkButton>
+                        <local:CustomHyperlinkButton NavigateUri="/Views/Predefined/MusicCollectionView.xaml"
+                                                     Style="{StaticResource EmptyButtonStyle}">
                             <StackPanel Orientation="Horizontal">
                                 <Border Background="#6FBD45">
                                     <Image Source="/Images/audiocollection.png"
@@ -174,7 +174,7 @@
                                            Style="{StaticResource HeaderTextStyle}"
                                            VerticalAlignment="Top" />
                             </StackPanel>
-                        </HyperlinkButton>
+                        </local:CustomHyperlinkButton>
                     </StackPanel>
                 </ScrollViewer>
             </phone:PanoramaItem>
@@ -182,10 +182,10 @@
                 <phone:LongListSelector ItemsSource="{Binding Folders}">
                     <phone:LongListSelector.ItemTemplate>
                         <DataTemplate>
-                            <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                             Command="{Binding Main.NavigateToPage, Source={StaticResource Locator}}"
-                                             CommandParameter="{Binding}"
-                                             Margin="12,0,0,0">
+                            <local:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                                         TapCommand="{Binding Main.NavigateToPage, Source={StaticResource Locator}}"
+                                                         CommandParameter="{Binding}"
+                                                         Margin="12,0,0,0">
                                 <toolkit:ContextMenuService.ContextMenu>
                                     <toolkit:ContextMenu>
                                         <toolkit:MenuItem Header="{Binding LocalizedResources.PinToStart, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringCaseConverter}}"
@@ -207,12 +207,12 @@
                                         <TextBlock Text="{Binding Name}"
                                                    Style="{StaticResource PhoneTextLargeStyle}" />
                                         <TextBlock Style="{StaticResource PhoneTextSubtleStyle}">
-                                            <Run Text="{Binding LocalizedResources.LabelUnplayedItems, Source={StaticResource LocalizedStrings}}"/>
-                                            <Run Text="{Binding RecursiveUnplayedItemCount}"/>
+                                            <Run Text="{Binding LocalizedResources.LabelUnplayedItems, Source={StaticResource LocalizedStrings}}" />
+                                            <Run Text="{Binding RecursiveUnplayedItemCount}" />
                                         </TextBlock>
                                     </StackPanel>
                                 </StackPanel>
-                            </HyperlinkButton>
+                            </local:CustomHyperlinkButton>
                         </DataTemplate>
                     </phone:LongListSelector.ItemTemplate>
                 </phone:LongListSelector>
@@ -234,14 +234,14 @@
                                        Visibility="{Binding RecentItems.Count, Converter={StaticResource IntToVisibilityConverter}, ConverterParameter=true}" />
                         </phone:LongListSelector.ListHeader>
                         <phone:LongListSelector.ListFooter>
-                            <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                             DataContext="{Binding DummyFolder}"
-                                             Command="{Binding Main.NavigateToPage, Source={StaticResource Locator}}"
-                                             CommandParameter="{Binding}"
-                                             Visibility="{Binding Path=ItemsSource.Count, ElementName=RecentItemsList, Converter={StaticResource IntToVisibilityConverter}, ConverterParameter=false}">
+                            <local:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                                         DataContext="{Binding DummyFolder}"
+                                                         TapCommand="{Binding Main.NavigateToPage, Source={StaticResource Locator}}"
+                                                         CommandParameter="{Binding}"
+                                                         Visibility="{Binding Path=ItemsSource.Count, ElementName=RecentItemsList, Converter={StaticResource IntToVisibilityConverter}, ConverterParameter=false}">
                                 <TextBlock Text="{Binding LocalizedResources.More, Source={StaticResource LocalizedStrings}}"
                                            Style="{StaticResource PhoneTextLargeStyle}" />
-                            </HyperlinkButton>
+                            </local:CustomHyperlinkButton>
                         </phone:LongListSelector.ListFooter>
                     </phone:LongListSelector>
                 </Grid>

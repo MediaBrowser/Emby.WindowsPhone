@@ -234,6 +234,12 @@
     <Compile Include="..\MediaBrowser.WindowsPhone8\Controls\AsyncMessageBox.cs">
       <Link>Controls\AsyncMessageBox.cs</Link>
     </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone8\Controls\CustomButton.cs">
+      <Link>Controls\CustomButton.cs</Link>
+    </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone8\Controls\CustomHyperlinkButton.cs">
+      <Link>Controls\CustomHyperlinkButton.cs</Link>
+    </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone8\Controls\DynamicTextBlock.cs">
       <Link>Controls\DynamicTextBlock.cs</Link>
     </Compile>
