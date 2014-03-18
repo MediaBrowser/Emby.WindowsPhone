@@ -12,6 +12,7 @@
     <converters:HasAiredConverter x:Key="HasAiredConverter" />
     <converters:ProgrammeTypeToColourConverter x:Key="TypeToColourConverter"/>
     <converters:DateTimeConverter x:Key="DateTimeConverter" />
+    <converters:RecordingNameConverter x:Key="RecordingNameConverter" />
 
     <Color x:Key="NewTvProgrammeColor">#E88606</Color>
     <SolidColorBrush x:Key="NewTvProgrammeBrush"

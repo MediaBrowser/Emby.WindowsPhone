@@ -774,6 +774,10 @@
           <source>Live</source>
           <target state="new">Live</target>
         </trans-unit>
+        <trans-unit translate="yes" id="Resx/SystemTrayGettingWhatsOn" xml:space="preserve">
+          <source>Getting what's on now...</source>
+          <target state="new">Getting what's on now...</target>
+        </trans-unit>
         <trans-unit translate="yes" id="Resx/LabelReallyShortHours" xml:space="preserve">
           <source>h</source>
           <target state="new">h</target>

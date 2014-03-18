@@ -912,4 +912,7 @@
   <data name="LabelLive" xml:space="preserve">
     <value>Live</value>
   </data>
+  <data name="SystemTrayGettingWhatsOn" xml:space="preserve">
+    <value>Getting what's on now...</value>
+  </data>
 </root>

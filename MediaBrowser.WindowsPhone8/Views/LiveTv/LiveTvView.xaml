@@ -12,6 +12,7 @@
                 xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP8"
                 xmlns:c4F="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
                 xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+                xmlns:controls="clr-namespace:MediaBrowser.WindowsPhone.Controls"
                 toolkit:TiltEffect.IsTiltEnabled="True"
                 mc:Ignorable="d"
                 FontFamily="{StaticResource PhoneFontFamilyNormal}"
@@ -77,14 +78,90 @@
                 </DataTemplate>
             </phone:Panorama.TitleTemplate>
 
-            <!--Panorama item one-->
             <phone:PanoramaItem Header="{Binding LocalizedResources.LabelWhatsOn, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
-                <Grid />
+                <Grid>
+                    <phone:LongListSelector ItemsSource="{Binding WhatsOn}"
+                                            LayoutMode="Grid"
+                                            GridCellSize="180,185"
+                                            Margin="12,0,0,0">
+                        <phone:LongListSelector.ItemTemplate>
+                            <DataTemplate>
+                                <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                                 Margin="0,0,12,12">
+                                    <Grid Height="173"
+                                          Width="180">
+                                        <c4F:SuperImage PlaceholderImageSource="/Images/Logo.png"
+                                                               Source="{Binding Converter={StaticResource ImageUrlConverter}}"
+                                                               PlaceholderImageStretch="Uniform"
+                                                               Width="215"
+                                                               Height="173"
+                                                               Stretch="UniformToFill" />
+                                        <Border Background="{StaticResource BlackTransparentBrush}"
+                                                VerticalAlignment="Bottom">
+                                            <StackPanel Orientation="Vertical">
+                                                <TextBlock Style="{StaticResource PhoneTextNormalStyle}"
+                                                           FontWeight="Bold"
+                                                           Foreground="White"
+                                                           MaxHeight="86"
+                                                           TextWrapping="Wrap"
+                                                           Text="{Binding Name}" />
+                                                <ProgressBar Value="{Binding Converter={StaticResource AlreadyPlayedConverter}}"
+                                                             HorizontalAlignment="Stretch"
+                                                             Margin="0"
+                                                             Visibility="{Binding Value, RelativeSource={RelativeSource Self}, Converter={StaticResource GreaterThanVisibilityConverter}, ConverterParameter=0}"
+                                                             Style="{StaticResource FullWidthProgressStyle}" />
+                                            </StackPanel>
+
+                                        </Border>
+                                    </Grid>
+                                </HyperlinkButton>
+                            </DataTemplate>
+                        </phone:LongListSelector.ItemTemplate>
+                    </phone:LongListSelector>
+                </Grid>
             </phone:PanoramaItem>
 
-            <!--Panorama item two-->
             <phone:PanoramaItem Header="{Binding LocalizedResources.LabelUpcoming, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
-                <Grid />
+                <Grid>
+                    <phone:LongListSelector ItemsSource="{Binding Upcoming}"
+                                            LayoutMode="Grid"
+                                            GridCellSize="180,185"
+                                            Margin="12,0,0,0">
+                        <phone:LongListSelector.ItemTemplate>
+                            <DataTemplate>
+                                <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                                 Margin="0,0,12,12">
+                                    <Grid Height="173"
+                                          Width="180">
+                                        <c4F:SuperImage PlaceholderImageSource="/Images/Logo.png"
+                                                        Source="{Binding Converter={StaticResource ImageUrlConverter}}"
+                                                        PlaceholderImageStretch="Uniform"
+                                                        Width="215"
+                                                        Height="173"
+                                                        Stretch="UniformToFill" />
+                                        <Border Background="{StaticResource BlackTransparentBrush}"
+                                                VerticalAlignment="Bottom">
+                                            <StackPanel Orientation="Vertical">
+                                                <TextBlock Style="{StaticResource PhoneTextNormalStyle}"
+                                                           FontWeight="Bold"
+                                                           Foreground="White"
+                                                           TextTrimming="WordEllipsis"
+                                                           MaxHeight="86"
+                                                           Text="{Binding Name}" />
+                                                <ProgressBar Value="{Binding Converter={StaticResource AlreadyPlayedConverter}}"
+                                                             HorizontalAlignment="Stretch"
+                                                             Margin="0"
+                                                             Visibility="{Binding Value, RelativeSource={RelativeSource Self}, Converter={StaticResource GreaterThanVisibilityConverter}, ConverterParameter=0}"
+                                                             Style="{StaticResource FullWidthProgressStyle}" />
+                                            </StackPanel>
+
+                                        </Border>
+                                    </Grid>
+                                </HyperlinkButton>
+                            </DataTemplate>
+                        </phone:LongListSelector.ItemTemplate>
+                    </phone:LongListSelector>
+                </Grid>
             </phone:PanoramaItem>
 
             <phone:PanoramaItem Header="{Binding LocalizedResources.LabelOther, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">

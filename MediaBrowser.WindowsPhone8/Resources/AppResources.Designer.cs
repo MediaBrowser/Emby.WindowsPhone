@@ -1987,6 +1987,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Getting what&apos;s on now....
+        /// </summary>
+        public static string SystemTrayGettingWhatsOn {
+            get {
+                return ResourceManager.GetString("SystemTrayGettingWhatsOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Adding to favourites....
         /// </summary>
         public static string SysTrayAddingToFavourites {

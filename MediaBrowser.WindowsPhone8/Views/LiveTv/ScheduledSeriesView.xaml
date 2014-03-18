@@ -58,7 +58,6 @@
         <converters:AccentBrushConverter x:Key="ChannelColourConverter"
                                          TrueValue="{StaticResource PhoneForegroundBrush}"
                                          FalseValue="{StaticResource PhoneAccentBrush}" />
-        <converters:RecordingNameConverter x:Key="RecordingNameConverter" />
     </scott:BasePage.Resources>
 
     <toolkit:TransitionService.NavigationInTransition>
