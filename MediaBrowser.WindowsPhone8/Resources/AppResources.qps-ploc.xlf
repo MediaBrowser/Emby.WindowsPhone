@@ -879,6 +879,10 @@
           <source>Getting what's on now...</source>
           <target state="new">Getting what's on now...</target>
         </trans-unit>
+        <trans-unit translate="yes" id="Resx/SysTrayLoadingProgrammes" xml:space="preserve">
+          <source>Loading programmes...</source>
+          <target state="new">Loading programmes...</target>
+        </trans-unit>
         <trans-unit translate="yes" id="Resx/LabelReallyShortHours" xml:space="preserve">
           <source>h</source>
           <target state="new">h</target>

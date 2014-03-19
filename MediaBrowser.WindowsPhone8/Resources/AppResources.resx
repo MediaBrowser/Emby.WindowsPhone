@@ -915,4 +915,7 @@
   <data name="SystemTrayGettingWhatsOn" xml:space="preserve">
     <value>Getting what's on now...</value>
   </data>
+  <data name="SysTrayLoadingProgrammes" xml:space="preserve">
+    <value>Loading programmes...</value>
+  </data>
 </root>

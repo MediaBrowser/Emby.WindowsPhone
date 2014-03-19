@@ -2347,6 +2347,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Loading programmes....
+        /// </summary>
+        public static string SysTrayLoadingProgrammes {
+            get {
+                return ResourceManager.GetString("SysTrayLoadingProgrammes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Loading settings....
         /// </summary>
         public static string SysTrayLoadingSettings {

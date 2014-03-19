@@ -241,6 +241,7 @@
     <Compile Include="ViewModel\ChooseProfileViewModel.cs" />
     <Compile Include="ViewModel\FolderViewModel.cs" />
     <Compile Include="ViewModel\GenericItemViewModel.cs" />
+    <Compile Include="ViewModel\LiveTv\AllProgrammesViewModel.cs" />
     <Compile Include="ViewModel\LiveTv\ChannelsViewModel.cs" />
     <Compile Include="ViewModel\LiveTv\GuideViewModel.cs" />
     <Compile Include="ViewModel\LiveTv\LiveTvViewModel.cs" />
@@ -298,6 +299,9 @@
     </Compile>
     <Compile Include="Views\GenericItemView.xaml.cs">
       <DependentUpon>GenericItemView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LiveTv\AllProgrammesView.xaml.cs">
+      <DependentUpon>AllProgrammesView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LiveTv\ChannelsView.xaml.cs">
       <DependentUpon>ChannelsView.xaml</DependentUpon>
@@ -529,6 +533,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\GenericItemView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LiveTv\AllProgrammesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
