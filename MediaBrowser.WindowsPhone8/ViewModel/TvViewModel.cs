@@ -180,6 +180,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 CanUpdateFavourites = true;
             });
 
+            ShowOtherFilmsCommand = new RelayCommand<BaseItemPerson>(person =>
+            {
+                App.SelectedItem = person;
+                _navigationService.NavigateTo(Constants.Pages.ActorView);
+            });
+
             NavigateTo = new RelayCommand<BaseItemDto>(_navigationService.NavigateTo);
         }
 
@@ -409,6 +415,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public RelayCommand NextEpisodeCommand { get; set; }
         public RelayCommand PreviousEpisodeCommand { get; set; }
         public RelayCommand<BaseItemDto> AddRemoveFavouriteCommand { get; set; }
+        public RelayCommand<BaseItemPerson> ShowOtherFilmsCommand { get; set; }
         public bool CanUpdateFavourites { get; set; }
     }
 }

@@ -166,8 +166,32 @@
                                         JumpListStyle="{StaticResource LLSGroupItemLongStyle}"
                                         Background="Transparent"
                                         HideEmptyGroups="True"
-                                        IsGroupingEnabled="True"
-                                        ItemTemplate="{StaticResource CrewTemplate}" />
+                                        IsGroupingEnabled="True">
+                    <phone:LongListSelector.ItemTemplate>
+                        <DataTemplate>
+                            <local:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                                         Margin="12,0,0,12"
+                                                         Command="{Binding DataContext.ShowOtherFilmsCommand, ElementName=PageRoot}"
+                                                         CommandParameter="{Binding}">
+                                <StackPanel Orientation="Horizontal">
+                                    <controls:SuperImage Height="99"
+                                                    Width="99"
+                                                    PlaceholderImageSource="/Images/default_avatar.png"
+                                                    Source="{Binding Converter={StaticResource ImageUrlConverter}}"
+                                                    Stretch="Uniform"
+                                                    PlaceholderImageStretch="Uniform" />
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock Text="{Binding Name, ConverterParameter=false, Converter={StaticResource StringCaseConverter}}"
+                                                   FontWeight="Bold"
+                                                   Style="{StaticResource PhoneTextLargeStyle}" />
+                                        <TextBlock Text="{Binding Role}"
+                                                   Style="{StaticResource PhoneTextNormalStyle}" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </local:CustomHyperlinkButton>
+                        </DataTemplate>
+                    </phone:LongListSelector.ItemTemplate>
+                </phone:LongListSelector>
             </phone:PanoramaItem>
         </phone:Panorama>
     </Grid>
