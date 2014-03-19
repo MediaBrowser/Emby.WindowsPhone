@@ -8,9 +8,9 @@ using MediaBrowser.Model;
 using MediaBrowser.Model.LiveTv;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Services;
-using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Resources;
 using ScottIsAFool.WindowsPhone.ViewModel;
+using INavigationService = MediaBrowser.WindowsPhone.Model.INavigationService;
 
 namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
 {
@@ -38,6 +38,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
         }
 
         public List<ProgramInfoDto> Programmes { get; set; }
+        public string PageTitle { get; set; }
 
         public RelayCommand AllProgrammesViewLoaded
         {
@@ -115,6 +116,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                 {
                     _isWhatsOn = (bool) m.Sender;
                     _programmesLoaded = false;
+
+                    PageTitle = _isWhatsOn ? AppResources.LabelWhatsOn.ToLower() : AppResources.LabelUpcoming.ToLower();
                 }
             });
         }
