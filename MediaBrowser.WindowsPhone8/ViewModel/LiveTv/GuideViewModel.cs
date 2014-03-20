@@ -126,7 +126,23 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
             {
                 return new RelayCommand<ProgramInfoDto>(async item =>
                 {
-                    
+                    try
+                    {
+                        SetProgressBar(AppResources.SysTraySettingProgrammeToRecord);
+
+                        var timer = await _apiClient.GetDefaultLiveTvTimerInfo(item.Id, default(CancellationToken));
+
+                        if (timer != null)
+                        {
+                            //await _apiClient.CreateLiveTvTimerAsync(timer, default(CancellationToken));
+                        }
+                    }
+                    catch (HttpException ex)
+                    {
+                        Utils.HandleHttpException(ex, "RecordProgrammeCommand", _navigationService, Log);
+                    }
+
+                    SetProgressBar();
                 });
             }
         }
@@ -137,7 +153,23 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
             {
                 return new RelayCommand<ProgramInfoDto>(async item =>
                 {
+                    try
+                    {
+                        SetProgressBar(AppResources.SysTraySettingSeriesToRecord);
 
+                        var timer = await _apiClient.GetDefaultLiveTvTimerInfo(item.Id, default(CancellationToken));
+
+                        if (timer != null)
+                        {
+                            await _apiClient.CreateLiveTvSeriesTimerAsync(timer, default(CancellationToken));
+                        }
+                    }
+                    catch (HttpException ex)
+                    {
+                        Utils.HandleHttpException(ex, "RecordProgrammeCommand", _navigationService, Log);
+                    }
+
+                    SetProgressBar();
                 });
             }
         } 

@@ -918,4 +918,10 @@
   <data name="SysTrayLoadingProgrammes" xml:space="preserve">
     <value>Loading programmes...</value>
   </data>
+  <data name="SysTraySettingProgrammeToRecord" xml:space="preserve">
+    <value>Setting programme to record...</value>
+  </data>
+  <data name="SysTraySettingSeriesToRecord" xml:space="preserve">
+    <value>Setting series to record...</value>
+  </data>
 </root>

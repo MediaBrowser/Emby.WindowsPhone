@@ -904,6 +904,14 @@
           <source>Loading programmes...</source>
           <target state="new">Loading programmes...</target>
         </trans-unit>
+        <trans-unit translate="yes" id="Resx/SysTraySettingSeriesToRecord" xml:space="preserve">
+          <source>Setting series to record...</source>
+          <target state="new">Setting series to record...</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SysTraySettingProgrammeToRecord" xml:space="preserve">
+          <source>Setting programme to record...</source>
+          <target state="new">Setting programme to record...</target>
+        </trans-unit>
         <trans-unit translate="yes" id="Resx/LabelReallyShortHours" xml:space="preserve">
           <source>h</source>
           <target state="new">h</target>

@@ -2401,6 +2401,24 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Setting programme to record....
+        /// </summary>
+        public static string SysTraySettingProgrammeToRecord {
+            get {
+                return ResourceManager.GetString("SysTraySettingProgrammeToRecord", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Setting series to record....
+        /// </summary>
+        public static string SysTraySettingSeriesToRecord {
+            get {
+                return ResourceManager.GetString("SysTraySettingSeriesToRecord", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unregistering device....
         /// </summary>
         public static string SysTrayUnregisteringDevice {
