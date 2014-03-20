@@ -116,6 +116,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                 {
                     _isWhatsOn = (bool) m.Sender;
                     _programmesLoaded = false;
+                    Programmes = null;
 
                     PageTitle = _isWhatsOn ? AppResources.LabelWhatsOn.ToLower() : AppResources.LabelUpcoming.ToLower();
                 }

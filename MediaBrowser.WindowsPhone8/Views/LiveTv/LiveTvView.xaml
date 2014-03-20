@@ -122,9 +122,8 @@
                                             ItemTemplate="{StaticResource TvItemTemplate}">
                         <phone:LongListSelector.ListFooter>
                             <controls:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                                            DataContext="{Binding DummyFolder}"
-                                                            TapCommand="{Binding Main.NavigateToPage, Source={StaticResource Locator}}"
-                                                            CommandParameter="{Binding}"
+                                                            TapCommand="{Binding LiveTv.MoreCommand, Source={StaticResource Locator}}"
+                                                            CommandParameter="True"
                                                             Visibility="{Binding LiveTv.ShowMoreWhatsOn, Source={StaticResource Locator}, Converter={StaticResource VisibilityConverter}}">
                                 <TextBlock Text="{Binding LocalizedResources.More, Source={StaticResource LocalizedStrings}}"
                                            Style="{StaticResource PhoneTextLargeStyle}" />
@@ -143,10 +142,9 @@
                                             ItemTemplate="{StaticResource TvItemTemplate}">
                         <phone:LongListSelector.ListFooter>
                             <controls:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                                            DataContext="{Binding DummyFolder}"
-                                                            TapCommand="{Binding Main.NavigateToPage, Source={StaticResource Locator}}"
-                                                            CommandParameter="{Binding}"
-                                                            Visibility="{Binding LiveTv.ShowMoreWhatsOn, Source={StaticResource Locator}, Converter={StaticResource VisibilityConverter}}">
+                                                            TapCommand="{Binding LiveTv.MoreCommand, Source={StaticResource Locator}}"
+                                                            CommandParameter="False"
+                                                            Visibility="{Binding LiveTv.ShowMoreUpcoming, Source={StaticResource Locator}, Converter={StaticResource VisibilityConverter}}">
                                 <TextBlock Text="{Binding LocalizedResources.More, Source={StaticResource LocalizedStrings}}"
                                            Style="{StaticResource PhoneTextLargeStyle}" />
                             </controls:CustomHyperlinkButton>
