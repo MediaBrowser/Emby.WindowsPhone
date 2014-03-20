@@ -1,9 +1,9 @@
 ﻿namespace MediaBrowser.WindowsPhone.Views.LiveTv
 {
-    public partial class GuideItemView
+    public partial class ProgrammeView
     {
         // Constructor
-        public GuideItemView()
+        public ProgrammeView()
         {
             InitializeComponent();
         }

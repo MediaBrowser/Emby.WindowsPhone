@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Cimbalino.Phone.Toolkit.Extensions;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model;
 using MediaBrowser.Model.LiveTv;
@@ -110,8 +111,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                         return;
                     }
 
-                    SelectedProgramme = item;
-                    _navigationService.NavigateTo(Constants.Pages.LiveTv.GuideItemView);
+                    if (SimpleIoc.Default.GetInstance<ProgrammeViewModel>() != null)
+                    {
+                        Messenger.Default.Send(new NotificationMessage(item, Constants.Messages.ProgrammeItemChangedMsg));
+                        _navigationService.NavigateTo(Constants.Pages.LiveTv.ProgrammeView);
+                    }
                 });
             }
         }

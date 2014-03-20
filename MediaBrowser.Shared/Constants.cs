@@ -86,6 +86,7 @@
             public const string ScheduledSeriesCancelChangesMsg = "ScheduledSeriesCancelChangesMsg";
             public const string ScheduledRecordingChangedMsg = "ScheduledRecordingChangedMsg";
             public const string ShowAllProgrammesMsg = "ShowAllProgrammesMsg";
+            public const string ProgrammeItemChangedMsg = "ProgrammeItemChangedMsg";
         }
 
         public class Pages
@@ -124,7 +125,7 @@
                 public const string TvView = LiveTvPath + "TvView.xaml";
                 public const string ScheduledSeriesView = LiveTvPath + "ScheduledSeriesView.xaml";
                 public const string ScheduledRecordingView = LiveTvPath + "ScheduledRecordingView.xaml";
-                public const string GuideItemView = LiveTvPath + "GuideItemView.xaml";
+                public const string ProgrammeView = LiveTvPath + "ProgrammeView.xaml";
                 public const string AllProgrammesView = LiveTvPath + "AllProgrammesView.xaml";
             }
 

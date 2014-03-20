@@ -1,4 +1,4 @@
-﻿<scott:BasePage x:Class="MediaBrowser.WindowsPhone.Views.LiveTv.GuideItemView"
+﻿<scott:BasePage x:Class="MediaBrowser.WindowsPhone.Views.LiveTv.ProgrammeView"
                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                 xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
@@ -16,7 +16,7 @@
                 SupportedOrientations="Portrait"
                 Orientation="Portrait"
                 shell:SystemTray.IsVisible="True"
-                DataContext="{Binding Guide, Source={StaticResource Locator}}">
+                DataContext="{Binding Programme, Source={StaticResource Locator}}">
 
     <toolkit:TransitionService.NavigationInTransition>
         <toolkit:NavigationInTransition>
@@ -60,13 +60,16 @@
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel"
               Grid.Row="1"
-              Margin="0,0,12,0">
+              Margin="0">
             <ScrollViewer>
                 <StackPanel>
-                    <controls:CustomButton Style="{StaticResource EmptyButtonStyle}">
+                    <controls:CustomButton Style="{StaticResource EmptyButtonStyle}"
+                                           IsHitTestVisible="{Binding SelectedProgramme, Converter={StaticResource CanStreamConverter}}"
+                                           toolkit:TiltEffect.IsTiltEnabled="{Binding SelectedProgramme, Converter={StaticResource CanStreamConverter}}">
                         <Grid VerticalAlignment="Top">
                             <coding4Fun:SuperImage Source="{Binding SelectedProgramme, Converter={StaticResource ImageUrlConverter}, ConverterParameter=episode}"
                                                    MaxWidth="480"
+                                                   MaxHeight="240"
                                                    Stretch="UniformToFill"
                                                    PlaceholderImageSource="/Images/MBBackground.jpg"
                                                    PlaceholderImageStretch="Uniform" />
@@ -75,7 +78,7 @@
                     </controls:CustomButton>
 
                     <StackPanel Orientation="Horizontal"
-                                Margin="12,12,0,0">
+                                Margin="12,12,12,0">
                         <TextBlock Text="{Binding SelectedProgramme.StartDate, Converter={StaticResource DateTimeConverter}}"
                                    Style="{StaticResource PhoneTextSubtleStyle}" />
                         <TextBlock Text="{Binding SelectedProgramme.StartDate, Converter={StaticResource TimeConverter}}"
@@ -86,11 +89,11 @@
 
                     <TextBlock Text="{Binding SelectedProgramme.EpisodeTitle}"
                                Style="{StaticResource PhoneTextSubtleStyle}"
-                               Margin="24,12,0,0"
+                               Margin="24,12,12,0"
                                Visibility="{Binding SelectedProgramme.EpisodeTitle, Converter={StaticResource NullVisibilityConverter}}" />
 
                     <StackPanel Orientation="Horizontal"
-                                Margin="12,12,0,0">
+                                Margin="12,12,12,0">
                         <TextBlock Text="{Binding LocalizedResources.LabelLive, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToUppercaseConverter}}"
                                    Style="{StaticResource PhoneTextNormalStyle}"
                                    Foreground="{StaticResource LiveTvProgrammeBrush}"
@@ -102,7 +105,7 @@
 
                     <TextBlock Text="{Binding SelectedProgramme.Overview}"
                                TextWrapping="Wrap"
-                               Margin="24,12,0,0"
+                               Margin="24,12,12,0"
                                Style="{StaticResource PhoneTextNormalStyle}" />
                 </StackPanel>
             </ScrollViewer>

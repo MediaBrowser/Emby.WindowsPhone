@@ -75,6 +75,26 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
             }
         }
 
+        public RelayCommand<ProgramInfoDto> GuideItemTappedCommand
+        {
+            get
+            {
+                return new RelayCommand<ProgramInfoDto>(item =>
+                {
+                    if (item == null)
+                    {
+                        return;
+                    }
+
+                    if (SimpleIoc.Default.GetInstance<ProgrammeViewModel>() != null)
+                    {
+                        Messenger.Default.Send(new NotificationMessage(item, Constants.Messages.ProgrammeItemChangedMsg));
+                        _navigationService.NavigateTo(Constants.Pages.LiveTv.ProgrammeView);
+                    }
+                });
+            }
+        }
+
         private async Task LoadData(bool isRefresh)
         {
             if (!_navigationService.IsNetworkAvailable)

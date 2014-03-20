@@ -243,6 +243,7 @@
     <Compile Include="ViewModel\GenericItemViewModel.cs" />
     <Compile Include="ViewModel\LiveTv\AllProgrammesViewModel.cs" />
     <Compile Include="ViewModel\LiveTv\ChannelsViewModel.cs" />
+    <Compile Include="ViewModel\LiveTv\ProgrammeViewModel.cs" />
     <Compile Include="ViewModel\LiveTv\GuideViewModel.cs" />
     <Compile Include="ViewModel\LiveTv\LiveTvViewModel.cs" />
     <Compile Include="ViewModel\LiveTv\ScheduledRecordingViewModel.cs" />
@@ -306,8 +307,8 @@
     <Compile Include="Views\LiveTv\ChannelsView.xaml.cs">
       <DependentUpon>ChannelsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\LiveTv\GuideItemView.xaml.cs">
-      <DependentUpon>GuideItemView.xaml</DependentUpon>
+    <Compile Include="Views\LiveTv\ProgrammeView.xaml.cs">
+      <DependentUpon>ProgrammeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LiveTv\GuideView.xaml.cs">
       <DependentUpon>GuideView.xaml</DependentUpon>
@@ -544,7 +545,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\LiveTv\GuideItemView.xaml">
+    <Page Include="Views\LiveTv\ProgrammeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
