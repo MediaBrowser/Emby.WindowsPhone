@@ -386,6 +386,7 @@
     <Content Include="Assets\BrowserText.png" />
     <Content Include="Assets\MediaTextBlack.png" />
     <Content Include="Assets\MediaTextWhite.png" />
+    <Content Include="Assets\Tiles\MBLiveTVTile.png" />
     <Content Include="Assets\Tiles\MBRemoteTile.png" />
     <Content Include="Assets\Tiles\WideTileBackground.png" />
     <Content Include="DefaultLockScreen.jpg" />

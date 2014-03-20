@@ -1,7 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
-using MediaBrowser.Model;
 using MediaBrowser.Model.LiveTv;
-using MediaBrowser.WindowsPhone.Model;
 using ScottIsAFool.WindowsPhone.ViewModel;
 
 namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
@@ -14,18 +12,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
     /// </summary>
     public class ProgrammeViewModel : ViewModelBase
     {
-        private readonly INavigationService _navigationService;
-        private readonly IExtendedApiClient _apiClient;
-
-        /// <summary>
-        /// Initializes a new instance of the GuideItemViewModel class.
-        /// </summary>
-        public ProgrammeViewModel(INavigationService navigationService, IExtendedApiClient apiClient)
-        {
-            _navigationService = navigationService;
-            _apiClient = apiClient;
-        }
-
         public ProgramInfoDto SelectedProgramme { get; set; }
 
         public override void WireMessages()
