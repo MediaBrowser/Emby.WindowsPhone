@@ -390,6 +390,7 @@
     <Content Include="Assets\Tiles\MBRemoteTile.png" />
     <Content Include="Assets\Tiles\WideTileBackground.png" />
     <Content Include="DefaultLockScreen.jpg" />
+    <Content Include="Icons\appbar.connection.playon.png" />
     <Content Include="Icons\appbar.feature.search.rest.png" />
     <Content Include="Icons\appbar.check.rest.png" />
     <Content Include="Icons\appbar.refresh.rest.png" />

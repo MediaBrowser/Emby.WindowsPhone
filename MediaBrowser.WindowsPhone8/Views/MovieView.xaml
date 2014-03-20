@@ -32,11 +32,15 @@
         <behaviours:MBSysTray Text="{Binding ProgressText}"
                               IsVisible="{Binding ProgressIsVisible}"
                               IsIndeterminate="{Binding ProgressIsVisible}" />
-        <cimbalino:ApplicationBarBehavior Mode="Minimized"
+        <cimbalino:ApplicationBarBehavior Mode="Default"
                                           IsMenuEnabled="True">
             <cimbalino:ApplicationBarIconButton Text="{Binding SelectedMovie.UserData.IsFavorite, Converter={StaticResource FavouritesConverter}, ConverterParameter=text}"
                                                 IconUri="{Binding SelectedMovie.UserData.IsFavorite, Converter={StaticResource FavouritesConverter}, ConverterParameter=icon}"
                                                 Command="{Binding AddRemoveFavouriteCommand}" />
+            <cimbalino:ApplicationBarIconButton Text="{Binding LocalizedResources.AppBarPlayOn, Source={StaticResource LocalizedStrings}}"
+                                                IconUri="/Icons/appbar.connection.playon.png"
+                                                Command="{Binding Remote.SendPlayCommand, Source={StaticResource Locator}}"
+                                                CommandParameter="{Binding SelectedMovie.Id}" />
             <cimbalino:ApplicationBarBehavior.MenuItems>
                 <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarResume, Source={StaticResource LocalizedStrings}}"
                                                   IsEnabled="{Binding SelectedMovie.CanResume}"
@@ -44,9 +48,7 @@
                                                   CommandParameter="{Binding SelectedMovie}" />
                 <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarPosterLockscreen, Source={StaticResource LocalizedStrings}}"
                                                   Command="{Binding SetPosterAsLockScreenCommand}" />
-                <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarPlayOn, Source={StaticResource LocalizedStrings}}"
-                                                  Command="{Binding Remote.SendPlayCommand, Source={StaticResource Locator}}"
-                                                  CommandParameter="{Binding SelectedMovie.Id}" />
+
             </cimbalino:ApplicationBarBehavior.MenuItems>
         </cimbalino:ApplicationBarBehavior>
     </i:Interaction.Behaviors>
