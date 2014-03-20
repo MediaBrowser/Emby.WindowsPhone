@@ -14,6 +14,7 @@ using MediaBrowser.Model.Querying;
 using MediaBrowser.Model.Session;
 using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Messaging;
+using MediaBrowser.WindowsPhone.Resources;
 using MediaBrowser.WindowsPhone.Services;
 using ScottIsAFool.WindowsPhone.ViewModel;
 using INavigationService = MediaBrowser.WindowsPhone.Model.INavigationService;
@@ -34,6 +35,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
         private bool _dataLoaded;
         private string _videoId;
         private long? _startPositionTicks;
+
+        private readonly string _tileUrl = string.Format(Constants.PhoneTileUrlFormat, "Remote", string.Empty, "Remote Control");
 
         /// <summary>
         /// Initializes a new instance of the RemoteViewModel class.
@@ -79,7 +82,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
             {
                 return new RelayCommand(async () =>
                 {
-                    IsPinned = TileService.Current.TileExists(Constants.Pages.Remote.RemoteView);
+                    IsPinned = TileService.Current.TileExists(_tileUrl);
 
                     await App.WebSocketClient.StartReceivingSessionUpdates(1500);
 
@@ -372,20 +375,22 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
             {
                 // Unpin the tile
                 var tile = TileService.Current.GetTile(Constants.Pages.Remote.RemoteView);
-                tile.Delete();
+                if (tile != null)
+                {
+                    tile.Delete();
 
-                IsPinned = false;
+                    IsPinned = false;
+                }
             }
             else
             {
                 var tileData = new ShellTileServiceFlipTileData
                 {
-                    Title = "MB Remote",
+                    Title = "MB " + AppResources.LabelRemote,
                     BackgroundImage = new Uri("/Assets/Tiles/MBRemoteTile.png", UriKind.Relative)
                 };
 
-                var tileUrl = string.Format(Constants.PhoneTileUrlFormat, "Remote", string.Empty, "Remote Control");
-                TileService.Current.Create(new Uri(tileUrl, UriKind.Relative), tileData, false);
+                TileService.Current.Create(new Uri(_tileUrl, UriKind.Relative), tileData, false);
 
                 IsPinned = true;
             }

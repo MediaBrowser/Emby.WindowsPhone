@@ -32,13 +32,12 @@
         <behaviours:MBSysTray IsIndeterminate="{Binding ProgressIsVisible}"
                               IsVisible="{Binding ProgressIsVisible}"
                               Text="{Binding ProgressText}" />
-        <!--<behaviors:ApplicationBarBehavior>
+        <behaviors:ApplicationBarBehavior>
             
-            <behaviors:ApplicationBarIconButton IconUri="{Binding CanPinCollection, Converter={StaticResource PinnedItemConverter}}"
-                                                Text="{Binding CanPinCollection, Converter={StaticResource PinnedItemConverter}, ConverterParameter=text}"
-                                                Command="{Binding Main.PinCollectionCommand, Source={StaticResource Locator}}"
-                                                CommandParameter="{Binding SelectedFolder}" />
-        </behaviors:ApplicationBarBehavior>-->
+            <behaviors:ApplicationBarIconButton IconUri="{Binding IsPinned, Converter={StaticResource PinnedItemConverter}}"
+                                                Text="{Binding IsPinned, Converter={StaticResource PinnedItemConverter}, ConverterParameter=text}"
+                                                Command="{Binding PinCommand}"/>
+        </behaviors:ApplicationBarBehavior>
     </i:Interaction.Behaviors>
 
     <toolkit:TransitionService.NavigationInTransition>

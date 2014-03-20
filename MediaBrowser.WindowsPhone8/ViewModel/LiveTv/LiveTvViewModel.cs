@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Cimbalino.Phone.Toolkit.Services;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
@@ -10,9 +11,10 @@ using MediaBrowser.Model;
 using MediaBrowser.Model.LiveTv;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Services;
-using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Resources;
+using MediaBrowser.WindowsPhone.Services;
 using ScottIsAFool.WindowsPhone.ViewModel;
+using INavigationService = MediaBrowser.WindowsPhone.Model.INavigationService;
 
 namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
 {
@@ -33,6 +35,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
         private DateTime? _upcomingLastRun;
         private DateTime? _whatsOnLastRun;
 
+        private readonly string _tileUrl = string.Format(Constants.PhoneTileUrlFormat, "LiveTV", string.Empty, "Live TV");
+
         /// <summary>
         /// Initializes a new instance of the LiveTvViewModel class.
         /// </summary>
@@ -46,8 +50,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
         public List<ProgramInfoDto> Upcoming { get; set; }
 
         public bool ShowMoreWhatsOn { get; set; }
-
         public bool ShowMoreUpcoming { get; set; }
+        public bool IsPinned { get; set; }
 
         public RelayCommand LiveTvPageLoaded
         {
@@ -55,6 +59,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
             {
                 return new RelayCommand(async () =>
                 {
+                    IsPinned = TileService.Current.TileExists(_tileUrl);
                     await LoadData(false);
                 });
             }
@@ -75,6 +80,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
             }
         }
 
+        public RelayCommand PinCommand
+        {
+            get
+            {
+                return new RelayCommand(PinTile);
+            }
+        }
+
         public RelayCommand<ProgramInfoDto> GuideItemTappedCommand
         {
             get
@@ -92,6 +105,31 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                         _navigationService.NavigateTo(Constants.Pages.LiveTv.ProgrammeView);
                     }
                 });
+            }
+        }
+
+        private void PinTile()
+        {
+            if (IsPinned)
+            {
+                var tile = TileService.Current.GetTile(Constants.Pages.LiveTv.LiveTvView);
+                if (tile != null)
+                {
+                    tile.Delete();
+                    IsPinned = false;
+                }
+            }
+            else
+            {
+                var tileData = new ShellTileServiceFlipTileData
+                {
+                    Title = "MB " + AppResources.LabelLiveTv,
+                    BackgroundImage = new Uri("/Assets/Tiles/MBLiveTVTile.png", UriKind.Relative)
+                };
+
+                TileService.Current.Create(new Uri(_tileUrl, UriKind.Relative), tileData, false);
+
+                IsPinned = true;
             }
         }
 
