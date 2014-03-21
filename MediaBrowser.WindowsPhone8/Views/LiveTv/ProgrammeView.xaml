@@ -28,8 +28,8 @@
             <behaviors:ApplicationBarBehavior.Buttons>
                 <behaviors:ApplicationBarIconButton Text="{Binding LocalizedResources.MenuRecord, Source={StaticResource LocalizedStrings}}"
                                                     Command="{Binding CreateSeriesLinkCommand}"
-                                                    IconUri="/Icons/appbar.record.png" 
-                                                    IsEnabled="{Binding CanRecord}"/>
+                                                    IconUri="/Icons/appbar.record.png"
+                                                    IsEnabled="{Binding CanRecord}" />
                 <behaviors:ApplicationBarIconButton Text="{Binding LocalizedResources.MenuRecordSeries, Source={StaticResource LocalizedStrings}}"
                                                     Command="{Binding CreateSeriesLinkCommand}"
                                                     IconUri="/Icons/appbar.serieslink.png"
@@ -110,6 +110,15 @@
                                    Style="{StaticResource PhoneTextSubtleStyle}" />
                         <TextBlock Text="{Binding SelectedProgramme.RunTimeTicks, Converter={StaticResource RuntimeConverter}, ConverterParameter=livetv}"
                                    Style="{StaticResource PhoneTextSubtleStyle}" />
+                        <TextBlock Text="{Binding SelectedProgramme.OfficialRating}"
+                                   Style="{StaticResource PhoneTextSubtleStyle}" />
+                        <controls:CustomButton Style="{StaticResource EmptyButtonStyle}"
+                                               toolkit:TiltEffect.IsTiltEnabled="True"
+                                               TapCommand="{Binding ShowSeriesRecordingCommand}"
+                                               Margin="12,0">
+                            <controls:ScheduledRecording Visibility="{Binding SelectedProgramme.SeriesTimerId, Converter={StaticResource NullVisibilityConverter}}" 
+                                                         Height="20"/>
+                        </controls:CustomButton>
                     </StackPanel>
 
                     <TextBlock Text="{Binding SelectedProgramme.EpisodeTitle}"

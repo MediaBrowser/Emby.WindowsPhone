@@ -33,6 +33,8 @@
     <scottConverters:IntToVisibilityConverter x:Key="IntToVisibilityConverter" />
     <scottConverters:CountToEnabled x:Key="CountToEnabled" />
     <scottConverters:NullVisibilityConverter x:Key="NullVisibilityConverter" />
+    <scottConverters:NullVisibilityConverter x:Key="InvertedNullVisibilityConverter"
+                                             Inverted="True"/>
 
     <!--Cimbalino Converters-->
     <cimbalino:StringToUppercaseConverter x:Key="StringToUppercaseConverter" />

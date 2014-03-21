@@ -933,4 +933,7 @@
   <data name="SysTrayPreparing" xml:space="preserve">
     <value>Preparing...</value>
   </data>
+  <data name="SysTrayGettingRecordingDetails" xml:space="preserve">
+    <value>Getting recording details...</value>
+  </data>
 </root>

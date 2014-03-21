@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
-  <file datatype="xml" source-language="en-GB" target-language="nl" original="AppResources.resx" tool-id="MultilingualAppToolkit" product-name="MediaBrowser.WindowsPhone7" product-version="1.0.0.0" build-num="0">
+  <file datatype="xml" source-language="en-GB" target-language="nl" original="AppResources.resx" tool-id="MultilingualAppToolkit" product-name="MediaBrowser.WindowsPhone8" product-version="1.0.0.0" build-num="0">
     <header>
       <tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="2.2.1212.0" tool-company="Microsoft" />
     </header>
@@ -911,6 +911,10 @@
         <trans-unit translate="yes" id="Resx/SysTrayPreparing" xml:space="preserve">
           <source>Preparing...</source>
           <target state="new">Preparing...</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SysTrayGettingRecordingDetails" xml:space="preserve">
+          <source>Getting recording details...</source>
+          <target state="new">Getting recording details...</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/AppBarCreateAndEditSeries" xml:space="preserve">
           <source>create and edit series recording</source>

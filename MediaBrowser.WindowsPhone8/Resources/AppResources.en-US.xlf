@@ -790,6 +790,10 @@
           <source>Preparing...</source>
           <target state="new">Preparing...</target>
         </trans-unit>
+        <trans-unit translate="yes" id="Resx/SysTrayGettingRecordingDetails" xml:space="preserve">
+          <source>Getting recording details...</source>
+          <target state="new">Getting recording details...</target>
+        </trans-unit>
         <trans-unit translate="yes" id="Resx/AppBarCreateAndEditSeries" xml:space="preserve">
           <source>create and edit series recording</source>
           <target state="new">create and edit series recording</target>

@@ -81,6 +81,38 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
             }
         }
 
+        public RelayCommand ShowSeriesRecordingCommand
+        {
+            get
+            {
+                return new RelayCommand(async () =>
+                {
+                    if (SelectedProgramme == null || string.IsNullOrEmpty(SelectedProgramme.SeriesTimerId))
+                    {
+                        return;
+                    }
+
+                    SetProgressBar(AppResources.SysTrayGettingRecordingDetails);
+
+                    try
+                    {
+                        var series = await _apiClient.GetLiveTvSeriesTimerAsync(SelectedProgramme.SeriesTimerId, default(CancellationToken));
+                        if (SimpleIoc.Default.GetInstance<ScheduledSeriesViewModel>() != null)
+                        {
+                            Messenger.Default.Send(new NotificationMessage(series, false, Constants.Messages.ScheduledSeriesChangedMsg));
+                            _navigationService.NavigateTo(Constants.Pages.LiveTv.ScheduledSeriesView);
+                        }
+                    }
+                    catch (HttpException ex)
+                    {
+                        Utils.HandleHttpException(ex, "ShowSeriesRecordingCommand", _navigationService, Log);
+                    }
+
+                    SetProgressBar();
+                });
+            }
+        }
+
         public RelayCommand AdvancedSeriesRecordCommand
         {
             get

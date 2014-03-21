@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Windows;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
@@ -187,19 +186,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                 if (m.Notification.Equals(Constants.Messages.ScheduledSeriesChangedMsg))
                 {
                     SelectedSeries = (SeriesTimerInfoDto) m.Sender;
-                    _originalTimer = await SelectedSeries.Clone();
-                    _scheduledLoaded = false;
-                    _recordingsLoaded = false;
-                    IsAdd = (bool) m.Target;
-
-                    foreach (var day in SelectedSeries.Days)
-                    {
-                        var dayOfWeek = DaysOfWeekList.FirstOrDefault(x => x.DayOfWeek == day);
-                        if (dayOfWeek != null)
-                        {
-                            dayOfWeek.IsSelected = true;
-                        }
-                    }
+                    IsAdd = (bool)m.Target;
+                    await CreateSeriesView();
                 }
 
                 if (m.Notification.Equals(Constants.Messages.ScheduledSeriesCancelChangesMsg))
@@ -207,6 +195,22 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                     SelectedSeries = _originalTimer;
                 }
             });
+        }
+
+        private async Task CreateSeriesView()
+        {
+            _originalTimer = await SelectedSeries.Clone();
+            _scheduledLoaded = false;
+            _recordingsLoaded = false;
+
+            foreach (var day in SelectedSeries.Days)
+            {
+                var dayOfWeek = DaysOfWeekList.FirstOrDefault(x => x.DayOfWeek == day);
+                if (dayOfWeek != null)
+                {
+                    dayOfWeek.IsSelected = true;
+                }
+            }
         }
 
         [UsedImplicitly]

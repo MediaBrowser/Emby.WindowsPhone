@@ -2266,6 +2266,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Getting recording details....
+        /// </summary>
+        public static string SysTrayGettingRecordingDetails {
+            get {
+                return ResourceManager.GetString("SysTrayGettingRecordingDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Getting series recordings....
         /// </summary>
         public static string SysTrayGettingSeriesRecordings {
