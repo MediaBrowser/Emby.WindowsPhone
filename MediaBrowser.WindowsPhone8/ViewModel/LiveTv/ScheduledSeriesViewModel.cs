@@ -74,11 +74,18 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
 
                     SelectedSeries.Days = days;
 
+                    SetProgressBar(AppResources.SysTraySaving);
+
                     try
                     {
-                        SetProgressBar(AppResources.SysTraySaving);
-
-                        await _apiClient.UpdateLiveTvSeriesTimerAsync(SelectedSeries, default(CancellationToken));
+                        if (_isAdd)
+                        {
+                            await _apiClient.CreateLiveTvSeriesTimerAsync(SelectedSeries, default(CancellationToken));
+                        }
+                        else
+                        {
+                            await _apiClient.UpdateLiveTvSeriesTimerAsync(SelectedSeries, default(CancellationToken));
+                        }
                     }
                     catch (HttpException ex)
                     {

@@ -33,12 +33,12 @@
                 <behaviors:ApplicationBarIconButton Text="{Binding LocalizedResources.MenuRecordSeries, Source={StaticResource LocalizedStrings}}"
                                                     Command="{Binding CreateSeriesLinkCommand}"
                                                     IconUri="/Icons/appbar.serieslink.png"
-                                                    IsEnabled="{Binding SelectedProgramme.IsSeries}" />
+                                                    IsEnabled="{Binding CanRecordSeries}" />
             </behaviors:ApplicationBarBehavior.Buttons>
             <behaviors:ApplicationBarBehavior.MenuItems>
                 <behaviors:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarCreateAndEditSeries, Source={StaticResource LocalizedStrings}}"
                                                   Command="{Binding AdvancedSeriesRecordCommand}"
-                                                  IsEnabled="{Binding SelectedProgramme.IsSeries}" />
+                                                  IsEnabled="{Binding CanRecordSeries}" />
             </behaviors:ApplicationBarBehavior.MenuItems>
         </behaviors:ApplicationBarBehavior>
     </i:Interaction.Behaviors>

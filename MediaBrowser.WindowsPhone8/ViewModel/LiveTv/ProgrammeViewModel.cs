@@ -33,7 +33,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
 
         public bool CanRecord
         {
-            get { return SelectedProgramme != null && SelectedProgramme.StartDate > DateTime.Now; }
+            get { return SelectedProgramme != null && SelectedProgramme.StartDate > DateTime.Now && !ProgressIsVisible; }
+        }
+
+        public bool CanRecordSeries
+        {
+            get { return SelectedProgramme != null && SelectedProgramme.IsSeries && !ProgressIsVisible; }
         }
 
         public RelayCommand RecordProgrammeCommand
@@ -103,6 +108,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                     SelectedProgramme = (ProgramInfoDto)m.Sender;
                 }
             });
+        }
+
+        public override void UpdateProperties()
+        {
+            RaisePropertyChanged(() => CanRecord);
+            RaisePropertyChanged(() => CanRecordSeries);
         }
     }
 }
