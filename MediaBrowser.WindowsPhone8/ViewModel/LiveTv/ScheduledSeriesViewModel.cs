@@ -37,8 +37,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
         private bool _scheduledLoaded;
         private bool _recordingsLoaded;
 
-        private bool _isAdd;
-
         /// <summary>
         /// Initializes a new instance of the ScheduledSeriesViewModel class.
         /// </summary>
@@ -56,6 +54,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
         public int SelectedPivotIndex { get; set; }
         public List<Group<TimerInfoDto>> ScheduledRecordings { get; set; }
         public List<RecordingInfoDto> Recordings { get; set; }
+        public bool IsAdd { get; set; }
 
         public int AppBarIndex
         {
@@ -78,7 +77,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
 
                     try
                     {
-                        if (_isAdd)
+                        if (IsAdd)
                         {
                             await _apiClient.CreateLiveTvSeriesTimerAsync(SelectedSeries, default(CancellationToken));
                         }
@@ -135,10 +134,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
             {
                 return new RelayCommand<TimerInfoDto>(item =>
                 {
-                    if(SimpleIoc.Default.GetInstance<ScheduledRecordingViewModel>() != null)
+                    if (SimpleIoc.Default.GetInstance<ScheduledRecordingViewModel>() != null)
+                    {
                         Messenger.Default.Send(new NotificationMessage(item, Constants.Messages.ScheduledRecordingChangedMsg));
-
-                    _navigationService.NavigateTo(Constants.Pages.LiveTv.ScheduledRecordingView);
+                        _navigationService.NavigateTo(Constants.Pages.LiveTv.ScheduledRecordingView);
+                    }
                 });
             }
         }
@@ -163,22 +163,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                         return;
                     }
 
-                    try
-                    {
-                        SetProgressBar(AppResources.SysTrayCancellingSeriesRecording);
+                    SetProgressBar(AppResources.SysTrayCancellingSeriesRecording);
 
-                        await _apiClient.CancelLiveTvSeriesTimerAsync(SelectedSeries.Id, default(CancellationToken));
-
-                        if (_navigationService.CanGoBack)
-                        {
-                            _navigationService.GoBack();
-                        }
-                    }
-                    catch (HttpException ex)
-                    {
-                        Utils.HandleHttpException(ex, "CancelSeriesRecording", _navigationService, Log);
-                        MessageBox.Show(AppResources.ErrorDeletingSeriesRecording, AppResources.ErrorTitle, MessageBoxButton.OK);
-                    }
+                    await LiveTvUtils.CancelSeries(SelectedSeries, _navigationService, _apiClient, Log, true);
 
                     SetProgressBar();
                 });
@@ -206,7 +193,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                     _originalTimer = await SelectedSeries.Clone();
                     _scheduledLoaded = false;
                     _recordingsLoaded = false;
-                    _isAdd = (bool) m.Target;
+                    IsAdd = (bool) m.Target;
 
                     foreach (var day in SelectedSeries.Days)
                     {

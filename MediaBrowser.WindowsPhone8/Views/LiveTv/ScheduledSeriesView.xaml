@@ -36,7 +36,8 @@
                                                         Command="{Binding SaveCommand}" />
                     <behaviors:ApplicationBarIconButton IconUri="/Icons/appbar.delete.rest.png"
                                                         Text="{Binding LocalizedResources.AppBarDelete, Source={StaticResource LocalizedStrings}}"
-                                                        Command="{Binding DeleteCommand}" />
+                                                        Command="{Binding DeleteCommand}" 
+                                                        IsVisible="{Binding IsAdd, Converter={StaticResource NegativeBooleanConverter}}"/>
                 </behaviors:ApplicationBar.Buttons>
             </behaviors:ApplicationBar>
             <behaviors:ApplicationBar>
@@ -46,7 +47,8 @@
                                                         Command="{Binding RefreshCommand}" />
                     <behaviors:ApplicationBarIconButton IconUri="/Icons/appbar.delete.rest.png"
                                                         Text="{Binding LocalizedResources.AppBarDelete, Source={StaticResource LocalizedStrings}}"
-                                                        Command="{Binding DeleteCommand}" />
+                                                        Command="{Binding DeleteCommand}"
+                                                        IsVisible="{Binding IsAdd, Converter={StaticResource NegativeBooleanConverter}}"/>
                 </behaviors:ApplicationBar.Buttons>
             </behaviors:ApplicationBar>
         </behaviors:MultiApplicationBarBehavior>

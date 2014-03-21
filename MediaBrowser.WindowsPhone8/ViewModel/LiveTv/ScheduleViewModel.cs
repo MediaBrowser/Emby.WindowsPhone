@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Command;
@@ -42,7 +41,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
         }
 
         public int SelectedIndex { get; set; }
-        public List<SeriesTimerInfoDto> Series { get; set; }
+        public ObservableCollection<SeriesTimerInfoDto> Series { get; set; }
         public List<Group<TimerInfoDto>> Upcoming { get; set; }
         public SeriesTimerInfoDto SelectedSeries { get; set; }
 
@@ -82,7 +81,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
             {
                 return new RelayCommand<SeriesTimerInfoDto>(async series =>
                 {
-                    
+                    SetProgressBar(AppResources.SysTrayCancellingSeriesRecording);
+
+                    await LiveTvUtils.CancelSeries(SelectedSeries, _navigationService, _apiClient, Log, false);
+
+                    SetProgressBar();
                 });
             }
         }
@@ -162,7 +165,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
 
                 if (items != null && !items.Items.IsNullOrEmpty())
                 {
-                    Series = items.Items.ToList();
+                    Series = new ObservableCollection<SeriesTimerInfoDto>();
+                    items.Items.ToList().ForEach(Series.Add);
                     _seriesLoaded = true;
                 }
             }
@@ -208,6 +212,20 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
             }
 
             SetProgressBar();
+        }
+
+        public override void WireMessages()
+        {
+            Messenger.Default.Register<NotificationMessage>(this, m =>
+            {
+                if (m.Notification.Equals(Constants.Messages.LiveTvSeriesDeletedMsg))
+                {
+                    var series = (SeriesTimerInfoDto) m.Sender;
+
+                    var seriesToDelete = Series.FirstOrDefault(x => x.Id == series.Id);
+                    Series.Remove(seriesToDelete);
+                }
+            });
         }
     }
 }
