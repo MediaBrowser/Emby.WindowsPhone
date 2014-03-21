@@ -924,4 +924,10 @@
   <data name="SysTraySettingSeriesToRecord" xml:space="preserve">
     <value>Setting series to record...</value>
   </data>
+  <data name="AppBarCreateAndEditSeries" xml:space="preserve">
+    <value>create and edit series recording</value>
+  </data>
+  <data name="SysTrayPreparing" xml:space="preserve">
+    <value>Preparing...</value>
+  </data>
 </root>

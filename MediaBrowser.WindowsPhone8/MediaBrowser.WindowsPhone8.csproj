@@ -200,6 +200,7 @@
     <Compile Include="Extensions\LiveTvExtensions.cs" />
     <Compile Include="Extensions\ToolkitExtensions.cs" />
     <Compile Include="Extensions\WriteableBitmapExt.cs" />
+    <Compile Include="LiveTvUtils.cs" />
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="Messaging\VideoMessage.cs" />
     <Compile Include="Model\Chapter.cs" />
@@ -393,8 +394,10 @@
     <Content Include="Icons\appbar.connection.playon.png" />
     <Content Include="Icons\appbar.feature.search.rest.png" />
     <Content Include="Icons\appbar.check.rest.png" />
+    <Content Include="Icons\appbar.record.png" />
     <Content Include="Icons\appbar.refresh.rest.png" />
     <Content Include="Icons\appbar.save.png" />
+    <Content Include="Icons\appbar.serieslink.png" />
     <Content Include="Icons\searchbutton.png" />
     <Content Include="Images\3d.png" />
     <Content Include="Images\DefaultChannel.png" />

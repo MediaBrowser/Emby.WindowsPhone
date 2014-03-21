@@ -104,10 +104,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
             {
                 return new RelayCommand<SeriesTimerInfoDto>(series =>
                 {
-                    if(SimpleIoc.Default.GetInstance<ScheduledSeriesViewModel>() != null)
-                        Messenger.Default.Send(new NotificationMessage(series, Constants.Messages.ScheduledSeriesChangedMsg));
-
-                    _navigationService.NavigateTo(Constants.Pages.LiveTv.ScheduledSeriesView);
+                    if (SimpleIoc.Default.GetInstance<ScheduledSeriesViewModel>() != null)
+                    {
+                        Messenger.Default.Send(new NotificationMessage(series, false, Constants.Messages.ScheduledSeriesChangedMsg));
+                        _navigationService.NavigateTo(Constants.Pages.LiveTv.ScheduledSeriesView);
+                    }
                 });
             }
         }

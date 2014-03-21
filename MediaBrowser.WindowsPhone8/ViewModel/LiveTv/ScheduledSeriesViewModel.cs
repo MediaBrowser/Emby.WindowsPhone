@@ -37,6 +37,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
         private bool _scheduledLoaded;
         private bool _recordingsLoaded;
 
+        private bool _isAdd;
+
         /// <summary>
         /// Initializes a new instance of the ScheduledSeriesViewModel class.
         /// </summary>
@@ -197,6 +199,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                     _originalTimer = await SelectedSeries.Clone();
                     _scheduledLoaded = false;
                     _recordingsLoaded = false;
+                    _isAdd = (bool) m.Target;
 
                     foreach (var day in SelectedSeries.Days)
                     {

@@ -1,5 +1,13 @@
-﻿using GalaSoft.MvvmLight.Messaging;
+﻿using System;
+using System.Threading;
+using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Ioc;
+using GalaSoft.MvvmLight.Messaging;
+using MediaBrowser.Model;
 using MediaBrowser.Model.LiveTv;
+using MediaBrowser.Model.Net;
+using MediaBrowser.WindowsPhone.Model;
+using MediaBrowser.WindowsPhone.Resources;
 using ScottIsAFool.WindowsPhone.ViewModel;
 
 namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
@@ -12,7 +20,79 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
     /// </summary>
     public class ProgrammeViewModel : ViewModelBase
     {
+        private readonly INavigationService _navigationService;
+        private readonly IExtendedApiClient _apiClient;
+
+        public ProgrammeViewModel(INavigationService navigationService, IExtendedApiClient apiClient)
+        {
+            _navigationService = navigationService;
+            _apiClient = apiClient;
+        }
+
         public ProgramInfoDto SelectedProgramme { get; set; }
+
+        public bool CanRecord
+        {
+            get { return SelectedProgramme != null && SelectedProgramme.StartDate > DateTime.Now; }
+        }
+
+        public RelayCommand RecordProgrammeCommand
+        {
+            get
+            {
+                return new RelayCommand(async () =>
+                {
+                    SetProgressBar(AppResources.SysTraySettingProgrammeToRecord);
+
+                    await LiveTvUtils.RecordProgramme(SelectedProgramme, _apiClient, _navigationService, Log);
+
+                    SetProgressBar();
+                });
+            }
+        }
+
+        public RelayCommand CreateSeriesLinkCommand
+        {
+            get
+            {
+                return new RelayCommand(async () =>
+                {
+                    SetProgressBar(AppResources.SysTraySettingSeriesToRecord);
+
+                    await LiveTvUtils.CreateSeriesLink(SelectedProgramme, _apiClient, _navigationService, Log);
+
+                    SetProgressBar();
+                });
+            }
+        }
+
+        public RelayCommand AdvancedSeriesRecordCommand
+        {
+            get
+            {
+                return new RelayCommand(async () =>
+                {
+                    try
+                    {
+                        SetProgressBar(AppResources.SysTrayPreparing);
+
+                        var series = await _apiClient.GetDefaultLiveTvTimerInfo(SelectedProgramme.Id, default(CancellationToken));
+
+                        if (series != null && SimpleIoc.Default.GetInstance<ScheduledSeriesViewModel>() != null)
+                        {
+                            Messenger.Default.Send(new NotificationMessage(series, true, Constants.Messages.ScheduledSeriesChangedMsg));
+                            _navigationService.NavigateTo(Constants.Pages.LiveTv.ScheduledSeriesView);
+                        }
+                    }
+                    catch (HttpException ex)
+                    {
+                        Utils.HandleHttpException(ex, "AdvancedSeriesRecordCommand", _navigationService, Log);
+                    }
+
+                    SetProgressBar();
+                });
+            }
+        }
 
         public override void WireMessages()
         {
@@ -20,7 +100,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
             {
                 if (m.Notification.Equals(Constants.Messages.ProgrammeItemChangedMsg))
                 {
-                    SelectedProgramme = (ProgramInfoDto) m.Sender;
+                    SelectedProgramme = (ProgramInfoDto)m.Sender;
                 }
             });
         }

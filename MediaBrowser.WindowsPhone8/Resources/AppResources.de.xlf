@@ -908,6 +908,14 @@
           <source>Setting series to record...</source>
           <target state="new">Setting series to record...</target>
         </trans-unit>
+        <trans-unit translate="yes" id="Resx/SysTrayPreparing" xml:space="preserve">
+          <source>Preparing...</source>
+          <target state="new">Preparing...</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/AppBarCreateAndEditSeries" xml:space="preserve">
+          <source>create and edit series recording</source>
+          <target state="new">create and edit series recording</target>
+        </trans-unit>
         <trans-unit translate="yes" id="Resx/SysTraySettingProgrammeToRecord" xml:space="preserve">
           <source>Setting programme to record...</source>
           <target state="new">Setting programme to record...</target>

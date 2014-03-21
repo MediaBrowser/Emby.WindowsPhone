@@ -106,6 +106,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to create and edit series recording.
+        /// </summary>
+        public static string AppBarCreateAndEditSeries {
+            get {
+                return ResourceManager.GetString("AppBarCreateAndEditSeries", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to delete.
         /// </summary>
         public static string AppBarDelete {
@@ -2361,6 +2370,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string SysTrayLoadingSettings {
             get {
                 return ResourceManager.GetString("SysTrayLoadingSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preparing....
+        /// </summary>
+        public static string SysTrayPreparing {
+            get {
+                return ResourceManager.GetString("SysTrayPreparing", resourceCulture);
             }
         }
         
