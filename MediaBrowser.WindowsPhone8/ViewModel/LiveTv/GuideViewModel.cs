@@ -128,7 +128,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                 {
                     SetProgressBar(AppResources.SysTraySettingProgrammeToRecord);
 
-                    await LiveTvUtils.RecordProgramme(SelectedProgramme, _apiClient, _navigationService, Log);
+                    var id = await LiveTvUtils.RecordProgramme(SelectedProgramme, _apiClient, _navigationService, Log);
+
+                    if (!string.IsNullOrEmpty(id))
+                    {
+                        item.TimerId = id;
+                    }
 
                     SetProgressBar();
                 });
@@ -141,9 +146,19 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
             {
                 return new RelayCommand<ProgramInfoDto>(async item =>
                 {
+                    if (!string.IsNullOrEmpty(item.Id))
+                    {
+                        return;
+                    }
+
                     SetProgressBar(AppResources.SysTraySettingSeriesToRecord);
 
-                    await LiveTvUtils.CreateSeriesLink(SelectedProgramme, _apiClient, _navigationService, Log);
+                    var id = await LiveTvUtils.CreateSeriesLink(SelectedProgramme, _apiClient, _navigationService, Log);
+
+                    if (!string.IsNullOrEmpty(id))
+                    {
+                        item.SeriesTimerId = id;
+                    }
 
                     SetProgressBar();
                 });

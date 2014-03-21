@@ -13,7 +13,7 @@ namespace MediaBrowser.WindowsPhone
 {
     public static class LiveTvUtils
     {
-        public static async Task CreateSeriesLink(ProgramInfoDto item, IExtendedApiClient apiClient, INavigationService navigationService, ILog log)
+        public static async Task<string> CreateSeriesLink(ProgramInfoDto item, IExtendedApiClient apiClient, INavigationService navigationService, ILog log)
         {
             try
             {
@@ -24,15 +24,19 @@ namespace MediaBrowser.WindowsPhone
                     await apiClient.CreateLiveTvSeriesTimerAsync(timer, default(CancellationToken));
 
                     Messenger.Default.Send(new NotificationMessage(Constants.Messages.NewSeriesRecordingAddedMsg));
+
+                    return timer.Id;
                 }
             }
             catch (HttpException ex)
             {
                 Utils.HandleHttpException(ex, "RecordProgrammeCommand", navigationService, log);
             }
+
+            return null;
         }
 
-        public static async Task RecordProgramme(ProgramInfoDto item, IExtendedApiClient apiClient, INavigationService navigationService, ILog log)
+        public static async Task<string> RecordProgramme(ProgramInfoDto item, IExtendedApiClient apiClient, INavigationService navigationService, ILog log)
         {
             try
             {
@@ -41,12 +45,16 @@ namespace MediaBrowser.WindowsPhone
                 if (timer != null)
                 {
                     //await _apiClient.CreateLiveTvTimerAsync(timer, default(CancellationToken));
+
+                    return timer.Id;
                 }
             }
             catch (HttpException ex)
             {
                 Utils.HandleHttpException(ex, "RecordProgrammeCommand", navigationService, log);
             }
+
+            return null;
         }
 
         public static async Task CancelSeries(SeriesTimerInfoDto selectedSeries, INavigationService navigationService, IExtendedApiClient apiClient, ILog log, bool goBack)

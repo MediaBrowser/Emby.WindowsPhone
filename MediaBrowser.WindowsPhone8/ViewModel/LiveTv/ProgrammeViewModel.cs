@@ -33,12 +33,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
 
         public bool CanRecord
         {
-            get { return SelectedProgramme != null && SelectedProgramme.StartDate > DateTime.Now && !ProgressIsVisible; }
+            get { return SelectedProgramme != null && SelectedProgramme.StartDate > DateTime.Now && string.IsNullOrEmpty(SelectedProgramme.TimerId) && !ProgressIsVisible; }
         }
 
         public bool CanRecordSeries
         {
-            get { return SelectedProgramme != null && SelectedProgramme.IsSeries && !string.IsNullOrEmpty(SelectedProgramme.SeriesTimerId) && !ProgressIsVisible; }
+            get { return SelectedProgramme != null && SelectedProgramme.IsSeries && string.IsNullOrEmpty(SelectedProgramme.SeriesTimerId) && !ProgressIsVisible; }
         }
 
         public RelayCommand RecordProgrammeCommand
@@ -49,7 +49,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                 {
                     SetProgressBar(AppResources.SysTraySettingProgrammeToRecord);
 
-                    await LiveTvUtils.RecordProgramme(SelectedProgramme, _apiClient, _navigationService, Log);
+                    var id = await LiveTvUtils.RecordProgramme(SelectedProgramme, _apiClient, _navigationService, Log);
+
+                    if (!string.IsNullOrEmpty(id))
+                    {
+                        SelectedProgramme.TimerId = id;
+                    }
 
                     SetProgressBar();
                 });
@@ -64,7 +69,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                 {
                     SetProgressBar(AppResources.SysTraySettingSeriesToRecord);
 
-                    await LiveTvUtils.CreateSeriesLink(SelectedProgramme, _apiClient, _navigationService, Log);
+                    var id = await LiveTvUtils.CreateSeriesLink(SelectedProgramme, _apiClient, _navigationService, Log);
+
+                    if (!string.IsNullOrEmpty(id))
+                    {
+                        SelectedProgramme.SeriesTimerId = id;
+                    }
 
                     SetProgressBar();
                 });
