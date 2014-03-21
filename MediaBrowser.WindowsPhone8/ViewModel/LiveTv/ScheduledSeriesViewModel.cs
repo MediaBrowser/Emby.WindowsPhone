@@ -116,14 +116,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                         return;
                     }
 
-                    try
-                    {
-                        await _apiClient.CancelLiveTvTimerAsync(item.Id, default(CancellationToken));
-                    }
-                    catch (HttpException ex)
-                    {
-                        Utils.HandleHttpException(ex, "CancelRecordingCommand", _navigationService, Log);
-                    }
+                    SetProgressBar(AppResources.SysTrayCancellingProgramme);
+
+                    await LiveTvUtils.CancelRecording(item, _navigationService, _apiClient, Log);
+
+                    SetProgressBar();
                 });
             }
         }

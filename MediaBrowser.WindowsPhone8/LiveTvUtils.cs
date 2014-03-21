@@ -22,6 +22,8 @@ namespace MediaBrowser.WindowsPhone
                 if (timer != null)
                 {
                     await apiClient.CreateLiveTvSeriesTimerAsync(timer, default(CancellationToken));
+
+                    Messenger.Default.Send(new NotificationMessage(Constants.Messages.NewSeriesRecordingAddedMsg));
                 }
             }
             catch (HttpException ex)
@@ -64,6 +66,23 @@ namespace MediaBrowser.WindowsPhone
             {
                 Utils.HandleHttpException(ex, "CancelSeriesRecording", navigationService, log);
                 MessageBox.Show(AppResources.ErrorDeletingSeriesRecording, AppResources.ErrorTitle, MessageBoxButton.OK);
+            }
+        }
+
+        public static async Task CancelRecording(TimerInfoDto item, INavigationService navigationService, IExtendedApiClient apiClient, ILog log, bool goBack = false)
+        {
+            try
+            {
+                await apiClient.CancelLiveTvTimerAsync(item.Id, default(CancellationToken));
+
+                if (navigationService.CanGoBack && goBack)
+                {
+                    navigationService.GoBack();
+                }
+            }
+            catch (HttpException ex)
+            {
+                Utils.HandleHttpException(ex, "CancelRecordingCommand", navigationService, log);
             }
         }
     }

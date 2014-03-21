@@ -2023,6 +2023,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancelling programme....
+        /// </summary>
+        public static string SysTrayCancellingProgramme {
+            get {
+                return ResourceManager.GetString("SysTrayCancellingProgramme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancelling series link....
         /// </summary>
         public static string SysTrayCancellingSeriesRecording {

@@ -88,6 +88,7 @@
             public const string ShowAllProgrammesMsg = "ShowAllProgrammesMsg";
             public const string ProgrammeItemChangedMsg = "ProgrammeItemChangedMsg";
             public const string LiveTvSeriesDeletedMsg = "LiveTvSeriesDeletedMsg";
+            public const string NewSeriesRecordingAddedMsg = "NewSeriesRecordingAddedMsg";
         }
 
         public class Pages

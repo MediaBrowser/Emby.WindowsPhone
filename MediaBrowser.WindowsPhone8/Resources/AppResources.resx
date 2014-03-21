@@ -927,6 +927,9 @@
   <data name="AppBarCreateAndEditSeries" xml:space="preserve">
     <value>create and edit series recording</value>
   </data>
+  <data name="SysTrayCancellingProgramme" xml:space="preserve">
+    <value>Cancelling programme...</value>
+  </data>
   <data name="SysTrayPreparing" xml:space="preserve">
     <value>Preparing...</value>
   </data>

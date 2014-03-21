@@ -12,8 +12,10 @@ using MediaBrowser.Model.LiveTv;
 using MediaBrowser.Model.Net;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Resources;
+using Microsoft.Phone.Controls;
 using ScottIsAFool.WindowsPhone;
 using ScottIsAFool.WindowsPhone.ViewModel;
+using CustomMessageBox = MediaBrowser.WindowsPhone.Controls.CustomMessageBox;
 
 namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
 {
@@ -96,7 +98,25 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
             {
                 return new RelayCommand<TimerInfoDto>(async item =>
                 {
+                    var messageBox = new CustomMessageBox
+                    {
+                        Title = AppResources.MessageAreYouSureTitle,
+                        Message = AppResources.MessageCancelRecording,
+                        LeftButtonContent = AppResources.LabelYes,
+                        RightButtonContent = AppResources.LabelNo
+                    };
 
+                    var result = await messageBox.ShowAsync();
+                    if (result == CustomMessageBoxResult.RightButton)
+                    {
+                        return;
+                    }
+
+                    SetProgressBar(AppResources.SysTrayCancellingProgramme);
+
+                    await LiveTvUtils.CancelRecording(item, _navigationService, _apiClient, Log);
+
+                    SetProgressBar();
                 });
             }
         }
@@ -220,10 +240,15 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
             {
                 if (m.Notification.Equals(Constants.Messages.LiveTvSeriesDeletedMsg))
                 {
-                    var series = (SeriesTimerInfoDto) m.Sender;
+                    var seriesId = (string) m.Sender;
 
-                    var seriesToDelete = Series.FirstOrDefault(x => x.Id == series.Id);
+                    var seriesToDelete = Series.FirstOrDefault(x => x.Id == seriesId);
                     Series.Remove(seriesToDelete);
+                }
+
+                if (m.Notification.Equals(Constants.Messages.NewSeriesRecordingAddedMsg))
+                {
+                    _seriesLoaded = false;
                 }
             });
         }

@@ -38,7 +38,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
 
         public bool CanRecordSeries
         {
-            get { return SelectedProgramme != null && SelectedProgramme.IsSeries && !ProgressIsVisible; }
+            get { return SelectedProgramme != null && SelectedProgramme.IsSeries && !string.IsNullOrEmpty(SelectedProgramme.SeriesTimerId) && !ProgressIsVisible; }
         }
 
         public RelayCommand RecordProgrammeCommand
