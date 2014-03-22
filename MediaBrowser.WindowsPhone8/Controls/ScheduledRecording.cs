@@ -30,6 +30,11 @@ namespace MediaBrowser.WindowsPhone.Controls
                 sr.SeriesVisibility = Visibility.Visible;
                 sr.ProgrammeVisibility = Visibility.Collapsed;
             }
+            else if (!string.IsNullOrEmpty(timer.TimerId) && string.IsNullOrEmpty(timer.SeriesTimerId))
+            {
+                sr.SeriesVisibility = Visibility.Collapsed;
+                sr.ProgrammeVisibility = Visibility.Visible;
+            }
         }
 
         public static readonly DependencyProperty SeriesVisibilityProperty = DependencyProperty.Register(

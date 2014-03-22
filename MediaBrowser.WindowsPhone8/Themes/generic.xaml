@@ -307,6 +307,10 @@
                 Value="Red"/>
         <Setter Property="HorizontalContentAlignment"
                 Value="Left" />
+        <Setter Property="ProgrammeVisibility"
+                Value="Collapsed"/>
+        <Setter Property="SeriesVisibility"
+                Value="Collapsed"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:ScheduledRecording">
