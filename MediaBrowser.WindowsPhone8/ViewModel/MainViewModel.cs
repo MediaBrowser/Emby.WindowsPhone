@@ -9,6 +9,7 @@ using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Notifications;
 using MediaBrowser.Model.Querying;
+using MediaBrowser.Model.Session;
 using MediaBrowser.Services;
 using GalaSoft.MvvmLight.Command;
 using System.Collections.ObjectModel;
@@ -207,9 +208,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 var query = new VideoStreamOptions
                 {
                     ItemId = item.Id,
-                    VideoCodec = VideoCodecs.Wmv,
+                    VideoCodec = "Wmv",
                     //OutputFileExtension = ".wmv",
-                    AudioCodec = AudioCodecs.Wma,
+                    AudioCodec = "Wma",
                     VideoBitRate = 1000000,
                     AudioBitRate = 128000,
                     MaxAudioChannels = 2,
@@ -223,7 +224,16 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 try
                 {
                     Log.Info("Telling the server about watching this video");
-                    await _apiClient.ReportPlaybackStartAsync(item.Id, AuthenticationService.Current.LoggedInUser.Id, true, new List<string>());
+
+                    var info = new PlaybackStartInfo
+                    {
+                        ItemId = item.Id,
+                        UserId = AuthenticationService.Current.LoggedInUserId,
+                        IsSeekable = false,
+                        QueueableMediaTypes = new string[0]
+                    };
+
+                    await _apiClient.ReportPlaybackStartAsync(info);
                 }
                 catch (HttpException ex)
                 {
