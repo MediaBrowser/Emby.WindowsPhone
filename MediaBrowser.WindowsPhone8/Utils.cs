@@ -175,7 +175,7 @@ namespace MediaBrowser.WindowsPhone
                         Name = g.Select(l => l.SeriesName).FirstOrDefault(),
                         Count = g.Count(),
                         CreatedDate = g.OrderByDescending(l => l.DateCreated).First().DateCreated,
-                        UserData = new UserItemDataDto { Played = g.All(l => l.UserData.Played) }
+                        UserData = new UserItemDataDto { Played = g.All(l => l.UserData != null && l.UserData.Played) }
                     }).ToList();
                 var seriesList = new List<BaseItemDto>();
                 if (episodesBySeries.Any())

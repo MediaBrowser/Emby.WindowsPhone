@@ -31,14 +31,27 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
 
         public ProgramInfoDto SelectedProgramme { get; set; }
 
-        public bool CanRecord
+        public bool IsRecordNotCancel
         {
-            get { return SelectedProgramme != null && SelectedProgramme.EndDate < DateTime.Now && string.IsNullOrEmpty(SelectedProgramme.TimerId) && !ProgressIsVisible; }
+            get { return SelectedProgramme != null && string.IsNullOrEmpty(SelectedProgramme.TimerId); }
         }
 
-        public bool CanRecordSeries
+        public bool RecordIsEnabled
         {
-            get { return SelectedProgramme != null && SelectedProgramme.IsSeries && string.IsNullOrEmpty(SelectedProgramme.SeriesTimerId) && !ProgressIsVisible; }
+            get { return SelectedProgramme != null && SelectedProgramme.EndDate > DateTime.Now && !ProgressIsVisible; }
+        }
+
+        public bool IsRecordSeriesNotCancel
+        {
+            get { return SelectedProgramme != null && string.IsNullOrEmpty(SelectedProgramme.SeriesTimerId); }
+        }
+
+        public bool SeriesIsEnabled
+        {
+            get
+            {
+                return SelectedProgramme != null && SelectedProgramme.IsSeries && !ProgressIsVisible;
+            }
         }
 
         public RelayCommand RecordProgrammeCommand
@@ -47,13 +60,25 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
             {
                 return new RelayCommand(async () =>
                 {
-                    SetProgressBar(AppResources.SysTraySettingProgrammeToRecord);
-
-                    var id = await LiveTvUtils.RecordProgramme(SelectedProgramme, _apiClient, _navigationService, Log);
-
-                    if (!string.IsNullOrEmpty(id))
+                    if (IsRecordNotCancel)
                     {
-                        SelectedProgramme.TimerId = id;
+                        SetProgressBar(AppResources.SysTraySettingProgrammeToRecord);
+
+                        var id = await LiveTvUtils.RecordProgramme(SelectedProgramme, _apiClient, _navigationService, Log);
+
+                        if (!string.IsNullOrEmpty(id))
+                        {
+                            SelectedProgramme.TimerId = id;
+                        }
+                    }
+                    else
+                    {
+                        SetProgressBar(AppResources.SysTrayCancellingProgramme);
+
+                        if (await LiveTvUtils.CancelRecording(SelectedProgramme.TimerId, _navigationService, _apiClient, Log))
+                        {
+                            SelectedProgramme.TimerId = null;
+                        }
                     }
 
                     SetProgressBar();
@@ -67,13 +92,25 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
             {
                 return new RelayCommand(async () =>
                 {
-                    SetProgressBar(AppResources.SysTraySettingSeriesToRecord);
-
-                    var id = await LiveTvUtils.CreateSeriesLink(SelectedProgramme, _apiClient, _navigationService, Log);
-
-                    if (!string.IsNullOrEmpty(id))
+                    if (IsRecordSeriesNotCancel)
                     {
-                        SelectedProgramme.SeriesTimerId = id;
+                        SetProgressBar(AppResources.SysTraySettingSeriesToRecord);
+
+                        var id = await LiveTvUtils.CreateSeriesLink(SelectedProgramme, _apiClient, _navigationService, Log);
+
+                        if (!string.IsNullOrEmpty(id))
+                        {
+                            SelectedProgramme.SeriesTimerId = id;
+                        }
+                    }
+                    else
+                    {
+                        SetProgressBar(AppResources.SysTrayCancellingSeriesRecording);
+
+                        if (await LiveTvUtils.CancelSeries(SelectedProgramme.SeriesTimerId, _navigationService, _apiClient, Log, false))
+                        {
+                            SelectedProgramme.SeriesTimerId = null;
+                        }
                     }
 
                     SetProgressBar();
@@ -154,8 +191,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
 
         public override void UpdateProperties()
         {
-            RaisePropertyChanged(() => CanRecord);
-            RaisePropertyChanged(() => CanRecordSeries);
+            RaisePropertyChanged(() => RecordIsEnabled);
+            RaisePropertyChanged(() => SeriesIsEnabled);
+            RaisePropertyChanged(() => IsRecordNotCancel);
+            RaisePropertyChanged(() => IsRecordSeriesNotCancel);
             RaisePropertyChanged(() => SelectedProgramme);
         }
     }

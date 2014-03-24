@@ -44,7 +44,7 @@ namespace MediaBrowser.WindowsPhone
 
                 if (timer != null)
                 {
-                    //await _apiClient.CreateLiveTvTimerAsync(timer, default(CancellationToken));
+                    await apiClient.CreateLiveTvTimerAsync(timer, default(CancellationToken));
 
                     return timer.Id;
                 }
@@ -57,41 +57,59 @@ namespace MediaBrowser.WindowsPhone
             return null;
         }
 
-        public static async Task CancelSeries(SeriesTimerInfoDto selectedSeries, INavigationService navigationService, IExtendedApiClient apiClient, ILog log, bool goBack)
+        public static async Task<bool> CancelSeries(SeriesTimerInfoDto selectedSeries, INavigationService navigationService, IExtendedApiClient apiClient, ILog log, bool goBack)
+        {
+            return await CancelSeries(selectedSeries.Id, navigationService, apiClient, log, goBack);
+        }
+
+        public static async Task<bool> CancelSeries(string seriesId, INavigationService navigationService, IExtendedApiClient apiClient, ILog log, bool goBack)
         {
             try
             {
-                await apiClient.CancelLiveTvSeriesTimerAsync(selectedSeries.Id, default(CancellationToken));
+                await apiClient.CancelLiveTvSeriesTimerAsync(seriesId, default(CancellationToken));
 
-                Messenger.Default.Send(new NotificationMessage(selectedSeries.Id, Constants.Messages.LiveTvSeriesDeletedMsg));
+                Messenger.Default.Send(new NotificationMessage(seriesId, Constants.Messages.LiveTvSeriesDeletedMsg));
 
                 if (navigationService.CanGoBack && goBack)
                 {
                     navigationService.GoBack();
                 }
+
+                return true;
             }
             catch (HttpException ex)
             {
                 Utils.HandleHttpException(ex, "CancelSeriesRecording", navigationService, log);
                 MessageBox.Show(AppResources.ErrorDeletingSeriesRecording, AppResources.ErrorTitle, MessageBoxButton.OK);
             }
+
+            return false;
         }
 
-        public static async Task CancelRecording(TimerInfoDto item, INavigationService navigationService, IExtendedApiClient apiClient, ILog log, bool goBack = false)
+        public static async Task<bool> CancelRecording(TimerInfoDto item, INavigationService navigationService, IExtendedApiClient apiClient, ILog log, bool goBack = false)
+        {
+            return await CancelRecording(item.Id, navigationService, apiClient, log, goBack);
+        }
+
+        public static async Task<bool> CancelRecording(string itemId, INavigationService navigationService, IExtendedApiClient apiClient, ILog log, bool goBack = false)
         {
             try
             {
-                await apiClient.CancelLiveTvTimerAsync(item.Id, default(CancellationToken));
+                await apiClient.CancelLiveTvTimerAsync(itemId, default(CancellationToken));
 
                 if (navigationService.CanGoBack && goBack)
                 {
                     navigationService.GoBack();
                 }
+
+                return true;
             }
             catch (HttpException ex)
             {
                 Utils.HandleHttpException(ex, "CancelRecordingCommand", navigationService, log);
             }
+
+            return false;
         }
     }
 }
