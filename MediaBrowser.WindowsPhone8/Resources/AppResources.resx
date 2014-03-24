@@ -277,7 +277,7 @@
     <value>Favourites</value>
   </data>
   <data name="Genre" xml:space="preserve">
-    <value>genre</value>
+    <value>Genre</value>
   </data>
   <data name="HeaderChooseClient" xml:space="preserve">
     <value>Choose a client</value>
@@ -935,5 +935,17 @@
   </data>
   <data name="SysTrayGettingRecordingDetails" xml:space="preserve">
     <value>Getting recording details...</value>
+  </data>
+  <data name="LabelDefaultRecordedTvGrouping" xml:space="preserve">
+    <value>Default recorded TV grouping</value>
+  </data>
+  <data name="AppBarChannel" xml:space="preserve">
+    <value>channel</value>
+  </data>
+  <data name="AppBarRecordedDate" xml:space="preserve">
+    <value>recorded date</value>
+  </data>
+  <data name="AppBarShowName" xml:space="preserve">
+    <value>show name</value>
   </data>
 </root>

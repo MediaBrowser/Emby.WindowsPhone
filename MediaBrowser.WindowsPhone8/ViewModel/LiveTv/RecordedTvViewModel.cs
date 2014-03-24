@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model;
 using MediaBrowser.Model.LiveTv;
 using MediaBrowser.Model.Net;
@@ -36,13 +36,13 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
         {
             _navigationService = navigationService;
             _apiClient = apiClient;
+
+            GroupBy = RecordedGroupBy.RecordedDate;
         }
 
         public List<RecordingInfoDto> RecordedProgrammes { get; set; }
         public List<Group<RecordingInfoDto>> GroupedRecordedProgrammes { get; set; }
 
-        public DataTemplate GroupHeaderTemplate { get; set; }
-        public Style GroupItemTemplate { get; set; }
         public RecordedGroupBy GroupBy { get; set; }
 
         public RelayCommand RecordedTvViewLoaded
@@ -100,7 +100,46 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
 
             await Task.Run(() =>
             {
-                var emptyGroups = new List<Group<RecordingInfoDto>>();
+                var groupedItems = new List<Group<RecordingInfoDto>>();
+                switch (GroupBy)
+                {
+                    case RecordedGroupBy.RecordedDate:
+                        groupedItems = (from p in RecordedProgrammes
+                                        group p by p.StartDate
+                                            into grp
+                                            orderby grp.Key
+                                            select new Group<RecordingInfoDto>(Utils.CoolDateName(grp.Key), grp)).ToList();
+
+                        break;
+                    case RecordedGroupBy.ShowName:
+                        groupedItems = (from p in RecordedProgrammes
+                                        group p by p.Name
+                                            into grp
+                                            orderby grp.Key
+                                            select new Group<RecordingInfoDto>(grp.Key, grp)).ToList();
+                        break;
+                    case RecordedGroupBy.Channel:
+                        groupedItems = (from p in RecordedProgrammes
+                                        group p by p.ChannelName
+                                            into grp
+                                            orderby grp.Key
+                                            select new Group<RecordingInfoDto>(grp.Key, grp)).ToList();
+                        break;
+                }
+
+                GroupedRecordedProgrammes = groupedItems;
+            });
+        }
+
+        public override void WireMessages()
+        {
+            Messenger.Default.Register<NotificationMessage>(this, async m =>
+            {
+                if (m.Notification.Equals(Constants.Messages.ChangeRecordingGroupingMsg))
+                {
+                    GroupBy = (RecordedGroupBy) m.Sender;
+                    await GroupProgrammes();
+                }
             });
         }
     }

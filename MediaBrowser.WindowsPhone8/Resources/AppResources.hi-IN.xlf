@@ -1077,6 +1077,10 @@
           <source>Getting recording details...</source>
           <target state="new">Getting recording details...</target>
         </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelDefaultRecordedTvGrouping" xml:space="preserve">
+          <source>Default recorded TV grouping</source>
+          <target state="new">Default recorded TV grouping</target>
+        </trans-unit>
         <trans-unit translate="yes" id="Resx/AppBarCreateAndEditSeries" xml:space="preserve">
           <source>create and edit series recording</source>
           <target state="new">create and edit series recording</target>

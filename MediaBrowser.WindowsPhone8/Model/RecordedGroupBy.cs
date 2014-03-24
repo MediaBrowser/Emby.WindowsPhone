@@ -7,6 +7,7 @@ namespace MediaBrowser.WindowsPhone.Model
         [Description("Recorded Date")]
         RecordedDate,
         [Description("Show Name")]
-        ShowName
+        ShowName,
+        Channel
     }
 }

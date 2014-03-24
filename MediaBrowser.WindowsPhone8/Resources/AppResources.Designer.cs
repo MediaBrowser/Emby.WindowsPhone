@@ -97,6 +97,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to channel.
+        /// </summary>
+        public static string AppBarChannel {
+            get {
+                return ResourceManager.GetString("AppBarChannel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to clear now playing.
         /// </summary>
         public static string AppBarClearNowPlaying {
@@ -268,6 +277,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to recorded date.
+        /// </summary>
+        public static string AppBarRecordedDate {
+            get {
+                return ResourceManager.GetString("AppBarRecordedDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to refresh.
         /// </summary>
         public static string AppBarRefresh {
@@ -345,6 +363,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string AppBarSettings {
             get {
                 return ResourceManager.GetString("AppBarSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to show name.
+        /// </summary>
+        public static string AppBarShowName {
+            get {
+                return ResourceManager.GetString("AppBarShowName", resourceCulture);
             }
         }
         
@@ -592,7 +619,7 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to genre.
+        ///   Looks up a localized string similar to Genre.
         /// </summary>
         public static string Genre {
             get {
@@ -840,6 +867,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string LabelDefaultLockScreen {
             get {
                 return ResourceManager.GetString("LabelDefaultLockScreen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Default recorded TV grouping.
+        /// </summary>
+        public static string LabelDefaultRecordedTvGrouping {
+            get {
+                return ResourceManager.GetString("LabelDefaultRecordedTvGrouping", resourceCulture);
             }
         }
         

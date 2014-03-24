@@ -11,6 +11,7 @@
                             xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP8"
                             xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
                             xmlns:scott="clr-namespace:ScottIsAFool.WindowsPhone.Controls;assembly=ScottIsAFool.WindowsPhone"
+                            xmlns:behaviors="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
                             mc:Ignorable="d ignore"
                             FontFamily="{StaticResource PhoneFontFamilyNormal}"
                             FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -23,6 +24,14 @@
         <behaviours:MBSysTray IsIndeterminate="{Binding ProgressIsVisible}"
                               IsVisible="{Binding ProgressIsVisible}"
                               Text="{Binding ProgressText}" />
+        <behaviors:ApplicationBarBehavior>
+            <behaviors:ApplicationBarBehavior.Buttons>
+                <behaviors:ApplicationBarIconButton Text="{Binding LocalizedResources.AppBarGroupBy, Source={StaticResource LocalizedStrings}}"
+                                                    x:Name="btnChangeGrouping"
+                                                    IconUri="/Icons/appbar.group.png"
+                                                    Click="btnChangeGrouping_Click" />
+            </behaviors:ApplicationBarBehavior.Buttons>
+        </behaviors:ApplicationBarBehavior>
     </i:Interaction.Behaviors>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
@@ -49,7 +58,18 @@
         <Grid x:Name="ContentPanel"
               Grid.Row="1"
               Margin="12,0,12,0">
-
+            <phone:LongListSelector ItemsSource="{Binding GroupedRecordedProgrammes}"
+                                    GroupHeaderTemplate="{StaticResource LLSGroupHeaderTemplateLong}"
+                                    JumpListStyle="{StaticResource LLSGroupItemLongStyle}"
+                                    IsGroupingEnabled="True">
+                <phone:LongListSelector.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            
+                        </StackPanel>
+                    </DataTemplate>
+                </phone:LongListSelector.ItemTemplate>
+            </phone:LongListSelector>
         </Grid>
 
         <!--Uncomment to see an alignment grid to help ensure your controls are

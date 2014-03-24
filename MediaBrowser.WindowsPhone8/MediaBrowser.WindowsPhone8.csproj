@@ -205,11 +205,13 @@
     <Compile Include="Messaging\VideoMessage.cs" />
     <Compile Include="Model\Chapter.cs" />
     <Compile Include="Model\EventToCommand.cs" />
+    <Compile Include="Model\GroupBy.cs" />
     <Compile Include="Model\INavigationService.cs" />
     <Compile Include="Model\LockScreenType.cs" />
     <Compile Include="Model\MBLogger.cs" />
     <Compile Include="Model\MBUriMapper.cs" />
     <Compile Include="Model\NavigationService.cs" />
+    <Compile Include="Model\RecordedGroupBy.cs" />
     <Compile Include="Model\Server.cs" />
     <Compile Include="PhoneNameResolver.cs" />
     <Compile Include="Progress\CircularProgressBarViewModel.cs" />
