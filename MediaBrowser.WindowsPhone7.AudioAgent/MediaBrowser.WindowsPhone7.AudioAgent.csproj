@@ -132,13 +132,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AudioSharedLibrary\AudioSharedLibrary.csproj">
-      <Project>{49716E9D-F1AE-4ECF-9ED6-557BC424DBD3}</Project>
-      <Name>AudioSharedLibrary</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MediaBrowser.Shared\MediaBrowser.Shared.csproj">
-      <Project>{0663D56B-A326-4E58-939B-B20ADEE2C7E7}</Project>
-      <Name>MediaBrowser.Shared</Name>
+    <ProjectReference Include="..\MediaBrowser.Shared7\MediaBrowser.Shared7.csproj">
+      <Project>{608F448C-18D2-47B6-A643-904223B51D7C}</Project>
+      <Name>MediaBrowser.Shared7</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -13,6 +13,7 @@ using Cimbalino.Phone.Toolkit.Services;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using MediaBrowser.Design;
+using MediaBrowser.WindowsPhone.Design;
 using MediaBrowser.WindowsPhone.ViewModel.Predefined;
 using MediaBrowser.WindowsPhone.ViewModel.Remote;
 using Microsoft.Practices.ServiceLocation;

@@ -1,6 +1,6 @@
 ﻿using Cimbalino.Phone.Toolkit.Services;
 
-namespace MediaBrowser.Design
+namespace MediaBrowser.WindowsPhone.Design
 {
     public class ApplicationSettingsDesignService : IApplicationSettingsService
     {

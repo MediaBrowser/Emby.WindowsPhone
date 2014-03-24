@@ -167,13 +167,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AudioSharedLibrary\AudioSharedLibrary.csproj">
-      <Project>{49716E9D-F1AE-4ECF-9ED6-557BC424DBD3}</Project>
-      <Name>AudioSharedLibrary</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MediaBrowser.Shared\MediaBrowser.Shared.csproj">
+    <ProjectReference Include="..\MediaBrowser.Shared\MediaBrowser.Shared8.csproj">
       <Project>{0663D56B-A326-4E58-939B-B20ADEE2C7E7}</Project>
-      <Name>MediaBrowser.Shared</Name>
+      <Name>MediaBrowser.Shared8</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -8,7 +8,7 @@
              xmlns:vm="clr-namespace:MediaBrowser.WindowsPhone.ViewModel"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:windowsPhone="clr-namespace:MediaBrowser.WindowsPhone"
-             xmlns:model="clr-namespace:MediaBrowser.Model;assembly=MediaBrowser.Shared">
+             xmlns:model="clr-namespace:MediaBrowser.Model;assembly=MediaBrowser.Shared7">
 
     <Application.Resources>
         <ResourceDictionary>

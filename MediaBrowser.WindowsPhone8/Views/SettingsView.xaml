@@ -519,6 +519,13 @@
                     </ScrollViewer>
                 </Grid>
             </phone:PivotItem>
+            
+            <phone:PivotItem Header="{Binding LocalizedResources.LabelLiveTv, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
+                <toolkit:ListPicker ItemsSource="{Binding RecordedGroupByItems, Source={StaticResource SpecificSettings}}"
+                                    SelectedItem="{Binding DefaultRecordedGroupBy, Source={StaticResource SpecificSettings}, Mode=TwoWay}"
+                                    Header="{Binding LocalizedResources.HeaderDefaultGrouping, Source={StaticResource LocalizedStrings}}"
+                                    toolkit:TiltEffect.SuppressTilt="True" />
+            </phone:PivotItem>
         </phone:Pivot>
     </Grid>
 

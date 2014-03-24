@@ -5,8 +5,7 @@
                     xmlns:converters="clr-namespace:MediaBrowser.WindowsPhone.Converters"
                     xmlns:cimbalino="clr-namespace:Cimbalino.Phone.Toolkit.Converters;assembly=Cimbalino.Phone.Toolkit"
                     xmlns:progress="clr-namespace:MediaBrowser.WindowsPhone.Progress"
-                    xmlns:local="clr-namespace:MediaBrowser.WindowsPhone.Controls"
-                    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit">
+                    xmlns:local="clr-namespace:MediaBrowser.WindowsPhone.Controls">
     <!-- Resource dictionary entries should be defined here. -->
 
     <LinearGradientBrush SpreadMethod="Reflect"

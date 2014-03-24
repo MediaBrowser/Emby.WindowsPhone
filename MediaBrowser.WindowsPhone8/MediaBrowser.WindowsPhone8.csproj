@@ -247,6 +247,7 @@
     <Compile Include="ViewModel\LiveTv\ProgrammeViewModel.cs" />
     <Compile Include="ViewModel\LiveTv\GuideViewModel.cs" />
     <Compile Include="ViewModel\LiveTv\LiveTvViewModel.cs" />
+    <Compile Include="ViewModel\LiveTv\RecordedTvViewModel.cs" />
     <Compile Include="ViewModel\LiveTv\ScheduledRecordingViewModel.cs" />
     <Compile Include="ViewModel\LiveTv\ScheduledSeriesViewModel.cs" />
     <Compile Include="ViewModel\LiveTv\ScheduleViewModel.cs" />
@@ -316,6 +317,9 @@
     </Compile>
     <Compile Include="Views\LiveTv\LiveTvView.xaml.cs">
       <DependentUpon>LiveTvView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LiveTv\RecordedTvView.xaml.cs">
+      <DependentUpon>RecordedTvView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LiveTv\ScheduledRecordingView.xaml.cs">
       <DependentUpon>ScheduledRecordingView.xaml</DependentUpon>
@@ -561,6 +565,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\LiveTv\LiveTvView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LiveTv\RecordedTvView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -891,13 +899,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AudioSharedLibrary\AudioSharedLibrary.csproj">
-      <Project>{49716E9D-F1AE-4ECF-9ED6-557BC424DBD3}</Project>
-      <Name>AudioSharedLibrary</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MediaBrowser.Shared\MediaBrowser.Shared.csproj">
+    <ProjectReference Include="..\MediaBrowser.Shared\MediaBrowser.Shared8.csproj">
       <Project>{0663D56B-A326-4E58-939B-B20ADEE2C7E7}</Project>
-      <Name>MediaBrowser.Shared</Name>
+      <Name>MediaBrowser.Shared8</Name>
     </ProjectReference>
     <ProjectReference Include="..\MediaBrowser.WindowsPhone8.AudioAgent\MediaBrowser.WindowsPhone8.AudioAgent.csproj">
       <Project>{62509334-83BD-4D52-9387-498D59630832}</Project>
