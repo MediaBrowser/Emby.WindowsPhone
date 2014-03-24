@@ -124,7 +124,8 @@
                                         Width="{StaticResource ViewSize}">
                                     <local:ScheduledRecording Foreground="White"
                                                               Height="70"
-                                                              Width="70" />
+                                                              Width="70" 
+                                                              SeriesVisibility="Visible"/>
                                 </Border>
                                 <TextBlock Text="{Binding LocalizedResources.LabelLiveTv, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToUppercaseConverter}}"
                                            Style="{StaticResource HeaderTextStyle}"

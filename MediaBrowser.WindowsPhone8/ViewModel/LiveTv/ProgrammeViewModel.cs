@@ -33,7 +33,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
 
         public bool CanRecord
         {
-            get { return SelectedProgramme != null && SelectedProgramme.StartDate > DateTime.Now && string.IsNullOrEmpty(SelectedProgramme.TimerId) && !ProgressIsVisible; }
+            get { return SelectedProgramme != null && SelectedProgramme.EndDate < DateTime.Now && string.IsNullOrEmpty(SelectedProgramme.TimerId) && !ProgressIsVisible; }
         }
 
         public bool CanRecordSeries
@@ -156,6 +156,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
         {
             RaisePropertyChanged(() => CanRecord);
             RaisePropertyChanged(() => CanRecordSeries);
+            RaisePropertyChanged(() => SelectedProgramme);
         }
     }
 }

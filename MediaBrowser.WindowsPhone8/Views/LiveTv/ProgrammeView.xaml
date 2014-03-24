@@ -27,7 +27,7 @@
         <behaviors:ApplicationBarBehavior IsMenuEnabled="True">
             <behaviors:ApplicationBarBehavior.Buttons>
                 <behaviors:ApplicationBarIconButton Text="{Binding LocalizedResources.MenuRecord, Source={StaticResource LocalizedStrings}}"
-                                                    Command="{Binding CreateSeriesLinkCommand}"
+                                                    Command="{Binding RecordProgrammeCommand}"
                                                     IconUri="/Icons/appbar.record.png"
                                                     IsEnabled="{Binding CanRecord}" />
                 <behaviors:ApplicationBarIconButton Text="{Binding LocalizedResources.MenuRecordSeries, Source={StaticResource LocalizedStrings}}"
@@ -116,8 +116,8 @@
                                                toolkit:TiltEffect.IsTiltEnabled="True"
                                                TapCommand="{Binding ShowSeriesRecordingCommand}"
                                                Margin="12,0">
-                            <controls:ScheduledRecording Visibility="{Binding SelectedProgramme.SeriesTimerId, Converter={StaticResource NullVisibilityConverter}}" 
-                                                         Height="20"/>
+                            <controls:ScheduledRecording Height="20"
+                                                         Timer="{Binding SelectedProgramme}"/>
                         </controls:CustomButton>
                     </StackPanel>
 

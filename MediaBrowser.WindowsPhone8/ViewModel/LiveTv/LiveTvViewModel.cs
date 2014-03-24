@@ -65,6 +65,17 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
             }
         }
 
+        public RelayCommand RefreshCommand
+        {
+            get
+            {
+                return new RelayCommand(async () =>
+                {
+                    await LoadData(true);
+                });
+            }
+        }
+
         public RelayCommand<bool> MoreCommand
         {
             get
