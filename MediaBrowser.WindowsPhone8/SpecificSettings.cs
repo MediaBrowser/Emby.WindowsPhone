@@ -19,6 +19,8 @@ namespace MediaBrowser.WindowsPhone
             DefaultGroupBy = GroupByItems.FirstOrDefault(x => x == DefaultGroupBy);
             EnableImageEnhancers = true;
 #if WP8
+            RecordedGroupByItems = Enum<RecordedGroupBy>.GetNames();
+            DefaultRecordedGroupBy = RecordedGroupByItems.FirstOrDefault(x => x == DefaultRecordedGroupBy);
             UseRichWideTile = true;
             DisplayBackdropOnTile = true;
 #endif
@@ -27,6 +29,10 @@ namespace MediaBrowser.WindowsPhone
         public bool IncludeTrailersInRecent { get; set; }
         public GroupBy DefaultGroupBy { get; set; }
         public List<GroupBy> GroupByItems { get; set; }
+#if WP8
+        public RecordedGroupBy DefaultRecordedGroupBy { get; set; }
+        public List<RecordedGroupBy> RecordedGroupByItems { get; set; }
+#endif
         public bool JustShowFolderView { get; set; }
         public bool ShowMissingEpisodes { get; set; }
         public bool ShowUnairedEpisodes { get; set; }
