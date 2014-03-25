@@ -948,6 +948,9 @@
   <data name="AppBarShowName" xml:space="preserve">
     <value>show name</value>
   </data>
+  <data name="HeaderActiveRecordings" xml:space="preserve">
+    <value>Active</value>
+  </data>
   <data name="LabelNoRecordedItems" xml:space="preserve">
     <value>You don't appear to have any recorded items</value>
   </data>
@@ -956,5 +959,8 @@
   </data>
   <data name="LabelShowName" xml:space="preserve">
     <value>Show name</value>
+  </data>
+  <data name="SysTrayGettingCurrentlyRecording" xml:space="preserve">
+    <value>Getting active recordings...</value>
   </data>
 </root>

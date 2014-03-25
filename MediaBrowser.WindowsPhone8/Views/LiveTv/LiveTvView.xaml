@@ -135,6 +135,10 @@
                     </phone:LongListSelector>
                 </Grid>
             </phone:PanoramaItem>
+            
+            <phone:PanoramaItem Header="{Binding LocalizedResources.HeaderActiveRecordings, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
+                
+            </phone:PanoramaItem>
 
             <phone:PanoramaItem Header="{Binding LocalizedResources.LabelUpcoming, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
                 <Grid>

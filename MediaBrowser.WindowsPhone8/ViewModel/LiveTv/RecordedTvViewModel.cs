@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -28,6 +29,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
         private readonly IExtendedApiClient _apiClient;
 
         private bool _programmesLoaded;
+
+        private DateTime? _programmesLastRun;
 
         /// <summary>
         /// Initializes a new instance of the RecordedTvViewModel class.
@@ -75,7 +78,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
 
         private async Task LoadProgrammes(bool isRefresh)
         {
-            if (!_navigationService.IsNetworkAvailable || (_programmesLoaded && !isRefresh))
+            if (!_navigationService.IsNetworkAvailable || (_programmesLoaded && !isRefresh && !LiveTvUtils.HasExpired(_programmesLastRun)))
             {
                 return;
             }
@@ -97,6 +100,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                 {
                     RecordedProgrammes = items.Items.ToList();
                     await GroupProgrammes();
+
+                    _programmesLoaded = true;
+                    _programmesLastRun = DateTime.Now;
                 }
 
             }
@@ -107,6 +113,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
 
             SetProgressBar();
         }
+
+        
 
         private async Task GroupProgrammes()
         {

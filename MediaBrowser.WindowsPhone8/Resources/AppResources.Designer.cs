@@ -628,6 +628,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Recording Now.
+        /// </summary>
+        public static string HeaderActiveRecordings {
+            get {
+                return ResourceManager.GetString("HeaderActiveRecordings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Choose a client.
         /// </summary>
         public static string HeaderChooseClient {
@@ -2190,6 +2199,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string SysTrayGettingChannels {
             get {
                 return ResourceManager.GetString("SysTrayGettingChannels", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Getting active recordings....
+        /// </summary>
+        public static string SysTrayGettingCurrentlyRecording {
+            get {
+                return ResourceManager.GetString("SysTrayGettingCurrentlyRecording", resourceCulture);
             }
         }
         

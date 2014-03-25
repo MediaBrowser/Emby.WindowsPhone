@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using GalaSoft.MvvmLight.Messaging;
@@ -110,6 +111,17 @@ namespace MediaBrowser.WindowsPhone
             }
 
             return false;
+        }
+
+        public static bool HasExpired(DateTime? lastRun, int timeOutMinutes = 30)
+        {
+            if (!lastRun.HasValue)
+            {
+                return true;
+            }
+
+            var difference = DateTime.Now - lastRun.Value;
+            return difference.TotalMinutes > timeOutMinutes;
         }
     }
 }

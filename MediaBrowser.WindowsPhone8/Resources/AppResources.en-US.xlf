@@ -802,6 +802,10 @@
           <source>show name</source>
           <target state="new">show name</target>
         </trans-unit>
+        <trans-unit translate="yes" id="Resx/HeaderActiveRecordings" xml:space="preserve">
+          <source>Recording Now</source>
+          <target state="new">Recording Now</target>
+        </trans-unit>
         <trans-unit translate="yes" id="Resx/LabelNoRecordedItems" xml:space="preserve">
           <source>You don't appear to have any recorded items</source>
           <target state="new">You don't appear to have any recorded items</target>
@@ -809,6 +813,10 @@
         <trans-unit translate="yes" id="Resx/LabelShowName" xml:space="preserve">
           <source>Show name</source>
           <target state="new">Show name</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SysTrayGettingCurrentlyRecording" xml:space="preserve">
+          <source>Getting active recordings...</source>
+          <target state="new">Getting active recordings...</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/LabelRecordedDate" xml:space="preserve">
           <source>Recorded date</source>

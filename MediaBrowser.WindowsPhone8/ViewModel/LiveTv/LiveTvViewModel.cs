@@ -31,9 +31,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
 
         private bool _upcomingLoaded;
         private bool _whatsOnLoaded;
+        private bool _currentlyRecordingLoaded;
 
         private DateTime? _upcomingLastRun;
         private DateTime? _whatsOnLastRun;
+        private DateTime? _currentlyRecordingLastRun;
 
         private readonly string _tileUrl = string.Format(Constants.PhoneTileUrlFormat, "LiveTV", string.Empty, "Live TV");
 
@@ -48,6 +50,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
 
         public List<ProgramInfoDto> WhatsOn { get; set; }
         public List<ProgramInfoDto> Upcoming { get; set; }
+        public List<RecordingInfoDto> CurrentlyRecording { get; set; }
 
         public bool ShowMoreWhatsOn { get; set; }
         public bool ShowMoreUpcoming { get; set; }
@@ -153,11 +156,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
 
             await GetWhatsOn(isRefresh);
             await GetUpcoming(isRefresh);
+            await LoadCurrentlyRecording(isRefresh);
         }
 
         private async Task GetUpcoming(bool isRefresh)
         {
-            if (_upcomingLoaded && !isRefresh && !HasExpired(_upcomingLastRun))
+            if (_upcomingLoaded && !isRefresh && !LiveTvUtils.HasExpired(_upcomingLastRun))
             {
                 return;
             }
@@ -195,7 +199,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
 
         private async Task GetWhatsOn(bool isRefresh)
         {
-            if (_whatsOnLoaded && !isRefresh && !HasExpired(_whatsOnLastRun))
+            if (_whatsOnLoaded && !isRefresh && !LiveTvUtils.HasExpired(_whatsOnLastRun))
             {
                 return;
             }
@@ -231,15 +235,40 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
             SetProgressBar();
         }
 
-        public bool HasExpired(DateTime? lastRun)
+        private async Task LoadCurrentlyRecording(bool isRefresh)
         {
-            if (!lastRun.HasValue)
+            if (!_navigationService.IsNetworkAvailable || (_currentlyRecordingLoaded && !isRefresh && !LiveTvUtils.HasExpired(_currentlyRecordingLastRun)))
             {
-                return true;
+                return;
             }
 
-            var difference = DateTime.Now - lastRun.Value;
-            return difference.TotalMinutes > 30;
+            try
+            {
+                SetProgressBar(AppResources.SysTrayGettingCurrentlyRecording);
+
+                var query = new RecordingQuery
+                {
+                    IsInProgress = true,
+                    Status = RecordingStatus.InProgress,
+                    UserId = AuthenticationService.Current.LoggedInUserId
+                };
+
+                var items = await _apiClient.GetLiveTvRecordingsAsync(query, default(CancellationToken));
+
+                if (items != null && !items.Items.IsNullOrEmpty())
+                {
+                    CurrentlyRecording = items.Items.ToList();
+
+                    _currentlyRecordingLoaded = true;
+                    _currentlyRecordingLastRun = DateTime.Now;
+                }
+            }
+            catch (HttpException ex)
+            {
+                Utils.HandleHttpException(ex, "LoadCurrentlyRecording(" + isRefresh + ")", _navigationService, Log);
+            }
+
+            SetProgressBar();
         }
     }
 }
