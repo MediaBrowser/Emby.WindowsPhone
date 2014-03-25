@@ -1204,6 +1204,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You don&apos;t appear to have any recorded items.
+        /// </summary>
+        public static string LabelNoRecordedItems {
+            get {
+                return ResourceManager.GetString("LabelNoRecordedItems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No seasons found.
         /// </summary>
         public static string LabelNoSeasonsFound {

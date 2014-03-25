@@ -247,8 +247,8 @@
           <target state="translated">Add to favorites</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/ProductionYear" xml:space="preserve">
-          <source>production year</source>
-          <target state="new">production year</target>
+          <source>Production Year</source>
+          <target state="new">Production Year</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/PinToStart" xml:space="preserve">
           <source>Pin to start</source>
@@ -801,6 +801,10 @@
         <trans-unit translate="yes" id="Resx/AppBarShowName" xml:space="preserve">
           <source>show name</source>
           <target state="new">show name</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelNoRecordedItems" xml:space="preserve">
+          <source>You don't appear to have any recorded items</source>
+          <target state="new">You don't appear to have any recorded items</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/LabelShowName" xml:space="preserve">
           <source>Show name</source>

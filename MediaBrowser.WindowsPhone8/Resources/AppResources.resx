@@ -948,6 +948,9 @@
   <data name="AppBarShowName" xml:space="preserve">
     <value>show name</value>
   </data>
+  <data name="LabelNoRecordedItems" xml:space="preserve">
+    <value>You don't appear to have any recorded items</value>
+  </data>
   <data name="LabelRecordedDate" xml:space="preserve">
     <value>Recorded date</value>
   </data>

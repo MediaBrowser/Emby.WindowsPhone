@@ -663,8 +663,8 @@
           <target state="translated">Fäst på startskärmen</target>
         </trans-unit>
         <trans-unit id="Resx/ProductionYear" translate="yes" xml:space="preserve">
-          <source>production year</source>
-          <target state="translated">Produktions år</target>
+          <source>Production Year</source>
+          <target state="needs-review-translation">Produktions år</target><note from="MultilingualUpdate" priority="2" annotates="source">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="Resx/RemoveFromFavouritesFull" translate="yes" xml:space="preserve">
           <source>Remove from favourites</source>
@@ -1084,6 +1084,10 @@
         <trans-unit translate="yes" id="Resx/AppBarShowName" xml:space="preserve">
           <source>show name</source>
           <target state="new">show name</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelNoRecordedItems" xml:space="preserve">
+          <source>You don't appear to have any recorded items</source>
+          <target state="new">You don't appear to have any recorded items</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/LabelShowName" xml:space="preserve">
           <source>Show name</source>

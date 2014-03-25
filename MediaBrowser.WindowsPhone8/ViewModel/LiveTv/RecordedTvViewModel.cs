@@ -43,6 +43,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
         public List<RecordingInfoDto> RecordedProgrammes { get; set; }
         public List<Group<RecordingInfoDto>> GroupedRecordedProgrammes { get; set; }
 
+        public bool HasRecordedItems
+        {
+            get { return !RecordedProgrammes.IsNullOrEmpty(); }
+        }
+
         public RecordedGroupBy GroupBy { get; set; }
 
         public RelayCommand RecordedTvViewLoaded
@@ -51,7 +56,19 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
             {
                 return new RelayCommand(async () =>
                 {
+                    GroupBy = App.SpecificSettings.DefaultRecordedGroupBy;
                     await LoadProgrammes(false);
+                });
+            }
+        }
+
+        public RelayCommand<RecordingInfoDto> ItemTappedCommand
+        {
+            get
+            {
+                return new RelayCommand<RecordingInfoDto>(item =>
+                {
+                    
                 });
             }
         }
@@ -65,6 +82,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
 
             try
             {
+                SetProgressBar(AppResources.SysTrayGettingRecordedItems);
+
                 var query = new RecordingQuery
                 {
                     IsInProgress = false,
@@ -143,6 +162,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                     SetProgressBar();
                 }
             });
+        }
+
+        public override void UpdateProperties()
+        {
+            RaisePropertyChanged(() => HasRecordedItems);
         }
     }
 }

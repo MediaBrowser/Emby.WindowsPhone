@@ -663,8 +663,8 @@
           <target state="new">Pin to start</target>
         </trans-unit>
         <trans-unit id="Resx/ProductionYear" translate="yes" xml:space="preserve">
-          <source>production year</source>
-          <target state="new">production year</target>
+          <source>Production Year</source>
+          <target state="new">Production Year</target>
         </trans-unit>
         <trans-unit id="Resx/RemoveFromFavouritesFull" translate="yes" xml:space="preserve">
           <source>Remove from favourites</source>
@@ -923,6 +923,10 @@
         <trans-unit translate="yes" id="Resx/AppBarShowName" xml:space="preserve">
           <source>show name</source>
           <target state="new">show name</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelNoRecordedItems" xml:space="preserve">
+          <source>You don't appear to have any recorded items</source>
+          <target state="new">You don't appear to have any recorded items</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/LabelShowName" xml:space="preserve">
           <source>Show name</source>

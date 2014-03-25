@@ -531,7 +531,13 @@
                 <toolkit:ListPicker ItemsSource="{Binding RecordedGroupByItems, Source={StaticResource SpecificSettings}}"
                                     SelectedItem="{Binding DefaultRecordedGroupBy, Source={StaticResource SpecificSettings}, Mode=TwoWay}"
                                     Header="{Binding LocalizedResources.LabelDefaultRecordedTvGrouping, Source={StaticResource LocalizedStrings}}"
-                                    toolkit:TiltEffect.SuppressTilt="True" />
+                                    toolkit:TiltEffect.SuppressTilt="True">
+                    <toolkit:ListPicker.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Converter={StaticResource LocalisedEnumConverter}}"/>
+                        </DataTemplate>
+                    </toolkit:ListPicker.ItemTemplate>
+                </toolkit:ListPicker>
             </phone:PivotItem>
         </phone:Pivot>
     </Grid>
