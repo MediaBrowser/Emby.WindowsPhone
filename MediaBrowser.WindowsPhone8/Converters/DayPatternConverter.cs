@@ -37,7 +37,7 @@ namespace MediaBrowser.WindowsPhone.Converters
                 return string.Empty;
             }
 
-            var days = string.Join(",", schedule.Days.Select(x => x.GetLocalisedDay()));
+            var days = string.Join(",", schedule.Days.Select(x => x.GetLocalisedName()));
             return days;
         }
 

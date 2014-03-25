@@ -219,8 +219,8 @@
           <target state="new">Favourites</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/Genre" xml:space="preserve">
-          <source>genre</source>
-          <target state="new">genre</target>
+          <source>Genre</source>
+          <target state="new">Genre</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/HeaderChooseClient" xml:space="preserve">
           <source>Choose a client</source>
@@ -898,6 +898,26 @@
         <trans-unit translate="yes" id="Resx/LabelDefaultRecordedTvGrouping" xml:space="preserve">
           <source>Default recorded TV grouping</source>
           <target state="new">Default recorded TV grouping</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/AppBarShowName" xml:space="preserve">
+          <source>show name</source>
+          <target state="new">show name</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelShowName" xml:space="preserve">
+          <source>Show name</source>
+          <target state="new">Show name</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelRecordedDate" xml:space="preserve">
+          <source>Recorded date</source>
+          <target state="new">Recorded date</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/AppBarRecordedDate" xml:space="preserve">
+          <source>recorded date</source>
+          <target state="new">recorded date</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/AppBarChannel" xml:space="preserve">
+          <source>channel</source>
+          <target state="new">channel</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/AppBarCreateAndEditSeries" xml:space="preserve">
           <source>create and edit series recording</source>

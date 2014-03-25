@@ -65,7 +65,10 @@
                 <phone:LongListSelector.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="{Binding Converter={StaticResource RecordingNameConverter}}"
+                                           Style="{StaticResource PhoneTextTitle2Style}"/>
+                            </StackPanel>
                         </StackPanel>
                     </DataTemplate>
                 </phone:LongListSelector.ItemTemplate>

@@ -948,4 +948,10 @@
   <data name="AppBarShowName" xml:space="preserve">
     <value>show name</value>
   </data>
+  <data name="LabelRecordedDate" xml:space="preserve">
+    <value>Recorded date</value>
+  </data>
+  <data name="LabelShowName" xml:space="preserve">
+    <value>Show name</value>
+  </data>
 </root>

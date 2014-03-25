@@ -105,7 +105,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                 {
                     case RecordedGroupBy.RecordedDate:
                         groupedItems = (from p in RecordedProgrammes
-                                        group p by p.StartDate
+                                        group p by p.StartDate.Date
                                             into grp
                                             orderby grp.Key
                                             select new Group<RecordingInfoDto>(Utils.CoolDateName(grp.Key), grp)).ToList();
@@ -127,7 +127,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                         break;
                 }
 
-                GroupedRecordedProgrammes = groupedItems;
+                Deployment.Current.Dispatcher.BeginInvoke(() => GroupedRecordedProgrammes = groupedItems);
             });
         }
 
@@ -139,6 +139,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                 {
                     GroupBy = (RecordedGroupBy) m.Sender;
                     await GroupProgrammes();
+
+                    SetProgressBar();
                 }
             });
         }

@@ -1456,6 +1456,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Recorded date.
+        /// </summary>
+        public static string LabelRecordedDate {
+            get {
+                return ResourceManager.GetString("LabelRecordedDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Recorded TV.
         /// </summary>
         public static string LabelRecordedTv {
@@ -1641,6 +1650,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string LabelShowAllItems {
             get {
                 return ResourceManager.GetString("LabelShowAllItems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show name.
+        /// </summary>
+        public static string LabelShowName {
+            get {
+                return ResourceManager.GetString("LabelShowName", resourceCulture);
             }
         }
         

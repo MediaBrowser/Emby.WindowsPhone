@@ -45,7 +45,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
             _apiClient = apiClient;
 
             var days = Enum.GetValues(typeof (DayOfWeek)).Cast<DayOfWeek>();
-            DaysOfWeekList = days.Select(x => new Day {DayOfWeek = x, DisplayName = x.GetLocalisedDay()}).ToList();
+            DaysOfWeekList = days.Select(x => new Day {DayOfWeek = x, DisplayName = x.GetLocalisedName()}).ToList();
         }
 
         public SeriesTimerInfoDto SelectedSeries { get; set; }
@@ -259,7 +259,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                 {
                     var upcomingItems = items.Items;
                     var groupedItems = (from u in upcomingItems
-                                        group u by u.StartDate
+                                        group u by u.StartDate.Date
                                             into grp
                                             orderby grp.Key
                                             select new Group<TimerInfoDto>(Utils.CoolDateName(grp.Key), grp)).ToList();
