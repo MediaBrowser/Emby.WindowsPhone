@@ -6,13 +6,22 @@ namespace MediaBrowser.WindowsPhone.Controls
 {
     public class ScheduledRecording : Control
     {
-        public static readonly DependencyProperty TimerProperty = DependencyProperty.Register(
-            "Timer", typeof(ProgramInfoDto), typeof(ScheduledRecording), new PropertyMetadata(default(object), OnTimerChanged));
+        public static readonly DependencyProperty SeriesTimerIdProperty = DependencyProperty.Register(
+            "SeriesTimerId", typeof(string), typeof(ScheduledRecording), new PropertyMetadata(default(string), OnTimerChanged));
 
-        public ProgramInfoDto Timer
+        public string SeriesTimerId
         {
-            get { return (ProgramInfoDto)GetValue(TimerProperty); }
-            set { SetValue(TimerProperty, value); }
+            get { return (string)GetValue(SeriesTimerIdProperty); }
+            set { SetValue(SeriesTimerIdProperty, value); }
+        }
+
+        public static readonly DependencyProperty TimerIdProperty = DependencyProperty.Register(
+            "TimerId", typeof(string), typeof(ScheduledRecording), new PropertyMetadata(default(string), OnTimerChanged));
+
+        public string TimerId
+        {
+            get { return (string)GetValue(TimerIdProperty); }
+            set { SetValue(TimerIdProperty, value); }
         }
 
         private static void OnTimerChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
@@ -23,14 +32,12 @@ namespace MediaBrowser.WindowsPhone.Controls
                 return;
             }
 
-            var timer = sr.Timer;
-
-            if (!string.IsNullOrEmpty(timer.SeriesTimerId))
+            if (!string.IsNullOrEmpty(sr.SeriesTimerId))
             {
                 sr.SeriesVisibility = Visibility.Visible;
                 sr.ProgrammeVisibility = Visibility.Collapsed;
             }
-            else if (!string.IsNullOrEmpty(timer.TimerId) && string.IsNullOrEmpty(timer.SeriesTimerId))
+            else if (!string.IsNullOrEmpty(sr.TimerId) && string.IsNullOrEmpty(sr.SeriesTimerId))
             {
                 sr.SeriesVisibility = Visibility.Collapsed;
                 sr.ProgrammeVisibility = Visibility.Visible;
@@ -38,26 +45,26 @@ namespace MediaBrowser.WindowsPhone.Controls
         }
 
         public static readonly DependencyProperty SeriesVisibilityProperty = DependencyProperty.Register(
-            "SeriesVisibility", typeof (Visibility), typeof (ScheduledRecording), new PropertyMetadata(default(Visibility)));
+            "SeriesVisibility", typeof(Visibility), typeof(ScheduledRecording), new PropertyMetadata(default(Visibility)));
 
         public Visibility SeriesVisibility
         {
-            get { return (Visibility) GetValue(SeriesVisibilityProperty); }
+            get { return (Visibility)GetValue(SeriesVisibilityProperty); }
             set { SetValue(SeriesVisibilityProperty, value); }
         }
 
         public static readonly DependencyProperty ProgrammeVisibilityProperty = DependencyProperty.Register(
-            "ProgrammeVisibility", typeof (Visibility), typeof (ScheduledRecording), new PropertyMetadata(default(Visibility)));
+            "ProgrammeVisibility", typeof(Visibility), typeof(ScheduledRecording), new PropertyMetadata(default(Visibility)));
 
         public Visibility ProgrammeVisibility
         {
-            get { return (Visibility) GetValue(ProgrammeVisibilityProperty); }
+            get { return (Visibility)GetValue(ProgrammeVisibilityProperty); }
             set { SetValue(ProgrammeVisibilityProperty, value); }
         }
 
         public ScheduledRecording()
         {
-            DefaultStyleKey = typeof (ScheduledRecording);
+            DefaultStyleKey = typeof(ScheduledRecording);
         }
     }
 }

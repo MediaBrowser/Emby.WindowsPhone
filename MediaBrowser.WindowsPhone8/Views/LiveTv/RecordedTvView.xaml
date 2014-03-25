@@ -106,9 +106,12 @@
                                                        Stretch="UniformToFill"
                                                        VerticalAlignment="Top" />
                                 <StackPanel Orientation="Vertical">
-                                    <TextBlock Text="{Binding Converter={StaticResource RecordingNameConverter}}"
+                                    <TextBlock Text="{Binding Name}"
                                                Style="{StaticResource PhoneTextTitle2Style}"
                                                TextTrimming="WordEllipsis"/>
+                                    <TextBlock Text="{Binding EpisodeTitle}"
+                                               Style="{StaticResource PhoneTextSubtleStyle}"
+                                               Visibility="{Binding EpisodeTitle, Converter={StaticResource NullVisibilityConverter}}"/>
                                     <TextBlock Text="{Binding StartDate}"
                                                Style="{StaticResource PhoneTextSubtleStyle}" />
                                 </StackPanel>
