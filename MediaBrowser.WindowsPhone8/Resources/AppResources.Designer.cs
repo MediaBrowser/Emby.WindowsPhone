@@ -2014,7 +2014,7 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to production year.
+        ///   Looks up a localized string similar to Production Year.
         /// </summary>
         public static string ProductionYear {
             get {
