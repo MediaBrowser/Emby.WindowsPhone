@@ -56,6 +56,21 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
         public bool ShowMoreUpcoming { get; set; }
         public bool IsPinned { get; set; }
 
+        public bool HasWhatsOnItems
+        {
+            get { return !WhatsOn.IsNullOrEmpty(); }
+        }
+
+        public bool HasUpcomingItems
+        {
+            get { return !Upcoming.IsNullOrEmpty(); }
+        }
+
+        public bool HasCurrentlyRecordingItems
+        {
+            get { return !CurrentlyRecording.IsNullOrEmpty(); }
+        }
+
         public RelayCommand LiveTvPageLoaded
         {
             get
@@ -237,7 +252,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
 
         private async Task LoadCurrentlyRecording(bool isRefresh)
         {
-            if (!_navigationService.IsNetworkAvailable || (_currentlyRecordingLoaded && !isRefresh && !LiveTvUtils.HasExpired(_currentlyRecordingLastRun)))
+            if (!_navigationService.IsNetworkAvailable || (_currentlyRecordingLoaded && !isRefresh && !LiveTvUtils.HasExpired(_currentlyRecordingLastRun, 5)))
             {
                 return;
             }
@@ -269,6 +284,13 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
             }
 
             SetProgressBar();
+        }
+
+        public override void UpdateProperties()
+        {
+            RaisePropertyChanged(() => HasCurrentlyRecordingItems);
+            RaisePropertyChanged(() => HasUpcomingItems);
+            RaisePropertyChanged(() => HasWhatsOnItems);
         }
     }
 }

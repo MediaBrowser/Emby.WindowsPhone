@@ -1086,8 +1086,8 @@
           <target state="new">show name</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/HeaderActiveRecordings" xml:space="preserve">
-          <source>Recording Now</source>
-          <target state="new">Recording Now</target>
+          <source>Active</source>
+          <target state="new">Active</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/LabelNoRecordedItems" xml:space="preserve">
           <source>You don't appear to have any recorded items</source>

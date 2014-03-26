@@ -35,10 +35,10 @@
         <behaviors:ApplicationBarBehavior>
             <behaviors:ApplicationBarIconButton IconUri="{Binding IsPinned, Converter={StaticResource PinnedItemConverter}}"
                                                 Text="{Binding IsPinned, Converter={StaticResource PinnedItemConverter}, ConverterParameter=text}"
-                                                Command="{Binding PinCommand}"/>
+                                                Command="{Binding PinCommand}" />
             <behaviors:ApplicationBarIconButton IconUri="/Icons/appbar.refresh.rest.png"
                                                 Text="{Binding LocalizedResources.AppBarRefresh, Source={StaticResource LocalizedStrings}}"
-                                                Command="{Binding RefreshCommand}"/>
+                                                Command="{Binding RefreshCommand}" />
         </behaviors:ApplicationBarBehavior>
     </i:Interaction.Behaviors>
 
@@ -123,6 +123,13 @@
                                             GridCellSize="180,185"
                                             Margin="12,0,0,0"
                                             ItemTemplate="{StaticResource TvItemTemplate}">
+                        <phone:LongListSelector.ListHeader>
+                            <TextBlock Text="{Binding LocalizedResources.NoItemsFound, Source={StaticResource LocalizedStrings}}"
+                                       TextAlignment="Center"
+                                       Style="{StaticResource PhoneTextTitle3Style}"
+                                       Foreground="{StaticResource PhoneSubtleBrush}"
+                                       Visibility="{Binding LiveTv.HasWhatsOnItems, Source={StaticResource Locator}, Converter={StaticResource InvertedVisibilityConverter}}" />
+                        </phone:LongListSelector.ListHeader>
                         <phone:LongListSelector.ListFooter>
                             <controls:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
                                                             TapCommand="{Binding LiveTv.MoreCommand, Source={StaticResource Locator}}"
@@ -135,10 +142,6 @@
                     </phone:LongListSelector>
                 </Grid>
             </phone:PanoramaItem>
-            
-            <phone:PanoramaItem Header="{Binding LocalizedResources.HeaderActiveRecordings, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
-                
-            </phone:PanoramaItem>
 
             <phone:PanoramaItem Header="{Binding LocalizedResources.LabelUpcoming, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
                 <Grid>
@@ -147,6 +150,13 @@
                                             GridCellSize="180,185"
                                             Margin="12,0,0,0"
                                             ItemTemplate="{StaticResource TvItemTemplate}">
+                        <phone:LongListSelector.ListHeader>
+                            <TextBlock Text="{Binding LocalizedResources.NoItemsFound, Source={StaticResource LocalizedStrings}}"
+                                       TextAlignment="Center"
+                                       Style="{StaticResource PhoneTextTitle3Style}"
+                                       Foreground="{StaticResource PhoneSubtleBrush}"
+                                       Visibility="{Binding LiveTv.HasUpcomingItems, Source={StaticResource Locator}, Converter={StaticResource InvertedVisibilityConverter}}" />
+                        </phone:LongListSelector.ListHeader>
                         <phone:LongListSelector.ListFooter>
                             <controls:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
                                                             TapCommand="{Binding LiveTv.MoreCommand, Source={StaticResource Locator}}"
@@ -158,6 +168,43 @@
                         </phone:LongListSelector.ListFooter>
                     </phone:LongListSelector>
                 </Grid>
+            </phone:PanoramaItem>
+
+            <phone:PanoramaItem Header="{Binding LocalizedResources.HeaderActiveRecordings, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
+                <phone:LongListSelector ItemsSource="{Binding CurrentlyRecording}">
+                    <phone:LongListSelector.ListHeader>
+                        <TextBlock Text="{Binding LocalizedResources.NoItemsFound, Source={StaticResource LocalizedStrings}}"
+                                   TextAlignment="Center"
+                                   Style="{StaticResource PhoneTextTitle3Style}"
+                                   Foreground="{StaticResource PhoneSubtleBrush}"
+                                   Visibility="{Binding LiveTv.HasCurrentlyRecordingItems, Source={StaticResource Locator}, Converter={StaticResource InvertedVisibilityConverter}}" />
+                    </phone:LongListSelector.ListHeader>
+                    <phone:LongListSelector.ItemTemplate>
+                        <DataTemplate>
+                            <controls:CustomButton>
+                                <StackPanel Orientation="Vertical">
+                                    <c4F:SuperImage PlaceholderImageSource="/Images/Logo.png"
+                                                    Source="{Binding Converter={StaticResource ImageUrlConverter}}"
+                                                    PlaceholderImageStretch="Uniform"
+                                                    Width="173"
+                                                    Height="139"
+                                                    Stretch="UniformToFill"
+                                                    VerticalAlignment="Top" />
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock Text="{Binding Name}"
+                                                   Style="{StaticResource PhoneTextTitle2Style}"
+                                                   TextTrimming="WordEllipsis" />
+                                        <TextBlock Text="{Binding EpisodeTitle}"
+                                                   Style="{StaticResource PhoneTextSubtleStyle}"
+                                                   Visibility="{Binding EpisodeTitle, Converter={StaticResource NullVisibilityConverter}}" />
+                                        <controls:ScheduledRecording TimerId="{Binding TimerId}"
+                                                                     SeriesTimerId="{Binding SeriesTimerId}" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </controls:CustomButton>
+                        </DataTemplate>
+                    </phone:LongListSelector.ItemTemplate>
+                </phone:LongListSelector>
             </phone:PanoramaItem>
 
             <phone:PanoramaItem Header="{Binding LocalizedResources.LabelOther, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
