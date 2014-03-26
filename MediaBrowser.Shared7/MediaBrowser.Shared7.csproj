@@ -140,9 +140,6 @@
     <Compile Include="..\MediaBrowser.Shared\Model\ExtendedApiClient.cs">
       <Link>Model\ExtendedApiClient.cs</Link>
     </Compile>
-    <Compile Include="..\MediaBrowser.Shared\Model\GroupBy.cs">
-      <Link>Model\GroupBy.cs</Link>
-    </Compile>
     <Compile Include="..\MediaBrowser.Shared\Model\IExtendedApiClient.cs">
       <Link>Model\IExtendedApiClient.cs</Link>
     </Compile>
@@ -157,9 +154,6 @@
     </Compile>
     <Compile Include="..\MediaBrowser.Shared\Model\PlaylistItem.cs">
       <Link>Model\PlaylistItem.cs</Link>
-    </Compile>
-    <Compile Include="..\MediaBrowser.Shared\Model\RecordedGroupBy.cs">
-      <Link>Model\RecordedGroupBy.cs</Link>
     </Compile>
     <Compile Include="..\MediaBrowser.Shared\Model\SettingsService.cs">
       <Link>Model\SettingsService.cs</Link>
