@@ -849,14 +849,14 @@
     <value>Post-padding minutes:</value>
   </data>
   <data name="LabelPostPaddingRequired" xml:space="preserve">
-    <value>Post-padding is required in order to record</value>
+    <value>Post-padding is required to record</value>
   </data>
   <data name="LabelPrePaddingMinutes" xml:space="preserve">
     <value>Pre-padding minutes:</value>
     <comment>Pre-padding = how long before programme's scheduled start time to record</comment>
   </data>
   <data name="LabelPrePaddingRequired" xml:space="preserve">
-    <value>Pre-padding is required in order to record</value>
+    <value>Pre-padding is required to record</value>
   </data>
   <data name="SysTrayCancellingSeriesRecording" xml:space="preserve">
     <value>Cancelling series link...</value>

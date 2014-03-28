@@ -14,6 +14,7 @@
                 xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
                 xmlns:converters="clr-namespace:MediaBrowser.WindowsPhone.Converters"
                 xmlns:coding4Fun="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
+                xmlns:telerikInput="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Input"
                 mc:Ignorable="d ignore"
                 FontFamily="{StaticResource PhoneFontFamilyNormal}"
                 FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -33,11 +34,13 @@
                 <behaviors:ApplicationBar.Buttons>
                     <behaviors:ApplicationBarIconButton IconUri="/Icons/appbar.save.png"
                                                         Text="{Binding LocalizedResources.AppBarSave, Source={StaticResource LocalizedStrings}}"
-                                                        Command="{Binding SaveCommand}" />
+                                                        Command="{Binding SaveCommand}"
+                                                        IsEnabled="{Binding ProgressIsVisible, Converter={StaticResource NegativeBooleanConverter}}"/>
                     <behaviors:ApplicationBarIconButton IconUri="/Icons/appbar.delete.rest.png"
                                                         Text="{Binding LocalizedResources.AppBarDelete, Source={StaticResource LocalizedStrings}}"
                                                         Command="{Binding DeleteCommand}" 
-                                                        IsVisible="{Binding IsAdd, Converter={StaticResource NegativeBooleanConverter}}"/>
+                                                        IsVisible="{Binding IsAdd, Converter={StaticResource NegativeBooleanConverter}}"
+                                                        IsEnabled="{Binding ProgressIsVisible, Converter={StaticResource NegativeBooleanConverter}}"/>
                 </behaviors:ApplicationBar.Buttons>
             </behaviors:ApplicationBar>
             <behaviors:ApplicationBar>
@@ -131,7 +134,8 @@
                 </StackPanel>
 
                 <phone:Pivot SelectedIndex="{Binding SelectedPivotIndex, Mode=TwoWay}"
-                             Grid.Row="1">
+                             Grid.Row="1"
+                             IsEnabled="{Binding ProgressIsVisible, Converter={StaticResource NegativeBooleanConverter}}">
                     <phone:Pivot.HeaderTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding}"
@@ -176,6 +180,20 @@
 
                                 <TextBlock Text="{Binding LocalizedResources.LabelPrePostPadding, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToUppercaseConverter}}"
                                            Style="{StaticResource HeaderTextStyle}" />
+
+                                <telerikInput:RadNumericUpDown MinValue="0"
+                                                               MaxValue="30"
+                                                               Value="{Binding SelectedSeries.PrePaddingSeconds, Converter={StaticResource SecondsToMinuteConverter}, Mode=TwoWay}"
+                                                               Header="{Binding LocalizedResources.LabelPrePaddingMinutes, Source={StaticResource LocalizedStrings}}"/>
+                                <CheckBox Content="{Binding LocalizedResources.LabelPrePaddingRequired, Source={StaticResource LocalizedStrings}}"
+                                          IsChecked="{Binding SelectedSeries.IsPrePaddingRequired, Mode=TwoWay}"/>
+
+                                <telerikInput:RadNumericUpDown MinValue="0"
+                                                               MaxValue="30"
+                                                               Value="{Binding SelectedSeries.PostPaddingSeconds, Converter={StaticResource SecondsToMinuteConverter}, Mode=TwoWay}"
+                                                               Header="{Binding LocalizedResources.LabelPostPaddingMinutes, Source={StaticResource LocalizedStrings}}" />
+                                <CheckBox Content="{Binding LocalizedResources.LabelPostPaddingRequired, Source={StaticResource LocalizedStrings}}"
+                                          IsChecked="{Binding SelectedSeries.IsPostPaddingRequired, Mode=TwoWay}" />
                             </StackPanel>
                         </ScrollViewer>
                     </phone:PivotItem>

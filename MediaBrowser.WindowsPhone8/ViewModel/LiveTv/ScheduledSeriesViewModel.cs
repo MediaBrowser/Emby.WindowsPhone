@@ -88,6 +88,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                     catch (HttpException ex)
                     {
                         Utils.HandleHttpException(ex, "SaveCommand", _navigationService, Log);
+                        App.ShowMessage(AppResources.ErrorMakingChanges);
                     }
 
                     SetProgressBar();
@@ -117,7 +118,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
 
                     SetProgressBar(AppResources.SysTrayCancellingProgramme);
 
-                    await LiveTvUtils.CancelRecording(item, _navigationService, _apiClient, Log);
+                    if (!await LiveTvUtils.CancelRecording(item, _navigationService, _apiClient, Log))
+                    {
+                        App.ShowMessage(AppResources.ErrorMakingChanges);
+                    }
 
                     SetProgressBar();
                 });
@@ -161,7 +165,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
 
                     SetProgressBar(AppResources.SysTrayCancellingSeriesRecording);
 
-                    await LiveTvUtils.CancelSeries(SelectedSeries, _navigationService, _apiClient, Log, true);
+                    if (!await LiveTvUtils.CancelSeries(SelectedSeries, _navigationService, _apiClient, Log, true))
+                    {
+                        App.ShowMessage(AppResources.ErrorMakingChanges);
+                    }
 
                     SetProgressBar();
                 });

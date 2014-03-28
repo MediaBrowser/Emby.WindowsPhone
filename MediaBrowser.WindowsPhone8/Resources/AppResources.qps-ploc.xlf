@@ -1020,8 +1020,8 @@
           <target state="new">Cancel Recording</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/LabelPrePaddingRequired" xml:space="preserve">
-          <source>Pre-padding is required in order to record</source>
-          <target state="new">Pre-padding is required in order to record</target>
+          <source>Pre-padding is required to record</source>
+          <target state="new">Pre-padding is required to record</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/SysTrayCancellingSeriesRecording" xml:space="preserve">
           <source>Cancelling series link...</source>
@@ -1033,8 +1033,8 @@
           <note from="MultilingualBuild" annotates="source" priority="2">Pre-padding = how long before programme's scheduled start time to record</note>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/LabelPostPaddingRequired" xml:space="preserve">
-          <source>Post-padding is required in order to record</source>
-          <target state="new">Post-padding is required in order to record</target>
+          <source>Post-padding is required to record</source>
+          <target state="new">Post-padding is required to record</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/LabelPostPaddingMinutes" xml:space="preserve">
           <source>Post-padding minutes:</source>

@@ -191,6 +191,7 @@
     <Compile Include="Converters\RuntimeConverter.cs" />
     <Compile Include="Converters\ScheduledRecordingTimeConverter.cs" />
     <Compile Include="Converters\SeasonEpisodeConverter.cs" />
+    <Compile Include="Converters\SecondsToMinuteConverter.cs" />
     <Compile Include="Converters\SettingsConverters.cs" />
     <Compile Include="Converters\SimpleDaysAgoConverter.cs" />
     <Compile Include="Converters\TicksToTimespanConverter.cs" />
@@ -757,6 +758,7 @@
     <EmbeddedResource Include="Resources\AppResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
+      <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\AppResources.sv.resx">
       <AutoGen>True</AutoGen>
