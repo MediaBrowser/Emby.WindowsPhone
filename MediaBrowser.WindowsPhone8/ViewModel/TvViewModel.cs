@@ -329,10 +329,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                     try
                     {
-                        var query = new ItemQuery
+                        var query = new EpisodeQuery
                         {
                             UserId = AuthenticationService.Current.LoggedInUser.Id,
-                            ParentId = SelectedEpisode.ParentId,
+                            SeasonId = SelectedEpisode.SeasonId,
+                            SeriesId = SelectedEpisode.SeriesId,
                             Fields = new[]
                             {
                                 ItemFields.ParentId,
@@ -342,7 +343,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                         //Log.Info("Getting episodes for Season [{0}] ({1}) of TV Show [{2}] ({3})", SelectedSeason.Name, SelectedSeason.Id, SelectedTvSeries.Name, SelectedTvSeries.Id);
 
-                        var episodes = await _apiClient.GetItemsAsync(query);
+                        var episodes = await _apiClient.GetEpisodesAsync(query);
                         Episodes = episodes.Items.OrderBy(x => x.IndexNumber).ToList();
                     }
                     catch (HttpException ex)
