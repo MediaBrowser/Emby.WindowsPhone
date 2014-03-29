@@ -194,7 +194,7 @@ namespace MediaBrowser.WindowsPhone
 
                 var tracksByAlbum = items
                     .Where(x => x.Type == "Audio")
-                    .GroupBy(x => x.Album)
+                    .GroupBy(x => x.AlbumId)
                     .Select(g => new
                     {
                         Id = g.Select(l => l.ParentId).FirstOrDefault(),
