@@ -181,7 +181,8 @@
                     </phone:LongListSelector.ListHeader>
                     <phone:LongListSelector.ItemTemplate>
                         <DataTemplate>
-                            <controls:CustomButton>
+                            <controls:CustomButton Style="{StaticResource EmptyButtonStyle}"
+                                                   Margin="0,0,0,12">
                                 <StackPanel Orientation="Vertical">
                                     <c4F:SuperImage PlaceholderImageSource="/Images/Logo.png"
                                                     Source="{Binding Converter={StaticResource ImageUrlConverter}}"
