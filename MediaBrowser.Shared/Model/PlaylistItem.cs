@@ -1,6 +1,6 @@
 ﻿using PropertyChanged;
 
-namespace MediaBrowser.Model
+namespace MediaBrowser.WindowsPhone.Model
 {
     [ImplementPropertyChanged]
     public class PlaylistItem 

@@ -10,6 +10,7 @@ using MediaBrowser.Model;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Session;
 using MediaBrowser.Services;
+using MediaBrowser.WindowsPhone.Model;
 using Microsoft.Phone.BackgroundAudio;
 using ScottIsAFool.WindowsPhone.Logging;
 
@@ -215,7 +216,8 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
                     {
                         IsSeekable = false,
                         ItemId = track.Tag,
-                        QueueableMediaTypes = new string[0]
+                        QueueableMediaTypes = new string[0],
+                        UserId = AuthenticationService.Current.LoggedInUserId
                     };
                     await _apiClient.ReportPlaybackStartAsync(info);
                 }

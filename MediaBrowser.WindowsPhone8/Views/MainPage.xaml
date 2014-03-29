@@ -116,8 +116,10 @@
                                 Margin="12,0,0,0">
                         <local:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
                                                      Margin="0,0,0,12"
-                                                     NavigateUri="/Views/LiveTv/LiveTvView.xaml"
-                                                     Visibility="{Binding LiveTvInfo, Source={StaticResource AppSettings}, Converter={StaticResource LiveTvInfoConverter}}">
+                                                     TapCommand="{Binding NavigateToAPage}"
+                                                     CommandParameter="/Views/LiveTv/LiveTvView.xaml"
+                                                     Tag="{Binding LiveTvInfo, Source={StaticResource AppSettings}, Converter={StaticResource LiveTvInfoConverter}}"
+                                                     Visibility="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource VisibilityConverter}}">
                             <StackPanel Orientation="Horizontal">
                                 <Border Background="#FFD100FF"
                                         Height="{StaticResource ViewSize}"
@@ -132,7 +134,8 @@
                                            VerticalAlignment="Top" />
                             </StackPanel>
                         </local:CustomHyperlinkButton>
-                        <local:CustomHyperlinkButton NavigateUri="/Views/Predefined/MovieCollectionView.xaml"
+                        <local:CustomHyperlinkButton TapCommand="{Binding NavigateToAPage}"
+                                                     CommandParameter="/Views/Predefined/MovieCollectionView.xaml"
                                                      Style="{StaticResource EmptyButtonStyle}"
                                                      Margin="0,0,0,12">
                             <StackPanel Orientation="Horizontal">
@@ -147,7 +150,8 @@
                                            VerticalAlignment="Top" />
                             </StackPanel>
                         </local:CustomHyperlinkButton>
-                        <local:CustomHyperlinkButton NavigateUri="/Views/Predefined/TvCollectionView.xaml"
+                        <local:CustomHyperlinkButton TapCommand="{Binding NavigateToAPage}"
+                                                     CommandParameter="/Views/Predefined/TvCollectionView.xaml"
                                                      Style="{StaticResource EmptyButtonStyle}"
                                                      Margin="0,0,0,12">
                             <StackPanel Orientation="Horizontal">
@@ -162,7 +166,8 @@
                                            VerticalAlignment="Top" />
                             </StackPanel>
                         </local:CustomHyperlinkButton>
-                        <local:CustomHyperlinkButton NavigateUri="/Views/Predefined/MusicCollectionView.xaml"
+                        <local:CustomHyperlinkButton TapCommand="{Binding NavigateToAPage}"
+                                                     CommandParameter="/Views/Predefined/MusicCollectionView.xaml"
                                                      Style="{StaticResource EmptyButtonStyle}">
                             <StackPanel Orientation="Horizontal">
                                 <Border Background="#6FBD45">

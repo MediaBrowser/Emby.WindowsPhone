@@ -23,13 +23,13 @@ namespace MediaBrowser.WindowsPhone.Controls
             set { SetValue(TrackNameProperty, value); }
         }
 
-        public static readonly DependencyProperty PlayPauseImageProperty = DependencyProperty.Register(
-            "PlayPauseImage", typeof (string), typeof (NowPlayingBar), new PropertyMetadata(default(string)));
+        public static readonly DependencyProperty IsPlayingProperty =
+            DependencyProperty.Register("IsPlaying", typeof (bool), typeof (NowPlayingBar), new PropertyMetadata(default(bool)));
 
-        public string PlayPauseImage
+        public bool IsPlaying
         {
-            get { return (string) GetValue(PlayPauseImageProperty); }
-            set { SetValue(PlayPauseImageProperty, value); }
+            get { return (bool) GetValue(IsPlayingProperty); }
+            set { SetValue(IsPlayingProperty, value); }
         }
 
         public static readonly DependencyProperty ArtistProperty = DependencyProperty.Register(

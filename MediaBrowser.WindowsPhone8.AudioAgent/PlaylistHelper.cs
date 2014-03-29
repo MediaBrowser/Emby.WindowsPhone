@@ -5,6 +5,7 @@ using System.Linq;
 using Cimbalino.Phone.Toolkit.Services;
 using MediaBrowser.Model;
 using MediaBrowser.Shared;
+using MediaBrowser.WindowsPhone.Model;
 using Newtonsoft.Json;
 
 namespace MediaBrowser.WindowsPhone.AudioAgent

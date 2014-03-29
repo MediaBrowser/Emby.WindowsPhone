@@ -344,7 +344,7 @@
                                      Width="30"
                                      HorizontalAlignment="Center"
                                      VerticalAlignment="Center"
-                                     Visibility="{TemplateBinding ProgrammeVisibility}"/>
+                                     Visibility="{TemplateBinding ProgrammeVisibility}" />
                         </Grid>
                     </Viewbox>
                 </ControlTemplate>
@@ -489,7 +489,8 @@
                             <system:String x:Key="MusicCase">./Images/DefaultAlbumCase.png</system:String>
                         </Grid.Resources>
 
-                        <controls:SuperImage Source="{TemplateBinding ImageUrl}"
+                        <controls:SuperImage Tag="{TemplateBinding ImageUrl}"
+                                             Source="{Binding Tag, RelativeSource={RelativeSource Self}}"
                                              PlaceholderImageSource="{Binding Source={StaticResource MusicCase}}"
                                              Height="75"
                                              Width="75"
@@ -510,25 +511,39 @@
                                        Style="{StaticResource PhoneTextSubtleStyle}" />
                         </StackPanel>
 
-                        <Button Grid.Column="2"
-                                controls:TiltEffect.IsTiltEnabled="True"
-                                Style="{StaticResource EmptyButtonStyle}">
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="Tap">
-                                    <model:EventToCommand Command="{Binding Playlist.PlayPauseCommand, Source={StaticResource Locator}}" />
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
-
-                            <Grid Background="SlateGray">
-                                <Path Width="75"
-                                      Height="75"
+                        <local:CustomButton Grid.Column="2"
+                                            controls:TiltEffect.IsTiltEnabled="True"
+                                            Style="{StaticResource EmptyButtonStyle}"
+                                            TapCommand="{Binding Playlist.PlayPauseCommand, Source={StaticResource Locator}}"
+                                            Height="75"
+                                            Width="75"
+                                            Margin="0">
+                            <Grid>
+                                <Path Width="30"
+                                      Height="30"
                                       Fill="White"
-                                      Data="{TemplateBinding PlayPauseImage}"
+                                      Data="F1 M 26.9167,23.75L 33.25,23.75L 33.25,52.25L 26.9167,52.25L 26.9167,23.75 Z M 42.75,23.75L 49.0833,23.75L 49.0833,52.25L 42.75,52.25L 42.75,23.75 Z "
                                       Margin="0"
+                                      Stretch="Uniform"
                                       HorizontalAlignment="Center"
-                                      VerticalAlignment="Center" />
+                                      VerticalAlignment="Center"
+                                      Tag="{TemplateBinding IsPlaying}"
+                                      x:Name="PausePath"
+                                      Visibility="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource VisibilityConverter}}" />
+
+                                <Path Width="30"
+                                      Height="30"
+                                      Fill="White"
+                                      Data="F1 M 30.0833,22.1667L 50.6665,37.6043L 50.6665,38.7918L 30.0833,53.8333L 30.0833,22.1667 Z "
+                                      Margin="0"
+                                      Stretch="Uniform"
+                                      HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"
+                                      Tag="{TemplateBinding IsPlaying}"
+                                      x:Name="PlayPath"
+                                      Visibility="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource InvertedVisibilityConverter}}" />
                             </Grid>
-                        </Button>
+                        </local:CustomButton>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

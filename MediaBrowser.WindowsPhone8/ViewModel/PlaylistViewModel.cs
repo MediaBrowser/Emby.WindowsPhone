@@ -11,6 +11,7 @@ using GalaSoft.MvvmLight.Messaging;
 using JetBrains.Annotations;
 using MediaBrowser.Model;
 using MediaBrowser.WindowsPhone.AudioAgent;
+using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Resources;
 using Microsoft.Phone.BackgroundAudio;
 using ScottIsAFool.WindowsPhone.ViewModel;
