@@ -108,9 +108,9 @@
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal"
                                 Margin="-12,-41,0,18">
-                        <TextBlock Text="live"
+                        <TextBlock Text="{Binding LocalizedResources.HeaderLive, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                    Foreground="{StaticResource PhoneForegroundBrush}" />
-                        <TextBlock Text="tv"
+                        <TextBlock Text="{Binding LocalizedResources.HeaderTV, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                    Foreground="Green" />
                     </StackPanel>
                 </DataTemplate>
@@ -182,8 +182,10 @@
                     <phone:LongListSelector.ItemTemplate>
                         <DataTemplate>
                             <controls:CustomButton Style="{StaticResource EmptyButtonStyle}"
-                                                   Margin="0,0,0,12">
-                                <StackPanel Orientation="Vertical">
+                                                   Margin="12,0,0,12"
+                                                   TapCommand="{Binding LiveTv.RecordingItemTappedCommand, Source={StaticResource Locator}}"
+                                                   CommandParameter="{Binding}">
+                                <StackPanel Orientation="Horizontal">
                                     <c4F:SuperImage PlaceholderImageSource="/Images/Logo.png"
                                                     Source="{Binding Converter={StaticResource ImageUrlConverter}}"
                                                     PlaceholderImageStretch="Uniform"

@@ -919,6 +919,15 @@
           <source>Getting active recordings...</source>
           <target state="new">Getting active recordings...</target>
         </trans-unit>
+        <trans-unit translate="yes" id="Resx/HeaderTV" xml:space="preserve">
+          <source>TV</source>
+          <target state="new">TV</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/HeaderLive" xml:space="preserve">
+          <source>Live</source>
+          <target state="new">Live</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">As in "live tv"</note>
+        </trans-unit>
         <trans-unit translate="yes" id="Resx/LabelRecordedDate" xml:space="preserve">
           <source>Recorded date</source>
           <target state="new">Recorded date</target>

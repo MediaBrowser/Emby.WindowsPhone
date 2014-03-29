@@ -52,7 +52,6 @@
             public const string TvEpisodeSelectedMsg = "TvEpisodeSelectedMsg";
             public const string TvSeasonSelectedMsg = "TvSeasonSelectedMsg";
             public const string ClearEverythingMsg = "ClearEverythingMsg";
-            public const string PlayVideoItemMsg = "PlayVideoItemMsg";
             public const string VideoPlayerLoadedMsg = "VideoPlayerLoadedMsg";
             public const string SendVideoTimeToServerMsg = "SendVideoTimeToServerMsg";
             public const string PlayTrailerMsg = "PlayTrailerMsg";
@@ -131,6 +130,7 @@
                 public const string ProgrammeView = LiveTvPath + "ProgrammeView.xaml";
                 public const string AllProgrammesView = LiveTvPath + "AllProgrammesView.xaml";
                 public const string RecordedTvView = LiveTvPath + "RecordedTvView.xaml";
+                public const string RecordingView = LiveTvPath + "RecordingView.xaml";
             }
 
             public class Remote

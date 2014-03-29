@@ -213,6 +213,7 @@
     <Compile Include="Model\MBLogger.cs" />
     <Compile Include="Model\MBUriMapper.cs" />
     <Compile Include="Model\NavigationService.cs" />
+    <Compile Include="Model\PlayerSourceType.cs" />
     <Compile Include="Model\RecordedGroupBy.cs" />
     <Compile Include="Model\Server.cs" />
     <Compile Include="PhoneNameResolver.cs" />
@@ -312,6 +313,9 @@
     </Compile>
     <Compile Include="Views\LiveTv\ChannelsView.xaml.cs">
       <DependentUpon>ChannelsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LiveTv\RecordingView.xaml.cs">
+      <DependentUpon>RecordingView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LiveTv\ProgrammeView.xaml.cs">
       <DependentUpon>ProgrammeView.xaml</DependentUpon>
@@ -559,6 +563,10 @@
     <Page Include="Views\LiveTv\ChannelsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LiveTv\RecordingView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\LiveTv\ProgrammeView.xaml">
       <SubType>Designer</SubType>

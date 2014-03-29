@@ -6,6 +6,7 @@ using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model;
 using MediaBrowser.Model.LiveTv;
 using MediaBrowser.Model.Net;
+using MediaBrowser.WindowsPhone.Messaging;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Resources;
 using ScottIsAFool.WindowsPhone.ViewModel;
@@ -30,6 +31,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
         }
 
         public ProgramInfoDto SelectedProgramme { get; set; }
+
+        public RecordingInfoDto SelectedRecording { get; set; }
 
         public bool IsRecordNotCancel
         {
@@ -178,13 +181,50 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
             }
         }
 
+        public RelayCommand PlayRecordingCommand
+        {
+            get
+            {
+                return new RelayCommand(() =>
+                {
+                    if (SimpleIoc.Default.GetInstance<VideoPlayerViewModel>() != null)
+                    {
+                        Messenger.Default.Send(new VideoMessage(SelectedRecording, false));
+                        _navigationService.NavigateTo(Constants.Pages.VideoPlayerView);
+                    }
+                });
+            }
+        }
+
+        public RelayCommand PlayProgrammeCommand
+        {
+            get
+            {
+                return new RelayCommand(() =>
+                {
+                    if (SimpleIoc.Default.GetInstance<VideoPlayerViewModel>() != null)
+                    {
+                        Messenger.Default.Send(new VideoMessage(SelectedProgramme, false));
+                        _navigationService.NavigateTo(Constants.Pages.VideoPlayerView);
+                    }
+                });
+            }
+        }
+
         public override void WireMessages()
         {
             Messenger.Default.Register<NotificationMessage>(this, m =>
             {
                 if (m.Notification.Equals(Constants.Messages.ProgrammeItemChangedMsg))
                 {
-                    SelectedProgramme = (ProgramInfoDto)m.Sender;
+                    if (m.Sender is ProgramInfoDto)
+                    {
+                        SelectedProgramme = (ProgramInfoDto)m.Sender;
+                    }
+                    else if (m.Sender is RecordingInfoDto)
+                    {
+                        SelectedRecording = (RecordingInfoDto) m.Sender;
+                    }
                 }
             });
         }

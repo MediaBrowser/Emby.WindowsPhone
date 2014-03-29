@@ -34,7 +34,7 @@ namespace MediaBrowser.WindowsPhone.Converters
 
                 if (displayType == "livetv")
                 {
-                    return string.Format("{0}{1}", ts.TotalMinutes, AppResources.LabelReallyShortMinutes);
+                    return string.Format("{0}{1}", (int)ts.TotalMinutes, AppResources.LabelReallyShortMinutes);
                 }
             }
 

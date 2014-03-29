@@ -963,4 +963,11 @@
   <data name="SysTrayGettingCurrentlyRecording" xml:space="preserve">
     <value>Getting active recordings...</value>
   </data>
+  <data name="HeaderLive" xml:space="preserve">
+    <value>Live</value>
+    <comment>As in "live tv"</comment>
+  </data>
+  <data name="HeaderTV" xml:space="preserve">
+    <value>TV</value>
+  </data>
 </root>

@@ -137,6 +137,26 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
             }
         }
 
+        public RelayCommand<RecordingInfoDto> RecordingItemTappedCommand
+        {
+            get
+            {
+                return new RelayCommand<RecordingInfoDto>(item =>
+                {
+                    if (item == null)
+                    {
+                        return;
+                    }
+
+                    if (SimpleIoc.Default.GetInstance<ProgrammeViewModel>() != null)
+                    {
+                        Messenger.Default.Send(new NotificationMessage(item, Constants.Messages.ProgrammeItemChangedMsg));
+                        _navigationService.NavigateTo(Constants.Pages.LiveTv.RecordingView);
+                    }
+                });
+            }
+        }
+
         private void PinTile()
         {
             if (IsPinned)

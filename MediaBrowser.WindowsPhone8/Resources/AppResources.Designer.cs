@@ -628,7 +628,7 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Recording Now.
+        ///   Looks up a localized string similar to Active.
         /// </summary>
         public static string HeaderActiveRecordings {
             get {
@@ -664,6 +664,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Live.
+        /// </summary>
+        public static string HeaderLive {
+            get {
+                return ResourceManager.GetString("HeaderLive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to recordings.
         /// </summary>
         public static string HeaderRecordings {
@@ -687,6 +696,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string HeaderSettings {
             get {
                 return ResourceManager.GetString("HeaderSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TV.
+        /// </summary>
+        public static string HeaderTV {
+            get {
+                return ResourceManager.GetString("HeaderTV", resourceCulture);
             }
         }
         
@@ -1339,7 +1357,7 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Post-padding is required in order to record.
+        ///   Looks up a localized string similar to Post-padding is required to record.
         /// </summary>
         public static string LabelPostPaddingRequired {
             get {
@@ -1357,7 +1375,7 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Pre-padding is required in order to record.
+        ///   Looks up a localized string similar to Pre-padding is required to record.
         /// </summary>
         public static string LabelPrePaddingRequired {
             get {
