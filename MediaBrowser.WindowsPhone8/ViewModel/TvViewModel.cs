@@ -146,7 +146,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             EpisodePageLoaded = new RelayCommand(async () =>
             {
-
+                
             });
 
             NextEpisodeCommand = new RelayCommand(() =>
@@ -163,8 +163,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 try
                 {
-                    SetProgressBar(AppResources.SysTrayAddingToFavourites);
-
+                    SetProgressBar(AppResources.SysTrayAddingToFavourites); 
+                    
                     CanUpdateFavourites = false;
 
                     item.UserData = await _apiClient.UpdateFavoriteStatusAsync(item.Id, AuthenticationService.Current.LoggedInUser.Id, !item.UserData.IsFavorite);
@@ -178,6 +178,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 SetProgressBar();
 
                 CanUpdateFavourites = true;
+            });
+
+            ShowOtherFilmsCommand = new RelayCommand<BaseItemPerson>(person =>
+            {
+                App.SelectedItem = person;
+                _navigationService.NavigateTo(Constants.Pages.ActorView);
             });
 
             NavigateTo = new RelayCommand<BaseItemDto>(_navigationService.NavigateTo);
@@ -209,8 +215,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 {
                     UserId = AuthenticationService.Current.LoggedInUser.Id,
                     ParentId = SelectedTvSeries.Id,
-                    Filters = new[] { ItemFilter.IsRecentlyAdded },
-                    ExcludeItemTypes = new[] { "Season" },
+                    Filters = new[] {ItemFilter.IsRecentlyAdded},
+                    ExcludeItemTypes = new []{ "Season" },
                     Fields = new[]
                     {
                         ItemFields.ParentId
@@ -323,33 +329,30 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                     try
                     {
-                        var query = new EpisodeQuery
+                        var query = new ItemQuery
                         {
                             UserId = AuthenticationService.Current.LoggedInUser.Id,
-                            SeasonId = SelectedEpisode.SeasonId,
-                            SeriesId = SelectedEpisode.SeriesId,
+                            ParentId = SelectedEpisode.ParentId,
                             Fields = new[]
                             {
                                 ItemFields.ParentId,
                                 ItemFields.Overview
-                            },
-                            IsMissing = App.SpecificSettings.ShowMissingEpisodes,
-                            IsVirtualUnaired = App.SpecificSettings.ShowUnairedEpisodes
+                            }
                         };
 
                         //Log.Info("Getting episodes for Season [{0}] ({1}) of TV Show [{2}] ({3})", SelectedSeason.Name, SelectedSeason.Id, SelectedTvSeries.Name, SelectedTvSeries.Id);
 
-                        var episodes = await _apiClient.GetEpisodesAsync(query);
+                        var episodes = await _apiClient.GetItemsAsync(query);
                         Episodes = episodes.Items.OrderBy(x => x.IndexNumber).ToList();
                     }
                     catch (HttpException ex)
                     {
-
+                        
                     }
 
                     SetProgressBar();
                 }
-
+                
                 if (SelectedEpisode != null)
                 {
                     SelectedEpisode = Episodes.FirstOrDefault(x => x.IndexNumber == index);
@@ -385,8 +388,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             try
             {
-                item.UserData = item.UserData.Played
-                    ? await _apiClient.MarkUnplayedAsync(item.Id, AuthenticationService.Current.LoggedInUserId)
+                item.UserData = item.UserData.Played 
+                    ? await _apiClient.MarkUnplayedAsync(item.Id, AuthenticationService.Current.LoggedInUserId) 
                     : await _apiClient.MarkPlayedAsync(item.Id, AuthenticationService.Current.LoggedInUserId, DateTime.Now);
             }
             catch (HttpException ex)
@@ -412,6 +415,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public RelayCommand NextEpisodeCommand { get; set; }
         public RelayCommand PreviousEpisodeCommand { get; set; }
         public RelayCommand<BaseItemDto> AddRemoveFavouriteCommand { get; set; }
+        public RelayCommand<BaseItemPerson> ShowOtherFilmsCommand { get; set; }
         public bool CanUpdateFavourites { get; set; }
     }
 }

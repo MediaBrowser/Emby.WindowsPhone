@@ -28,7 +28,6 @@
     <RestorePackages>true</RestorePackages>
     <Utf8Output>true</Utf8Output>
     <ExpressionBlendVersion>4.0.30816.0</ExpressionBlendVersion>
-    <FodyPath>..\packages\Fody.1.20.0.0</FodyPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -97,13 +96,13 @@
       <HintPath>..\packages\JetBrainsAnnotations.Fody.1.0.1\Lib\JetBrains.Annotations.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="MediaBrowser.ApiInteraction.Portable, Version=3.0.5180.22259, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="MediaBrowser.ApiInteraction.Portable, Version=3.0.5195.31509, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MediaBrowser.ApiClient.3.0.0.295\lib\portable-net45+sl4+wp71+win8\MediaBrowser.ApiInteraction.Portable.dll</HintPath>
+      <HintPath>..\packages\MediaBrowser.ApiClient.3.0.0.297\lib\portable-net45+sl4+wp71+win8\MediaBrowser.ApiInteraction.Portable.dll</HintPath>
     </Reference>
-    <Reference Include="MediaBrowser.Model, Version=3.0.5187.27161, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="MediaBrowser.Model, Version=3.0.5195.31100, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MediaBrowser.Common.3.0.341\lib\portable-net4+sl4+wp71+win8\MediaBrowser.Model.dll</HintPath>
+      <HintPath>..\packages\MediaBrowser.Common.3.0.345\lib\portable-net4+sl4+wp71+win8\MediaBrowser.Model.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Phone.Controls, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Phone.Controls.Toolkit, Version=7.0.1.0, Culture=neutral, PublicKeyToken=b772ad94eb9ca604, processorArchitecture=MSIL">
@@ -146,16 +145,16 @@
       <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\portable-net40+sl4+wp7+win8\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="PropertyChanged">
-      <HintPath>..\packages\PropertyChanged.Fody.1.45.0.0\Lib\portable-net4+sl4+wp7+win8+MonoAndroid16+MonoTouch40\PropertyChanged.dll</HintPath>
+      <HintPath>..\packages\PropertyChanged.Fody.1.47.0.0\Lib\portable-net4+sl4+wp7+win8+MonoAndroid16+MonoTouch40\PropertyChanged.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="protobuf-net, Version=2.0.0.668, Culture=neutral, PublicKeyToken=257b51d87d2e4d67, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\protobuf-net.2.0.0.668\lib\sl4-windowsphone71\protobuf-net.dll</HintPath>
     </Reference>
-    <Reference Include="ScottIsAFool.WindowsPhone, Version=1.0.18.1, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="ScottIsAFool.WindowsPhone, Version=1.0.18.3, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\ScottIsAFool.WindowsPhone.1.0.18.2\lib\wp71\ScottIsAFool.WindowsPhone.dll</HintPath>
+      <HintPath>..\packages\ScottIsAFool.WindowsPhone.1.0.18.3\lib\wp71\ScottIsAFool.WindowsPhone.dll</HintPath>
     </Reference>
     <Reference Include="ScottIsAFool.WindowsPhone.Background">
       <HintPath>..\packages\ScottIsAFool.WindowsPhone.Background.1.0.18.1\lib\wp71\ScottIsAFool.WindowsPhone.Background.dll</HintPath>
@@ -232,6 +231,15 @@
     <Compile Include="..\MediaBrowser.WindowsPhone8\Behaviours\PanoramaBackgroundBehaviour.cs">
       <Link>Behaviours\PanoramaBackgroundBehaviour.cs</Link>
     </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone8\Controls\AsyncMessageBox.cs">
+      <Link>Controls\AsyncMessageBox.cs</Link>
+    </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone8\Controls\CustomButton.cs">
+      <Link>Controls\CustomButton.cs</Link>
+    </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone8\Controls\CustomHyperlinkButton.cs">
+      <Link>Controls\CustomHyperlinkButton.cs</Link>
+    </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone8\Controls\DynamicTextBlock.cs">
       <Link>Controls\DynamicTextBlock.cs</Link>
     </Compile>
@@ -254,6 +262,9 @@
     <Compile Include="..\MediaBrowser.WindowsPhone8\Controls\ProfileBox.cs">
       <Link>Controls\ProfileBox.cs</Link>
     </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone8\Controls\ScheduledRecording.cs">
+      <Link>Controls\ScheduledRecording.cs</Link>
+    </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone8\Controls\ScrollableTextBlock.cs">
       <Link>Controls\ScrollableTextBlock.cs</Link>
     </Compile>
@@ -263,11 +274,17 @@
     <Compile Include="..\MediaBrowser.WindowsPhone8\Converters\AlreadyPlayedConverter.cs">
       <Link>Converters\AlreadyPlayedConverter.cs</Link>
     </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone8\Converters\BooleanToValueConverter.cs">
+      <Link>Converters\BooleanToValueConverter.cs</Link>
+    </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone8\Converters\CanStreamConverter.cs">
       <Link>Converters\CanStreamConverter.cs</Link>
     </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone8\Converters\ClientTypeIconConverter.cs">
       <Link>Converters\ClientTypeIconConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone8\Converters\CollectionVisibilityConverter.cs">
+      <Link>Converters\CollectionVisibilityConverter.cs</Link>
     </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone8\Converters\CriticRatingConverter.cs">
       <Link>Converters\CriticRatingConverter.cs</Link>
@@ -289,6 +306,9 @@
     </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone8\Converters\ImageUrlConverter.cs">
       <Link>Converters\ImageUrlConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone8\Converters\IsOnNowConverter.cs">
+      <Link>Converters\IsOnNowConverter.cs</Link>
     </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone8\Converters\LessThanVisibilityConverter.cs">
       <Link>Converters\LessThanVisibilityConverter.cs</Link>
@@ -353,6 +373,9 @@
     <Compile Include="..\MediaBrowser.WindowsPhone8\ExtensionMethods.cs">
       <Link>ExtensionMethods.cs</Link>
     </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone8\Extensions\ToolkitExtensions.cs">
+      <Link>Extensions\ToolkitExtensions.cs</Link>
+    </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone8\LocalizedStrings.cs">
       <Link>LocalizedStrings.cs</Link>
     </Compile>
@@ -365,6 +388,9 @@
     <Compile Include="..\MediaBrowser.WindowsPhone8\Model\EventToCommand.cs">
       <Link>Model\EventToCommand.cs</Link>
     </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone8\Model\GroupBy.cs">
+      <Link>Model\GroupBy.cs</Link>
+    </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone8\Model\INavigationService.cs">
       <Link>Model\INavigationService.cs</Link>
     </Compile>
@@ -373,6 +399,9 @@
     </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone8\Model\NavigationService.cs">
       <Link>Model\NavigationService.cs</Link>
+    </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone8\Model\RecordedGroupBy.cs">
+      <Link>Model\RecordedGroupBy.cs</Link>
     </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone8\Progress\CircularProgressBarViewModel.cs">
       <Link>Progress\CircularProgressBarViewModel.cs</Link>
@@ -715,6 +744,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Icons\appbar.check.rest.png" />
+    <Content Include="Icons\appbar.connection.playon.png" />
     <Content Include="Icons\appbar.feature.search.rest.png" />
     <Content Include="Icons\appbar.refresh.rest.png" />
     <Content Include="README_FIRST.txt" />
@@ -866,7 +896,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="Fody.targets" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
@@ -895,13 +924,9 @@
     <Content Include="SplashScreenImage.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AudioSharedLibrary\AudioSharedLibrary.csproj">
-      <Project>{49716E9D-F1AE-4ECF-9ED6-557BC424DBD3}</Project>
-      <Name>AudioSharedLibrary</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MediaBrowser.Shared\MediaBrowser.Shared.csproj">
-      <Project>{0663D56B-A326-4E58-939B-B20ADEE2C7E7}</Project>
-      <Name>MediaBrowser.Shared</Name>
+    <ProjectReference Include="..\MediaBrowser.Shared7\MediaBrowser.Shared7.csproj">
+      <Project>{608F448C-18D2-47B6-A643-904223B51D7C}</Project>
+      <Name>MediaBrowser.Shared7</Name>
     </ProjectReference>
     <ProjectReference Include="..\MediaBrowser.WindowsPhone7.AudioAgent\MediaBrowser.WindowsPhone7.AudioAgent.csproj">
       <Project>{D14362C5-5568-49A0-8FAA-7F8C219C0C48}</Project>
@@ -1046,5 +1071,11 @@
     <Error Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.13\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
   </Target>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Multilingual App Toolkit\Microsoft.Multilingual.WindowsPhone.targets" Label="MultilingualAppToolkitForWindowsPhone" />
-  <Import Project="Fody.targets" />
+  <Import Project="..\packages\Fody.1.22.1\build\Fody.targets" Condition="Exists('..\packages\Fody.1.22.1\build\Fody.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Fody.1.22.1\build\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.1.22.1\build\Fody.targets'))" />
+  </Target>
 </Project>

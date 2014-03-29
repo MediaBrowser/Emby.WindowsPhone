@@ -25,10 +25,10 @@
                 DataContext="{Binding Search, Source={StaticResource Locator}}">
     <i:Interaction.Behaviors>
         <behaviours1:MBSysTray Text="{Binding ProgressText}"
-                              IsVisible="{Binding ProgressIsVisible}"
-                              IsIndeterminate="{Binding ProgressIsVisible}" />
-    </i:Interaction.Behaviors> 
-    
+                               IsVisible="{Binding ProgressIsVisible}"
+                               IsIndeterminate="{Binding ProgressIsVisible}" />
+    </i:Interaction.Behaviors>
+
     <scott:BasePage.Resources>
         <Style TargetType="TextBlock"
                BasedOn="{StaticResource PhoneTextNormalStyle}"
@@ -107,10 +107,10 @@
                                       GroupItemTemplate="{StaticResource LLSGroupItemTemplateLong}">
                 <toolkit:LongListSelector.ItemTemplate>
                     <DataTemplate>
-                        <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                         VerticalContentAlignment="Top"
-                                         Command="{Binding Search.SearchItemTappedCommand, Source={StaticResource Locator}}"
-                                         CommandParameter="{Binding}">
+                        <mb:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                                  VerticalContentAlignment="Top"
+                                                  TapCommand="{Binding Search.SearchItemTappedCommand, Source={StaticResource Locator}}"
+                                                  CommandParameter="{Binding}">
                             <StackPanel Orientation="Horizontal"
                                         Margin="12,6,0,6">
                                 <Image Source="{Binding Converter={StaticResource ImageUrlConverter}}"
@@ -124,7 +124,7 @@
                                                           DetailTextStyle="{StaticResource PhoneTextSubtleStyle}"
                                                           MaxWidth="342" />
                             </StackPanel>
-                        </HyperlinkButton>
+                        </mb:CustomHyperlinkButton>
                     </DataTemplate>
                 </toolkit:LongListSelector.ItemTemplate>
             </toolkit:LongListSelector>

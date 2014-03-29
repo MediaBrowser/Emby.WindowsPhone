@@ -26,7 +26,6 @@
     <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
-    <FodyPath>..\packages\Fody.1.20.0.0</FodyPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -129,6 +128,8 @@
     <Compile Include="Behaviours\MBSysTray.cs" />
     <Compile Include="Behaviours\OnTextPropertyChangedBehaviour.cs" />
     <Compile Include="Behaviours\PanoramaBackgroundBehaviour.cs" />
+    <Compile Include="Controls\CustomButton.cs" />
+    <Compile Include="Controls\CustomHyperlinkButton.cs" />
     <Compile Include="Controls\NowPlayingBar.cs" />
     <Compile Include="Controls\PlayButton.cs" />
     <Compile Include="Controls\DynamicTextBlock.cs" />
@@ -143,24 +144,34 @@
     </Compile>
     <Compile Include="Controls\MediaBrowserLogo.cs" />
     <Compile Include="Controls\ProfileBox.cs" />
+    <Compile Include="Controls\ScheduledRecording.cs" />
     <Compile Include="Controls\ScrollableTextBlock.cs" />
     <Compile Include="Controls\Played.cs" />
+    <Compile Include="Controls\AsyncMessageBox.cs" />
     <Compile Include="Controls\WideTileControl.xaml.cs">
       <DependentUpon>WideTileControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\AccentBrushConverter.cs" />
     <Compile Include="Converters\AlreadyPlayedConverter.cs" />
     <Compile Include="Converters\BooleanToValueConverter.cs" />
+    <Compile Include="Converters\AnyChannelConverter.cs" />
+    <Compile Include="Converters\AnyTimeConverter.cs" />
     <Compile Include="Converters\CanStreamConverter.cs" />
     <Compile Include="Converters\ClientTypeIconConverter.cs" />
+    <Compile Include="Converters\CollectionVisibilityConverter.cs" />
     <Compile Include="Converters\CriticRatingConverter.cs" />
     <Compile Include="Converters\DateTimeConverter.cs" />
+    <Compile Include="Converters\DayPatternConverter.cs" />
     <Compile Include="Converters\DeviceIdToBooleanConverter.cs" />
     <Compile Include="Converters\EpisodeNumberConverter.cs" />
     <Compile Include="Converters\EpisodeNumberVisibilityConverter.cs" />
     <Compile Include="Converters\FavouritesConverter.cs" />
+    <Compile Include="Converters\HasAiredConverter.cs" />
     <Compile Include="Converters\ImageUrlConverter.cs" />
+    <Compile Include="Converters\IsOnNowConverter.cs" />
     <Compile Include="Converters\LessThanVisibilityConverter.cs" />
+    <Compile Include="Converters\LiveTvInfoConverter.cs" />
+    <Compile Include="Converters\LocalisedEnumConverter.cs" />
     <Compile Include="Converters\LocationConverter.cs" />
     <Compile Include="Converters\LockScreenTypeConverter.cs" />
     <Compile Include="Converters\LoggedInDateConverter.cs" />
@@ -171,28 +182,39 @@
     <Compile Include="Converters\NowPlayingProgressConverter.cs" />
     <Compile Include="Converters\PinnedItemConverter.cs" />
     <Compile Include="Converters\PlaylistCountConverter.cs" />
+    <Compile Include="Converters\ProgrammeTypeToColourConverter.cs" />
     <Compile Include="Converters\RandomColour.cs" />
     <Compile Include="Converters\RatingConverter.cs" />
+    <Compile Include="Converters\RecordingNameConverter.cs" />
     <Compile Include="Converters\RemoteClientMultiConverter.cs" />
     <Compile Include="Converters\RoleConverter.cs" />
     <Compile Include="Converters\RuntimeConverter.cs" />
+    <Compile Include="Converters\ScheduledRecordingTimeConverter.cs" />
     <Compile Include="Converters\SeasonEpisodeConverter.cs" />
+    <Compile Include="Converters\SecondsToMinuteConverter.cs" />
     <Compile Include="Converters\SettingsConverters.cs" />
     <Compile Include="Converters\SimpleDaysAgoConverter.cs" />
     <Compile Include="Converters\TicksToTimespanConverter.cs" />
     <Compile Include="Converters\VirtualConverter.cs" />
     <Compile Include="Converters\ZeroCountBrushConverter.cs" />
     <Compile Include="ExtensionMethods.cs" />
+    <Compile Include="Extensions\EnumExtensions.cs" />
+    <Compile Include="Extensions\LiveTvExtensions.cs" />
+    <Compile Include="Extensions\ToolkitExtensions.cs" />
     <Compile Include="Extensions\WriteableBitmapExt.cs" />
+    <Compile Include="LiveTvUtils.cs" />
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="Messaging\VideoMessage.cs" />
     <Compile Include="Model\Chapter.cs" />
     <Compile Include="Model\EventToCommand.cs" />
+    <Compile Include="Model\GroupBy.cs" />
     <Compile Include="Model\INavigationService.cs" />
     <Compile Include="Model\LockScreenType.cs" />
     <Compile Include="Model\MBLogger.cs" />
     <Compile Include="Model\MBUriMapper.cs" />
     <Compile Include="Model\NavigationService.cs" />
+    <Compile Include="Model\PlayerSourceType.cs" />
+    <Compile Include="Model\RecordedGroupBy.cs" />
     <Compile Include="Model\Server.cs" />
     <Compile Include="PhoneNameResolver.cs" />
     <Compile Include="Progress\CircularProgressBarViewModel.cs" />
@@ -225,6 +247,15 @@
     <Compile Include="ViewModel\ChooseProfileViewModel.cs" />
     <Compile Include="ViewModel\FolderViewModel.cs" />
     <Compile Include="ViewModel\GenericItemViewModel.cs" />
+    <Compile Include="ViewModel\LiveTv\AllProgrammesViewModel.cs" />
+    <Compile Include="ViewModel\LiveTv\ChannelsViewModel.cs" />
+    <Compile Include="ViewModel\LiveTv\ProgrammeViewModel.cs" />
+    <Compile Include="ViewModel\LiveTv\GuideViewModel.cs" />
+    <Compile Include="ViewModel\LiveTv\LiveTvViewModel.cs" />
+    <Compile Include="ViewModel\LiveTv\RecordedTvViewModel.cs" />
+    <Compile Include="ViewModel\LiveTv\ScheduledRecordingViewModel.cs" />
+    <Compile Include="ViewModel\LiveTv\ScheduledSeriesViewModel.cs" />
+    <Compile Include="ViewModel\LiveTv\ScheduleViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\MovieViewModel.cs" />
     <Compile Include="ViewModel\MusicViewModel.cs" />
@@ -277,6 +308,36 @@
     <Compile Include="Views\GenericItemView.xaml.cs">
       <DependentUpon>GenericItemView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\LiveTv\AllProgrammesView.xaml.cs">
+      <DependentUpon>AllProgrammesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LiveTv\ChannelsView.xaml.cs">
+      <DependentUpon>ChannelsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LiveTv\RecordingView.xaml.cs">
+      <DependentUpon>RecordingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LiveTv\ProgrammeView.xaml.cs">
+      <DependentUpon>ProgrammeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LiveTv\GuideView.xaml.cs">
+      <DependentUpon>GuideView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LiveTv\LiveTvView.xaml.cs">
+      <DependentUpon>LiveTvView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LiveTv\RecordedTvView.xaml.cs">
+      <DependentUpon>RecordedTvView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LiveTv\ScheduledRecordingView.xaml.cs">
+      <DependentUpon>ScheduledRecordingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LiveTv\ScheduledSeriesView.xaml.cs">
+      <DependentUpon>ScheduledSeriesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LiveTv\ScheduleView.xaml.cs">
+      <DependentUpon>ScheduleView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -328,7 +389,6 @@
     <Compile Include="Views\VideoPlayerView.xaml.cs">
       <DependentUpon>VideoPlayerView.xaml</DependentUpon>
     </Compile>
-    <None Include="Fody.targets" />
     <None Include="FodyWeavers.xml" />
   </ItemGroup>
   <ItemGroup>
@@ -339,14 +399,22 @@
     <Content Include="Assets\BrowserText.png" />
     <Content Include="Assets\MediaTextBlack.png" />
     <Content Include="Assets\MediaTextWhite.png" />
+    <Content Include="Assets\Tiles\MBLiveTVTile.png" />
     <Content Include="Assets\Tiles\MBRemoteTile.png" />
     <Content Include="Assets\Tiles\WideTileBackground.png" />
     <Content Include="DefaultLockScreen.jpg" />
+    <Content Include="Icons\appbar.cancel.record.png" />
+    <Content Include="Icons\appbar.cancel.serieslink.png" />
+    <Content Include="Icons\appbar.connection.playon.png" />
     <Content Include="Icons\appbar.feature.search.rest.png" />
     <Content Include="Icons\appbar.check.rest.png" />
+    <Content Include="Icons\appbar.record.png" />
     <Content Include="Icons\appbar.refresh.rest.png" />
+    <Content Include="Icons\appbar.save.png" />
+    <Content Include="Icons\appbar.serieslink.png" />
     <Content Include="Icons\searchbutton.png" />
     <Content Include="Images\3d.png" />
+    <Content Include="Images\DefaultChannel.png" />
     <Content Include="Images\FirstRun\WelcomeBackground.jpg" />
     <Content Include="Images\LogoNoPadding.png" />
     <Content Include="Images\MBBackground.jpg" />
@@ -424,6 +492,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Themes\LiveTvResources.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Themes\generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -481,6 +553,46 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\GenericItemView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LiveTv\AllProgrammesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LiveTv\ChannelsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LiveTv\RecordingView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\LiveTv\ProgrammeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LiveTv\GuideView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LiveTv\LiveTvView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LiveTv\RecordedTvView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LiveTv\ScheduledRecordingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LiveTv\ScheduledSeriesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LiveTv\ScheduleView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -653,8 +765,8 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\AppResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\AppResources.sv.resx">
       <AutoGen>True</AutoGen>
@@ -714,14 +826,15 @@
       <HintPath>..\packages\JetBrainsAnnotations.Fody.1.0.1\Lib\JetBrains.Annotations.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="MediaBrowser.ApiInteraction.Portable, Version=3.0.5180.22259, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="MediaBrowser.ApiInteraction.Portable, Version=3.0.5195.31509, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MediaBrowser.ApiClient.3.0.0.295\lib\portable-net45+sl4+wp71+win8\MediaBrowser.ApiInteraction.Portable.dll</HintPath>
+      <HintPath>..\packages\MediaBrowser.ApiClient.3.0.0.297\lib\portable-net45+sl4+wp71+win8\MediaBrowser.ApiInteraction.Portable.dll</HintPath>
     </Reference>
-    <Reference Include="MediaBrowser.Model, Version=3.0.5187.27161, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="MediaBrowser.Model, Version=3.0.5195.31100, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MediaBrowser.Common.3.0.341\lib\portable-net4+sl4+wp71+win8\MediaBrowser.Model.dll</HintPath>
+      <HintPath>..\packages\MediaBrowser.Common.3.0.345\lib\portable-net4+sl4+wp71+win8\MediaBrowser.Model.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Phone.Controls, Version=8.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Phone.Controls.Toolkit, Version=8.0.1.0, Culture=neutral, PublicKeyToken=b772ad94eb9ca604, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\WPtoolkit.4.2013.08.16\lib\wp8\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
@@ -746,16 +859,16 @@
       <HintPath>..\packages\ImageTools.0.3.1\lib\sl3-wp\PhoneCodeContractsAssemblies.dll</HintPath>
     </Reference>
     <Reference Include="PropertyChanged">
-      <HintPath>..\packages\PropertyChanged.Fody.1.45.0.0\Lib\portable-net4+sl4+wp7+win8+MonoAndroid16+MonoTouch40\PropertyChanged.dll</HintPath>
+      <HintPath>..\packages\PropertyChanged.Fody.1.47.0.0\Lib\portable-net4+sl4+wp7+win8+MonoAndroid16+MonoTouch40\PropertyChanged.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="protobuf-net, Version=2.0.0.668, Culture=neutral, PublicKeyToken=257b51d87d2e4d67, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\protobuf-net.2.0.0.668\lib\windowsphone8\protobuf-net.dll</HintPath>
     </Reference>
-    <Reference Include="ScottIsAFool.WindowsPhone, Version=1.0.18.1, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="ScottIsAFool.WindowsPhone, Version=1.0.18.3, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\ScottIsAFool.WindowsPhone.1.0.18.2\lib\wp8\ScottIsAFool.WindowsPhone.dll</HintPath>
+      <HintPath>..\packages\ScottIsAFool.WindowsPhone.1.0.18.3\lib\wp8\ScottIsAFool.WindowsPhone.dll</HintPath>
     </Reference>
     <Reference Include="ScottIsAFool.WindowsPhone.Background">
       <HintPath>..\packages\ScottIsAFool.WindowsPhone.Background.1.0.18.1\lib\wp8\ScottIsAFool.WindowsPhone.Background.dll</HintPath>
@@ -798,13 +911,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AudioSharedLibrary\AudioSharedLibrary.csproj">
-      <Project>{49716E9D-F1AE-4ECF-9ED6-557BC424DBD3}</Project>
-      <Name>AudioSharedLibrary</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MediaBrowser.Shared\MediaBrowser.Shared.csproj">
+    <ProjectReference Include="..\MediaBrowser.Shared\MediaBrowser.Shared8.csproj">
       <Project>{0663D56B-A326-4E58-939B-B20ADEE2C7E7}</Project>
-      <Name>MediaBrowser.Shared</Name>
+      <Name>MediaBrowser.Shared8</Name>
     </ProjectReference>
     <ProjectReference Include="..\MediaBrowser.WindowsPhone8.AudioAgent\MediaBrowser.WindowsPhone8.AudioAgent.csproj">
       <Project>{62509334-83BD-4D52-9387-498D59630832}</Project>
@@ -882,5 +991,11 @@
     <Error Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.13\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
   </Target>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Multilingual App Toolkit\Microsoft.Multilingual.WindowsPhone.targets" Label="MultilingualAppToolkitForWindowsPhone" />
-  <Import Project="Fody.targets" />
+  <Import Project="..\packages\Fody.1.22.1\build\Fody.targets" Condition="Exists('..\packages\Fody.1.22.1\build\Fody.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Fody.1.22.1\build\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.1.22.1\build\Fody.targets'))" />
+  </Target>
 </Project>

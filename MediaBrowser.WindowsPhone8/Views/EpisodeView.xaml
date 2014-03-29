@@ -14,7 +14,6 @@
                 xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
                 xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
                 xmlns:converters="clr-namespace:MediaBrowser.WindowsPhone.Converters"
-                xmlns:system="clr-namespace:System;assembly=mscorlib"
                 mc:Ignorable="d"
                 d:DesignWidth="480"
                 d:DesignHeight="696"
@@ -42,8 +41,8 @@
         <converters:VirtualConverter x:Key="VirtualConverter" />
         <converters:VirtualVisibilityConverter x:Key="VirtualVisibilityConverter" />
         <converters:BooleanToStringConverter x:Key="MarkAsWatchedConverter"
-                                              TrueValue="{Binding LocalizedResources.AppBarMarkAsWatched, Source={StaticResource LocalizedStrings}}"
-                                              FalseValue="{Binding LocalizedResources.AppBarMarkAsUnwatched, Source={StaticResource LocalizedStrings}}"/>
+                                             TrueValue="{Binding LocalizedResources.AppBarMarkAsWatched, Source={StaticResource LocalizedStrings}}"
+                                             FalseValue="{Binding LocalizedResources.AppBarMarkAsUnwatched, Source={StaticResource LocalizedStrings}}" />
     </scott:BasePage.Resources>
 
     <toolkit:TransitionService.NavigationInTransition>
@@ -74,6 +73,10 @@
                 <cimbalino:ApplicationBarIconButton Command="{Binding PreviousEpisodeCommand}"
                                                     Text="{Binding LocalizedResources.AppBarPrevious, Source={StaticResource LocalizedStrings}}"
                                                     IconUri="/icons/appbar.back.rest.png" />
+                <cimbalino:ApplicationBarIconButton Text="{Binding LocalizedResources.AppBarPlayOn, Source={StaticResource LocalizedStrings}}"
+                                                    IconUri="/Icons/appbar.connection.playon.png"
+                                                    Command="{Binding Remote.SendPlayCommand, Source={StaticResource Locator}}"
+                                                    CommandParameter="{Binding SelectedEpisode.Id}" />
                 <cimbalino:ApplicationBarIconButton Text="{Binding LocalizedResources.AppBarNext, Source={StaticResource LocalizedStrings}}"
                                                     Command="{Binding NextEpisodeCommand}"
                                                     IconUri="/icons/appbar.next.rest.png" />
@@ -82,9 +85,6 @@
                                                       IsEnabled="{Binding SelectedEpisode.CanResume}"
                                                       Command="{Binding Main.ResumeMovieCommand, Source={StaticResource Locator}}"
                                                       CommandParameter="{Binding SelectedEpisode}" />
-                    <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarPlayOn, Source={StaticResource LocalizedStrings}}"
-                                                      Command="{Binding Remote.SendPlayCommand, Source={StaticResource Locator}}"
-                                                      CommandParameter="{Binding SelectedEpisode.Id}" />
                     <cimbalino:ApplicationBarMenuItem Text="{Binding SelectedEpisode.UserData.IsFavorite, Converter={StaticResource FavouritesConverter}, ConverterParameter=fulltext}"
                                                       Command="{Binding AddRemoveFavouriteCommand}"
                                                       CommandParameter="{Binding SelectedEpisode}"
@@ -128,10 +128,10 @@
                                        Style="{StaticResource PhoneTextTitle1Style}" />
                             <TextBlock Style="{StaticResource PhoneTextSubtleStyle}"
                                        Margin="9,0,0,-12">
-                                <Run Text="{Binding LocalizedResources.LabelSeries, Source={StaticResource LocalizedStrings}}"/>
-                                <Run Text="{Binding ParentIndexNumber, StringFormat='\{0\},'}"/>
-                                <Run Text="{Binding LocalizedResources.LabelEpisode, Source={StaticResource LocalizedStrings}}"/>
-                                <Run Text="{Binding Converter={StaticResource EpisodeNumberConverter}}"/>
+                                <Run Text="{Binding LocalizedResources.LabelSeries, Source={StaticResource LocalizedStrings}}" />
+                                <Run Text="{Binding ParentIndexNumber, StringFormat='\{0\},'}" />
+                                <Run Text="{Binding LocalizedResources.LabelEpisode, Source={StaticResource LocalizedStrings}}" />
+                                <Run Text="{Binding Converter={StaticResource EpisodeNumberConverter}}" />
                             </TextBlock>
                         </StackPanel>
 
@@ -140,25 +140,25 @@
                               Grid.Row="1">
                             <ScrollViewer>
                                 <StackPanel Orientation="Vertical">
-                                    <Button Style="{StaticResource EmptyButtonStyle}"
-                                            HorizontalContentAlignment="Center"
-                                            VerticalContentAlignment="Center"
-                                            VerticalAlignment="Top"
-                                            IsHitTestVisible="{Binding Converter={StaticResource CanStreamConverter}}"
-                                            Command="{Binding Main.PlayMovieCommand, Source={StaticResource Locator}}"
-                                            CommandParameter="{Binding}"
-                                            toolkit:TiltEffect.IsTiltEnabled="{Binding Tv.SelectedEpisode, Source={StaticResource Locator}, Converter={StaticResource VirtualConverter}}">
+                                    <controls:CustomButton Style="{StaticResource EmptyButtonStyle}"
+                                                           HorizontalContentAlignment="Center"
+                                                           VerticalContentAlignment="Center"
+                                                           VerticalAlignment="Top"
+                                                           IsHitTestVisible="{Binding Converter={StaticResource CanStreamConverter}}"
+                                                           TapCommand="{Binding Main.PlayMovieCommand, Source={StaticResource Locator}}"
+                                                           CommandParameter="{Binding}"
+                                                           toolkit:TiltEffect.IsTiltEnabled="{Binding DataContext.SelectedEpisode, ElementName=LayoutRoot, Converter={StaticResource VirtualConverter}}">
                                         <Grid>
                                             <coding4Fun:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}, ConverterParameter=episode}"
                                                                    MaxWidth="480"
                                                                    Stretch="UniformToFill"
                                                                    PlaceholderImageSource="/Images/MBBackground.jpg"
                                                                    PlaceholderImageStretch="Uniform" />
-                                            <controls:PlayButton Visibility="{Binding Tv.SelectedEpisode, Source={StaticResource Locator}, Converter={StaticResource CanStreamVisibilityConverter}}"/>
-                                            
-                                            <controls:Played Data="{Binding}"/>
+                                            <controls:PlayButton Visibility="{Binding DataContext.SelectedEpisode, ElementName=LayoutRoot, Converter={StaticResource CanStreamVisibilityConverter}}" />
+
+                                            <controls:Played Data="{Binding}" />
                                         </Grid>
-                                    </Button>
+                                    </controls:CustomButton>
                                     <TextBlock Text="{Binding Overview}"
                                                TextWrapping="Wrap"
                                                Style="{StaticResource PhoneTextNormalStyle}"

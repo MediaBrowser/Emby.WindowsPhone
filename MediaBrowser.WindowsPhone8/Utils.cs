@@ -14,12 +14,15 @@ using MediaBrowser.Model.Configuration;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Library;
+using MediaBrowser.Model.LiveTv;
+using MediaBrowser.Model.Logging;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Session;
 using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Resources;
 using MediaBrowser.WindowsPhone.Services;
+using Newtonsoft.Json;
 using ScottIsAFool.WindowsPhone;
 using ScottIsAFool.WindowsPhone.Logging;
 using INavigationService = MediaBrowser.WindowsPhone.Model.INavigationService;
@@ -91,6 +94,22 @@ namespace MediaBrowser.WindowsPhone
             }
 
             var name = !String.IsNullOrEmpty(dtoBaseItem.SortName) ? dtoBaseItem.SortName : dtoBaseItem.Name;
+            return SortByNameHeader(name);
+        }
+
+        internal static string GetSortByNameHeader(ChannelInfoDto channelInfoDto)
+        {
+            if (String.IsNullOrEmpty(channelInfoDto.Name))
+            {
+                return "#".ToString(CultureInfo.InvariantCulture);
+            }
+
+            var name = channelInfoDto.Name;
+            return SortByNameHeader(name);
+        }
+
+        private static string SortByNameHeader(string name)
+        {
             var words = name.Split(' ');
             try
             {
@@ -156,7 +175,7 @@ namespace MediaBrowser.WindowsPhone
                         Name = g.Select(l => l.SeriesName).FirstOrDefault(),
                         Count = g.Count(),
                         CreatedDate = g.OrderByDescending(l => l.DateCreated).First().DateCreated,
-                        UserData = new UserItemDataDto { Played = g.All(l => l.UserData.Played) }
+                        UserData = new UserItemDataDto { Played = g.All(l => l.UserData != null && l.UserData.Played) }
                     }).ToList();
                 var seriesList = new List<BaseItemDto>();
                 if (episodesBySeries.Any())
@@ -230,6 +249,13 @@ namespace MediaBrowser.WindowsPhone
                 var sysInfo = await apiClient.GetSystemInfoAsync();
                 App.Settings.SystemStatus = sysInfo;
 
+                logger.Info("Checking if live TV is supported");
+
+#if WP8
+                var liveTv = await apiClient.GetLiveTvInfoAsync(default(CancellationToken));
+                App.Settings.LiveTvInfo = liveTv;
+#endif
+
                 if (SimpleIoc.Default.IsRegistered<ApiWebSocket>())
                 {
                     SimpleIoc.Default.Unregister<ApiWebSocket>();
@@ -273,6 +299,11 @@ namespace MediaBrowser.WindowsPhone
             {
                 log.ErrorException(message, ex);
             }
+        }
+
+        internal static void HandleHttpException(string message, HttpException ex, INavigationService navigationService, ILog log)
+        {
+            HandleHttpException(ex, message, navigationService, log);
         }
 
         internal static async Task<List<PlaylistItem>> ToPlayListItems(this List<BaseItemDto> list, IExtendedApiClient apiClient)
@@ -367,20 +398,42 @@ namespace MediaBrowser.WindowsPhone
             }
 
             var item = value as BaseItemDto;
-            if (item == null)
+            if (item != null)
             {
-                return false;
+                if (item.LocationType == LocationType.Virtual
+                    || !item.IsVideo
+                    || item.PlayAccess != PlayAccess.Full
+                    || (item.IsPlaceHolder.HasValue && item.IsPlaceHolder.Value))
+                {
+                    return false;
+                }
+
+                return true;
             }
 
-            if (item.LocationType == LocationType.Virtual
-                || !item.IsVideo 
-                || item.PlayAccess != PlayAccess.Full 
-                || (item.IsPlaceHolder.HasValue && item.IsPlaceHolder.Value))
+            var programme = value as ProgramInfoDto;
+            if (programme != null)
             {
-                return false;
+                var now = DateTime.Now;
+                return programme.StartDate < now && programme.EndDate > now;
             }
 
             return true;
+        }
+
+        public static async Task<TReturnType> Clone<TReturnType>(this TReturnType item)
+        {
+#if WP8
+            var json = await JsonConvert.SerializeObjectAsync(item);
+            return await JsonConvert.DeserializeObjectAsync<TReturnType>(json);
+#else
+            await TaskEx.Run(() =>
+            {
+                var json = JsonConvert.SerializeObject(item);
+                return JsonConvert.DeserializeObject<TReturnType>(json);
+            });
+            return item;
+#endif
         }
 
         internal static string CoolDateName(DateTime? dateTime)

@@ -32,9 +32,6 @@
     </i:Interaction.Triggers>
 
     <scott:BasePage.Resources>
-        <converters:AccentBrushConverter x:Key="AccentBrushConverter"
-                                         TrueValue="{StaticResource PhoneForegroundBrush}"
-                                         FalseValue="{StaticResource PhoneAccentBrush}" />
         <converters:SimpleDaysAgoConverter x:Key="SimpleDaysAgoConverter" />
         <converters:NotificationLevelToBrushConverter x:Key="NotificationLevelToBrushConverter" />
     </scott:BasePage.Resources>
@@ -85,9 +82,9 @@
                                       Background="Transparent">
                 <toolkit:LongListSelector.ItemTemplate>
                     <DataTemplate>
-                        <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                         Command="{Binding Notifications.NotificationTappedCommand, Source={StaticResource Locator}}"
-                                         CommandParameter="{Binding}">
+                        <controls:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                                        TapCommand="{Binding Notifications.NotificationTappedCommand, Source={StaticResource Locator}}"
+                                                        CommandParameter="{Binding}">
                             <StackPanel Orientation="Horizontal">
                                 <Rectangle Width="12"
                                            Height="{Binding ActualHeight, ElementName=ContentStack}"
@@ -104,7 +101,7 @@
                                                Style="{StaticResource PhoneTextSubtleStyle}" />
                                 </StackPanel>
                             </StackPanel>
-                        </HyperlinkButton>
+                        </controls:CustomHyperlinkButton>
                     </DataTemplate>
                 </toolkit:LongListSelector.ItemTemplate>
             </toolkit:LongListSelector>

@@ -248,6 +248,7 @@
             </Setter>
         </Style>
 
+        <converters:LocalisedEnumConverter x:Key="LocalisedEnumConverter"/>
     </scott:BasePage.Resources>
 
     <!--LayoutRoot is the root grid where all page content is placed-->
@@ -256,7 +257,7 @@
         <phone:Pivot x:Name="settingsPivot">
             <phone:Pivot.Title>
                 <controls:MediaBrowserLogo Margin="-12,0,0,0"
-                                           AltText="{Binding LocalizedResources.Settings, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToUppercaseConverter}}"/>
+                                           AltText="{Binding LocalizedResources.Settings, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToUppercaseConverter}}" />
             </phone:Pivot.Title>
 
             <phone:PivotItem Header="{Binding LocalizedResources.LabelGeneral, Source={StaticResource LocalizedStrings}}">
@@ -266,7 +267,13 @@
                     <toolkit:ListPicker ItemsSource="{Binding GroupByItems, Source={StaticResource SpecificSettings}}"
                                         SelectedItem="{Binding DefaultGroupBy, Source={StaticResource SpecificSettings}, Mode=TwoWay}"
                                         Header="{Binding LocalizedResources.HeaderDefaultGrouping, Source={StaticResource LocalizedStrings}}"
-                                        toolkit:TiltEffect.SuppressTilt="True" />
+                                        toolkit:TiltEffect.SuppressTilt="True">
+                        <toolkit:ListPicker.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Converter={StaticResource LocalisedEnumConverter}}"/>
+                            </DataTemplate>
+                        </toolkit:ListPicker.ItemTemplate>
+                    </toolkit:ListPicker>
                     <CheckBox IsChecked="{Binding JustShowFolderView, Source={StaticResource SpecificSettings}, Mode=TwoWay}">
                         <TextBlock Text="{Binding LocalizedResources.LabelJustShowList, Source={StaticResource LocalizedStrings}}"
                                    TextWrapping="Wrap"
@@ -279,7 +286,7 @@
                     <CheckBox IsChecked="{Binding EnableImageEnhancers, Source={StaticResource SpecificSettings}, Mode=TwoWay}">
                         <TextBlock Text="{Binding LocalizedResources.LabelImageEnhancers, Source={StaticResource LocalizedStrings}}"
                                    TextWrapping="Wrap"
-                                   VerticalAlignment="Top"/>
+                                   VerticalAlignment="Top" />
                     </CheckBox>
                 </StackPanel>
             </phone:PivotItem>
@@ -334,13 +341,13 @@
                                FontWeight="ExtraBold"
                                Style="{StaticResource PhoneTextNormalStyle}"
                                Margin="12,12,0,0" />
-                    <Button Margin="0,12,0,0"
-                            Content="{Binding LocalizedResources.LabelConnect, Source={StaticResource LocalizedStrings}}"
-                            Command="{Binding Settings.TestConnectionCommand, Source={StaticResource Locator}}"
-                            Style="{StaticResource ConnectButtonStyle}" />
-                    <Button Content="{Binding LocalizedResources.LabelFindServer, Source={StaticResource LocalizedStrings}}"
-                            Command="{Binding Main.NavigateToAPage, Source={StaticResource Locator}}"
-                            CommandParameter="/Views/FindServerView.xaml" />
+                    <controls:CustomButton Margin="0,12,0,0"
+                                           Content="{Binding LocalizedResources.LabelConnect, Source={StaticResource LocalizedStrings}}"
+                                           TapCommand="{Binding Settings.TestConnectionCommand, Source={StaticResource Locator}}"
+                                           Style="{StaticResource ConnectButtonStyle}" />
+                    <controls:CustomButton Content="{Binding LocalizedResources.LabelFindServer, Source={StaticResource LocalizedStrings}}"
+                                           TapCommand="{Binding Main.NavigateToAPage, Source={StaticResource Locator}}"
+                                           CommandParameter="/Views/FindServerView.xaml" />
                 </StackPanel>
             </phone:PivotItem>
 
@@ -348,21 +355,21 @@
                 <ScrollViewer>
                     <StackPanel Orientation="Vertical">
                         <TextBlock Text="{Binding LocalizedResources.LabelTileBackInformation, Source={StaticResource LocalizedStrings}}"
-                               TextWrapping="Wrap"
-                               Style="{StaticResource PhoneTextNormalStyle}"/>
+                                   TextWrapping="Wrap"
+                                   Style="{StaticResource PhoneTextNormalStyle}" />
                         <CheckBox IsChecked="{Binding DisplayBackdropOnTile, Source={StaticResource SpecificSettings}, Mode=TwoWay}">
                             <TextBlock Text="{Binding LocalizedResources.LabelDisplayRandomImages, Source={StaticResource LocalizedStrings}}"
-                                   TextWrapping="Wrap"/>
+                                       TextWrapping="Wrap" />
                         </CheckBox>
 
                         <RadioButton Style="{StaticResource RadioSelectionTemplate}"
                                      IsChecked="{Binding UseRichWideTile, Source={StaticResource SpecificSettings}, Mode=TwoWay}">
-                            <Image Source="/Images/WideTileSample.jpg"/>
+                            <Image Source="/Images/WideTileSample.jpg" />
                         </RadioButton>
-                        
+
                         <RadioButton Style="{StaticResource RadioSelectionTemplate}"
                                      IsChecked="{Binding UseRichWideTile, Source={StaticResource SpecificSettings}, Mode=TwoWay, Converter={StaticResource NegativeBooleanConverter}}">
-                            <Image Source="/Assets/Tiles/FlipCycleTileLarge.png"/>
+                            <Image Source="/Assets/Tiles/FlipCycleTileLarge.png" />
                         </RadioButton>
                     </StackPanel>
                 </ScrollViewer>
@@ -379,11 +386,11 @@
                         <TextBlock Text="{Binding LockScreenText}"
                                    Style="{StaticResource PhoneTextNormalStyle}"
                                    TextWrapping="Wrap" />
-                        <HyperlinkButton HorizontalContentAlignment="Left"
-                                         HorizontalAlignment="Left"
-                                         Content="{Binding LocalizedResources.LabelMakeLockScreenProvider, Source={StaticResource LocalizedStrings}}"
-                                         Command="{Binding MakeLockScreenProviderCommand}"
-                                         Visibility="{Binding IsLockScreenProvider, Converter={StaticResource InvertedVisibilityConverter}}" />
+                        <controls:CustomHyperlinkButton HorizontalContentAlignment="Left"
+                                                        HorizontalAlignment="Left"
+                                                        Content="{Binding LocalizedResources.LabelMakeLockScreenProvider, Source={StaticResource LocalizedStrings}}"
+                                                        TapCommand="{Binding MakeLockScreenProviderCommand}"
+                                                        Visibility="{Binding IsLockScreenProvider, Converter={StaticResource InvertedVisibilityConverter}}" />
                     </StackPanel>
                     <ScrollViewer Visibility="{Binding IsLockScreenProvider, Converter={StaticResource VisibilityConverter}}"
                                   Grid.Row="1"
@@ -518,6 +525,19 @@
                         </StackPanel>
                     </ScrollViewer>
                 </Grid>
+            </phone:PivotItem>
+            
+            <phone:PivotItem Header="{Binding LocalizedResources.LabelLiveTv, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
+                <toolkit:ListPicker ItemsSource="{Binding RecordedGroupByItems, Source={StaticResource SpecificSettings}}"
+                                    SelectedItem="{Binding DefaultRecordedGroupBy, Source={StaticResource SpecificSettings}, Mode=TwoWay}"
+                                    Header="{Binding LocalizedResources.LabelDefaultRecordedTvGrouping, Source={StaticResource LocalizedStrings}}"
+                                    toolkit:TiltEffect.SuppressTilt="True">
+                    <toolkit:ListPicker.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Converter={StaticResource LocalisedEnumConverter}}"/>
+                        </DataTemplate>
+                    </toolkit:ListPicker.ItemTemplate>
+                </toolkit:ListPicker>
             </phone:PivotItem>
         </phone:Pivot>
     </Grid>

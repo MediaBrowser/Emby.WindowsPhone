@@ -30,18 +30,18 @@
     </i:Interaction.Behaviors>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
-            <command:EventToCommand Command="{Binding PageLoadedCommand}"/>
+            <command:EventToCommand Command="{Binding PageLoadedCommand}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
-    
+
     <scott:BasePage.Resources>
-        <converters:SeasonEpisodeConverter x:Key="SeasonEpisodeConverter"/>
-        
+        <converters:SeasonEpisodeConverter x:Key="SeasonEpisodeConverter" />
+
         <DataTemplate x:Key="EpisodeDataTemplate">
-            <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                             Margin="12,6,0,6"
-                             Command="{Binding TvCollection.NavigateToCommand, Source={StaticResource Locator}}"
-                             CommandParameter="{Binding}">
+            <mb:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                      Margin="12,6,0,6"
+                                      TapCommand="{Binding TvCollection.NavigateToCommand, Source={StaticResource Locator}}"
+                                      CommandParameter="{Binding}">
                 <StackPanel Orientation="Horizontal">
                     <controls:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
                                          Height="99"
@@ -55,10 +55,10 @@
                         <TextBlock Text="{Binding SeriesName}"
                                    Style="{StaticResource PhoneTextSubtleStyle}" />
                         <TextBlock Text="{Binding Converter={StaticResource SeasonEpisodeConverter}}"
-                                   Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                   Style="{StaticResource PhoneTextSubtleStyle}" />
                     </StackPanel>
                 </StackPanel>
-            </HyperlinkButton>
+            </mb:CustomHyperlinkButton>
         </DataTemplate>
     </scott:BasePage.Resources>
 
@@ -95,11 +95,11 @@
         <Grid x:Name="ContentPanel"
               Grid.Row="1"
               Margin="0,32,0,0">
-            <phone:Pivot SelectedIndex="{Binding PivotSelectedIndex, Mode=TwoWay}" >
+            <phone:Pivot SelectedIndex="{Binding PivotSelectedIndex, Mode=TwoWay}">
                 <phone:Pivot.Title>
                     <StackPanel Orientation="Horizontal"
                                 Margin="-12,0,0,0">
-                        <mb:MediaBrowserLogo AltText="{Binding LocalizedResources.LabelTv, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToUppercaseConverter}}"/>
+                        <mb:MediaBrowserLogo AltText="{Binding LocalizedResources.LabelTv, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToUppercaseConverter}}" />
                     </StackPanel>
                 </phone:Pivot.Title>
 
@@ -110,7 +110,7 @@
 
                 <phone:PivotItem Header="{Binding LocalizedResources.LabelNextUp, Source={StaticResource LocalizedStrings}}">
                     <phone:LongListSelector ItemsSource="{Binding NextUpList}"
-                                            ItemTemplate="{StaticResource EpisodeDataTemplate}"/>
+                                            ItemTemplate="{StaticResource EpisodeDataTemplate}" />
                 </phone:PivotItem>
                 <phone:PivotItem Header="{Binding LocalizedResources.LabelUpcoming, Source={StaticResource LocalizedStrings}}">
                     <phone:LongListSelector ItemsSource="{Binding Upcoming}"
@@ -128,10 +128,10 @@
                                             JumpListStyle="{StaticResource LLSGroupItemStyle}">
                         <phone:LongListSelector.ItemTemplate>
                             <DataTemplate>
-                                <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                                 Margin="12,6,0,6"
-                                                 Command="{Binding TvCollection.NavigateToCommand, Source={StaticResource Locator}}"
-                                                 CommandParameter="{Binding}">
+                                <mb:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                                          Margin="12,6,0,6"
+                                                          TapCommand="{Binding TvCollection.NavigateToCommand, Source={StaticResource Locator}}"
+                                                          CommandParameter="{Binding}">
                                     <toolkit:ContextMenuService.ContextMenu>
                                         <toolkit:ContextMenu>
                                             <toolkit:MenuItem Header="{Binding LocalizedResources.AppBarMarkAsWatched, Source={StaticResource LocalizedStrings}}"
@@ -147,13 +147,13 @@
                                                              Stretch="Uniform"
                                                              PlaceholderImageSource="/Images/DefaultVideo.png"
                                                              PlaceholderImageStretch="Uniform"
-                                                             VerticalAlignment="Top"/>
+                                                             VerticalAlignment="Top" />
                                         <StackPanel Orientation="Vertical">
                                             <TextBlock Text="{Binding Name, Converter={StaticResource StringToUppercaseConverter}}"
                                                        Style="{StaticResource HeaderTextStyle}"
-                                                       FontSize="{StaticResource PhoneFontSizeMediumLarge}"/>
+                                                       FontSize="{StaticResource PhoneFontSizeMediumLarge}" />
                                             <TextBlock Text="{Binding ProductionYear}"
-                                                       Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                                       Style="{StaticResource PhoneTextSubtleStyle}" />
                                             <TextBlock Style="{StaticResource PhoneTextSubtleStyle}"
                                                        Foreground="{Binding RecursiveUnplayedItemCount, Converter={StaticResource ZeroCountBrushConverter}}">
                                                 <Run Text="{Binding LocalizedResources.LabelUnwatched, Source={StaticResource LocalizedStrings}}" />
@@ -161,7 +161,7 @@
                                             </TextBlock>
                                         </StackPanel>
                                     </StackPanel>
-                                </HyperlinkButton>
+                                </mb:CustomHyperlinkButton>
                             </DataTemplate>
                         </phone:LongListSelector.ItemTemplate>
                     </phone:LongListSelector>
@@ -171,10 +171,10 @@
                     <phone:LongListSelector ItemsSource="{Binding Genres}">
                         <phone:LongListSelector.ItemTemplate>
                             <DataTemplate>
-                                <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                                 Command="{Binding Main.NavigateToPage, Source={StaticResource Locator}}"
-                                                 CommandParameter="{Binding}"
-                                                 Margin="12,0,0,12">
+                                <mb:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                                          TapCommand="{Binding Main.NavigateToPage, Source={StaticResource Locator}}"
+                                                          CommandParameter="{Binding}"
+                                                          Margin="12,0,0,12">
                                     <Grid Height="173">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*" />
@@ -199,7 +199,7 @@
 
                                         </Border>
                                     </Grid>
-                                </HyperlinkButton>
+                                </mb:CustomHyperlinkButton>
                             </DataTemplate>
                         </phone:LongListSelector.ItemTemplate>
                     </phone:LongListSelector>

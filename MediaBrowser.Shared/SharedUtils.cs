@@ -3,7 +3,7 @@ using Ailon.WP.Utils;
 using Cimbalino.Phone.Toolkit.Services;
 using Microsoft.Phone.Info;
 
-namespace MediaBrowser
+namespace MediaBrowser.WindowsPhone
 {
     public static class SharedUtils
     {

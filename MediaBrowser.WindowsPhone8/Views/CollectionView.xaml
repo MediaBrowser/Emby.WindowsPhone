@@ -14,6 +14,7 @@
                 xmlns:cimbalino="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
                 xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
                 xmlns:c4F="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
+                xmlns:local="clr-namespace:MediaBrowser.WindowsPhone.Controls"
                 mc:Ignorable="d ignore"
                 FontFamily="{StaticResource PhoneFontFamilyNormal}"
                 FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -73,18 +74,18 @@
                         x:Name="ThePanorama">
             <i:Interaction.Behaviors>
                 <behaviours:ControlBackgroundBehaviour Source="{Binding SelectedFolder, Converter={StaticResource ImageUrlConverter}, ConverterParameter=backdrop}"
-                                                        Stretch="UniformToFill"
-                                                        Opacity="0.2" />
+                                                       Stretch="UniformToFill"
+                                                       Opacity="0.2" />
             </i:Interaction.Behaviors>
             <!--<phone:Panorama Title="movies">-->
             <phone:PanoramaItem Header="{Binding LocalizedResources.LabelRecent, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
                 <phone:LongListSelector ItemsSource="{Binding RecentItems}">
                     <phone:LongListSelector.ItemTemplate>
                         <DataTemplate>
-                            <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                             Command="{Binding Main.NavigateToPage, Source={StaticResource Locator}}"
-                                             CommandParameter="{Binding}"
-                                             Margin="12,0,0,12">
+                            <local:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                                         TapCommand="{Binding Main.NavigateToPage, Source={StaticResource Locator}}"
+                                                         CommandParameter="{Binding}"
+                                                         Margin="12,0,0,12">
                                 <Grid Height="173">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*" />
@@ -109,7 +110,7 @@
 
                                     </Border>
                                 </Grid>
-                            </HyperlinkButton>
+                            </local:CustomHyperlinkButton>
                         </DataTemplate>
                     </phone:LongListSelector.ItemTemplate>
                 </phone:LongListSelector>
@@ -134,12 +135,12 @@
                         </controls:PhoneListBox.ItemsPanel>
                     </controls:PhoneListBox>
 
-                    <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                     VerticalAlignment="Bottom"
-                                     Command="{Binding SeeMoreCommand}">
+                    <local:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                                 VerticalAlignment="Bottom"
+                                                 TapCommand="{Binding SeeMoreCommand}">
                         <TextBlock Text="{Binding LocalizedResources.LabelShowAllItems, Source={StaticResource LocalizedStrings}}"
                                    Style="{StaticResource PhoneTextLargeStyle}" />
-                    </HyperlinkButton>
+                    </local:CustomHyperlinkButton>
                 </Grid>
             </phone:PanoramaItem>
         </phone:Panorama>

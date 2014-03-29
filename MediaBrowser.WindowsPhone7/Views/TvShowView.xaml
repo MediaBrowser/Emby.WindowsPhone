@@ -73,8 +73,8 @@
                            x:Name="MainPanorama">
             <i:Interaction.Behaviors>
                 <behaviours:ControlBackgroundBehaviour Source="{Binding SelectedTvSeries, Converter={StaticResource ImageUrlConverter}, ConverterParameter=backdrop}"
-                                                        Stretch="UniformToFill"
-                                                        Opacity="0.2" />
+                                                       Stretch="UniformToFill"
+                                                       Opacity="0.2" />
             </i:Interaction.Behaviors>
             <controls:PanoramaItem Header="{Binding LocalizedResources.LabelSeasons, Source={StaticResource LocalizedStrings}}">
                 <Grid>
@@ -92,10 +92,10 @@
                         </scott:PhoneListBox.ItemsPanel>
                         <scott:PhoneListBox.ItemTemplate>
                             <DataTemplate>
-                                <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                                 Margin="6"
-                                                 Command="{Binding Main.NavigateToPage, Source={StaticResource Locator}}"
-                                                 CommandParameter="{Binding}">
+                                <local:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                                             Margin="6"
+                                                             TapCommand="{Binding Main.NavigateToPage, Source={StaticResource Locator}}"
+                                                             CommandParameter="{Binding}">
                                     <Grid>
                                         <c4F:SuperImage PlaceholderImageSource="/Images/Logo.png"
                                                         Source="{Binding Converter={StaticResource ImageUrlConverter}}"
@@ -113,7 +113,7 @@
 
                                         <local:Played Data="{Binding}" />
                                     </Grid>
-                                </HyperlinkButton>
+                                </local:CustomHyperlinkButton>
                             </DataTemplate>
                         </scott:PhoneListBox.ItemTemplate>
                     </scott:PhoneListBox>
@@ -145,15 +145,15 @@
                         </scott:PhoneListBox.ItemsPanel>
                     </scott:PhoneListBox>
 
-                    <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                     DataContext="{Binding DummyFolder}"
-                                     Command="{Binding Main.NavigateToPage, Source={StaticResource Locator}}"
-                                     CommandParameter="{Binding}"
-                                     Grid.Row="1"
-                                     Visibility="{Binding Path=Items.Count, ElementName=lbRecentItems, Converter={StaticResource IntToVisibilityConverter}, ConverterParameter=false}">
+                    <local:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                                 DataContext="{Binding DummyFolder}"
+                                                 TapCommand="{Binding Main.NavigateToPage, Source={StaticResource Locator}}"
+                                                 CommandParameter="{Binding}"
+                                                 Grid.Row="1"
+                                                 Visibility="{Binding Path=Items.Count, ElementName=lbRecentItems, Converter={StaticResource IntToVisibilityConverter}, ConverterParameter=false}">
                         <TextBlock Text="{Binding LocalizedResources.More, Source={StaticResource LocalizedStrings}}"
                                    Style="{StaticResource PhoneTextLargeStyle}" />
-                    </HyperlinkButton>
+                    </local:CustomHyperlinkButton>
                 </Grid>
             </controls:PanoramaItem>
 
@@ -166,8 +166,32 @@
                                           GroupHeaderTemplate="{StaticResource LLSGroupHeaderTemplateLong}"
                                           GroupItemTemplate="{StaticResource LLSGroupItemTemplateLong}"
                                           GroupItemsPanel="{StaticResource StackPanelVerticalTemplate}"
-                                          Background="Transparent"
-                                          ItemTemplate="{StaticResource CrewTemplate}" />
+                                          Background="Transparent">
+                    <toolkit:LongListSelector.ItemTemplate>
+                        <DataTemplate>
+                            <local:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                                         Margin="12,0,0,12"
+                                                         Command="{Binding DataContext.ShowOtherFilmsCommand, ElementName=PageRoot}"
+                                                         CommandParameter="{Binding}">
+                                <StackPanel Orientation="Horizontal">
+                                    <c4F:SuperImage Height="99"
+                                                         Width="99"
+                                                         PlaceholderImageSource="/Images/default_avatar.png"
+                                                         Source="{Binding Converter={StaticResource ImageUrlConverter}}"
+                                                         Stretch="Uniform"
+                                                         PlaceholderImageStretch="Uniform" />
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock Text="{Binding Name, ConverterParameter=false, Converter={StaticResource StringCaseConverter}}"
+                                                   FontWeight="Bold"
+                                                   Style="{StaticResource PhoneTextLargeStyle}" />
+                                        <TextBlock Text="{Binding Role}"
+                                                   Style="{StaticResource PhoneTextNormalStyle}" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </local:CustomHyperlinkButton>
+                        </DataTemplate>
+                    </toolkit:LongListSelector.ItemTemplate>
+                </toolkit:LongListSelector>
             </controls:PanoramaItem>
         </controls:Panorama>
     </Grid>

@@ -6,6 +6,7 @@ using GalaSoft.MvvmLight.Ioc;
 using MediaBrowser.Model;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Dto;
+using MediaBrowser.Model.LiveTv;
 using MediaBrowser.Model.Search;
 
 namespace MediaBrowser.WindowsPhone.Converters
@@ -108,7 +109,56 @@ namespace MediaBrowser.WindowsPhone.Converters
 
                     return apiClient.GetImageUrl(item.Id, imageOptions);
                 }
+                if (type == typeof (ChannelInfoDto))
+                {
+                    var item = (ChannelInfoDto) value;
+                    var imageOptions = new ImageOptions
+                    {
+                        ImageType = ImageType.Primary,
+                        MaxHeight = 122
+                    };
+
+                    return item.HasPrimaryImage ? apiClient.GetImageUrl(item, imageOptions) : string.Empty;
+                }
+
+                if (type == typeof (RecordingInfoDto))
+                {
+                    var item = (RecordingInfoDto) value;
+
+                    var imageOptions = new ImageOptions
+                    {
+                        ImageType = ImageType.Primary,
+                        MaxHeight = 250
+                    };
+
+                    return item.HasPrimaryImage ? apiClient.GetImageUrl(item, imageOptions) : string.Empty;
+                }
+
+                if (type == typeof (TimerInfoDto))
+                {
+                    var item = (TimerInfoDto) value;
+                    var imageOptions = new ImageOptions
+                    {
+                        ImageType = ImageType.Primary,
+                        MaxHeight = 250
+                    };
+
+                    return item.ProgramInfo.HasPrimaryImage ? apiClient.GetImageUrl(item.ProgramInfo, imageOptions) : string.Empty;
+                }
+
+                if (type == typeof (ProgramInfoDto))
+                {
+                    var item = (ProgramInfoDto) value;
+                    var imageOptions = new ImageOptions
+                    {
+                        ImageType = ImageType.Primary,
+                        MaxHeight = 250
+                    };
+
+                    return item.HasPrimaryImage ? apiClient.GetImageUrl(item, imageOptions) : string.Empty;
+                }
             }
+
             return "";
         }
 

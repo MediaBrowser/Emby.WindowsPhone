@@ -98,6 +98,9 @@ namespace MediaBrowser.WindowsPhone.Services
                 case "remote":
                     _logger.Info("Remote pinned tile");
                     return Constants.Pages.Remote.RemoteView;
+                case "livetv":
+                    _logger.Info("Live TV pinned tile");
+                    return Constants.Pages.LiveTv.LiveTvView;
                 default:
                     return Constants.Pages.MainPage;
             }
@@ -288,8 +291,6 @@ namespace MediaBrowser.WindowsPhone.Services
 
             return null;
         }
-
-
 #endif
     }
 }

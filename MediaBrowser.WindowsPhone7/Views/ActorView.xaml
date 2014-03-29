@@ -5,7 +5,6 @@
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:scott="clr-namespace:ScottIsAFool.WindowsPhone.Controls;assembly=ScottIsAFool.WindowsPhone"
-                xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
                 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
                 xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP71"
                 xmlns:c4F="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
@@ -13,6 +12,7 @@
                 xmlns:converters="clr-namespace:MediaBrowser.WindowsPhone.Converters"
                 xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
                 xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
+                xmlns:local="clr-namespace:MediaBrowser.WindowsPhone.Controls"
                 FontFamily="{StaticResource PhoneFontFamilyNormal}"
                 FontSize="{StaticResource PhoneFontSizeNormal}"
                 Foreground="{StaticResource PhoneForegroundBrush}"
@@ -118,10 +118,10 @@
                         </toolkit:LongListSelector.ListHeaderTemplate>
                         <toolkit:LongListSelector.ItemTemplate>
                             <DataTemplate>
-                                <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                                 Margin="12,6,0,6"
-                                                 Command="{Binding DataContext.NavigateToCommand, ElementName=LayoutRoot}"
-                                                 CommandParameter="{Binding}">
+                                <local:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                                             Margin="12,6,0,6"
+                                                             TapCommand="{Binding DataContext.NavigateToCommand, ElementName=LayoutRoot}"
+                                                             CommandParameter="{Binding}">
                                     <StackPanel Orientation="Horizontal">
                                         <c4F:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
                                                         MaxHeight="95"
@@ -158,7 +158,7 @@
                                             </StackPanel>
                                         </StackPanel>
                                     </StackPanel>
-                                </HyperlinkButton>
+                                </local:CustomHyperlinkButton>
                             </DataTemplate>
                         </toolkit:LongListSelector.ItemTemplate>
                     </toolkit:LongListSelector>

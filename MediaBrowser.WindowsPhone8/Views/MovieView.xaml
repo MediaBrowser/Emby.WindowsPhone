@@ -32,11 +32,15 @@
         <behaviours:MBSysTray Text="{Binding ProgressText}"
                               IsVisible="{Binding ProgressIsVisible}"
                               IsIndeterminate="{Binding ProgressIsVisible}" />
-        <cimbalino:ApplicationBarBehavior Mode="Minimized"
+        <cimbalino:ApplicationBarBehavior Mode="Default"
                                           IsMenuEnabled="True">
             <cimbalino:ApplicationBarIconButton Text="{Binding SelectedMovie.UserData.IsFavorite, Converter={StaticResource FavouritesConverter}, ConverterParameter=text}"
                                                 IconUri="{Binding SelectedMovie.UserData.IsFavorite, Converter={StaticResource FavouritesConverter}, ConverterParameter=icon}"
                                                 Command="{Binding AddRemoveFavouriteCommand}" />
+            <cimbalino:ApplicationBarIconButton Text="{Binding LocalizedResources.AppBarPlayOn, Source={StaticResource LocalizedStrings}}"
+                                                IconUri="/Icons/appbar.connection.playon.png"
+                                                Command="{Binding Remote.SendPlayCommand, Source={StaticResource Locator}}"
+                                                CommandParameter="{Binding SelectedMovie.Id}" />
             <cimbalino:ApplicationBarBehavior.MenuItems>
                 <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarResume, Source={StaticResource LocalizedStrings}}"
                                                   IsEnabled="{Binding SelectedMovie.CanResume}"
@@ -44,9 +48,7 @@
                                                   CommandParameter="{Binding SelectedMovie}" />
                 <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarPosterLockscreen, Source={StaticResource LocalizedStrings}}"
                                                   Command="{Binding SetPosterAsLockScreenCommand}" />
-                <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarPlayOn, Source={StaticResource LocalizedStrings}}"
-                                                  Command="{Binding Remote.SendPlayCommand, Source={StaticResource Locator}}"
-                                                  CommandParameter="{Binding SelectedMovie.Id}" />
+
             </cimbalino:ApplicationBarBehavior.MenuItems>
         </cimbalino:ApplicationBarBehavior>
     </i:Interaction.Behaviors>
@@ -86,17 +88,17 @@
                         TitleTemplate="{StaticResource LikeWp7TitleTemplate}">
             <i:Interaction.Behaviors>
                 <behaviours:ControlBackgroundBehaviour Source="{Binding SelectedMovie, Converter={StaticResource ImageUrlConverter}, ConverterParameter=backdrop}"
-                                                        Stretch="UniformToFill"
-                                                        Opacity="0.2" />
+                                                       Stretch="UniformToFill"
+                                                       Opacity="0.2" />
             </i:Interaction.Behaviors>
             <phone:PanoramaItem Header="{Binding LocalizedResources.LabelPoster, Source={StaticResource LocalizedStrings}}">
-                <Button Style="{StaticResource EmptyButtonStyle}"
-                        VerticalContentAlignment="Top"
-                        IsHitTestVisible="{Binding SelectedMovie, Converter={StaticResource CanStreamConverter}}"
-                        Command="{Binding Main.PlayMovieCommand, Source={StaticResource Locator}}"
-                        CommandParameter="{Binding SelectedMovie}">
+                <local:CustomButton Style="{StaticResource EmptyButtonStyle}"
+                                    VerticalContentAlignment="Top"
+                                    IsHitTestVisible="{Binding SelectedMovie, Converter={StaticResource CanStreamConverter}}"
+                                    Command="{Binding Main.PlayMovieCommand, Source={StaticResource Locator}}"
+                                    CommandParameter="{Binding SelectedMovie}">
                     <Grid>
-                        <c4F:SuperImage Source="{Binding SelectedMovie, Converter={StaticResource ImageUrlConverter}, ConverterParameter=poster}"
+                        <c4F:SuperImage Source="{Binding SelectedMovie, ConverterParameter=poster, Converter={StaticResource ImageUrlConverter}}"
                                         PlaceholderImageSource="/Images/DefaultVideo.png"
                                         PlaceholderImageStretch="Uniform"
                                         Height="450"
@@ -104,9 +106,9 @@
                                         HorizontalAlignment="Left"
                                         VerticalAlignment="Top"
                                         Margin="12,0,0,0" />
-                        <local:PlayButton Visibility="{Binding SelectedMovie, Converter={StaticResource CanStreamVisibilityConverter}}"/>
+                        <local:PlayButton Visibility="{Binding SelectedMovie, Converter={StaticResource CanStreamVisibilityConverter}}" />
                     </Grid>
-                </Button>
+                </local:CustomButton>
             </phone:PanoramaItem>
 
             <phone:PanoramaItem Header="{Binding LocalizedResources.LabelOverview, Source={StaticResource LocalizedStrings}}">
@@ -118,8 +120,8 @@
                             <StackPanel Orientation="Vertical"
                                         Margin="-12,0,0,12">
                                 <TextBlock Style="{StaticResource PhoneTextNormalStyle}">
-                                    <Run Text="{Binding LocalizedResources.LabelReleasedIn, Source={StaticResource LocalizedStrings}}"/>
-                                    <Run Text="{Binding SelectedMovie.ProductionYear}"/>
+                                    <Run Text="{Binding LocalizedResources.LabelReleasedIn, Source={StaticResource LocalizedStrings}}" />
+                                    <Run Text="{Binding SelectedMovie.ProductionYear}" />
                                 </TextBlock>
 
                                 <telerikInput:RadRating Value="{Binding SelectedMovie.CommunityRating, Converter={StaticResource RatingConverter}}"
@@ -138,20 +140,20 @@
                                                Style="{StaticResource PhoneTextSubtleStyle}"
                                                Margin="6,0" />
                                 </StackPanel>
-                                <HyperlinkButton Content="See film on imdb"
-                                                 NavigateUri="{Binding ImdbId, StringFormat='http://m.imdb.com/title/\{0\}'}"
-                                                 TargetName="_new"
-                                                 HorizontalAlignment="Left"
-                                                 Margin="0,12,0,0" />
+                                <local:CustomHyperlinkButton Content="See film on imdb"
+                                                             NavigateUri="{Binding ImdbId, StringFormat='http://m.imdb.com/title/\{0\}'}"
+                                                             TargetName="_new"
+                                                             HorizontalAlignment="Left"
+                                                             Margin="0,12,0,0" />
                                 <TextBlock Style="{StaticResource PhoneTextNormalStyle}"
                                            Margin="12,12,0,0">
-                                    <Run Text="{Binding LocalizedResources.LabelRunningTime, Source={StaticResource LocalizedStrings}}"/>
-                                    <Run Text="{Binding RunTime}"/>
+                                    <Run Text="{Binding LocalizedResources.LabelRunningTime, Source={StaticResource LocalizedStrings}}" />
+                                    <Run Text="{Binding RunTime}" />
                                 </TextBlock>
                                 <TextBlock Style="{StaticResource PhoneTextNormalStyle}"
                                            Margin="12,12,0,0">
-                                    <Run Text="{Binding LocalizedResources.LabelRating, Source={StaticResource LocalizedStrings}}"/>
-                                    <Run Text="{Binding SelectedMovie.OfficialRating}"/>
+                                    <Run Text="{Binding LocalizedResources.LabelRating, Source={StaticResource LocalizedStrings}}" />
+                                    <Run Text="{Binding SelectedMovie.OfficialRating}" />
                                 </TextBlock>
                             </StackPanel>
                         </local:ScrollableTextBlock.Header>
@@ -170,10 +172,10 @@
                                         x:Name="LlsCastCrew">
                     <phone:LongListSelector.ItemTemplate>
                         <DataTemplate>
-                            <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                             Margin="12,0,0,12"
-                                             Command="{Binding ElementName=PageRoot, Path=DataContext.ShowOtherFilmsCommand}"
-                                             CommandParameter="{Binding}">
+                            <local:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                                         Margin="12,0,0,12"
+                                                         Command="{Binding DataContext.ShowOtherFilmsCommand, ElementName=PageRoot}"
+                                                         CommandParameter="{Binding}">
                                 <StackPanel Orientation="Horizontal">
                                     <c4F:SuperImage Height="99"
                                                     Width="99"
@@ -182,14 +184,14 @@
                                                     Stretch="Uniform"
                                                     PlaceholderImageStretch="Uniform" />
                                     <StackPanel Orientation="Vertical">
-                                        <TextBlock Text="{Binding Name, Converter={StaticResource StringCaseConverter}, ConverterParameter=false}"
+                                        <TextBlock Text="{Binding Name, ConverterParameter=false, Converter={StaticResource StringCaseConverter}}"
                                                    FontWeight="Bold"
                                                    Style="{StaticResource PhoneTextLargeStyle}" />
                                         <TextBlock Text="{Binding Role}"
                                                    Style="{StaticResource PhoneTextNormalStyle}" />
                                     </StackPanel>
                                 </StackPanel>
-                            </HyperlinkButton>
+                            </local:CustomHyperlinkButton>
                         </DataTemplate>
                     </phone:LongListSelector.ItemTemplate>
                 </phone:LongListSelector>
@@ -206,10 +208,10 @@
                     </phone:LongListSelector.ListHeader>
                     <phone:LongListSelector.ItemTemplate>
                         <DataTemplate>
-                            <Button Style="{StaticResource EmptyButtonStyle}"
-                                    VerticalContentAlignment="Top"
-                                    Command="{Binding Main.PlayMovieCommand, Source={StaticResource Locator}}"
-                                    CommandParameter="{Binding}">
+                            <local:CustomButton Style="{StaticResource EmptyButtonStyle}"
+                                                VerticalContentAlignment="Top"
+                                                TapCommand="{Binding Main.PlayMovieCommand, Source={StaticResource Locator}}"
+                                                CommandParameter="{Binding}">
                                 <Grid>
                                     <c4F:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
                                                     Width="400"
@@ -217,7 +219,7 @@
                                                     Stretch="Fill" />
                                     <local:PlayButton Height="60" />
                                 </Grid>
-                            </Button>
+                            </local:CustomButton>
                         </DataTemplate>
                     </phone:LongListSelector.ItemTemplate>
                 </phone:LongListSelector>

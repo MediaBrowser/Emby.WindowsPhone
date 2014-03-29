@@ -1,0 +1,150 @@
+﻿<scott:BasePage x:Class="MediaBrowser.WindowsPhone.Views.LiveTv.ChannelsView"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                xmlns:ignore="http://www.ignore.com"
+                xmlns:scott="clr-namespace:ScottIsAFool.WindowsPhone.Controls;assembly=ScottIsAFool.WindowsPhone"
+                xmlns:controls="clr-namespace:MediaBrowser.WindowsPhone.Controls"
+                xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+                xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+                xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
+                xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP8"
+                xmlns:c4F="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
+                xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+                xmlns:behaviors="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
+                toolkit:TiltEffect.IsTiltEnabled="True"
+                mc:Ignorable="d ignore"
+                FontFamily="{StaticResource PhoneFontFamilyNormal}"
+                FontSize="{StaticResource PhoneFontSizeNormal}"
+                Foreground="{StaticResource PhoneForegroundBrush}"
+                SupportedOrientations="Portrait"
+                Orientation="Portrait"
+                shell:SystemTray.IsVisible="True"
+                shell:SystemTray.Opacity="0"
+                DataContext="{Binding Channels, Source={StaticResource Locator}}">
+    <i:Interaction.Behaviors>
+        <behaviours:MBSysTray IsVisible="{Binding ProgressIsVisible}"
+                              IsIndeterminate="{Binding ProgressIsVisible}"
+                              Text="{Binding ProgressText}" />
+        <behaviors:ApplicationBarBehavior>
+            <behaviors:ApplicationBarBehavior.Buttons>
+                <behaviors:ApplicationBarIconButton IconUri="/Icons/appbar.refresh.rest.png"
+                                                    Command="{Binding RefreshChannelsCommand}"
+                                                    Text="refresh"
+                                                    IsEnabled="{Binding ProgressIsVisible, Converter={StaticResource NegativeBooleanConverter}}" />
+            </behaviors:ApplicationBarBehavior.Buttons>
+        </behaviors:ApplicationBarBehavior>
+    </i:Interaction.Behaviors>
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <command:EventToCommand Command="{Binding ChannelsViewLoaded}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <toolkit:TransitionService.NavigationInTransition>
+        <toolkit:NavigationInTransition>
+            <toolkit:NavigationInTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardIn" />
+            </toolkit:NavigationInTransition.Backward>
+            <toolkit:NavigationInTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardIn" />
+            </toolkit:NavigationInTransition.Forward>
+        </toolkit:NavigationInTransition>
+    </toolkit:TransitionService.NavigationInTransition>
+    <toolkit:TransitionService.NavigationOutTransition>
+        <toolkit:NavigationOutTransition>
+            <toolkit:NavigationOutTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardOut" />
+            </toolkit:NavigationOutTransition.Backward>
+            <toolkit:NavigationOutTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardOut" />
+            </toolkit:NavigationOutTransition.Forward>
+        </toolkit:NavigationOutTransition>
+    </toolkit:TransitionService.NavigationOutTransition>
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot"
+          Background="{StaticResource MediaBrowserBackground}">
+        <Grid Margin="0,32,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!--TitlePanel contains the name of the application and page title-->
+            <StackPanel x:Name="TitlePanel"
+                        Grid.Row="0"
+                        Margin="12,17,0,28">
+                <controls:MediaBrowserLogo />
+                <TextBlock Text="{Binding LocalizedResources.LabelChannels, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                           Margin="9,-7,0,0"
+                           Style="{StaticResource PhoneTextTitle1Style}" />
+            </StackPanel>
+
+            <!--ContentPanel - place additional content here-->
+            <Grid x:Name="ContentPanel"
+                  Grid.Row="1"
+                  Margin="12,0,12,0">
+                <phone:LongListSelector ItemsSource="{Binding GroupedChannels}"
+                                        GroupHeaderTemplate="{StaticResource LLSGroupHeaderTemplateName}"
+                                        JumpListStyle="{StaticResource LLSGroupItemStyle}"
+                                        Background="Transparent"
+                                        HideEmptyGroups="False"
+                                        IsGroupingEnabled="True">
+                    <phone:LongListSelector.ListHeader>
+                        <TextBlock Text="{Binding LocalizedResources.NoItemsFound, Source={StaticResource LocalizedStrings}}"
+                                   Style="{StaticResource PhoneTextTitle3Style}"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Top"
+                                   Visibility="{Binding Channels.Count, Converter={StaticResource IntToVisibilityConverter}, ConverterParameter=true}" />
+                    </phone:LongListSelector.ListHeader>
+                    <phone:LongListSelector.ItemTemplate>
+                        <DataTemplate>
+                            <controls:CustomButton Style="{StaticResource EmptyButtonStyle}"
+                                                   TapCommand="{Binding Channels.ChannelTappedCommand, Source={StaticResource Locator}}"
+                                                   CommandParameter="{Binding}"
+                                                   Margin="12">
+                                <StackPanel Orientation="Horizontal"
+                                            d:DataContext="{Binding Channels.Channels[0], Source={StaticResource Locator}}">
+                                    <c4F:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
+                                                    Stretch="UniformToFill"
+                                                    PlaceholderImageSource="/Images/DefaultChannel.png"
+                                                    PlaceholderImageStretch="Uniform"
+                                                    VerticalAlignment="Top"
+                                                    Height="75"
+                                                    Width="75" />
+                                    <StackPanel Orientation="Vertical"
+                                                VerticalAlignment="Top"
+                                                Margin="0,-12,0,0">
+                                        <TextBlock Style="{StaticResource HeaderTextStyle}"
+                                                   FontWeight="Bold"
+                                                   Text="{Binding Name, Converter={StaticResource StringCaseConverter}, ConverterParameter=false}" />
+                                        <TextBlock Style="{StaticResource PhoneTextSubtleStyle}">
+                                            <Run Text="Ch" />
+                                            <Run Text="{Binding Number}" />
+                                        </TextBlock>
+                                        <TextBlock Style="{StaticResource PhoneTextSubtleStyle}"
+                                                   Visibility="{Binding CurrentProgram, Converter={StaticResource NullVisibilityConverter}}">
+                                            <Run Text="On now:" />
+                                            <Run Text="{Binding CurrentProgram.Name}" />
+                                        </TextBlock>
+                                    </StackPanel>
+                                </StackPanel>
+                            </controls:CustomButton>
+                        </DataTemplate>
+                    </phone:LongListSelector.ItemTemplate>
+                </phone:LongListSelector>
+            </Grid>
+        </Grid>
+        <!--Uncomment to see an alignment grid to help ensure your controls are
+            aligned on common boundaries.  The image has a top margin of -32px to
+            account for the System Tray. Set this to 0 (or remove the margin altogether)
+            if the System Tray is hidden.
+
+            Before shipping remove this XAML and the image itself.-->
+        <!--<Image Source="/Assets/AlignmentGrid.png" VerticalAlignment="Top" Height="800" Width="480" Margin="0,-32,0,0" Grid.Row="0" Grid.RowSpan="2" IsHitTestVisible="False" />-->
+    </Grid>
+
+</scott:BasePage>

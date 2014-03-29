@@ -87,8 +87,8 @@
         <Grid x:Name="GridForBackground">
             <i:Interaction.Behaviors>
                 <behaviours:PanelBackgroundBehaviour Source="{Binding NowPlayingItem.BackgroundImageUrl}"
-                                                        Stretch="UniformToFill"
-                                                        Opacity="0.2" />
+                                                     Stretch="UniformToFill"
+                                                     Opacity="0.2" />
             </i:Interaction.Behaviors>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -147,8 +147,8 @@
                         <TextBlock Text="{Binding TrackName}"
                                    Style="{StaticResource PhoneTextNormalStyle}" />
                     </StackPanel>
-                    <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                     NavigateUri="/Views/FullPlaylistView.xaml">
+                    <mb:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                              NavigateUri="/Views/FullPlaylistView.xaml">
                         <ListBox ItemsSource="{Binding SmallList}"
                                  IsHitTestVisible="False">
                             <ListBox.ItemTemplate>
@@ -158,7 +158,7 @@
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>
-                    </HyperlinkButton>
+                    </mb:CustomHyperlinkButton>
                 </StackPanel>
             </Grid>
         </Grid>

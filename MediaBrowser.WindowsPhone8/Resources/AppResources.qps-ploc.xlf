@@ -219,8 +219,8 @@
           <target state="new">Favourites</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/Genre" xml:space="preserve">
-          <source>genre</source>
-          <target state="new">genre</target>
+          <source>Genre</source>
+          <target state="new">Genre</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/HeaderChooseClient" xml:space="preserve">
           <source>Choose a client</source>
@@ -663,8 +663,8 @@
           <target state="new">Pin to start</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/ProductionYear" xml:space="preserve">
-          <source>production year</source>
-          <target state="new">production year</target>
+          <source>Production Year</source>
+          <target state="new">Production Year</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/RemoveFromFavouritesFull" xml:space="preserve">
           <source>Remove from favourites</source>
@@ -855,6 +855,224 @@
           <source>Getting upcoming episodes...</source>
           <target state="new">Getting upcoming episodes...</target>
         </trans-unit>
+        <trans-unit translate="yes" id="Resx/MessageCancelRecording" xml:space="preserve">
+          <source>Are you sure you want to cancel this recording? This cannot be undone.</source>
+          <target state="new">Are you sure you want to cancel this recording? This cannot be undone.</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SysTraySaving" xml:space="preserve">
+          <source>Saving...</source>
+          <target state="new">Saving...</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/MenuRecordSeries" xml:space="preserve">
+          <source>record series</source>
+          <target state="new">record series</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelReallyShortMinutes" xml:space="preserve">
+          <source>m</source>
+          <target state="new">m</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelLive" xml:space="preserve">
+          <source>Live</source>
+          <target state="new">Live</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SystemTrayGettingWhatsOn" xml:space="preserve">
+          <source>Getting what's on now...</source>
+          <target state="new">Getting what's on now...</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SysTrayLoadingProgrammes" xml:space="preserve">
+          <source>Loading programmes...</source>
+          <target state="new">Loading programmes...</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SysTraySettingSeriesToRecord" xml:space="preserve">
+          <source>Setting series to record...</source>
+          <target state="new">Setting series to record...</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SysTrayPreparing" xml:space="preserve">
+          <source>Preparing...</source>
+          <target state="new">Preparing...</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SysTrayGettingRecordingDetails" xml:space="preserve">
+          <source>Getting recording details...</source>
+          <target state="new">Getting recording details...</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelDefaultRecordedTvGrouping" xml:space="preserve">
+          <source>Default recorded TV grouping</source>
+          <target state="new">Default recorded TV grouping</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/AppBarShowName" xml:space="preserve">
+          <source>show name</source>
+          <target state="new">show name</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/HeaderActiveRecordings" xml:space="preserve">
+          <source>Active</source>
+          <target state="new">Active</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelNoRecordedItems" xml:space="preserve">
+          <source>You don't appear to have any recorded items</source>
+          <target state="new">You don't appear to have any recorded items</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelShowName" xml:space="preserve">
+          <source>Show name</source>
+          <target state="new">Show name</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SysTrayGettingCurrentlyRecording" xml:space="preserve">
+          <source>Getting active recordings...</source>
+          <target state="new">Getting active recordings...</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/HeaderTV" xml:space="preserve">
+          <source>TV</source>
+          <target state="new">TV</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/HeaderLive" xml:space="preserve">
+          <source>Live</source>
+          <target state="new">Live</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">As in "live tv"</note>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelRecordedDate" xml:space="preserve">
+          <source>Recorded date</source>
+          <target state="new">Recorded date</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/AppBarRecordedDate" xml:space="preserve">
+          <source>recorded date</source>
+          <target state="new">recorded date</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/AppBarChannel" xml:space="preserve">
+          <source>channel</source>
+          <target state="new">channel</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/AppBarCreateAndEditSeries" xml:space="preserve">
+          <source>create and edit series recording</source>
+          <target state="new">create and edit series recording</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SysTrayCancellingProgramme" xml:space="preserve">
+          <source>Cancelling programme...</source>
+          <target state="new">Cancelling programme...</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SysTraySettingProgrammeToRecord" xml:space="preserve">
+          <source>Setting programme to record...</source>
+          <target state="new">Setting programme to record...</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelReallyShortHours" xml:space="preserve">
+          <source>h</source>
+          <target state="new">h</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/MenuRecord" xml:space="preserve">
+          <source>record</source>
+          <target state="new">record</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelWhatsOn" xml:space="preserve">
+          <source>What's On</source>
+          <target state="new">What's On</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SysTrayGettingUpcomingRecordings" xml:space="preserve">
+          <source>Getting upcoming recordings...</source>
+          <target state="new">Getting upcoming recordings...</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelScheduleWeekends" xml:space="preserve">
+          <source>Weekends</source>
+          <target state="new">Weekends</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/HeaderSettings" xml:space="preserve">
+          <source>settings</source>
+          <target state="new">settings</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/AppBarSave" xml:space="preserve">
+          <source>save</source>
+          <target state="new">save</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelDays" xml:space="preserve">
+          <source>Days:</source>
+          <target state="new">Days:</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelRecordProgrammeAtAnyTime" xml:space="preserve">
+          <source>Record programme at any time</source>
+          <target state="new">Record programme at any time</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelRecordProgrammeOnAllChannels" xml:space="preserve">
+          <source>Record programme on all channels</source>
+          <target state="new">Record programme on all channels</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SysTrayGettingRecordedItems" xml:space="preserve">
+          <source>Getting recorded items...</source>
+          <target state="new">Getting recorded items...</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/AppBarDelete" xml:space="preserve">
+          <source>delete</source>
+          <target state="new">delete</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/MessageDeleteSeriesRecording" xml:space="preserve">
+          <source>Are you sure you want to cancel this series link? This cannot be undone.</source>
+          <target state="new">Are you sure you want to cancel this series link? This cannot be undone.</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/ErrorDeletingSeriesRecording" xml:space="preserve">
+          <source>Sorry, there was an error cancelling this series at this time.</source>
+          <target state="new">Sorry, there was an error cancelling this series at this time.</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelChannel" xml:space="preserve">
+          <source>Channel:</source>
+          <target state="new">Channel:</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelNew" xml:space="preserve">
+          <source>New</source>
+          <target state="new">New</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelPrePostPadding" xml:space="preserve">
+          <source>Pre/Post Padding</source>
+          <target state="new">Pre/Post Padding</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelTime" xml:space="preserve">
+          <source>Time:</source>
+          <target state="new">Time:</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/MenuCancelRecording" xml:space="preserve">
+          <source>Cancel Recording</source>
+          <target state="new">Cancel Recording</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelPrePaddingRequired" xml:space="preserve">
+          <source>Pre-padding is required to record</source>
+          <target state="new">Pre-padding is required to record</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SysTrayCancellingSeriesRecording" xml:space="preserve">
+          <source>Cancelling series link...</source>
+          <target state="new">Cancelling series link...</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelPrePaddingMinutes" xml:space="preserve">
+          <source>Pre-padding minutes:</source>
+          <target state="new">Pre-padding minutes:</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Pre-padding = how long before programme's scheduled start time to record</note>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelPostPaddingRequired" xml:space="preserve">
+          <source>Post-padding is required to record</source>
+          <target state="new">Post-padding is required to record</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelPostPaddingMinutes" xml:space="preserve">
+          <source>Post-padding minutes:</source>
+          <target state="new">Post-padding minutes:</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/AppBarCancel" xml:space="preserve">
+          <source>cancel</source>
+          <target state="new">cancel</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelRecordOnlyNewEpisodes" xml:space="preserve">
+          <source>Record only new episodes</source>
+          <target state="new">Record only new episodes</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/HeaderScheduled" xml:space="preserve">
+          <source>scheduled</source>
+          <target state="new">scheduled</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/HeaderRecordings" xml:space="preserve">
+          <source>recordings</source>
+          <target state="new">recordings</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelScheduleWeekdays" xml:space="preserve">
+          <source>Weekdays</source>
+          <target state="new">Weekdays</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelScheduleDaily" xml:space="preserve">
+          <source>Daily</source>
+          <target state="new">Daily</target>
+        </trans-unit>
         <trans-unit translate="yes" id="Resx/LabelScheduleTomorrow" xml:space="preserve">
           <source>Tomorrow</source>
           <target state="new">Tomorrow</target>
@@ -863,9 +1081,45 @@
           <source>Today</source>
           <target state="new">Today</target>
         </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelScheduleAnyTime" xml:space="preserve">
+          <source>Any time</source>
+          <target state="new">Any time</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelScheduleAnyChannel" xml:space="preserve">
+          <source>Any channel</source>
+          <target state="new">Any channel</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/ContextCancelSeries" xml:space="preserve">
+          <source>cancel series</source>
+          <target state="new">cancel series</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SysTrayGettingSeriesRecordings" xml:space="preserve">
+          <source>Getting series recordings...</source>
+          <target state="new">Getting series recordings...</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SysTrayGettingProgrammes" xml:space="preserve">
+          <source>Getting programmes...</source>
+          <target state="new">Getting programmes...</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SysTrayGettingChannels" xml:space="preserve">
+          <source>Getting channels...</source>
+          <target state="new">Getting channels...</target>
+        </trans-unit>
         <trans-unit translate="yes" id="Resx/LabelUpcoming" xml:space="preserve">
-          <source>upcoming</source>
-          <target state="new">upcoming</target>
+          <source>Upcoming</source>
+          <target state="new">Upcoming</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelChannels" xml:space="preserve">
+          <source>Channels</source>
+          <target state="new">Channels</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelScheduledRecording" xml:space="preserve">
+          <source>Scheduled recordings</source>
+          <target state="new">Scheduled recordings</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelRecordedTv" xml:space="preserve">
+          <source>Recorded TV</source>
+          <target state="new">Recorded TV</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/LabelReleasedIn" xml:space="preserve">
           <source>Released in</source>

@@ -65,6 +65,10 @@
                                                     Text="{Binding LocalizedResources.AppBarPrevious, Source={StaticResource LocalizedStrings}}"
                                                     IconUri="/icons/appbar.back.rest.png"
                                                     IsEnabled="{Binding EpisodeNavigationEnabled}" />
+                <cimbalino:ApplicationBarIconButton Text="{Binding LocalizedResources.AppBarPlayOn, Source={StaticResource LocalizedStrings}}"
+                                                    IconUri="/Icons/appbar.connection.playon.png"
+                                                    Command="{Binding Remote.SendPlayCommand, Source={StaticResource Locator}}"
+                                                    CommandParameter="{Binding SelectedEpisode.Id}" />
                 <cimbalino:ApplicationBarIconButton Text="{Binding LocalizedResources.AppBarNext, Source={StaticResource LocalizedStrings}}"
                                                     Command="{Binding NextEpisodeCommand}"
                                                     IconUri="/icons/appbar.next.rest.png"
@@ -75,9 +79,6 @@
                                                       Command="{Binding Main.ResumeMovieCommand, Source={StaticResource Locator}}"
                                                       CommandParameter="{Binding SelectedEpisode}"
                                                       IsVisible="False" />
-                    <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarPlayOn, Source={StaticResource LocalizedStrings}}"
-                                                      Command="{Binding Remote.SendPlayCommand, Source={StaticResource Locator}}"
-                                                      CommandParameter="{Binding SelectedEpisode.Id}" />
                     <cimbalino:ApplicationBarMenuItem Text="{Binding SelectedEpisode.UserData.IsFavorite, Converter={StaticResource FavouritesConverter}, ConverterParameter=fulltext}"
                                                       Command="{Binding AddRemoveFavouriteCommand}"
                                                       CommandParameter="{Binding SelectedEpisode}"
@@ -130,11 +131,11 @@
                               Grid.Row="1">
                             <ScrollViewer>
                                 <StackPanel Orientation="Vertical">
-                                    <Button Style="{StaticResource EmptyButtonStyle}"
-                                            HorizontalContentAlignment="Center"
-                                            VerticalContentAlignment="Center"
-                                            Command="{Binding Main.PlayMovieCommand, Source={StaticResource Locator}}"
-                                            CommandParameter="{Binding}">
+                                    <controls:CustomButton Style="{StaticResource EmptyButtonStyle}"
+                                                           HorizontalContentAlignment="Center"
+                                                           VerticalContentAlignment="Center"
+                                                           TapCommand="{Binding Main.PlayMovieCommand, Source={StaticResource Locator}}"
+                                                           CommandParameter="{Binding}">
                                         <Grid>
                                             <coding4Fun:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}, ConverterParameter=episode}"
                                                                    MaxWidth="480"
@@ -143,11 +144,11 @@
                                                                    PlaceholderImageStretch="Uniform" />
                                             <controls:Played Data="{Binding}" />
                                         </Grid>
-                                    </Button>
+                                    </controls:CustomButton>
                                     <TextBlock Text="{Binding Overview}"
                                                TextWrapping="Wrap"
-                                               Style="{StaticResource PhoneTextNormalStyle}" 
-                                               Margin="24,0"/>
+                                               Style="{StaticResource PhoneTextNormalStyle}"
+                                               Margin="24,0" />
                                 </StackPanel>
                             </ScrollViewer>
                         </Grid>

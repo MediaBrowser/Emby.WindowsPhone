@@ -13,6 +13,7 @@
                 xmlns:scott="clr-namespace:ScottIsAFool.WindowsPhone.Controls;assembly=ScottIsAFool.WindowsPhone"
                 xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
                 xmlns:cimbalino="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
+                xmlns:controls="clr-namespace:MediaBrowser.WindowsPhone.Controls"
                 mc:Ignorable="d ignore"
                 FontFamily="{StaticResource PhoneFontFamilyNormal}"
                 FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -83,10 +84,10 @@
                         <phone:LongListSelector ItemsSource="{Binding Albums}">
                             <phone:LongListSelector.ItemTemplate>
                                 <DataTemplate>
-                                    <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                    <controls:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
                                                      VerticalContentAlignment="Top"
                                                      NavigateUri="/Views/AlbumView.xaml"
-                                                     Command="{Binding Music.AlbumTapped, Source={StaticResource Locator}}"
+                                                     TapCommand="{Binding Music.AlbumTapped, Source={StaticResource Locator}}"
                                                      CommandParameter="{Binding}">
                                         <StackPanel Orientation="Horizontal"
                                                     Margin="12,0,0,12">
@@ -116,7 +117,7 @@
                                                        LineHeight="2"
                                                        TextTrimming="WordEllipsis" />
                                         </StackPanel>
-                                    </HyperlinkButton>
+                                    </controls:CustomHyperlinkButton>
                                 </DataTemplate>
                             </phone:LongListSelector.ItemTemplate>
                         </phone:LongListSelector>

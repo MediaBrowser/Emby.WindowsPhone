@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Net;
+using MediaBrowser.Model.Session;
 using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Model;
 using ScottIsAFool.WindowsPhone.ViewModel;
@@ -54,7 +54,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                         Log.Info("Sending current runtime [{0}] to the server", totalTicks);
 
-                        await _apiClient.ReportPlaybackStoppedAsync(SelectedItem.Id, AuthenticationService.Current.LoggedInUser.Id, totalTicks);
+                        var info = new PlaybackStopInfo
+                        {
+                            ItemId = SelectedItem.Id,
+                            UserId = AuthenticationService.Current.LoggedInUserId,
+                            PositionTicks = totalTicks
+                        };
+
+                        await _apiClient.ReportPlaybackStoppedAsync(info);
                         SelectedItem.UserData.PlaybackPositionTicks = totalTicks;
                     }
                     catch (HttpException ex)
@@ -85,10 +92,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     var query = new VideoStreamOptions
                     {
                         ItemId = SelectedItem.Id,
-                        VideoCodec = VideoCodecs.H264,
+                        VideoCodec = "H264",
                         OutputFileExtension = ".asf",
                         //Static = true,
-                        AudioCodec = AudioCodecs.Mp3,
+                        AudioCodec = "Mp3",
                         VideoBitRate = 1000000,
                         AudioBitRate = 128000,
                         MaxAudioChannels = 2,
@@ -109,7 +116,16 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     try
                     {
                         Log.Info("Sending playback started message to the server.");
-                        await _apiClient.ReportPlaybackStartAsync(SelectedItem.Id, AuthenticationService.Current.LoggedInUser.Id, false, new List<string>());
+
+                        var info = new PlaybackStartInfo
+                        {
+                            ItemId = SelectedItem.Id,
+                            UserId = AuthenticationService.Current.LoggedInUserId,
+                            IsSeekable = false,
+                            QueueableMediaTypes = new string[0]
+                        };
+
+                        await _apiClient.ReportPlaybackStartAsync(info);
                     }
                     catch (HttpException ex)
                     {
