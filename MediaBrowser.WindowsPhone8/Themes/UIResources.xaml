@@ -506,8 +506,6 @@
            TargetType="ToggleButton">
         <Setter Property="Background"
                 Value="{StaticResource PhoneRadioCheckBoxBrush}" />
-        <Setter Property="BorderBrush"
-                Value="{StaticResource PhoneRadioCheckBoxBorderBrush}" />
         <Setter Property="FontSize"
                 Value="{StaticResource PhoneFontSizeMedium}" />
         <Setter Property="FontFamily"

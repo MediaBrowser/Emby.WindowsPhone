@@ -400,6 +400,9 @@
     <Compile Include="..\MediaBrowser.WindowsPhone8\Model\NavigationService.cs">
       <Link>Model\NavigationService.cs</Link>
     </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone8\Model\PlayerSourceType.cs">
+      <Link>Model\PlayerSourceType.cs</Link>
+    </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone8\Model\RecordedGroupBy.cs">
       <Link>Model\RecordedGroupBy.cs</Link>
     </Compile>

@@ -37,15 +37,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             Messenger.Default.Register<NotificationMessage>(this, async m =>
             {
-                if (m.Notification.Equals(Constants.Messages.PlayVideoItemMsg))
-                {
-                    if (m.Sender != null)
-                    {
-                        SelectedItem = (BaseItemDto)m.Sender;
-                        if (m.Target != null)
-                            _isResume = (bool)m.Target;
-                    }
-                }
                 if (m.Notification.Equals(Constants.Messages.SendVideoTimeToServerMsg))
                 {
                     try
