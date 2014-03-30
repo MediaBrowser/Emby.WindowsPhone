@@ -37,7 +37,7 @@
 
     <!--Cimbalino Converters-->
     <cimbalino:StringToUppercaseConverter x:Key="StringToUppercaseConverter" />
-    <cimbalino:StringToLowercaseConverter x:Key="StringToLowercaseConverter" />
+    <converters:StringToLowercaseConverter x:Key="StringToLowercaseConverter" />
     <cimbalino:NegativeBooleanConverter x:Key="NegativeBooleanConverter" />
 
     <!-- Local Converters -->

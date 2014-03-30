@@ -364,6 +364,9 @@
     <Compile Include="..\MediaBrowser.WindowsPhone8\Converters\SimpleDaysAgoConverter.cs">
       <Link>Converters\SimpleDaysAgoConverter.cs</Link>
     </Compile>
+    <Compile Include="..\MediaBrowser.WindowsPhone8\Converters\StringToLowercaseConverter.cs">
+      <Link>Converters\StringToLowercaseConverter.cs</Link>
+    </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone8\Converters\TicksToTimespanConverter.cs">
       <Link>Converters\TicksToTimespanConverter.cs</Link>
     </Compile>
