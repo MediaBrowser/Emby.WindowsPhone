@@ -92,7 +92,7 @@
               HorizontalAlignment="Stretch"
               Background="{StaticResource AppBarBrush}"
               Grid.RowSpan="2">
-            <Button Content="{Binding LocalizedResources.LabelQuit, Source={StaticResource LocalizedStrings}}"
+            <Button Content="{Binding LocalizedResources.LabelQuit, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                     HorizontalAlignment="Left"
                     Width="240"
                     x:Name="QuitButton"

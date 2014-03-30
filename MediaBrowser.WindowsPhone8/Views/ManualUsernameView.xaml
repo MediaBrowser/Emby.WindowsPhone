@@ -24,12 +24,12 @@
                               IsVisible="{Binding ProgressIsVisible}"
                               IsIndeterminate="{Binding ProgressIsVisible}" />
         <behaviors:ApplicationBarBehavior IsMenuEnabled="True">
-            <behaviors:ApplicationBarIconButton Text="{Binding LocalizedResources.AppBarLogin, Source={StaticResource LocalizedStrings}}"
+            <behaviors:ApplicationBarIconButton Text="{Binding LocalizedResources.AppBarLogin, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                 IconUri="/Icons/appbar.check.rest.png"
                                                 Command="{Binding ManualLoginCommand}"
                                                 IsEnabled="{Binding Text.Length, ElementName=UsernameTextBox, Converter={StaticResource CountToEnabled}, ConverterParameter=delete}"/>
             <behaviors:ApplicationBarBehavior.MenuItems>
-                <behaviors:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarSettings, Source={StaticResource LocalizedStrings}}"
+                <behaviors:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarSettings, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                   Command="{Binding Main.NavigateToAPage, Source={StaticResource Locator}}"
                                                   CommandParameter="/Views/SettingsView.xaml" />
             </behaviors:ApplicationBarBehavior.MenuItems>

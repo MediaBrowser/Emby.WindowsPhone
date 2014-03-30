@@ -33,23 +33,23 @@
                               IsIndeterminate="{Binding ProgressIsVisible}" />
         <behaviors:MultiApplicationBarBehavior SelectedIndex="{Binding AppBarIndex}">
             <behaviors:ApplicationBar>
-                <behaviors:ApplicationBarIconButton Text="{Binding LocalizedResources.AppBarPlayAll, Source={StaticResource LocalizedStrings}}"
+                <behaviors:ApplicationBarIconButton Text="{Binding LocalizedResources.AppBarPlayAll, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                     IconUri="/Icons/appbar.transport.play.png"
                                                     Command="{Binding PlayAllCommand}" />
             </behaviors:ApplicationBar>
             <behaviors:ApplicationBar IsVisible="True"
                                       IsMenuEnabled="{Binding IsSelectionEnabled}"
                                       Mode="{Binding AppBarMode}">
-                <behaviors:ApplicationBarIconButton Text="{Binding LocalizedResources.AppBarSelectItems, Source={StaticResource LocalizedStrings}}"
+                <behaviors:ApplicationBarIconButton Text="{Binding LocalizedResources.AppBarSelectItems, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                     IconUri="/Icons/appbar.list.check.png"
                                                     IsEnabled="{Binding Songs.Count, Converter={StaticResource CountToEnabled}, ConverterParameter=delete}"
                                                     IsVisible="{Binding IsSelectionEnabled, Converter={StaticResource InvertBoolean}}"
                                                     Command="{Binding SelectItemsCommand}" />
-                <behaviors:ApplicationBarIconButton Text="{Binding LocalizedResources.AppBarPlayAll, Source={StaticResource LocalizedStrings}}"
+                <behaviors:ApplicationBarIconButton Text="{Binding LocalizedResources.AppBarPlayAll, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                     IconUri="/Icons/appbar.transport.play.png"
                                                     Command="{Binding PlayAllCommand}" />
                 <behaviors:ApplicationBar.MenuItems>
-                    <behaviors:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarAddToNowPlaying, Source={StaticResource LocalizedStrings}}"
+                    <behaviors:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarAddToNowPlaying, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                       IsVisible="{Binding IsSelectionEnabled}"
                                                       IsEnabled="{Binding SelectedTracks.Count, Converter={StaticResource CountToEnabled}, ConverterParameter=delete}"
                                                       Command="{Binding AddToNowPlayingCommand}" />

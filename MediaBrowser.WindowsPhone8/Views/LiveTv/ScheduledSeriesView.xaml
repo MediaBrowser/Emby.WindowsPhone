@@ -33,11 +33,11 @@
             <behaviors:ApplicationBar>
                 <behaviors:ApplicationBar.Buttons>
                     <behaviors:ApplicationBarIconButton IconUri="/Icons/appbar.save.png"
-                                                        Text="{Binding LocalizedResources.AppBarSave, Source={StaticResource LocalizedStrings}}"
+                                                        Text="{Binding LocalizedResources.AppBarSave, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                         Command="{Binding SaveCommand}"
                                                         IsEnabled="{Binding ProgressIsVisible, Converter={StaticResource NegativeBooleanConverter}}"/>
                     <behaviors:ApplicationBarIconButton IconUri="/Icons/appbar.delete.rest.png"
-                                                        Text="{Binding LocalizedResources.AppBarDelete, Source={StaticResource LocalizedStrings}}"
+                                                        Text="{Binding LocalizedResources.AppBarDelete, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                         Command="{Binding DeleteCommand}" 
                                                         IsVisible="{Binding IsAdd, Converter={StaticResource NegativeBooleanConverter}}"
                                                         IsEnabled="{Binding ProgressIsVisible, Converter={StaticResource NegativeBooleanConverter}}"/>
@@ -46,10 +46,10 @@
             <behaviors:ApplicationBar>
                 <behaviors:ApplicationBar.Buttons>
                     <behaviors:ApplicationBarIconButton IconUri="/Icons/appbar.refresh.rest.png"
-                                                        Text="{Binding LocalizedResources.AppBarRefresh, Source={StaticResource LocalizedStrings}}"
+                                                        Text="{Binding LocalizedResources.AppBarRefresh, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                         Command="{Binding RefreshCommand}" />
                     <behaviors:ApplicationBarIconButton IconUri="/Icons/appbar.delete.rest.png"
-                                                        Text="{Binding LocalizedResources.AppBarDelete, Source={StaticResource LocalizedStrings}}"
+                                                        Text="{Binding LocalizedResources.AppBarDelete, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                         Command="{Binding DeleteCommand}"
                                                         IsVisible="{Binding IsAdd, Converter={StaticResource NegativeBooleanConverter}}"/>
                 </behaviors:ApplicationBar.Buttons>

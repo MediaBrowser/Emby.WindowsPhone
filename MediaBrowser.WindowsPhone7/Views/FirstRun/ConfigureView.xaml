@@ -92,7 +92,7 @@
               HorizontalAlignment="Stretch"
               Background="{StaticResource AppBarBrush}"
               Grid.RowSpan="2">
-            <Button Content="{Binding LocalizedResources.AppBarSettings, Source={StaticResource LocalizedStrings}}"
+            <Button Content="{Binding LocalizedResources.AppBarSettings, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                     Width="240"
                     HorizontalAlignment="Right"
                     x:Name="SettingsButton"

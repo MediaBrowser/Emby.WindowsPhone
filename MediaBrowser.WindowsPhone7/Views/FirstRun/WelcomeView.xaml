@@ -70,7 +70,7 @@
         <Grid VerticalAlignment="Bottom"
               HorizontalAlignment="Stretch"
               Background="{StaticResource AppBarBrush}">
-            <Button Content="{Binding LocalizedResources.AppBarNext, Source={StaticResource LocalizedStrings}}"
+            <Button Content="{Binding LocalizedResources.AppBarNext, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                     Width="240"
                     HorizontalAlignment="Right"
                     x:Name="NextButton"

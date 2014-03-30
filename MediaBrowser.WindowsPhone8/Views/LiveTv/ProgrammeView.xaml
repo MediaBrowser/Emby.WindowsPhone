@@ -56,14 +56,14 @@
                                              FalseValue="/Icons/appbar.cancel.serieslink.png"
                                              TrueValue="/Icons/appbar.serieslink.png" />
         <converters:BooleanToStringConverter x:Key="RecordTextConverter"
-                                             FalseValue="{Binding LocalizedResources.MenuCancelRecording, Source={StaticResource LocalizedStrings}}"
-                                             TrueValue="{Binding LocalizedResources.MenuRecord, Source={StaticResource LocalizedStrings}}" />
+                                             FalseValue="{Binding LocalizedResources.MenuCancelRecording, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                             TrueValue="{Binding LocalizedResources.MenuRecord, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}" />
         <converters:BooleanToStringConverter x:Key="SeriesTextConverter"
-                                             FalseValue="{Binding LocalizedResources.ContextCancelSeries, Source={StaticResource LocalizedStrings}}"
-                                             TrueValue="{Binding LocalizedResources.MenuRecordSeries, Source={StaticResource LocalizedStrings}}" />
+                                             FalseValue="{Binding LocalizedResources.ContextCancelSeries, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                             TrueValue="{Binding LocalizedResources.MenuRecordSeries, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}" />
         <converters:BooleanToStringConverter x:Key="SeriesMenuTextConverter"
-                                             FalseValue="{Binding LocalizedResources.ContextCancelSeries, Source={StaticResource LocalizedStrings}}"
-                                             TrueValue="{Binding LocalizedResources.AppBarCreateAndEditSeries, Source={StaticResource LocalizedStrings}}" />
+                                             FalseValue="{Binding LocalizedResources.ContextCancelSeries, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                             TrueValue="{Binding LocalizedResources.AppBarCreateAndEditSeries, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}" />
     </scott:BasePage.Resources>
 
     <!--LayoutRoot is the root grid where all page content is placed-->
