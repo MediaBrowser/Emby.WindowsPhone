@@ -277,16 +277,16 @@
     <value>favoriter</value>
   </data>
   <data name="Genre" xml:space="preserve">
-    <value>genre</value>
+    <value>Genre</value>
   </data>
   <data name="HeaderChooseClient" xml:space="preserve">
-    <value>välj en klient</value>
+    <value>Välj en klient</value>
   </data>
   <data name="HeaderDefaultGrouping" xml:space="preserve">
-    <value>standard sortering</value>
+    <value>Standard sortering</value>
   </data>
   <data name="HeaderFromCollection" xml:space="preserve">
-    <value>från kollektion (när det applicerbart):</value>
+    <value>Från kollektion (om möjligt):</value>
   </data>
   <data name="LabelActor" xml:space="preserve">
     <value>Skådespelare</value>
@@ -310,7 +310,7 @@
     <value>biografi</value>
   </data>
   <data name="LabelBoxsets" xml:space="preserve">
-    <value>boxsets</value>
+    <value>samlingar</value>
   </data>
   <data name="LabelCastCrew" xml:space="preserve">
     <value>Alla medverkande</value>
@@ -358,7 +358,7 @@
     <value>hitta server</value>
   </data>
   <data name="LabelFirstRunAccessible" xml:space="preserve">
-    <value>Så fort Media Browser 3 servenr är konfigurerad, var god och kolla så att den är åtkomlig från vart du är, oavsett om du befinner dig på det trådlösa lokala nätverket eller på en statisk extern adress.</value>
+    <value>Så fort Media Browser 3 servern är konfigurerad, var god och kolla så att den är åtkomlig från vart du är, oavsett om du befinner dig på det trådlösa lokala nätverket eller på en statisk extern adress.</value>
   </data>
   <data name="LabelFirstRunHappyConfiguration" xml:space="preserve">
     <value>Om du är nöjd med det du har ställt in, klicka på inställningar och skriv in anslutnings inställningarna för din server,  annars kan du avsluta appen här.</value>
@@ -592,7 +592,7 @@
     <value>Experimentel</value>
   </data>
   <data name="MessageExperimentalVideo" xml:space="preserve">
-    <value>Spela denna typen av video ärr för nuvarande experimentell och resultat kan komma att variera, vill du fortsätta?</value>
+    <value>Spela denna typen av video är för nuvarande experimentell och resultat kan komma att variera, vill du fortsätta?</value>
   </data>
   <data name="MessageTracksAddedSuccessfully" xml:space="preserve">
     <value>{0} antal spår har lagts till.</value>
@@ -767,17 +767,397 @@
   <data name="LabelWelcomeTextPhone7" xml:space="preserve">
     <value>Välkommen till Media Browser för Windows Phone. Den här applikationen tillåter dig att blädda i din media samling och fjärrstyra vilken som helst av Media Browser klienterna.</value>
   </data>
+  
+<!--
+<data name="LabelChannels" xml:space="preserve">
+    <value>Channels</value>
+  </data>
+-->
+  
+<!--
+<data name="LabelRecordedTv" xml:space="preserve">
+    <value>Recorded TV</value>
+  </data>
+-->
+  
+<!--
+<data name="LabelScheduledRecording" xml:space="preserve">
+    <value>Scheduled recordings</value>
+  </data>
+-->
   <data name="LabelUpcoming" xml:space="preserve">
     <value>kommande</value>
   </data>
+  
+<!--
+<data name="LabelWhatsOn" xml:space="preserve">
+    <value>What's On</value>
+  </data>
+-->
+  
+<!--
+<data name="SysTrayGettingChannels" xml:space="preserve">
+    <value>Getting channels...</value>
+  </data>
+-->
+  
+<!--
+<data name="SysTrayGettingProgrammes" xml:space="preserve">
+    <value>Getting programmes...</value>
+  </data>
+-->
+  
+<!--
+<data name="SysTrayGettingSeriesRecordings" xml:space="preserve">
+    <value>Getting series recordings...</value>
+  </data>
+-->
+  
+<!--
+<data name="SysTrayGettingUpcomingRecordings" xml:space="preserve">
+    <value>Getting upcoming recordings...</value>
+  </data>
+-->
+  
+<!--
+<data name="ContextCancelSeries" xml:space="preserve">
+    <value>cancel series</value>
+  </data>
+-->
+  
+<!--
+<data name="LabelScheduleAnyChannel" xml:space="preserve">
+    <value>Any channel</value>
+  </data>
+-->
+  
+<!--
+<data name="LabelScheduleAnyTime" xml:space="preserve">
+    <value>Any time</value>
+  </data>
+-->
+  
+<!--
+<data name="LabelScheduleDaily" xml:space="preserve">
+    <value>Daily</value>
+  </data>
+-->
   <data name="LabelScheduleToday" xml:space="preserve">
     <value>Idag</value>
   </data>
   <data name="LabelScheduleTomorrow" xml:space="preserve">
     <value>Imorgon</value>
   </data>
+  
+<!--
+<data name="LabelScheduleWeekdays" xml:space="preserve">
+    <value>Weekdays</value>
+  </data>
+-->
+  
+<!--
+<data name="LabelScheduleWeekends" xml:space="preserve">
+    <value>Weekends</value>
+  </data>
+-->
+  
+<!--
+<data name="HeaderRecordings" xml:space="preserve">
+    <value>recordings</value>
+  </data>
+-->
+  
+<!--
+<data name="HeaderScheduled" xml:space="preserve">
+    <value>scheduled</value>
+  </data>
+-->
+  
+<!--
+<data name="HeaderSettings" xml:space="preserve">
+    <value>settings</value>
+  </data>
+-->
+  
+<!--
+<data name="AppBarSave" xml:space="preserve">
+    <value>save</value>
+  </data>
+-->
+  
+<!--
+<data name="LabelDays" xml:space="preserve">
+    <value>Days:</value>
+  </data>
+-->
+  
+<!--
+<data name="LabelRecordOnlyNewEpisodes" xml:space="preserve">
+    <value>Record only new episodes</value>
+  </data>
+-->
+  
+<!--
+<data name="LabelRecordProgrammeAtAnyTime" xml:space="preserve">
+    <value>Record programme at any time</value>
+  </data>
+-->
+  
+<!--
+<data name="LabelRecordProgrammeOnAllChannels" xml:space="preserve">
+    <value>Record programme on all channels</value>
+  </data>
+-->
+  
+<!--
+<data name="AppBarCancel" xml:space="preserve">
+    <value>cancel</value>
+  </data>
+-->
+  
+<!--
+<data name="LabelPostPaddingMinutes" xml:space="preserve">
+    <value>Post-padding minutes:</value>
+  </data>
+-->
+  
+<!--
+<data name="LabelPostPaddingRequired" xml:space="preserve">
+    <value>Post-padding is required to record</value>
+  </data>
+-->
+  
+<!--
+<data name="LabelPrePaddingMinutes" xml:space="preserve">
+    <value>Pre-padding minutes:</value>
+    <comment>Pre-padding = how long before programme's scheduled start time to record</comment>
+  </data>
+-->
+  
+<!--
+<data name="LabelPrePaddingRequired" xml:space="preserve">
+    <value>Pre-padding is required to record</value>
+  </data>
+-->
+  
+<!--
+<data name="SysTrayCancellingSeriesRecording" xml:space="preserve">
+    <value>Cancelling series link...</value>
+  </data>
+-->
+  
+<!--
+<data name="SysTrayGettingRecordedItems" xml:space="preserve">
+    <value>Getting recorded items...</value>
+  </data>
+-->
+  
+<!--
+<data name="AppBarDelete" xml:space="preserve">
+    <value>delete</value>
+  </data>
+-->
+  
+<!--
+<data name="ErrorDeletingSeriesRecording" xml:space="preserve">
+    <value>Sorry, there was an error cancelling this series at this time.</value>
+  </data>
+-->
+  
+<!--
+<data name="LabelChannel" xml:space="preserve">
+    <value>Channel:</value>
+  </data>
+-->
+  
+<!--
+<data name="LabelNew" xml:space="preserve">
+    <value>New</value>
+  </data>
+-->
+  
+<!--
+<data name="LabelPrePostPadding" xml:space="preserve">
+    <value>Pre/Post Padding</value>
+  </data>
+-->
+  
+<!--
+<data name="LabelTime" xml:space="preserve">
+    <value>Time:</value>
+  </data>
+-->
+  
+<!--
+<data name="MenuCancelRecording" xml:space="preserve">
+    <value>Cancel Recording</value>
+  </data>
+-->
+  
+<!--
+<data name="MessageDeleteSeriesRecording" xml:space="preserve">
+    <value>Are you sure you want to cancel this series link? This cannot be undone.</value>
+  </data>
+-->
   <data name="SysTrayGettingUpcoming" xml:space="preserve">
     <value>Hämtar kommande avsnitt...</value>
   </data>
+  
+<!--
+<data name="MessageCancelRecording" xml:space="preserve">
+    <value>Are you sure you want to cancel this recording? This cannot be undone.</value>
+  </data>
+-->
+  
+<!--
+<data name="SysTraySaving" xml:space="preserve">
+    <value>Saving...</value>
+  </data>
+-->
+  
+<!--
+<data name="MenuRecord" xml:space="preserve">
+    <value>record</value>
+  </data>
+-->
+  
+<!--
+<data name="MenuRecordSeries" xml:space="preserve">
+    <value>record series</value>
+  </data>
+-->
+  
+<!--
+<data name="LabelReallyShortHours" xml:space="preserve">
+    <value>h</value>
+  </data>
+-->
+  
+<!--
+<data name="LabelReallyShortMinutes" xml:space="preserve">
+    <value>m</value>
+  </data>
+-->
+  
+<!--
+<data name="LabelLive" xml:space="preserve">
+    <value>Live</value>
+  </data>
+-->
+  
+<!--
+<data name="SystemTrayGettingWhatsOn" xml:space="preserve">
+    <value>Getting what's on now...</value>
+  </data>
+-->
+  
+<!--
+<data name="SysTrayLoadingProgrammes" xml:space="preserve">
+    <value>Loading programmes...</value>
+  </data>
+-->
+  
+<!--
+<data name="SysTraySettingProgrammeToRecord" xml:space="preserve">
+    <value>Setting programme to record...</value>
+  </data>
+-->
+  
+<!--
+<data name="SysTraySettingSeriesToRecord" xml:space="preserve">
+    <value>Setting series to record...</value>
+  </data>
+-->
+  
+<!--
+<data name="AppBarCreateAndEditSeries" xml:space="preserve">
+    <value>create and edit series recording</value>
+  </data>
+-->
+  
+<!--
+<data name="SysTrayCancellingProgramme" xml:space="preserve">
+    <value>Cancelling programme...</value>
+  </data>
+-->
+  
+<!--
+<data name="SysTrayPreparing" xml:space="preserve">
+    <value>Preparing...</value>
+  </data>
+-->
+  
+<!--
+<data name="SysTrayGettingRecordingDetails" xml:space="preserve">
+    <value>Getting recording details...</value>
+  </data>
+-->
+  
+<!--
+<data name="LabelDefaultRecordedTvGrouping" xml:space="preserve">
+    <value>Default recorded TV grouping</value>
+  </data>
+-->
+  
+<!--
+<data name="AppBarChannel" xml:space="preserve">
+    <value>channel</value>
+  </data>
+-->
+  
+<!--
+<data name="AppBarRecordedDate" xml:space="preserve">
+    <value>recorded date</value>
+  </data>
+-->
+  
+<!--
+<data name="AppBarShowName" xml:space="preserve">
+    <value>show name</value>
+  </data>
+-->
+  
+<!--
+<data name="HeaderActiveRecordings" xml:space="preserve">
+    <value>Active</value>
+  </data>
+-->
+  
+<!--
+<data name="LabelNoRecordedItems" xml:space="preserve">
+    <value>You don't appear to have any recorded items</value>
+  </data>
+-->
+  
+<!--
+<data name="LabelRecordedDate" xml:space="preserve">
+    <value>Recorded date</value>
+  </data>
+-->
+  
+<!--
+<data name="LabelShowName" xml:space="preserve">
+    <value>Show name</value>
+  </data>
+-->
+  
+<!--
+<data name="SysTrayGettingCurrentlyRecording" xml:space="preserve">
+    <value>Getting active recordings...</value>
+  </data>
+-->
+  
+<!--
+<data name="HeaderLive" xml:space="preserve">
+    <value>Live</value>
+    <comment>As in "live tv"</comment>
+  </data>
+-->
+  
+<!--
+<data name="HeaderTV" xml:space="preserve">
+    <value>TV</value>
+  </data>
+-->
 
 </root>

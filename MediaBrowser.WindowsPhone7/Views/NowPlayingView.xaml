@@ -73,7 +73,7 @@
             <cimbalino:ApplicationBarBehavior IsMenuEnabled="True">
                 <cimbalino:ApplicationBarIconButton Text="{Binding LocalizedResources.AppBarPrevious, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                     IconUri="/Icons/appbar.transport.rew.rest.png"
-                                                    IsEnabled="{Binding Playlist.Count, Converter={StaticResource PlaylistCountConverter}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                    IsEnabled="{Binding Playlist.Count, Converter={StaticResource PlaylistCountConverter}}"
                                                     Command="{Binding PreviousTrackCommand}" />
                 <cimbalino:ApplicationBarIconButton Text="{Binding IsPlaying, Converter={StaticResource PlayTextConverter}}"
                                                     IconUri="{Binding IsPlaying, Converter={StaticResource PlayIconConverter}}"

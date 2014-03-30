@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
-  <file datatype="xml" source-language="en-GB" target-language="pt" original="AppResources.resx" tool-id="MultilingualAppToolkit" product-name="MediaBrowser.WindowsPhone8" product-version="1.0.0.0" build-num="0">
+  <file datatype="xml" source-language="en-GB" target-language="pt-BR" original="AppResources.resx" tool-id="MultilingualAppToolkit" product-name="MediaBrowser.WindowsPhone8" product-version="1.0.0.0" build-num="0">
     <header>
       <tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="2.2.1212.0" tool-company="Microsoft" />
     </header>
@@ -672,7 +672,7 @@
         </trans-unit>
         <trans-unit id="Resx/ResourceLanguage" translate="yes" xml:space="preserve">
           <source>en-GB</source>
-          <target state="translated">pt</target>
+          <target state="translated">pt-BR</target>
         </trans-unit>
         <trans-unit id="Resx/Settings" translate="yes" xml:space="preserve">
           <source>Settings</source>
@@ -1037,70 +1037,6 @@
           <source>Getting upcoming episodes...</source>
           <target state="new">Getting upcoming episodes...</target>
         </trans-unit>
-        <trans-unit translate="yes" id="Resx/MessageCancelRecording" xml:space="preserve">
-          <source>Are you sure you want to cancel this recording? This cannot be undone.</source>
-          <target state="new">Are you sure you want to cancel this recording? This cannot be undone.</target>
-        </trans-unit>
-        <trans-unit translate="yes" id="Resx/SysTraySaving" xml:space="preserve">
-          <source>Saving...</source>
-          <target state="new">Saving...</target>
-        </trans-unit>
-        <trans-unit translate="yes" id="Resx/MenuRecordSeries" xml:space="preserve">
-          <source>record series</source>
-          <target state="new">record series</target>
-        </trans-unit>
-        <trans-unit translate="yes" id="Resx/LabelReallyShortMinutes" xml:space="preserve">
-          <source>m</source>
-          <target state="new">m</target>
-        </trans-unit>
-        <trans-unit translate="yes" id="Resx/LabelLive" xml:space="preserve">
-          <source>Live</source>
-          <target state="new">Live</target>
-        </trans-unit>
-        <trans-unit translate="yes" id="Resx/SystemTrayGettingWhatsOn" xml:space="preserve">
-          <source>Getting what's on now...</source>
-          <target state="new">Getting what's on now...</target>
-        </trans-unit>
-        <trans-unit translate="yes" id="Resx/SysTrayLoadingProgrammes" xml:space="preserve">
-          <source>Loading programmes...</source>
-          <target state="new">Loading programmes...</target>
-        </trans-unit>
-        <trans-unit translate="yes" id="Resx/SysTraySettingSeriesToRecord" xml:space="preserve">
-          <source>Setting series to record...</source>
-          <target state="new">Setting series to record...</target>
-        </trans-unit>
-        <trans-unit translate="yes" id="Resx/SysTrayPreparing" xml:space="preserve">
-          <source>Preparing...</source>
-          <target state="new">Preparing...</target>
-        </trans-unit>
-        <trans-unit translate="yes" id="Resx/SysTrayGettingRecordingDetails" xml:space="preserve">
-          <source>Getting recording details...</source>
-          <target state="new">Getting recording details...</target>
-        </trans-unit>
-        <trans-unit translate="yes" id="Resx/LabelDefaultRecordedTvGrouping" xml:space="preserve">
-          <source>Default recorded TV grouping</source>
-          <target state="new">Default recorded TV grouping</target>
-        </trans-unit>
-        <trans-unit translate="yes" id="Resx/AppBarShowName" xml:space="preserve">
-          <source>show name</source>
-          <target state="new">show name</target>
-        </trans-unit>
-        <trans-unit translate="yes" id="Resx/HeaderActiveRecordings" xml:space="preserve">
-          <source>Active</source>
-          <target state="new">Active</target>
-        </trans-unit>
-        <trans-unit translate="yes" id="Resx/LabelNoRecordedItems" xml:space="preserve">
-          <source>You don't appear to have any recorded items</source>
-          <target state="new">You don't appear to have any recorded items</target>
-        </trans-unit>
-        <trans-unit translate="yes" id="Resx/LabelShowName" xml:space="preserve">
-          <source>Show name</source>
-          <target state="new">Show name</target>
-        </trans-unit>
-        <trans-unit translate="yes" id="Resx/SysTrayGettingCurrentlyRecording" xml:space="preserve">
-          <source>Getting active recordings...</source>
-          <target state="new">Getting active recordings...</target>
-        </trans-unit>
         <trans-unit translate="yes" id="Resx/HeaderTV" xml:space="preserve">
           <source>TV</source>
           <target state="new">TV</target>
@@ -1110,9 +1046,29 @@
           <target state="new">Live</target>
           <note from="MultilingualBuild" annotates="source" priority="2">As in "live tv"</note>
         </trans-unit>
+        <trans-unit translate="yes" id="Resx/SysTrayGettingCurrentlyRecording" xml:space="preserve">
+          <source>Getting active recordings...</source>
+          <target state="new">Getting active recordings...</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelShowName" xml:space="preserve">
+          <source>Show name</source>
+          <target state="new">Show name</target>
+        </trans-unit>
         <trans-unit translate="yes" id="Resx/LabelRecordedDate" xml:space="preserve">
           <source>Recorded date</source>
           <target state="new">Recorded date</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelNoRecordedItems" xml:space="preserve">
+          <source>You don't appear to have any recorded items</source>
+          <target state="new">You don't appear to have any recorded items</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/HeaderActiveRecordings" xml:space="preserve">
+          <source>Active</source>
+          <target state="new">Active</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/AppBarShowName" xml:space="preserve">
+          <source>show name</source>
+          <target state="new">show name</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/AppBarRecordedDate" xml:space="preserve">
           <source>recorded date</source>
@@ -1122,25 +1078,69 @@
           <source>channel</source>
           <target state="new">channel</target>
         </trans-unit>
-        <trans-unit translate="yes" id="Resx/AppBarCreateAndEditSeries" xml:space="preserve">
-          <source>create and edit series recording</source>
-          <target state="new">create and edit series recording</target>
+        <trans-unit translate="yes" id="Resx/LabelDefaultRecordedTvGrouping" xml:space="preserve">
+          <source>Default recorded TV grouping</source>
+          <target state="new">Default recorded TV grouping</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SysTrayGettingRecordingDetails" xml:space="preserve">
+          <source>Getting recording details...</source>
+          <target state="new">Getting recording details...</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SysTrayPreparing" xml:space="preserve">
+          <source>Preparing...</source>
+          <target state="new">Preparing...</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/SysTrayCancellingProgramme" xml:space="preserve">
           <source>Cancelling programme...</source>
           <target state="new">Cancelling programme...</target>
         </trans-unit>
+        <trans-unit translate="yes" id="Resx/AppBarCreateAndEditSeries" xml:space="preserve">
+          <source>create and edit series recording</source>
+          <target state="new">create and edit series recording</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SysTraySettingSeriesToRecord" xml:space="preserve">
+          <source>Setting series to record...</source>
+          <target state="new">Setting series to record...</target>
+        </trans-unit>
         <trans-unit translate="yes" id="Resx/SysTraySettingProgrammeToRecord" xml:space="preserve">
           <source>Setting programme to record...</source>
           <target state="new">Setting programme to record...</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SysTrayLoadingProgrammes" xml:space="preserve">
+          <source>Loading programmes...</source>
+          <target state="new">Loading programmes...</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SystemTrayGettingWhatsOn" xml:space="preserve">
+          <source>Getting what's on now...</source>
+          <target state="new">Getting what's on now...</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelLive" xml:space="preserve">
+          <source>Live</source>
+          <target state="new">Live</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/LabelReallyShortMinutes" xml:space="preserve">
+          <source>m</source>
+          <target state="new">m</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/LabelReallyShortHours" xml:space="preserve">
           <source>h</source>
           <target state="new">h</target>
         </trans-unit>
+        <trans-unit translate="yes" id="Resx/MenuRecordSeries" xml:space="preserve">
+          <source>record series</source>
+          <target state="new">record series</target>
+        </trans-unit>
         <trans-unit translate="yes" id="Resx/MenuRecord" xml:space="preserve">
           <source>record</source>
           <target state="new">record</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SysTraySaving" xml:space="preserve">
+          <source>Saving...</source>
+          <target state="new">Saving...</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/MessageCancelRecording" xml:space="preserve">
+          <source>Are you sure you want to cancel this recording? This cannot be undone.</source>
+          <target state="new">Are you sure you want to cancel this recording? This cannot be undone.</target>
         </trans-unit>
       </group>
     </body>

@@ -3,12 +3,10 @@
   <DefaultLanguage xmlns="" code="en-GB" />
   <Languages xmlns="">
     <Language code="de" />
-    <Language code="el-GR" />
     <Language code="en-US" />
     <Language code="fr" />
-    <Language code="hi-IN" />
     <Language code="nl" />
-    <Language code="pt" />
+    <Language code="pt-BR" />
     <Language code="qps-ploc" />
     <Language code="sv" />
   </Languages>
@@ -34,18 +32,13 @@
           <Count>0</Count>
           <BackgroundImageURI IsRelative="true" IsResource="false">Assets\Tiles\FlipCycleTileMedium.png</BackgroundImageURI>
           <Title>Media Browser Beta</Title>
-          <BackContent>
-          </BackContent>
-          <BackBackgroundImageURI IsRelative="true" IsResource="false">
-          </BackBackgroundImageURI>
-          <BackTitle>
-          </BackTitle>
+          <BackContent></BackContent>
+          <BackBackgroundImageURI IsRelative="true" IsResource="false"></BackBackgroundImageURI>
+          <BackTitle></BackTitle>
           <LargeBackgroundImageURI IsRelative="true" IsResource="false">Assets\Tiles\FlipCycleTileLarge.png</LargeBackgroundImageURI>
           <LargeBackContent />
-          <LargeBackBackgroundImageURI IsRelative="true" IsResource="false">
-          </LargeBackBackgroundImageURI>
-          <DeviceLockImageURI IsRelative="true" IsResource="false">
-          </DeviceLockImageURI>
+          <LargeBackBackgroundImageURI IsRelative="true" IsResource="false"></LargeBackBackgroundImageURI>
+          <DeviceLockImageURI IsRelative="true" IsResource="false"></DeviceLockImageURI>
           <HasLarge>True</HasLarge>
         </TemplateFlip>
       </PrimaryToken>
