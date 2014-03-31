@@ -215,7 +215,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                 {
                     var upcomingItems = items.Items;
                     var groupedItems = (from u in upcomingItems
-                        group u by u.StartDate
+                        group u by u.StartDate.Date
                         into grp
                         orderby grp.Key
                         select new Group<TimerInfoDto>(Utils.CoolDateName(grp.Key), grp)).ToList();
