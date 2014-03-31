@@ -328,7 +328,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
 
             var upcomingItems = itemResponse.Items;
             var groupedItems = (from u in upcomingItems
-                                group u by u.PremiereDate
+                                group u by u.PremiereDate.Value.Date
                                     into grp
                                     orderby grp.Key
                                     select new Group<BaseItemDto>(Utils.CoolDateName(grp.Key), grp)).ToList();

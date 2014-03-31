@@ -112,7 +112,7 @@
                     <phone:LongListSelector ItemsSource="{Binding NextUpList}"
                                             ItemTemplate="{StaticResource EpisodeDataTemplate}" />
                 </phone:PivotItem>
-                <phone:PivotItem Header="{Binding LocalizedResources.LabelUpcoming, Source={StaticResource LocalizedStrings}}">
+                <phone:PivotItem Header="{Binding LocalizedResources.LabelUpcoming, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
                     <phone:LongListSelector ItemsSource="{Binding Upcoming}"
                                             IsGroupingEnabled="True"
                                             JumpListStyle="{StaticResource LLSGroupItemLongStyle}"
