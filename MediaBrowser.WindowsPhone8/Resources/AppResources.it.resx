@@ -118,382 +118,382 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AppBarAbout" xml:space="preserve">
-    <value>sobre</value>
+    <value>Info</value>
   </data>
   <data name="AppBarAddToNowPlaying" xml:space="preserve">
-    <value>adicionar à reprodução</value>
+    <value>Aggiungi alla coda</value>
   </data>
   <data name="AppBarChangeProfile" xml:space="preserve">
-    <value>alterar perfil</value>
+    <value>Cambia profilo</value>
   </data>
   <data name="AppBarClearNowPlaying" xml:space="preserve">
-    <value>limpar reprodução</value>
+    <value>Svuota la lista</value>
   </data>
   <data name="AppBarDeleteItems" xml:space="preserve">
-    <value>apagar itens</value>
+    <value>Elimina</value>
   </data>
   <data name="AppBarGroupBy" xml:space="preserve">
-    <value>agrupar por</value>
+    <value>Raggruppa per</value>
   </data>
   <data name="AppBarLogin" xml:space="preserve">
-    <value>login</value>
+    <value>Accesso</value>
   </data>
   <data name="AppBarMarkAsUnwatched" xml:space="preserve">
-    <value>marcar como não-assistido</value>
+    <value>Segna come non visto</value>
   </data>
   <data name="AppBarMarkAsWatched" xml:space="preserve">
-    <value>marcar como assistido</value>
+    <value>Segna come visto</value>
   </data>
   <data name="AppBarNext" xml:space="preserve">
-    <value>próximo</value>
+    <value>Prossimo</value>
   </data>
   <data name="AppBarNotifications" xml:space="preserve">
-    <value>notificações</value>
+    <value>Notifica</value>
   </data>
   <data name="AppBarNowPlaying" xml:space="preserve">
-    <value>reproduzindo agora</value>
+    <value>Riproducendo</value>
   </data>
   <data name="AppBarPause" xml:space="preserve">
-    <value>pausa</value>
+    <value>Pausa</value>
   </data>
   <data name="AppBarPlay" xml:space="preserve">
-    <value>reproduzir</value>
+    <value>Riproduci</value>
   </data>
   <data name="AppBarPlayAll" xml:space="preserve">
-    <value>reproduzir todos</value>
+    <value>Riproduci tutto</value>
   </data>
   <data name="AppBarPlayAllTracks" xml:space="preserve">
-    <value>reproduzir todas as faixas</value>
+    <value>Riproduci tutte le tracce</value>
   </data>
   <data name="AppBarPlayItems" xml:space="preserve">
-    <value>reproduzir itens</value>
+    <value>Riproduci elementi</value>
   </data>
   <data name="AppBarPlayOn" xml:space="preserve">
-    <value>reproduzir em...</value>
+    <value>Riproduci su...</value>
   </data>
   <data name="AppBarPosterLockscreen" xml:space="preserve">
-    <value>definir poster como tela de bloqueio</value>
+    <value>Imposta la locandina come blocco schermo</value>
   </data>
   <data name="AppBarPrevious" xml:space="preserve">
-    <value>anterior</value>
+    <value>precedente</value>
   </data>
   <data name="AppBarRefresh" xml:space="preserve">
-    <value>atualizar</value>
+    <value>aggiorna</value>
   </data>
   <data name="AppBarRefreshInformation" xml:space="preserve">
-    <value>atualizar informação</value>
+    <value>aggiorna le informazioni</value>
   </data>
   <data name="AppBarRemote" xml:space="preserve">
     <value>remoto</value>
   </data>
   <data name="AppBarResume" xml:space="preserve">
-    <value>retomar</value>
+    <value>riprendi</value>
   </data>
   <data name="AppBarSearch" xml:space="preserve">
-    <value>busca</value>
+    <value>cerca</value>
   </data>
   <data name="AppBarSelectItems" xml:space="preserve">
-    <value>selecionar itens</value>
+    <value>seleziona elementi</value>
   </data>
   <data name="AppBarSendLogs" xml:space="preserve">
-    <value>enviar logs</value>
+    <value>spedisci logs</value>
   </data>
   <data name="AppBarSettings" xml:space="preserve">
-    <value>ajustes</value>
+    <value>configurazioni</value>
   </data>
   <data name="Collections" xml:space="preserve">
-    <value>Pastas</value>
+    <value>Cartelle</value>
   </data>
   <data name="DeviceNotRegistered" xml:space="preserve">
-    <value>Dispositivo não registrado</value>
+    <value>Dispositivo non registrato</value>
   </data>
   <data name="DeviceRegistered" xml:space="preserve">
-    <value>Dispositivo registrado</value>
+    <value>Dispositivo registrato</value>
   </data>
   <data name="ErrorConnectionDetailsInvalid" xml:space="preserve">
-    <value>Os detalhes da conexão são inválidos, por favor tente novamente.</value>
+    <value>Dettagli della connessione non sono validi, prova di nuovo.</value>
   </data>
   <data name="ErrorConnectionDetailsMessage" xml:space="preserve">
-    <value>Os detalhes da conexão não foram definidos, gostaria de definir agora?</value>
+    <value>Nessuna indicazione di connessione sono stati impostati, vuoi impostare adesso?</value>
   </data>
   <data name="ErrorConnectionDetailsTitle" xml:space="preserve">
-    <value>Sem detalhes da conexão</value>
+    <value>Nessun collegamento</value>
   </data>
   <data name="ErrorCouldNotFindServer" xml:space="preserve">
-    <value>Servidor não encontrado.</value>
+    <value>Impossibile trovare il server.</value>
   </data>
   <data name="ErrorDisabledUser" xml:space="preserve">
-    <value>Desculpe, esta conta foi desativada. Você voltará à tela de login.</value>
+    <value>Ci dispiace, ma sembra che questo account è stato disabilitato. Ritornerai alla schermata di accesso.</value>
   </data>
   <data name="ErrorDisabledUserTitle" xml:space="preserve">
-    <value>Não foi possível iniciar sessão</value>
+    <value>Non riesco ad accedere</value>
   </data>
   <data name="ErrorEpisodeDetails" xml:space="preserve">
-    <value>Erro ao baixar os detalhes do episódio</value>
+    <value>Errore nel scaricare i dettagli per l'episodio</value>
   </data>
   <data name="ErrorEpisodes" xml:space="preserve">
-    <value>Erro ao obter episódios</value>
+    <value>Errore leggere gli episodi</value>
   </data>
   <data name="ErrorFailedToSearch" xml:space="preserve">
-    <value>Falha ao executar busca</value>
+    <value>Impossibile eseguire la ricerca</value>
   </data>
   <data name="ErrorGettingData" xml:space="preserve">
-    <value>Erro ao obter dados</value>
+    <value>Errore durante il recupero dei dati</value>
   </data>
   <data name="ErrorGettingExtraInfo" xml:space="preserve">
-    <value>Erro ao obter informação extra</value>
+    <value>Errore ottenere informazioni supplementari</value>
   </data>
   <data name="ErrorGettingTrailerDetails" xml:space="preserve">
-    <value>Não foi possível obter informação do trailer</value>
+    <value>Impossibile ottenere le informazioni del trailer</value>
   </data>
   <data name="ErrorInvalidHostname" xml:space="preserve">
-    <value>Desculpe, o nome do host é inválido, por favor certifique-se que não existem espaços no nome.</value>
+    <value>Spiacenti, il nome host non è valido, Si prega di non inserire spazi.</value>
   </data>
   <data name="ErrorMakingChanges" xml:space="preserve">
-    <value>Erro ao executar mudanças</value>
+    <value>Errore fare le modifiche</value>
   </data>
   <data name="ErrorNoConnectionSettings" xml:space="preserve">
-    <value>Sem ajustes de conexão, toque para definir</value>
+    <value>Nessun impostazioni di connessione, toccare per impostare</value>
   </data>
   <data name="ErrorProblemUpdatingItem" xml:space="preserve">
-    <value>Ocorreu um problema ao atualizar este item, por favor tente mais tarde.</value>
+    <value>C'è stato un problema aggiornando questo articolo, si prega di riprovare più tardi.</value>
   </data>
   <data name="ErrorRecentItems" xml:space="preserve">
-    <value>Erro ao obter itens recentes</value>
+    <value>Errore di ottenere elementi recenti</value>
   </data>
   <data name="ErrorSeasons" xml:space="preserve">
-    <value>Erro ao obter temporadas</value>
+    <value>Errore nel recuperare le stagioni</value>
   </data>
   <data name="ErrorTitle" xml:space="preserve">
-    <value>Erro</value>
+    <value>Errore</value>
   </data>
   <data name="ErrorUnableToSignIn" xml:space="preserve">
-    <value>Não foi possível iniciar a sessão, isto pode ocorrer devido a usuário/senha incorretos ou por sua conta estar desativada.</value>
+    <value>Non riesco ad accedere in questo momento. Forse la password/username sono sbagliati o sei stato disattivato.</value>
   </data>
   <data name="ErrorUnableToSignInTitle" xml:space="preserve">
-    <value>Falha no login</value>
+    <value>Accesso non effettuato</value>
   </data>
   <data name="Favourites" xml:space="preserve">
-    <value>Favoritos</value>
+    <value>Preferiti</value>
   </data>
   <data name="Genre" xml:space="preserve">
-    <value>Gênero</value>
+    <value>Generi</value>
   </data>
   <data name="HeaderChooseClient" xml:space="preserve">
-    <value>Escolha um cliente</value>
+    <value>Scegli un client</value>
   </data>
   <data name="HeaderDefaultGrouping" xml:space="preserve">
-    <value>Agrupamento padrão</value>
+    <value>raggruppamento predefinito</value>
   </data>
   <data name="HeaderFromCollection" xml:space="preserve">
-    <value>Da coleção (quando aplicável):</value>
+    <value>Dalla raccolta (se applicabile):</value>
   </data>
   <data name="LabelActor" xml:space="preserve">
-    <value>Ator</value>
+    <value>Attori</value>
   </data>
   <data name="LabelAdd" xml:space="preserve">
-    <value>adicionar</value>
+    <value>aggiungi</value>
   </data>
   <data name="LabelAddToFavourites" xml:space="preserve">
-    <value>Adicionar aos favoritos</value>
+    <value>aggiungi a preferiti</value>
   </data>
   <data name="LabelAlbums" xml:space="preserve">
-    <value>álbuns</value>
+    <value>albums</value>
   </data>
   <data name="LabelAnHourAgo" xml:space="preserve">
-    <value>uma hora atrás</value>
+    <value>un ora fa</value>
   </data>
   <data name="LabelArtists" xml:space="preserve">
-    <value>artistas</value>
+    <value>artisti</value>
   </data>
   <data name="LabelBio" xml:space="preserve">
     <value>bio</value>
   </data>
   <data name="LabelBoxsets" xml:space="preserve">
-    <value>coletâneas</value>
+    <value>Collezioni</value>
   </data>
   <data name="LabelCastCrew" xml:space="preserve">
-    <value>elenco + equipe</value>
+    <value>cast + crew</value>
   </data>
   <data name="LabelChapters" xml:space="preserve">
-    <value>capítulos</value>
+    <value>capitoli</value>
   </data>
   <data name="LabelCollage" xml:space="preserve">
-    <value>Montagem de tela cheia</value>
+    <value>Schermo intero collage</value>
   </data>
   <data name="LabelConnect" xml:space="preserve">
-    <value>Conectar</value>
+    <value>Connetti</value>
   </data>
   <data name="LabelConnection" xml:space="preserve">
-    <value>conexão</value>
+    <value>connessione</value>
   </data>
   <data name="LabelConnectionDetails" xml:space="preserve">
-    <value>Coloque os detalhes da conexão para apontar para o computador executando o Media Browser 3. Depois, teste para confirmar.</value>
+    <value>Immetti le informazioni per la connessione al computer dove è installato Media Browser 3. il test verrà avviato alla conferma</value>
   </data>
   <data name="LabelConnectionWarning" xml:space="preserve">
-    <value>AVISO: Ao alterar o nome do host os perfis salvos serão removidos.</value>
+    <value>ATTENZIONE: Cambiare il nome host rimuoverà eventuali profili salvati.</value>
   </data>
   <data name="LabelDate" xml:space="preserve">
     <value>data</value>
   </data>
   <data name="LabelDaysAgo" xml:space="preserve">
-    <value>{0} dias atrás</value>
+    <value>{0} giorni fa</value>
   </data>
   <data name="LabelDefaultLockScreen" xml:space="preserve">
-    <value>Tela de bloqueio padrão</value>
+    <value>Schermata di blocco predefinito</value>
   </data>
   <data name="LabelDetails" xml:space="preserve">
-    <value>detalhes</value>
+    <value>dettagli</value>
   </data>
   <data name="LabelDirector" xml:space="preserve">
-    <value>Diretor</value>
+    <value>regista</value>
   </data>
   <data name="LabelDisplayRandomImages" xml:space="preserve">
-    <value>Exibir imagens de fundo aleatórias atrás do mosaico</value>
+    <value>Visualizza in modo causale le immagini sul fondo della tile</value>
   </data>
   <data name="LabelEpisode" xml:space="preserve">
-    <value>Episódio</value>
+    <value>Episodio</value>
   </data>
   <data name="LabelFindServer" xml:space="preserve">
-    <value>encontrar servidor</value>
+    <value>trova il server</value>
   </data>
   <data name="LabelFirstRunAccessible" xml:space="preserve">
-    <value>Depois de configurar o servidor Media Browser, certifique-se que ele está acessível, independente de estar na sua rede local ou em um endereço estático externo.</value>
+    <value>Una volta che il server di Media Browser è configurato, assicurarsi che sia accessibile da dove ti trovi, se questo è essere sulla vostra rete wireless locale, o un indirizzo statico esterno.</value>
   </data>
   <data name="LabelFirstRunHappyConfiguration" xml:space="preserve">
-    <value>Se está satisfeito com o que definiu, clique no botão de ajustes e digite os detalhes do servidor, ou simplesmente saia da aplicação.</value>
+    <value>Se sei felice con quello che hai configurato, fare clic sul pulsante Impostazioni e inserire i dettagli del server, altrimenti si può semplicemente chiudere l'applicazione da qui.</value>
   </data>
   <data name="LabelFirstRunServerInfo" xml:space="preserve">
-    <value>Antes de iniciar, você precisa se certificar que o servidor Media Browser está sendo executado</value>
+    <value>Prima di poter iniziare però, è necessario assicurarsi che si sta eseguendo il server Media Browser.</value>
   </data>
   <data name="LabelGeneral" xml:space="preserve">
-    <value>geral</value>
+    <value>generale</value>
   </data>
   <data name="LabelGenres" xml:space="preserve">
-    <value>gêneros</value>
+    <value>generi</value>
   </data>
   <data name="LabelHostname" xml:space="preserve">
-    <value>Nome do host</value>
+    <value>Hostname:</value>
   </data>
   <data name="LabelHoursAgo" xml:space="preserve">
-    <value>{0} horas atrás</value>
+    <value>{0} ore fa</value>
   </data>
   <data name="LabelImageEnhancers" xml:space="preserve">
-    <value>Ativar imagens melhoradas (se instalado no servidor)</value>
+    <value>Abilita immagini migliorate (se installato sul server)</value>
   </data>
   <data name="LabelImdb" xml:space="preserve">
-    <value>Veja o filme no imdb</value>
+    <value>Guarda il film su imdb</value>
   </data>
   <data name="LabelIsLockScreenProvider" xml:space="preserve">
-    <value>Media Browser é o provedor da tela de bloqueio atual</value>
+    <value>la schermata di blocco viene impostata da Media Browser</value>
   </data>
   <data name="LabelIsNotLockScreenProvider" xml:space="preserve">
-    <value>Media Browser não é o provedor da tela de bloqueio</value>
+    <value>la schermata di blocco non deve essere impostata da Media Browser</value>
   </data>
   <data name="LabelJustShowList" xml:space="preserve">
-    <value>Mostre apenas a lista de itens, não a visualização da pasta de mídias</value>
+    <value>Mostra l'elenco delle voci, non una vista cartella multimediale</value>
   </data>
   <data name="LabelLatestUnseen" xml:space="preserve">
-    <value>último não-assisitido</value>
+    <value>ultimo invisibile</value>
   </data>
   <data name="LabelLiveTv" xml:space="preserve">
-    <value>TV ao vivo</value>
+    <value>Tv indiretta</value>
   </data>
   <data name="LabelLockScreen" xml:space="preserve">
-    <value>tela de bloqueio</value>
+    <value>salva schermo</value>
   </data>
   <data name="LabelLockScreenSettinsg" xml:space="preserve">
-    <value>ajustes da tela de bloqueio</value>
+    <value>Configurazione salva schermo</value>
   </data>
   <data name="LabelMakeLockScreenProvider" xml:space="preserve">
-    <value>Ativar-nos como provedor da tela de bloqueio</value>
+    <value>Imposta salva schermo</value>
   </data>
   <data name="LabelManuallyLogin" xml:space="preserve">
-    <value>Login Manual</value>
+    <value>Accesso manuale</value>
   </data>
   <data name="LabelMinutesAgo" xml:space="preserve">
-    <value>{0} minutos atrás</value>
+    <value>{0} minuti fa</value>
   </data>
   <data name="LabelMissingEpisodes" xml:space="preserve">
-    <value>Exibir episódios ausentes</value>
+    <value>mostra episodi mancanti</value>
   </data>
   <data name="LabelMonthsAgo" xml:space="preserve">
-    <value>{0} meses atrás</value>
+    <value>{0} mese fa</value>
   </data>
   <data name="LabelMovies" xml:space="preserve">
-    <value>Filmes</value>
+    <value>Film</value>
   </data>
   <data name="LabelMusic" xml:space="preserve">
-    <value>Música</value>
+    <value>Musica</value>
   </data>
   <data name="LabelNextUp" xml:space="preserve">
-    <value>próximo</value>
+    <value>prossimo</value>
   </data>
   <data name="LabelNo" xml:space="preserve">
-    <value>não</value>
+    <value>no</value>
   </data>
   <data name="LabelNoEpisodes" xml:space="preserve">
-    <value>Nenhum episódio para exibir</value>
+    <value>Nessun episodio</value>
   </data>
   <data name="LabelNone" xml:space="preserve">
-    <value>nenhum</value>
+    <value>nessuno</value>
   </data>
   <data name="LabelNoSeasonsFound" xml:space="preserve">
-    <value>Nenhuma temporada encontrada</value>
+    <value>Nessuna stagione trovata</value>
   </data>
   <data name="LabelNotifications" xml:space="preserve">
-    <value>notificações</value>
+    <value>notifiche</value>
   </data>
   <data name="LabelNowPlaying" xml:space="preserve">
-    <value>reproduzindo agora</value>
+    <value>riproducendo</value>
   </data>
   <data name="LabelOneMinuteAgo" xml:space="preserve">
-    <value>um minuto atrás</value>
+    <value>un minuto fa</value>
   </data>
   <data name="LabelOneMonthAgo" xml:space="preserve">
-    <value>um mês atrás</value>
+    <value>un mese fa</value>
   </data>
   <data name="LabelOneSecondAgo" xml:space="preserve">
-    <value>um segundo atrás</value>
+    <value>un secondo fa</value>
   </data>
   <data name="LabelOther" xml:space="preserve">
-    <value>Outro</value>
+    <value>Altro</value>
   </data>
   <data name="LabelOverview" xml:space="preserve">
-    <value>visão geral</value>
+    <value>panoramica</value>
   </data>
   <data name="LabelPassword" xml:space="preserve">
-    <value>senha:</value>
+    <value>password:</value>
   </data>
   <data name="LabelPort" xml:space="preserve">
     <value>Porta:</value>
   </data>
   <data name="LabelPoster" xml:space="preserve">
-    <value>poster</value>
+    <value>Locandina</value>
   </data>
   <data name="LabelProducer" xml:space="preserve">
-    <value>Produtor</value>
+    <value>Produttore</value>
   </data>
   <data name="LabelProfile" xml:space="preserve">
-    <value>perfil</value>
+    <value>Profilo</value>
   </data>
   <data name="LabelProfileNotListed" xml:space="preserve">
-    <value>Perfil não listado?</value>
+    <value>Profilo non elencato?</value>
   </data>
   <data name="LabelProfiles" xml:space="preserve">
-    <value>perfis</value>
+    <value>profili</value>
   </data>
   <data name="LabelQuit" xml:space="preserve">
-    <value>sair</value>
+    <value>esci</value>
   </data>
   <data name="LabelRandomItems" xml:space="preserve">
-    <value>Itens aleatórios</value>
+    <value>Casuale</value>
   </data>
   <data name="LabelRandomPictures" xml:space="preserve">
-    <value>Fotos aleatórias da coleção</value>
+    <value>Immagini causali dalla collezione</value>
   </data>
   <data name="LabelRating" xml:space="preserve">
-    <value>Classificação:</value>
+    <value>Voto:</value>
   </data>
   <data name="LabelRecent" xml:space="preserve">
     <value>Recente</value>
@@ -502,43 +502,43 @@
     <value>Remoto</value>
   </data>
   <data name="LabelRemove" xml:space="preserve">
-    <value>remover</value>
+    <value>Rimuovi</value>
   </data>
   <data name="LabelRunningTime" xml:space="preserve">
-    <value>Tempo de execução:</value>
+    <value>Durata:</value>
   </data>
   <data name="LabelSearch" xml:space="preserve">
-    <value>busca</value>
+    <value>cerca</value>
   </data>
   <data name="LabelSeasons" xml:space="preserve">
-    <value>temporadas</value>
+    <value>Stagioni</value>
   </data>
   <data name="LabelSecondsAgo" xml:space="preserve">
-    <value>{0} segundos atrás</value>
+    <value>{0} secondi fa</value>
   </data>
   <data name="LabelSeries" xml:space="preserve">
-    <value>Séries</value>
+    <value>Serie</value>
   </data>
   <data name="LabelShowAllItems" xml:space="preserve">
-    <value>exibir todos os itens...</value>
+    <value>mostra tutti gli elementi...</value>
   </data>
   <data name="LabelShows" xml:space="preserve">
-    <value>shows</value>
+    <value>spettacoli</value>
   </data>
   <data name="LabelShowTrailers" xml:space="preserve">
-    <value>Exibir trailers nos itens recentes</value>
+    <value>Mostra i trailer negli elementi recenti</value>
   </data>
   <data name="LabelSinglePoster" xml:space="preserve">
-    <value>Poster único</value>
+    <value>Locandina singola</value>
   </data>
   <data name="LabelSongs" xml:space="preserve">
-    <value>músicas</value>
+    <value>canzoni</value>
   </data>
   <data name="LabelTile" xml:space="preserve">
-    <value>mosaico</value>
+    <value>tile</value>
   </data>
   <data name="LabelTileBackInformation" xml:space="preserve">
-    <value>Para exibir as excelentes artworks da mídia que você tem, o mosaico usará alguma dessas artworks, aqui você pode escolher como o mosaico será</value>
+    <value>Per mostrare alcune delle grandi opere a disposizione per il supporto che avete, la tessera utilizzerà alcuni che opere d'arte, qui si può scegliere come quella tessera sarà</value>
   </data>
   <data name="LabelTrailers" xml:space="preserve">
     <value>trailers</value>
@@ -547,361 +547,361 @@
     <value>TV</value>
   </data>
   <data name="LabelUnairedEpisodes" xml:space="preserve">
-    <value>Exibir episódios não-lançados</value>
+    <value>Mostra episodi mai andati in onda</value>
   </data>
   <data name="LabelUnwatched" xml:space="preserve">
-    <value>Não-assistido(s):</value>
+    <value>Non visto:</value>
   </data>
   <data name="LabelUsername" xml:space="preserve">
-    <value>nome do usuário:</value>
+    <value>username:</value>
   </data>
   <data name="LabelViews" xml:space="preserve">
-    <value>Visualizações</value>
+    <value>Viste</value>
   </data>
   <data name="LabelWelcomeText" xml:space="preserve">
-    <value>Bem vindo ao Media Browser para Windows Phone. Este app permitirá navegar na sua coleção de mídia, transmitir para seu telefone e controlar remotamente qualquer cliente controlável do Media Browser.</value>
+    <value>Benvenuti nel Media Browser per Windows Phone. Questa applicazione vi permetterà di sfogliare la tua raccolta multimediale, streaming sul tuo telefono e controllare a distanza qualsiasi client controllabili Media Browser.</value>
   </data>
   <data name="LabelWriter" xml:space="preserve">
-    <value>Escritor</value>
+    <value>autore</value>
   </data>
   <data name="LabelYes" xml:space="preserve">
-    <value>sim</value>
+    <value>si</value>
   </data>
   <data name="LabelYesterday" xml:space="preserve">
-    <value>ontem</value>
+    <value>ieri</value>
   </data>
   <data name="MenuPlayFrom" xml:space="preserve">
-    <value>reproduzir de</value>
+    <value>riproduci da</value>
   </data>
   <data name="MenuPlayFromOn" xml:space="preserve">
-    <value>reproduzir do(a)</value>
+    <value>riproduci da su</value>
   </data>
   <data name="MessageAreYouSureTitle" xml:space="preserve">
-    <value>Tem certeza?</value>
+    <value>Sei sicuro?</value>
   </data>
   <data name="MessageBoxUnpinText" xml:space="preserve">
-    <value>Deseja realmente desafixar este mosaico?</value>
+    <value>Sei sicuro di voler sbloccare questa tile?</value>
   </data>
   <data name="MessageClearPlayList" xml:space="preserve">
-    <value>Deseja realmente limpar sua lista de reprodução?</value>
+    <value>Sei sicuro di voler cancellare la tua playlist?</value>
   </data>
   <data name="MessageDeletePlaylistItems" xml:space="preserve">
-    <value>Deseja realmente apagar estes itens? Isto não pode ser desfeito.</value>
+    <value>Sei sicuro di voler cancellare questi elementi? la procedura non può essere annullata.</value>
   </data>
   <data name="MessageExperimentalTitle" xml:space="preserve">
-    <value>Experimental</value>
+    <value>sperimentale</value>
   </data>
   <data name="MessageExperimentalVideo" xml:space="preserve">
-    <value>Reproduzir este tipo de vídeo atualmente é experimental, os resultados podem variar, deseja continuar?</value>
+    <value>Eseguire questo tipo di video è attualmente sperimentale, la riproduzione potrebbe avere risultati inattesi, si desidera continuare?</value>
   </data>
   <data name="MessageTracksAddedSuccessfully" xml:space="preserve">
-    <value>{0} faixas adicionadas com sucesso.</value>
+    <value>{0} brani aggiunti con successo.</value>
   </data>
   <data name="More" xml:space="preserve">
-    <value>mais...</value>
+    <value>dettagli...</value>
   </data>
   <data name="NameLabel" xml:space="preserve">
     <value>Nome</value>
   </data>
   <data name="NoItemsFound" xml:space="preserve">
-    <value>Nenhum item encontrado</value>
+    <value>nessun risultato</value>
   </data>
   <data name="PinToStart" xml:space="preserve">
-    <value>Fixe para iniciar</value>
+    <value>Pin to start</value>
   </data>
   <data name="ProductionYear" xml:space="preserve">
-    <value>Ano de produção</value>
+    <value>Anno di produzione</value>
   </data>
   <data name="RemoveFromFavouritesFull" xml:space="preserve">
-    <value>Remover dos favoritos</value>
+    <value>Rimuovi da preferiti</value>
   </data>
   <data name="ResourceLanguage" xml:space="preserve">
-    <value>pt-BR</value>
+    <value>en-GB</value>
   </data>
   <data name="Settings" xml:space="preserve">
-    <value>Ajustes</value>
+    <value>Configirazione</value>
   </data>
   <data name="SysTrayAddingToFavourites" xml:space="preserve">
-    <value>Adicionando aos favoritos...</value>
+    <value>Aggiungi a preferiti</value>
   </data>
   <data name="SysTrayAuthenticating" xml:space="preserve">
-    <value>Autenticando...</value>
+    <value>Autenticazione...</value>
   </data>
   <data name="SysTrayCheckingCollection" xml:space="preserve">
-    <value>Verificando coleção...</value>
+    <value>Controllo collezioni...</value>
   </data>
   <data name="SysTrayCheckingConnection" xml:space="preserve">
-    <value>Verificando conexão...</value>
+    <value>Controllo connessione...</value>
   </data>
   <data name="SysTrayFindingServer" xml:space="preserve">
-    <value>Tentando encontrar seu servidor...</value>
+    <value>Tentativo di individuare il server ...</value>
   </data>
   <data name="SysTrayGettingAlbums" xml:space="preserve">
-    <value>Obtendo álbuns...</value>
+    <value>Recuperando gli albums...</value>
   </data>
   <data name="SysTrayGettingAlbumTracks" xml:space="preserve">
-    <value>Obtendo faixas dos álbuns...</value>
+    <value>Recuperando i brani dell'album...</value>
   </data>
   <data name="SysTrayGettingAllTracks" xml:space="preserve">
-    <value>Obtendo todos as faixas...</value>
+    <value>Recuperando tutti i brani...</value>
   </data>
   <data name="SysTrayGettingArtists" xml:space="preserve">
-    <value>Obtendo artistas...</value>
+    <value>Recuperando gli artisti...</value>
   </data>
   <data name="SysTrayGettingArtistTracks" xml:space="preserve">
-    <value>Obtendo faixas dos artistas...</value>
+    <value>Recuperando gli artisti dei brani...</value>
   </data>
   <data name="SysTrayGettingBoxsets" xml:space="preserve">
-    <value>Obtendo coletâneas...</value>
+    <value>Recuperando le collezioni...</value>
   </data>
   <data name="SysTrayGettingDetails" xml:space="preserve">
-    <value>Obtendo detalhes...</value>
+    <value>Recuperando i dettagli...</value>
   </data>
   <data name="SysTrayGettingEpisodeDetails" xml:space="preserve">
-    <value>Obtendo detalhes do episódio...</value>
+    <value>Recuperando i dettagli dell'episodio...</value>
   </data>
   <data name="SysTrayGettingEpisodes" xml:space="preserve">
-    <value>Obtendo episódios...</value>
+    <value>Recuperando gli episodi...</value>
   </data>
   <data name="SysTrayGettingFavourites" xml:space="preserve">
-    <value>Obtendo favoritos...</value>
+    <value>Recuperando i preferiti...</value>
   </data>
   <data name="SysTrayGettingGenres" xml:space="preserve">
-    <value>Obtendo gêneros...</value>
+    <value>Recuperando i generi...</value>
   </data>
   <data name="SysTrayGettingGenreTracks" xml:space="preserve">
-    <value>Obtendo faixas de gêneros...</value>
+    <value>Recuperando i generi dei brani...</value>
   </data>
   <data name="SysTrayGettingItems" xml:space="preserve">
-    <value>Obtendo itens...</value>
+    <value>Recuperando...</value>
   </data>
   <data name="SysTrayGettingMovieInfo" xml:space="preserve">
-    <value>Obtendo informações do filme...</value>
+    <value>Recuperando  le informazioni sul film...</value>
   </data>
   <data name="SysTrayGettingMovies" xml:space="preserve">
-    <value>Obtendo filmes...</value>
+    <value>Recuperando  i film...</value>
   </data>
   <data name="SysTrayGettingNextUp" xml:space="preserve">
-    <value>Obtendo itens próximos...</value>
+    <value>Recuperando  i prossimi elementi...</value>
   </data>
   <data name="SysTrayGettingNotifications" xml:space="preserve">
-    <value>Obtendo notificações...</value>
+    <value>Recuperando le notifiche...</value>
   </data>
   <data name="SysTrayGettingProfiles" xml:space="preserve">
-    <value>Obtendo perfis...</value>
+    <value>Recuperando i profili...</value>
   </data>
   <data name="SysTrayGettingRecentItems" xml:space="preserve">
-    <value>Obtendo itens recentes...</value>
+    <value>Recuperando i recenti...</value>
   </data>
   <data name="SysTrayGettingServerDetails" xml:space="preserve">
-    <value>Obtendo detalhes do servidor...</value>
+    <value>Recuperando i dettagli del server...</value>
   </data>
   <data name="SysTrayGettingShowInformation" xml:space="preserve">
-    <value>Obtendo informações do show...</value>
+    <value>Recuperando informazioni sulla serie...</value>
   </data>
   <data name="SysTrayGettingShows" xml:space="preserve">
-    <value>Obtendo séries...</value>
+    <value>Recuperando le serie...</value>
   </data>
   <data name="SysTrayGettingSongs" xml:space="preserve">
-    <value>Obtendo músicas...</value>
+    <value>Recuperando le canzoni...</value>
   </data>
   <data name="SysTrayGettingTracks" xml:space="preserve">
-    <value>Obtendo faixas...</value>
+    <value>Recuperando i brani...</value>
   </data>
   <data name="SysTrayGettingTrailerDetails" xml:space="preserve">
-    <value>Obtendo detalhes dos trailers...</value>
+    <value>Recuperando i dettagli sul trailer...</value>
   </data>
   <data name="SysTrayGettingUnwatchedItems" xml:space="preserve">
-    <value>Obtendo itens de últimos não-assistidos...</value>
+    <value>Recuperando gli ultimi non visti...</value>
   </data>
   <data name="SysTrayLoadingCollections" xml:space="preserve">
-    <value>Carregando coleções...</value>
+    <value>Caricamento collezioni...</value>
   </data>
   <data name="SysTrayLoadingSettings" xml:space="preserve">
-    <value>Carregando ajustes...</value>
+    <value>Caricamento configurazione...</value>
   </data>
   <data name="SysTrayRegisteringDevice" xml:space="preserve">
-    <value>Registrando dispositivo...</value>
+    <value>Registrazione dispositivo...</value>
   </data>
   <data name="SysTrayRegrouping" xml:space="preserve">
-    <value>Reagrupando...</value>
+    <value>Ri-raggruppamento ...</value>
   </data>
   <data name="SysTraySearching" xml:space="preserve">
-    <value>Buscando...</value>
+    <value>Ricerca....</value>
   </data>
   <data name="SysTrayUnregisteringDevice" xml:space="preserve">
-    <value>Desativando registro do dispositivo...</value>
+    <value>Annullamento del dispositivo ...</value>
   </data>
   <data name="TrialVideoMessage" xml:space="preserve">
-    <value>No modo trial você pode apenas reproduzir um vídeo por dia. Por favor, tente amanhã ou compre a versão completa.</value>
+    <value>In modalità di prova è possibile riprodurre solo video al giorno. Si prega di provare questo domani o acquistare la versione completa.</value>
   </data>
   <data name="TvShowRecentItemsTitle" xml:space="preserve">
-    <value>{0}'s itens recentes</value>
+    <value>{0} elementi recenti</value>
     <comment>{0} is the name of the tv show</comment>
   </data>
   <data name="Unpin" xml:space="preserve">
-    <value>Desafixar</value>
+    <value>Sblocca</value>
   </data>
   <data name="WatermarkEnterUsername" xml:space="preserve">
-    <value>digite o nome do usuário</value>
+    <value>inserire un nome utente</value>
   </data>
   <data name="LabelLogIn" xml:space="preserve">
-    <value>Iniciar sessão</value>
+    <value>login</value>
   </data>
   <data name="LabelNoFoldersFound" xml:space="preserve">
-    <value>Nenhuma pasta encontrada</value>
+    <value>Nessun cartella trovata</value>
   </data>
   <data name="LabelNothingInPlaylist" xml:space="preserve">
-    <value>Nada na sua lista de reprodução</value>
+    <value>Nulla nella tua playlist</value>
   </data>
   <data name="LabelUnplayedItems" xml:space="preserve">
-    <value>Não-reproduzido(s):</value>
+    <value>mai visto</value>
   </data>
   <data name="WatermarkPassword" xml:space="preserve">
-    <value>digite a senha</value>
+    <value>inserire una password</value>
   </data>
   <data name="LabelReleasedIn" xml:space="preserve">
-    <value>Lançado em</value>
+    <value>Uscito nel</value>
     <comment>eg, Released in 1993</comment>
   </data>
   <data name="LabelWelcomeTextPhone7" xml:space="preserve">
-    <value>Bem vindo ao Media Browser para Windows Phone. Este app permitirá navegar na sua coleção de mídia e controlar remotamente qualquer cliente controlável do Media Browser.</value>
+    <value>Benvenuti nel Media Browser per Windows Phone. Questa applicazione vi permetterà di sfogliare la tua raccolta multimediale e controllare a distanza qualsiasi client controllabili Media Browser.</value>
   </data>
   <data name="LabelChannels" xml:space="preserve">
-    <value>Canais</value>
+    <value>Canali</value>
   </data>
   <data name="LabelRecordedTv" xml:space="preserve">
-    <value>TV Gravada</value>
+    <value>Registrato</value>
   </data>
   <data name="LabelScheduledRecording" xml:space="preserve">
-    <value>Gravações agendadas</value>
+    <value>Registrazioni schedulate</value>
   </data>
   <data name="LabelUpcoming" xml:space="preserve">
-    <value>Para estrear</value>
+    <value>Prossimi</value>
   </data>
   <data name="LabelWhatsOn" xml:space="preserve">
-    <value>O que está passando</value>
+    <value>Parla di</value>
   </data>
   <data name="SysTrayGettingChannels" xml:space="preserve">
-    <value>Obtendo canais...</value>
+    <value>Recuperando i canali...</value>
   </data>
   <data name="SysTrayGettingProgrammes" xml:space="preserve">
-    <value>Obtendo programas</value>
+    <value>Recuperando  i programmi...</value>
   </data>
   <data name="SysTrayGettingSeriesRecordings" xml:space="preserve">
-    <value>Obtendo gravações de séries...</value>
+    <value>Recuperando le registrazioni...</value>
   </data>
   <data name="SysTrayGettingUpcomingRecordings" xml:space="preserve">
-    <value>Obtendo próximas gravações...</value>
+    <value>Recuperando prossime registrazioni ...</value>
   </data>
   <data name="ContextCancelSeries" xml:space="preserve">
-    <value>cancelar série</value>
+    <value>annulla serie</value>
   </data>
   <data name="LabelScheduleAnyChannel" xml:space="preserve">
-    <value>Qualquer canal</value>
+    <value>Tutti i canali</value>
   </data>
   <data name="LabelScheduleAnyTime" xml:space="preserve">
-    <value>Qualquer hora</value>
+    <value>Qualsiasi ora</value>
   </data>
   <data name="LabelScheduleDaily" xml:space="preserve">
-    <value>Diariamente</value>
+    <value>Quotidiano</value>
   </data>
   <data name="LabelScheduleToday" xml:space="preserve">
-    <value>Hoje</value>
+    <value>Oggi</value>
   </data>
   <data name="LabelScheduleTomorrow" xml:space="preserve">
-    <value>Amanhã</value>
+    <value>Domani</value>
   </data>
   <data name="LabelScheduleWeekdays" xml:space="preserve">
-    <value>Dias da semana</value>
+    <value>Giorni feriali</value>
   </data>
   <data name="LabelScheduleWeekends" xml:space="preserve">
-    <value>Fins de semana</value>
+    <value>Week-end</value>
   </data>
   <data name="HeaderRecordings" xml:space="preserve">
-    <value>gravações</value>
+    <value>registrazioni</value>
   </data>
   <data name="HeaderScheduled" xml:space="preserve">
-    <value>agendado</value>
+    <value>in programma</value>
   </data>
   <data name="HeaderSettings" xml:space="preserve">
-    <value>ajustes</value>
+    <value>impostazioni</value>
   </data>
   <data name="AppBarSave" xml:space="preserve">
-    <value>salvar</value>
+    <value>salva</value>
   </data>
   <data name="LabelDays" xml:space="preserve">
-    <value>Dias:</value>
+    <value>Giorni:</value>
   </data>
   <data name="LabelRecordOnlyNewEpisodes" xml:space="preserve">
-    <value>Gravar apenas novos espisódios</value>
+    <value>Registra solo i nuovi episodi</value>
   </data>
   <data name="LabelRecordProgrammeAtAnyTime" xml:space="preserve">
-    <value>Gravar programa a qualquer hora</value>
+    <value>Registra  il programma a qualsiasi ora</value>
   </data>
   <data name="LabelRecordProgrammeOnAllChannels" xml:space="preserve">
-    <value>Gravar programa em todos os canais</value>
+    <value>Registra il programma su tutti i canali</value>
   </data>
   <data name="AppBarCancel" xml:space="preserve">
-    <value>cancelar</value>
+    <value>annulla</value>
   </data>
   <data name="LabelPostPaddingMinutes" xml:space="preserve">
-    <value>Minutos após o início da atração:</value>
+    <value>Minuti registrati dopo la fine</value>
   </data>
   <data name="LabelPostPaddingRequired" xml:space="preserve">
-    <value>É necessário o início da atração para gravar</value>
+    <value>La registrazione deve finire dopo l'orario</value>
   </data>
   <data name="LabelPrePaddingMinutes" xml:space="preserve">
-    <value>Minutos para o início da atração:</value>
+    <value>Minuti registrati prima dell'inizio</value>
     <comment>Pre-padding = how long before programme's scheduled start time to record</comment>
   </data>
   <data name="LabelPrePaddingRequired" xml:space="preserve">
-    <value>É necessário gravar antes do início da atração</value>
+    <value>La registrazione deve iniziare prima dell'orario</value>
   </data>
   <data name="SysTrayCancellingSeriesRecording" xml:space="preserve">
-    <value>Cancelando o link da série</value>
+    <value>Annullamento collegamento serie ...</value>
   </data>
   <data name="SysTrayGettingRecordedItems" xml:space="preserve">
-    <value>Obtendo itens gravados...</value>
+    <value>Recuperando le registrazioni...</value>
   </data>
   <data name="AppBarDelete" xml:space="preserve">
-    <value>apagar</value>
+    <value>elimina</value>
   </data>
   <data name="ErrorDeletingSeriesRecording" xml:space="preserve">
-    <value>Desculpe, ocorreu um erro ao cancelar esta série.</value>
+    <value>Spiacente, c'è stato un errore annullando questa serie in questo momento</value>
   </data>
   <data name="LabelChannel" xml:space="preserve">
-    <value>Canal:</value>
+    <value>Canale:</value>
   </data>
   <data name="LabelNew" xml:space="preserve">
-    <value>Novo</value>
+    <value>Nuovo</value>
   </data>
   <data name="LabelPrePostPadding" xml:space="preserve">
-    <value>Antes/Depois do início da atração</value>
+    <value>Pre/Post registrazione</value>
   </data>
   <data name="LabelTime" xml:space="preserve">
     <value>Tempo:</value>
   </data>
   <data name="MenuCancelRecording" xml:space="preserve">
-    <value>Cancelar Gravação</value>
+    <value>Annulla la registrazione</value>
   </data>
   <data name="MessageDeleteSeriesRecording" xml:space="preserve">
-    <value>Tem certeza que gostaria de cancelar este link da série? Isto não pode ser desfeito.</value>
+    <value>Sei sicuro di voler cancellare questo collegamento serie? Questo non può essere annullata.</value>
   </data>
   <data name="SysTrayGettingUpcoming" xml:space="preserve">
-    <value>Obtendo episódios para estrear...</value>
+    <value>Recuperando i prossimi episodi ...</value>
   </data>
   <data name="MessageCancelRecording" xml:space="preserve">
-    <value>Tem certeza que deseja cancelar esta gravação? Isto não pode ser desfeito.</value>
+    <value>Sei sicuro di voler cancellare questa registrazione? Questo non può essere annullata.</value>
   </data>
   <data name="SysTraySaving" xml:space="preserve">
-    <value>Salvando...</value>
+    <value>Salvataggio...</value>
   </data>
   <data name="MenuRecord" xml:space="preserve">
-    <value>gravar</value>
+    <value>registra</value>
   </data>
   <data name="MenuRecordSeries" xml:space="preserve">
-    <value>gravar série</value>
+    <value>registra serie</value>
   </data>
   <data name="LabelReallyShortHours" xml:space="preserve">
     <value>h</value>
@@ -910,61 +910,61 @@
     <value>m</value>
   </data>
   <data name="LabelLive" xml:space="preserve">
-    <value>Ao vivo</value>
+    <value>Live</value>
   </data>
   <data name="SystemTrayGettingWhatsOn" xml:space="preserve">
-    <value>Obtendo o que está passando agora...</value>
+    <value>indiretta adesso</value>
   </data>
   <data name="SysTrayLoadingProgrammes" xml:space="preserve">
-    <value>Carregando programas...</value>
+    <value>Caricamento programmi...</value>
   </data>
   <data name="SysTraySettingProgrammeToRecord" xml:space="preserve">
-    <value>Definindo programa para gravar</value>
+    <value>Impostazione del programma per registrare ...</value>
   </data>
   <data name="SysTraySettingSeriesToRecord" xml:space="preserve">
-    <value>Definindo série para gravar</value>
+    <value>Impostazione serie di registrare ...</value>
   </data>
   <data name="AppBarCreateAndEditSeries" xml:space="preserve">
-    <value>criar e editar gravação da série</value>
+    <value>creare e modificare la registrazione serie</value>
   </data>
   <data name="SysTrayCancellingProgramme" xml:space="preserve">
-    <value>Cancelando programa...</value>
+    <value>Annullamento del programma ...</value>
   </data>
   <data name="SysTrayPreparing" xml:space="preserve">
-    <value>Preparando...</value>
+    <value>Preparazione ...</value>
   </data>
   <data name="SysTrayGettingRecordingDetails" xml:space="preserve">
-    <value>Obtendo detalhes da gravação...</value>
+    <value>Recuperando i dettagli di registrazione ...</value>
   </data>
   <data name="LabelDefaultRecordedTvGrouping" xml:space="preserve">
-    <value>Agrupamento padrão de gravações de TV</value>
+    <value>Raggruppamento registrazioni predefinite</value>
   </data>
   <data name="AppBarChannel" xml:space="preserve">
-    <value>canal</value>
+    <value>canale</value>
   </data>
   <data name="AppBarRecordedDate" xml:space="preserve">
-    <value>data da gravação</value>
+    <value>data di registrazione</value>
   </data>
   <data name="AppBarShowName" xml:space="preserve">
-    <value>exibir o nome</value>
+    <value>Nome Spettacolo</value>
   </data>
   <data name="HeaderActiveRecordings" xml:space="preserve">
-    <value>Ativo</value>
+    <value>attivo</value>
   </data>
   <data name="LabelNoRecordedItems" xml:space="preserve">
-    <value>Não existe nenhuma gravação</value>
+    <value>Non sembra avere tutti gli elementi registrati</value>
   </data>
   <data name="LabelRecordedDate" xml:space="preserve">
-    <value>Data da gravação</value>
+    <value>data di registrazione</value>
   </data>
   <data name="LabelShowName" xml:space="preserve">
-    <value>Exibir nome</value>
+    <value>Mostra nome</value>
   </data>
   <data name="SysTrayGettingCurrentlyRecording" xml:space="preserve">
-    <value>Obtendo gravações ativas</value>
+    <value>Recuperando le registrazioni attive ...</value>
   </data>
   <data name="HeaderLive" xml:space="preserve">
-    <value>Ao vivo</value>
+    <value>Diretta Tv</value>
     <comment>As in "live tv"</comment>
   </data>
   <data name="HeaderTV" xml:space="preserve">

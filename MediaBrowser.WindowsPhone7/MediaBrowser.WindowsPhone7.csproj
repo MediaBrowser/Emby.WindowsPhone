@@ -16,7 +16,7 @@
     <TargetFrameworkProfile>WindowsPhone71</TargetFrameworkProfile>
     <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
     <SilverlightApplication>true</SilverlightApplication>
-    <SupportedCultures>de;en-US;fr;nl;pt-BR;qps-ploc;sv</SupportedCultures>
+    <SupportedCultures>de;en-US;fr;it;nl;pt-BR;qps-ploc;sv</SupportedCultures>
     <XapOutputs>true</XapOutputs>
     <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
     <XapFilename>MediaBrowser.WindowsPhone.WP7.xap</XapFilename>
@@ -961,6 +961,13 @@
       <DependentUpon>AppResources.fr.xlf</DependentUpon>
       <culture>fr</culture>
     </EmbeddedResource>
+    <EmbeddedResource Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.it.resx">
+      <Link>Resources\AppResources.it.resx</Link>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AppResources.it.xlf</DependentUpon>
+      <culture>it</culture>
+    </EmbeddedResource>
     <EmbeddedResource Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.nl.resx">
       <Link>Resources\AppResources.nl.resx</Link>
       <AutoGen>True</AutoGen>
@@ -1019,6 +1026,11 @@
       <Link>Resources\AppResources.fr.xlf</Link>
       <Generator>XliffResxGenerator</Generator>
       <LastGenOutput>AppResources.fr.resx</LastGenOutput>
+    </XliffResource>
+    <XliffResource Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.it.xlf">
+      <Link>Resources\AppResources.it.xlf</Link>
+      <Generator>XliffResxGenerator</Generator>
+      <LastGenOutput>AppResources.it.resx</LastGenOutput>
     </XliffResource>
     <XliffResource Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.nl.xlf">
       <Link>Resources\AppResources.nl.xlf</Link>
