@@ -228,11 +228,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Resources\AppResources.en-US.Designer.cs">
-      <DependentUpon>AppResources.en-US.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-    </Compile>
     <Compile Include="Services\LockScreenService.cs" />
     <Compile Include="Services\ReviewReminderService.cs" />
     <Compile Include="Services\TileService.cs" />
@@ -714,61 +709,20 @@
     <Content Include="Icons\transport.rew.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\AppResources.de.resx">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AppResources.de.xlf</DependentUpon>
-      <culture>de</culture>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\AppResources.en-US.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>AppResources.en-US.Designer.cs</LastGenOutput>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AppResources.en-US.xlf</DependentUpon>
-      <culture>en-US</culture>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\AppResources.fr.resx">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AppResources.fr.xlf</DependentUpon>
-      <culture>fr</culture>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\AppResources.it.resx">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AppResources.it.xlf</DependentUpon>
-      <culture>it</culture>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\AppResources.nl.resx">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AppResources.nl.xlf</DependentUpon>
-      <culture>nl</culture>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\AppResources.pt-BR.resx">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AppResources.pt-BR.xlf</DependentUpon>
-      <culture>pt-BR</culture>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\AppResources.qps-ploc.resx">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AppResources.qps-ploc.xlf</DependentUpon>
-      <culture>qps-ploc</culture>
-    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\AppResources.de.resx" />
+    <EmbeddedResource Include="Resources\AppResources.en-US.resx" />
+    <EmbeddedResource Include="Resources\AppResources.fr-FR.resx" />
+    <EmbeddedResource Include="Resources\AppResources.it.resx" />
+    <EmbeddedResource Include="Resources\AppResources.nl-NL.resx" />
+    <EmbeddedResource Include="Resources\AppResources.nl.resx" />
+    <EmbeddedResource Include="Resources\AppResources.pt-BR.resx" />
+    <EmbeddedResource Include="Resources\AppResources.qps-ploc.resx" />
     <EmbeddedResource Include="Resources\AppResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\AppResources.sv.resx">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AppResources.sv.xlf</DependentUpon>
-      <culture>sv</culture>
-    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\AppResources.sv-SE.resx" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Cimbalino.Phone.Toolkit, Version=3.2.2.0, Culture=neutral, processorArchitecture=MSIL">
@@ -920,40 +874,6 @@
       <Name>Microsoft Player Framework %28Microsoft.PlayerFramework.WP8.Core, Version=1.8.2.2%29</Name>
     </SDKReference>
   </ItemGroup>
-  <ItemGroup>
-    <XliffResource Include="Resources\AppResources.de.xlf">
-      <Generator>XliffResxGenerator</Generator>
-      <LastGenOutput>AppResources.de.resx</LastGenOutput>
-    </XliffResource>
-    <XliffResource Include="Resources\AppResources.en-US.xlf">
-      <Generator>XliffResxGenerator</Generator>
-      <LastGenOutput>AppResources.en-US.resx</LastGenOutput>
-    </XliffResource>
-    <XliffResource Include="Resources\AppResources.fr.xlf">
-      <Generator>XliffResxGenerator</Generator>
-      <LastGenOutput>AppResources.fr.resx</LastGenOutput>
-    </XliffResource>
-    <XliffResource Include="Resources\AppResources.it.xlf">
-      <Generator>XliffResxGenerator</Generator>
-      <LastGenOutput>AppResources.it.resx</LastGenOutput>
-    </XliffResource>
-    <XliffResource Include="Resources\AppResources.nl.xlf">
-      <Generator>XliffResxGenerator</Generator>
-      <LastGenOutput>AppResources.nl.resx</LastGenOutput>
-    </XliffResource>
-    <XliffResource Include="Resources\AppResources.pt-BR.xlf">
-      <Generator>XliffResxGenerator</Generator>
-      <LastGenOutput>AppResources.pt-BR.resx</LastGenOutput>
-    </XliffResource>
-    <XliffResource Include="Resources\AppResources.qps-ploc.xlf">
-      <Generator>XliffResxGenerator</Generator>
-      <LastGenOutput>AppResources.qps-ploc.resx</LastGenOutput>
-    </XliffResource>
-    <XliffResource Include="Resources\AppResources.sv.xlf">
-      <Generator>XliffResxGenerator</Generator>
-      <LastGenOutput>AppResources.sv.resx</LastGenOutput>
-    </XliffResource>
-  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
@@ -981,7 +901,6 @@
     <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.13\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
     <Error Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.13\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
   </Target>
-  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Multilingual App Toolkit\Microsoft.Multilingual.WindowsPhone.targets" Label="MultilingualAppToolkitForWindowsPhone" />
   <Import Project="..\packages\Fody.1.22.1\build\Fody.targets" Condition="Exists('..\packages\Fody.1.22.1\build\Fody.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

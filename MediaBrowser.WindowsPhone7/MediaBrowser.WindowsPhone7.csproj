@@ -427,12 +427,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.en-US.Designer.cs">
-      <Link>Resources\AppResources.en-US.Designer.cs</Link>
-      <DependentUpon>AppResources.en-US.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="..\MediaBrowser.WindowsPhone8\Services\ReviewReminderService.cs">
       <Link>Services\ReviewReminderService.cs</Link>
     </Compile>
@@ -942,51 +936,27 @@
   <ItemGroup>
     <EmbeddedResource Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.de.resx">
       <Link>Resources\AppResources.de.resx</Link>
-      <DependentUpon>AppResources.de.xlf</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
     </EmbeddedResource>
     <EmbeddedResource Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.en-US.resx">
       <Link>Resources\AppResources.en-US.resx</Link>
-      <DependentUpon>AppResources.en-US.xlf</DependentUpon>
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>AppResources.en-US.Designer.cs</LastGenOutput>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
     </EmbeddedResource>
-    <EmbeddedResource Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.fr.resx">
-      <Link>Resources\AppResources.fr.resx</Link>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AppResources.fr.xlf</DependentUpon>
-      <culture>fr</culture>
+    <EmbeddedResource Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.fr-FR.resx">
+      <Link>Resources\AppResources.fr-FR.resx</Link>
     </EmbeddedResource>
     <EmbeddedResource Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.it.resx">
       <Link>Resources\AppResources.it.resx</Link>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AppResources.it.xlf</DependentUpon>
-      <culture>it</culture>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.nl-NL.resx">
+      <Link>Resources\AppResources.nl-NL.resx</Link>
     </EmbeddedResource>
     <EmbeddedResource Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.nl.resx">
       <Link>Resources\AppResources.nl.resx</Link>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AppResources.nl.xlf</DependentUpon>
-      <culture>nl</culture>
     </EmbeddedResource>
     <EmbeddedResource Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.pt-BR.resx">
       <Link>Resources\AppResources.pt-BR.resx</Link>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AppResources.pt-BR.xlf</DependentUpon>
-      <culture>pt-BR</culture>
     </EmbeddedResource>
     <EmbeddedResource Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.qps-ploc.resx">
       <Link>Resources\AppResources.qps-ploc.resx</Link>
-      <DependentUpon>AppResources.qps-ploc.xlf</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
     </EmbeddedResource>
     <EmbeddedResource Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.resx">
       <Link>Resources\AppResources.resx</Link>
@@ -994,59 +964,9 @@
       <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.sv.resx">
-      <Link>Resources\AppResources.sv.resx</Link>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AppResources.sv.xlf</DependentUpon>
-      <culture>sv</culture>
+    <EmbeddedResource Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.sv-SE.resx">
+      <Link>Resources\AppResources.sv-SE.resx</Link>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <Fakes Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.en-US.xlf">
-      <Link>Resources\AppResources.en-US.xlf</Link>
-      <Generator>XliffResxGenerator</Generator>
-      <LastGenOutput>AppResources.en-US.resx</LastGenOutput>
-    </Fakes>
-    <Fakes Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.qps-ploc.xlf">
-      <Link>Resources\AppResources.qps-ploc.xlf</Link>
-      <Generator>XliffResxGenerator</Generator>
-      <LastGenOutput>AppResources.qps-ploc.resx</LastGenOutput>
-    </Fakes>
-  </ItemGroup>
-  <ItemGroup>
-    <Fakes Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.de.xlf">
-      <Link>Resources\AppResources.de.xlf</Link>
-      <Generator>XliffResxGenerator</Generator>
-      <LastGenOutput>AppResources.de.resx</LastGenOutput>
-    </Fakes>
-  </ItemGroup>
-  <ItemGroup>
-    <XliffResource Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.fr.xlf">
-      <Link>Resources\AppResources.fr.xlf</Link>
-      <Generator>XliffResxGenerator</Generator>
-      <LastGenOutput>AppResources.fr.resx</LastGenOutput>
-    </XliffResource>
-    <XliffResource Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.it.xlf">
-      <Link>Resources\AppResources.it.xlf</Link>
-      <Generator>XliffResxGenerator</Generator>
-      <LastGenOutput>AppResources.it.resx</LastGenOutput>
-    </XliffResource>
-    <XliffResource Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.nl.xlf">
-      <Link>Resources\AppResources.nl.xlf</Link>
-      <Generator>XliffResxGenerator</Generator>
-      <LastGenOutput>AppResources.nl.resx</LastGenOutput>
-    </XliffResource>
-    <XliffResource Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.pt-BR.xlf">
-      <Link>Resources\AppResources.pt-BR.xlf</Link>
-      <Generator>XliffResxGenerator</Generator>
-      <LastGenOutput>AppResources.pt-BR.resx</LastGenOutput>
-    </XliffResource>
-    <XliffResource Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.sv.xlf">
-      <Link>Resources\AppResources.sv.xlf</Link>
-      <Generator>XliffResxGenerator</Generator>
-      <LastGenOutput>AppResources.sv.resx</LastGenOutput>
-    </XliffResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />
@@ -1064,7 +984,6 @@
     <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.13\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
     <Error Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.13\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
   </Target>
-  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Multilingual App Toolkit\Microsoft.Multilingual.WindowsPhone.targets" Label="MultilingualAppToolkitForWindowsPhone" />
   <Import Project="..\packages\Fody.1.22.1\build\Fody.targets" Condition="Exists('..\packages\Fody.1.22.1\build\Fody.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
