@@ -21,6 +21,10 @@
                       Offset="1" />
     </LinearGradientBrush>
 
+    <Color x:Key="SecondaryAccentColor">#224568</Color>
+    <SolidColorBrush x:Key="SecondaryAccentColorBrush"
+                     Color="{StaticResource SecondaryAccentColor}"/>
+    
     <Color x:Key="BlackTransparentColor">#C4000000</Color>
     <SolidColorBrush x:Key="BlackTransparentBrush"
                      Color="{StaticResource BlackTransparentColor}" />

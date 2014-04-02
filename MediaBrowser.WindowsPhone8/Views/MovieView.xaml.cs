@@ -85,7 +85,7 @@ namespace MediaBrowser.WindowsPhone.Views
                     if (SimpleIoc.Default.GetInstance<VideoPlayerViewModel>() != null && vm.SelectedMovie.LocationType != LocationType.Virtual)
                     {
                         Messenger.Default.Send(new VideoMessage(vm.SelectedMovie, true, chapterInfo.StartPositionTicks));
-                        NavigationService.Navigate(new Uri(Constants.Pages.VideoPlayerView, UriKind.Relative));
+                        NavigationService.Navigate(new Uri(string.Format(Constants.Pages.VideoPlayerView, vm.SelectedMovie.Id, vm.SelectedMovie.Type), UriKind.Relative));
                     }
                 }
             };

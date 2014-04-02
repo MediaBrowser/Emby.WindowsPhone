@@ -2,26 +2,63 @@
 using System.Windows.Media;
 using GalaSoft.MvvmLight.Messaging;
 using Microsoft.PlayerFramework;
+using MediaBrowser.WindowsPhone.ViewModel;
+using System;
+using System.Threading.Tasks;
 
 namespace MediaBrowser.WindowsPhone.Views
 {
     public partial class VideoPlayerView
     {
+        private bool _seeking = false;
         // Constructor
         public VideoPlayerView()
         {
             InitializeComponent();
         }
 
-        protected override void InitialiseOnBack()
+        protected override void OnNavigatingFrom(System.Windows.Navigation.NavigatingCancelEventArgs e)
+        {
+            if (e.NavigationMode != System.Windows.Navigation.NavigationMode.Back)
+                Messenger.Default.Send(new NotificationMessage(Constants.Messages.SendVideoTimeToServerMsg));
+            base.OnNavigatingFrom(e);
+        }
+
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            if (e.NavigationMode == System.Windows.Navigation.NavigationMode.Back)
+            {
+                if (!this.NavigationContext.QueryString.ContainsKey("id") || !this.NavigationContext.QueryString.ContainsKey("type"))
+                    return;
+                var itemId = this.NavigationContext.QueryString["id"];
+                var type = this.NavigationContext.QueryString["type"];
+                var model = this.DataContext as VideoPlayerViewModel;
+                if (model != null)
+                {
+                    model.Recover = true;
+                    model.ItemId = itemId;
+                    model.ItemType = type;
+                }
+
+            }
+            base.OnNavigatedTo(e);
+        }
+
+        protected override async void InitialiseOnBack()
         {
             base.InitialiseOnBack();
             Messenger.Default.Send(new NotificationMessage(Constants.Messages.SetResumeMsg));
+            var model = this.DataContext as VideoPlayerViewModel;
+            if (model != null && model.Recover)
+            {
+                model.RecoverState();
+            }
         }
 
         private void ThePlayerMediaEnded(object sender, MediaPlayerActionEventArgs e)
         {
-            Messenger.Default.Send(new NotificationMessage(Constants.Messages.SendVideoTimeToServerMsg));
+            if (!_seeking)
+                Messenger.Default.Send(new NotificationMessage(Constants.Messages.SendVideoTimeToServerMsg));
         }
 
         private void ThePlayerMediaFailed(object sender, ExceptionRoutedEventArgs e)
@@ -31,17 +68,25 @@ namespace MediaBrowser.WindowsPhone.Views
 
         private void ThePlayer_OnMediaOpened(object sender, RoutedEventArgs e)
         {
-            var s = "";
+            
         }
 
         private void ThePlayer_OnMediaStarting(object sender, MediaPlayerDeferrableEventArgs e)
         {
-            var s = "";
+
         }
 
         private void ThePlayer_OnMediaStarted(object sender, RoutedEventArgs e)
         {
-            var s = "";
+            _seeking = false;
+            var model = this.DataContext as VideoPlayerViewModel;
+            if (model != null)
+            {                
+                thePlayer.StartTime = model.StartTime;
+                thePlayer.EndTime = model.EndTime;
+                thePlayer.Position = TimeSpan.FromTicks(model.StartTime.Ticks * -1);                         
+                model.StartUpdateTimer();
+            }
         }
 
         protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
@@ -66,5 +111,29 @@ namespace MediaBrowser.WindowsPhone.Views
                 Messenger.Default.Send(new NotificationMessage(isPaused, Constants.Messages.VideoStateChangedMsg));
             }
         }
+
+        private async void thePlayer_ScrubbingCompleted(object sender, ScrubProgressRoutedEventArgs e)
+        {
+            e.Canceled = true;
+            var model = this.DataContext as VideoPlayerViewModel;
+            if (model != null)
+            {
+                _seeking = true;
+                model.Seek(e.Position.Ticks);
+            }
+        }
+
+        private async void thePlayer_Seeked(object sender, SeekRoutedEventArgs e)
+        {
+            e.Canceled = true;
+            var model = this.DataContext as VideoPlayerViewModel;
+            if (model != null)
+            {                
+                _seeking = true;
+                model.Seek(e.Position.Ticks);
+            }
+        }
+
+
     }
 }

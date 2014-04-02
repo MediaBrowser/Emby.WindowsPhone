@@ -18,6 +18,8 @@ using MediaBrowser.WindowsPhone.Messaging;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Resources;
 using ScottIsAFool.WindowsPhone.ViewModel;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace MediaBrowser.WindowsPhone.ViewModel
 {
@@ -35,7 +37,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         private readonly DispatcherTimer _timer;
 
         private bool _isResume;
-        private long? _startPositionTicks;
+        private long _startPositionTicks = 0;
         private PlayerSourceType _playerSourceType;
         private string _itemId;
 
@@ -54,7 +56,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             try
             {
-                var totalTicks = _isResume && StartTime.HasValue ? StartTime.Value.Ticks + PlayedVideoDuration.Ticks : PlayedVideoDuration.Ticks;
+                var totalTicks = _startPositionTicks + PlayedVideoDuration.Ticks;
 
                 Log.Info("Sending current runtime [{0}] to the server", totalTicks);
 
@@ -120,7 +122,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                 _playerSourceType = m.PlayerSourceType;
                 _isResume = m.IsResume;
-                _startPositionTicks = m.ResumeTicks;
+                _startPositionTicks = m.ResumeTicks.HasValue ? m.ResumeTicks.Value : 0;
             });
 
             Messenger.Default.Register<NotificationMessage>(this, async m =>
@@ -134,7 +136,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 {
                     try
                     {
-                        var totalTicks = _isResume && StartTime.HasValue ? StartTime.Value.Ticks + PlayedVideoDuration.Ticks : PlayedVideoDuration.Ticks;
+                        var totalTicks = _startPositionTicks + PlayedVideoDuration.Ticks;
 
                         Log.Info("Sending current runtime [{0}] to the server", totalTicks);
 
@@ -146,7 +148,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         };
 
                         await _apiClient.ReportPlaybackStoppedAsync(info);
-                        
+
                         SetPlaybackTicks(totalTicks);
 
                         if (_timer != null && _timer.IsEnabled)
@@ -164,7 +166,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 {
                     try
                     {
-                        var totalTicks = _isResume && StartTime.HasValue ? StartTime.Value.Ticks + PlayedVideoDuration.Ticks : PlayedVideoDuration.Ticks;
+                        var totalTicks = _startPositionTicks + PlayedVideoDuration.Ticks;
                         var isPaused = m.Sender != null && (bool)m.Sender;
 
                         if (_timer != null)
@@ -208,11 +210,35 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         }
 
         public string VideoUrl { get; set; }
-        public TimeSpan? StartTime { get; set; }
+        public TimeSpan StartTime
+        {
+            get
+            {
+                return TimeSpan.FromTicks(_startPositionTicks * -1);
+            }
+        }
+        private TimeSpan _endTime = TimeSpan.Zero;
+        public TimeSpan EndTime
+        {
+            get
+            {
+                return _endTime;
+            }
+            set
+            {
+                _endTime = value;                
+            }
+        }
+
         public TimeSpan PlayedVideoDuration { get; set; }
         public BaseItemDto SelectedItem { get; set; }
         public RecordingInfoDto RecordingItem { get; set; }
         public ProgramInfoDto ProgrammeItem { get; set; }
+
+        //Recover from tombestone
+        public string ItemId { get; set; }
+        public string ItemType { get; set; }
+        public bool Recover { get; set; }
 
         public RelayCommand VideoPageLoaded
         {
@@ -220,76 +246,96 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 return new RelayCommand(async () =>
                 {
-                    var query = new VideoStreamOptions();
-                    long ticks = 0;
-                    switch (_playerSourceType)
-                    {
-                        case PlayerSourceType.Video:
-                            if (SelectedItem.VideoType != VideoType.VideoFile)
-                            {
-                                var result = MessageBox.Show(AppResources.MessageExperimentalVideo, AppResources.MessageExperimentalTitle, MessageBoxButton.OKCancel);
-                                if (result == MessageBoxResult.Cancel)
-                                {
-                                    _navigationService.GoBack();
-                                    return;
-                                }
-                            }
-
-                            query = CreateVideoStreamOptions(SelectedItem.Id, SelectedItem.UserData, ref ticks);
-                            Log.Info("Playing {0} [{1}] ({2})", SelectedItem.Type, SelectedItem.Name, SelectedItem.Id);
-                            break;
-                        case PlayerSourceType.Recording:
-                            query = CreateVideoStreamOptions(RecordingItem.Id, RecordingItem.UserData, ref ticks);
-                            Log.Info("Playing {0} [{1}] ({2})", RecordingItem.Type, RecordingItem.Name, RecordingItem.Id);
-                            break;
-                        case PlayerSourceType.Programme:
-                            query = CreateVideoStreamOptions(ProgrammeItem.Id, ProgrammeItem.UserData, ref ticks);
-                            Log.Info("Playing {0} [{1}] ({2})", ProgrammeItem.Type, ProgrammeItem.Name, ProgrammeItem.Id);
-                            break;
-                    }
-
-                    VideoUrl = _apiClient.GetVideoStreamUrl(query);
-                    Debug.WriteLine(VideoUrl);
-
-                    StartTime = TimeSpan.FromTicks(ticks);
-
-                    if (_timer != null && !_timer.IsEnabled)
-                    {
-                        _timer.Start();
-                    }
-
-                    Log.Debug(VideoUrl);
-
-                    try
-                    {
-                        Log.Info("Sending playback started message to the server.");
-
-                        var info = new PlaybackStartInfo
-                        {
-                            ItemId = query.ItemId,
-                            UserId = AuthenticationService.Current.LoggedInUserId,
-                            IsSeekable = false,
-                            QueueableMediaTypes = new string[0]
-                        };
-
-                        await _apiClient.ReportPlaybackStartAsync(info);
-                    }
-                    catch (HttpException ex)
-                    {
-                        Log.ErrorException("VideoPageLoaded", ex);
-                    }
+                    if (!Recover)                       
+                        await InitiatePlayback(_isResume);                    
                 });
             }
         }
 
-        private VideoStreamOptions CreateVideoStreamOptions(string itemId, UserItemDataDto userData, ref long ticks)
+        private async Task InitiatePlayback(bool isResume)
+        {
+            EndTime = TimeSpan.Zero;
+
+            var query = new VideoStreamOptions();
+            switch (_playerSourceType)
+            {
+                case PlayerSourceType.Video:
+                    if (SelectedItem.VideoType != VideoType.VideoFile)
+                    {
+                        var result = MessageBox.Show(AppResources.MessageExperimentalVideo, AppResources.MessageExperimentalTitle, MessageBoxButton.OKCancel);
+                        if (result == MessageBoxResult.Cancel)
+                        {
+                            _navigationService.GoBack();
+                            return;
+                        }
+                    }
+
+                    if (SelectedItem.UserData != null && isResume)
+                    {
+                        _startPositionTicks = SelectedItem.UserData.PlaybackPositionTicks;
+                    }
+
+                    query = CreateVideoStreamOptions(SelectedItem.Id, SelectedItem.UserData, _startPositionTicks);
+
+                    if (SelectedItem.RunTimeTicks.HasValue)
+                        EndTime = TimeSpan.FromTicks(SelectedItem.RunTimeTicks.Value - _startPositionTicks);
+
+                    Log.Info("Playing {0} [{1}] ({2})", SelectedItem.Type, SelectedItem.Name, SelectedItem.Id);
+                    break;
+                case PlayerSourceType.Recording:
+                    query = CreateVideoStreamOptions(RecordingItem.Id, RecordingItem.UserData, _startPositionTicks);
+
+                    if (RecordingItem.RunTimeTicks.HasValue)
+                        EndTime = TimeSpan.FromTicks(RecordingItem.RunTimeTicks.Value - _startPositionTicks);
+
+                    Log.Info("Playing {0} [{1}] ({2})", RecordingItem.Type, RecordingItem.Name, RecordingItem.Id);
+                    break;
+                case PlayerSourceType.Programme:
+                    query = CreateVideoStreamOptions(ProgrammeItem.Id, ProgrammeItem.UserData, _startPositionTicks);
+
+                    if (ProgrammeItem.RunTimeTicks.HasValue)
+                        EndTime = TimeSpan.FromTicks(ProgrammeItem.RunTimeTicks.Value - _startPositionTicks);
+
+                    Log.Info("Playing {0} [{1}] ({2})", ProgrammeItem.Type, ProgrammeItem.Name, ProgrammeItem.Id);
+                    break;
+            }
+
+            VideoUrl = _apiClient.GetVideoStreamUrl(query);
+            Debug.WriteLine(VideoUrl);            
+
+            Log.Debug(VideoUrl);
+
+            try
+            {
+                Log.Info("Sending playback started message to the server.");
+
+                var info = new PlaybackStartInfo
+                {
+                    ItemId = query.ItemId,
+                    UserId = AuthenticationService.Current.LoggedInUserId,
+                    IsSeekable = false,
+                    QueueableMediaTypes = new string[0]
+                };
+
+                await _apiClient.ReportPlaybackStartAsync(info);
+            }
+            catch (HttpException ex)
+            {
+                Log.ErrorException("VideoPageLoaded", ex);
+            }
+        }
+
+        public void StartUpdateTimer()
+        {
+            if (_timer != null && !_timer.IsEnabled)
+            {
+                _timer.Start();
+            }
+        }
+
+        private VideoStreamOptions CreateVideoStreamOptions(string itemId, UserItemDataDto userData, long startTimeTicks)
         {
             _itemId = itemId;
-
-            if (userData != null && _isResume)
-            {
-                ticks = userData.PlaybackPositionTicks;
-            }
 
             var query = new VideoStreamOptions
             {
@@ -297,18 +343,68 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 VideoCodec = "H264",
                 OutputFileExtension = ".mp4",
                 AudioCodec = "Aac",
-                VideoBitRate = 1000000,
+                VideoBitRate = WindowsPhone.Helpers.ResolutionHelper.DefaultVideoBitrate,
                 AudioBitRate = 128000,
                 MaxAudioChannels = 2,
-                StartTimeTicks = ticks,
+                StartTimeTicks = startTimeTicks,
                 Profile = "baseline",
                 Level = "3",
                 //FrameRate = 20,
-                MaxHeight = 480, // (int)bounds.Width,
-                MaxWidth = 800 // (int)bounds.Height
+                MaxHeight =  WindowsPhone.Helpers.ResolutionHelper.Height, // (int)bounds.Width,
+                MaxWidth = WindowsPhone.Helpers.ResolutionHelper.Widht // (int)bounds.Height
             };
 
             return query;
+        }
+
+        public async void Seek(long newPosition)
+        {
+            _timer.Stop();
+            _startPositionTicks += newPosition;
+            await InitiatePlayback(false);
+        }
+        public async void RecoverState()
+        {            
+            _isResume = true;
+
+            var cts = new CancellationTokenSource(7000);
+            try
+            {
+                if (ItemType == "Program")
+                {
+                    var program = await _apiClient.GetLiveTvProgramAsync(ItemId, AuthenticationService.Current.LoggedInUserId, cts.Token);
+                    if (program == null || program.UserData == null)
+                        return;
+                    _playerSourceType = PlayerSourceType.Programme;
+
+                    ProgrammeItem = program;
+                }
+                else if (ItemType == "Recording") //TODO Verify this
+                {
+                    var recording = await _apiClient.GetLiveTvRecordingAsync(ItemId, AuthenticationService.Current.LoggedInUserId, cts.Token);
+                    if (recording == null || recording.UserData == null)
+                        return;
+                    _playerSourceType = PlayerSourceType.Recording;
+
+                    RecordingItem = recording;
+                }
+                else
+                {
+                    var item = await _apiClient.GetItemAsync(ItemId, AuthenticationService.Current.LoggedInUserId);
+                    if (item == null || item.UserData == null)
+                        return;
+                    _playerSourceType = PlayerSourceType.Video;
+
+                    SelectedItem = item;
+                }
+                await InitiatePlayback(true);
+            }
+            catch(TaskCanceledException ex)
+            {
+                Log.ErrorException("RecoverState timedout", ex);
+            }            
+            Recover = false;
+                
         }
     }
 }

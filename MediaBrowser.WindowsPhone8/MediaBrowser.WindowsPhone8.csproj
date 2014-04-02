@@ -203,6 +203,7 @@
     <Compile Include="Extensions\LiveTvExtensions.cs" />
     <Compile Include="Extensions\ToolkitExtensions.cs" />
     <Compile Include="Extensions\WriteableBitmapExt.cs" />
+    <Compile Include="Helpers\ResolutionHelper.cs" />
     <Compile Include="LiveTvUtils.cs" />
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="Messaging\VideoMessage.cs" />

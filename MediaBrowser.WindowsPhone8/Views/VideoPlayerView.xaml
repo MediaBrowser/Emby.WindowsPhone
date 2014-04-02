@@ -1,4 +1,4 @@
-﻿<scott:BasePage x:Class="MediaBrowser.WindowsPhone.Views.VideoPlayerView"
+﻿<scott:BasePage
                    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
@@ -10,17 +10,442 @@
                    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
                    xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP8"
                    xmlns:scott="clr-namespace:ScottIsAFool.WindowsPhone.Controls;assembly=ScottIsAFool.WindowsPhone"
+                   xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="MediaBrowser.WindowsPhone.Views.VideoPlayerView"
                    mc:Ignorable="d ignore"
-                   FontFamily="{StaticResource PhoneFontFamilyNormal}"
-                   FontSize="{StaticResource PhoneFontSizeNormal}"
-                   Foreground="{StaticResource PhoneForegroundBrush}"
                    SupportedOrientations="Landscape"
                    Orientation="Landscape"
                    shell:SystemTray.IsVisible="False"
-                   DataContext="{Binding Player, Source={StaticResource Locator}}">
+                   >
     <scott:BasePage.Resources>
-        <converters:TicksToTimespanConverter x:Key="TicksToTimespanConverter" />
+        <converters:TicksToTimespanConverter x:Key="TicksToTimespanConverter" />        
+        <System:Double x:Key="SliderTrackThemeHeight">12</System:Double>
+        <Style x:Key="VisualMarkerStyle" TargetType="Button">
+        	<Setter Property="Width" Value="25"/>
+        	<Setter Property="Height" Value="25"/>
+        	<Setter Property="Padding" Value="11,0,11,0"/>
+        	<Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        	<Setter Property="VerticalContentAlignment" Value="Stretch"/>
+        	<Setter Property="Foreground" Value="{StaticResource PhoneForegroundBrush}"/>
+        	<Setter Property="Background" Value="Transparent"/>
+        	<Setter Property="BorderBrush" Value="Transparent"/>
+        	<Setter Property="BorderThickness" Value="0"/>
+        	<Setter Property="Template">
+        		<Setter.Value>
+        			<ControlTemplate TargetType="Button">
+        				<Grid Background="{TemplateBinding Background}">
+        					<VisualStateManager.VisualStateGroups>
+        						<VisualStateGroup x:Name="CommonStates">
+        							<VisualState x:Name="Normal"/>
+        							<VisualState x:Name="MouseOver"/>
+        							<VisualState x:Name="Pressed">
+        								<Storyboard>
+        									<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="Glyph">
+        										<DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PhoneBackgroundBrush}"/>
+        									</ObjectAnimationUsingKeyFrames>
+        								</Storyboard>
+        							</VisualState>
+        							<VisualState x:Name="Disabled">
+        								<Storyboard>
+        									<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="Glyph">
+        										<DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PhoneDisabledColor}"/>
+        									</ObjectAnimationUsingKeyFrames>
+        								</Storyboard>
+        							</VisualState>
+        						</VisualStateGroup>
+        					</VisualStateManager.VisualStateGroups>
+        					<Border x:Name="Glyph" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Foreground}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+        				</Grid>
+        			</ControlTemplate>
+        		</Setter.Value>
+        	</Setter>
+        </Style>
+        <ControlTemplate x:Key="SeekableSliderControlTemplate1" TargetType="playerFramework:SeekableSlider">
+        	<Grid x:Name="LayoutRoot">
+        		<VisualStateManager.VisualStateGroups>
+        			<VisualStateGroup x:Name="CommonStates">
+        				<VisualState x:Name="Normal"/>
+        				<VisualState x:Name="MouseOver"/>
+        				<VisualState x:Name="Disabled">
+        					<Storyboard>
+        						<DoubleAnimation Duration="0" To="0.1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="HorizontalTrack"/>
+        						<DoubleAnimation Duration="0" To="0.1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="VerticalTrack"/>
+        						<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="VerticalFill">
+        							<DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PhoneDisabledBrush}"/>
+        						</ObjectAnimationUsingKeyFrames>
+        					</Storyboard>
+        				</VisualState>
+        			</VisualStateGroup>
+        			<VisualStateGroup x:Name="ScrubbingStates">
+        				<VisualState x:Name="NotScrubbing" />
+        				<VisualState x:Name="Scrubbing" />
+        			</VisualStateGroup>
+        		</VisualStateManager.VisualStateGroups>
+
+        		<Grid x:Name="HorizontalTemplate">
+        			<ContentPresenter x:Name="HorizontalBackgroundContentPresenter" Margin="{TemplateBinding Padding}" Content="{TemplateBinding HorizontalBackgroundContent}"/>
+        			<Rectangle x:Name="HorizontalTrack" Margin="{TemplateBinding Padding}" Fill="{TemplateBinding Background}" IsHitTestVisible="False" />
+        			<Rectangle x:Name="HorizontalFill" Margin="{TemplateBinding Padding}" Fill="{StaticResource SecondaryAccentColorBrush}" IsHitTestVisible="False">
+        				<Rectangle.Clip>
+        					<RectangleGeometry Rect="0, 0, 6, 12"/>
+        				</Rectangle.Clip>
+        			</Rectangle>
+        			<Border x:Name="HorizontalAvailableBar" HorizontalAlignment="Left" IsHitTestVisible="True" Background="#00000000" />
+        			<ContentPresenter x:Name="HorizontalForegroundContentPresenter" Margin="{TemplateBinding Padding}" Content="{TemplateBinding HorizontalForegroundContent}"/>
+                    <Rectangle x:Name="HorizontalCenterElement" Fill="{StaticResource PhoneAccentBrush}" DataContext="{TemplateBinding Value}" HorizontalAlignment="Left" IsHitTestVisible="False" Height="20" Width="20" RadiusX="10" RadiusY="10" Stroke="White" StrokeThickness="3">
+        				<Rectangle.RenderTransform>
+        					<TranslateTransform/>
+        				</Rectangle.RenderTransform>
+        			</Rectangle>
+        		</Grid>
+
+        		<Grid x:Name="VerticalTemplate" Visibility="Collapsed">
+        			<ContentPresenter x:Name="VerticalBackgroundContentPresenter" Margin="{TemplateBinding Padding}" Content="{TemplateBinding VerticalBackgroundContent}"/>
+        			<Rectangle x:Name="VerticalTrack" Margin="{TemplateBinding Padding}" Fill="{TemplateBinding Background}" IsHitTestVisible="False"/>
+        			<Rectangle x:Name="VerticalFill" Margin="{TemplateBinding Padding}" Fill="{TemplateBinding Foreground}" IsHitTestVisible="False">
+        				<Rectangle.Clip>
+        					<RectangleGeometry Rect="0, 0, 12, 6"/>
+        				</Rectangle.Clip>
+        			</Rectangle>
+        			<Border x:Name="VerticalAvailableBar" VerticalAlignment="Bottom" IsHitTestVisible="True" Background="#00000000" />
+        			<ContentPresenter x:Name="VerticalForegroundContentPresenter" Margin="{TemplateBinding Padding}" Content="{TemplateBinding VerticalForegroundContent}"/>
+        			<Rectangle x:Name="VerticalCenterElement" Fill="{TemplateBinding SliderThumbBackground}" DataContext="{TemplateBinding Value}" VerticalAlignment="Bottom" Height="{StaticResource SliderTrackThemeHeight}" IsHitTestVisible="False">
+        				<Rectangle.RenderTransform>
+        					<TranslateTransform/>
+        				</Rectangle.RenderTransform>
+        			</Rectangle>
+        		</Grid>
+        	</Grid>
+        </ControlTemplate>
+        <Style x:Key="TimelineStyle1" TargetType="playerFramework:Timeline">
+        	<Setter Property="Height" Value="{StaticResource SliderTrackThemeHeight}"/>
+        	<Setter Property="IsTabStop" Value="False"/>
+        	<Setter Property="Margin" Value="8,0,8,0"/>
+        	<Setter Property="Padding" Value="0"/>
+        	<Setter Property="Template">
+        		<Setter.Value>
+        			<ControlTemplate TargetType="playerFramework:Timeline">
+        				<Grid>
+        					<playerFramework:SeekableSlider x:Name="ProgressSlider" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" DataContext="{TemplateBinding ViewModel}" Height="{TemplateBinding Height}" Orientation="Horizontal" Padding="{TemplateBinding Padding}" SmallChange="10" VerticalAlignment="Stretch" Template="{StaticResource SeekableSliderControlTemplate1}" Foreground="{StaticResource ChildProgrammeBrush}">
+        						<playerFramework:SeekableSlider.HorizontalForegroundContent>
+        							<playerFramework:PositionedItemsControl x:Name="PositionedItemsControl" ItemsSource="{Binding VisualMarkers}" Maximum="{Binding EndTime.TotalSeconds}" Minimum="{Binding StartTime.TotalSeconds}">
+        								<playerFramework:PositionedItemsControl.ItemTemplate>
+        									<DataTemplate>
+                                                <Button Content="{Binding Text}" IsEnabled="{Binding IsSeekable}" playerFramework:PositionedItemsPanel.Position="0">
+        											<Button.Style>
+        												<Binding ConverterParameter="{StaticResource VisualMarkerStyle}" Path="Style">
+        													<Binding.Converter>
+        														<playerFramework:TargetNullValueConverter/>
+        													</Binding.Converter>
+        												</Binding>
+        											</Button.Style>
+        										</Button>
+        									</DataTemplate>
+        								</playerFramework:PositionedItemsControl.ItemTemplate>
+        							</playerFramework:PositionedItemsControl>
+        						</playerFramework:SeekableSlider.HorizontalForegroundContent>
+        						<playerFramework:SeekableSlider.HorizontalBackgroundContent>
+        							<ProgressBar x:Name="DownloadProgressBar" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Foreground="{StaticResource PhoneProgressBarBackgroundBrush}" IsTabStop="False" IsIndeterminate="False" Maximum="1" Value="{Binding DownloadProgress}" VerticalAlignment="Stretch">
+        								<ProgressBar.Template>
+        									<ControlTemplate TargetType="ProgressBar">
+        										<Grid>
+        											<VisualStateManager.VisualStateGroups>
+        												<VisualStateGroup x:Name="CommonStates">
+        													<VisualState x:Name="Determinate"/>
+        													<VisualState x:Name="Indeterminate"/>
+        												</VisualStateGroup>
+        											</VisualStateManager.VisualStateGroups>
+        											<Grid x:Name="DeterminateRoot" Visibility="Visible">
+        												<Rectangle x:Name="ProgressBarTrack" Fill="{TemplateBinding Background}"/>
+        												<Rectangle x:Name="ProgressBarIndicator" Fill="{TemplateBinding Foreground}" HorizontalAlignment="Left"/>
+        											</Grid>
+        										</Grid>
+        									</ControlTemplate>
+        								</ProgressBar.Template>
+        							</ProgressBar>
+        						</playerFramework:SeekableSlider.HorizontalBackgroundContent>
+        					</playerFramework:SeekableSlider>
+        				</Grid>
+        			</ControlTemplate>
+        		</Setter.Value>
+        	</Setter>
+        </Style>
+        <Style x:Key="ControlPanelStyle1" TargetType="playerFramework:ControlPanel">
+        	<Setter Property="VerticalAlignment" Value="Bottom"/>
+        	<Setter Property="Background" Value="{StaticResource PhoneSemitransparentColor}"/>
+        	<Setter Property="Template">
+        		<Setter.Value>
+        			<ControlTemplate TargetType="playerFramework:ControlPanel">
+        				<Grid>
+        					<VisualStateManager.VisualStateGroups>
+        						<VisualStateGroup x:Name="MediaStates">
+        							<VisualState x:Name="Opening"/>
+        							<VisualState x:Name="Paused"/>
+        							<VisualState x:Name="Playing"/>
+        							<VisualState x:Name="Closed"/>
+        							<VisualState x:Name="Buffering"/>
+        						</VisualStateGroup>
+        						<VisualStateGroup x:Name="LayoutStates">
+        							<VisualState x:Name="Compact"/>
+        							<VisualState x:Name="Normal"/>
+        						</VisualStateGroup>
+        					</VisualStateManager.VisualStateGroups>
+        					<Border x:Name="Border" Background="{TemplateBinding Background}" DataContext="{TemplateBinding ViewModel}">
+        						<Border.Resources>
+        							<playerFramework:BoolToVisibilityConverter x:Key="VisibleIfConverter"/>
+        						</Border.Resources>
+        						<Grid>
+        							<Grid.RowDefinitions>
+        								<RowDefinition Height="75"/>
+        								<RowDefinition Height="Auto"/>
+        								<RowDefinition Height="Auto"/>
+        								<RowDefinition Height="Auto"/>
+        							</Grid.RowDefinitions>
+        							<StackPanel HorizontalAlignment="Right" Margin="0,15,10,15" Orientation="Horizontal" Grid.Row="0">
+        								<playerFramework:ReplayButton x:Name="ReplayButton" FontSize="25" Margin="10,0,10,0" Size="45" Visibility="{Binding IsReplayButtonVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}" ViewModel="{TemplateBinding ViewModel}"/>
+        								<playerFramework:StopButton x:Name="StopButton" FontSize="25" Margin="10,0,10,0" Size="45" Visibility="{Binding IsStopButtonVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}" ViewModel="{TemplateBinding ViewModel}"/>
+        								<playerFramework:SlowMotionButton x:Name="SlowMotionButton" FontSize="25" Margin="10,0,10,0" Size="45" Visibility="{Binding IsSlowMotionButtonVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}" ViewModel="{TemplateBinding ViewModel}"/>
+        								<playerFramework:CaptionSelectionButton x:Name="CaptionSelectionButton" FontSize="25" Margin="10,0,10,0" Size="45" Visibility="{Binding IsCaptionSelectionButtonVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}" ViewModel="{TemplateBinding ViewModel}"/>
+        								<playerFramework:AudioSelectionButton x:Name="AudioSelectionButton" FontSize="25" Margin="10,0,10,0" Size="45" Visibility="{Binding IsAudioSelectionButtonVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}" ViewModel="{TemplateBinding ViewModel}"/>
+        								<playerFramework:GoLiveButton x:Name="GoLiveButton" FontSize="18" Margin="10,0,10,0" Size="45" Visibility="{Binding IsGoLiveButtonVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}" ViewModel="{TemplateBinding ViewModel}"/>
+        								<playerFramework:InfoButton x:Name="InfoButton" FontSize="18" Margin="10,0,10,0" Size="45" Visibility="{Binding IsInfoButtonVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}" ViewModel="{TemplateBinding ViewModel}"/>
+        								<playerFramework:FullScreenButton x:Name="FullScreenButton" FontSize="25" Margin="10,0,10,0" Size="45" Visibility="{Binding IsFullScreenButtonVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}" ViewModel="{TemplateBinding ViewModel}"/>
+        								<playerFramework:MuteButton x:Name="MuteButton" FontSize="25" Margin="10,0,10,0" Size="45" Visibility="{Binding IsMuteButtonVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}" ViewModel="{TemplateBinding ViewModel}"/>
+        								<playerFramework:MoreButton x:Name="MoreButton" FontSize="18" Margin="10,0,10,0" Size="45" Visibility="{Binding IsMoreButtonVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}" ViewModel="{TemplateBinding ViewModel}"/>
+        							</StackPanel>
+        							<StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Row="1">
+        								<StackPanel x:Name="NonEssentialsNearLeft" Orientation="Horizontal">
+        									<playerFramework:SkipPreviousButton x:Name="SkipPreviousButton" Margin="10,0,10,0" Visibility="{Binding IsSkipPreviousButtonVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}" ViewModel="{TemplateBinding ViewModel}"/>
+        									<playerFramework:RewindButton x:Name="RewindButton" Margin="10,0,10,0" Visibility="{Binding IsRewindButtonVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}" ViewModel="{TemplateBinding ViewModel}"/>
+        									<playerFramework:SkipBackButton x:Name="SkipBackButton" Margin="10,0,10,0" Visibility="{Binding IsSkipBackButtonVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}" ViewModel="{TemplateBinding ViewModel}"/>
+        								</StackPanel>
+        								<playerFramework:PlayPauseButton x:Name="PlayPauseButton" Margin="50,0,50,0" Visibility="{Binding IsPlayPauseButtonVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}" ViewModel="{TemplateBinding ViewModel}"/>
+        								<StackPanel x:Name="NonEssentialsNearRight" Orientation="Horizontal">
+        									<playerFramework:SkipAheadButton x:Name="SkipAheadButton" Margin="10,0,10,0" Visibility="{Binding IsSkipAheadButtonVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}" ViewModel="{TemplateBinding ViewModel}"/>
+        									<playerFramework:FastForwardButton x:Name="FastForwardButton" Margin="10,0,10,0" Visibility="{Binding IsFastForwardButtonVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}" ViewModel="{TemplateBinding ViewModel}"/>
+        									<playerFramework:SkipNextButton x:Name="SkipNextButton" Margin="10,0,10,0" Visibility="{Binding IsSkipNextButtonVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}" ViewModel="{TemplateBinding ViewModel}"/>
+        								</StackPanel>
+        							</StackPanel>
+        							<playerFramework:Timeline x:Name="Timeline" Height="25" Margin="10,40,10,0" Padding="0,10,0,10" Grid.Row="2" Visibility="{Binding IsTimelineVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}" ViewModel="{TemplateBinding ViewModel}" Style="{StaticResource TimelineStyle1}"/>
+        							<StackPanel HorizontalAlignment="Left" Margin="10,0,10,15" Orientation="Horizontal" Grid.Row="3">
+        								<playerFramework:TimeElapsed x:Name="TimeElapsed" Visibility="{Binding IsTimeElapsedButtonVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}" ViewModel="{TemplateBinding ViewModel}"/>
+        								<TextBlock FontSize="{StaticResource PhoneFontSizeNormal}" FontFamily="{StaticResource PhoneFontFamilyNormal}" Text=" / " VerticalAlignment="Center"/>
+        								<playerFramework:TimeRemaining x:Name="TimeRemaining" Visibility="{Binding IsTimeRemainingButtonVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}" ViewModel="{TemplateBinding ViewModel}"/>
+        								<playerFramework:TotalDuration x:Name="TotalDuration" Visibility="{Binding IsDurationButtonVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}" ViewModel="{TemplateBinding ViewModel}"/>
+        							</StackPanel>
+        							<StackPanel HorizontalAlignment="Right" Margin="10,0,10,15" Orientation="Horizontal" Grid.Row="3">
+        								<playerFramework:SignalStrength x:Name="SignalStrength" Margin="10,0,0,0" Visibility="{Binding IsSignalStrengthVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}" Value="{Binding SignalStrength}" VerticalAlignment="Center"/>
+        								<playerFramework:ResolutionIndicator x:Name="ResolutionIndicator" Margin="10,0,10,0" MediaQuality="{Binding MediaQuality}" Visibility="{Binding IsResolutionIndicatorVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}" VerticalAlignment="Center"/>
+        							</StackPanel>
+        						</Grid>
+        					</Border>
+        				</Grid>
+        			</ControlTemplate>
+        		</Setter.Value>
+        	</Setter>
+        </Style>
+    	<Style x:Key="MediaPlayerStyle1" TargetType="playerFramework:MediaPlayer">
+    		<Setter Property="InteractiveDeactivationMode" Value="All"/>
+    		<Setter Property="AutoHideBehavior" Value="All"/>
+    		<Setter Property="IsTimeRemainingVisible" Value="False"/>
+    		<Setter Property="IsDurationVisible" Value="True"/>
+    		<Setter Property="Template">
+    			<Setter.Value>
+    				<ControlTemplate TargetType="playerFramework:MediaPlayer">
+    					<Grid x:Name="LayoutRoot" Background="{TemplateBinding Background}">
+    						<VisualStateManager.VisualStateGroups>
+    							<VisualStateGroup x:Name="FullScreenStates">
+    								<VisualState x:Name="FullScreen"/>
+    								<VisualState x:Name="NotFullScreen"/>
+    							</VisualStateGroup>
+    							<VisualStateGroup x:Name="CaptionsStates">
+    								<VisualState x:Name="CaptionsActive">
+    									<Storyboard>
+    										<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Control.Visibility)" Storyboard.TargetName="CaptionsContainer">
+    											<DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+    										</ObjectAnimationUsingKeyFrames>
+    									</Storyboard>
+    								</VisualState>
+    								<VisualState x:Name="CaptionsInactive"/>
+    							</VisualStateGroup>
+    							<VisualStateGroup x:Name="AdvertisingStates">
+    								<VisualState x:Name="LoadingAd">
+    									<Storyboard>
+    										<DoubleAnimation Duration="0:0:0.5" To="0" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="MediaContainer"/>
+    										<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Control.Visibility)" Storyboard.TargetName="LoadingAdvertisment">
+    											<DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+    										</ObjectAnimationUsingKeyFrames>
+    										<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="IsIndeterminate" Storyboard.TargetName="AdvertisementLoadingProgressBar">
+    											<DiscreteObjectKeyFrame KeyTime="0">
+    												<DiscreteObjectKeyFrame.Value>
+    													<System:Boolean>True</System:Boolean>
+    												</DiscreteObjectKeyFrame.Value>
+    											</DiscreteObjectKeyFrame>
+    										</ObjectAnimationUsingKeyFrames>
+    									</Storyboard>
+    								</VisualState>
+    								<VisualState x:Name="LinearAd">
+    									<Storyboard>
+    										<DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="MediaContainer"/>
+    									</Storyboard>
+    								</VisualState>
+    								<VisualState x:Name="NonLinearAd">
+    									<Storyboard>
+    										<DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="MediaContainer"/>
+    									</Storyboard>
+    								</VisualState>
+    								<VisualState x:Name="NoAd">
+    									<Storyboard>
+    										<DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="MediaContainer"/>
+    									</Storyboard>
+    								</VisualState>
+    							</VisualStateGroup>
+    							<VisualStateGroup x:Name="InteractiveStates">
+    								<VisualState x:Name="StartInteracting">
+    									<Storyboard>
+    										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="InteractivityContainer">
+    											<EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1"/>
+    										</DoubleAnimationUsingKeyFrames>
+    										<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Control.Visibility)" Storyboard.TargetName="InteractivityContainer">
+    											<DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+    										</ObjectAnimationUsingKeyFrames>
+    									</Storyboard>
+    								</VisualState>
+    								<VisualState x:Name="StopInteracting">
+    									<Storyboard>
+    										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="InteractivityContainer">
+    											<EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0"/>
+    										</DoubleAnimationUsingKeyFrames>
+    										<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Control.Visibility)" Storyboard.TargetName="InteractivityContainer">
+    											<DiscreteObjectKeyFrame KeyTime="0:0:0.4" Value="Collapsed"/>
+    										</ObjectAnimationUsingKeyFrames>
+    									</Storyboard>
+    								</VisualState>
+    								<VisualState x:Name="Visible">
+    									<Storyboard>
+    										<DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="InteractivityContainer"/>
+    										<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Control.Visibility)" Storyboard.TargetName="InteractivityContainer">
+    											<DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+    										</ObjectAnimationUsingKeyFrames>
+    									</Storyboard>
+    								</VisualState>
+    								<VisualState x:Name="Hidden">
+    									<Storyboard>
+    										<DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="InteractivityContainer"/>
+    										<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Control.Visibility)" Storyboard.TargetName="InteractivityContainer">
+    											<DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
+    										</ObjectAnimationUsingKeyFrames>
+    									</Storyboard>
+    								</VisualState>
+    							</VisualStateGroup>
+    							<VisualStateGroup x:Name="MediaStates">
+    								<VisualState x:Name="Opening">
+    									<Storyboard>
+    										<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Control.Visibility)" Storyboard.TargetName="BufferingContainer">
+    											<DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+    										</ObjectAnimationUsingKeyFrames>
+    									</Storyboard>
+    								</VisualState>
+    								<VisualState x:Name="Paused"/>
+    								<VisualState x:Name="Playing"/>
+    								<VisualState x:Name="Closed"/>
+    								<VisualState x:Name="Buffering">
+    									<Storyboard>
+    										<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Control.Visibility)" Storyboard.TargetName="BufferingContainer">
+    											<DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+    										</ObjectAnimationUsingKeyFrames>
+    									</Storyboard>
+    								</VisualState>
+    							</VisualStateGroup>
+    							<VisualStateGroup x:Name="PlayerStates">
+    								<VisualState x:Name="Unloaded">
+    									<Storyboard>
+    										<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Control.Visibility)" Storyboard.TargetName="PosterContainer">
+    											<DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+    										</ObjectAnimationUsingKeyFrames>
+    									</Storyboard>
+    								</VisualState>
+    								<VisualState x:Name="Pending">
+    									<Storyboard>
+    										<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Control.Visibility)" Storyboard.TargetName="LoaderViewContainer">
+    											<DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+    										</ObjectAnimationUsingKeyFrames>
+    										<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Control.Visibility)" Storyboard.TargetName="PosterContainer">
+    											<DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+    										</ObjectAnimationUsingKeyFrames>
+    									</Storyboard>
+    								</VisualState>
+    								<VisualState x:Name="Loading"/>
+    								<VisualState x:Name="Loaded"/>
+    								<VisualState x:Name="Opened"/>
+    								<VisualState x:Name="Starting"/>
+    								<VisualState x:Name="Started"/>
+    								<VisualState x:Name="Ending"/>
+    								<VisualState x:Name="Failed">
+    									<Storyboard>
+    										<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Control.Visibility)" Storyboard.TargetName="ErrorsContainer">
+    											<DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+    										</ObjectAnimationUsingKeyFrames>
+    									</Storyboard>
+    								</VisualState>
+    							</VisualStateGroup>
+    						</VisualStateManager.VisualStateGroups>
+    						<Grid x:Name="MediaContainer">
+    							<Grid x:Name="CaptionsContainer" IsHitTestVisible="False" Visibility="Collapsed"/>
+    						</Grid>
+    						<Grid x:Name="PosterContainer" IsHitTestVisible="False" Visibility="Collapsed"/>
+    						<Grid x:Name="AdvertisingContainer" Visibility="Collapsed">
+    							<Grid x:Name="LoadingAdvertisment" Background="#00000000" Visibility="Collapsed">
+    								<ProgressBar x:Name="AdvertisementLoadingProgressBar" HorizontalAlignment="Stretch" IsIndeterminate="False" VerticalAlignment="Center"/>
+    							</Grid>
+    						</Grid>
+    						<Grid x:Name="ErrorsContainer" Visibility="Collapsed"/>
+    						<Grid x:Name="InteractivityContainer" Visibility="Collapsed">
+    							<playerFramework:ControlPanel x:Name="ControlPanel" IsFullScreenButtonVisible="{TemplateBinding IsFullScreenVisible}" 
+                                                              IsInfoButtonVisible="{TemplateBinding IsInfoVisible}" 
+                                                              IsRewindButtonVisible="{TemplateBinding IsRewindVisible}"
+                                                              IsSkipPreviousButtonVisible="{TemplateBinding IsSkipPreviousVisible}"
+                                                              IsStopButtonVisible="{TemplateBinding IsStopVisible}" 
+                                                              IsPlayPauseButtonVisible="{TemplateBinding IsPlayPauseVisible}"
+                                                              IsResolutionIndicatorVisible="{TemplateBinding IsResolutionIndicatorVisible}" 
+                                                              IsSkipBackButtonVisible="{TemplateBinding IsSkipBackVisible}" 
+                                                              IsGoLiveButtonVisible="{TemplateBinding IsGoLiveVisible}" 
+                                                              IsSlowMotionButtonVisible="{TemplateBinding IsSlowMotionVisible}"
+                                                              IsAudioSelectionButtonVisible="{TemplateBinding IsAudioSelectionVisible}" 
+                                                              IsTimelineVisible="{TemplateBinding IsTimelineVisible}"
+                                                              IsReplayButtonVisible="{TemplateBinding IsReplayVisible}" 
+                                                              IsTimeRemainingButtonVisible="False" 
+                                                              IsSignalStrengthVisible="{TemplateBinding IsSignalStrengthVisible}" 
+                                                              IsSkipNextButtonVisible="{TemplateBinding IsSkipNextVisible}"
+                                                              IsFastForwardButtonVisible="{TemplateBinding IsFastForwardVisible}" 
+                                                              IsDurationButtonVisible="{TemplateBinding IsDurationVisible}"
+                                                              IsMoreButtonVisible="{TemplateBinding IsMoreVisible}" 
+                                                              IsTimeElapsedButtonVisible="True" 
+                                                              IsCaptionSelectionButtonVisible="{TemplateBinding IsCaptionSelectionVisible}"
+                                                              IsVolumeButtonVisible="{TemplateBinding IsVolumeVisible}" 
+                                                              IsSkipAheadButtonVisible="{TemplateBinding IsSkipAheadVisible}"
+                                                              ViewModel="{TemplateBinding InteractiveViewModel}" Style="{StaticResource ControlPanelStyle1}"/>
+    						</Grid>
+    						<Grid x:Name="LoaderViewContainer" Visibility="Collapsed"/>
+    						<Grid x:Name="BufferingContainer" Visibility="Collapsed"/>
+    						<Grid x:Name="SettingsContainer" Visibility="Collapsed"/>
+    					</Grid>
+    				</ControlTemplate>
+    			</Setter.Value>
+    		</Setter>
+    	</Style>
     </scott:BasePage.Resources>
+	<scott:BasePage.FontFamily>
+		<StaticResource ResourceKey="PhoneFontFamilyNormal"/>
+	</scott:BasePage.FontFamily>
+	<scott:BasePage.FontSize>
+		<StaticResource ResourceKey="PhoneFontSizeNormal"/>
+	</scott:BasePage.FontSize>
+	<scott:BasePage.Foreground>
+		<StaticResource ResourceKey="PhoneForegroundBrush"/>
+	</scott:BasePage.Foreground>
+	<scott:BasePage.DataContext>
+		<Binding Path="Player" Source="{StaticResource Locator}"/>
+	</scott:BasePage.DataContext>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <command:EventToCommand Command="{Binding VideoPageLoaded}" />
@@ -28,23 +453,29 @@
     </i:Interaction.Triggers>
 
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot"
-          Background="Transparent">
+	<Grid x:Name="LayoutRoot"
+		Background="Transparent">
 
-        <playerFramework:MediaPlayer x:Name="thePlayer"
-                                     Source="{Binding VideoUrl}"
-                                     AutoPlay="True"
-                                     MediaEnded="ThePlayerMediaEnded"
-                                     MediaFailed="ThePlayerMediaFailed"
-                                     MediaOpened="ThePlayer_OnMediaOpened"
-                                     MediaStarting="ThePlayer_OnMediaStarting"
-                                     MediaStarted="ThePlayer_OnMediaStarted"
-                                     IsTimeElapsedVisible="True"
-                                     IsDurationVisible="False"
-                                     CurrentStateChanged="ThePlayer_OnCurrentStateChanged"
-                                     StartTime="{Binding StartTime}"
-                                     Position="{Binding PlayedVideoDuration, Mode=TwoWay}"
-                                     EndTime="{Binding SelectedItem.RunTimeTicks, Converter={StaticResource TicksToTimespanConverter}}" />
-    </Grid>
+		<playerFramework:MediaPlayer x:Name="thePlayer"
+			Source="{Binding VideoUrl}"
+			AutoPlay="True"
+			MediaEnded="ThePlayerMediaEnded"
+			MediaFailed="ThePlayerMediaFailed"
+			MediaOpened="ThePlayer_OnMediaOpened"
+			MediaStarting="ThePlayer_OnMediaStarting"
+			MediaStarted="ThePlayer_OnMediaStarted"
+			IsTimeElapsedVisible="True"
+			IsDurationVisible="True"
+			IsScrubbingEnabled="True"
+			IsSeekEnabled="True"                                     
+			CurrentStateChanged="ThePlayer_OnCurrentStateChanged"
+			StartTime="{Binding StartTime}"
+			Position="{Binding PlayedVideoDuration, Mode=TwoWay}"
+			EndTime="{Binding EndTime}" 
+			ScrubbingCompleted="thePlayer_ScrubbingCompleted" 
+            Seeked="thePlayer_Seeked"
+            Style="{StaticResource MediaPlayerStyle1}" 
+                                      />
+	</Grid>
 
 </scott:BasePage>

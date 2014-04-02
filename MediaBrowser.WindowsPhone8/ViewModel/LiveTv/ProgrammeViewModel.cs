@@ -190,7 +190,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                     if (SimpleIoc.Default.GetInstance<VideoPlayerViewModel>() != null)
                     {
                         Messenger.Default.Send(new VideoMessage(SelectedRecording, false));
-                        _navigationService.NavigateTo(Constants.Pages.VideoPlayerView);
+                        _navigationService.NavigateTo(string.Format(Constants.Pages.VideoPlayerView, SelectedRecording.Id, SelectedRecording.Type));
                     }
                 });
             }
@@ -205,7 +205,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                     if (SimpleIoc.Default.GetInstance<VideoPlayerViewModel>() != null)
                     {
                         Messenger.Default.Send(new VideoMessage(SelectedProgramme, false));
-                        _navigationService.NavigateTo(Constants.Pages.VideoPlayerView);
+                        _navigationService.NavigateTo(string.Format(Constants.Pages.VideoPlayerView,  SelectedProgramme.Id, SelectedProgramme.Type));
                     }
                 });
             }
