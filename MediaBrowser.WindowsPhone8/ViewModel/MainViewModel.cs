@@ -200,7 +200,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     }
 
                     TrialHelper.Current.SetNewVideoItem(item.Id);
-                    _navService.NavigateTo(Constants.Pages.VideoPlayerView);
+                    _navService.NavigateTo(string.Format(Constants.Pages.VideoPlayerView, item.Id, item.Type));
                 }
             }
 #else

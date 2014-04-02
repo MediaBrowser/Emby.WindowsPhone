@@ -113,7 +113,7 @@
             public const string NowPlayingView = ViewsPath + "NowPlayingView.xaml";
             public const string FullPlaylistView = ViewsPath + "FullPlaylistView.xaml";
             public const string SearchView = ViewsPath + "SearchView.xaml";
-            public const string VideoPlayerView = ViewsPath + "VideoPlayerView.xaml";
+            public const string VideoPlayerView = ViewsPath + "VideoPlayerView.xaml?id={0}&type={1}";
             public const string ActorView = ViewsPath + "ActorView.xaml";
             public const string GenericItemView = ViewsPath + "GenericItemView.xaml";
             public const string MainPage = ViewsPath + "MainPage.xaml";
