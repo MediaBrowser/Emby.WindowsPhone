@@ -415,7 +415,7 @@ namespace MediaBrowser.WindowsPhone
             if (programme != null)
             {
                 var now = DateTime.Now;
-                return programme.StartDate < now && programme.EndDate > now;
+                return programme.StartDate.ToLocalTime() < now && programme.EndDate.ToLocalTime() > now;
             }
 
             return true;
@@ -438,7 +438,7 @@ namespace MediaBrowser.WindowsPhone
 
         internal static string CoolDateName(DateTime? dateTime)
         {
-            if (!dateTime.HasValue)
+            if (!dateTime.HasValue || dateTime.Value == DateTime.MinValue)
             {
                 return string.Empty;
             }

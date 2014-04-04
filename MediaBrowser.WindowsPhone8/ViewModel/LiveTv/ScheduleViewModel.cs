@@ -215,10 +215,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                 {
                     var upcomingItems = items.Items;
                     var groupedItems = (from u in upcomingItems
-                        group u by u.StartDate.Date
-                        into grp
-                        orderby grp.Key
-                        select new Group<TimerInfoDto>(Utils.CoolDateName(grp.Key), grp)).ToList();
+                                        group u by u.StartDate.ToLocalTime().Date
+                                            into grp
+                                            orderby grp.Key
+                                            select new Group<TimerInfoDto>(Utils.CoolDateName(grp.Key), grp)).ToList();
 
 
                     Upcoming = groupedItems;
@@ -240,7 +240,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
             {
                 if (m.Notification.Equals(Constants.Messages.LiveTvSeriesDeletedMsg))
                 {
-                    var seriesId = (string) m.Sender;
+                    var seriesId = (string)m.Sender;
 
                     var seriesToDelete = Series.FirstOrDefault(x => x.Id == seriesId);
                     Series.Remove(seriesToDelete);

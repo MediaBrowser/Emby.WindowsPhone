@@ -132,7 +132,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                 {
                     case RecordedGroupBy.RecordedDate:
                         groupedItems = (from p in RecordedProgrammes
-                                        group p by p.StartDate.Date
+                                        group p by p.StartDate.ToLocalTime().Date
                                             into grp
                                             orderby grp.Key
                                             select new Group<RecordingInfoDto>(Utils.CoolDateName(grp.Key), grp)).ToList();
