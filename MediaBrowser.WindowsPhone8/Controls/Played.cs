@@ -57,12 +57,12 @@ namespace MediaBrowser.WindowsPhone.Controls
             {
                 var item = played.Data as BaseItemDto;
                 var type = item.Type;
-                if (type != "Season" && type != "Series" && type != "BoxSet" && item.MediaType != "Video")
+                if (type != "Season" && type != "Series" && type != "BoxSet" && item.MediaType != "Video" && item.Type != "MusicAlbum" && item.Type != "MusicArtist")
                 {
                     return;
                 }
 
-                if (item.MediaType != "Video")
+                if (item.MediaType == null || item.MediaType != "Video")
                 {
                     if (played._unwatchedGrid != null && played._watchedPath != null && played._theEllipse != null)
                     {
