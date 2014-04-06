@@ -622,7 +622,7 @@ durchstöbern, sie auf Ihr Smartphone streamen und jeden verfügbaren Media Brow
     <value>Aus Favoriten entfernen</value>
   </data>
   <data name="ResourceLanguage" xml:space="preserve">
-    <value>de-DE</value>
+    <value>de</value>
   </data>
   <data name="Settings" xml:space="preserve">
     <value>Einstellungen</value>
@@ -978,4 +978,5 @@ durchstöbern und jeden verfügbaren Media Browser Client fernbedienen.</value>
   <data name="HeaderTV" xml:space="preserve">
     <value>TV</value>
   </data>
+
 </root>

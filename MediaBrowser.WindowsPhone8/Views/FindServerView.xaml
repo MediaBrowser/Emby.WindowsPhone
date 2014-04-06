@@ -81,7 +81,8 @@
                     <DataTemplate>
                         <controls:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
                                                         TapCommand="{Binding Settings.ServerTappedCommand, Source={StaticResource Locator}}"
-                                                        CommandParameter="{Binding}">
+                                                        CommandParameter="{Binding}"
+                                                        Margin="12,0,0,12">
                             <controls1:HeaderAndDetail HeaderText="{Binding IpAddress}"
                                                        HeaderTextForeground="{StaticResource PhoneAccentBrush}"
                                                        HeaderTextStyle="{StaticResource PhoneTextTitle2Style}"

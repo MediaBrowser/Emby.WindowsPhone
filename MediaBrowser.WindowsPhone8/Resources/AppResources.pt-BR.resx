@@ -460,7 +460,7 @@
     <value>Outro</value>
   </data>
   <data name="LabelOverview" xml:space="preserve">
-    <value>visão geral</value>
+    <value>sinopse</value>
   </data>
   <data name="LabelPassword" xml:space="preserve">
     <value>senha:</value>
@@ -547,7 +547,7 @@
     <value>TV</value>
   </data>
   <data name="LabelUnairedEpisodes" xml:space="preserve">
-    <value>Exibir episódios não-lançados</value>
+    <value>Exibir episódios não-exibidos</value>
   </data>
   <data name="LabelUnwatched" xml:space="preserve">
     <value>Não-assistido(s):</value>

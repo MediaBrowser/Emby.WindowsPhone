@@ -10,8 +10,9 @@
     <Language code="pt-BR" />
     <Language code="qps-ploc" />
     <Language code="sv" />
+    <Language code="ru"/>
   </Languages>
-  <App xmlns="" ProductID="{38b51256-1baa-42e6-a043-47dd5a334513}" Title="Media Browser Beta" RuntimeType="Silverlight" Version="0.0.8.53" Genre="apps.normal" Author="ScottIsAFool" Description="Windows phone 8 app for MediaBrowser3" Publisher="ScottLovegrove" PublisherID="{7927cbc0-8641-4c30-a5d5-ef3da2dda868}">
+  <App xmlns="" ProductID="{38b51256-1baa-42e6-a043-47dd5a334513}" Title="Media Browser Beta" RuntimeType="Silverlight" Version="0.0.8.54" Genre="apps.normal" Author="ScottIsAFool" Description="Windows phone 8 app for MediaBrowser3" Publisher="ScottLovegrove" PublisherID="{7927cbc0-8641-4c30-a5d5-ef3da2dda868}">
     <IconPath IsRelative="true" IsResource="false">Assets\ApplicationIcon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_NETWORKING" />
@@ -33,13 +34,18 @@
           <Count>0</Count>
           <BackgroundImageURI IsRelative="true" IsResource="false">Assets\Tiles\FlipCycleTileMedium.png</BackgroundImageURI>
           <Title>Media Browser Beta</Title>
-          <BackContent></BackContent>
-          <BackBackgroundImageURI IsRelative="true" IsResource="false"></BackBackgroundImageURI>
-          <BackTitle></BackTitle>
+          <BackContent>
+          </BackContent>
+          <BackBackgroundImageURI IsRelative="true" IsResource="false">
+          </BackBackgroundImageURI>
+          <BackTitle>
+          </BackTitle>
           <LargeBackgroundImageURI IsRelative="true" IsResource="false">Assets\Tiles\FlipCycleTileLarge.png</LargeBackgroundImageURI>
           <LargeBackContent />
-          <LargeBackBackgroundImageURI IsRelative="true" IsResource="false"></LargeBackBackgroundImageURI>
-          <DeviceLockImageURI IsRelative="true" IsResource="false"></DeviceLockImageURI>
+          <LargeBackBackgroundImageURI IsRelative="true" IsResource="false">
+          </LargeBackBackgroundImageURI>
+          <DeviceLockImageURI IsRelative="true" IsResource="false">
+          </DeviceLockImageURI>
           <HasLarge>True</HasLarge>
         </TemplateFlip>
       </PrimaryToken>

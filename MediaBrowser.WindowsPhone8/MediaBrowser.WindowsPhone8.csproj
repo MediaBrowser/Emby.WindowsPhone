@@ -15,7 +15,7 @@
     <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
     <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
     <SilverlightApplication>true</SilverlightApplication>
-    <SupportedCultures>de;en-US;fr;it;nl;pt-BR;qps-ploc;sv</SupportedCultures>
+    <SupportedCultures>de;en-US;fr;it;nl;pt-BR;qps-ploc;sv;ru</SupportedCultures>
     <XapOutputs>true</XapOutputs>
     <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
     <XapFilename>MediaBrowser.WindowsPhone.WP8.xap</XapFilename>
@@ -714,7 +714,6 @@
     <EmbeddedResource Include="Resources\AppResources.en-US.resx" />
     <EmbeddedResource Include="Resources\AppResources.fr-FR.resx" />
     <EmbeddedResource Include="Resources\AppResources.it.resx" />
-    <EmbeddedResource Include="Resources\AppResources.nl-NL.resx" />
     <EmbeddedResource Include="Resources\AppResources.nl.resx" />
     <EmbeddedResource Include="Resources\AppResources.pt-BR.resx" />
     <EmbeddedResource Include="Resources\AppResources.qps-ploc.resx" />
@@ -723,6 +722,7 @@
       <SubType>Designer</SubType>
       <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\AppResources.ru-RU.resx" />
     <EmbeddedResource Include="Resources\AppResources.sv-SE.resx" />
   </ItemGroup>
   <ItemGroup>

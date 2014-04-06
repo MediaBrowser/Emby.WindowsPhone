@@ -350,8 +350,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 Profile = "baseline",
                 Level = "3",
                 //FrameRate = 20,
-                MaxHeight =  WindowsPhone.Helpers.ResolutionHelper.Height, // (int)bounds.Width,
-                MaxWidth = WindowsPhone.Helpers.ResolutionHelper.Widht // (int)bounds.Height
+                //MaxHeight =  WindowsPhone.Helpers.ResolutionHelper.Height, // (int)bounds.Width,
+                MaxWidth = WindowsPhone.Helpers.ResolutionHelper.Width // (int)bounds.Height
             };
 
             return query;

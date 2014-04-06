@@ -36,7 +36,7 @@ namespace MediaBrowser.WindowsPhone.Helpers
             }
 
 
-            public static int Widht
+            public static int Width
             {
                 get
                 {
