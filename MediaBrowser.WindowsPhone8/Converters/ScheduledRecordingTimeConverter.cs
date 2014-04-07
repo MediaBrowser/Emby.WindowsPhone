@@ -20,7 +20,7 @@ namespace MediaBrowser.WindowsPhone.Converters
                 return string.Empty;
             }
 
-            return string.Format("{0} - {1}", schedule.StartDate.ToShortTimeString(), schedule.EndDate.ToShortTimeString());
+            return string.Format("{0} - {1}", schedule.StartDate.ToLocalTime().ToShortTimeString(), schedule.EndDate.ToLocalTime().ToShortTimeString());
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

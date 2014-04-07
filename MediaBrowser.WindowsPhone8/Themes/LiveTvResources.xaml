@@ -8,10 +8,15 @@
     <converters:AnyChannelConverter x:Key="AnyChannelConverter" />
     <converters:ScheduledRecordingTimeConverter x:Key="RecordingTimeConverter" />
     <converters:DateTimeConverter ShowTime="True"
+                                  ForLiveTv="True"
                                   x:Key="TimeConverter" />
     <converters:HasAiredConverter x:Key="HasAiredConverter" />
     <converters:ProgrammeTypeToColourConverter x:Key="TypeToColourConverter"/>
-    <converters:DateTimeConverter x:Key="DateTimeConverter" />
+    <converters:DateTimeConverter x:Key="DateTimeConverter"
+                                  ForLiveTv="True"/>
+    <converters:DateTimeConverter x:Key="FullDateTimeConverter"
+                                  ForLiveTv="True"
+                                  ShowFullDateTime="True"/>
     <converters:RecordingNameConverter x:Key="RecordingNameConverter" />
     <converters:SecondsToMinuteConverter x:Key="SecondsToMinuteConverter"/>
 

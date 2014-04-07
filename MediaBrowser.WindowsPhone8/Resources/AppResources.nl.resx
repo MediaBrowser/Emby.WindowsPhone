@@ -837,7 +837,7 @@
     <value>Alleen nieuwe afleveringen opnemen</value>
   </data>
   <data name="LabelRecordProgrammeAtAnyTime" xml:space="preserve">
-    <value>Programma op elk gewenst moment opnemen</value>
+    <value>Programma elke keer opnemen</value>
   </data>
   <data name="LabelRecordProgrammeOnAllChannels" xml:space="preserve">
     <value>Programma van alle kanalen opnemen</value>
@@ -849,7 +849,7 @@
     <value>Minuten langer opnemen:</value>
   </data>
   <data name="LabelPostPaddingRequired" xml:space="preserve">
-    <value>Langer opnemen is veriest voor opname</value>
+    <value>Langer opnemen is vereist voor opname</value>
   </data>
   <data name="LabelPrePaddingMinutes" xml:space="preserve">
     <value>Minuten vooraf opnemen:</value>

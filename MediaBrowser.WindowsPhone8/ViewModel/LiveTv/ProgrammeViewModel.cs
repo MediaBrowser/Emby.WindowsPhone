@@ -41,7 +41,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
 
         public bool RecordIsEnabled
         {
-            get { return SelectedProgramme != null && SelectedProgramme.EndDate > DateTime.Now && !ProgressIsVisible; }
+            get { return SelectedProgramme != null && SelectedProgramme.EndDate.ToLocalTime() > DateTime.Now && !ProgressIsVisible; }
         }
 
         public bool IsRecordSeriesNotCancel

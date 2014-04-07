@@ -20,7 +20,7 @@ namespace MediaBrowser.WindowsPhone.Converters
                 return true;
             }
 
-            var endTime = programme.EndDate;
+            var endTime = programme.EndDate.ToLocalTime();
             var now = DateTime.Now;
 
             return now > endTime;

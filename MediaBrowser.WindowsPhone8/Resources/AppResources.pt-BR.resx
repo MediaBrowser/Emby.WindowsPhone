@@ -846,17 +846,17 @@
     <value>cancelar</value>
   </data>
   <data name="LabelPostPaddingMinutes" xml:space="preserve">
-    <value>Minutos após o início da atração:</value>
+    <value>Minutos de post-padding:</value>
   </data>
   <data name="LabelPostPaddingRequired" xml:space="preserve">
-    <value>É necessário o início da atração para gravar</value>
+    <value>Post-padding é necessário para gravar</value>
   </data>
   <data name="LabelPrePaddingMinutes" xml:space="preserve">
-    <value>Minutos para o início da atração:</value>
+    <value>Minutos de pre-padding:</value>
     <comment>Pre-padding = how long before programme's scheduled start time to record</comment>
   </data>
   <data name="LabelPrePaddingRequired" xml:space="preserve">
-    <value>É necessário gravar antes do início da atração</value>
+    <value>Pre-padding é necessário para gravar</value>
   </data>
   <data name="SysTrayCancellingSeriesRecording" xml:space="preserve">
     <value>Cancelando o link da série</value>
@@ -877,7 +877,7 @@
     <value>Novo</value>
   </data>
   <data name="LabelPrePostPadding" xml:space="preserve">
-    <value>Antes/Depois do início da atração</value>
+    <value>Pre/Post Padding</value>
   </data>
   <data name="LabelTime" xml:space="preserve">
     <value>Tempo:</value>

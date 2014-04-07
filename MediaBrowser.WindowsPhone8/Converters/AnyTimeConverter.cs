@@ -21,7 +21,7 @@ namespace MediaBrowser.WindowsPhone.Converters
                 return string.Empty;
             }
 
-            return schedule.RecordAnyTime ? AppResources.LabelScheduleAnyTime : schedule.StartDate.ToShortTimeString();
+            return schedule.RecordAnyTime ? AppResources.LabelScheduleAnyTime : schedule.StartDate.ToLocalTime().ToShortTimeString();
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

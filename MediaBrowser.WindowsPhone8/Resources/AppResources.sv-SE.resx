@@ -124,55 +124,55 @@
     <value>lägg till i spellistan</value>
   </data>
   <data name="AppBarChangeProfile" xml:space="preserve">
-    <value>ändra profil</value>
+    <value>byt profil</value>
   </data>
   <data name="AppBarClearNowPlaying" xml:space="preserve">
-    <value>rensa spellistan</value>
+    <value>töm spellistan</value>
   </data>
   <data name="AppBarDeleteItems" xml:space="preserve">
     <value>radera</value>
   </data>
   <data name="AppBarGroupBy" xml:space="preserve">
-    <value>sortera som</value>
+    <value>sortera efter</value>
   </data>
   <data name="AppBarLogin" xml:space="preserve">
     <value>logga in</value>
   </data>
   <data name="AppBarMarkAsUnwatched" xml:space="preserve">
-    <value>markera som osedd</value>
+    <value>markera som ej visad</value>
   </data>
   <data name="AppBarMarkAsWatched" xml:space="preserve">
-    <value>markera som sedd</value>
+    <value>markera som visad</value>
   </data>
   <data name="AppBarNext" xml:space="preserve">
     <value>nästa</value>
   </data>
   <data name="AppBarNotifications" xml:space="preserve">
-    <value>notifikationer</value>
+    <value>meddelanden</value>
   </data>
   <data name="AppBarNowPlaying" xml:space="preserve">
     <value>nu spelas</value>
   </data>
   <data name="AppBarPause" xml:space="preserve">
-    <value>paus</value>
+    <value>pausa</value>
   </data>
   <data name="AppBarPlay" xml:space="preserve">
-    <value>spela</value>
+    <value>spela upp</value>
   </data>
   <data name="AppBarPlayAll" xml:space="preserve">
-    <value>spela alla</value>
+    <value>spela upp alla</value>
   </data>
   <data name="AppBarPlayAllTracks" xml:space="preserve">
     <value>spela alla spår</value>
   </data>
   <data name="AppBarPlayItems" xml:space="preserve">
-    <value>spela märkta</value>
+    <value>spela upp objekt</value>
   </data>
   <data name="AppBarPlayOn" xml:space="preserve">
-    <value>spela på...</value>
+    <value>spela upp på...</value>
   </data>
   <data name="AppBarPosterLockscreen" xml:space="preserve">
-    <value>sätt poster som lås-skärm</value>
+    <value>använd affisch som låsskärmsbild</value>
   </data>
   <data name="AppBarPrevious" xml:space="preserve">
     <value>föregående</value>
@@ -187,7 +187,7 @@
     <value>fjärrkontroll</value>
   </data>
   <data name="AppBarResume" xml:space="preserve">
-    <value>fortsätt</value>
+    <value>återuppta</value>
   </data>
   <data name="AppBarSearch" xml:space="preserve">
     <value>sök</value>
@@ -205,67 +205,67 @@
     <value>mappar</value>
   </data>
   <data name="DeviceNotRegistered" xml:space="preserve">
-    <value>enhet inte registrerad</value>
+    <value>Enheten är ej registrerad</value>
   </data>
   <data name="DeviceRegistered" xml:space="preserve">
-    <value>enhet registrerad</value>
+    <value>Enheten har registrerats</value>
   </data>
   <data name="ErrorConnectionDetailsInvalid" xml:space="preserve">
-    <value>anslutnings detaljer är ogiltiga, försök igen.</value>
+    <value>Anslutningsinformationen är ogiltig, försök igen.</value>
   </data>
   <data name="ErrorConnectionDetailsMessage" xml:space="preserve">
-    <value>inga anslutnings detaljer är inställda, vill du ställa in dem nu?</value>
+    <value>Ingen anslutningsinformation har angivits. Vill du ange den nu?</value>
   </data>
   <data name="ErrorConnectionDetailsTitle" xml:space="preserve">
-    <value>inga anslutnings detaljer</value>
+    <value>Anslutningsinformation saknas</value>
   </data>
   <data name="ErrorCouldNotFindServer" xml:space="preserve">
-    <value>kunda inte hitta din server.</value>
+    <value>Kunde inte hitta din server.</value>
   </data>
   <data name="ErrorDisabledUser" xml:space="preserve">
-    <value>Ledsen, det ser ut som att detta kontot är inaktiverat. VI kommer nu ta dig tillbaka till log-in skärmen.</value>
+    <value>Beklagar, det ser ut som att detta konto är inaktiverat. VI kommer nu att ta dig tillbaka till inloggningsskärmen.</value>
   </data>
   <data name="ErrorDisabledUserTitle" xml:space="preserve">
     <value>Kunde inte logga in.</value>
   </data>
   <data name="ErrorEpisodeDetails" xml:space="preserve">
-    <value>fel vid hämtning av avsnitts detaljer</value>
+    <value>Fel vid hämtning av avsnittsinformation</value>
   </data>
   <data name="ErrorEpisodes" xml:space="preserve">
-    <value>fel vid hämtning av avsnitt</value>
+    <value>Fel vid hämtning av avsnitt</value>
   </data>
   <data name="ErrorFailedToSearch" xml:space="preserve">
-    <value>kunde inte söka</value>
+    <value>Kunde inte utföra sökningen</value>
   </data>
   <data name="ErrorGettingData" xml:space="preserve">
-    <value>fel vid hämntning av data</value>
+    <value>Fel vid hämtning av data</value>
   </data>
   <data name="ErrorGettingExtraInfo" xml:space="preserve">
-    <value>fel vid hämtning av extra data</value>
+    <value>Fel vid hämtning av tilläggsinformation</value>
   </data>
   <data name="ErrorGettingTrailerDetails" xml:space="preserve">
-    <value>kunde inte hämta trailer</value>
+    <value>Kunde inte hämta information om trailern</value>
   </data>
   <data name="ErrorInvalidHostname" xml:space="preserve">
-    <value>Ledsen, den valda värden är inte giltig, var god och kontrollera att du inte har några mellanslag (som exempel) i adressen.</value>
+    <value>Beklagar, det valda servernamnet är inte giltigt, var god kontrollera att du t ex inte har skrivit några mellanslag i namnet.</value>
   </data>
   <data name="ErrorMakingChanges" xml:space="preserve">
-    <value>fel vid ändring av inställningar</value>
+    <value>Fel vid ändring av inställningar</value>
   </data>
   <data name="ErrorNoConnectionSettings" xml:space="preserve">
-    <value>inga anslutnings detaljer, tryck för att ställa in</value>
+    <value>Ingen anslutningsinformation har angivits, dutta för att ställa in</value>
   </data>
   <data name="ErrorProblemUpdatingItem" xml:space="preserve">
-    <value>det uppstod ett fel vid uppdateringen av detta, försök igen senare.</value>
+    <value>Det uppstod ett fel vid uppdateringen av detta objekt, försök igen senare.</value>
   </data>
   <data name="ErrorRecentItems" xml:space="preserve">
-    <value>fel vid hämntning av nykommna videos</value>
+    <value>Fel vid hämtning av nytillkommna objekt</value>
   </data>
   <data name="ErrorSeasons" xml:space="preserve">
-    <value>fel vid hämtning av säsonger</value>
+    <value>Fel vid hämtning av säsonger</value>
   </data>
   <data name="ErrorTitle" xml:space="preserve">
-    <value>fel</value>
+    <value>Fel</value>
   </data>
   <data name="ErrorUnableToSignIn" xml:space="preserve">
     <value>Vi kunde inte logga in dig just nu, detta kan bero på ett felaktigt angivet användarnamn/lösenord eller så har ditt konto blivit inaktiverat.</value>
@@ -274,7 +274,7 @@
     <value>Lyckad inloggning</value>
   </data>
   <data name="Favourites" xml:space="preserve">
-    <value>favoriter</value>
+    <value>Favoriter</value>
   </data>
   <data name="Genre" xml:space="preserve">
     <value>Genre</value>
@@ -283,10 +283,10 @@
     <value>Välj en klient</value>
   </data>
   <data name="HeaderDefaultGrouping" xml:space="preserve">
-    <value>Standard sortering</value>
+    <value>Standardsortering</value>
   </data>
   <data name="HeaderFromCollection" xml:space="preserve">
-    <value>Från kollektion (om möjligt):</value>
+    <value>Från samling (om möjligt):</value>
   </data>
   <data name="LabelActor" xml:space="preserve">
     <value>Skådespelare</value>
@@ -310,16 +310,16 @@
     <value>biografi</value>
   </data>
   <data name="LabelBoxsets" xml:space="preserve">
-    <value>samlingar</value>
+    <value>boxar</value>
   </data>
   <data name="LabelCastCrew" xml:space="preserve">
-    <value>Alla medverkande</value>
+    <value>Rollista + besättning</value>
   </data>
   <data name="LabelChapters" xml:space="preserve">
     <value>kapitel</value>
   </data>
   <data name="LabelCollage" xml:space="preserve">
-    <value>Fullskärms collage</value>
+    <value>Fullskärmscollage</value>
   </data>
   <data name="LabelConnect" xml:space="preserve">
     <value>Anslut</value>
@@ -328,52 +328,52 @@
     <value>anslutning</value>
   </data>
   <data name="LabelConnectionDetails" xml:space="preserve">
-    <value>Fyll i anslutnings detaljer för datorn som kör Media Browser 3. Tryck sedan för att testa och godkänna.</value>
+    <value>Fyll i anslutningsinformation till datorn som kör Media Browser 3. Tryck sedan för att testa och godkänna.</value>
   </data>
   <data name="LabelConnectionWarning" xml:space="preserve">
-    <value>VARNING: Ändring av värdnamn kommer ta bort alla sparade profiler</value>
+    <value>VARNING: Ändring av servernamnet medför radering av alla sparade profiler.</value>
   </data>
   <data name="LabelDate" xml:space="preserve">
     <value>datum</value>
   </data>
   <data name="LabelDaysAgo" xml:space="preserve">
-    <value>{0} Dagar sedan</value>
+    <value>{0} dagar sedan</value>
   </data>
   <data name="LabelDefaultLockScreen" xml:space="preserve">
-    <value>Standard Lås-skärm</value>
+    <value>Standardlåsskärm</value>
   </data>
   <data name="LabelDetails" xml:space="preserve">
-    <value>Detaljer</value>
+    <value>detaljer</value>
   </data>
   <data name="LabelDirector" xml:space="preserve">
-    <value>Regisör</value>
+    <value>Regissör</value>
   </data>
   <data name="LabelDisplayRandomImages" xml:space="preserve">
-    <value>Visa slumpmässiga bilder på tilens baksida</value>
+    <value>Visa slumpmässiga fondbilder på rutans baksida</value>
   </data>
   <data name="LabelEpisode" xml:space="preserve">
     <value>Avsnitt</value>
   </data>
   <data name="LabelFindServer" xml:space="preserve">
-    <value>hitta server</value>
+    <value>sök efter server</value>
   </data>
   <data name="LabelFirstRunAccessible" xml:space="preserve">
-    <value>Så fort Media Browser 3 servern är konfigurerad, var god och kolla så att den är åtkomlig från vart du är, oavsett om du befinner dig på det trådlösa lokala nätverket eller på en statisk extern adress.</value>
+    <value>När väl Media Browser-servern är konfigurerad, var god kontrollera att den är åtkomlig från där du befinner dig, oavsett om du befinner dig på det trådlösa lokala nätverket eller på en statisk extern adress.</value>
   </data>
   <data name="LabelFirstRunHappyConfiguration" xml:space="preserve">
-    <value>Om du är nöjd med det du har ställt in, klicka på inställningar och skriv in anslutnings inställningarna för din server,  annars kan du avsluta appen här.</value>
+    <value>Om du är nöjd med dina inställningar, klicka på inställningar-knappen och ange anslutningsinställningarna för din server, annars kan du avsluta appen här.</value>
   </data>
   <data name="LabelFirstRunServerInfo" xml:space="preserve">
-    <value>Innan vi kan köra igång, var god och kontrollera att Media Browser 3 servern körs.</value>
+    <value>Innan vi kan köra igång, var god kontrollera att Media Browser-servern är igång.</value>
   </data>
   <data name="LabelGeneral" xml:space="preserve">
-    <value>generellt</value>
+    <value>allmän</value>
   </data>
   <data name="LabelGenres" xml:space="preserve">
     <value>genrer</value>
   </data>
   <data name="LabelHostname" xml:space="preserve">
-    <value>Värdnamn:</value>
+    <value>Servernamn:</value>
   </data>
   <data name="LabelHoursAgo" xml:space="preserve">
     <value>{0} timmar sedan</value>
@@ -382,31 +382,31 @@
     <value>Tillåt förbättrade bilder (om detta är installerat på servern)</value>
   </data>
   <data name="LabelImdb" xml:space="preserve">
-    <value>See filmen på imdb</value>
+    <value>Se information om filmen på imdb</value>
   </data>
   <data name="LabelIsLockScreenProvider" xml:space="preserve">
-    <value>Media Browser är nuvarande lås-skärms erhållare</value>
+    <value>Media Browser är aktuell låsskärmsleverantör</value>
   </data>
   <data name="LabelIsNotLockScreenProvider" xml:space="preserve">
-    <value>Media Browser är  inte nuvarande lås-skärms erhållare</value>
+    <value>Media Browser är ej aktuell låsskärmsleverantör</value>
   </data>
   <data name="LabelJustShowList" xml:space="preserve">
-    <value>Visa en list på föremålen, inte en media mapp's vy</value>
+    <value>Visa enbart en lista över objekten, inte en mappvy</value>
   </data>
   <data name="LabelLatestUnseen" xml:space="preserve">
-    <value>senaste osedda</value>
+    <value>senaste ej visade</value>
   </data>
   <data name="LabelLiveTv" xml:space="preserve">
-    <value>Live TV</value>
+    <value>Live-TV</value>
   </data>
   <data name="LabelLockScreen" xml:space="preserve">
-    <value>lås skärm</value>
+    <value>lås skärmen</value>
   </data>
   <data name="LabelLockScreenSettinsg" xml:space="preserve">
-    <value>lås skärms egensakaper</value>
+    <value>inställningar för låsskärmen</value>
   </data>
   <data name="LabelMakeLockScreenProvider" xml:space="preserve">
-    <value>Gör oss till lås skärms erhållare</value>
+    <value>Gör oss till låsskärmsleverantör</value>
   </data>
   <data name="LabelManuallyLogin" xml:space="preserve">
     <value>Manuell inloggning</value>
@@ -415,7 +415,7 @@
     <value>{0} minuter sedan</value>
   </data>
   <data name="LabelMissingEpisodes" xml:space="preserve">
-    <value>Visa missade avsnitt</value>
+    <value>Visa saknade avsnitt</value>
   </data>
   <data name="LabelMonthsAgo" xml:space="preserve">
     <value>{0} månader sedan</value>
@@ -427,7 +427,7 @@
     <value>Musik</value>
   </data>
   <data name="LabelNextUp" xml:space="preserve">
-    <value>näst i kö</value>
+    <value>nästa i kön</value>
   </data>
   <data name="LabelNo" xml:space="preserve">
     <value>nej</value>
@@ -442,7 +442,7 @@
     <value>Inga säsonger funna</value>
   </data>
   <data name="LabelNotifications" xml:space="preserve">
-    <value>notifikationer</value>
+    <value>meddelanden</value>
   </data>
   <data name="LabelNowPlaying" xml:space="preserve">
     <value>Nu spelas</value>
@@ -451,16 +451,16 @@
     <value>en minut sedan</value>
   </data>
   <data name="LabelOneMonthAgo" xml:space="preserve">
-    <value>en månad sedan</value>
+    <value>för en månad sedan</value>
   </data>
   <data name="LabelOneSecondAgo" xml:space="preserve">
-    <value>en sekund sedan</value>
+    <value>för en sekund sedan</value>
   </data>
   <data name="LabelOther" xml:space="preserve">
     <value>Annat</value>
   </data>
   <data name="LabelOverview" xml:space="preserve">
-    <value>översikt</value>
+    <value>synopsis</value>
   </data>
   <data name="LabelPassword" xml:space="preserve">
     <value>lösenord:</value>
@@ -469,7 +469,7 @@
     <value>Port:</value>
   </data>
   <data name="LabelPoster" xml:space="preserve">
-    <value>poster</value>
+    <value>affisch</value>
   </data>
   <data name="LabelProducer" xml:space="preserve">
     <value>Producent</value>
@@ -478,25 +478,25 @@
     <value>profil</value>
   </data>
   <data name="LabelProfileNotListed" xml:space="preserve">
-    <value>Profilen är inte listad ?</value>
+    <value>Profilen saknas?</value>
   </data>
   <data name="LabelProfiles" xml:space="preserve">
     <value>profiler</value>
   </data>
   <data name="LabelQuit" xml:space="preserve">
-    <value>stäng av</value>
+    <value>avsluta</value>
   </data>
   <data name="LabelRandomItems" xml:space="preserve">
-    <value>Slumpmässiga föremål</value>
+    <value>Slumpmässigt urval</value>
   </data>
   <data name="LabelRandomPictures" xml:space="preserve">
-    <value>Slumpmässiga bilder ifrån samlingen</value>
+    <value>Slumpmässigt urval av bilder från samlingen</value>
   </data>
   <data name="LabelRating" xml:space="preserve">
     <value>Betyg:</value>
   </data>
   <data name="LabelRecent" xml:space="preserve">
-    <value>Nyss</value>
+    <value>Nyligen</value>
   </data>
   <data name="LabelRemote" xml:space="preserve">
     <value>Fjärr</value>
@@ -514,31 +514,31 @@
     <value>Säsonger</value>
   </data>
   <data name="LabelSecondsAgo" xml:space="preserve">
-    <value>{0} Sekunder sedan</value>
+    <value>{0} sekunder sedan</value>
   </data>
   <data name="LabelSeries" xml:space="preserve">
     <value>Serier</value>
   </data>
   <data name="LabelShowAllItems" xml:space="preserve">
-    <value>Visa alla...</value>
+    <value>visa alla...</value>
   </data>
   <data name="LabelShows" xml:space="preserve">
-    <value>Seier</value>
+    <value>serier</value>
   </data>
   <data name="LabelShowTrailers" xml:space="preserve">
-    <value>Visa trailers i nyss tillagda </value>
+    <value>Visa trailers i nytillkommet</value>
   </data>
   <data name="LabelSinglePoster" xml:space="preserve">
-    <value>Singel poster</value>
+    <value>Enskild affisch</value>
   </data>
   <data name="LabelSongs" xml:space="preserve">
-    <value>Låtar</value>
+    <value>låtar</value>
   </data>
   <data name="LabelTile" xml:space="preserve">
-    <value>tile</value>
+    <value>ruta</value>
   </data>
   <data name="LabelTileBackInformation" xml:space="preserve">
-    <value>För att visa några av de bra bilderna ifrån samlingen du har, tilen kommer att använda några av dessa, här kan du ställa in hur detta kommer att se ut</value>
+    <value>För att visa upp en del av de fina bilderna ur din samling kommer vissa av dessa att visas i rutan. Här kan du ställa in hur detta kommer att se ut</value>
   </data>
   <data name="LabelTrailers" xml:space="preserve">
     <value>trailers</value>
@@ -547,10 +547,10 @@
     <value>TV</value>
   </data>
   <data name="LabelUnairedEpisodes" xml:space="preserve">
-    <value>Visa icke sända avsnitt</value>
+    <value>Visa ej sända avsnitt</value>
   </data>
   <data name="LabelUnwatched" xml:space="preserve">
-    <value>Ospelad:</value>
+    <value>Ej visad:</value>
   </data>
   <data name="LabelUsername" xml:space="preserve">
     <value>användarnamn:</value>
@@ -559,10 +559,10 @@
     <value>Visningar</value>
   </data>
   <data name="LabelWelcomeText" xml:space="preserve">
-    <value>Välkommen till Media Browser för Windows Phone. Den här applikationen tillåter dig att blädda i din media samling, strömma den till din telefon och fjärrstyra vilken som helst av Media Browser klienterna.</value>
+    <value>Välkommen till Media Browser för Windows Phone. Den här appen låter dig bläddra i din mediasamling, strömma den till din telefon och fjärrstyra vilken som helst av Media Browser-klienterna.</value>
   </data>
   <data name="LabelWriter" xml:space="preserve">
-    <value>Författare</value>
+    <value>Manus</value>
   </data>
   <data name="LabelYes" xml:space="preserve">
     <value>ja</value>
@@ -571,28 +571,28 @@
     <value>I går</value>
   </data>
   <data name="MenuPlayFrom" xml:space="preserve">
-    <value>Spela från på</value>
+    <value>Spela upp från</value>
   </data>
   <data name="MenuPlayFromOn" xml:space="preserve">
-    <value>Spela från på</value>
+    <value>Spela upp ifrån på</value>
   </data>
   <data name="MessageAreYouSureTitle" xml:space="preserve">
     <value>Är du säker?</value>
   </data>
   <data name="MessageBoxUnpinText" xml:space="preserve">
-    <value>Är du säker på att du vill ta bort den här tilen?</value>
+    <value>Är du säker på att du vill ta bort den här rutan?</value>
   </data>
   <data name="MessageClearPlayList" xml:space="preserve">
     <value>Är du säker på att du vill rensa spellistan?</value>
   </data>
   <data name="MessageDeletePlaylistItems" xml:space="preserve">
-    <value>Är du säker på att du vill ta bort dessa? Detta kan inte ångras.</value>
+    <value>Är du säker på att du vill ta bort dessa objekt? Detta kan inte ångras.</value>
   </data>
   <data name="MessageExperimentalTitle" xml:space="preserve">
-    <value>Experimentel</value>
+    <value>Experimentell</value>
   </data>
   <data name="MessageExperimentalVideo" xml:space="preserve">
-    <value>Spela denna typen av video är för nuvarande experimentell och resultat kan komma att variera, vill du fortsätta?</value>
+    <value>Uppspelning av den här typen av video är för nuvarande experimentell och resultaten kan vara varierande, vill du fortsätta?</value>
   </data>
   <data name="MessageTracksAddedSuccessfully" xml:space="preserve">
     <value>{0} antal spår har lagts till.</value>
@@ -610,10 +610,10 @@
     <value>Fäst på startskärmen</value>
   </data>
   <data name="ProductionYear" xml:space="preserve">
-    <value>Produktions år</value>
+    <value>Produktionsår</value>
   </data>
   <data name="RemoveFromFavouritesFull" xml:space="preserve">
-    <value>Ta bort ifrån favoriter</value>
+    <value>Ta bort från favoriter</value>
   </data>
   <data name="ResourceLanguage" xml:space="preserve">
     <value>sv</value>
@@ -625,22 +625,22 @@
     <value>Lägger till i Favoriter...</value>
   </data>
   <data name="SysTrayAuthenticating" xml:space="preserve">
-    <value>Verifierar...</value>
+    <value>Autentiserar...</value>
   </data>
   <data name="SysTrayCheckingCollection" xml:space="preserve">
-    <value>Kollar kollektionen....</value>
+    <value>Kontrollerar samlingen....</value>
   </data>
   <data name="SysTrayCheckingConnection" xml:space="preserve">
-    <value>Kollar anslutningen....</value>
+    <value>Kontrollerar anslutningen....</value>
   </data>
   <data name="SysTrayFindingServer" xml:space="preserve">
-    <value>Försöker att finna din server...</value>
+    <value>Söker efter din server...</value>
   </data>
   <data name="SysTrayGettingAlbums" xml:space="preserve">
     <value>Hämtar album...</value>
   </data>
   <data name="SysTrayGettingAlbumTracks" xml:space="preserve">
-    <value>Hämtar album spår...</value>
+    <value>Hämtar spår från album...</value>
   </data>
   <data name="SysTrayGettingAllTracks" xml:space="preserve">
     <value>Hämtar alla spår...</value>
@@ -649,16 +649,16 @@
     <value>Hämtar artister...</value>
   </data>
   <data name="SysTrayGettingArtistTracks" xml:space="preserve">
-    <value>Hämtar artist spår...</value>
+    <value>Hämtar spår från artist...</value>
   </data>
   <data name="SysTrayGettingBoxsets" xml:space="preserve">
-    <value>Hämtar boxsets...</value>
+    <value>Hämtar boxar...</value>
   </data>
   <data name="SysTrayGettingDetails" xml:space="preserve">
-    <value>Hämtar detaljer...</value>
+    <value>Hämtar detaljinformation...</value>
   </data>
   <data name="SysTrayGettingEpisodeDetails" xml:space="preserve">
-    <value>Hämtar avsnitts detaljer...</value>
+    <value>Hämtar avsnittsinformation...</value>
   </data>
   <data name="SysTrayGettingEpisodes" xml:space="preserve">
     <value>Hämtar avsnitt...</value>
@@ -670,37 +670,37 @@
     <value>Hämtar genrer...</value>
   </data>
   <data name="SysTrayGettingGenreTracks" xml:space="preserve">
-    <value>Hämtar genre spår...</value>
+    <value>Hämtar spår från genre...</value>
   </data>
   <data name="SysTrayGettingItems" xml:space="preserve">
-    <value>Hämtar valda...</value>
+    <value>Hämtar objekt...</value>
   </data>
   <data name="SysTrayGettingMovieInfo" xml:space="preserve">
-    <value>Hämtar film information...</value>
+    <value>Hämtar filminformation...</value>
   </data>
   <data name="SysTrayGettingMovies" xml:space="preserve">
     <value>Hämtar filmer....</value>
   </data>
   <data name="SysTrayGettingNextUp" xml:space="preserve">
-    <value>Hämtar nästa att spela...</value>
+    <value>Hämtar kommande objekt...</value>
   </data>
   <data name="SysTrayGettingNotifications" xml:space="preserve">
-    <value>Hämtar notifikationer...</value>
+    <value>Hämtar meddelanden...</value>
   </data>
   <data name="SysTrayGettingProfiles" xml:space="preserve">
     <value>Hämtar profiler...</value>
   </data>
   <data name="SysTrayGettingRecentItems" xml:space="preserve">
-    <value>Hämtar nyligen använda...</value>
+    <value>Hämtar nyligen visade...</value>
   </data>
   <data name="SysTrayGettingServerDetails" xml:space="preserve">
-    <value>Hämtar server egenskaper...</value>
+    <value>Hämtar serveregenskaper...</value>
   </data>
   <data name="SysTrayGettingShowInformation" xml:space="preserve">
-    <value>Hämtar seriens information...</value>
+    <value>Hämtar serieinformation...</value>
   </data>
   <data name="SysTrayGettingShows" xml:space="preserve">
-    <value>Hämtar tv serier...</value>
+    <value>Hämtar TV-serier...</value>
   </data>
   <data name="SysTrayGettingSongs" xml:space="preserve">
     <value>Hämtar låtar...</value>
@@ -709,16 +709,16 @@
     <value>Hämtar spår...</value>
   </data>
   <data name="SysTrayGettingTrailerDetails" xml:space="preserve">
-    <value>Hämtar spår detaljer..</value>
+    <value>Hämtar trailerinformation...</value>
   </data>
   <data name="SysTrayGettingUnwatchedItems" xml:space="preserve">
-    <value>Hämtar senast osedda objekt...</value>
+    <value>Hämtar senaste ej visade objekt...</value>
   </data>
   <data name="SysTrayLoadingCollections" xml:space="preserve">
-    <value>Laddar kollektion...</value>
+    <value>Läser in samlingar...</value>
   </data>
   <data name="SysTrayLoadingSettings" xml:space="preserve">
-    <value>Laddar inställningar...</value>
+    <value>Hämtar inställningar...</value>
   </data>
   <data name="SysTrayRegisteringDevice" xml:space="preserve">
     <value>Registrerar enhet...</value>
@@ -730,20 +730,20 @@
     <value>Söker....</value>
   </data>
   <data name="SysTrayUnregisteringDevice" xml:space="preserve">
-    <value>Avregisterar enhet...</value>
+    <value>Avregistrerar enhet...</value>
   </data>
   <data name="TrialVideoMessage" xml:space="preserve">
-    <value>I test läge kan du endast spela en video per dag. Var vänlig försök igen i morgon eller köp full versionen.</value>
+    <value>I provläge kan du endast spela upp en video per dag. Var vänlig försök igen i morgon eller köp fullversionen.</value>
   </data>
   <data name="TvShowRecentItemsTitle" xml:space="preserve">
-    <value>{0} nyligen tillagda</value>
+    <value>{0} nytillkomna objekt</value>
     <comment>{0} is the name of the tv show</comment>
   </data>
   <data name="Unpin" xml:space="preserve">
     <value>Ta bort</value>
   </data>
   <data name="WatermarkEnterUsername" xml:space="preserve">
-    <value>Ange ett användarnman</value>
+    <value>ange ett användarnman</value>
   </data>
   <data name="LabelLogIn" xml:space="preserve">
     <value>Logga in</value>
@@ -755,409 +755,220 @@
     <value>Din spellista är tom</value>
   </data>
   <data name="LabelUnplayedItems" xml:space="preserve">
-    <value>Ospelad:</value>
+    <value>Ej uppspelad:</value>
   </data>
   <data name="WatermarkPassword" xml:space="preserve">
-    <value>Ange lösenord</value>
+    <value>ange lösenord</value>
   </data>
   <data name="LabelReleasedIn" xml:space="preserve">
-    <value>Släppt i</value>
+    <value>Lanserad</value>
     <comment>eg, Released in 1993</comment>
   </data>
   <data name="LabelWelcomeTextPhone7" xml:space="preserve">
-    <value>Välkommen till Media Browser för Windows Phone. Den här applikationen tillåter dig att blädda i din media samling och fjärrstyra vilken som helst av Media Browser klienterna.</value>
+    <value>Välkommen till Media Browser för Windows Phone. Den här appen låter dig bläddra i din mediasamling, strömma den till din telefon och fjärrstyra vilken som helst av Media Browser-klienterna.</value>
   </data>
-  
-<!--
-<data name="LabelChannels" xml:space="preserve">
-    <value>Channels</value>
+  <data name="LabelChannels" xml:space="preserve">
+    <value>Kanaler</value>
   </data>
--->
-  
-<!--
-<data name="LabelRecordedTv" xml:space="preserve">
-    <value>Recorded TV</value>
+  <data name="LabelRecordedTv" xml:space="preserve">
+    <value>Inspelad TV</value>
   </data>
--->
-  
-<!--
-<data name="LabelScheduledRecording" xml:space="preserve">
-    <value>Scheduled recordings</value>
+  <data name="LabelScheduledRecording" xml:space="preserve">
+    <value>Schemalagda inspelningar</value>
   </data>
--->
   <data name="LabelUpcoming" xml:space="preserve">
-    <value>kommande</value>
+    <value>Kommande</value>
   </data>
-  
-<!--
-<data name="LabelWhatsOn" xml:space="preserve">
-    <value>What's On</value>
+  <data name="LabelWhatsOn" xml:space="preserve">
+    <value>Vad visas just nu</value>
   </data>
--->
-  
-<!--
-<data name="SysTrayGettingChannels" xml:space="preserve">
-    <value>Getting channels...</value>
+  <data name="SysTrayGettingChannels" xml:space="preserve">
+    <value>Hämtar kanaler...</value>
   </data>
--->
-  
-<!--
-<data name="SysTrayGettingProgrammes" xml:space="preserve">
-    <value>Getting programmes...</value>
+  <data name="SysTrayGettingProgrammes" xml:space="preserve">
+    <value>Hämtar program...</value>
   </data>
--->
-  
-<!--
-<data name="SysTrayGettingSeriesRecordings" xml:space="preserve">
-    <value>Getting series recordings...</value>
+  <data name="SysTrayGettingSeriesRecordings" xml:space="preserve">
+    <value>Hämtar serieinspelningar...</value>
   </data>
--->
-  
-<!--
-<data name="SysTrayGettingUpcomingRecordings" xml:space="preserve">
-    <value>Getting upcoming recordings...</value>
+  <data name="SysTrayGettingUpcomingRecordings" xml:space="preserve">
+    <value>Hämtar kommande inspelningar...</value>
   </data>
--->
-  
-<!--
-<data name="ContextCancelSeries" xml:space="preserve">
-    <value>cancel series</value>
+  <data name="ContextCancelSeries" xml:space="preserve">
+    <value>avbryt serieinspelning</value>
   </data>
--->
-  
-<!--
-<data name="LabelScheduleAnyChannel" xml:space="preserve">
-    <value>Any channel</value>
+  <data name="LabelScheduleAnyChannel" xml:space="preserve">
+    <value>Vilken kanal som helst</value>
   </data>
--->
-  
-<!--
-<data name="LabelScheduleAnyTime" xml:space="preserve">
-    <value>Any time</value>
+  <data name="LabelScheduleAnyTime" xml:space="preserve">
+    <value>Vilken tid som helst</value>
   </data>
--->
-  
-<!--
-<data name="LabelScheduleDaily" xml:space="preserve">
-    <value>Daily</value>
+  <data name="LabelScheduleDaily" xml:space="preserve">
+    <value>Dagligen</value>
   </data>
--->
   <data name="LabelScheduleToday" xml:space="preserve">
     <value>Idag</value>
   </data>
   <data name="LabelScheduleTomorrow" xml:space="preserve">
-    <value>Imorgon</value>
+    <value>I morgon</value>
   </data>
-  
-<!--
-<data name="LabelScheduleWeekdays" xml:space="preserve">
-    <value>Weekdays</value>
+  <data name="LabelScheduleWeekdays" xml:space="preserve">
+    <value>Veckodagar</value>
   </data>
--->
-  
-<!--
-<data name="LabelScheduleWeekends" xml:space="preserve">
-    <value>Weekends</value>
+  <data name="LabelScheduleWeekends" xml:space="preserve">
+    <value>Helger</value>
   </data>
--->
-  
-<!--
-<data name="HeaderRecordings" xml:space="preserve">
-    <value>recordings</value>
+  <data name="HeaderRecordings" xml:space="preserve">
+    <value>inspelningar</value>
   </data>
--->
-  
-<!--
-<data name="HeaderScheduled" xml:space="preserve">
-    <value>scheduled</value>
+  <data name="HeaderScheduled" xml:space="preserve">
+    <value>schemalagda</value>
   </data>
--->
-  
-<!--
-<data name="HeaderSettings" xml:space="preserve">
-    <value>settings</value>
+  <data name="HeaderSettings" xml:space="preserve">
+    <value>inställningar</value>
   </data>
--->
-  
-<!--
-<data name="AppBarSave" xml:space="preserve">
-    <value>save</value>
+  <data name="AppBarSave" xml:space="preserve">
+    <value>spara</value>
   </data>
--->
-  
-<!--
-<data name="LabelDays" xml:space="preserve">
-    <value>Days:</value>
+  <data name="LabelDays" xml:space="preserve">
+    <value>Dagar:</value>
   </data>
--->
-  
-<!--
-<data name="LabelRecordOnlyNewEpisodes" xml:space="preserve">
-    <value>Record only new episodes</value>
+  <data name="LabelRecordOnlyNewEpisodes" xml:space="preserve">
+    <value>Spela endast in nya avsnitt</value>
   </data>
--->
-  
-<!--
-<data name="LabelRecordProgrammeAtAnyTime" xml:space="preserve">
-    <value>Record programme at any time</value>
+  <data name="LabelRecordProgrammeAtAnyTime" xml:space="preserve">
+    <value>Spela in program när som helst</value>
   </data>
--->
-  
-<!--
-<data name="LabelRecordProgrammeOnAllChannels" xml:space="preserve">
-    <value>Record programme on all channels</value>
+  <data name="LabelRecordProgrammeOnAllChannels" xml:space="preserve">
+    <value>Spela in programmet på alla kanaler</value>
   </data>
--->
-  
-<!--
-<data name="AppBarCancel" xml:space="preserve">
-    <value>cancel</value>
+  <data name="AppBarCancel" xml:space="preserve">
+    <value>avbryt</value>
   </data>
--->
-  
-<!--
-<data name="LabelPostPaddingMinutes" xml:space="preserve">
-    <value>Post-padding minutes:</value>
+  <data name="LabelPostPaddingMinutes" xml:space="preserve">
+    <value>Marginal i minuter efter programslut</value>
   </data>
--->
-  
-<!--
-<data name="LabelPostPaddingRequired" xml:space="preserve">
-    <value>Post-padding is required to record</value>
+  <data name="LabelPostPaddingRequired" xml:space="preserve">
+    <value>Marginal efter programslut krävs för inspelning</value>
   </data>
--->
-  
-<!--
-<data name="LabelPrePaddingMinutes" xml:space="preserve">
-    <value>Pre-padding minutes:</value>
+  <data name="LabelPrePaddingMinutes" xml:space="preserve">
+    <value>Marginal i minuter före programstart</value>
     <comment>Pre-padding = how long before programme's scheduled start time to record</comment>
   </data>
--->
-  
-<!--
-<data name="LabelPrePaddingRequired" xml:space="preserve">
-    <value>Pre-padding is required to record</value>
+  <data name="LabelPrePaddingRequired" xml:space="preserve">
+    <value>Marginal före programstart krävs för inspelning</value>
   </data>
--->
-  
-<!--
-<data name="SysTrayCancellingSeriesRecording" xml:space="preserve">
-    <value>Cancelling series link...</value>
+  <data name="SysTrayCancellingSeriesRecording" xml:space="preserve">
+    <value>Tar bort serielänkning...</value>
   </data>
--->
-  
-<!--
-<data name="SysTrayGettingRecordedItems" xml:space="preserve">
-    <value>Getting recorded items...</value>
+  <data name="SysTrayGettingRecordedItems" xml:space="preserve">
+    <value>Hämtar lista över inspelningar...</value>
   </data>
--->
-  
-<!--
-<data name="AppBarDelete" xml:space="preserve">
-    <value>delete</value>
+  <data name="AppBarDelete" xml:space="preserve">
+    <value>ta bort</value>
   </data>
--->
-  
-<!--
-<data name="ErrorDeletingSeriesRecording" xml:space="preserve">
-    <value>Sorry, there was an error cancelling this series at this time.</value>
+  <data name="ErrorDeletingSeriesRecording" xml:space="preserve">
+    <value>Beklagar, kunde inte ta bort denna serieinspelning.</value>
   </data>
--->
-  
-<!--
-<data name="LabelChannel" xml:space="preserve">
-    <value>Channel:</value>
+  <data name="LabelChannel" xml:space="preserve">
+    <value>Kanal:</value>
   </data>
--->
-  
-<!--
-<data name="LabelNew" xml:space="preserve">
-    <value>New</value>
+  <data name="LabelNew" xml:space="preserve">
+    <value>Ny</value>
   </data>
--->
-  
-<!--
-<data name="LabelPrePostPadding" xml:space="preserve">
-    <value>Pre/Post Padding</value>
+  <data name="LabelPrePostPadding" xml:space="preserve">
+    <value>Marginal före/efter</value>
   </data>
--->
-  
-<!--
-<data name="LabelTime" xml:space="preserve">
-    <value>Time:</value>
+  <data name="LabelTime" xml:space="preserve">
+    <value>Tid:</value>
   </data>
--->
-  
-<!--
-<data name="MenuCancelRecording" xml:space="preserve">
-    <value>Cancel Recording</value>
+  <data name="MenuCancelRecording" xml:space="preserve">
+    <value>Ångra inspelning</value>
   </data>
--->
-  
-<!--
-<data name="MessageDeleteSeriesRecording" xml:space="preserve">
-    <value>Are you sure you want to cancel this series link? This cannot be undone.</value>
+  <data name="MessageDeleteSeriesRecording" xml:space="preserve">
+    <value>Är du säker på att du vill ta bort denna serielänkning? Detta kan inte ångras.</value>
   </data>
--->
   <data name="SysTrayGettingUpcoming" xml:space="preserve">
     <value>Hämtar kommande avsnitt...</value>
   </data>
-  
-<!--
-<data name="MessageCancelRecording" xml:space="preserve">
-    <value>Are you sure you want to cancel this recording? This cannot be undone.</value>
+  <data name="MessageCancelRecording" xml:space="preserve">
+    <value>Är du säker på att du vill avbryta denna inspelning? Detta kan inte ångras.</value>
   </data>
--->
-  
-<!--
-<data name="SysTraySaving" xml:space="preserve">
-    <value>Saving...</value>
+  <data name="SysTraySaving" xml:space="preserve">
+    <value>Sparar...</value>
   </data>
--->
-  
-<!--
-<data name="MenuRecord" xml:space="preserve">
-    <value>record</value>
+  <data name="MenuRecord" xml:space="preserve">
+    <value>spela in</value>
   </data>
--->
-  
-<!--
-<data name="MenuRecordSeries" xml:space="preserve">
-    <value>record series</value>
+  <data name="MenuRecordSeries" xml:space="preserve">
+    <value>spela in serie</value>
   </data>
--->
-  
-<!--
-<data name="LabelReallyShortHours" xml:space="preserve">
+  <data name="LabelReallyShortHours" xml:space="preserve">
     <value>h</value>
   </data>
--->
-  
-<!--
-<data name="LabelReallyShortMinutes" xml:space="preserve">
+  <data name="LabelReallyShortMinutes" xml:space="preserve">
     <value>m</value>
   </data>
--->
-  
-<!--
-<data name="LabelLive" xml:space="preserve">
+  <data name="LabelLive" xml:space="preserve">
     <value>Live</value>
   </data>
--->
-  
-<!--
-<data name="SystemTrayGettingWhatsOn" xml:space="preserve">
-    <value>Getting what's on now...</value>
+  <data name="SystemTrayGettingWhatsOn" xml:space="preserve">
+    <value>Hämtar info om vad som sänds just nu...</value>
   </data>
--->
-  
-<!--
-<data name="SysTrayLoadingProgrammes" xml:space="preserve">
-    <value>Loading programmes...</value>
+  <data name="SysTrayLoadingProgrammes" xml:space="preserve">
+    <value>Läser in programtablå...</value>
   </data>
--->
-  
-<!--
-<data name="SysTraySettingProgrammeToRecord" xml:space="preserve">
-    <value>Setting programme to record...</value>
+  <data name="SysTraySettingProgrammeToRecord" xml:space="preserve">
+    <value>Sparar bokad inspelning...</value>
   </data>
--->
-  
-<!--
-<data name="SysTraySettingSeriesToRecord" xml:space="preserve">
-    <value>Setting series to record...</value>
+  <data name="SysTraySettingSeriesToRecord" xml:space="preserve">
+    <value>Sparar bokad serieinspelning...</value>
   </data>
--->
-  
-<!--
-<data name="AppBarCreateAndEditSeries" xml:space="preserve">
-    <value>create and edit series recording</value>
+  <data name="AppBarCreateAndEditSeries" xml:space="preserve">
+    <value>skapa och redigera serieinspelning</value>
   </data>
--->
-  
-<!--
-<data name="SysTrayCancellingProgramme" xml:space="preserve">
-    <value>Cancelling programme...</value>
+  <data name="SysTrayCancellingProgramme" xml:space="preserve">
+    <value>Avbryter program...</value>
   </data>
--->
-  
-<!--
-<data name="SysTrayPreparing" xml:space="preserve">
-    <value>Preparing...</value>
+  <data name="SysTrayPreparing" xml:space="preserve">
+    <value>Förbereder...</value>
   </data>
--->
-  
-<!--
-<data name="SysTrayGettingRecordingDetails" xml:space="preserve">
-    <value>Getting recording details...</value>
+  <data name="SysTrayGettingRecordingDetails" xml:space="preserve">
+    <value>Hämtar information om inspelning...</value>
   </data>
--->
-  
-<!--
-<data name="LabelDefaultRecordedTvGrouping" xml:space="preserve">
-    <value>Default recorded TV grouping</value>
+  <data name="LabelDefaultRecordedTvGrouping" xml:space="preserve">
+    <value>Förvald sortering av inspelade program</value>
   </data>
--->
-  
-<!--
-<data name="AppBarChannel" xml:space="preserve">
-    <value>channel</value>
+  <data name="AppBarChannel" xml:space="preserve">
+    <value>kanal</value>
   </data>
--->
-  
-<!--
-<data name="AppBarRecordedDate" xml:space="preserve">
-    <value>recorded date</value>
+  <data name="AppBarRecordedDate" xml:space="preserve">
+    <value>inspelningsdatum</value>
   </data>
--->
-  
-<!--
-<data name="AppBarShowName" xml:space="preserve">
-    <value>show name</value>
+  <data name="AppBarShowName" xml:space="preserve">
+    <value>serietitel</value>
   </data>
--->
-  
-<!--
-<data name="HeaderActiveRecordings" xml:space="preserve">
-    <value>Active</value>
+  <data name="HeaderActiveRecordings" xml:space="preserve">
+    <value>Pågående</value>
   </data>
--->
-  
-<!--
-<data name="LabelNoRecordedItems" xml:space="preserve">
-    <value>You don't appear to have any recorded items</value>
+  <data name="LabelNoRecordedItems" xml:space="preserve">
+    <value>Det ser inte ut att finnas några inspelningar</value>
   </data>
--->
-  
-<!--
-<data name="LabelRecordedDate" xml:space="preserve">
-    <value>Recorded date</value>
+  <data name="LabelRecordedDate" xml:space="preserve">
+    <value>Inspelningsdatum</value>
   </data>
--->
-  
-<!--
-<data name="LabelShowName" xml:space="preserve">
-    <value>Show name</value>
+  <data name="LabelShowName" xml:space="preserve">
+    <value>Serietitel</value>
   </data>
--->
-  
-<!--
-<data name="SysTrayGettingCurrentlyRecording" xml:space="preserve">
-    <value>Getting active recordings...</value>
+  <data name="SysTrayGettingCurrentlyRecording" xml:space="preserve">
+    <value>Hämtar lista över pågående inspelningar...</value>
   </data>
--->
-  
-<!--
-<data name="HeaderLive" xml:space="preserve">
+  <data name="HeaderLive" xml:space="preserve">
     <value>Live</value>
     <comment>As in "live tv"</comment>
   </data>
--->
-  
-<!--
-<data name="HeaderTV" xml:space="preserve">
+  <data name="HeaderTV" xml:space="preserve">
     <value>TV</value>
   </data>
--->
 
 </root>

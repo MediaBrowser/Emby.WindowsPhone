@@ -21,7 +21,7 @@ namespace MediaBrowser.WindowsPhone.Converters
             }
 
             var now = DateTime.Now;
-            return now < item.EndDate && now > item.StartDate;
+            return now < item.EndDate.ToLocalTime() && now > item.StartDate.ToLocalTime();
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
