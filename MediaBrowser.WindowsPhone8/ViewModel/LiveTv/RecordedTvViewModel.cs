@@ -98,7 +98,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
 
                 if (items != null && !items.Items.IsNullOrEmpty())
                 {
-                    RecordedProgrammes = items.Items.ToList();
+                    RecordedProgrammes = items.Items.OrderBy(x => x.StartDate).ToList();
                     await GroupProgrammes();
 
                     _programmesLoaded = true;
@@ -134,7 +134,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                         groupedItems = (from p in RecordedProgrammes
                                         group p by p.StartDate.ToLocalTime().Date
                                             into grp
-                                            orderby grp.Key
+                                            orderby grp.Key descending 
                                             select new Group<RecordingInfoDto>(Utils.CoolDateName(grp.Key), grp)).ToList();
 
                         break;
