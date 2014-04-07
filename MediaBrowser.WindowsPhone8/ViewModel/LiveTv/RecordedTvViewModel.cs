@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model;
 using MediaBrowser.Model.LiveTv;
@@ -65,13 +66,28 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
             }
         }
 
+        public RelayCommand RefreshCommand
+        {
+            get
+            {
+                return new RelayCommand(async () =>
+                {
+                    await LoadProgrammes(true);
+                });
+            }
+        }
+
         public RelayCommand<RecordingInfoDto> ItemTappedCommand
         {
             get
             {
                 return new RelayCommand<RecordingInfoDto>(item =>
                 {
-                    
+                    if (SimpleIoc.Default.GetInstance<ProgrammeViewModel>() != null)
+                    {
+                        Messenger.Default.Send(new NotificationMessage(item, Constants.Messages.ProgrammeItemChangedMsg));
+                        _navigationService.NavigateTo(Constants.Pages.LiveTv.RecordingView);
+                    }   
                 });
             }
         }

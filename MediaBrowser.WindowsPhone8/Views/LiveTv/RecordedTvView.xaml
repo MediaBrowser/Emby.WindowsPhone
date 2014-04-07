@@ -33,6 +33,10 @@
                                                     x:Name="btnChangeGrouping"
                                                     IconUri="/Icons/appbar.group.png"
                                                     Click="btnChangeGrouping_Click" />
+                <behaviors:ApplicationBarIconButton Text="{Binding LocalizedResources.AppBarRefresh, Source={StaticResource LocalizedStrings}}"
+                                                    IconUri="/Icons/appbar.refresh.rest.png"
+                                                    Command="{Binding RefreshCommand}"
+                                                    IsEnabled="{Binding ProgressIsVisible, Converter={StaticResource NegativeBooleanConverter}}"/>
             </behaviors:ApplicationBarBehavior.Buttons>
         </behaviors:ApplicationBarBehavior>
     </i:Interaction.Behaviors>
@@ -96,7 +100,9 @@
                 <phone:LongListSelector.ItemTemplate>
                     <DataTemplate>
                         <controls:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                                        Margin="12,12,0,12">
+                                                        Margin="12,12,0,12"
+                                                        TapCommand="{Binding RecordedTv.ItemTappedCommand, Source={StaticResource Locator}}"
+                                                        CommandParameter="{Binding}">
                             <StackPanel Orientation="Horizontal">
                                 <coding4Fun:SuperImage PlaceholderImageSource="/Images/Logo.png"
                                                        Source="{Binding Converter={StaticResource ImageUrlConverter}}"
