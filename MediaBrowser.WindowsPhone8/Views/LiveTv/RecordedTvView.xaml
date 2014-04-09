@@ -118,7 +118,7 @@
                                     <TextBlock Text="{Binding EpisodeTitle}"
                                                Style="{StaticResource PhoneTextSubtleStyle}"
                                                Visibility="{Binding EpisodeTitle, Converter={StaticResource NullVisibilityConverter}}"/>
-                                    <TextBlock Text="{Binding StartDate}"
+                                    <TextBlock Text="{Binding StartDate, Converter={StaticResource DateTimeConverter}}"
                                                Style="{StaticResource PhoneTextSubtleStyle}" />
                                 </StackPanel>
                             </StackPanel>

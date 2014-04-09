@@ -33,6 +33,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
         private bool _seriesLoaded;
         private bool _upcomingLoaded;
 
+        private const int UpcomingIndex = 0;
+        private const int SeriesIndex = 1;
+
         /// <summary>
         /// Initializes a new instance of the ScheduleViewModel class.
         /// </summary>
@@ -160,10 +163,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
         {
             switch (SelectedIndex)
             {
-                case 0:
+                case SeriesIndex:
                     await GetScheduledSeriesRecordings(isRefresh);
                     break;
-                case 1:
+                case UpcomingIndex:
                     await GetScheduledUpcomingRecordings(isRefresh);
                     break;
             }

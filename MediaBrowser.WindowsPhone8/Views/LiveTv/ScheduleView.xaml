@@ -76,49 +76,6 @@
                     <controls:MediaBrowserLogo AltText="{Binding LocalizedResources.LabelScheduledRecording, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToUppercaseConverter}}"
                                                Margin="-12,0,0,0" />
                 </phone:Pivot.Title>
-                <phone:PivotItem Header="{Binding LocalizedResources.LabelSeries, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
-                    <Grid>
-                        <phone:LongListSelector ItemsSource="{Binding Series}">
-                            <phone:LongListSelector.ListHeader>
-                                <TextBlock Text="{Binding LocalizedResources.NoItemsFound, Source={StaticResource LocalizedStrings}}"
-                                           HorizontalAlignment="Center"
-                                           VerticalAlignment="Top"
-                                           Style="{StaticResource PhoneTextLargeStyle}"
-                                           Visibility="{Binding Series, Converter={StaticResource CollectionVisibilityConverter}, ConverterParameter=1}" />
-                            </phone:LongListSelector.ListHeader>
-                            <phone:LongListSelector.ItemTemplate>
-                                <DataTemplate>
-                                    <controls:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                                                    Margin="0,0,0,12"
-                                                                    TapCommand="{Binding Schedule.ShowSeriesCommand, Source={StaticResource Locator}}"
-                                                                    CommandParameter="{Binding}">
-                                        <toolkit:ContextMenuService.ContextMenu>
-                                            <toolkit:ContextMenu>
-                                                <toolkit:MenuItem Header="{Binding LocalizedResources.ContextCancelSeries, Source={StaticResource LocalizedStrings}}"
-                                                                  Command="{Binding Schedule.CancelSeriesCommand, Source={StaticResource Locator}}"
-                                                                  CommandParameter="{Binding}" />
-                                            </toolkit:ContextMenu>
-                                        </toolkit:ContextMenuService.ContextMenu>
-                                        <StackPanel Orientation="Vertical"
-                                                    d:DataContext="{Binding Schedule.Series[0], Source={StaticResource Locator}}">
-                                            <TextBlock Text="{Binding Name}"
-                                                       TextTrimming="WordEllipsis"
-                                                       HorizontalAlignment="Stretch"
-                                                       Style="{StaticResource HeaderTextStyle}" />
-                                            <TextBlock Style="{StaticResource PhoneTextNormalStyle}">
-                                                <Run Text="{Binding Converter={StaticResource DayPatternConverter}}" />
-                                                <Run Text="-" />
-                                                <Run Text="{Binding Converter={StaticResource AnyTimeConverter}}" />
-                                            </TextBlock>
-                                            <TextBlock Text="{Binding Converter={StaticResource AnyChannelConverter}}"
-                                                       Style="{StaticResource PhoneTextSubtleStyle}" />
-                                        </StackPanel>
-                                    </controls:CustomHyperlinkButton>
-                                </DataTemplate>
-                            </phone:LongListSelector.ItemTemplate>
-                        </phone:LongListSelector>
-                    </Grid>
-                </phone:PivotItem>
                 <phone:PivotItem Header="{Binding LocalizedResources.LabelUpcoming, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
                     <Grid>
                         <phone:LongListSelector ItemsSource="{Binding Upcoming}"
@@ -180,6 +137,49 @@
                                                                          Visibility="{Binding SeriesTimerId, Converter={StaticResource NullVisibilityConverter}}" />
                                         </Grid>
                                     </controls:CustomButton>
+                                </DataTemplate>
+                            </phone:LongListSelector.ItemTemplate>
+                        </phone:LongListSelector>
+                    </Grid>
+                </phone:PivotItem>
+                <phone:PivotItem Header="{Binding LocalizedResources.LabelSeries, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
+                    <Grid>
+                        <phone:LongListSelector ItemsSource="{Binding Series}">
+                            <phone:LongListSelector.ListHeader>
+                                <TextBlock Text="{Binding LocalizedResources.NoItemsFound, Source={StaticResource LocalizedStrings}}"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Top"
+                                           Style="{StaticResource PhoneTextLargeStyle}"
+                                           Visibility="{Binding Series, Converter={StaticResource CollectionVisibilityConverter}, ConverterParameter=1}" />
+                            </phone:LongListSelector.ListHeader>
+                            <phone:LongListSelector.ItemTemplate>
+                                <DataTemplate>
+                                    <controls:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                                                    Margin="0,0,0,12"
+                                                                    TapCommand="{Binding Schedule.ShowSeriesCommand, Source={StaticResource Locator}}"
+                                                                    CommandParameter="{Binding}">
+                                        <toolkit:ContextMenuService.ContextMenu>
+                                            <toolkit:ContextMenu>
+                                                <toolkit:MenuItem Header="{Binding LocalizedResources.ContextCancelSeries, Source={StaticResource LocalizedStrings}}"
+                                                                  Command="{Binding Schedule.CancelSeriesCommand, Source={StaticResource Locator}}"
+                                                                  CommandParameter="{Binding}" />
+                                            </toolkit:ContextMenu>
+                                        </toolkit:ContextMenuService.ContextMenu>
+                                        <StackPanel Orientation="Vertical"
+                                                    d:DataContext="{Binding Schedule.Series[0], Source={StaticResource Locator}}">
+                                            <TextBlock Text="{Binding Name}"
+                                                       TextTrimming="WordEllipsis"
+                                                       HorizontalAlignment="Stretch"
+                                                       Style="{StaticResource HeaderTextStyle}" />
+                                            <TextBlock Style="{StaticResource PhoneTextNormalStyle}">
+                                                <Run Text="{Binding Converter={StaticResource DayPatternConverter}}" />
+                                                <Run Text="-" />
+                                                <Run Text="{Binding Converter={StaticResource AnyTimeConverter}}" />
+                                            </TextBlock>
+                                            <TextBlock Text="{Binding Converter={StaticResource AnyChannelConverter}}"
+                                                       Style="{StaticResource PhoneTextSubtleStyle}" />
+                                        </StackPanel>
+                                    </controls:CustomHyperlinkButton>
                                 </DataTemplate>
                             </phone:LongListSelector.ItemTemplate>
                         </phone:LongListSelector>
