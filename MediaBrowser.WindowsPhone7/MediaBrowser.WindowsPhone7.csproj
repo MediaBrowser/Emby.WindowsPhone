@@ -16,7 +16,7 @@
     <TargetFrameworkProfile>WindowsPhone71</TargetFrameworkProfile>
     <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
     <SilverlightApplication>true</SilverlightApplication>
-    <SupportedCultures>de;en-US;fr;it;nl;pt-BR;qps-ploc;sv;ru</SupportedCultures>
+    <SupportedCultures>de-de;en-US;fr-fr;it-it;nl-nl;pt-BR;qps-ploc;sv-se;ru-ru</SupportedCultures>
     <XapOutputs>true</XapOutputs>
     <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
     <XapFilename>MediaBrowser.WindowsPhone.WP7.xap</XapFilename>
@@ -934,8 +934,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.de.resx">
-      <Link>Resources\AppResources.de.resx</Link>
+    <EmbeddedResource Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.de-de.resx">
+      <Link>Resources\AppResources.de-de.resx</Link>
     </EmbeddedResource>
     <EmbeddedResource Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.en-US.resx">
       <Link>Resources\AppResources.en-US.resx</Link>
@@ -943,11 +943,11 @@
     <EmbeddedResource Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.fr-FR.resx">
       <Link>Resources\AppResources.fr-FR.resx</Link>
     </EmbeddedResource>
-    <EmbeddedResource Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.it.resx">
-      <Link>Resources\AppResources.it.resx</Link>
+    <EmbeddedResource Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.it-IT.resx">
+      <Link>Resources\AppResources.it-IT.resx</Link>
     </EmbeddedResource>
-    <EmbeddedResource Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.nl.resx">
-      <Link>Resources\AppResources.nl.resx</Link>
+    <EmbeddedResource Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.nl-nl.resx">
+      <Link>Resources\AppResources.nl-nl.resx</Link>
     </EmbeddedResource>
     <EmbeddedResource Include="..\MediaBrowser.WindowsPhone8\Resources\AppResources.pt-BR.resx">
       <Link>Resources\AppResources.pt-BR.resx</Link>
