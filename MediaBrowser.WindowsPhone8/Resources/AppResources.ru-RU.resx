@@ -313,7 +313,7 @@
     <value>коллекции</value>
   </data>
   <data name="LabelCastCrew" xml:space="preserve">
-    <value>участники</value>
+    <value>участники съёмок</value>
   </data>
   <data name="LabelChapters" xml:space="preserve">
     <value>сцены</value>
@@ -382,7 +382,7 @@
     <value>Включить улучшенные изображения (при их наличии на сервере)</value>
   </data>
   <data name="LabelImdb" xml:space="preserve">
-    <value>См. фильм на IMDb</value>
+    <value>Сведения о фильме см. на IMDb</value>
   </data>
   <data name="LabelIsLockScreenProvider" xml:space="preserve">
     <value>Media Browser является текущим поставщиком экрана блокировки</value>
@@ -427,7 +427,7 @@
     <value>Музыка</value>
   </data>
   <data name="LabelNextUp" xml:space="preserve">
-    <value>что дальше</value>
+    <value>что потом</value>
   </data>
   <data name="LabelNo" xml:space="preserve">
     <value>нет</value>
@@ -834,7 +834,7 @@
     <value>Дни:</value>
   </data>
   <data name="LabelRecordOnlyNewEpisodes" xml:space="preserve">
-    <value>Записывать только свежие эпизоды</value>
+    <value>Записывать только новые эпизоды</value>
   </data>
   <data name="LabelRecordProgrammeAtAnyTime" xml:space="preserve">
     <value>Записывать передачи в любое время</value>

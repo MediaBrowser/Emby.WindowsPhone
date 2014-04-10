@@ -229,7 +229,7 @@
     <value>Não foi possível iniciar sessão</value>
   </data>
   <data name="ErrorEpisodeDetails" xml:space="preserve">
-    <value>Erro ao baixar os detalhes do episódio</value>
+    <value>Erro ao transferir os detalhes do episódio</value>
   </data>
   <data name="ErrorEpisodes" xml:space="preserve">
     <value>Erro ao obter episódios</value>
@@ -253,7 +253,7 @@
     <value>Erro ao executar mudanças</value>
   </data>
   <data name="ErrorNoConnectionSettings" xml:space="preserve">
-    <value>Sem ajustes de conexão, toque para definir</value>
+    <value>Não existem ajustes de conexão, toque para definir</value>
   </data>
   <data name="ErrorProblemUpdatingItem" xml:space="preserve">
     <value>Ocorreu um problema ao atualizar este item, por favor tente mais tarde.</value>
@@ -286,7 +286,7 @@
     <value>Agrupamento padrão</value>
   </data>
   <data name="HeaderFromCollection" xml:space="preserve">
-    <value>Da coleção (quando aplicável):</value>
+    <value>Da coleção (onde for aplicável):</value>
   </data>
   <data name="LabelActor" xml:space="preserve">
     <value>Ator</value>
@@ -505,7 +505,7 @@
     <value>remover</value>
   </data>
   <data name="LabelRunningTime" xml:space="preserve">
-    <value>Tempo de execução:</value>
+    <value>Duração:</value>
   </data>
   <data name="LabelSearch" xml:space="preserve">
     <value>busca</value>
@@ -547,7 +547,7 @@
     <value>TV</value>
   </data>
   <data name="LabelUnairedEpisodes" xml:space="preserve">
-    <value>Exibir episódios não-exibidos</value>
+    <value>Exibir episódios por estrear</value>
   </data>
   <data name="LabelUnwatched" xml:space="preserve">
     <value>Não-assistido(s):</value>
@@ -559,7 +559,7 @@
     <value>Visualizações</value>
   </data>
   <data name="LabelWelcomeText" xml:space="preserve">
-    <value>Bem vindo ao Media Browser para Windows Phone. Este app permitirá navegar na sua coleção de mídia, transmitir para seu telefone e controlar remotamente qualquer cliente controlável do Media Browser.</value>
+    <value>Bem vindo ao Media Browser para Windows Phone. Esta app permitirá navegar pela sua coleção de mídia, transmitir para seu telefone e controlar remotamente qualquer cliente controlável do Media Browser.</value>
   </data>
   <data name="LabelWriter" xml:space="preserve">
     <value>Escritor</value>
@@ -610,7 +610,7 @@
     <value>Fixe para iniciar</value>
   </data>
   <data name="ProductionYear" xml:space="preserve">
-    <value>Ano de produção</value>
+    <value>Ano de Produção</value>
   </data>
   <data name="RemoveFromFavouritesFull" xml:space="preserve">
     <value>Remover dos favoritos</value>
@@ -643,7 +643,7 @@
     <value>Obtendo faixas dos álbuns...</value>
   </data>
   <data name="SysTrayGettingAllTracks" xml:space="preserve">
-    <value>Obtendo todos as faixas...</value>
+    <value>Obtendo todas as faixas...</value>
   </data>
   <data name="SysTrayGettingArtists" xml:space="preserve">
     <value>Obtendo artistas...</value>
@@ -682,7 +682,7 @@
     <value>Obtendo filmes...</value>
   </data>
   <data name="SysTrayGettingNextUp" xml:space="preserve">
-    <value>Obtendo itens próximos...</value>
+    <value>Obtendo próximos itens a reproduzir...</value>
   </data>
   <data name="SysTrayGettingNotifications" xml:space="preserve">
     <value>Obtendo notificações...</value>
@@ -712,7 +712,7 @@
     <value>Obtendo detalhes dos trailers...</value>
   </data>
   <data name="SysTrayGettingUnwatchedItems" xml:space="preserve">
-    <value>Obtendo itens de últimos não-assistidos...</value>
+    <value>Obtendo últimos itens não-assistidos...</value>
   </data>
   <data name="SysTrayLoadingCollections" xml:space="preserve">
     <value>Carregando coleções...</value>
@@ -736,7 +736,7 @@
     <value>No modo trial você pode apenas reproduzir um vídeo por dia. Por favor, tente amanhã ou compre a versão completa.</value>
   </data>
   <data name="TvShowRecentItemsTitle" xml:space="preserve">
-    <value>{0}'s itens recentes</value>
+    <value>Itens recentes de {0}</value>
     <comment>{0} is the name of the tv show</comment>
   </data>
   <data name="Unpin" xml:space="preserve">
@@ -765,13 +765,13 @@
     <comment>eg, Released in 1993</comment>
   </data>
   <data name="LabelWelcomeTextPhone7" xml:space="preserve">
-    <value>Bem vindo ao Media Browser para Windows Phone. Este app permitirá navegar na sua coleção de mídia e controlar remotamente qualquer cliente controlável do Media Browser.</value>
+    <value>Bem vindo ao Media Browser para Windows Phone. Esta app permitirá navegar pela sua coleção de mídia e controlar remotamente qualquer cliente controlável do Media Browser.</value>
   </data>
   <data name="LabelChannels" xml:space="preserve">
     <value>Canais</value>
   </data>
   <data name="LabelRecordedTv" xml:space="preserve">
-    <value>TV Gravada</value>
+    <value>Gravações da TV</value>
   </data>
   <data name="LabelScheduledRecording" xml:space="preserve">
     <value>Gravações agendadas</value>
@@ -786,7 +786,7 @@
     <value>Obtendo canais...</value>
   </data>
   <data name="SysTrayGettingProgrammes" xml:space="preserve">
-    <value>Obtendo programas</value>
+    <value>Obtendo programas...</value>
   </data>
   <data name="SysTrayGettingSeriesRecordings" xml:space="preserve">
     <value>Obtendo gravações de séries...</value>
@@ -919,10 +919,10 @@
     <value>Carregando programas...</value>
   </data>
   <data name="SysTraySettingProgrammeToRecord" xml:space="preserve">
-    <value>Definindo programa para gravar</value>
+    <value>Definindo programa para gravar...</value>
   </data>
   <data name="SysTraySettingSeriesToRecord" xml:space="preserve">
-    <value>Definindo série para gravar</value>
+    <value>Definindo série para gravar...</value>
   </data>
   <data name="AppBarCreateAndEditSeries" xml:space="preserve">
     <value>criar e editar gravação da série</value>
@@ -961,7 +961,7 @@
     <value>Exibir nome</value>
   </data>
   <data name="SysTrayGettingCurrentlyRecording" xml:space="preserve">
-    <value>Obtendo gravações ativas</value>
+    <value>Obtendo gravações ativas...</value>
   </data>
   <data name="HeaderLive" xml:space="preserve">
     <value>Ao vivo</value>

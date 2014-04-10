@@ -765,7 +765,7 @@
     <comment>eg, Released in 1993</comment>
   </data>
   <data name="LabelWelcomeTextPhone7" xml:space="preserve">
-    <value>Bienvenue sur Media Browser pour Windows phone. Cette application vous permettra de parcourir votre collection et de commander à distance d'autres clients Media Browser</value>
+    <value>Bienvenue sur Media Browser pour Windows Phone. Cette application vous permettra de parcourir votre collection et de contrôler à distance d'autres clients Media Browser</value>
   </data>
   <data name="LabelChannels" xml:space="preserve">
     <value>Chaînes</value>
@@ -783,13 +783,13 @@
     <value>À l'affiche</value>
   </data>
   <data name="SysTrayGettingChannels" xml:space="preserve">
-    <value>Rechercher les chaînes</value>
+    <value>Obtention des chaînes</value>
   </data>
   <data name="SysTrayGettingProgrammes" xml:space="preserve">
-    <value>Rechercher les programmes</value>
+    <value>Obtention des programmes</value>
   </data>
   <data name="SysTrayGettingSeriesRecordings" xml:space="preserve">
-    <value>Rechercher les séries enregistrées</value>
+    <value>Obtention des séries enregistrées</value>
   </data>
   <data name="SysTrayGettingUpcomingRecordings" xml:space="preserve">
     <value>Rechercher les enregistrements à venir</value>
@@ -816,7 +816,7 @@
     <value>Hebdomadaire</value>
   </data>
   <data name="LabelScheduleWeekends" xml:space="preserve">
-    <value>Fin de semaine</value>
+    <value>Weekends</value>
   </data>
   <data name="HeaderRecordings" xml:space="preserve">
     <value>Enregistrements</value>
@@ -837,10 +837,10 @@
     <value>N'enregistrer que les nouveaux épisodes</value>
   </data>
   <data name="LabelRecordProgrammeAtAnyTime" xml:space="preserve">
-    <value>Enregistrer programme a tout moment</value>
+    <value>Enregistrer le programme à tout moment</value>
   </data>
   <data name="LabelRecordProgrammeOnAllChannels" xml:space="preserve">
-    <value>Enregistrer programme sur toutes les chaînes</value>
+    <value>Enregistrer le programme sur toute chaîne </value>
   </data>
   <data name="AppBarCancel" xml:space="preserve">
     <value>Annuler</value>
@@ -889,7 +889,7 @@
     <value>Êtes-vous sûr de vouloir annuler ce lien de série? Cette opération sera permanente.</value>
   </data>
   <data name="SysTrayGettingUpcoming" xml:space="preserve">
-    <value>Obtenir les prochains épisodes</value>
+    <value>Obtention des prochains épisodes</value>
   </data>
   <data name="MessageCancelRecording" xml:space="preserve">
     <value>Êtes-vous sûr de vouloir annuler cet enregistrment? Cette opération sera permanente.</value>
@@ -928,13 +928,13 @@
     <value>Créer et modifier les enregistrements des séries</value>
   </data>
   <data name="SysTrayCancellingProgramme" xml:space="preserve">
-    <value>Annulation programme</value>
+    <value>Annulation du programme</value>
   </data>
   <data name="SysTrayPreparing" xml:space="preserve">
-    <value>Preparation</value>
+    <value>Préparation</value>
   </data>
   <data name="SysTrayGettingRecordingDetails" xml:space="preserve">
-    <value>Obtention des détails d'enregistrement</value>
+    <value>Obtention des informations de l'enregistrement</value>
   </data>
   <data name="LabelDefaultRecordedTvGrouping" xml:space="preserve">
     <value>Groupement par défaut des enregistrements</value>
@@ -952,13 +952,13 @@
     <value>Active</value>
   </data>
   <data name="LabelNoRecordedItems" xml:space="preserve">
-    <value>Il semblerait qu'il n'y ait aucun enregistements</value>
+    <value>Il semblerait qu'il n'y ait aucun enregistement</value>
   </data>
   <data name="LabelRecordedDate" xml:space="preserve">
     <value>Date d'enregistement</value>
   </data>
   <data name="LabelShowName" xml:space="preserve">
-    <value>Afficher nom</value>
+    <value>Titre de l'émission</value>
   </data>
   <data name="SysTrayGettingCurrentlyRecording" xml:space="preserve">
     <value>Obtention des enregistrements en cours...</value>

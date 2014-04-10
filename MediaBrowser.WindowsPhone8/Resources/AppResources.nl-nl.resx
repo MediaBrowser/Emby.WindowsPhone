@@ -151,7 +151,7 @@
     <value>notificaties</value>
   </data>
   <data name="AppBarNowPlaying" xml:space="preserve">
-    <value>speelt nu</value>
+    <value>Wordt nu afgespeeld</value>
   </data>
   <data name="AppBarPause" xml:space="preserve">
     <value>pauze</value>
@@ -445,7 +445,7 @@
     <value>kennisgevingen</value>
   </data>
   <data name="LabelNowPlaying" xml:space="preserve">
-    <value>speelt nu</value>
+    <value>Wordt nu afgespeeld</value>
   </data>
   <data name="LabelOneMinuteAgo" xml:space="preserve">
     <value>een minuut geleden</value>

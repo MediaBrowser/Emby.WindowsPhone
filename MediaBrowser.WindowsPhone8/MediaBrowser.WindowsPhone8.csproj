@@ -15,7 +15,7 @@
     <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
     <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
     <SilverlightApplication>true</SilverlightApplication>
-    <SupportedCultures>de;en-US;fr-fr;it-it;nl-nl;pt-BR;qps-ploc;sv;ru-ru</SupportedCultures>
+    <SupportedCultures>de-de;en-US;fr-fr;it-it;nl-nl;pt-BR;qps-ploc;sv-se;ru-ru</SupportedCultures>
     <XapOutputs>true</XapOutputs>
     <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
     <XapFilename>MediaBrowser.WindowsPhone.WP8.xap</XapFilename>
@@ -710,10 +710,10 @@
     <Content Include="Icons\transport.rew.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\AppResources.de.resx" />
+    <EmbeddedResource Include="Resources\AppResources.de-de.resx" />
     <EmbeddedResource Include="Resources\AppResources.en-US.resx" />
     <EmbeddedResource Include="Resources\AppResources.fr-fr.resx" />
-    <EmbeddedResource Include="Resources\AppResources.it.resx" />
+    <EmbeddedResource Include="Resources\AppResources.it-IT.resx" />
     <EmbeddedResource Include="Resources\AppResources.nl-nl.resx" />
     <EmbeddedResource Include="Resources\AppResources.pt-BR.resx" />
     <EmbeddedResource Include="Resources\AppResources.qps-ploc.resx" />
@@ -723,7 +723,7 @@
       <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\AppResources.ru-RU.resx" />
-    <EmbeddedResource Include="Resources\AppResources.sv.resx" />
+    <EmbeddedResource Include="Resources\AppResources.sv-SE.resx" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Cimbalino.Phone.Toolkit, Version=3.2.2.0, Culture=neutral, processorArchitecture=MSIL">
