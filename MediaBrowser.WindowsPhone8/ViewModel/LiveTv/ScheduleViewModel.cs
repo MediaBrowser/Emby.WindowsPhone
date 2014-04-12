@@ -64,7 +64,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
             {
                 return new RelayCommand(async () =>
                 {
-                    await GetScheduledSeriesRecordings(false);
+                    await GetData(false);
                 });
             }
         }
