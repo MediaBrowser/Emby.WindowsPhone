@@ -379,7 +379,7 @@
     <value>{0} часов назад</value>
   </data>
   <data name="LabelImageEnhancers" xml:space="preserve">
-    <value>Включить улучшенные изображения (при их наличии на сервере)</value>
+    <value>Включить улучшенные рисунки (при их наличии на сервере)</value>
   </data>
   <data name="LabelImdb" xml:space="preserve">
     <value>Сведения о фильме см. на IMDb</value>
@@ -415,7 +415,7 @@
     <value>{0} минут назад</value>
   </data>
   <data name="LabelMissingEpisodes" xml:space="preserve">
-    <value>Показывать недостающие эпизоды</value>
+    <value>Показывать пропущенные эпизоды</value>
   </data>
   <data name="LabelMonthsAgo" xml:space="preserve">
     <value>{0} месяцев назад</value>
@@ -547,7 +547,7 @@
     <value>ТВ</value>
   </data>
   <data name="LabelUnairedEpisodes" xml:space="preserve">
-    <value>Показывать предстоящие эпизоды</value>
+    <value>Показывать ожидаемые эпизоды</value>
   </data>
   <data name="LabelUnwatched" xml:space="preserve">
     <value>Непросмотренное</value>
@@ -774,13 +774,13 @@
     <value>Записанные передачи</value>
   </data>
   <data name="LabelScheduledRecording" xml:space="preserve">
-    <value>Запланированные записи</value>
+    <value>Назначенные записи</value>
   </data>
   <data name="LabelUpcoming" xml:space="preserve">
-    <value>Предстоящие</value>
+    <value>Скоро</value>
   </data>
   <data name="LabelWhatsOn" xml:space="preserve">
-    <value>Что сейчас</value>
+    <value>Что идёт</value>
   </data>
   <data name="SysTrayGettingChannels" xml:space="preserve">
     <value>Получаем ТВ каналы...</value>
@@ -789,10 +789,10 @@
     <value>Получаем передачи...</value>
   </data>
   <data name="SysTrayGettingSeriesRecordings" xml:space="preserve">
-    <value>Получаем задачи записи сериала...</value>
+    <value>Получаем записи серии передач...</value>
   </data>
   <data name="SysTrayGettingUpcomingRecordings" xml:space="preserve">
-    <value>Получаем задачи записи предстоящих...</value>
+    <value>Получаем ожидаемые записи...</value>
   </data>
   <data name="ContextCancelSeries" xml:space="preserve">
     <value>отменить сериал</value>
@@ -819,10 +819,10 @@
     <value>В конце недели</value>
   </data>
   <data name="HeaderRecordings" xml:space="preserve">
-    <value>задачи записи</value>
+    <value>записи</value>
   </data>
   <data name="HeaderScheduled" xml:space="preserve">
-    <value>запланированные</value>
+    <value>назначенные</value>
   </data>
   <data name="HeaderSettings" xml:space="preserve">
     <value>параметры</value>
@@ -859,7 +859,7 @@
     <value>Требуется отбивка до начала записи передачи</value>
   </data>
   <data name="SysTrayCancellingSeriesRecording" xml:space="preserve">
-    <value>Отменяется ссылка сериала...</value>
+    <value>Отменяется ссылка серию передач...</value>
   </data>
   <data name="SysTrayGettingRecordedItems" xml:space="preserve">
     <value>Получаем записанные элементы...</value>
@@ -868,7 +868,7 @@
     <value>удалить</value>
   </data>
   <data name="ErrorDeletingSeriesRecording" xml:space="preserve">
-    <value>К сожалению, произошла ошибка отмены этого сериала в это время.</value>
+    <value>К сожалению, произошла ошибка отмены этой серии передач в это время.</value>
   </data>
   <data name="LabelChannel" xml:space="preserve">
     <value>ТВ канал:</value>
@@ -883,25 +883,25 @@
     <value>Время:</value>
   </data>
   <data name="MenuCancelRecording" xml:space="preserve">
-    <value>Отмена задачи записи</value>
+    <value>Отмена записи</value>
   </data>
   <data name="MessageDeleteSeriesRecording" xml:space="preserve">
-    <value>Вы действительно желаете отменить эту связь с сериалом? Её нельзя восстановить.</value>
+    <value>Вы действительно желаете отменить эту связь с серией? Её нельзя восстановить.</value>
   </data>
   <data name="SysTrayGettingUpcoming" xml:space="preserve">
-    <value>Получаем предстоящие эпизоды...</value>
+    <value>Получаем ожидаемые эпизоды...</value>
   </data>
   <data name="MessageCancelRecording" xml:space="preserve">
-    <value>Вы действительно желаете отменить эту задачу записи? Её нельзя восстановить.</value>
+    <value>Вы действительно желаете отменить эту запись? Её нельзя восстановить.</value>
   </data>
   <data name="SysTraySaving" xml:space="preserve">
     <value>Сохраняется...</value>
   </data>
   <data name="MenuRecord" xml:space="preserve">
-    <value>запись</value>
+    <value>записать</value>
   </data>
   <data name="MenuRecordSeries" xml:space="preserve">
-    <value>запись сериала</value>
+    <value>записать серию передач</value>
   </data>
   <data name="LabelReallyShortHours" xml:space="preserve">
     <value>час</value>
@@ -922,10 +922,10 @@
     <value>Указание передачи для записи</value>
   </data>
   <data name="SysTraySettingSeriesToRecord" xml:space="preserve">
-    <value>Указание сериала для записи</value>
+    <value>Указание серии для записи</value>
   </data>
   <data name="AppBarCreateAndEditSeries" xml:space="preserve">
-    <value>создание и правка задачи записи сериала</value>
+    <value>создание и правка записи серии</value>
   </data>
   <data name="SysTrayCancellingProgramme" xml:space="preserve">
     <value>Отменяется передача...</value>
@@ -934,7 +934,7 @@
     <value>Подготавливается...</value>
   </data>
   <data name="SysTrayGettingRecordingDetails" xml:space="preserve">
-    <value>Получаем детали задачи записи...</value>
+    <value>Получаем детали записи...</value>
   </data>
   <data name="LabelDefaultRecordedTvGrouping" xml:space="preserve">
     <value>Группировка записей по умолчанию</value>
@@ -943,7 +943,7 @@
     <value>тв канал</value>
   </data>
   <data name="AppBarRecordedDate" xml:space="preserve">
-    <value>дата записи передачи</value>
+    <value>дата записи</value>
   </data>
   <data name="AppBarShowName" xml:space="preserve">
     <value>название сериала</value>
@@ -955,13 +955,13 @@
     <value>Выглядит так, что у вас нет каких-либо записанных элементов</value>
   </data>
   <data name="LabelRecordedDate" xml:space="preserve">
-    <value>Дата записи передачи</value>
+    <value>Дата записи</value>
   </data>
   <data name="LabelShowName" xml:space="preserve">
     <value>Название сериала</value>
   </data>
   <data name="SysTrayGettingCurrentlyRecording" xml:space="preserve">
-    <value>Получение активных задач записи...</value>
+    <value>Получение активных записей...</value>
   </data>
   <data name="HeaderLive" xml:space="preserve">
     <value>Эфир</value>

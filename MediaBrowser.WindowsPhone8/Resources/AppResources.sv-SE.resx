@@ -127,7 +127,7 @@
     <value>byt profil</value>
   </data>
   <data name="AppBarClearNowPlaying" xml:space="preserve">
-    <value>töm spellistan</value>
+    <value>rensa spellistan</value>
   </data>
   <data name="AppBarDeleteItems" xml:space="preserve">
     <value>radera</value>
@@ -142,16 +142,16 @@
     <value>markera som ej visad</value>
   </data>
   <data name="AppBarMarkAsWatched" xml:space="preserve">
-    <value>markera som visad</value>
+    <value>markera som sedd</value>
   </data>
   <data name="AppBarNext" xml:space="preserve">
     <value>nästa</value>
   </data>
   <data name="AppBarNotifications" xml:space="preserve">
-    <value>meddelanden</value>
+    <value>notifikationer</value>
   </data>
   <data name="AppBarNowPlaying" xml:space="preserve">
-    <value>nu spelas</value>
+    <value>Nu spelas</value>
   </data>
   <data name="AppBarPause" xml:space="preserve">
     <value>pausa</value>
@@ -223,7 +223,7 @@
     <value>Kunde inte hitta din server.</value>
   </data>
   <data name="ErrorDisabledUser" xml:space="preserve">
-    <value>Beklagar, det ser ut som att detta konto är inaktiverat. VI kommer nu att ta dig tillbaka till inloggningsskärmen.</value>
+    <value>Beklagar, det ser ut som att detta konto är inaktiverat. Vi kommer nu att ta dig tillbaka till inloggningsskärmen.</value>
   </data>
   <data name="ErrorDisabledUserTitle" xml:space="preserve">
     <value>Kunde inte logga in.</value>

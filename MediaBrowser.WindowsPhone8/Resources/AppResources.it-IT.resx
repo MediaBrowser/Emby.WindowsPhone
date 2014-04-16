@@ -883,7 +883,7 @@
     <value>Tempo:</value>
   </data>
   <data name="MenuCancelRecording" xml:space="preserve">
-    <value>Annulla la registrazione</value>
+    <value>Annullare la registrazione</value>
   </data>
   <data name="MessageDeleteSeriesRecording" xml:space="preserve">
     <value>Sei sicuro di voler cancellare questo collegamento serie? Questo non può essere annullata.</value>
