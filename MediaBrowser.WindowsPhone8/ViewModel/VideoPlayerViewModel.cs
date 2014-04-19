@@ -291,7 +291,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     Log.Info("Playing {0} [{1}] ({2})", RecordingItem.Type, RecordingItem.Name, RecordingItem.Id);
                     break;
                 case PlayerSourceType.Programme:
-                    query = CreateVideoStreamOptions(ProgrammeItem.Id, ProgrammeItem.UserData, _startPositionTicks);
+                    query = CreateVideoStreamOptions(ProgrammeItem.ChannelId, ProgrammeItem.UserData, _startPositionTicks);
 
                     if (ProgrammeItem.RunTimeTicks.HasValue)
                         EndTime = TimeSpan.FromTicks(ProgrammeItem.RunTimeTicks.Value - _startPositionTicks);
