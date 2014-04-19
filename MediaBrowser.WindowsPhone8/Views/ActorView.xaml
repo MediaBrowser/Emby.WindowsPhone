@@ -85,7 +85,7 @@
                     </StackPanel>
                 </phone:Pivot.Title>
 
-                <phone:PivotItem Header="{Binding LocalizedResources.LabelProfile, Source={StaticResource LocalizedStrings}}">
+                <phone:PivotItem Header="{Binding LocalizedResources.LabelProfile, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
                     <phone:LongListSelector ItemsSource="{Binding Films}"
                                             IsGroupingEnabled="True"
                                             HideEmptyGroups="False"
@@ -166,7 +166,7 @@
                     </phone:LongListSelector>
                 </phone:PivotItem>
 
-                <phone:PivotItem Header="{Binding LocalizedResources.LabelBio, Source={StaticResource LocalizedStrings}}">
+                <phone:PivotItem Header="{Binding LocalizedResources.LabelBio, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
                     <ScrollViewer>
                         <TextBlock Text="{Binding SelectedActor.Overview}"
                                    Style="{StaticResource PhoneTextNormalStyle}"

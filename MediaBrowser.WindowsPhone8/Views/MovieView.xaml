@@ -91,13 +91,13 @@
                                                        Stretch="UniformToFill"
                                                        Opacity="0.2" />
             </i:Interaction.Behaviors>
-            <phone:PanoramaItem Header="{Binding LocalizedResources.LabelPoster, Source={StaticResource LocalizedStrings}}">
+            <phone:PanoramaItem Header="{Binding LocalizedResources.LabelPoster, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
                 <local:CustomButton Style="{StaticResource EmptyButtonStyle}"
                                     VerticalContentAlignment="Top"
                                     IsHitTestVisible="{Binding SelectedMovie, Converter={StaticResource CanStreamConverter}}"
                                     Command="{Binding Main.PlayMovieCommand, Source={StaticResource Locator}}"
                                     CommandParameter="{Binding SelectedMovie}">
-                    <Grid>
+                    <Grid HorizontalAlignment="Left">
                         <c4F:SuperImage Source="{Binding SelectedMovie, ConverterParameter=poster, Converter={StaticResource ImageUrlConverter}}"
                                         PlaceholderImageSource="/Images/DefaultVideo.png"
                                         PlaceholderImageStretch="Uniform"
@@ -111,7 +111,7 @@
                 </local:CustomButton>
             </phone:PanoramaItem>
 
-            <phone:PanoramaItem Header="{Binding LocalizedResources.LabelOverview, Source={StaticResource LocalizedStrings}}">
+            <phone:PanoramaItem Header="{Binding LocalizedResources.LabelOverview, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
                 <Grid>
                     <local:ScrollableTextBlock Text="{Binding SelectedMovie.Overview}"
                                                Foreground="{StaticResource PhoneForegroundBrush}"
@@ -161,7 +161,7 @@
                 </Grid>
             </phone:PanoramaItem>
 
-            <phone:PanoramaItem Header="{Binding LocalizedResources.LabelCastCrew, Source={StaticResource LocalizedStrings}}">
+            <phone:PanoramaItem Header="{Binding LocalizedResources.LabelCastCrew, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
                 <phone:LongListSelector ItemsSource="{Binding CastAndCrew}"
                                         GroupHeaderTemplate="{StaticResource LLSGroupHeaderTemplateLong}"
                                         JumpListStyle="{StaticResource LLSGroupItemLongStyle}"
@@ -197,7 +197,7 @@
                 </phone:LongListSelector>
             </phone:PanoramaItem>
 
-            <phone:PanoramaItem Header="{Binding LocalizedResources.LabelTrailers, Source={StaticResource LocalizedStrings}}">
+            <phone:PanoramaItem Header="{Binding LocalizedResources.LabelTrailers, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
                 <phone:LongListSelector ItemsSource="{Binding Trailers}">
                     <phone:LongListSelector.ListHeader>
                         <TextBlock Text="{Binding LocalizedResources.NoItemsFound, Source={StaticResource LocalizedStrings}}"
@@ -225,7 +225,7 @@
                 </phone:LongListSelector>
             </phone:PanoramaItem>
 
-            <phone:PanoramaItem Header="{Binding LocalizedResources.LabelChapters, Source={StaticResource LocalizedStrings}}">
+            <phone:PanoramaItem Header="{Binding LocalizedResources.LabelChapters, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
                 <phone:LongListSelector ItemsSource="{Binding Chapters}">
                     <phone:LongListSelector.ItemTemplate>
                         <DataTemplate>

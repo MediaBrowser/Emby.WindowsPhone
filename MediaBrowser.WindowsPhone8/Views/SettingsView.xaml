@@ -260,7 +260,7 @@
                                            AltText="{Binding LocalizedResources.Settings, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToUppercaseConverter}}" />
             </phone:Pivot.Title>
 
-            <phone:PivotItem Header="{Binding LocalizedResources.LabelGeneral, Source={StaticResource LocalizedStrings}}">
+            <phone:PivotItem Header="{Binding LocalizedResources.LabelGeneral, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
                 <StackPanel>
                     <CheckBox Content="{Binding LocalizedResources.LabelShowTrailers, Source={StaticResource LocalizedStrings}}"
                               IsChecked="{Binding IncludeTrailersInRecent, Source={StaticResource SpecificSettings}, Mode=TwoWay}" />
@@ -317,7 +317,7 @@
                 </Grid>
             </phone:PivotItem>-->
 
-            <phone:PivotItem Header="{Binding LocalizedResources.LabelConnection, Source={StaticResource LocalizedStrings}}">
+            <phone:PivotItem Header="{Binding LocalizedResources.LabelConnection, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
                 <StackPanel Orientation="Vertical">
                     <TextBlock Text="{Binding LocalizedResources.LabelConnectionDetails, Source={StaticResource LocalizedStrings}}"
                                TextWrapping="Wrap"
@@ -351,7 +351,7 @@
                 </StackPanel>
             </phone:PivotItem>
 
-            <phone:PivotItem Header="{Binding LocalizedResources.LabelTile, Source={StaticResource LocalizedStrings}}">
+            <phone:PivotItem Header="{Binding LocalizedResources.LabelTile, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
                 <ScrollViewer>
                     <StackPanel Orientation="Vertical">
                         <TextBlock Text="{Binding LocalizedResources.LabelTileBackInformation, Source={StaticResource LocalizedStrings}}"
@@ -375,7 +375,7 @@
                 </ScrollViewer>
             </phone:PivotItem>
 
-            <phone:PivotItem Header="{Binding LocalizedResources.LabelLockScreen, Source={StaticResource LocalizedStrings}}">
+            <phone:PivotItem Header="{Binding LocalizedResources.LabelLockScreen, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />

@@ -78,7 +78,7 @@
                                                        Stretch="UniformToFill"
                                                        Opacity="0.2" />
             </i:Interaction.Behaviors>
-            <phone:PanoramaItem Header="{Binding LocalizedResources.LabelSeasons, Source={StaticResource LocalizedStrings}}">
+            <phone:PanoramaItem Header="{Binding LocalizedResources.LabelSeasons, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
                 <Grid>
                     <phone:LongListSelector ItemsSource="{Binding Seasons}"
                                             LayoutMode="Grid"
@@ -120,7 +120,7 @@
                 </Grid>
             </phone:PanoramaItem>
 
-            <phone:PanoramaItem Header="{Binding LocalizedResources.LabelRecent, Source={StaticResource LocalizedStrings}}"
+            <phone:PanoramaItem Header="{Binding LocalizedResources.LabelRecent, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                 Orientation="Horizontal">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -156,11 +156,12 @@
                 </Grid>
             </phone:PanoramaItem>
 
-            <phone:PanoramaItem Header="{Binding LocalizedResources.LabelDetails, Source={StaticResource LocalizedStrings}}">
+            <phone:PanoramaItem Header="{Binding LocalizedResources.LabelDetails, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                Visibility="Collapsed">
 
             </phone:PanoramaItem>
 
-            <phone:PanoramaItem Header="{Binding LocalizedResources.LabelCastCrew, Source={StaticResource LocalizedStrings}}">
+            <phone:PanoramaItem Header="{Binding LocalizedResources.LabelCastCrew, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
                 <phone:LongListSelector ItemsSource="{Binding CastAndCrew}"
                                         GroupHeaderTemplate="{StaticResource LLSGroupHeaderTemplateLong}"
                                         JumpListStyle="{StaticResource LLSGroupItemLongStyle}"

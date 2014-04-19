@@ -75,7 +75,7 @@
                     </StackPanel>
                 </phone:Pivot.Title>
 
-                <phone:PivotItem Header="{Binding LocalizedResources.LabelLatestUnseen, Source={StaticResource LocalizedStrings}}">
+                <phone:PivotItem Header="{Binding LocalizedResources.LabelLatestUnseen, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
                     <phone:LongListSelector ItemsSource="{Binding LatestUnwatched}"
                                             ListHeader="{Binding UnseenHeader}"
                                             LayoutMode="Grid"
@@ -130,7 +130,7 @@
                     </phone:LongListSelector>
                 </phone:PivotItem>
 
-                <phone:PivotItem Header="{Binding LocalizedResources.LabelBoxsets, Source={StaticResource LocalizedStrings}}">
+                <phone:PivotItem Header="{Binding LocalizedResources.LabelBoxsets, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
                     <phone:LongListSelector ItemsSource="{Binding Boxsets}"
                                             IsGroupingEnabled="True"
                                             HideEmptyGroups="False"
@@ -258,7 +258,7 @@
                     </phone:LongListSelector>
                 </phone:PivotItem>
 
-                <phone:PivotItem Header="{Binding LocalizedResources.LabelGenres, Source={StaticResource LocalizedStrings}}">
+                <phone:PivotItem Header="{Binding LocalizedResources.LabelGenres, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
                     <phone:LongListSelector ItemsSource="{Binding Genres}">
                         <phone:LongListSelector.ItemTemplate>
                             <DataTemplate>

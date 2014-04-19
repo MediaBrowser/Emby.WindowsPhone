@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AppBarAbout" xml:space="preserve">
-    <value>инфо</value>
+    <value>сведения</value>
   </data>
   <data name="AppBarAddToNowPlaying" xml:space="preserve">
     <value>добавить к воспроизводимым</value>
@@ -139,10 +139,10 @@
     <value>вход</value>
   </data>
   <data name="AppBarMarkAsUnwatched" xml:space="preserve">
-    <value>как непросмотренное</value>
+    <value>непросмотрено!</value>
   </data>
   <data name="AppBarMarkAsWatched" xml:space="preserve">
-    <value>как просмотренное</value>
+    <value>просмотрено!</value>
   </data>
   <data name="AppBarNext" xml:space="preserve">
     <value>следующее</value>
@@ -172,7 +172,7 @@
     <value>воспр на...</value>
   </data>
   <data name="AppBarPosterLockscreen" xml:space="preserve">
-    <value>установить постер на экран блокировки</value>
+    <value>поместить постер на экран блокировки</value>
   </data>
   <data name="AppBarPrevious" xml:space="preserve">
     <value>предыдущее</value>
@@ -181,10 +181,10 @@
     <value>обновить</value>
   </data>
   <data name="AppBarRefreshInformation" xml:space="preserve">
-    <value>обновить сведения</value>
+    <value>обновить информацию</value>
   </data>
   <data name="AppBarRemote" xml:space="preserve">
-    <value>удалённо</value>
+    <value>удал. упр-ие</value>
   </data>
   <data name="AppBarResume" xml:space="preserve">
     <value>возобновить</value>
@@ -328,7 +328,7 @@
     <value>соединение</value>
   </data>
   <data name="LabelConnectionDetails" xml:space="preserve">
-    <value>Введите детали для подключения к компьютеру, где работает Media Browser 3. Затем простой тест для подтверждения.</value>
+    <value>Введите детали для подключения к компьютеру, где работает Media Browser 3. Затем просто проверьте для подтверждения.</value>
   </data>
   <data name="LabelConnectionWarning" xml:space="preserve">
     <value>ПРЕДУПРЕЖДЕНИЕ: При изменении имени хоста уберутся все сохранённые профили.</value>
@@ -349,7 +349,7 @@
     <value>Режиссёр</value>
   </data>
   <data name="LabelDisplayRandomImages" xml:space="preserve">
-    <value>Отображать в случайном порядке задники в фоне этой плитки</value>
+    <value>Отображать случайные задники как фон этой плитки</value>
   </data>
   <data name="LabelEpisode" xml:space="preserve">
     <value>Эпизод</value>
@@ -361,7 +361,7 @@
     <value>После того, как Media Browser сервер был сконфигурирован, убедитесь, что он доступен из места вашего нахождения, будь то ваша локальная беспроводная сеть или внешний статический адрес.</value>
   </data>
   <data name="LabelFirstRunHappyConfiguration" xml:space="preserve">
-    <value>Если вы удовлетворены тем, что сконфигурировали, нажмите на кнопку Параметры и введите детали вашего сервера, иначе вы можете просто закрыть приложение отсюда.</value>
+    <value>Если вы удовлетворены тем, как сконфигурировали, нажмите на кнопку Параметры и введите детали вашего сервера, иначе вы можете просто закрыть приложение отсюда.</value>
   </data>
   <data name="LabelFirstRunServerInfo" xml:space="preserve">
     <value>Однако, прежде чем мы сможем начать, вы должны убедиться, что у вас работает Media Browser сервер.</value>
@@ -490,7 +490,7 @@
     <value>Случайные элементы</value>
   </data>
   <data name="LabelRandomPictures" xml:space="preserve">
-    <value>Случайные картинки из коллекции</value>
+    <value>Случайные рисунки из коллекции</value>
   </data>
   <data name="LabelRating" xml:space="preserve">
     <value>Оценка:</value>
@@ -499,7 +499,7 @@
     <value>Недавние</value>
   </data>
   <data name="LabelRemote" xml:space="preserve">
-    <value>Удалённо</value>
+    <value>Удал. упр-ие</value>
   </data>
   <data name="LabelRemove" xml:space="preserve">
     <value>убрать</value>
@@ -550,7 +550,7 @@
     <value>Показывать ожидаемые эпизоды</value>
   </data>
   <data name="LabelUnwatched" xml:space="preserve">
-    <value>Непросмотренное</value>
+    <value>Непросмотренное:</value>
   </data>
   <data name="LabelUsername" xml:space="preserve">
     <value>имя пользователя:</value>
@@ -721,7 +721,7 @@
     <value>Параметры загружаются ...</value>
   </data>
   <data name="SysTrayRegisteringDevice" xml:space="preserve">
-    <value>Регистрация устройства...</value>
+    <value>Устройство регистрируется...</value>
   </data>
   <data name="SysTrayRegrouping" xml:space="preserve">
     <value>Перегруппируется...</value>
@@ -730,7 +730,7 @@
     <value>Идёт поиск...</value>
   </data>
   <data name="SysTrayUnregisteringDevice" xml:space="preserve">
-    <value>Отмена регистрации устройства...</value>
+    <value>Регистрация устройства отменяется...</value>
   </data>
   <data name="TrialVideoMessage" xml:space="preserve">
     <value>В пробном режиме вы можете воспроизводить только одно видео за день. Пожалуйста, попробуйте это завтра или приобретите полную версию</value>
@@ -783,7 +783,7 @@
     <value>Что идёт</value>
   </data>
   <data name="SysTrayGettingChannels" xml:space="preserve">
-    <value>Получаем ТВ каналы...</value>
+    <value>Получаем тв каналы...</value>
   </data>
   <data name="SysTrayGettingProgrammes" xml:space="preserve">
     <value>Получаем передачи...</value>
@@ -837,10 +837,10 @@
     <value>Записывать только новые эпизоды</value>
   </data>
   <data name="LabelRecordProgrammeAtAnyTime" xml:space="preserve">
-    <value>Записывать передачи в любое время</value>
+    <value>Записывать передачу в любое время</value>
   </data>
   <data name="LabelRecordProgrammeOnAllChannels" xml:space="preserve">
-    <value>Записывать передачи со всех каналов</value>
+    <value>Записывать передачу со всех каналов</value>
   </data>
   <data name="AppBarCancel" xml:space="preserve">
     <value>отмена</value>
@@ -868,7 +868,7 @@
     <value>удалить</value>
   </data>
   <data name="ErrorDeletingSeriesRecording" xml:space="preserve">
-    <value>К сожалению, произошла ошибка отмены этой серии передач в это время.</value>
+    <value>К сожалению, произошла ошибка отмены этой серии передач на это время.</value>
   </data>
   <data name="LabelChannel" xml:space="preserve">
     <value>ТВ канал:</value>

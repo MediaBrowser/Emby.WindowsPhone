@@ -103,12 +103,12 @@
                     </StackPanel>
                 </phone:Pivot.Title>
 
-                <phone:PivotItem Header="{Binding LocalizedResources.LabelLatestUnseen, Source={StaticResource LocalizedStrings}}">
+                <phone:PivotItem Header="{Binding LocalizedResources.LabelLatestUnseen, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
                     <phone:LongListSelector ItemsSource="{Binding LatestUnwatched}"
                                             ItemTemplate="{StaticResource EpisodeDataTemplate}" />
                 </phone:PivotItem>
 
-                <phone:PivotItem Header="{Binding LocalizedResources.LabelNextUp, Source={StaticResource LocalizedStrings}}">
+                <phone:PivotItem Header="{Binding LocalizedResources.LabelNextUp, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
                     <phone:LongListSelector ItemsSource="{Binding NextUpList}"
                                             ItemTemplate="{StaticResource EpisodeDataTemplate}" />
                 </phone:PivotItem>
@@ -120,7 +120,7 @@
                                             GroupHeaderTemplate="{StaticResource LLSGroupHeaderTemplateLong}"
                                             ItemTemplate="{StaticResource EpisodeDataTemplate}" />
                 </phone:PivotItem>
-                <phone:PivotItem Header="{Binding LocalizedResources.LabelShows, Source={StaticResource LocalizedStrings}}">
+                <phone:PivotItem Header="{Binding LocalizedResources.LabelShows, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
                     <phone:LongListSelector ItemsSource="{Binding Shows}"
                                             IsGroupingEnabled="True"
                                             HideEmptyGroups="False"
@@ -167,7 +167,7 @@
                     </phone:LongListSelector>
                 </phone:PivotItem>
 
-                <phone:PivotItem Header="{Binding LocalizedResources.LabelGenres, Source={StaticResource LocalizedStrings}}">
+                <phone:PivotItem Header="{Binding LocalizedResources.LabelGenres, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
                     <phone:LongListSelector ItemsSource="{Binding Genres}">
                         <phone:LongListSelector.ItemTemplate>
                             <DataTemplate>

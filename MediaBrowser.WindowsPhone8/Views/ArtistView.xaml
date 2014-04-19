@@ -78,9 +78,9 @@
             <!--ContentPanel - place additional content here-->
             <Grid x:Name="ContentPanel"
                   Grid.Row="1">
-                <phone:Pivot Title="{Binding SelectedArtist.Name, Converter={StaticResource StringCaseConverter}, ConverterParameter=false}"
+                <phone:Pivot Title="{Binding SelectedArtist.Name, Converter={StaticResource StringToUppercaseConverter}}"
                              x:Name="MainPivot">
-                    <phone:PivotItem Header="{Binding LocalizedResources.LabelAlbums, Source={StaticResource LocalizedStrings}}">
+                    <phone:PivotItem Header="{Binding LocalizedResources.LabelAlbums, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
                         <phone:LongListSelector ItemsSource="{Binding Albums}">
                             <phone:LongListSelector.ItemTemplate>
                                 <DataTemplate>
@@ -123,7 +123,7 @@
                         </phone:LongListSelector>
                     </phone:PivotItem>
 
-                    <phone:PivotItem Header="{Binding LocalizedResources.LabelSongs, Source={StaticResource LocalizedStrings}}">
+                    <phone:PivotItem Header="{Binding LocalizedResources.LabelSongs, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
                         <toolkit:LongListMultiSelector ItemsSource="{Binding SortedTracks}"
                                                        JumpListStyle="{StaticResource LLSGroupItemStyle}"
                                                        GroupHeaderTemplate="{StaticResource LLSGroupHeaderTemplateName}"
@@ -150,7 +150,7 @@
                         </toolkit:LongListMultiSelector>
                     </phone:PivotItem>
 
-                    <phone:PivotItem Header="{Binding LocalizedResources.LabelBio, Source={StaticResource LocalizedStrings}}">
+                    <phone:PivotItem Header="{Binding LocalizedResources.LabelBio, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
                         <TextBlock Text="{Binding SelectedArtist.Overview}"
                                    Style="{StaticResource PhoneTextNormalStyle}"
                                    TextWrapping="Wrap" />

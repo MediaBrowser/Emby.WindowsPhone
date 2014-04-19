@@ -181,7 +181,7 @@
     <value>Rafraîchir</value>
   </data>
   <data name="AppBarRefreshInformation" xml:space="preserve">
-    <value>Rafraîchir l'information</value>
+    <value>Rafraîchir les informations</value>
   </data>
   <data name="AppBarRemote" xml:space="preserve">
     <value>Télécommande</value>
@@ -211,13 +211,13 @@
     <value>Appareil enregistré</value>
   </data>
   <data name="ErrorConnectionDetailsInvalid" xml:space="preserve">
-    <value>Détails de connexion invalides, veuillez réessayer</value>
+    <value>Informations de connexion invalides, veuillez réessayer.</value>
   </data>
   <data name="ErrorConnectionDetailsMessage" xml:space="preserve">
-    <value>Aucuns détails de connexion n'a été enregistré, voulez-vous le faire maintenant?</value>
+    <value>Aucune information de connexion n'a été enregistrée, voulez-vous le faire maintenant ?</value>
   </data>
   <data name="ErrorConnectionDetailsTitle" xml:space="preserve">
-    <value>Aucuns détail de connexion</value>
+    <value>Aucune information de connexion.</value>
   </data>
   <data name="ErrorCouldNotFindServer" xml:space="preserve">
     <value>Serveur non trouvé</value>
@@ -229,7 +229,7 @@
     <value>Impossible de se connecter</value>
   </data>
   <data name="ErrorEpisodeDetails" xml:space="preserve">
-    <value>Erreur lors du téléchargement des détails de l'épisode</value>
+    <value>Erreur lors du téléchargement des informations de l'épisode</value>
   </data>
   <data name="ErrorEpisodes" xml:space="preserve">
     <value>Erreur lors du téléchargement des épisodes</value>
@@ -268,7 +268,7 @@
     <value>Erreur</value>
   </data>
   <data name="ErrorUnableToSignIn" xml:space="preserve">
-    <value>Nous étions incapables de vous connecter actuellement, ceci peut être dû à une erreur de nom d'usager/mot de passe, ou votre compte a été désactivé.</value>
+    <value>Nous n'avons pas réussi à vous authentifier, ceci peut être dû à une erreur de nom d'utilisateur/mot de passe, ou votre compte a été désactivé.</value>
   </data>
   <data name="ErrorUnableToSignInTitle" xml:space="preserve">
     <value>Connexion échouée</value>
@@ -277,7 +277,7 @@
     <value>Favoris</value>
   </data>
   <data name="Genre" xml:space="preserve">
-    <value>Genre</value>
+    <value>Genre.</value>
   </data>
   <data name="HeaderChooseClient" xml:space="preserve">
     <value>Choisir un client</value>
@@ -328,16 +328,16 @@
     <value>Connexion</value>
   </data>
   <data name="LabelConnectionDetails" xml:space="preserve">
-    <value>Entrer les détails de connexion afin de pointer vers le PC ayant Media Browser 3. Après, simplement les tester pour confirmer.</value>
+    <value>Entrez les détails de connexion afin de pointer vers le PC avec le serveur Media Browser 3. Ensuite, testez pour confirmer.</value>
   </data>
   <data name="LabelConnectionWarning" xml:space="preserve">
-    <value>ATTENTION: Changer le nom d'hôte supprimera des profils enregistrés.</value>
+    <value>ATTENTION: Changer le nom d'hôte supprimera les profils enregistrés.</value>
   </data>
   <data name="LabelDate" xml:space="preserve">
     <value>Date</value>
   </data>
   <data name="LabelDaysAgo" xml:space="preserve">
-    <value>Ol y a {0} jours</value>
+    <value>Il y a {0} jours</value>
   </data>
   <data name="LabelDefaultLockScreen" xml:space="preserve">
     <value>Écran de verrouillage par défaut</value>
@@ -358,13 +358,13 @@
     <value>Trouver le serveur</value>
   </data>
   <data name="LabelFirstRunAccessible" xml:space="preserve">
-    <value>Une fois que le serveur de Media Browser a été configuré, veuillez vous assurer qu'il est accessible depuis là où vous vous trouvez, que ce soit sur votre réseau sans-fil local, ou une adresse statique externe.</value>
+    <value>Une fois le serveur de Media Browser configuré, veuillez vous assurer qu'il est accessible depuis là où vous vous trouvez, que ce soit depuis votre réseau sans-fil local, ou une adresse statique externe.</value>
   </data>
   <data name="LabelFirstRunHappyConfiguration" xml:space="preserve">
-    <value>Si vous êtes satisfaits de ce que vous avez configuré, cliquer sur le bouton "paramètres" et entrez vos détails du serveur, ou bien vous pouvez quitter l'application.</value>
+    <value>Si vous êtes satisfaits de la configuration, cliquez sur le bouton "paramètres" et entrez les informations du serveur, ou quittez l'application..</value>
   </data>
   <data name="LabelFirstRunServerInfo" xml:space="preserve">
-    <value>Avant que nous commencions, assurez-vous que vous utiliser le serveur Media Browser</value>
+    <value>Avant de commencer, assurez-vous que le serveur Media Browser est démarré.</value>
   </data>
   <data name="LabelGeneral" xml:space="preserve">
     <value>Général</value>
@@ -409,7 +409,7 @@
     <value>Nous utiliser comme source d'écran de verrouillage</value>
   </data>
   <data name="LabelManuallyLogin" xml:space="preserve">
-    <value>Se connecter manuellement</value>
+    <value>Connexion manuelle</value>
   </data>
   <data name="LabelMinutesAgo" xml:space="preserve">
     <value>Il y a {0} minutes</value>
@@ -433,7 +433,7 @@
     <value>Non</value>
   </data>
   <data name="LabelNoEpisodes" xml:space="preserve">
-    <value>aucun épisode à montrer</value>
+    <value>Aucune épisode à afficher</value>
   </data>
   <data name="LabelNone" xml:space="preserve">
     <value>aucun</value>
@@ -460,7 +460,7 @@
     <value>autre</value>
   </data>
   <data name="LabelOverview" xml:space="preserve">
-    <value>vue d'ensemble</value>
+    <value>résumé</value>
   </data>
   <data name="LabelPassword" xml:space="preserve">
     <value>mot de passe:</value>
@@ -469,7 +469,7 @@
     <value>port:</value>
   </data>
   <data name="LabelPoster" xml:space="preserve">
-    <value>poster</value>
+    <value>Affiche</value>
   </data>
   <data name="LabelProducer" xml:space="preserve">
     <value>Producteur</value>
@@ -487,10 +487,10 @@
     <value>quitter</value>
   </data>
   <data name="LabelRandomItems" xml:space="preserve">
-    <value>Element au hasard</value>
+    <value>Éléments aléatoires</value>
   </data>
   <data name="LabelRandomPictures" xml:space="preserve">
-    <value>images au hasard depuis la collection</value>
+    <value>Images aléatoires de la collection</value>
   </data>
   <data name="LabelRating" xml:space="preserve">
     <value>Note:</value>
@@ -529,7 +529,7 @@
     <value>Montrer les bandes-annonces dans les éléments récents</value>
   </data>
   <data name="LabelSinglePoster" xml:space="preserve">
-    <value>Simple poster</value>
+    <value>Une seule affiche</value>
   </data>
   <data name="LabelSongs" xml:space="preserve">
     <value>chansons</value>
@@ -538,7 +538,7 @@
     <value>tuile</value>
   </data>
   <data name="LabelTileBackInformation" xml:space="preserve">
-    <value>Pour montrer quelques Artworks de votre collection, la tuile en utilisera certains, ici vous pouvez choisir de quoi la tuile aura l'air</value>
+    <value>Pour afficher quelques images de votre collection, la tuile en utilisera certaines, ici vous pouvez choisir l'apparence de la tuile.</value>
   </data>
   <data name="LabelTrailers" xml:space="preserve">
     <value>bandes-annonces</value>
@@ -559,7 +559,7 @@
     <value>Vues</value>
   </data>
   <data name="LabelWelcomeText" xml:space="preserve">
-    <value>Bienvenue sur Media Browser pour Windows phone. Cette application vous permettra de parcourir votre collection, la regarder en streaming sur votre téléphone, et de controler à distance d'autres clients Media Browser</value>
+    <value>Bienvenue sur Media Browser pour Windows Phone. Cette application vous permettra de parcourir votre collection de médias, la regarder en diffusion sur votre téléphone, et de controler à distance d'autres clients Media Browser</value>
   </data>
   <data name="LabelWriter" xml:space="preserve">
     <value>Auteur</value>
@@ -583,7 +583,7 @@
     <value>Etes-vous sûr de vouloir retirer l'épingle de cette tuile?</value>
   </data>
   <data name="MessageClearPlayList" xml:space="preserve">
-    <value>Etes-vous sûr de vouloir nettoyer votre liste de lecture?</value>
+    <value>Etes-vous sûr de vouloir vider votre liste de lecture?</value>
   </data>
   <data name="MessageDeletePlaylistItems" xml:space="preserve">
     <value>Etes-vous sûr de vouloir supprimer ces éléments? Ceci est définitif.</value>
@@ -592,7 +592,7 @@
     <value>Expérimental</value>
   </data>
   <data name="MessageExperimentalVideo" xml:space="preserve">
-    <value>Jouer ce type de vidéo est pour l'instant expérimental, les résultats peuvent être différents. Voulez-vous continuer?</value>
+    <value>Lire ce type de vidéo est pour l'instant expérimental, le résultat n'est pas garanti. Voulez-vous continuer?</value>
   </data>
   <data name="MessageTracksAddedSuccessfully" xml:space="preserve">
     <value>{0} morceaux ajoutés</value>
@@ -601,19 +601,19 @@
     <value>plus...</value>
   </data>
   <data name="NameLabel" xml:space="preserve">
-    <value>nom</value>
+    <value>Nom</value>
   </data>
   <data name="NoItemsFound" xml:space="preserve">
-    <value>aucun élément trouvé</value>
+    <value>Aucun élément trouvé</value>
   </data>
   <data name="PinToStart" xml:space="preserve">
-    <value>épingler à l'écran d'accueil</value>
+    <value>Épingler à l'écran d'accueil</value>
   </data>
   <data name="ProductionYear" xml:space="preserve">
     <value>Année de production</value>
   </data>
   <data name="RemoveFromFavouritesFull" xml:space="preserve">
-    <value>retirer des favoris</value>
+    <value>Supprimer des favoris</value>
   </data>
   <data name="ResourceLanguage" xml:space="preserve">
     <value>fr</value>
@@ -625,22 +625,22 @@
     <value>Ajouter aux favoris</value>
   </data>
   <data name="SysTrayAuthenticating" xml:space="preserve">
-    <value>En cours d'authentifications</value>
+    <value>En cours d'authentification...</value>
   </data>
   <data name="SysTrayCheckingCollection" xml:space="preserve">
-    <value>Collection en cours de vérification...</value>
+    <value>Vérification de la collection...</value>
   </data>
   <data name="SysTrayCheckingConnection" xml:space="preserve">
-    <value>Connexion en cours de vérification...</value>
+    <value>Vérification de la connexion...</value>
   </data>
   <data name="SysTrayFindingServer" xml:space="preserve">
     <value>Recherche de votre serveur...</value>
   </data>
   <data name="SysTrayGettingAlbums" xml:space="preserve">
-    <value>Recherche des albums...</value>
+    <value>Recherche des albums..</value>
   </data>
   <data name="SysTrayGettingAlbumTracks" xml:space="preserve">
-    <value>Recherches des morceaux de l'album...</value>
+    <value>Recherche des morceaux de l'album...</value>
   </data>
   <data name="SysTrayGettingAllTracks" xml:space="preserve">
     <value>Recherche de tous les morceaux...</value>
@@ -649,7 +649,7 @@
     <value>Recherche des artistes...</value>
   </data>
   <data name="SysTrayGettingArtistTracks" xml:space="preserve">
-    <value>Recherches des morceaux de l'artiste...</value>
+    <value>Recherche des morceaux de l'artiste...</value>
   </data>
   <data name="SysTrayGettingBoxsets" xml:space="preserve">
     <value>Recherche des boxsets...</value>
@@ -658,7 +658,7 @@
     <value>Recherche des détails...</value>
   </data>
   <data name="SysTrayGettingEpisodeDetails" xml:space="preserve">
-    <value>Recherche des détails de l'épisode...</value>
+    <value>Recherche des informations d'épisode...</value>
   </data>
   <data name="SysTrayGettingEpisodes" xml:space="preserve">
     <value>Recherche des épisodes...</value>
@@ -727,20 +727,20 @@
     <value>Regroupement...</value>
   </data>
   <data name="SysTraySearching" xml:space="preserve">
-    <value>Cherche...</value>
+    <value>Recherche...</value>
   </data>
   <data name="SysTrayUnregisteringDevice" xml:space="preserve">
     <value>Appareil en cours de desenregistrement...</value>
   </data>
   <data name="TrialVideoMessage" xml:space="preserve">
-    <value>En mode d'essai vous ne pouvez voir qu'une video par jour. Réessayer demain ou acheter la version complète.</value>
+    <value>En mode d'essai vous ne pouvez lire qu'un vidéo par jour. Réessayez demain ou achetez la version complète.</value>
   </data>
   <data name="TvShowRecentItemsTitle" xml:space="preserve">
-    <value>{0} nouveaux éléments</value>
+    <value>{0} récents éléments</value>
     <comment>{0} is the name of the tv show</comment>
   </data>
   <data name="Unpin" xml:space="preserve">
-    <value>retirer l'épingle</value>
+    <value>Retirer l'épingle</value>
   </data>
   <data name="WatermarkEnterUsername" xml:space="preserve">
     <value>entrer un nom d'utilisateur</value>
@@ -749,13 +749,13 @@
     <value>Se connecter</value>
   </data>
   <data name="LabelNoFoldersFound" xml:space="preserve">
-    <value>aucun dossier trouvé</value>
+    <value>Aucun dossier trouvé</value>
   </data>
   <data name="LabelNothingInPlaylist" xml:space="preserve">
-    <value>il n'y a rien dans votre liste de lecture</value>
+    <value>Liste de lecture vide</value>
   </data>
   <data name="LabelUnplayedItems" xml:space="preserve">
-    <value>Non joué:</value>
+    <value>Non lu:</value>
   </data>
   <data name="WatermarkPassword" xml:space="preserve">
     <value>entrer un mot de passe</value>
@@ -771,13 +771,13 @@
     <value>Chaînes</value>
   </data>
   <data name="LabelRecordedTv" xml:space="preserve">
-    <value>TV enregistré(s)</value>
+    <value>TV enregistrée(s)</value>
   </data>
   <data name="LabelScheduledRecording" xml:space="preserve">
     <value>Enregistrements programmés</value>
   </data>
   <data name="LabelUpcoming" xml:space="preserve">
-    <value>A venir</value>
+    <value>À venir</value>
   </data>
   <data name="LabelWhatsOn" xml:space="preserve">
     <value>À l'affiche</value>
@@ -795,7 +795,7 @@
     <value>Rechercher les enregistrements à venir</value>
   </data>
   <data name="ContextCancelSeries" xml:space="preserve">
-    <value>Annuler série</value>
+    <value>annuler série</value>
   </data>
   <data name="LabelScheduleAnyChannel" xml:space="preserve">
     <value>N'importe quelle chaîne</value>
@@ -804,7 +804,7 @@
     <value>N'importe quand</value>
   </data>
   <data name="LabelScheduleDaily" xml:space="preserve">
-    <value>Journalier</value>
+    <value>Quotidien</value>
   </data>
   <data name="LabelScheduleToday" xml:space="preserve">
     <value>Aujourd'hui</value>

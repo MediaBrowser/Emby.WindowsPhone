@@ -184,7 +184,7 @@
                     </StackPanel>
                 </ScrollViewer>
             </phone:PanoramaItem>
-            <phone:PanoramaItem Header="{Binding LocalizedResources.Collections, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringCaseConverter}}">
+            <phone:PanoramaItem Header="{Binding LocalizedResources.Collections, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
                 <phone:LongListSelector ItemsSource="{Binding Folders}">
                     <phone:LongListSelector.ItemTemplate>
                         <DataTemplate>
@@ -194,7 +194,7 @@
                                                          Margin="12,0,0,0">
                                 <toolkit:ContextMenuService.ContextMenu>
                                     <toolkit:ContextMenu>
-                                        <toolkit:MenuItem Header="{Binding LocalizedResources.PinToStart, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringCaseConverter}}"
+                                        <toolkit:MenuItem Header="{Binding LocalizedResources.PinToStart, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                           Command="{Binding Main.PinCollectionCommand, Source={StaticResource Locator}}"
                                                           CommandParameter="{Binding}" />
                                     </toolkit:ContextMenu>
@@ -253,7 +253,7 @@
                 </Grid>
             </phone:PanoramaItem>
 
-            <phone:PanoramaItem Header="{Binding LocalizedResources.Favourites, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringCaseConverter}}">
+            <phone:PanoramaItem Header="{Binding LocalizedResources.Favourites, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
                 <phone:LongListSelector ItemsSource="{Binding FavouriteItems}"
                                         ItemTemplate="{StaticResource FullTileItemStyle}"
                                         x:Name="FavouriteItemsList"
