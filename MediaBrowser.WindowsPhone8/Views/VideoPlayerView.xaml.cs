@@ -79,12 +79,13 @@ namespace MediaBrowser.WindowsPhone.Views
         private void ThePlayer_OnMediaStarted(object sender, RoutedEventArgs e)
         {
             _seeking = false;
+            var player = sender as MediaPlayer;
             var model = this.DataContext as VideoPlayerViewModel;
-            if (model != null)
+            if (model != null && player != null)
             {                
-                thePlayer.StartTime = model.StartTime;
-                thePlayer.EndTime = model.EndTime;
-                thePlayer.Position = TimeSpan.FromTicks(model.StartTime.Ticks * -1);                         
+                player.StartTime = model.StartTime;
+                player.EndTime = model.EndTime;
+                player.Position = TimeSpan.FromTicks(model.StartTime.Ticks * -1);                         
                 model.StartUpdateTimer();
             }
         }
@@ -105,9 +106,10 @@ namespace MediaBrowser.WindowsPhone.Views
 
         private void ThePlayer_OnCurrentStateChanged(object sender, RoutedEventArgs e)
         {
-            if (thePlayer.CurrentState == MediaElementState.Playing || thePlayer.CurrentState == MediaElementState.Paused)
+            var player = sender as MediaPlayer;
+            if (player.CurrentState == MediaElementState.Playing || player.CurrentState == MediaElementState.Paused)
             {
-                var isPaused = thePlayer.CurrentState == MediaElementState.Paused;
+                var isPaused = player.CurrentState == MediaElementState.Paused;
                 Messenger.Default.Send(new NotificationMessage(isPaused, Constants.Messages.VideoStateChangedMsg));
             }
         }

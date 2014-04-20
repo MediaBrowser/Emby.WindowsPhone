@@ -38,7 +38,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
         private bool _isResume;
         private long _startPositionTicks = 0;
-        private PlayerSourceType _playerSourceType;
         private string _itemId;
 
         /// <summary>
@@ -78,9 +77,16 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
         }
 
+        public PlayerSourceType PlayerSourceType { get; set; }
+
+        public bool IsHls
+        {
+            get { return PlayerSourceType == PlayerSourceType.Programme; }
+        }
+
         private void SetPlaybackTicks(long totalTicks)
         {
-            switch (_playerSourceType)
+            switch (PlayerSourceType)
             {
                 case PlayerSourceType.Video:
                     SelectedItem.UserData.PlaybackPositionTicks = totalTicks;
@@ -120,7 +126,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         break;
                 }
 
-                _playerSourceType = m.PlayerSourceType;
+                PlayerSourceType = m.PlayerSourceType;
                 _isResume = m.IsResume;
                 _startPositionTicks = m.ResumeTicks.HasValue ? m.ResumeTicks.Value : 0;
             });
@@ -257,7 +263,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             EndTime = TimeSpan.Zero;
 
             var query = new VideoStreamOptions();
-            switch (_playerSourceType)
+            switch (PlayerSourceType)
             {
                 case PlayerSourceType.Video:
                     if (SelectedItem.VideoType != VideoType.VideoFile)
@@ -291,7 +297,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     Log.Info("Playing {0} [{1}] ({2})", RecordingItem.Type, RecordingItem.Name, RecordingItem.Id);
                     break;
                 case PlayerSourceType.Programme:
-                    query = CreateVideoStreamOptions(ProgrammeItem.ChannelId, ProgrammeItem.UserData, _startPositionTicks);
+                    query = CreateVideoStreamOptions(ProgrammeItem.ChannelId, ProgrammeItem.UserData, _startPositionTicks, true);
 
                     if (ProgrammeItem.RunTimeTicks.HasValue)
                         EndTime = TimeSpan.FromTicks(ProgrammeItem.RunTimeTicks.Value - _startPositionTicks);
@@ -300,7 +306,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     break;
             }
 
-            var url = _apiClient.GetHlsVideoStreamUrl(query);
+            var url = PlayerSourceType == PlayerSourceType.Programme ? _apiClient.GetHlsVideoStreamUrl(query) : _apiClient.GetVideoStreamUrl(query);
 
             VideoUrl = url;
             Debug.WriteLine(VideoUrl);            
@@ -335,7 +341,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
         }
 
-        private VideoStreamOptions CreateVideoStreamOptions(string itemId, UserItemDataDto userData, long startTimeTicks)
+        private VideoStreamOptions CreateVideoStreamOptions(string itemId, UserItemDataDto userData, long startTimeTicks, bool useHls = false)
         {
             _itemId = itemId;
 
@@ -343,7 +349,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 ItemId = itemId,
                 VideoCodec = "H264",
-                OutputFileExtension = ".m3u8",
+                OutputFileExtension = useHls ? ".m3u8" : ".mp4",
                 AudioCodec = "Aac",
                 VideoBitRate = WindowsPhone.Helpers.ResolutionHelper.DefaultVideoBitrate,
                 AudioBitRate = 128000,
@@ -375,7 +381,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     var program = await _apiClient.GetLiveTvProgramAsync(ItemId, AuthenticationService.Current.LoggedInUserId, cts.Token);
                     if (program == null || program.UserData == null)
                         return;
-                    _playerSourceType = PlayerSourceType.Programme;
+                    PlayerSourceType = PlayerSourceType.Programme;
 
                     ProgrammeItem = program;
                 }
@@ -384,7 +390,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     var recording = await _apiClient.GetLiveTvRecordingAsync(ItemId, AuthenticationService.Current.LoggedInUserId, cts.Token);
                     if (recording == null || recording.UserData == null)
                         return;
-                    _playerSourceType = PlayerSourceType.Recording;
+                    PlayerSourceType = PlayerSourceType.Recording;
 
                     RecordingItem = recording;
                 }
@@ -393,7 +399,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     var item = await _apiClient.GetItemAsync(ItemId, AuthenticationService.Current.LoggedInUserId);
                     if (item == null || item.UserData == null)
                         return;
-                    _playerSourceType = PlayerSourceType.Video;
+                    PlayerSourceType = PlayerSourceType.Video;
 
                     SelectedItem = item;
                 }

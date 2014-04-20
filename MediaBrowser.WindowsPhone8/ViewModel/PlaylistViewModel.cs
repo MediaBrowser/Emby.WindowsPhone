@@ -207,7 +207,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
         private void OnPlayStateChanged(object sender, EventArgs e)
         {
-            IsPlaying = BackgroundAudioPlayer.Instance.PlayerState == PlayState.Playing;
+            try
+            {
+                IsPlaying = BackgroundAudioPlayer.Instance.PlayerState == PlayState.Playing;
+            }
+            catch (Exception ex)
+            {
+                Log.ErrorException("OnPlayStateChanged()", ex);
+            }
         }
 
         public override void WireMessages()

@@ -745,7 +745,28 @@
     <Grid x:Name="LayoutRoot"
           Background="Transparent">
 
-        <playerFramework:MediaPlayer x:Name="thePlayer"
+        <playerFramework:MediaPlayer x:Name="ThePlayer"
+                                     Visibility="{Binding IsHls, Converter={StaticResource InvertedVisibilityConverter}, FallbackValue=Visible}"
+                                     Source="{Binding VideoUrl}"
+                                     AutoPlay="True"
+                                     MediaEnded="ThePlayerMediaEnded"
+                                     MediaFailed="ThePlayerMediaFailed"
+                                     MediaOpened="ThePlayer_OnMediaOpened"
+                                     MediaStarting="ThePlayer_OnMediaStarting"
+                                     MediaStarted="ThePlayer_OnMediaStarted"
+                                     IsTimeElapsedVisible="True"
+                                     IsScrubbingEnabled="True"
+                                     IsSeekEnabled="True"
+                                     CurrentStateChanged="ThePlayer_OnCurrentStateChanged"
+                                     StartTime="{Binding StartTime}"
+                                     Position="{Binding PlayedVideoDuration, Mode=TwoWay}"
+                                     EndTime="{Binding EndTime}"
+                                     ScrubbingCompleted="thePlayer_ScrubbingCompleted"
+                                     Seeked="thePlayer_Seeked"
+                                     Style="{StaticResource MediaPlayerStyle1}"/>
+            
+        <playerFramework:MediaPlayer x:Name="HlsPlayer"
+                                     Visibility="{Binding IsHls, Converter={StaticResource VisibilityConverter}, FallbackValue=Collapsed}"
                                      Source="{Binding VideoUrl}"
                                      AutoPlay="True"
                                      MediaEnded="ThePlayerMediaEnded"
@@ -764,7 +785,7 @@
                                      Seeked="thePlayer_Seeked"
                                      Style="{StaticResource MediaPlayerStyle1}">
             <playerFramework:MediaPlayer.Plugins>
-                <mediaPlayer:StreamingMediaPlugin/>
+                <mediaPlayer:StreamingMediaPlugin />
             </playerFramework:MediaPlayer.Plugins>
         </playerFramework:MediaPlayer>
     </Grid>
