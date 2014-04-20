@@ -44,6 +44,11 @@ namespace MediaBrowser.Design
             throw new NotImplementedException();
         }
 
+        public Task ReportCapabilities(ClientCapabilities capabilities, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task ReportCapabilities(string sessionId, ClientCapabilities capabilities, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
@@ -384,7 +389,7 @@ namespace MediaBrowser.Design
             throw new NotImplementedException();
         }
 
-        public Task SendSystemCommandAsync(string sessionId, SystemCommand command)
+        public Task SendCommandAsync(string sessionId, GeneralCommand command)
         {
             throw new NotImplementedException();
         }
@@ -460,6 +465,11 @@ namespace MediaBrowser.Design
         }
 
         public string GetImageUrl(ProgramInfoDto item, ImageOptions options)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string GetSubtitleUrl(SubtitleOptions options)
         {
             throw new NotImplementedException();
         }

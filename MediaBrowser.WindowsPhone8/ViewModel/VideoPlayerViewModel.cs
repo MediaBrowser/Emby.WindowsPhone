@@ -300,7 +300,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     break;
             }
 
-            VideoUrl = _apiClient.GetVideoStreamUrl(query);
+            var url = _apiClient.GetHlsVideoStreamUrl(query);
+
+            VideoUrl = url;
             Debug.WriteLine(VideoUrl);            
 
             Log.Debug(VideoUrl);
@@ -341,7 +343,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 ItemId = itemId,
                 VideoCodec = "H264",
-                OutputFileExtension = ".mp4",
+                OutputFileExtension = ".m3u8",
                 AudioCodec = "Aac",
                 VideoBitRate = WindowsPhone.Helpers.ResolutionHelper.DefaultVideoBitrate,
                 AudioBitRate = 128000,
@@ -349,8 +351,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 StartTimeTicks = startTimeTicks,
                 Profile = "baseline",
                 Level = "3",
-                //FrameRate = 20,
-                //MaxHeight =  WindowsPhone.Helpers.ResolutionHelper.Height, // (int)bounds.Width,
                 MaxWidth = WindowsPhone.Helpers.ResolutionHelper.Width // (int)bounds.Height
             };
 

@@ -219,7 +219,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
                     {
                         try
                         {
-                            await _apiClient.SendSystemCommandAsync(SelectedClient.Id, SystemCommand.ToggleMute);
+                            var command = new GeneralCommand
+                            {
+                                Name = GeneralCommandType.ToggleMute.ToString()
+                            };
+
+                            await _apiClient.SendCommandAsync(SelectedClient.Id, command);
                         }
                         catch (HttpException ex)
                         {
@@ -238,7 +243,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
                 {
                     try
                     {
-                        await _apiClient.SendSystemCommandAsync(SelectedClient.Id, isVolumeUp ? SystemCommand.VolumeUp : SystemCommand.VolumeDown);
+                        var command = new GeneralCommand
+                        {
+                            Name = isVolumeUp ? GeneralCommandType.VolumeUp.ToString() : GeneralCommandType.VolumeDown.ToString()
+                        };
+
+                        await _apiClient.SendCommandAsync(SelectedClient.Id, command);
                     }
                     catch (HttpException ex)
                     {

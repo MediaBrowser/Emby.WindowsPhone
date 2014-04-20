@@ -10,6 +10,7 @@
                 xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP8"
                 xmlns:scott="clr-namespace:ScottIsAFool.WindowsPhone.Controls;assembly=ScottIsAFool.WindowsPhone"
                 xmlns:System="clr-namespace:System;assembly=mscorlib"
+                xmlns:mediaPlayer="clr-namespace:SM.Media.MediaPlayer;assembly=SM.Media.MediaPlayer.WP8"
                 x:Class="MediaBrowser.WindowsPhone.Views.VideoPlayerView"
                 mc:Ignorable="d ignore"
                 SupportedOrientations="Landscape"
@@ -753,7 +754,6 @@
                                      MediaStarting="ThePlayer_OnMediaStarting"
                                      MediaStarted="ThePlayer_OnMediaStarted"
                                      IsTimeElapsedVisible="True"
-                                     IsDurationVisible="True"
                                      IsScrubbingEnabled="True"
                                      IsSeekEnabled="True"
                                      CurrentStateChanged="ThePlayer_OnCurrentStateChanged"
@@ -762,7 +762,11 @@
                                      EndTime="{Binding EndTime}"
                                      ScrubbingCompleted="thePlayer_ScrubbingCompleted"
                                      Seeked="thePlayer_Seeked"
-                                     Style="{StaticResource MediaPlayerStyle1}" />
+                                     Style="{StaticResource MediaPlayerStyle1}">
+            <playerFramework:MediaPlayer.Plugins>
+                <mediaPlayer:StreamingMediaPlugin/>
+            </playerFramework:MediaPlayer.Plugins>
+        </playerFramework:MediaPlayer>
     </Grid>
 
 </scott:BasePage>
