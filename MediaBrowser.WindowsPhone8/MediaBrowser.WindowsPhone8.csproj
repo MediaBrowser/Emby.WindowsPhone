@@ -397,8 +397,13 @@
     <Content Include="Assets\BrowserText.png" />
     <Content Include="Assets\MediaTextBlack.png" />
     <Content Include="Assets\MediaTextWhite.png" />
+    <Content Include="Assets\Tiles\FlipCycleTileLargeTransparent.png" />
+    <Content Include="Assets\Tiles\FlipCycleTileMediumTransparent.png" />
+    <Content Include="Assets\Tiles\FlipCycleTileSmallTransparent.png" />
     <Content Include="Assets\Tiles\MBLiveTVTile.png" />
+    <Content Include="Assets\Tiles\MBLiveTVTileTransparent.png" />
     <Content Include="Assets\Tiles\MBRemoteTile.png" />
+    <Content Include="Assets\Tiles\MBRemoteTileTransparent.png" />
     <Content Include="Assets\Tiles\WideTileBackground.png" />
     <Content Include="DefaultLockScreen.jpg" />
     <Content Include="Icons\appbar.cancel.record.png" />
