@@ -7,7 +7,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using MediaBrowser.WindowsPhone.Behaviours;
 
 namespace MediaBrowser.WindowsPhone.Controls
 {
@@ -24,18 +23,34 @@ namespace MediaBrowser.WindowsPhone.Controls
             set { SetValue(ItemsSourceProperty, value); }
         }
 
+        public static readonly DependencyProperty UseTransparentTileProperty = DependencyProperty.Register(
+            "UseTransparentTile", typeof(bool), typeof(WideTileControl), new PropertyMetadata(default(bool)));
+
+        public bool UseTransparentTile
+        {
+            get { return (bool)GetValue(UseTransparentTileProperty); }
+            set { SetValue(UseTransparentTileProperty, value); }
+        }
+
         public WideTileControl()
         {
             InitializeComponent();
-            _imageItems = new[] { ImageOne, ImageTwo, ImageThree, ImageFour, ImageFive, ImageSix, ImageSeven, ImageEight, ImageNine};
+            _imageItems = new[] { ImageOne, ImageTwo, ImageThree, ImageFour, ImageFive, ImageSix, ImageSeven, ImageEight, ImageNine };
         }
 
         public void UpdateBackground()
         {
-            LayoutRoot.Background = new ImageBrush
+            if (!UseTransparentTile)
             {
-                ImageSource = new BitmapImage(new Uri("/Assets/Tiles/WideTileBackground.png", UriKind.Relative))
-            };
+                LayoutRoot.Background = new ImageBrush
+                {
+                    ImageSource = new BitmapImage(new Uri("/Assets/Tiles/WideTileBackground.png", UriKind.Relative))
+                };
+            }
+
+            NormalImage.Visibility = UseTransparentTile ? Visibility.Collapsed : Visibility.Visible;
+            BackgroundImage.Visibility = UseTransparentTile ? Visibility.Collapsed : Visibility.Visible;
+            TransparentImage.Visibility = UseTransparentTile ? Visibility.Visible : Visibility.Collapsed;
         }
 
         public async Task SetImages()

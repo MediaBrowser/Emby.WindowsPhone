@@ -361,6 +361,10 @@
                             <TextBlock Text="{Binding LocalizedResources.LabelDisplayRandomImages, Source={StaticResource LocalizedStrings}}"
                                        TextWrapping="Wrap" />
                         </CheckBox>
+                        <CheckBox IsChecked="{Binding UseTransparentTile, Source={StaticResource SpecificSettings}, Mode=TwoWay}">
+                            <TextBlock Text="{Binding LocalizedResources.LabelUseTransparentTile, Source={StaticResource LocalizedStrings}}"
+                                       TextWrapping="Wrap" />
+                        </CheckBox>
 
                         <RadioButton Style="{StaticResource RadioSelectionTemplate}"
                                      IsChecked="{Binding UseRichWideTile, Source={StaticResource SpecificSettings}, Mode=TwoWay}">

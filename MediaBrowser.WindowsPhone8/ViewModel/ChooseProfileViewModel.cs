@@ -148,7 +148,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
 #if WP8
                 Services.LockScreenService.Current.Start();
-                TileService.Current.UpdatePrimaryTile(App.SpecificSettings.DisplayBackdropOnTile, App.SpecificSettings.UseRichWideTile).ConfigureAwait(false);
+                TileService.Current.UpdatePrimaryTile(App.SpecificSettings.DisplayBackdropOnTile, App.SpecificSettings.UseRichWideTile, App.SpecificSettings.UseTransparentTile).ConfigureAwait(false);
 #endif
                 var page = TileService.Current.PinnedPage();
                 _navigationService.NavigateTo(page);

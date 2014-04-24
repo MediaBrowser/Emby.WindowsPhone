@@ -384,7 +384,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
             if (IsPinned)
             {
                 // Unpin the tile
-                var tile = TileService.Current.GetTile(Constants.Pages.Remote.RemoteView);
+                var tile = TileService.Current.GetTile(_tileUrl);
                 if (tile != null)
                 {
                     tile.Delete();
@@ -397,7 +397,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
                 var tileData = new ShellTileServiceFlipTileData
                 {
                     Title = "MB " + AppResources.LabelRemote,
-                    BackgroundImage = new Uri("/Assets/Tiles/MBRemoteTile.png", UriKind.Relative)
+                    BackgroundImage = App.SpecificSettings.UseTransparentTile ? new Uri("/Assets/Tiles/MBRemoteTileTransparent.png", UriKind.Relative) : new Uri("/Assets/Tiles/MBRemoteTile.png", UriKind.Relative)
                 };
 
                 TileService.Current.Create(new Uri(_tileUrl, UriKind.Relative), tileData, false);

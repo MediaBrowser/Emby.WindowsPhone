@@ -721,6 +721,7 @@
     <EmbeddedResource Include="Resources\AppResources.es-MX.resx" />
     <EmbeddedResource Include="Resources\AppResources.fr-fr.resx" />
     <EmbeddedResource Include="Resources\AppResources.it-IT.resx" />
+    <EmbeddedResource Include="Resources\AppResources.kk.resx" />
     <EmbeddedResource Include="Resources\AppResources.nl-nl.resx" />
     <EmbeddedResource Include="Resources\AppResources.pt-BR.resx" />
     <EmbeddedResource Include="Resources\AppResources.qps-ploc.resx" />

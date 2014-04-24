@@ -161,7 +161,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
         {
             if (IsPinned)
             {
-                var tile = TileService.Current.GetTile(Constants.Pages.LiveTv.LiveTvView);
+                var tile = TileService.Current.GetTile(_tileUrl);
                 if (tile != null)
                 {
                     tile.Delete();
@@ -173,7 +173,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                 var tileData = new ShellTileServiceFlipTileData
                 {
                     Title = "MB " + AppResources.LabelLiveTv,
-                    BackgroundImage = new Uri("/Assets/Tiles/MBLiveTVTile.png", UriKind.Relative)
+                    BackgroundImage = App.SpecificSettings.UseTransparentTile? new Uri("/Assets/Tiles/MBLiveTVTileTransparent.png", UriKind.Relative) : new Uri("/Assets/Tiles/MBLiveTVTile.png", UriKind.Relative)
                 };
 
                 TileService.Current.Create(new Uri(_tileUrl, UriKind.Relative), tileData, false);

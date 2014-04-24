@@ -1,0 +1,980 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AppBarAbout" xml:space="preserve">
+    <value>Туралы</value>
+  </data>
+  <data name="AppBarAddToNowPlaying" xml:space="preserve">
+    <value>қазір ойнатылғанға үстеу</value>
+  </data>
+  <data name="AppBarChangeProfile" xml:space="preserve">
+    <value>профильді ауыстыру</value>
+  </data>
+  <data name="AppBarClearNowPlaying" xml:space="preserve">
+    <value>қазір ойнатылғанды аластау</value>
+  </data>
+  <data name="AppBarDeleteItems" xml:space="preserve">
+    <value>элементтерді жою</value>
+  </data>
+  <data name="AppBarGroupBy" xml:space="preserve">
+    <value>топтау әдісі</value>
+  </data>
+  <data name="AppBarLogin" xml:space="preserve">
+    <value>кіру</value>
+  </data>
+  <data name="AppBarMarkAsUnwatched" xml:space="preserve">
+    <value>қаралып шықпаған</value>
+  </data>
+  <data name="AppBarMarkAsWatched" xml:space="preserve">
+    <value>қаралып шыққан</value>
+  </data>
+  <data name="AppBarNext" xml:space="preserve">
+    <value>келесі</value>
+  </data>
+  <data name="AppBarNotifications" xml:space="preserve">
+    <value>хабарландырулар</value>
+  </data>
+  <data name="AppBarNowPlaying" xml:space="preserve">
+    <value>қазір ойнатылуда</value>
+  </data>
+  <data name="AppBarPause" xml:space="preserve">
+    <value>үзіліс</value>
+  </data>
+  <data name="AppBarPlay" xml:space="preserve">
+    <value>ойнату</value>
+  </data>
+  <data name="AppBarPlayAll" xml:space="preserve">
+    <value>бәрін ойнату</value>
+  </data>
+  <data name="AppBarPlayAllTracks" xml:space="preserve">
+    <value>барлық жолшықтарды ойнату</value>
+  </data>
+  <data name="AppBarPlayItems" xml:space="preserve">
+    <value>элементтерді ойнату</value>
+  </data>
+  <data name="AppBarPlayOn" xml:space="preserve">
+    <value>Құрылғыда ойнату</value>
+  </data>
+  <data name="AppBarPosterLockscreen" xml:space="preserve">
+    <value>постерді құлыптау экранында орнату</value>
+  </data>
+  <data name="AppBarPrevious" xml:space="preserve">
+    <value>алдыңғы</value>
+  </data>
+  <data name="AppBarRefresh" xml:space="preserve">
+    <value>жаңарту</value>
+  </data>
+  <data name="AppBarRefreshInformation" xml:space="preserve">
+    <value>мәліметтерді жаңарту</value>
+  </data>
+  <data name="AppBarRemote" xml:space="preserve">
+    <value>алыстан басқару</value>
+  </data>
+  <data name="AppBarResume" xml:space="preserve">
+    <value>жалғастыру</value>
+  </data>
+  <data name="AppBarSearch" xml:space="preserve">
+    <value>іздеу</value>
+  </data>
+  <data name="AppBarSelectItems" xml:space="preserve">
+    <value>элементтерді бөлектеу</value>
+  </data>
+  <data name="AppBarSendLogs" xml:space="preserve">
+    <value>жұрналды жіберу</value>
+  </data>
+  <data name="AppBarSettings" xml:space="preserve">
+    <value>параметрлер</value>
+  </data>
+  <data name="Collections" xml:space="preserve">
+    <value>Қалталар</value>
+  </data>
+  <data name="DeviceNotRegistered" xml:space="preserve">
+    <value>Құрылғы тіркелмеген</value>
+  </data>
+  <data name="DeviceRegistered" xml:space="preserve">
+    <value>Құрылғы тіркелген</value>
+  </data>
+  <data name="ErrorConnectionDetailsInvalid" xml:space="preserve">
+    <value>Қосылым мәліметтері жарамсыз, әрекетті қайталауды өтінеміз.</value>
+  </data>
+  <data name="ErrorConnectionDetailsMessage" xml:space="preserve">
+    <value>Қосылым мәліметтері орнатылмаған, бұларды қазір орнатқыңыз келеді ме?</value>
+  </data>
+  <data name="ErrorConnectionDetailsTitle" xml:space="preserve">
+    <value>Қосылым мәліметтері жоқ</value>
+  </data>
+  <data name="ErrorCouldNotFindServer" xml:space="preserve">
+    <value>Серверіңіз табылмады.</value>
+  </data>
+  <data name="ErrorDisabledUser" xml:space="preserve">
+    <value>Кешіріңіз, бұл тіркелгі ажыратылған тәрізді.</value>
+  </data>
+  <data name="ErrorDisabledUserTitle" xml:space="preserve">
+    <value>Кіру мүмкін емес</value>
+  </data>
+  <data name="ErrorEpisodeDetails" xml:space="preserve">
+    <value>Эпизод мәліметтерін жүктеп алу қатесі</value>
+  </data>
+  <data name="ErrorEpisodes" xml:space="preserve">
+    <value>Эпизодтар алу қатесі</value>
+  </data>
+  <data name="ErrorFailedToSearch" xml:space="preserve">
+    <value>Іздеу сәтсіз аяқталды</value>
+  </data>
+  <data name="ErrorGettingData" xml:space="preserve">
+    <value>Деректер алу қатесі</value>
+  </data>
+  <data name="ErrorGettingExtraInfo" xml:space="preserve">
+    <value>Қосымша мәліметтер алу қатесі</value>
+  </data>
+  <data name="ErrorGettingTrailerDetails" xml:space="preserve">
+    <value>Трейлер мәліметтерін алу қатесі</value>
+  </data>
+  <data name="ErrorInvalidHostname" xml:space="preserve">
+    <value>Кешіріңіз, хостыңыздың аты дұрыс емес, мұнда бірқанша бос орын болмауын (мысал үшін) нақтылауыңызды өтінеміз.</value>
+  </data>
+  <data name="ErrorMakingChanges" xml:space="preserve">
+    <value>Өзгертулеріңізді жасағандағы қате</value>
+  </data>
+  <data name="ErrorNoConnectionSettings" xml:space="preserve">
+    <value>Қосылым параметрлері жоқ, орнату үшін түртіңіз</value>
+  </data>
+  <data name="ErrorProblemUpdatingItem" xml:space="preserve">
+    <value>Бұл элементті жаңартуда ақаулық орын алды, әрекетті кейін қайталауыңызды өтінеміз.</value>
+  </data>
+  <data name="ErrorRecentItems" xml:space="preserve">
+    <value>Жақындағы элементтерді алу қатесі</value>
+  </data>
+  <data name="ErrorSeasons" xml:space="preserve">
+    <value>Маусымдарды алу қатесі</value>
+  </data>
+  <data name="ErrorTitle" xml:space="preserve">
+    <value>Қате</value>
+  </data>
+  <data name="ErrorUnableToSignIn" xml:space="preserve">
+    <value>Осы ретте сізді кіргізу мүмкіншілік болмады, себебі дұрыс емес пайдаланушы аты / құпия сөз болуы мүмкін, немесе тіркелгіңіз ажыратылған.</value>
+  </data>
+  <data name="ErrorUnableToSignInTitle" xml:space="preserve">
+    <value>Кіру орындалмады</value>
+  </data>
+  <data name="Favourites" xml:space="preserve">
+    <value>Таңдаулылар</value>
+  </data>
+  <data name="Genre" xml:space="preserve">
+    <value>Жанр</value>
+  </data>
+  <data name="HeaderChooseClient" xml:space="preserve">
+    <value>Клиентті таңдау</value>
+  </data>
+  <data name="HeaderDefaultGrouping" xml:space="preserve">
+    <value>Әдепкі топтау</value>
+  </data>
+  <data name="HeaderFromCollection" xml:space="preserve">
+    <value>Жинақтан (қолданылатында)</value>
+  </data>
+  <data name="LabelActor" xml:space="preserve">
+    <value>Актер</value>
+  </data>
+  <data name="LabelAdd" xml:space="preserve">
+    <value>үстеу</value>
+  </data>
+  <data name="LabelAddToFavourites" xml:space="preserve">
+    <value>Таңдаулыларға үстеу</value>
+  </data>
+  <data name="LabelAlbums" xml:space="preserve">
+    <value>альбомдар</value>
+  </data>
+  <data name="LabelAnHourAgo" xml:space="preserve">
+    <value>сағат бұрын</value>
+  </data>
+  <data name="LabelArtists" xml:space="preserve">
+    <value>орындаушылар</value>
+  </data>
+  <data name="LabelBio" xml:space="preserve">
+    <value>өмірбаяны</value>
+  </data>
+  <data name="LabelBoxsets" xml:space="preserve">
+    <value>жинақтар</value>
+  </data>
+  <data name="LabelCastCrew" xml:space="preserve">
+    <value>түсіруге қатысқандар</value>
+  </data>
+  <data name="LabelChapters" xml:space="preserve">
+    <value>сахналар</value>
+  </data>
+  <data name="LabelCollage" xml:space="preserve">
+    <value>Толық экран коллажы</value>
+  </data>
+  <data name="LabelConnect" xml:space="preserve">
+    <value>Қосылу</value>
+  </data>
+  <data name="LabelConnection" xml:space="preserve">
+    <value>қосылым</value>
+  </data>
+  <data name="LabelConnectionDetails" xml:space="preserve">
+    <value>Media Browser 3 орындаудағы компьютерге бағыттайтын қосылым мәліметтерін орналастырыңыз. Сосын растау үшін мұны жай сынақтаңыз.</value>
+  </data>
+  <data name="LabelConnectionWarning" xml:space="preserve">
+    <value>ЕСКЕРТУ: Хост атын өзгерткенде барлық сақталған профильдер аластатылады.</value>
+  </data>
+  <data name="LabelDate" xml:space="preserve">
+    <value>күн-айы</value>
+  </data>
+  <data name="LabelDaysAgo" xml:space="preserve">
+    <value>{0} күн бұрын</value>
+  </data>
+  <data name="LabelDefaultLockScreen" xml:space="preserve">
+    <value>Әдепкі құлыптау экраны</value>
+  </data>
+  <data name="LabelDetails" xml:space="preserve">
+    <value>мәліметтер</value>
+  </data>
+  <data name="LabelDirector" xml:space="preserve">
+    <value>Режиссер</value>
+  </data>
+  <data name="LabelDisplayRandomImages" xml:space="preserve">
+    <value>Қатарда кездейсоқ артқы суреттерді бейнелеу</value>
+  </data>
+  <data name="LabelEpisode" xml:space="preserve">
+    <value>Эпизод</value>
+  </data>
+  <data name="LabelFindServer" xml:space="preserve">
+    <value>серверді табу</value>
+  </data>
+  <data name="LabelFirstRunAccessible" xml:space="preserve">
+    <value>Media Browser server теңшелгенісімен болған жеріңізден қатынасты нақтылаңыз, жергілікті сымсыз желіден бе, не сыртқы тұрақты мекенжайдан ба.</value>
+  </data>
+  <data name="LabelFirstRunHappyConfiguration" xml:space="preserve">
+    <value>Егер қалай теңшегеніңізге риза болсаңыз, Параметрлер түймешігін басыңыз және сервер мәліметтерін енгізіңіз, әйтпесе қолданбаны мына жерден жай жаба аласыз.</value>
+  </data>
+  <data name="LabelFirstRunServerInfo" xml:space="preserve">
+    <value>Дегенмен іске қосыла алуымыз алдынан, Media Browser server орындалып тұрғанын нақтылаңыз.</value>
+  </data>
+  <data name="LabelGeneral" xml:space="preserve">
+    <value>жалпы</value>
+  </data>
+  <data name="LabelGenres" xml:space="preserve">
+    <value>жанрлар</value>
+  </data>
+  <data name="LabelHostname" xml:space="preserve">
+    <value>Хост аты:</value>
+  </data>
+  <data name="LabelHoursAgo" xml:space="preserve">
+    <value>{0} сағат бұрын</value>
+  </data>
+  <data name="LabelImageEnhancers" xml:space="preserve">
+    <value>Кеңейтілген суреттерді (егер серверде болса) қосу</value>
+  </data>
+  <data name="LabelImdb" xml:space="preserve">
+    <value>Фильмді IMDb сайтынан іздеіңіз</value>
+  </data>
+  <data name="LabelIsLockScreenProvider" xml:space="preserve">
+    <value>Media Browser құлыптау экрандың ағымдағы жеткізушісі</value>
+  </data>
+  <data name="LabelIsNotLockScreenProvider" xml:space="preserve">
+    <value>Media Browser құлыптау экрандың жеткізушісі емес</value>
+  </data>
+  <data name="LabelJustShowList" xml:space="preserve">
+    <value>Жай элементтер тізімн бейнелеу, тасушы қалтаны емес</value>
+  </data>
+  <data name="LabelLatestUnseen" xml:space="preserve">
+    <value>ең соңғы рет болмаған</value>
+  </data>
+  <data name="LabelLiveTv" xml:space="preserve">
+    <value>Эфирлік ТД</value>
+  </data>
+  <data name="LabelLockScreen" xml:space="preserve">
+    <value>құлыптау экраны</value>
+  </data>
+  <data name="LabelLockScreenSettinsg" xml:space="preserve">
+    <value>құлыптау экранының параметрлері</value>
+  </data>
+  <data name="LabelMakeLockScreenProvider" xml:space="preserve">
+    <value>Бізді құлыптау экрандың жетізушісі етіңіз</value>
+  </data>
+  <data name="LabelManuallyLogin" xml:space="preserve">
+    <value>Қолмен кіру</value>
+  </data>
+  <data name="LabelMinutesAgo" xml:space="preserve">
+    <value>{0} минут бұрын</value>
+  </data>
+  <data name="LabelMissingEpisodes" xml:space="preserve">
+    <value>Жоқ эпизодтарды көрсету</value>
+  </data>
+  <data name="LabelMonthsAgo" xml:space="preserve">
+    <value>{0} ай бұрын</value>
+  </data>
+  <data name="LabelMovies" xml:space="preserve">
+    <value>Фильмдер</value>
+  </data>
+  <data name="LabelMusic" xml:space="preserve">
+    <value>Музыка</value>
+  </data>
+  <data name="LabelNextUp" xml:space="preserve">
+    <value>алдағы</value>
+  </data>
+  <data name="LabelNo" xml:space="preserve">
+    <value>жоқ</value>
+  </data>
+  <data name="LabelNoEpisodes" xml:space="preserve">
+    <value>Көрсететін эпизодтар жоқ</value>
+  </data>
+  <data name="LabelNone" xml:space="preserve">
+    <value>ешқайсысы</value>
+  </data>
+  <data name="LabelNoSeasonsFound" xml:space="preserve">
+    <value>Маусымдар табылмады.</value>
+  </data>
+  <data name="LabelNotifications" xml:space="preserve">
+    <value>хабарландырулар</value>
+  </data>
+  <data name="LabelNowPlaying" xml:space="preserve">
+    <value>қазір ойнатылуда</value>
+  </data>
+  <data name="LabelOneMinuteAgo" xml:space="preserve">
+    <value>бір минут бұрын</value>
+  </data>
+  <data name="LabelOneMonthAgo" xml:space="preserve">
+    <value>бір ай бұрын</value>
+  </data>
+  <data name="LabelOneSecondAgo" xml:space="preserve">
+    <value>бір секунд бұрын</value>
+  </data>
+  <data name="LabelOther" xml:space="preserve">
+    <value>Басқа</value>
+  </data>
+  <data name="LabelOverview" xml:space="preserve">
+    <value>шолу</value>
+  </data>
+  <data name="LabelPassword" xml:space="preserve">
+    <value>құпия сөз:</value>
+  </data>
+  <data name="LabelPort" xml:space="preserve">
+    <value>Порт:</value>
+  </data>
+  <data name="LabelPoster" xml:space="preserve">
+    <value>постер</value>
+  </data>
+  <data name="LabelProducer" xml:space="preserve">
+    <value>Продюсер</value>
+  </data>
+  <data name="LabelProfile" xml:space="preserve">
+    <value>профиль</value>
+  </data>
+  <data name="LabelProfileNotListed" xml:space="preserve">
+    <value>Профиль тізімде жоқ па?</value>
+  </data>
+  <data name="LabelProfiles" xml:space="preserve">
+    <value>профильдер</value>
+  </data>
+  <data name="LabelQuit" xml:space="preserve">
+    <value>шығу</value>
+  </data>
+  <data name="LabelRandomItems" xml:space="preserve">
+    <value>Кездейсоқ элементтер</value>
+  </data>
+  <data name="LabelRandomPictures" xml:space="preserve">
+    <value>Жинақтағы кездейсоқ суреттер</value>
+  </data>
+  <data name="LabelRating" xml:space="preserve">
+    <value>Бағалауы:</value>
+  </data>
+  <data name="LabelRecent" xml:space="preserve">
+    <value>Жақында</value>
+  </data>
+  <data name="LabelRemote" xml:space="preserve">
+    <value>Алыстан басқару</value>
+  </data>
+  <data name="LabelRemove" xml:space="preserve">
+    <value>аластау</value>
+  </data>
+  <data name="LabelRunningTime" xml:space="preserve">
+    <value>Орындалу уаұыты:</value>
+  </data>
+  <data name="LabelSearch" xml:space="preserve">
+    <value>іздеу</value>
+  </data>
+  <data name="LabelSeasons" xml:space="preserve">
+    <value>маусымдар</value>
+  </data>
+  <data name="LabelSecondsAgo" xml:space="preserve">
+    <value>{0} секунд бұрын</value>
+  </data>
+  <data name="LabelSeries" xml:space="preserve">
+    <value>Сериал</value>
+  </data>
+  <data name="LabelShowAllItems" xml:space="preserve">
+    <value>барлық элементтерді көрсету...</value>
+  </data>
+  <data name="LabelShows" xml:space="preserve">
+    <value>сериалдар</value>
+  </data>
+  <data name="LabelShowTrailers" xml:space="preserve">
+    <value>Жақындағы элементтерде трейлерлерді көрсету</value>
+  </data>
+  <data name="LabelSinglePoster" xml:space="preserve">
+    <value>Жалғыз постер</value>
+  </data>
+  <data name="LabelSongs" xml:space="preserve">
+    <value>әндер</value>
+  </data>
+  <data name="LabelTile" xml:space="preserve">
+    <value>атау</value>
+  </data>
+  <data name="LabelTileBackInformation" xml:space="preserve">
+    <value>Бар тасушыңызға арналған қол жетімді тамаша суреттемелерді  көрсету үшін, қатарда суреттемелер арасынан кейбіреу пайданылады, осында сол қатар қалай көрінетінін таңдай аласыз.</value>
+  </data>
+  <data name="LabelTrailers" xml:space="preserve">
+    <value>трелерлер</value>
+  </data>
+  <data name="LabelTv" xml:space="preserve">
+    <value>ТД</value>
+  </data>
+  <data name="LabelUnairedEpisodes" xml:space="preserve">
+    <value>Көрсетілмеген эпизодтарды көрсету</value>
+  </data>
+  <data name="LabelUnwatched" xml:space="preserve">
+    <value>Карап шықпаған:</value>
+  </data>
+  <data name="LabelUsername" xml:space="preserve">
+    <value>пайдаланушы аты:</value>
+  </data>
+  <data name="LabelViews" xml:space="preserve">
+    <value>Көрініс</value>
+  </data>
+  <data name="LabelWelcomeText" xml:space="preserve">
+    <value>Windows Phone өніміне арналған Media Browser қолданбасына қош келдіңіз! Бұл қолданба тасушыныңызды шарлау, телефоныңызға ағынмен тасымалдау және басқа басқарылатын Media Browser клиенттерінің қайсыбіріне алыстан басқару үшін рұқсат етеді.</value>
+  </data>
+  <data name="LabelWriter" xml:space="preserve">
+    <value>Жазушы</value>
+  </data>
+  <data name="LabelYes" xml:space="preserve">
+    <value>иә</value>
+  </data>
+  <data name="LabelYesterday" xml:space="preserve">
+    <value>кеше</value>
+  </data>
+  <data name="MenuPlayFrom" xml:space="preserve">
+    <value>Мынадан ойнату</value>
+  </data>
+  <data name="MenuPlayFromOn" xml:space="preserve">
+    <value>Құрылғыдан ойнату</value>
+  </data>
+  <data name="MessageAreYouSureTitle" xml:space="preserve">
+    <value>Сенімдісіз бе?</value>
+  </data>
+  <data name="MessageBoxUnpinText" xml:space="preserve">
+    <value>Бұл қатарды шынымен босату керек пе?</value>
+  </data>
+  <data name="MessageClearPlayList" xml:space="preserve">
+    <value>Бұл ойнату тізімдіңізді шынымен тазарту керек пе?</value>
+  </data>
+  <data name="MessageDeletePlaylistItems" xml:space="preserve">
+    <value>Бұл элементтерді шынымен жою керек пе? Бұл кері болдырмалайды.</value>
+  </data>
+  <data name="MessageExperimentalTitle" xml:space="preserve">
+    <value>Эксперимент ретінде</value>
+  </data>
+  <data name="MessageExperimentalVideo" xml:space="preserve">
+    <value>Бұр түрі бар бейнені ойнату ағымда эксперимент ретінде болып табылады, нәтижесі әртүрлі болуы мүмкін, Жалғастыруын қалайсыз ба?</value>
+  </data>
+  <data name="MessageTracksAddedSuccessfully" xml:space="preserve">
+    <value>{0} жолшық сәтті үстелінді.</value>
+  </data>
+  <data name="More" xml:space="preserve">
+    <value>көбірек...</value>
+  </data>
+  <data name="NameLabel" xml:space="preserve">
+    <value>Аты</value>
+  </data>
+  <data name="NoItemsFound" xml:space="preserve">
+    <value>Элементтер табылмады</value>
+  </data>
+  <data name="PinToStart" xml:space="preserve">
+    <value>Бастау экранына бекіту</value>
+  </data>
+  <data name="ProductionYear" xml:space="preserve">
+    <value>Шығару жылы</value>
+  </data>
+  <data name="RemoveFromFavouritesFull" xml:space="preserve">
+    <value>Таңдаулылардан аластау</value>
+  </data>
+  <data name="ResourceLanguage" xml:space="preserve">
+    <value>kk-KZ</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Параметрлер</value>
+  </data>
+  <data name="SysTrayAddingToFavourites" xml:space="preserve">
+    <value>Таңдаулыларға үстелінуде...</value>
+  </data>
+  <data name="SysTrayAuthenticating" xml:space="preserve">
+    <value>Нақтылық тексерілуде...</value>
+  </data>
+  <data name="SysTrayCheckingCollection" xml:space="preserve">
+    <value>Жинақ тексерілуде...</value>
+  </data>
+  <data name="SysTrayCheckingConnection" xml:space="preserve">
+    <value>Қосылым тексерілуде...</value>
+  </data>
+  <data name="SysTrayFindingServer" xml:space="preserve">
+    <value>Серверіңізді іздеуге әрекет жасалуда...</value>
+  </data>
+  <data name="SysTrayGettingAlbums" xml:space="preserve">
+    <value>Альбомдар алынуда...</value>
+  </data>
+  <data name="SysTrayGettingAlbumTracks" xml:space="preserve">
+    <value>Альбом жолшықтары алынуда...</value>
+  </data>
+  <data name="SysTrayGettingAllTracks" xml:space="preserve">
+    <value>Барлық жолшықтар алынуда...</value>
+  </data>
+  <data name="SysTrayGettingArtists" xml:space="preserve">
+    <value>Орындаушылар алынуда...</value>
+  </data>
+  <data name="SysTrayGettingArtistTracks" xml:space="preserve">
+    <value>Орындаушы жолшықтары алынуда...</value>
+  </data>
+  <data name="SysTrayGettingBoxsets" xml:space="preserve">
+    <value>Жинақтар алынуда...</value>
+  </data>
+  <data name="SysTrayGettingDetails" xml:space="preserve">
+    <value>Мәліметтер алынуда...</value>
+  </data>
+  <data name="SysTrayGettingEpisodeDetails" xml:space="preserve">
+    <value>Эпизод мәліметтері алынуда...</value>
+  </data>
+  <data name="SysTrayGettingEpisodes" xml:space="preserve">
+    <value>Эпизодтар алынуда...</value>
+  </data>
+  <data name="SysTrayGettingFavourites" xml:space="preserve">
+    <value>Таңдаулылар алынуда...</value>
+  </data>
+  <data name="SysTrayGettingGenres" xml:space="preserve">
+    <value>Жанрлар алынуда...</value>
+  </data>
+  <data name="SysTrayGettingGenreTracks" xml:space="preserve">
+    <value>Жанр жолшықтары алынуда...</value>
+  </data>
+  <data name="SysTrayGettingItems" xml:space="preserve">
+    <value>Элементтер алынуда...</value>
+  </data>
+  <data name="SysTrayGettingMovieInfo" xml:space="preserve">
+    <value>Фильм міліметтері алынуда...</value>
+  </data>
+  <data name="SysTrayGettingMovies" xml:space="preserve">
+    <value>Фильмдер алынуда...</value>
+  </data>
+  <data name="SysTrayGettingNextUp" xml:space="preserve">
+    <value>Алдағы элементтер алынуда...</value>
+  </data>
+  <data name="SysTrayGettingNotifications" xml:space="preserve">
+    <value>Хабарландырулар алынуда...</value>
+  </data>
+  <data name="SysTrayGettingProfiles" xml:space="preserve">
+    <value>Профильдер алынуда...</value>
+  </data>
+  <data name="SysTrayGettingRecentItems" xml:space="preserve">
+    <value>Жақындағы элементтер алынуда...</value>
+  </data>
+  <data name="SysTrayGettingServerDetails" xml:space="preserve">
+    <value>Сервер мәліметтері алынуда...</value>
+  </data>
+  <data name="SysTrayGettingShowInformation" xml:space="preserve">
+    <value>Сериал мәліметтері алынуда...</value>
+  </data>
+  <data name="SysTrayGettingShows" xml:space="preserve">
+    <value>Сериалдар алынуда...</value>
+  </data>
+  <data name="SysTrayGettingSongs" xml:space="preserve">
+    <value>Әндер алынуда...</value>
+  </data>
+  <data name="SysTrayGettingTracks" xml:space="preserve">
+    <value>Жолшықтар алынуда...</value>
+  </data>
+  <data name="SysTrayGettingTrailerDetails" xml:space="preserve">
+    <value>Трейлер мәліметтері алынуда...</value>
+  </data>
+  <data name="SysTrayGettingUnwatchedItems" xml:space="preserve">
+    <value>Ең соңғы қаралып шықпаған эелементтер алынуда...</value>
+  </data>
+  <data name="SysTrayLoadingCollections" xml:space="preserve">
+    <value>Жинақтар алынуда...</value>
+  </data>
+  <data name="SysTrayLoadingSettings" xml:space="preserve">
+    <value>Параметрлер жүктелініп алынуда...</value>
+  </data>
+  <data name="SysTrayRegisteringDevice" xml:space="preserve">
+    <value>Құрылғы тіркелінуде...</value>
+  </data>
+  <data name="SysTrayRegrouping" xml:space="preserve">
+    <value>Қайтта топтауда...</value>
+  </data>
+  <data name="SysTraySearching" xml:space="preserve">
+    <value>Іздеуде...</value>
+  </data>
+  <data name="SysTrayUnregisteringDevice" xml:space="preserve">
+    <value>Құрылғы тіркелуін болдырмауда...</value>
+  </data>
+  <data name="TrialVideoMessage" xml:space="preserve">
+    <value>Сынақ режімінде күн бойынша тек қана бір бейнені ойната аласыз. Бұны ертең сынап көріңіз немесе толық нұсқасын  сатып алыңыз.</value>
+  </data>
+  <data name="TvShowRecentItemsTitle" xml:space="preserve">
+    <value>{0} жақындағы элементтері</value>
+    <comment>{0} is the name of the tv show</comment>
+  </data>
+  <data name="Unpin" xml:space="preserve">
+    <value>Босату</value>
+  </data>
+  <data name="WatermarkEnterUsername" xml:space="preserve">
+    <value>пайдаланушы атын енгізіңіз</value>
+  </data>
+  <data name="LabelLogIn" xml:space="preserve">
+    <value>Кіру</value>
+  </data>
+  <data name="LabelNoFoldersFound" xml:space="preserve">
+    <value>Қалталар табылмады</value>
+  </data>
+  <data name="LabelNothingInPlaylist" xml:space="preserve">
+    <value>Ойнату тізімінде ештеме жоқ</value>
+  </data>
+  <data name="LabelUnplayedItems" xml:space="preserve">
+    <value>Қаралып шықпаған:</value>
+  </data>
+  <data name="WatermarkPassword" xml:space="preserve">
+    <value>құпия сөзді енгізіңіз</value>
+  </data>
+  <data name="LabelReleasedIn" xml:space="preserve">
+    <value>Шыққан кезі</value>
+    <comment>eg, Released in 1993</comment>
+  </data>
+  <data name="LabelWelcomeTextPhone7" xml:space="preserve">
+    <value>Windows Phone өніміне арналған Media Browser қолданбасына қош келдіңіз! Бұл қолданба тасушыныңызды шарлау және басқа басқарылатын Media Browser клиенттерінің қайсыбіріне алыстан басқару үшін рұқсат етеді.</value>
+  </data>
+  <data name="LabelChannels" xml:space="preserve">
+    <value>Телеканалдар</value>
+  </data>
+  <data name="LabelRecordedTv" xml:space="preserve">
+    <value>Жазылған ТД</value>
+  </data>
+  <data name="LabelScheduledRecording" xml:space="preserve">
+    <value>Жоспарлаған жазулар</value>
+  </data>
+  <data name="LabelUpcoming" xml:space="preserve">
+    <value>Алдағы</value>
+  </data>
+  <data name="LabelWhatsOn" xml:space="preserve">
+    <value>Ағымдағы</value>
+  </data>
+  <data name="SysTrayGettingChannels" xml:space="preserve">
+    <value>Телеарналар алынуда...</value>
+  </data>
+  <data name="SysTrayGettingProgrammes" xml:space="preserve">
+    <value>Көрсетімдер алынуда...</value>
+  </data>
+  <data name="SysTrayGettingSeriesRecordings" xml:space="preserve">
+    <value>Сериалдың жазбалары алынуда...</value>
+  </data>
+  <data name="SysTrayGettingUpcomingRecordings" xml:space="preserve">
+    <value>Алдағы жазбалар алынуда...</value>
+  </data>
+  <data name="ContextCancelSeries" xml:space="preserve">
+    <value>сериалды болдырмау</value>
+  </data>
+  <data name="LabelScheduleAnyChannel" xml:space="preserve">
+    <value>Қайсыбір арна</value>
+  </data>
+  <data name="LabelScheduleAnyTime" xml:space="preserve">
+    <value>Қайсыбір уақыт</value>
+  </data>
+  <data name="LabelScheduleDaily" xml:space="preserve">
+    <value>Күн сайын</value>
+  </data>
+  <data name="LabelScheduleToday" xml:space="preserve">
+    <value>Бүгін</value>
+  </data>
+  <data name="LabelScheduleTomorrow" xml:space="preserve">
+    <value>Ертең</value>
+  </data>
+  <data name="LabelScheduleWeekdays" xml:space="preserve">
+    <value>Апта күндері</value>
+  </data>
+  <data name="LabelScheduleWeekends" xml:space="preserve">
+    <value>Апта аяғында</value>
+  </data>
+  <data name="HeaderRecordings" xml:space="preserve">
+    <value>жазбалар</value>
+  </data>
+  <data name="HeaderScheduled" xml:space="preserve">
+    <value>жоспарлаған</value>
+  </data>
+  <data name="HeaderSettings" xml:space="preserve">
+    <value>параметрлер</value>
+  </data>
+  <data name="AppBarSave" xml:space="preserve">
+    <value>сақтау</value>
+  </data>
+  <data name="LabelDays" xml:space="preserve">
+    <value>Күндер:</value>
+  </data>
+  <data name="LabelRecordOnlyNewEpisodes" xml:space="preserve">
+    <value>Тек қана жаңа эпизодтарды жазу</value>
+  </data>
+  <data name="LabelRecordProgrammeAtAnyTime" xml:space="preserve">
+    <value>Көрсетімді қайсыбір уақытта жазу</value>
+  </data>
+  <data name="LabelRecordProgrammeOnAllChannels" xml:space="preserve">
+    <value>Көрсетімді барлық арналардан жазу</value>
+  </data>
+  <data name="AppBarCancel" xml:space="preserve">
+    <value>болдырмау</value>
+  </data>
+  <data name="LabelPostPaddingMinutes" xml:space="preserve">
+    <value>Артқа шегініс, мин:</value>
+  </data>
+  <data name="LabelPostPaddingRequired" xml:space="preserve">
+    <value>Артқа шегініс жазу үшін қажет</value>
+  </data>
+  <data name="LabelPrePaddingMinutes" xml:space="preserve">
+    <value>Алға шегініс, мин:</value>
+    <comment>Pre-padding = how long before programme's scheduled start time to record</comment>
+  </data>
+  <data name="LabelPrePaddingRequired" xml:space="preserve">
+    <value>Алға шегініс жазу үшін қажет</value>
+  </data>
+  <data name="SysTrayCancellingSeriesRecording" xml:space="preserve">
+    <value>Сериал  байланыструн болдырмауда...</value>
+  </data>
+  <data name="SysTrayGettingRecordedItems" xml:space="preserve">
+    <value>Жазылған элементтер алынуда...</value>
+  </data>
+  <data name="AppBarDelete" xml:space="preserve">
+    <value>жою</value>
+  </data>
+  <data name="ErrorDeletingSeriesRecording" xml:space="preserve">
+    <value>Кешіріңіз, тап осы кезде бұл сериалды болдырмауда қате орын алды.</value>
+  </data>
+  <data name="LabelChannel" xml:space="preserve">
+    <value>Арна:</value>
+  </data>
+  <data name="LabelNew" xml:space="preserve">
+    <value>Жаңа</value>
+  </data>
+  <data name="LabelPrePostPadding" xml:space="preserve">
+    <value>Алға/Артқа шегініс</value>
+  </data>
+  <data name="LabelTime" xml:space="preserve">
+    <value>Уақыт:</value>
+  </data>
+  <data name="MenuCancelRecording" xml:space="preserve">
+    <value>Жазуды болдырмау</value>
+  </data>
+  <data name="MessageDeleteSeriesRecording" xml:space="preserve">
+    <value>Бұл сериалдың байланысын шынымен болдырмау керек пе? Бұл кері болдырмалайды.</value>
+  </data>
+  <data name="SysTrayGettingUpcoming" xml:space="preserve">
+    <value>Алдағы эпизодтар алынуда...</value>
+  </data>
+  <data name="MessageCancelRecording" xml:space="preserve">
+    <value>Бұл жазуды шынымен болдырмау керек пе? Бұл кері болдырмалайды.</value>
+  </data>
+  <data name="SysTraySaving" xml:space="preserve">
+    <value>Сақтауда...</value>
+  </data>
+  <data name="MenuRecord" xml:space="preserve">
+    <value>жазу</value>
+  </data>
+  <data name="MenuRecordSeries" xml:space="preserve">
+    <value>сериалды жазу</value>
+  </data>
+  <data name="LabelReallyShortHours" xml:space="preserve">
+    <value>сағ</value>
+  </data>
+  <data name="LabelReallyShortMinutes" xml:space="preserve">
+    <value>мин</value>
+  </data>
+  <data name="LabelLive" xml:space="preserve">
+    <value>Эфирлік</value>
+  </data>
+  <data name="SystemTrayGettingWhatsOn" xml:space="preserve">
+    <value>Ағымдағы алынуда...</value>
+  </data>
+  <data name="SysTrayLoadingProgrammes" xml:space="preserve">
+    <value>Көрсетімдер алынуда...</value>
+  </data>
+  <data name="SysTraySettingProgrammeToRecord" xml:space="preserve">
+    <value>Көрсетім жазылуға қойылуда...</value>
+  </data>
+  <data name="SysTraySettingSeriesToRecord" xml:space="preserve">
+    <value>Сериал жазылуға қойылуда...</value>
+  </data>
+  <data name="AppBarCreateAndEditSeries" xml:space="preserve">
+    <value>сериал жазбасын жасау және өңдеу</value>
+  </data>
+  <data name="SysTrayCancellingProgramme" xml:space="preserve">
+    <value>Көрсетім болдырмауда...</value>
+  </data>
+  <data name="SysTrayPreparing" xml:space="preserve">
+    <value>Дайындалуда...</value>
+  </data>
+  <data name="SysTrayGettingRecordingDetails" xml:space="preserve">
+    <value>Жазба мәліметтері алынуда...</value>
+  </data>
+  <data name="LabelDefaultRecordedTvGrouping" xml:space="preserve">
+    <value>Жазылған ТД әдепкі топтауы</value>
+  </data>
+  <data name="AppBarChannel" xml:space="preserve">
+    <value>арна</value>
+  </data>
+  <data name="AppBarRecordedDate" xml:space="preserve">
+    <value>жазылған күн-айы</value>
+  </data>
+  <data name="AppBarShowName" xml:space="preserve">
+    <value>көрсетім аты</value>
+  </data>
+  <data name="HeaderActiveRecordings" xml:space="preserve">
+    <value>Белсенді</value>
+  </data>
+  <data name="LabelNoRecordedItems" xml:space="preserve">
+    <value>Сізде ешқандай жазылған элементтер жоқ сияқты.</value>
+  </data>
+  <data name="LabelRecordedDate" xml:space="preserve">
+    <value>Жазылған күн-айы</value>
+  </data>
+  <data name="LabelShowName" xml:space="preserve">
+    <value>Көрсетім аты</value>
+  </data>
+  <data name="SysTrayGettingCurrentlyRecording" xml:space="preserve">
+    <value>Белсенді жазулар алынуда...</value>
+  </data>
+  <data name="HeaderLive" xml:space="preserve">
+    <value>Эфирлік</value>
+    <comment>As in "live tv"</comment>
+  </data>
+  <data name="HeaderTV" xml:space="preserve">
+    <value>ТД</value>
+  </data>
+  
+<!--
+<data name="LabelUseTransparentTile" xml:space="preserve">
+    <value>Use transparent tiles</value>
+  </data>
+-->
+
+</root>

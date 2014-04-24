@@ -57,7 +57,8 @@ namespace MediaBrowser.WindowsPhone.Views
         {
             if (e.NavigationMode == NavigationMode.Back)
             {
-                TileService.Current.UpdatePrimaryTile(App.SpecificSettings.DisplayBackdropOnTile, App.SpecificSettings.UseRichWideTile).ConfigureAwait(false);
+                TileService.Current.SetSecondaryTileTransparency(App.SpecificSettings.UseTransparentTile);
+                TileService.Current.UpdatePrimaryTile(App.SpecificSettings.DisplayBackdropOnTile, App.SpecificSettings.UseRichWideTile, App.SpecificSettings.UseTransparentTile).ConfigureAwait(false);
             }
 
             base.OnNavigatedFrom(e);

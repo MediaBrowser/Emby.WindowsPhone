@@ -281,7 +281,7 @@ namespace MediaBrowser.WindowsPhone
             if (AuthenticationService.Current.IsLoggedIn)
             {
                 LockScreenService.Current.Start();
-                TileService.Current.UpdatePrimaryTile(App.SpecificSettings.DisplayBackdropOnTile, App.SpecificSettings.UseRichWideTile).ConfigureAwait(false);
+                TileService.Current.UpdatePrimaryTile(App.SpecificSettings.DisplayBackdropOnTile, App.SpecificSettings.UseRichWideTile, App.SpecificSettings.UseTransparentTile).ConfigureAwait(false);
             }
 #endif
             // If one exists, then authenticate that user.

@@ -255,7 +255,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             AuthenticationService.Current.Logout();
 #if WP8
-            TileService.Current.ResetWideTile();
+            TileService.Current.ResetWideTile(App.SpecificSettings.UseTransparentTile);
 #endif
             _hasLoaded = false;
             Folders.Clear();

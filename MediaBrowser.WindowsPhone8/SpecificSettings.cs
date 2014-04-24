@@ -45,6 +45,8 @@ namespace MediaBrowser.WindowsPhone
         public string LockScreenCollectionId { get; set; }
         public bool DisplayBackdropOnTile { get; set; }
         public bool UseRichWideTile { get; set; }
+
+        public bool UseTransparentTile { get; set; }
         
         [UsedImplicitly]
         private void OnLockScreenCollectionIdChanged()
