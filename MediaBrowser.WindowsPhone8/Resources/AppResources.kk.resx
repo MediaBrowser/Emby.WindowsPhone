@@ -211,22 +211,22 @@
     <value>Құрылғы тіркелген</value>
   </data>
   <data name="ErrorConnectionDetailsInvalid" xml:space="preserve">
-    <value>Қосылым мәліметтері жарамсыз, әрекетті қайталауды өтінеміз.</value>
+    <value>Қосылым мәліметтері жарамсыз, әрекетті қайталаңыз.</value>
   </data>
   <data name="ErrorConnectionDetailsMessage" xml:space="preserve">
-    <value>Қосылым мәліметтері орнатылмаған, бұларды қазір орнатқыңыз келеді ме?</value>
+    <value>Қосылым мәліметтері орнатылмаған, бұларды қазір орнатуңыз келе ме?</value>
   </data>
   <data name="ErrorConnectionDetailsTitle" xml:space="preserve">
     <value>Қосылым мәліметтері жоқ</value>
   </data>
   <data name="ErrorCouldNotFindServer" xml:space="preserve">
-    <value>Серверіңіз табылмады.</value>
+    <value>Сервер табылмады.</value>
   </data>
   <data name="ErrorDisabledUser" xml:space="preserve">
-    <value>Кешіріңіз, бұл тіркелгі ажыратылған тәрізді.</value>
+    <value>Бұл тіркелгі ажыратылған тәрізді.</value>
   </data>
   <data name="ErrorDisabledUserTitle" xml:space="preserve">
-    <value>Кіру мүмкін емес</value>
+    <value>Кіруге мүмкіндік болмады</value>
   </data>
   <data name="ErrorEpisodeDetails" xml:space="preserve">
     <value>Эпизод мәліметтерін жүктеп алу қатесі</value>
@@ -244,19 +244,19 @@
     <value>Қосымша мәліметтер алу қатесі</value>
   </data>
   <data name="ErrorGettingTrailerDetails" xml:space="preserve">
-    <value>Трейлер мәліметтерін алу қатесі</value>
+    <value>Трейлер мәліметтері алынбады</value>
   </data>
   <data name="ErrorInvalidHostname" xml:space="preserve">
-    <value>Кешіріңіз, хостыңыздың аты дұрыс емес, мұнда бірқанша бос орын болмауын (мысал үшін) нақтылауыңызды өтінеміз.</value>
+    <value>Хост аты дұрыс емес, мұнда бірқанша бос орын болмауын (мысал үшін) нақтылаңыз.</value>
   </data>
   <data name="ErrorMakingChanges" xml:space="preserve">
-    <value>Өзгертулеріңізді жасағандағы қате</value>
+    <value>Өзгертулер жасағанда қате</value>
   </data>
   <data name="ErrorNoConnectionSettings" xml:space="preserve">
     <value>Қосылым параметрлері жоқ, орнату үшін түртіңіз</value>
   </data>
   <data name="ErrorProblemUpdatingItem" xml:space="preserve">
-    <value>Бұл элементті жаңартуда ақаулық орын алды, әрекетті кейін қайталауыңызды өтінеміз.</value>
+    <value>Бұл элементті жаңартуда ақаулық орын алды, әрекетті кейін қайталаңыз.</value>
   </data>
   <data name="ErrorRecentItems" xml:space="preserve">
     <value>Жақындағы элементтерді алу қатесі</value>
@@ -268,7 +268,7 @@
     <value>Қате</value>
   </data>
   <data name="ErrorUnableToSignIn" xml:space="preserve">
-    <value>Осы ретте сізді кіргізу мүмкіншілік болмады, себебі дұрыс емес пайдаланушы аты / құпия сөз болуы мүмкін, немесе тіркелгіңіз ажыратылған.</value>
+    <value>Осы ретте кіруіңізге мүмкіндік болмады, себебі дұрыс емес пайдаланушы аты / құпия сөз болуы мүмкін, немесе тіркелгіңіз ажыратылған.</value>
   </data>
   <data name="ErrorUnableToSignInTitle" xml:space="preserve">
     <value>Кіру орындалмады</value>
@@ -361,7 +361,7 @@
     <value>Media Browser server теңшелгенісімен болған жеріңізден қатынасты нақтылаңыз, жергілікті сымсыз желіден бе, не сыртқы тұрақты мекенжайдан ба.</value>
   </data>
   <data name="LabelFirstRunHappyConfiguration" xml:space="preserve">
-    <value>Егер қалай теңшегеніңізге риза болсаңыз, Параметрлер түймешігін басыңыз және сервер мәліметтерін енгізіңіз, әйтпесе қолданбаны мына жерден жай жаба аласыз.</value>
+    <value>Егер қалай теңшегеніңізге риза болсаңыз, Параметрлер түймешігін басыңыз және сервер мәліметтерін енгізіңіз, әйтпесе қолданба мына жерден жай жабылуы мүмкін.</value>
   </data>
   <data name="LabelFirstRunServerInfo" xml:space="preserve">
     <value>Дегенмен іске қосыла алуымыз алдынан, Media Browser server орындалып тұрғанын нақтылаңыз.</value>
@@ -538,7 +538,7 @@
     <value>атау</value>
   </data>
   <data name="LabelTileBackInformation" xml:space="preserve">
-    <value>Бар тасушыңызға арналған қол жетімді тамаша суреттемелерді  көрсету үшін, қатарда суреттемелер арасынан кейбіреу пайданылады, осында сол қатар қалай көрінетінін таңдай аласыз.</value>
+    <value>Тасушыға арналған қол жетімді тамаша суреттемелерді көрсету үшін, қатарда суреттемелер арасынан кейбіреу пайданылады, осында сол қатар қалай көрінетінін таңдаңуыз мүмкін.</value>
   </data>
   <data name="LabelTrailers" xml:space="preserve">
     <value>трелерлер</value>
@@ -559,7 +559,7 @@
     <value>Көрініс</value>
   </data>
   <data name="LabelWelcomeText" xml:space="preserve">
-    <value>Windows Phone өніміне арналған Media Browser қолданбасына қош келдіңіз! Бұл қолданба тасушыныңызды шарлау, телефоныңызға ағынмен тасымалдау және басқа басқарылатын Media Browser клиенттерінің қайсыбіріне алыстан басқару үшін рұқсат етеді.</value>
+    <value>Windows Phone өніміне арналған Media Browser қолданбасына қош келдіңіз! Бұл қолданба тасушы шарлау, телефонға ағынмен тасымалдау және басқа басқарылатын Media Browser клиенттерінің қайсыбіріне алыстан басқару үшін рұқсат етеді.</value>
   </data>
   <data name="LabelWriter" xml:space="preserve">
     <value>Жазушы</value>
@@ -583,10 +583,10 @@
     <value>Бұл қатарды шынымен босату керек пе?</value>
   </data>
   <data name="MessageClearPlayList" xml:space="preserve">
-    <value>Бұл ойнату тізімдіңізді шынымен тазарту керек пе?</value>
+    <value>Бұл ойнату тізімді шынымен тазарту керек пе?</value>
   </data>
   <data name="MessageDeletePlaylistItems" xml:space="preserve">
-    <value>Бұл элементтерді шынымен жою керек пе? Бұл кері болдырмалайды.</value>
+    <value>Бұл элементтерді шынымен жою керек пе? Бұны кері болдырмау мүмкін емес.</value>
   </data>
   <data name="MessageExperimentalTitle" xml:space="preserve">
     <value>Эксперимент ретінде</value>
@@ -634,7 +634,7 @@
     <value>Қосылым тексерілуде...</value>
   </data>
   <data name="SysTrayFindingServer" xml:space="preserve">
-    <value>Серверіңізді іздеуге әрекет жасалуда...</value>
+    <value>Сервер іздеуге әрекет жасалуда...</value>
   </data>
   <data name="SysTrayGettingAlbums" xml:space="preserve">
     <value>Альбомдар алынуда...</value>
@@ -733,7 +733,7 @@
     <value>Құрылғы тіркелуін болдырмауда...</value>
   </data>
   <data name="TrialVideoMessage" xml:space="preserve">
-    <value>Сынақ режімінде күн бойынша тек қана бір бейнені ойната аласыз. Бұны ертең сынап көріңіз немесе толық нұсқасын  сатып алыңыз.</value>
+    <value>Сынақ режімінде күн бойынша тек қана бір бейне ойнатылуы мүмкін. Бұны ертең сынап көріңіз немесе толық нұсқасын сатып алыңыз.</value>
   </data>
   <data name="TvShowRecentItemsTitle" xml:space="preserve">
     <value>{0} жақындағы элементтері</value>
@@ -765,7 +765,7 @@
     <comment>eg, Released in 1993</comment>
   </data>
   <data name="LabelWelcomeTextPhone7" xml:space="preserve">
-    <value>Windows Phone өніміне арналған Media Browser қолданбасына қош келдіңіз! Бұл қолданба тасушыныңызды шарлау және басқа басқарылатын Media Browser клиенттерінің қайсыбіріне алыстан басқару үшін рұқсат етеді.</value>
+    <value>Windows Phone өніміне арналған Media Browser қолданбасына қош келдіңіз! Бұл қолданба тасушы шарлау және басқа басқарылатын Media Browser клиенттерінің қайсыбіріне алыстан басқару үшін рұқсат етеді.</value>
   </data>
   <data name="LabelChannels" xml:space="preserve">
     <value>Телеканалдар</value>
@@ -777,10 +777,10 @@
     <value>Жоспарлаған жазулар</value>
   </data>
   <data name="LabelUpcoming" xml:space="preserve">
-    <value>Алдағы</value>
+    <value>Күтілген</value>
   </data>
   <data name="LabelWhatsOn" xml:space="preserve">
-    <value>Ағымдағы</value>
+    <value>Эфирде</value>
   </data>
   <data name="SysTrayGettingChannels" xml:space="preserve">
     <value>Телеарналар алынуда...</value>
@@ -792,7 +792,7 @@
     <value>Сериалдың жазбалары алынуда...</value>
   </data>
   <data name="SysTrayGettingUpcomingRecordings" xml:space="preserve">
-    <value>Алдағы жазбалар алынуда...</value>
+    <value>Күтілген жазбалар алынуда...</value>
   </data>
   <data name="ContextCancelSeries" xml:space="preserve">
     <value>сериалды болдырмау</value>
@@ -886,13 +886,13 @@
     <value>Жазуды болдырмау</value>
   </data>
   <data name="MessageDeleteSeriesRecording" xml:space="preserve">
-    <value>Бұл сериалдың байланысын шынымен болдырмау керек пе? Бұл кері болдырмалайды.</value>
+    <value>Бұл сериалдың байланысын шынымен болдырмау керек пе? Бұны кері болдырмау мүмкін емес.</value>
   </data>
   <data name="SysTrayGettingUpcoming" xml:space="preserve">
-    <value>Алдағы эпизодтар алынуда...</value>
+    <value>Күтілген эпизодтар алынуда...</value>
   </data>
   <data name="MessageCancelRecording" xml:space="preserve">
-    <value>Бұл жазуды шынымен болдырмау керек пе? Бұл кері болдырмалайды.</value>
+    <value>Бұл жазуды шынымен болдырмау керек пе? Бұны кері болдырмау мүмкін емес.</value>
   </data>
   <data name="SysTraySaving" xml:space="preserve">
     <value>Сақтауда...</value>
@@ -913,7 +913,7 @@
     <value>Эфирлік</value>
   </data>
   <data name="SystemTrayGettingWhatsOn" xml:space="preserve">
-    <value>Ағымдағы алынуда...</value>
+    <value>Эфирдегі алынуда...</value>
   </data>
   <data name="SysTrayLoadingProgrammes" xml:space="preserve">
     <value>Көрсетімдер алынуда...</value>
@@ -952,7 +952,7 @@
     <value>Белсенді</value>
   </data>
   <data name="LabelNoRecordedItems" xml:space="preserve">
-    <value>Сізде ешқандай жазылған элементтер жоқ сияқты.</value>
+    <value>Ешқандай жазылған элементтер жоқ сияқты.</value>
   </data>
   <data name="LabelRecordedDate" xml:space="preserve">
     <value>Жазылған күн-айы</value>
@@ -970,11 +970,8 @@
   <data name="HeaderTV" xml:space="preserve">
     <value>ТД</value>
   </data>
-  
-<!--
-<data name="LabelUseTransparentTile" xml:space="preserve">
-    <value>Use transparent tiles</value>
+  <data name="LabelUseTransparentTile" xml:space="preserve">
+    <value>Мөлдір қатарларды пайдалану</value>
   </data>
--->
 
 </root>

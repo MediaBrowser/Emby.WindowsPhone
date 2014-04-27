@@ -837,7 +837,7 @@
     <value>Spela endast in nya avsnitt</value>
   </data>
   <data name="LabelRecordProgrammeAtAnyTime" xml:space="preserve">
-    <value>Spela in program när som helst</value>
+    <value>Spela in program på vilken tid som helst</value>
   </data>
   <data name="LabelRecordProgrammeOnAllChannels" xml:space="preserve">
     <value>Spela in programmet på alla kanaler</value>
@@ -969,6 +969,9 @@
   </data>
   <data name="HeaderTV" xml:space="preserve">
     <value>TV</value>
+  </data>
+  <data name="LabelUseTransparentTile" xml:space="preserve">
+    <value>Använd genomskinliga tiles</value>
   </data>
 
 </root>

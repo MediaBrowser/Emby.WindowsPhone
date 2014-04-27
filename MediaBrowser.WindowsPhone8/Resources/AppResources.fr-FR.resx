@@ -846,7 +846,7 @@
     <value>Annuler</value>
   </data>
   <data name="LabelPostPaddingMinutes" xml:space="preserve">
-    <value>Marge enregistrement antérieure (mn)</value>
+    <value>Minutes de post-padding:</value>
   </data>
   <data name="LabelPostPaddingRequired" xml:space="preserve">
     <value>Une marge d'enregistrement doit être prévue.</value>
@@ -868,7 +868,7 @@
     <value>Supprimer</value>
   </data>
   <data name="ErrorDeletingSeriesRecording" xml:space="preserve">
-    <value>Désolé, il y a eu un erreur qui a annulé cette série à ce moment.</value>
+    <value>Désolé, une erreur s'est produite lors de l'annulation de la série.</value>
   </data>
   <data name="LabelChannel" xml:space="preserve">
     <value>Chaîne:</value>
@@ -886,13 +886,13 @@
     <value>Annuler enregistrement</value>
   </data>
   <data name="MessageDeleteSeriesRecording" xml:space="preserve">
-    <value>Êtes-vous sûr de vouloir annuler ce lien de série? Cette opération sera permanente.</value>
+    <value>Etes-vous sûr de vouloir annuler cet enregistrement en série ? Cette opération sera permanente.</value>
   </data>
   <data name="SysTrayGettingUpcoming" xml:space="preserve">
     <value>Obtention des prochains épisodes</value>
   </data>
   <data name="MessageCancelRecording" xml:space="preserve">
-    <value>Êtes-vous sûr de vouloir annuler cet enregistrment? Cette opération sera permanente.</value>
+    <value>Êtes-vous sûr de vouloir annuler cet enregistrement? Cette opération sera permanente.</value>
   </data>
   <data name="SysTraySaving" xml:space="preserve">
     <value>Enregistrement...</value>
@@ -919,10 +919,10 @@
     <value>Chargement de la programmation</value>
   </data>
   <data name="SysTraySettingProgrammeToRecord" xml:space="preserve">
-    <value>Paramétrage de programmation pour enregistrer...</value>
+    <value>Programmation de l'enregistrement...</value>
   </data>
   <data name="SysTraySettingSeriesToRecord" xml:space="preserve">
-    <value>Paramétrage de séries pour enregistrer...</value>
+    <value>Programmation de l'enregistrement de la série...</value>
   </data>
   <data name="AppBarCreateAndEditSeries" xml:space="preserve">
     <value>Créer et modifier les enregistrements des séries</value>
@@ -969,6 +969,9 @@
   </data>
   <data name="HeaderTV" xml:space="preserve">
     <value>TV</value>
+  </data>
+  <data name="LabelUseTransparentTile" xml:space="preserve">
+    <value>Utiliser les tuiles transparentes</value>
   </data>
 
 </root>

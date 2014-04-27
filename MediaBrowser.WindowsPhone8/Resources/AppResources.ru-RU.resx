@@ -169,7 +169,7 @@
     <value>воспр элементы</value>
   </data>
   <data name="AppBarPlayOn" xml:space="preserve">
-    <value>воспр на...</value>
+    <value>воспр на устройстве...</value>
   </data>
   <data name="AppBarPosterLockscreen" xml:space="preserve">
     <value>поместить постер на экран блокировки</value>
@@ -220,7 +220,7 @@
     <value>Нет параметров подключения</value>
   </data>
   <data name="ErrorCouldNotFindServer" xml:space="preserve">
-    <value>Невозможно найти ваш сервер.</value>
+    <value>Невозможно найти сервер.</value>
   </data>
   <data name="ErrorDisabledUser" xml:space="preserve">
     <value>К сожалению, похоже, что данная учётная запись была отключена. Сейчас мы вернём вас обратно на экран входа.</value>
@@ -361,7 +361,7 @@
     <value>После того, как Media Browser сервер был сконфигурирован, убедитесь, что он доступен из места вашего нахождения, будь то ваша локальная беспроводная сеть или внешний статический адрес.</value>
   </data>
   <data name="LabelFirstRunHappyConfiguration" xml:space="preserve">
-    <value>Если вы удовлетворены тем, как сконфигурировали, нажмите на кнопку Параметры и введите детали вашего сервера, иначе вы можете просто закрыть приложение отсюда.</value>
+    <value>Если вы удовлетворены тем, как сконфигурировали, нажмите на кнопку Параметры и введите детали сервера, иначе вы можете просто закрыть приложение отсюда.</value>
   </data>
   <data name="LabelFirstRunServerInfo" xml:space="preserve">
     <value>Однако, прежде чем мы сможем начать, вы должны убедиться, что у вас работает Media Browser сервер.</value>
@@ -427,7 +427,7 @@
     <value>Музыка</value>
   </data>
   <data name="LabelNextUp" xml:space="preserve">
-    <value>что потом</value>
+    <value>на подходе</value>
   </data>
   <data name="LabelNo" xml:space="preserve">
     <value>нет</value>
@@ -460,7 +460,7 @@
     <value>Другое</value>
   </data>
   <data name="LabelOverview" xml:space="preserve">
-    <value>обзор</value>
+    <value>обозрение</value>
   </data>
   <data name="LabelPassword" xml:space="preserve">
     <value>пароль:</value>
@@ -559,7 +559,7 @@
     <value>Вид</value>
   </data>
   <data name="LabelWelcomeText" xml:space="preserve">
-    <value>Добро пожаловать в Media Browser для Windows Phone. Это приложение предоставит вам возможность навигации по вашей медиатеке, потокового воспроизведения на вашем телефоне и удалённого управления любым из контролируемых клиентов  Media Browser.</value>
+    <value>Добро пожаловать в Media Browser для Windows Phone. Это приложение предоставит вам возможность обзора медиатеки, потокового воспроизведения на вашем телефоне и удалённого управления любым из контролируемых клиентов  Media Browser.</value>
   </data>
   <data name="LabelWriter" xml:space="preserve">
     <value>Сценарист</value>
@@ -574,7 +574,7 @@
     <value>воспроизвести от</value>
   </data>
   <data name="MenuPlayFromOn" xml:space="preserve">
-    <value>воспроизвести с</value>
+    <value>воспр с устройства</value>
   </data>
   <data name="MessageAreYouSureTitle" xml:space="preserve">
     <value>Вы действительно уверены?</value>
@@ -583,7 +583,7 @@
     <value>Вы действительно желаете открепить этот файл?</value>
   </data>
   <data name="MessageClearPlayList" xml:space="preserve">
-    <value>Вы действительно желаете очистить ваш список воспроизведения?</value>
+    <value>Вы действительно желаете очистить список воспроизведения?</value>
   </data>
   <data name="MessageDeletePlaylistItems" xml:space="preserve">
     <value>Вы действительно желаете удалить эти элементы? Их нельзя восстановить.</value>
@@ -634,7 +634,7 @@
     <value>Проверяем соединение...</value>
   </data>
   <data name="SysTrayFindingServer" xml:space="preserve">
-    <value>Пытаемся найти ваш сервер...</value>
+    <value>Попытка найти сервер...</value>
   </data>
   <data name="SysTrayGettingAlbums" xml:space="preserve">
     <value>Получаем альбомы...</value>
@@ -752,7 +752,7 @@
     <value>Не найдено папок</value>
   </data>
   <data name="LabelNothingInPlaylist" xml:space="preserve">
-    <value>Ваш список воспроизведения пуст</value>
+    <value>Список воспроизведения пуст</value>
   </data>
   <data name="LabelUnplayedItems" xml:space="preserve">
     <value>Непросмотренные:</value>
@@ -765,10 +765,10 @@
     <comment>eg, Released in 1993</comment>
   </data>
   <data name="LabelWelcomeTextPhone7" xml:space="preserve">
-    <value>Добро пожаловать в Media Browser для Windows Phone. Это приложение предоставит вам возможность навигации по вашей медиатеке и удалённого управления любым из контролируемых клиентов Media Browser.</value>
+    <value>Добро пожаловать в Media Browser для Windows Phone. Это приложение предоставит вам возможность обзора вашей медиатеки и удалённого управления любым из контролируемых клиентов Media Browser.</value>
   </data>
   <data name="LabelChannels" xml:space="preserve">
-    <value>ТВ каналы</value>
+    <value>Телеканалы</value>
   </data>
   <data name="LabelRecordedTv" xml:space="preserve">
     <value>Записанные передачи</value>
@@ -777,13 +777,13 @@
     <value>Назначенные записи</value>
   </data>
   <data name="LabelUpcoming" xml:space="preserve">
-    <value>Скоро</value>
+    <value>Ожидаемые</value>
   </data>
   <data name="LabelWhatsOn" xml:space="preserve">
-    <value>Что идёт</value>
+    <value>В эфире</value>
   </data>
   <data name="SysTrayGettingChannels" xml:space="preserve">
-    <value>Получаем тв каналы...</value>
+    <value>Получаем телеканалы...</value>
   </data>
   <data name="SysTrayGettingProgrammes" xml:space="preserve">
     <value>Получаем передачи...</value>
@@ -871,7 +871,7 @@
     <value>К сожалению, произошла ошибка отмены этой серии передач на это время.</value>
   </data>
   <data name="LabelChannel" xml:space="preserve">
-    <value>ТВ канал:</value>
+    <value>Телеканал:</value>
   </data>
   <data name="LabelNew" xml:space="preserve">
     <value>Новинки</value>
@@ -913,7 +913,7 @@
     <value>Эфир</value>
   </data>
   <data name="SystemTrayGettingWhatsOn" xml:space="preserve">
-    <value>Получение текущих передач...</value>
+    <value>Получение эфирных...</value>
   </data>
   <data name="SysTrayLoadingProgrammes" xml:space="preserve">
     <value>Загружаются передачи...</value>
@@ -940,7 +940,7 @@
     <value>Группировка записей по умолчанию</value>
   </data>
   <data name="AppBarChannel" xml:space="preserve">
-    <value>тв канал</value>
+    <value>телеканал</value>
   </data>
   <data name="AppBarRecordedDate" xml:space="preserve">
     <value>дата записи</value>
@@ -969,6 +969,9 @@
   </data>
   <data name="HeaderTV" xml:space="preserve">
     <value>ТВ</value>
+  </data>
+  <data name="LabelUseTransparentTile" xml:space="preserve">
+    <value>Использовать прозрачные плитки</value>
   </data>
 
 </root>

@@ -970,5 +970,8 @@
   <data name="HeaderTV" xml:space="preserve">
     <value>TV</value>
   </data>
+  <data name="LabelUseTransparentTile" xml:space="preserve">
+    <value>Gebruik transparante tegels</value>
+  </data>
 
 </root>

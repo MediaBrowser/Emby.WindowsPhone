@@ -1,0 +1,49 @@
+WP8:
+
+Media Browser est un moyen de consulter votre collection de médias, que ce soit des films, séries TV ou de la musique, Media Browser permettra la lecture de ces médias sur votre téléphone Windows ou sur d'autres clients compatibles Media Browser.
+
+****INFORMATION IMPORTANTE****
+Pour pouvoir utiliser Media Browser, il est nécessaire d'installer le serveur Media Browser à partir de http://www.mediabrowser3.com/download et de le configurer.
+
+Fonctionnalités:
+-Consultation de votre collection de médias
+-Lecture des vidéos sur votre téléphone
+-Contrôle à distance d'autres lecteurs Media Browser (comme Media Browser Classic)
+-Définir l'écran de verrouillage basé sur votre propre collection
+-Épingler vos collections préférées au menu de démarrage
+
+Limites de période d'essai:
+-Lecture d'un seul vidéo par jour (autant de fois désirées mais une seule vidéo)
+-Contrôle à distance seulement de l'interface Web
+
+Soutien:
+Du soutien est offert sur Twitter (@mediabrowser), Facebook (http://facebook.com/mediabrowser.tv) ou par courriel (wpmb3@outlook.com).
+
+Évaluation:
+Nous adorons les évaluations, ça nous aide à améliorer l'application, par contre, si vous éprouvez des problèmes, SVP nous contacter avant de soumettre une mauvaise évaluation, nous sommes sûrement en mesure de vous assister.
+
+WP7:
+
+Media Browser est un moyen de consulter votre collection de médias, que ce soit des films, séries TV ou de la musique, Media Browser permettra la lecture de ces médias sur votre téléphone Windows ou sur d'autres clients compatibles Media Browser.
+
+****INFORMATION IMPORTANTE****
+Pour pouvoir utiliser Media Browser, il est nécessaire d'installer le serveur Media Browser à partir de http://www.mediabrowser3.com/download et de le configurer.
+
+Fonctionnalités:
+-Consultation de votre collection de médias
+-Contrôle à distance d'autres lecteurs Media Browser (comme Media Browser Classic)
+-Épingler vos collections préférées au menu de démarrage
+
+Limites de période d'essai:
+-Contrôle à distance seulement de l'interface Web
+
+Soutien:
+Du soutien est offert sur Twitter (@mediabrowser), Facebook (http://facebook.com/mediabrowser.tv) ou par courriel (wpmb3@outlook.com).
+
+Évaluation:
+Nous adorons les évaluations, ça nous aide à améliorer l'application, par contre, si vous éprouvez des problèmes, SVP nous contacter avant de soumettre une mauvaise évaluation, nous sommes sûrement en mesure de vous assister.
+
+
+
+
+

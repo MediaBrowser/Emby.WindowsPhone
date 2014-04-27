@@ -1,0 +1,44 @@
+WP8:
+
+Media Browser är ett enkelt sätt att organisera din samling av media. Oavsett om det är filmer, TV-serier eller musik, låter Media Browser dig spela upp eller lyssna på din Windows-telefon eller annan kompatibel Media Browser-klient.
+
+****VIKTIG INFORMATION****
+För att kunna använda Media Browser måste du ha installerat Media Browser server från http://www.mediabrowser3.com/download samt ha den konfigurerad och startad.
+
+Funktioner:
+- Bläddra i din egen samling av media
+- Strömma video till din telefon
+- Fjärrstyr andra Media Browser-klienter (t ex Media Browser Classic) 
+- Använd bilder från din samling som låsskärm
+- Fäst dina favoriter på startskärmen
+
+Begränsningar i pröva-på-versionen:
+- Spela upp en video per dag (så många gånger du vill men bara den enda)
+- Fjärrstyrning enbart av webbklienten
+
+Support:
+Support kan du få via twitter (@mediabrowser), facebook (http://facebook.com/mediabrowser.tv) eller e-post (wpmb3@outlook.com).
+
+Betyg & Recensioner:
+Vi älskar att få recensioner, det hjälper oss att utveckla vår app, men om du har problem, kontakta oss innan du lämnar negativa recensioner, vi kanske kan hjälpa till att lösa ditt problem.
+
+WP7:
+
+Media Browser är ett enkelt sätt att organisera din samling av media. Oavsett om det är filmer, TV-serier eller musik, låter Media Browser dig spela upp eller lyssna på din Windows-telefon eller annan kompatibel Media Browser-klient.
+
+****VIKTIG INFORMATION****
+För att kunna använda Media Browser måste du ha installerat Media Browser server från http://www.mediabrowser3.com/download samt ha den konfigurerad och startad.
+
+Funktioner:
+- Bläddra i din egen samling av media
+- Fjärrstyr andra Media Browser-klienter (t ex Media Browser Classic) 
+- Fäst dina favoriter på startskärmen
+
+Begränsningar i pröva-på-versionen:
+- Fjärrstyrning enbart av webbklienten
+
+Support:
+Support kan du få via twitter (@mediabrowser), facebook (http://facebook.com/mediabrowser.tv) eller e-post (wpmb3@outlook.com).
+
+Betyg & Recensioner:
+Vi älskar att få recensioner, det hjälper oss att utveckla vår app, men om du har problem, kontakta oss innan du lämnar negativa recensioner, vi kanske kan hjälpa till att lösa ditt problem.

@@ -978,5 +978,8 @@ durchstöbern und jeden verfügbaren Media Browser Client fernbedienen.</value>
   <data name="HeaderTV" xml:space="preserve">
     <value>TV</value>
   </data>
+  <data name="LabelUseTransparentTile" xml:space="preserve">
+    <value>Transparente Tiles verwenden</value>
+  </data>
 
 </root>
