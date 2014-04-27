@@ -11,6 +11,7 @@
                 xmlns:controls="clr-namespace:MediaBrowser.WindowsPhone.Controls"
                 xmlns:c4F="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
                 xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
+                xmlns:behaviors="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
                 mc:Ignorable="d"
                 d:DesignWidth="480"
                 d:DesignHeight="696"
@@ -27,6 +28,14 @@
         <behaviours:MBSysTray Text="{Binding ProgressText}"
                               IsVisible="{Binding ProgressIsVisible}"
                               IsIndeterminate="{Binding ProgressIsVisible}" />
+        <behaviors:ApplicationBarBehavior>
+            <behaviors:ApplicationBarBehavior.Buttons>
+                <behaviors:ApplicationBarIconButton Text="{Binding LocalizedResources.AppBarGroupBy, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                    x:Name="btnChangeGrouping"
+                                                    IconUri="/Icons/appbar.group.png"
+                                                    Click="btnChangeGrouping_Click" />
+            </behaviors:ApplicationBarBehavior.Buttons>
+        </behaviors:ApplicationBarBehavior>
     </i:Interaction.Behaviors>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
@@ -84,10 +93,10 @@
                                       Background="Transparent">
                 <toolkit:LongListSelector.ItemTemplate>
                     <DataTemplate>
-                        <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                         Margin="12,6,0,6"
-                                         Command="{Binding Main.NavigateToPage, Source={StaticResource Locator}}"
-                                         CommandParameter="{Binding}">
+                        <controls:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                                        Margin="12,6,0,6"
+                                                        TapCommand="{Binding Main.NavigateToPage, Source={StaticResource Locator}}"
+                                                        CommandParameter="{Binding}">
                             <StackPanel Orientation="Horizontal">
                                 <c4F:SuperImage PlaceholderImageSource="/Images/Logo.png"
                                                 Source="{Binding Converter={StaticResource ImageUrlConverter}, ConverterParameter=icon}"
@@ -114,22 +123,11 @@
                                                  Visibility="{Binding Value, RelativeSource={RelativeSource Self}, Converter={StaticResource GreaterThanVisibilityConverter}, ConverterParameter=0}" />
                                 </StackPanel>
                             </StackPanel>
-                        </HyperlinkButton>
+                        </controls:CustomHyperlinkButton>
                     </DataTemplate>
                 </toolkit:LongListSelector.ItemTemplate>
             </toolkit:LongListSelector>
         </Grid>
     </Grid>
-
-    <!--Sample code showing usage of ApplicationBar-->
-    <scott:BasePage.ApplicationBar>
-        <shell:ApplicationBar IsVisible="True"
-                              IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton x:Name="btnChangeGrouping"
-                                            IconUri="/Icons/appbar.group.png"
-                                            Text="group by"
-                                            Click="btnChangeGrouping_Click" />
-        </shell:ApplicationBar>
-    </scott:BasePage.ApplicationBar>
 
 </scott:BasePage>

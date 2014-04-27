@@ -41,7 +41,7 @@
         <behaviors:ApplicationBarBehavior Mode="Minimized"
                                           IsMenuEnabled="True">
             <behaviors:ApplicationBarBehavior.MenuItems>
-                <behaviors:ApplicationBarMenuItem Text="settings"
+                <behaviors:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarSettings, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                   Command="{Binding Main.NavigateToAPage, Source={StaticResource Locator}}"
                                                   CommandParameter="/Views/SettingsView.xaml" />
             </behaviors:ApplicationBarBehavior.MenuItems>
@@ -82,7 +82,7 @@
                     Margin="12,17,0,28">
             <controls:MediaBrowserLogo />
             <TextBlock x:Name="PageTitle"
-                       Text="profiles"
+                       Text="{Binding LocalizedResources.LabelProfiles, Source={StaticResource LocalizedStrings}}"
                        Margin="9,-7,0,0"
                        Style="{StaticResource PhoneTextTitle1Style}" />
         </StackPanel>
@@ -96,14 +96,14 @@
                 <scott:PhoneListBox.ListFooter>
                     <StackPanel Orientation="Vertical"
                                 Margin="0,12">
-                        <TextBlock Text="Profile not listed?"
+                        <TextBlock Text="{Binding LocalizedResources.LabelProfileNotListed, Source={StaticResource LocalizedStrings}}"
                                    Style="{StaticResource PhoneTextNormalStyle}"
                                    Margin="0" />
-                        <HyperlinkButton Content="Manually login"
-                                         HorizontalContentAlignment="Left"
-                                         NavigateUri="/Views/ManualUsernameView.xaml"
-                                         Margin="-12,0,0,0"
-                                         Foreground="{StaticResource PhoneAccentBrush}" />
+                        <controls:CustomHyperlinkButton Content="{Binding LocalizedResources.LabelManuallyLogin, Source={StaticResource LocalizedStrings}}"
+                                                        HorizontalContentAlignment="Left"
+                                                        NavigateUri="/Views/ManualUsernameView.xaml"
+                                                        Margin="-12,0,0,0"
+                                                        Foreground="{StaticResource PhoneAccentBrush}" />
                     </StackPanel>
                 </scott:PhoneListBox.ListFooter>
                 <scott:PhoneListBox.ItemTemplate>

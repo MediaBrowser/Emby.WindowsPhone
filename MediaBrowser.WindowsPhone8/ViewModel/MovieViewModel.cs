@@ -123,7 +123,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 catch (HttpException ex)
                 {
                     Log.ErrorException("AddRemoveFavouriteCommand (Movies)", ex);
-                    App.ShowMessage("Error making your changes");
+                    App.ShowMessage(AppResources.ErrorMakingChanges);
                 }
 
                 SetProgressBar();
@@ -175,6 +175,13 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 {
                     ImageUrl = GetChapterUrl(x)
                 }).ToList();
+
+                if (SelectedMovie.LocalTrailerCount.HasValue && SelectedMovie.LocalTrailerCount.Value > 0)
+                {
+                    var trailers = await _apiClient.GetLocalTrailersAsync(AuthenticationService.Current.LoggedInUserId, SelectedMovie.Id);
+                    Trailers = trailers.ToList();
+                }
+
                 result = true;
             }
             catch (HttpException ex)
@@ -211,6 +218,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public string ImdbId { get; set; }
         public string RunTime { get; set; }
         public List<Chapter> Chapters { get; set; }
+        public List<BaseItemDto> Trailers { get; set; }
 
         public RelayCommand<BaseItemDto> NavigateTopage { get; set; }
         public RelayCommand MoviePageLoaded { get; set; }

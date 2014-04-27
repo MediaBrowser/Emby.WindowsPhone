@@ -3,9 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
-             xmlns:controls="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
-             xmlns:converters="clr-namespace:MediaBrowser.WindowsPhone.Converters"
              xmlns:system="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d"
              FontFamily="{StaticResource PhoneFontFamilyNormal}"
@@ -26,11 +23,19 @@
 
         <Image Source="/Assets/Tiles/WideTileBackground.png"
                Stretch="UniformToFill"
-               Grid.ColumnSpan="2"/>
+               Grid.ColumnSpan="2"
+               x:Name="BackgroundImage"/>
         
         <Image Source="/Assets/Tiles/FlipCycleTileMedium.png"
                HorizontalAlignment="Left"
-               Grid.Column="0"/>
+               Grid.Column="0"
+               x:Name="NormalImage"/>
+        
+        <Image Source="/Assets/Tiles/FlipCycleTileMediumTransparent.png"
+               HorizontalAlignment="Left"
+               Grid.Column="0"
+               x:Name="TransparentImage"
+               Visibility="Collapsed"/>
 
         <Grid Grid.Column="1">
             <Grid.ColumnDefinitions>

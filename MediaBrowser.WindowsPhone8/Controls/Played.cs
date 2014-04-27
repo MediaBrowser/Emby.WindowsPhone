@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Shapes;
 using MediaBrowser.Model.Dto;
+using MediaBrowser.Model.LiveTv;
 
 namespace MediaBrowser.WindowsPhone.Controls
 {
@@ -20,11 +21,11 @@ namespace MediaBrowser.WindowsPhone.Controls
         private Ellipse _theEllipse;
 
         public static readonly DependencyProperty DataProperty =
-            DependencyProperty.Register("Data", typeof (BaseItemDto), typeof (Played), new PropertyMetadata(default(BaseItemDto), OnDataChanged));
+            DependencyProperty.Register("Data", typeof (object), typeof (Played), new PropertyMetadata(default(BaseItemDto), OnDataChanged));
 
-        public BaseItemDto Data
+        public object Data
         {
-            get { return (BaseItemDto) GetValue(DataProperty); }
+            get { return GetValue(DataProperty); }
             set { SetValue(DataProperty, value); }
         }
 
@@ -51,43 +52,55 @@ namespace MediaBrowser.WindowsPhone.Controls
                 return;
             }
 
-            var type = played.Data.Type;
-            if (type != "Season" && type != "Series" && type != "BoxSet" && played.Data.MediaType != "Video")
+            UserItemDataDto userData = null;
+            if (played.Data is BaseItemDto)
             {
-                return;
-            }
-
-            if (played.Data.MediaType == "Video")
-            {
-                if (played._unwatchedGrid != null && played._theEllipse != null)
+                var item = played.Data as BaseItemDto;
+                var type = item.Type;
+                if (type != "Season" && type != "Series" && type != "BoxSet" && item.MediaType != "Video" && item.Type != "MusicAlbum" && item.Type != "MusicArtist")
                 {
-                    played._unwatchedGrid.Visibility = Visibility.Collapsed;
-                    played._theEllipse.Visibility = Visibility.Collapsed;
+                    return;
                 }
 
-                if (played._watchedPath != null && played._theEllipse != null)
+                if (item.MediaType == null || item.MediaType != "Video")
                 {
-                    played._watchedPath.Visibility = played.Data.UserData.Played ? Visibility.Visible : Visibility.Collapsed;
-                    played._theEllipse.Visibility = played._watchedPath.Visibility;
-                }
+                    if (played._unwatchedGrid != null && played._watchedPath != null && played._theEllipse != null)
+                    {
+                        played._unwatchedGrid.Visibility = item.RecursiveUnplayedItemCount.HasValue && item.RecursiveUnplayedItemCount.Value > 0
+                            ? Visibility.Visible
+                            : Visibility.Collapsed;
 
-                return;
+                        played._watchedPath.Visibility = item.RecursiveUnplayedItemCount.HasValue && item.RecursiveUnplayedItemCount.Value == 0
+                            ? Visibility.Visible
+                            : Visibility.Collapsed;
+
+                        played._theEllipse.Visibility = (played._unwatchedGrid.Visibility == Visibility.Visible
+                                                         || played._watchedPath.Visibility == Visibility.Visible)
+                            ? Visibility.Visible
+                            : Visibility.Collapsed;
+                    }
+
+                    return;
+                }
+                userData = item.UserData;
             }
 
-            if (played._unwatchedGrid != null && played._watchedPath != null && played._theEllipse != null)
+            if (played.Data is RecordingInfoDto)
             {
-                played._unwatchedGrid.Visibility = played.Data.RecursiveUnplayedItemCount.HasValue && played.Data.RecursiveUnplayedItemCount.Value > 0
-                    ? Visibility.Visible
-                    : Visibility.Collapsed;
+                var item = played.Data as RecordingInfoDto;
+                userData = item.UserData;
+            }
 
-                played._watchedPath.Visibility = played.Data.RecursiveUnplayedItemCount.HasValue && played.Data.RecursiveUnplayedItemCount.Value == 0
-                    ? Visibility.Visible
-                    : Visibility.Collapsed;
+            if (played._unwatchedGrid != null && played._theEllipse != null)
+            {
+                played._unwatchedGrid.Visibility = Visibility.Collapsed;
+                played._theEllipse.Visibility = Visibility.Collapsed;
+            }
 
-                played._theEllipse.Visibility = (played._unwatchedGrid.Visibility == Visibility.Visible
-                                                 || played._watchedPath.Visibility == Visibility.Visible)
-                    ? Visibility.Visible
-                    : Visibility.Collapsed;
+            if (played._watchedPath != null && played._theEllipse != null && userData != null)
+            {
+                played._watchedPath.Visibility = userData.Played ? Visibility.Visible : Visibility.Collapsed;
+                played._theEllipse.Visibility = played._watchedPath.Visibility;
             }
         }
 

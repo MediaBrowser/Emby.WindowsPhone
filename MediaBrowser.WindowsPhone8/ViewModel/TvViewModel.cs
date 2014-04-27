@@ -172,12 +172,18 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 catch (HttpException ex)
                 {
                     Log.ErrorException("AddRemoveFavouriteCommand (TV)", ex);
-                    App.ShowMessage("Error making your changes");
+                    App.ShowMessage(AppResources.ErrorMakingChanges);
                 }
 
                 SetProgressBar();
 
                 CanUpdateFavourites = true;
+            });
+
+            ShowOtherFilmsCommand = new RelayCommand<BaseItemPerson>(person =>
+            {
+                App.SelectedItem = person;
+                _navigationService.NavigateTo(Constants.Pages.ActorView);
             });
 
             NavigateTo = new RelayCommand<BaseItemDto>(_navigationService.NavigateTo);
@@ -323,10 +329,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                     try
                     {
-                        var query = new ItemQuery
+                        var query = new EpisodeQuery
                         {
                             UserId = AuthenticationService.Current.LoggedInUser.Id,
-                            ParentId = SelectedEpisode.ParentId,
+                            SeasonId = SelectedEpisode.SeasonId,
+                            SeriesId = SelectedEpisode.SeriesId,
                             Fields = new[]
                             {
                                 ItemFields.ParentId,
@@ -336,7 +343,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                         //Log.Info("Getting episodes for Season [{0}] ({1}) of TV Show [{2}] ({3})", SelectedSeason.Name, SelectedSeason.Id, SelectedTvSeries.Name, SelectedTvSeries.Id);
 
-                        var episodes = await _apiClient.GetItemsAsync(query);
+                        var episodes = await _apiClient.GetEpisodesAsync(query);
                         Episodes = episodes.Items.OrderBy(x => x.IndexNumber).ToList();
                     }
                     catch (HttpException ex)
@@ -388,7 +395,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
             catch (HttpException ex)
             {
-                MessageBox.Show("There was a problem updating this item, please try again later.", "Error", MessageBoxButton.OK);
+                MessageBox.Show(AppResources.ErrorProblemUpdatingItem, AppResources.ErrorTitle, MessageBoxButton.OK);
                 Log.ErrorException("MarkAsWatchedCommand", ex);
             }
         }
@@ -409,6 +416,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public RelayCommand NextEpisodeCommand { get; set; }
         public RelayCommand PreviousEpisodeCommand { get; set; }
         public RelayCommand<BaseItemDto> AddRemoveFavouriteCommand { get; set; }
+        public RelayCommand<BaseItemPerson> ShowOtherFilmsCommand { get; set; }
         public bool CanUpdateFavourites { get; set; }
     }
 }

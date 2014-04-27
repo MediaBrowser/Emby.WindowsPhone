@@ -16,6 +16,7 @@ using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Querying;
 using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Controls;
+using MediaBrowser.WindowsPhone.Resources;
 using ScottIsAFool.WindowsPhone.Logging;
 using MediaBrowser.Model.ApiClient;
 
@@ -98,6 +99,9 @@ namespace MediaBrowser.WindowsPhone.Services
                 case "remote":
                     _logger.Info("Remote pinned tile");
                     return Constants.Pages.Remote.RemoteView;
+                case "livetv":
+                    _logger.Info("Live TV pinned tile");
+                    return Constants.Pages.LiveTv.LiveTvView;
                 default:
                     return Constants.Pages.MainPage;
             }
@@ -106,35 +110,62 @@ namespace MediaBrowser.WindowsPhone.Services
         }
 
 #if WP8
-        public async Task UpdatePrimaryTile(bool displayBackdropOnTile, bool useRichWideTile)
+        public void SetSecondaryTileTransparency(bool useTransparentTiles)
         {
-            Uri wideBackUri, wideUri, mediumBackUri;
-            if (displayBackdropOnTile)
+            ShellTileServiceFlipTileData tileData;
+            var remoteTile = GetTile(string.Format(Constants.PhoneTileUrlFormat, "Remote", string.Empty, "Remote Control"));
+            if (remoteTile != null)
             {
-                await CreateNewWideTileAsync();
+                tileData = new ShellTileServiceFlipTileData
+                {
+                    Title = "MB " + AppResources.LabelRemote,
+                    BackgroundImage = App.SpecificSettings.UseTransparentTile ? new Uri("/Assets/Tiles/MBRemoteTileTransparent.png", UriKind.Relative) : new Uri("/Assets/Tiles/MBRemoteTile.png", UriKind.Relative)
+                };
+
+                remoteTile.Update(tileData);
             }
 
-            if (useRichWideTile)
+            var liveTvTile = GetTile(string.Format(Constants.PhoneTileUrlFormat, "LiveTV", string.Empty, "Live TV"));
+            if (liveTvTile != null)
+            {
+                tileData = new ShellTileServiceFlipTileData
+                {
+                    Title = "MB " + AppResources.LabelLiveTv,
+                    BackgroundImage = App.SpecificSettings.UseTransparentTile ? new Uri("/Assets/Tiles/MBLiveTVTileTransparent.png", UriKind.Relative) : new Uri("/Assets/Tiles/MBLiveTVTile.png", UriKind.Relative)
+                };
+
+                liveTvTile.Update(tileData);
+            }
+        }
+
+        public async Task UpdatePrimaryTile(bool displayBackdropOnTile, bool useRichWideTile, bool useTransparentTile)
+        {
+            if (displayBackdropOnTile)
             {
                 await UpdateBackContentImages();
             }
 
-            wideUri = useRichWideTile
+            if (useRichWideTile)
+            {
+                await CreateNewWideTileAsync(useTransparentTile);
+            }
+
+            var wideUri = useRichWideTile
                 ? new Uri(WideTileActualUrl, UriKind.Absolute)
                 : new Uri(DefaultWideTileUrl, UriKind.Relative);
 
-            wideBackUri = displayBackdropOnTile
+            var wideBackUri = displayBackdropOnTile
                 ? new Uri(WideTileBackActualUrl, UriKind.Absolute)
                 : new Uri("/", UriKind.Relative);
 
-            mediumBackUri = displayBackdropOnTile
+            var mediumBackUri = displayBackdropOnTile
                 ? new Uri(MediumTileActualUrl, UriKind.Absolute)
                 : new Uri("/", UriKind.Relative);
 
-            UpdateTileData(wideUri, mediumBackUri, wideBackUri);
+            UpdateTileData(wideUri, mediumBackUri, wideBackUri, useTransparentTile);
         }
 
-        public async Task CreateNewWideTileAsync()
+        public async Task CreateNewWideTileAsync(bool useTransparentTile)
         {
             var items = await GetCollectionItems(9);
             if (items == null || items.Items.IsNullOrEmpty())
@@ -174,16 +205,18 @@ namespace MediaBrowser.WindowsPhone.Services
             {
                 ItemsSource = list,
                 Height = 336,
-                Width = 691
+                Width = 691,
+                UseTransparentTile = useTransparentTile
             };
+
             wideTile.UpdateBackground();
             await wideTile.SetImages();
             await ToImage(wideTile, 691, 336);
         }
 
-        public void ResetWideTile()
+        public void ResetWideTile(bool useTransparentTile)
         {
-            UpdateTileData(new Uri(DefaultWideTileUrl, UriKind.Relative));
+            UpdateTileData(new Uri(DefaultWideTileUrl, UriKind.Relative), useTransparentTile: useTransparentTile);
         }
 
         public async Task UpdateBackContentImages()
@@ -221,15 +254,15 @@ namespace MediaBrowser.WindowsPhone.Services
             }
         }
 
-        private void UpdateTileData(Uri wideTileUri, Uri backContentUri = null, Uri backContentWideuri = null)
+        private void UpdateTileData(Uri wideTileUri, Uri backContentUri = null, Uri backContentWideuri = null, bool useTransparentTile = false)
         {
             var primaryTile = ActiveTiles.First();
 
             var tileData = new ShellTileServiceFlipTileData
             {
                 Title = ApplicationManifest.Current.App.Title,
-                BackgroundImage = new Uri("/Assets/Tiles/FlipCycleTileMedium.png", UriKind.Relative),
-                SmallBackgroundImage = new Uri("/Assets/Tiles/FlipCycleTileSmall.png", UriKind.Relative),
+                BackgroundImage = useTransparentTile ? new Uri("/Assets/Tiles/FlipCycleTileMediumTransparent.png", UriKind.Relative) : new Uri("/Assets/Tiles/FlipCycleTileMedium.png", UriKind.Relative),
+                SmallBackgroundImage = useTransparentTile ? new Uri("/Assets/Tiles/FlipCycleTileSmallTransparent.png", UriKind.Relative) : new Uri("/Assets/Tiles/FlipCycleTileSmall.png", UriKind.Relative),
                 WideBackgroundImage = wideTileUri,
                 BackBackgroundImage = backContentUri ?? new Uri("/", UriKind.Relative),
                 WideBackBackgroundImage = backContentWideuri ?? new Uri("/", UriKind.Relative)
@@ -288,8 +321,6 @@ namespace MediaBrowser.WindowsPhone.Services
 
             return null;
         }
-
-
 #endif
     }
 }

@@ -11,6 +11,7 @@ using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Querying;
 using MediaBrowser.Services;
+using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Resources;
 using ScottIsAFool.WindowsPhone;
 using ScottIsAFool.WindowsPhone.ViewModel;
@@ -120,7 +121,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 if (_artistTracks.IsNullOrEmpty())
                 {
-                    SetProgressBar("Getting tracks...");
+                    SetProgressBar(AppResources.SysTrayGettingTracks);
 
                     try
                     {
@@ -199,7 +200,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                 SelectedTracks = new List<BaseItemDto>();
 
-                App.ShowMessage(string.Format("{0} tracks added successfully", newList.Count));
+                App.ShowMessage(string.Format(AppResources.MessageTracksAddedSuccessfully, newList.Count));
 
                 IsInSelectionMode = false;
             });
@@ -239,7 +240,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 catch (HttpException ex)
                 {
                     Log.ErrorException("AddRemoveFavouriteCommand (Music)", ex);
-                    App.ShowMessage("Error making your changes");
+                    App.ShowMessage(AppResources.ErrorMakingChanges);
                 }
 
                 SetProgressBar();

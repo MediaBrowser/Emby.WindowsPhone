@@ -7,11 +7,12 @@ namespace MediaBrowser.WindowsPhone.Converters
 {
     public class LessThanVisibilityConverter : IValueConverter
     {
+        public bool NullIsVisible { get; set; }
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value == null || parameter == null)
             {
-                return Visibility.Collapsed;
+                return NullIsVisible ? Visibility.Visible : Visibility.Collapsed;
             }
 
             var lessThanValue = double.Parse(parameter.ToString());
@@ -28,11 +29,12 @@ namespace MediaBrowser.WindowsPhone.Converters
 
     public class GreaterThanVisibilityConverter : IValueConverter
     {
+        public bool NullIsVisible { get; set; }
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value == null || parameter == null)
             {
-                return Visibility.Collapsed;
+                return NullIsVisible ? Visibility.Visible : Visibility.Collapsed;
             }
 
             var greaterThanValue = double.Parse(parameter.ToString());

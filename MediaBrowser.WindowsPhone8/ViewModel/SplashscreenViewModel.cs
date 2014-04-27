@@ -84,10 +84,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     {
                         var messageBox = new CustomMessageBox
                         {
-                            Caption = "No connection details",
-                            Message = "No connection settings have been set, would you like to set them now?",
-                            LeftButtonContent = "yes",
-                            RightButtonContent = "no",
+                            Caption = AppResources.ErrorConnectionDetailsTitle,
+                            Message = AppResources.ErrorConnectionDetailsMessage,
+                            LeftButtonContent = AppResources.LabelYes,
+                            RightButtonContent = AppResources.LabelNo,
                             IsFullScreen = false
                         };
 

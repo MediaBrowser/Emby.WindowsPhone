@@ -67,7 +67,7 @@
                     Grid.Row="0"
                     Margin="12,17,0,28">
             <controls:MediaBrowserLogo />
-            <TextBlock Text="find server"
+            <TextBlock Text="{Binding LocalizedResources.LabelFindServer, Source={StaticResource LocalizedStrings}}"
                        Margin="9,-7,0,0"
                        Style="{StaticResource PhoneTextTitle1Style}" />
         </StackPanel>
@@ -79,17 +79,17 @@
             <phone:LongListSelector ItemsSource="{Binding FoundServers}">
                 <phone:LongListSelector.ItemTemplate>
                     <DataTemplate>
-                        <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                         HorizontalContentAlignment="Left"
-                                         Command="{Binding Settings.ServerTappedCommand, Source={StaticResource Locator}}"
-                                         CommandParameter="{Binding}">
+                        <controls:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                                        TapCommand="{Binding Settings.ServerTappedCommand, Source={StaticResource Locator}}"
+                                                        CommandParameter="{Binding}"
+                                                        Margin="12,0,0,12">
                             <controls1:HeaderAndDetail HeaderText="{Binding IpAddress}"
                                                        HeaderTextForeground="{StaticResource PhoneAccentBrush}"
                                                        HeaderTextStyle="{StaticResource PhoneTextTitle2Style}"
                                                        DetailText="{Binding PortNo}"
                                                        DetailTextStyle="{StaticResource PhoneTextSubtleStyle}"
                                                        DetailTextForeground="{StaticResource PhoneSubtleBrush}" />
-                        </HyperlinkButton>
+                        </controls:CustomHyperlinkButton>
                     </DataTemplate>
                 </phone:LongListSelector.ItemTemplate>
             </phone:LongListSelector>

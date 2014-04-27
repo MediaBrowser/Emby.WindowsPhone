@@ -148,7 +148,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
 #if WP8
                 Services.LockScreenService.Current.Start();
-                TileService.Current.UpdatePrimaryTile(App.SpecificSettings.DisplayBackdropOnTile, App.SpecificSettings.UseRichWideTile).ConfigureAwait(false);
+                TileService.Current.UpdatePrimaryTile(App.SpecificSettings.DisplayBackdropOnTile, App.SpecificSettings.UseRichWideTile, App.SpecificSettings.UseTransparentTile).ConfigureAwait(false);
 #endif
                 var page = TileService.Current.PinnedPage();
                 _navigationService.NavigateTo(page);
@@ -157,7 +157,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
             else
             {
-                MessageBox.Show("We were unable to sign you in at this time, this could be due to an incorrect username/password, or your account has been disabled.", "Login unsuccessful", MessageBoxButton.OK);
+                MessageBox.Show(AppResources.ErrorUnableToSignIn, AppResources.ErrorUnableToSignInTitle, MessageBoxButton.OK);
             }
             
             SetProgressBar();

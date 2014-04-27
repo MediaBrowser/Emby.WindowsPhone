@@ -10,11 +10,16 @@ using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
+using MediaBrowser.Model.LiveTv;
 using MediaBrowser.Model.Net;
+using MediaBrowser.Model.Session;
 using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Messaging;
 using MediaBrowser.WindowsPhone.Model;
+using MediaBrowser.WindowsPhone.Resources;
 using ScottIsAFool.WindowsPhone.ViewModel;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace MediaBrowser.WindowsPhone.ViewModel
 {
@@ -32,7 +37,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         private readonly DispatcherTimer _timer;
 
         private bool _isResume;
-        private long? _startPositionTicks;
+        private long _startPositionTicks = 0;
+        private string _itemId;
 
         /// <summary>
         /// Initializes a new instance of the VideoPlayerViewModel class.
@@ -41,7 +47,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             _apiClient = apiClient;
             _navigationService = navigationService;
-            _timer = new DispatcherTimer{Interval = TimeSpan.FromSeconds(10)};
+            _timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(10) };
             _timer.Tick += TimerOnTick;
         }
 
@@ -49,12 +55,21 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             try
             {
-                var totalTicks = _isResume && StartTime.HasValue ? StartTime.Value.Ticks + PlayedVideoDuration.Ticks : PlayedVideoDuration.Ticks;
+                var totalTicks = _startPositionTicks + PlayedVideoDuration.Ticks;
 
                 Log.Info("Sending current runtime [{0}] to the server", totalTicks);
 
-                await _apiClient.ReportPlaybackProgressAsync(SelectedItem.Id, AuthenticationService.Current.LoggedInUserId, totalTicks, false, false);
-                SelectedItem.UserData.PlaybackPositionTicks = totalTicks;
+                var info = new PlaybackProgressInfo
+                {
+                    ItemId = _itemId,
+                    UserId = AuthenticationService.Current.LoggedInUserId,
+                    IsMuted = false,
+                    IsPaused = false,
+                    PositionTicks = totalTicks
+                };
+
+                await _apiClient.ReportPlaybackProgressAsync(info);
+                SetPlaybackTicks(totalTicks);
             }
             catch (HttpException ex)
             {
@@ -62,32 +77,62 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
         }
 
+        public PlayerSourceType PlayerSourceType { get; set; }
+
+        public bool IsHls
+        {
+            get { return PlayerSourceType == PlayerSourceType.Programme; }
+        }
+
+        private void SetPlaybackTicks(long totalTicks)
+        {
+            switch (PlayerSourceType)
+            {
+                case PlayerSourceType.Video:
+                    SelectedItem.UserData.PlaybackPositionTicks = totalTicks;
+                    break;
+                case PlayerSourceType.Recording:
+                    RecordingItem.UserData.PlaybackPositionTicks = totalTicks;
+                    break;
+                case PlayerSourceType.Programme:
+                    ProgrammeItem.UserData.PlaybackPositionTicks = totalTicks;
+                    break;
+            }
+        }
+
         public override void WireMessages()
         {
             Messenger.Default.Register<VideoMessage>(this, m =>
             {
-                if (m.VideoItem != null)
+                switch (m.PlayerSourceType)
                 {
-                    SelectedItem = m.VideoItem;
-                    _isResume = m.IsResume;
-                    _startPositionTicks = m.ResumeTicks;
+                    case PlayerSourceType.Video:
+                        if (m.VideoItem != null)
+                        {
+                            SelectedItem = m.VideoItem;
+                        }
+                        break;
+                    case PlayerSourceType.Recording:
+                        if (m.RecordingItem != null)
+                        {
+                            RecordingItem = m.RecordingItem;
+                        }
+                        break;
+                    case PlayerSourceType.Programme:
+                        if (m.ProgrammeItem != null)
+                        {
+                            ProgrammeItem = m.ProgrammeItem;
+                        }
+                        break;
                 }
+
+                PlayerSourceType = m.PlayerSourceType;
+                _isResume = m.IsResume;
+                _startPositionTicks = m.ResumeTicks.HasValue ? m.ResumeTicks.Value : 0;
             });
 
             Messenger.Default.Register<NotificationMessage>(this, async m =>
             {
-                if (m.Notification.Equals(Constants.Messages.PlayVideoItemMsg))
-                {
-                    if (m.Sender != null)
-                    {
-                        SelectedItem = (BaseItemDto) m.Sender;
-                        if (m.Target != null)
-                        {
-                            _isResume = (bool) m.Target;
-                        }
-                    }
-                }
-
                 if (m.Notification.Equals(Constants.Messages.SetResumeMsg))
                 {
                     _isResume = true;
@@ -97,12 +142,20 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 {
                     try
                     {
-                        var totalTicks = _isResume && StartTime.HasValue ? StartTime.Value.Ticks + PlayedVideoDuration.Ticks : PlayedVideoDuration.Ticks;
+                        var totalTicks = _startPositionTicks + PlayedVideoDuration.Ticks;
 
                         Log.Info("Sending current runtime [{0}] to the server", totalTicks);
 
-                        await _apiClient.ReportPlaybackStoppedAsync(SelectedItem.Id, AuthenticationService.Current.LoggedInUserId, totalTicks);
-                        SelectedItem.UserData.PlaybackPositionTicks = totalTicks;
+                        var info = new PlaybackStopInfo
+                        {
+                            ItemId = _itemId,
+                            UserId = AuthenticationService.Current.LoggedInUserId,
+                            PositionTicks = totalTicks
+                        };
+
+                        await _apiClient.ReportPlaybackStoppedAsync(info);
+
+                        SetPlaybackTicks(totalTicks);
 
                         if (_timer != null && _timer.IsEnabled)
                         {
@@ -119,8 +172,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 {
                     try
                     {
-                        var totalTicks = _isResume && StartTime.HasValue ? StartTime.Value.Ticks + PlayedVideoDuration.Ticks : PlayedVideoDuration.Ticks;
-                        var isPaused = m.Sender != null && (bool) m.Sender;
+                        var totalTicks = _startPositionTicks + PlayedVideoDuration.Ticks;
+                        var isPaused = m.Sender != null && (bool)m.Sender;
 
                         if (_timer != null)
                         {
@@ -142,8 +195,17 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                         Log.Info("Sending current runtime [{0}] to the server", totalTicks);
 
-                        await _apiClient.ReportPlaybackProgressAsync(SelectedItem.Id, AuthenticationService.Current.LoggedInUserId, totalTicks, isPaused, false);
-                        SelectedItem.UserData.PlaybackPositionTicks = totalTicks;
+                        var info = new PlaybackProgressInfo
+                        {
+                            IsMuted = false,
+                            ItemId = _itemId,
+                            UserId = AuthenticationService.Current.LoggedInUserId,
+                            PositionTicks = totalTicks,
+                            IsPaused = isPaused
+                        };
+
+                        await _apiClient.ReportPlaybackProgressAsync(info);
+                        SetPlaybackTicks(totalTicks);
                     }
                     catch (HttpException ex)
                     {
@@ -154,9 +216,35 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         }
 
         public string VideoUrl { get; set; }
-        public TimeSpan? StartTime { get; set; }
+        public TimeSpan StartTime
+        {
+            get
+            {
+                return TimeSpan.FromTicks(_startPositionTicks * -1);
+            }
+        }
+        private TimeSpan _endTime = TimeSpan.Zero;
+        public TimeSpan EndTime
+        {
+            get
+            {
+                return _endTime;
+            }
+            set
+            {
+                _endTime = value;                
+            }
+        }
+
         public TimeSpan PlayedVideoDuration { get; set; }
         public BaseItemDto SelectedItem { get; set; }
+        public RecordingInfoDto RecordingItem { get; set; }
+        public ProgramInfoDto ProgrammeItem { get; set; }
+
+        //Recover from tombestone
+        public string ItemId { get; set; }
+        public string ItemType { get; set; }
+        public bool Recover { get; set; }
 
         public RelayCommand VideoPageLoaded
         {
@@ -164,9 +252,23 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 return new RelayCommand(async () =>
                 {
+                    if (!Recover)                       
+                        await InitiatePlayback(_isResume);                    
+                });
+            }
+        }
+
+        private async Task InitiatePlayback(bool isResume)
+        {
+            EndTime = TimeSpan.Zero;
+
+            var query = new VideoStreamOptions();
+            switch (PlayerSourceType)
+            {
+                case PlayerSourceType.Video:
                     if (SelectedItem.VideoType != VideoType.VideoFile)
                     {
-                        var result = MessageBox.Show("Playing this type of video is currently experimental, results may vary, do you wish to continue?", "Experimental", MessageBoxButton.OKCancel);
+                        var result = MessageBox.Show(AppResources.MessageExperimentalVideo, AppResources.MessageExperimentalTitle, MessageBoxButton.OKCancel);
                         if (result == MessageBoxResult.Cancel)
                         {
                             _navigationService.GoBack();
@@ -174,61 +276,141 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         }
                     }
 
-                    long ticks = 0;
-                    if (SelectedItem.UserData != null && _isResume)
+                    if (SelectedItem.UserData != null && isResume)
                     {
-                        ticks = SelectedItem.UserData.PlaybackPositionTicks;
+                        _startPositionTicks = SelectedItem.UserData.PlaybackPositionTicks;
                     }
 
-                    //foreach (var stream in SelectedItem.MediaStreams)
-                    //{
-                    //    if(Path.GetExtension(stream.Path) == "mp4" 
-                    //        && stream.Codec == "h264"
-                    //        && stream.BitRate < )
-                    //}
-                    
-                    var query = new VideoStreamOptions
-                    {
-                        ItemId = SelectedItem.Id,
-                        VideoCodec = VideoCodecs.H264,
-                        OutputFileExtension = ".mp4",
-                        AudioCodec = AudioCodecs.Aac,
-                        VideoBitRate = 1000000,
-                        AudioBitRate = 128000,
-                        MaxAudioChannels = 2,
-                        StartTimeTicks = ticks,
-                        Profile = "baseline",
-                        Level = "3",
-                        //FrameRate = 20,
-                        MaxHeight = 480, // (int)bounds.Width,
-                        MaxWidth = 800 // (int)bounds.Height
-                    };
+                    query = CreateVideoStreamOptions(SelectedItem.Id, SelectedItem.UserData, _startPositionTicks);
 
-                    VideoUrl = _apiClient.GetVideoStreamUrl(query);
-                    Debug.WriteLine(VideoUrl);
-
-                    StartTime = TimeSpan.FromTicks(ticks);
-
-                    if (_timer != null && !_timer.IsEnabled)
-                    {
-                        _timer.Start();
-                    }
+                    if (SelectedItem.RunTimeTicks.HasValue)
+                        EndTime = TimeSpan.FromTicks(SelectedItem.RunTimeTicks.Value - _startPositionTicks);
 
                     Log.Info("Playing {0} [{1}] ({2})", SelectedItem.Type, SelectedItem.Name, SelectedItem.Id);
-                    Log.Debug(VideoUrl);
+                    break;
+                case PlayerSourceType.Recording:
+                    query = CreateVideoStreamOptions(RecordingItem.Id, RecordingItem.UserData, _startPositionTicks);
 
-                    try
-                    {
-                        Log.Info("Sending playback started message to the server.");
-                        await _apiClient.ReportPlaybackStartAsync(SelectedItem.Id, AuthenticationService.Current.LoggedInUserId, false, new List<string>());
-                    }
-                    catch (HttpException ex)
-                    {
-                        Log.ErrorException("VideoPageLoaded", ex);
-                    }
-                });
+                    if (RecordingItem.RunTimeTicks.HasValue)
+                        EndTime = TimeSpan.FromTicks(RecordingItem.RunTimeTicks.Value - _startPositionTicks);
+
+                    Log.Info("Playing {0} [{1}] ({2})", RecordingItem.Type, RecordingItem.Name, RecordingItem.Id);
+                    break;
+                case PlayerSourceType.Programme:
+                    query = CreateVideoStreamOptions(ProgrammeItem.ChannelId, ProgrammeItem.UserData, _startPositionTicks, true);
+
+                    if (ProgrammeItem.RunTimeTicks.HasValue)
+                        EndTime = TimeSpan.FromTicks(ProgrammeItem.RunTimeTicks.Value - _startPositionTicks);
+
+                    Log.Info("Playing {0} [{1}] ({2})", ProgrammeItem.Type, ProgrammeItem.Name, ProgrammeItem.Id);
+                    break;
+            }
+
+            var url = PlayerSourceType == PlayerSourceType.Programme ? _apiClient.GetHlsVideoStreamUrl(query) : _apiClient.GetVideoStreamUrl(query);
+
+            VideoUrl = url;
+            Debug.WriteLine(VideoUrl);            
+
+            Log.Debug(VideoUrl);
+
+            try
+            {
+                Log.Info("Sending playback started message to the server.");
+
+                var info = new PlaybackStartInfo
+                {
+                    ItemId = query.ItemId,
+                    UserId = AuthenticationService.Current.LoggedInUserId,
+                    IsSeekable = false,
+                    QueueableMediaTypes = new string[0]
+                };
+
+                await _apiClient.ReportPlaybackStartAsync(info);
+            }
+            catch (HttpException ex)
+            {
+                Log.ErrorException("VideoPageLoaded", ex);
             }
         }
 
+        public void StartUpdateTimer()
+        {
+            if (_timer != null && !_timer.IsEnabled)
+            {
+                _timer.Start();
+            }
+        }
+
+        private VideoStreamOptions CreateVideoStreamOptions(string itemId, UserItemDataDto userData, long startTimeTicks, bool useHls = false)
+        {
+            _itemId = itemId;
+
+            var query = new VideoStreamOptions
+            {
+                ItemId = itemId,
+                VideoCodec = "H264",
+                OutputFileExtension = useHls ? ".m3u8" : ".mp4",
+                AudioCodec = "Aac",
+                VideoBitRate = WindowsPhone.Helpers.ResolutionHelper.DefaultVideoBitrate,
+                AudioBitRate = 128000,
+                MaxAudioChannels = 2,
+                StartTimeTicks = startTimeTicks,
+                Profile = "baseline",
+                Level = "3",
+                MaxWidth = WindowsPhone.Helpers.ResolutionHelper.Width // (int)bounds.Height
+            };
+
+            return query;
+        }
+
+        public async void Seek(long newPosition)
+        {
+            _timer.Stop();
+            _startPositionTicks += newPosition;
+            await InitiatePlayback(false);
+        }
+        public async void RecoverState()
+        {            
+            _isResume = true;
+
+            var cts = new CancellationTokenSource(7000);
+            try
+            {
+                if (ItemType == "Program")
+                {
+                    var program = await _apiClient.GetLiveTvProgramAsync(ItemId, AuthenticationService.Current.LoggedInUserId, cts.Token);
+                    if (program == null || program.UserData == null)
+                        return;
+                    PlayerSourceType = PlayerSourceType.Programme;
+
+                    ProgrammeItem = program;
+                }
+                else if (ItemType == "Recording") //TODO Verify this
+                {
+                    var recording = await _apiClient.GetLiveTvRecordingAsync(ItemId, AuthenticationService.Current.LoggedInUserId, cts.Token);
+                    if (recording == null || recording.UserData == null)
+                        return;
+                    PlayerSourceType = PlayerSourceType.Recording;
+
+                    RecordingItem = recording;
+                }
+                else
+                {
+                    var item = await _apiClient.GetItemAsync(ItemId, AuthenticationService.Current.LoggedInUserId);
+                    if (item == null || item.UserData == null)
+                        return;
+                    PlayerSourceType = PlayerSourceType.Video;
+
+                    SelectedItem = item;
+                }
+                await InitiatePlayback(true);
+            }
+            catch(TaskCanceledException ex)
+            {
+                Log.ErrorException("RecoverState timedout", ex);
+            }            
+            Recover = false;
+                
+        }
     }
 }

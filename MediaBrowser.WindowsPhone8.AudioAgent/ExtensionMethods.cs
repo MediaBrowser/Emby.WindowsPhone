@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using MediaBrowser.Model;
+using MediaBrowser.WindowsPhone.Model;
 using Microsoft.Phone.BackgroundAudio;
 
 namespace MediaBrowser.WindowsPhone.AudioAgent

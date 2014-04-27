@@ -6,6 +6,9 @@ namespace MediaBrowser.WindowsPhone.Converters
 {
     public class DateTimeConverter : IValueConverter
     {
+        public bool ShowTime { get; set; }
+        public bool ForLiveTv { get; set; }
+        public bool ShowFullDateTime { get; set; }
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var date = (DateTime?) value;
@@ -14,7 +17,22 @@ namespace MediaBrowser.WindowsPhone.Converters
                 return string.Empty;
             }
 
-            return date.Value.ToShortDateString();
+            if (ForLiveTv)
+            {
+                if (ShowFullDateTime)
+                {
+                    return date.Value.ToLocalTime().ToString(CultureInfo.CurrentUICulture);
+                }
+
+                return ShowTime ? date.Value.ToLocalTime().ToShortTimeString() : date.Value.ToLocalTime().ToShortDateString();
+            }
+
+            if (ShowFullDateTime)
+            {
+                return date.Value.ToLocalTime().ToString(CultureInfo.CurrentUICulture);
+            }
+
+            return ShowTime ? date.Value.ToShortTimeString() : date.Value.ToShortDateString();
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

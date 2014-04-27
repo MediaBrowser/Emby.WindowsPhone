@@ -13,6 +13,8 @@
                 xmlns:controls="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
                 xmlns:system="clr-namespace:System;assembly=mscorlib"
                 xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
+                xmlns:local="clr-namespace:MediaBrowser.WindowsPhone.Controls"
+                xmlns:converters="clr-namespace:MediaBrowser.WindowsPhone.Converters"
                 FontFamily="{StaticResource PhoneFontFamilyNormal}"
                 FontSize="{StaticResource PhoneFontSizeNormal}"
                 Foreground="{StaticResource PhoneForegroundBrush}"
@@ -38,7 +40,8 @@
     </i:Interaction.Triggers>
 
     <scott:BasePage.Resources>
-        <system:Double x:Key="ViewSize">140</system:Double>
+        <system:Double x:Key="ViewSize">120</system:Double>
+        <converters:LiveTvInfoVisibilityConverter x:Key="LiveTvInfoConverter" />
     </scott:BasePage.Resources>
 
     <toolkit:TransitionService.NavigationInTransition>
@@ -67,28 +70,28 @@
           Background="{StaticResource MediaBrowserBackground}">
         <i:Interaction.Behaviors>
             <cimbalino:ApplicationBarBehavior IsMenuEnabled="True">
-                <cimbalino:ApplicationBarIconButton Text="search"
+                <cimbalino:ApplicationBarIconButton Text="{Binding LocalizedResources.AppBarSearch, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                     IconUri="/Icons/appbar.feature.search.rest.png"
                                                     Command="{Binding NavigateToAPage}"
                                                     CommandParameter="/Views/SearchView.xaml" />
                 <cimbalino:ApplicationBarBehavior.MenuItems>
-                    <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.MainAppBarRefreshInformation, Source={StaticResource LocalizedStrings}}"
+                    <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarRefreshInformation, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                       Command="{Binding RefreshDataCommand}" />
-                    <cimbalino:ApplicationBarMenuItem Text="now playing"
+                    <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarNowPlaying, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                       Command="{Binding Main.NavigateToAPage, Source={StaticResource Locator}}"
                                                       CommandParameter="/Views/NowPlayingView.xaml" />
-                    <cimbalino:ApplicationBarMenuItem Text="remote"
+                    <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarRemote, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                       Command="{Binding NavigateToAPage}"
                                                       CommandParameter="/Views/Remote/RemoteView.xaml" />
-                    <cimbalino:ApplicationBarMenuItem Text="notifications"
+                    <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarNotifications, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                       IsVisible="{Binding LoggedInUser.Configuration.IsAdministrator, Source={StaticResource AppSettings}}"
                                                       Command="{Binding NavigateToNotificationsCommand}" />
-                    <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.MainAppBarChangeProfile, Source={StaticResource LocalizedStrings}}"
-                                                      Command="{Binding ChangeProfileCommand}" />
-                    <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.Settings, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringCaseConverter}}"
+                    <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarSettings, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                       Command="{Binding NavigateToAPage}"
                                                       CommandParameter="/Views/SettingsView.xaml" />
-                    <cimbalino:ApplicationBarMenuItem Text="about"
+                    <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarChangeProfile, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                      Command="{Binding ChangeProfileCommand}" />
+                    <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarAbout, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                       Command="{Binding NavigateToAPage}"
                                                       CommandParameter="/YourLastAboutDialog;component/AboutPage.xaml" />
                 </cimbalino:ApplicationBarBehavior.MenuItems>
@@ -104,79 +107,100 @@
                                    Foreground="{StaticResource PhoneForegroundBrush}" />
                         <TextBlock Text="browser"
                                    Foreground="Green" />
-                        <!--<TextBlock Text="3"
-                                   Foreground="Green"
-                                   FontFamily="Euphemia"
-                                   Margin="0"
-                                   FontSize="133.333" />-->
                     </StackPanel>
                 </DataTemplate>
             </phone:Panorama.TitleTemplate>
-            <phone:PanoramaItem Header="views">
-                <StackPanel Orientation="Vertical"
-                            Margin="12,0,0,0">
-                    <HyperlinkButton NavigateUri="/Views/Predefined/MovieCollectionView.xaml"
-                                     Style="{StaticResource EmptyButtonStyle}"
-                                     Margin="0,0,0,12">
-                        <StackPanel Orientation="Horizontal">
-                            <Border Background="#0094FF">
-                                <Image Source="/Images/moviecollection.png"
-                                       Height="{StaticResource ViewSize}"
-                                       Width="{StaticResource ViewSize}"
-                                       Stretch="UniformToFill" />
-                            </Border>
-                            <TextBlock Text="MOVIES"
-                                       Style="{StaticResource HeaderTextStyle}"
-                                       VerticalAlignment="Top" />
-                        </StackPanel>
-                    </HyperlinkButton>
-                    <HyperlinkButton NavigateUri="/Views/Predefined/TvCollectionView.xaml"
-                                     Style="{StaticResource EmptyButtonStyle}"
-                                     Margin="0,0,0,12">
-                        <StackPanel Orientation="Horizontal">
-                            <Border Background="#FF870F">
-                                <Image Source="/Images/tvcollection.png"
-                                       Height="{StaticResource ViewSize}"
-                                       Width="{StaticResource ViewSize}"
-                                       Stretch="UniformToFill" />
-                            </Border>
-                            <TextBlock Text="TV"
-                                       Style="{StaticResource HeaderTextStyle}"
-                                       VerticalAlignment="Top" />
-                        </StackPanel>
-                    </HyperlinkButton>
-                    <HyperlinkButton NavigateUri="/Views/Predefined/MusicCollectionView.xaml"
-                                     Style="{StaticResource EmptyButtonStyle}">
-                        <StackPanel Orientation="Horizontal">
-                            <Border Background="#6FBD45">
-                                <Image Source="/Images/audiocollection.png"
-                                       Height="{StaticResource ViewSize}"
-                                       Width="{StaticResource ViewSize}"
-                                       Stretch="UniformToFill" />
-                            </Border>
-                            <TextBlock Text="MUSIC"
-                                       Style="{StaticResource HeaderTextStyle}"
-                                       VerticalAlignment="Top" />
-                        </StackPanel>
-                    </HyperlinkButton>
-                </StackPanel>
+            <phone:PanoramaItem Header="{Binding LocalizedResources.LabelViews, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
+                <ScrollViewer>
+                    <StackPanel Orientation="Vertical"
+                                Margin="12,0,0,0">
+                        <local:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                                     Margin="0,0,0,12"
+                                                     TapCommand="{Binding NavigateToAPage}"
+                                                     CommandParameter="/Views/LiveTv/LiveTvView.xaml"
+                                                     Tag="{Binding LiveTvInfo, Source={StaticResource AppSettings}, Converter={StaticResource LiveTvInfoConverter}}"
+                                                     Visibility="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource VisibilityConverter}}">
+                            <StackPanel Orientation="Horizontal">
+                                <Border Background="#FFD100FF"
+                                        Height="{StaticResource ViewSize}"
+                                        Width="{StaticResource ViewSize}">
+                                    <local:ScheduledRecording Foreground="White"
+                                                              Height="70"
+                                                              Width="70" 
+                                                              SeriesVisibility="Visible"/>
+                                </Border>
+                                <TextBlock Text="{Binding LocalizedResources.LabelLiveTv, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToUppercaseConverter}}"
+                                           Style="{StaticResource HeaderTextStyle}"
+                                           VerticalAlignment="Top" />
+                            </StackPanel>
+                        </local:CustomHyperlinkButton>
+                        <local:CustomHyperlinkButton TapCommand="{Binding NavigateToAPage}"
+                                                     CommandParameter="/Views/Predefined/MovieCollectionView.xaml"
+                                                     Style="{StaticResource EmptyButtonStyle}"
+                                                     Margin="0,0,0,12">
+                            <StackPanel Orientation="Horizontal">
+                                <Border Background="#0094FF">
+                                    <Image Source="/Images/moviecollection.png"
+                                           Height="{StaticResource ViewSize}"
+                                           Width="{StaticResource ViewSize}"
+                                           Stretch="UniformToFill" />
+                                </Border>
+                                <TextBlock Text="{Binding LocalizedResources.LabelMovies, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToUppercaseConverter}}"
+                                           Style="{StaticResource HeaderTextStyle}"
+                                           VerticalAlignment="Top" />
+                            </StackPanel>
+                        </local:CustomHyperlinkButton>
+                        <local:CustomHyperlinkButton TapCommand="{Binding NavigateToAPage}"
+                                                     CommandParameter="/Views/Predefined/TvCollectionView.xaml"
+                                                     Style="{StaticResource EmptyButtonStyle}"
+                                                     Margin="0,0,0,12">
+                            <StackPanel Orientation="Horizontal">
+                                <Border Background="#FF870F">
+                                    <Image Source="/Images/tvcollection.png"
+                                           Height="{StaticResource ViewSize}"
+                                           Width="{StaticResource ViewSize}"
+                                           Stretch="UniformToFill" />
+                                </Border>
+                                <TextBlock Text="{Binding LocalizedResources.LabelTv, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToUppercaseConverter}}"
+                                           Style="{StaticResource HeaderTextStyle}"
+                                           VerticalAlignment="Top" />
+                            </StackPanel>
+                        </local:CustomHyperlinkButton>
+                        <local:CustomHyperlinkButton TapCommand="{Binding NavigateToAPage}"
+                                                     CommandParameter="/Views/Predefined/MusicCollectionView.xaml"
+                                                     Style="{StaticResource EmptyButtonStyle}">
+                            <StackPanel Orientation="Horizontal">
+                                <Border Background="#6FBD45">
+                                    <Image Source="/Images/audiocollection.png"
+                                           Height="{StaticResource ViewSize}"
+                                           Width="{StaticResource ViewSize}"
+                                           Stretch="UniformToFill" />
+                                </Border>
+                                <TextBlock Text="{Binding LocalizedResources.LabelMusic, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToUppercaseConverter}}"
+                                           Style="{StaticResource HeaderTextStyle}"
+                                           VerticalAlignment="Top" />
+                            </StackPanel>
+                        </local:CustomHyperlinkButton>
+                    </StackPanel>
+                </ScrollViewer>
             </phone:PanoramaItem>
-            <phone:PanoramaItem Header="{Binding LocalizedResources.Collections, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringCaseConverter}}">
+            <phone:PanoramaItem Header="{Binding LocalizedResources.Collections, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
                 <phone:LongListSelector ItemsSource="{Binding Folders}">
                     <phone:LongListSelector.ItemTemplate>
                         <DataTemplate>
-                            <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                             Command="{Binding Main.NavigateToPage, Source={StaticResource Locator}}"
-                                             CommandParameter="{Binding}"
-                                             Margin="12,0,0,0">
+                            <local:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                                         TapCommand="{Binding Main.NavigateToPage, Source={StaticResource Locator}}"
+                                                         CommandParameter="{Binding}"
+                                                         Margin="12,0,0,0">
                                 <toolkit:ContextMenuService.ContextMenu>
                                     <toolkit:ContextMenu>
-                                        <toolkit:MenuItem Header="{Binding LocalizedResources.PinToStart, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringCaseConverter}}"
+                                        <toolkit:MenuItem Header="{Binding LocalizedResources.PinToStart, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                           Command="{Binding Main.PinCollectionCommand, Source={StaticResource Locator}}"
                                                           CommandParameter="{Binding}" />
                                     </toolkit:ContextMenu>
                                 </toolkit:ContextMenuService.ContextMenu>
-                                <StackPanel Orientation="Horizontal">
+                                <StackPanel Orientation="Horizontal"
+                                            d:DataContext="{Binding Main.Folders, Source={StaticResource Locator}}">
                                     <controls:SuperImage PlaceholderImageSource="/Images/Logo.png"
                                                          PlaceholderImageStretch="Uniform"
                                                          Stretch="Uniform"
@@ -188,17 +212,19 @@
                                                 VerticalAlignment="Center">
                                         <TextBlock Text="{Binding Name}"
                                                    Style="{StaticResource PhoneTextLargeStyle}" />
-                                        <TextBlock Text="{Binding RecursiveUnplayedItemCount, StringFormat='Unplayed: \{0\}'}"
-                                                   Style="{StaticResource PhoneTextSubtleStyle}" />
+                                        <TextBlock Style="{StaticResource PhoneTextSubtleStyle}">
+                                            <Run Text="{Binding LocalizedResources.LabelUnplayedItems, Source={StaticResource LocalizedStrings}}" />
+                                            <Run Text="{Binding RecursiveUnplayedItemCount}" />
+                                        </TextBlock>
                                     </StackPanel>
                                 </StackPanel>
-                            </HyperlinkButton>
+                            </local:CustomHyperlinkButton>
                         </DataTemplate>
                     </phone:LongListSelector.ItemTemplate>
                 </phone:LongListSelector>
             </phone:PanoramaItem>
 
-            <phone:PanoramaItem Header="recent">
+            <phone:PanoramaItem Header="{Binding LocalizedResources.LabelRecent, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
                 <Grid>
                     <phone:LongListSelector ItemsSource="{Binding RecentItems}"
                                             ItemTemplate="{StaticResource FullTileItemStyle}"
@@ -214,20 +240,20 @@
                                        Visibility="{Binding RecentItems.Count, Converter={StaticResource IntToVisibilityConverter}, ConverterParameter=true}" />
                         </phone:LongListSelector.ListHeader>
                         <phone:LongListSelector.ListFooter>
-                            <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                             DataContext="{Binding DummyFolder}"
-                                             Command="{Binding Main.NavigateToPage, Source={StaticResource Locator}}"
-                                             CommandParameter="{Binding}"
-                                             Visibility="{Binding Path=ItemsSource.Count, ElementName=RecentItemsList, Converter={StaticResource IntToVisibilityConverter}, ConverterParameter=false}">
+                            <local:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                                         DataContext="{Binding DummyFolder}"
+                                                         TapCommand="{Binding Main.NavigateToPage, Source={StaticResource Locator}}"
+                                                         CommandParameter="{Binding}"
+                                                         Visibility="{Binding Path=ItemsSource.Count, ElementName=RecentItemsList, Converter={StaticResource IntToVisibilityConverter}, ConverterParameter=false}">
                                 <TextBlock Text="{Binding LocalizedResources.More, Source={StaticResource LocalizedStrings}}"
                                            Style="{StaticResource PhoneTextLargeStyle}" />
-                            </HyperlinkButton>
+                            </local:CustomHyperlinkButton>
                         </phone:LongListSelector.ListFooter>
                     </phone:LongListSelector>
                 </Grid>
             </phone:PanoramaItem>
 
-            <phone:PanoramaItem Header="{Binding LocalizedResources.Favourites, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringCaseConverter}}">
+            <phone:PanoramaItem Header="{Binding LocalizedResources.Favourites, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
                 <phone:LongListSelector ItemsSource="{Binding FavouriteItems}"
                                         ItemTemplate="{StaticResource FullTileItemStyle}"
                                         x:Name="FavouriteItemsList"

@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Windows;
 using System.Windows.Navigation;
+using MediaBrowser.WindowsPhone.Resources;
 using MediaBrowser.WindowsPhone.Services;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Tasks;
@@ -20,7 +21,7 @@ namespace MediaBrowser.WindowsPhone.Views
             InitializeComponent();
         }
 
-        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
             string settingPane;
@@ -33,7 +34,7 @@ namespace MediaBrowser.WindowsPhone.Views
                 }
 
                 settingsPivot.SelectedIndex = selectedIndex;
-                var pivotsToRemove = settingsPivot.Items.Cast<PivotItem>().Where(x => x.Header.ToString() != "connection").ToList();
+                var pivotsToRemove = settingsPivot.Items.Cast<PivotItem>().Where(x => x.Header.ToString() != AppResources.LabelConnection).ToList();
                 foreach (var pivot in pivotsToRemove)
                 {
                     settingsPivot.Items.Remove(pivot);
@@ -56,7 +57,8 @@ namespace MediaBrowser.WindowsPhone.Views
         {
             if (e.NavigationMode == NavigationMode.Back)
             {
-                TileService.Current.UpdatePrimaryTile(App.SpecificSettings.DisplayBackdropOnTile, App.SpecificSettings.UseRichWideTile).ConfigureAwait(false);
+                TileService.Current.SetSecondaryTileTransparency(App.SpecificSettings.UseTransparentTile);
+                TileService.Current.UpdatePrimaryTile(App.SpecificSettings.DisplayBackdropOnTile, App.SpecificSettings.UseRichWideTile, App.SpecificSettings.UseTransparentTile).ConfigureAwait(false);
             }
 
             base.OnNavigatedFrom(e);

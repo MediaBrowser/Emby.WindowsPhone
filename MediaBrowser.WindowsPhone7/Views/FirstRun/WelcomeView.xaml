@@ -64,13 +64,13 @@
               Margin="12,68,12,0">
             <TextBlock Style="{StaticResource PhoneTextTitle3Style}"
                        TextWrapping="Wrap"
-                       Text="Welcome to Media Browser for Windows Phone. This app will allow you to browse your media collection and remotely control any of the controllable Media Browser clients." />
+                       Text="{Binding LocalizedResources.LabelWelcomeTextPhone7, Source={StaticResource LocalizedStrings}}" />
         </Grid>
 
         <Grid VerticalAlignment="Bottom"
               HorizontalAlignment="Stretch"
               Background="{StaticResource AppBarBrush}">
-            <Button Content="next"
+            <Button Content="{Binding LocalizedResources.AppBarNext, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                     Width="240"
                     HorizontalAlignment="Right"
                     x:Name="NextButton"

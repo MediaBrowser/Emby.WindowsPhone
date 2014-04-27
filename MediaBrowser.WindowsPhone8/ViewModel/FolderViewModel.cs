@@ -235,26 +235,26 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 }
                 else
                 {
-                    if (SelectedFolder.Name.Contains("recent"))
+                    if (SelectedFolder.Name.Contains(AppResources.LabelRecent.ToLower()))
                     {
                         Log.Info("Getting recent items");
-                        PageTitle = AppResources.Recent.ToLower();
+                        PageTitle = AppResources.LabelRecent.ToLower();
                         query.Filters = new[] {ItemFilter.IsRecentlyAdded};
                         query.Recursive = true;
                         isRecent = true;
                     }
-                    else if (SelectedFolder.Type.StartsWith("Genre"))
+                    else if (SelectedFolder.Type.StartsWith(AppResources.Genre))
                     {
                         Log.Info("Getting items for genre [{0}]", SelectedFolder.Name);
                         PageTitle = SelectedFolder.Name.ToLower();
                         query.Genres = new[] {SelectedFolder.Name};
                         query.Recursive = true;
 
-                        if (SelectedFolder.Type.Contains(" - TV"))
+                        if (SelectedFolder.Type.Contains(" - " + AppResources.LabelTv.ToUpper()))
                         {
                             query.IncludeItemTypes = new[] {"Series"};
                         }
-                        else if (SelectedFolder.Type.Contains(" - Movies"))
+                        else if (SelectedFolder.Type.Contains(" - " + AppResources.LabelMovies.ToUpper()))
                         {
                             query.ExcludeItemTypes = new[] { "Series" };
                             query.IncludeItemTypes = new[] {"Movie", "Trailer"};
@@ -423,7 +423,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 return true;
             }
-            dtoBaseItem.Genres = new List<string> {"none"};
+            dtoBaseItem.Genres = new List<string> {AppResources.LabelNone};
             return true;
         }
 

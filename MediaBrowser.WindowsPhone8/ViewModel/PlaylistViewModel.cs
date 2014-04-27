@@ -11,6 +11,8 @@ using GalaSoft.MvvmLight.Messaging;
 using JetBrains.Annotations;
 using MediaBrowser.Model;
 using MediaBrowser.WindowsPhone.AudioAgent;
+using MediaBrowser.WindowsPhone.Model;
+using MediaBrowser.WindowsPhone.Resources;
 using Microsoft.Phone.BackgroundAudio;
 using ScottIsAFool.WindowsPhone.ViewModel;
 using INavigationService = MediaBrowser.WindowsPhone.Model.INavigationService;
@@ -37,7 +39,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public PlaylistViewModel(INavigationService navigationService, IStorageService storageService)
         {
             _navigationService = navigationService;
-            _playlistChecker = new DispatcherTimer {Interval = new TimeSpan(0, 0, 3)};
+            _playlistChecker = new DispatcherTimer { Interval = new TimeSpan(0, 0, 3) };
             _playlistChecker.Tick += PlaylistCheckerOnTick;
 
             Playlist = new ObservableCollection<PlaylistItem>();
@@ -56,6 +58,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 _playlistHelper = new PlaylistHelper(storageService);
                 BackgroundAudioPlayer.Instance.PlayStateChanged += OnPlayStateChanged;
+                GetPlaylistItems();
+                IsPlaying = BackgroundAudioPlayer.Instance.PlayerState == PlayState.Playing;
             }
         }
 
@@ -65,10 +69,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             get
             {
-                return Playlist.Where(x => !x.IsPlaying)
-                               .OrderBy(x => x.Id)
-                               .Take(3)
-                               .ToList();
+                return NowPlayingItem == null
+                    ? null 
+                    : Playlist.Where(x => !x.IsPlaying && x.Id > NowPlayingItem.Id)
+                              .OrderBy(x => x.Id)
+                              .Take(3)
+                              .ToList();
             }
         }
 
@@ -109,7 +115,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 return new RelayCommand(() =>
                 {
-                    var result = MessageBox.Show("Are you sure you want to clear your playlist?", "Are you sure?", MessageBoxButton.OKCancel);
+                    var result = MessageBox.Show(AppResources.MessageClearPlayList, AppResources.MessageAreYouSureTitle, MessageBoxButton.OKCancel);
 
                     if (result == MessageBoxResult.OK)
                     {
@@ -153,7 +159,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 return new RelayCommand(() =>
                 {
-                    var result = MessageBox.Show("Are you sure you wish to delete these items? This cannot be undone.", "Are you sure?", MessageBoxButton.OKCancel);
+                    var result = MessageBox.Show(AppResources.MessageDeletePlaylistItems, AppResources.MessageAreYouSureTitle, MessageBoxButton.OKCancel);
                     if (result == MessageBoxResult.OK)
                     {
                         _playlistHelper.RemoveFromPlaylist(SelectedItems);
@@ -201,7 +207,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
         private void OnPlayStateChanged(object sender, EventArgs e)
         {
-            IsPlaying = BackgroundAudioPlayer.Instance.PlayerState == PlayState.Playing;
+            try
+            {
+                IsPlaying = BackgroundAudioPlayer.Instance.PlayerState == PlayState.Playing;
+            }
+            catch (Exception ex)
+            {
+                Log.ErrorException("OnPlayStateChanged()", ex);
+            }
         }
 
         public override void WireMessages()
@@ -221,7 +234,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                     _playlistHelper.AddToPlaylist(m.Content);
 
-                    _navigationService.NavigateTo("/Views/NowPlayingView.xaml");
+                    _navigationService.NavigateTo(Constants.Pages.NowPlayingView);
 
                     if (BackgroundAudioPlayer.Instance.PlayerState != PlayState.Playing)
                     {

@@ -16,6 +16,15 @@ namespace MediaBrowser.WindowsPhone.Controls
             this.DefaultStyleKey = typeof(ScrollableTextBlock);
         }
 
+        public static readonly DependencyProperty HeaderProperty = DependencyProperty.Register(
+            "Header", typeof (object), typeof (ScrollableTextBlock), new PropertyMetadata(default(object)));
+
+        public object Header
+        {
+            get { return (object) GetValue(HeaderProperty); }
+            set { SetValue(HeaderProperty, value); }
+        }
+
         public static readonly DependencyProperty TextProperty =
             DependencyProperty.Register(
                 "Text",

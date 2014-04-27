@@ -4,7 +4,11 @@
                     xmlns:converter="clr-namespace:MediaBrowser.WindowsPhone.Converters"
                     xmlns:controls="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
                     xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
-                    xmlns:converters="clr-namespace:ScottIsAFool.WindowsPhone.Converters;assembly=ScottIsAFool.WindowsPhone">
+                    xmlns:converters="clr-namespace:ScottIsAFool.WindowsPhone.Converters;assembly=ScottIsAFool.WindowsPhone"
+                    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib"
+                    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+                    xmlns:model="clr-namespace:MediaBrowser.WindowsPhone.Model">
 
     <!-- Converters -->
     <converter:LoggedInDateConverter x:Key="LoggedInDateConverter" />
@@ -74,8 +78,21 @@
                                   BorderBrush="{TemplateBinding BorderBrush}"
                                   BorderThickness="{TemplateBinding BorderThickness}"
                                   Padding="{TemplateBinding Padding}">
-                        <StackPanel Orientation="Vertical"
-                                    x:Name="StackPanel" />
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+
+                            <ContentControl Content="{TemplateBinding Header}"
+                                            VerticalAlignment="Top"
+                                            HorizontalAlignment="Left" />
+
+                            <StackPanel Orientation="Vertical"
+                                        x:Name="StackPanel"
+                                        Grid.Row="1" />
+                        </Grid>
+
                     </ScrollViewer>
                 </ControlTemplate>
             </Setter.Value>
@@ -246,19 +263,18 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:PlayButton">
-                    <Viewbox Stretch="Uniform"
-                             Height="{TemplateBinding Height}"
-                             Width="{TemplateBinding Height}">
-                        <Grid>
-                            <Ellipse Height="{TemplateBinding Height}"
-                                     Width="{TemplateBinding Height}"
+                    <Viewbox Stretch="Uniform">
+                        <Grid Height="130"
+                              Width="130">
+                            <Ellipse Height="130"
+                                     Width="130"
                                      Fill="#83000000"
                                      HorizontalAlignment="Center"
                                      VerticalAlignment="Center"
                                      x:Name="Background" />
                             <Path Data="F1 M 38,0.791664C 58.5496,0.791664 75.2083,17.4504 75.2083,38C 75.2083,58.5496 58.5496,75.2083 38,75.2083C 17.4504,75.2083 0.791662,58.5496 0.791662,38C 0.791662,17.4504 17.4504,0.791664 38,0.791664 Z M 38,5.54166C 20.0738,5.54166 5.54167,20.0738 5.54167,38C 5.54167,55.9262 20.0738,70.4583 38,70.4583C 55.9262,70.4583 70.4583,55.9262 70.4583,38C 70.4583,20.0738 55.9262,5.54166 38,5.54166 Z "
-                                  Height="{TemplateBinding Height}"
-                                  Width="{TemplateBinding Height}"
+                                  Height="130"
+                                  Width="130"
                                   Fill="White"
                                   x:Name="BaseCircle"
                                   HorizontalAlignment="Center"
@@ -279,6 +295,256 @@
                                   UseLayoutRounding="False" />
                         </Grid>
                     </Viewbox>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="local:ScheduledRecording">
+        <Setter Property="Background"
+                Value="Transparent" />
+        <Setter Property="Foreground"
+                Value="Red" />
+        <Setter Property="HorizontalContentAlignment"
+                Value="Left" />
+        <Setter Property="ProgrammeVisibility"
+                Value="Collapsed" />
+        <Setter Property="SeriesVisibility"
+                Value="Collapsed" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:ScheduledRecording">
+                    <Viewbox Stretch="Uniform"
+                             HorizontalAlignment="Left">
+                        <Grid>
+                            <Grid Background="{TemplateBinding Background}"
+                                  Margin="0"
+                                  Visibility="{TemplateBinding SeriesVisibility}">
+                                <Ellipse Fill="{TemplateBinding Foreground}"
+                                         Height="30"
+                                         Width="30"
+                                         Opacity="0.4"
+                                         Margin="20,0,0,0"
+                                         HorizontalAlignment="Left" />
+                                <Ellipse Fill="{TemplateBinding Foreground}"
+                                         Height="30"
+                                         Width="30"
+                                         Opacity="0.7"
+                                         HorizontalAlignment="Left"
+                                         Margin="10,0,0,0" />
+                                <Ellipse Fill="{TemplateBinding Foreground}"
+                                         Height="30"
+                                         HorizontalAlignment="Left"
+                                         Width="30"
+                                         Margin="0" />
+                            </Grid>
+
+                            <Ellipse Fill="{TemplateBinding Foreground}"
+                                     Height="30"
+                                     Width="30"
+                                     HorizontalAlignment="Center"
+                                     VerticalAlignment="Center"
+                                     Visibility="{TemplateBinding ProgrammeVisibility}" />
+                        </Grid>
+                    </Viewbox>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="local:CustomMessageBox">
+        <Setter Property="VerticalAlignment"
+                Value="Top" />
+        <Setter Property="HorizontalContentAlignment"
+                Value="Left" />
+        <Setter Property="VerticalContentAlignment"
+                Value="Top" />
+        <Setter Property="FontFamily"
+                Value="{StaticResource PhoneFontFamilyNormal}" />
+        <Setter Property="FontSize"
+                Value="{StaticResource PhoneFontSizeNormal}" />
+        <Setter Property="Foreground"
+                Value="{StaticResource PhoneForegroundBrush}" />
+        <Setter Property="Background"
+                Value="{StaticResource PhoneChromeBrush}" />
+        <Setter Property="Margin"
+                Value="0" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:CustomMessageBox">
+                    <Border BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid Background="{TemplateBinding Background}"
+                              HorizontalAlignment="Stretch"
+                              toolkit:TiltEffect.IsTiltEnabled="True">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="OrientationStates">
+                                    <VisualState x:Name="PortraitUp" />
+                                    <VisualState x:Name="LandscapeLeft">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MainGrid"
+                                                                           Storyboard.TargetProperty="Margin">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="72,0,0,0" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="LandscapeRight">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MainGrid"
+                                                                           Storyboard.TargetProperty="Margin">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="0,0,72,0" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Grid x:Name="MainGrid"
+                                  Width="480"
+                                  HorizontalAlignment="Left">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Grid.ColumnSpan="2"
+                                            Margin="0,32,0,0">
+                                    <TextBlock x:Name="TitleTextBlock"
+                                               Text="{TemplateBinding Title}"
+                                               Foreground="{TemplateBinding Foreground}"
+                                               Visibility="Collapsed"
+                                               Margin="24,13,24,-10"
+                                               FontFamily="{StaticResource PhoneFontFamilySemiBold}"
+                                               FontSize="{StaticResource PhoneFontSizeMedium}" />
+                                    <TextBlock x:Name="CaptionTextBlock"
+                                               Text="{TemplateBinding Caption}"
+                                               Foreground="{TemplateBinding Foreground}"
+                                               Visibility="Collapsed"
+                                               Margin="24,12,24,12"
+                                               FontSize="{StaticResource PhoneFontSizeLarge}"
+                                               FontFamily="{StaticResource PhoneFontFamilySemiBold}"
+                                               LineHeight="40"
+                                               LineStackingStrategy="BlockLineHeight"
+                                               TextWrapping="Wrap"
+                                               HorizontalAlignment="Left" />
+                                    <TextBlock x:Name="MessageTextBlock"
+                                               Text="{TemplateBinding Message}"
+                                               Foreground="{TemplateBinding Foreground}"
+                                               Margin="24,15,24,31"
+                                               Visibility="Collapsed"
+                                               FontSize="{StaticResource PhoneFontSizeMedium}"
+                                               FontFamily="{StaticResource PhoneFontFamilyNormal}"
+                                               LineHeight="26.667"
+                                               LineStackingStrategy="BlockLineHeight"
+                                               TextWrapping="Wrap"
+                                               HorizontalAlignment="Left" />
+                                    <ContentPresenter Margin="12,0,0,0" />
+                                </StackPanel>
+                                <Button x:Name="LeftButton"
+                                        Grid.Row="1"
+                                        Grid.Column="0"
+                                        Content="{TemplateBinding LeftButtonContent}"
+                                        IsEnabled="{TemplateBinding IsLeftButtonEnabled}"
+                                        Foreground="{TemplateBinding Foreground}"
+                                        BorderBrush="{TemplateBinding Foreground}"
+                                        Margin="12,0,0,12"
+                                        Visibility="Collapsed" />
+                                <Button x:Name="RightButton"
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        Content="{TemplateBinding RightButtonContent}"
+                                        IsEnabled="{TemplateBinding IsRightButtonEnabled}"
+                                        Foreground="{TemplateBinding Foreground}"
+                                        BorderBrush="{TemplateBinding Foreground}"
+                                        Margin="0,0,12,12"
+                                        Visibility="Collapsed" />
+                            </Grid>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="local:NowPlayingBar">
+        <Setter Property="Height"
+                Value="75" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:NowPlayingBar">
+                    <Grid HorizontalAlignment="Stretch"
+                          VerticalAlignment="Stretch"
+                          Width="480"
+                          Background="{StaticResource MediaBrowserBackground}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="75" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="75" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.Resources>
+                            <system:String x:Key="MusicCase">./Images/DefaultAlbumCase.png</system:String>
+                        </Grid.Resources>
+
+                        <controls:SuperImage Tag="{TemplateBinding ImageUrl}"
+                                             Source="{Binding Tag, RelativeSource={RelativeSource Self}}"
+                                             PlaceholderImageSource="{Binding Source={StaticResource MusicCase}}"
+                                             Height="75"
+                                             Width="75"
+                                             Margin="0"
+                                             Stretch="Uniform"
+                                             PlaceholderImageStretch="UniformToFill"
+                                             HorizontalAlignment="Left"
+                                             VerticalAlignment="Top"
+                                             Grid.Column="0" />
+
+                        <StackPanel Orientation="Vertical"
+                                    Grid.Column="1">
+                            <TextBlock Tag="{TemplateBinding TrackName}"
+                                       Text="{Binding Tag, RelativeSource={RelativeSource Self}, FallbackValue='Song 2'}"
+                                       Style="{StaticResource PhoneTextTitle2Style}" />
+                            <TextBlock Tag="{TemplateBinding Artist}"
+                                       Text="{Binding Tag, RelativeSource={RelativeSource Self}, FallbackValue='Blur'}"
+                                       Style="{StaticResource PhoneTextSubtleStyle}" />
+                        </StackPanel>
+
+                        <local:CustomButton Grid.Column="2"
+                                            controls:TiltEffect.IsTiltEnabled="True"
+                                            Style="{StaticResource EmptyButtonStyle}"
+                                            TapCommand="{Binding Playlist.PlayPauseCommand, Source={StaticResource Locator}}"
+                                            Height="75"
+                                            Width="75"
+                                            Margin="0">
+                            <Grid>
+                                <Path Width="30"
+                                      Height="30"
+                                      Fill="White"
+                                      Data="F1 M 26.9167,23.75L 33.25,23.75L 33.25,52.25L 26.9167,52.25L 26.9167,23.75 Z M 42.75,23.75L 49.0833,23.75L 49.0833,52.25L 42.75,52.25L 42.75,23.75 Z "
+                                      Margin="0"
+                                      Stretch="Uniform"
+                                      HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"
+                                      Tag="{TemplateBinding IsPlaying}"
+                                      x:Name="PausePath"
+                                      Visibility="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource VisibilityConverter}}" />
+
+                                <Path Width="30"
+                                      Height="30"
+                                      Fill="White"
+                                      Data="F1 M 30.0833,22.1667L 50.6665,37.6043L 50.6665,38.7918L 30.0833,53.8333L 30.0833,22.1667 Z "
+                                      Margin="0"
+                                      Stretch="Uniform"
+                                      HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"
+                                      Tag="{TemplateBinding IsPlaying}"
+                                      x:Name="PlayPath"
+                                      Visibility="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource InvertedVisibilityConverter}}" />
+                            </Grid>
+                        </local:CustomButton>
+                    </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

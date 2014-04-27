@@ -14,6 +14,7 @@
                 xmlns:scott="clr-namespace:ScottIsAFool.WindowsPhone.Controls;assembly=ScottIsAFool.WindowsPhone"
                 xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
                 xmlns:cimbalino="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
+                xmlns:local="clr-namespace:MediaBrowser.WindowsPhone.Controls"
                 mc:Ignorable="d ignore"
                 FontFamily="{StaticResource PhoneFontFamilyNormal}"
                 FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -35,7 +36,7 @@
         <cimbalino:ApplicationBarBehavior Mode="Minimized"
                                           IsMenuEnabled="True">
             <cimbalino:ApplicationBarBehavior.MenuItems>
-                <cimbalino:ApplicationBarMenuItem Text="play all tracks"
+                <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarPlayAllTracks, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                   Command="{Binding PlayAllItemsCommand}" />
                 <cimbalino:ApplicationBarMenuItem Text="{Binding SelectedArtist.UserData.IsFavorite, Converter={StaticResource FavouritesConverter}, ConverterParameter=fulltext}"
                                                   Command="{Binding AddRemoveFavouriteCommand}"
@@ -80,16 +81,15 @@
                   Grid.Row="1">
                 <controls:Pivot Title="{Binding SelectedArtist.Name, Converter={StaticResource StringCaseConverter}, ConverterParameter=false}"
                                 x:Name="MainPivot">
-                    <controls:PivotItem Header="albums">
+                    <controls:PivotItem Header="{Binding LocalizedResources.LabelAlbums, Source={StaticResource LocalizedStrings}}">
                         <scott:PhoneListBox ItemsSource="{Binding Albums}">
                             <scott:PhoneListBox.ItemTemplate>
                                 <DataTemplate>
-                                    <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                                     HorizontalContentAlignment="Left"
-                                                     VerticalContentAlignment="Top"
-                                                     NavigateUri="/Views/AlbumView.xaml"
-                                                     Command="{Binding Music.AlbumTapped, Source={StaticResource Locator}}"
-                                                     CommandParameter="{Binding}">
+                                    <local:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                                                     VerticalContentAlignment="Top"
+                                                                     NavigateUri="/Views/AlbumView.xaml"
+                                                                     TapCommand="{Binding Music.AlbumTapped, Source={StaticResource Locator}}"
+                                                                     CommandParameter="{Binding}">
                                         <StackPanel Orientation="Horizontal"
                                                     Margin="12,0,0,12">
                                             <Grid Width="150"
@@ -118,13 +118,13 @@
                                                        LineHeight="2"
                                                        TextTrimming="WordEllipsis" />
                                         </StackPanel>
-                                    </HyperlinkButton>
+                                    </local:CustomHyperlinkButton>
                                 </DataTemplate>
                             </scott:PhoneListBox.ItemTemplate>
                         </scott:PhoneListBox>
                     </controls:PivotItem>
 
-                    <controls:PivotItem Header="songs">
+                    <controls:PivotItem Header="{Binding LocalizedResources.LabelSongs, Source={StaticResource LocalizedStrings}}">
                         <toolkit:LongListSelector ItemsSource="{Binding SortedTracks}"
                                                   GroupItemTemplate="{StaticResource LLSGroupItemTemplate}"
                                                   GroupHeaderTemplate="{StaticResource LLSGroupHeaderTemplateName}"
@@ -149,7 +149,7 @@
                         </toolkit:LongListSelector>
                     </controls:PivotItem>
 
-                    <controls:PivotItem Header="bio">
+                    <controls:PivotItem Header="{Binding LocalizedResources.LabelBio, Source={StaticResource LocalizedStrings}}">
                         <TextBlock Text="{Binding SelectedArtist.Overview}"
                                    Style="{StaticResource PhoneTextNormalStyle}"
                                    TextWrapping="Wrap" />

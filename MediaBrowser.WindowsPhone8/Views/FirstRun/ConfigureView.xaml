@@ -67,37 +67,37 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <StackPanel Orientation="Vertical">
-                <TextBlock Text="Before we can get started though, you need to make sure you're running the Media Browser server."
+                <TextBlock Text="{Binding LocalizedResources.LabelFirstRunServerInfo, Source={StaticResource LocalizedStrings}}"
                            Style="{StaticResource PhoneTextTitle3Style}"
                            TextWrapping="Wrap" />
                 <HyperlinkButton Content="http://mediabrowser3.com/download"
                                  HorizontalContentAlignment="Left"
                                  x:Name="DownloadButton"
-                                 Click="DownloadButton_OnClick"/>
+                                 Click="DownloadButton_OnClick" />
             </StackPanel>
 
-            <TextBlock Text="Once the Media Browser server is configured, make sure it's accessible from where you are, whether that's being on your local wireless network, or an external static address."
+            <TextBlock Text="{Binding LocalizedResources.LabelFirstRunAccessible, Source={StaticResource LocalizedStrings}}"
                        Style="{StaticResource PhoneTextTitle3Style}"
                        TextWrapping="Wrap"
                        Grid.Row="1"
                        Margin="12,24" />
-            
+
             <TextBlock Grid.Row="2"
                        Style="{StaticResource PhoneTextTitle3Style}"
-                       Text="If you're happy with what you've configured, click the settings button and enter your server's details, else you can just quit the app from here."
-                       TextWrapping="Wrap"/>
+                       Text="{Binding LocalizedResources.LabelFirstRunHappyConfiguration, Source={StaticResource LocalizedStrings}}"
+                       TextWrapping="Wrap" />
         </Grid>
 
         <Grid VerticalAlignment="Bottom"
               HorizontalAlignment="Stretch"
               Background="{StaticResource AppBarBrush}"
               Grid.RowSpan="2">
-            <Button Content="quit"
+            <Button Content="{Binding LocalizedResources.LabelQuit, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                     HorizontalAlignment="Left"
                     Width="240"
                     x:Name="QuitButton"
                     Click="QuitButton_OnClick" />
-            <Button Content="settings"
+            <Button Content="{Binding LocalizedResources.Settings, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                     Width="240"
                     HorizontalAlignment="Right"
                     x:Name="SettingsButton"

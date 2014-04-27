@@ -26,8 +26,8 @@
                 DataContext="{Binding Search, Source={StaticResource Locator}}">
     <i:Interaction.Behaviors>
         <behaviours1:MBSysTray Text="{Binding ProgressText}"
-                              IsVisible="{Binding ProgressIsVisible}"
-                              IsIndeterminate="{Binding ProgressIsVisible}" />
+                               IsVisible="{Binding ProgressIsVisible}"
+                               IsIndeterminate="{Binding ProgressIsVisible}" />
     </i:Interaction.Behaviors>
 
     <scott:BasePage.Resources>
@@ -75,7 +75,7 @@
                     Margin="12,17,0,28">
             <mb:MediaBrowserLogo />
             <TextBlock x:Name="PageTitle"
-                       Text="search"
+                       Text="{Binding LocalizedResources.LabelSearch, Source={StaticResource LocalizedStrings}}"
                        Margin="9,-7,0,0"
                        Style="{StaticResource PhoneTextTitle1Style}" />
         </StackPanel>
@@ -110,11 +110,10 @@
                                     HideEmptyGroups="True">
                 <phone:LongListSelector.ItemTemplate>
                     <DataTemplate>
-                        <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                         HorizontalContentAlignment="Left"
-                                         VerticalContentAlignment="Top"
-                                         Command="{Binding Search.SearchItemTappedCommand, Source={StaticResource Locator}}"
-                                         CommandParameter="{Binding}">
+                        <mb:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                                  VerticalContentAlignment="Top"
+                                                  TapCommand="{Binding Search.SearchItemTappedCommand, Source={StaticResource Locator}}"
+                                                  CommandParameter="{Binding}">
                             <StackPanel Orientation="Horizontal"
                                         Margin="12,6,0,6">
                                 <Image Source="{Binding Converter={StaticResource ImageUrlConverter}}"
@@ -128,7 +127,7 @@
                                                           DetailTextStyle="{StaticResource PhoneTextSubtleStyle}"
                                                           MaxWidth="342" />
                             </StackPanel>
-                        </HyperlinkButton>
+                        </mb:CustomHyperlinkButton>
                     </DataTemplate>
                 </phone:LongListSelector.ItemTemplate>
             </phone:LongListSelector>

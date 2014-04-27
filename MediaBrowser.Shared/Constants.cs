@@ -52,7 +52,6 @@
             public const string TvEpisodeSelectedMsg = "TvEpisodeSelectedMsg";
             public const string TvSeasonSelectedMsg = "TvSeasonSelectedMsg";
             public const string ClearEverythingMsg = "ClearEverythingMsg";
-            public const string PlayVideoItemMsg = "PlayVideoItemMsg";
             public const string VideoPlayerLoadedMsg = "VideoPlayerLoadedMsg";
             public const string SendVideoTimeToServerMsg = "SendVideoTimeToServerMsg";
             public const string PlayTrailerMsg = "PlayTrailerMsg";
@@ -81,6 +80,15 @@
             public const string GenericItemChangedMsg = "GenericItemChangedMsg";
             public const string VideoStateChangedMsg = "VideoStateChangedMsg";
             public const string SetResumeMsg = "SetResumeMsg";
+            public const string ChangeChannelMsg = "ChangeChannelMsg";
+            public const string ScheduledSeriesChangedMsg = "ScheduledSeriesChangedMsg";
+            public const string ScheduledSeriesCancelChangesMsg = "ScheduledSeriesCancelChangesMsg";
+            public const string ScheduledRecordingChangedMsg = "ScheduledRecordingChangedMsg";
+            public const string ShowAllProgrammesMsg = "ShowAllProgrammesMsg";
+            public const string ProgrammeItemChangedMsg = "ProgrammeItemChangedMsg";
+            public const string LiveTvSeriesDeletedMsg = "LiveTvSeriesDeletedMsg";
+            public const string NewSeriesRecordingAddedMsg = "NewSeriesRecordingAddedMsg";
+            public const string ChangeRecordingGroupingMsg = "ChangeRecordingGroupingMsg";
         }
 
         public class Pages
@@ -105,10 +113,25 @@
             public const string NowPlayingView = ViewsPath + "NowPlayingView.xaml";
             public const string FullPlaylistView = ViewsPath + "FullPlaylistView.xaml";
             public const string SearchView = ViewsPath + "SearchView.xaml";
-            public const string VideoPlayerView = ViewsPath + "VideoPlayerView.xaml";
+            public const string VideoPlayerView = ViewsPath + "VideoPlayerView.xaml?id={0}&type={1}";
             public const string ActorView = ViewsPath + "ActorView.xaml";
             public const string GenericItemView = ViewsPath + "GenericItemView.xaml";
             public const string MainPage = ViewsPath + "MainPage.xaml";
+
+            public class LiveTv
+            {
+                private const string LiveTvPath = ViewsPath + "LiveTv/";
+                public const string ChannelsView = LiveTvPath + "ChannelsView.xaml";
+                public const string GuideView = LiveTvPath + "GuideView.xaml";
+                public const string ScheduleView = LiveTvPath + "ScheduleView.xaml";
+                public const string LiveTvView = LiveTvPath + "LiveTvView.xaml";
+                public const string ScheduledSeriesView = LiveTvPath + "ScheduledSeriesView.xaml";
+                public const string ScheduledRecordingView = LiveTvPath + "ScheduledRecordingView.xaml";
+                public const string ProgrammeView = LiveTvPath + "ProgrammeView.xaml";
+                public const string AllProgrammesView = LiveTvPath + "AllProgrammesView.xaml";
+                public const string RecordedTvView = LiveTvPath + "RecordedTvView.xaml";
+                public const string RecordingView = LiveTvPath + "RecordingView.xaml";
+            }
 
             public class Remote
             {

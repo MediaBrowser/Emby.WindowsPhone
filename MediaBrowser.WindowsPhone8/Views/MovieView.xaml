@@ -14,7 +14,6 @@
                 xmlns:c4F="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
                 xmlns:telerikInput="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Input"
                 xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
-                xmlns:system="clr-namespace:System;assembly=mscorlib"
                 mc:Ignorable="d"
                 d:DesignWidth="480"
                 d:DesignHeight="696"
@@ -33,21 +32,23 @@
         <behaviours:MBSysTray Text="{Binding ProgressText}"
                               IsVisible="{Binding ProgressIsVisible}"
                               IsIndeterminate="{Binding ProgressIsVisible}" />
-        <cimbalino:ApplicationBarBehavior Mode="Minimized"
+        <cimbalino:ApplicationBarBehavior Mode="Default"
                                           IsMenuEnabled="True">
             <cimbalino:ApplicationBarIconButton Text="{Binding SelectedMovie.UserData.IsFavorite, Converter={StaticResource FavouritesConverter}, ConverterParameter=text}"
                                                 IconUri="{Binding SelectedMovie.UserData.IsFavorite, Converter={StaticResource FavouritesConverter}, ConverterParameter=icon}"
                                                 Command="{Binding AddRemoveFavouriteCommand}" />
+            <cimbalino:ApplicationBarIconButton Text="{Binding LocalizedResources.AppBarPlayOn, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                IconUri="/Icons/appbar.connection.playon.png"
+                                                Command="{Binding Remote.SendPlayCommand, Source={StaticResource Locator}}"
+                                                CommandParameter="{Binding SelectedMovie.Id}" />
             <cimbalino:ApplicationBarBehavior.MenuItems>
-                <cimbalino:ApplicationBarMenuItem Text="resume"
+                <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarResume, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                   IsEnabled="{Binding SelectedMovie.CanResume}"
                                                   Command="{Binding Main.ResumeMovieCommand, Source={StaticResource Locator}}"
                                                   CommandParameter="{Binding SelectedMovie}" />
-                <cimbalino:ApplicationBarMenuItem Text="set poster as lock screen"
+                <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarPosterLockscreen, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                   Command="{Binding SetPosterAsLockScreenCommand}" />
-                <cimbalino:ApplicationBarMenuItem Text="play on..."
-                                                  Command="{Binding Remote.SendPlayCommand, Source={StaticResource Locator}}"
-                                                  CommandParameter="{Binding SelectedMovie.Id}" />
+
             </cimbalino:ApplicationBarBehavior.MenuItems>
         </cimbalino:ApplicationBarBehavior>
     </i:Interaction.Behaviors>
@@ -86,17 +87,18 @@
                         HeaderTemplate="{StaticResource LikeWp7ItemHeaderTemplate}"
                         TitleTemplate="{StaticResource LikeWp7TitleTemplate}">
             <i:Interaction.Behaviors>
-                <behaviours:PanoramaBackgroundBehaviour Source="{Binding SelectedMovie, Converter={StaticResource ImageUrlConverter}, ConverterParameter=backdrop}"
-                                                        Stretch="UniformToFill"
-                                                        Opacity="0.2" />
+                <behaviours:ControlBackgroundBehaviour Source="{Binding SelectedMovie, Converter={StaticResource ImageUrlConverter}, ConverterParameter=backdrop}"
+                                                       Stretch="UniformToFill"
+                                                       Opacity="0.2" />
             </i:Interaction.Behaviors>
-            <phone:PanoramaItem Header="poster">
-                <Button Style="{StaticResource EmptyButtonStyle}"
-                        VerticalContentAlignment="Top"
-                        Command="{Binding Main.PlayMovieCommand, Source={StaticResource Locator}}"
-                        CommandParameter="{Binding SelectedMovie}">
-                    <Grid>
-                        <c4F:SuperImage Source="{Binding SelectedMovie, Converter={StaticResource ImageUrlConverter}, ConverterParameter=poster}"
+            <phone:PanoramaItem Header="{Binding LocalizedResources.LabelPoster, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
+                <local:CustomButton Style="{StaticResource EmptyButtonStyle}"
+                                    VerticalContentAlignment="Top"
+                                    IsHitTestVisible="{Binding SelectedMovie, Converter={StaticResource CanStreamConverter}}"
+                                    Command="{Binding Main.PlayMovieCommand, Source={StaticResource Locator}}"
+                                    CommandParameter="{Binding SelectedMovie}">
+                    <Grid HorizontalAlignment="Left">
+                        <c4F:SuperImage Source="{Binding SelectedMovie, ConverterParameter=poster, Converter={StaticResource ImageUrlConverter}}"
                                         PlaceholderImageSource="/Images/DefaultVideo.png"
                                         PlaceholderImageStretch="Uniform"
                                         Height="450"
@@ -104,57 +106,62 @@
                                         HorizontalAlignment="Left"
                                         VerticalAlignment="Top"
                                         Margin="12,0,0,0" />
-                        <local:PlayButton/>
+                        <local:PlayButton Visibility="{Binding SelectedMovie, Converter={StaticResource CanStreamVisibilityConverter}}" />
                     </Grid>
-                </Button>
+                </local:CustomButton>
             </phone:PanoramaItem>
 
-            <phone:PanoramaItem Header="overview">
+            <phone:PanoramaItem Header="{Binding LocalizedResources.LabelOverview, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
                 <Grid>
                     <local:ScrollableTextBlock Text="{Binding SelectedMovie.Overview}"
                                                Foreground="{StaticResource PhoneForegroundBrush}"
-                                               Padding="12,6,6,12" />
+                                               Padding="12,6,6,12">
+                        <local:ScrollableTextBlock.Header>
+                            <StackPanel Orientation="Vertical"
+                                        Margin="-12,0,0,12">
+                                <TextBlock Style="{StaticResource PhoneTextNormalStyle}">
+                                    <Run Text="{Binding LocalizedResources.LabelReleasedIn, Source={StaticResource LocalizedStrings}}" />
+                                    <Run Text="{Binding SelectedMovie.ProductionYear}" />
+                                </TextBlock>
+
+                                <telerikInput:RadRating Value="{Binding SelectedMovie.CommunityRating, Converter={StaticResource RatingConverter}}"
+                                                        IsReadOnly="True"
+                                                        ItemShapeHeight="20"
+                                                        Margin="12"
+                                                        ItemShapeWidth="20" />
+                                <StackPanel Orientation="Horizontal"
+                                            Visibility="{Binding SelectedMovie.CriticRating, Converter={StaticResource NullVisibilityConverter}}"
+                                            Margin="12,0">
+                                    <Image Source="{Binding SelectedMovie.CriticRating, Converter={StaticResource CriticRatingConverter}}"
+                                           Height="25"
+                                           Width="25"
+                                           Stretch="UniformToFill" />
+                                    <TextBlock Text="{Binding SelectedMovie.CriticRating, StringFormat='\{0\}%'}"
+                                               Style="{StaticResource PhoneTextSubtleStyle}"
+                                               Margin="6,0" />
+                                </StackPanel>
+                                <local:CustomHyperlinkButton Content="See film on imdb"
+                                                             NavigateUri="{Binding ImdbId, StringFormat='http://m.imdb.com/title/\{0\}'}"
+                                                             TargetName="_new"
+                                                             HorizontalAlignment="Left"
+                                                             Margin="0,12,0,0" />
+                                <TextBlock Style="{StaticResource PhoneTextNormalStyle}"
+                                           Margin="12,12,0,0">
+                                    <Run Text="{Binding LocalizedResources.LabelRunningTime, Source={StaticResource LocalizedStrings}}" />
+                                    <Run Text="{Binding RunTime}" />
+                                </TextBlock>
+                                <TextBlock Style="{StaticResource PhoneTextNormalStyle}"
+                                           Margin="12,12,0,0">
+                                    <Run Text="{Binding LocalizedResources.LabelRating, Source={StaticResource LocalizedStrings}}" />
+                                    <Run Text="{Binding SelectedMovie.OfficialRating}" />
+                                </TextBlock>
+                            </StackPanel>
+                        </local:ScrollableTextBlock.Header>
+                    </local:ScrollableTextBlock>
                 </Grid>
             </phone:PanoramaItem>
 
-            <phone:PanoramaItem Header="details">
-                <Grid>
-                    <StackPanel Orientation="Vertical">
-                        <TextBlock Text="{Binding SelectedMovie.ProductionYear, StringFormat='Released in \{0\}'}"
-                                   Style="{StaticResource PhoneTextNormalStyle}" />
-
-                        <telerikInput:RadRating Value="{Binding SelectedMovie.CommunityRating, Converter={StaticResource RatingConverter}}"
-                                                IsReadOnly="True"
-                                                ItemShapeHeight="20"
-                                                Margin="12"
-                                                ItemShapeWidth="20" />
-                        <StackPanel Orientation="Horizontal"
-                                    Visibility="{Binding SelectedMovie.CriticRating, Converter={StaticResource NullVisibilityConverter}}"
-                                    Margin="12,0">
-                            <Image Source="{Binding SelectedMovie.CriticRating, Converter={StaticResource CriticRatingConverter}}"
-                                   Height="25"
-                                   Width="25"
-                                   Stretch="UniformToFill" />
-                            <TextBlock Text="{Binding SelectedMovie.CriticRating, StringFormat='\{0\}%'}"
-                                       Style="{StaticResource PhoneTextSubtleStyle}"
-                                       Margin="6,0" />
-                        </StackPanel>
-                        <HyperlinkButton Content="See film on imdb"
-                                         NavigateUri="{Binding ImdbId, StringFormat='http://m.imdb.com/title/\{0\}'}"
-                                         TargetName="_new"
-                                         HorizontalAlignment="Left"
-                                         Margin="0,12,0,0" />
-                        <TextBlock Text="{Binding RunTime, StringFormat='Running time: \{0\}'}"
-                                   Style="{StaticResource PhoneTextNormalStyle}"
-                                   Margin="12,12,0,0" />
-                        <TextBlock Text="{Binding SelectedMovie.OfficialRating, StringFormat='Rating: \{0\}'}"
-                                   Style="{StaticResource PhoneTextNormalStyle}"
-                                   Margin="12,12,0,0" />
-                    </StackPanel>
-                </Grid>
-            </phone:PanoramaItem>
-
-            <phone:PanoramaItem Header="cast + crew">
+            <phone:PanoramaItem Header="{Binding LocalizedResources.LabelCastCrew, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
                 <phone:LongListSelector ItemsSource="{Binding CastAndCrew}"
                                         GroupHeaderTemplate="{StaticResource LLSGroupHeaderTemplateLong}"
                                         JumpListStyle="{StaticResource LLSGroupItemLongStyle}"
@@ -165,11 +172,10 @@
                                         x:Name="LlsCastCrew">
                     <phone:LongListSelector.ItemTemplate>
                         <DataTemplate>
-                            <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                             Margin="12,0,0,12"
-                                             Command="{Binding ElementName=PageRoot, Path=DataContext.ShowOtherFilmsCommand}"
-                                             CommandParameter="{Binding}"
-                                             HorizontalContentAlignment="Left">
+                            <local:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                                         Margin="12,0,0,12"
+                                                         Command="{Binding DataContext.ShowOtherFilmsCommand, ElementName=PageRoot}"
+                                                         CommandParameter="{Binding}">
                                 <StackPanel Orientation="Horizontal">
                                     <c4F:SuperImage Height="99"
                                                     Width="99"
@@ -178,20 +184,48 @@
                                                     Stretch="Uniform"
                                                     PlaceholderImageStretch="Uniform" />
                                     <StackPanel Orientation="Vertical">
-                                        <TextBlock Text="{Binding Name, Converter={StaticResource StringCaseConverter}, ConverterParameter=false}"
+                                        <TextBlock Text="{Binding Name, ConverterParameter=false, Converter={StaticResource StringCaseConverter}}"
                                                    FontWeight="Bold"
                                                    Style="{StaticResource PhoneTextLargeStyle}" />
                                         <TextBlock Text="{Binding Role}"
                                                    Style="{StaticResource PhoneTextNormalStyle}" />
                                     </StackPanel>
                                 </StackPanel>
-                            </HyperlinkButton>
+                            </local:CustomHyperlinkButton>
                         </DataTemplate>
                     </phone:LongListSelector.ItemTemplate>
                 </phone:LongListSelector>
             </phone:PanoramaItem>
 
-            <phone:PanoramaItem Header="chapters">
+            <phone:PanoramaItem Header="{Binding LocalizedResources.LabelTrailers, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
+                <phone:LongListSelector ItemsSource="{Binding Trailers}">
+                    <phone:LongListSelector.ListHeader>
+                        <TextBlock Text="{Binding LocalizedResources.NoItemsFound, Source={StaticResource LocalizedStrings}}"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Top"
+                                   Style="{StaticResource PhoneTextLargeStyle}"
+                                   Visibility="{Binding Trailers.Count, Converter={StaticResource IntToVisibilityConverter}, ConverterParameter=true}" />
+                    </phone:LongListSelector.ListHeader>
+                    <phone:LongListSelector.ItemTemplate>
+                        <DataTemplate>
+                            <local:CustomButton Style="{StaticResource EmptyButtonStyle}"
+                                                VerticalContentAlignment="Top"
+                                                TapCommand="{Binding Main.PlayMovieCommand, Source={StaticResource Locator}}"
+                                                CommandParameter="{Binding}">
+                                <Grid>
+                                    <c4F:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
+                                                    Width="400"
+                                                    Height="200"
+                                                    Stretch="Fill" />
+                                    <local:PlayButton Height="60" />
+                                </Grid>
+                            </local:CustomButton>
+                        </DataTemplate>
+                    </phone:LongListSelector.ItemTemplate>
+                </phone:LongListSelector>
+            </phone:PanoramaItem>
+
+            <phone:PanoramaItem Header="{Binding LocalizedResources.LabelChapters, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
                 <phone:LongListSelector ItemsSource="{Binding Chapters}">
                     <phone:LongListSelector.ItemTemplate>
                         <DataTemplate>
@@ -205,8 +239,8 @@
                                 <c4F:SuperImage Source="{Binding ImageUrl}"
                                                 Stretch="UniformToFill"
                                                 PlaceholderImageSource="/Images/MBBackground.jpg"
-                                                PlaceholderImageStretch="Uniform"/>
-                                    <Border VerticalAlignment="Bottom"
+                                                PlaceholderImageStretch="Uniform" />
+                                <Border VerticalAlignment="Bottom"
                                         Background="#C4000000"
                                         HorizontalAlignment="Stretch">
                                     <Grid>

@@ -12,7 +12,7 @@ namespace MediaBrowser.WindowsPhone.Converters
             var textOrIcon = favouriteType.Contains("text");
             if (value == null)
             {
-                if(textOrIcon)return favouriteType.Contains("full") ? AppResources.AddToFavouritesFull : "add";
+                if(textOrIcon)return favouriteType.Contains("full") ? AppResources.LabelAddToFavourites.ToLower() : AppResources.LabelAdd.ToLower();
                 return new Uri("/Icons/appbar.star.add.png", UriKind.Relative);
             }
             var isFavourite = (bool) value;
@@ -20,10 +20,10 @@ namespace MediaBrowser.WindowsPhone.Converters
             {
                 if (favouriteType.Contains("full"))
                 {
-                    return isFavourite ? AppResources.RemoveFromFavouritesFull : AppResources.AddToFavouritesFull;
+                    return isFavourite ? AppResources.RemoveFromFavouritesFull.ToLower() : AppResources.LabelAddToFavourites.ToLower();
                 }
 
-                return isFavourite ? "remove" : "add";
+                return isFavourite ? AppResources.LabelRemove.ToLower() : AppResources.LabelAdd.ToLower();
             }
             return isFavourite ? new Uri("/Icons/appbar.star.minus.png", UriKind.Relative) : new Uri("/Icons/appbar.star.add.png", UriKind.Relative);
         }

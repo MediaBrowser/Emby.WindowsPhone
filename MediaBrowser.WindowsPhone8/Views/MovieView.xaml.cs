@@ -6,6 +6,7 @@ using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.WindowsPhone.Messaging;
+using MediaBrowser.WindowsPhone.Resources;
 using MediaBrowser.WindowsPhone.ViewModel;
 using MediaBrowser.WindowsPhone.ViewModel.Remote;
 using Microsoft.Phone.Controls;
@@ -73,8 +74,9 @@ namespace MediaBrowser.WindowsPhone.Views
 #if !WP7
             var playFromMenuItem = new MenuItem
             {
-                Header = "play from"
+                Header = AppResources.MenuPlayFrom
             };
+
             playFromMenuItem.Click += (o, args) =>
             {
                 var vm = (DataContext as MovieViewModel);
@@ -83,6 +85,7 @@ namespace MediaBrowser.WindowsPhone.Views
                     if (SimpleIoc.Default.GetInstance<VideoPlayerViewModel>() != null && vm.SelectedMovie.LocationType != LocationType.Virtual)
                     {
                         Messenger.Default.Send(new VideoMessage(vm.SelectedMovie, true, chapterInfo.StartPositionTicks));
+                        NavigationService.Navigate(new Uri(string.Format(Constants.Pages.VideoPlayerView, vm.SelectedMovie.Id, vm.SelectedMovie.Type), UriKind.Relative));
                     }
                 }
             };
@@ -91,7 +94,7 @@ namespace MediaBrowser.WindowsPhone.Views
 
             var playFromOnClientMenuItem = new MenuItem
             {
-                Header = "play from on..."
+                Header = AppResources.MenuPlayFromOn
             };
             playFromOnClientMenuItem.Click += (o, args) =>
             {

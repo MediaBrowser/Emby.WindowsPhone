@@ -59,12 +59,12 @@
         <i:Interaction.Behaviors>
             <cimbalino:MultiApplicationBarBehavior SelectedIndex="{Binding SelectedAppBarIndex}">
                 <cimbalino:ApplicationBar>
-                    <cimbalino:ApplicationBarIconButton Text="select items"
+                    <cimbalino:ApplicationBarIconButton Text="{Binding LocalizedResources.AppBarSelectItems, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                         IconUri="/Icons/appbar.list.check.png"
                                                         Click="ApplicationBarIconButton_OnClick" />
                 </cimbalino:ApplicationBar>
                 <cimbalino:ApplicationBar>
-                    <cimbalino:ApplicationBarIconButton Text="delete items"
+                    <cimbalino:ApplicationBarIconButton Text="{Binding LocalizedResources.AppBarDeleteItems, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                         IconUri="/Icons/appbar.delete.rest.png"
                                                         Command="{Binding DeleteItemsCommand}"
                                                         IsEnabled="{Binding SelectedItems.Count, Converter={StaticResource CountToEnabled}, ConverterParameter=delete}" />

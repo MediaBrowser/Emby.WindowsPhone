@@ -7,7 +7,7 @@ using MediaBrowser.Model;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Logging;
 using MediaBrowser.Model.Search;
-
+using MediaBrowser.WindowsPhone.Model;
 using ScottIsAFool.WindowsPhone.Logging;
 
 namespace MediaBrowser.WindowsPhone
@@ -54,48 +54,25 @@ namespace MediaBrowser.WindowsPhone
         internal static PlaylistItem ToPlaylistItem(this BaseItemDto item, IExtendedApiClient apiClient)
         {
             var streamUrl = apiClient.GetAudioStreamUrl(new StreamOptions
-                                                      {
-                                                          AudioBitRate = 128,
-                                                          AudioCodec = AudioCodecs.Mp3,
-                                                          ItemId = item.Id,
-                                                          OutputFileExtension = "mp3",
-                                                      });
+            {
+                AudioBitRate = 128,
+                AudioCodec = "Mp3",
+                ItemId = item.Id,
+                OutputFileExtension = "mp3",
+            });
+
+            var converter = new Converters.ImageUrlConverter();
             return new PlaylistItem
-                       {
-                           Album = item.Album,
-                           Artist = item.Artists.Any() ? item.Artists[0] : "",
-                           TrackName = item.Name,
-                           TrackUrl = streamUrl,
-                           MediaBrowserId = item.Id,
-                           IsJustAdded = true,
-                           ImageUrl = (string)new Converters.ImageUrlConverter().Convert(item, typeof(string), null, null),
-                       };
-        }
-
-        public static void SetHorizontalOffset(this FrameworkElement fe, double offset)
-        {
-            var trans = new TranslateTransform()
             {
-                X = offset
+                Album = item.Album,
+                Artist = item.Artists.Any() ? item.Artists[0] : "",
+                TrackName = item.Name,
+                TrackUrl = streamUrl,
+                MediaBrowserId = item.Id,
+                IsJustAdded = true,
+                ImageUrl = (string) converter.Convert(item, typeof (string), null, null),
+                BackgroundImageUrl = (string) converter.Convert(item, typeof (string), "backdrop", null)
             };
-            fe.RenderTransform = trans;
-
-            fe.Tag = new Offset
-            {
-                Value = offset,
-                Transform = trans
-            };
-        }
-
-        public static Offset GetHorizontalOffset(this FrameworkElement fe)
-        {
-            return fe.Tag == null ? new Offset() : (Offset)fe.Tag;
-        }
-
-        public struct Offset
-        {
-            public double Value { get; set; }
-            public TranslateTransform Transform { get; set; }
         }
 
         public static BaseItemDto ToBaseItemDto(this SearchHint searchHint)

@@ -13,6 +13,7 @@ using Cimbalino.Phone.Toolkit.Services;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using MediaBrowser.Design;
+using MediaBrowser.WindowsPhone.Design;
 using MediaBrowser.WindowsPhone.ViewModel.Predefined;
 using MediaBrowser.WindowsPhone.ViewModel.Remote;
 using Microsoft.Practices.ServiceLocation;
@@ -21,6 +22,9 @@ using MediaBrowser.Model;
 using INavigationService = MediaBrowser.WindowsPhone.Model.INavigationService;
 using NavigationService = MediaBrowser.WindowsPhone.Model.NavigationService;
 using Cimbalino.Phone.Toolkit.Helpers;
+#if WP8
+using MediaBrowser.WindowsPhone.ViewModel.LiveTv;
+#endif
 
 namespace MediaBrowser.WindowsPhone.ViewModel
 {
@@ -92,6 +96,17 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             SimpleIoc.Default.Register<MusicCollectionViewModel>();
             SimpleIoc.Default.Register<ActorViewModel>();
             SimpleIoc.Default.Register<GenericItemViewModel>();
+#if WP8
+            SimpleIoc.Default.Register<ChannelsViewModel>();
+            SimpleIoc.Default.Register<GuideViewModel>();
+            SimpleIoc.Default.Register<ScheduleViewModel>();
+            SimpleIoc.Default.Register<LiveTvViewModel>();
+            SimpleIoc.Default.Register<ScheduledSeriesViewModel>();
+            SimpleIoc.Default.Register<ScheduledRecordingViewModel>();
+            SimpleIoc.Default.Register<AllProgrammesViewModel>();
+            SimpleIoc.Default.Register<ProgrammeViewModel>();
+            SimpleIoc.Default.Register<RecordedTvViewModel>();
+#endif
         }
 
         /// <summary>
@@ -239,6 +254,80 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             get { return ServiceLocator.Current.GetInstance<GenericItemViewModel>(); }
         }
+
+#if WP8
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
+            "CA1822:MarkMembersAsStatic",
+            Justification = "This non-static member is needed for data binding purposes.")]
+        public ChannelsViewModel Channels
+        {
+            get { return ServiceLocator.Current.GetInstance<ChannelsViewModel>(); }
+        }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
+            "CA1822:MarkMembersAsStatic",
+            Justification = "This non-static member is needed for data binding purposes.")]
+        public GuideViewModel Guide
+        {
+            get { return ServiceLocator.Current.GetInstance<GuideViewModel>(); }
+        }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
+            "CA1822:MarkMembersAsStatic",
+            Justification = "This non-static member is needed for data binding purposes.")]
+        public ScheduleViewModel Schedule
+        {
+            get { return ServiceLocator.Current.GetInstance<ScheduleViewModel>(); }
+        }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
+            "CA1822:MarkMembersAsStatic",
+            Justification = "This non-static member is needed for data binding purposes.")]
+        public LiveTvViewModel LiveTv
+        {
+            get { return ServiceLocator.Current.GetInstance<LiveTvViewModel>(); }
+        }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
+            "CA1822:MarkMembersAsStatic",
+            Justification = "This non-static member is needed for data binding purposes.")]
+        public ScheduledSeriesViewModel ScheduledSeries
+        {
+            get { return ServiceLocator.Current.GetInstance<ScheduledSeriesViewModel>(); }
+        }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
+            "CA1822:MarkMembersAsStatic",
+            Justification = "This non-static member is needed for data binding purposes.")]
+        public ScheduledRecordingViewModel ScheduledRecording
+        {
+            get { return ServiceLocator.Current.GetInstance<ScheduledRecordingViewModel>(); }
+        }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
+            "CA1822:MarkMembersAsStatic",
+            Justification = "This non-static member is needed for data binding purposes.")]
+        public AllProgrammesViewModel AllProgrammes
+        {
+            get { return ServiceLocator.Current.GetInstance<AllProgrammesViewModel>(); }
+        }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
+            "CA1822:MarkMembersAsStatic",
+            Justification = "This non-static member is needed for data binding purposes.")]
+        public ProgrammeViewModel Programme
+        {
+            get { return ServiceLocator.Current.GetInstance<ProgrammeViewModel>(); }
+        }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
+            "CA1822:MarkMembersAsStatic",
+            Justification = "This non-static member is needed for data binding purposes.")]
+        public RecordedTvViewModel RecordedTv
+        {
+            get { return ServiceLocator.Current.GetInstance<RecordedTvViewModel>(); }
+        }
+#endif
 
         public static TvViewModel GetTvViewModel(string itemId)
         {

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
@@ -9,7 +8,9 @@ using Cimbalino.Phone.Toolkit.Services;
 using MediaBrowser.ApiInteraction;
 using MediaBrowser.Model;
 using MediaBrowser.Model.Net;
+using MediaBrowser.Model.Session;
 using MediaBrowser.Services;
+using MediaBrowser.WindowsPhone.Model;
 using Microsoft.Phone.BackgroundAudio;
 using ScottIsAFool.WindowsPhone.Logging;
 
@@ -61,7 +62,16 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
             try
             {
                 var track = BackgroundAudioPlayer.Instance.Track;
-                await _apiClient.ReportPlaybackProgressAsync(track.Tag, _apiClient.CurrentUserId, BackgroundAudioPlayer.Instance.Position.Ticks, false, false);
+                var info = new PlaybackProgressInfo
+                {
+                    ItemId = track.Tag,
+                    UserId = _apiClient.CurrentUserId,
+                    PositionTicks = BackgroundAudioPlayer.Instance.Position.Ticks,
+                    IsMuted = false,
+                    IsPaused = false
+                };
+
+                await _apiClient.ReportPlaybackProgressAsync(info);
             }
             catch (HttpException ex)
             {
@@ -174,7 +184,12 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
                 var track = BackgroundAudioPlayer.Instance.Track;
                 if (track != null)
                 {
-                    await _apiClient.ReportPlaybackStoppedAsync(track.Tag, _apiClient.CurrentUserId, null);
+                    var info = new PlaybackStopInfo
+                    {
+                        ItemId = track.Tag,
+                        UserId = _apiClient.CurrentUserId
+                    };
+                    await _apiClient.ReportPlaybackStoppedAsync(info);
                 }
             }
             catch (HttpException ex)
@@ -197,7 +212,14 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
                 var track = BackgroundAudioPlayer.Instance.Track;
                 if (track != null)
                 {
-                    await _apiClient.ReportPlaybackStartAsync(track.Tag, _apiClient.CurrentUserId, false, new List<string>());
+                    var info = new PlaybackStartInfo
+                    {
+                        IsSeekable = false,
+                        ItemId = track.Tag,
+                        QueueableMediaTypes = new string[0],
+                        UserId = AuthenticationService.Current.LoggedInUserId
+                    };
+                    await _apiClient.ReportPlaybackStartAsync(info);
                 }
             }
             catch (HttpException ex)

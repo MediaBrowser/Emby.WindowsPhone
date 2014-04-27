@@ -71,11 +71,11 @@
                 <phone:Pivot.Title>
                     <StackPanel Orientation="Horizontal"
                                 Margin="-12,0,0,0">
-                        <mb:MediaBrowserLogo AltText="MOVIES" />
+                        <mb:MediaBrowserLogo AltText="{Binding LocalizedResources.LabelMovies, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToUppercaseConverter}}" />
                     </StackPanel>
                 </phone:Pivot.Title>
 
-                <phone:PivotItem Header="latest unseen">
+                <phone:PivotItem Header="{Binding LocalizedResources.LabelLatestUnseen, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
                     <phone:LongListSelector ItemsSource="{Binding LatestUnwatched}"
                                             ListHeader="{Binding UnseenHeader}"
                                             LayoutMode="Grid"
@@ -83,11 +83,12 @@
                                             Margin="12,0,0,0">
                         <phone:LongListSelector.ListHeaderTemplate>
                             <DataTemplate>
-                                <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                                 Command="{Binding MovieCollection.NavigateToCommand, Source={StaticResource Locator}}"
-                                                 CommandParameter="{Binding}"
-                                                 Margin="0,0,12,12">
-                                    <Grid Height="173">
+                                <mb:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                                          TapCommand="{Binding MovieCollection.NavigateToCommand, Source={StaticResource Locator}}"
+                                                          CommandParameter="{Binding}"
+                                                          Margin="0,0,12,12">
+                                    <Grid Height="173"
+                                          d:DataContext="{Binding MovieCollection.LatestUnwatched[0], Source={StaticResource Locator}}">
                                         <controls:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}, ConverterParameter=backdropsmall}"
                                                              Stretch="UniformToFill"
                                                              PlaceholderImageSource="/Images/MBBackground.jpg"
@@ -99,16 +100,16 @@
                                                        HorizontalAlignment="Left" />
                                         </Border>
                                     </Grid>
-                                </HyperlinkButton>
+                                </mb:CustomHyperlinkButton>
                             </DataTemplate>
                         </phone:LongListSelector.ListHeaderTemplate>
                         <phone:LongListSelector.ItemTemplate>
                             <DataTemplate>
-                                <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                                 Command="{Binding MovieCollection.NavigateToCommand, Source={StaticResource Locator}}"
-                                                 CommandParameter="{Binding}"
-                                                 Margin="0,0,12,12">
-                                    <Grid>
+                                <mb:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                                          TapCommand="{Binding MovieCollection.NavigateToCommand, Source={StaticResource Locator}}"
+                                                          CommandParameter="{Binding}"
+                                                          Margin="0,0,12,12">
+                                    <Grid d:DataContext="{Binding MovieCollection.LatestUnwatched[0], Source={StaticResource Locator}}">
                                         <controls:SuperImage PlaceholderImageSource="/Images/Logo.png"
                                                              Source="{Binding Converter={StaticResource ImageUrlConverter}}"
                                                              PlaceholderImageStretch="Uniform"
@@ -123,13 +124,13 @@
                                                        Foreground="White" />
                                         </Border>
                                     </Grid>
-                                </HyperlinkButton>
+                                </mb:CustomHyperlinkButton>
                             </DataTemplate>
                         </phone:LongListSelector.ItemTemplate>
                     </phone:LongListSelector>
                 </phone:PivotItem>
 
-                <phone:PivotItem Header="boxsets">
+                <phone:PivotItem Header="{Binding LocalizedResources.LabelBoxsets, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
                     <phone:LongListSelector ItemsSource="{Binding Boxsets}"
                                             IsGroupingEnabled="True"
                                             HideEmptyGroups="False"
@@ -137,18 +138,19 @@
                                             JumpListStyle="{StaticResource LLSGroupItemStyle}">
                         <phone:LongListSelector.ItemTemplate>
                             <DataTemplate>
-                                <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                                 Margin="12,6,0,6"
-                                                 Command="{Binding MovieCollection.NavigateToCommand, Source={StaticResource Locator}}"
-                                                 CommandParameter="{Binding}">
+                                <mb:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                                          Margin="12,6,0,6"
+                                                          TapCommand="{Binding MovieCollection.NavigateToCommand, Source={StaticResource Locator}}"
+                                                          CommandParameter="{Binding}">
                                     <toolkit:ContextMenuService.ContextMenu>
                                         <toolkit:ContextMenu>
-                                            <toolkit:MenuItem Header="mark as watched"
+                                            <toolkit:MenuItem Header="{Binding LocalizedResources.AppBarMarkAsWatched, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                               Command="{Binding MovieCollection.MarkAsWatchedCommand, Source={StaticResource Locator}}"
                                                               CommandParameter="{Binding}" />
                                         </toolkit:ContextMenu>
                                     </toolkit:ContextMenuService.ContextMenu>
-                                    <StackPanel Orientation="Horizontal">
+                                    <StackPanel Orientation="Horizontal"
+                                                d:DataContext="{Binding MovieCollection.Boxsets[0], Source={StaticResource Locator}}">
                                         <controls:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
                                                              Height="95"
                                                              Width="75"
@@ -160,18 +162,20 @@
                                             <TextBlock Text="{Binding Name, Converter={StaticResource StringToUppercaseConverter}}"
                                                        Style="{StaticResource HeaderTextStyle}"
                                                        FontSize="{StaticResource PhoneFontSizeMediumLarge}" />
-                                            <TextBlock Text="{Binding RecursiveUnplayedItemCount, StringFormat='Unwatched: \{0\}'}"
-                                                       Style="{StaticResource PhoneTextSubtleStyle}"
-                                                       Foreground="{Binding RecursiveUnplayedItemCount, Converter={StaticResource ZeroCountBrushConverter}}" />
+                                            <TextBlock Style="{StaticResource PhoneTextSubtleStyle}"
+                                                       Foreground="{Binding RecursiveUnplayedItemCount, Converter={StaticResource ZeroCountBrushConverter}}">
+                                                <Run Text="{Binding LocalizedResources.LabelUnwatched, Source={StaticResource LocalizedStrings}}" />
+                                                <Run Text="{Binding RecursiveUnplayedItemCount}" />
+                                            </TextBlock>
                                         </StackPanel>
                                     </StackPanel>
-                                </HyperlinkButton>
+                                </mb:CustomHyperlinkButton>
                             </DataTemplate>
                         </phone:LongListSelector.ItemTemplate>
                     </phone:LongListSelector>
                 </phone:PivotItem>
 
-                <phone:PivotItem Header="movies">
+                <phone:PivotItem Header="{Binding LocalizedResources.LabelMovies, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
                     <phone:LongListSelector ItemsSource="{Binding Movies}"
                                             IsGroupingEnabled="True"
                                             HideEmptyGroups="False"
@@ -179,12 +183,12 @@
                                             JumpListStyle="{StaticResource LLSGroupItemStyle}">
                         <phone:LongListSelector.ItemTemplate>
                             <DataTemplate>
-                                <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                                 Margin="12,6,0,6"
-                                                 Command="{Binding TvCollection.NavigateToCommand, Source={StaticResource Locator}}"
-                                                 CommandParameter="{Binding}"
-                                                 HorizontalContentAlignment="Stretch">
-                                    <Grid HorizontalAlignment="Stretch">
+                                <mb:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                                          Margin="12,6,0,6"
+                                                          TapCommand="{Binding TvCollection.NavigateToCommand, Source={StaticResource Locator}}"
+                                                          CommandParameter="{Binding}">
+                                    <Grid HorizontalAlignment="Stretch"
+                                          d:DataContext="{Binding MovieCollection.Movies[0], Source={StaticResource Locator}}">
                                         <StackPanel Orientation="Horizontal"
                                                     HorizontalAlignment="Stretch">
                                             <controls:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
@@ -246,23 +250,24 @@
                                                      Width="60"
                                                      Tag="20"
                                                      HorizontalAlignment="Right"
-                                                     Visibility="{Binding Value, RelativeSource={RelativeSource Self}, Converter={StaticResource GreaterThanVisibilityConverter}, ConverterParameter=0}"/>
+                                                     Visibility="{Binding Value, RelativeSource={RelativeSource Self}, Converter={StaticResource GreaterThanVisibilityConverter}, ConverterParameter=0}" />
                                     </Grid>
-                                </HyperlinkButton>
+                                </mb:CustomHyperlinkButton>
                             </DataTemplate>
                         </phone:LongListSelector.ItemTemplate>
                     </phone:LongListSelector>
                 </phone:PivotItem>
 
-                <phone:PivotItem Header="genres">
+                <phone:PivotItem Header="{Binding LocalizedResources.LabelGenres, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
                     <phone:LongListSelector ItemsSource="{Binding Genres}">
                         <phone:LongListSelector.ItemTemplate>
                             <DataTemplate>
-                                <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                                 Command="{Binding Main.NavigateToPage, Source={StaticResource Locator}}"
-                                                 CommandParameter="{Binding}"
-                                                 Margin="12,0,0,12">
-                                    <Grid Height="173">
+                                <mb:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                                          TapCommand="{Binding Main.NavigateToPage, Source={StaticResource Locator}}"
+                                                          CommandParameter="{Binding}"
+                                                          Margin="12,0,0,12">
+                                    <Grid Height="173"
+                                          d:DataContext="{Binding MovieCollection.Genres[0], Source={StaticResource Locator}}">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*" />
                                         </Grid.ColumnDefinitions>
@@ -286,7 +291,7 @@
 
                                         </Border>
                                     </Grid>
-                                </HyperlinkButton>
+                                </mb:CustomHyperlinkButton>
                             </DataTemplate>
                         </phone:LongListSelector.ItemTemplate>
                     </phone:LongListSelector>

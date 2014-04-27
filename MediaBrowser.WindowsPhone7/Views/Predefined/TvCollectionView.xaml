@@ -37,10 +37,10 @@
         <converters:SeasonEpisodeConverter x:Key="SeasonEpisodeConverter" />
 
         <DataTemplate x:Key="EpisodeDataTemplate">
-            <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                             Margin="12,6,0,6"
-                             Command="{Binding TvCollection.NavigateToCommand, Source={StaticResource Locator}}"
-                             CommandParameter="{Binding}">
+            <mb:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                      Margin="12,6,0,6"
+                                      TapCommand="{Binding TvCollection.NavigateToCommand, Source={StaticResource Locator}}"
+                                      CommandParameter="{Binding}">
                 <StackPanel Orientation="Horizontal">
                     <controls:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
                                          Height="99"
@@ -57,7 +57,7 @@
                                    Style="{StaticResource PhoneTextSubtleStyle}" />
                     </StackPanel>
                 </StackPanel>
-            </HyperlinkButton>
+            </mb:CustomHyperlinkButton>
         </DataTemplate>
     </scott:BasePage.Resources>
 
@@ -97,36 +97,35 @@
                 <phone:Pivot.Title>
                     <StackPanel Orientation="Horizontal"
                                 Margin="-12,0,0,0">
-                        <mb:MediaBrowserLogo />
-                        <TextBlock x:Name="ApplicationTitle"
-                                   Text="- TV"
-                                   Margin="6,0,0,0"
-                                   Style="{StaticResource PhoneTextNormalStyle}" />
+                        <mb:MediaBrowserLogo AltText="{Binding LocalizedResources.LabelTv, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToUppercaseConverter}}" />
                     </StackPanel>
                 </phone:Pivot.Title>
 
-                <phone:PivotItem Header="latest unseen">
+                <phone:PivotItem Header="{Binding LocalizedResources.LabelLatestUnseen, Source={StaticResource LocalizedStrings}}">
                     <toolkit:LongListSelector ItemsSource="{Binding LatestUnwatched}"
-                                            ItemTemplate="{StaticResource EpisodeDataTemplate}" />
+                                              ItemTemplate="{StaticResource EpisodeDataTemplate}"
+                                              Background="Transparent" />
                 </phone:PivotItem>
 
-                <phone:PivotItem Header="next up">
+                <phone:PivotItem Header="{Binding LocalizedResources.LabelNextUp, Source={StaticResource LocalizedStrings}}">
                     <toolkit:LongListSelector ItemsSource="{Binding NextUpList}"
-                                            ItemTemplate="{StaticResource EpisodeDataTemplate}" />
+                                              ItemTemplate="{StaticResource EpisodeDataTemplate}"
+                                              Background="Transparent" />
                 </phone:PivotItem>
-                <phone:PivotItem Header="shows">
+                <phone:PivotItem Header="{Binding LocalizedResources.LabelShows, Source={StaticResource LocalizedStrings}}">
                     <toolkit:LongListSelector ItemsSource="{Binding Shows}"
-                                            GroupHeaderTemplate="{StaticResource LLSGroupHeaderTemplateName}"
-                                            GroupItemTemplate="{StaticResource LLSGroupItemTemplate}">
+                                              GroupHeaderTemplate="{StaticResource LLSGroupHeaderTemplateName}"
+                                              GroupItemTemplate="{StaticResource LLSGroupItemTemplate}"
+                                              Background="Transparent">
                         <toolkit:LongListSelector.ItemTemplate>
                             <DataTemplate>
-                                <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                                 Margin="12,6,0,6"
-                                                 Command="{Binding TvCollection.NavigateToCommand, Source={StaticResource Locator}}"
-                                                 CommandParameter="{Binding}">
+                                <mb:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                                          Margin="12,6,0,6"
+                                                          TapCommand="{Binding TvCollection.NavigateToCommand, Source={StaticResource Locator}}"
+                                                          CommandParameter="{Binding}">
                                     <toolkit:ContextMenuService.ContextMenu>
                                         <toolkit:ContextMenu>
-                                            <toolkit:MenuItem Header="mark as watched"
+                                            <toolkit:MenuItem Header="{Binding LocalizedResources.AppBarMarkAsWatched, Source={StaticResource LocalizedStrings}}"
                                                               Command="{Binding TvCollection.MarkAsWatchedCommand, Source={StaticResource Locator}}"
                                                               CommandParameter="{Binding}" />
                                         </toolkit:ContextMenu>
@@ -145,12 +144,14 @@
                                                        FontSize="{StaticResource PhoneFontSizeMediumLarge}" />
                                             <TextBlock Text="{Binding ProductionYear}"
                                                        Style="{StaticResource PhoneTextSubtleStyle}" />
-                                            <TextBlock Text="{Binding RecursiveUnplayedItemCount, StringFormat='Unwatched: \{0\}'}"
-                                                       Style="{StaticResource PhoneTextSubtleStyle}"
-                                                       Foreground="{Binding RecursiveUnplayedItemCount, Converter={StaticResource ZeroCountBrushConverter}}" />
+                                            <TextBlock Style="{StaticResource PhoneTextSubtleStyle}"
+                                                       Foreground="{Binding RecursiveUnplayedItemCount, Converter={StaticResource ZeroCountBrushConverter}}">
+                                                <Run Text="{Binding LocalizedResources.LabelUnwatched, Source={StaticResource LocalizedStrings}}" />
+                                                <Run Text="{Binding RecursiveUnplayedItemCount}" />
+                                            </TextBlock>
                                         </StackPanel>
                                     </StackPanel>
-                                </HyperlinkButton>
+                                </mb:CustomHyperlinkButton>
                             </DataTemplate>
                         </toolkit:LongListSelector.ItemTemplate>
                     </toolkit:LongListSelector>

@@ -31,7 +31,7 @@
                               IsIndeterminate="{Binding ProgressIsVisible}" />
         <behaviors:ApplicationBarBehavior Mode="Minimized">
             <behaviors:ApplicationBarIconButton IconUri="/Icons/appbar.refresh.rest.png"
-                                                Text="refresh"
+                                                Text="{Binding LocalizedResources.AppBarRefresh, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                 Command="{Binding RefreshClientsCommand}" />
             <behaviors:ApplicationBarIconButton IconUri="{Binding IsPinned, Converter={StaticResource PinnedItemConverter}, ConverterParameter=icon}"
                                                 Text="{Binding IsPinned, Converter={StaticResource PinnedItemConverter}, ConverterParameter=text}"
@@ -157,7 +157,7 @@
                         Grid.Row="0"
                         Orientation="Horizontal"
                         Margin="12,17,0,28">
-                <mb:MediaBrowserLogo AltText="REMOTE" />
+                <mb:MediaBrowserLogo AltText="{Binding LocalizedResources.LabelRemote, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToUppercaseConverter}}" />
             </StackPanel>
 
             <toolkit:ListPicker ItemsSource="{Binding Clients}"
@@ -168,7 +168,7 @@
                                 ExpansionMode="FullScreenOnly"
                                 BorderThickness="0"
                                 toolkit:TiltEffect.IsTiltEnabled="True"
-                                FullModeHeader="CHOOSE A CLIENT"
+                                FullModeHeader="{Binding LocalizedResources.HeaderChooseClient, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToUppercaseConverter}}"
                                 Template="{StaticResource ClientListPickerStyle}"
                                 Margin="0,-12,0,28">
                 <toolkit:ListPicker.ItemTemplate>
@@ -233,11 +233,11 @@
                                Grid.ColumnSpan="3"
                                VerticalAlignment="Top"
                                Opacity="0.2" />
-                        <Button Style="{StaticResource EmptyButtonStyle}"
+                        <mb:CustomButton Style="{StaticResource EmptyButtonStyle}"
                                 Grid.Row="0"
                                 HorizontalContentAlignment="Center"
                                 HorizontalAlignment="Center"
-                                Command="{Binding NavigateToCommand}"
+                                TapCommand="{Binding NavigateToCommand}"
                                 CommandParameter="{Binding SelectedClient.NowPlayingItem}"
                                 toolkit:TiltEffect.IsTiltEnabled="True">
                             <controls:SuperImage Source="{Binding SelectedClient.NowPlayingItem, Converter={StaticResource ImageUrlConverter}}"
@@ -246,7 +246,7 @@
                                                  PlaceholderImageSource="/Images/DefaultVideo.png"
                                                  PlaceholderImageStretch="Uniform"
                                                  Margin="0,24,0,0" />
-                        </Button>
+                        </mb:CustomButton>
                         <TextBlock Text="{Binding SelectedClient.NowPlayingItem.Name}"
                                    Grid.Row="1"
                                    Style="{StaticResource PhoneTextTitle2Style}"

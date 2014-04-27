@@ -12,6 +12,7 @@
                 xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
                 xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
                 xmlns:converters="clr-namespace:MediaBrowser.WindowsPhone.Converters"
+                xmlns:controls="clr-namespace:MediaBrowser.WindowsPhone.Controls"
                 mc:Ignorable="d ignore"
                 FontFamily="{StaticResource PhoneFontFamilyNormal}"
                 FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -71,7 +72,7 @@
             <StackPanel x:Name="TitlePanel"
                         Grid.Row="0"
                         Margin="12,17,0,28">
-                <TextBlock Text="CHOOSE A CLIENT"
+                <TextBlock Text="{Binding LocalizedResources.HeaderChooseClient, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToUppercaseConverter}}"
                            Style="{StaticResource PhoneTextNormalStyle}"
                            Margin="12,0" />
             </StackPanel>
@@ -84,10 +85,10 @@
                 <phone:LongListSelector ItemsSource="{Binding Clients}">
                     <phone:LongListSelector.ItemTemplate>
                         <DataTemplate>
-                            <HyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                             Margin="12,0,0,12"
-                                             Command="{Binding Remote.ClientSelectedCommand, Source={StaticResource Locator}}"
-                                             CommandParameter="{Binding}">
+                            <controls:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                                            Margin="12,0,0,12"
+                                                            TapCommand="{Binding Remote.ClientSelectedCommand, Source={StaticResource Locator}}"
+                                                            CommandParameter="{Binding}">
                                 <StackPanel Orientation="Horizontal">
                                     <Image Source="{Binding Converter={StaticResource ClientTypeIconConverter}}"
                                            Height="99"
@@ -103,7 +104,7 @@
                                                    Style="{StaticResource PhoneTextSubtleStyle}" />
                                     </StackPanel>
                                 </StackPanel>
-                            </HyperlinkButton>
+                            </controls:CustomHyperlinkButton>
                         </DataTemplate>
                     </phone:LongListSelector.ItemTemplate>
                 </phone:LongListSelector>
