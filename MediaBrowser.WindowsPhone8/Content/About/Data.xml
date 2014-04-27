@@ -59,6 +59,24 @@
     <!-- Supported types are "text" and "xaml", where text is nicely formatted automatically, and XAML is handled by the built-in XamlReader -->
     <Item Title="history"
           Type="text">
+      8.0.60.0
+      Enhancements:
+      - Video seeking when streaming video to the app
+      - "Play on" button moved to app bar
+      - Now Playing bar in the app for easier access (when listening to music only)
+      - Added the "Upcoming" section for TV Collections
+      - Added artist background image to now playing screen (music)
+      - Added support for Live TV (requires additional server configuration)
+      - Local trailer support
+      - Localisation
+      - Transparent tile option for WP8.1 users.
+      Fixes: 
+      - TV show cast + crew not tappable
+      - "Play from" on chapters wasn't working
+      - Fixed the now playing list showing incorrectly
+      - Improved navigation sensitivity (when swiping)
+      - Fixed crash when multiple albums with the same name exist
+      
       8.0.0.51
       Fixes:
       - Music Collection - Recent items show no background artwork
