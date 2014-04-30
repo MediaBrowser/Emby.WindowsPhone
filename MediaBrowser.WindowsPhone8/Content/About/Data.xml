@@ -59,6 +59,10 @@
     <!-- Supported types are "text" and "xaml", where text is nicely formatted automatically, and XAML is handled by the built-in XamlReader -->
     <Item Title="history"
           Type="text">
+      8.0.60.1
+      Fixes:
+      - Wide tile transparency bug
+      
       8.0.60.0
       Enhancements:
       - Video seeking when streaming video to the app
