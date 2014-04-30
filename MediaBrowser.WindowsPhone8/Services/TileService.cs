@@ -39,6 +39,7 @@ namespace MediaBrowser.WindowsPhone.Services
         private const string MediumTileBackUrl = "shared\\shellcontent\\MediumTileBackImage.png";
 
         private const string DefaultWideTileUrl = "/Assets/Tiles/FlipCycleTileLarge.png";
+        private const string DefaultWideTileTransparentUrl = "/Assets/Tiles/FlipCycleTileLargeTransparent.png";
         private const string WideTileActualUrl = "isostore:/" + WideTileUrl;
         private const string WideTileBackActualUrl = "isostore:/" + WideTileBackUrl;
         private const string MediumTileActualUrl = "isostore:/" + MediumTileBackUrl;
@@ -152,7 +153,7 @@ namespace MediaBrowser.WindowsPhone.Services
 
             var wideUri = useRichWideTile
                 ? new Uri(WideTileActualUrl, UriKind.Absolute)
-                : new Uri(DefaultWideTileUrl, UriKind.Relative);
+                : new Uri(useTransparentTile ? DefaultWideTileTransparentUrl : DefaultWideTileUrl, UriKind.Relative);
 
             var wideBackUri = displayBackdropOnTile
                 ? new Uri(WideTileBackActualUrl, UriKind.Absolute)
