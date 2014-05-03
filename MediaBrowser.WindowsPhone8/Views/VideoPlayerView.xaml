@@ -13,11 +13,10 @@
                 xmlns:mediaPlayer="clr-namespace:SM.Media.MediaPlayer;assembly=SM.Media.MediaPlayer.WP8"
                 x:Class="MediaBrowser.WindowsPhone.Views.VideoPlayerView"
                 mc:Ignorable="d ignore"
-                SupportedOrientations="Landscape"
+                SupportedOrientations="PortraitOrLandscape"
                 Orientation="Landscape"
                 shell:SystemTray.IsVisible="False">
     <scott:BasePage.Resources>
-        <converters:TicksToTimespanConverter x:Key="TicksToTimespanConverter" />
         <System:Double x:Key="SliderTrackThemeHeight">12</System:Double>
         <Style x:Key="VisualMarkerStyle"
                TargetType="Button">
