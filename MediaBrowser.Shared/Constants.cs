@@ -117,6 +117,7 @@
             public const string ActorView = ViewsPath + "ActorView.xaml";
             public const string GenericItemView = ViewsPath + "GenericItemView.xaml";
             public const string MainPage = ViewsPath + "MainPage.xaml";
+            public const string SplashScreen = "/Splashscreen.xaml";
 
             public class LiveTv
             {
