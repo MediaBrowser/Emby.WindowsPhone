@@ -207,6 +207,7 @@
     <Compile Include="Helpers\ResolutionHelper.cs" />
     <Compile Include="LiveTvUtils.cs" />
     <Compile Include="LocalizedStrings.cs" />
+    <Compile Include="MediaBrowserUriMapper.cs" />
     <Compile Include="Messaging\VideoMessage.cs" />
     <Compile Include="Model\Chapter.cs" />
     <Compile Include="Model\EventToCommand.cs" />
@@ -214,7 +215,6 @@
     <Compile Include="Model\INavigationService.cs" />
     <Compile Include="Model\LockScreenType.cs" />
     <Compile Include="Model\MBLogger.cs" />
-    <Compile Include="Model\MBUriMapper.cs" />
     <Compile Include="Model\NavigationService.cs" />
     <Compile Include="Model\PlayerSourceType.cs" />
     <Compile Include="Model\RecordedGroupBy.cs" />

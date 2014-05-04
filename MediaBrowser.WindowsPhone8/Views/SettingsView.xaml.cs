@@ -34,7 +34,7 @@ namespace MediaBrowser.WindowsPhone.Views
                 }
 
                 settingsPivot.SelectedIndex = selectedIndex;
-                var pivotsToRemove = settingsPivot.Items.Cast<PivotItem>().Where(x => x.Header.ToString() != AppResources.LabelConnection).ToList();
+                var pivotsToRemove = settingsPivot.Items.Cast<PivotItem>().Where(x => x.Header.ToString().ToLower() != AppResources.LabelConnection.ToLower()).ToList();
                 foreach (var pivot in pivotsToRemove)
                 {
                     settingsPivot.Items.Remove(pivot);

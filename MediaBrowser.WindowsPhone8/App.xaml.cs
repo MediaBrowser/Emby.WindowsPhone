@@ -239,7 +239,7 @@ namespace MediaBrowser.WindowsPhone
             // Handle reset requests for clearing the backstack
             RootFrame.Navigated += CheckForResetNavigation;
 
-            RootFrame.UriMapper = new MBUriMapper();
+            RootFrame.UriMapper = new MediaBrowserUriMapper();
 
             // Ensure we don't initialize again
             _phoneApplicationInitialized = true;
