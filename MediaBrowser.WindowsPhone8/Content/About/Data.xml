@@ -59,6 +59,13 @@
     <!-- Supported types are "text" and "xaml", where text is nicely formatted automatically, and XAML is handled by the built-in XamlReader -->
     <Item Title="history"
           Type="text">
+      8.0.61.0
+      Enhancements:
+      - App can be launched using mediabrowser:// uri scheme
+      - Video player can support portrait as well as landscape
+      Fixes:
+      - Issue getting to settings when localised
+      
       8.0.60.1
       Fixes:
       - Wide tile transparency bug
@@ -80,70 +87,6 @@
       - Fixed the now playing list showing incorrectly
       - Improved navigation sensitivity (when swiping)
       - Fixed crash when multiple albums with the same name exist
-      
-      8.0.0.51
-      Fixes:
-      - Music Collection - Recent items show no background artwork
-      - Video playback now reports back more frequently
-      - Audio playback now reports back to the server when tracks change
-      - Music Collection - Tapping a "Recent" item shows album &amp; tracks but no album cover
-      - Added chapter support for movies
-      - Main page recent items bringing back missing/virtual episodes
-      - Specials within a TV season not in the correct order
-      Enhancements:
-      - Option to Disable Enhanced Images
-      - Show progress for resumable items
-      - Handle double episodes for TV
-      - Play all music items from Music View
-      - Display a random backdrop on the back of the primary tile (optional)
-      - Watched/Unwatched status while browsing
-      - Basic support for the MB Photo server plugin
-
-      8.0.0.47
-      Fixes:
-      - Music tracks no longer getting stuck
-      - Unwatched label changed to unplayed
-      - Various UI changes based on a design consultation
-
-      8.0.0.43
-      Fixes:
-      - Play button on TV episodes now working again.
-      - TV episodes in TV view no longer taking user to list of collections
-      - Added additional logging to try and get to the bottom of audio playback issues
-
-      8.0.0.40
-      Fixes:
-      - Fixed link for MB3 server link on welcome screen
-      - Added checks for hostname
-      - Album page showing items that weren't tracks
-      - Artit name not appearing on album page
-      - TV show page was showing seasons in recent items
-      - Season episodes not refreshing when changing season
-      - Tracks not refreshing when changing album in the UI
-      Enhancements:
-      - Handle missing/future episodes
-      - Added genres to Movies and TV views
-
-      8.0.0.39
-      Fixes:
-      - Don't allow recent items to be scrollable on front page
-      - Play icon missing on episodes
-      - Episode name doesn't swipe nicely
-      - Back press on video always navigating back
-      - Add experimental message for folder streaming
-      - Collection View -> TV -> Show all items... EMPTY
-      - Profile list doesn't clear before population
-      - Music View - Artist list scrolls back to beginning on back
-      - Settings backstack when searching for server
-      Enhancements:
-      - Collection image not following hierarchy (only uses primary)
-      - Change Favourites to Favorites depending on client region
-      - Search Button more prominent on home page
-      - Play all on artist's page
-      - Option to mark items as Favourite (Favorite)
-
-      8.0.0.35
-      This is the initial public version.
     </Item>
 
     <Item Title="log file"
