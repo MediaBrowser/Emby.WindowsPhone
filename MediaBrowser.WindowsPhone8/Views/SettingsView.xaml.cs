@@ -69,5 +69,10 @@ namespace MediaBrowser.WindowsPhone.Views
             await Launcher.LaunchUriAsync(new Uri("ms-settings-lock:", UriKind.Absolute));
         }
 #endif
+
+        private void AboutItem_OnClick(object sender, EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/YourLastAboutDialog;component/AboutPage.xaml", UriKind.Relative));
+        }
     }
 }
