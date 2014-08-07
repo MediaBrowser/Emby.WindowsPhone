@@ -153,7 +153,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 var page = TileService.Current.PinnedPage();
                 _navigationService.NavigateTo(page);
                 Username = Password = string.Empty;
-                _apiClient.CurrentUserId = AuthenticationService.Current.LoggedInUser.Id;
+                AuthenticationService.Current.SetAuthenticationInfo();
             }
             else
             {

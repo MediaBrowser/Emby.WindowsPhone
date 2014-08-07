@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using MediaBrowser.Model;
 using MediaBrowser.Model.ApiClient;
+using MediaBrowser.Model.Channels;
 using MediaBrowser.Model.Configuration;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
@@ -44,12 +45,27 @@ namespace MediaBrowser.WindowsPhone.Design
             throw new NotImplementedException();
         }
 
+        public string GetAudioStreamUrl(StreamOptions options)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string GetVideoStreamUrl(VideoStreamOptions options)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string GetHlsVideoStreamUrl(VideoStreamOptions options)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task ReportCapabilities(ClientCapabilities capabilities, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        public Task ReportCapabilities(string sessionId, ClientCapabilities capabilities, CancellationToken cancellationToken)
+        public Task Logout()
         {
             throw new NotImplementedException();
         }
@@ -89,17 +105,7 @@ namespace MediaBrowser.WindowsPhone.Design
             throw new NotImplementedException();
         }
 
-        public Task MarkNotificationsRead(string userId, IEnumerable<Guid> notificationIdList, bool isRead)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task UpdateNotification(Notification notification)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Notification> AddNotification(Notification notification)
+        public Task MarkNotificationsRead(string userId, IEnumerable<string> notificationIdList, bool isRead)
         {
             throw new NotImplementedException();
         }
@@ -134,6 +140,11 @@ namespace MediaBrowser.WindowsPhone.Design
             throw new NotImplementedException();
         }
 
+        public Task<ItemsResult> GetAdditionalParts(string itemId, string userId)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<UserDto[]> GetUsersAsync(UserQuery query)
         {
             throw new NotImplementedException();
@@ -149,22 +160,32 @@ namespace MediaBrowser.WindowsPhone.Design
             throw new NotImplementedException();
         }
 
+        public Task<SessionInfoDto> GetCurrentSessionAsync(CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<ItemCounts> GetItemCountsAsync(ItemCountsQuery query)
         {
             throw new NotImplementedException();
         }
 
-        public Task<ItemsResult> GetEpisodesAsync(EpisodeQuery query)
+        public Task<ItemsResult> GetEpisodesAsync(EpisodeQuery query, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        public Task<ItemsResult> GetSeasonsAsync(SeasonQuery query)
+        public Task<ItemsResult> GetSeasonsAsync(SeasonQuery query, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        public Task<ItemsResult> GetItemsAsync(ItemQuery query)
+        public Task<ItemsResult> GetItemsAsync(ItemQuery query, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<ItemsResult> GetUserViews(string userId, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
@@ -189,32 +210,32 @@ namespace MediaBrowser.WindowsPhone.Design
             throw new NotImplementedException();
         }
 
-        public Task<ItemsResult> GetSimilarMoviesAsync(SimilarItemsQuery query)
+        public Task<ItemsResult> GetSimilarMoviesAsync(SimilarItemsQuery query, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        public Task<ItemsResult> GetSimilarTrailersAsync(SimilarItemsQuery query)
+        public Task<ItemsResult> GetSimilarTrailersAsync(SimilarItemsQuery query, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        public Task<ItemsResult> GetSimilarSeriesAsync(SimilarItemsQuery query)
+        public Task<ItemsResult> GetSimilarSeriesAsync(SimilarItemsQuery query, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        public Task<ItemsResult> GetSimilarAlbumsAsync(SimilarItemsQuery query)
+        public Task<ItemsResult> GetSimilarAlbumsAsync(SimilarItemsQuery query, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        public Task<ItemsResult> GetSimilarGamesAsync(SimilarItemsQuery query)
+        public Task<ItemsResult> GetSimilarGamesAsync(SimilarItemsQuery query, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        public Task<ItemsResult> GetPeopleAsync(PersonsQuery query)
+        public Task<ItemsResult> GetPeopleAsync(PersonsQuery query, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
@@ -224,12 +245,17 @@ namespace MediaBrowser.WindowsPhone.Design
             throw new NotImplementedException();
         }
 
+        public Task<ItemsResult> GetAlbumArtistsAsync(ArtistsQuery query)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<BaseItemDto> GetStudioAsync(string name, string userId)
         {
             throw new NotImplementedException();
         }
 
-        public Task<ItemsResult> GetNextUpEpisodesAsync(NextUpQuery query)
+        public Task<ItemsResult> GetNextUpEpisodesAsync(NextUpQuery query, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
@@ -284,7 +310,12 @@ namespace MediaBrowser.WindowsPhone.Design
             throw new NotImplementedException();
         }
 
-        public Task<SystemInfo> GetSystemInfoAsync()
+        public Task<SystemInfo> GetSystemInfoAsync(CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<PublicSystemInfo> GetPublicSystemInfoAsync(CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
@@ -309,7 +340,7 @@ namespace MediaBrowser.WindowsPhone.Design
             throw new NotImplementedException();
         }
 
-        public Task<TaskInfo> GetScheduledTaskAsync(Guid id)
+        public Task<TaskInfo> GetScheduledTaskAsync(string id)
         {
             throw new NotImplementedException();
         }
@@ -374,7 +405,7 @@ namespace MediaBrowser.WindowsPhone.Design
             throw new NotImplementedException();
         }
 
-        public Task SendBrowseCommandAsync(string sessionId, string itemId, string itemName, string itemType, string context)
+        public Task SendBrowseCommandAsync(string sessionId, string itemId, string itemName, string itemType)
         {
             throw new NotImplementedException();
         }
@@ -390,6 +421,31 @@ namespace MediaBrowser.WindowsPhone.Design
         }
 
         public Task SendCommandAsync(string sessionId, GeneralCommand command)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task SendString(string sessionId, string text)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task SetVolume(string sessionId, int volume)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task StopTranscodingProcesses(string deviceId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task SetAudioStreamIndex(string sessionId, int index)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task SetSubtitleStreamIndex(string sessionId, int? index)
         {
             throw new NotImplementedException();
         }
@@ -419,7 +475,7 @@ namespace MediaBrowser.WindowsPhone.Design
             throw new NotImplementedException();
         }
 
-        public Task UpdateScheduledTaskTriggersAsync(Guid id, TaskTriggerInfo[] triggers)
+        public Task UpdateScheduledTaskTriggersAsync(string id, TaskTriggerInfo[] triggers)
         {
             throw new NotImplementedException();
         }
@@ -444,7 +500,22 @@ namespace MediaBrowser.WindowsPhone.Design
             throw new NotImplementedException();
         }
 
-        public void ChangeServerLocation(string hostName, int apiPort)
+        public void ChangeServerLocation(string address)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SetAuthenticationInfo(string accessToken, string userId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SetAuthenticationInfo(string accessToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ClearAuthenticationInfo()
         {
             throw new NotImplementedException();
         }
@@ -469,7 +540,7 @@ namespace MediaBrowser.WindowsPhone.Design
             throw new NotImplementedException();
         }
 
-        public string GetSubtitleUrl(SubtitleOptions options)
+        public string GetSubtitleUrl(SubtitleDownloadOptions options)
         {
             throw new NotImplementedException();
         }
@@ -549,32 +620,12 @@ namespace MediaBrowser.WindowsPhone.Design
             throw new NotImplementedException();
         }
 
-        public string GetAudioStreamUrl(StreamOptions options)
-        {
-            throw new NotImplementedException();
-        }
-
-        public string GetVideoStreamUrl(VideoStreamOptions options)
-        {
-            throw new NotImplementedException();
-        }
-
-        public string GetHlsAudioStreamUrl(StreamOptions options)
-        {
-            throw new NotImplementedException();
-        }
-
-        public string GetHlsVideoStreamUrl(VideoStreamOptions options)
-        {
-            throw new NotImplementedException();
-        }
-
         public Task<LiveTvInfo> GetLiveTvInfoAsync(CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        public Task<QueryResult<ChannelInfoDto>> GetLiveTvChannelsAsync(ChannelQuery query, CancellationToken cancellationToken)
+        public Task<QueryResult<ChannelInfoDto>> GetLiveTvChannelsAsync(LiveTvChannelQuery query, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
@@ -689,13 +740,33 @@ namespace MediaBrowser.WindowsPhone.Design
             throw new NotImplementedException();
         }
 
+        public Task<ChannelFeatures> GetChannelFeatures(string channelId, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<QueryResult<BaseItemDto>> GetChannelItems(ChannelItemQuery query, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<QueryResult<BaseItemDto>> GetChannels(ChannelQuery query, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<QueryResult<BaseItemDto>> GetLatestChannelItems(AllChannelMediaQuery query, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
         public IJsonSerializer JsonSerializer { get; set; }
-        public string ServerHostName { get; private set; }
-        public int ServerApiPort { get; private set; }
+        public string ServerAddress { get; private set; }
         public string ClientName { get; set; }
         public string DeviceName { get; set; }
         public string DeviceId { get; set; }
-        public string CurrentUserId { get; set; }
+        public string CurrentUserId { get; private set; }
+        public string AccessToken { get; private set; }
         public event EventHandler ServerLocationChanged;
         public event EventHandler<HttpResponseEventArgs> HttpResponseReceived;
         public Task RegisterDeviceAsync(string deviceId, string uri, bool? sendTileUpdate = null, bool? sendToastUpdate = null)
@@ -719,52 +790,6 @@ namespace MediaBrowser.WindowsPhone.Design
         }
 
         public Task<DeviceSettings> GetDeviceSettingsAsync(string deviceId)
-        {
-            throw new NotImplementedException();
-        }
-
-
-        public Task<TaskInfo> GetScheduledTaskAsync(string id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public string GetSubtitleUrl(SubtitleDownloadOptions options)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task MarkNotificationsRead(string userId, IEnumerable<string> notificationIdList, bool isRead)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task SendBrowseCommandAsync(string sessionId, string itemId, string itemName, string itemType)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task SendString(string sessionId, string text)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task SetAudioStreamIndex(string sessionId, int index)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task SetSubtitleStreamIndex(string sessionId, int? index)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task SetVolume(string sessionId, int volume)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task UpdateScheduledTaskTriggersAsync(string id, TaskTriggerInfo[] triggers)
         {
             throw new NotImplementedException();
         }

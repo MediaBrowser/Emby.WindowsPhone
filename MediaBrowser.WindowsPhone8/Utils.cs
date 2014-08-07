@@ -10,12 +10,10 @@ using GalaSoft.MvvmLight.Ioc;
 using MediaBrowser.ApiInteraction;
 using MediaBrowser.ApiInteraction.WebSocket;
 using MediaBrowser.Model;
-using MediaBrowser.Model.Configuration;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Library;
 using MediaBrowser.Model.LiveTv;
-using MediaBrowser.Model.Logging;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Session;
 using MediaBrowser.Services;
@@ -237,9 +235,9 @@ namespace MediaBrowser.WindowsPhone
         {
             try
             {
-                apiClient.ChangeServerLocation(App.Settings.ConnectionDetails.HostName, App.Settings.ConnectionDetails.PortNo);
+                apiClient.ChangeServerLocation(App.Settings.ConnectionDetails.ServerAddress);
 
-                logger.Info("Getting server configuration. Hostname ({0}), Port ({1})", apiClient.ServerHostName, apiClient.ServerApiPort);
+                logger.Info("Getting server configuration. Server address ({0})", apiClient.ServerAddress);
 
                 var config = await apiClient.GetServerConfigurationAsync();
                 App.Settings.ServerConfiguration = config;
@@ -252,7 +250,7 @@ namespace MediaBrowser.WindowsPhone
                 logger.Info("Checking if live TV is supported");
 
 #if WP8
-                var liveTv = await apiClient.GetLiveTvInfoAsync(default(CancellationToken));
+                var liveTv = await apiClient.GetLiveTvInfoAsync();
                 App.Settings.LiveTvInfo = liveTv;
 #endif
 
@@ -261,7 +259,7 @@ namespace MediaBrowser.WindowsPhone
                     SimpleIoc.Default.Unregister<ApiWebSocket>();
                 }
 
-                App.WebSocketClient = await ApiWebSocket.Create(new MBLogger(), new NewtonsoftJsonSerializer(), (ApiClient)apiClient, () => new WebSocketClient(), new CancellationToken());
+                App.WebSocketClient = await ApiWebSocket.Create((ApiClient)apiClient, () => new WebSocketClient(), default(CancellationToken));
 
                 return true;
             }
@@ -274,7 +272,7 @@ namespace MediaBrowser.WindowsPhone
 
         internal static void CheckProfiles(INavigationService navigationService)
         {
-            var clients = App.Settings.ServerConfiguration.RequireManualLoginForMobileApps;
+            var clients = true;
             var loginPage = clients ? Constants.Pages.ManualUsernameView : Constants.Pages.ChooseProfileView;
 
 #if WP8

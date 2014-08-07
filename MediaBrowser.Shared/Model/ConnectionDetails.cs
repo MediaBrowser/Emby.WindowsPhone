@@ -12,5 +12,13 @@ namespace MediaBrowser.WindowsPhone.Model
         {
             get { return string.Format("http://{0}:{1}/mediabrowser", HostName, PortNo); }
         }
+
+        public string ServerAddress
+        {
+            get
+            {
+                return string.Format("http://{0}:{1}", HostName, PortNo);
+            }
+        }
     }
 }

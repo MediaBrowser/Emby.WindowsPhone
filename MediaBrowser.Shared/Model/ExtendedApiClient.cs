@@ -11,8 +11,8 @@ namespace MediaBrowser.WindowsPhone.Model
 {
     public class ExtendedApiClient : ApiClient, IExtendedApiClient
     {
-        public ExtendedApiClient(ILogger logger, string serverHostName, int serverApiPort, string clientName, string deviceName, string deviceId, string appVersion)
-            : base(logger, serverHostName, serverApiPort, clientName, deviceName, deviceId, appVersion)
+        public ExtendedApiClient(ILogger logger, string serverHostName, string clientName, string deviceName, string deviceId, string appVersion)
+            : base(logger, serverHostName, clientName, deviceName, deviceId, appVersion)
         {
         }
 

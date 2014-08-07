@@ -5,12 +5,12 @@
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:ignore="http://www.ignore.com"
                 xmlns:playerFramework="clr-namespace:Microsoft.PlayerFramework;assembly=Microsoft.PlayerFramework"
-                xmlns:converters="clr-namespace:MediaBrowser.WindowsPhone.Converters"
                 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
                 xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP8"
                 xmlns:scott="clr-namespace:ScottIsAFool.WindowsPhone.Controls;assembly=ScottIsAFool.WindowsPhone"
                 xmlns:System="clr-namespace:System;assembly=mscorlib"
                 xmlns:mediaPlayer="clr-namespace:SM.Media.MediaPlayer;assembly=SM.Media.MediaPlayer.WP8"
+                xmlns:webVtt="clr-namespace:Microsoft.PlayerFramework.WebVTT;assembly=Microsoft.PlayerFramework.WebVTT"
                 x:Class="MediaBrowser.WindowsPhone.Views.VideoPlayerView"
                 mc:Ignorable="d ignore"
                 SupportedOrientations="PortraitOrLandscape"
@@ -273,194 +273,509 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <Style x:Key="ControlPanelStyle1"
-               TargetType="playerFramework:ControlPanel">
+
+        <ControlTemplate x:Key="ControlPanelTemplate"
+                         TargetType="playerFramework:ControlPanel">
+            <Grid VerticalAlignment="Bottom">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="MediaStates">
+                        <VisualState x:Name="Opening" />
+                        <VisualState x:Name="Paused" />
+                        <VisualState x:Name="Playing" />
+                        <VisualState x:Name="Closed" />
+                        <VisualState x:Name="Buffering" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="LayoutStates">
+                        <VisualState x:Name="Compact" />
+                        <VisualState x:Name="Normal" />
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="Orientation">
+                        <VisualState x:Name="Landscape" />
+                        <VisualState x:Name="Portrait" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+                <Border x:Name="Border"
+                        Background="{TemplateBinding Background}"
+                        DataContext="{TemplateBinding ViewModel}">
+                    <Border.Resources>
+                        <playerFramework:BoolToVisibilityConverter x:Key="VisibleIfConverter" />
+                    </Border.Resources>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <StackPanel HorizontalAlignment="Right"
+                                    Margin="0,10,10,10"
+                                    Orientation="Horizontal"
+                                    Grid.Row="0">
+                            <Button x:Name="ReplayButton"
+                                    Margin="10,0,10,0"
+                                    Style="{TemplateBinding TransportBarButtonStyle}"
+                                    Visibility="{Binding IsReplayButtonVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}">
+                                <playerFramework:MediaControls.Behavior>
+                                    <playerFramework:ReplayButtonBehavior ViewModel="{Binding ViewModel, RelativeSource={RelativeSource TemplatedParent}}" />
+                                </playerFramework:MediaControls.Behavior>
+                            </Button>
+                            <Button x:Name="StopButton"
+                                    Margin="10,0,10,0"
+                                    Style="{TemplateBinding TransportBarButtonStyle}"
+                                    Visibility="{Binding IsStopButtonVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}">
+                                <playerFramework:MediaControls.Behavior>
+                                    <playerFramework:StopButtonBehavior ViewModel="{Binding ViewModel, RelativeSource={RelativeSource TemplatedParent}}" />
+                                </playerFramework:MediaControls.Behavior>
+                            </Button>
+                            <Button x:Name="SlowMotionButton"
+                                    Margin="10,0,10,0"
+                                    Style="{TemplateBinding TransportBarButtonStyle}"
+                                    Visibility="{Binding IsSlowMotionButtonVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}">
+                                <playerFramework:MediaControls.Behavior>
+                                    <playerFramework:SlowMotionButtonBehavior ViewModel="{Binding ViewModel, RelativeSource={RelativeSource TemplatedParent}}" />
+                                </playerFramework:MediaControls.Behavior>
+                            </Button>
+                            <Button x:Name="CaptionSelectionButton"
+                                    Margin="10,0,10,0"
+                                    Style="{TemplateBinding TransportBarButtonStyle}"
+                                    Visibility="{Binding IsCaptionSelectionButtonVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}">
+                                <playerFramework:MediaControls.Behavior>
+                                    <playerFramework:CaptionSelectionButtonBehavior ViewModel="{Binding ViewModel, RelativeSource={RelativeSource TemplatedParent}}" />
+                                </playerFramework:MediaControls.Behavior>
+                            </Button>
+                            <Button x:Name="AudioSelectionButton"
+                                    Margin="10,0,10,0"
+                                    Style="{TemplateBinding TransportBarButtonStyle}"
+                                    Visibility="{Binding IsAudioSelectionButtonVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}">
+                                <playerFramework:MediaControls.Behavior>
+                                    <playerFramework:AudioSelectionButtonBehavior ViewModel="{Binding ViewModel, RelativeSource={RelativeSource TemplatedParent}}" />
+                                </playerFramework:MediaControls.Behavior>
+                            </Button>
+                            <Button x:Name="ZoomButton"
+                                    Margin="5,5,5,5"
+                                    Style="{TemplateBinding TransportBarButtonStyle}"
+                                    Visibility="{Binding IsZoomButtonVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}">
+                                <playerFramework:MediaControls.Behavior>
+                                    <playerFramework:ZoomButtonBehavior ViewModel="{Binding ViewModel, RelativeSource={RelativeSource TemplatedParent}}" />
+                                </playerFramework:MediaControls.Behavior>
+                            </Button>
+                            <Button x:Name="GoLiveButton"
+                                    Margin="10,0,10,0"
+                                    Style="{TemplateBinding TransportBarButtonStyle}"
+                                    Visibility="{Binding IsGoLiveButtonVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}">
+                                <playerFramework:MediaControls.Behavior>
+                                    <playerFramework:GoLiveButtonBehavior ViewModel="{Binding ViewModel, RelativeSource={RelativeSource TemplatedParent}}" />
+                                </playerFramework:MediaControls.Behavior>
+                            </Button>
+                            <Button x:Name="InfoButton"
+                                    Margin="10,0,10,0"
+                                    Style="{TemplateBinding TransportBarButtonStyle}"
+                                    Visibility="{Binding IsInfoButtonVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}">
+                                <playerFramework:MediaControls.Behavior>
+                                    <playerFramework:InfoButtonBehavior ViewModel="{Binding ViewModel, RelativeSource={RelativeSource TemplatedParent}}" />
+                                </playerFramework:MediaControls.Behavior>
+                            </Button>
+                            <Button x:Name="FullScreenButton"
+                                    Margin="10,0,10,0"
+                                    Style="{TemplateBinding TransportBarButtonStyle}"
+                                    Visibility="{Binding IsFullScreenButtonVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}">
+                                <playerFramework:MediaControls.Behavior>
+                                    <playerFramework:FullScreenButtonBehavior ViewModel="{Binding ViewModel, RelativeSource={RelativeSource TemplatedParent}}" />
+                                </playerFramework:MediaControls.Behavior>
+                            </Button>
+                            <Button x:Name="MuteButton"
+                                    Margin="10,0,10,0"
+                                    Style="{TemplateBinding TransportBarButtonStyle}"
+                                    Visibility="{Binding IsMuteButtonVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}">
+                                <playerFramework:MediaControls.Behavior>
+                                    <playerFramework:MuteButtonBehavior ViewModel="{Binding ViewModel, RelativeSource={RelativeSource TemplatedParent}}" />
+                                </playerFramework:MediaControls.Behavior>
+                            </Button>
+                            <Button x:Name="MoreButton"
+                                    Margin="10,0,10,0"
+                                    Style="{TemplateBinding TransportBarButtonStyle}"
+                                    Visibility="{Binding IsMoreButtonVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}">
+                                <playerFramework:MediaControls.Behavior>
+                                    <playerFramework:MoreButtonBehavior ViewModel="{Binding ViewModel, RelativeSource={RelativeSource TemplatedParent}}" />
+                                </playerFramework:MediaControls.Behavior>
+                            </Button>
+                        </StackPanel>
+                        <StackPanel HorizontalAlignment="Center"
+                                    Orientation="Horizontal"
+                                    Grid.Row="1">
+                            <StackPanel x:Name="NonEssentialsNearLeft"
+                                        Orientation="Horizontal">
+                                <Button x:Name="SkipPreviousButton"
+                                        Height="70"
+                                        Margin="10,0,10,0"
+                                        Style="{TemplateBinding TransportBarButtonStyle}"
+                                        Visibility="{Binding IsSkipPreviousButtonVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}"
+                                        Width="70">
+                                    <playerFramework:MediaControls.Behavior>
+                                        <playerFramework:SkipPreviousButtonBehavior ViewModel="{Binding ViewModel, RelativeSource={RelativeSource TemplatedParent}}" />
+                                    </playerFramework:MediaControls.Behavior>
+                                </Button>
+                                <Button x:Name="RewindButton"
+                                        Height="70"
+                                        Margin="10,0,10,0"
+                                        Style="{TemplateBinding TransportBarButtonStyle}"
+                                        Visibility="{Binding IsRewindButtonVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}"
+                                        Width="70">
+                                    <playerFramework:MediaControls.Behavior>
+                                        <playerFramework:RewindButtonBehavior ViewModel="{Binding ViewModel, RelativeSource={RelativeSource TemplatedParent}}" />
+                                    </playerFramework:MediaControls.Behavior>
+                                </Button>
+                                <Button x:Name="SkipBackButton"
+                                        Height="70"
+                                        Margin="10,0,10,0"
+                                        Style="{TemplateBinding TransportBarButtonStyle}"
+                                        Visibility="{Binding IsSkipBackButtonVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}"
+                                        Width="70">
+                                    <playerFramework:MediaControls.Behavior>
+                                        <playerFramework:SkipBackButtonBehavior ViewModel="{Binding ViewModel, RelativeSource={RelativeSource TemplatedParent}}" />
+                                    </playerFramework:MediaControls.Behavior>
+                                </Button>
+                            </StackPanel>
+                            <Button x:Name="PlayPauseButton"
+                                    Height="70"
+                                    Margin="50,0,50,0"
+                                    Style="{TemplateBinding TransportBarButtonStyle}"
+                                    Visibility="{Binding IsPlayPauseButtonVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}"
+                                    Width="70">
+                                <playerFramework:MediaControls.Behavior>
+                                    <playerFramework:PlayPauseButtonBehavior ViewModel="{Binding ViewModel, RelativeSource={RelativeSource TemplatedParent}}" />
+                                </playerFramework:MediaControls.Behavior>
+                            </Button>
+                            <StackPanel x:Name="NonEssentialsNearRight"
+                                        Orientation="Horizontal">
+                                <Button x:Name="SkipAheadButton"
+                                        Height="70"
+                                        Margin="10,0,10,0"
+                                        Style="{TemplateBinding TransportBarButtonStyle}"
+                                        Visibility="{Binding IsSkipAheadButtonVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}"
+                                        Width="70">
+                                    <playerFramework:MediaControls.Behavior>
+                                        <playerFramework:SkipAheadButtonBehavior ViewModel="{Binding ViewModel, RelativeSource={RelativeSource TemplatedParent}}" />
+                                    </playerFramework:MediaControls.Behavior>
+                                </Button>
+                                <Button x:Name="FastForwardButton"
+                                        Height="70"
+                                        Margin="10,0,10,0"
+                                        Style="{TemplateBinding TransportBarButtonStyle}"
+                                        Visibility="{Binding IsFastForwardButtonVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}"
+                                        Width="70">
+                                    <playerFramework:MediaControls.Behavior>
+                                        <playerFramework:FastForwardButtonBehavior ViewModel="{Binding ViewModel, RelativeSource={RelativeSource TemplatedParent}}" />
+                                    </playerFramework:MediaControls.Behavior>
+                                </Button>
+                                <Button x:Name="SkipNextButton"
+                                        Height="70"
+                                        Margin="10,0,10,0"
+                                        Style="{TemplateBinding TransportBarButtonStyle}"
+                                        Visibility="{Binding IsSkipNextButtonVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}"
+                                        Width="70">
+                                    <playerFramework:MediaControls.Behavior>
+                                        <playerFramework:SkipNextButtonBehavior ViewModel="{Binding ViewModel, RelativeSource={RelativeSource TemplatedParent}}" />
+                                    </playerFramework:MediaControls.Behavior>
+                                </Button>
+                            </StackPanel>
+                        </StackPanel>
+                        <playerFramework:Timeline x:Name="Timeline"
+                                                  Height="25"
+                                                  Margin="10,20,10,0"
+                                                  Padding="0,10,0,10"
+                                                  Grid.Row="2"
+                                                  Visibility="{Binding IsTimelineVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}"
+                                                  ViewModel="{TemplateBinding ViewModel}"
+                                                  Style="{StaticResource TimelineStyle1}" />
+                        <StackPanel HorizontalAlignment="Left"
+                                    Margin="10,5,10,5"
+                                    Orientation="Horizontal"
+                                    Grid.Row="3">
+                            <TextBlock x:Name="TimeElapsed"
+                                       Visibility="{Binding IsTimeElapsedButtonVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}">
+        						<playerFramework:MediaControls.Behavior>
+        							<playerFramework:TimeElapsedBehavior ViewModel="{Binding ViewModel, RelativeSource={RelativeSource TemplatedParent}}" />
+        						</playerFramework:MediaControls.Behavior>
+                            </TextBlock>
+                            <TextBlock FontSize="{StaticResource PhoneFontSizeNormal}"
+                                       FontFamily="{StaticResource PhoneFontFamilyNormal}"
+                                       Text=" / "
+                                       VerticalAlignment="Center" />
+                            <TextBlock x:Name="TimeRemaining"
+                                       Visibility="{Binding IsTimeRemainingButtonVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}">
+        						<playerFramework:MediaControls.Behavior>
+        							<playerFramework:TimeRemainingBehavior ViewModel="{Binding ViewModel, RelativeSource={RelativeSource TemplatedParent}}" />
+        						</playerFramework:MediaControls.Behavior>
+                            </TextBlock>
+                            <TextBlock x:Name="TotalDuration"
+                                       Visibility="{Binding IsDurationButtonVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}">
+        						<playerFramework:MediaControls.Behavior>
+        							<playerFramework:TotalDurationBehavior ViewModel="{Binding ViewModel, RelativeSource={RelativeSource TemplatedParent}}" />
+        						</playerFramework:MediaControls.Behavior>
+                            </TextBlock>
+                        </StackPanel>
+                        <StackPanel HorizontalAlignment="Right"
+                                    Margin="10,0,10,10"
+                                    Orientation="Horizontal"
+                                    Grid.Row="3">
+                            <playerFramework:SignalStrength x:Name="SignalStrength"
+                                                            Margin="10,0,0,0"
+                                                            Visibility="{Binding IsSignalStrengthVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}"
+                                                            Value="{Binding SignalStrength}"
+                                                            VerticalAlignment="Center" />
+                            <playerFramework:ResolutionIndicator x:Name="ResolutionIndicator"
+                                                                 Margin="10,0,10,0"
+                                                                 MediaQuality="{Binding MediaQuality}"
+                                                                 Visibility="{Binding IsResolutionIndicatorVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}"
+                                                                 VerticalAlignment="Center" />
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </Grid>
+        </ControlTemplate>
+        <Style x:Key="TransportBarButtonStyle"
+               TargetType="Button">
+            <Setter Property="Foreground"
+                    Value="{StaticResource PhoneForegroundBrush}" />
             <Setter Property="VerticalAlignment"
-                    Value="Bottom" />
-            <Setter Property="Background"
-                    Value="{StaticResource PhoneSemitransparentColor}" />
+                    Value="Center" />
+            <Setter Property="HorizontalAlignment"
+                    Value="Center" />
+            <Setter Property="Padding"
+                    Value="0" />
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="playerFramework:ControlPanel">
-                        <Grid>
+                    <ControlTemplate TargetType="Button">
+                        <Grid x:Name="RootGrid"
+                              Background="Transparent">
                             <VisualStateManager.VisualStateGroups>
-                                <VisualStateGroup x:Name="MediaStates">
-                                    <VisualState x:Name="Opening" />
-                                    <VisualState x:Name="Paused" />
-                                    <VisualState x:Name="Playing" />
-                                    <VisualState x:Name="Closed" />
-                                    <VisualState x:Name="Buffering" />
-                                </VisualStateGroup>
-                                <VisualStateGroup x:Name="LayoutStates">
-                                    <VisualState x:Name="Compact" />
+                                <VisualStateGroup x:Name="CommonStates">
                                     <VisualState x:Name="Normal" />
+                                    <VisualState x:Name="MouseOver" />
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Stroke"
+                                                                           Storyboard.TargetName="OutlineEllipse">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="{StaticResource PhoneBackgroundBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill"
+                                                                           Storyboard.TargetName="BackgroundEllipse">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="{StaticResource PhoneButtonBasePressedForegroundColor}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
+                                                                           Storyboard.TargetName="Content">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="{StaticResource PhoneBackgroundBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Stroke"
+                                                                           Storyboard.TargetName="OutlineEllipse">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="{StaticResource PhoneDisabledColor}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
+                                                                           Storyboard.TargetName="Content">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="{StaticResource PhoneDisabledColor}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
                                 </VisualStateGroup>
                             </VisualStateManager.VisualStateGroups>
-                            <Border x:Name="Border"
-                                    Background="{TemplateBinding Background}"
-                                    DataContext="{TemplateBinding ViewModel}">
-                                <Border.Resources>
-                                    <playerFramework:BoolToVisibilityConverter x:Key="VisibleIfConverter" />
-                                </Border.Resources>
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="75" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                    </Grid.RowDefinitions>
-                                    <StackPanel HorizontalAlignment="Right"
-                                                Margin="0,15,10,15"
-                                                Orientation="Horizontal"
-                                                Grid.Row="0">
-                                        <playerFramework:ReplayButton x:Name="ReplayButton"
-                                                                      FontSize="25"
-                                                                      Margin="10,0,10,0"
-                                                                      Size="45"
-                                                                      Visibility="{Binding IsReplayButtonVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}"
-                                                                      ViewModel="{TemplateBinding ViewModel}" />
-                                        <playerFramework:StopButton x:Name="StopButton"
-                                                                    FontSize="25"
-                                                                    Margin="10,0,10,0"
-                                                                    Size="45"
-                                                                    Visibility="{Binding IsStopButtonVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}"
-                                                                    ViewModel="{TemplateBinding ViewModel}" />
-                                        <playerFramework:SlowMotionButton x:Name="SlowMotionButton"
-                                                                          FontSize="25"
-                                                                          Margin="10,0,10,0"
-                                                                          Size="45"
-                                                                          Visibility="{Binding IsSlowMotionButtonVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}"
-                                                                          ViewModel="{TemplateBinding ViewModel}" />
-                                        <playerFramework:CaptionSelectionButton x:Name="CaptionSelectionButton"
-                                                                                FontSize="25"
-                                                                                Margin="10,0,10,0"
-                                                                                Size="45"
-                                                                                Visibility="{Binding IsCaptionSelectionButtonVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}"
-                                                                                ViewModel="{TemplateBinding ViewModel}" />
-                                        <playerFramework:AudioSelectionButton x:Name="AudioSelectionButton"
-                                                                              FontSize="25"
-                                                                              Margin="10,0,10,0"
-                                                                              Size="45"
-                                                                              Visibility="{Binding IsAudioSelectionButtonVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}"
-                                                                              ViewModel="{TemplateBinding ViewModel}" />
-                                        <playerFramework:GoLiveButton x:Name="GoLiveButton"
-                                                                      FontSize="18"
-                                                                      Margin="10,0,10,0"
-                                                                      Size="45"
-                                                                      Visibility="{Binding IsGoLiveButtonVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}"
-                                                                      ViewModel="{TemplateBinding ViewModel}" />
-                                        <playerFramework:InfoButton x:Name="InfoButton"
-                                                                    FontSize="18"
-                                                                    Margin="10,0,10,0"
-                                                                    Size="45"
-                                                                    Visibility="{Binding IsInfoButtonVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}"
-                                                                    ViewModel="{TemplateBinding ViewModel}" />
-                                        <playerFramework:FullScreenButton x:Name="FullScreenButton"
-                                                                          FontSize="25"
-                                                                          Margin="10,0,10,0"
-                                                                          Size="45"
-                                                                          Visibility="{Binding IsFullScreenButtonVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}"
-                                                                          ViewModel="{TemplateBinding ViewModel}" />
-                                        <playerFramework:MuteButton x:Name="MuteButton"
-                                                                    FontSize="25"
-                                                                    Margin="10,0,10,0"
-                                                                    Size="45"
-                                                                    Visibility="{Binding IsMuteButtonVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}"
-                                                                    ViewModel="{TemplateBinding ViewModel}" />
-                                        <playerFramework:MoreButton x:Name="MoreButton"
-                                                                    FontSize="18"
-                                                                    Margin="10,0,10,0"
-                                                                    Size="45"
-                                                                    Visibility="{Binding IsMoreButtonVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}"
-                                                                    ViewModel="{TemplateBinding ViewModel}" />
-                                    </StackPanel>
-                                    <StackPanel HorizontalAlignment="Center"
-                                                Orientation="Horizontal"
-                                                Grid.Row="1">
-                                        <StackPanel x:Name="NonEssentialsNearLeft"
-                                                    Orientation="Horizontal">
-                                            <playerFramework:SkipPreviousButton x:Name="SkipPreviousButton"
-                                                                                Margin="10,0,10,0"
-                                                                                Visibility="{Binding IsSkipPreviousButtonVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}"
-                                                                                ViewModel="{TemplateBinding ViewModel}" />
-                                            <playerFramework:RewindButton x:Name="RewindButton"
-                                                                          Margin="10,0,10,0"
-                                                                          Visibility="{Binding IsRewindButtonVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}"
-                                                                          ViewModel="{TemplateBinding ViewModel}" />
-                                            <playerFramework:SkipBackButton x:Name="SkipBackButton"
-                                                                            Margin="10,0,10,0"
-                                                                            Visibility="{Binding IsSkipBackButtonVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}"
-                                                                            ViewModel="{TemplateBinding ViewModel}" />
-                                        </StackPanel>
-                                        <playerFramework:PlayPauseButton x:Name="PlayPauseButton"
-                                                                         Margin="50,0,50,0"
-                                                                         Visibility="{Binding IsPlayPauseButtonVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}"
-                                                                         ViewModel="{TemplateBinding ViewModel}" />
-                                        <StackPanel x:Name="NonEssentialsNearRight"
-                                                    Orientation="Horizontal">
-                                            <playerFramework:SkipAheadButton x:Name="SkipAheadButton"
-                                                                             Margin="10,0,10,0"
-                                                                             Visibility="{Binding IsSkipAheadButtonVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}"
-                                                                             ViewModel="{TemplateBinding ViewModel}" />
-                                            <playerFramework:FastForwardButton x:Name="FastForwardButton"
-                                                                               Margin="10,0,10,0"
-                                                                               Visibility="{Binding IsFastForwardButtonVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}"
-                                                                               ViewModel="{TemplateBinding ViewModel}" />
-                                            <playerFramework:SkipNextButton x:Name="SkipNextButton"
-                                                                            Margin="10,0,10,0"
-                                                                            Visibility="{Binding IsSkipNextButtonVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}"
-                                                                            ViewModel="{TemplateBinding ViewModel}" />
-                                        </StackPanel>
-                                    </StackPanel>
-                                    <playerFramework:Timeline x:Name="Timeline"
-                                                              Height="25"
-                                                              Margin="10,40,10,0"
-                                                              Padding="0,10,0,10"
-                                                              Grid.Row="2"
-                                                              Visibility="{Binding IsTimelineVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}"
-                                                              ViewModel="{TemplateBinding ViewModel}"
-                                                              Style="{StaticResource TimelineStyle1}" />
-                                    <StackPanel HorizontalAlignment="Left"
-                                                Margin="10,0,10,15"
-                                                Orientation="Horizontal"
-                                                Grid.Row="3">
-                                        <playerFramework:TimeElapsed x:Name="TimeElapsed"
-                                                                     Visibility="{Binding IsTimeElapsedButtonVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}"
-                                                                     ViewModel="{TemplateBinding ViewModel}" />
-                                        <TextBlock FontSize="{StaticResource PhoneFontSizeNormal}"
-                                                   FontFamily="{StaticResource PhoneFontFamilyNormal}"
-                                                   Text=" / "
-                                                   VerticalAlignment="Center" />
-                                        <playerFramework:TimeRemaining x:Name="TimeRemaining"
-                                                                       Visibility="{Binding IsTimeRemainingButtonVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}"
-                                                                       ViewModel="{TemplateBinding ViewModel}" />
-                                        <playerFramework:TotalDuration x:Name="TotalDuration"
-                                                                       Visibility="{Binding IsDurationButtonVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}"
-                                                                       ViewModel="{TemplateBinding ViewModel}" />
-                                    </StackPanel>
-                                    <StackPanel HorizontalAlignment="Right"
-                                                Margin="10,0,10,15"
-                                                Orientation="Horizontal"
-                                                Grid.Row="3">
-                                        <playerFramework:SignalStrength x:Name="SignalStrength"
-                                                                        Margin="10,0,0,0"
-                                                                        Visibility="{Binding IsSignalStrengthVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}"
-                                                                        Value="{Binding SignalStrength}"
-                                                                        VerticalAlignment="Center" />
-                                        <playerFramework:ResolutionIndicator x:Name="ResolutionIndicator"
-                                                                             Margin="10,0,10,0"
-                                                                             MediaQuality="{Binding MediaQuality}"
-                                                                             Visibility="{Binding IsResolutionIndicatorVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}"
-                                                                             VerticalAlignment="Center" />
-                                    </StackPanel>
+                            <Viewbox Margin="{TemplateBinding Padding}">
+                                <Grid Height="40"
+                                      Width="40">
+                                    <Ellipse x:Name="BackgroundEllipse"
+                                             Fill="{TemplateBinding Background}"
+                                             UseLayoutRounding="False" />
+                                    <Ellipse x:Name="OutlineEllipse"
+                                             Stroke="{TemplateBinding BorderBrush}"
+                                             StrokeThickness="2"
+                                             UseLayoutRounding="False" />
+                                    <ContentControl x:Name="Content"
+                                                    Content="{TemplateBinding Content}"
+                                                    Foreground="{TemplateBinding Foreground}"
+                                                    HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center" />
                                 </Grid>
-                            </Border>
+                            </Viewbox>
                         </Grid>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
-        <Style x:Key="MediaPlayerStyle1"
+        <Style x:Key="TransportBarTextButtonStyle"
+               TargetType="Button">
+            <Setter Property="VerticalAlignment"
+                    Value="Center" />
+            <Setter Property="HorizontalAlignment"
+                    Value="Left" />
+            <Setter Property="VerticalContentAlignment"
+                    Value="Center" />
+            <Setter Property="HorizontalContentAlignment"
+                    Value="Stretch" />
+            <Setter Property="Foreground"
+                    Value="{StaticResource PhoneForegroundBrush}" />
+            <Setter Property="FontSize"
+                    Value="22" />
+            <Setter Property="FontWeight"
+                    Value="Normal" />
+            <Setter Property="FontFamily"
+                    Value="{StaticResource PhoneFontFamilyNormal}" />
+            <Setter Property="Padding"
+                    Value="0,0,0,0" />
+            <Setter Property="Margin"
+                    Value="0,0,0,0" />
+            <Setter Property="MinWidth"
+                    Value="70" />
+            <Setter Property="MinHeight"
+                    Value="0" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid Background="#00000000"
+                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal" />
+                                    <VisualState x:Name="MouseOver" />
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
+                                                                           Storyboard.TargetName="ContentPresenter">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="{StaticResource PhoneBackgroundBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
+                                                                           Storyboard.TargetName="ContentPresenter">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="{StaticResource PhoneDisabledColor}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <ContentPresenter x:Name="ContentPresenter"
+                                              ContentTemplate="{TemplateBinding ContentTemplate}"
+                                              Content="{TemplateBinding Content}"
+                                              HorizontalAlignment="Center"
+                                              Margin="{TemplateBinding Padding}" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="TransportBackgroundBrush"
+                         Color="#80000000" />
+        <SolidColorBrush x:Key="TransportReversedBackgroundBrush"
+                         Color="#80FFFFFF" />
+        <Style x:Key="PrimaryButtonStyle"
+               TargetType="Button">
+            <Setter Property="Foreground"
+                    Value="{StaticResource PhoneForegroundBrush}" />
+            <Setter Property="VerticalAlignment"
+                    Value="Center" />
+            <Setter Property="HorizontalAlignment"
+                    Value="Center" />
+            <Setter Property="Padding"
+                    Value="0" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid x:Name="RootGrid"
+                              Background="Transparent">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal" />
+                                    <VisualState x:Name="MouseOver" />
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Stroke"
+                                                                           Storyboard.TargetName="OutlineEllipse">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="{StaticResource PhoneBackgroundBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill"
+                                                                           Storyboard.TargetName="BackgroundEllipse">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="{StaticResource TransportReversedBackgroundBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
+                                                                           Storyboard.TargetName="Content">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="{StaticResource PhoneBackgroundBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Stroke"
+                                                                           Storyboard.TargetName="OutlineEllipse">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="{StaticResource PhoneDisabledColor}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
+                                                                           Storyboard.TargetName="Content">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="{StaticResource PhoneDisabledColor}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Viewbox Margin="{TemplateBinding Padding}">
+                                <Grid Height="40"
+                                      Width="40">
+                                    <Ellipse x:Name="BackgroundEllipse"
+                                             Fill="{StaticResource TransportBackgroundBrush}"
+                                             UseLayoutRounding="False" />
+                                    <Ellipse x:Name="OutlineEllipse"
+                                             Stroke="{TemplateBinding BorderBrush}"
+                                             StrokeThickness="2"
+                                             UseLayoutRounding="False" />
+                                    <ContentControl x:Name="Content"
+                                                    Content="{TemplateBinding Content}"
+                                                    Foreground="{TemplateBinding Foreground}"
+                                                    HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center" />
+                                </Grid>
+                            </Viewbox>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ControlPanelStyle1"
+               TargetType="playerFramework:ControlPanel">
+            <Setter Property="Background"
+                    Value="{StaticResource PhoneSemitransparentColor}" />
+            <Setter Property="IsTabStop"
+                    Value="False" />
+            <Setter Property="VerticalAlignment"
+                    Value="Stretch" />
+            <Setter Property="HorizontalAlignment"
+                    Value="Stretch" />
+            <Setter Property="TransportBarButtonStyle"
+                    Value="{StaticResource TransportBarButtonStyle}" />
+            <Setter Property="TransportBarTextButtonStyle"
+                    Value="{StaticResource TransportBarTextButtonStyle}" />
+            <Setter Property="PrimaryButtonStyle"
+                    Value="{StaticResource PrimaryButtonStyle}" />
+            <Setter Property="Template"
+                    Value="{StaticResource ControlPanelTemplate}" />
+        </Style>
+        <Style x:Key="MediaPlayerStyle2"
                TargetType="playerFramework:MediaPlayer">
             <Setter Property="InteractiveDeactivationMode"
                     Value="All" />
@@ -470,6 +785,8 @@
                     Value="False" />
             <Setter Property="IsDurationVisible"
                     Value="True" />
+            <Setter Property="ControlPanelTemplate"
+                    Value="{StaticResource ControlPanelTemplate}" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="playerFramework:MediaPlayer">
@@ -693,16 +1010,17 @@
                                                               IsSkipBackButtonVisible="{TemplateBinding IsSkipBackVisible}"
                                                               IsGoLiveButtonVisible="{TemplateBinding IsGoLiveVisible}"
                                                               IsSlowMotionButtonVisible="{TemplateBinding IsSlowMotionVisible}"
+                                                              IsZoomButtonVisible="{TemplateBinding IsZoomVisible}"
                                                               IsAudioSelectionButtonVisible="{TemplateBinding IsAudioSelectionVisible}"
                                                               IsTimelineVisible="{TemplateBinding IsTimelineVisible}"
                                                               IsReplayButtonVisible="{TemplateBinding IsReplayVisible}"
-                                                              IsTimeRemainingButtonVisible="False"
+                                                              IsTimeRemainingButtonVisible="{TemplateBinding IsTimeRemainingVisible}"
                                                               IsSignalStrengthVisible="{TemplateBinding IsSignalStrengthVisible}"
                                                               IsSkipNextButtonVisible="{TemplateBinding IsSkipNextVisible}"
                                                               IsFastForwardButtonVisible="{TemplateBinding IsFastForwardVisible}"
                                                               IsDurationButtonVisible="{TemplateBinding IsDurationVisible}"
                                                               IsMoreButtonVisible="{TemplateBinding IsMoreVisible}"
-                                                              IsTimeElapsedButtonVisible="True"
+                                                              IsTimeElapsedButtonVisible="{TemplateBinding IsTimeElapsedVisible}"
                                                               IsCaptionSelectionButtonVisible="{TemplateBinding IsCaptionSelectionVisible}"
                                                               IsVolumeButtonVisible="{TemplateBinding IsVolumeVisible}"
                                                               IsSkipAheadButtonVisible="{TemplateBinding IsSkipAheadVisible}"
@@ -762,8 +1080,12 @@
                                      EndTime="{Binding EndTime}"
                                      ScrubbingCompleted="thePlayer_ScrubbingCompleted"
                                      Seeked="thePlayer_Seeked"
-                                     Style="{StaticResource MediaPlayerStyle1}"/>
-            
+                                     Style="{StaticResource MediaPlayerStyle2}">
+            <playerFramework:MediaPlayer.Plugins>
+                <webVtt:WebVTTPlugin />
+            </playerFramework:MediaPlayer.Plugins>
+        </playerFramework:MediaPlayer>
+
         <playerFramework:MediaPlayer x:Name="HlsPlayer"
                                      Visibility="{Binding IsHls, Converter={StaticResource VisibilityConverter}, FallbackValue=Collapsed}"
                                      Source="{Binding VideoUrl}"
@@ -782,7 +1104,7 @@
                                      EndTime="{Binding EndTime}"
                                      ScrubbingCompleted="thePlayer_ScrubbingCompleted"
                                      Seeked="thePlayer_Seeked"
-                                     Style="{StaticResource MediaPlayerStyle1}">
+                                     Style="{StaticResource MediaPlayerStyle2}">
             <playerFramework:MediaPlayer.Plugins>
                 <mediaPlayer:StreamingMediaPlugin />
             </playerFramework:MediaPlayer.Plugins>

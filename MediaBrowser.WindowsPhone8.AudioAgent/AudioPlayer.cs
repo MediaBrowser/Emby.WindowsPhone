@@ -86,10 +86,9 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
             {
                 var applicationSettings = new ApplicationSettingsService();
                 var connectionDetails = applicationSettings.Get<ConnectionDetails>(Constants.Settings.ConnectionSettings);
-                var client = new ExtendedApiClient(new NullLogger(), connectionDetails.HostName, connectionDetails.PortNo, "Windows Phone", SharedUtils.GetDeviceName() + " Audio Player", SharedUtils.GetDeviceId(), ApplicationManifest.Current.App.Version);
+                var client = new ExtendedApiClient(new NullLogger(), connectionDetails.ServerAddress, "Windows Phone", SharedUtils.GetDeviceName() + " Audio Player", SharedUtils.GetDeviceId(), ApplicationManifest.Current.App.Version);
 
                 AuthenticationService.Current.Start(client);
-                client.CurrentUserId = AuthenticationService.Current.LoggedInUserId;
 
                 return client;
             }
@@ -215,10 +214,9 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
                 {
                     var info = new PlaybackStartInfo
                     {
-                        //IsSeekable = false,
+                        CanSeek = false,
                         ItemId = track.Tag,
                         QueueableMediaTypes = new List<string>(),
-                        //UserId = AuthenticationService.Current.LoggedInUserId
                     };
                     await _apiClient.ReportPlaybackStartAsync(info);
                 }

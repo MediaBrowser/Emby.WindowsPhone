@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Windows;
@@ -17,6 +18,7 @@ using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Messaging;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Resources;
+using Microsoft.PlayerFramework;
 using ScottIsAFool.WindowsPhone.ViewModel;
 using System.Threading;
 using System.Threading.Tasks;
@@ -62,7 +64,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 var info = new PlaybackProgressInfo
                 {
                     ItemId = _itemId,
-                    //UserId = AuthenticationService.Current.LoggedInUserId,
                     IsMuted = false,
                     IsPaused = false,
                     PositionTicks = totalTicks
@@ -320,8 +321,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 var info = new PlaybackStartInfo
                 {
                     ItemId = query.ItemId,
-                    UserId = AuthenticationService.Current.LoggedInUserId,
-                    IsSeekable = false,
+                    //UserId = AuthenticationService.Current.LoggedInUserId,
+                    CanSeek = false,
                     QueueableMediaTypes = new List<string>()
                 };
 
@@ -411,6 +412,33 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }            
             Recover = false;
                 
+        }
+
+        internal List<Caption> GetSubtitles(BaseItemDto item)
+        {
+            var list = new List<Caption>();
+            if (item.MediaStreams == null)
+                return list;
+            foreach (var caption in item.MediaStreams.Where(s => s.Type == MediaStreamType.Subtitle))
+            {
+                var menuItem = new Caption
+                {
+                    Id = caption.Index.ToString(CultureInfo.InvariantCulture),
+                    //Language = caption.Language,
+                    //Name = caption.Language,
+                    Description = caption.Language
+                };
+
+                if (caption.IsTextSubtitleStream)
+                {
+                    var source = item.MediaSources.FirstOrDefault();
+                    var id = source != null ? source.Id : string.Empty;
+                    menuItem.Source = new Uri(string.Format("{0}/mediabrowser/Videos/{1}/{2}/Subtitles/{3}/Stream.vtt", _apiClient.ServerAddress, item.Id, id, caption.Index));
+                }
+
+                list.Add(menuItem);
+            }
+            return list;
         }
     }
 }

@@ -8,7 +8,7 @@
         
         public class Settings
         {
-            public const string SelectedUserSetting = "SelectedUser";
+            public const string SelectedUserSetting = "SelectedUserInfo";
             public const string SelectedUserPinSetting = "SelectedUserPin";
             public const string ConnectionSettings = "ConnectionSettings";
             public const string SpecificSettings = "SpecificSettings";
