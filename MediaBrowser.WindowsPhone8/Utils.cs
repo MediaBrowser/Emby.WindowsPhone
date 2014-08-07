@@ -187,7 +187,7 @@ namespace MediaBrowser.WindowsPhone
                         Id = series.Id,
                         DateCreated = series.CreatedDate,
                         Type = "Series",
-                        ImageTags = new Dictionary<ImageType, Guid> { { ImageType.Primary, Guid.NewGuid() } },
+                        ImageTags = new Dictionary<ImageType, string> { { ImageType.Primary, Guid.NewGuid().ToString() } },
                         UserData = series.UserData
                     }));
                 }
@@ -200,8 +200,8 @@ namespace MediaBrowser.WindowsPhone
                         Id = g.Select(l => l.ParentId).FirstOrDefault(),
                         Name = g.Key,
                         CreatedDate = g.OrderByDescending(l => l.DateCreated).First().DateCreated,
-                        ImageTags = g.SelectMany(x => x.ParentBackdropImageTags ?? new List<Guid>()).Distinct().ToList(),
-                        PrimaryImage = g.Select(l => new KeyValuePair<ImageType, Guid>(ImageType.Primary, l.AlbumPrimaryImageTag.HasValue ? l.AlbumPrimaryImageTag.Value : Guid.Empty)).Distinct().ToDictionary(y => y.Key, y => y.Value)
+                        ImageTags = g.SelectMany(x => x.ParentBackdropImageTags ?? new List<string>()).Distinct().ToList(),
+                        PrimaryImage = g.Select(l => new KeyValuePair<ImageType, string>(ImageType.Primary, string.IsNullOrEmpty(l.AlbumPrimaryImageTag) ? l.AlbumPrimaryImageTag : Guid.Empty.ToString())).Distinct().ToDictionary(y => y.Key, y => y.Value)
                     }).ToList();
                 var albumList = new List<BaseItemDto>();
 
@@ -274,8 +274,8 @@ namespace MediaBrowser.WindowsPhone
 
         internal static void CheckProfiles(INavigationService navigationService)
         {
-            var clients = App.Settings.ServerConfiguration.ManualLoginClients;
-            var loginPage = clients.Contains(ManualLoginCategory.Mobile) ? Constants.Pages.ManualUsernameView : Constants.Pages.ChooseProfileView;
+            var clients = App.Settings.ServerConfiguration.RequireManualLoginForMobileApps;
+            var loginPage = clients ? Constants.Pages.ManualUsernameView : Constants.Pages.ChooseProfileView;
 
 #if WP8
             if (AuthenticationService.Current.IsLoggedIn)

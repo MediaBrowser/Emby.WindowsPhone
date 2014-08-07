@@ -1,6 +1,7 @@
 ﻿using MediaBrowser.Model;
 using System;
 using System.Windows.Data;
+using MediaBrowser.WindowsPhone.Model;
 
 namespace MediaBrowser.WindowsPhone.Converters
 {

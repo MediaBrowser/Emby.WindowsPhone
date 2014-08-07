@@ -7,7 +7,7 @@ using MediaBrowser.WindowsPhone.Services;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Tasks;
 using ScottIsAFool.WindowsPhone.Logging;
-
+using GestureEventArgs = System.Windows.Input.GestureEventArgs;
 #if WP8
 using Windows.System;
 #endif
@@ -73,6 +73,18 @@ namespace MediaBrowser.WindowsPhone.Views
         private void AboutItem_OnClick(object sender, EventArgs e)
         {
             NavigationService.Navigate(new Uri("/YourLastAboutDialog;component/AboutPage.xaml", UriKind.Relative));
+        }
+
+        private void DisplayUrlButton_OnTap(object sender, GestureEventArgs e)
+        {
+            var content = DisplayUrlButton.Content as string;
+            if (content != null)
+            {
+                new WebBrowserTask
+                {
+                    Uri = new Uri(content)
+                }.Show();
+            }
         }
     }
 }

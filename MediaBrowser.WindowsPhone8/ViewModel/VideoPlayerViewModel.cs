@@ -62,7 +62,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 var info = new PlaybackProgressInfo
                 {
                     ItemId = _itemId,
-                    UserId = AuthenticationService.Current.LoggedInUserId,
+                    //UserId = AuthenticationService.Current.LoggedInUserId,
                     IsMuted = false,
                     IsPaused = false,
                     PositionTicks = totalTicks
@@ -149,7 +149,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         var info = new PlaybackStopInfo
                         {
                             ItemId = _itemId,
-                            UserId = AuthenticationService.Current.LoggedInUserId,
+                            //UserId = AuthenticationService.Current.LoggedInUserId,
                             PositionTicks = totalTicks
                         };
 
@@ -199,7 +199,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         {
                             IsMuted = false,
                             ItemId = _itemId,
-                            UserId = AuthenticationService.Current.LoggedInUserId,
+                            //UserId = AuthenticationService.Current.LoggedInUserId,
                             PositionTicks = totalTicks,
                             IsPaused = isPaused
                         };
@@ -322,7 +322,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     ItemId = query.ItemId,
                     UserId = AuthenticationService.Current.LoggedInUserId,
                     IsSeekable = false,
-                    QueueableMediaTypes = new string[0]
+                    QueueableMediaTypes = new List<string>()
                 };
 
                 await _apiClient.ReportPlaybackStartAsync(info);

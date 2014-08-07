@@ -20,7 +20,7 @@ using MediaBrowser.Model.System;
 using MediaBrowser.Model.Tasks;
 using MediaBrowser.Model.Users;
 
-namespace MediaBrowser.Design
+namespace MediaBrowser.WindowsPhone.Design
 {
     public class ExtendedApiClientDesign : IExtendedApiClient
     {
@@ -719,6 +719,52 @@ namespace MediaBrowser.Design
         }
 
         public Task<DeviceSettings> GetDeviceSettingsAsync(string deviceId)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public Task<TaskInfo> GetScheduledTaskAsync(string id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string GetSubtitleUrl(SubtitleDownloadOptions options)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task MarkNotificationsRead(string userId, IEnumerable<string> notificationIdList, bool isRead)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task SendBrowseCommandAsync(string sessionId, string itemId, string itemName, string itemType)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task SendString(string sessionId, string text)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task SetAudioStreamIndex(string sessionId, int index)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task SetSubtitleStreamIndex(string sessionId, int? index)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task SetVolume(string sessionId, int volume)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task UpdateScheduledTaskTriggersAsync(string id, TaskTriggerInfo[] triggers)
         {
             throw new NotImplementedException();
         }

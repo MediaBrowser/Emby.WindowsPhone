@@ -84,17 +84,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
         }
 
-        ////public override void WireMessages()
-        ////{
-        ////    Messenger.Default.Register<NotificationMessage>(this, async m =>
-        ////    {
-        ////        if (m.Notification.Equals(Constants.Messages.CheckForPushPluginMsg))
-        ////        {
-
-        ////        }
-        ////    });
-        ////}
-
         public string RegisteredText { get; set; }
         public bool SendToastUpdates { get; set; }
         public bool SendTileUpdates { get; set; }

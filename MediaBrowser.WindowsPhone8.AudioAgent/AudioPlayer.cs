@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
@@ -65,7 +66,7 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
                 var info = new PlaybackProgressInfo
                 {
                     ItemId = track.Tag,
-                    UserId = _apiClient.CurrentUserId,
+                    //UserId = _apiClient.CurrentUserId,
                     PositionTicks = BackgroundAudioPlayer.Instance.Position.Ticks,
                     IsMuted = false,
                     IsPaused = false
@@ -187,7 +188,7 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
                     var info = new PlaybackStopInfo
                     {
                         ItemId = track.Tag,
-                        UserId = _apiClient.CurrentUserId
+                        //UserId = _apiClient.CurrentUserId
                     };
                     await _apiClient.ReportPlaybackStoppedAsync(info);
                 }
@@ -214,10 +215,10 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
                 {
                     var info = new PlaybackStartInfo
                     {
-                        IsSeekable = false,
+                        //IsSeekable = false,
                         ItemId = track.Tag,
-                        QueueableMediaTypes = new string[0],
-                        UserId = AuthenticationService.Current.LoggedInUserId
+                        QueueableMediaTypes = new List<string>(),
+                        //UserId = AuthenticationService.Current.LoggedInUserId
                     };
                     await _apiClient.ReportPlaybackStartAsync(info);
                 }
