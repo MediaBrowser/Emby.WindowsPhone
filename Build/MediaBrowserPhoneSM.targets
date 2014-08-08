@@ -3,10 +3,9 @@
 		<Error Text="Because of the new PhoneSM dlls, you can't have AnyCPU anymore" />
 	</Target>
 
-	<ItemGroup Condition=" '$(MSBuildProjectExtension)' == '.jsproj' ">
+	<ItemGroup Condition=" '$(MSBuildProjectExtension)' == '.csproj' Or '$(MSBuildProjectExtension)' == '.vbproj' ">
 		<Reference Include="SM.Media.Platform.WP8">
-			<HintPath>$(SolutionDir)\other-packages\HLS\$(Platform)\SM.Media.Platform.WP8.dll</HintPath>	
-			<IsWinMDFile>false</IsWinMDFile>
+			<HintPath>$(SolutionDir)\other-packages\HLS\$(Platform)\SM.Media.Platform.WP8.dll</HintPath>				
 		</Reference>
 	</ItemGroup>
   
