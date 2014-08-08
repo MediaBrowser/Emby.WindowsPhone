@@ -170,22 +170,17 @@ namespace MediaBrowser.WindowsPhone.Design
             throw new NotImplementedException();
         }
 
-        public Task<ItemsResult> GetEpisodesAsync(EpisodeQuery query, CancellationToken cancellationToken)
+        public Task<ItemsResult> GetEpisodesAsync(EpisodeQuery query)
         {
             throw new NotImplementedException();
         }
 
-        public Task<ItemsResult> GetSeasonsAsync(SeasonQuery query, CancellationToken cancellationToken)
+        public Task<ItemsResult> GetSeasonsAsync(SeasonQuery query)
         {
             throw new NotImplementedException();
         }
 
-        public Task<ItemsResult> GetItemsAsync(ItemQuery query, CancellationToken cancellationToken)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<ItemsResult> GetUserViews(string userId, CancellationToken cancellationToken)
+        public Task<ItemsResult> GetItemsAsync(ItemQuery query)
         {
             throw new NotImplementedException();
         }
@@ -210,32 +205,32 @@ namespace MediaBrowser.WindowsPhone.Design
             throw new NotImplementedException();
         }
 
-        public Task<ItemsResult> GetSimilarMoviesAsync(SimilarItemsQuery query, CancellationToken cancellationToken)
+        public Task<ItemsResult> GetSimilarMoviesAsync(SimilarItemsQuery query)
         {
             throw new NotImplementedException();
         }
 
-        public Task<ItemsResult> GetSimilarTrailersAsync(SimilarItemsQuery query, CancellationToken cancellationToken)
+        public Task<ItemsResult> GetSimilarTrailersAsync(SimilarItemsQuery query)
         {
             throw new NotImplementedException();
         }
 
-        public Task<ItemsResult> GetSimilarSeriesAsync(SimilarItemsQuery query, CancellationToken cancellationToken)
+        public Task<ItemsResult> GetSimilarSeriesAsync(SimilarItemsQuery query)
         {
             throw new NotImplementedException();
         }
 
-        public Task<ItemsResult> GetSimilarAlbumsAsync(SimilarItemsQuery query, CancellationToken cancellationToken)
+        public Task<ItemsResult> GetSimilarAlbumsAsync(SimilarItemsQuery query)
         {
             throw new NotImplementedException();
         }
 
-        public Task<ItemsResult> GetSimilarGamesAsync(SimilarItemsQuery query, CancellationToken cancellationToken)
+        public Task<ItemsResult> GetSimilarGamesAsync(SimilarItemsQuery query)
         {
             throw new NotImplementedException();
         }
 
-        public Task<ItemsResult> GetPeopleAsync(PersonsQuery query, CancellationToken cancellationToken)
+        public Task<ItemsResult> GetPeopleAsync(PersonsQuery query)
         {
             throw new NotImplementedException();
         }
@@ -255,7 +250,7 @@ namespace MediaBrowser.WindowsPhone.Design
             throw new NotImplementedException();
         }
 
-        public Task<ItemsResult> GetNextUpEpisodesAsync(NextUpQuery query, CancellationToken cancellationToken)
+        public Task<ItemsResult> GetNextUpEpisodesAsync(NextUpQuery query)
         {
             throw new NotImplementedException();
         }
@@ -311,11 +306,6 @@ namespace MediaBrowser.WindowsPhone.Design
         }
 
         public Task<SystemInfo> GetSystemInfoAsync(CancellationToken cancellationToken)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<PublicSystemInfo> GetPublicSystemInfoAsync(CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
@@ -500,22 +490,7 @@ namespace MediaBrowser.WindowsPhone.Design
             throw new NotImplementedException();
         }
 
-        public void ChangeServerLocation(string address)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void SetAuthenticationInfo(string accessToken, string userId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void SetAuthenticationInfo(string accessToken)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ClearAuthenticationInfo()
+        public void ChangeServerLocation(string hostName, int apiPort)
         {
             throw new NotImplementedException();
         }
@@ -761,12 +736,12 @@ namespace MediaBrowser.WindowsPhone.Design
         }
 
         public IJsonSerializer JsonSerializer { get; set; }
-        public string ServerAddress { get; private set; }
+        public string ServerHostName { get; private set; }
+        public int ServerApiPort { get; private set; }
         public string ClientName { get; set; }
         public string DeviceName { get; set; }
         public string DeviceId { get; set; }
-        public string CurrentUserId { get; private set; }
-        public string AccessToken { get; private set; }
+        public string CurrentUserId { get; set; }
         public event EventHandler ServerLocationChanged;
         public event EventHandler<HttpResponseEventArgs> HttpResponseReceived;
         public Task RegisterDeviceAsync(string deviceId, string uri, bool? sendTileUpdate = null, bool? sendToastUpdate = null)
