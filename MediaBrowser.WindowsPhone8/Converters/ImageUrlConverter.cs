@@ -59,13 +59,8 @@ namespace MediaBrowser.WindowsPhone.Converters
                     var imageOptions = new ImageOptions
                     {
                         EnableImageEnhancers = App.SpecificSettings.EnableImageEnhancers,
-#if WP8
                         MaxHeight = 159,
                         MaxWidth = 159
-#else
-                        MaxHeight = 100,
-                        MaxWidth = 100
-#endif
                     };
 
                     switch (searchHint.Type)
@@ -100,11 +95,7 @@ namespace MediaBrowser.WindowsPhone.Converters
                     }
                     else
                     {
-#if !WP8
-                        imageOptions.MaxHeight = 220;
-#else
                         imageOptions.MaxHeight = 440;
-#endif
                     }
 
                     return apiClient.GetImageUrl(item.Id, imageOptions);
@@ -173,11 +164,7 @@ namespace MediaBrowser.WindowsPhone.Converters
             {
                 EnableImageEnhancers = App.SpecificSettings.EnableImageEnhancers,
                 Quality = 90,
-#if WP8
                 MaxHeight = 336,
-#else
-                                               MaxHeight = 173,
-#endif
                 ImageType = ImageType.Primary
             };
             if (imageType.Equals("logo", StringComparison.OrdinalIgnoreCase))
@@ -211,11 +198,7 @@ namespace MediaBrowser.WindowsPhone.Converters
             }
             else if (imageType.Equals("backdropsmall", StringComparison.OrdinalIgnoreCase))
             {
-#if WP8
                 imageOptions.MaxHeight = 336;
-#else
-                        imageOptions.MaxHeight = 173;
-#endif
                 imageOptions.ImageType = ImageType.Backdrop;
 
                 var images = apiClient.GetBackdropImageUrls(item, imageOptions);
@@ -239,35 +222,19 @@ namespace MediaBrowser.WindowsPhone.Converters
             }
             else if (imageType.Equals("icon", StringComparison.OrdinalIgnoreCase))
             {
-#if WP8
                 imageOptions.MaxHeight = 159;
-#else
-                        imageOptions.MaxHeight = 90;
-#endif
             }
             else if (imageType.Equals("poster", StringComparison.OrdinalIgnoreCase))
             {
-#if WP8
                 imageOptions.MaxHeight = 675;
-#else
-                        imageOptions.MaxHeight = 450;
-#endif
             }
             else if (imageType.Equals("episode", StringComparison.OrdinalIgnoreCase))
             {
-#if WP8
                 imageOptions.MaxHeight = 382;
-#else
-                        imageOptions.MaxHeight = 255;
-#endif
             }
             else
             {
-#if WP8
                 imageOptions.MaxHeight = 300;
-#else
-                        imageOptions.MaxHeight = 200;
-#endif
             }
             try
             {

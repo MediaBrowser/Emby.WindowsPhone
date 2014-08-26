@@ -16,19 +16,11 @@
         protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
         {
             base.OnBackKeyPress(e);
-#if !WP8
-            if (SongSelector.IsCheckModeActive)
-            {
-                SongSelector.IsCheckModeActive = false;
-                e.Cancel = true;
-            }
-#else
             if (SongSelector.IsSelectionEnabled)
             {
                 SongSelector.IsSelectionEnabled = false;
                 e.Cancel = true;
             }
-#endif
         }
     }
 }

@@ -293,12 +293,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 case GroupBy.Name:
                     GroupHeaderTemplate = (DataTemplate) Application.Current.Resources["LLSGroupHeaderTemplateName"];
-#if WP8
                     GroupItemTemplate = (Style) Application.Current.Resources["LLSGroupItemStyle"];
-#else
-                    GroupItemTemplate = (DataTemplate)Application.Current.Resources["LLSGroupItemTemplate"];
-                    ItemsPanelTemplate = (ItemsPanelTemplate)Application.Current.Resources["WrapPanelTemplate"];
-#endif
                     var headers = new List<string> {"#", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
                     headers.ForEach(item => emptyGroups.Add(new Group<BaseItemDto>(item, new List<BaseItemDto>())));
                     var groupedNameItems = (from c in CurrentItems
@@ -306,22 +301,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         into grp
                         orderby grp.Key
                         select new Group<BaseItemDto>(grp.Key, grp)).ToList();
-#if WP8
                     FolderGroupings = groupedNameItems.ToList();
-#else
-                    FolderGroupings = (from g in groupedNameItems.Union(emptyGroups)
-                                       orderby g.Title
-                                       select g).ToList();
-#endif
                     break;
                 case GroupBy.ProductionYear:
                     GroupHeaderTemplate = (DataTemplate) Application.Current.Resources["LLSGroupHeaderTemplateLong"];
-#if WP8
                     GroupItemTemplate = (Style) Application.Current.Resources["LLSGroupItemStyle"];
-#else
-                    GroupItemTemplate = (DataTemplate)Application.Current.Resources["LLSGroupItemTemplate"];
-                    ItemsPanelTemplate = (ItemsPanelTemplate)Application.Current.Resources["WrapPanelTemplate"];
-#endif
                     var movieYears = (from y in CurrentItems
                         where y.ProductionYear != null
                         orderby y.ProductionYear
@@ -334,22 +318,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         into grp
                         orderby grp.Key
                         select new Group<BaseItemDto>(grp.Key, grp);
-#if WP8
                     FolderGroupings = groupedYearItems.ToList();
-#else
-                    FolderGroupings = (from g in groupedYearItems.Union(emptyGroups)
-                                       orderby g.Title
-                                       select g).ToList();
-#endif
                     break;
                 case GroupBy.Genre:
                     GroupHeaderTemplate = (DataTemplate) Application.Current.Resources["LLSGroupHeaderTemplateLong"];
-#if WP8
                     GroupItemTemplate = (Style) Application.Current.Resources["LLSGroupItemLongStyle"];
-#else
-                    GroupItemTemplate = (DataTemplate)Application.Current.Resources["LLSGroupItemTemplateLong"];
-                    ItemsPanelTemplate = (ItemsPanelTemplate)Application.Current.Resources["StackPanelVerticalTemplate"];
-#endif
                     var genres = (from t in CurrentItems
                         where t.Genres != null
                         from s in t.Genres
@@ -364,13 +337,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                             orderby Utils.GetSortByNameHeader(f)
                             select f).ToList()
                         select new Group<BaseItemDto>(genre, films)).ToList();
-#if WP8
                     FolderGroupings = groupedGenreItems.OrderBy(x => x.Title).ToList();
-#else
-                    FolderGroupings = (from g in groupedGenreItems.Union(emptyGroups)
-                                       orderby g.Title
-                                       select g).ToList();
-#endif
                     break;
 //                case GroupBy.Studio:
 //                    GroupHeaderTemplate = (DataTemplate)Application.Current.Resources["LLSGroupHeaderTemplateLong"];
@@ -444,11 +411,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
         public GroupBy GroupBy { get; set; }
         public DataTemplate GroupHeaderTemplate { get; set; }
-#if WP8
         public Style GroupItemTemplate { get; set; }
-#else
-        public DataTemplate GroupItemTemplate { get; set; }
-#endif
         public ItemsPanelTemplate ItemsPanelTemplate { get; set; }
 
         public RelayCommand PageLoaded { get; set; }

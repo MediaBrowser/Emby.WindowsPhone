@@ -6,10 +6,6 @@ using MediaBrowser.WindowsPhone.ViewModel;
 using Microsoft.Phone.Net.NetworkInformation;
 using MediaBrowser.Model.Dto;
 
-#if WP8
-using MediaBrowser.WindowsPhone.ViewModel.LiveTv;
-#endif
-
 namespace MediaBrowser.WindowsPhone.Model
 {
     public class NavigationService : Cimbalino.Phone.Toolkit.Services.NavigationService, INavigationService

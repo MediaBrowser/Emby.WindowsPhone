@@ -146,10 +146,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             await AuthenticationService.Current.Login(selectedUserName, pinCode);
             if (AuthenticationService.Current.IsLoggedIn)
             {
-#if WP8
                 Services.LockScreenService.Current.Start();
                 TileService.Current.UpdatePrimaryTile(App.SpecificSettings.DisplayBackdropOnTile, App.SpecificSettings.UseRichWideTile, App.SpecificSettings.UseTransparentTile).ConfigureAwait(false);
-#endif
                 var page = TileService.Current.PinnedPage();
                 _navigationService.NavigateTo(page + "?clearbackstack=true");
                 Username = Password = string.Empty;

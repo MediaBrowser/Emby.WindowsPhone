@@ -122,7 +122,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     return;
                 }
 
-#if WP8
                 //var tileDate = new ShellTileServiceCycleTileData
                 //{
                 //    Title = collection.Name,
@@ -142,23 +141,13 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 };
 
                 TileService.Current.Create(new Uri(tileUrl, UriKind.Relative), tileData, true);
-#else
-                var tileData = new ShellTileServiceStandardTileData
-                {
-                    Title = collection.Name,
-                    BackBackgroundImage = new Uri("/Images/Logo.png", UriKind.Relative)
-                };
-                TileService.Current.Create(new Uri(tileUrl, UriKind.Relative), tileData, false);
-#endif
                 Messenger.Default.Send(new NotificationMessage(tileUrl, Constants.Messages.CollectionPinnedMsg));
 
             });
 
             PlayMovieCommand = new RelayCommand<BaseItemDto>(async item =>
             {
-#if WP8
                 await PlayVideo(item);
-#endif
             });
 
             ResumeMovieCommand = new RelayCommand<BaseItemDto>(async item =>
@@ -181,7 +170,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         private async Task PlayVideo(BaseItemDto item, bool isResume = false)
         {
             Log.Info("Playing {0} [{1}]", item.Type, item.Name);
-#if WP8
             if (!TrialHelper.Current.CanPlayVideo(item.Id))
             {
                 TrialHelper.Current.ShowTrialMessage(AppResources.TrialVideoMessage);
@@ -203,59 +191,13 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     _navService.NavigateTo(string.Format(Constants.Pages.VideoPlayerView, item.Id, item.Type));
                 }
             }
-#else
-                var bounds = Application.Current.RootVisual.RenderSize;
-                var query = new VideoStreamOptions
-                {
-                    ItemId = item.Id,
-                    VideoCodec = "Wmv",
-                    //OutputFileExtension = ".wmv",
-                    AudioCodec = "Wma",
-                    VideoBitRate = 1000000,
-                    AudioBitRate = 128000,
-                    MaxAudioChannels = 2,
-                    MaxHeight = 480,// (int)bounds.Width,
-                    MaxWidth = 800// (int)bounds.Height
-                };
-                var url = _apiClient.GetVideoStreamUrl(query);
-                System.Diagnostics.Debug.WriteLine(url);
-                Log.Info(url);
 
-                try
-                {
-                    Log.Info("Telling the server about watching this video");
-
-                    var info = new PlaybackStartInfo
-                    {
-                        ItemId = item.Id,
-                        CanSeek = false,
-                        QueueableMediaTypes = new List<string>()
-                    };
-
-                    await _apiClient.ReportPlaybackStartAsync(info);
-                }
-                catch (HttpException ex)
-                {
-                    Log.ErrorException("PlayMovieCommand", ex);
-                }
-
-                var mediaPlayerLauncher = new MediaPlayerLauncher
-                {
-                    Orientation = MediaPlayerOrientation.Landscape,
-                    Media = new Uri(url, UriKind.Absolute),
-                    Controls = MediaPlaybackControls.Pause | MediaPlaybackControls.Stop,
-                    //Location = MediaLocationType.Data
-                };
-                mediaPlayerLauncher.Show();
-#endif
         }
 
         private void Reset()
         {
             AuthenticationService.Current.Logout();
-#if WP8
             TileService.Current.ResetWideTile(App.SpecificSettings.UseTransparentTile);
-#endif
             _hasLoaded = false;
             Folders.Clear();
             RecentItems.Clear();

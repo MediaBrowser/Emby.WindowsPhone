@@ -8,9 +8,7 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Tasks;
 using ScottIsAFool.WindowsPhone.Logging;
 using GestureEventArgs = System.Windows.Input.GestureEventArgs;
-#if WP8
 using Windows.System;
-#endif
 
 namespace MediaBrowser.WindowsPhone.Views
 {
@@ -52,7 +50,6 @@ namespace MediaBrowser.WindowsPhone.Views
             }.Show();
         }
 
-#if WP8
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             if (e.NavigationMode == NavigationMode.Back)
@@ -68,7 +65,6 @@ namespace MediaBrowser.WindowsPhone.Views
         {
             await Launcher.LaunchUriAsync(new Uri("ms-settings-lock:", UriKind.Absolute));
         }
-#endif
 
         private void AboutItem_OnClick(object sender, EventArgs e)
         {

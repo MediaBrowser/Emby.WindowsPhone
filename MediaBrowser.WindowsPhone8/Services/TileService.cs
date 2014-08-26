@@ -18,11 +18,7 @@ using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Controls;
 using MediaBrowser.WindowsPhone.Resources;
 using ScottIsAFool.WindowsPhone.Logging;
-using MediaBrowser.Model.ApiClient;
-
-#if WP8
 using MediaBrowser.WindowsPhone.Extensions;
-#endif
 
 namespace MediaBrowser.WindowsPhone.Services
 {
@@ -110,7 +106,6 @@ namespace MediaBrowser.WindowsPhone.Services
             return Constants.Pages.MainPage;
         }
 
-#if WP8
         public void SetSecondaryTileTransparency(bool useTransparentTiles)
         {
             ShellTileServiceFlipTileData tileData;
@@ -322,6 +317,5 @@ namespace MediaBrowser.WindowsPhone.Services
 
             return null;
         }
-#endif
     }
 }

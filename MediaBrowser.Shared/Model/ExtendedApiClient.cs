@@ -38,11 +38,7 @@ namespace MediaBrowser.WindowsPhone.Model
                            {
                                {"deviceid", deviceId},
                                {"url", uri},
-#if WP8
                                {"devicetype", "WindowsPhone8"}
-#else
-                               {"devicetype", "WindowsPhone7"}
-#endif
                            };
 
             if (sendTileUpdate.HasValue)

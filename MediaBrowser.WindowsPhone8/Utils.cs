@@ -42,11 +42,7 @@ namespace MediaBrowser.WindowsPhone
                                      select new Group<BaseItemPerson>(grp.Key, grp)).ToList();
 
             var result = (from g in groupedPeople.Union(emptyGroups)
-#if WP8
                           where g.Count > 0
-#else
-                          where g.HasItems
-#endif
                           orderby g.Title
                           select g).ToList();
 
@@ -69,14 +65,7 @@ namespace MediaBrowser.WindowsPhone
                                          select new Group<BaseItemDto>(grp.Key, grp)).ToList();
 
                 var result = (from g in groupedTracks.Union(emptyGroups)
-#if WP8
                               where g.Count > 0
-#else
-                          where g.HasItems
-
-
-
-#endif
                               orderby g.Title
                               select g).ToList();
 
@@ -249,10 +238,8 @@ namespace MediaBrowser.WindowsPhone
 
                 logger.Info("Checking if live TV is supported");
 
-#if WP8
                 var liveTv = await apiClient.GetLiveTvInfoAsync();
                 App.Settings.LiveTvInfo = liveTv;
-#endif
 
                 if (SimpleIoc.Default.IsRegistered<ApiWebSocket>())
                 {
@@ -275,13 +262,12 @@ namespace MediaBrowser.WindowsPhone
             var clients = true;
             var loginPage = clients ? Constants.Pages.ManualUsernameView : Constants.Pages.ChooseProfileView;
 
-#if WP8
             if (AuthenticationService.Current.IsLoggedIn)
             {
                 LockScreenService.Current.Start();
                 TileService.Current.UpdatePrimaryTile(App.SpecificSettings.DisplayBackdropOnTile, App.SpecificSettings.UseRichWideTile, App.SpecificSettings.UseTransparentTile).ConfigureAwait(false);
             }
-#endif
+
             // If one exists, then authenticate that user.
             navigationService.NavigateTo(AuthenticationService.Current.IsLoggedIn ? TileService.Current.PinnedPage() : loginPage);
         }
@@ -367,18 +353,7 @@ namespace MediaBrowser.WindowsPhone
         public static PlaystateCommand ToPlaystateCommandEnum(this string stringCommand)
         {
             PlaystateCommand playState;
-#if !WP8
-            try
-            {
-                playState = (PlaystateCommand)Enum.Parse(typeof (PlaystateCommand), stringCommand, true);
-            }
-            catch
-            {
-                playState = default(PlaystateCommand);
-            }
-#else
             Enum.TryParse(stringCommand, out playState);
-#endif
 
             return playState;
         }
@@ -421,17 +396,8 @@ namespace MediaBrowser.WindowsPhone
 
         public static async Task<TReturnType> Clone<TReturnType>(this TReturnType item)
         {
-#if WP8
             var json = await JsonConvert.SerializeObjectAsync(item);
             return await JsonConvert.DeserializeObjectAsync<TReturnType>(json);
-#else
-            await TaskEx.Run(() =>
-            {
-                var json = JsonConvert.SerializeObject(item);
-                return JsonConvert.DeserializeObject<TReturnType>(json);
-            });
-            return item;
-#endif
         }
 
         internal static string CoolDateName(DateTime? dateTime)
