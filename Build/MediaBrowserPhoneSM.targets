@@ -5,7 +5,7 @@
 
 	<ItemGroup Condition=" '$(MSBuildProjectExtension)' == '.csproj' Or '$(MSBuildProjectExtension)' == '.vbproj' ">
 		<Reference Include="SM.Media.Platform.WP8">
-			<HintPath>$(SolutionDir)\other-packages\HLS\$(Platform)\SM.Media.Platform.WP8.dll</HintPath>				
+			<HintPath>$(MSBuildThisFileDirectory)\..\other-packages\HLS\$(Platform)\SM.Media.Platform.WP8.dll</HintPath>				
 		</Reference>
 	</ItemGroup>
   

@@ -228,9 +228,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     var info = new PlaybackStartInfo
                     {
                         ItemId = item.Id,
-                        UserId = AuthenticationService.Current.LoggedInUserId,
-                        IsSeekable = false,
-                        QueueableMediaTypes = new string[0]
+                        CanSeek = false,
+                        QueueableMediaTypes = new List<string>()
                     };
 
                     await _apiClient.ReportPlaybackStartAsync(info);
