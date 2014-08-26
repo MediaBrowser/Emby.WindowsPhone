@@ -12,6 +12,7 @@ using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Globalization;
 using MediaBrowser.Model.LiveTv;
 using MediaBrowser.Model.Notifications;
+using MediaBrowser.Model.Playlists;
 using MediaBrowser.Model.Plugins;
 using MediaBrowser.Model.Querying;
 using MediaBrowser.Model.Search;
@@ -126,6 +127,11 @@ namespace MediaBrowser.WindowsPhone.Design
         }
 
         public Task<BaseItemDto> GetItemAsync(string id, string userId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<QueryResult<BaseItemDto>> GetLatestItems(LatestItemsQuery query)
         {
             throw new NotImplementedException();
         }
@@ -756,6 +762,26 @@ namespace MediaBrowser.WindowsPhone.Design
         }
 
         public Task<QueryResult<BaseItemDto>> GetLatestChannelItems(AllChannelMediaQuery query, CancellationToken cancellationToken = new CancellationToken())
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<PlaylistCreationResult> CreatePlaylist(PlaylistCreationRequest request)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task AddToPlaylist(string playlistId, IEnumerable<string> itemIds, string userId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task RemoveFromPlaylist(string playlistId, IEnumerable<string> entryIds)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<QueryResult<BaseItemDto>> GetPlaylistItems(PlaylistItemQuery query)
         {
             throw new NotImplementedException();
         }
