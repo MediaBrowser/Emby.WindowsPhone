@@ -259,7 +259,7 @@ namespace MediaBrowser.WindowsPhone
 
         internal static void CheckProfiles(INavigationService navigationService)
         {
-            var clients = true;
+            var clients = false;
             var loginPage = clients ? Constants.Pages.ManualUsernameView : Constants.Pages.ChooseProfileView;
 
             if (AuthenticationService.Current.IsLoggedIn)

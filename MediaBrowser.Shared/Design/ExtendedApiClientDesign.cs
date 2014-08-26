@@ -765,23 +765,13 @@ namespace MediaBrowser.WindowsPhone.Design
         {
             throw new NotImplementedException();
         }
-
-        public Task<PlaylistCreationResult> CreatePlaylist(PlaylistCreationRequest request)
-        {
-            throw new NotImplementedException();
-        }
-
+        
         public Task AddToPlaylist(string playlistId, IEnumerable<string> itemIds, string userId)
         {
             throw new NotImplementedException();
         }
 
         public Task RemoveFromPlaylist(string playlistId, IEnumerable<string> entryIds)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<QueryResult<BaseItemDto>> GetPlaylistItems(PlaylistItemQuery query)
         {
             throw new NotImplementedException();
         }

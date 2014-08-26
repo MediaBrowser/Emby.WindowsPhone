@@ -41,7 +41,7 @@ namespace MediaBrowser.Services
         {
             var user = _settingsService.Get<AuthenticationResult>(Constants.Settings.SelectedUserSetting);
 
-            if (user != null)
+            if (user != null && !string.IsNullOrEmpty(user.AccessToken))
             {
                 AuthenticationResult = user;
                 IsLoggedIn = true;
