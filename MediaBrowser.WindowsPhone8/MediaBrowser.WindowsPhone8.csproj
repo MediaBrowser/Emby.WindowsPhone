@@ -838,6 +838,10 @@
     <Reference Include="SM.Media.Builder">
       <HintPath>..\other-packages\HLS\SM.Media.Builder.dll</HintPath>
     </Reference>
+    <Reference Include="SM.Media.MediaPlayer.WP8">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\other-packages\HLS\SM.Media.MediaPlayer.WP8.dll</HintPath>
+    </Reference>
     <Reference Include="SM.Media.Platform.WP8">
       <HintPath>..\other-packages\HLS\SM.Media.Platform.WP8.dll</HintPath>
     </Reference>
@@ -892,6 +896,20 @@
       <Name>MediaBrowser.WindowsPhone8.AudioAgent</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <SDKReference Include="Microsoft.PlayerFramework.WP8.Core, Version=1.8.2.2">
+      <Name>Microsoft Player Framework</Name>
+    </SDKReference>
+    <SDKReference Include="Microsoft.PlayerFramework.WP8.TTML.Settings, Version=1.8.2.2">
+      <Name>Microsoft Player Framework TTML Caption Settings Plugin</Name>
+    </SDKReference>
+    <SDKReference Include="Microsoft.PlayerFramework.WP8.WebVTT, Version=1.8.2.2">
+      <Name>Microsoft Player Framework WebVTT Plugin</Name>
+    </SDKReference>
+    <SDKReference Include="Microsoft.PlayerFramework.WP8.WebVTT.Settings, Version=1.8.2.2">
+      <Name>Microsoft Player Framework WebVTT Caption Settings Plugin</Name>
+    </SDKReference>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
@@ -915,7 +933,6 @@
     </ItemGroup>
   </Target>
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
-  <Import Project="..\Build\MediaBrowserPhoneSM.targets" Condition="Exists('..\Build\MediaBrowserPhoneSM.targets')" />
   <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
     <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
     <Error Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
