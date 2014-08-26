@@ -900,6 +900,9 @@
     <SDKReference Include="Microsoft.PlayerFramework.WP8.Core, Version=1.8.2.2">
       <Name>Microsoft Player Framework</Name>
     </SDKReference>
+    <SDKReference Include="Microsoft.PlayerFramework.WP8.TimedText, Version=1.8.2.2">
+      <Name>Microsoft Player Framework TimedText Plugin</Name>
+    </SDKReference>
     <SDKReference Include="Microsoft.PlayerFramework.WP8.TTML.Settings, Version=1.8.2.2">
       <Name>Microsoft Player Framework TTML Caption Settings Plugin</Name>
     </SDKReference>

@@ -137,5 +137,23 @@ namespace MediaBrowser.WindowsPhone.Views
         }
 
 
+        private void ThePlayer_OnSelectedCaptionChanged(object sender, RoutedPropertyChangedEventArgs<Caption> e)
+        {
+            var caption = e.NewValue;
+            if (caption == null)
+            {
+                return;
+            }
+
+            if (caption.Source == null)
+            {
+                var i = int.Parse(caption.Id);
+                var vm = DataContext as VideoPlayerViewModel;
+                if (vm != null)
+                {
+                    vm.Seek(vm.PlayedVideoDuration.Ticks, i);
+                }
+            }
+        }
     }
 }

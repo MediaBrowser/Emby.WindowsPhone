@@ -260,7 +260,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
         }
 
-        private async Task InitiatePlayback(bool isResume)
+        private async Task InitiatePlayback(bool isResume, int? subtitleIndex = null)
         {
             EndTime = TimeSpan.Zero;
 
@@ -306,6 +306,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                     Log.Info("Playing {0} [{1}] ({2})", ProgrammeItem.Type, ProgrammeItem.Name, ProgrammeItem.Id);
                     break;
+            }
+
+            if (subtitleIndex.HasValue)
+            {
+                query.SubtitleStreamIndex = subtitleIndex.Value;
             }
 
             var url = PlayerSourceType == PlayerSourceType.Programme ? _apiClient.GetHlsVideoStreamUrl(query) : _apiClient.GetVideoStreamUrl(query);
@@ -366,11 +371,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             return query;
         }
 
-        public async void Seek(long newPosition)
+        public async void Seek(long newPosition, int? subtitleIndex = null)
         {
             _timer.Stop();
             _startPositionTicks += newPosition;
-            await InitiatePlayback(false);
+            await InitiatePlayback(false, subtitleIndex);
         }
         public async void RecoverState()
         {            
