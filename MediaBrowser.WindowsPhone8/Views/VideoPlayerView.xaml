@@ -11,6 +11,7 @@
                 xmlns:scott="clr-namespace:ScottIsAFool.WindowsPhone.Controls;assembly=ScottIsAFool.WindowsPhone"
                 xmlns:System="clr-namespace:System;assembly=mscorlib"
                 xmlns:mediaPlayer="clr-namespace:SM.Media.MediaPlayer;assembly=SM.Media.MediaPlayer.WP8"
+                xmlns:webVtt="clr-namespace:Microsoft.PlayerFramework.WebVTT;assembly=Microsoft.PlayerFramework.WebVTT"
                 x:Class="MediaBrowser.WindowsPhone.Views.VideoPlayerView"
                 mc:Ignorable="d ignore"
                 SupportedOrientations="PortraitOrLandscape"
@@ -756,13 +757,21 @@
                                      IsTimeElapsedVisible="True"
                                      IsScrubbingEnabled="True"
                                      IsSeekEnabled="True"
+                                     IsCaptionSelectionEnabled="True"
+                                     IsCaptionSelectionVisible="True"
+                                     IsCaptionsActive="True"
                                      CurrentStateChanged="ThePlayer_OnCurrentStateChanged"
                                      StartTime="{Binding StartTime}"
                                      Position="{Binding PlayedVideoDuration, Mode=TwoWay}"
                                      EndTime="{Binding EndTime}"
+                                     AvailableCaptions="{Binding Captions}"
                                      ScrubbingCompleted="thePlayer_ScrubbingCompleted"
                                      Seeked="thePlayer_Seeked"
-                                     Style="{StaticResource MediaPlayerStyle1}" />
+                                     Style="{StaticResource MediaPlayerStyle1}">
+            <playerFramework:MediaPlayer.Plugins>
+                <webVtt:WebVTTPlugin />
+            </playerFramework:MediaPlayer.Plugins>
+        </playerFramework:MediaPlayer>
 
         <playerFramework:MediaPlayer x:Name="HlsPlayer"
                                      Visibility="{Binding IsHls, Converter={StaticResource VisibilityConverter}, FallbackValue=Collapsed}"

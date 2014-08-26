@@ -79,6 +79,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         }
 
         public PlayerSourceType PlayerSourceType { get; set; }
+        public List<Caption> Captions { get; set; }
 
         public bool IsHls
         {
@@ -308,6 +309,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
 
             var url = PlayerSourceType == PlayerSourceType.Programme ? _apiClient.GetHlsVideoStreamUrl(query) : _apiClient.GetVideoStreamUrl(query);
+            Captions = GetSubtitles(SelectedItem);
 
             VideoUrl = url;
             Debug.WriteLine(VideoUrl);            
