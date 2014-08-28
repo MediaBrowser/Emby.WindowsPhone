@@ -101,23 +101,27 @@
                 </i:Interaction.Triggers>
                 <toolkit:LongListMultiSelector.ItemTemplate>
                     <DataTemplate>
-                        <Grid HorizontalAlignment="Left"
-                              Margin="-12,0,0,0">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Style="{StaticResource PhoneTextTitle2Style}"
-                                           Foreground="{Binding IsPlaying, Converter={StaticResource NowPlayingConverter}}"
-                                           Text="{Binding Id, StringFormat='\{0\}.'}" />
-                                <Grid Height="48"
-                                      Width="48">
-                                    <Image Source="/Icons/appbar.transport.play.png"
-                                           Height="48"
-                                           Visibility="{Binding IsPlaying, Converter={StaticResource VisibilityConverter}}" />
-                                </Grid>
-                                <TextBlock Style="{StaticResource PhoneTextTitle2Style}"
-                                           Foreground="{Binding IsPlaying, Converter={StaticResource NowPlayingConverter}}"
-                                           Text="{Binding TrackName}" />
-                            </StackPanel>
-                        </Grid>
+                        <mb:CustomButton Style="{StaticResource EmptyButtonStyle}"
+                                         Command="{Binding Playlist.ChangeTrackCommand, Source={StaticResource Locator}}"
+                                         CommandParameter="{Binding}">
+                            <Grid HorizontalAlignment="Left"
+                                  Margin="-12,0,0,0">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Style="{StaticResource PhoneTextTitle2Style}"
+                                               Foreground="{Binding IsPlaying, Converter={StaticResource NowPlayingConverter}}"
+                                               Text="{Binding Id, StringFormat='\{0\}.'}" />
+                                    <Grid Height="48"
+                                          Width="48">
+                                        <Image Source="/Icons/appbar.transport.play.png"
+                                               Height="48"
+                                               Visibility="{Binding IsPlaying, Converter={StaticResource VisibilityConverter}}" />
+                                    </Grid>
+                                    <TextBlock Style="{StaticResource PhoneTextTitle2Style}"
+                                               Foreground="{Binding IsPlaying, Converter={StaticResource NowPlayingConverter}}"
+                                               Text="{Binding TrackName}" />
+                                </StackPanel>
+                            </Grid>
+                        </mb:CustomButton>
                     </DataTemplate>
                 </toolkit:LongListMultiSelector.ItemTemplate>
             </toolkit:LongListMultiSelector>

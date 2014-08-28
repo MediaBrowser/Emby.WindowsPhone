@@ -127,6 +127,44 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
         }
 
+        public RelayCommand<PlaylistItem> ChangeTrackCommand
+        {
+            get
+            {
+                return new RelayCommand<PlaylistItem>(item =>
+                {
+                    if (Playlist.IsNullOrEmpty())
+                    {
+                        return;
+                    }
+
+                    var list = Playlist.ToList();
+                    var currentPlayingItem = list.FirstOrDefault(x => x.IsPlaying);
+                    if (currentPlayingItem != null)
+                    {
+                        currentPlayingItem.IsPlaying = false;
+                    }
+
+                    var nextUp = list.FirstOrDefault(x => x.OriginalId == item.OriginalId - 1);
+                    if (nextUp != null)
+                    {
+                        nextUp.IsPlaying = true;
+                    }
+
+                    var playList = new Playlist
+                    {
+                        PlaylistItems = list,
+                        IsShuffled = IsShuffled,
+                        IsOnRepeat = IsOnRepeat,
+                        ModifiedDate = DateTime.Now
+                    };
+                    _playlistHelper.SavePlaylist(playList);
+
+                    BackgroundAudioPlayer.Instance.SkipNext();
+                });
+            }
+        }
+
         public RelayCommand<SelectionChangedEventArgs> SelectionChangedCommand
         {
             get
