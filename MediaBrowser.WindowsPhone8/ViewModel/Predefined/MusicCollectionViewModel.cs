@@ -413,6 +413,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
             var query = new ArtistsQuery
             {
                 SortBy = new []{"SortName"},
+                Fields= new []{ItemFields.SortName},
                 SortOrder = SortOrder.Ascending,
                 Recursive = true,
                 UserId = AuthenticationService.Current.LoggedInUser.Id
@@ -479,7 +480,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
             var query = new ItemQuery
             {
                 Recursive = true,
-                Fields = new[] { ItemFields.ParentId, },
+                Fields = new[] { ItemFields.ParentId,},
                 IncludeItemTypes = new[] { "Audio" },
                 UserId = AuthenticationService.Current.LoggedInUser.Id
             };
@@ -512,7 +513,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
             var query = new ItemQuery
             {
                 Recursive = true,
-                Fields = new[] { ItemFields.ParentId, },
+                Fields = new[] { ItemFields.ParentId, ItemFields.SortName },
                 IncludeItemTypes = new[] { "MusicAlbum" },
                 UserId = AuthenticationService.Current.LoggedInUser.Id
             };

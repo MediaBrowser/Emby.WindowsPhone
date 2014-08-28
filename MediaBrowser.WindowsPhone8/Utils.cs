@@ -62,8 +62,8 @@ namespace MediaBrowser.WindowsPhone
                                      group t by GetSortByNameHeader(t)
                                          into grp
                                          orderby grp.Key
-                                         select new Group<BaseItemDto>(grp.Key, grp)).ToList();
-
+                                         select new Group<BaseItemDto>(grp.Key, grp.OrderBy(x => x.SortName))).ToList();
+                
                 var result = (from g in groupedTracks.Union(emptyGroups)
                               where g.Count > 0
                               orderby g.Title
