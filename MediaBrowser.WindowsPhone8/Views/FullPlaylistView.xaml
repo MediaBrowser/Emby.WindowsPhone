@@ -386,7 +386,7 @@
                                          Command="{Binding Playlist.ChangeTrackCommand, Source={StaticResource Locator}}"
                                          CommandParameter="{Binding}">
                             <Grid HorizontalAlignment="Left"
-                                  Margin="-12,0,0,0">
+                                  Margin="-36,0,0,0">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="80" />
                                     <ColumnDefinition Width="*" />
