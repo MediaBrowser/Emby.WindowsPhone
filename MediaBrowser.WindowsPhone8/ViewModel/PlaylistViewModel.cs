@@ -50,7 +50,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 {
                     new PlaylistItem {Artist = "John Williams", Album = "Jurassic Park OST", Id = 1, IsPlaying = true, TrackName = "Jurassic Park Theme"},
                     new PlaylistItem {Artist = "John Williams", Album = "Jurassic Park OST", Id = 2, IsPlaying = false, TrackName = "Journey to the Island"},
-                    new PlaylistItem {Artist = "John Williams", Album = "Jurassic Park OST", Id = 3, IsPlaying = false, TrackName = "Incident at Isla Nublar"}
+                    new PlaylistItem {Artist = "John Williams", Album = "Jurassic Park OST", Id = 10, IsPlaying = false, TrackName = "Incident at Isla Nublar"}
                 };
                 NowPlayingItem = Playlist[0];
             }
