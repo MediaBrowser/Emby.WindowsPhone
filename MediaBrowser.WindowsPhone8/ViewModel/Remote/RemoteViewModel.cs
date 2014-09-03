@@ -201,7 +201,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
                     }
                     catch (HttpException ex)
                     {
-                        Log.ErrorException("ClientSelectedCommand", ex);
+                        Utils.HandleHttpException("ClientSelectedCommand", ex, _navigationService, Log);
                         MessageBox.Show("Unable to start your item.", "Error", MessageBoxButton.OK);
                         _navigationService.GoBack();
                     }
@@ -228,7 +228,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
                         }
                         catch (HttpException ex)
                         {
-                            Log.ErrorException("SendMuteCommand", ex);
+                            Utils.HandleHttpException("SendMuteCommand", ex, _navigationService, Log);
                         }
                     }
                 });
@@ -252,7 +252,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
                     }
                     catch (HttpException ex)
                     {
-                        Log.ErrorException("AdjustVolumeCommand", ex);
+                        Utils.HandleHttpException("AdjustVolumeCommand", ex, _navigationService, Log);
                     }
                 });
             }
@@ -290,7 +290,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
                 }
                 catch (HttpException ex)
                 {
-                    Log.ErrorException("SendPlaystateCommand(" + commandString + ")", ex);
+                    Utils.HandleHttpException("SendPlaystateCommand(" + commandString + ")", ex, _navigationService, Log);
                 }
 
                 SendingCommand = false;
@@ -360,7 +360,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
             }
             catch (HttpException ex)
             {
-                Log.ErrorException("GetClients()", ex);
+                Utils.HandleHttpException("GetClients()", ex, _navigationService, Log);
             }
 
             SetProgressBar();

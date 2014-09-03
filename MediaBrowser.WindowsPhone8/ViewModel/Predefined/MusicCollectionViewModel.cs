@@ -252,7 +252,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
             }
             catch (HttpException ex)
             {
-                Log.ErrorException(string.Format("GetAlbumTracks({0})", item.Name), ex);
+                Utils.HandleHttpException(string.Format("GetAlbumTracks({0})", item.Name), ex, _navigationService, Log);
             }
 
             SetProgressBar();
@@ -286,7 +286,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
             }
             catch (HttpException ex)
             {
-                Log.ErrorException(string.Format("GetArtistTracks({0})", artistName), ex);
+                Utils.HandleHttpException(string.Format("GetArtistTracks({0})", artistName), ex, _navigationService, Log);
             }
 
             SetProgressBar();
@@ -319,7 +319,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
             }
             catch (HttpException ex)
             {
-                Log.ErrorException(string.Format("GetGenreTracks({0})", genreName), ex);
+                Utils.HandleHttpException(string.Format("GetGenreTracks({0})", genreName), ex, _navigationService, Log);
             }
 
             SetProgressBar();
@@ -436,7 +436,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
             }
             catch (HttpException ex)
             {
-                Log.ErrorException("GetArtists()", ex);
+                Utils.HandleHttpException("GetArtists()", ex, _navigationService, Log);
             }
 
             return false;
@@ -469,7 +469,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
             }
             catch (HttpException ex)
             {
-                Log.ErrorException("GetGenres()", ex);
+                Utils.HandleHttpException("GetGenres()", ex, _navigationService, Log);
             }
 
             return false;
@@ -502,7 +502,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
             }
             catch (HttpException ex)
             {
-                Log.ErrorException("GetSongs()", ex);
+                Utils.HandleHttpException("GetSongs()", ex, _navigationService, Log);
             }
 
             return false;
@@ -534,7 +534,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
             }
             catch (HttpException ex)
             {
-                Log.ErrorException("GetAlbums()", ex);
+                Utils.HandleHttpException("GetAlbums()", ex, _navigationService, Log);
             }
 
             return false;

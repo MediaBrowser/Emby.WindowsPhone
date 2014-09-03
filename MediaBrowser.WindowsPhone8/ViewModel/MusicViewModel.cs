@@ -239,7 +239,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 }
                 catch (HttpException ex)
                 {
-                    Log.ErrorException("AddRemoveFavouriteCommand (Music)", ex);
+                    Utils.HandleHttpException("AddRemoveFavouriteCommand (Music)", ex, _navigationService, Log);
                     App.ShowMessage(AppResources.ErrorMakingChanges);
                 }
 
@@ -284,7 +284,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
             catch (HttpException ex)
             {
-                Log.ErrorException("GetAlbumTracks()", ex);
+                Utils.HandleHttpException("GetAlbumTracks()", ex, _navigationService, Log);
             }
         }
 
@@ -298,7 +298,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
             catch (HttpException ex)
             {
-                Log.ErrorException("GetArtistInfo()", ex);
+                Utils.HandleHttpException("GetArtistInfo()", ex, _navigationService, Log);
             }
 
             _gotAlbums = await GetAlbums();
@@ -342,7 +342,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
             catch (HttpException ex)
             {
-                Log.ErrorException("GetArtistTracks()", ex);
+                Utils.HandleHttpException("GetArtistTracks()", ex, _navigationService, Log);
                 return false;
             }
         }

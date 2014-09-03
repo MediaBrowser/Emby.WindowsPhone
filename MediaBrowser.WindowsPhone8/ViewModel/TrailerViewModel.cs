@@ -92,7 +92,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     }
                     catch (HttpException ex)
                     {
-                        Log.ErrorException("TrailerPageLoaded", ex);
+                        Utils.HandleHttpException("TrailerPageLoaded", ex, _navigationService, Log);
 
                         App.ShowMessage(AppResources.ErrorGettingTrailerDetails);
                     }

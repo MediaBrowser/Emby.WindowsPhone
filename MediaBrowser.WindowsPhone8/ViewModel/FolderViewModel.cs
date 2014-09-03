@@ -274,7 +274,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
             catch (HttpException ex)
             {
-                Log.ErrorException("GetItems()", ex);
+                Utils.HandleHttpException("GetItems()", ex, _navigationService, Log);
 
                 App.ShowMessage(AppResources.ErrorGettingData);
                 return false;

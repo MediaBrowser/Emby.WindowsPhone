@@ -73,7 +73,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
             catch (HttpException ex)
             {
-                Log.ErrorException("TimerOnTick()", ex);
+                Utils.HandleHttpException("TimerOnTick()", ex, _navigationService, Log);
             }
         }
 
@@ -165,7 +165,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     }
                     catch (HttpException ex)
                     {
-                        Log.ErrorException("SendVideoTimeToServer", ex);
+                        Utils.HandleHttpException("SendVideoTimeToServer", ex, _navigationService, Log);
                     }
                 }
 
@@ -210,7 +210,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     }
                     catch (HttpException ex)
                     {
-                        Log.ErrorException("VideoStateChanged", ex);
+                        Utils.HandleHttpException("VideoStateChanged", ex, _navigationService, Log);
                     }
                 }
             });
@@ -337,7 +337,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
             catch (HttpException ex)
             {
-                Log.ErrorException("VideoPageLoaded", ex);
+                Utils.HandleHttpException("VideoPageLoaded", ex, _navigationService, Log);
             }
         }
 

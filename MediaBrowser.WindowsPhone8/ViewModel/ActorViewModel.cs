@@ -115,7 +115,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
             catch (HttpException ex)
             {
-                Log.ErrorException("GetActorInformation()", ex);
+                Utils.HandleHttpException("GetActorInformation()", ex, _navigationService, Log);
             }
 
             SetProgressBar();

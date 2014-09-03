@@ -122,7 +122,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 }
                 catch (HttpException ex)
                 {
-                    Log.ErrorException("AddRemoveFavouriteCommand (Movies)", ex);
+                    Utils.HandleHttpException("AddRemoveFavouriteCommand (Movies)", ex, _navService, Log);
                     App.ShowMessage(AppResources.ErrorMakingChanges);
                 }
 
@@ -186,7 +186,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
             catch (HttpException ex)
             {
-                Log.ErrorException("GetMovieDetails()", ex);
+                Utils.HandleHttpException("GetMovieDetails()", ex, _navService, Log);
 
                 App.ShowMessage(AppResources.ErrorGettingExtraInfo);
                 result = false;

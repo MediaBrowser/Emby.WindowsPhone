@@ -272,22 +272,24 @@ namespace MediaBrowser.WindowsPhone
             navigationService.NavigateTo(AuthenticationService.Current.IsLoggedIn ? TileService.Current.PinnedPage() : loginPage);
         }
 
-        internal static void HandleHttpException(HttpException ex, string message, INavigationService navigationService, ILog log)
+        internal static bool HandleHttpException(HttpException ex, string message, INavigationService navigationService, ILog log)
         {
-            if (ex.StatusCode == HttpStatusCode.Forbidden)
+            if (ex.StatusCode == HttpStatusCode.Unauthorized)
             {
                 MessageBox.Show(AppResources.ErrorDisabledUser, AppResources.ErrorDisabledUserTitle, MessageBoxButton.OK);
                 log.Error("UnauthorizedAccess for user [{0}]", AuthenticationService.Current.LoggedInUser.Name);
+                navigationService.NavigateTo(Constants.Pages.ChooseProfileView);
+                return true;
             }
-            else
-            {
-                log.ErrorException(message, ex);
-            }
+            
+            log.ErrorException(message, ex);
+
+            return false;
         }
 
-        internal static void HandleHttpException(string message, HttpException ex, INavigationService navigationService, ILog log)
+        internal static bool HandleHttpException(string message, HttpException ex, INavigationService navigationService, ILog log)
         {
-            HandleHttpException(ex, message, navigationService, log);
+            return HandleHttpException(ex, message, navigationService, log);
         }
 
         internal static async Task<List<PlaylistItem>> ToPlayListItems(this List<BaseItemDto> list, IExtendedApiClient apiClient)

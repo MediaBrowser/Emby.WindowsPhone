@@ -78,7 +78,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
             catch (HttpException ex)
             {
-                Log.ErrorException("DoSearch()", ex);
+                Utils.HandleHttpException("DoSearch()", ex, _navigationService, Log);
 
                 App.ShowMessage(AppResources.ErrorFailedToSearch);
             }

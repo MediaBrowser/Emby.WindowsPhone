@@ -262,7 +262,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
             catch (HttpException ex)
             {
-                Log.ErrorException("GetFavouriteItems()", ex);
+                Utils.HandleHttpException("GetFavouriteItems()", ex, _navService, Log);
                 return false;
             }
         }
@@ -294,7 +294,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
             catch (HttpException ex)
             {
-                Log.ErrorException("GetRecent()", ex);
+                Utils.HandleHttpException("GetRecent()", ex, _navService, Log);
                 return false;
             }
         }
@@ -330,7 +330,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
             catch (HttpException ex)
             {
-                Log.ErrorException("GetFolders()", ex);
+                Utils.HandleHttpException("GetFolders()", ex, _navService, Log);
                 return false;
             }
         }
