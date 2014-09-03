@@ -132,15 +132,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 //    },
                 //    SmallBackgroundImage = new Uri("/Assets/Tiles/FlipCycleTileSmall.png", UriKind.Relative)
                 //};
-                var tileData = new ShellTileServiceFlipTileData
-                {
-                    Title = collection.Name,
-                    BackgroundImage = new Uri("/Assets/Tiles/FlipCycleTileMedium.png", UriKind.Relative),
-                    SmallBackgroundImage = new Uri("/Assets/Tiles/FlipCycleTileSmall.png", UriKind.Relative),
-                    WideBackgroundImage = new Uri("/Assets/Tiles/FlipCycleTileLarge.png", UriKind.Relative)
-                };
 
-                TileService.Current.Create(new Uri(tileUrl, UriKind.Relative), tileData, true);
+                TileService.Current.PinCollection(collection.Name, collection.Id, App.SpecificSettings.UseTransparentTile, true);
                 Messenger.Default.Send(new NotificationMessage(tileUrl, Constants.Messages.CollectionPinnedMsg));
 
             });

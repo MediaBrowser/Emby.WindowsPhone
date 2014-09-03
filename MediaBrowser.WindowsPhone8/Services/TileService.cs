@@ -106,6 +106,31 @@ namespace MediaBrowser.WindowsPhone.Services
             return Constants.Pages.MainPage;
         }
 
+        public void PinCollection(string name, string id, bool isTransparentTile, bool createTile)
+        {
+            var tileUrl = string.Format(Constants.PhoneTileUrlFormat, "Collection", id, name);
+            var tileData = new ShellTileServiceFlipTileData
+            {
+                Title = name,
+                BackgroundImage = isTransparentTile ? new Uri("/Assets/Tiles/FlipCycleTileMediumTransparent.png", UriKind.Relative) : new Uri("/Assets/Tiles/FlipCycleTileMedium.png", UriKind.Relative),
+                SmallBackgroundImage = isTransparentTile ? new Uri("/Assets/Tiles/FlipCycleTileSmallTransparent.png", UriKind.Relative) : new Uri("/Assets/Tiles/FlipCycleTileSmall.png", UriKind.Relative),
+                //WideBackgroundImage = new Uri("/Assets/Tiles/FlipCycleTileLarge.png", UriKind.Relative)
+            };
+
+            if (createTile)
+            {
+                Create(new Uri(tileUrl, UriKind.Relative), tileData, false);
+            }
+            else
+            {
+                var tile = GetTile(tileUrl);
+                if (tile != null)
+                {
+                    tile.Update(tileData);
+                }
+            }
+        }
+
         public void SetSecondaryTileTransparency(bool useTransparentTiles)
         {
             ShellTileServiceFlipTileData tileData;
@@ -131,6 +156,16 @@ namespace MediaBrowser.WindowsPhone.Services
                 };
 
                 liveTvTile.Update(tileData);
+            }
+
+            var collectionTiles = ActiveTiles.Where(x => x.NavigationUri.ToString().Contains("=Collection"));
+            foreach (var tile in collectionTiles)
+            {
+                var uri = new Uri("http://mediabrowser.tv" + tile.NavigationUri.OriginalString);
+                var queries = uri.QueryString();
+                var name = queries["name"];
+                var id = queries["id"];
+                PinCollection(name, id, useTransparentTiles, false);
             }
         }
 
