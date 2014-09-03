@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
-using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Threading;
@@ -262,6 +261,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
         private async Task InitiatePlayback(bool isResume, int? subtitleIndex = null)
         {
+            Messenger.Default.Send(new NotificationMessage(Constants.Messages.ClearNowPlayingMsg));
             EndTime = TimeSpan.Zero;
 
             var query = new VideoStreamOptions();

@@ -288,6 +288,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     }
                 }
             });
+
+            Messenger.Default.Register<NotificationMessage>(this, m =>
+            {
+                if (m.Notification.Equals(Constants.Messages.ClearNowPlayingMsg))
+                {
+                    ClearPlaylistCommand.Execute(null);
+                }
+            });
         }
 
         private void PlayPause()
