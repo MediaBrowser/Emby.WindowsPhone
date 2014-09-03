@@ -421,7 +421,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
 
             try
             {
-                var itemsResponse = await _apiClient.GetArtistsAsync(query);
+                var itemsResponse = await _apiClient.GetAlbumArtistsAsync(query);
 
                 if (itemsResponse == null)
                 {
