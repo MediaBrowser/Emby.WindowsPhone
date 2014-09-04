@@ -293,7 +293,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 if (m.Notification.Equals(Constants.Messages.ClearNowPlayingMsg))
                 {
-                    ClearPlaylistCommand.Execute(null);
+                    NowPlayingItem = null;
                 }
             });
         }
