@@ -5,12 +5,14 @@ using System.Threading;
 using System.Threading.Tasks;
 using MediaBrowser.Model;
 using MediaBrowser.Model.ApiClient;
+using MediaBrowser.Model.Channels;
 using MediaBrowser.Model.Configuration;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Globalization;
 using MediaBrowser.Model.LiveTv;
 using MediaBrowser.Model.Notifications;
+using MediaBrowser.Model.Playlists;
 using MediaBrowser.Model.Plugins;
 using MediaBrowser.Model.Querying;
 using MediaBrowser.Model.Search;
@@ -20,7 +22,7 @@ using MediaBrowser.Model.System;
 using MediaBrowser.Model.Tasks;
 using MediaBrowser.Model.Users;
 
-namespace MediaBrowser.Design
+namespace MediaBrowser.WindowsPhone.Design
 {
     public class ExtendedApiClientDesign : IExtendedApiClient
     {
@@ -34,42 +36,57 @@ namespace MediaBrowser.Design
             throw new NotImplementedException();
         }
 
-        public Task<List<GameSystemSummary>> GetGameSystemSummariesAsync(CancellationToken cancellationToken)
+        public Task<List<GameSystemSummary>> GetGameSystemSummariesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
             throw new NotImplementedException();
         }
 
-        public Task<T> GetAsync<T>(string url, CancellationToken cancellationToken) where T : class
+        public Task<T> GetAsync<T>(string url, CancellationToken cancellationToken = new CancellationToken()) where T : class
         {
             throw new NotImplementedException();
         }
 
-        public Task ReportCapabilities(ClientCapabilities capabilities, CancellationToken cancellationToken)
+        public string GetAudioStreamUrl(StreamOptions options)
         {
             throw new NotImplementedException();
         }
 
-        public Task ReportCapabilities(string sessionId, ClientCapabilities capabilities, CancellationToken cancellationToken)
+        public string GetVideoStreamUrl(VideoStreamOptions options)
         {
             throw new NotImplementedException();
         }
 
-        public Task<List<ItemIndex>> GetGamePlayerIndex(string userId, CancellationToken cancellationToken)
+        public string GetHlsVideoStreamUrl(VideoStreamOptions options)
         {
             throw new NotImplementedException();
         }
 
-        public Task<List<ItemIndex>> GetYearIndex(string userId, string[] includeItemTypes, CancellationToken cancellationToken)
+        public Task ReportCapabilities(ClientCapabilities capabilities, CancellationToken cancellationToken = new CancellationToken())
         {
             throw new NotImplementedException();
         }
 
-        public Task<QueryResult<ItemReview>> GetCriticReviews(string itemId, CancellationToken cancellationToken, int? startIndex = null, int? limit = null)
+        public Task Logout()
         {
             throw new NotImplementedException();
         }
 
-        public Task<ThemeMediaResult> GetThemeSongsAsync(string userId, string itemId, bool inheritFromParents, CancellationToken cancellationToken)
+        public Task<List<ItemIndex>> GetGamePlayerIndex(string userId, CancellationToken cancellationToken = new CancellationToken())
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<ItemIndex>> GetYearIndex(string userId, string[] includeItemTypes, CancellationToken cancellationToken = new CancellationToken())
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<QueryResult<ItemReview>> GetCriticReviews(string itemId, CancellationToken cancellationToken = new CancellationToken(), int? startIndex = null, int? limit = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<ThemeMediaResult> GetThemeSongsAsync(string userId, string itemId, bool inheritFromParents, CancellationToken cancellationToken = new CancellationToken())
         {
             throw new NotImplementedException();
         }
@@ -79,27 +96,17 @@ namespace MediaBrowser.Design
             throw new NotImplementedException();
         }
 
-        public Task<ThemeMediaResult> GetThemeVideosAsync(string userId, string itemId, bool inheritFromParents, CancellationToken cancellationToken)
+        public Task<ThemeMediaResult> GetThemeVideosAsync(string userId, string itemId, bool inheritFromParents, CancellationToken cancellationToken = new CancellationToken())
         {
             throw new NotImplementedException();
         }
 
-        public Task<AllThemeMediaResult> GetAllThemeMediaAsync(string userId, string itemId, bool inheritFromParents, CancellationToken cancellationToken)
+        public Task<AllThemeMediaResult> GetAllThemeMediaAsync(string userId, string itemId, bool inheritFromParents, CancellationToken cancellationToken = new CancellationToken())
         {
             throw new NotImplementedException();
         }
 
-        public Task MarkNotificationsRead(string userId, IEnumerable<Guid> notificationIdList, bool isRead)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task UpdateNotification(Notification notification)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Notification> AddNotification(Notification notification)
+        public Task MarkNotificationsRead(string userId, IEnumerable<string> notificationIdList, bool isRead)
         {
             throw new NotImplementedException();
         }
@@ -114,12 +121,17 @@ namespace MediaBrowser.Design
             throw new NotImplementedException();
         }
 
-        public Task<Stream> GetImageStreamAsync(string url, CancellationToken cancellationToken)
+        public Task<Stream> GetImageStreamAsync(string url, CancellationToken cancellationToken = new CancellationToken())
         {
             throw new NotImplementedException();
         }
 
         public Task<BaseItemDto> GetItemAsync(string id, string userId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<QueryResult<BaseItemDto>> GetLatestItems(LatestItemsQuery query)
         {
             throw new NotImplementedException();
         }
@@ -134,12 +146,17 @@ namespace MediaBrowser.Design
             throw new NotImplementedException();
         }
 
+        public Task<ItemsResult> GetAdditionalParts(string itemId, string userId)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<UserDto[]> GetUsersAsync(UserQuery query)
         {
             throw new NotImplementedException();
         }
 
-        public Task<UserDto[]> GetPublicUsersAsync(CancellationToken cancellationToken)
+        public Task<UserDto[]> GetPublicUsersAsync(CancellationToken cancellationToken = new CancellationToken())
         {
             throw new NotImplementedException();
         }
@@ -149,22 +166,32 @@ namespace MediaBrowser.Design
             throw new NotImplementedException();
         }
 
+        public Task<SessionInfoDto> GetCurrentSessionAsync(CancellationToken cancellationToken = new CancellationToken())
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<ItemCounts> GetItemCountsAsync(ItemCountsQuery query)
         {
             throw new NotImplementedException();
         }
 
-        public Task<ItemsResult> GetEpisodesAsync(EpisodeQuery query)
+        public Task<ItemsResult> GetEpisodesAsync(EpisodeQuery query, CancellationToken cancellationToken = new CancellationToken())
         {
             throw new NotImplementedException();
         }
 
-        public Task<ItemsResult> GetSeasonsAsync(SeasonQuery query)
+        public Task<ItemsResult> GetSeasonsAsync(SeasonQuery query, CancellationToken cancellationToken = new CancellationToken())
         {
             throw new NotImplementedException();
         }
 
-        public Task<ItemsResult> GetItemsAsync(ItemQuery query)
+        public Task<ItemsResult> GetItemsAsync(ItemQuery query, CancellationToken cancellationToken = new CancellationToken())
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<ItemsResult> GetUserViews(string userId, CancellationToken cancellationToken = new CancellationToken())
         {
             throw new NotImplementedException();
         }
@@ -189,32 +216,32 @@ namespace MediaBrowser.Design
             throw new NotImplementedException();
         }
 
-        public Task<ItemsResult> GetSimilarMoviesAsync(SimilarItemsQuery query)
+        public Task<ItemsResult> GetSimilarMoviesAsync(SimilarItemsQuery query, CancellationToken cancellationToken = new CancellationToken())
         {
             throw new NotImplementedException();
         }
 
-        public Task<ItemsResult> GetSimilarTrailersAsync(SimilarItemsQuery query)
+        public Task<ItemsResult> GetSimilarTrailersAsync(SimilarItemsQuery query, CancellationToken cancellationToken = new CancellationToken())
         {
             throw new NotImplementedException();
         }
 
-        public Task<ItemsResult> GetSimilarSeriesAsync(SimilarItemsQuery query)
+        public Task<ItemsResult> GetSimilarSeriesAsync(SimilarItemsQuery query, CancellationToken cancellationToken = new CancellationToken())
         {
             throw new NotImplementedException();
         }
 
-        public Task<ItemsResult> GetSimilarAlbumsAsync(SimilarItemsQuery query)
+        public Task<ItemsResult> GetSimilarAlbumsAsync(SimilarItemsQuery query, CancellationToken cancellationToken = new CancellationToken())
         {
             throw new NotImplementedException();
         }
 
-        public Task<ItemsResult> GetSimilarGamesAsync(SimilarItemsQuery query)
+        public Task<ItemsResult> GetSimilarGamesAsync(SimilarItemsQuery query, CancellationToken cancellationToken = new CancellationToken())
         {
             throw new NotImplementedException();
         }
 
-        public Task<ItemsResult> GetPeopleAsync(PersonsQuery query)
+        public Task<ItemsResult> GetPeopleAsync(PersonsQuery query, CancellationToken cancellationToken = new CancellationToken())
         {
             throw new NotImplementedException();
         }
@@ -224,12 +251,17 @@ namespace MediaBrowser.Design
             throw new NotImplementedException();
         }
 
+        public Task<ItemsResult> GetAlbumArtistsAsync(ArtistsQuery query)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<BaseItemDto> GetStudioAsync(string name, string userId)
         {
             throw new NotImplementedException();
         }
 
-        public Task<ItemsResult> GetNextUpEpisodesAsync(NextUpQuery query)
+        public Task<ItemsResult> GetNextUpEpisodesAsync(NextUpQuery query, CancellationToken cancellationToken = new CancellationToken())
         {
             throw new NotImplementedException();
         }
@@ -284,7 +316,12 @@ namespace MediaBrowser.Design
             throw new NotImplementedException();
         }
 
-        public Task<SystemInfo> GetSystemInfoAsync()
+        public Task<SystemInfo> GetSystemInfoAsync(CancellationToken cancellationToken = new CancellationToken())
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<PublicSystemInfo> GetPublicSystemInfoAsync(CancellationToken cancellationToken = new CancellationToken())
         {
             throw new NotImplementedException();
         }
@@ -309,7 +346,7 @@ namespace MediaBrowser.Design
             throw new NotImplementedException();
         }
 
-        public Task<TaskInfo> GetScheduledTaskAsync(Guid id)
+        public Task<TaskInfo> GetScheduledTaskAsync(string id)
         {
             throw new NotImplementedException();
         }
@@ -374,7 +411,7 @@ namespace MediaBrowser.Design
             throw new NotImplementedException();
         }
 
-        public Task SendBrowseCommandAsync(string sessionId, string itemId, string itemName, string itemType, string context)
+        public Task SendBrowseCommandAsync(string sessionId, string itemId, string itemName, string itemType)
         {
             throw new NotImplementedException();
         }
@@ -390,6 +427,31 @@ namespace MediaBrowser.Design
         }
 
         public Task SendCommandAsync(string sessionId, GeneralCommand command)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task SendString(string sessionId, string text)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task SetVolume(string sessionId, int volume)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task StopTranscodingProcesses(string deviceId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task SetAudioStreamIndex(string sessionId, int index)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task SetSubtitleStreamIndex(string sessionId, int? index)
         {
             throw new NotImplementedException();
         }
@@ -419,22 +481,22 @@ namespace MediaBrowser.Design
             throw new NotImplementedException();
         }
 
-        public Task UpdateScheduledTaskTriggersAsync(Guid id, TaskTriggerInfo[] triggers)
+        public Task UpdateScheduledTaskTriggersAsync(string id, TaskTriggerInfo[] triggers)
         {
             throw new NotImplementedException();
         }
 
-        public Task<DisplayPreferences> GetDisplayPreferencesAsync(string id, string userId, string client, CancellationToken cancellationToken)
+        public Task<DisplayPreferences> GetDisplayPreferencesAsync(string id, string userId, string client, CancellationToken cancellationToken = new CancellationToken())
         {
             throw new NotImplementedException();
         }
 
-        public Task UpdateDisplayPreferencesAsync(DisplayPreferences displayPreferences, string userId, string client, CancellationToken cancellationToken)
+        public Task UpdateDisplayPreferencesAsync(DisplayPreferences displayPreferences, string userId, string client, CancellationToken cancellationToken = new CancellationToken())
         {
             throw new NotImplementedException();
         }
 
-        public Task<T> PostAsync<T>(string url, Dictionary<string, string> args, CancellationToken cancellationToken) where T : class
+        public Task<T> PostAsync<T>(string url, Dictionary<string, string> args, CancellationToken cancellationToken = new CancellationToken()) where T : class
         {
             throw new NotImplementedException();
         }
@@ -444,7 +506,22 @@ namespace MediaBrowser.Design
             throw new NotImplementedException();
         }
 
-        public void ChangeServerLocation(string hostName, int apiPort)
+        public void ChangeServerLocation(string address)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SetAuthenticationInfo(string accessToken, string userId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SetAuthenticationInfo(string accessToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ClearAuthenticationInfo()
         {
             throw new NotImplementedException();
         }
@@ -469,7 +546,7 @@ namespace MediaBrowser.Design
             throw new NotImplementedException();
         }
 
-        public string GetSubtitleUrl(SubtitleOptions options)
+        public string GetSubtitleUrl(SubtitleDownloadOptions options)
         {
             throw new NotImplementedException();
         }
@@ -549,153 +626,163 @@ namespace MediaBrowser.Design
             throw new NotImplementedException();
         }
 
-        public string GetAudioStreamUrl(StreamOptions options)
+        public Task<LiveTvInfo> GetLiveTvInfoAsync(CancellationToken cancellationToken = new CancellationToken())
         {
             throw new NotImplementedException();
         }
 
-        public string GetVideoStreamUrl(VideoStreamOptions options)
+        public Task<QueryResult<ChannelInfoDto>> GetLiveTvChannelsAsync(LiveTvChannelQuery query, CancellationToken cancellationToken = new CancellationToken())
         {
             throw new NotImplementedException();
         }
 
-        public string GetHlsAudioStreamUrl(StreamOptions options)
+        public Task<ChannelInfoDto> GetLiveTvChannelAsync(string id, string userId, CancellationToken cancellationToken = new CancellationToken())
         {
             throw new NotImplementedException();
         }
 
-        public string GetHlsVideoStreamUrl(VideoStreamOptions options)
+        public Task<QueryResult<RecordingInfoDto>> GetLiveTvRecordingsAsync(RecordingQuery query, CancellationToken cancellationToken = new CancellationToken())
         {
             throw new NotImplementedException();
         }
 
-        public Task<LiveTvInfo> GetLiveTvInfoAsync(CancellationToken cancellationToken)
+        public Task<RecordingInfoDto> GetLiveTvRecordingAsync(string id, string userId, CancellationToken cancellationToken = new CancellationToken())
         {
             throw new NotImplementedException();
         }
 
-        public Task<QueryResult<ChannelInfoDto>> GetLiveTvChannelsAsync(ChannelQuery query, CancellationToken cancellationToken)
+        public Task<QueryResult<RecordingGroupDto>> GetLiveTvRecordingGroupsAsync(RecordingGroupQuery query, CancellationToken cancellationToken = new CancellationToken())
         {
             throw new NotImplementedException();
         }
 
-        public Task<ChannelInfoDto> GetLiveTvChannelAsync(string id, string userId, CancellationToken cancellationToken)
+        public Task<RecordingGroupDto> GetLiveTvRecordingGroupAsync(string id, string userId, CancellationToken cancellationToken = new CancellationToken())
         {
             throw new NotImplementedException();
         }
 
-        public Task<QueryResult<RecordingInfoDto>> GetLiveTvRecordingsAsync(RecordingQuery query, CancellationToken cancellationToken)
+        public Task<QueryResult<TimerInfoDto>> GetLiveTvTimersAsync(TimerQuery query, CancellationToken cancellationToken = new CancellationToken())
         {
             throw new NotImplementedException();
         }
 
-        public Task<RecordingInfoDto> GetLiveTvRecordingAsync(string id, string userId, CancellationToken cancellationToken)
+        public Task<QueryResult<ProgramInfoDto>> GetLiveTvProgramsAsync(ProgramQuery query, CancellationToken cancellationToken = new CancellationToken())
         {
             throw new NotImplementedException();
         }
 
-        public Task<QueryResult<RecordingGroupDto>> GetLiveTvRecordingGroupsAsync(RecordingGroupQuery query, CancellationToken cancellationToken)
+        public Task<ProgramInfoDto> GetLiveTvProgramAsync(string id, string userId, CancellationToken cancellationToken = new CancellationToken())
         {
             throw new NotImplementedException();
         }
 
-        public Task<RecordingGroupDto> GetLiveTvRecordingGroupAsync(string id, string userId, CancellationToken cancellationToken)
+        public Task<QueryResult<ProgramInfoDto>> GetRecommendedLiveTvProgramsAsync(RecommendedProgramQuery query, CancellationToken cancellationToken = new CancellationToken())
         {
             throw new NotImplementedException();
         }
 
-        public Task<QueryResult<TimerInfoDto>> GetLiveTvTimersAsync(TimerQuery query, CancellationToken cancellationToken)
+        public Task CreateLiveTvTimerAsync(BaseTimerInfoDto timer, CancellationToken cancellationToken = new CancellationToken())
         {
             throw new NotImplementedException();
         }
 
-        public Task<QueryResult<ProgramInfoDto>> GetLiveTvProgramsAsync(ProgramQuery query, CancellationToken cancellationToken)
+        public Task UpdateLiveTvTimerAsync(TimerInfoDto timer, CancellationToken cancellationToken = new CancellationToken())
         {
             throw new NotImplementedException();
         }
 
-        public Task<ProgramInfoDto> GetLiveTvProgramAsync(string id, string userId, CancellationToken cancellationToken)
+        public Task CreateLiveTvSeriesTimerAsync(SeriesTimerInfoDto timer, CancellationToken cancellationToken = new CancellationToken())
         {
             throw new NotImplementedException();
         }
 
-        public Task<QueryResult<ProgramInfoDto>> GetRecommendedLiveTvProgramsAsync(RecommendedProgramQuery query, CancellationToken cancellationToken)
+        public Task UpdateLiveTvSeriesTimerAsync(SeriesTimerInfoDto timer, CancellationToken cancellationToken = new CancellationToken())
         {
             throw new NotImplementedException();
         }
 
-        public Task CreateLiveTvTimerAsync(BaseTimerInfoDto timer, CancellationToken cancellationToken)
+        public Task<TimerInfoDto> GetLiveTvTimerAsync(string id, CancellationToken cancellationToken = new CancellationToken())
         {
             throw new NotImplementedException();
         }
 
-        public Task UpdateLiveTvTimerAsync(TimerInfoDto timer, CancellationToken cancellationToken)
+        public Task<QueryResult<SeriesTimerInfoDto>> GetLiveTvSeriesTimersAsync(SeriesTimerQuery query, CancellationToken cancellationToken = new CancellationToken())
         {
             throw new NotImplementedException();
         }
 
-        public Task CreateLiveTvSeriesTimerAsync(SeriesTimerInfoDto timer, CancellationToken cancellationToken)
+        public Task<SeriesTimerInfoDto> GetLiveTvSeriesTimerAsync(string id, CancellationToken cancellationToken = new CancellationToken())
         {
             throw new NotImplementedException();
         }
 
-        public Task UpdateLiveTvSeriesTimerAsync(SeriesTimerInfoDto timer, CancellationToken cancellationToken)
+        public Task CancelLiveTvTimerAsync(string id, CancellationToken cancellationToken = new CancellationToken())
         {
             throw new NotImplementedException();
         }
 
-        public Task<TimerInfoDto> GetLiveTvTimerAsync(string id, CancellationToken cancellationToken)
+        public Task CancelLiveTvSeriesTimerAsync(string id, CancellationToken cancellationToken = new CancellationToken())
         {
             throw new NotImplementedException();
         }
 
-        public Task<QueryResult<SeriesTimerInfoDto>> GetLiveTvSeriesTimersAsync(SeriesTimerQuery query, CancellationToken cancellationToken)
+        public Task DeleteLiveTvRecordingAsync(string id, CancellationToken cancellationToken = new CancellationToken())
         {
             throw new NotImplementedException();
         }
 
-        public Task<SeriesTimerInfoDto> GetLiveTvSeriesTimerAsync(string id, CancellationToken cancellationToken)
+        public Task<SeriesTimerInfoDto> GetDefaultLiveTvTimerInfo(CancellationToken cancellationToken = new CancellationToken())
         {
             throw new NotImplementedException();
         }
 
-        public Task CancelLiveTvTimerAsync(string id, CancellationToken cancellationToken)
+        public Task<GuideInfo> GetLiveTvGuideInfo(CancellationToken cancellationToken = new CancellationToken())
         {
             throw new NotImplementedException();
         }
 
-        public Task CancelLiveTvSeriesTimerAsync(string id, CancellationToken cancellationToken)
+        public Task<SeriesTimerInfoDto> GetDefaultLiveTvTimerInfo(string programId, CancellationToken cancellationToken = new CancellationToken())
         {
             throw new NotImplementedException();
         }
 
-        public Task DeleteLiveTvRecordingAsync(string id, CancellationToken cancellationToken)
+        public Task<ChannelFeatures> GetChannelFeatures(string channelId, CancellationToken cancellationToken = new CancellationToken())
         {
             throw new NotImplementedException();
         }
 
-        public Task<SeriesTimerInfoDto> GetDefaultLiveTvTimerInfo(CancellationToken cancellationToken)
+        public Task<QueryResult<BaseItemDto>> GetChannelItems(ChannelItemQuery query, CancellationToken cancellationToken = new CancellationToken())
         {
             throw new NotImplementedException();
         }
 
-        public Task<GuideInfo> GetLiveTvGuideInfo(CancellationToken cancellationToken)
+        public Task<QueryResult<BaseItemDto>> GetChannels(ChannelQuery query, CancellationToken cancellationToken = new CancellationToken())
         {
             throw new NotImplementedException();
         }
 
-        public Task<SeriesTimerInfoDto> GetDefaultLiveTvTimerInfo(string programId, CancellationToken cancellationToken)
+        public Task<QueryResult<BaseItemDto>> GetLatestChannelItems(AllChannelMediaQuery query, CancellationToken cancellationToken = new CancellationToken())
+        {
+            throw new NotImplementedException();
+        }
+        
+        public Task AddToPlaylist(string playlistId, IEnumerable<string> itemIds, string userId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task RemoveFromPlaylist(string playlistId, IEnumerable<string> entryIds)
         {
             throw new NotImplementedException();
         }
 
         public IJsonSerializer JsonSerializer { get; set; }
-        public string ServerHostName { get; private set; }
-        public int ServerApiPort { get; private set; }
+        public string ServerAddress { get; private set; }
         public string ClientName { get; set; }
         public string DeviceName { get; set; }
         public string DeviceId { get; set; }
-        public string CurrentUserId { get; set; }
+        public string CurrentUserId { get; private set; }
+        public string AccessToken { get; private set; }
         public event EventHandler ServerLocationChanged;
         public event EventHandler<HttpResponseEventArgs> HttpResponseReceived;
         public Task RegisterDeviceAsync(string deviceId, string uri, bool? sendTileUpdate = null, bool? sendToastUpdate = null)

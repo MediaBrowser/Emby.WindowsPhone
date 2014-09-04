@@ -19,7 +19,7 @@
                 FontSize="{StaticResource PhoneFontSizeNormal}"
                 Foreground="{StaticResource PhoneForegroundBrush}"
                 SupportedOrientations="Portrait"
-                Orientation="Portrait"
+                Orientation="Landscape"
                 mc:Ignorable="d"
                 d:DesignWidth="480"
                 d:DesignHeight="696"

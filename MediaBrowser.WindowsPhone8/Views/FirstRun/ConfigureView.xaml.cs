@@ -29,12 +29,10 @@ namespace MediaBrowser.WindowsPhone.Views.FirstRun
             NavigationService.Navigate(new Uri(Constants.Pages.SettingsViewConnection, UriKind.Relative));
         }
 
-#if WP8
         private void QuitButton_OnClick(object sender, RoutedEventArgs e)
         {
             Application.Current.Terminate();
         }
-#endif
 
         private void DownloadButton_OnClick(object sender, RoutedEventArgs e)
         {

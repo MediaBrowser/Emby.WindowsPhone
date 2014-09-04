@@ -7,6 +7,7 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model;
+using MediaBrowser.Model.Channels;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.LiveTv;
 using MediaBrowser.Model.Net;
@@ -124,7 +125,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
             {
                 SetProgressBar(AppResources.SysTrayGettingChannels);
 
-                var query = new ChannelQuery
+                var query = new LiveTvChannelQuery
                 {
                     ChannelType = ChannelType.TV,
                     UserId = AuthenticationService.Current.LoggedInUserId

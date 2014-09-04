@@ -24,14 +24,10 @@ using Microsoft.Phone.Notification;
 using ScottIsAFool.WindowsPhone.ViewModel;
 using INavigationService = MediaBrowser.WindowsPhone.Model.INavigationService;
 
-#if WP8
 using Windows.Networking;
 using Windows.Networking.Sockets;
 using Windows.Storage.Streams;
 using LockScreenService = MediaBrowser.WindowsPhone.Services.LockScreenService;
-#else
-using System.Text.RegularExpressions;
-#endif
 
 namespace MediaBrowser.WindowsPhone.ViewModel
 {
@@ -66,13 +62,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 RegisteredText = "Device registered";
                 ServerPluginInstalled = false;
 
-#if WP8
                 FoundServers = new ObservableCollection<Server>
                 {
                     new Server {IpAddress = "192.168.0.2", PortNo = "8096"},
                     new Server {IpAddress = "192.168.0.4", PortNo = "8096"}
                 };
-#endif
             }
             else
             {
@@ -84,17 +78,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
         }
 
-        ////public override void WireMessages()
-        ////{
-        ////    Messenger.Default.Register<NotificationMessage>(this, async m =>
-        ////    {
-        ////        if (m.Notification.Equals(Constants.Messages.CheckForPushPluginMsg))
-        ////        {
-
-        ////        }
-        ////    });
-        ////}
-
         public string RegisteredText { get; set; }
         public bool SendToastUpdates { get; set; }
         public bool SendTileUpdates { get; set; }
@@ -104,7 +87,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public bool UseNotifications { get; set; }
         public HttpNotificationChannel HttpNotificationChannel { get; set; }
 
-#if WP8
         public bool IsLockScreenProvider
         {
             get
@@ -191,7 +173,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             SelectedCollection = Folders.FirstOrDefault(x => x.Id == App.SpecificSettings.LockScreenCollectionId);
         }
 
-#endif 
         public RelayCommand SettingsPageLoaded
         {
             get
@@ -210,10 +191,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     //        ServerPluginInstalled = false;
                     //    }
                     //}
-#if WP8
                     LoadPosterStreams();
                     GetFolders();
-#endif
                 });
             }
         }
@@ -246,24 +225,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 Log.Info("Testing connection");
 
 
-#if WP8
                 var hostnameType = Uri.CheckHostName(App.Settings.ConnectionDetails.HostName);
                 if (hostnameType == UriHostNameType.Unknown)
                 {
                     MessageBox.Show(AppResources.ErrorInvalidHostname, AppResources.ErrorTitle, MessageBoxButton.OK);
                     return;
                 }
-#else
-                var regexItem = new Regex(@"(?:[A-Za-z0-9][A-Za-z0-9\-]{0,61}[A-Za-z0-9]|[A-Za-z0-9])");
-
-                if (string.IsNullOrEmpty(App.Settings.ConnectionDetails.HostName) || App.Settings.ConnectionDetails.HostName.Contains(" ") || !regexItem.IsMatch(App.Settings.ConnectionDetails.HostName))
-                {
-                    MessageBox.Show(AppResources.ErrorInvalidHostname, AppResources.ErrorTitle, MessageBoxButton.OK);
-
-                    SetProgressBar();
-                    return;
-                }
-#endif
 
                 if (await Utils.GetServerConfiguration(_apiClient, Log))
                 {
@@ -286,7 +253,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             SetProgressBar();
         }
 
-#if WP8
 
         #region Server Broadcast code WP8 only
 
@@ -377,19 +343,13 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
         #endregion
 
-#endif
-
         internal string DeviceId
         {
-#if WP8
             get
             {
                 var id = SimpleIoc.Default.GetInstance<IUserExtendedPropertiesService>().AnonymousUserID;
                 return string.IsNullOrEmpty(id) ? "emulator" : id;
             }
-#else
-            get { return ParseANID(SimpleIoc.Default.GetInstance<IUserExtendedPropertiesService>().AnonymousUserID); }
-#endif
         }
 
         #region Push Notification methods

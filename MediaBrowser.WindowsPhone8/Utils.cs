@@ -10,12 +10,10 @@ using GalaSoft.MvvmLight.Ioc;
 using MediaBrowser.ApiInteraction;
 using MediaBrowser.ApiInteraction.WebSocket;
 using MediaBrowser.Model;
-using MediaBrowser.Model.Configuration;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Library;
 using MediaBrowser.Model.LiveTv;
-using MediaBrowser.Model.Logging;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Session;
 using MediaBrowser.Services;
@@ -44,11 +42,7 @@ namespace MediaBrowser.WindowsPhone
                                      select new Group<BaseItemPerson>(grp.Key, grp)).ToList();
 
             var result = (from g in groupedPeople.Union(emptyGroups)
-#if WP8
                           where g.Count > 0
-#else
-                          where g.HasItems
-#endif
                           orderby g.Title
                           select g).ToList();
 
@@ -68,17 +62,10 @@ namespace MediaBrowser.WindowsPhone
                                      group t by GetSortByNameHeader(t)
                                          into grp
                                          orderby grp.Key
-                                         select new Group<BaseItemDto>(grp.Key, grp)).ToList();
-
+                                         select new Group<BaseItemDto>(grp.Key, grp.OrderBy(x => x.SortName))).ToList();
+                
                 var result = (from g in groupedTracks.Union(emptyGroups)
-#if WP8
                               where g.Count > 0
-#else
-                          where g.HasItems
-
-
-
-#endif
                               orderby g.Title
                               select g).ToList();
 
@@ -187,7 +174,7 @@ namespace MediaBrowser.WindowsPhone
                         Id = series.Id,
                         DateCreated = series.CreatedDate,
                         Type = "Series",
-                        ImageTags = new Dictionary<ImageType, Guid> { { ImageType.Primary, Guid.NewGuid() } },
+                        ImageTags = new Dictionary<ImageType, string> { { ImageType.Primary, Guid.NewGuid().ToString() } },
                         UserData = series.UserData
                     }));
                 }
@@ -200,8 +187,8 @@ namespace MediaBrowser.WindowsPhone
                         Id = g.Select(l => l.ParentId).FirstOrDefault(),
                         Name = g.Key,
                         CreatedDate = g.OrderByDescending(l => l.DateCreated).First().DateCreated,
-                        ImageTags = g.SelectMany(x => x.ParentBackdropImageTags ?? new List<Guid>()).Distinct().ToList(),
-                        PrimaryImage = g.Select(l => new KeyValuePair<ImageType, Guid>(ImageType.Primary, l.AlbumPrimaryImageTag.HasValue ? l.AlbumPrimaryImageTag.Value : Guid.Empty)).Distinct().ToDictionary(y => y.Key, y => y.Value)
+                        ImageTags = g.SelectMany(x => x.ParentBackdropImageTags ?? new List<string>()).Distinct().ToList(),
+                        PrimaryImage = g.Select(l => new KeyValuePair<ImageType, string>(ImageType.Primary, string.IsNullOrEmpty(l.AlbumPrimaryImageTag) ? l.AlbumPrimaryImageTag : Guid.Empty.ToString())).Distinct().ToDictionary(y => y.Key, y => y.Value)
                     }).ToList();
                 var albumList = new List<BaseItemDto>();
 
@@ -237,9 +224,9 @@ namespace MediaBrowser.WindowsPhone
         {
             try
             {
-                apiClient.ChangeServerLocation(App.Settings.ConnectionDetails.HostName, App.Settings.ConnectionDetails.PortNo);
+                apiClient.ChangeServerLocation(App.Settings.ConnectionDetails.ServerAddress);
 
-                logger.Info("Getting server configuration. Hostname ({0}), Port ({1})", apiClient.ServerHostName, apiClient.ServerApiPort);
+                logger.Info("Getting server configuration. Server address ({0})", apiClient.ServerAddress);
 
                 var config = await apiClient.GetServerConfigurationAsync();
                 App.Settings.ServerConfiguration = config;
@@ -251,17 +238,15 @@ namespace MediaBrowser.WindowsPhone
 
                 logger.Info("Checking if live TV is supported");
 
-#if WP8
-                var liveTv = await apiClient.GetLiveTvInfoAsync(default(CancellationToken));
+                var liveTv = await apiClient.GetLiveTvInfoAsync();
                 App.Settings.LiveTvInfo = liveTv;
-#endif
 
                 if (SimpleIoc.Default.IsRegistered<ApiWebSocket>())
                 {
                     SimpleIoc.Default.Unregister<ApiWebSocket>();
                 }
 
-                App.WebSocketClient = await ApiWebSocket.Create(new MBLogger(), new NewtonsoftJsonSerializer(), (ApiClient)apiClient, () => new WebSocketClient(), new CancellationToken());
+                App.WebSocketClient = await ApiWebSocket.Create((ApiClient)apiClient, () => new WebSocketClient(), default(CancellationToken));
 
                 return true;
             }
@@ -274,36 +259,37 @@ namespace MediaBrowser.WindowsPhone
 
         internal static void CheckProfiles(INavigationService navigationService)
         {
-            var clients = App.Settings.ServerConfiguration.ManualLoginClients;
-            var loginPage = clients.Contains(ManualLoginCategory.Mobile) ? Constants.Pages.ManualUsernameView : Constants.Pages.ChooseProfileView;
+            var clients = false;
+            var loginPage = clients ? Constants.Pages.ManualUsernameView : Constants.Pages.ChooseProfileView;
 
-#if WP8
             if (AuthenticationService.Current.IsLoggedIn)
             {
                 LockScreenService.Current.Start();
                 TileService.Current.UpdatePrimaryTile(App.SpecificSettings.DisplayBackdropOnTile, App.SpecificSettings.UseRichWideTile, App.SpecificSettings.UseTransparentTile).ConfigureAwait(false);
             }
-#endif
+
             // If one exists, then authenticate that user.
             navigationService.NavigateTo(AuthenticationService.Current.IsLoggedIn ? TileService.Current.PinnedPage() : loginPage);
         }
 
-        internal static void HandleHttpException(HttpException ex, string message, INavigationService navigationService, ILog log)
+        internal static bool HandleHttpException(HttpException ex, string message, INavigationService navigationService, ILog log)
         {
-            if (ex.StatusCode == HttpStatusCode.Forbidden)
+            if (ex.StatusCode == HttpStatusCode.Unauthorized)
             {
                 MessageBox.Show(AppResources.ErrorDisabledUser, AppResources.ErrorDisabledUserTitle, MessageBoxButton.OK);
                 log.Error("UnauthorizedAccess for user [{0}]", AuthenticationService.Current.LoggedInUser.Name);
+                navigationService.NavigateTo(Constants.Pages.ChooseProfileView);
+                return true;
             }
-            else
-            {
-                log.ErrorException(message, ex);
-            }
+            
+            log.ErrorException(message, ex);
+
+            return false;
         }
 
-        internal static void HandleHttpException(string message, HttpException ex, INavigationService navigationService, ILog log)
+        internal static bool HandleHttpException(string message, HttpException ex, INavigationService navigationService, ILog log)
         {
-            HandleHttpException(ex, message, navigationService, log);
+            return HandleHttpException(ex, message, navigationService, log);
         }
 
         internal static async Task<List<PlaylistItem>> ToPlayListItems(this List<BaseItemDto> list, IExtendedApiClient apiClient)
@@ -369,18 +355,7 @@ namespace MediaBrowser.WindowsPhone
         public static PlaystateCommand ToPlaystateCommandEnum(this string stringCommand)
         {
             PlaystateCommand playState;
-#if !WP8
-            try
-            {
-                playState = (PlaystateCommand)Enum.Parse(typeof (PlaystateCommand), stringCommand, true);
-            }
-            catch
-            {
-                playState = default(PlaystateCommand);
-            }
-#else
             Enum.TryParse(stringCommand, out playState);
-#endif
 
             return playState;
         }
@@ -423,17 +398,8 @@ namespace MediaBrowser.WindowsPhone
 
         public static async Task<TReturnType> Clone<TReturnType>(this TReturnType item)
         {
-#if WP8
             var json = await JsonConvert.SerializeObjectAsync(item);
             return await JsonConvert.DeserializeObjectAsync<TReturnType>(json);
-#else
-            await TaskEx.Run(() =>
-            {
-                var json = JsonConvert.SerializeObject(item);
-                return JsonConvert.DeserializeObject<TReturnType>(json);
-            });
-            return item;
-#endif
         }
 
         internal static string CoolDateName(DateTime? dateTime)

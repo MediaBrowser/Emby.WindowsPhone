@@ -114,7 +114,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         }
                         catch (HttpException ex)
                         {
-                            Log.ErrorException("TvSeriesPageLoaded", ex);
+                            if (Utils.HandleHttpException("TvSeriesPageLoaded", ex, _navigationService, Log))
+                            {
+                                SetProgressBar();
+                                return;
+                            }
                         }
 
                         bool seasonsLoaded = await GetSeasons();
@@ -171,7 +175,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 }
                 catch (HttpException ex)
                 {
-                    Log.ErrorException("AddRemoveFavouriteCommand (TV)", ex);
+                    if (Utils.HandleHttpException("AddRemoveFavouriteCommand (TV)", ex, _navigationService, Log))
+                    {
+                        SetProgressBar();
+                        return;
+                    }
                     App.ShowMessage(AppResources.ErrorMakingChanges);
                 }
 
@@ -200,7 +208,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
             catch (HttpException ex)
             {
-                Log.ErrorException("GetEpisode()", ex);
+                Utils.HandleHttpException("GetEpisode()", ex, _navigationService, Log);
 
                 App.ShowMessage(AppResources.ErrorEpisodeDetails);
                 return false;
@@ -242,7 +250,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
             catch (HttpException ex)
             {
-                Log.ErrorException("GetRecentItems()", ex);
+                Utils.HandleHttpException("GetRecentItems()", ex, _navigationService, Log);
 
                 App.ShowMessage(AppResources.ErrorRecentItems);
                 return false;
@@ -273,7 +281,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
             catch (HttpException ex)
             {
-                Log.ErrorException("GetSeasons()", ex);
+                Utils.HandleHttpException("GetSeasons()", ex, _navigationService, Log);
 
                 App.ShowMessage(AppResources.ErrorSeasons);
                 return false;
@@ -306,7 +314,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
             catch (HttpException ex)
             {
-                Log.ErrorException("GetEpisodes()", ex);
+                Utils.HandleHttpException("GetEpisodes()", ex, _navigationService, Log);
 
                 App.ShowMessage(AppResources.ErrorEpisodes);
                 return false;
@@ -348,7 +356,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     }
                     catch (HttpException ex)
                     {
-                        
+                        Utils.HandleHttpException("GetEpisodeDetails()", ex, _navigationService, Log);
                     }
 
                     SetProgressBar();
@@ -396,7 +404,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             catch (HttpException ex)
             {
                 MessageBox.Show(AppResources.ErrorProblemUpdatingItem, AppResources.ErrorTitle, MessageBoxButton.OK);
-                Log.ErrorException("MarkAsWatchedCommand", ex);
+                Utils.HandleHttpException("MarkAsWatchedCommand", ex, _navigationService, Log);
             }
         }
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
@@ -65,7 +66,7 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
                 var info = new PlaybackProgressInfo
                 {
                     ItemId = track.Tag,
-                    UserId = _apiClient.CurrentUserId,
+                    //UserId = _apiClient.CurrentUserId,
                     PositionTicks = BackgroundAudioPlayer.Instance.Position.Ticks,
                     IsMuted = false,
                     IsPaused = false
@@ -85,10 +86,9 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
             {
                 var applicationSettings = new ApplicationSettingsService();
                 var connectionDetails = applicationSettings.Get<ConnectionDetails>(Constants.Settings.ConnectionSettings);
-                var client = new ExtendedApiClient(new NullLogger(), connectionDetails.HostName, connectionDetails.PortNo, "Windows Phone", SharedUtils.GetDeviceName() + " Audio Player", SharedUtils.GetDeviceId(), ApplicationManifest.Current.App.Version);
+                var client = new ExtendedApiClient(new NullLogger(), connectionDetails.ServerAddress, "Windows Phone", SharedUtils.GetDeviceName() + " Audio Player", SharedUtils.GetDeviceId(), ApplicationManifest.Current.App.Version);
 
                 AuthenticationService.Current.Start(client);
-                client.CurrentUserId = AuthenticationService.Current.LoggedInUserId;
 
                 return client;
             }
@@ -187,7 +187,7 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
                     var info = new PlaybackStopInfo
                     {
                         ItemId = track.Tag,
-                        UserId = _apiClient.CurrentUserId
+                        //UserId = _apiClient.CurrentUserId
                     };
                     await _apiClient.ReportPlaybackStoppedAsync(info);
                 }
@@ -214,10 +214,9 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
                 {
                     var info = new PlaybackStartInfo
                     {
-                        IsSeekable = false,
+                        CanSeek = false,
                         ItemId = track.Tag,
-                        QueueableMediaTypes = new string[0],
-                        UserId = AuthenticationService.Current.LoggedInUserId
+                        QueueableMediaTypes = new List<string>(),
                     };
                     await _apiClient.ReportPlaybackStartAsync(info);
                 }

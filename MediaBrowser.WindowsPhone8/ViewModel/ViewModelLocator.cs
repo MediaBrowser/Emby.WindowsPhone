@@ -22,9 +22,7 @@ using MediaBrowser.Model;
 using INavigationService = MediaBrowser.WindowsPhone.Model.INavigationService;
 using NavigationService = MediaBrowser.WindowsPhone.Model.NavigationService;
 using Cimbalino.Phone.Toolkit.Helpers;
-#if WP8
 using MediaBrowser.WindowsPhone.ViewModel.LiveTv;
-#endif
 
 namespace MediaBrowser.WindowsPhone.ViewModel
 {
@@ -48,7 +46,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             if (ViewModelBase.IsInDesignModeStatic)
             {
                 if (!SimpleIoc.Default.IsRegistered<IExtendedApiClient>())
-                    SimpleIoc.Default.Register<IExtendedApiClient>(() => new ExtendedApiClient(new MBLogger(), "scottisafool.homeserver.com", 8096, "Windows Phone", SharedUtils.GetDeviceName(), SharedUtils.GetDeviceId(), ApplicationManifest.Current.App.Version));
+                    SimpleIoc.Default.Register<IExtendedApiClient>(() => new ExtendedApiClient(new MBLogger(), "scottisafool.homeserver.com", "Windows Phone", SharedUtils.GetDeviceName(), SharedUtils.GetDeviceId(), ApplicationManifest.Current.App.Version));
                     //SimpleIoc.Default.Register<IExtendedApiClient, ExtendedApiClientDesign>();
                 SimpleIoc.Default.Register<INavigationService, NavigationService>();
                 SimpleIoc.Default.Register<FolderViewModel>();
@@ -64,7 +62,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 SimpleIoc.Default.Register<INavigationService, NavigationService>();
                 SimpleIoc.Default.Register<ISettingsService, SettingsService>();
                 if (!SimpleIoc.Default.IsRegistered<IExtendedApiClient>())
-                    SimpleIoc.Default.Register<IExtendedApiClient>(() => new ExtendedApiClient(new MBLogger(), "dummy", 8096, "Windows Phone", SharedUtils.GetDeviceName(), SharedUtils.GetDeviceId(), ApplicationManifest.Current.App.Version));
+                    SimpleIoc.Default.Register<IExtendedApiClient>(() => new ExtendedApiClient(new MBLogger(), "dummy", "Windows Phone", SharedUtils.GetDeviceName(), SharedUtils.GetDeviceId(), ApplicationManifest.Current.App.Version));
                 
                 if (!SimpleIoc.Default.IsRegistered<IUserExtendedPropertiesService>())
                     SimpleIoc.Default.Register<IUserExtendedPropertiesService, UserExtendedPropertiesService>();
@@ -96,7 +94,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             SimpleIoc.Default.Register<MusicCollectionViewModel>();
             SimpleIoc.Default.Register<ActorViewModel>();
             SimpleIoc.Default.Register<GenericItemViewModel>();
-#if WP8
             SimpleIoc.Default.Register<ChannelsViewModel>();
             SimpleIoc.Default.Register<GuideViewModel>();
             SimpleIoc.Default.Register<ScheduleViewModel>();
@@ -106,7 +103,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             SimpleIoc.Default.Register<AllProgrammesViewModel>();
             SimpleIoc.Default.Register<ProgrammeViewModel>();
             SimpleIoc.Default.Register<RecordedTvViewModel>();
-#endif
         }
 
         /// <summary>
@@ -255,7 +251,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             get { return ServiceLocator.Current.GetInstance<GenericItemViewModel>(); }
         }
 
-#if WP8
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
             "CA1822:MarkMembersAsStatic",
             Justification = "This non-static member is needed for data binding purposes.")]
@@ -327,7 +322,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             get { return ServiceLocator.Current.GetInstance<RecordedTvViewModel>(); }
         }
-#endif
 
         public static TvViewModel GetTvViewModel(string itemId)
         {

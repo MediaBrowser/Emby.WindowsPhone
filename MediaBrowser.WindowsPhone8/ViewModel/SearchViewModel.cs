@@ -78,7 +78,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
             catch (HttpException ex)
             {
-                Log.ErrorException("DoSearch()", ex);
+                Utils.HandleHttpException("DoSearch()", ex, _navigationService, Log);
 
                 App.ShowMessage(AppResources.ErrorFailedToSearch);
             }
@@ -108,12 +108,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 Deployment.Current.Dispatcher.BeginInvoke(() =>
                 {
                     SearchResults = (from g in groupedItems.Union(emptyGroups)
-#if WP8
                         where g.Count > 0
-#else
-                                     where g.HasItems
-
-#endif
                         orderby g.Title
                         select g).ToList();
                 });

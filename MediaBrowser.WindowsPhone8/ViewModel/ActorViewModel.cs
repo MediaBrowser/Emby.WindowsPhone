@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
@@ -108,13 +109,13 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     Recursive = true
                 };
 
-                var itemResponse = await _apiClient.GetItemsAsync(query);
+                var itemResponse = await _apiClient.GetItemsAsync(query, default(CancellationToken));
 
                 return await SetFilms(itemResponse);
             }
             catch (HttpException ex)
             {
-                Log.ErrorException("GetActorInformation()", ex);
+                Utils.HandleHttpException("GetActorInformation()", ex, _navigationService, Log);
             }
 
             SetProgressBar();

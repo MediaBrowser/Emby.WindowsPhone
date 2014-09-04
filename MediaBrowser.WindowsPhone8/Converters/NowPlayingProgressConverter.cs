@@ -20,7 +20,7 @@ namespace MediaBrowser.WindowsPhone.Converters
                 return 0;
             }
 
-            var playedRuntime = ((double)item.NowPlayingPositionTicks/(double)item.NowPlayingItem.RunTimeTicks)*100;
+            var playedRuntime = ((double)item.PlayState.PositionTicks/(double)item.NowPlayingItem.RunTimeTicks)*100;
 
             return playedRuntime;
         }

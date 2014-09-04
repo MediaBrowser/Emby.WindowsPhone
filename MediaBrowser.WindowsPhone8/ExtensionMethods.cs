@@ -65,7 +65,7 @@ namespace MediaBrowser.WindowsPhone
             return new PlaylistItem
             {
                 Album = item.Album,
-                Artist = item.Artists.Any() ? item.Artists[0] : "",
+                Artist = item.AlbumArtist,
                 TrackName = item.Name,
                 TrackUrl = streamUrl,
                 MediaBrowserId = item.Id,

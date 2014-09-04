@@ -252,7 +252,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
             }
             catch (HttpException ex)
             {
-                Log.ErrorException(string.Format("GetAlbumTracks({0})", item.Name), ex);
+                Utils.HandleHttpException(string.Format("GetAlbumTracks({0})", item.Name), ex, _navigationService, Log);
             }
 
             SetProgressBar();
@@ -286,7 +286,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
             }
             catch (HttpException ex)
             {
-                Log.ErrorException(string.Format("GetArtistTracks({0})", artistName), ex);
+                Utils.HandleHttpException(string.Format("GetArtistTracks({0})", artistName), ex, _navigationService, Log);
             }
 
             SetProgressBar();
@@ -319,7 +319,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
             }
             catch (HttpException ex)
             {
-                Log.ErrorException(string.Format("GetGenreTracks({0})", genreName), ex);
+                Utils.HandleHttpException(string.Format("GetGenreTracks({0})", genreName), ex, _navigationService, Log);
             }
 
             SetProgressBar();
@@ -413,6 +413,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
             var query = new ArtistsQuery
             {
                 SortBy = new []{"SortName"},
+                Fields= new []{ItemFields.SortName},
                 SortOrder = SortOrder.Ascending,
                 Recursive = true,
                 UserId = AuthenticationService.Current.LoggedInUser.Id
@@ -420,7 +421,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
 
             try
             {
-                var itemsResponse = await _apiClient.GetArtistsAsync(query);
+                var itemsResponse = await _apiClient.GetAlbumArtistsAsync(query);
 
                 if (itemsResponse == null)
                 {
@@ -435,7 +436,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
             }
             catch (HttpException ex)
             {
-                Log.ErrorException("GetArtists()", ex);
+                Utils.HandleHttpException("GetArtists()", ex, _navigationService, Log);
             }
 
             return false;
@@ -468,7 +469,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
             }
             catch (HttpException ex)
             {
-                Log.ErrorException("GetGenres()", ex);
+                Utils.HandleHttpException("GetGenres()", ex, _navigationService, Log);
             }
 
             return false;
@@ -479,7 +480,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
             var query = new ItemQuery
             {
                 Recursive = true,
-                Fields = new[] { ItemFields.ParentId, },
+                Fields = new[] { ItemFields.ParentId,},
                 IncludeItemTypes = new[] { "Audio" },
                 UserId = AuthenticationService.Current.LoggedInUser.Id
             };
@@ -501,7 +502,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
             }
             catch (HttpException ex)
             {
-                Log.ErrorException("GetSongs()", ex);
+                Utils.HandleHttpException("GetSongs()", ex, _navigationService, Log);
             }
 
             return false;
@@ -512,7 +513,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
             var query = new ItemQuery
             {
                 Recursive = true,
-                Fields = new[] { ItemFields.ParentId, },
+                Fields = new[] { ItemFields.ParentId, ItemFields.SortName },
                 IncludeItemTypes = new[] { "MusicAlbum" },
                 UserId = AuthenticationService.Current.LoggedInUser.Id
             };
@@ -533,7 +534,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
             }
             catch (HttpException ex)
             {
-                Log.ErrorException("GetAlbums()", ex);
+                Utils.HandleHttpException("GetAlbums()", ex, _navigationService, Log);
             }
 
             return false;

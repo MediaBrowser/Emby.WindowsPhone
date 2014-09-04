@@ -170,9 +170,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
                 {
                     var ticks = TimeSpan.FromSeconds(seconds).Ticks;
 
-                    if (SelectedClient != null && SelectedClient.NowPlayingPositionTicks.HasValue)
+                    if (SelectedClient != null && SelectedClient.PlayState.PositionTicks.HasValue)
                     {
-                        ticks += SelectedClient.NowPlayingPositionTicks.Value;
+                        ticks += SelectedClient.PlayState.PositionTicks.Value;
                     }
 
                     await SendCommand("Seek", ticks);
@@ -201,7 +201,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
                     }
                     catch (HttpException ex)
                     {
-                        Log.ErrorException("ClientSelectedCommand", ex);
+                        Utils.HandleHttpException("ClientSelectedCommand", ex, _navigationService, Log);
                         MessageBox.Show("Unable to start your item.", "Error", MessageBoxButton.OK);
                         _navigationService.GoBack();
                     }
@@ -228,7 +228,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
                         }
                         catch (HttpException ex)
                         {
-                            Log.ErrorException("SendMuteCommand", ex);
+                            Utils.HandleHttpException("SendMuteCommand", ex, _navigationService, Log);
                         }
                     }
                 });
@@ -252,7 +252,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
                     }
                     catch (HttpException ex)
                     {
-                        Log.ErrorException("AdjustVolumeCommand", ex);
+                        Utils.HandleHttpException("AdjustVolumeCommand", ex, _navigationService, Log);
                     }
                 });
             }
@@ -290,7 +290,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
                 }
                 catch (HttpException ex)
                 {
-                    Log.ErrorException("SendPlaystateCommand(" + commandString + ")", ex);
+                    Utils.HandleHttpException("SendPlaystateCommand(" + commandString + ")", ex, _navigationService, Log);
                 }
 
                 SendingCommand = false;
@@ -337,7 +337,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
                 var query = new SessionQuery
                 {
                     ControllableByUserId = AuthenticationService.Current.LoggedInUserId,
-                    SupportsRemoteControl = true
                 };
                 var clients = await _apiClient.GetClientSessionsAsync(query);
 
@@ -361,7 +360,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
             }
             catch (HttpException ex)
             {
-                Log.ErrorException("GetClients()", ex);
+                Utils.HandleHttpException("GetClients()", ex, _navigationService, Log);
             }
 
             SetProgressBar();
@@ -369,14 +368,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
 
         private void SetSessionDetails(SessionInfoDto selectedClient)
         {
-            if (selectedClient.NowPlayingPositionTicks.HasValue && selectedClient.NowPlayingItem != null && selectedClient.NowPlayingItem.RunTimeTicks.HasValue)
+            if (selectedClient.PlayState.PositionTicks.HasValue && selectedClient.NowPlayingItem != null && selectedClient.NowPlayingItem.RunTimeTicks.HasValue)
             {
-                PlayedTicks = selectedClient.NowPlayingPositionTicks;
-                PlayedPercentage = ((double)selectedClient.NowPlayingPositionTicks / (double)selectedClient.NowPlayingItem.RunTimeTicks) * 100;
+                PlayedTicks = selectedClient.PlayState.PositionTicks;
+                PlayedPercentage = ((double)selectedClient.PlayState.PositionTicks / (double)selectedClient.NowPlayingItem.RunTimeTicks) * 100;
             }
 
-            IsPaused = selectedClient.IsPaused;
-            IsMuted = selectedClient.IsMuted;
+            IsPaused = selectedClient.PlayState.IsPaused;
+            IsMuted = selectedClient.PlayState.IsMuted;
         }
 
         private void PinTile()
@@ -415,14 +414,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
 
             var session = e.Sessions.First(x => x.DeviceId == SelectedClient.DeviceId);
 
-            //IsPaused = session.IsPaused;
-            //IsMuted = session.IsMuted;
-
             Deployment.Current.Dispatcher.BeginInvoke(() =>
             {
                 if (SelectedClient.NowPlayingItem != null && session.NowPlayingItem != null && SelectedClient.NowPlayingItem.Id == session.NowPlayingItem.Id)
                 {
-                    SelectedClient.NowPlayingPositionTicks = session.NowPlayingPositionTicks;
+                    SelectedClient.PlayState.PositionTicks = session.PlayState.PositionTicks;
                 }
                 else
                 {

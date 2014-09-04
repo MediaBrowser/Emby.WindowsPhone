@@ -104,7 +104,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                     catch (HttpException ex)
                     {
                         MessageBox.Show(AppResources.ErrorProblemUpdatingItem, AppResources.ErrorTitle, MessageBoxButton.OK);
-                        Log.ErrorException("MarkAsWatchedCommand", ex);
+                        Utils.HandleHttpException("MarkAsWatchedCommand", ex, _navigationService, Log);
                     }
                 });
             }
@@ -130,7 +130,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
             }
             catch (HttpException ex)
             {
-                Log.ErrorException("GetNextUp()", ex);
+                Utils.HandleHttpException("GetNextUp()", ex, _navigationService, Log);
             }
 
             SetProgressBar();
@@ -195,7 +195,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
             }
             catch (HttpException ex)
             {
-                Log.ErrorException("GetLatestUnwatched()", ex);
+                Utils.HandleHttpException("GetLatestUnwatched()", ex, _navigationService, Log);
             }
 
             SetProgressBar();
@@ -227,7 +227,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
             }
             catch (HttpException ex)
             {
-                Log.ErrorException("GetShows()", ex);
+                Utils.HandleHttpException("GetShows()", ex, _navigationService, Log);
             }
 
             SetProgressBar();
@@ -267,7 +267,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
             }
             catch (HttpException ex)
             {
-                Log.ErrorException("GetGenres()", ex);
+                Utils.HandleHttpException("GetGenres()", ex, _navigationService, Log);
             }
 
             SetProgressBar();

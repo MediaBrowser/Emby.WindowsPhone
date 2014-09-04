@@ -59,6 +59,20 @@ namespace MediaBrowser.WindowsPhone.Controls
                 var type = item.Type;
                 if (type != "Season" && type != "Series" && type != "BoxSet" && item.MediaType != "Video" && item.Type != "MusicAlbum" && item.Type != "MusicArtist")
                 {
+                    if (played._unwatchedGrid != null && played._theEllipse != null && played._watchedPath != null)
+                    {
+                        played._unwatchedGrid.Visibility = item.RecursiveUnplayedItemCount > 0 ? Visibility.Visible : Visibility.Collapsed;
+                        played._theEllipse.Visibility = played._unwatchedGrid.Visibility;
+
+                        if (item.UserData != null)
+                        {
+                            played._watchedPath.Visibility = item.UserData.Played ? Visibility.Visible : Visibility.Collapsed;
+                        }
+                        else
+                        {
+                            played._watchedPath.Visibility = Visibility.Collapsed;
+                        }
+                    }
                     return;
                 }
 
@@ -70,7 +84,7 @@ namespace MediaBrowser.WindowsPhone.Controls
                             ? Visibility.Visible
                             : Visibility.Collapsed;
 
-                        played._watchedPath.Visibility = item.RecursiveUnplayedItemCount.HasValue && item.RecursiveUnplayedItemCount.Value == 0
+                        played._watchedPath.Visibility = item.UserData.Played
                             ? Visibility.Visible
                             : Visibility.Collapsed;
 

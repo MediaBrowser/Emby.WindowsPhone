@@ -3,6 +3,7 @@ using Cimbalino.Phone.Toolkit.Services;
 using MediaBrowser.Model;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Net;
+using MediaBrowser.Model.Users;
 using PropertyChanged;
 using ScottIsAFool.WindowsPhone.Logging;
 
@@ -15,6 +16,8 @@ namespace MediaBrowser.Services
         private IApplicationSettingsService _settingsService;
         private static IExtendedApiClient _apiClient;
         private static ILog _logger;
+
+        public AuthenticationResult AuthenticationResult { get; set; }
         
         public static AuthenticationService Current
         {
@@ -36,13 +39,13 @@ namespace MediaBrowser.Services
 
         private void CheckIfUserSignedIn()
         {
-            var user = _settingsService.Get<UserDto>(Constants.Settings.SelectedUserSetting);
+            var user = _settingsService.Get<AuthenticationResult>(Constants.Settings.SelectedUserSetting);
 
-            if (user != null)
+            if (user != null && !string.IsNullOrEmpty(user.AccessToken))
             {
-                LoggedInUser = user;
+                AuthenticationResult = user;
                 IsLoggedIn = true;
-                _apiClient.CurrentUserId = LoggedInUserId;
+                SetAuthenticationInfo();
             }
         }
 
@@ -56,11 +59,11 @@ namespace MediaBrowser.Services
 
                 _logger.Info("Logged in as [{0}]", selectedUserName);
 
-                LoggedInUser = result.User;
+                AuthenticationResult = result;
                 IsLoggedIn = true;
-                _apiClient.CurrentUserId = LoggedInUserId;
+                SetAuthenticationInfo();
 
-                _settingsService.Set(Constants.Settings.SelectedUserSetting, LoggedInUser);
+                _settingsService.Set(Constants.Settings.SelectedUserSetting, result);
                 _settingsService.Save();
                 _logger.Info("User [{0}] has been saved", selectedUserName);
             }
@@ -70,23 +73,32 @@ namespace MediaBrowser.Services
             }
         }
 
+        public void SetAuthenticationInfo()
+        {
+            _apiClient.ClearAuthenticationInfo();
+            _apiClient.SetAuthenticationInfo(AuthenticationResult.AccessToken, LoggedInUserId);
+        }
+
         public void Logout()
         {
-            LoggedInUser = null;
             IsLoggedIn = false;
 
             _settingsService.Reset(Constants.Settings.SelectedUserSetting);
             _settingsService.Save();
         }
 
-        public UserDto LoggedInUser { get; private set; }
+        public UserDto LoggedInUser
+        {
+            get { return AuthenticationResult != null ? AuthenticationResult.User : null; }
+        }
+
         public bool IsLoggedIn { get; private set; }
 
         public string LoggedInUserId
         {
             get
             {
-                return LoggedInUser.Id;
+                return LoggedInUser != null ? LoggedInUser.Id : null;
             }
         }
     }

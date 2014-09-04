@@ -9,11 +9,7 @@ namespace MediaBrowser.WindowsPhone.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-#if !WP8
-            return false;
-#else
             return Utils.CanStream(value);
-#endif
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
@@ -26,11 +22,7 @@ namespace MediaBrowser.WindowsPhone.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-#if !WP8
-            return Visibility.Collapsed;
-#else
             return Utils.CanStream(value) ? Visibility.Visible : Visibility.Collapsed;
-#endif
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
