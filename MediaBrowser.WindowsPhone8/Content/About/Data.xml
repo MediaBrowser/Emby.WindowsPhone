@@ -59,6 +59,18 @@
     <!-- Supported types are "text" and "xaml", where text is nicely formatted automatically, and XAML is handled by the built-in XamlReader -->
     <Item Title="history"
           Type="text">
+      8.0.62.0
+      Enhancements:
+      - Allow skipping to a track in full now playing list by tapping it
+      - Switched to new video streaming profiles for improved server support
+      Fixes:
+      - Music album not sorted within group
+      - Erroneous indetation in full now playing page when more than 10 tracks
+      - Hide the Now Playing bar when video playback starts
+      - Pinned collections not honouring transparent tile setting
+      - Folders in collections displaying both watched tick and unwatched counts
+      - Using Album Artist instead of Artist for tracks now.
+      
       8.0.61.0
       Enhancements:
       - App can be launched using mediabrowser:// uri scheme
