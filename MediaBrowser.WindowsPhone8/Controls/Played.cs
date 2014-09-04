@@ -70,7 +70,7 @@ namespace MediaBrowser.WindowsPhone.Controls
                             ? Visibility.Visible
                             : Visibility.Collapsed;
 
-                        played._watchedPath.Visibility = item.RecursiveUnplayedItemCount.HasValue && item.RecursiveUnplayedItemCount.Value == 0
+                        played._watchedPath.Visibility = item.UserData.Played
                             ? Visibility.Visible
                             : Visibility.Collapsed;
 
