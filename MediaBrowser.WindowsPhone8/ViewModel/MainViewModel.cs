@@ -104,6 +104,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                 Reset();
 
+                AuthenticationService.Current.SignOut().ConfigureAwait(false);
+
                 _navService.NavigateTo(Constants.Pages.ChooseProfileView);
             });
 

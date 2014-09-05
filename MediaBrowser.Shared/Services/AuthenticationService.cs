@@ -79,6 +79,18 @@ namespace MediaBrowser.Services
             _apiClient.SetAuthenticationInfo(AuthenticationResult.AccessToken, LoggedInUserId);
         }
 
+        public async Task SignOut()
+        {
+            try
+            {
+                await _apiClient.Logout();
+            }
+            catch (HttpException ex)
+            {
+                _logger.ErrorException("SignOut()", ex);
+            }
+        }
+
         public void Logout()
         {
             IsLoggedIn = false;
