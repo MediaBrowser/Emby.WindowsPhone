@@ -151,7 +151,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 var page = TileService.Current.PinnedPage();
                 _navigationService.NavigateTo(page + "?clearbackstack=true");
                 Username = Password = string.Empty;
-                AuthenticationService.Current.SetAuthenticationInfo();
             }
             else
             {
