@@ -84,7 +84,7 @@ namespace MediaBrowser.WindowsPhone.Controls
                             ? Visibility.Visible
                             : Visibility.Collapsed;
 
-                        played._watchedPath.Visibility = item.UserData.Played
+                        played._watchedPath.Visibility = item.UserData != null && item.UserData.Played
                             ? Visibility.Visible
                             : Visibility.Collapsed;
 
