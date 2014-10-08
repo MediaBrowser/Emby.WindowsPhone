@@ -156,6 +156,13 @@
                 public const string WelcomeView = FirstRunPath + "WelcomeView.xaml";
                 public const string ConfigureView = FirstRunPath + "ConfigureView.xaml";
             }
+
+            public class Channels
+            {
+                private const string ChannelsPath = ViewsPath + "Channels/";
+                public const string ChannelsView = ChannelsPath + "ChannelsView.xaml";
+                public const string ChannelView = ChannelsPath + "ChannelView.xaml";
+            }
         }
     }
 }

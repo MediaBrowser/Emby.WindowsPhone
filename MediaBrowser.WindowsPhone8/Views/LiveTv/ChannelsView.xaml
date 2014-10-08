@@ -23,7 +23,7 @@
                 Orientation="Portrait"
                 shell:SystemTray.IsVisible="True"
                 shell:SystemTray.Opacity="0"
-                DataContext="{Binding Channels, Source={StaticResource Locator}}">
+                DataContext="{Binding LiveTvChannels, Source={StaticResource Locator}}">
     <i:Interaction.Behaviors>
         <behaviours:MBSysTray IsVisible="{Binding ProgressIsVisible}"
                               IsIndeterminate="{Binding ProgressIsVisible}"
@@ -103,11 +103,11 @@
                     <phone:LongListSelector.ItemTemplate>
                         <DataTemplate>
                             <controls:CustomButton Style="{StaticResource EmptyButtonStyle}"
-                                                   TapCommand="{Binding Channels.ChannelTappedCommand, Source={StaticResource Locator}}"
+                                                   TapCommand="{Binding LiveTvChannels.ChannelTappedCommand, Source={StaticResource Locator}}"
                                                    CommandParameter="{Binding}"
                                                    Margin="12">
                                 <StackPanel Orientation="Horizontal"
-                                            d:DataContext="{Binding Channels.Channels[0], Source={StaticResource Locator}}">
+                                            d:DataContext="{Binding LiveTvChannels.Channels[0], Source={StaticResource Locator}}">
                                     <c4F:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
                                                     Stretch="UniformToFill"
                                                     PlaceholderImageSource="/Images/DefaultChannel.png"

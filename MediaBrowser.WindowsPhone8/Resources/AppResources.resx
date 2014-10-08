@@ -973,4 +973,7 @@
   <data name="LabelUseTransparentTile" xml:space="preserve">
     <value>Use transparent tiles</value>
   </data>
+  <data name="TitleChannels" xml:space="preserve">
+    <value>Channels</value>
+  </data>
 </root>

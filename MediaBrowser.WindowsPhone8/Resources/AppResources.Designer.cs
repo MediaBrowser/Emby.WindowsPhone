@@ -2572,6 +2572,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Channels.
+        /// </summary>
+        public static string TitleChannels {
+            get {
+                return ResourceManager.GetString("TitleChannels", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to In trial mode you can only play one video per day. Please try this tomorrow or purchase the full version..
         /// </summary>
         public static string TrialVideoMessage {

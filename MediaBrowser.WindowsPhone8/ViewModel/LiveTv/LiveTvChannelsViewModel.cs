@@ -1,21 +1,17 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model;
-using MediaBrowser.Model.Channels;
-using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.LiveTv;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Resources;
 using ScottIsAFool.WindowsPhone;
-using Telerik.Windows.Controls;
 using ViewModelBase = ScottIsAFool.WindowsPhone.ViewModel.ViewModelBase;
 
 namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
@@ -26,7 +22,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
     /// See http://www.galasoft.ch/mvvm
     /// </para>
     /// </summary>
-    public class ChannelsViewModel : ViewModelBase
+    public class LiveTvChannelsViewModel : ViewModelBase
     {
         private readonly INavigationService _navigationService;
         private readonly IExtendedApiClient _apiClient;
@@ -36,7 +32,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
         /// <summary>
         /// Initializes a new instance of the ChannelsViewModel class.
         /// </summary>
-        public ChannelsViewModel(INavigationService navigationService, IExtendedApiClient apiClient)
+        public LiveTvChannelsViewModel(INavigationService navigationService, IExtendedApiClient apiClient)
         {
             _navigationService = navigationService;
             _apiClient = apiClient;

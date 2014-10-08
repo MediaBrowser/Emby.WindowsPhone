@@ -14,6 +14,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using MediaBrowser.Design;
 using MediaBrowser.WindowsPhone.Design;
+using MediaBrowser.WindowsPhone.ViewModel.Channels;
 using MediaBrowser.WindowsPhone.ViewModel.Predefined;
 using MediaBrowser.WindowsPhone.ViewModel.Remote;
 using Microsoft.Practices.ServiceLocation;
@@ -94,7 +95,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             SimpleIoc.Default.Register<MusicCollectionViewModel>();
             SimpleIoc.Default.Register<ActorViewModel>();
             SimpleIoc.Default.Register<GenericItemViewModel>();
-            SimpleIoc.Default.Register<ChannelsViewModel>();
+            SimpleIoc.Default.Register<LiveTvChannelsViewModel>();
             SimpleIoc.Default.Register<GuideViewModel>();
             SimpleIoc.Default.Register<ScheduleViewModel>();
             SimpleIoc.Default.Register<LiveTvViewModel>();
@@ -103,6 +104,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             SimpleIoc.Default.Register<AllProgrammesViewModel>();
             SimpleIoc.Default.Register<ProgrammeViewModel>();
             SimpleIoc.Default.Register<RecordedTvViewModel>();
+            SimpleIoc.Default.Register<ChannelsViewModel>();
         }
 
         /// <summary>
@@ -254,9 +256,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
             "CA1822:MarkMembersAsStatic",
             Justification = "This non-static member is needed for data binding purposes.")]
-        public ChannelsViewModel Channels
+        public LiveTvChannelsViewModel LiveTvChannels
         {
-            get { return ServiceLocator.Current.GetInstance<ChannelsViewModel>(); }
+            get { return ServiceLocator.Current.GetInstance<LiveTvChannelsViewModel>(); }
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
@@ -321,6 +323,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public RecordedTvViewModel RecordedTv
         {
             get { return ServiceLocator.Current.GetInstance<RecordedTvViewModel>(); }
+        }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
+            "CA1822:MarkMembersAsStatic",
+            Justification = "This non-static member is needed for data binding purposes.")]
+        public ChannelsViewModel Channels
+        {
+            get { return ServiceLocator.Current.GetInstance<ChannelsViewModel>(); }
         }
 
         public static TvViewModel GetTvViewModel(string itemId)

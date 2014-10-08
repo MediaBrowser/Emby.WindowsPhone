@@ -241,11 +241,12 @@
     <Compile Include="ThicknessAnimationX.cs" />
     <Compile Include="Utils.cs" />
     <Compile Include="ViewModel\ActorViewModel.cs" />
+    <Compile Include="ViewModel\Channels\ChannelsViewModel.cs" />
     <Compile Include="ViewModel\ChooseProfileViewModel.cs" />
     <Compile Include="ViewModel\FolderViewModel.cs" />
     <Compile Include="ViewModel\GenericItemViewModel.cs" />
     <Compile Include="ViewModel\LiveTv\AllProgrammesViewModel.cs" />
-    <Compile Include="ViewModel\LiveTv\ChannelsViewModel.cs" />
+    <Compile Include="ViewModel\LiveTv\LiveTvChannelsViewModel.cs" />
     <Compile Include="ViewModel\LiveTv\ProgrammeViewModel.cs" />
     <Compile Include="ViewModel\LiveTv\GuideViewModel.cs" />
     <Compile Include="ViewModel\LiveTv\LiveTvViewModel.cs" />
@@ -277,6 +278,9 @@
     </Compile>
     <Compile Include="Views\ArtistView.xaml.cs">
       <DependentUpon>ArtistView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Channels\ChannelsView.xaml.cs">
+      <DependentUpon>ChannelsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ChooseProfileView.xaml.cs">
       <DependentUpon>ChooseProfileView.xaml</DependentUpon>
@@ -519,6 +523,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ArtistView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Channels\ChannelsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
