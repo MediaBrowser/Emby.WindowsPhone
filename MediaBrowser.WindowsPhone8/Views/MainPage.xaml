@@ -114,26 +114,6 @@
                 <ScrollViewer>
                     <StackPanel Orientation="Vertical"
                                 Margin="12,0,0,0">
-                        <local:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                                     Margin="0,0,0,12"
-                                                     TapCommand="{Binding NavigateToAPage}"
-                                                     CommandParameter="/Views/LiveTv/LiveTvView.xaml"
-                                                     Tag="{Binding LiveTvInfo, Source={StaticResource AppSettings}, Converter={StaticResource LiveTvInfoConverter}}"
-                                                     Visibility="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource VisibilityConverter}}">
-                            <StackPanel Orientation="Horizontal">
-                                <Border Background="#FFD100FF"
-                                        Height="{StaticResource ViewSize}"
-                                        Width="{StaticResource ViewSize}">
-                                    <local:ScheduledRecording Foreground="White"
-                                                              Height="70"
-                                                              Width="70"
-                                                              SeriesVisibility="Visible" />
-                                </Border>
-                                <TextBlock Text="{Binding LocalizedResources.LabelLiveTv, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToUppercaseConverter}}"
-                                           Style="{StaticResource HeaderTextStyle}"
-                                           VerticalAlignment="Top" />
-                            </StackPanel>
-                        </local:CustomHyperlinkButton>
                         <local:CustomHyperlinkButton TapCommand="{Binding NavigateToAPage}"
                                                      CommandParameter="/Views/Predefined/MovieCollectionView.xaml"
                                                      Style="{StaticResource EmptyButtonStyle}"
@@ -200,6 +180,26 @@
                                     </Viewbox>
                                 </Border>
                                 <TextBlock Text="{Binding LocalizedResources.TitleChannels, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToUppercaseConverter}}"
+                                           Style="{StaticResource HeaderTextStyle}"
+                                           VerticalAlignment="Top" />
+                            </StackPanel>
+                        </local:CustomHyperlinkButton>
+                        <local:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                                     Margin="0,0,0,12"
+                                                     TapCommand="{Binding NavigateToAPage}"
+                                                     CommandParameter="/Views/LiveTv/LiveTvView.xaml"
+                                                     Tag="{Binding LiveTvInfo, Source={StaticResource AppSettings}, Converter={StaticResource LiveTvInfoConverter}}"
+                                                     Visibility="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource VisibilityConverter}}">
+                            <StackPanel Orientation="Horizontal">
+                                <Border Background="#FFD100FF"
+                                        Height="{StaticResource ViewSize}"
+                                        Width="{StaticResource ViewSize}">
+                                    <local:ScheduledRecording Foreground="White"
+                                                              Height="70"
+                                                              Width="70"
+                                                              SeriesVisibility="Visible" />
+                                </Border>
+                                <TextBlock Text="{Binding LocalizedResources.LabelLiveTv, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToUppercaseConverter}}"
                                            Style="{StaticResource HeaderTextStyle}"
                                            VerticalAlignment="Top" />
                             </StackPanel>
