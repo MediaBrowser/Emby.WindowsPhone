@@ -104,6 +104,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             SimpleIoc.Default.Register<AllProgrammesViewModel>();
             SimpleIoc.Default.Register<ProgrammeViewModel>();
             SimpleIoc.Default.Register<RecordedTvViewModel>();
+            SimpleIoc.Default.Register<ChannelViewModel>();
             SimpleIoc.Default.Register<ChannelsViewModel>();
         }
 
@@ -333,9 +334,22 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             get { return ServiceLocator.Current.GetInstance<ChannelsViewModel>(); }
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
+            "CA1822:MarkMembersAsStatic",
+            Justification = "This non-static member is needed for data binding purposes.")]
+        public ChannelViewModel Channel
+        {
+            get { return ServiceLocator.Current.GetInstance<ChannelViewModel>(); }
+        }
+
         public static TvViewModel GetTvViewModel(string itemId)
         {
             return ServiceLocator.Current.GetInstance<TvViewModel>(itemId);
+        }
+
+        public static ChannelViewModel GetChannelViewModel(string itemId)
+        {
+            return ServiceLocator.Current.GetInstance<ChannelViewModel>(itemId);
         }
 
         public static IExtendedApiClient ApiClient

@@ -7,7 +7,6 @@ using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Model;
-using MediaBrowser.WindowsPhone.Resources;
 using ScottIsAFool.WindowsPhone.ViewModel;
 
 namespace MediaBrowser.WindowsPhone.ViewModel.Channels
@@ -18,25 +17,27 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Channels
     /// See http://www.galasoft.ch/mvvm
     /// </para>
     /// </summary>
-    public class ChannelsViewModel : ViewModelBase
+    public class ChannelViewModel : ViewModelBase
     {
-        private readonly IExtendedApiClient _apiClient;
         private readonly INavigationService _navigationService;
+        private readonly IExtendedApiClient _apiClient;
 
-        private bool _channelsLoaded;
+        private bool _channelItemsLoaded;
 
         /// <summary>
-        /// Initializes a new instance of the ChannelsViewModel class.
+        /// Initializes a new instance of the ChannelViewModel class.
         /// </summary>
-        public ChannelsViewModel(IExtendedApiClient apiClient, INavigationService navigationService)
+        public ChannelViewModel(INavigationService navigationService, IExtendedApiClient apiClient)
         {
-            _apiClient = apiClient;
             _navigationService = navigationService;
+            _apiClient = apiClient;
         }
 
-        public ObservableCollection<BaseItemDto> Channels { get; set; }
+        public BaseItemDto SelectedChannel { get; set; }
 
-        public RelayCommand ChannelsViewLoaded
+        public ObservableCollection<BaseItemDto> ChannelItems { get; set; }
+
+        public RelayCommand ChannelViewLoaded
         {
             get
             {
@@ -47,7 +48,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Channels
             }
         }
 
-        public RelayCommand RefreshChannelsCommand
+        public RelayCommand RefreshCommand
         {
             get
             {
@@ -58,47 +59,41 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Channels
             }
         }
 
-        public RelayCommand<BaseItemDto> ChannelTappedCommand
+        public RelayCommand<BaseItemDto> ItemTappedCommand
         {
             get
             {
-                return new RelayCommand<BaseItemDto>(item =>
-                {
-                    App.SelectedItem = item;
-                    _navigationService.NavigateTo(item);
-                });
+                return new RelayCommand<BaseItemDto>(item => _navigationService.NavigateTo(item));
             }
         }
 
         private async Task LoadData(bool isRefresh)
         {
-            if (!_navigationService.IsNetworkAvailable 
-                || (_channelsLoaded && !isRefresh))
+            if (!_navigationService.IsNetworkAvailable ||
+                SelectedChannel == null ||
+                (_channelItemsLoaded && !isRefresh))
             {
                 return;
             }
 
-            var query = new ChannelQuery
-            {
-                UserId = AuthenticationService.Current.LoggedInUserId
-            };
-
             try
             {
-                SetProgressBar(AppResources.SysTrayGettingChannels);
+                var query = new ChannelItemQuery
+                {
+                    ChannelId = SelectedChannel.Type.ToLower() == "channel" ? SelectedChannel.Id : SelectedChannel.ChannelId,
+                    FolderId = SelectedChannel.Type.ToLower() == "channel" ? "" : SelectedChannel.Id,
+                    UserId = AuthenticationService.Current.LoggedInUserId
+                };
+                var items = await _apiClient.GetChannelItems(query);
 
-                var items = await _apiClient.GetChannels(query);
+                ChannelItems = new ObservableCollection<BaseItemDto>(items.Items);
 
-                Channels = new ObservableCollection<BaseItemDto>(items.Items);
-
-                _channelsLoaded = true;
+                _channelItemsLoaded = true;
             }
             catch (HttpException ex)
             {
                 Utils.HandleHttpException(ex, "LoadData(" + isRefresh + ")", _navigationService, Log);
             }
-
-            SetProgressBar();
         }
     }
 }

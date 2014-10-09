@@ -23,7 +23,7 @@ namespace MediaBrowser.WindowsPhone.Views
             base.OnNavigatedTo(e);
             if(e.NavigationMode == NavigationMode.Back)
             {
-                DataContext = History.Current.GetLastItem<TvViewModel>(GetType(), false);
+                DataContext = History.Current.GetLastItem<TvViewModel>(GetType());
             }
             else if(e.NavigationMode == NavigationMode.New)
             {

@@ -61,19 +61,15 @@ namespace MediaBrowser.WindowsPhone.Model
                     NavigateTo(Constants.Pages.FolderView + item.Id);
                     break;
                 case "movie":
-                    //Messenger.Default.Send(new NotificationMessage(item, Constants.ShowMovieMsg));
                     NavigateTo(Constants.Pages.MovieView);
                     break;
                 case "series":
-                    //Messenger.Default.Send(new NotificationMessage(item, Constants.ShowTvSeries));
                     NavigateTo(Constants.Pages.TvShowView);
                     break;
                 case "season":
-                    //Messenger.Default.Send(new NotificationMessage(item, Constants.ShowSeasonMsg));
                     NavigateTo(Constants.Pages.SeasonView);
                     break;
                 case "episode":
-                    //Messenger.Default.Send(new NotificationMessage(item, Constants.ShowEpisodeMsg));
                     NavigateTo(Constants.Pages.EpisodeView);
                     break;
                 case "trailer":
@@ -91,6 +87,10 @@ namespace MediaBrowser.WindowsPhone.Model
                     if (SimpleIoc.Default.GetInstance<MusicViewModel>() != null)
                         Messenger.Default.Send(new NotificationMessage(item, Constants.Messages.MusicAlbumChangedMsg));
                     NavigateTo(Constants.Pages.AlbumView);
+                    break;
+                case "channel":
+                case "channelfolderitem":
+                    NavigateTo(Constants.Pages.Channels.ChannelView + item.Id);
                     break;
                 //case "photo":
 

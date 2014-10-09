@@ -1,4 +1,4 @@
-﻿<scott:BasePage x:Class="MediaBrowser.WindowsPhone.Views.Channels.ChannelsView"
+﻿<scott:BasePage x:Class="MediaBrowser.WindowsPhone.Views.Channels.ChannelView"
                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                 xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
@@ -8,12 +8,10 @@
                 xmlns:ignore="http://www.ignore.com"
                 xmlns:scott="clr-namespace:ScottIsAFool.WindowsPhone.Controls;assembly=ScottIsAFool.WindowsPhone"
                 xmlns:controls="clr-namespace:MediaBrowser.WindowsPhone.Controls"
-                xmlns:coding4Fun="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
-                xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
                 xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
                 xmlns:behaviors="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
+                xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
                 xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP8"
-                xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
                 mc:Ignorable="d ignore"
                 FontFamily="{StaticResource PhoneFontFamilyNormal}"
                 FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -21,8 +19,8 @@
                 SupportedOrientations="Portrait"
                 Orientation="Portrait"
                 shell:SystemTray.IsVisible="True"
-                toolkit:TiltEffect.IsTiltEnabled="True"
-                DataContext="{Binding Channels, Source={StaticResource Locator}}">
+                d:DataContext="{Binding Channel, Source={StaticResource Locator}}">
+
     <i:Interaction.Behaviors>
         <behaviours:MBSysTray IsVisible="{Binding ProgressIsVisible}"
                               IsIndeterminate="{Binding ProgressIsVisible}"
@@ -30,7 +28,7 @@
         <behaviors:ApplicationBarBehavior>
             <behaviors:ApplicationBarBehavior.Buttons>
                 <behaviors:ApplicationBarIconButton IconUri="/Icons/appbar.refresh.rest.png"
-                                                    Command="{Binding RefreshChannelsCommand}"
+                                                    Command="{Binding RefreshCommand}"
                                                     Text="{Binding LocalizedResources.AppBarRefresh, Source={StaticResource LocalizedStrings}}"
                                                     IsEnabled="{Binding ProgressIsVisible, Converter={StaticResource NegativeBooleanConverter}}" />
             </behaviors:ApplicationBarBehavior.Buttons>
@@ -38,30 +36,9 @@
     </i:Interaction.Behaviors>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
-            <command:EventToCommand Command="{Binding ChannelsViewLoaded}" />
+            <command:EventToCommand Command="{Binding ChannelViewLoaded}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
-
-    <toolkit:TransitionService.NavigationInTransition>
-        <toolkit:NavigationInTransition>
-            <toolkit:NavigationInTransition.Backward>
-                <toolkit:TurnstileTransition Mode="BackwardIn" />
-            </toolkit:NavigationInTransition.Backward>
-            <toolkit:NavigationInTransition.Forward>
-                <toolkit:TurnstileTransition Mode="ForwardIn" />
-            </toolkit:NavigationInTransition.Forward>
-        </toolkit:NavigationInTransition>
-    </toolkit:TransitionService.NavigationInTransition>
-    <toolkit:TransitionService.NavigationOutTransition>
-        <toolkit:NavigationOutTransition>
-            <toolkit:NavigationOutTransition.Backward>
-                <toolkit:TurnstileTransition Mode="BackwardOut" />
-            </toolkit:NavigationOutTransition.Backward>
-            <toolkit:NavigationOutTransition.Forward>
-                <toolkit:TurnstileTransition Mode="ForwardOut" />
-            </toolkit:NavigationOutTransition.Forward>
-        </toolkit:NavigationOutTransition>
-    </toolkit:TransitionService.NavigationOutTransition>
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot"
@@ -75,33 +52,24 @@
         <StackPanel x:Name="TitlePanel"
                     Grid.Row="0"
                     Margin="12,17,0,28">
-            <controls:MediaBrowserLogo AltText="{Binding LocalizedResources.TitleChannels, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToUppercaseConverter}}" />
+            <controls:MediaBrowserLogo />
+            <TextBlock Text="{Binding SelectedChannel.Name, Converter={StaticResource StringToLowercaseConverter}}"
+                       Margin="9,-7,0,0"
+                       Style="{StaticResource PhoneTextTitle1Style}" />
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel"
               Grid.Row="1"
               Margin="12,0,12,0">
-            <phone:LongListSelector ItemsSource="{Binding Channels}">
+            <phone:LongListSelector ItemsSource="{Binding ChannelItems}">
                 <phone:LongListSelector.ItemTemplate>
                     <DataTemplate>
-                        <controls:CustomButton Margin="12"
-                                               Style="{StaticResource EmptyButtonStyle}"
-                                               TapCommand="{Binding Channels.ChannelTappedCommand, Source={StaticResource Locator}}"
-                                               CommandParameter="{Binding}">
-                            <StackPanel Orientation="Horizontal"
-                                        d:DataContext="{Binding Channels.Channels[0], Source={StaticResource Locator}}">
-                                <coding4Fun:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
-                                                       Width="200"
-                                                       Height="80"
-                                                       Stretch="UniformToFill" 
-                                                       />
-
-                                <StackPanel Orientation="Vertical">
-                                    <TextBlock Text="{Binding Name}"
-                                               Style="{StaticResource PhoneTextTitle3Style}" />
-                                </StackPanel>
-                            </StackPanel>
+                        <controls:CustomButton TapCommand="{Binding DataContext.ItemTappedCommand, ElementName=LayoutRoot}"
+                                               CommandParameter="{Binding}"
+                                               Style="{StaticResource EmptyButtonStyle}">
+                            <TextBlock Text="{Binding Name}"
+                                       Style="{StaticResource PhoneTextTitle3Style}" />
                         </controls:CustomButton>
                     </DataTemplate>
                 </phone:LongListSelector.ItemTemplate>

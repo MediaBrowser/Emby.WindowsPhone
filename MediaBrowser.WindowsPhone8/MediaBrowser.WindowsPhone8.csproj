@@ -242,6 +242,7 @@
     <Compile Include="Utils.cs" />
     <Compile Include="ViewModel\ActorViewModel.cs" />
     <Compile Include="ViewModel\Channels\ChannelsViewModel.cs" />
+    <Compile Include="ViewModel\Channels\ChannelViewModel.cs" />
     <Compile Include="ViewModel\ChooseProfileViewModel.cs" />
     <Compile Include="ViewModel\FolderViewModel.cs" />
     <Compile Include="ViewModel\GenericItemViewModel.cs" />
@@ -281,6 +282,9 @@
     </Compile>
     <Compile Include="Views\Channels\ChannelsView.xaml.cs">
       <DependentUpon>ChannelsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Channels\ChannelView.xaml.cs">
+      <DependentUpon>ChannelView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ChooseProfileView.xaml.cs">
       <DependentUpon>ChooseProfileView.xaml</DependentUpon>
@@ -527,6 +531,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Channels\ChannelsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Channels\ChannelView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
