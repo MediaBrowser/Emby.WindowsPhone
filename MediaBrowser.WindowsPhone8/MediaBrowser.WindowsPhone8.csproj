@@ -238,7 +238,6 @@
       <DependentUpon>Splashscreen.xaml</DependentUpon>
     </Compile>
     <Compile Include="ThemeManager.cs" />
-    <Compile Include="ThicknessAnimationX.cs" />
     <Compile Include="Utils.cs" />
     <Compile Include="ViewModel\ActorViewModel.cs" />
     <Compile Include="ViewModel\Channels\ChannelsViewModel.cs" />
@@ -797,6 +796,9 @@
     </Reference>
     <Reference Include="ImageTools.Utils">
       <HintPath>..\packages\ImageTools.0.3.1\lib\sl3-wp\ImageTools.Utils.dll</HintPath>
+    </Reference>
+    <Reference Include="InTheHand.UI.Xaml.Controls.ProgressRing">
+      <HintPath>..\packages\InTheHand.UI.Xaml.Controls.ProgressRing.8.2014.10.5\lib\wp8\InTheHand.UI.Xaml.Controls.ProgressRing.dll</HintPath>
     </Reference>
     <Reference Include="JetBrains.Annotations">
       <HintPath>..\packages\JetBrainsAnnotations.Fody.1.0.2\Lib\JetBrains.Annotations.dll</HintPath>

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Windows;
-using GalaSoft.MvvmLight.Messaging;
+﻿using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.WindowsPhone.Services;
 
 namespace MediaBrowser.WindowsPhone
@@ -16,7 +14,6 @@ namespace MediaBrowser.WindowsPhone
         public Splashscreen()
         {
             InitializeComponent();
-            Loaded += (sender, args) => VisualStateManager.GoToState(this, "IsLoaded", true);
         }
 
         protected override void OnNavigatedFrom(System.Windows.Navigation.NavigationEventArgs e)
@@ -30,10 +27,6 @@ namespace MediaBrowser.WindowsPhone
         {
             base.OnNavigatedTo(e);
             TileService.Current.PinnedUrlQuery = NavigationContext.QueryString;
-        }
-
-        private void LoadAnimation_Completed(object sender, EventArgs e)
-        {
             Messenger.Default.Send(new NotificationMessage(Constants.Messages.SplashAnimationFinishedMsg));
         }
     }

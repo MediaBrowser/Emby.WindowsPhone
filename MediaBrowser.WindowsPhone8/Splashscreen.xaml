@@ -10,6 +10,7 @@
                 xmlns:scott="clr-namespace:ScottIsAFool.WindowsPhone.Controls;assembly=ScottIsAFool.WindowsPhone"
                 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
                 xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
+                xmlns:controls="clr-namespace:InTheHand.UI.Xaml.Controls;assembly=InTheHand.UI.Xaml.Controls.ProgressRing"
                 mc:Ignorable="d ignore"
                 d:DesignWidth="480"
                 d:DesignHeight="768"
@@ -22,11 +23,6 @@
                 shell:SystemTray.Opacity="0"
                 shell:SystemTray.ForegroundColor="WhiteSmoke"
                 DataContext="{Binding Splashscreen, Source={StaticResource Locator}}">
-    <i:Interaction.Behaviors>
-        <behaviours:MBSysTray Text="{Binding ProgressText}"
-                              IsVisible="{Binding ProgressIsVisible}"
-                              IsIndeterminate="{Binding ProgressIsVisible}" />
-    </i:Interaction.Behaviors>
 
     <toolkit:TransitionService.NavigationInTransition>
         <toolkit:NavigationInTransition>
@@ -55,40 +51,18 @@
         </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="1.5*" />
         </Grid.RowDefinitions>
-        <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup x:Name="LoadedStates">
-                <VisualState x:Name="IsLoaded">
-                    <Storyboard x:Name="LoadAnimation"
-                                Completed="LoadAnimation_Completed">
-                        <DoubleAnimation Duration="0:0:1"
-                                         windowsPhone:ThicknessAnimationX.To="0,0,0,-30"
-                                         windowsPhone:ThicknessAnimationX.From="0,0,0,390"
-                                         windowsPhone:ThicknessAnimationX.Element="{Binding ElementName=Logo}"
-                                         Storyboard.TargetProperty="(FrameworkElement.Opacity)"
-                                         Storyboard.TargetName="Logo" />
-                        <DoubleAnimation Duration="0:0:1"
-                                         windowsPhone:ThicknessAnimationX.To="0"
-                                         windowsPhone:ThicknessAnimationX.From="0,390,0,0"
-                                         windowsPhone:ThicknessAnimationX.Element="{Binding ElementName=Text}"
-                                         Storyboard.TargetProperty="(FrameworkElement.Opacity)"
-                                         Storyboard.TargetName="Text" />
-                    </Storyboard>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
 
         <Image Source="/Images/Logo.png"
                Width="173"
                Height="173"
                VerticalAlignment="Bottom"
-               Margin="0,0,0,390"
                x:Name="Logo" />
 
         <StackPanel Orientation="Horizontal"
                     HorizontalAlignment="Center"
-                    Margin="0,390,0,0"
                     Grid.Row="1"
                     VerticalAlignment="Top"
                     x:Name="Text">
@@ -96,7 +70,17 @@
                    Height="45"/>
             <Image Source="/Assets/BrowserText.png"
                    Height="45"/>
-            
+        </StackPanel>
+        
+        <StackPanel Orientation="Vertical"
+                    Grid.Row="2"
+                    Margin="0,24">
+            <controls:ProgressRing IsActive="{Binding ProgressIsVisible}"
+                                   Margin="0,0,0,12"
+                                   Foreground="{StaticResource PhoneAccentBrush}"/>
+            <TextBlock Text="{Binding ProgressText}"
+                       HorizontalAlignment="Center"
+                       Style="{StaticResource PhoneTextTitle3Style}"/>
         </StackPanel>
 
     </Grid>
