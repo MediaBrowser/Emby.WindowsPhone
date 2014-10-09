@@ -40,7 +40,7 @@
     </i:Interaction.Triggers>
 
     <scott:BasePage.Resources>
-        <system:Double x:Key="ViewSize">120</system:Double>
+        <system:Double x:Key="ViewSize">150</system:Double>
         <converters:LiveTvInfoVisibilityConverter x:Key="LiveTvInfoConverter" />
     </scott:BasePage.Resources>
 
@@ -112,14 +112,18 @@
             </phone:Panorama.TitleTemplate>
             <phone:PanoramaItem Header="{Binding LocalizedResources.LabelViews, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
                 <ScrollViewer>
-                    <StackPanel Orientation="Vertical"
-                                Margin="12,0,0,0">
+                    <toolkit:WrapPanel Orientation="Horizontal"
+                                       ItemWidth="190"
+                                       Margin="12,0">
                         <local:CustomHyperlinkButton TapCommand="{Binding NavigateToAPage}"
                                                      CommandParameter="/Views/Predefined/MovieCollectionView.xaml"
                                                      Style="{StaticResource EmptyButtonStyle}"
+                                                     HorizontalContentAlignment="Left"
                                                      Margin="0,0,0,12">
-                            <StackPanel Orientation="Horizontal">
-                                <Border Background="#0094FF">
+                            <StackPanel Orientation="Vertical">
+                                <Border Background="#0094FF"
+                                        Height="{StaticResource ViewSize}"
+                                        Width="{StaticResource ViewSize}">
                                     <Image Source="/Images/moviecollection.png"
                                            Height="{StaticResource ViewSize}"
                                            Width="{StaticResource ViewSize}"
@@ -127,15 +131,20 @@
                                 </Border>
                                 <TextBlock Text="{Binding LocalizedResources.LabelMovies, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToUppercaseConverter}}"
                                            Style="{StaticResource HeaderTextStyle}"
-                                           VerticalAlignment="Top" />
+                                           VerticalAlignment="Top" 
+                                           HorizontalAlignment="Left"
+                                           Margin="0,0,12,0" />
                             </StackPanel>
                         </local:CustomHyperlinkButton>
                         <local:CustomHyperlinkButton TapCommand="{Binding NavigateToAPage}"
                                                      CommandParameter="/Views/Predefined/TvCollectionView.xaml"
                                                      Style="{StaticResource EmptyButtonStyle}"
+                                                     HorizontalContentAlignment="Left"
                                                      Margin="0,0,0,12">
-                            <StackPanel Orientation="Horizontal">
-                                <Border Background="#FF870F">
+                            <StackPanel Orientation="Vertical">
+                                <Border Background="#FF870F"
+                                        Height="{StaticResource ViewSize}"
+                                        Width="{StaticResource ViewSize}">
                                     <Image Source="/Images/tvcollection.png"
                                            Height="{StaticResource ViewSize}"
                                            Width="{StaticResource ViewSize}"
@@ -143,15 +152,20 @@
                                 </Border>
                                 <TextBlock Text="{Binding LocalizedResources.LabelTv, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToUppercaseConverter}}"
                                            Style="{StaticResource HeaderTextStyle}"
-                                           VerticalAlignment="Top" />
+                                           VerticalAlignment="Top"
+                                           HorizontalAlignment="Left"
+                                           Margin="0,0,12,0" />
                             </StackPanel>
                         </local:CustomHyperlinkButton>
                         <local:CustomHyperlinkButton TapCommand="{Binding NavigateToAPage}"
                                                      CommandParameter="/Views/Predefined/MusicCollectionView.xaml"
                                                      Style="{StaticResource EmptyButtonStyle}"
+                                                     HorizontalContentAlignment="Left"
                                                      Margin="0,0,0,12">
-                            <StackPanel Orientation="Horizontal">
-                                <Border Background="#6FBD45">
+                            <StackPanel Orientation="Vertical">
+                                <Border Background="#6FBD45"
+                                        Height="{StaticResource ViewSize}"
+                                        Width="{StaticResource ViewSize}">
                                     <Image Source="/Images/audiocollection.png"
                                            Height="{StaticResource ViewSize}"
                                            Width="{StaticResource ViewSize}"
@@ -159,18 +173,23 @@
                                 </Border>
                                 <TextBlock Text="{Binding LocalizedResources.LabelMusic, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToUppercaseConverter}}"
                                            Style="{StaticResource HeaderTextStyle}"
-                                           VerticalAlignment="Top" />
+                                           VerticalAlignment="Top"
+                                           HorizontalAlignment="Left"
+                                           Margin="0,0,12,0" />
                             </StackPanel>
                         </local:CustomHyperlinkButton>
                         <local:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                                     HorizontalContentAlignment="Left"
                                                      Margin="0,0,0,12"
                                                      TapCommand="{Binding NavigateToAPage}"
                                                      CommandParameter="/Views/Channels/ChannelsView.xaml">
-                            <StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Vertical"
+                                        HorizontalAlignment="Left">
                                 <Border Background="#AF1A3F"
                                         Height="{StaticResource ViewSize}"
                                         Width="{StaticResource ViewSize}"
-                                        Padding="25">
+                                        Padding="25"
+                                        HorizontalAlignment="Left">
                                     <Viewbox>
                                         <Path Width="{StaticResource ViewSize}"
                                               Height="{StaticResource ViewSize}"
@@ -181,16 +200,19 @@
                                 </Border>
                                 <TextBlock Text="{Binding LocalizedResources.TitleChannels, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToUppercaseConverter}}"
                                            Style="{StaticResource HeaderTextStyle}"
-                                           VerticalAlignment="Top" />
+                                           VerticalAlignment="Top"
+                                           HorizontalAlignment="Left"
+                                           Margin="0,0,12,0" />
                             </StackPanel>
                         </local:CustomHyperlinkButton>
                         <local:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
                                                      Margin="0,0,0,12"
                                                      TapCommand="{Binding NavigateToAPage}"
                                                      CommandParameter="/Views/LiveTv/LiveTvView.xaml"
+                                                     HorizontalContentAlignment="Left"
                                                      Tag="{Binding LiveTvInfo, Source={StaticResource AppSettings}, Converter={StaticResource LiveTvInfoConverter}}"
                                                      Visibility="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource VisibilityConverter}}">
-                            <StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Vertical">
                                 <Border Background="#FFD100FF"
                                         Height="{StaticResource ViewSize}"
                                         Width="{StaticResource ViewSize}">
@@ -201,10 +223,12 @@
                                 </Border>
                                 <TextBlock Text="{Binding LocalizedResources.LabelLiveTv, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToUppercaseConverter}}"
                                            Style="{StaticResource HeaderTextStyle}"
-                                           VerticalAlignment="Top" />
+                                           VerticalAlignment="Top"
+                                           HorizontalAlignment="Left"
+                                           Margin="0,0,12,0" />
                             </StackPanel>
                         </local:CustomHyperlinkButton>
-                    </StackPanel>
+                    </toolkit:WrapPanel>
                 </ScrollViewer>
             </phone:PanoramaItem>
             <phone:PanoramaItem Header="{Binding LocalizedResources.Collections, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
