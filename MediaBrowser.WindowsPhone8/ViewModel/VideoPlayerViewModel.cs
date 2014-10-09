@@ -82,7 +82,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
         public bool IsHls
         {
-            get { return PlayerSourceType == PlayerSourceType.Programme; }
+            get { return PlayerSourceType == PlayerSourceType.Programme || (SelectedItem != null && SelectedItem.Type.ToLower().Equals("channelvideoitem")); }
         }
 
         private void SetPlaybackTicks(long totalTicks)
@@ -283,7 +283,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         _startPositionTicks = SelectedItem.UserData.PlaybackPositionTicks;
                     }
 
-                    query = CreateVideoStreamOptions(SelectedItem.Id, SelectedItem.UserData, _startPositionTicks);
+                    query = CreateVideoStreamOptions(SelectedItem.Id, SelectedItem.UserData, _startPositionTicks, SelectedItem.Type.ToLower().Equals("channelvideoitem"));
 
                     if (SelectedItem.RunTimeTicks.HasValue)
                         EndTime = TimeSpan.FromTicks(SelectedItem.RunTimeTicks.Value - _startPositionTicks);

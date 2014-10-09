@@ -7,6 +7,7 @@ using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Model;
+using MediaBrowser.WindowsPhone.Resources;
 using ScottIsAFool.WindowsPhone.ViewModel;
 
 namespace MediaBrowser.WindowsPhone.ViewModel.Channels
@@ -78,6 +79,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Channels
 
             try
             {
+                SetProgressBar(AppResources.SysTrayGettingDetails);
+
                 var query = new ChannelItemQuery
                 {
                     ChannelId = SelectedChannel.Type.ToLower() == "channel" ? SelectedChannel.Id : SelectedChannel.ChannelId,
@@ -94,6 +97,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Channels
             {
                 Utils.HandleHttpException(ex, "LoadData(" + isRefresh + ")", _navigationService, Log);
             }
+
+            SetProgressBar();
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Windows.Navigation;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.WindowsPhone.ViewModel;
+using MediaBrowser.WindowsPhone.ViewModel.Channels;
 
 namespace MediaBrowser.WindowsPhone.Views.Channels
 {
@@ -17,7 +18,7 @@ namespace MediaBrowser.WindowsPhone.Views.Channels
             base.OnNavigatedTo(e);
             if (e.NavigationMode == NavigationMode.Back)
             {
-                DataContext = History.Current.GetLastItem<TvViewModel>(GetType());
+                DataContext = History.Current.GetLastItem<ChannelViewModel>(GetType());
             }
             else if (e.NavigationMode == NavigationMode.New)
             {
