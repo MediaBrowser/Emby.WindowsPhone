@@ -17,6 +17,7 @@ using System.Linq;
 using MediaBrowser.Model.Dto;
 using System.Threading.Tasks;
 using MediaBrowser.WindowsPhone.Messaging;
+using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Resources;
 using MediaBrowser.WindowsPhone.Services;
 using Microsoft.Phone.Controls;
@@ -164,6 +165,13 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
         private async Task PlayVideo(BaseItemDto item, bool isResume = false)
         {
+            if (item.IsAudio)
+            {
+                var playlistItem = item.ToPlaylistItem(_apiClient);
+                Messenger.Default.Send(new NotificationMessage<List<PlaylistItem>>(new List<PlaylistItem> { playlistItem }, Constants.Messages.SetPlaylistAsMsg));
+                return;
+            }
+
             Log.Info("Playing {0} [{1}]", item.Type, item.Name);
             if (!TrialHelper.Current.CanPlayVideo(item.Id))
             {

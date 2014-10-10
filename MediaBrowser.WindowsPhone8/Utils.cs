@@ -381,7 +381,7 @@ namespace MediaBrowser.WindowsPhone
             if (item != null)
             {
                 if (item.LocationType == LocationType.Virtual
-                    || !item.IsVideo
+                    || (!item.IsVideo && !item.IsAudio)
                     || item.PlayAccess != PlayAccess.Full
                     || (item.IsPlaceHolder.HasValue && item.IsPlaceHolder.Value))
                 {
