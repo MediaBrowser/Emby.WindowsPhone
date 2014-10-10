@@ -98,7 +98,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 var query = new NotificationQuery
                 {
                     StartIndex = 0,
-                    UserId = AuthenticationService.Current.LoggedInUser.Id
+                    UserId = AuthenticationService.Current.LoggedInUserId,
+                    Limit = 20
                 };
 
                 var notifications = await _apiClient.GetNotificationsAsync(query);

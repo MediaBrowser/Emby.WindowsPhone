@@ -14,6 +14,7 @@
                 Orientation="Portrait"
                 mc:Ignorable="d"
                 shell:SystemTray.IsVisible="True"
+                shell:SystemTray.Opacity="0.99"
                 DataContext="{Binding Notifications, Source={StaticResource Locator}}">
 
     <toolkit:TransitionService.NavigationInTransition>
@@ -40,32 +41,38 @@
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot"
           Background="{StaticResource MediaBrowserBackground}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
+        <Grid Margin="0,32,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
 
-        <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel Grid.Row="0"
-                    Margin="12,17,0,28">
-            <controls:MediaBrowserLogo/>
-            <TextBlock Text="{Binding SelectedNotification.Level, Converter={StaticResource StringCaseConverter}}"
-                       Margin="9,-7,0,0"
-                       Style="{StaticResource PhoneTextTitle1Style}" />
-        </StackPanel>
-
-        <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel"
-              Grid.Row="1"
-              Margin="12,0,12,0">
-            <StackPanel Orientation="Vertical"
-                        DataContext="{Binding SelectedNotification}">
-                <TextBlock Text="{Binding Description}"
-                           Style="{StaticResource PhoneTextNormalStyle}"
-                           TextWrapping="Wrap"/>
-                <TextBlock Text="{Binding Date}"
-                           Style="{StaticResource PhoneTextSubtleStyle}"/>
+            <!--TitlePanel contains the name of the application and page title-->
+            <StackPanel Grid.Row="0"
+                        Margin="12,17,0,28">
+                <controls:MediaBrowserLogo />
+                <TextBlock Text="{Binding SelectedNotification.Level, Converter={StaticResource StringCaseConverter}}"
+                           Margin="9,-7,0,0"
+                           Style="{StaticResource PhoneTextTitle1Style}" />
             </StackPanel>
+
+            <!--ContentPanel - place additional content here-->
+            <Grid x:Name="ContentPanel"
+                  Grid.Row="1"
+                  Margin="12,0,12,0">
+                <StackPanel Orientation="Vertical"
+                            DataContext="{Binding SelectedNotification}">
+                    <TextBlock Text="{Binding Name}"
+                               Style="{StaticResource PhoneTextNormalStyle}"
+                               TextWrapping="Wrap" />
+                    <TextBlock Text="{Binding Description}"
+                               Style="{StaticResource PhoneTextNormalStyle}"
+                               TextWrapping="Wrap"
+                               Visibility="{Binding Description, Converter={StaticResource NullVisibilityConverter}}" />
+                    <TextBlock Text="{Binding Date}"
+                               Style="{StaticResource PhoneTextSubtleStyle}" />
+                </StackPanel>
+            </Grid>
         </Grid>
     </Grid>
 
