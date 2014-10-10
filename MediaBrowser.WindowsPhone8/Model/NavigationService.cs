@@ -3,6 +3,7 @@ using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.WindowsPhone.ViewModel;
+using MediaBrowser.WindowsPhone.ViewModel.Playlists;
 using Microsoft.Phone.Net.NetworkInformation;
 using MediaBrowser.Model.Dto;
 
@@ -46,6 +47,7 @@ namespace MediaBrowser.WindowsPhone.Model
                 case "collectionfolder":
                 case "genre":
                 case "trailercollectionfolder":
+                case "playlistsfolder":
                     //Messenger.Default.Send(new NotificationMessage(item, Constants.ShowFolderMsg));
                     if (App.SpecificSettings.JustShowFolderView)
                     {
@@ -92,9 +94,14 @@ namespace MediaBrowser.WindowsPhone.Model
                 case "channelfolderitem":
                     NavigateTo(Constants.Pages.Channels.ChannelView + item.Id);
                     break;
-                //case "photo":
-
-                //    break;
+                case "playlist":
+                    if (SimpleIoc.Default.GetInstance<ServerPlaylistsViewModel>() != null)
+                    {
+                        Messenger.Default.Send(new NotificationMessage(item, Constants.Messages.ServerPlaylistChangedMsg));
+                        NavigateTo(Constants.Pages.Playlists.PlaylistView);
+                    }
+                        
+                    break;
                 default:
                     if (SimpleIoc.Default.GetInstance<GenericItemViewModel>() != null)
                     {

@@ -258,6 +258,7 @@
     <Compile Include="ViewModel\MovieViewModel.cs" />
     <Compile Include="ViewModel\MusicViewModel.cs" />
     <Compile Include="ViewModel\NotificationsViewModel.cs" />
+    <Compile Include="ViewModel\Playlists\ServerPlaylistsViewModel.cs" />
     <Compile Include="ViewModel\PlaylistViewModel.cs" />
     <Compile Include="ViewModel\Predefined\MovieCollectionViewModel.cs" />
     <Compile Include="ViewModel\Predefined\MusicCollectionViewModel.cs" />
@@ -359,6 +360,9 @@
     </Compile>
     <Compile Include="Views\NowPlayingView.xaml.cs">
       <DependentUpon>NowPlayingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Playlists\PlaylistView.xaml.cs">
+      <DependentUpon>PlaylistView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Predefined\MovieCollectionView.xaml.cs">
       <DependentUpon>MovieCollectionView.xaml</DependentUpon>
@@ -634,6 +638,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\NowPlayingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Playlists\PlaylistView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -932,6 +940,7 @@
       <Name>Microsoft Player Framework WebVTT Caption Settings Plugin</Name>
     </SDKReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

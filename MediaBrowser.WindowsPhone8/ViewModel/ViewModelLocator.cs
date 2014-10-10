@@ -15,6 +15,7 @@ using GalaSoft.MvvmLight.Ioc;
 using MediaBrowser.Design;
 using MediaBrowser.WindowsPhone.Design;
 using MediaBrowser.WindowsPhone.ViewModel.Channels;
+using MediaBrowser.WindowsPhone.ViewModel.Playlists;
 using MediaBrowser.WindowsPhone.ViewModel.Predefined;
 using MediaBrowser.WindowsPhone.ViewModel.Remote;
 using Microsoft.Practices.ServiceLocation;
@@ -106,6 +107,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             SimpleIoc.Default.Register<RecordedTvViewModel>();
             SimpleIoc.Default.Register<ChannelViewModel>();
             SimpleIoc.Default.Register<ChannelsViewModel>();
+            SimpleIoc.Default.Register<ServerPlaylistsViewModel>();
         }
 
         /// <summary>
@@ -340,6 +342,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public ChannelViewModel Channel
         {
             get { return ServiceLocator.Current.GetInstance<ChannelViewModel>(); }
+        }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
+            "CA1822:MarkMembersAsStatic",
+            Justification = "This non-static member is needed for data binding purposes.")]
+        public ServerPlaylistsViewModel ServerPlaylists
+        {
+            get { return ServiceLocator.Current.GetInstance<ServerPlaylistsViewModel>(); }
         }
 
         public static TvViewModel GetTvViewModel(string itemId)
