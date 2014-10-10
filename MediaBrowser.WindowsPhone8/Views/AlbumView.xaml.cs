@@ -1,5 +1,6 @@
 ﻿using System;
-using Microsoft.Phone.Controls;
+using System.Windows.Controls;
+using MediaBrowser.WindowsPhone.ViewModel;
 
 namespace MediaBrowser.WindowsPhone.Views
 {
@@ -28,6 +29,15 @@ namespace MediaBrowser.WindowsPhone.Views
             {
                 MultiSelectList.IsSelectionEnabled = false;
                 e.Cancel = true;
+            }
+        }
+
+        private void MultiSelectList_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var vm = DataContext as MusicViewModel;
+            if (vm != null)
+            {
+                vm.SelectionChangedCommand.Execute(e);
             }
         }
     }

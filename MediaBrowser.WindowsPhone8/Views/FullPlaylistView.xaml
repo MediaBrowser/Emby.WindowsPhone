@@ -11,7 +11,7 @@
                 xmlns:converters="clr-namespace:MediaBrowser.WindowsPhone.Converters"
                 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
                 xmlns:cimbalino="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
-                xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP8"
+                
                 xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
                 xmlns:toolkitPrimitives="clr-namespace:Microsoft.Phone.Controls.Primitives;assembly=Microsoft.Phone.Controls.Toolkit"
                 mc:Ignorable="d ignore"
@@ -93,13 +93,8 @@
                                            IsGroupingEnabled="False"
                                            HorizontalContentAlignment="Left"
                                            x:Name="PlaylistSelector"
-                                           IsSelectionEnabled="{Binding IsInSelectionMode, Mode=TwoWay}">
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="SelectionChanged">
-                        <command:EventToCommand Command="{Binding SelectionChangedCommand}"
-                                                PassEventArgsToCommand="True" />
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
+                                           IsSelectionEnabled="{Binding IsInSelectionMode, Mode=TwoWay}"
+                                           SelectionChanged="PlaylistSelector_OnSelectionChanged">
                 <toolkit:LongListMultiSelector.ItemContainerStyle>
                     <Style TargetType="toolkit:LongListMultiSelectorItem">
                         <Setter Property="HorizontalContentAlignment"

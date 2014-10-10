@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Navigation;
 using MediaBrowser.WindowsPhone.Resources;
 using MediaBrowser.WindowsPhone.Services;
+using MediaBrowser.WindowsPhone.ViewModel;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Tasks;
 using ScottIsAFool.WindowsPhone.Logging;
@@ -80,6 +82,15 @@ namespace MediaBrowser.WindowsPhone.Views
                 {
                     Uri = new Uri(content)
                 }.Show();
+            }
+        }
+
+        private void ListPicker_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var vm = DataContext as SettingsViewModel;
+            if (vm != null)
+            {
+                vm.CollectionChangedCommand.Execute(e);
             }
         }
     }

@@ -7,7 +7,7 @@
                 xmlns:playerFramework="clr-namespace:Microsoft.PlayerFramework;assembly=Microsoft.PlayerFramework"
                 xmlns:converters="clr-namespace:MediaBrowser.WindowsPhone.Converters"
                 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-                xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP8"
+                
                 xmlns:scott="clr-namespace:ScottIsAFool.WindowsPhone.Controls;assembly=ScottIsAFool.WindowsPhone"
                 xmlns:System="clr-namespace:System;assembly=mscorlib"
                 xmlns:mediaPlayer="clr-namespace:SM.Media.MediaPlayer;assembly=SM.Media.MediaPlayer.WP8"
@@ -737,7 +737,7 @@
     </scott:BasePage.DataContext>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
-            <command:EventToCommand Command="{Binding VideoPageLoaded}" />
+            <i:InvokeCommandAction Command="{Binding VideoPageLoaded}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
 

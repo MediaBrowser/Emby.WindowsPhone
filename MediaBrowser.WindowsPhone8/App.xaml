@@ -12,7 +12,6 @@
              xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
              xmlns:controls="clr-namespace:MediaBrowser.WindowsPhone.Controls"
              xmlns:converters="clr-namespace:Cimbalino.Phone.Toolkit.Converters;assembly=Cimbalino.Phone.Toolkit">
-
     <!--Application Resources-->
     <Application.Resources>
         <ResourceDictionary>
@@ -26,9 +25,7 @@
                                  d:IsDataSource="True" />
             <model:SettingsService x:Key="AppSettings" />
             <windowsPhone:SpecificSettings x:Key="SpecificSettings" />
-
             <sys:String x:Key="AppName">MediaBrowser</sys:String>
-
             <!--Panorama templates-->
             <DataTemplate x:Key="LikeWp7TitleTemplate">
                 <Grid Margin="-12,-41,0,18">
@@ -49,7 +46,6 @@
                     </TextBlock>
                 </Grid>
             </DataTemplate>
-
             <Style TargetType="toolkit:TransitionFrame">
                 <Setter Property="Background"
                         Value="{StaticResource PhoneBackgroundBrush}" />
@@ -82,7 +78,6 @@
                                                       HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                                       Grid.Row="0" />
-
                                     <controls:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
                                                                     Grid.Row="1"
                                                                     VerticalAlignment="Stretch"
@@ -101,14 +96,11 @@
             </Style>
         </ResourceDictionary>
     </Application.Resources>
-
     <Application.ApplicationLifetimeObjects>
         <!--Required object that handles lifetime events for the application-->
         <shell:PhoneApplicationService Launching="ApplicationLaunching"
                                        Closing="ApplicationClosing"
                                        Activated="ApplicationActivated"
                                        Deactivated="ApplicationDeactivated" />
-
     </Application.ApplicationLifetimeObjects>
-
 </Application>

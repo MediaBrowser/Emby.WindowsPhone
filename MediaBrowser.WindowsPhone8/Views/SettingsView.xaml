@@ -8,7 +8,7 @@
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-                xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP8"
+                
                 xmlns:behaviours="clr-namespace:ScottIsAFool.WindowsPhone.Behaviours"
                 xmlns:controls="clr-namespace:MediaBrowser.WindowsPhone.Controls"
                 xmlns:coding4Fun="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
@@ -27,7 +27,7 @@
                 toolkit:TiltEffect.IsTiltEnabled="True">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
-            <command:EventToCommand Command="{Binding SettingsPageLoaded}" />
+            <i:InvokeCommandAction Command="{Binding SettingsPageLoaded}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
     <i:Interaction.Behaviors>
@@ -314,13 +314,8 @@
                             <toolkit:ListPicker Header="{Binding LocalizedResources.HeaderFromCollection, Source={StaticResource LocalizedStrings}}"
                                                 ItemsSource="{Binding Folders}"
                                                 SelectionMode="Single"
-                                                SelectedItem="{Binding SelectedCollection, Mode=TwoWay}">
-                                <i:Interaction.Triggers>
-                                    <i:EventTrigger EventName="SelectionChanged">
-                                        <command:EventToCommand Command="{Binding CollectionChangedCommand}"
-                                                                PassEventArgsToCommand="True" />
-                                    </i:EventTrigger>
-                                </i:Interaction.Triggers>
+                                                SelectedItem="{Binding SelectedCollection, Mode=TwoWay}"
+                                                SelectionChanged="ListPicker_OnSelectionChanged">
                                 <toolkit:ListPicker.ItemTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">

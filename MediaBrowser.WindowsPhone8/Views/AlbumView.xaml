@@ -7,7 +7,7 @@
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:ignore="http://www.ignore.com"
                 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-                xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP8"
+                
                 xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
                 xmlns:controls="clr-namespace:MediaBrowser.WindowsPhone.Controls"
                 xmlns:c4F="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
@@ -28,7 +28,7 @@
     </i:Interaction.Behaviors>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
-            <command:EventToCommand Command="{Binding AlbumPageLoaded}" />
+            <i:InvokeCommandAction Command="{Binding AlbumPageLoaded}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
 
@@ -114,13 +114,8 @@
                                            Margin="12,0,0,0"
                                            ListHeader="{Binding SelectedAlbum}"
                                            x:Name="MultiSelectList"
-                                           IsSelectionEnabled="{Binding IsInSelectionMode, Mode=TwoWay}">
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="SelectionChanged">
-                        <command:EventToCommand Command="{Binding SelectionChangedCommand}"
-                                                PassEventArgsToCommand="True" />
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
+                                           IsSelectionEnabled="{Binding IsInSelectionMode, Mode=TwoWay}"
+                                           SelectionChanged="MultiSelectList_OnSelectionChanged">
                 <toolkit:LongListMultiSelector.ListHeaderTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal"
