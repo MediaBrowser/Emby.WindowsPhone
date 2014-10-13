@@ -9,6 +9,7 @@ using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Entities;
+using MediaBrowser.Model.Events;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Querying;
 using MediaBrowser.Model.Session;
@@ -84,9 +85,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
                 {
                     IsPinned = TileService.Current.TileExists(_tileUrl);
 
-                    await App.WebSocketClient.StartReceivingSessionUpdates(1500);
+                    await _apiClient.StartReceivingSessionUpdates(1500);
 
-                    App.WebSocketClient.SessionsUpdated += WebSocketClientOnSessionsUpdated;
+                    _apiClient.SessionsUpdated += WebSocketClientOnSessionsUpdated;
 
                     await GetClients(false);
 
@@ -113,11 +114,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
         {
             get
             {
-                return new RelayCommand(async () =>
+                return new RelayCommand(() =>
                 {
-                    App.WebSocketClient.SessionsUpdated -= WebSocketClientOnSessionsUpdated;
+                    _apiClient.SessionsUpdated -= WebSocketClientOnSessionsUpdated;
 
-                    await App.WebSocketClient.StopReceivingSessionUpdates();
+                    _apiClient.StopReceivingSessionUpdates().ConfigureAwait(false);
                 });
             }
         }
@@ -368,10 +369,13 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
 
         private void SetSessionDetails(SessionInfoDto selectedClient)
         {
-            if (selectedClient.PlayState.PositionTicks.HasValue && selectedClient.NowPlayingItem != null && selectedClient.NowPlayingItem.RunTimeTicks.HasValue)
+            if (selectedClient.PlayState.PositionTicks.HasValue)
             {
                 PlayedTicks = selectedClient.PlayState.PositionTicks;
-                PlayedPercentage = ((double)selectedClient.PlayState.PositionTicks / (double)selectedClient.NowPlayingItem.RunTimeTicks) * 100;
+                if (selectedClient.NowPlayingItem != null && selectedClient.NowPlayingItem.RunTimeTicks.HasValue)
+                {
+                    PlayedPercentage = ((double)selectedClient.PlayState.PositionTicks / (double)selectedClient.NowPlayingItem.RunTimeTicks) * 100;
+                }
             }
 
             IsPaused = selectedClient.PlayState.IsPaused;
@@ -405,12 +409,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
             }
         }
 
-        private void WebSocketClientOnSessionsUpdated(object sender, SessionUpdatesEventArgs e)
+        private void WebSocketClientOnSessionsUpdated(object sender, GenericEventArgs<SessionUpdatesEventArgs> args)
         {
             if (SelectedClient == null)
             {
                 return;
             }
+
+            var e = args.Argument;
 
             var session = e.Sessions.First(x => x.DeviceId == SelectedClient.DeviceId);
 

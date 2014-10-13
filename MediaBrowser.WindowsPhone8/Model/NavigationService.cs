@@ -48,7 +48,6 @@ namespace MediaBrowser.WindowsPhone.Model
                 case "genre":
                 case "trailercollectionfolder":
                 case "playlistsfolder":
-                    //Messenger.Default.Send(new NotificationMessage(item, Constants.ShowFolderMsg));
                     if (App.SpecificSettings.JustShowFolderView)
                     {
                         NavigateTo(Constants.Pages.FolderView + item.Id);
@@ -76,19 +75,25 @@ namespace MediaBrowser.WindowsPhone.Model
                     break;
                 case "trailer":
                     if (SimpleIoc.Default.GetInstance<TrailerViewModel>() != null)
+                    {
                         Messenger.Default.Send(new NotificationMessage(Constants.Messages.ChangeTrailerMsg));
-                    NavigateTo(Constants.Pages.TrailerView);
+                        NavigateTo(Constants.Pages.TrailerView);
+                    }
                     break;
                 case "musicartist":
                 case "artist":
                     if (SimpleIoc.Default.GetInstance<MusicViewModel>() != null)
+                    {
                         Messenger.Default.Send(new NotificationMessage(item, Constants.Messages.MusicArtistChangedMsg));
-                    NavigateTo(Constants.Pages.ArtistView);
+                        NavigateTo(Constants.Pages.ArtistView);
+                    }
                     break;
                 case "musicalbum":
                     if (SimpleIoc.Default.GetInstance<MusicViewModel>() != null)
+                    {
                         Messenger.Default.Send(new NotificationMessage(item, Constants.Messages.MusicAlbumChangedMsg));
-                    NavigateTo(Constants.Pages.AlbumView);
+                        NavigateTo(Constants.Pages.AlbumView);
+                    }
                     break;
                 case "channel":
                 case "channelfolderitem":
@@ -106,9 +111,9 @@ namespace MediaBrowser.WindowsPhone.Model
                     if (SimpleIoc.Default.GetInstance<GenericItemViewModel>() != null)
                     {
                         Messenger.Default.Send(new NotificationMessage(item, Constants.Messages.GenericItemChangedMsg));
+                        NavigateTo(Constants.Pages.GenericItemView);
                     }
 
-                    NavigateTo(Constants.Pages.GenericItemView);
                     break;
             }
         }

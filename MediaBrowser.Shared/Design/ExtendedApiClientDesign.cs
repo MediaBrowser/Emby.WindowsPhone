@@ -7,8 +7,10 @@ using MediaBrowser.Model;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Channels;
 using MediaBrowser.Model.Configuration;
+using MediaBrowser.Model.Devices;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
+using MediaBrowser.Model.Events;
 using MediaBrowser.Model.Globalization;
 using MediaBrowser.Model.LiveTv;
 using MediaBrowser.Model.Notifications;
@@ -20,6 +22,7 @@ using MediaBrowser.Model.Serialization;
 using MediaBrowser.Model.Session;
 using MediaBrowser.Model.System;
 using MediaBrowser.Model.Tasks;
+using MediaBrowser.Model.Updates;
 using MediaBrowser.Model.Users;
 
 namespace MediaBrowser.WindowsPhone.Design
@@ -46,6 +49,11 @@ namespace MediaBrowser.WindowsPhone.Design
             throw new NotImplementedException();
         }
 
+        public Task<QueryResult<BaseItemDto>> GetPlaylistItems(PlaylistItemQuery query)
+        {
+            throw new NotImplementedException();
+        }
+
         public string GetAudioStreamUrl(StreamOptions options)
         {
             throw new NotImplementedException();
@@ -57,6 +65,31 @@ namespace MediaBrowser.WindowsPhone.Design
         }
 
         public string GetHlsVideoStreamUrl(VideoStreamOptions options)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task SendContextMessageAsync(string itemType, string itemId, string itemName, string context, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<ContentUploadHistory> GetContentUploadHistory(string deviceId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task UploadFile(Stream stream, LocalFileInfo file, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<DevicesOptions> GetDevicesOptions()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void OpenWebSocket(Func<IClientWebSocket> webSocketFactory, int keepAliveTimerMs = 60000)
         {
             throw new NotImplementedException();
         }
@@ -127,6 +160,11 @@ namespace MediaBrowser.WindowsPhone.Design
         }
 
         public Task<BaseItemDto> GetItemAsync(string id, string userId)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task<BaseItemDto[]> IApiClient.GetLatestItems(LatestItemsQuery query)
         {
             throw new NotImplementedException();
         }
@@ -526,6 +564,21 @@ namespace MediaBrowser.WindowsPhone.Design
             throw new NotImplementedException();
         }
 
+        public void ChangeServerLocation(string address, bool keepExistingAuth = false)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task StartReceivingSessionUpdates(int intervalMs)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task StopReceivingSessionUpdates()
+        {
+            throw new NotImplementedException();
+        }
+
         public string GetImageUrl(BaseItemDto item, ImageOptions options)
         {
             throw new NotImplementedException();
@@ -765,7 +818,12 @@ namespace MediaBrowser.WindowsPhone.Design
         {
             throw new NotImplementedException();
         }
-        
+
+        public Task<PlaylistCreationResult> CreatePlaylist(PlaylistCreationRequest request)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task AddToPlaylist(string playlistId, IEnumerable<string> itemIds, string userId)
         {
             throw new NotImplementedException();
@@ -779,10 +837,13 @@ namespace MediaBrowser.WindowsPhone.Design
         public IJsonSerializer JsonSerializer { get; set; }
         public string ServerAddress { get; private set; }
         public string ClientName { get; set; }
+        public IDevice Device { get; private set; }
         public string DeviceName { get; set; }
         public string DeviceId { get; set; }
         public string CurrentUserId { get; private set; }
         public string AccessToken { get; private set; }
+        public event EventHandler<EventArgs> RemoteLoggedOut;
+        public event EventHandler<GenericEventArgs<AuthenticationResult>> Authenticated;
         public event EventHandler ServerLocationChanged;
         public event EventHandler<HttpResponseEventArgs> HttpResponseReceived;
         public Task RegisterDeviceAsync(string deviceId, string uri, bool? sendTileUpdate = null, bool? sendToastUpdate = null)
@@ -809,5 +870,35 @@ namespace MediaBrowser.WindowsPhone.Design
         {
             throw new NotImplementedException();
         }
+
+        public event EventHandler<GenericEventArgs<string>> UserDeleted;
+        public event EventHandler<GenericEventArgs<TaskResult>> ScheduledTaskEnded;
+        public event EventHandler<GenericEventArgs<InstallationInfo>> PackageInstalling;
+        public event EventHandler<GenericEventArgs<InstallationInfo>> PackageInstallationFailed;
+        public event EventHandler<GenericEventArgs<InstallationInfo>> PackageInstallationCompleted;
+        public event EventHandler<GenericEventArgs<InstallationInfo>> PackageInstallationCancelled;
+        public event EventHandler<GenericEventArgs<UserDto>> UserUpdated;
+        public event EventHandler<GenericEventArgs<PluginInfo>> PluginUninstalled;
+        public event EventHandler<GenericEventArgs<LibraryUpdateInfo>> LibraryChanged;
+        public event EventHandler<GenericEventArgs<BrowseRequest>> BrowseCommand;
+        public event EventHandler<GenericEventArgs<PlayRequest>> PlayCommand;
+        public event EventHandler<GenericEventArgs<PlaystateRequest>> PlaystateCommand;
+        public event EventHandler<GenericEventArgs<MessageCommand>> MessageCommand;
+        public event EventHandler<GenericEventArgs<GeneralCommandEventArgs>> GeneralCommand;
+        public event EventHandler<EventArgs> NotificationAdded;
+        public event EventHandler<EventArgs> NotificationUpdated;
+        public event EventHandler<EventArgs> NotificationsMarkedRead;
+        public event EventHandler<EventArgs> ServerRestarting;
+        public event EventHandler<EventArgs> ServerShuttingDown;
+        public event EventHandler<GenericEventArgs<string>> SendStringCommand;
+        public event EventHandler<GenericEventArgs<int>> SetVolumeCommand;
+        public event EventHandler<GenericEventArgs<int>> SetAudioStreamIndexCommand;
+        public event EventHandler<GenericEventArgs<int>> SetSubtitleStreamIndexCommand;
+        public event EventHandler<GenericEventArgs<SessionUpdatesEventArgs>> SessionsUpdated;
+        public event EventHandler<EventArgs> RestartRequired;
+        public event EventHandler<GenericEventArgs<UserDataChangeInfo>> UserDataChanged;
+        public event EventHandler<GenericEventArgs<SessionInfoDto>> PlaybackStart;
+        public event EventHandler<GenericEventArgs<SessionInfoDto>> PlaybackStopped;
+        public event EventHandler<GenericEventArgs<SessionInfoDto>> SessionEnded;
     }
 }

@@ -3,12 +3,8 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Net;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using GalaSoft.MvvmLight.Ioc;
-using MediaBrowser.ApiInteraction;
-using MediaBrowser.ApiInteraction.WebSocket;
 using MediaBrowser.Model;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
@@ -246,12 +242,7 @@ namespace MediaBrowser.WindowsPhone
                 var liveTv = await apiClient.GetLiveTvInfoAsync();
                 App.Settings.LiveTvInfo = liveTv;
 
-                if (SimpleIoc.Default.IsRegistered<ApiWebSocket>())
-                {
-                    SimpleIoc.Default.Unregister<ApiWebSocket>();
-                }
-
-                App.WebSocketClient = await ApiWebSocket.Create((ApiClient)apiClient, () => new WebSocketClient(), default(CancellationToken));
+                apiClient.OpenWebSocket(() => new WebSocketClient());
 
                 return true;
             }

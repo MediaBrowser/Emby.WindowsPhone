@@ -1,8 +1,13 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model;
 using MediaBrowser.Model.Dto;
+using MediaBrowser.Model.Net;
+using MediaBrowser.Model.Querying;
+using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Model;
 using ScottIsAFool.WindowsPhone.ViewModel;
 
@@ -39,6 +44,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Playlists
         }
 
         public BaseItemDto SelectedPlaylist { get; set; }
+        public List<BaseItemDto> PlaylistItems { get; set; }
+
+        public bool IsAudioPlaylist
+        {
+            get { return SelectedPlaylist != null && SelectedPlaylist.Type.Equals("Playlist") && SelectedPlaylist.MediaType == "Audio"; }
+        }
 
         public RelayCommand PlaylistViewLoaded
         {
@@ -69,6 +80,25 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Playlists
                 || (_playlistLoaded && !isRefresh))
             {
                 return;
+            }
+
+            try
+            {
+                var query = new ItemQuery
+                {
+                    ParentId = SelectedPlaylist.Id,
+                    UserId = AuthenticationService.Current.LoggedInUserId
+                };
+                var items = await _apiClient.GetItemsAsync(query);
+
+                if (items != null && !items.Items.IsNullOrEmpty())
+                {
+                    PlaylistItems = items.Items.ToList();
+                }
+            }
+            catch (HttpException ex)
+            {
+                Utils.HandleHttpException(ex, "LoadData(" + isRefresh + ")", _navigationService, Log);
             }
         }
 

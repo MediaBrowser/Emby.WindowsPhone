@@ -177,6 +177,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     ItemFields.DateCreated,
                     ItemFields.ProviderIds,
                     ItemFields.ParentId,
+                    ItemFields.CumulativeRunTimeTicks
                 },
                 ParentId = SelectedFolder.Id,
                 Recursive = true,
@@ -220,7 +221,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         ItemFields.SortName,
                         ItemFields.Genres,
                         ItemFields.ProviderIds,
-                        ItemFields.ParentId
+                        ItemFields.ParentId,
+                        ItemFields.CumulativeRunTimeTicks
                     },
                     ExcludeItemTypes = SelectedFolder != null && SelectedFolder.Name.ToLower().Contains("recent") ? new[] {"Season", "Series"} : null
                 };
