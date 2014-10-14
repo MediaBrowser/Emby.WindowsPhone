@@ -9,6 +9,7 @@ using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Querying;
 using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Model;
+using MediaBrowser.WindowsPhone.Resources;
 using ScottIsAFool.WindowsPhone.ViewModel;
 
 namespace MediaBrowser.WindowsPhone.ViewModel.Playlists
@@ -49,6 +50,23 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Playlists
         public bool IsAudioPlaylist
         {
             get { return SelectedPlaylist != null && SelectedPlaylist.Type.Equals("Playlist") && SelectedPlaylist.MediaType == "Audio"; }
+        }
+
+        public string NumberOfItems
+        {
+            get
+            {
+                if (PlaylistItems == null || PlaylistItems.Count == 0)
+                {
+                    return AppResources.LabelNoItems;
+                }
+                if (PlaylistItems.Count == 1)
+                {
+                    return AppResources.LabelOneItem;
+                }
+
+                return string.Format(AppResources.LabelMultipleItems, PlaylistItems.Count);
+            }
         }
 
         public RelayCommand PlaylistViewLoaded

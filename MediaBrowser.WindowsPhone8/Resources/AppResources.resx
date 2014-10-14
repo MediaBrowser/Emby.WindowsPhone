@@ -976,4 +976,14 @@
   <data name="TitleChannels" xml:space="preserve">
     <value>Channels</value>
   </data>
+  <data name="LabelMultipleItems" xml:space="preserve">
+    <value>{0} items</value>
+    <comment>{0} is the number of items</comment>
+  </data>
+  <data name="LabelNoItems" xml:space="preserve">
+    <value>No items</value>
+  </data>
+  <data name="LabelOneItem" xml:space="preserve">
+    <value>1 item</value>
+  </data>
 </root>

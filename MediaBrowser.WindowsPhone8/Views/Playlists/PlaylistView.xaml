@@ -12,6 +12,7 @@
                 xmlns:behaviors="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
                 xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
                 xmlns:coding4Fun="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
+                xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
                 mc:Ignorable="d ignore"
                 FontFamily="{StaticResource PhoneFontFamilyNormal}"
                 FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -20,6 +21,7 @@
                 Orientation="Portrait"
                 shell:SystemTray.IsVisible="True"
                 shell:SystemTray.Opacity="0.99"
+                toolkit:TiltEffect.IsTiltEnabled="True"
                 DataContext="{Binding ServerPlaylists, Source={StaticResource Locator}}">
     <i:Interaction.Behaviors>
         <behaviours:MBSysTray IsVisible="{Binding ProgressIsVisible}"
@@ -85,6 +87,15 @@
                                                              Height="50" />
                                     </Grid>
                                 </controls:CustomButton>
+                                
+                                <StackPanel Orientation="Vertical"
+                                            Grid.Column="1">
+                                    <TextBlock Text="{Binding ServerPlaylists.NumberOfItems, Source={StaticResource Locator}}"
+                                               Style="{StaticResource PhoneTextTitle3Style}"/>
+                                    <TextBlock Text="{Binding CumulativeRunTimeTicks, Converter={StaticResource RuntimeConverter}}"
+                                               Style="{StaticResource PhoneTextTitle3Style}"
+                                               Foreground="{StaticResource PhoneSubtleBrush}"/>
+                                </StackPanel>
                             </Grid>
                         </DataTemplate>
                     </phone:LongListSelector.ListHeaderTemplate>

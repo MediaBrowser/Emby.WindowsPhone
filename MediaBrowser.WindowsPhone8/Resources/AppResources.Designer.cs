@@ -1168,6 +1168,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} items.
+        /// </summary>
+        public static string LabelMultipleItems {
+            get {
+                return ResourceManager.GetString("LabelMultipleItems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Music.
         /// </summary>
         public static string LabelMusic {
@@ -1222,6 +1231,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No items.
+        /// </summary>
+        public static string LabelNoItems {
+            get {
+                return ResourceManager.GetString("LabelNoItems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to none.
         /// </summary>
         public static string LabelNone {
@@ -1272,6 +1290,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string LabelNowPlaying {
             get {
                 return ResourceManager.GetString("LabelNowPlaying", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1 item.
+        /// </summary>
+        public static string LabelOneItem {
+            get {
+                return ResourceManager.GetString("LabelOneItem", resourceCulture);
             }
         }
         
