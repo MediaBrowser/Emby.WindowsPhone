@@ -219,6 +219,7 @@
     <Compile Include="Model\PlayerSourceType.cs" />
     <Compile Include="Model\RecordedGroupBy.cs" />
     <Compile Include="Model\Server.cs" />
+    <Compile Include="Model\UdpResponse.cs" />
     <Compile Include="Progress\CircularProgressBarViewModel.cs" />
     <Compile Include="Progress\GridUtils.cs" />
     <Compile Include="Progress\PiePiece.cs" />

@@ -20,7 +20,7 @@ using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Resources;
 using Microsoft.Phone.Net.NetworkInformation;
 using Microsoft.Phone.Notification;
-
+using Newtonsoft.Json;
 using ScottIsAFool.WindowsPhone.ViewModel;
 using INavigationService = MediaBrowser.WindowsPhone.Model.INavigationService;
 
@@ -62,10 +62,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 RegisteredText = "Device registered";
                 ServerPluginInstalled = false;
 
-                FoundServers = new ObservableCollection<Server>
+                FoundServers = new ObservableCollection<UdpResponse>
                 {
-                    new Server {IpAddress = "192.168.0.2", PortNo = "8096"},
-                    new Server {IpAddress = "192.168.0.4", PortNo = "8096"}
+                    new UdpResponse{Id = Guid.NewGuid().ToString(), Name = "Home", ServerAddress = "http://192.168.0.2"}
                 };
             }
             else
@@ -256,7 +255,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
         #region Server Broadcast code WP8 only
 
-        public ObservableCollection<Server> FoundServers { get; set; }
+        public ObservableCollection<UdpResponse> FoundServers { get; set; }
 
         public RelayCommand FindServerLoaded
         {
@@ -275,7 +274,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     SetProgressBar(AppResources.SysTrayFindingServer);
 
                     Log.Info("Sending UDP broadcast");
-                    await SendMessage("who is MediaBrowserServer?", 7359);
+                    await SendMessage("who is MediaBrowserServer_v2?", 7359);
 
                     SetProgressBar();
                 });
@@ -303,7 +302,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
         private async Task SendMessage(string message, int port)
         {
-            FoundServers = new ObservableCollection<Server>();
+            FoundServers = new ObservableCollection<UdpResponse>();
             var socket = new DatagramSocket();
 
             socket.MessageReceived += SocketOnMessageReceived;
@@ -332,11 +331,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 {
                     Log.Info("UDP response received");
 
-                    var parts = text.Split('|');
+                    var response = JsonConvert.DeserializeObject<UdpResponse>(text);
 
-                    var fullAddress = parts[1].Split(':');
-
-                    FoundServers.Add(new Server {IpAddress = fullAddress[0], PortNo = fullAddress[1]});
+                    FoundServers.Add(response);
                 });
             }
         }

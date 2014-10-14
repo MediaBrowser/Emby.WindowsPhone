@@ -82,11 +82,12 @@
                         <controls:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
                                                         TapCommand="{Binding Settings.ServerTappedCommand, Source={StaticResource Locator}}"
                                                         CommandParameter="{Binding}"
-                                                        Margin="12,0,0,12">
-                            <controls1:HeaderAndDetail HeaderText="{Binding IpAddress}"
+                                                        Margin="12,0,0,12"
+                                                        d:DataContext="{Binding Settings.FoundServers[0], Source={StaticResource Locator}}">
+                            <controls1:HeaderAndDetail HeaderText="{Binding Name}"
                                                        HeaderTextForeground="{StaticResource PhoneAccentBrush}"
                                                        HeaderTextStyle="{StaticResource PhoneTextTitle2Style}"
-                                                       DetailText="{Binding PortNo}"
+                                                       DetailText="{Binding ServerAddress}"
                                                        DetailTextStyle="{StaticResource PhoneTextSubtleStyle}"
                                                        DetailTextForeground="{StaticResource PhoneSubtleBrush}" />
                         </controls:CustomHyperlinkButton>

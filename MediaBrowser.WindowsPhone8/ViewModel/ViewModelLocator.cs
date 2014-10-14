@@ -1,15 +1,4 @@
-﻿/*
-  In App.xaml:
-  <Application.Resources>
-      <vm:ViewModelLocatorTemplate xmlns:vm="clr-namespace:MediaBrowser.WindowsPhone.ViewModel"
-                                   x:Key="Locator" />
-  </Application.Resources>
-  
-  In the View:
-  DataContext="{Binding Source={StaticResource Locator}, Path=ViewModelName}"
-*/
-
-using Cimbalino.Phone.Toolkit.Services;
+﻿using Cimbalino.Phone.Toolkit.Services;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using MediaBrowser.Design;
@@ -71,7 +60,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 SimpleIoc.Default.Register<INavigationService, NavigationService>();
                 SimpleIoc.Default.Register<ISettingsService, SettingsService>();
                 if (!SimpleIoc.Default.IsRegistered<IExtendedApiClient>())
-                    SimpleIoc.Default.Register<IExtendedApiClient>(() => new ExtendedApiClient(new MBLogger(), "dummy", "Windows Phone", device, ApplicationManifest.Current.App.Version, new ClientCapabilities { SupportsContentUploading = true }));
+                    SimpleIoc.Default.Register<IExtendedApiClient>(() => new ExtendedApiClient(new MBLogger(), "dummy", "Windows Phone", device, ApplicationManifest.Current.App.Version, new ClientCapabilities{SupportsContentUploading = true}));
 
                 if (!SimpleIoc.Default.IsRegistered<IUserExtendedPropertiesService>())
                     SimpleIoc.Default.Register<IUserExtendedPropertiesService, UserExtendedPropertiesService>();
