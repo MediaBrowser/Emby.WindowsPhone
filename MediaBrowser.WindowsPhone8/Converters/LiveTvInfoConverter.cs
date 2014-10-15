@@ -14,13 +14,13 @@ namespace MediaBrowser.WindowsPhone.Converters
         {
             if (value == null)
             {
-                return Visibility.Collapsed;
+                return false;
             }
 
             var tvInfo = value as LiveTvInfo;
             if (tvInfo == null)
             {
-                return Visibility.Collapsed;
+                return false;
             }
 
             return tvInfo.UserCanHasLiveTv(AuthenticationService.Current.LoggedInUserId);

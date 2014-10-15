@@ -227,20 +227,10 @@ namespace MediaBrowser.WindowsPhone
                     AuthenticationService.Current.SetAuthenticationInfo();
                 }
 
-                logger.Info("Getting server configuration. Server address ({0})", apiClient.ServerAddress);
+                logger.Info("Getting server information. Server address ({0})", apiClient.ServerAddress);
 
-                var config = await apiClient.GetServerConfigurationAsync();
-                App.Settings.ServerConfiguration = config;
-
-                logger.Info("Getting System information");
-
-                var sysInfo = await apiClient.GetSystemInfoAsync();
+                var sysInfo = await apiClient.GetPublicSystemInfoAsync();
                 App.Settings.SystemStatus = sysInfo;
-
-                logger.Info("Checking if live TV is supported");
-
-                var liveTv = await apiClient.GetLiveTvInfoAsync();
-                App.Settings.LiveTvInfo = liveTv;
 
                 apiClient.OpenWebSocket(() => new WebSocketClient());
 
@@ -253,7 +243,7 @@ namespace MediaBrowser.WindowsPhone
             }
         }
 
-        internal static void CheckProfiles(INavigationService navigationService)
+        internal static async Task CheckProfiles(INavigationService navigationService, ILog logger, IExtendedApiClient apiClient)
         {
             var clients = false;
             var loginPage = clients ? Constants.Pages.ManualUsernameView : Constants.Pages.ChooseProfileView;
@@ -262,6 +252,18 @@ namespace MediaBrowser.WindowsPhone
             {
                 LockScreenService.Current.Start();
                 TileService.Current.UpdatePrimaryTile(App.SpecificSettings.DisplayBackdropOnTile, App.SpecificSettings.UseRichWideTile, App.SpecificSettings.UseTransparentTile).ConfigureAwait(false);
+
+                try
+                {
+                    logger.Info("Checking if live TV is supported");
+
+                    var liveTv = await apiClient.GetLiveTvInfoAsync();
+                    App.Settings.LiveTvInfo = liveTv;
+                }
+                catch (HttpException ex)
+                {
+                    HandleHttpException(ex, "Live TV Check", navigationService, logger);
+                }
             }
 
             // If one exists, then authenticate that user.

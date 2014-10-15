@@ -240,7 +240,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     }
 
                     SetProgressBar(AppResources.SysTrayAuthenticating);
-                    Utils.CheckProfiles(_navigationService);
+                    await Utils.CheckProfiles(_navigationService, Log, _apiClient);
                 }
                 else
                 {
