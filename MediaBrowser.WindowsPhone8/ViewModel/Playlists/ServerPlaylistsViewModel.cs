@@ -47,11 +47,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Playlists
         public BaseItemDto SelectedPlaylist { get; set; }
         public List<BaseItemDto> PlaylistItems { get; set; }
 
-        public bool IsAudioPlaylist
-        {
-            get { return SelectedPlaylist != null && SelectedPlaylist.Type.Equals("Playlist") && SelectedPlaylist.MediaType == "Audio"; }
-        }
-
         public string NumberOfItems
         {
             get
@@ -102,10 +97,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Playlists
 
             try
             {
+                SetProgressBar(AppResources.SysTrayGettingDetails);
                 var query = new ItemQuery
                 {
                     ParentId = SelectedPlaylist.Id,
-                    UserId = AuthenticationService.Current.LoggedInUserId
+                    UserId = AuthenticationService.Current.LoggedInUserId,
+                    Fields = new[] { ItemFields.DisplayMediaType }
                 };
                 var items = await _apiClient.GetItemsAsync(query);
 
@@ -117,6 +114,19 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Playlists
             catch (HttpException ex)
             {
                 Utils.HandleHttpException(ex, "LoadData(" + isRefresh + ")", _navigationService, Log);
+            }
+
+            SetProgressBar();
+        }
+
+        public RelayCommand<BaseItemDto> ItemTappedCommand
+        {
+            get
+            {
+                return new RelayCommand<BaseItemDto>(item =>
+                {
+                    
+                });
             }
         }
 

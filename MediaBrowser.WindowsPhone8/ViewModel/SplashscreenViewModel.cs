@@ -119,7 +119,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                             await Utils.GetServerConfiguration(_apiClient, Log);
 
                             // Server has been found 
-                            if (App.Settings.ServerConfiguration != null)
+                            if (App.Settings.SystemStatus != null)
                             {
                                 await SetPushSettings();
                                 SetProgressBar(AppResources.SysTrayAuthenticating);

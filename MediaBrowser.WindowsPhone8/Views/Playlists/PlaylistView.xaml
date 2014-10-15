@@ -13,6 +13,9 @@
                 xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
                 xmlns:coding4Fun="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
                 xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+                xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
+                xmlns:model="clr-namespace:MediaBrowser.WindowsPhone.Model"
+                xmlns:converters="clr-namespace:MediaBrowser.WindowsPhone.Converters"
                 mc:Ignorable="d ignore"
                 FontFamily="{StaticResource PhoneFontFamilyNormal}"
                 FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -41,6 +44,145 @@
             <i:InvokeCommandAction Command="{Binding PlaylistViewLoaded}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
+    
+    <scott:BasePage.Resources>
+        <DataTemplate x:Key="AudioTemplate">
+            <controls:CustomButton Style="{StaticResource EmptyButtonStyle}"
+                                   Margin="12,0,0,12"
+                                   TapCommand="{Binding ServerPlaylists.ItemTappedCommand, Source={StaticResource Locator}}"
+                                   CommandParameter="{Binding}"
+                                   d:DataContext="{Binding ServerPlaylists.PlaylistItems[0], Source={StaticResource Locator}}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <coding4Fun:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
+                                           Stretch="Uniform" />
+
+                    <StackPanel Orientation="Vertical"
+                                Grid.Column="1"
+                                VerticalAlignment="Top">
+                        <TextBlock Text="{Binding Name}"
+                                   Style="{StaticResource PhoneTextTitle2Style}"
+                                   Margin="12,0,0,0" />
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding ProductionYear}"
+                                       Style="{StaticResource PhoneTextSubtleStyle}" />
+                            <TextBlock Text="{Binding RunTimeTicks, Converter={StaticResource TicksToTimespanConverter}}"
+                                       Style="{StaticResource PhoneTextSubtleStyle}" />
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+            </controls:CustomButton>
+        </DataTemplate>
+
+        <DataTemplate x:Key="GenericVideoTemplate">
+            <controls:CustomButton Style="{StaticResource EmptyButtonStyle}"
+                                   Margin="12,0,0,12"
+                                   TapCommand="{Binding ServerPlaylists.ItemTappedCommand, Source={StaticResource Locator}}"
+                                   CommandParameter="{Binding}"
+                                   d:DataContext="{Binding ServerPlaylists.PlaylistItems[0], Source={StaticResource Locator}}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <coding4Fun:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
+                                           Stretch="Uniform" />
+
+                    <StackPanel Orientation="Vertical"
+                                Grid.Column="1"
+                                VerticalAlignment="Top">
+                        <TextBlock Text="{Binding Name}"
+                                   Style="{StaticResource PhoneTextTitle2Style}"
+                                   Margin="12,0,0,0" />
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding RunTimeTicks, Converter={StaticResource TicksToTimespanConverter}}"
+                                       Style="{StaticResource PhoneTextSubtleStyle}" />
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+            </controls:CustomButton>
+        </DataTemplate>
+
+        <DataTemplate x:Key="MovieTemplate">
+            <controls:CustomButton Style="{StaticResource EmptyButtonStyle}"
+                                   Margin="12,0,0,12"
+                                   TapCommand="{Binding ServerPlaylists.ItemTappedCommand, Source={StaticResource Locator}}"
+                                   CommandParameter="{Binding}"
+                                   d:DataContext="{Binding ServerPlaylists.PlaylistItems[0], Source={StaticResource Locator}}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <coding4Fun:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
+                                           Stretch="Uniform" />
+
+                    <StackPanel Orientation="Vertical"
+                                Grid.Column="1"
+                                VerticalAlignment="Top">
+                        <TextBlock Text="{Binding Name}"
+                                   Style="{StaticResource PhoneTextTitle2Style}"
+                                   Margin="12,0,0,0" />
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding ProductionYear}"
+                                       Style="{StaticResource PhoneTextSubtleStyle}" />
+                            <TextBlock Text="{Binding RunTimeTicks, Converter={StaticResource TicksToTimespanConverter}}"
+                                       Style="{StaticResource PhoneTextSubtleStyle}" />
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+            </controls:CustomButton>
+        </DataTemplate>
+
+        <DataTemplate x:Key="EpisodeTemplate">
+            <controls:CustomButton Style="{StaticResource EmptyButtonStyle}"
+                                   Margin="12,0,0,12"
+                                   TapCommand="{Binding ServerPlaylists.ItemTappedCommand, Source={StaticResource Locator}}"
+                                   CommandParameter="{Binding}"
+                                   d:DataContext="{Binding ServerPlaylists.PlaylistItems[0], Source={StaticResource Locator}}">
+                <Grid>
+                    <Grid.Resources>
+                        <converters:EpisodeNameConverter x:Key="EpisodeNameConverter"/>
+                    </Grid.Resources>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <coding4Fun:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
+                                           Stretch="Uniform" />
+
+                    <StackPanel Orientation="Vertical"
+                                Grid.Column="1"
+                                VerticalAlignment="Top">
+                        <TextBlock Text="{Binding SeriesName}"
+                                   Style="{StaticResource PhoneTextTitle2Style}"
+                                   Margin="12,0,0,0" />
+                        <TextBlock Text="{Binding Converter={StaticResource EpisodeNameConverter}}"
+                                   Style="{StaticResource PhoneTextSubtleStyle}" />
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding PremiereDate, Converter={StaticResource DateTimeConverter}}"
+                                       Style="{StaticResource PhoneTextSubtleStyle}" />
+                            <TextBlock Text="{Binding RunTimeTicks, Converter={StaticResource TicksToTimespanConverter}}"
+                                       Style="{StaticResource PhoneTextSubtleStyle}" />
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+            </controls:CustomButton>
+        </DataTemplate>
+
+        <model:PlaylistTemplateSelector x:Key="PlaylistTemplateSelector"
+                                        Audio="{StaticResource AudioTemplate}"
+                                        GenericVideo="{StaticResource GenericVideoTemplate}"
+                                        Movie="{StaticResource MovieTemplate}"
+                                        Episode="{StaticResource EpisodeTemplate}"/>
+    </scott:BasePage.Resources>
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot"
@@ -64,11 +206,11 @@
             <!--ContentPanel - place additional content here-->
             <Grid x:Name="AudioPlaylist"
                   Grid.Row="1"
-                  Margin="12,0,12,0"
-                  Visibility="{Binding IsAudioPlaylist, Converter={StaticResource VisibilityConverter}}">
-                <phone:LongListSelector ItemsSource="{Binding PlaylistItems}"
-                                        ListHeader="{Binding SelectedPlaylist}">
-                    <phone:LongListSelector.ListHeaderTemplate>
+                  Margin="12,0,12,0">
+                <telerikPrimitives:RadDataBoundListBox ItemsSource="{Binding PlaylistItems}"
+                                                       ListHeaderContent="{Binding SelectedPlaylist}"
+                                                       ItemTemplateSelector="{StaticResource PlaylistTemplateSelector}">
+                    <telerikPrimitives:RadDataBoundListBox.ListHeaderTemplate>
                         <DataTemplate>
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -98,46 +240,8 @@
                                 </StackPanel>
                             </Grid>
                         </DataTemplate>
-                    </phone:LongListSelector.ListHeaderTemplate>
-                    <phone:LongListSelector.ItemTemplate>
-                        <DataTemplate>
-                            <controls:CustomButton Style="{StaticResource EmptyButtonStyle}"
-                                                   Margin="12,0,0,12"
-                                                   d:DataContext="{Binding ServerPlaylists.PlaylistItems[0], Source={StaticResource Locator}}">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="100" />
-                                        <ColumnDefinition Width="*" />
-                                    </Grid.ColumnDefinitions>
-
-                                    <coding4Fun:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
-                                                           Stretch="Uniform" />
-
-                                    <StackPanel Orientation="Vertical"
-                                                Grid.Column="1"
-                                                VerticalAlignment="Top">
-                                        <TextBlock Text="{Binding Name}"
-                                                   Style="{StaticResource PhoneTextTitle2Style}"
-                                                   Margin="12,0,0,0" />
-                                        <StackPanel Orientation="Horizontal">
-                                            <TextBlock Text="{Binding ProductionYear}"
-                                                       Style="{StaticResource PhoneTextSubtleStyle}" />
-                                            <TextBlock Text="{Binding RunTimeTicks, Converter={StaticResource TicksToTimespanConverter}}"
-                                                       Style="{StaticResource PhoneTextSubtleStyle}" />
-                                        </StackPanel>
-                                    </StackPanel>
-                                </Grid>
-                            </controls:CustomButton>
-                        </DataTemplate>
-                    </phone:LongListSelector.ItemTemplate>
-                </phone:LongListSelector>
-            </Grid>
-
-            <Grid x:Name="VideoPlaylist"
-                  Grid.Row="1"
-                  Margin="12,0,12,0"
-                  Visibility="{Binding IsAudioPlaylist, Converter={StaticResource InvertedVisibilityConverter}}">
-
+                    </telerikPrimitives:RadDataBoundListBox.ListHeaderTemplate>
+                </telerikPrimitives:RadDataBoundListBox>
             </Grid>
 
             <!--Uncomment to see an alignment grid to help ensure your controls are

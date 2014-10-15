@@ -217,6 +217,7 @@
     <Compile Include="Model\MBLogger.cs" />
     <Compile Include="Model\NavigationService.cs" />
     <Compile Include="Model\PlayerSourceType.cs" />
+    <Compile Include="Model\PlaylistTemplateSelector.cs" />
     <Compile Include="Model\RecordedGroupBy.cs" />
     <Compile Include="Model\Server.cs" />
     <Compile Include="Model\UdpResponse.cs" />
