@@ -141,6 +141,7 @@
             {
                 private const string PlaylistPath = ViewsPath + "Playlists/";
                 public const string PlaylistView = PlaylistPath + "PlaylistView.xaml";
+                public const string AddToPlaylistView = PlaylistPath + "AddToPlaylistView.xaml";
             }
 
             public class Remote

@@ -8,7 +8,6 @@
                 xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
                 xmlns:mb="clr-namespace:MediaBrowser.WindowsPhone.Controls"
                 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-                
                 xmlns:controls="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
                 xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
                 xmlns:telerikInput="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Input"
@@ -87,6 +86,13 @@
                                                           TapCommand="{Binding MovieCollection.NavigateToCommand, Source={StaticResource Locator}}"
                                                           CommandParameter="{Binding}"
                                                           Margin="0,0,12,12">
+                                    <toolkit:ContextMenuService.ContextMenu>
+                                        <toolkit:ContextMenu>
+                                            <toolkit:MenuItem Header="{Binding LocalizedResources.LabelAddToPlaylist, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                              Command="{Binding AddToPlaylist.AddToPlaylistCommand, Source={StaticResource Locator}}"
+                                                              CommandParameter="{Binding}" />
+                                        </toolkit:ContextMenu>
+                                    </toolkit:ContextMenuService.ContextMenu>
                                     <Grid Height="173"
                                           d:DataContext="{Binding MovieCollection.LatestUnwatched[0], Source={StaticResource Locator}}">
                                         <controls:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}, ConverterParameter=backdropsmall}"
@@ -109,6 +115,13 @@
                                                           TapCommand="{Binding MovieCollection.NavigateToCommand, Source={StaticResource Locator}}"
                                                           CommandParameter="{Binding}"
                                                           Margin="0,0,12,12">
+                                    <toolkit:ContextMenuService.ContextMenu>
+                                        <toolkit:ContextMenu>
+                                            <toolkit:MenuItem Header="{Binding LocalizedResources.LabelAddToPlaylist, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                              Command="{Binding AddToPlaylist.AddToPlaylistCommand, Source={StaticResource Locator}}"
+                                                              CommandParameter="{Binding}" />
+                                        </toolkit:ContextMenu>
+                                    </toolkit:ContextMenuService.ContextMenu>
                                     <Grid d:DataContext="{Binding MovieCollection.LatestUnwatched[0], Source={StaticResource Locator}}">
                                         <controls:SuperImage PlaceholderImageSource="/Images/Logo.png"
                                                              Source="{Binding Converter={StaticResource ImageUrlConverter}}"
@@ -147,6 +160,10 @@
                                             <toolkit:MenuItem Header="{Binding LocalizedResources.AppBarMarkAsWatched, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                               Command="{Binding MovieCollection.MarkAsWatchedCommand, Source={StaticResource Locator}}"
                                                               CommandParameter="{Binding}" />
+                                            <toolkit:MenuItem Header="{Binding LocalizedResources.LabelAddToPlaylist, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                              Command="{Binding AddToPlaylist.AddToPlaylistCommand, Source={StaticResource Locator}}"
+                                                              CommandParameter="{Binding}" />
+
                                         </toolkit:ContextMenu>
                                     </toolkit:ContextMenuService.ContextMenu>
                                     <StackPanel Orientation="Horizontal"
@@ -187,6 +204,13 @@
                                                           Margin="12,6,0,6"
                                                           TapCommand="{Binding TvCollection.NavigateToCommand, Source={StaticResource Locator}}"
                                                           CommandParameter="{Binding}">
+                                    <toolkit:ContextMenuService.ContextMenu>
+                                        <toolkit:ContextMenu>
+                                            <toolkit:MenuItem Header="{Binding LocalizedResources.LabelAddToPlaylist, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                              Command="{Binding AddToPlaylist.AddToPlaylistCommand, Source={StaticResource Locator}}"
+                                                              CommandParameter="{Binding}" />
+                                        </toolkit:ContextMenu>
+                                    </toolkit:ContextMenuService.ContextMenu>
                                     <Grid HorizontalAlignment="Stretch"
                                           d:DataContext="{Binding MovieCollection.Movies[0], Source={StaticResource Locator}}">
                                         <StackPanel Orientation="Horizontal"
@@ -266,6 +290,13 @@
                                                           TapCommand="{Binding Main.NavigateToPage, Source={StaticResource Locator}}"
                                                           CommandParameter="{Binding}"
                                                           Margin="12,0,0,12">
+                                    <toolkit:ContextMenuService.ContextMenu>
+                                        <toolkit:ContextMenu>
+                                            <toolkit:MenuItem Header="{Binding LocalizedResources.LabelAddToPlaylist, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                              Command="{Binding AddToPlaylist.AddToPlaylistCommand, Source={StaticResource Locator}}"
+                                                              CommandParameter="{Binding}" />
+                                        </toolkit:ContextMenu>
+                                    </toolkit:ContextMenuService.ContextMenu>
                                     <Grid Height="173"
                                           d:DataContext="{Binding MovieCollection.Genres[0], Source={StaticResource Locator}}">
                                         <Grid.ColumnDefinitions>

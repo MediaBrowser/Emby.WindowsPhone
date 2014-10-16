@@ -673,6 +673,24 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Playlist name:.
+        /// </summary>
+        public static string HeaderPlaylistName {
+            get {
+                return ResourceManager.GetString("HeaderPlaylistName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Playlist:.
+        /// </summary>
+        public static string HeaderPlaylists {
+            get {
+                return ResourceManager.GetString("HeaderPlaylists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to recordings.
         /// </summary>
         public static string HeaderRecordings {
@@ -732,6 +750,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string LabelAddToFavourites {
             get {
                 return ResourceManager.GetString("LabelAddToFavourites", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add to playlist.
+        /// </summary>
+        public static string LabelAddToPlaylist {
+            get {
+                return ResourceManager.GetString("LabelAddToPlaylist", resourceCulture);
             }
         }
         
@@ -1605,6 +1632,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string LabelRunningTime {
             get {
                 return ResourceManager.GetString("LabelRunningTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string LabelSave {
+            get {
+                return ResourceManager.GetString("LabelSave", resourceCulture);
             }
         }
         

@@ -129,9 +129,6 @@
     <Compile Include="Behaviours\MBSysTray.cs" />
     <Compile Include="Behaviours\OnTextPropertyChangedBehaviour.cs" />
     <Compile Include="Behaviours\PanoramaBackgroundBehaviour.cs" />
-    <Compile Include="Controls\AddToPlaylistControl.xaml.cs">
-      <DependentUpon>AddToPlaylistControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Controls\CustomButton.cs" />
     <Compile Include="Controls\CustomHyperlinkButton.cs" />
     <Compile Include="Controls\NowPlayingBar.cs" />
@@ -147,7 +144,6 @@
       <DependentUpon>LogFileView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\MediaBrowserLogo.cs" />
-    <Compile Include="Controls\PlaylistWindow.cs" />
     <Compile Include="Controls\ProfileBox.cs" />
     <Compile Include="Controls\ScheduledRecording.cs" />
     <Compile Include="Controls\ScrollableTextBlock.cs" />
@@ -368,6 +364,9 @@
     <Compile Include="Views\NowPlayingView.xaml.cs">
       <DependentUpon>NowPlayingView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Playlists\AddToPlaylistView.xaml.cs">
+      <DependentUpon>AddToPlaylistView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Playlists\PlaylistView.xaml.cs">
       <DependentUpon>PlaylistView.xaml</DependentUpon>
     </Compile>
@@ -492,10 +491,6 @@
     <Content Include="Toolkit.Content\ApplicationBar.Check.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Delete.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Select.png" />
-    <Page Include="Controls\AddToPlaylistControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Controls\LockScreenCollage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -649,6 +644,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\NowPlayingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Playlists\AddToPlaylistView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

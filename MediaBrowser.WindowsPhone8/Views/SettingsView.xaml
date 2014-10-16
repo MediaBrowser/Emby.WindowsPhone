@@ -255,7 +255,7 @@
                     <controls:CustomButton Margin="0,12,0,0"
                                            Content="{Binding LocalizedResources.LabelConnect, Source={StaticResource LocalizedStrings}}"
                                            TapCommand="{Binding Settings.TestConnectionCommand, Source={StaticResource Locator}}"
-                                           Style="{StaticResource ConnectButtonStyle}" />
+                                           Style="{StaticResource HeroButtonStyle}" />
                     <controls:CustomButton Content="{Binding LocalizedResources.LabelFindServer, Source={StaticResource LocalizedStrings}}"
                                            TapCommand="{Binding Main.NavigateToAPage, Source={StaticResource Locator}}"
                                            CommandParameter="/Views/FindServerView.xaml" />

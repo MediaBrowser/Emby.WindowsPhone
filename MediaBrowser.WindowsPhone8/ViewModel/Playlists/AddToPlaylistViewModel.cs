@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Command;
@@ -6,6 +7,7 @@ using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Net;
+using MediaBrowser.Model.Playlists;
 using MediaBrowser.Model.Querying;
 using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Model;
@@ -26,6 +28,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Playlists
         private readonly IExtendedApiClient _apiClient;
 
         private bool _playlistsLoaded;
+        private BaseItemDto _itemToAdd;
 
         /// <summary>
         /// Initializes a new instance of the AddToPlaylistViewModel class.
@@ -52,17 +55,56 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Playlists
         {
             get
             {
-                return new RelayCommand<BaseItemDto>(item =>
+                return new RelayCommand<BaseItemDto>(async item =>
                 {
-                    if (SelectedPlaylist == null)
+                    if (item == null || !item.SupportsPlaylists)
                     {
+                        if (_navigationService.CanGoBack)
+                        {
+                            _navigationService.GoBack();
+                        }
+
                         return;
+                    }
+
+                    _itemToAdd = item;
+
+                    _navigationService.NavigateTo(Constants.Pages.Playlists.AddToPlaylistView);
+
+                    await LoadPlaylists(false);
+
+                    if (!Playlists.IsNullOrEmpty())
+                    {
+                        SelectedPlaylist = Playlists.First();
                     }
                 });
             }
         }
 
-        public RelayCommand RefreshCommand
+        public RelayCommand SaveToPlaylistCommand
+        {
+            get
+            {
+                return new RelayCommand(async () =>
+                {
+                    if (SelectedPlaylist == null)
+                    {
+                        return;
+                    }
+
+                    if (ShowNewPlaylistName)
+                    {
+                        await CreateNewPlaylist(_itemToAdd);
+                    }
+                    else
+                    {
+                        await AddToExistingPlaylist(_itemToAdd);
+                    }
+                });
+            }
+        }
+
+    public RelayCommand RefreshCommand
         {
             get
             {
@@ -73,7 +115,61 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Playlists
             }
         }
 
-        public async Task LoadPlaylists(bool isRefresh)
+        private async Task CreateNewPlaylist(BaseItemDto item)
+        {
+            var request = new PlaylistCreationRequest
+            {
+                UserId = AuthenticationService.Current.LoggedInUserId,
+                MediaType = item.IsAudio ? "Audio" : "Video",
+                ItemIdList = new List<string>{item.Id},
+                Name = PlaylistName
+            };
+
+            try
+            {
+                var result = await _apiClient.CreatePlaylist(request);
+
+                var playlist = new BaseItemDto
+                {
+                    Name = PlaylistName,
+                    Id = result.Id,
+                    MediaType = request.MediaType
+                };
+
+                Playlists.Add(playlist);
+
+                PlaylistName = string.Empty;
+
+                if (_navigationService.CanGoBack)
+                {
+                    _navigationService.GoBack();
+                }
+            }
+            catch (HttpException ex)
+            {
+                Utils.HandleHttpException(ex, "CreateNewPlaylist()", _navigationService, Log);
+            }
+        }
+
+        private async Task AddToExistingPlaylist(BaseItemDto item)
+        {
+            try
+            {
+                await _apiClient.AddToPlaylist(SelectedPlaylist.Id, new[] {item.Id}, AuthenticationService.Current.LoggedInUserId);
+                PlaylistName = string.Empty;
+
+                if (_navigationService.CanGoBack)
+                {
+                    _navigationService.GoBack();
+                }
+            }
+            catch (HttpException ex)
+            {
+                Utils.HandleHttpException(ex, "AddToExistingPlaylist()", _navigationService, Log);
+            }
+        }
+
+        private async Task LoadPlaylists(bool isRefresh)
         {
             if (!_navigationService.IsNetworkAvailable
                 || (_playlistsLoaded && !isRefresh))
@@ -117,8 +213,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Playlists
             {
                 if (m.Notification.Equals(Constants.Messages.AddToServerPlaylistsMsg))
                 {
-                    IsAddingToPlaylist = true;
                     await LoadPlaylists(false);
+
+                    if (Playlists.Count > 0)
+                    {
+                        SelectedPlaylist = Playlists.First();
+                    }
                 }
             });
         }
