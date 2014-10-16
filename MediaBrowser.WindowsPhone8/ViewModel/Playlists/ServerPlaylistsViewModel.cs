@@ -137,6 +137,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Playlists
                 if (m.Notification.Equals(Constants.Messages.ServerPlaylistChangedMsg))
                 {
                     SelectedPlaylist = m.Sender as BaseItemDto;
+                    PlaylistItems = null;
                     _playlistLoaded = false;
                 }
             });

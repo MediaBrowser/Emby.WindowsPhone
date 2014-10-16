@@ -16,6 +16,7 @@
                 xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
                 xmlns:model="clr-namespace:MediaBrowser.WindowsPhone.Model"
                 xmlns:converters="clr-namespace:MediaBrowser.WindowsPhone.Converters"
+                xmlns:telerikInput="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Input"
                 mc:Ignorable="d ignore"
                 FontFamily="{StaticResource PhoneFontFamilyNormal}"
                 FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -109,35 +110,76 @@
         </DataTemplate>
 
         <DataTemplate x:Key="MovieTemplate">
-            <controls:CustomButton Style="{StaticResource EmptyButtonStyle}"
-                                   Margin="12,0,0,12"
-                                   TapCommand="{Binding ServerPlaylists.ItemTappedCommand, Source={StaticResource Locator}}"
-                                   CommandParameter="{Binding}"
-                                   d:DataContext="{Binding ServerPlaylists.PlaylistItems[0], Source={StaticResource Locator}}">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="100" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-
-                    <coding4Fun:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
-                                           Stretch="Uniform" />
-
-                    <StackPanel Orientation="Vertical"
-                                Grid.Column="1"
-                                VerticalAlignment="Top">
-                        <TextBlock Text="{Binding Name}"
-                                   Style="{StaticResource PhoneTextTitle2Style}"
-                                   Margin="12,0,0,0" />
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding ProductionYear}"
-                                       Style="{StaticResource PhoneTextSubtleStyle}" />
-                            <TextBlock Text="{Binding RunTimeTicks, Converter={StaticResource TicksToTimespanConverter}}"
-                                       Style="{StaticResource PhoneTextSubtleStyle}" />
+            <controls:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                      Margin="12,6,0,6"
+                                      TapCommand="{Binding TvCollection.NavigateToCommand, Source={StaticResource Locator}}"
+                                      CommandParameter="{Binding}">
+                <Grid HorizontalAlignment="Stretch"
+                      d:DataContext="{Binding MovieCollection.Movies[0], Source={StaticResource Locator}}">
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Stretch">
+                        <coding4Fun:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
+                                             Height="95"
+                                             Width="75"
+                                             Stretch="Uniform"
+                                             PlaceholderImageSource="/Images/DefaultVideo.png"
+                                             PlaceholderImageStretch="Uniform"
+                                             VerticalAlignment="Top" />
+                        <StackPanel Orientation="Vertical"
+                                    Height="95">
+                            <TextBlock Text="{Binding Name}"
+                                       Style="{StaticResource HeaderTextStyle}"
+                                       FontSize="{StaticResource PhoneFontSizeMediumLarge}" />
+                            <StackPanel Orientation="Horizontal"
+                                        Margin="0,-6,0,0">
+                                <telerikInput:RadRating Value="{Binding CommunityRating, Converter={StaticResource RatingConverter}}"
+                                                        IsReadOnly="True"
+                                                        ItemShapeHeight="20"
+                                                        Margin="12"
+                                                        ItemShapeWidth="20" />
+                                <StackPanel Orientation="Horizontal"
+                                            Visibility="{Binding CriticRating, Converter={StaticResource NullVisibilityConverter}}">
+                                    <Image Source="{Binding CriticRating, Converter={StaticResource CriticRatingConverter}}"
+                                           Height="25"
+                                           Width="25"
+                                           Stretch="UniformToFill" />
+                                    <TextBlock Text="{Binding CriticRating, StringFormat='\{0\}%'}"
+                                               Style="{StaticResource PhoneTextSubtleStyle}"
+                                               VerticalAlignment="Center"
+                                               Margin="6,0" />
+                                </StackPanel>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal"
+                                        Margin="12,-6,0,0">
+                                <TextBlock Text="{Binding ProductionYear}"
+                                           Style="{StaticResource PhoneTextSubtleStyle}"
+                                           Margin="0,0,12,0" />
+                                <TextBlock Text="{Binding RunTimeTicks, Converter={StaticResource RuntimeConverter}}"
+                                           Style="{StaticResource PhoneTextSubtleStyle}"
+                                           Visibility="{Binding RunTimeTicks, Converter={StaticResource NullVisibilityConverter}}"
+                                           Margin="0,0,12,0" />
+                                <TextBlock Text="{Binding OfficialRating}"
+                                           Style="{StaticResource PhoneTextSubtleStyle}"
+                                           Visibility="{Binding OfficialRating, Converter={StaticResource NullVisibilityConverter}}"
+                                           Margin="0,0,12,0" />
+                                <Image Source="/Images/3d.png"
+                                       Height="35"
+                                       Width="35"
+                                       Visibility="{Binding Video3DFormat, Converter={StaticResource NullVisibilityConverter}}" />
+                            </StackPanel>
                         </StackPanel>
+
                     </StackPanel>
+                    <ProgressBar Value="{Binding Converter={StaticResource AlreadyPlayedConverter}}"
+                                 Style="{StaticResource CircularProgressBarStyle}"
+                                 VerticalAlignment="Bottom"
+                                 Height="60"
+                                 Width="60"
+                                 Tag="20"
+                                 HorizontalAlignment="Right"
+                                 Visibility="{Binding Value, RelativeSource={RelativeSource Self}, Converter={StaticResource GreaterThanVisibilityConverter}, ConverterParameter=0}" />
                 </Grid>
-            </controls:CustomButton>
+            </controls:CustomHyperlinkButton>
         </DataTemplate>
 
         <DataTemplate x:Key="EpisodeTemplate">
