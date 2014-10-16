@@ -2,12 +2,14 @@
 using System.Linq;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Querying;
 using MediaBrowser.Services;
+using MediaBrowser.WindowsPhone.Messaging;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Resources;
 using ScottIsAFool.WindowsPhone.ViewModel;
@@ -125,7 +127,33 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Playlists
             {
                 return new RelayCommand<BaseItemDto>(item =>
                 {
-                    
+                    var message = new VideoMessage(PlaylistItems, item, false);
+                    if (SimpleIoc.Default.GetInstance<VideoPlayerViewModel>() != null)
+                    {
+                        Messenger.Default.Send(message);
+                        _navigationService.NavigateTo(Constants.Pages.VideoPlayerView);
+                    }
+                });
+            }
+        }
+
+        public RelayCommand StartPlaylist
+        {
+            get
+            {
+                return new RelayCommand(() =>
+                {
+                    if (PlaylistItems.IsNullOrEmpty())
+                    {
+                        return;
+                    }
+
+                    var message = new VideoMessage(PlaylistItems, PlaylistItems.First(), false);
+                    if (SimpleIoc.Default.GetInstance<VideoPlayerViewModel>() != null)
+                    {
+                        Messenger.Default.Send(message);
+                        _navigationService.NavigateTo(Constants.Pages.VideoPlayerView);
+                    }
                 });
             }
         }

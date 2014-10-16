@@ -383,7 +383,8 @@
                                             <playerFramework:SkipPreviousButton x:Name="SkipPreviousButton"
                                                                                 Margin="10,0,10,0"
                                                                                 Visibility="{Binding IsSkipPreviousButtonVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}"
-                                                                                ViewModel="{TemplateBinding ViewModel}" />
+                                                                                ViewModel="{TemplateBinding ViewModel}" 
+                                                                                Command="{Binding SkipPreviousCommand}"/>
                                             <playerFramework:RewindButton x:Name="RewindButton"
                                                                           Margin="10,0,10,0"
                                                                           Visibility="{Binding IsRewindButtonVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}"
@@ -410,7 +411,8 @@
                                             <playerFramework:SkipNextButton x:Name="SkipNextButton"
                                                                             Margin="10,0,10,0"
                                                                             Visibility="{Binding IsSkipNextButtonVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}"
-                                                                            ViewModel="{TemplateBinding ViewModel}" />
+                                                                            ViewModel="{TemplateBinding ViewModel}"
+                                                                            Command="{Binding SkipNextCommand}"/>
                                         </StackPanel>
                                     </StackPanel>
                                     <playerFramework:Timeline x:Name="Timeline"
@@ -757,12 +759,12 @@
                                      IsTimeElapsedVisible="True"
                                      IsScrubbingEnabled="True"
                                      IsSeekEnabled="True"
-                                     
+                                     IsSkipNextVisible="{Binding IsPlaylist}"
+                                     IsSkipPreviousVisible="{Binding IsPlaylist}"
                                      CurrentStateChanged="ThePlayer_OnCurrentStateChanged"
                                      StartTime="{Binding StartTime}"
                                      Position="{Binding PlayedVideoDuration, Mode=TwoWay}"
                                      EndTime="{Binding EndTime}"
-                                     AvailableCaptions="{Binding Captions}"
                                      ScrubbingCompleted="thePlayer_ScrubbingCompleted"
                                      Seeked="thePlayer_Seeked"
                                      Style="{StaticResource MediaPlayerStyle1}">

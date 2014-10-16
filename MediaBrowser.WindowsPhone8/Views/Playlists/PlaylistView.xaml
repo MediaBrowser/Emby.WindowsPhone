@@ -112,10 +112,10 @@
         <DataTemplate x:Key="MovieTemplate">
             <controls:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
                                       Margin="12,6,0,6"
-                                      TapCommand="{Binding TvCollection.NavigateToCommand, Source={StaticResource Locator}}"
+                                      TapCommand="{Binding ServerPlaylists.ItemTappedCommand, Source={StaticResource Locator}}"
                                       CommandParameter="{Binding}">
                 <Grid HorizontalAlignment="Stretch"
-                      d:DataContext="{Binding MovieCollection.Movies[0], Source={StaticResource Locator}}">
+                      d:DataContext="{Binding ServerPlaylists.PlaylistItems[0], Source={StaticResource Locator}}">
                     <StackPanel Orientation="Horizontal"
                                 HorizontalAlignment="Stretch">
                         <coding4Fun:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
@@ -254,13 +254,14 @@
                                                        ItemTemplateSelector="{StaticResource PlaylistTemplateSelector}">
                     <telerikPrimitives:RadDataBoundListBox.ListHeaderTemplate>
                         <DataTemplate>
-                            <Grid>
+                            <Grid d:DataContext="{Binding ServerPlaylists.SelectedPlaylist, Source={StaticResource Locator}}">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="180" />
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
 
-                                <controls:CustomButton Style="{StaticResource EmptyButtonStyle}">
+                                <controls:CustomButton Style="{StaticResource EmptyButtonStyle}"
+                                                       TapCommand="{Binding ServerPlaylists.StartPlaylist, Source={StaticResource Locator}}">
                                     <Grid>
                                         <coding4Fun:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
                                                                Stretch="Uniform"

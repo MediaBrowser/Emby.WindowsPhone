@@ -1,4 +1,5 @@
-﻿using GalaSoft.MvvmLight.Messaging;
+﻿using System.Collections.Generic;
+using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.LiveTv;
 using MediaBrowser.WindowsPhone.Model;
@@ -7,6 +8,14 @@ namespace MediaBrowser.WindowsPhone.Messaging
 {
     public class VideoMessage : MessageBase
     {
+        public VideoMessage(List<BaseItemDto> playlist, BaseItemDto firstItem, bool isResume)
+        {
+            VideoPlaylists = playlist;
+            VideoItem = firstItem;
+            IsResume = isResume;
+            PlayerSourceType = PlayerSourceType.Playlist;
+        }
+
         public VideoMessage(BaseItemDto item, bool isResume, long? resumeTicks = null)
         {
             VideoItem = item;
@@ -61,6 +70,7 @@ namespace MediaBrowser.WindowsPhone.Messaging
 
         public PlayerSourceType PlayerSourceType { get; set; }
         public BaseItemDto VideoItem { get; set; }
+        public List<BaseItemDto> VideoPlaylists { get; set; }
         public RecordingInfoDto RecordingItem { get; set; }
         public ProgramInfoDto ProgrammeItem { get; set; }
         public bool IsResume { get; set; }

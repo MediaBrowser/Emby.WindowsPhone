@@ -71,7 +71,6 @@ namespace MediaBrowser.WindowsPhone.Views
                 contextMenu.Items.Clear();
             }
 
-#if !WP7
             var playFromMenuItem = new MenuItem
             {
                 Header = AppResources.MenuPlayFrom
@@ -90,7 +89,6 @@ namespace MediaBrowser.WindowsPhone.Views
                 }
             };
             contextMenu.Items.Add(playFromMenuItem);
-#endif
 
             var playFromOnClientMenuItem = new MenuItem
             {
