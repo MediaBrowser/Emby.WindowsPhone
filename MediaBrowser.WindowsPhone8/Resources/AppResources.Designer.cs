@@ -1195,6 +1195,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New playlist.
+        /// </summary>
+        public static string LabelNewPlaylist {
+            get {
+                return ResourceManager.GetString("LabelNewPlaylist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to next up.
         /// </summary>
         public static string LabelNextUp {
@@ -2505,6 +2514,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string SysTrayLoadingCollections {
             get {
                 return ResourceManager.GetString("SysTrayLoadingCollections", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Loading playlists....
+        /// </summary>
+        public static string SysTrayLoadingPlaylists {
+            get {
+                return ResourceManager.GetString("SysTrayLoadingPlaylists", resourceCulture);
             }
         }
         

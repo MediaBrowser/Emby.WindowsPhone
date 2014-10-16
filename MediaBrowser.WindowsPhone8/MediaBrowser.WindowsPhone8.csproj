@@ -129,6 +129,9 @@
     <Compile Include="Behaviours\MBSysTray.cs" />
     <Compile Include="Behaviours\OnTextPropertyChangedBehaviour.cs" />
     <Compile Include="Behaviours\PanoramaBackgroundBehaviour.cs" />
+    <Compile Include="Controls\AddToPlaylistControl.xaml.cs">
+      <DependentUpon>AddToPlaylistControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\CustomButton.cs" />
     <Compile Include="Controls\CustomHyperlinkButton.cs" />
     <Compile Include="Controls\NowPlayingBar.cs" />
@@ -144,6 +147,7 @@
       <DependentUpon>LogFileView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\MediaBrowserLogo.cs" />
+    <Compile Include="Controls\PlaylistWindow.cs" />
     <Compile Include="Controls\ProfileBox.cs" />
     <Compile Include="Controls\ScheduledRecording.cs" />
     <Compile Include="Controls\ScrollableTextBlock.cs" />
@@ -260,6 +264,7 @@
     <Compile Include="ViewModel\MovieViewModel.cs" />
     <Compile Include="ViewModel\MusicViewModel.cs" />
     <Compile Include="ViewModel\NotificationsViewModel.cs" />
+    <Compile Include="ViewModel\Playlists\AddToPlaylistViewModel.cs" />
     <Compile Include="ViewModel\Playlists\ServerPlaylistsViewModel.cs" />
     <Compile Include="ViewModel\PlaylistViewModel.cs" />
     <Compile Include="ViewModel\Predefined\MovieCollectionViewModel.cs" />
@@ -487,6 +492,10 @@
     <Content Include="Toolkit.Content\ApplicationBar.Check.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Delete.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Select.png" />
+    <Page Include="Controls\AddToPlaylistControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\LockScreenCollage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -88,6 +88,14 @@
                                                                 TrackName="{Binding Playlist.NowPlayingItem.TrackName, Source={StaticResource Locator}}"
                                                                 IsPlaying="{Binding Playlist.IsPlaying, Source={StaticResource Locator}}" />
                                     </controls:CustomHyperlinkButton>
+                                    
+                                    <controls:PlaylistWindow Grid.Row="0"
+                                                             Grid.RowSpan="2"
+                                                             PlacementTarget="{Binding ElementName=ClientArea, Mode=OneTime}"
+                                                             DataContext="{Binding AddToPlaylist, Source={StaticResource Locator}}"
+                                                             IsOpen="{Binding IsAddingToPlaylist}">
+                                        
+                                    </controls:PlaylistWindow>
                                 </Grid>
                             </Border>
                         </ControlTemplate>

@@ -986,4 +986,10 @@
   <data name="LabelOneItem" xml:space="preserve">
     <value>1 item</value>
   </data>
+  <data name="LabelNewPlaylist" xml:space="preserve">
+    <value>New playlist</value>
+  </data>
+  <data name="SysTrayLoadingPlaylists" xml:space="preserve">
+    <value>Loading playlists...</value>
+  </data>
 </root>

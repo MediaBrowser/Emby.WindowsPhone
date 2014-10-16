@@ -104,6 +104,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             SimpleIoc.Default.Register<ChannelViewModel>();
             SimpleIoc.Default.Register<ChannelsViewModel>();
             SimpleIoc.Default.Register<ServerPlaylistsViewModel>();
+            SimpleIoc.Default.Register<AddToPlaylistViewModel>();
         }
 
         /// <summary>
@@ -346,6 +347,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public ServerPlaylistsViewModel ServerPlaylists
         {
             get { return ServiceLocator.Current.GetInstance<ServerPlaylistsViewModel>(); }
+        }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
+           "CA1822:MarkMembersAsStatic",
+           Justification = "This non-static member is needed for data binding purposes.")]
+        public AddToPlaylistViewModel AddToPlaylist
+        {
+            get { return ServiceLocator.Current.GetInstance<AddToPlaylistViewModel>(); }
         }
 
         public static TvViewModel GetTvViewModel(string itemId)

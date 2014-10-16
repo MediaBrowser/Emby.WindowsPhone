@@ -91,6 +91,7 @@
             public const string ChangeRecordingGroupingMsg = "ChangeRecordingGroupingMsg";
             public const string ClearNowPlayingMsg = "ClearNowPlayingMsg";
             public const string ServerPlaylistChangedMsg = "ServerPlaylistChangedMsg";
+            public const string AddToServerPlaylistsMsg = "AddToServerPlaylistsMsg";
         }
 
         public class Pages
