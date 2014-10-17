@@ -32,6 +32,9 @@
                                                   IsEnabled="{Binding SelectedItem.CanResume}"
                                                   Command="{Binding Main.ResumeMovieCommand, Source={StaticResource Locator}}"
                                                   CommandParameter="{Binding SelectedItem}" />
+                <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.LabelAddToPlaylist, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                  Command="{Binding AddToPlaylist.AddToPlaylistCommand, Source={StaticResource Locator}}"
+                                                  CommandParameter="{Binding SelectedItem}" />
             </cimbalino:ApplicationBarBehavior.MenuItems>
         </cimbalino:ApplicationBarBehavior>
     </i:Interaction.Behaviors>
@@ -62,7 +65,7 @@
             <!--ContentPanel - place additional content here-->
             <Grid x:Name="ContentPanel"
                   Grid.Row="1"
-                  Margin="12,0">
+                  Margin="0,0">
                 <ScrollViewer>
                     <StackPanel Orientation="Vertical">
                         <mb:CustomButton Style="{StaticResource EmptyButtonStyle}"
@@ -73,7 +76,11 @@
                                          CommandParameter="{Binding SelectedItem}"
                                          Margin="-12,0">
                             <Grid>
-                                <Image Source="{Binding SelectedItem, Converter={StaticResource ImageUrlConverter}, ConverterParameter=episode}" />
+                                <controls:SuperImage Source="{Binding SelectedItem, Converter={StaticResource ImageUrlConverter}, ConverterParameter=episode}"
+                                                       MaxWidth="480"
+                                                       Stretch="UniformToFill"
+                                                       PlaceholderImageSource="/Images/MBBackground.jpg"
+                                                       PlaceholderImageStretch="Uniform" />
 
                                 <mb:PlayButton Visibility="{Binding SelectedItem, Converter={StaticResource CanStreamVisibilityConverter}}"
                                                Height="76" />
@@ -82,7 +89,8 @@
 
                         <TextBlock Text="{Binding SelectedItem.Overview}"
                                    Style="{StaticResource PhoneTextNormalStyle}"
-                                   TextWrapping="Wrap" />
+                                   TextWrapping="Wrap"
+                                   Margin="24,0"/>
                     </StackPanel>
                 </ScrollViewer>
             </Grid>

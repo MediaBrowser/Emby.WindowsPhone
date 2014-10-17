@@ -116,6 +116,13 @@
                                                       VerticalContentAlignment="Top"
                                                       TapCommand="{Binding Search.SearchItemTappedCommand, Source={StaticResource Locator}}"
                                                       CommandParameter="{Binding}">
+                                <toolkit:ContextMenuService.ContextMenu>
+                                    <toolkit:ContextMenu>
+                                        <toolkit:MenuItem Header="{Binding LocalizedResources.LabelAddToPlaylist, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                          Command="{Binding AddToPlaylist.AddToPlaylistCommand, Source={StaticResource Locator}}"
+                                                          CommandParameter="{Binding}" />
+                                    </toolkit:ContextMenu>
+                                </toolkit:ContextMenuService.ContextMenu>
                                 <StackPanel Orientation="Horizontal"
                                             Margin="12,6,0,6">
                                     <Image Source="{Binding Converter={StaticResource ImageUrlConverter}}"

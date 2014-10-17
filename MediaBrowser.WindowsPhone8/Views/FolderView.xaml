@@ -100,6 +100,13 @@
                                          Margin="12,6,0,6"
                                          TapCommand="{Binding Main.NavigateToPage, Source={StaticResource Locator}}"
                                          CommandParameter="{Binding}">
+                            <toolkit:ContextMenuService.ContextMenu>
+                                <toolkit:ContextMenu>
+                                    <toolkit:MenuItem Header="{Binding LocalizedResources.LabelAddToPlaylist, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                        Command="{Binding AddToPlaylist.AddToPlaylistCommand, Source={StaticResource Locator}}"
+                                                        CommandParameter="{Binding}" />
+                                </toolkit:ContextMenu>
+                            </toolkit:ContextMenuService.ContextMenu>
                             <StackPanel Orientation="Horizontal">
                                 <c4F:SuperImage PlaceholderImageSource="/Images/Logo.png"
                                                   Source="{Binding Converter={StaticResource ImageUrlConverter}, ConverterParameter=icon}"

@@ -47,7 +47,9 @@
                                                   CommandParameter="{Binding SelectedMovie}" />
                 <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarPosterLockscreen, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                   Command="{Binding SetPosterAsLockScreenCommand}" />
-
+                <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.LabelAddToPlaylist, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                  Command="{Binding AddToPlaylist.AddToPlaylistCommand, Source={StaticResource Locator}}"
+                                                  CommandParameter="{Binding SelectedMovie}" />
             </cimbalino:ApplicationBarBehavior.MenuItems>
         </cimbalino:ApplicationBarBehavior>
     </i:Interaction.Behaviors>
