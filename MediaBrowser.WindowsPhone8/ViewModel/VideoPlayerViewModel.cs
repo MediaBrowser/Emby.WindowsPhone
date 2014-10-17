@@ -326,6 +326,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             var query = new VideoStreamOptions();
             switch (PlayerSourceType)
             {
+                case PlayerSourceType.Playlist:
                 case PlayerSourceType.Video:
                     if (SelectedItem.VideoType != VideoType.VideoFile)
                     {

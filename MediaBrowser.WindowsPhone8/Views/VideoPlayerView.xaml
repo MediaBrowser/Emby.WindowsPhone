@@ -383,8 +383,8 @@
                                             <playerFramework:SkipPreviousButton x:Name="SkipPreviousButton"
                                                                                 Margin="10,0,10,0"
                                                                                 Visibility="{Binding IsSkipPreviousButtonVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}"
-                                                                                ViewModel="{TemplateBinding ViewModel}" 
-                                                                                Command="{Binding SkipPreviousCommand}"/>
+                                                                                ViewModel="{TemplateBinding ViewModel}"
+                                                                                Command="{Binding Player.SkipPreviousCommand, Source={StaticResource Locator}}" />
                                             <playerFramework:RewindButton x:Name="RewindButton"
                                                                           Margin="10,0,10,0"
                                                                           Visibility="{Binding IsRewindButtonVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}"
@@ -412,7 +412,7 @@
                                                                             Margin="10,0,10,0"
                                                                             Visibility="{Binding IsSkipNextButtonVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}"
                                                                             ViewModel="{TemplateBinding ViewModel}"
-                                                                            Command="{Binding SkipNextCommand}"/>
+                                                                            Command="{Binding Player.SkipNextCommand, Source={StaticResource Locator}}"/>
                                         </StackPanel>
                                     </StackPanel>
                                     <playerFramework:Timeline x:Name="Timeline"
