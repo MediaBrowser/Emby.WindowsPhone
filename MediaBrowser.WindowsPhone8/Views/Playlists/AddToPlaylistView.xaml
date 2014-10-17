@@ -63,7 +63,17 @@
                     <toolkit:ListPicker ItemsSource="{Binding Playlists}"
                                         SelectedItem="{Binding SelectedPlaylist, Mode=TwoWay}"
                                         DisplayMemberPath="Name"
-                                        Header="{Binding LocalizedResources.HeaderPlaylists, Source={StaticResource LocalizedStrings}}" />
+                                        Header="{Binding LocalizedResources.HeaderPlaylists, Source={StaticResource LocalizedStrings}}">
+                        <toolkit:ListPicker.FullModeItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Name}"
+                                           Style="{StaticResource PhoneTextTitle2Style}"
+                                           TextAlignment="Left"
+                                           HorizontalAlignment="Left"
+                                           Margin="0" />
+                            </DataTemplate>
+                        </toolkit:ListPicker.FullModeItemTemplate>
+                    </toolkit:ListPicker>
 
                     <TextBlock Text="{Binding LocalizedResources.HeaderPlaylistName, Source={StaticResource LocalizedStrings}}"
                                Style="{StaticResource PhoneTextSubtleStyle}"
