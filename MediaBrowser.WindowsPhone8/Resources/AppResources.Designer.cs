@@ -754,6 +754,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Adding {0}.
+        /// </summary>
+        public static string LabelAddingXToPlaylist {
+            get {
+                return ResourceManager.GetString("LabelAddingXToPlaylist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add to favourites.
         /// </summary>
         public static string LabelAddToFavourites {
@@ -1740,6 +1749,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string LabelSeasons {
             get {
                 return ResourceManager.GetString("LabelSeasons", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Season {0}.
+        /// </summary>
+        public static string LabelSeasonX {
+            get {
+                return ResourceManager.GetString("LabelSeasonX", resourceCulture);
             }
         }
         

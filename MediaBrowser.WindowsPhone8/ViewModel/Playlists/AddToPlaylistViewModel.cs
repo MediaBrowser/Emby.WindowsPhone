@@ -10,6 +10,7 @@ using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Playlists;
 using MediaBrowser.Model.Querying;
 using MediaBrowser.Services;
+using MediaBrowser.WindowsPhone.Converters;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Resources;
 using ScottIsAFool.WindowsPhone.ViewModel;
@@ -41,6 +42,45 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Playlists
 
         public bool IsAddingToPlaylist { get; set; }
         public string PlaylistName { get; set; }
+        public string AddingText { get; set; }
+
+        public string AddingTo()
+        {
+            if (_listOfItemsToAdd.IsNullOrEmpty())
+            {
+                return string.Empty;
+            }
+
+            if (_listOfItemsToAdd.Count > 1)
+            {
+                var numberOfItems = string.Format(AppResources.LabelMultipleItems, _listOfItemsToAdd.Count);
+                return string.Format(AppResources.LabelAddingXToPlaylist, numberOfItems);
+            }
+
+            var item = _listOfItemsToAdd[0];
+            string text;
+            switch (item.Type)
+            {
+                case "Season":
+                    var season = string.Format(AppResources.LabelSeasonX, item.IndexNumber);
+                    text = string.Format("{0} - {1}", item.SeriesName, season);
+                    break;
+                case "Episode":
+                    var episodeName = new EpisodeNameConverter().Convert(item, typeof (string), null, null).ToString();
+                    text = string.Format("{0} - {1}", item.SeriesName, episodeName);
+                    break;
+                case "Audio":
+                    var artist = string.IsNullOrEmpty(item.AlbumArtist) ? string.Empty : string.Format("{0} - ", item.AlbumArtist);
+                    text = string.Format("{0}{1}", artist, item.Name);
+                    break;
+                default:
+                    text = item.Name;
+                    break;
+            }
+
+            text = string.Format("'{0}'", text);
+            return string.Format(AppResources.LabelAddingXToPlaylist, text);
+        }
 
         public List<BaseItemDto> Playlists { get; set; }
 
@@ -63,16 +103,22 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Playlists
                     }
 
                     _listOfItemsToAdd = new List<BaseItemDto>{item};
-
-                    _navigationService.NavigateTo(Constants.Pages.Playlists.AddToPlaylistView);
-
-                    await LoadPlaylists(false);
-
-                    if (!Playlists.IsNullOrEmpty())
-                    {
-                        SelectedPlaylist = Playlists.First();
-                    }
+                    
+                    await RestOfAddToPlaylist();
                 });
+            }
+        }
+
+        private async Task RestOfAddToPlaylist()
+        {
+            AddingText = AddingTo();
+            _navigationService.NavigateTo(Constants.Pages.Playlists.AddToPlaylistView);
+
+            await LoadPlaylists(false);
+
+            if (!Playlists.IsNullOrEmpty())
+            {
+                SelectedPlaylist = Playlists.First();
             }
         }
 
@@ -90,14 +136,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Playlists
                     var items = list.Where(x => x.SupportsPlaylists).ToList();
                     _listOfItemsToAdd = items;
 
-                    _navigationService.NavigateTo(Constants.Pages.Playlists.AddToPlaylistView);
-
-                    await LoadPlaylists(false);
-
-                    if (!Playlists.IsNullOrEmpty())
-                    {
-                        SelectedPlaylist = Playlists.First();
-                    }
+                    await RestOfAddToPlaylist();
                 });
             }
         } 

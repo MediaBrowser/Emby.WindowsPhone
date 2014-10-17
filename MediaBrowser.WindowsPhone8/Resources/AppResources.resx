@@ -1010,4 +1010,12 @@
   <data name="SysTrayLoadingPlaylists" xml:space="preserve">
     <value>Loading playlists...</value>
   </data>
+  <data name="LabelAddingXToPlaylist" xml:space="preserve">
+    <value>Adding {0}</value>
+    <comment>{0} could be anything from "TV show" to "3 items"</comment>
+  </data>
+  <data name="LabelSeasonX" xml:space="preserve">
+    <value>Season {0}</value>
+    <comment>{0} is the season number</comment>
+  </data>
 </root>
