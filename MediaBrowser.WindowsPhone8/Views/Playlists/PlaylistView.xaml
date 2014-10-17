@@ -45,7 +45,7 @@
             <i:InvokeCommandAction Command="{Binding PlaylistViewLoaded}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
-    
+
     <scott:BasePage.Resources>
         <DataTemplate x:Key="AudioTemplate">
             <controls:CustomButton Style="{StaticResource EmptyButtonStyle}"
@@ -60,7 +60,9 @@
                     </Grid.ColumnDefinitions>
 
                     <coding4Fun:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
-                                           Stretch="Uniform" />
+                                           Stretch="Uniform"
+                                           PlaceholderImageSource="/Images/DefaultAlbumCase.png"
+                                           PlaceholderImageStretch="Uniform" />
 
                     <StackPanel Orientation="Vertical"
                                 Grid.Column="1"
@@ -92,7 +94,9 @@
                     </Grid.ColumnDefinitions>
 
                     <coding4Fun:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
-                                           Stretch="Uniform" />
+                                           Stretch="Uniform"
+                                           PlaceholderImageSource="/Images/DefaultVideo.png"
+                                           PlaceholderImageStretch="Uniform" />
 
                     <StackPanel Orientation="Vertical"
                                 Grid.Column="1"
@@ -111,20 +115,20 @@
 
         <DataTemplate x:Key="MovieTemplate">
             <controls:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                      Margin="12,6,0,6"
-                                      TapCommand="{Binding ServerPlaylists.ItemTappedCommand, Source={StaticResource Locator}}"
-                                      CommandParameter="{Binding}">
+                                            Margin="12,6,0,6"
+                                            TapCommand="{Binding ServerPlaylists.ItemTappedCommand, Source={StaticResource Locator}}"
+                                            CommandParameter="{Binding}">
                 <Grid HorizontalAlignment="Stretch"
                       d:DataContext="{Binding ServerPlaylists.PlaylistItems[0], Source={StaticResource Locator}}">
                     <StackPanel Orientation="Horizontal"
                                 HorizontalAlignment="Stretch">
                         <coding4Fun:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
-                                             Height="95"
-                                             Width="75"
-                                             Stretch="Uniform"
-                                             PlaceholderImageSource="/Images/DefaultVideo.png"
-                                             PlaceholderImageStretch="Uniform"
-                                             VerticalAlignment="Top" />
+                                               Height="95"
+                                               Width="75"
+                                               Stretch="Uniform"
+                                               PlaceholderImageSource="/Images/DefaultVideo.png"
+                                               PlaceholderImageStretch="Uniform"
+                                               VerticalAlignment="Top" />
                         <StackPanel Orientation="Vertical"
                                     Height="95">
                             <TextBlock Text="{Binding Name}"
@@ -190,15 +194,17 @@
                                    d:DataContext="{Binding ServerPlaylists.PlaylistItems[0], Source={StaticResource Locator}}">
                 <Grid>
                     <Grid.Resources>
-                        <converters:EpisodeNameConverter x:Key="EpisodeNameConverter"/>
+                        <converters:EpisodeNameConverter x:Key="EpisodeNameConverter" />
                     </Grid.Resources>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="100" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
-                    <coding4Fun:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
-                                           Stretch="Uniform" />
+                    <coding4Fun:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}, ConverterParameter=episode}"
+                                           Stretch="Uniform"
+                                           PlaceholderImageSource="/Images/MBBackground.jpg"
+                                           PlaceholderImageStretch="Uniform" />
 
                     <StackPanel Orientation="Vertical"
                                 Grid.Column="1"
@@ -223,7 +229,7 @@
                                         Audio="{StaticResource AudioTemplate}"
                                         GenericVideo="{StaticResource GenericVideoTemplate}"
                                         Movie="{StaticResource MovieTemplate}"
-                                        Episode="{StaticResource EpisodeTemplate}"/>
+                                        Episode="{StaticResource EpisodeTemplate}" />
     </scott:BasePage.Resources>
 
     <!--LayoutRoot is the root grid where all page content is placed-->
@@ -272,14 +278,14 @@
                                                              Height="50" />
                                     </Grid>
                                 </controls:CustomButton>
-                                
+
                                 <StackPanel Orientation="Vertical"
                                             Grid.Column="1">
                                     <TextBlock Text="{Binding ServerPlaylists.NumberOfItems, Source={StaticResource Locator}}"
-                                               Style="{StaticResource PhoneTextTitle3Style}"/>
+                                               Style="{StaticResource PhoneTextTitle3Style}" />
                                     <TextBlock Text="{Binding CumulativeRunTimeTicks, Converter={StaticResource RuntimeConverter}}"
                                                Style="{StaticResource PhoneTextTitle3Style}"
-                                               Foreground="{StaticResource PhoneSubtleBrush}"/>
+                                               Foreground="{StaticResource PhoneSubtleBrush}" />
                                 </StackPanel>
                             </Grid>
                         </DataTemplate>
