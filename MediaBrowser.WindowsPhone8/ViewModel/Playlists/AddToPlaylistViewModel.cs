@@ -112,6 +112,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Playlists
         private async Task RestOfAddToPlaylist()
         {
             AddingText = AddingTo();
+            PlaylistName = string.Empty;
             _navigationService.NavigateTo(Constants.Pages.Playlists.AddToPlaylistView);
 
             await LoadPlaylists(false);
