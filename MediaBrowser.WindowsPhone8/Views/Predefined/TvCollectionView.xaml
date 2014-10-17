@@ -9,7 +9,6 @@
                 xmlns:mb="clr-namespace:MediaBrowser.WindowsPhone.Controls"
                 xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
                 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-                
                 xmlns:controls="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
                 xmlns:converters="clr-namespace:MediaBrowser.WindowsPhone.Converters"
                 xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
@@ -42,6 +41,13 @@
                                       Margin="12,6,0,6"
                                       TapCommand="{Binding TvCollection.NavigateToCommand, Source={StaticResource Locator}}"
                                       CommandParameter="{Binding}">
+                <toolkit:ContextMenuService.ContextMenu>
+                    <toolkit:ContextMenu>
+                        <toolkit:MenuItem Header="{Binding LocalizedResources.LabelAddToPlaylist, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                          Command="{Binding AddToPlaylist.AddToPlaylistCommand, Source={StaticResource Locator}}"
+                                          CommandParameter="{Binding}" />
+                    </toolkit:ContextMenu>
+                </toolkit:ContextMenuService.ContextMenu>
                 <StackPanel Orientation="Horizontal">
                     <controls:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
                                          Height="99"
@@ -137,6 +143,9 @@
                                             <toolkit:MenuItem Header="{Binding LocalizedResources.AppBarMarkAsWatched, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                               Command="{Binding TvCollection.MarkAsWatchedCommand, Source={StaticResource Locator}}"
                                                               CommandParameter="{Binding}" />
+                                            <toolkit:MenuItem Header="{Binding LocalizedResources.LabelAddToPlaylist, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                              Command="{Binding AddToPlaylist.AddToPlaylistCommand, Source={StaticResource Locator}}"
+                                                              CommandParameter="{Binding}" />
                                         </toolkit:ContextMenu>
                                     </toolkit:ContextMenuService.ContextMenu>
                                     <StackPanel Orientation="Horizontal"
@@ -175,6 +184,13 @@
                                                           TapCommand="{Binding Main.NavigateToPage, Source={StaticResource Locator}}"
                                                           CommandParameter="{Binding}"
                                                           Margin="12,0,0,12">
+                                    <toolkit:ContextMenuService.ContextMenu>
+                                        <toolkit:ContextMenu>
+                                            <toolkit:MenuItem Header="{Binding LocalizedResources.LabelAddToPlaylist, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                              Command="{Binding AddToPlaylist.AddToPlaylistCommand, Source={StaticResource Locator}}"
+                                                              CommandParameter="{Binding}" />
+                                        </toolkit:ContextMenu>
+                                    </toolkit:ContextMenuService.ContextMenu>
                                     <Grid Height="173">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*" />

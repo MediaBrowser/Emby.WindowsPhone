@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model;
 using MediaBrowser.Model.Dto;
@@ -13,6 +14,7 @@ using MediaBrowser.Model.Querying;
 using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Resources;
+using MediaBrowser.WindowsPhone.ViewModel.Playlists;
 using ScottIsAFool.WindowsPhone;
 using ScottIsAFool.WindowsPhone.ViewModel;
 using INavigationService = MediaBrowser.WindowsPhone.Model.INavigationService;
@@ -409,6 +411,21 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public List<BaseItemDto> AlbumTracks { get; set; }
         public List<Group<BaseItemDto>> SortedTracks { get; set; }
         public List<BaseItemDto> SelectedTracks { get; set; }
+
+        public RelayCommand AddToPlaylistCommand
+        {
+            get
+            {
+                return new RelayCommand(() =>
+                {
+                    var vm = SimpleIoc.Default.GetInstance<AddToPlaylistViewModel>();
+                    if (vm != null)
+                    {
+                        vm.AddMultipleToPlaylist.Execute(SelectedTracks);
+                    }
+                });
+            }
+        }
 
         public RelayCommand ArtistPageLoaded { get; set; }
         public RelayCommand AlbumPageLoaded { get; set; }

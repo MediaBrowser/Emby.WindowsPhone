@@ -88,6 +88,9 @@
                                                       Command="{Binding AddRemoveFavouriteCommand}"
                                                       CommandParameter="{Binding SelectedEpisode}"
                                                       IsEnabled="{Binding CanUpdateFavourites}" />
+                    <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.LabelAddToPlaylist, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                      Command="{Binding AddToPlaylist.AddToPlaylistCommand, Source={StaticResource Locator}}"
+                                                      CommandParameter="{Binding SelectedEpisode}"/>
                     <cimbalino:ApplicationBarMenuItem Text="{Binding SelectedEpisode.UserData.Played, Converter={StaticResource MarkAsWatchedConverter}}"
                                                       Command="{Binding DataContext.MarkAsWatchedEpisodeViewCommand, ElementName=LayoutRoot}"
                                                       CommandParameter="{Binding SelectedEpisode}" />

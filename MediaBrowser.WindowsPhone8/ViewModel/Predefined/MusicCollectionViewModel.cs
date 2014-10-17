@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using Coding4Fun.Toolkit.Controls;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
 using JetBrains.Annotations;
 using MediaBrowser.Model;
@@ -15,6 +16,7 @@ using MediaBrowser.Model.Querying;
 using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Resources;
+using MediaBrowser.WindowsPhone.ViewModel.Playlists;
 using Microsoft.Phone.Shell;
 using Microsoft.Xna.Framework.Media;
 using ScottIsAFool.WindowsPhone;
@@ -120,6 +122,21 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                     }
 
                     SelectedTracks = SelectedTracks.OrderBy(x => x.IndexNumber).ToList();
+                });
+            }
+        }
+
+        public RelayCommand AddToPlaylistCommand
+        {
+            get
+            {
+                return new RelayCommand(() =>
+                {
+                    var vm = SimpleIoc.Default.GetInstance<AddToPlaylistViewModel>();
+                    if (vm != null)
+                    {
+                        vm.AddMultipleToPlaylist.Execute(SelectedTracks);
+                    }
                 });
             }
         }

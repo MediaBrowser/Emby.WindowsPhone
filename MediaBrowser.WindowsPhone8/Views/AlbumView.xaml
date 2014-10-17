@@ -81,11 +81,14 @@
                     <cimbalino:ApplicationBar.MenuItems>
                         <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarAddToNowPlaying, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                           Command="{Binding AddToNowPlayingCommand}"
-                                                          CommandParameter="{Binding SelectedItems, ElementName=MultiSelectList}"
+                                                          IsEnabled="{Binding SelectedTracks.Count, Converter={StaticResource CountToEnabled}, ConverterParameter=delete}" />
+                        <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.LabelAddToPlaylist, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                          Command="{Binding AddToPlaylistCommand}"
                                                           IsEnabled="{Binding SelectedTracks.Count, Converter={StaticResource CountToEnabled}, ConverterParameter=delete}" />
                         <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarNowPlaying, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                           Command="{Binding Main.NavigateToAPage, Source={StaticResource Locator}}"
                                                           CommandParameter="/Views/NowPlayingView.xaml" />
+                        
                     </cimbalino:ApplicationBar.MenuItems>
                 </cimbalino:ApplicationBar>
             </cimbalino:MultiApplicationBarBehavior>
@@ -121,6 +124,13 @@
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal"
                                         Margin="0,0,0,12">
+                                <toolkit:ContextMenuService.ContextMenu>
+                                    <toolkit:ContextMenu>
+                                        <toolkit:MenuItem Header="{Binding LocalizedResources.LabelAddToPlaylist, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                          Command="{Binding AddToPlaylist.AddToPlaylistCommand, Source={StaticResource Locator}}"
+                                                          CommandParameter="{Binding}" />
+                                    </toolkit:ContextMenu>
+                                </toolkit:ContextMenuService.ContextMenu>
                                 <c4F:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
                                                 VerticalAlignment="Top"
                                                 Height="150"

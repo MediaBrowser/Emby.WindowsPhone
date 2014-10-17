@@ -28,7 +28,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Playlists
         private readonly IExtendedApiClient _apiClient;
 
         private bool _playlistsLoaded;
-        private BaseItemDto _itemToAdd;
+        private List<BaseItemDto> _listOfItemsToAdd;
 
         /// <summary>
         /// Initializes a new instance of the AddToPlaylistViewModel class.
@@ -59,15 +59,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Playlists
                 {
                     if (item == null || !item.SupportsPlaylists)
                     {
-                        if (_navigationService.CanGoBack)
-                        {
-                            _navigationService.GoBack();
-                        }
-
                         return;
                     }
 
-                    _itemToAdd = item;
+                    _listOfItemsToAdd = new List<BaseItemDto>{item};
 
                     _navigationService.NavigateTo(Constants.Pages.Playlists.AddToPlaylistView);
 
@@ -80,6 +75,32 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Playlists
                 });
             }
         }
+
+        public RelayCommand<List<BaseItemDto>> AddMultipleToPlaylist
+        {
+            get
+            {
+                return new RelayCommand<List<BaseItemDto>>(async list =>
+                {
+                    if (list.IsNullOrEmpty())
+                    {
+                        return;
+                    }
+
+                    var items = list.Where(x => x.SupportsPlaylists).ToList();
+                    _listOfItemsToAdd = items;
+
+                    _navigationService.NavigateTo(Constants.Pages.Playlists.AddToPlaylistView);
+
+                    await LoadPlaylists(false);
+
+                    if (!Playlists.IsNullOrEmpty())
+                    {
+                        SelectedPlaylist = Playlists.First();
+                    }
+                });
+            }
+        } 
 
         public RelayCommand SaveToPlaylistCommand
         {
@@ -99,11 +120,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Playlists
                             return;
                         }
 
-                        await CreateNewPlaylist(_itemToAdd);
+                        await CreateNewPlaylist(_listOfItemsToAdd);
                     }
                     else
                     {
-                        await AddToExistingPlaylist(_itemToAdd);
+                        await AddToExistingPlaylist(_listOfItemsToAdd);
                     }
                 });
             }
@@ -120,13 +141,13 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Playlists
             }
         }
 
-        private async Task CreateNewPlaylist(BaseItemDto item)
+        private async Task CreateNewPlaylist(List<BaseItemDto> items)
         {
             var request = new PlaylistCreationRequest
             {
                 UserId = AuthenticationService.Current.LoggedInUserId,
-                MediaType = item.IsAudio ? "Audio" : "Video",
-                ItemIdList = new List<string> { item.Id },
+                MediaType = items.Any(x => x.IsAudio) ? "Audio" : "Video",
+                ItemIdList = items.Select(x => x.Id).ToList(),
                 Name = PlaylistName
             };
 
@@ -161,13 +182,13 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Playlists
             SetProgressBar();
         }
 
-        private async Task AddToExistingPlaylist(BaseItemDto item)
+        private async Task AddToExistingPlaylist(IEnumerable<BaseItemDto> items)
         {
             try
             {
                 SetProgressBar(AppResources.SysTrayAddingToPlaylist);
 
-                await _apiClient.AddToPlaylist(SelectedPlaylist.Id, new[] { item.Id }, AuthenticationService.Current.LoggedInUserId);
+                await _apiClient.AddToPlaylist(SelectedPlaylist.Id, items.Select(x => x.Id), AuthenticationService.Current.LoggedInUserId);
                 PlaylistName = string.Empty;
 
                 if (_navigationService.CanGoBack)
