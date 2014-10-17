@@ -11,6 +11,7 @@
                 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
                 xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
                 xmlns:behaviors="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
+                xmlns:behaviours1="clr-namespace:ScottIsAFool.WindowsPhone.Behaviours"
                 mc:Ignorable="d ignore"
                 FontFamily="{StaticResource PhoneFontFamilyNormal}"
                 FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -18,7 +19,7 @@
                 SupportedOrientations="Portrait"
                 Orientation="Portrait"
                 shell:SystemTray.IsVisible="True"
-                shell:SystemTray.Opacity="0.99"
+                shell:SystemTray.Opacity="0"
                 DataContext="{Binding AddToPlaylist, Source={StaticResource Locator}}">
     <i:Interaction.Behaviors>
         <behaviours:MBSysTray IsVisible="{Binding ProgressIsVisible}"
@@ -59,17 +60,24 @@
                 <StackPanel Orientation="Vertical">
                     <toolkit:ListPicker ItemsSource="{Binding Playlists}"
                                         SelectedItem="{Binding SelectedPlaylist, Mode=TwoWay}"
+                                        DisplayMemberPath="Name"
                                         Header="{Binding LocalizedResources.HeaderPlaylists, Source={StaticResource LocalizedStrings}}" />
 
                     <TextBlock Text="{Binding LocalizedResources.HeaderPlaylistName, Source={StaticResource LocalizedStrings}}"
                                Style="{StaticResource PhoneTextSubtleStyle}"
+                               Visibility="{Binding ShowNewPlaylistName, Converter={StaticResource VisibilityConverter}}"
                                Margin="12,12,12,0"/>
-                    <toolkit:PhoneTextBox Text="{Binding PlaylistName}"
+                    <toolkit:PhoneTextBox Text="{Binding PlaylistName, Mode=TwoWay}"
                                           Visibility="{Binding ShowNewPlaylistName, Converter={StaticResource VisibilityConverter}}"
-                                          IsEnabled="{Binding ShowNewPlaylistName}"/>
+                                          IsEnabled="{Binding ShowNewPlaylistName}">
+                        <i:Interaction.Behaviors>
+                            <behaviours1:UpdateTextBindingOnPropertyChanged EnterHitCommand="{Binding SaveToPlaylistCommand}"/>
+                        </i:Interaction.Behaviors>
+                            
+                    </toolkit:PhoneTextBox>
                     <Button Style="{StaticResource HeroButtonStyle}"
                             Content="{Binding LocalizedResources.LabelSave, Source={StaticResource LocalizedStrings}}"
-                            Command="{Binding AddToPlaylistCommand}"
+                            Command="{Binding SaveToPlaylistCommand}"
                             IsEnabled="{Binding ProgressIsVisible, Converter={StaticResource NegativeBooleanConverter}}"/>
                 </StackPanel>
             </Grid>

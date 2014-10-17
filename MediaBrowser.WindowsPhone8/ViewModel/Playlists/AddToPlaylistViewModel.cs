@@ -94,6 +94,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Playlists
 
                     if (ShowNewPlaylistName)
                     {
+                        if (string.IsNullOrEmpty(PlaylistName))
+                        {
+                            return;
+                        }
+
                         await CreateNewPlaylist(_itemToAdd);
                     }
                     else
@@ -104,7 +109,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Playlists
             }
         }
 
-    public RelayCommand RefreshCommand
+        public RelayCommand RefreshCommand
         {
             get
             {
@@ -121,12 +126,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Playlists
             {
                 UserId = AuthenticationService.Current.LoggedInUserId,
                 MediaType = item.IsAudio ? "Audio" : "Video",
-                ItemIdList = new List<string>{item.Id},
+                ItemIdList = new List<string> { item.Id },
                 Name = PlaylistName
             };
 
             try
             {
+                SetProgressBar(AppResources.SysTrayAddingToPlaylist);
+
                 var result = await _apiClient.CreatePlaylist(request);
 
                 var playlist = new BaseItemDto
@@ -148,14 +155,19 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Playlists
             catch (HttpException ex)
             {
                 Utils.HandleHttpException(ex, "CreateNewPlaylist()", _navigationService, Log);
+                App.ShowMessage(AppResources.ErrorAddingToPlaylist);
             }
+
+            SetProgressBar();
         }
 
         private async Task AddToExistingPlaylist(BaseItemDto item)
         {
             try
             {
-                await _apiClient.AddToPlaylist(SelectedPlaylist.Id, new[] {item.Id}, AuthenticationService.Current.LoggedInUserId);
+                SetProgressBar(AppResources.SysTrayAddingToPlaylist);
+
+                await _apiClient.AddToPlaylist(SelectedPlaylist.Id, new[] { item.Id }, AuthenticationService.Current.LoggedInUserId);
                 PlaylistName = string.Empty;
 
                 if (_navigationService.CanGoBack)
@@ -166,7 +178,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Playlists
             catch (HttpException ex)
             {
                 Utils.HandleHttpException(ex, "AddToExistingPlaylist()", _navigationService, Log);
+                App.ShowMessage(AppResources.ErrorAddingToPlaylist);
             }
+
+            SetProgressBar();
         }
 
         private async Task LoadPlaylists(bool isRefresh)
@@ -183,7 +198,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Playlists
                 var query = new ItemQuery
                 {
                     UserId = AuthenticationService.Current.LoggedInUserId,
-                    IncludeItemTypes = new[] {"Playlist"}
+                    IncludeItemTypes = new[] { "Playlist" },
+                    Recursive = true
                 };
 
                 var items = await _apiClient.GetItemsAsync(query);
@@ -191,7 +207,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Playlists
                 if (items != null && !items.Items.IsNullOrEmpty())
                 {
                     var playlists = items.Items.ToList();
-                    playlists.Insert(0, new BaseItemDto {Name = AppResources.LabelNewPlaylist});
+                    playlists.Insert(0, new BaseItemDto { Name = AppResources.LabelNewPlaylist });
 
                     Playlists = playlists;
                     SelectedPlaylist = Playlists.First();

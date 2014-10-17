@@ -986,6 +986,9 @@
   <data name="LabelOneItem" xml:space="preserve">
     <value>1 item</value>
   </data>
+  <data name="ErrorAddingToPlaylist" xml:space="preserve">
+    <value>Error adding to playlist</value>
+  </data>
   <data name="HeaderPlaylistName" xml:space="preserve">
     <value>Playlist name:</value>
   </data>
@@ -1000,6 +1003,9 @@
   </data>
   <data name="LabelSave" xml:space="preserve">
     <value>Save</value>
+  </data>
+  <data name="SysTrayAddingToPlaylist" xml:space="preserve">
+    <value>Adding to playlist...</value>
   </data>
   <data name="SysTrayLoadingPlaylists" xml:space="preserve">
     <value>Loading playlists...</value>

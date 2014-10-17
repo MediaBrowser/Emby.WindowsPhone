@@ -102,6 +102,7 @@ namespace MediaBrowser.WindowsPhone
             // Phone-specific initialization
             InitializePhoneApplication();
 
+            ThemeManager.OverrideOptions = ThemeManagerOverrideOptions.SystemTrayAndApplicationBars;
             ThemeManager.OverrideTheme(Theme.Dark);
             ThemeManager.SetAccentColor(Colors.Green);
             WPLogger.AppVersion = ApplicationManifest.Current.App.Version;

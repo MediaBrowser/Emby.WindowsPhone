@@ -412,6 +412,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error adding to playlist.
+        /// </summary>
+        public static string ErrorAddingToPlaylist {
+            get {
+                return ResourceManager.GetString("ErrorAddingToPlaylist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Connection details are invalid, please try again..
         /// </summary>
         public static string ErrorConnectionDetailsInvalid {
@@ -2181,6 +2190,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string SysTrayAddingToFavourites {
             get {
                 return ResourceManager.GetString("SysTrayAddingToFavourites", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Adding to playlist....
+        /// </summary>
+        public static string SysTrayAddingToPlaylist {
+            get {
+                return ResourceManager.GetString("SysTrayAddingToPlaylist", resourceCulture);
             }
         }
         
