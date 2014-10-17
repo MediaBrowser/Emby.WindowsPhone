@@ -8,7 +8,6 @@
                 mc:Ignorable="d"
                 xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
                 xmlns:scott="clr-namespace:ScottIsAFool.WindowsPhone.Controls;assembly=ScottIsAFool.WindowsPhone"
-                
                 xmlns:controls="clr-namespace:MediaBrowser.WindowsPhone.Controls"
                 xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
                 d:DesignWidth="480"
@@ -19,7 +18,7 @@
                 SupportedOrientations="Portrait"
                 Orientation="Portrait"
                 shell:SystemTray.IsVisible="True"
-                shell:SystemTray.BackgroundColor="Black"
+                shell:SystemTray.Opacity="0"
                 toolkit:TiltEffect.IsTiltEnabled="True"
                 d:DataContext="{Binding Tv, Source={StaticResource Locator}}">
     <i:Interaction.Behaviors>
@@ -56,40 +55,41 @@
 
     <Grid x:Name="LayoutRoot"
           Background="{StaticResource MediaBrowserBackground}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
+        <Grid Margin="0,32,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
 
-        <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel x:Name="TitlePanel"
-                    Grid.Row="0"
-                    Margin="12,17,0,28">
-            <controls:MediaBrowserLogo />
-            <TextBlock x:Name="PageTitle"
-                       Text="{Binding SelectedSeason.Name, Converter={StaticResource StringCaseConverter}}"
-                       Margin="9,-7,0,0"
-                       Style="{StaticResource PhoneTextTitle1Style}" />
-        </StackPanel>
+            <!--TitlePanel contains the name of the application and page title-->
+            <StackPanel x:Name="TitlePanel"
+                        Grid.Row="0"
+                        Margin="12,17,0,28">
+                <controls:MediaBrowserLogo />
+                <TextBlock x:Name="PageTitle"
+                           Text="{Binding SelectedSeason.Name, Converter={StaticResource StringCaseConverter}}"
+                           Margin="9,-7,0,0"
+                           Style="{StaticResource PhoneTextTitle1Style}" />
+            </StackPanel>
 
-        <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel"
-              Grid.Row="1"
-              Margin="12,0,12,0">
-            <scott:PhoneListBox ItemsSource="{Binding Episodes}"
-                                Text="{Binding LocalizedResources.LabelNoEpisodes, Source={StaticResource LocalizedStrings}}"
-                                TextStyle="{StaticResource PhoneTextLargeStyle}"
-                                ItemTemplate="{StaticResource TileItemStyle}">
-                <scott:PhoneListBox.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <toolkit:WrapPanel ItemHeight="200"
-                                           ItemWidth="200"
-                                           Width="420" />
-                    </ItemsPanelTemplate>
-                </scott:PhoneListBox.ItemsPanel>
-            </scott:PhoneListBox>
-        </Grid>
-        <!--<Image Source="/Assets/AlignmentGrid.png"
+            <!--ContentPanel - place additional content here-->
+            <Grid x:Name="ContentPanel"
+                  Grid.Row="1"
+                  Margin="12,0,12,0">
+                <scott:PhoneListBox ItemsSource="{Binding Episodes}"
+                                    Text="{Binding LocalizedResources.LabelNoEpisodes, Source={StaticResource LocalizedStrings}}"
+                                    TextStyle="{StaticResource PhoneTextLargeStyle}"
+                                    ItemTemplate="{StaticResource TileItemStyle}">
+                    <scott:PhoneListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <toolkit:WrapPanel ItemHeight="200"
+                                               ItemWidth="200"
+                                               Width="420" />
+                        </ItemsPanelTemplate>
+                    </scott:PhoneListBox.ItemsPanel>
+                </scott:PhoneListBox>
+            </Grid>
+            <!--<Image Source="/Assets/AlignmentGrid.png"
                VerticalAlignment="Top"
                Height="800"
                Width="480"
@@ -97,6 +97,6 @@
                Grid.Row="0"
                Grid.RowSpan="2"
                IsHitTestVisible="False" />-->
+        </Grid>
     </Grid>
-
 </scott:BasePage>

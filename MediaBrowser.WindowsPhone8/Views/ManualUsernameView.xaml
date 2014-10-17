@@ -18,6 +18,7 @@
                 Orientation="Portrait"
                 mc:Ignorable="d"
                 shell:SystemTray.IsVisible="True"
+                shell:SystemTray.Opacity="0"
                 DataContext="{Binding Profile, Source={StaticResource Locator}}">
     <i:Interaction.Behaviors>
         <behaviours:MBSysTray Text="{Binding ProgressText}"
@@ -27,7 +28,7 @@
             <behaviors:ApplicationBarIconButton Text="{Binding LocalizedResources.AppBarLogin, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                 IconUri="/Icons/appbar.check.rest.png"
                                                 Command="{Binding ManualLoginCommand}"
-                                                IsEnabled="{Binding Text.Length, ElementName=UsernameTextBox, Converter={StaticResource CountToEnabled}, ConverterParameter=delete}"/>
+                                                IsEnabled="{Binding Text.Length, ElementName=UsernameTextBox, Converter={StaticResource CountToEnabled}, ConverterParameter=delete}" />
             <behaviors:ApplicationBarBehavior.MenuItems>
                 <behaviors:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarSettings, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                   Command="{Binding Main.NavigateToAPage, Source={StaticResource Locator}}"
@@ -56,50 +57,51 @@
             </toolkit:NavigationOutTransition.Forward>
         </toolkit:NavigationOutTransition>
     </toolkit:TransitionService.NavigationOutTransition>
-    
+
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot"
           Background="{StaticResource MediaBrowserBackground}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
+        <Grid Margin="0,32,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
 
-        <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel Grid.Row="0"
-                    Margin="12,17,0,28">
-            <mb:MediaBrowserLogo />
-            <TextBlock Text="{Binding LocalizedResources.LabelLogIn, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
-                       Margin="9,-7,0,0"
-                       Style="{StaticResource PhoneTextTitle1Style}" />
-        </StackPanel>
-
-        <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel"
-              Grid.Row="1"
-              Margin="12,0,12,0">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="{Binding LocalizedResources.LabelUsername, Source={StaticResource LocalizedStrings}}"
-                           Style="{StaticResource PhoneTextSubtleStyle}"/>
-                <toolkit:PhoneTextBox Hint="{Binding LocalizedResources.WatermarkEnterUsername, Source={StaticResource LocalizedStrings}}"
-                                      Text="{Binding Username, Mode=TwoWay}"
-                                      x:Name="UsernameTextBox">
-                    <i:Interaction.Behaviors>
-                        <scottBehaviours:UpdateTextBindingOnPropertyChanged />
-                        <behaviours:EnterKeyHandler />
-                    </i:Interaction.Behaviors>
-                </toolkit:PhoneTextBox>
-                <TextBlock Text="{Binding LocalizedResources.LabelPassword, Source={StaticResource LocalizedStrings}}"
-                           Style="{StaticResource PhoneTextSubtleStyle}" />
-                <PasswordBox Password="{Binding Password, Mode=TwoWay}">
-                    <i:Interaction.Behaviors>
-                        <scottBehaviours:UpdatePasswordBindingOnPropertyChanged />
-                        <behaviours:EnterKeyHandler EnterKeyAction="ExecuteCommand"
-                                                     CommandString="ManualLoginCommand"/>
-                    </i:Interaction.Behaviors>
-                </PasswordBox>
+            <!--TitlePanel contains the name of the application and page title-->
+            <StackPanel Grid.Row="0"
+                        Margin="12,17,0,28">
+                <mb:MediaBrowserLogo />
+                <TextBlock Text="{Binding LocalizedResources.LabelLogIn, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                           Margin="9,-7,0,0"
+                           Style="{StaticResource PhoneTextTitle1Style}" />
             </StackPanel>
+
+            <!--ContentPanel - place additional content here-->
+            <Grid x:Name="ContentPanel"
+                  Grid.Row="1"
+                  Margin="12,0,12,0">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="{Binding LocalizedResources.LabelUsername, Source={StaticResource LocalizedStrings}}"
+                               Style="{StaticResource PhoneTextSubtleStyle}" />
+                    <toolkit:PhoneTextBox Hint="{Binding LocalizedResources.WatermarkEnterUsername, Source={StaticResource LocalizedStrings}}"
+                                          Text="{Binding Username, Mode=TwoWay}"
+                                          x:Name="UsernameTextBox">
+                        <i:Interaction.Behaviors>
+                            <scottBehaviours:UpdateTextBindingOnPropertyChanged />
+                            <behaviours:EnterKeyHandler />
+                        </i:Interaction.Behaviors>
+                    </toolkit:PhoneTextBox>
+                    <TextBlock Text="{Binding LocalizedResources.LabelPassword, Source={StaticResource LocalizedStrings}}"
+                               Style="{StaticResource PhoneTextSubtleStyle}" />
+                    <PasswordBox Password="{Binding Password, Mode=TwoWay}">
+                        <i:Interaction.Behaviors>
+                            <scottBehaviours:UpdatePasswordBindingOnPropertyChanged />
+                            <behaviours:EnterKeyHandler EnterKeyAction="ExecuteCommand"
+                                                        CommandString="ManualLoginCommand" />
+                        </i:Interaction.Behaviors>
+                    </PasswordBox>
+                </StackPanel>
+            </Grid>
         </Grid>
     </Grid>
-
 </scott:BasePage>

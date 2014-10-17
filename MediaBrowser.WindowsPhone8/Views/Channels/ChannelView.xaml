@@ -21,7 +21,7 @@
                 SupportedOrientations="Portrait"
                 Orientation="Portrait"
                 shell:SystemTray.IsVisible="True"
-                shell:SystemTray.Opacity="0.99"
+                shell:SystemTray.Opacity="0"
                 d:DataContext="{Binding Channel, Source={StaticResource Locator}}">
     <i:Interaction.Behaviors>
         <behaviours:MBSysTray IsVisible="{Binding ProgressIsVisible}"

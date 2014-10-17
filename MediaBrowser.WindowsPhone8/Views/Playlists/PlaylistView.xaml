@@ -24,7 +24,7 @@
                 SupportedOrientations="Portrait"
                 Orientation="Portrait"
                 shell:SystemTray.IsVisible="True"
-                shell:SystemTray.Opacity="0.99"
+                shell:SystemTray.Opacity="0"
                 toolkit:TiltEffect.IsTiltEnabled="True"
                 DataContext="{Binding ServerPlaylists, Source={StaticResource Locator}}">
     <i:Interaction.Behaviors>

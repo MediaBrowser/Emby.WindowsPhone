@@ -8,7 +8,6 @@
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
                 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-                
                 xmlns:controls="clr-namespace:MediaBrowser.WindowsPhone.Controls"
                 xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
                 FontFamily="{StaticResource PhoneFontFamilyNormal}"
@@ -19,7 +18,7 @@
                 mc:Ignorable="d"
                 DataContext="{Binding Trailer, Source={StaticResource Locator}}"
                 shell:SystemTray.IsVisible="True"
-                shell:SystemTray.BackgroundColor="Black"
+                shell:SystemTray.Opacity="0"
                 toolkit:TiltEffect.IsTiltEnabled="True">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
@@ -35,66 +34,67 @@
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot"
           Background="{StaticResource MediaBrowserBackground}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
+        <Grid Margin="0,32,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
 
-        <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel Grid.Row="0"
-                    Margin="12,17,0,28">
-            <controls:MediaBrowserLogo />
-            <TextBlock Text="{Binding SelectedTrailer.Name, Converter={StaticResource StringCaseConverter}}"
-                       Margin="9,-7,0,0"
-                       Style="{StaticResource PhoneTextTitle1Style}" />
-        </StackPanel>
+            <!--TitlePanel contains the name of the application and page title-->
+            <StackPanel Grid.Row="0"
+                        Margin="12,17,0,28">
+                <controls:MediaBrowserLogo />
+                <TextBlock Text="{Binding SelectedTrailer.Name, Converter={StaticResource StringCaseConverter}}"
+                           Margin="9,-7,0,0"
+                           Style="{StaticResource PhoneTextTitle1Style}" />
+            </StackPanel>
 
-        <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel"
-              Grid.Row="1"
-              Margin="12,0,12,0">
-            <ScrollViewer>
-                <StackPanel Orientation="Vertical">
-                    <Grid Margin="12,0,0,0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="3*" />
-                            <ColumnDefinition Width="5*" />
-                        </Grid.ColumnDefinitions>
-                        <controls:CustomButton Style="{StaticResource EmptyButtonStyle}"
-                                               Grid.Column="0"
-                                               TapCommand="{Binding Main.PlayMovieCommand, Source={StaticResource Locator}}"
-                                               CommandParameter="{Binding SelectedTrailer}"
-                                               VerticalAlignment="Top">
-                            <Grid VerticalAlignment="Top">
-                                <Image Source="{Binding SelectedTrailer, Converter={StaticResource ImageUrlConverter}}"
-                                       Stretch="UniformToFill"
-                                       HorizontalAlignment="Center" />
-                                <controls:PlayButton Height="63"
-                                                     HorizontalAlignment="Center"
-                                                     VerticalAlignment="Center" />
-                            </Grid>
-                        </controls:CustomButton>
-                        <phone:LongListSelector Grid.Column="1"
-                                                Background="Transparent"
-                                                IsHitTestVisible="False"
-                                                ItemsSource="{Binding CastAndCrew}"
-                                                IsGroupingEnabled="True"
-                                                MaxHeight="173">
-                            <phone:LongListSelector.ItemTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding Name}"
-                                               Style="{StaticResource PhoneTextNormalStyle}" />
-                                </DataTemplate>
-                            </phone:LongListSelector.ItemTemplate>
+            <!--ContentPanel - place additional content here-->
+            <Grid x:Name="ContentPanel"
+                  Grid.Row="1"
+                  Margin="12,0,12,0">
+                <ScrollViewer>
+                    <StackPanel Orientation="Vertical">
+                        <Grid Margin="12,0,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="3*" />
+                                <ColumnDefinition Width="5*" />
+                            </Grid.ColumnDefinitions>
+                            <controls:CustomButton Style="{StaticResource EmptyButtonStyle}"
+                                                   Grid.Column="0"
+                                                   TapCommand="{Binding Main.PlayMovieCommand, Source={StaticResource Locator}}"
+                                                   CommandParameter="{Binding SelectedTrailer}"
+                                                   VerticalAlignment="Top">
+                                <Grid VerticalAlignment="Top">
+                                    <Image Source="{Binding SelectedTrailer, Converter={StaticResource ImageUrlConverter}}"
+                                           Stretch="UniformToFill"
+                                           HorizontalAlignment="Center" />
+                                    <controls:PlayButton Height="63"
+                                                         HorizontalAlignment="Center"
+                                                         VerticalAlignment="Center" />
+                                </Grid>
+                            </controls:CustomButton>
+                            <phone:LongListSelector Grid.Column="1"
+                                                    Background="Transparent"
+                                                    IsHitTestVisible="False"
+                                                    ItemsSource="{Binding CastAndCrew}"
+                                                    IsGroupingEnabled="True"
+                                                    MaxHeight="173">
+                                <phone:LongListSelector.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Name}"
+                                                   Style="{StaticResource PhoneTextNormalStyle}" />
+                                    </DataTemplate>
+                                </phone:LongListSelector.ItemTemplate>
 
-                        </phone:LongListSelector>
-                    </Grid>
-                    <TextBlock Text="{Binding SelectedTrailer.Overview}"
-                               Style="{StaticResource PhoneTextNormalStyle}"
-                               TextWrapping="Wrap" />
-                </StackPanel>
-            </ScrollViewer>
+                            </phone:LongListSelector>
+                        </Grid>
+                        <TextBlock Text="{Binding SelectedTrailer.Overview}"
+                                   Style="{StaticResource PhoneTextNormalStyle}"
+                                   TextWrapping="Wrap" />
+                    </StackPanel>
+                </ScrollViewer>
+            </Grid>
         </Grid>
     </Grid>
-
 </scott:BasePage>

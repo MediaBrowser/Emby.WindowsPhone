@@ -22,6 +22,7 @@
                 SupportedOrientations="Portrait"
                 Orientation="Portrait"
                 shell:SystemTray.IsVisible="True"
+                shell:SystemTray.Opacity="0"
                 toolkit:TiltEffect.IsTiltEnabled="True"
                 DataContext="{Binding Search, Source={StaticResource Locator}}">
     <i:Interaction.Behaviors>
@@ -64,74 +65,75 @@
 
     <Grid x:Name="LayoutRoot"
           Background="{StaticResource MediaBrowserBackground}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-
-        <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel x:Name="TitlePanel"
-                    Grid.Row="0"
-                    Margin="12,17,0,28">
-            <mb:MediaBrowserLogo />
-            <TextBlock x:Name="PageTitle"
-                       Text="{Binding LocalizedResources.LabelSearch, Source={StaticResource LocalizedStrings}}"
-                       Margin="9,-7,0,0"
-                       Style="{StaticResource PhoneTextTitle1Style}" />
-        </StackPanel>
-
-        <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel"
-              Grid.Row="1"
-              Margin="12,0,12,0">
+        <Grid Margin="0,32,0,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <StackPanel Orientation="Horizontal"
-                        Grid.Row="0">
-                <TextBox Text="{Binding SearchText, Mode=TwoWay}"
-                         HorizontalAlignment="Stretch"
-                         Width="455"
-                         InputScope="Search">
-                    <i:Interaction.Behaviors>
-                        <behaviours:UpdateTextBindingOnPropertyChanged EnterHitCommand="{Binding DoSearchCommand}" />
-                    </i:Interaction.Behaviors>
-                </TextBox>
+            <!--TitlePanel contains the name of the application and page title-->
+            <StackPanel x:Name="TitlePanel"
+                        Grid.Row="0"
+                        Margin="12,17,0,28">
+                <mb:MediaBrowserLogo />
+                <TextBlock x:Name="PageTitle"
+                           Text="{Binding LocalizedResources.LabelSearch, Source={StaticResource LocalizedStrings}}"
+                           Margin="9,-7,0,0"
+                           Style="{StaticResource PhoneTextTitle1Style}" />
             </StackPanel>
 
-            <phone:LongListSelector Grid.Row="1"
-                                    Background="Transparent"
-                                    ItemsSource="{Binding SearchResults}"
-                                    GroupHeaderTemplate="{StaticResource LLSGroupHeaderTemplateLong}"
-                                    JumpListStyle="{StaticResource LLSGroupItemLongStyle}"
-                                    IsGroupingEnabled="True"
-                                    HideEmptyGroups="True">
-                <phone:LongListSelector.ItemTemplate>
-                    <DataTemplate>
-                        <mb:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                                  VerticalContentAlignment="Top"
-                                                  TapCommand="{Binding Search.SearchItemTappedCommand, Source={StaticResource Locator}}"
-                                                  CommandParameter="{Binding}">
-                            <StackPanel Orientation="Horizontal"
-                                        Margin="12,6,0,6">
-                                <Image Source="{Binding Converter={StaticResource ImageUrlConverter}}"
-                                       Height="100"
-                                       Width="100"
-                                       Stretch="UniformToFill" />
-                                <controls:HeaderAndDetail HeaderText="{Binding Name, Converter={StaticResource StringCaseConverter}, ConverterParameter=false}"
-                                                          HeaderTextStyle="{StaticResource PhoneTextScottStyle}"
-                                                          DetailText="{Binding Type}"
-                                                          DetailTextForeground="{StaticResource PhoneSubtleBrush}"
-                                                          DetailTextStyle="{StaticResource PhoneTextSubtleStyle}"
-                                                          MaxWidth="342" />
-                            </StackPanel>
-                        </mb:CustomHyperlinkButton>
-                    </DataTemplate>
-                </phone:LongListSelector.ItemTemplate>
-            </phone:LongListSelector>
+            <!--ContentPanel - place additional content here-->
+            <Grid x:Name="ContentPanel"
+                  Grid.Row="1"
+                  Margin="12,0,12,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <StackPanel Orientation="Horizontal"
+                            Grid.Row="0">
+                    <TextBox Text="{Binding SearchText, Mode=TwoWay}"
+                             HorizontalAlignment="Stretch"
+                             Width="455"
+                             InputScope="Search">
+                        <i:Interaction.Behaviors>
+                            <behaviours:UpdateTextBindingOnPropertyChanged EnterHitCommand="{Binding DoSearchCommand}" />
+                        </i:Interaction.Behaviors>
+                    </TextBox>
+                </StackPanel>
+
+                <phone:LongListSelector Grid.Row="1"
+                                        Background="Transparent"
+                                        ItemsSource="{Binding SearchResults}"
+                                        GroupHeaderTemplate="{StaticResource LLSGroupHeaderTemplateLong}"
+                                        JumpListStyle="{StaticResource LLSGroupItemLongStyle}"
+                                        IsGroupingEnabled="True"
+                                        HideEmptyGroups="True">
+                    <phone:LongListSelector.ItemTemplate>
+                        <DataTemplate>
+                            <mb:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                                      VerticalContentAlignment="Top"
+                                                      TapCommand="{Binding Search.SearchItemTappedCommand, Source={StaticResource Locator}}"
+                                                      CommandParameter="{Binding}">
+                                <StackPanel Orientation="Horizontal"
+                                            Margin="12,6,0,6">
+                                    <Image Source="{Binding Converter={StaticResource ImageUrlConverter}}"
+                                           Height="100"
+                                           Width="100"
+                                           Stretch="UniformToFill" />
+                                    <controls:HeaderAndDetail HeaderText="{Binding Name, Converter={StaticResource StringCaseConverter}, ConverterParameter=false}"
+                                                              HeaderTextStyle="{StaticResource PhoneTextScottStyle}"
+                                                              DetailText="{Binding Type}"
+                                                              DetailTextForeground="{StaticResource PhoneSubtleBrush}"
+                                                              DetailTextStyle="{StaticResource PhoneTextSubtleStyle}"
+                                                              MaxWidth="342" />
+                                </StackPanel>
+                            </mb:CustomHyperlinkButton>
+                        </DataTemplate>
+                    </phone:LongListSelector.ItemTemplate>
+                </phone:LongListSelector>
+            </Grid>
         </Grid>
     </Grid>
-
 </scott:BasePage>

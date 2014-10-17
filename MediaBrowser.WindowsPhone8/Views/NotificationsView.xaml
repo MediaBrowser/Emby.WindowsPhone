@@ -7,7 +7,6 @@
                 xmlns:scott="clr-namespace:ScottIsAFool.WindowsPhone.Controls;assembly=ScottIsAFool.WindowsPhone"
                 xmlns:controls="clr-namespace:MediaBrowser.WindowsPhone.Controls"
                 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-                
                 xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
                 xmlns:converters="clr-namespace:MediaBrowser.WindowsPhone.Converters"
                 xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
@@ -19,6 +18,7 @@
                 Orientation="Portrait"
                 mc:Ignorable="d"
                 shell:SystemTray.IsVisible="True"
+                shell:SystemTray.Opacity="0"
                 toolkit:TiltEffect.IsTiltEnabled="True"
                 DataContext="{Binding Notifications, Source={StaticResource Locator}}">
     <i:Interaction.Behaviors>
@@ -64,51 +64,52 @@
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot"
           Background="{StaticResource MediaBrowserBackground}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
+        <Grid Margin="0,32,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
 
-        <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel Grid.Row="0"
-                    Margin="12,17,0,28">
-            <controls:MediaBrowserLogo />
-            <TextBlock Text="{Binding LocalizedResources.LabelNotifications, Source={StaticResource LocalizedStrings}}"
-                       Margin="9,-7,0,0"
-                       Style="{StaticResource PhoneTextTitle1Style}" />
-        </StackPanel>
+            <!--TitlePanel contains the name of the application and page title-->
+            <StackPanel Grid.Row="0"
+                        Margin="12,17,0,28">
+                <controls:MediaBrowserLogo />
+                <TextBlock Text="{Binding LocalizedResources.LabelNotifications, Source={StaticResource LocalizedStrings}}"
+                           Margin="9,-7,0,0"
+                           Style="{StaticResource PhoneTextTitle1Style}" />
+            </StackPanel>
 
-        <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel"
-              Grid.Row="1"
-              Margin="0,0,12,0">
-            <phone:LongListSelector ItemsSource="{Binding Notifications}">
-                <phone:LongListSelector.ItemTemplate>
-                    <DataTemplate>
-                        <controls:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                                        TapCommand="{Binding Notifications.NotificationTappedCommand, Source={StaticResource Locator}}"
-                                                        CommandParameter="{Binding}">
-                            <StackPanel Orientation="Horizontal">
-                                <Rectangle Width="12"
-                                           Height="{Binding ActualHeight, ElementName=ContentStack}"
-                                           VerticalAlignment="Top"
-                                           Fill="{Binding Level, Converter={StaticResource NotificationLevelToBrushConverter}}" />
-                                <StackPanel Orientation="Vertical"
-                                            x:Name="ContentStack"
-                                            Margin="0,0,0,12">
-                                    <TextBlock Text="{Binding Description}"
-                                               Style="{StaticResource PhoneTextNormalStyle}"
-                                               Foreground="{Binding IsRead, Converter={StaticResource AccentBrushConverter}}"
-                                               TextWrapping="Wrap" />
-                                    <TextBlock Text="{Binding Date, Converter={StaticResource SimpleDaysAgoConverter}}"
-                                               Style="{StaticResource PhoneTextSubtleStyle}" />
+            <!--ContentPanel - place additional content here-->
+            <Grid x:Name="ContentPanel"
+                  Grid.Row="1"
+                  Margin="0,0,12,0">
+                <phone:LongListSelector ItemsSource="{Binding Notifications}">
+                    <phone:LongListSelector.ItemTemplate>
+                        <DataTemplate>
+                            <controls:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                                            TapCommand="{Binding Notifications.NotificationTappedCommand, Source={StaticResource Locator}}"
+                                                            CommandParameter="{Binding}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Rectangle Width="12"
+                                               Height="{Binding ActualHeight, ElementName=ContentStack}"
+                                               VerticalAlignment="Top"
+                                               Fill="{Binding Level, Converter={StaticResource NotificationLevelToBrushConverter}}" />
+                                    <StackPanel Orientation="Vertical"
+                                                x:Name="ContentStack"
+                                                Margin="0,0,0,12">
+                                        <TextBlock Text="{Binding Description}"
+                                                   Style="{StaticResource PhoneTextNormalStyle}"
+                                                   Foreground="{Binding IsRead, Converter={StaticResource AccentBrushConverter}}"
+                                                   TextWrapping="Wrap" />
+                                        <TextBlock Text="{Binding Date, Converter={StaticResource SimpleDaysAgoConverter}}"
+                                                   Style="{StaticResource PhoneTextSubtleStyle}" />
+                                    </StackPanel>
                                 </StackPanel>
-                            </StackPanel>
-                        </controls:CustomHyperlinkButton>
-                    </DataTemplate>
-                </phone:LongListSelector.ItemTemplate>
-            </phone:LongListSelector>
+                            </controls:CustomHyperlinkButton>
+                        </DataTemplate>
+                    </phone:LongListSelector.ItemTemplate>
+                </phone:LongListSelector>
+            </Grid>
         </Grid>
     </Grid>
-
 </scott:BasePage>

@@ -24,7 +24,6 @@
                 Orientation="Portrait"
                 shell:SystemTray.IsVisible="True"
                 shell:SystemTray.Opacity="0"
-                shell:SystemTray.BackgroundColor="Black"
                 toolkit:TiltEffect.IsTiltEnabled="True"
                 x:Name="PageRoot"
                 d:DataContext="{Binding Movie, Source={StaticResource Locator}}">

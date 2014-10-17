@@ -7,7 +7,6 @@
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:ignore="http://www.ignore.com"
                 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-                
                 xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
                 xmlns:controls="clr-namespace:MediaBrowser.WindowsPhone.Controls"
                 xmlns:c4F="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
@@ -20,6 +19,7 @@
                 SupportedOrientations="Portrait"
                 Orientation="Portrait"
                 shell:SystemTray.IsVisible="True"
+                shell:SystemTray.Opacity="0"
                 DataContext="{Binding Music, Source={StaticResource Locator}}">
     <i:Interaction.Behaviors>
         <behaviours:MBSysTray Text="{Binding ProgressText}"
@@ -90,87 +90,89 @@
                 </cimbalino:ApplicationBar>
             </cimbalino:MultiApplicationBarBehavior>
         </i:Interaction.Behaviors>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
+        <Grid Margin="0,32,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
 
-        <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel x:Name="TitlePanel"
-                    Grid.Row="0"
-                    Margin="12,17,0,28">
-            <controls:MediaBrowserLogo />
-            <TextBlock Text="{Binding SelectedAlbum.Name, Converter={StaticResource StringCaseConverter}}"
-                       Margin="9,-7,0,0"
-                       Style="{StaticResource PhoneTextTitle1Style}" />
-        </StackPanel>
+            <!--TitlePanel contains the name of the application and page title-->
+            <StackPanel x:Name="TitlePanel"
+                        Grid.Row="0"
+                        Margin="12,17,0,28">
+                <controls:MediaBrowserLogo />
+                <TextBlock Text="{Binding SelectedAlbum.Name, Converter={StaticResource StringCaseConverter}}"
+                           Margin="9,-7,0,0"
+                           Style="{StaticResource PhoneTextTitle1Style}" />
+            </StackPanel>
 
-        <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel"
-              Grid.Row="1"
-              Margin="12,0,12,0">
-            <toolkit:LongListMultiSelector ItemsSource="{Binding AlbumTracks}"
-                                           IsGroupingEnabled="False"
-                                           Margin="12,0,0,0"
-                                           ListHeader="{Binding SelectedAlbum}"
-                                           x:Name="MultiSelectList"
-                                           IsSelectionEnabled="{Binding IsInSelectionMode, Mode=TwoWay}"
-                                           SelectionChanged="MultiSelectList_OnSelectionChanged">
-                <toolkit:LongListMultiSelector.ListHeaderTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal"
-                                    Margin="0,0,0,12">
-                            <c4F:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
-                                            VerticalAlignment="Top"
-                                            Height="150"
-                                            Width="150"
-                                            PlaceholderImageStretch="Uniform"
-                                            Stretch="Uniform"
-                                            PlaceholderImageSource="/Images/DefaultAlbumCase.png" />
-                            <StackPanel Orientation="Vertical"
-                                        Margin="0,-6,0,0"
-                                        HorizontalAlignment="Left"
-                                        VerticalAlignment="Top">
-                                <TextBlock Text="{Binding Name}"
-                                           Style="{StaticResource PhoneTextTitle2Style}"
-                                           HorizontalAlignment="Left"
-                                           TextWrapping="Wrap"
-                                           MaxWidth="260" />
-                                <TextBlock Text="{Binding AlbumArtist}"
-                                           HorizontalAlignment="Left"
-                                           Style="{StaticResource PhoneTextSubtleStyle}" />
+            <!--ContentPanel - place additional content here-->
+            <Grid x:Name="ContentPanel"
+                  Grid.Row="1"
+                  Margin="12,0,12,0">
+                <toolkit:LongListMultiSelector ItemsSource="{Binding AlbumTracks}"
+                                               IsGroupingEnabled="False"
+                                               Margin="12,0,0,0"
+                                               ListHeader="{Binding SelectedAlbum}"
+                                               x:Name="MultiSelectList"
+                                               IsSelectionEnabled="{Binding IsInSelectionMode, Mode=TwoWay}"
+                                               SelectionChanged="MultiSelectList_OnSelectionChanged">
+                    <toolkit:LongListMultiSelector.ListHeaderTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal"
+                                        Margin="0,0,0,12">
+                                <c4F:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
+                                                VerticalAlignment="Top"
+                                                Height="150"
+                                                Width="150"
+                                                PlaceholderImageStretch="Uniform"
+                                                Stretch="Uniform"
+                                                PlaceholderImageSource="/Images/DefaultAlbumCase.png" />
+                                <StackPanel Orientation="Vertical"
+                                            Margin="0,-6,0,0"
+                                            HorizontalAlignment="Left"
+                                            VerticalAlignment="Top">
+                                    <TextBlock Text="{Binding Name}"
+                                               Style="{StaticResource PhoneTextTitle2Style}"
+                                               HorizontalAlignment="Left"
+                                               TextWrapping="Wrap"
+                                               MaxWidth="260" />
+                                    <TextBlock Text="{Binding AlbumArtist}"
+                                               HorizontalAlignment="Left"
+                                               Style="{StaticResource PhoneTextSubtleStyle}" />
+                                </StackPanel>
                             </StackPanel>
-                        </StackPanel>
-                    </DataTemplate>
-                </toolkit:LongListMultiSelector.ListHeaderTemplate>
-                <toolkit:LongListMultiSelector.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal"
-                                    Margin="0,0,0,6">
-                            <c4F:RoundButton ImageSource="/Icons/appbar.transport.play.rest.png"
-                                             Margin="-6,0,0,0"
-                                             Command="{Binding Music.PlaySongCommand, Source={StaticResource Locator}}"
-                                             CommandParameter="{Binding}" />
-                            <StackPanel Orientation="Vertical"
-                                        Margin="0,-12,0,0">
-                                <TextBlock Text="{Binding Name}"
-                                           Style="{StaticResource PhoneTextTitle2Style}" />
-                                <TextBlock Text="{Binding RunTimeTicks, Converter={StaticResource TicksToTimespanConverter}}"
-                                           Style="{StaticResource PhoneTextSubtleStyle}" />
+                        </DataTemplate>
+                    </toolkit:LongListMultiSelector.ListHeaderTemplate>
+                    <toolkit:LongListMultiSelector.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal"
+                                        Margin="0,0,0,6">
+                                <c4F:RoundButton ImageSource="/Icons/appbar.transport.play.rest.png"
+                                                 Margin="-6,0,0,0"
+                                                 Command="{Binding Music.PlaySongCommand, Source={StaticResource Locator}}"
+                                                 CommandParameter="{Binding}" />
+                                <StackPanel Orientation="Vertical"
+                                            Margin="0,-12,0,0">
+                                    <TextBlock Text="{Binding Name}"
+                                               Style="{StaticResource PhoneTextTitle2Style}" />
+                                    <TextBlock Text="{Binding RunTimeTicks, Converter={StaticResource TicksToTimespanConverter}}"
+                                               Style="{StaticResource PhoneTextSubtleStyle}" />
+                                </StackPanel>
                             </StackPanel>
-                        </StackPanel>
-                    </DataTemplate>
-                </toolkit:LongListMultiSelector.ItemTemplate>
-            </toolkit:LongListMultiSelector>
-        </Grid>
+                        </DataTemplate>
+                    </toolkit:LongListMultiSelector.ItemTemplate>
+                </toolkit:LongListMultiSelector>
+            </Grid>
 
-        <!--Uncomment to see an alignment grid to help ensure your controls are
+            <!--Uncomment to see an alignment grid to help ensure your controls are
             aligned on common boundaries.  The image has a top margin of -32px to
             account for the System Tray. Set this to 0 (or remove the margin altogether)
             if the System Tray is hidden.
 
             Before shipping remove this XAML and the image itself.-->
-        <!--<Image Source="/Assets/AlignmentGrid.png" VerticalAlignment="Top" Height="800" Width="480" Margin="0,-32,0,0" Grid.Row="0" Grid.RowSpan="2" IsHitTestVisible="False" />-->
+            <!--<Image Source="/Assets/AlignmentGrid.png" VerticalAlignment="Top" Height="800" Width="480" Margin="0,-32,0,0" Grid.Row="0" Grid.RowSpan="2" IsHitTestVisible="False" />-->
+        </Grid>
     </Grid>
 
 </scott:BasePage>
