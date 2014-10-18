@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-using MediaBrowser.ApiInteraction.WebSocket;
+using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Net;
 using WebSocket4Net;
 using WebSocketState = MediaBrowser.Model.Net.WebSocketState;

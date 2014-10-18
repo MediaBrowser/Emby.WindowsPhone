@@ -7,7 +7,7 @@
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:ignore="http://www.ignore.com"
                 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-                xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP8"
+                
                 xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
                 xmlns:c4f="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
                 xmlns:scott="clr-namespace:ScottIsAFool.WindowsPhone.Controls;assembly=ScottIsAFool.WindowsPhone"
@@ -21,6 +21,7 @@
                 SupportedOrientations="Portrait"
                 Orientation="Portrait"
                 shell:SystemTray.IsVisible="True"
+                shell:SystemTray.Opacity="0"
                 toolkit:TiltEffect.IsTiltEnabled="True"
                 DataContext="{Binding Music, Source={StaticResource Locator}}">
     <i:Interaction.Behaviors>
@@ -41,7 +42,7 @@
     </i:Interaction.Behaviors>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
-            <command:EventToCommand Command="{Binding ArtistPageLoaded}" />
+            <i:InvokeCommandAction Command="{Binding ArtistPageLoaded}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
 
@@ -69,7 +70,8 @@
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot"
           Background="{StaticResource MediaBrowserBackground}">
-        <Grid x:Name="GridForBackground">
+        <Grid x:Name="GridForBackground"
+              Margin="0,32,0,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
@@ -89,6 +91,13 @@
                                                      NavigateUri="/Views/AlbumView.xaml"
                                                      TapCommand="{Binding Music.AlbumTapped, Source={StaticResource Locator}}"
                                                      CommandParameter="{Binding}">
+                                        <toolkit:ContextMenuService.ContextMenu>
+                                            <toolkit:ContextMenu>
+                                                <toolkit:MenuItem Header="{Binding LocalizedResources.LabelAddToPlaylist, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                                  Command="{Binding AddToPlaylist.AddToPlaylistCommand, Source={StaticResource Locator}}"
+                                                                  CommandParameter="{Binding}" />
+                                            </toolkit:ContextMenu>
+                                        </toolkit:ContextMenuService.ContextMenu>
                                         <StackPanel Orientation="Horizontal"
                                                     Margin="12,0,0,12">
                                             <Grid Width="150"
@@ -133,6 +142,13 @@
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal"
                                                 Margin="-12,12,0,0">
+                                        <toolkit:ContextMenuService.ContextMenu>
+                                            <toolkit:ContextMenu>
+                                                <toolkit:MenuItem Header="{Binding LocalizedResources.LabelAddToPlaylist, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                                  Command="{Binding AddToPlaylist.AddToPlaylistCommand, Source={StaticResource Locator}}"
+                                                                  CommandParameter="{Binding}" />
+                                            </toolkit:ContextMenu>
+                                        </toolkit:ContextMenuService.ContextMenu>
                                         <c4f:RoundButton ImageSource="/Icons/appbar.transport.play.rest.png"
                                                          Margin="-6,0,0,0"
                                                          Command="{Binding Music.PlaySongCommand, Source={StaticResource Locator}}"

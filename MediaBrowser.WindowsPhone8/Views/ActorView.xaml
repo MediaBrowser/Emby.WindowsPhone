@@ -7,7 +7,6 @@
                 xmlns:scott="clr-namespace:ScottIsAFool.WindowsPhone.Controls;assembly=ScottIsAFool.WindowsPhone"
                 xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
                 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-                xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP8"
                 xmlns:c4F="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
                 xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
                 xmlns:converters="clr-namespace:MediaBrowser.WindowsPhone.Converters"
@@ -30,7 +29,7 @@
     </i:Interaction.Behaviors>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
-            <command:EventToCommand Command="{Binding PageLoadedCommand}" />
+            <i:InvokeCommandAction Command="{Binding PageLoadedCommand}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
 
@@ -65,116 +64,117 @@
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot"
           Background="{StaticResource MediaBrowserBackground}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
+        <Grid Margin="0,32,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
 
-        <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel"
-              Grid.Row="1"
-              Margin="0,32,12,0">
-            <phone:Pivot>
-                <phone:Pivot.Title>
-                    <StackPanel Orientation="Horizontal"
-                                Margin="-12,0,0,0">
-                        <TextBlock x:Name="ApplicationTitle"
-                                   Text="{Binding SelectedPerson.Name, Converter={StaticResource StringToUppercaseConverter}}"
-                                   Margin="12,0,0,0"
-                                   Style="{StaticResource PhoneTextNormalStyle}" />
-                    </StackPanel>
-                </phone:Pivot.Title>
+            <!--ContentPanel - place additional content here-->
+            <Grid x:Name="ContentPanel"
+                  Grid.Row="1"
+                  Margin="0,32,12,0">
+                <phone:Pivot>
+                    <phone:Pivot.Title>
+                        <StackPanel Orientation="Horizontal"
+                                    Margin="-12,0,0,0">
+                            <TextBlock x:Name="ApplicationTitle"
+                                       Text="{Binding SelectedPerson.Name, Converter={StaticResource StringToUppercaseConverter}}"
+                                       Margin="12,0,0,0"
+                                       Style="{StaticResource PhoneTextNormalStyle}" />
+                        </StackPanel>
+                    </phone:Pivot.Title>
 
-                <phone:PivotItem Header="{Binding LocalizedResources.LabelProfile, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
-                    <phone:LongListSelector ItemsSource="{Binding Films}"
-                                            IsGroupingEnabled="True"
-                                            HideEmptyGroups="False"
-                                            GroupHeaderTemplate="{StaticResource LLSGroupHeaderTemplateName}"
-                                            JumpListStyle="{StaticResource LLSGroupItemStyle}"
-                                            ListHeader="{Binding}">
-                        <phone:LongListSelector.ListHeaderTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal"
-                                            toolkit:TiltEffect.SuppressTilt="True">
-                                    <c4F:SuperImage Source="{Binding SelectedPerson, Converter={StaticResource ImageUrlConverter}, ConverterParameter=true}"
-                                                    Width="150"
-                                                    Height="190"
-                                                    PlaceholderImageSource="/Images/default_avatar.png"
-                                                    PlaceholderImageStretch="Uniform"
-                                                    Stretch="UniformToFill"
-                                                    Margin="12,0,0,24" />
-                                    <StackPanel Orientation="Vertical"
-                                                MaxWidth="250">
-                                        <TextBlock Text="{Binding SelectedActor.PremiereDate, Converter={StaticResource DateTimeConverter}, StringFormat='Born: \{0\}'}"
-                                                   Style="{StaticResource PhoneTextNormalStyle}" />
-                                        <TextBlock Text="{Binding SelectedActor.ProductionLocations, Converter={StaticResource LocationConverter}}"
-                                                   Style="{StaticResource PhoneTextNormalStyle}"
-                                                   TextWrapping="Wrap" />
-                                        <TextBlock Text="{Binding SelectedActor.EndDate, Converter={StaticResource DateTimeConverter}, StringFormat='Died: \{0\}'}"
-                                                   Style="{StaticResource PhoneTextNormalStyle}"
-                                                   Visibility="{Binding SelectedActor.EndDate, Converter={StaticResource NullVisibilityConverter}}" />
-                                    </StackPanel>
-                                </StackPanel>
-                            </DataTemplate>
-                        </phone:LongListSelector.ListHeaderTemplate>
-                        <phone:LongListSelector.ItemTemplate>
-                            <DataTemplate>
-                                <controls:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                                                Margin="12,6,0,6"
-                                                                TapCommand="{Binding DataContext.NavigateToCommand, ElementName=LayoutRoot}"
-                                                                CommandParameter="{Binding}">
+                    <phone:PivotItem Header="{Binding LocalizedResources.LabelProfile, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
+                        <phone:LongListSelector ItemsSource="{Binding Films}"
+                                                IsGroupingEnabled="True"
+                                                HideEmptyGroups="False"
+                                                GroupHeaderTemplate="{StaticResource LLSGroupHeaderTemplateName}"
+                                                JumpListStyle="{StaticResource LLSGroupItemStyle}"
+                                                ListHeader="{Binding}">
+                            <phone:LongListSelector.ListHeaderTemplate>
+                                <DataTemplate>
                                     <StackPanel Orientation="Horizontal"
-                                                d:DataContext="{Binding Actor.SelectedActor, Source={StaticResource Locator}}">
-                                        <c4F:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
-                                                        MaxHeight="95"
-                                                        Width="75"
-                                                        Stretch="Uniform"
-                                                        PlaceholderImageSource="/Images/DefaultVideo.png"
+                                                toolkit:TiltEffect.SuppressTilt="True">
+                                        <c4F:SuperImage Source="{Binding SelectedPerson, Converter={StaticResource ImageUrlConverter}, ConverterParameter=true}"
+                                                        Width="150"
+                                                        Height="190"
+                                                        PlaceholderImageSource="/Images/default_avatar.png"
                                                         PlaceholderImageStretch="Uniform"
-                                                        VerticalAlignment="Top" />
-                                        <StackPanel Orientation="Vertical">
-                                            <TextBlock Text="{Binding Name, Converter={StaticResource StringToUppercaseConverter}}"
-                                                       Style="{StaticResource HeaderTextStyle}"
-                                                       FontSize="{StaticResource PhoneFontSizeMediumLarge}" />
-                                            <TextBlock Text="{Binding Converter={StaticResource RoleConverter}}"
+                                                        Stretch="UniformToFill"
+                                                        Margin="12,0,0,24" />
+                                        <StackPanel Orientation="Vertical"
+                                                    MaxWidth="250">
+                                            <TextBlock Text="{Binding SelectedActor.PremiereDate, Converter={StaticResource DateTimeConverter}, StringFormat='Born: \{0\}'}"
+                                                       Style="{StaticResource PhoneTextNormalStyle}" />
+                                            <TextBlock Text="{Binding SelectedActor.ProductionLocations, Converter={StaticResource LocationConverter}}"
                                                        Style="{StaticResource PhoneTextNormalStyle}"
-                                                       Foreground="{StaticResource PhoneAccentBrush}"
-                                                       Visibility="{Binding Path=Text, RelativeSource={RelativeSource Self}, Converter={StaticResource NullVisibilityConverter}}" />
-                                            <StackPanel Orientation="Horizontal"
-                                                        Margin="12,0,0,0">
-                                                <TextBlock Text="{Binding ProductionYear}"
-                                                           Style="{StaticResource PhoneTextSubtleStyle}"
-                                                           Margin="0,0,12,0" />
-                                                <TextBlock Text="{Binding RunTimeTicks, Converter={StaticResource RuntimeConverter}}"
-                                                           Style="{StaticResource PhoneTextSubtleStyle}"
-                                                           Visibility="{Binding RunTimeTicks, Converter={StaticResource NullVisibilityConverter}}"
-                                                           Margin="0,0,12,0" />
-                                                <TextBlock Text="{Binding OfficialRating}"
-                                                           Style="{StaticResource PhoneTextSubtleStyle}"
-                                                           Visibility="{Binding OfficialRating, Converter={StaticResource NullVisibilityConverter}}"
-                                                           Margin="0,0,12,0" />
-                                                <Image Source="/Images/3d.png"
-                                                       Height="35"
-                                                       Width="35"
-                                                       Visibility="{Binding Video3DFormat, Converter={StaticResource NullVisibilityConverter}}" />
-                                            </StackPanel>
+                                                       TextWrapping="Wrap" />
+                                            <TextBlock Text="{Binding SelectedActor.EndDate, Converter={StaticResource DateTimeConverter}, StringFormat='Died: \{0\}'}"
+                                                       Style="{StaticResource PhoneTextNormalStyle}"
+                                                       Visibility="{Binding SelectedActor.EndDate, Converter={StaticResource NullVisibilityConverter}}" />
                                         </StackPanel>
                                     </StackPanel>
-                                </controls:CustomHyperlinkButton>
-                            </DataTemplate>
-                        </phone:LongListSelector.ItemTemplate>
-                    </phone:LongListSelector>
-                </phone:PivotItem>
+                                </DataTemplate>
+                            </phone:LongListSelector.ListHeaderTemplate>
+                            <phone:LongListSelector.ItemTemplate>
+                                <DataTemplate>
+                                    <controls:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                                                    Margin="12,6,0,6"
+                                                                    TapCommand="{Binding DataContext.NavigateToCommand, ElementName=LayoutRoot}"
+                                                                    CommandParameter="{Binding}">
+                                        <StackPanel Orientation="Horizontal"
+                                                    d:DataContext="{Binding Actor.SelectedActor, Source={StaticResource Locator}}">
+                                            <c4F:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
+                                                            MaxHeight="95"
+                                                            Width="75"
+                                                            Stretch="Uniform"
+                                                            PlaceholderImageSource="/Images/DefaultVideo.png"
+                                                            PlaceholderImageStretch="Uniform"
+                                                            VerticalAlignment="Top" />
+                                            <StackPanel Orientation="Vertical">
+                                                <TextBlock Text="{Binding Name, Converter={StaticResource StringToUppercaseConverter}}"
+                                                           Style="{StaticResource HeaderTextStyle}"
+                                                           FontSize="{StaticResource PhoneFontSizeMediumLarge}" />
+                                                <TextBlock Text="{Binding Converter={StaticResource RoleConverter}}"
+                                                           Style="{StaticResource PhoneTextNormalStyle}"
+                                                           Foreground="{StaticResource PhoneAccentBrush}"
+                                                           Visibility="{Binding Path=Text, RelativeSource={RelativeSource Self}, Converter={StaticResource NullVisibilityConverter}}" />
+                                                <StackPanel Orientation="Horizontal"
+                                                            Margin="12,0,0,0">
+                                                    <TextBlock Text="{Binding ProductionYear}"
+                                                               Style="{StaticResource PhoneTextSubtleStyle}"
+                                                               Margin="0,0,12,0" />
+                                                    <TextBlock Text="{Binding RunTimeTicks, Converter={StaticResource RuntimeConverter}}"
+                                                               Style="{StaticResource PhoneTextSubtleStyle}"
+                                                               Visibility="{Binding RunTimeTicks, Converter={StaticResource NullVisibilityConverter}}"
+                                                               Margin="0,0,12,0" />
+                                                    <TextBlock Text="{Binding OfficialRating}"
+                                                               Style="{StaticResource PhoneTextSubtleStyle}"
+                                                               Visibility="{Binding OfficialRating, Converter={StaticResource NullVisibilityConverter}}"
+                                                               Margin="0,0,12,0" />
+                                                    <Image Source="/Images/3d.png"
+                                                           Height="35"
+                                                           Width="35"
+                                                           Visibility="{Binding Video3DFormat, Converter={StaticResource NullVisibilityConverter}}" />
+                                                </StackPanel>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </controls:CustomHyperlinkButton>
+                                </DataTemplate>
+                            </phone:LongListSelector.ItemTemplate>
+                        </phone:LongListSelector>
+                    </phone:PivotItem>
 
-                <phone:PivotItem Header="{Binding LocalizedResources.LabelBio, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
-                    <ScrollViewer>
-                        <TextBlock Text="{Binding SelectedActor.Overview}"
-                                   Style="{StaticResource PhoneTextNormalStyle}"
-                                   TextWrapping="Wrap" />
-                    </ScrollViewer>
-                </phone:PivotItem>
-            </phone:Pivot>
+                    <phone:PivotItem Header="{Binding LocalizedResources.LabelBio, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
+                        <ScrollViewer>
+                            <TextBlock Text="{Binding SelectedActor.Overview}"
+                                       Style="{StaticResource PhoneTextNormalStyle}"
+                                       TextWrapping="Wrap" />
+                        </ScrollViewer>
+                    </phone:PivotItem>
+                </phone:Pivot>
+            </Grid>
         </Grid>
     </Grid>
-
 </scott:BasePage>

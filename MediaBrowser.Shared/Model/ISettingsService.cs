@@ -11,7 +11,7 @@ namespace MediaBrowser.Model
         UserDto LoggedInUser { get; }
         ConnectionDetails ConnectionDetails { get; set; }
         ServerConfiguration ServerConfiguration { get; set; }
-        SystemInfo SystemStatus { get; set; }
+        PublicSystemInfo SystemStatus { get; set; }
         LiveTvInfo LiveTvInfo { get; set; }
     }
 }

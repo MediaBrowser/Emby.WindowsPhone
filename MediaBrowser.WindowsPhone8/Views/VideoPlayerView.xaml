@@ -7,7 +7,7 @@
                 xmlns:playerFramework="clr-namespace:Microsoft.PlayerFramework;assembly=Microsoft.PlayerFramework"
                 xmlns:converters="clr-namespace:MediaBrowser.WindowsPhone.Converters"
                 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-                xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP8"
+                
                 xmlns:scott="clr-namespace:ScottIsAFool.WindowsPhone.Controls;assembly=ScottIsAFool.WindowsPhone"
                 xmlns:System="clr-namespace:System;assembly=mscorlib"
                 xmlns:mediaPlayer="clr-namespace:SM.Media.MediaPlayer;assembly=SM.Media.MediaPlayer.WP8"
@@ -383,7 +383,8 @@
                                             <playerFramework:SkipPreviousButton x:Name="SkipPreviousButton"
                                                                                 Margin="10,0,10,0"
                                                                                 Visibility="{Binding IsSkipPreviousButtonVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}"
-                                                                                ViewModel="{TemplateBinding ViewModel}" />
+                                                                                ViewModel="{TemplateBinding ViewModel}"
+                                                                                Command="{Binding Player.SkipPreviousCommand, Source={StaticResource Locator}}" />
                                             <playerFramework:RewindButton x:Name="RewindButton"
                                                                           Margin="10,0,10,0"
                                                                           Visibility="{Binding IsRewindButtonVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}"
@@ -410,7 +411,8 @@
                                             <playerFramework:SkipNextButton x:Name="SkipNextButton"
                                                                             Margin="10,0,10,0"
                                                                             Visibility="{Binding IsSkipNextButtonVisible, Converter={StaticResource VisibleIfConverter}, RelativeSource={RelativeSource TemplatedParent}}"
-                                                                            ViewModel="{TemplateBinding ViewModel}" />
+                                                                            ViewModel="{TemplateBinding ViewModel}"
+                                                                            Command="{Binding Player.SkipNextCommand, Source={StaticResource Locator}}"/>
                                         </StackPanel>
                                     </StackPanel>
                                     <playerFramework:Timeline x:Name="Timeline"
@@ -737,7 +739,7 @@
     </scott:BasePage.DataContext>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
-            <command:EventToCommand Command="{Binding VideoPageLoaded}" />
+            <i:InvokeCommandAction Command="{Binding VideoPageLoaded}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
 
@@ -757,12 +759,12 @@
                                      IsTimeElapsedVisible="True"
                                      IsScrubbingEnabled="True"
                                      IsSeekEnabled="True"
-                                     
+                                     IsSkipNextVisible="{Binding IsPlaylist}"
+                                     IsSkipPreviousVisible="{Binding IsPlaylist}"
                                      CurrentStateChanged="ThePlayer_OnCurrentStateChanged"
                                      StartTime="{Binding StartTime}"
                                      Position="{Binding PlayedVideoDuration, Mode=TwoWay}"
                                      EndTime="{Binding EndTime}"
-                                     AvailableCaptions="{Binding Captions}"
                                      ScrubbingCompleted="thePlayer_ScrubbingCompleted"
                                      Seeked="thePlayer_Seeked"
                                      Style="{StaticResource MediaPlayerStyle1}">

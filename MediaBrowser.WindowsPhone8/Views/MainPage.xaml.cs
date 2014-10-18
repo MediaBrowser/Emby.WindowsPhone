@@ -1,4 +1,4 @@
-﻿namespace MediaBrowser.WindowsPhone
+﻿namespace MediaBrowser.WindowsPhone.Views
 {
     public partial class MainPage
     {
@@ -8,6 +8,4 @@
             InitializeComponent();            
         }
     }
-
-    
 }

@@ -5,21 +5,12 @@
                     xmlns:converters="clr-namespace:MediaBrowser.WindowsPhone.Converters"
                     xmlns:cimbalino="clr-namespace:Cimbalino.Phone.Toolkit.Converters;assembly=Cimbalino.Phone.Toolkit"
                     xmlns:progress="clr-namespace:MediaBrowser.WindowsPhone.Progress"
-                    xmlns:local="clr-namespace:MediaBrowser.WindowsPhone.Controls">
+                    xmlns:local="clr-namespace:MediaBrowser.WindowsPhone.Controls"
+                    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit">
     <!-- Resource dictionary entries should be defined here. -->
-
-    <LinearGradientBrush SpreadMethod="Reflect"
-                         ColorInterpolationMode="SRgbLinearInterpolation"
-                         StartPoint="0,0"
-                         EndPoint="0,1"
-                         x:Key="MediaBrowserBackground">
-        <GradientStop Color="#ff000000"
-                      Offset="0" />
-        <GradientStop Color="#ff333333"
-                      Offset=".5" />
-        <GradientStop Color="#ff000000"
-                      Offset="1" />
-    </LinearGradientBrush>
+    
+    <SolidColorBrush x:Key="MediaBrowserBackground"
+                     Color="#2F2F2F"/>
 
     <Color x:Key="SecondaryAccentColor">#224568</Color>
     <SolidColorBrush x:Key="SecondaryAccentColorBrush"
@@ -212,6 +203,13 @@
         <local:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
                                      TapCommand="{Binding Main.NavigateToPage, Source={StaticResource Locator}}"
                                      CommandParameter="{Binding}">
+            <toolkit:ContextMenuService.ContextMenu>
+                <toolkit:ContextMenu>
+                    <toolkit:MenuItem Header="{Binding LocalizedResources.LabelAddToPlaylist, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                      Command="{Binding AddToPlaylist.AddToPlaylistCommand, Source={StaticResource Locator}}"
+                                      CommandParameter="{Binding}" />
+                </toolkit:ContextMenu>
+            </toolkit:ContextMenuService.ContextMenu>
             <StackPanel Orientation="Vertical">
                 <Grid MaxWidth="173">
                     <controls:SuperImage PlaceholderImageSource="/Images/Logo.png"
@@ -301,7 +299,7 @@
         </StackPanel>
     </DataTemplate>
 
-    <Style x:Key="ConnectButtonStyle"
+    <Style x:Key="HeroButtonStyle"
            TargetType="Button">
         <Setter Property="Background"
                 Value="Green" />

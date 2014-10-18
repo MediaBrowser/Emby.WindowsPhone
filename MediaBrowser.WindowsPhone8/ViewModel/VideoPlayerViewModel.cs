@@ -85,6 +85,60 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             get { return PlayerSourceType == PlayerSourceType.Programme || (SelectedItem != null && SelectedItem.Type.ToLower().Equals("channelvideoitem")); }
         }
 
+        public IList<BaseItemDto> PlaylistItems { get; set; }
+
+        public bool IsPlaylist
+        {
+            get { return PlaylistItems != null; }
+        }
+
+        public RelayCommand SkipNextCommand
+        {
+            get
+            {
+                return new RelayCommand(() =>
+                {
+                    if (!IsPlaylist || PlaylistItems.Count <= 1)
+                    {
+                        return;
+                    }
+
+                    var currentIndex = PlaylistItems.IndexOf(SelectedItem);
+                    if (currentIndex < 0 || currentIndex == PlaylistItems.Count - 1)
+                    {
+                        return;
+                    }
+
+                    SelectedItem = PlaylistItems[currentIndex + 1];
+
+                    InitiatePlayback(false).ConfigureAwait(false);
+                });
+            }
+        }
+
+        public RelayCommand SkipPreviousCommand
+        {
+            get
+            {
+                return new RelayCommand(() =>
+                {
+                    if (!IsPlaylist || PlaylistItems.Count <= 1)
+                    {
+                        return;
+                    }
+
+                    var currentIndex = PlaylistItems.IndexOf(SelectedItem);
+                    if (currentIndex <= 0)
+                    {
+                        return;
+                    }
+
+                    SelectedItem = PlaylistItems[currentIndex - 1];
+                    InitiatePlayback(false).ConfigureAwait(false);
+                });
+            }
+        }
+
         private void SetPlaybackTicks(long totalTicks)
         {
             switch (PlayerSourceType)
@@ -105,6 +159,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             Messenger.Default.Register<VideoMessage>(this, m =>
             {
+                PlaylistItems = null;
                 switch (m.PlayerSourceType)
                 {
                     case PlayerSourceType.Video:
@@ -124,6 +179,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         {
                             ProgrammeItem = m.ProgrammeItem;
                         }
+                        break;
+                    case PlayerSourceType.Playlist:
+                        PlaylistItems = m.VideoPlaylists;
+                        SelectedItem = m.VideoItem;
                         break;
                 }
 
@@ -267,6 +326,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             var query = new VideoStreamOptions();
             switch (PlayerSourceType)
             {
+                case PlayerSourceType.Playlist:
                 case PlayerSourceType.Video:
                     if (SelectedItem.VideoType != VideoType.VideoFile)
                     {

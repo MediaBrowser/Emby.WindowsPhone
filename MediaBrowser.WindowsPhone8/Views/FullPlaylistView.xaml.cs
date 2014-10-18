@@ -1,4 +1,7 @@
-﻿namespace MediaBrowser.WindowsPhone.Views
+﻿using System.Windows.Controls;
+using MediaBrowser.WindowsPhone.ViewModel;
+
+namespace MediaBrowser.WindowsPhone.Views
 {
     /// <summary>
     /// Description for FullPlaylistView.
@@ -26,6 +29,15 @@
             
             PlaylistSelector.IsSelectionEnabled = false;
             e.Cancel = true;
+        }
+
+        private void PlaylistSelector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var vm = DataContext as PlaylistViewModel;
+            if (vm != null)
+            {
+                vm.SelectionChangedCommand.Execute(e);
+            }
         }
     }
 }

@@ -8,10 +8,8 @@ using Cimbalino.Phone.Toolkit.Helpers;
 using Cimbalino.Phone.Toolkit.Services;
 using Coding4Fun.Toolkit.Controls;
 using GalaSoft.MvvmLight.Ioc;
-using MediaBrowser.ApiInteraction.WebSocket;
 using MediaBrowser.Model;
 using MediaBrowser.Services;
-using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Services;
 using MediaBrowser.WindowsPhone.ViewModel;
 using Microsoft.Phone.Controls;
@@ -48,8 +46,6 @@ namespace MediaBrowser.WindowsPhone
         }
 
         public static object SelectedItem { get; set; }
-
-        public static ApiWebSocket WebSocketClient { get; set; }
 
         public static void ShowMessage(string message, string title = "", Action action = null)
         {
@@ -106,6 +102,7 @@ namespace MediaBrowser.WindowsPhone
             // Phone-specific initialization
             InitializePhoneApplication();
 
+            ThemeManager.OverrideOptions = ThemeManagerOverrideOptions.SystemTrayAndApplicationBars;
             ThemeManager.OverrideTheme(Theme.Dark);
             ThemeManager.SetAccentColor(Colors.Green);
             WPLogger.AppVersion = ApplicationManifest.Current.App.Version;

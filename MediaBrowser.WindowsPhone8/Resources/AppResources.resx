@@ -976,4 +976,55 @@
   <data name="TitleChannels" xml:space="preserve">
     <value>Channels</value>
   </data>
+  <data name="LabelMultipleItems" xml:space="preserve">
+    <value>{0} items</value>
+    <comment>{0} is the number of items</comment>
+  </data>
+  <data name="LabelNoItems" xml:space="preserve">
+    <value>No items</value>
+  </data>
+  <data name="LabelOneItem" xml:space="preserve">
+    <value>1 item</value>
+  </data>
+  <data name="ErrorAddingToPlaylist" xml:space="preserve">
+    <value>Error adding to playlist</value>
+  </data>
+  <data name="HeaderPlaylistName" xml:space="preserve">
+    <value>Playlist name:</value>
+  </data>
+  <data name="HeaderPlaylists" xml:space="preserve">
+    <value>Playlist:</value>
+  </data>
+  <data name="LabelAddToPlaylist" xml:space="preserve">
+    <value>Add to playlist</value>
+  </data>
+  <data name="LabelNewPlaylist" xml:space="preserve">
+    <value>New playlist</value>
+  </data>
+  <data name="LabelSave" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="SysTrayAddingToPlaylist" xml:space="preserve">
+    <value>Adding to playlist...</value>
+  </data>
+  <data name="SysTrayLoadingPlaylists" xml:space="preserve">
+    <value>Loading playlists...</value>
+  </data>
+  <data name="LabelAddingXToPlaylist" xml:space="preserve">
+    <value>Adding {0}</value>
+    <comment>{0} could be anything from "TV show" to "3 items"</comment>
+  </data>
+  <data name="LabelSeasonX" xml:space="preserve">
+    <value>Season {0}</value>
+    <comment>{0} is the season number</comment>
+  </data>
+  <data name="MenuRemoveFromPlaylist" xml:space="preserve">
+    <value>remove from playlist</value>
+  </data>
+  <data name="SysTrayDeleting" xml:space="preserve">
+    <value>Deleting...</value>
+  </data>
+  <data name="SysTrayRemoving" xml:space="preserve">
+    <value>Removing...</value>
+  </data>
 </root>

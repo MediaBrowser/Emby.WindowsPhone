@@ -4,6 +4,7 @@
     {
         Video,
         Recording,
-        Programme
+        Programme,
+        Playlist
     }
 }

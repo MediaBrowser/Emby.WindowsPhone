@@ -412,6 +412,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error adding to playlist.
+        /// </summary>
+        public static string ErrorAddingToPlaylist {
+            get {
+                return ResourceManager.GetString("ErrorAddingToPlaylist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Connection details are invalid, please try again..
         /// </summary>
         public static string ErrorConnectionDetailsInvalid {
@@ -673,6 +682,24 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Playlist name:.
+        /// </summary>
+        public static string HeaderPlaylistName {
+            get {
+                return ResourceManager.GetString("HeaderPlaylistName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Playlist:.
+        /// </summary>
+        public static string HeaderPlaylists {
+            get {
+                return ResourceManager.GetString("HeaderPlaylists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to recordings.
         /// </summary>
         public static string HeaderRecordings {
@@ -727,11 +754,29 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Adding {0}.
+        /// </summary>
+        public static string LabelAddingXToPlaylist {
+            get {
+                return ResourceManager.GetString("LabelAddingXToPlaylist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add to favourites.
         /// </summary>
         public static string LabelAddToFavourites {
             get {
                 return ResourceManager.GetString("LabelAddToFavourites", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add to playlist.
+        /// </summary>
+        public static string LabelAddToPlaylist {
+            get {
+                return ResourceManager.GetString("LabelAddToPlaylist", resourceCulture);
             }
         }
         
@@ -1168,6 +1213,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} items.
+        /// </summary>
+        public static string LabelMultipleItems {
+            get {
+                return ResourceManager.GetString("LabelMultipleItems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Music.
         /// </summary>
         public static string LabelMusic {
@@ -1182,6 +1236,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string LabelNew {
             get {
                 return ResourceManager.GetString("LabelNew", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New playlist.
+        /// </summary>
+        public static string LabelNewPlaylist {
+            get {
+                return ResourceManager.GetString("LabelNewPlaylist", resourceCulture);
             }
         }
         
@@ -1218,6 +1281,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string LabelNoFoldersFound {
             get {
                 return ResourceManager.GetString("LabelNoFoldersFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No items.
+        /// </summary>
+        public static string LabelNoItems {
+            get {
+                return ResourceManager.GetString("LabelNoItems", resourceCulture);
             }
         }
         
@@ -1272,6 +1344,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string LabelNowPlaying {
             get {
                 return ResourceManager.GetString("LabelNowPlaying", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1 item.
+        /// </summary>
+        public static string LabelOneItem {
+            get {
+                return ResourceManager.GetString("LabelOneItem", resourceCulture);
             }
         }
         
@@ -1573,6 +1654,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string LabelSave {
+            get {
+                return ResourceManager.GetString("LabelSave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Any channel.
         /// </summary>
         public static string LabelScheduleAnyChannel {
@@ -1659,6 +1749,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string LabelSeasons {
             get {
                 return ResourceManager.GetString("LabelSeasons", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Season {0}.
+        /// </summary>
+        public static string LabelSeasonX {
+            get {
+                return ResourceManager.GetString("LabelSeasonX", resourceCulture);
             }
         }
         
@@ -1942,6 +2041,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to remove from playlist.
+        /// </summary>
+        public static string MenuRemoveFromPlaylist {
+            get {
+                return ResourceManager.GetString("MenuRemoveFromPlaylist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Are you sure?.
         /// </summary>
         public static string MessageAreYouSureTitle {
@@ -2113,6 +2221,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Adding to playlist....
+        /// </summary>
+        public static string SysTrayAddingToPlaylist {
+            get {
+                return ResourceManager.GetString("SysTrayAddingToPlaylist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Authenticating....
         /// </summary>
         public static string SysTrayAuthenticating {
@@ -2154,6 +2271,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string SysTrayCheckingConnection {
             get {
                 return ResourceManager.GetString("SysTrayCheckingConnection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deleting....
+        /// </summary>
+        public static string SysTrayDeleting {
+            get {
+                return ResourceManager.GetString("SysTrayDeleting", resourceCulture);
             }
         }
         
@@ -2482,6 +2608,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Loading playlists....
+        /// </summary>
+        public static string SysTrayLoadingPlaylists {
+            get {
+                return ResourceManager.GetString("SysTrayLoadingPlaylists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Loading programmes....
         /// </summary>
         public static string SysTrayLoadingProgrammes {
@@ -2523,6 +2658,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string SysTrayRegrouping {
             get {
                 return ResourceManager.GetString("SysTrayRegrouping", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Removing....
+        /// </summary>
+        public static string SysTrayRemoving {
+            get {
+                return ResourceManager.GetString("SysTrayRemoving", resourceCulture);
             }
         }
         

@@ -14,7 +14,7 @@
                 Orientation="Portrait"
                 mc:Ignorable="d"
                 shell:SystemTray.IsVisible="True"
-                shell:SystemTray.Opacity="0.99"
+                shell:SystemTray.Opacity="0"
                 DataContext="{Binding Notifications, Source={StaticResource Locator}}">
 
     <toolkit:TransitionService.NavigationInTransition>
@@ -75,5 +75,4 @@
             </Grid>
         </Grid>
     </Grid>
-
 </scott:BasePage>

@@ -10,7 +10,6 @@
                 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
                 xmlns:scott="clr-namespace:ScottIsAFool.WindowsPhone.Controls;assembly=ScottIsAFool.WindowsPhone"
                 xmlns:controls="clr-namespace:MediaBrowser.WindowsPhone.Controls"
-                xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP8"
                 xmlns:behaviors="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
                 xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
                 mc:Ignorable="d ignore"
@@ -22,7 +21,7 @@
                 SupportedOrientations="Portrait"
                 Orientation="Portrait"
                 shell:SystemTray.IsVisible="True"
-                shell:SystemTray.BackgroundColor="Black"
+                shell:SystemTray.Opacity="0"
                 toolkit:TiltEffect.IsTiltEnabled="True"
                 DataContext="{Binding Profile, Source={StaticResource Locator}}">
     <i:Interaction.Behaviors>
@@ -40,7 +39,7 @@
     </i:Interaction.Behaviors>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
-            <command:EventToCommand Command="{Binding ChooseProfilePageLoaded}" />
+            <i:InvokeCommandAction Command="{Binding ChooseProfilePageLoaded}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
 
@@ -67,50 +66,51 @@
 
     <Grid x:Name="LayoutRoot"
           Background="{StaticResource MediaBrowserBackground}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
+        <Grid Margin="0,32,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
 
-        <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel x:Name="TitlePanel"
-                    Grid.Row="0"
-                    Margin="12,17,0,28">
-            <controls:MediaBrowserLogo />
-            <TextBlock x:Name="PageTitle"
-                       Text="{Binding LocalizedResources.LabelProfiles, Source={StaticResource LocalizedStrings}}"
-                       Margin="9,-7,0,0"
-                       Style="{StaticResource PhoneTextTitle1Style}" />
-        </StackPanel>
+            <!--TitlePanel contains the name of the application and page title-->
+            <StackPanel x:Name="TitlePanel"
+                        Grid.Row="0"
+                        Margin="12,17,0,28">
+                <controls:MediaBrowserLogo />
+                <TextBlock x:Name="PageTitle"
+                           Text="{Binding LocalizedResources.LabelProfiles, Source={StaticResource LocalizedStrings}}"
+                           Margin="9,-7,0,0"
+                           Style="{StaticResource PhoneTextTitle1Style}" />
+            </StackPanel>
 
-        <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel"
-              Grid.Row="1"
-              Margin="12,0,0,0">
-            <phone:LongListSelector ItemsSource="{Binding Profiles}"
-                                    Margin="12,0,0,0">
-                <phone:LongListSelector.ListFooter>
-                    <StackPanel Orientation="Vertical"
-                                Margin="0,12">
-                        <TextBlock Text="{Binding LocalizedResources.LabelProfileNotListed, Source={StaticResource LocalizedStrings}}"
-                                   Style="{StaticResource PhoneTextNormalStyle}"
-                                   Margin="0" />
-                        <controls:CustomHyperlinkButton Content="{Binding LocalizedResources.LabelManuallyLogin, Source={StaticResource LocalizedStrings}}"
-                                                        HorizontalContentAlignment="Left"
-                                                        NavigateUri="/Views/ManualUsernameView.xaml"
-                                                        Margin="-12,0,0,0"
-                                                        Foreground="{StaticResource PhoneAccentBrush}" />
-                    </StackPanel>
-                </phone:LongListSelector.ListFooter>
-                <phone:LongListSelector.ItemTemplate>
-                    <DataTemplate>
-                        <controls:ProfileBox Profile="{Binding}"
-                                             Margin="0,12,0,0"
-                                             LoginCommand="{Binding Profile.LoginCommand, Source={StaticResource Locator}}" />
-                    </DataTemplate>
-                </phone:LongListSelector.ItemTemplate>
-            </phone:LongListSelector>
+            <!--ContentPanel - place additional content here-->
+            <Grid x:Name="ContentPanel"
+                  Grid.Row="1"
+                  Margin="12,0,0,0">
+                <phone:LongListSelector ItemsSource="{Binding Profiles}"
+                                        Margin="12,0,0,0">
+                    <phone:LongListSelector.ListFooter>
+                        <StackPanel Orientation="Vertical"
+                                    Margin="0,12">
+                            <TextBlock Text="{Binding LocalizedResources.LabelProfileNotListed, Source={StaticResource LocalizedStrings}}"
+                                       Style="{StaticResource PhoneTextNormalStyle}"
+                                       Margin="0" />
+                            <controls:CustomHyperlinkButton Content="{Binding LocalizedResources.LabelManuallyLogin, Source={StaticResource LocalizedStrings}}"
+                                                            HorizontalContentAlignment="Left"
+                                                            NavigateUri="/Views/ManualUsernameView.xaml"
+                                                            Margin="-12,0,0,0"
+                                                            Foreground="{StaticResource PhoneAccentBrush}" />
+                        </StackPanel>
+                    </phone:LongListSelector.ListFooter>
+                    <phone:LongListSelector.ItemTemplate>
+                        <DataTemplate>
+                            <controls:ProfileBox Profile="{Binding}"
+                                                 Margin="0,12,0,0"
+                                                 LoginCommand="{Binding Profile.LoginCommand, Source={StaticResource Locator}}" />
+                        </DataTemplate>
+                    </phone:LongListSelector.ItemTemplate>
+                </phone:LongListSelector>
+            </Grid>
         </Grid>
     </Grid>
-
 </scott:BasePage>

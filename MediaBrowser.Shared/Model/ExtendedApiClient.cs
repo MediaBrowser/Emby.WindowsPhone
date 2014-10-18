@@ -4,15 +4,17 @@ using System.Threading;
 using System.Threading.Tasks;
 using MediaBrowser.ApiInteraction;
 using MediaBrowser.Model;
+using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Logging;
+using MediaBrowser.Model.Session;
 
 namespace MediaBrowser.WindowsPhone.Model
 {
     public class ExtendedApiClient : ApiClient, IExtendedApiClient
     {
-        public ExtendedApiClient(ILogger logger, string serverHostName, string clientName, string deviceName, string deviceId, string appVersion)
-            : base(logger, serverHostName, clientName, deviceName, deviceId, appVersion)
+        public ExtendedApiClient(ILogger logger, string serverHostName, string clientName, IDevice device, string appVersion, ClientCapabilities capabilities)
+            : base(logger, serverHostName, clientName, device, appVersion, capabilities)
         {
         }
 
@@ -66,7 +68,8 @@ namespace MediaBrowser.WindowsPhone.Model
 
             var url = GetApiUrl("PushNotification/Devices/" + deviceId);
 
-            return HttpClient.DeleteAsync(url, CancellationToken.None);
+            //return HttpClient.DeleteAsync(url, CancellationToken.None);
+            return null;
         }
 
         /// <summary>

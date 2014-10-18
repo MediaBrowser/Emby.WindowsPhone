@@ -8,7 +8,6 @@
                 xmlns:mb="clr-namespace:MediaBrowser.WindowsPhone.Controls"
                 xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
                 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-                xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP8"
                 xmlns:controls="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
                 xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
                 xmlns:cimbalino="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
@@ -19,6 +18,7 @@
                 Orientation="Portrait"
                 mc:Ignorable="d"
                 shell:SystemTray.IsVisible="True"
+                shell:SystemTray.Opacity="0"
                 toolkit:TiltEffect.IsTiltEnabled="True"
                 DataContext="{Binding Generic, Source={StaticResource Locator}}">
     <i:Interaction.Behaviors>
@@ -32,59 +32,68 @@
                                                   IsEnabled="{Binding SelectedItem.CanResume}"
                                                   Command="{Binding Main.ResumeMovieCommand, Source={StaticResource Locator}}"
                                                   CommandParameter="{Binding SelectedItem}" />
+                <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.LabelAddToPlaylist, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                  Command="{Binding AddToPlaylist.AddToPlaylistCommand, Source={StaticResource Locator}}"
+                                                  CommandParameter="{Binding SelectedItem}" />
             </cimbalino:ApplicationBarBehavior.MenuItems>
         </cimbalino:ApplicationBarBehavior>
     </i:Interaction.Behaviors>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
-            <command:EventToCommand Command="{Binding PageLoadedCommand}" />
+            <i:InvokeCommandAction Command="{Binding PageLoadedCommand}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot"
           Background="{StaticResource MediaBrowserBackground}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
+        <Grid Margin="0,32,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
 
-        <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel Grid.Row="0"
-                    Margin="12,17,0,28">
-            <mb:MediaBrowserLogo />
-            <TextBlock Text="{Binding SelectedItem.Name, Converter={StaticResource StringToLowercaseConverter}}"
-                       Margin="9,-7,0,0"
-                       Style="{StaticResource PhoneTextTitle1Style}" />
-        </StackPanel>
+            <!--TitlePanel contains the name of the application and page title-->
+            <StackPanel Grid.Row="0"
+                        Margin="12,17,0,28">
+                <mb:MediaBrowserLogo />
+                <TextBlock Text="{Binding SelectedItem.Name, Converter={StaticResource StringToLowercaseConverter}}"
+                           Margin="9,-7,0,0"
+                           Style="{StaticResource PhoneTextTitle1Style}" />
+            </StackPanel>
 
-        <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel"
-              Grid.Row="1"
-              Margin="12,0">
-            <ScrollViewer>
-                <StackPanel Orientation="Vertical">
-                    <mb:CustomButton Style="{StaticResource EmptyButtonStyle}"
-                                     HorizontalContentAlignment="Center"
-                                     VerticalContentAlignment="Center"
-                                     IsHitTestVisible="{Binding SelectedItem, Converter={StaticResource CanStreamConverter}}"
-                                     TapCommand="{Binding Main.PlayMovieCommand, Source={StaticResource Locator}}"
-                                     CommandParameter="{Binding SelectedItem}"
-                                     Margin="-12,0">
-                        <Grid>
-                            <Image Source="{Binding SelectedItem, Converter={StaticResource ImageUrlConverter}, ConverterParameter=episode}" />
+            <!--ContentPanel - place additional content here-->
+            <Grid x:Name="ContentPanel"
+                  Grid.Row="1"
+                  Margin="0,0">
+                <ScrollViewer>
+                    <StackPanel Orientation="Vertical">
+                        <mb:CustomButton Style="{StaticResource EmptyButtonStyle}"
+                                         HorizontalContentAlignment="Center"
+                                         VerticalContentAlignment="Center"
+                                         IsHitTestVisible="{Binding SelectedItem, Converter={StaticResource CanStreamConverter}}"
+                                         TapCommand="{Binding Main.PlayMovieCommand, Source={StaticResource Locator}}"
+                                         CommandParameter="{Binding SelectedItem}"
+                                         Margin="-12,0">
+                            <Grid>
+                                <controls:SuperImage Source="{Binding SelectedItem, Converter={StaticResource ImageUrlConverter}, ConverterParameter=episode}"
+                                                       MaxWidth="480"
+                                                       Stretch="UniformToFill"
+                                                       PlaceholderImageSource="/Images/MBBackground.jpg"
+                                                       PlaceholderImageStretch="Uniform" />
 
-                            <mb:PlayButton Visibility="{Binding SelectedItem, Converter={StaticResource CanStreamVisibilityConverter}}"
-                                           Height="76" />
-                        </Grid>
-                    </mb:CustomButton>
+                                <mb:PlayButton Visibility="{Binding SelectedItem, Converter={StaticResource CanStreamVisibilityConverter}}"
+                                               Height="76" />
+                            </Grid>
+                        </mb:CustomButton>
 
-                    <TextBlock Text="{Binding SelectedItem.Overview}"
-                               Style="{StaticResource PhoneTextNormalStyle}"
-                               TextWrapping="Wrap" />
-                </StackPanel>
-            </ScrollViewer>
+                        <TextBlock Text="{Binding SelectedItem.Overview}"
+                                   Style="{StaticResource PhoneTextNormalStyle}"
+                                   TextWrapping="Wrap"
+                                   Margin="24,0"/>
+                    </StackPanel>
+                </ScrollViewer>
+            </Grid>
         </Grid>
     </Grid>
-
 </scott:BasePage>

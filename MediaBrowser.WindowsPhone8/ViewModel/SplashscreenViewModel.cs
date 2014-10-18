@@ -6,6 +6,7 @@ using Cimbalino.Phone.Toolkit.Services;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
+using MediaBrowser.ApiInteraction;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Resources;
 using Microsoft.Phone.Controls;
@@ -118,11 +119,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                             await Utils.GetServerConfiguration(_apiClient, Log);
 
                             // Server has been found 
-                            if (App.Settings.ServerConfiguration != null)
+                            if (App.Settings.SystemStatus != null)
                             {
                                 await SetPushSettings();
                                 SetProgressBar(AppResources.SysTrayAuthenticating);
-                                Utils.CheckProfiles(_navigationService);
+                                await Utils.CheckProfiles(_navigationService, Log, _apiClient);
                             }
                             else
                             {

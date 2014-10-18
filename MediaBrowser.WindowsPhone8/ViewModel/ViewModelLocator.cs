@@ -1,20 +1,11 @@
-﻿/*
-  In App.xaml:
-  <Application.Resources>
-      <vm:ViewModelLocatorTemplate xmlns:vm="clr-namespace:MediaBrowser.WindowsPhone.ViewModel"
-                                   x:Key="Locator" />
-  </Application.Resources>
-  
-  In the View:
-  DataContext="{Binding Source={StaticResource Locator}, Path=ViewModelName}"
-*/
-
-using Cimbalino.Phone.Toolkit.Services;
+﻿using Cimbalino.Phone.Toolkit.Services;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using MediaBrowser.Design;
+using MediaBrowser.Model.Session;
 using MediaBrowser.WindowsPhone.Design;
 using MediaBrowser.WindowsPhone.ViewModel.Channels;
+using MediaBrowser.WindowsPhone.ViewModel.Playlists;
 using MediaBrowser.WindowsPhone.ViewModel.Predefined;
 using MediaBrowser.WindowsPhone.ViewModel.Remote;
 using Microsoft.Practices.ServiceLocation;
@@ -44,15 +35,21 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
+            var device = new Device
+            {
+                DeviceName = SharedUtils.GetDeviceName(),
+                DeviceId = SharedUtils.GetDeviceId()
+            };
+
             if (ViewModelBase.IsInDesignModeStatic)
             {
                 if (!SimpleIoc.Default.IsRegistered<IExtendedApiClient>())
-                    SimpleIoc.Default.Register<IExtendedApiClient>(() => new ExtendedApiClient(new MBLogger(), "scottisafool.homeserver.com", "Windows Phone", SharedUtils.GetDeviceName(), SharedUtils.GetDeviceId(), ApplicationManifest.Current.App.Version));
-                    //SimpleIoc.Default.Register<IExtendedApiClient, ExtendedApiClientDesign>();
+                    SimpleIoc.Default.Register<IExtendedApiClient>(() => new ExtendedApiClient(new MBLogger(), "scottisafool.homeserver.com", "Windows Phone 8", device, ApplicationManifest.Current.App.Version, new ClientCapabilities { /*SupportsContentUploading = true */}));
+                //SimpleIoc.Default.Register<IExtendedApiClient, ExtendedApiClientDesign>();
                 SimpleIoc.Default.Register<INavigationService, NavigationService>();
                 SimpleIoc.Default.Register<FolderViewModel>();
                 SimpleIoc.Default.Register<MovieViewModel>();
-                if(!SimpleIoc.Default.IsRegistered<IApplicationSettingsService>())
+                if (!SimpleIoc.Default.IsRegistered<IApplicationSettingsService>())
                     SimpleIoc.Default.Register<IApplicationSettingsService, ApplicationSettingsDesignService>();
 
                 if (!SimpleIoc.Default.IsRegistered<IStorageService>())
@@ -63,18 +60,18 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 SimpleIoc.Default.Register<INavigationService, NavigationService>();
                 SimpleIoc.Default.Register<ISettingsService, SettingsService>();
                 if (!SimpleIoc.Default.IsRegistered<IExtendedApiClient>())
-                    SimpleIoc.Default.Register<IExtendedApiClient>(() => new ExtendedApiClient(new MBLogger(), "dummy", "Windows Phone", SharedUtils.GetDeviceName(), SharedUtils.GetDeviceId(), ApplicationManifest.Current.App.Version));
-                
+                    SimpleIoc.Default.Register<IExtendedApiClient>(() => new ExtendedApiClient(new MBLogger(), "dummy", "Windows Phone 8", device, ApplicationManifest.Current.App.Version, new ClientCapabilities{/*SupportsContentUploading = true*/}));
+
                 if (!SimpleIoc.Default.IsRegistered<IUserExtendedPropertiesService>())
                     SimpleIoc.Default.Register<IUserExtendedPropertiesService, UserExtendedPropertiesService>();
-                
+
                 if (!SimpleIoc.Default.IsRegistered<IApplicationSettingsService>())
                     SimpleIoc.Default.Register<IApplicationSettingsService, ApplicationSettingsService>();
 
-                if(!SimpleIoc.Default.IsRegistered<IStorageService>())
+                if (!SimpleIoc.Default.IsRegistered<IStorageService>())
                     SimpleIoc.Default.Register<IStorageService, StorageService>();
 
-                if(!SimpleIoc.Default.IsRegistered<IAsyncStorageService>())
+                if (!SimpleIoc.Default.IsRegistered<IAsyncStorageService>())
                     SimpleIoc.Default.Register<IAsyncStorageService, AsyncStorageService>();
             }
 
@@ -106,6 +103,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             SimpleIoc.Default.Register<RecordedTvViewModel>();
             SimpleIoc.Default.Register<ChannelViewModel>();
             SimpleIoc.Default.Register<ChannelsViewModel>();
+            SimpleIoc.Default.Register<ServerPlaylistsViewModel>();
+            SimpleIoc.Default.Register<AddToPlaylistViewModel>();
         }
 
         /// <summary>
@@ -340,6 +339,22 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public ChannelViewModel Channel
         {
             get { return ServiceLocator.Current.GetInstance<ChannelViewModel>(); }
+        }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
+            "CA1822:MarkMembersAsStatic",
+            Justification = "This non-static member is needed for data binding purposes.")]
+        public ServerPlaylistsViewModel ServerPlaylists
+        {
+            get { return ServiceLocator.Current.GetInstance<ServerPlaylistsViewModel>(); }
+        }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
+           "CA1822:MarkMembersAsStatic",
+           Justification = "This non-static member is needed for data binding purposes.")]
+        public AddToPlaylistViewModel AddToPlaylist
+        {
+            get { return ServiceLocator.Current.GetInstance<AddToPlaylistViewModel>(); }
         }
 
         public static TvViewModel GetTvViewModel(string itemId)

@@ -8,7 +8,7 @@
                 xmlns:scott="clr-namespace:ScottIsAFool.WindowsPhone.Controls;assembly=ScottIsAFool.WindowsPhone"
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP8"
+                
                 xmlns:controls="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
                 xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
                 xmlns:cimbalino="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
@@ -23,7 +23,6 @@
                 Orientation="Portrait"
                 shell:SystemTray.IsVisible="True"
                 shell:SystemTray.Opacity="0"
-                shell:SystemTray.BackgroundColor="{StaticResource PhoneBackgroundColor}"
                 toolkit:TiltEffect.IsTiltEnabled="True"
                 d:DataContext="{Binding Tv, Source={StaticResource Locator}}">
     <i:Interaction.Behaviors>
@@ -42,7 +41,7 @@
     </i:Interaction.Behaviors>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
-            <command:EventToCommand Command="{Binding TvSeriesPageLoaded}" />
+            <i:InvokeCommandAction Command="{Binding TvSeriesPageLoaded}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
 

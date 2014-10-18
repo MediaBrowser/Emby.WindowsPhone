@@ -7,7 +7,6 @@
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
                 xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
-                xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP8"
                 xmlns:cimbalino="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
                 xmlns:controls="clr-namespace:MediaBrowser.WindowsPhone.Controls"
                 xmlns:coding4Fun="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
@@ -23,7 +22,7 @@
                 SupportedOrientations="Portrait"
                 Orientation="Portrait"
                 shell:SystemTray.IsVisible="True"
-                shell:SystemTray.BackgroundColor="Black"
+                shell:SystemTray.Opacity="0"
                 toolkit:TiltEffect.IsTiltEnabled="True"
                 d:DataContext="{Binding Tv, Source={StaticResource Locator}}">
     <i:Interaction.Behaviors>
@@ -33,7 +32,7 @@
     </i:Interaction.Behaviors>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
-            <command:EventToCommand Command="{Binding EpisodePageLoaded}" />
+            <i:InvokeCommandAction Command="{Binding EpisodePageLoaded}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
 
@@ -89,86 +88,91 @@
                                                       Command="{Binding AddRemoveFavouriteCommand}"
                                                       CommandParameter="{Binding SelectedEpisode}"
                                                       IsEnabled="{Binding CanUpdateFavourites}" />
+                    <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.LabelAddToPlaylist, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                      Command="{Binding AddToPlaylist.AddToPlaylistCommand, Source={StaticResource Locator}}"
+                                                      CommandParameter="{Binding SelectedEpisode}"/>
                     <cimbalino:ApplicationBarMenuItem Text="{Binding SelectedEpisode.UserData.Played, Converter={StaticResource MarkAsWatchedConverter}}"
                                                       Command="{Binding DataContext.MarkAsWatchedEpisodeViewCommand, ElementName=LayoutRoot}"
-                                                      CommandParameter="{Binding SelectedEpisode}"/>
+                                                      CommandParameter="{Binding SelectedEpisode}" />
                 </cimbalino:ApplicationBarBehavior.MenuItems>
             </cimbalino:ApplicationBarBehavior>
         </i:Interaction.Behaviors>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
+        <Grid Margin="0,32,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
 
-        <StackPanel x:Name="TitlePanel"
-                    Grid.Row="0"
-                    Margin="12,17,0,28">
-            <controls:MediaBrowserLogo />
-        </StackPanel>
+            <StackPanel x:Name="TitlePanel"
+                        Grid.Row="0"
+                        Margin="12,17,0,28">
+                <controls:MediaBrowserLogo />
+            </StackPanel>
 
-        <telerikPrimitives:RadSlideView ItemsSource="{Binding Episodes}"
-                                        SelectedItem="{Binding SelectedEpisode, Mode=TwoWay}"
-                                        Grid.Row="1">
-            <telerikPrimitives:RadSlideView.ItemTemplate>
-                <DataTemplate>
-                    <Grid d:DataContext="{Binding Tv.Episodes[0], Source={StaticResource Locator}}">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
+            <telerikPrimitives:RadSlideView ItemsSource="{Binding Episodes}"
+                                            SelectedItem="{Binding SelectedEpisode, Mode=TwoWay}"
+                                            Grid.Row="1">
+                <telerikPrimitives:RadSlideView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid d:DataContext="{Binding Tv.Episodes[0], Source={StaticResource Locator}}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
 
-                        <!--TitlePanel contains the name of the application and page title-->
-                        <StackPanel x:Name="TitlePanel"
-                                    Grid.Row="0"
-                                    Margin="12,0,0,28"
-                                    Orientation="Vertical">
-                            <TextBlock x:Name="PageTitle"
-                                       Text="{Binding Name, Converter={StaticResource StringCaseConverter}}"
-                                       Margin="9,-7,0,0"
-                                       Style="{StaticResource PhoneTextTitle1Style}" />
-                            <TextBlock Style="{StaticResource PhoneTextSubtleStyle}"
-                                       Margin="9,0,0,-12">
+                            <!--TitlePanel contains the name of the application and page title-->
+                            <StackPanel x:Name="TitlePanel"
+                                        Grid.Row="0"
+                                        Margin="12,0,0,28"
+                                        Orientation="Vertical">
+                                <TextBlock x:Name="PageTitle"
+                                           Text="{Binding Name, Converter={StaticResource StringCaseConverter}}"
+                                           Margin="9,-7,0,0"
+                                           Style="{StaticResource PhoneTextTitle1Style}" />
+                                <TextBlock Style="{StaticResource PhoneTextSubtleStyle}"
+                                           Margin="9,0,0,-12">
                                 <Run Text="{Binding LocalizedResources.LabelSeries, Source={StaticResource LocalizedStrings}}" />
                                 <Run Text="{Binding ParentIndexNumber, StringFormat='\{0\},'}" />
                                 <Run Text="{Binding LocalizedResources.LabelEpisode, Source={StaticResource LocalizedStrings}}" />
                                 <Run Text="{Binding Converter={StaticResource EpisodeNumberConverter}}" />
-                            </TextBlock>
-                        </StackPanel>
+                                </TextBlock>
+                            </StackPanel>
 
-                        <!--ContentPanel - place additional content here-->
-                        <Grid x:Name="ContentPanel"
-                              Grid.Row="1">
-                            <ScrollViewer>
-                                <StackPanel Orientation="Vertical">
-                                    <controls:CustomButton Style="{StaticResource EmptyButtonStyle}"
-                                                           HorizontalContentAlignment="Center"
-                                                           VerticalContentAlignment="Center"
-                                                           VerticalAlignment="Top"
-                                                           IsHitTestVisible="{Binding Converter={StaticResource CanStreamConverter}}"
-                                                           TapCommand="{Binding Main.PlayMovieCommand, Source={StaticResource Locator}}"
-                                                           CommandParameter="{Binding}"
-                                                           toolkit:TiltEffect.IsTiltEnabled="{Binding DataContext.SelectedEpisode, ElementName=LayoutRoot, Converter={StaticResource VirtualConverter}}">
-                                        <Grid>
-                                            <coding4Fun:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}, ConverterParameter=episode}"
-                                                                   MaxWidth="480"
-                                                                   Stretch="UniformToFill"
-                                                                   PlaceholderImageSource="/Images/MBBackground.jpg"
-                                                                   PlaceholderImageStretch="Uniform" />
-                                            <controls:PlayButton Visibility="{Binding DataContext.SelectedEpisode, ElementName=LayoutRoot, Converter={StaticResource CanStreamVisibilityConverter}}" />
+                            <!--ContentPanel - place additional content here-->
+                            <Grid x:Name="ContentPanel"
+                                  Grid.Row="1">
+                                <ScrollViewer>
+                                    <StackPanel Orientation="Vertical">
+                                        <controls:CustomButton Style="{StaticResource EmptyButtonStyle}"
+                                                               HorizontalContentAlignment="Center"
+                                                               VerticalContentAlignment="Center"
+                                                               VerticalAlignment="Top"
+                                                               IsHitTestVisible="{Binding Converter={StaticResource CanStreamConverter}}"
+                                                               TapCommand="{Binding Main.PlayMovieCommand, Source={StaticResource Locator}}"
+                                                               CommandParameter="{Binding}"
+                                                               toolkit:TiltEffect.IsTiltEnabled="{Binding DataContext.SelectedEpisode, ElementName=LayoutRoot, Converter={StaticResource VirtualConverter}}">
+                                            <Grid>
+                                                <coding4Fun:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}, ConverterParameter=episode}"
+                                                                       MaxWidth="480"
+                                                                       Stretch="UniformToFill"
+                                                                       PlaceholderImageSource="/Images/MBBackground.jpg"
+                                                                       PlaceholderImageStretch="Uniform" />
+                                                <controls:PlayButton Visibility="{Binding DataContext.SelectedEpisode, ElementName=LayoutRoot, Converter={StaticResource CanStreamVisibilityConverter}}" />
 
-                                            <controls:Played Data="{Binding}" />
-                                        </Grid>
-                                    </controls:CustomButton>
-                                    <TextBlock Text="{Binding Overview}"
-                                               TextWrapping="Wrap"
-                                               Style="{StaticResource PhoneTextNormalStyle}"
-                                               Margin="24,12" />
-                                </StackPanel>
-                            </ScrollViewer>
+                                                <controls:Played Data="{Binding}" />
+                                            </Grid>
+                                        </controls:CustomButton>
+                                        <TextBlock Text="{Binding Overview}"
+                                                   TextWrapping="Wrap"
+                                                   Style="{StaticResource PhoneTextNormalStyle}"
+                                                   Margin="24,12" />
+                                    </StackPanel>
+                                </ScrollViewer>
+                            </Grid>
                         </Grid>
-                    </Grid>
-                </DataTemplate>
-            </telerikPrimitives:RadSlideView.ItemTemplate>
-        </telerikPrimitives:RadSlideView>
+                    </DataTemplate>
+                </telerikPrimitives:RadSlideView.ItemTemplate>
+            </telerikPrimitives:RadSlideView>
+        </Grid>
     </Grid>
 </scott:BasePage>

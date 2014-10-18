@@ -90,6 +90,8 @@
             public const string NewSeriesRecordingAddedMsg = "NewSeriesRecordingAddedMsg";
             public const string ChangeRecordingGroupingMsg = "ChangeRecordingGroupingMsg";
             public const string ClearNowPlayingMsg = "ClearNowPlayingMsg";
+            public const string ServerPlaylistChangedMsg = "ServerPlaylistChangedMsg";
+            public const string AddToServerPlaylistsMsg = "AddToServerPlaylistsMsg";
         }
 
         public class Pages
@@ -133,6 +135,13 @@
                 public const string AllProgrammesView = LiveTvPath + "AllProgrammesView.xaml";
                 public const string RecordedTvView = LiveTvPath + "RecordedTvView.xaml";
                 public const string RecordingView = LiveTvPath + "RecordingView.xaml";
+            }
+
+            public class Playlists
+            {
+                private const string PlaylistPath = ViewsPath + "Playlists/";
+                public const string PlaylistView = PlaylistPath + "PlaylistView.xaml";
+                public const string AddToPlaylistView = PlaylistPath + "AddToPlaylistView.xaml";
             }
 
             public class Remote

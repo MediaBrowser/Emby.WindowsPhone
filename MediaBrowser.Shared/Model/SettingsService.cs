@@ -21,7 +21,7 @@ namespace MediaBrowser.Model
 
         public ConnectionDetails ConnectionDetails { get; set; }
         public ServerConfiguration ServerConfiguration { get; set; }
-        public SystemInfo SystemStatus { get; set; }
+        public PublicSystemInfo SystemStatus { get; set; }
         public LiveTvInfo LiveTvInfo { get; set; }
     }
 }

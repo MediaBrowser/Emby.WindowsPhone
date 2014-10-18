@@ -9,7 +9,7 @@
                 xmlns:mb="clr-namespace:MediaBrowser.WindowsPhone.Controls"
                 xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
                 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-                xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP8"
+                
                 xmlns:behaviors="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
                 xmlns:converters="clr-namespace:ScottIsAFool.WindowsPhone.Converters;assembly=ScottIsAFool.WindowsPhone"
                 xmlns:localConverters="clr-namespace:MediaBrowser.WindowsPhone.Converters"
@@ -40,10 +40,10 @@
     </i:Interaction.Behaviors>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
-            <command:EventToCommand Command="{Binding PageLoadedCommand}" />
+            <i:InvokeCommandAction Command="{Binding PageLoadedCommand}" />
         </i:EventTrigger>
         <i:EventTrigger EventName="Unloaded">
-            <command:EventToCommand Command="{Binding PageUnloadedCommand}" />
+            <i:InvokeCommandAction Command="{Binding PageUnloadedCommand}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
 
