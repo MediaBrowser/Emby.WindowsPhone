@@ -61,7 +61,7 @@
     <scott:BasePage.Resources>
         <DataTemplate x:Key="AudioTemplate">
             <controls:CustomButton Style="{StaticResource EmptyButtonStyle}"
-                                   Margin="12,0,0,12"
+                                   Margin="0,0,0,12"
                                    TapCommand="{Binding ServerPlaylists.ItemTappedCommand, Source={StaticResource Locator}}"
                                    CommandParameter="{Binding}"
                                    d:DataContext="{Binding ServerPlaylists.PlaylistItems[0], Source={StaticResource Locator}}">
@@ -102,7 +102,7 @@
 
         <DataTemplate x:Key="GenericVideoTemplate">
             <controls:CustomButton Style="{StaticResource EmptyButtonStyle}"
-                                   Margin="12,0,0,12"
+                                   Margin="0,0,0,12"
                                    TapCommand="{Binding ServerPlaylists.ItemTappedCommand, Source={StaticResource Locator}}"
                                    CommandParameter="{Binding}"
                                    d:DataContext="{Binding ServerPlaylists.PlaylistItems[0], Source={StaticResource Locator}}">
@@ -141,7 +141,7 @@
 
         <DataTemplate x:Key="MovieTemplate">
             <controls:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                            Margin="12,6,0,6"
+                                            Margin="0,6,0,6"
                                             TapCommand="{Binding ServerPlaylists.ItemTappedCommand, Source={StaticResource Locator}}"
                                             CommandParameter="{Binding}">
                 <toolkit:ContextMenuService.ContextMenu>
@@ -221,7 +221,7 @@
 
         <DataTemplate x:Key="EpisodeTemplate">
             <controls:CustomButton Style="{StaticResource EmptyButtonStyle}"
-                                   Margin="12,0,0,12"
+                                   Margin="0,0,0,12"
                                    TapCommand="{Binding ServerPlaylists.ItemTappedCommand, Source={StaticResource Locator}}"
                                    CommandParameter="{Binding}"
                                    d:DataContext="{Binding ServerPlaylists.PlaylistItems[0], Source={StaticResource Locator}}">
