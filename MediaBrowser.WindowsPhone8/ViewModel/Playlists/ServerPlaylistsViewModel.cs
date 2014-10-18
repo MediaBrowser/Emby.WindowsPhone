@@ -9,6 +9,7 @@ using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Net;
+using MediaBrowser.Model.Playlists;
 using MediaBrowser.Model.Querying;
 using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Messaging;
@@ -118,13 +119,13 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Playlists
             try
             {
                 SetProgressBar(AppResources.SysTrayGettingDetails);
-                var query = new ItemQuery
+                
+                var query = new PlaylistItemQuery
                 {
-                    ParentId = SelectedPlaylist.Id,
-                    UserId = AuthenticationService.Current.LoggedInUserId,
-                    Fields = new[] { ItemFields.DisplayMediaType }
+                    Id = SelectedPlaylist.Id,
+                    UserId = AuthenticationService.Current.LoggedInUserId
                 };
-                var items = await _apiClient.GetItemsAsync(query);
+                var items = await _apiClient.GetPlaylistItems(query);
 
                 if (items != null && !items.Items.IsNullOrEmpty())
                 {
@@ -201,7 +202,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Playlists
                         return;
                     }
 
-                    var itemIds = SelectedItems.Select(x => x.Id);
+                    var itemIds = SelectedItems.Select(x => x.PlaylistItemId);
+                    var cumulativeRuntime = SelectedItems.Sum(x => x.RunTimeTicks.HasValue ? x.RunTimeTicks.Value : 0);
                     try
                     {
                         SetProgressBar(AppResources.SysTrayRemoving);
@@ -215,6 +217,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Playlists
                             {
                                 PlaylistItems.Remove(removeItem);
                             }
+                        }
+
+                        RaisePropertyChanged(() => NumberOfItems);
+                        if (SelectedPlaylist.CumulativeRunTimeTicks.HasValue)
+                        {
+                            SelectedPlaylist.CumulativeRunTimeTicks = SelectedPlaylist.CumulativeRunTimeTicks.Value - cumulativeRuntime;
                         }
 
                         SelectedItems.Clear();
