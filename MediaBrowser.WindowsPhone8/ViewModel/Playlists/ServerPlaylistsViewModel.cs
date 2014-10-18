@@ -146,11 +146,20 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Playlists
             {
                 return new RelayCommand<BaseItemDto>(item =>
                 {
-                    var message = new VideoMessage(PlaylistItems, item, false);
-                    if (SimpleIoc.Default.GetInstance<VideoPlayerViewModel>() != null)
+                    if (SelectedPlaylist.MediaType.Equals("Video"))
                     {
-                        Messenger.Default.Send(message);
-                        _navigationService.NavigateTo(Constants.Pages.VideoPlayerView);
+                        var message = new VideoMessage(PlaylistItems, item, false);
+                        if (SimpleIoc.Default.GetInstance<VideoPlayerViewModel>() != null)
+                        {
+                            Messenger.Default.Send(message);
+                            _navigationService.NavigateTo(Constants.Pages.VideoPlayerView);
+                        }
+                    }
+                    else if (SelectedPlaylist.MediaType.Equals("Audio"))
+                    {
+                        var tracks = new List<PlaylistItem> {item.ToPlaylistItem(_apiClient)};
+
+                        Messenger.Default.Send(new NotificationMessage<List<PlaylistItem>>(tracks, Constants.Messages.SetPlaylistAsMsg));
                     }
                 });
             }
@@ -160,18 +169,27 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Playlists
         {
             get
             {
-                return new RelayCommand(() =>
+                return new RelayCommand(async () =>
                 {
                     if (PlaylistItems.IsNullOrEmpty())
                     {
                         return;
                     }
 
-                    var message = new VideoMessage(PlaylistItems, PlaylistItems.First(), false);
-                    if (SimpleIoc.Default.GetInstance<VideoPlayerViewModel>() != null)
+                    if (SelectedPlaylist.MediaType.Equals("Video"))
                     {
-                        Messenger.Default.Send(message);
-                        _navigationService.NavigateTo(Constants.Pages.VideoPlayerView);
+                        var message = new VideoMessage(PlaylistItems, PlaylistItems.First(), false);
+                        if (SimpleIoc.Default.GetInstance<VideoPlayerViewModel>() != null)
+                        {
+                            Messenger.Default.Send(message);
+                            _navigationService.NavigateTo(Constants.Pages.VideoPlayerView);
+                        }
+                    }
+                    else if (SelectedPlaylist.MediaType.Equals("Audio"))
+                    {
+                        var tracks = await PlaylistItems.ToList().ToPlayListItems(_apiClient);
+
+                        Messenger.Default.Send(new NotificationMessage<List<PlaylistItem>>(tracks, Constants.Messages.SetPlaylistAsMsg));
                     }
                 });
             }
