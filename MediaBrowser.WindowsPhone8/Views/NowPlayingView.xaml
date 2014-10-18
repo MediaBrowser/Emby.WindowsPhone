@@ -85,8 +85,7 @@
                 </cimbalino:ApplicationBarBehavior.MenuItems>
             </cimbalino:ApplicationBarBehavior>
         </i:Interaction.Behaviors>
-        <Grid x:Name="GridForBackground"
-              Margin="0,32,0,0">
+        <Grid x:Name="GridForBackground">
             <i:Interaction.Behaviors>
                 <behaviours:PanelBackgroundBehaviour Source="{Binding NowPlayingItem.BackgroundImageUrl}"
                                                      Stretch="UniformToFill"
@@ -100,7 +99,7 @@
             <!--TitlePanel contains the name of the application and page title-->
             <StackPanel x:Name="TitlePanel"
                         Grid.Row="0"
-                        Margin="12,17,0,28">
+                        Margin="12,49,0,28">
                 <mb:MediaBrowserLogo />
                 <TextBlock x:Name="PageTitle"
                            Text="{Binding LocalizedResources.LabelNowPlaying, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
