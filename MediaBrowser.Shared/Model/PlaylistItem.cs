@@ -16,5 +16,6 @@ namespace MediaBrowser.WindowsPhone.Model
         public string MediaBrowserId { get; set; }
         public string ImageUrl { get; set; }
         public string BackgroundImageUrl { get; set; }
+        public long RunTimeTicks { get; set; }
     }
 }

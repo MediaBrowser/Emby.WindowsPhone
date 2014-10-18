@@ -11,6 +11,7 @@ using GalaSoft.MvvmLight.Messaging;
 using JetBrains.Annotations;
 using MediaBrowser.Model;
 using MediaBrowser.WindowsPhone.AudioAgent;
+using MediaBrowser.WindowsPhone.Messaging;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Resources;
 using Microsoft.Phone.BackgroundAudio;
@@ -83,6 +84,22 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public bool IsPlaying { get; set; }
         public bool IsShuffled { get; set; }
         public bool IsOnRepeat { get; set; }
+
+        public TimeSpan Position { get; set; }
+
+        public double PlayedPercentage
+        {
+            get
+            {
+                if (NowPlayingItem == null || NowPlayingItem.RunTimeTicks < 1)
+                {
+                    return 0;
+                }
+
+                var positionTicks = Position.Ticks;
+                return ((double)positionTicks / (double)NowPlayingItem.RunTimeTicks) * 100;
+            }
+        }
 
         public bool IsInSelectionMode { get; set; }
 
@@ -241,6 +258,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         private void PlaylistCheckerOnTick(object sender, EventArgs eventArgs)
         {
             GetPlaylistItems();
+            Position = BackgroundAudioPlayer.Instance.Position;
         }
 
         private void OnPlayStateChanged(object sender, EventArgs e)
@@ -295,6 +313,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 {
                     NowPlayingItem = null;
                 }
+            });
+
+            Messenger.Default.Register<NowPlayingMessage>(this, m =>
+            {
+                
             });
         }
 

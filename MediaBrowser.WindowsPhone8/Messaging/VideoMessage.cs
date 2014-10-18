@@ -76,16 +76,4 @@ namespace MediaBrowser.WindowsPhone.Messaging
         public bool IsResume { get; set; }
         public long? ResumeTicks { get; set; }
     }
-
-    public class RemoteMessage : MessageBase
-    {
-        public RemoteMessage(string itemId, long? startPositionTicks)
-        {
-            ItemId = itemId;
-            StartPositionTicks = startPositionTicks;
-        }
-
-        public string ItemId { get; set; }
-        public long? StartPositionTicks { get; set; }
-    }
 }

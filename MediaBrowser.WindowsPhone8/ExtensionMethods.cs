@@ -71,7 +71,8 @@ namespace MediaBrowser.WindowsPhone
                 MediaBrowserId = item.Id,
                 IsJustAdded = true,
                 ImageUrl = (string) converter.Convert(item, typeof (string), null, null),
-                BackgroundImageUrl = (string) converter.Convert(item, typeof (string), "backdrop", null)
+                BackgroundImageUrl = (string) converter.Convert(item, typeof (string), "backdrop", null),
+                RunTimeTicks = item.RunTimeTicks.HasValue ? item.RunTimeTicks.Value : 0
             };
         }
 
