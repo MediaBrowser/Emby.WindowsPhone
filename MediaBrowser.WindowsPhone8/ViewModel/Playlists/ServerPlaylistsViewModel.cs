@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using Cimbalino.Phone.Toolkit.Extensions;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
@@ -9,11 +11,12 @@ using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Querying;
 using MediaBrowser.Services;
-using MediaBrowser.WindowsPhone.Controls;
 using MediaBrowser.WindowsPhone.Messaging;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Resources;
+using Microsoft.Phone.Controls;
 using ScottIsAFool.WindowsPhone.ViewModel;
+using CustomMessageBox = MediaBrowser.WindowsPhone.Controls.CustomMessageBox;
 
 namespace MediaBrowser.WindowsPhone.ViewModel.Playlists
 {
@@ -48,7 +51,21 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Playlists
         }
 
         public BaseItemDto SelectedPlaylist { get; set; }
-        public List<BaseItemDto> PlaylistItems { get; set; }
+        public ObservableCollection<BaseItemDto> PlaylistItems { get; set; }
+
+        public ObservableCollection<BaseItemDto> SelectedItems { get; set; }
+
+        public bool CanDeleteItems
+        {
+            get
+            {
+                return !ProgressIsVisible
+                       && !SelectedItems.IsNullOrEmpty();
+            }
+        }
+
+        public bool IsInSelectionMode { get; set; }
+        public int SelectedIndex { get { return IsInSelectionMode ? 1 : 0; } }
 
         public string NumberOfItems
         {
@@ -111,7 +128,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Playlists
 
                 if (items != null && !items.Items.IsNullOrEmpty())
                 {
-                    PlaylistItems = items.Items.ToList();
+                    PlaylistItems = items.Items.ToObservableCollection();
                 }
             }
             catch (HttpException ex)
@@ -159,6 +176,99 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Playlists
             }
         }
 
+        public RelayCommand DeleteItemsFromPlaylistCommand
+        {
+            get
+            {
+                return new RelayCommand(async () =>
+                {
+                    if (SelectedItems.IsNullOrEmpty())
+                    {
+                        return;
+                    }
+
+                    var messageBox = new CustomMessageBox
+                    {
+                        Title = AppResources.MessageAreYouSureTitle,
+                        Message = AppResources.MessageDeletePlaylistItems,
+                        LeftButtonContent = AppResources.LabelYes,
+                        RightButtonContent = AppResources.LabelNo
+                    };
+                    var result = await messageBox.ShowAsync();
+
+                    if (result == CustomMessageBoxResult.RightButton)
+                    {
+                        return;
+                    }
+
+                    var itemIds = SelectedItems.Select(x => x.Id);
+                    try
+                    {
+                        SetProgressBar(AppResources.SysTrayRemoving);
+
+                        await _apiClient.RemoveFromPlaylist(SelectedPlaylist.Id, itemIds);
+
+                        foreach (var item in SelectedItems.ToList())
+                        {
+                            var removeItem = PlaylistItems.FirstOrDefault(x => x.Id == item.Id);
+                            if (removeItem != null)
+                            {
+                                PlaylistItems.Remove(removeItem);
+                            }
+                        }
+
+                        SelectedItems.Clear();
+                        IsInSelectionMode = false;
+                    }
+                    catch (HttpException ex)
+                    {
+                        Utils.HandleHttpException(ex, "DeleteItemsFromPlaylist", _navigationService, Log);
+                    }
+
+                    SetProgressBar();
+                });
+            }
+        }
+
+        public RelayCommand<BaseItemDto> DeleteFromPlaylistCommand
+        {
+            get
+            {
+                return new RelayCommand<BaseItemDto>(async item =>
+                {
+                    if (item == null)
+                    {
+                        return;
+                    }
+
+                    try
+                    {
+                        SetProgressBar(AppResources.SysTrayRemoving);
+
+                        await _apiClient.RemoveFromPlaylist(SelectedPlaylist.Id, new List<string> {item.Id});
+                        PlaylistItems.Remove(item);
+                    }
+                    catch (HttpException ex)
+                    {
+                        Utils.HandleHttpException(ex, "DeleteFromPlaylist", _navigationService, Log);
+                    }
+
+                    SetProgressBar();
+                });
+            }
+        }
+
+        public RelayCommand DeletePlaylistCommand
+        {
+            get
+            {
+                return new RelayCommand(async () =>
+                {
+                    //await _apiClient.playlist
+                });
+            }
+        }
+
         public override void WireMessages()
         {
             Messenger.Default.Register<NotificationMessage>(this, m =>
@@ -170,6 +280,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Playlists
                     _playlistLoaded = false;
                 }
             });
+        }
+
+        public override void UpdateProperties()
+        {
+            base.UpdateProperties();
+            RaisePropertyChanged(() => CanDeleteItems);
         }
     }
 }

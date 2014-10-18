@@ -8,7 +8,7 @@ namespace MediaBrowser.WindowsPhone.Messaging
 {
     public class VideoMessage : MessageBase
     {
-        public VideoMessage(List<BaseItemDto> playlist, BaseItemDto firstItem, bool isResume)
+        public VideoMessage(IList<BaseItemDto> playlist, BaseItemDto firstItem, bool isResume)
         {
             VideoPlaylists = playlist;
             VideoItem = firstItem;
@@ -70,7 +70,7 @@ namespace MediaBrowser.WindowsPhone.Messaging
 
         public PlayerSourceType PlayerSourceType { get; set; }
         public BaseItemDto VideoItem { get; set; }
-        public List<BaseItemDto> VideoPlaylists { get; set; }
+        public IList<BaseItemDto> VideoPlaylists { get; set; }
         public RecordingInfoDto RecordingItem { get; set; }
         public ProgramInfoDto ProgrammeItem { get; set; }
         public bool IsResume { get; set; }

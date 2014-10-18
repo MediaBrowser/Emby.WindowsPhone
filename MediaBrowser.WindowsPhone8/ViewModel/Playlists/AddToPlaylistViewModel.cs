@@ -140,7 +140,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Playlists
                     await RestOfAddToPlaylist();
                 });
             }
-        } 
+        }
 
         public RelayCommand SaveToPlaylistCommand
         {

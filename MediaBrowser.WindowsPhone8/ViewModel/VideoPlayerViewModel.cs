@@ -85,7 +85,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             get { return PlayerSourceType == PlayerSourceType.Programme || (SelectedItem != null && SelectedItem.Type.ToLower().Equals("channelvideoitem")); }
         }
 
-        public List<BaseItemDto> PlaylistItems { get; set; }
+        public IList<BaseItemDto> PlaylistItems { get; set; }
 
         public bool IsPlaylist
         {

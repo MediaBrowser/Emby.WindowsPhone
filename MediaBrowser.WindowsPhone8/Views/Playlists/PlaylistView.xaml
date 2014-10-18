@@ -31,14 +31,26 @@
         <behaviours:MBSysTray IsVisible="{Binding ProgressIsVisible}"
                               IsIndeterminate="{Binding ProgressIsVisible}"
                               Text="{Binding ProgressText}" />
-        <behaviors:ApplicationBarBehavior Mode="Minimized">
-            <behaviors:ApplicationBarBehavior.Buttons>
-                <behaviors:ApplicationBarIconButton IconUri="/Icons/appbar.refresh.rest.png"
-                                                    Command="{Binding RefreshCommand}"
-                                                    Text="{Binding LocalizedResources.AppBarRefresh, Source={StaticResource LocalizedStrings}}"
-                                                    IsEnabled="{Binding ProgressIsVisible, Converter={StaticResource NegativeBooleanConverter}}" />
-            </behaviors:ApplicationBarBehavior.Buttons>
-        </behaviors:ApplicationBarBehavior>
+        <behaviors:MultiApplicationBarBehavior SelectedIndex="{Binding SelectedIndex}">
+            <behaviors:ApplicationBar Mode="Minimized">
+                <behaviors:ApplicationBar.Buttons>
+                    <behaviors:ApplicationBarIconButton IconUri="/Icons/appbar.refresh.rest.png"
+                                                        Command="{Binding RefreshCommand}"
+                                                        Text="{Binding LocalizedResources.AppBarRefresh, Source={StaticResource LocalizedStrings}}"
+                                                        IsEnabled="{Binding ProgressIsVisible, Converter={StaticResource NegativeBooleanConverter}}" />
+                </behaviors:ApplicationBar.Buttons>
+            </behaviors:ApplicationBar>
+
+            <behaviors:ApplicationBar>
+                <behaviors:ApplicationBar.Buttons>
+                    <behaviors:ApplicationBarIconButton IconUri="/Icons/appbar.delete.rest.png"
+                                                        Text="{Binding LocalizedResources.AppBarDelete, Source={StaticResource LocalizedStrings}}"
+                                                        Command="{Binding DeleteItemsFromPlaylistCommand}"
+                                                        IsEnabled="{Binding SelectedItems.Count, Converter={StaticResource CountToEnabled}, ConverterParameter=delete}"/>
+                </behaviors:ApplicationBar.Buttons>
+            </behaviors:ApplicationBar>
+        </behaviors:MultiApplicationBarBehavior>
+
     </i:Interaction.Behaviors>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
@@ -53,6 +65,13 @@
                                    TapCommand="{Binding ServerPlaylists.ItemTappedCommand, Source={StaticResource Locator}}"
                                    CommandParameter="{Binding}"
                                    d:DataContext="{Binding ServerPlaylists.PlaylistItems[0], Source={StaticResource Locator}}">
+                <toolkit:ContextMenuService.ContextMenu>
+                    <toolkit:ContextMenu>
+                        <toolkit:MenuItem Header="{Binding LocalizedResources.MenuRemoveFromPlaylist, Source={StaticResource LocalizedStrings}}"
+                                          Command="{Binding ServerPlaylists.DeleteFromPlaylistCommand, Source={StaticResource Locator}}"
+                                          CommandParameter="{Binding}" />
+                    </toolkit:ContextMenu>
+                </toolkit:ContextMenuService.ContextMenu>
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="100" />
@@ -87,6 +106,13 @@
                                    TapCommand="{Binding ServerPlaylists.ItemTappedCommand, Source={StaticResource Locator}}"
                                    CommandParameter="{Binding}"
                                    d:DataContext="{Binding ServerPlaylists.PlaylistItems[0], Source={StaticResource Locator}}">
+                <toolkit:ContextMenuService.ContextMenu>
+                    <toolkit:ContextMenu>
+                        <toolkit:MenuItem Header="{Binding LocalizedResources.MenuRemoveFromPlaylist, Source={StaticResource LocalizedStrings}}"
+                                          Command="{Binding ServerPlaylists.DeleteFromPlaylistCommand, Source={StaticResource Locator}}"
+                                          CommandParameter="{Binding}" />
+                    </toolkit:ContextMenu>
+                </toolkit:ContextMenuService.ContextMenu>
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="100" />
@@ -118,6 +144,13 @@
                                             Margin="12,6,0,6"
                                             TapCommand="{Binding ServerPlaylists.ItemTappedCommand, Source={StaticResource Locator}}"
                                             CommandParameter="{Binding}">
+                <toolkit:ContextMenuService.ContextMenu>
+                    <toolkit:ContextMenu>
+                        <toolkit:MenuItem Header="{Binding LocalizedResources.MenuRemoveFromPlaylist, Source={StaticResource LocalizedStrings}}"
+                                          Command="{Binding ServerPlaylists.DeleteFromPlaylistCommand, Source={StaticResource Locator}}"
+                                          CommandParameter="{Binding}" />
+                    </toolkit:ContextMenu>
+                </toolkit:ContextMenuService.ContextMenu>
                 <Grid HorizontalAlignment="Stretch"
                       d:DataContext="{Binding ServerPlaylists.PlaylistItems[0], Source={StaticResource Locator}}">
                     <StackPanel Orientation="Horizontal"
@@ -192,6 +225,13 @@
                                    TapCommand="{Binding ServerPlaylists.ItemTappedCommand, Source={StaticResource Locator}}"
                                    CommandParameter="{Binding}"
                                    d:DataContext="{Binding ServerPlaylists.PlaylistItems[0], Source={StaticResource Locator}}">
+                <toolkit:ContextMenuService.ContextMenu>
+                    <toolkit:ContextMenu>
+                        <toolkit:MenuItem Header="{Binding LocalizedResources.MenuRemoveFromPlaylist, Source={StaticResource LocalizedStrings}}"
+                                          Command="{Binding ServerPlaylists.DeleteFromPlaylistCommand, Source={StaticResource Locator}}"
+                                          CommandParameter="{Binding}" />
+                    </toolkit:ContextMenu>
+                </toolkit:ContextMenuService.ContextMenu>
                 <Grid>
                     <Grid.Resources>
                         <converters:EpisodeNameConverter x:Key="EpisodeNameConverter" />
@@ -254,13 +294,19 @@
             <!--ContentPanel - place additional content here-->
             <Grid x:Name="AudioPlaylist"
                   Grid.Row="1"
-                  Margin="12,0,12,0">
+                  Margin="0,0,12,0">
                 <telerikPrimitives:RadDataBoundListBox ItemsSource="{Binding PlaylistItems}"
                                                        ListHeaderContent="{Binding SelectedPlaylist}"
-                                                       ItemTemplateSelector="{StaticResource PlaylistTemplateSelector}">
+                                                       ItemTemplateSelector="{StaticResource PlaylistTemplateSelector}"
+                                                       IsCheckModeEnabled="True"
+                                                       IsCheckModeActive="{Binding IsInSelectionMode, Mode=TwoWay}">
+                    <i:Interaction.Behaviors>
+                        <behaviours:AddItemsToCheckedItems SelectedItems="{Binding SelectedItems, Mode=TwoWay}"/>
+                    </i:Interaction.Behaviors>
                     <telerikPrimitives:RadDataBoundListBox.ListHeaderTemplate>
                         <DataTemplate>
-                            <Grid d:DataContext="{Binding ServerPlaylists.SelectedPlaylist, Source={StaticResource Locator}}">
+                            <Grid d:DataContext="{Binding ServerPlaylists.SelectedPlaylist, Source={StaticResource Locator}}"
+                                  Margin="12,0,0,0">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="180" />
                                     <ColumnDefinition Width="*" />

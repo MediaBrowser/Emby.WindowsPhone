@@ -2041,6 +2041,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to remove from playlist.
+        /// </summary>
+        public static string MenuRemoveFromPlaylist {
+            get {
+                return ResourceManager.GetString("MenuRemoveFromPlaylist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Are you sure?.
         /// </summary>
         public static string MessageAreYouSureTitle {
@@ -2262,6 +2271,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string SysTrayCheckingConnection {
             get {
                 return ResourceManager.GetString("SysTrayCheckingConnection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deleting....
+        /// </summary>
+        public static string SysTrayDeleting {
+            get {
+                return ResourceManager.GetString("SysTrayDeleting", resourceCulture);
             }
         }
         
@@ -2640,6 +2658,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string SysTrayRegrouping {
             get {
                 return ResourceManager.GetString("SysTrayRegrouping", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Removing....
+        /// </summary>
+        public static string SysTrayRemoving {
+            get {
+                return ResourceManager.GetString("SysTrayRemoving", resourceCulture);
             }
         }
         

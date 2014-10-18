@@ -1018,4 +1018,13 @@
     <value>Season {0}</value>
     <comment>{0} is the season number</comment>
   </data>
+  <data name="MenuRemoveFromPlaylist" xml:space="preserve">
+    <value>remove from playlist</value>
+  </data>
+  <data name="SysTrayDeleting" xml:space="preserve">
+    <value>Deleting...</value>
+  </data>
+  <data name="SysTrayRemoving" xml:space="preserve">
+    <value>Removing...</value>
+  </data>
 </root>
