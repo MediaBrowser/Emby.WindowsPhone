@@ -508,6 +508,7 @@
     <Content Include="Images\Remote\minus.png" />
     <Content Include="Images\rotten.png" />
     <Content Include="Images\stop.png" />
+    <Content Include="Images\TransparentBackground.png" />
     <Content Include="Images\tvcollection.png" />
     <Content Include="Images\UserLoginDefault.png" />
     <Content Include="Images\WideTileSample.jpg" />
