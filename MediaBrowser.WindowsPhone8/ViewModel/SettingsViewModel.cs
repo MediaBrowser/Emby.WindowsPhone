@@ -87,16 +87,30 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             StreamingLMH lmh;
             App.SpecificSettings.StreamingQuality.BreakDown(out res, out lmh);
 
+            StreamingResolution wifires;
+            StreamingLMH wifilmh;
+            App.SpecificSettings.StreamingQuality.BreakDown(out wifires, out wifilmh);
+
             StreamingResolutions = Enum<StreamingResolution>.GetNames();
             StreamingResolution = StreamingResolutions.FirstOrDefault(x => x == res);
+            WifiStreamingResolution = StreamingResolutions.FirstOrDefault(x => x == wifires);
 
             SetQuality(lmh);
+            SetQuality(wifilmh, true);
         }
 
-        private void SetQuality(StreamingLMH lmh)
+        private void SetQuality(StreamingLMH lmh, bool isWifi = false)
         {
-            StreamingLmhs = Enum<StreamingLMH>.GetNames();
-            StreamingLmh = StreamingLmhs.FirstOrDefault(x => x == lmh);            
+            if (isWifi)
+            {
+                WifiStreamingLmhs = Enum<StreamingLMH>.GetNames();
+                WifiStreamingLmh = WifiStreamingLmhs.FirstOrDefault(x => x == lmh);
+            }
+            else
+            {
+                StreamingLmhs = Enum<StreamingLMH>.GetNames();
+                StreamingLmh = StreamingLmhs.FirstOrDefault(x => x == lmh);
+            }
         }
 
         public string RegisteredText { get; set; }
@@ -110,12 +124,20 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
         public List<StreamingLMH> StreamingLmhs { get; set; }
         public StreamingLMH StreamingLmh { get; set; }
+        public List<StreamingLMH> WifiStreamingLmhs { get; set; }
+        public StreamingLMH WifiStreamingLmh { get; set; }
         public List<StreamingResolution> StreamingResolutions { get; set; }
         public StreamingResolution StreamingResolution { get; set; }
+        public StreamingResolution WifiStreamingResolution { get; set; }
 
         public bool CanChangeQuality
         {
             get { return StreamingResolution != StreamingResolution.ThreeSixty; }
+        }
+
+        public bool CanChangeWifiQuality
+        {
+            get { return WifiStreamingResolution != StreamingResolution.ThreeSixty; }
         }
 
         [UsedImplicitly]
@@ -130,6 +152,20 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             App.SpecificSettings.StreamingQuality = StreamingResolution.ToStreamingQuality(StreamingLmh);
             StreamingLmhs = null;
             SetQuality(StreamingLmh);
+        }
+
+        [UsedImplicitly]
+        private void OnWifiStreamingLmhChanged()
+        {
+            App.SpecificSettings.WifiStreamingQuality = WifiStreamingResolution.ToStreamingQuality(WifiStreamingLmh);
+        }
+
+        [UsedImplicitly]
+        private void OnWifiStreamingResolutionChanged()
+        {
+            App.SpecificSettings.WifiStreamingQuality = WifiStreamingResolution.ToStreamingQuality(WifiStreamingLmh);
+            WifiStreamingLmhs = null;
+            SetQuality(WifiStreamingLmh);
         }
 
         public bool IsLockScreenProvider

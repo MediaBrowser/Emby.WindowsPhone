@@ -433,7 +433,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             _itemId = itemId;
 
-            var streamingSettings = App.SpecificSettings.StreamingQuality.GetSettings();
+            var streamingSettings = _navigationService.IsOnWifi 
+                ? App.SpecificSettings.WifiStreamingQuality.GetSettings() 
+                : App.SpecificSettings.StreamingQuality.GetSettings();
 
             var query = new VideoStreamOptions
             {

@@ -22,6 +22,7 @@ namespace MediaBrowser.WindowsPhone
             UseRichWideTile = true;
             DisplayBackdropOnTile = true;
             StreamingQuality = StreamingQuality.SevenTwentyMedium;
+            WifiStreamingQuality = StreamingQuality.SevenTwentyMedium;
         }
 
         public bool IncludeTrailersInRecent { get; set; }
@@ -43,6 +44,7 @@ namespace MediaBrowser.WindowsPhone
 
         public bool UseTransparentTile { get; set; }
         public StreamingQuality StreamingQuality { get; set; }
+        public StreamingQuality WifiStreamingQuality { get; set; }
         public bool OnlyStreamOnWifi { get; set; }
         
         [UsedImplicitly]

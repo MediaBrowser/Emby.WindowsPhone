@@ -13,6 +13,7 @@
                         xmlns:behaviors="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
                         xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
                         xmlns:converters="clr-namespace:MediaBrowser.WindowsPhone.Converters"
+                        xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
                         mc:Ignorable="d ignore"
                         FontFamily="{StaticResource PhoneFontFamilyNormal}"
                         FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -59,10 +60,10 @@
             </toolkit:NavigationOutTransition.Forward>
         </toolkit:NavigationOutTransition>
     </toolkit:TransitionService.NavigationOutTransition>
-    
+
     <views:SettingsBasePage.Resources>
-        <converters:BitRateLabelConverter x:Key="BitRateLabelConverter"/>
-        <converters:ResolutionLabelConverter x:Key="ResolutionLabelConverter"/>
+        <converters:BitRateLabelConverter x:Key="BitRateLabelConverter" />
+        <converters:ResolutionLabelConverter x:Key="ResolutionLabelConverter" />
     </views:SettingsBasePage.Resources>
 
     <!--LayoutRoot is the root grid where all page content is placed-->
@@ -91,29 +92,64 @@
                         Orientation="Vertical">
                 <TextBlock Text="{Binding LocalizedResources.LabelChooseQuality, Source={StaticResource LocalizedStrings}}"
                            Style="{StaticResource PhoneTextNormalStyle}"
-                           TextWrapping="Wrap"/>
-                <toolkit:ListPicker ItemsSource="{Binding StreamingResolutions}"
-                                    SelectedItem="{Binding StreamingResolution, Mode=TwoWay}"
-                                    Header="{Binding LocalizedResources.LabelResolution, Source={StaticResource LocalizedStrings}}">
-                    <toolkit:ListPicker.ItemTemplate>
+                           TextWrapping="Wrap" />
+                <phone:Pivot Margin="-12,0,0,0">
+                    <phone:Pivot.HeaderTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding Converter={StaticResource ResolutionLabelConverter}}"/>
+                            <TextBlock Text="{Binding}"
+                                       FontSize="30"/>
                         </DataTemplate>
-                    </toolkit:ListPicker.ItemTemplate>
-                </toolkit:ListPicker>
-                <toolkit:ListPicker ItemsSource="{Binding StreamingLmhs}"
-                                    SelectedItem="{Binding StreamingLmh, Mode=TwoWay}"
-                                    Header="{Binding LocalizedResources.LabelQuality, Source={StaticResource LocalizedStrings}}"
-                                    IsEnabled="{Binding CanChangeQuality}">
-                    <toolkit:ListPicker.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding Converter={StaticResource BitRateLabelConverter}}" />
-                        </DataTemplate>
-                    </toolkit:ListPicker.ItemTemplate>
-                </toolkit:ListPicker>
-                
+                    </phone:Pivot.HeaderTemplate>
+                    <phone:PivotItem Header="mobile">
+                        <StackPanel Margin="0,-20,0,0">
+                            <toolkit:ListPicker ItemsSource="{Binding StreamingResolutions}"
+                                                SelectedItem="{Binding StreamingResolution, Mode=TwoWay}"
+                                                Header="{Binding LocalizedResources.LabelResolution, Source={StaticResource LocalizedStrings}}">
+                                <toolkit:ListPicker.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Converter={StaticResource ResolutionLabelConverter}}" />
+                                    </DataTemplate>
+                                </toolkit:ListPicker.ItemTemplate>
+                            </toolkit:ListPicker>
+                            <toolkit:ListPicker ItemsSource="{Binding StreamingLmhs}"
+                                                SelectedItem="{Binding StreamingLmh, Mode=TwoWay}"
+                                                Header="{Binding LocalizedResources.LabelQuality, Source={StaticResource LocalizedStrings}}"
+                                                IsEnabled="{Binding CanChangeQuality}">
+                                <toolkit:ListPicker.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Converter={StaticResource BitRateLabelConverter}}" />
+                                    </DataTemplate>
+                                </toolkit:ListPicker.ItemTemplate>
+                            </toolkit:ListPicker>
+                        </StackPanel>
+                    </phone:PivotItem>
+                    <phone:PivotItem Header="wifi">
+                        <StackPanel Margin="0,-20,0,0">
+                            <toolkit:ListPicker ItemsSource="{Binding StreamingResolutions}"
+                                                SelectedItem="{Binding WifiStreamingResolution, Mode=TwoWay}"
+                                                Header="{Binding LocalizedResources.LabelResolution, Source={StaticResource LocalizedStrings}}">
+                                <toolkit:ListPicker.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Converter={StaticResource ResolutionLabelConverter}}" />
+                                    </DataTemplate>
+                                </toolkit:ListPicker.ItemTemplate>
+                            </toolkit:ListPicker>
+                            <toolkit:ListPicker ItemsSource="{Binding WifiStreamingLmhs}"
+                                                SelectedItem="{Binding WifiStreamingLmh, Mode=TwoWay}"
+                                                Header="{Binding LocalizedResources.LabelQuality, Source={StaticResource LocalizedStrings}}"
+                                                IsEnabled="{Binding CanChangeWifiQuality}">
+                                <toolkit:ListPicker.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Converter={StaticResource BitRateLabelConverter}}" />
+                                    </DataTemplate>
+                                </toolkit:ListPicker.ItemTemplate>
+                            </toolkit:ListPicker>
+                        </StackPanel>
+                    </phone:PivotItem>
+                </phone:Pivot>
+
                 <CheckBox Content="{Binding LocalizedResources.LabelStreamWifi, Source={StaticResource LocalizedStrings}}"
-                          IsChecked="{Binding OnlyStreamOnWifi, Source={StaticResource SpecificSettings}, Mode=TwoWay}"/>
+                          IsChecked="{Binding OnlyStreamOnWifi, Source={StaticResource SpecificSettings}, Mode=TwoWay}" />
             </StackPanel>
         </Grid>
         <!--Uncomment to see an alignment grid to help ensure your controls are
