@@ -565,6 +565,24 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sorry, it doesn&apos;t appear you&apos;re on wifi, please connect to a wifi network or change your wifi only setting..
+        /// </summary>
+        public static string ErrorNoWifi {
+            get {
+                return ResourceManager.GetString("ErrorNoWifi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No Wifi.
+        /// </summary>
+        public static string ErrorNoWifiTitle {
+            get {
+                return ResourceManager.GetString("ErrorNoWifiTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to There was a problem updating this item, please try again later..
         /// </summary>
         public static string ErrorProblemUpdatingItem {
@@ -1866,6 +1884,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string LabelStreaming {
             get {
                 return ResourceManager.GetString("LabelStreaming", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Only stream video over wifi.
+        /// </summary>
+        public static string LabelStreamWifi {
+            get {
+                return ResourceManager.GetString("LabelStreamWifi", resourceCulture);
             }
         }
         

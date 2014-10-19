@@ -111,6 +111,9 @@
                         </DataTemplate>
                     </toolkit:ListPicker.ItemTemplate>
                 </toolkit:ListPicker>
+                
+                <CheckBox Content="{Binding LocalizedResources.LabelStreamWifi, Source={StaticResource LocalizedStrings}}"
+                          IsChecked="{Binding OnlyStreamOnWifi, Source={StaticResource SpecificSettings}, Mode=TwoWay}"/>
             </StackPanel>
         </Grid>
         <!--Uncomment to see an alignment grid to help ensure your controls are

@@ -1036,7 +1036,16 @@
   <data name="LabelResolution" xml:space="preserve">
     <value>Resolution:</value>
   </data>
+  <data name="ErrorNoWifi" xml:space="preserve">
+    <value>Sorry, it doesn't appear you're on wifi, please connect to a wifi network or change your wifi only setting.</value>
+  </data>
+  <data name="ErrorNoWifiTitle" xml:space="preserve">
+    <value>No Wifi</value>
+  </data>
   <data name="LabelChooseQuality" xml:space="preserve">
     <value>Choose the quality of video streaming you wish to have. Please note, if streaming over your phone's data plan, the higher the quality, the more data you'll use.</value>
+  </data>
+  <data name="LabelStreamWifi" xml:space="preserve">
+    <value>Only stream video over wifi</value>
   </data>
 </root>

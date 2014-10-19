@@ -43,6 +43,7 @@ namespace MediaBrowser.WindowsPhone
 
         public bool UseTransparentTile { get; set; }
         public StreamingQuality StreamingQuality { get; set; }
+        public bool OnlyStreamOnWifi { get; set; }
         
         [UsedImplicitly]
         private void OnLockScreenCollectionIdChanged()

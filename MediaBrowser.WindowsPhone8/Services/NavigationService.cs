@@ -25,6 +25,16 @@ namespace MediaBrowser.WindowsPhone.Services
             }
         }
 
+        public bool IsOnWifi
+        {
+            get
+            {
+                var networkType = NetworkInterface.NetworkInterfaceType;
+                return networkType.ToString().Contains("Ethernet")
+                       || networkType == NetworkInterfaceType.Wireless80211;
+            }
+        }
+
         public void NavigateTo(BaseItemInfo item)
         {
             var dto = new BaseItemDto

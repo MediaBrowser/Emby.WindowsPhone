@@ -315,6 +315,23 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 return new RelayCommand(async () =>
                 {
+                    if (App.SpecificSettings.OnlyStreamOnWifi)
+                    {
+                        if (!_navigationService.IsOnWifi)
+                        {
+                            MessageBox.Show(AppResources.ErrorNoWifi, AppResources.ErrorNoWifiTitle, MessageBoxButton.OK);
+                            if (_navigationService.CanGoBack)
+                            {
+                                _navigationService.GoBack();
+                            }
+                            else
+                            {
+                                _navigationService.NavigateTo(Constants.Pages.MainPage);
+                            }
+                            return;
+                        }
+                    }
+
                     if (!Recover)                       
                         await InitiatePlayback(_isResume);                    
                 });
