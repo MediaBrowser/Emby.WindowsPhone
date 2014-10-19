@@ -23,7 +23,7 @@ using MediaBrowser.WindowsPhone.Services;
 using Microsoft.Phone.Controls;
 using ScottIsAFool.WindowsPhone.ViewModel;
 using Microsoft.Phone.Tasks;
-using INavigationService = MediaBrowser.WindowsPhone.Model.INavigationService;
+using INavigationService = MediaBrowser.WindowsPhone.Model.Interfaces.INavigationService;
 
 namespace MediaBrowser.WindowsPhone.ViewModel
 {

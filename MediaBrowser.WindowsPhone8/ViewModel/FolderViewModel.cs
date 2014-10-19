@@ -14,6 +14,7 @@ using MediaBrowser.Model.Dto;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
+using MediaBrowser.WindowsPhone.Model.Interfaces;
 using MediaBrowser.WindowsPhone.Resources;
 using MediaBrowser.WindowsPhone.Services;
 using ScottIsAFool.WindowsPhone;

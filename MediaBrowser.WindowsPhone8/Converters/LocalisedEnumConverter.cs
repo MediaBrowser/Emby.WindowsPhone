@@ -3,6 +3,7 @@ using System.Globalization;
 using System.Windows.Data;
 using MediaBrowser.WindowsPhone.Extensions;
 using MediaBrowser.WindowsPhone.Model;
+using MediaBrowser.WindowsPhone.Model.Streaming;
 
 namespace MediaBrowser.WindowsPhone.Converters
 {
@@ -23,6 +24,34 @@ namespace MediaBrowser.WindowsPhone.Converters
             }
 
             return value.ToString();
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class BitRateLabelConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            var lmh = (StreamingLMH) value;
+            return lmh.GetBitrateLabel();
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class ResolutionLabelConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            var res = (StreamingResolution) value;
+            return res.GetProperResolutionName();
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

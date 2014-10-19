@@ -14,6 +14,7 @@ using MediaBrowser.Model.Querying;
 using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Messaging;
 using MediaBrowser.WindowsPhone.Model;
+using MediaBrowser.WindowsPhone.Model.Interfaces;
 using MediaBrowser.WindowsPhone.Resources;
 using Microsoft.Phone.Controls;
 using ScottIsAFool.WindowsPhone.ViewModel;

@@ -19,7 +19,7 @@ using MediaBrowser.WindowsPhone.Services;
 using Newtonsoft.Json;
 using ScottIsAFool.WindowsPhone;
 using ScottIsAFool.WindowsPhone.Logging;
-using INavigationService = MediaBrowser.WindowsPhone.Model.INavigationService;
+using INavigationService = MediaBrowser.WindowsPhone.Model.Interfaces.INavigationService;
 
 namespace MediaBrowser.WindowsPhone
 {

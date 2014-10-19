@@ -862,6 +862,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Choose the quality of video streaming you wish to have. Please note, if streaming over your phone&apos;s data plan, the higher the quality, the more data you&apos;ll use..
+        /// </summary>
+        public static string LabelChooseQuality {
+            get {
+                return ResourceManager.GetString("LabelChooseQuality", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Full screen collage.
         /// </summary>
         public static string LabelCollage {
@@ -1510,6 +1519,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Quality:.
+        /// </summary>
+        public static string LabelQuality {
+            get {
+                return ResourceManager.GetString("LabelQuality", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to quit.
         /// </summary>
         public static string LabelQuit {
@@ -1641,6 +1659,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string LabelRemove {
             get {
                 return ResourceManager.GetString("LabelRemove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Resolution:.
+        /// </summary>
+        public static string LabelResolution {
+            get {
+                return ResourceManager.GetString("LabelResolution", resourceCulture);
             }
         }
         
@@ -1830,6 +1857,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string LabelSongs {
             get {
                 return ResourceManager.GetString("LabelSongs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Streaming.
+        /// </summary>
+        public static string LabelStreaming {
+            get {
+                return ResourceManager.GetString("LabelStreaming", resourceCulture);
             }
         }
         

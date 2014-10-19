@@ -2,6 +2,7 @@
 using MediaBrowser.Model;
 using MediaBrowser.Model.LiveTv;
 using MediaBrowser.WindowsPhone.Model;
+using MediaBrowser.WindowsPhone.Model.Interfaces;
 using ScottIsAFool.WindowsPhone.ViewModel;
 
 namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv

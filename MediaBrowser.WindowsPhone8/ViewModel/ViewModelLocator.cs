@@ -11,8 +11,8 @@ using MediaBrowser.WindowsPhone.ViewModel.Remote;
 using Microsoft.Practices.ServiceLocation;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.Model;
-using INavigationService = MediaBrowser.WindowsPhone.Model.INavigationService;
-using NavigationService = MediaBrowser.WindowsPhone.Model.NavigationService;
+using INavigationService = MediaBrowser.WindowsPhone.Model.Interfaces.INavigationService;
+using NavigationService = MediaBrowser.WindowsPhone.Services.NavigationService;
 using Cimbalino.Phone.Toolkit.Helpers;
 using MediaBrowser.WindowsPhone.ViewModel.LiveTv;
 

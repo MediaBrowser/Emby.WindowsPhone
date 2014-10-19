@@ -203,6 +203,7 @@
     <Compile Include="ExtensionMethods.cs" />
     <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Extensions\LiveTvExtensions.cs" />
+    <Compile Include="Extensions\StreamingExtensions.cs" />
     <Compile Include="Extensions\ToolkitExtensions.cs" />
     <Compile Include="Extensions\WriteableBitmapExt.cs" />
     <Compile Include="Helpers\ResolutionHelper.cs" />
@@ -215,14 +216,21 @@
     <Compile Include="Model\Chapter.cs" />
     <Compile Include="Model\EventToCommand.cs" />
     <Compile Include="Model\GroupBy.cs" />
-    <Compile Include="Model\INavigationService.cs" />
+    <Compile Include="Model\Interfaces\INavigationService.cs" />
     <Compile Include="Model\LockScreenType.cs" />
     <Compile Include="Model\MBLogger.cs" />
-    <Compile Include="Model\NavigationService.cs" />
+    <Compile Include="Model\Streaming\TranscodeSetting.cs" />
+    <Compile Include="Model\Streaming\TranscodeSetting1080p.cs" />
+    <Compile Include="Model\Streaming\TranscodeSetting360p.cs" />
+    <Compile Include="Model\Streaming\TranscodeSetting480p.cs" />
+    <Compile Include="Model\Streaming\TranscodeSetting720p.cs" />
+    <Compile Include="Model\Streaming\TranscodeSettingCopy.cs" />
+    <Compile Include="Services\NavigationService.cs" />
     <Compile Include="Model\PlayerSourceType.cs" />
     <Compile Include="Model\PlaylistTemplateSelector.cs" />
     <Compile Include="Model\RecordedGroupBy.cs" />
     <Compile Include="Model\Server.cs" />
+    <Compile Include="Model\Streaming\StreamingQuality.cs" />
     <Compile Include="Model\UdpResponse.cs" />
     <Compile Include="Progress\CircularProgressBarViewModel.cs" />
     <Compile Include="Progress\GridUtils.cs" />
@@ -394,8 +402,27 @@
     <Compile Include="Views\SeasonView.xaml.cs">
       <DependentUpon>SeasonView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SettingsBasePage.cs" />
     <Compile Include="Views\SettingsView.xaml.cs">
       <DependentUpon>SettingsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Settings\ConnectionSettingsView.xaml.cs">
+      <DependentUpon>ConnectionSettingsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Settings\TileSettingsView.xaml.cs">
+      <DependentUpon>TileSettingsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Settings\LockScreenSettingsView.xaml.cs">
+      <DependentUpon>LockScreenSettingsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Settings\LiveTvSettingsView.xaml.cs">
+      <DependentUpon>LiveTvSettingsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Settings\StreamingSettingsView.xaml.cs">
+      <DependentUpon>StreamingSettingsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Settings\GeneralSettingsView.xaml.cs">
+      <DependentUpon>GeneralSettingsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TrailerView.xaml.cs">
       <DependentUpon>TrailerView.xaml</DependentUpon>
@@ -690,6 +717,30 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\Settings\ConnectionSettingsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Settings\TileSettingsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Settings\LockScreenSettingsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Settings\LiveTvSettingsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Settings\StreamingSettingsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Settings\GeneralSettingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\TrailerView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -763,6 +814,7 @@
     <EmbeddedResource Include="Resources\AppResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
+      <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\AppResources.ru-RU.resx" />
     <EmbeddedResource Include="Resources\AppResources.sv-SE.resx" />

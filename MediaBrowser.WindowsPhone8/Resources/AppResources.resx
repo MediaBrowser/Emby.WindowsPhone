@@ -1027,4 +1027,16 @@
   <data name="SysTrayRemoving" xml:space="preserve">
     <value>Removing...</value>
   </data>
+  <data name="LabelStreaming" xml:space="preserve">
+    <value>Streaming</value>
+  </data>
+  <data name="LabelQuality" xml:space="preserve">
+    <value>Quality:</value>
+  </data>
+  <data name="LabelResolution" xml:space="preserve">
+    <value>Resolution:</value>
+  </data>
+  <data name="LabelChooseQuality" xml:space="preserve">
+    <value>Choose the quality of video streaming you wish to have. Please note, if streaming over your phone's data plan, the higher the quality, the more data you'll use.</value>
+  </data>
 </root>

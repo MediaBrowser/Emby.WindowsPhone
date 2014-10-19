@@ -5,6 +5,7 @@ using GalaSoft.MvvmLight.Messaging;
 using JetBrains.Annotations;
 using MediaBrowser.Model;
 using MediaBrowser.WindowsPhone.Model;
+using MediaBrowser.WindowsPhone.Model.Streaming;
 using MediaBrowser.WindowsPhone.Services;
 
 namespace MediaBrowser.WindowsPhone
@@ -20,6 +21,7 @@ namespace MediaBrowser.WindowsPhone
             DefaultRecordedGroupBy = RecordedGroupByItems.FirstOrDefault(x => x == DefaultRecordedGroupBy);
             UseRichWideTile = true;
             DisplayBackdropOnTile = true;
+            StreamingQuality = StreamingQuality.SevenTwentyMedium;
         }
 
         public bool IncludeTrailersInRecent { get; set; }
@@ -40,6 +42,7 @@ namespace MediaBrowser.WindowsPhone
         public bool UseRichWideTile { get; set; }
 
         public bool UseTransparentTile { get; set; }
+        public StreamingQuality StreamingQuality { get; set; }
         
         [UsedImplicitly]
         private void OnLockScreenCollectionIdChanged()

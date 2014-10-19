@@ -16,13 +16,15 @@ using JetBrains.Annotations;
 using MediaBrowser.Model;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Net;
+using MediaBrowser.WindowsPhone.Extensions;
 using MediaBrowser.WindowsPhone.Model;
+using MediaBrowser.WindowsPhone.Model.Streaming;
 using MediaBrowser.WindowsPhone.Resources;
 using Microsoft.Phone.Net.NetworkInformation;
 using Microsoft.Phone.Notification;
 using Newtonsoft.Json;
 using ScottIsAFool.WindowsPhone.ViewModel;
-using INavigationService = MediaBrowser.WindowsPhone.Model.INavigationService;
+using INavigationService = MediaBrowser.WindowsPhone.Model.Interfaces.INavigationService;
 
 using Windows.Networking;
 using Windows.Networking.Sockets;
@@ -74,7 +76,27 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 RegisteredText = AppResources.DeviceNotRegistered;
                 LoadingFromSettings = false;
                 ServerPluginInstalled = false;
+
+                SetStreamingQuality();
             }
+        }
+
+        private void SetStreamingQuality()
+        {
+            StreamingResolution res;
+            StreamingLMH lmh;
+            App.SpecificSettings.StreamingQuality.BreakDown(out res, out lmh);
+
+            StreamingResolutions = Enum<StreamingResolution>.GetNames();
+            StreamingResolution = StreamingResolutions.FirstOrDefault(x => x == res);
+
+            SetQuality(lmh);
+        }
+
+        private void SetQuality(StreamingLMH lmh)
+        {
+            StreamingLmhs = Enum<StreamingLMH>.GetNames();
+            StreamingLmh = StreamingLmhs.FirstOrDefault(x => x == lmh);            
         }
 
         public string RegisteredText { get; set; }
@@ -85,6 +107,30 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public bool ServerPluginInstalled { get; set; }
         public bool UseNotifications { get; set; }
         public HttpNotificationChannel HttpNotificationChannel { get; set; }
+
+        public List<StreamingLMH> StreamingLmhs { get; set; }
+        public StreamingLMH StreamingLmh { get; set; }
+        public List<StreamingResolution> StreamingResolutions { get; set; }
+        public StreamingResolution StreamingResolution { get; set; }
+
+        public bool CanChangeQuality
+        {
+            get { return StreamingResolution != StreamingResolution.ThreeSixty; }
+        }
+
+        [UsedImplicitly]
+        private void OnStreamingLmhChanged()
+        {
+            App.SpecificSettings.StreamingQuality = StreamingResolution.ToStreamingQuality(StreamingLmh);
+        }
+
+        [UsedImplicitly]
+        private void OnStreamingResolutionChanged()
+        {
+            App.SpecificSettings.StreamingQuality = StreamingResolution.ToStreamingQuality(StreamingLmh);
+            StreamingLmhs = null;
+            SetQuality(StreamingLmh);
+        }
 
         public bool IsLockScreenProvider
         {
@@ -176,20 +222,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             get
             {
-                return new RelayCommand(async () =>
+                return new RelayCommand(() =>
                 {
-                    //if (_navigationService.IsNetworkAvailable && !string.IsNullOrEmpty(_apiClient.ServerHostName))
-                    //{
-                    //    try
-                    //    {
-                    //        //var result = await ApiClient.CheckForPushServer();
-                    //        //ServerPluginInstalled = true;
-                    //    }
-                    //    catch
-                    //    {
-                    //        ServerPluginInstalled = false;
-                    //    }
-                    //}
                     LoadPosterStreams();
                     GetFolders();
                 });

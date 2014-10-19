@@ -14,7 +14,7 @@ using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Resources;
 using ScottIsAFool.WindowsPhone;
 using ScottIsAFool.WindowsPhone.ViewModel;
-using INavigationService = MediaBrowser.WindowsPhone.Model.INavigationService;
+using INavigationService = MediaBrowser.WindowsPhone.Model.Interfaces.INavigationService;
 
 #if WP8
 using LockScreenService = MediaBrowser.WindowsPhone.Services.LockScreenService;

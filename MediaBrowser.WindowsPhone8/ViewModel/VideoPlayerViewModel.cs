@@ -5,6 +5,7 @@ using System.Globalization;
 using System.Linq;
 using System.Windows;
 using System.Windows.Threading;
+using Cimbalino.Phone.Toolkit.Extensions;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model;
@@ -14,8 +15,10 @@ using MediaBrowser.Model.LiveTv;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Session;
 using MediaBrowser.Services;
+using MediaBrowser.WindowsPhone.Extensions;
 using MediaBrowser.WindowsPhone.Messaging;
 using MediaBrowser.WindowsPhone.Model;
+using MediaBrowser.WindowsPhone.Model.Interfaces;
 using MediaBrowser.WindowsPhone.Resources;
 using Microsoft.PlayerFramework;
 using ScottIsAFool.WindowsPhone.ViewModel;
@@ -343,7 +346,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         _startPositionTicks = SelectedItem.UserData.PlaybackPositionTicks;
                     }
 
-                    query = CreateVideoStreamOptions(SelectedItem.Id, SelectedItem.UserData, _startPositionTicks, SelectedItem.Type.ToLower().Equals("channelvideoitem"));
+                    query = CreateVideoStreamOptions(SelectedItem.Id, _startPositionTicks, SelectedItem.Type.ToLower().Equals("channelvideoitem"));
 
                     if (SelectedItem.RunTimeTicks.HasValue)
                         EndTime = TimeSpan.FromTicks(SelectedItem.RunTimeTicks.Value - _startPositionTicks);
@@ -351,7 +354,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     Log.Info("Playing {0} [{1}] ({2})", SelectedItem.Type, SelectedItem.Name, SelectedItem.Id);
                     break;
                 case PlayerSourceType.Recording:
-                    query = CreateVideoStreamOptions(RecordingItem.Id, RecordingItem.UserData, _startPositionTicks);
+                    query = CreateVideoStreamOptions(RecordingItem.Id, _startPositionTicks);
 
                     if (RecordingItem.RunTimeTicks.HasValue)
                         EndTime = TimeSpan.FromTicks(RecordingItem.RunTimeTicks.Value - _startPositionTicks);
@@ -359,7 +362,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     Log.Info("Playing {0} [{1}] ({2})", RecordingItem.Type, RecordingItem.Name, RecordingItem.Id);
                     break;
                 case PlayerSourceType.Programme:
-                    query = CreateVideoStreamOptions(ProgrammeItem.ChannelId, ProgrammeItem.UserData, _startPositionTicks, true);
+                    query = CreateVideoStreamOptions(ProgrammeItem.ChannelId, _startPositionTicks, true);
 
                     if (ProgrammeItem.RunTimeTicks.HasValue)
                         EndTime = TimeSpan.FromTicks(ProgrammeItem.RunTimeTicks.Value - _startPositionTicks);
@@ -409,9 +412,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
         }
 
-        private VideoStreamOptions CreateVideoStreamOptions(string itemId, UserItemDataDto userData, long startTimeTicks, bool useHls = false)
+        private VideoStreamOptions CreateVideoStreamOptions(string itemId, long startTimeTicks, bool useHls = false)
         {
             _itemId = itemId;
+
+            var streamingSettings = App.SpecificSettings.StreamingQuality.GetSettings();
 
             var query = new VideoStreamOptions
             {
@@ -419,13 +424,13 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 VideoCodec = "H264",
                 OutputFileExtension = useHls ? ".m3u8" : ".mp4",
                 AudioCodec = "Aac",
-                VideoBitRate = WindowsPhone.Helpers.ResolutionHelper.DefaultVideoBitrate,
-                AudioBitRate = 128000,
-                MaxAudioChannels = 2,
+                VideoBitRate = streamingSettings.VideoBitrate,
+                AudioBitRate = streamingSettings.AudioBitrate,
+                MaxAudioChannels = streamingSettings.AudioChannels,
                 StartTimeTicks = startTimeTicks,
                 Profile = "baseline",
                 Level = "3",
-                MaxWidth = WindowsPhone.Helpers.ResolutionHelper.Width // (int)bounds.Height
+                MaxWidth = streamingSettings.Width
             };
 
             return query;
