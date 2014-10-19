@@ -1222,6 +1222,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to mobile.
+        /// </summary>
+        public static string LabelMobile {
+            get {
+                return ResourceManager.GetString("LabelMobile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} months ago.
         /// </summary>
         public static string LabelMonthsAgo {
@@ -2028,6 +2037,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string LabelWhatsOn {
             get {
                 return ResourceManager.GetString("LabelWhatsOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to wifi.
+        /// </summary>
+        public static string LabelWifi {
+            get {
+                return ResourceManager.GetString("LabelWifi", resourceCulture);
             }
         }
         

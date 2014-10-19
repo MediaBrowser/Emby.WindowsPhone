@@ -100,7 +100,7 @@
                                        FontSize="30"/>
                         </DataTemplate>
                     </phone:Pivot.HeaderTemplate>
-                    <phone:PivotItem Header="mobile">
+                    <phone:PivotItem Header="{Binding LocalizedResources.LabelMobile, Source={StaticResource LocalizedStrings}}">
                         <StackPanel Margin="0,-20,0,0">
                             <toolkit:ListPicker ItemsSource="{Binding StreamingResolutions}"
                                                 SelectedItem="{Binding StreamingResolution, Mode=TwoWay}"
@@ -123,7 +123,7 @@
                             </toolkit:ListPicker>
                         </StackPanel>
                     </phone:PivotItem>
-                    <phone:PivotItem Header="wifi">
+                    <phone:PivotItem Header="{Binding LocalizedResources.LabelWifi, Source={StaticResource LocalizedStrings}}">
                         <StackPanel Margin="0,-20,0,0">
                             <toolkit:ListPicker ItemsSource="{Binding StreamingResolutions}"
                                                 SelectedItem="{Binding WifiStreamingResolution, Mode=TwoWay}"

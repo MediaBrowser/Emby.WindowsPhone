@@ -1045,7 +1045,13 @@
   <data name="LabelChooseQuality" xml:space="preserve">
     <value>Choose the quality of video streaming you wish to have. Please note, if streaming over your phone's data plan, the higher the quality, the more data you'll use.</value>
   </data>
+  <data name="LabelMobile" xml:space="preserve">
+    <value>mobile</value>
+  </data>
   <data name="LabelStreamWifi" xml:space="preserve">
     <value>Only stream video over wifi</value>
+  </data>
+  <data name="LabelWifi" xml:space="preserve">
+    <value>wifi</value>
   </data>
 </root>
