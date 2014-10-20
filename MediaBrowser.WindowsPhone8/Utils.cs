@@ -47,7 +47,7 @@ namespace MediaBrowser.WindowsPhone
 
         public static async Task<List<Group<BaseItemDto>>> GroupItemsByName(IEnumerable<BaseItemDto> items)
         {
-            return await TaskEx.Run(() =>
+            return await Task.Run(() =>
             {
                 var emptyGroups = new List<Group<BaseItemDto>>();
 
@@ -147,7 +147,7 @@ namespace MediaBrowser.WindowsPhone
 
         internal static async Task<List<BaseItemDto>> SortRecentItems(BaseItemDto[] items, bool includeTrailers)
         {
-            return await TaskEx.Run(() =>
+            return await Task.Run(() =>
             {
                 var episodesBySeries = items
                     .Where(x => x.Type == "Episode")

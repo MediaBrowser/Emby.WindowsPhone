@@ -283,6 +283,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                     Recursive = true,
                     Fields = new[] { ItemFields.ParentId },
                     ParentId = item.Id,
+                    SortBy = new []{ItemSortBy.SortName},
                     IncludeItemTypes = new[] { "Audio" }
                 };
 

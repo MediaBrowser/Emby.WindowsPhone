@@ -8,13 +8,14 @@ using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Logging;
 using MediaBrowser.Model.Session;
+using MediaBrowser.WindowsPhone.Model.Security;
 
 namespace MediaBrowser.WindowsPhone.Model
 {
     public class ExtendedApiClient : ApiClient, IExtendedApiClient
     {
         public ExtendedApiClient(ILogger logger, string serverHostName, string clientName, IDevice device, string appVersion, ClientCapabilities capabilities)
-            : base(logger, serverHostName, clientName, device, appVersion, capabilities)
+            : base(logger, serverHostName, clientName, device, appVersion, capabilities, new CryptographyProvider())
         {
         }
 

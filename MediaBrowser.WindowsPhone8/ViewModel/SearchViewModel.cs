@@ -92,7 +92,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 return;
             }
 
-            await TaskEx.Run(() =>
+            await Task.Run(() =>
             {
                 var emptyGroups = new List<Group<SearchHint>>();
 

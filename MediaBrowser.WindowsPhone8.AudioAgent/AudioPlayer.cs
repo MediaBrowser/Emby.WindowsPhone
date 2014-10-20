@@ -8,6 +8,7 @@ using Cimbalino.Phone.Toolkit.Helpers;
 using Cimbalino.Phone.Toolkit.Services;
 using MediaBrowser.ApiInteraction;
 using MediaBrowser.Model;
+using MediaBrowser.Model.Logging;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Session;
 using MediaBrowser.Services;

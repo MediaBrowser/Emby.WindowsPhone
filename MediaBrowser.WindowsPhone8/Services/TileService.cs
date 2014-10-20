@@ -283,6 +283,10 @@ namespace MediaBrowser.WindowsPhone.Services
             {
                 _logger.ErrorException("UpdateBackContentImages()", ex);
             }
+            catch (Exception ex)
+            {
+                _logger.ErrorException("UpdateBackContentImages()", ex);
+            }
         }
 
         private void UpdateTileData(Uri wideTileUri, Uri backContentUri = null, Uri backContentWideuri = null, bool useTransparentTile = false)

@@ -509,6 +509,11 @@ namespace MediaBrowser.WindowsPhone.Design
             throw new NotImplementedException();
         }
 
+        public Task<AuthenticationResult> AuthenticateUserAsync(string username, string password)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<AuthenticationResult> AuthenticateUserAsync(string username, byte[] sha1Hash)
         {
             throw new NotImplementedException();

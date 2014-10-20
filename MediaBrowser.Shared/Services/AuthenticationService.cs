@@ -55,7 +55,7 @@ namespace MediaBrowser.Services
             {
                 _logger.Info("Authenticating user [{0}]", selectedUserName);
 
-                var result = await _apiClient.AuthenticateUserAsync(selectedUserName, pinCode.ToHash());
+                var result = await _apiClient.AuthenticateUserAsync(selectedUserName, pinCode);
 
                 _logger.Info("Logged in as [{0}]", selectedUserName);
 
