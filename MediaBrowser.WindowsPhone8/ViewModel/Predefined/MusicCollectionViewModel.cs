@@ -14,6 +14,7 @@ using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Querying;
 using MediaBrowser.Services;
+using MediaBrowser.WindowsPhone.Extensions;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Model.Interfaces;
 using MediaBrowser.WindowsPhone.Resources;
@@ -138,6 +139,29 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                     {
                         vm.AddMultipleToPlaylist.Execute(SelectedTracks);
                     }
+                });
+            }
+        }
+
+        public RelayCommand<BaseItemDto> StartInstantMixCommand
+        {
+            get
+            {
+                return new RelayCommand<BaseItemDto>(async item =>
+                {
+                    SetProgressBar(AppResources.SysTrayGettingInstantMix);
+
+                    try
+                    {
+                        var tracks = await _apiClient.GetInstantMixPlaylist(item);
+                        Messenger.Default.Send(new NotificationMessage<List<PlaylistItem>>(tracks, Constants.Messages.SetPlaylistAsMsg));
+                    }
+                    catch (HttpException ex)
+                    {
+                        Utils.HandleHttpException(ex, "StartInstantMix", _navigationService, Log);
+                    }
+
+                    SetProgressBar();
                 });
             }
         }

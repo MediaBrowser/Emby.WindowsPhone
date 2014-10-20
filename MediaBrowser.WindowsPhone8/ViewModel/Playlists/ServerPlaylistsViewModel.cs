@@ -12,6 +12,7 @@ using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Playlists;
 using MediaBrowser.Model.Querying;
 using MediaBrowser.Services;
+using MediaBrowser.WindowsPhone.Extensions;
 using MediaBrowser.WindowsPhone.Messaging;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Model.Interfaces;
@@ -250,6 +251,29 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Playlists
                     catch (HttpException ex)
                     {
                         Utils.HandleHttpException(ex, "DeleteItemsFromPlaylist", _navigationService, Log);
+                    }
+
+                    SetProgressBar();
+                });
+            }
+        }
+
+        public RelayCommand<BaseItemDto> StartInstantMixCommand
+        {
+            get
+            {
+                return new RelayCommand<BaseItemDto>(async item =>
+                {
+                    SetProgressBar(AppResources.SysTrayGettingInstantMix);
+
+                    try
+                    {
+                        var tracks = await _apiClient.GetInstantMixPlaylist(item);
+                        Messenger.Default.Send(new NotificationMessage<List<PlaylistItem>>(tracks, Constants.Messages.SetPlaylistAsMsg));
+                    }
+                    catch (HttpException ex)
+                    {
+                        Utils.HandleHttpException(ex, "StartInstantMix", _navigationService, Log);
                     }
 
                     SetProgressBar();

@@ -201,6 +201,7 @@
     <Compile Include="Converters\VirtualConverter.cs" />
     <Compile Include="Converters\ZeroCountBrushConverter.cs" />
     <Compile Include="ExtensionMethods.cs" />
+    <Compile Include="Extensions\ApiClientExtensions.cs" />
     <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Extensions\LiveTvExtensions.cs" />
     <Compile Include="Extensions\StreamingExtensions.cs" />

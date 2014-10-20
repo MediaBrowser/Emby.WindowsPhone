@@ -70,6 +70,9 @@
                         <toolkit:MenuItem Header="{Binding LocalizedResources.MenuRemoveFromPlaylist, Source={StaticResource LocalizedStrings}}"
                                           Command="{Binding ServerPlaylists.DeleteFromPlaylistCommand, Source={StaticResource Locator}}"
                                           CommandParameter="{Binding}" />
+                        <toolkit:MenuItem Header="{Binding LocalizedResources.LabelInstantMix, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                          Command="{Binding ServerPlaylists.StartInstantMixCommand, Source={StaticResource Locator}}"
+                                          CommandParameter="{Binding}" />
                     </toolkit:ContextMenu>
                 </toolkit:ContextMenuService.ContextMenu>
                 <Grid>

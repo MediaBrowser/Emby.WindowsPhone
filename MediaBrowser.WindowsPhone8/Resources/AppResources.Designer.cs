@@ -1105,6 +1105,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Instant Mix.
+        /// </summary>
+        public static string LabelInstantMix {
+            get {
+                return ResourceManager.GetString("LabelInstantMix", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Media Browser is the current lock screen provider.
         /// </summary>
         public static string LabelIsLockScreenProvider {
@@ -2496,6 +2505,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string SysTrayGettingGenreTracks {
             get {
                 return ResourceManager.GetString("SysTrayGettingGenreTracks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Getting Instant Mix....
+        /// </summary>
+        public static string SysTrayGettingInstantMix {
+            get {
+                return ResourceManager.GetString("SysTrayGettingInstantMix", resourceCulture);
             }
         }
         

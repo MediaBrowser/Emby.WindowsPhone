@@ -12,6 +12,7 @@ using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Querying;
 using MediaBrowser.Services;
+using MediaBrowser.WindowsPhone.Extensions;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Resources;
 using MediaBrowser.WindowsPhone.ViewModel.Playlists;
@@ -412,6 +413,21 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public List<Group<BaseItemDto>> SortedTracks { get; set; }
         public List<BaseItemDto> SelectedTracks { get; set; }
 
+        public RelayCommand<BaseItemDto> AddItemToPlaylistCommand
+        {
+            get
+            {
+                return new RelayCommand<BaseItemDto>(item =>
+                {
+                    var vm = SimpleIoc.Default.GetInstance<AddToPlaylistViewModel>();
+                    if (vm != null)
+                    {
+                        vm.AddToPlaylistCommand.Execute(item);
+                    }
+                });
+            }
+        }
+
         public RelayCommand AddToPlaylistCommand
         {
             get
@@ -423,6 +439,29 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     {
                         vm.AddMultipleToPlaylist.Execute(SelectedTracks);
                     }
+                });
+            }
+        }
+
+        public RelayCommand<BaseItemDto> StartInstantMixCommand
+        {
+            get
+            {
+                return new RelayCommand<BaseItemDto>(async item =>
+                {
+                    SetProgressBar(AppResources.SysTrayGettingInstantMix);
+
+                    try
+                    {
+                        var tracks = await _apiClient.GetInstantMixPlaylist(item);
+                        Messenger.Default.Send(new NotificationMessage<List<PlaylistItem>>(tracks, Constants.Messages.SetPlaylistAsMsg));
+                    }
+                    catch (HttpException ex)
+                    {
+                        Utils.HandleHttpException(ex, "StartInstantMix", _navigationService, Log);
+                    }
+
+                    SetProgressBar();
                 });
             }
         }

@@ -71,6 +71,13 @@
                                                           Command="{Binding AddRemoveFavouriteCommand}"
                                                           CommandParameter="{Binding SelectedAlbum}"
                                                           IsEnabled="{Binding CanUpdateFavourites}" />
+                        <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.LabelInstantMix, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                          Command="{Binding StartInstantMixCommand}"
+                                                          CommandParameter="{Binding SelectedAlbum}" />
+                        <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.LabelAddToPlaylist, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                          Command="{Binding AddItemToPlaylistCommand}"
+                                                          CommandParameter="{Binding SelectedAlbum}"
+                                                          IsEnabled="{Binding SelectedTracks.Count, Converter={StaticResource CountToEnabled}, ConverterParameter=delete}" />
                     </cimbalino:ApplicationBar.MenuItems>
                 </cimbalino:ApplicationBar>
                 <cimbalino:ApplicationBar>
@@ -128,6 +135,9 @@
                                     <toolkit:ContextMenu>
                                         <toolkit:MenuItem Header="{Binding LocalizedResources.LabelAddToPlaylist, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                           Command="{Binding AddToPlaylist.AddToPlaylistCommand, Source={StaticResource Locator}}"
+                                                          CommandParameter="{Binding}" />
+                                        <toolkit:MenuItem Header="{Binding LocalizedResources.LabelInstantMix, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                          Command="{Binding Music.StartInstantMixCommand, Source={StaticResource Locator}}"
                                                           CommandParameter="{Binding}" />
                                     </toolkit:ContextMenu>
                                 </toolkit:ContextMenuService.ContextMenu>
