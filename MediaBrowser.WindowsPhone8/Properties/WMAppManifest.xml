@@ -54,6 +54,7 @@
     </Tokens>
     <Extensions>
       <Extension ExtensionName="LockScreen_Background" ConsumerID="{111DFF24-AA15-4A96-8006-2BFF8122084F}" TaskID="_default" />
+      <Extension ExtensionName="Photos_Auto_Upload" ConsumerID = "{5B04B775-356B-4AA0-AAF8-6491FFEA5632}" TaskID="_default" />
       <Protocol Name="mediabrowser" NavUriFragment="encodedLaunchUri=%s" TaskID="_default" />
     </Extensions>
     <ScreenResolutions>
