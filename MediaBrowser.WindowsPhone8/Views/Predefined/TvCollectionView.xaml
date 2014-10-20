@@ -109,21 +109,13 @@
                     </StackPanel>
                 </phone:Pivot.Title>
 
-                <phone:PivotItem Header="{Binding LocalizedResources.LabelLatestUnseen, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
-                    <phone:LongListSelector ItemsSource="{Binding LatestUnwatched}"
-                                            ItemTemplate="{StaticResource EpisodeDataTemplate}" />
-                </phone:PivotItem>
 
                 <phone:PivotItem Header="{Binding LocalizedResources.LabelNextUp, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
                     <phone:LongListSelector ItemsSource="{Binding NextUpList}"
                                             ItemTemplate="{StaticResource EpisodeDataTemplate}" />
                 </phone:PivotItem>
-                <phone:PivotItem Header="{Binding LocalizedResources.LabelUpcoming, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
-                    <phone:LongListSelector ItemsSource="{Binding Upcoming}"
-                                            IsGroupingEnabled="True"
-                                            JumpListStyle="{StaticResource LLSGroupItemLongStyle}"
-                                            HideEmptyGroups="False"
-                                            GroupHeaderTemplate="{StaticResource LLSGroupHeaderTemplateLong}"
+                <phone:PivotItem Header="{Binding LocalizedResources.LabelLatestUnseen, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
+                    <phone:LongListSelector ItemsSource="{Binding LatestUnwatched}"
                                             ItemTemplate="{StaticResource EpisodeDataTemplate}" />
                 </phone:PivotItem>
                 <phone:PivotItem Header="{Binding LocalizedResources.LabelShows, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
@@ -174,6 +166,14 @@
                             </DataTemplate>
                         </phone:LongListSelector.ItemTemplate>
                     </phone:LongListSelector>
+                </phone:PivotItem>
+                <phone:PivotItem Header="{Binding LocalizedResources.LabelUpcoming, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
+                    <phone:LongListSelector ItemsSource="{Binding Upcoming}"
+                                            IsGroupingEnabled="True"
+                                            JumpListStyle="{StaticResource LLSGroupItemLongStyle}"
+                                            HideEmptyGroups="False"
+                                            GroupHeaderTemplate="{StaticResource LLSGroupHeaderTemplateLong}"
+                                            ItemTemplate="{StaticResource EpisodeDataTemplate}" />
                 </phone:PivotItem>
 
                 <phone:PivotItem Header="{Binding LocalizedResources.LabelGenres, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">

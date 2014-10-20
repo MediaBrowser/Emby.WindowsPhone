@@ -11,7 +11,6 @@ using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Querying;
 using MediaBrowser.Services;
-using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Model.Interfaces;
 using MediaBrowser.WindowsPhone.Resources;
 using ScottIsAFool.WindowsPhone;
@@ -35,6 +34,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
         private bool _upcomingLoaded;
         private bool _showsLoaded;
         private bool _genresLoaded;
+
+        private const int NextUpIndex = 0;
+        private const int LatestIndex = 1;
+        private const int ShowsIndex = 2;
+        private const int UpcomingIndex = 3;
+        private const int GenresIndex = 4;
 
         /// <summary>
         /// Initializes a new instance of the TvCollectionViewModel class.
@@ -349,7 +354,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
         {
             switch (PivotSelectedIndex)
             {
-                case 0:
+                case LatestIndex:
                     if (!_navigationService.IsNetworkAvailable || (_latestUnwatchedLoaded && !isRefresh))
                     {
                         return;
@@ -357,7 +362,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
 
                     _latestUnwatchedLoaded = await GetLatestUnwatched();
                     break;
-                case 1:
+                case NextUpIndex:
                     if (!_navigationService.IsNetworkAvailable || (_nextUpLoaded && !isRefresh))
                     {
                         return;
@@ -365,7 +370,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
 
                     _nextUpLoaded = await GetNextUp();
                     break;
-                case 2:
+                case UpcomingIndex:
                     if (!_navigationService.IsNetworkAvailable || (_upcomingLoaded && !isRefresh))
                     {
                         return;
@@ -373,7 +378,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
 
                     _upcomingLoaded = await GetUpcoming();
                     break;
-                case 3:
+                case ShowsIndex:
                     if (!_navigationService.IsNetworkAvailable || (_showsLoaded && !isRefresh))
                     {
                         return;
@@ -381,7 +386,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
 
                     _showsLoaded = await GetShows();
                     break;
-                case 4:
+                case GenresIndex:
                     if (!_navigationService.IsNetworkAvailable || (_genresLoaded && !isRefresh))
                     {
                         return;
