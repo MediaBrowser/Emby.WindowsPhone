@@ -5,6 +5,8 @@
         public static string[] TileColours = { "D8502B", "009300", "A200A9", "0A58C1", "009FB0", "3290F5", "93009C", "AF1A3F" };
 
         public static string PhoneTileUrlFormat = "/Splashscreen.xaml?action={0}&id={1}&name={2}";
+
+        public static int ImageQuality = 80;
         
         public class Settings
         {

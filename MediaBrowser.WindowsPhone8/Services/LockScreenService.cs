@@ -62,7 +62,7 @@ namespace MediaBrowser.WindowsPhone.Services
                 {
                     ImageType = ImageType.Primary,
                     MaxWidth = 480,
-                    Quality = 90,
+                    Quality = Constants.ImageQuality,
                     EnableImageEnhancers = false
                 };
             }
@@ -76,7 +76,7 @@ namespace MediaBrowser.WindowsPhone.Services
                 {
                     ImageType = ImageType.Primary,
                     MaxWidth = 167,
-                    Quality = 90,
+                    Quality = Constants.ImageQuality,
                     EnableImageEnhancers = false
                 };
             }
@@ -90,7 +90,7 @@ namespace MediaBrowser.WindowsPhone.Services
                 {
                     ImageType = ImageType.Primary,
                     MaxWidth = 160,
-                    Quality = 90,
+                    Quality = Constants.ImageQuality,
                     EnableImageEnhancers = false
                 };
             }

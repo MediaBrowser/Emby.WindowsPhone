@@ -37,7 +37,7 @@ namespace MediaBrowser.WindowsPhone.Converters
                         return apiClient.GetPersonImageUrl(person, new ImageOptions
                         {
                             MaxWidth = smallImageSize ? 99 : 200, 
-                            Quality = 90,
+                            Quality = Constants.ImageQuality,
                             EnableImageEnhancers = App.SpecificSettings.EnableImageEnhancers
                         });
                     }
@@ -48,7 +48,7 @@ namespace MediaBrowser.WindowsPhone.Converters
                     var user = (UserDto)value;
                     if (user.HasPrimaryImage)
                     {
-                        var url = apiClient.GetUserImageUrl(user, new ImageOptions { MaxHeight = 173, MaxWidth = 173, Quality = 95 });
+                        var url = apiClient.GetUserImageUrl(user, new ImageOptions { MaxHeight = 173, MaxWidth = 173, Quality = Constants.ImageQuality });
                         return new Uri(url);
                     }
                 }
@@ -163,7 +163,7 @@ namespace MediaBrowser.WindowsPhone.Converters
             var imageOptions = new ImageOptions
             {
                 EnableImageEnhancers = App.SpecificSettings.EnableImageEnhancers,
-                Quality = 90,
+                Quality = Constants.ImageQuality,
                 MaxHeight = 336,
                 ImageType = ImageType.Primary
             };

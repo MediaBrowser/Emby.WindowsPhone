@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media.Imaging;
@@ -211,13 +213,15 @@ namespace MediaBrowser.WindowsPhone.Services
                 {
                     ImageType = ImageType.Primary,
                     MaxWidth = 112,
-                    Quality = 90,
+                    Quality = Constants.ImageQuality,
                     EnableImageEnhancers = false
                 });
 
                 try
                 {
-                    var stream = await _apiClient.GetImageStreamAsync(url);
+                    var client = CreateClient();
+                    var response = await client.GetAsync(url);
+                    var stream = await response.Content.ReadAsStreamAsync();
                     list.Add(stream);
                 }
                 catch (HttpException ex)
@@ -263,13 +267,15 @@ namespace MediaBrowser.WindowsPhone.Services
             {
                 ImageType = ImageType.Backdrop,
                 MaxWidth = 691,
-                Quality = 95,
+                Quality = Constants.ImageQuality,
                 EnableImageEnhancers = false
             });
 
             try
             {
-                var stream = await _apiClient.GetImageStreamAsync(wideUrl);
+                var client = CreateClient();
+                var response = await client.GetAsync(wideUrl);
+                var stream = await response.Content.ReadAsStreamAsync();
                 var imageSource = new BitmapImage();
                 imageSource.SetSource(stream);
 
@@ -287,6 +293,11 @@ namespace MediaBrowser.WindowsPhone.Services
             {
                 _logger.ErrorException("UpdateBackContentImages()", ex);
             }
+        }
+
+        private HttpClient CreateClient()
+        {
+            return new HttpClient(new HttpClientHandler{AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip});
         }
 
         private void UpdateTileData(Uri wideTileUri, Uri backContentUri = null, Uri backContentWideuri = null, bool useTransparentTile = false)
