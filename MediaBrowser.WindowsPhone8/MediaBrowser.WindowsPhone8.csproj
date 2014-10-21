@@ -410,6 +410,9 @@
     <Compile Include="Views\Settings\ConnectionSettingsView.xaml.cs">
       <DependentUpon>ConnectionSettingsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Settings\PhotoUploadSettingsView.xaml.cs">
+      <DependentUpon>PhotoUploadSettingsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Settings\TileSettingsView.xaml.cs">
       <DependentUpon>TileSettingsView.xaml</DependentUpon>
     </Compile>
@@ -720,6 +723,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Settings\ConnectionSettingsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Settings\PhotoUploadSettingsView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

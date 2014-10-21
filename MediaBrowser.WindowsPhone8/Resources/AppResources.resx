@@ -1060,4 +1060,7 @@
   <data name="SysTrayGettingInstantMix" xml:space="preserve">
     <value>Getting Instant Mix...</value>
   </data>
+  <data name="LabelPhotoUpload" xml:space="preserve">
+    <value>Photo Upload</value>
+  </data>
 </root>

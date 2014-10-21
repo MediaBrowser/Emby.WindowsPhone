@@ -1456,6 +1456,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Photo Upload.
+        /// </summary>
+        public static string LabelPhotoUpload {
+            get {
+                return ResourceManager.GetString("LabelPhotoUpload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Port:.
         /// </summary>
         public static string LabelPort {
