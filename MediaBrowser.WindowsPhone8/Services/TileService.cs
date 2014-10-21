@@ -207,6 +207,7 @@ namespace MediaBrowser.WindowsPhone.Services
             }
 
             var list = new List<Stream>();
+            var taskList = new List<Task>();
             foreach (var item in items.Items)
             {
                 var url = _apiClient.GetImageUrl(item, new ImageOptions
@@ -217,36 +218,47 @@ namespace MediaBrowser.WindowsPhone.Services
                     EnableImageEnhancers = false
                 });
 
-                try
-                {
-                    var client = CreateClient();
-                    var response = await client.GetAsync(url);
-                    var stream = await response.Content.ReadAsStreamAsync();
-                    list.Add(stream);
-                }
-                catch (HttpException ex)
-                {
-                    _logger.ErrorException("CreateNewWideTileAsync()", ex);
-                }
+                taskList.Add(GetImageAddToList(url, list));
+            }
 
+            await Task.WhenAll(taskList).ContinueWith(item =>
+            {
                 if (list.IsNullOrEmpty())
                 {
                     _logger.Debug("No images found, wide tile not changed");
                     return;
                 }
-            }
 
-            var wideTile = new WideTileControl
+                Deployment.Current.Dispatcher.BeginInvoke(async () =>
+                {
+                    var wideTile = new WideTileControl
+                    {
+                        ItemsSource = list,
+                        Height = 336,
+                        Width = 691,
+                        UseTransparentTile = useTransparentTile
+                    };
+
+                    wideTile.UpdateBackground();
+                    await wideTile.SetImages();
+                    await ToImage(wideTile, 691, 336);
+                });
+            });
+        }
+
+        private async Task GetImageAddToList(string url, List<Stream> list)
+        {
+            try
             {
-                ItemsSource = list,
-                Height = 336,
-                Width = 691,
-                UseTransparentTile = useTransparentTile
-            };
-
-            wideTile.UpdateBackground();
-            await wideTile.SetImages();
-            await ToImage(wideTile, 691, 336);
+                var client = CreateClient();
+                var response = await client.GetAsync(url);
+                var stream = await response.Content.ReadAsStreamAsync();
+                list.Add(stream);
+            }
+            catch (HttpException ex)
+            {
+                _logger.ErrorException("CreateNewWideTileAsync()", ex);
+            }
         }
 
         public void ResetWideTile(bool useTransparentTile)
@@ -297,7 +309,7 @@ namespace MediaBrowser.WindowsPhone.Services
 
         private HttpClient CreateClient()
         {
-            return new HttpClient(new HttpClientHandler{AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip});
+            return new HttpClient(new HttpClientHandler { AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip });
         }
 
         private void UpdateTileData(Uri wideTileUri, Uri backContentUri = null, Uri backContentWideuri = null, bool useTransparentTile = false)
