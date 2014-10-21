@@ -51,7 +51,7 @@ namespace MediaBrowser.WindowsPhone.Model
 
             var url = GetApiUrl("PushNotification/Devices", dict);
 
-            return PostAsync<EmptyRequestResult>(url, new Dictionary<string, string>(), default(CancellationToken));
+            return PostAsync<EmptyRequestResult>(url, new Dictionary<string, string>());
         }
 
         /// <summary>
@@ -97,7 +97,7 @@ namespace MediaBrowser.WindowsPhone.Model
 
             var url = GetApiUrl("PushNotification/Devices/" + deviceId, dict);
 
-            return PostAsync<EmptyRequestResult>(url, new Dictionary<string, string>(), default(CancellationToken));
+            return PostAsync<EmptyRequestResult>(url, new Dictionary<string, string>());
         }
 
         /// <summary>
@@ -115,28 +115,7 @@ namespace MediaBrowser.WindowsPhone.Model
 
             var url = GetApiUrl("PushNotification/Devices/" + deviceId + "/Heartbeats");
 
-            return PostAsync<EmptyRequestResult>(url, new Dictionary<string, string>(), default(CancellationToken));
-        }
-
-        /// <summary>
-        /// Gets the device settings async.
-        /// </summary>
-        /// <param name="deviceId">The device id.</param>
-        /// <returns></returns>
-        /// <exception cref="ArgumentNullException">deviceId</exception>
-        public async Task<DeviceSettings> GetDeviceSettingsAsync(string deviceId)
-        {
-            if (string.IsNullOrEmpty(deviceId))
-            {
-                throw new ArgumentNullException("deviceId");
-            }
-
-            var url = GetApiUrl("PushNotification/Devices/" + deviceId + "/Settings");
-
-            using (var stream = await GetSerializedStreamAsync(url).ConfigureAwait(false))
-            {
-                return DeserializeFromStream<DeviceSettings>(stream);
-            }
+            return PostAsync<EmptyRequestResult>(url, new Dictionary<string, string>());
         }
     }
 }

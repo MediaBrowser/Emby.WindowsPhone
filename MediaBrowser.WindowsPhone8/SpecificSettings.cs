@@ -35,8 +35,6 @@ namespace MediaBrowser.WindowsPhone
         public bool ShowUnairedEpisodes { get; set; }
         public bool EnableImageEnhancers { get; set; }
 
-        public DeviceSettings DeviceSettings { get; set; }
-
         public LockScreenType LockScreenType { get; set; }
         public string LockScreenCollectionId { get; set; }
         public bool DisplayBackdropOnTile { get; set; }
@@ -46,6 +44,8 @@ namespace MediaBrowser.WindowsPhone
         public StreamingQuality StreamingQuality { get; set; }
         public StreamingQuality WifiStreamingQuality { get; set; }
         public bool OnlyStreamOnWifi { get; set; }
+
+        public bool IsPhotoUploadsEnabled { get; set; }
         
         [UsedImplicitly]
         private void OnLockScreenCollectionIdChanged()

@@ -280,7 +280,8 @@
     <Compile Include="ViewModel\Predefined\TvCollectionViewModel.cs" />
     <Compile Include="ViewModel\Remote\RemoteViewModel.cs" />
     <Compile Include="ViewModel\SearchViewModel.cs" />
-    <Compile Include="ViewModel\SettingsViewModel.cs" />
+    <Compile Include="ViewModel\Settings\PhotoUploadViewModel.cs" />
+    <Compile Include="ViewModel\Settings\SettingsViewModel.cs" />
     <Compile Include="ViewModel\SplashscreenViewModel.cs" />
     <Compile Include="ViewModel\TrailerViewModel.cs" />
     <Compile Include="ViewModel\TvViewModel.cs" />

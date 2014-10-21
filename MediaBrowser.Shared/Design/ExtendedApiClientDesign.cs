@@ -871,11 +871,6 @@ namespace MediaBrowser.WindowsPhone.Design
             throw new NotImplementedException();
         }
 
-        public Task<DeviceSettings> GetDeviceSettingsAsync(string deviceId)
-        {
-            throw new NotImplementedException();
-        }
-
         public event EventHandler<GenericEventArgs<string>> UserDeleted;
         public event EventHandler<GenericEventArgs<TaskResult>> ScheduledTaskEnded;
         public event EventHandler<GenericEventArgs<InstallationInfo>> PackageInstalling;

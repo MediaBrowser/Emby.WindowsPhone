@@ -44,13 +44,5 @@ namespace MediaBrowser.Model
         /// <returns></returns>
         /// <exception cref="ArgumentNullException">deviceId</exception>
         Task PushHeartbeatAsync(string deviceId);
-
-        /// <summary>
-        /// Gets the device settings async.
-        /// </summary>
-        /// <param name="deviceId">The device id.</param>
-        /// <returns></returns>
-        /// <exception cref="ArgumentNullException">deviceId</exception>
-        Task<DeviceSettings> GetDeviceSettingsAsync(string deviceId);
     }
 }

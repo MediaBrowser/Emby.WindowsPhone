@@ -9,6 +9,7 @@ using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.ApiInteraction;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Resources;
+using MediaBrowser.WindowsPhone.ViewModel.Settings;
 using Microsoft.Phone.Controls;
 using MediaBrowser.Model;
 using ScottIsAFool.WindowsPhone.ViewModel;

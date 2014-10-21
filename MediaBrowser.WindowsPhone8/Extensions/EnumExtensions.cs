@@ -5,6 +5,7 @@ using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Model.Streaming;
 using MediaBrowser.WindowsPhone.Resources;
 using MediaBrowser.WindowsPhone.ViewModel;
+using MediaBrowser.WindowsPhone.ViewModel.Settings;
 
 namespace MediaBrowser.WindowsPhone.Extensions
 {
