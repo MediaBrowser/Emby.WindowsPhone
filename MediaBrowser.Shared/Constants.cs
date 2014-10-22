@@ -4,9 +4,11 @@
     {
         public static string[] TileColours = { "D8502B", "009300", "A200A9", "0A58C1", "009FB0", "3290F5", "93009C", "AF1A3F" };
 
-        public static string PhoneTileUrlFormat = "/Splashscreen.xaml?action={0}&id={1}&name={2}";
+        public const string PhoneTileUrlFormat = "/Splashscreen.xaml?action={0}&id={1}&name={2}";
 
-        public static int ImageQuality = 80;
+        public const int ImageQuality = 80;
+
+        public const string PhotoUploadBackgroundTaskName = "MediaBrowser.WindowsPhone.PhotoUploadTask";
         
         public class Settings
         {
@@ -123,6 +125,18 @@
             public const string GenericItemView = ViewsPath + "GenericItemView.xaml";
             public const string MainPage = ViewsPath + "MainPage.xaml";
             public const string SplashScreen = "/Splashscreen.xaml";
+
+            public class SettingsViews
+            {
+                private const string SettingsViewPath = ViewsPath + "Settings/";
+                public const string ConnectionSettingsView = SettingsViewPath + "ConnectionSettingsView.xaml";
+                public const string GeneralSettingsView = SettingsViewPath + "GeneralSettingsView.xaml";
+                public const string LiveTvSettingsView = SettingsViewPath + "LiveTvSettingsView.xaml";
+                public const string LockScreenSettingsView = SettingsViewPath + "LockScreenSettingsView.xaml";
+                public const string PhotoUploadSettingsView = SettingsViewPath + "PhotoUploadSettingsView.xaml";
+                public const string StreamingSettingsView = SettingsViewPath + "StreamingSettingsView.xaml";
+                public const string TileSettingsView = SettingsViewPath + "TileSettingsView.xaml";
+            }
 
             public class LiveTv
             {

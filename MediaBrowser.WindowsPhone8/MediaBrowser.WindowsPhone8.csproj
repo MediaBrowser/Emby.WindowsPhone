@@ -226,6 +226,7 @@
     <Compile Include="Model\Streaming\TranscodeSetting480p.cs" />
     <Compile Include="Model\Streaming\TranscodeSetting720p.cs" />
     <Compile Include="Model\Streaming\TranscodeSettingCopy.cs" />
+    <Compile Include="Services\BackgroundTaskService.cs" />
     <Compile Include="Services\NavigationService.cs" />
     <Compile Include="Model\PlayerSourceType.cs" />
     <Compile Include="Model\PlaylistTemplateSelector.cs" />

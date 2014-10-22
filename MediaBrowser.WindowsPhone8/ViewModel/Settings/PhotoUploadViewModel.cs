@@ -1,6 +1,8 @@
-﻿using JetBrains.Annotations;
+﻿using System.Threading.Tasks;
+using JetBrains.Annotations;
 using MediaBrowser.Model;
 using MediaBrowser.WindowsPhone.Model.Interfaces;
+using MediaBrowser.WindowsPhone.Services;
 using ScottIsAFool.WindowsPhone.ViewModel;
 
 namespace MediaBrowser.WindowsPhone.ViewModel.Settings
@@ -37,9 +39,24 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Settings
         public bool IsPhotoUploadsEnabled { get; set; }
 
         [UsedImplicitly]
-        private void OnIsPhotoUploadsEnabledChanged()
+        private async void OnIsPhotoUploadsEnabledChanged()
         {
             App.SpecificSettings.IsPhotoUploadsEnabled = IsPhotoUploadsEnabled;
+            await AddRemoveBackgroundTask();
+        }
+
+        private async Task AddRemoveBackgroundTask()
+        {
+            if (IsInDesignMode) return;
+
+            if (IsPhotoUploadsEnabled)
+            {
+                BackgroundTaskService.Current.CreateTask();
+            }
+            else
+            {
+                BackgroundTaskService.Current.RemoveTask();
+            }
         }
     }
 }
