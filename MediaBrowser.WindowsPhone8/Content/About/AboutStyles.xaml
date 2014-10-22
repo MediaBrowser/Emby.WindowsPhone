@@ -57,9 +57,11 @@
     <Style x:Key="AboutPivotStyle"
            TargetType="controls:Pivot">
         <!-- Some eye-hurting sample values: -->
-        <!-- Setting the background color of the pivot control/about page to DarkGreen, and the header color to Yellow
+         <!--Setting the background color of the pivot control/about page to DarkGreen, and the header color to Yellow-->
         <Setter Property="Background"
-                Value="DarkGreen" />-->
+                Value="{StaticResource MediaBrowserBackground}" />
+        <Setter Property="Margin"
+                Value="0,32,0,0"/>
         <Setter Property="TitleTemplate">
             <Setter.Value>
                 <DataTemplate>

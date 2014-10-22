@@ -8,9 +8,10 @@
                     xmlns:local="clr-namespace:MediaBrowser.WindowsPhone.Controls"
                     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit">
     <!-- Resource dictionary entries should be defined here. -->
-    
+
+    <Color x:Key="MediaBrowserBackgroundColor">#2F2F2F</Color>
     <SolidColorBrush x:Key="MediaBrowserBackground"
-                     Color="#2F2F2F"/>
+                     Color="{StaticResource MediaBrowserBackgroundColor}"/>
 
     <Color x:Key="SecondaryAccentColor">#224568</Color>
     <SolidColorBrush x:Key="SecondaryAccentColorBrush"
