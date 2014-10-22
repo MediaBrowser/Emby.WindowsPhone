@@ -97,7 +97,7 @@
                                             d:DataContext="{Binding Channels.Channels[0], Source={StaticResource Locator}}">
                                     <coding4Fun:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
                                                            Stretch="UniformToFill"
-                                                           PlaceholderImageSource="/Images/DefaultChannel.png"
+                                                           PlaceholderImageSource="/Images/MBBackgroundWithTv.png"
                                                            PlaceholderImageStretch="Uniform"
                                                            VerticalAlignment="Top"
                                                            MaxHeight="80"

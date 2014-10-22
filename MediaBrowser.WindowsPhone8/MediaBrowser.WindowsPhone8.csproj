@@ -472,6 +472,7 @@
     <Content Include="Images\FirstRun\WelcomeBackground.jpg" />
     <Content Include="Images\LogoNoPadding.png" />
     <Content Include="Images\MBBackground.jpg" />
+    <Content Include="Images\MBBackgroundWithTv.png" />
     <Content Include="Images\Remote\add.png" />
     <Content Include="Images\Remote\appbar.control.stop.png" />
     <Content Include="Images\Remote\appbar.navigate.next.png" />
