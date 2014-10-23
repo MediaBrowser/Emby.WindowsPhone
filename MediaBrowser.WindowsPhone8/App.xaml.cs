@@ -10,6 +10,7 @@ using Coding4Fun.Toolkit.Controls;
 using GalaSoft.MvvmLight.Ioc;
 using MediaBrowser.Model;
 using MediaBrowser.Services;
+using MediaBrowser.WindowsPhone.Model.Photo;
 using MediaBrowser.WindowsPhone.Services;
 using MediaBrowser.WindowsPhone.ViewModel;
 using Microsoft.Phone.Controls;
@@ -43,6 +44,13 @@ namespace MediaBrowser.WindowsPhone
         public static SpecificSettings SpecificSettings
         {
             get { return _specificSettings ?? (_specificSettings = (SpecificSettings)Current.Resources["SpecificSettings"]); }
+        }
+
+        private static UploadSettings _uploadSettings;
+
+        public static UploadSettings UploadSettings
+        {
+            get { return _uploadSettings ?? (_uploadSettings = new UploadSettings()); }
         }
 
         public static object SelectedItem { get; set; }
@@ -180,6 +188,7 @@ namespace MediaBrowser.WindowsPhone
         {
             var ast = SimpleIoc.Default.GetInstance<IApplicationSettingsService>();
             ast.Set(Constants.Settings.SpecificSettings, SpecificSettings);
+            ast.Set(Constants.Settings.PhotoUploadSettings, UploadSettings);
             ast.Save();
         }
 
@@ -209,6 +218,8 @@ namespace MediaBrowser.WindowsPhone
             _logger.FatalException("UnhandledException", e.ExceptionObject);
 
             e.Handled = true;
+
+            SaveSettings();
         }
 
         #region Phone application initialization

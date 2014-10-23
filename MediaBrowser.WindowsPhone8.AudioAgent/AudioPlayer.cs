@@ -88,7 +88,7 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
                 var applicationSettings = new ApplicationSettingsService();
                 var connectionDetails = applicationSettings.Get<ConnectionDetails>(Constants.Settings.ConnectionSettings);
                 var device = new Device {DeviceId = SharedUtils.GetDeviceId(), DeviceName = SharedUtils.GetDeviceName() + " Audio Player"};
-                var client = new ExtendedApiClient(new NullLogger(), connectionDetails.ServerAddress, "Windows Phone 8", device, ApplicationManifest.Current.App.Version, new ClientCapabilities());
+                var client = new ExtendedApiClient(new MBLogger(typeof(AudioPlayer)), connectionDetails.ServerAddress, "Windows Phone 8", device, ApplicationManifest.Current.App.Version, new ClientCapabilities());
 
                 AuthenticationService.Current.Start(client);
 

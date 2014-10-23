@@ -20,6 +20,7 @@
             public const string IsRegistered = "IsRegistered";
             public const string UseNotifications = "UseNotifications";
             public const string DoNotShowFirstRun = "DoNotShowFirstRun";
+            public const string PhotoUploadSettings = "PhotoUploadSettings";
         }
 
         public class Messages

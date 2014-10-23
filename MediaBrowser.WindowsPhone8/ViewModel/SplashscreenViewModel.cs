@@ -8,6 +8,7 @@ using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.ApiInteraction;
 using MediaBrowser.WindowsPhone.Model;
+using MediaBrowser.WindowsPhone.Model.Photo;
 using MediaBrowser.WindowsPhone.Resources;
 using MediaBrowser.WindowsPhone.ViewModel.Settings;
 using Microsoft.Phone.Controls;
@@ -111,6 +112,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         // Get and set the app specific settings 
                         var specificSettings = _applicationSettings.Get<SpecificSettings>(Constants.Settings.SpecificSettings);
                         if (specificSettings != null) Utils.CopyItem(specificSettings, App.SpecificSettings);
+
+                        var uploadSettings = _applicationSettings.Get<UploadSettings>(Constants.Settings.PhotoUploadSettings);
+                        if (uploadSettings != null) Utils.CopyItem(uploadSettings, App.UploadSettings);
                         
                         // See if we can find and communicate with the server
                         if (_navigationService.IsNetworkAvailable && App.Settings.ConnectionDetails != null)

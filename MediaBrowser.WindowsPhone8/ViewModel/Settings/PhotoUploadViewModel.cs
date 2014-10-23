@@ -37,9 +37,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Settings
             else
             {
                 _ignoreChange = true;
-                IsPhotoUploadsEnabled = App.SpecificSettings.IsPhotoUploadsEnabled;
-                UploadAll = App.SpecificSettings.UploadAllPhotos;
-                AfterDateTime = App.SpecificSettings.UploadAfterDateTime;
+                IsPhotoUploadsEnabled = App.UploadSettings.IsPhotoUploadsEnabled;
+                UploadAll = App.UploadSettings.UploadAllPhotos;
+                AfterDateTime = App.UploadSettings.UploadAfterDateTime;
                 _ignoreChange = false;
             }
         }
@@ -52,20 +52,20 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Settings
         [UsedImplicitly]
         private async void OnIsPhotoUploadsEnabledChanged()
         {
-            App.SpecificSettings.IsPhotoUploadsEnabled = IsPhotoUploadsEnabled;
+            App.UploadSettings.IsPhotoUploadsEnabled = IsPhotoUploadsEnabled;
             await AddRemoveBackgroundTask();
         }
 
         [UsedImplicitly]
         private void OnUploadAllChanged()
         {
-            App.SpecificSettings.UploadAllPhotos = UploadAll;
+            App.UploadSettings.UploadAllPhotos = UploadAll;
         }
 
         [UsedImplicitly]
         private void OnAfterDateTimeChanged()
         {
-            App.SpecificSettings.UploadAfterDateTime = AfterDateTime;
+            App.UploadSettings.UploadAfterDateTime = AfterDateTime;
         }
 
         private async Task AddRemoveBackgroundTask()

@@ -19,6 +19,7 @@ namespace MediaBrowser.WindowsPhone.Background
     public class ScheduledAgent : ScheduledTaskAgent
     {
         private readonly IExtendedApiClient _apiClient;
+        private readonly ILogger _mediaBrowserLogger = new MBLogger(typeof(ScheduledAgent));
         private static ILog _logger;
 
         /// <remarks>
@@ -48,14 +49,14 @@ namespace MediaBrowser.WindowsPhone.Background
             }
         }
 
-        private static IExtendedApiClient CreateClient()
+        private IExtendedApiClient CreateClient()
         {
             try
             {
                 var applicationSettings = new ApplicationSettingsService();
                 var connectionDetails = applicationSettings.Get<ConnectionDetails>(Constants.Settings.ConnectionSettings);
                 var device = new Device { DeviceId = SharedUtils.GetDeviceId(), DeviceName = SharedUtils.GetDeviceName() };
-                var client = new ExtendedApiClient(new NullLogger(), connectionDetails.ServerAddress, "Windows Phone 8", device, ApplicationManifest.Current.App.Version, new ClientCapabilities{ SupportsContentUploading = true});
+                var client = new ExtendedApiClient(_mediaBrowserLogger, connectionDetails.ServerAddress, "Windows Phone 8", device, ApplicationManifest.Current.App.Version, new ClientCapabilities{ SupportsContentUploading = true});
 
                 AuthenticationService.Current.Start(client);
 

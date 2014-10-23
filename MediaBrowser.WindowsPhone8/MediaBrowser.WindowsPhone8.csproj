@@ -219,7 +219,6 @@
     <Compile Include="Model\GroupBy.cs" />
     <Compile Include="Model\Interfaces\INavigationService.cs" />
     <Compile Include="Model\LockScreenType.cs" />
-    <Compile Include="Model\MBLogger.cs" />
     <Compile Include="Model\Streaming\TranscodeSetting.cs" />
     <Compile Include="Model\Streaming\TranscodeSetting1080p.cs" />
     <Compile Include="Model\Streaming\TranscodeSetting360p.cs" />
