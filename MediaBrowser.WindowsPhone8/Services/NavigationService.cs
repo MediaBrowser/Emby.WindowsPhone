@@ -68,6 +68,7 @@ namespace MediaBrowser.WindowsPhone.Services
                         NavigateTo(Constants.Pages.CollectionView);
                     }
                     break;
+                case "photoalbum":
                 case "folder":
                 case "boxset":
                     NavigateTo(Constants.Pages.FolderView + item.Id);
