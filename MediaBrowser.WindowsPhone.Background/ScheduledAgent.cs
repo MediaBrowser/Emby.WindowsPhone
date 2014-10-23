@@ -105,6 +105,13 @@ namespace MediaBrowser.WindowsPhone.Background
                 return;
             }
 
+            var device = _apiClient.Device as Device;
+            if (device != null)
+            {
+                device.UploadAll = uploadSettings.UploadAllPhotos;
+                device.AfterDateTime = uploadSettings.UploadAfterDateTime;
+            }
+
             try
             {
                 await _contentUploader.UploadImages(new Progress<double>(), CancellationToken.None);
