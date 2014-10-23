@@ -1063,4 +1063,13 @@
   <data name="LabelPhotoUpload" xml:space="preserve">
     <value>Photo Upload</value>
   </data>
+  <data name="BackgroundTaskDescription" xml:space="preserve">
+    <value>This background task is used to automatically upload any photos from your phone, this feature can be turned on from inside the app.</value>
+  </data>
+  <data name="LabelUploadAll" xml:space="preserve">
+    <value>Upload all pictures</value>
+  </data>
+  <data name="LabelUploadPhotosTakenAfter" xml:space="preserve">
+    <value>Upload photos taken/saved after this date</value>
+  </data>
 </root>

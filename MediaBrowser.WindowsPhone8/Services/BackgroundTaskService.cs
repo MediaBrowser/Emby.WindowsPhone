@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using MediaBrowser.WindowsPhone.Resources;
 using Microsoft.Phone.Scheduler;
 
 namespace MediaBrowser.WindowsPhone.Services
@@ -44,7 +45,10 @@ namespace MediaBrowser.WindowsPhone.Services
             {
                 RemoveTask();
 
-                var resourceTask = new ResourceIntensiveTask(Constants.PhotoUploadBackgroundTaskName);
+                var resourceTask = new ResourceIntensiveTask(Constants.PhotoUploadBackgroundTaskName)
+                {
+                    Description = AppResources.BackgroundTaskDescription
+                };
                 ScheduledActionService.Add(resourceTask);
                 return true;
             }
@@ -52,6 +56,11 @@ namespace MediaBrowser.WindowsPhone.Services
             {
                 return false;
             }
+        }
+
+        public void LaunchTask()
+        {
+            ScheduledActionService.LaunchForTest(Constants.PhotoUploadBackgroundTaskName, TimeSpan.FromSeconds(10));
         }
     }
 }

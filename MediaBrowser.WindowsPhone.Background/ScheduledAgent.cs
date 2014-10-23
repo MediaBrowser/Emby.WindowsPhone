@@ -1,14 +1,17 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Linq;
 using System.Windows;
 using Cimbalino.Phone.Toolkit.Helpers;
 using Cimbalino.Phone.Toolkit.Services;
 using MediaBrowser.Model;
+using MediaBrowser.Model.Devices;
 using MediaBrowser.Model.Logging;
 using MediaBrowser.Model.Session;
 using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Model;
 using Microsoft.Phone.Scheduler;
+using Microsoft.Xna.Framework.Media;
 using ScottIsAFool.WindowsPhone.Logging;
 
 namespace MediaBrowser.WindowsPhone.Background
@@ -81,6 +84,15 @@ namespace MediaBrowser.WindowsPhone.Background
             {
                 NotifyComplete();
             }
+
+            //var specificSettings = _applicationSettings.Get<SpecificSettings>(Constants.Settings.SpecificSettings);
+
+            var mediaLibrary = new MediaLibrary();
+            var pictures = mediaLibrary.Pictures.Select(x => new LocalFileInfo
+            {
+                Name = x.Name,
+                Album = x.Album != null ? x.Album.Name : string.Empty,
+            }).ToList();
 
             NotifyComplete();
         }

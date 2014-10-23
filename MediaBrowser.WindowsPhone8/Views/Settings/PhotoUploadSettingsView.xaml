@@ -96,7 +96,16 @@
                 
                 <ScrollViewer Grid.Row="1"
                               Visibility="{Binding IsPhotoUploadsEnabled, Converter={StaticResource VisibilityConverter}}">
-                    <StackPanel Orientation="Vertical"></StackPanel>
+                    <StackPanel Orientation="Vertical">
+                        <CheckBox IsChecked="{Binding UploadAll, Mode=TwoWay}"
+                                  Content="{Binding LocalizedResources.LabelUploadAll, Source={StaticResource LocalizedStrings}}"/>
+                        <StackPanel Orientation="Vertical"
+                                    Visibility="{Binding UploadAll, Converter={StaticResource InvertedVisibilityConverter}}">
+                            <TextBlock Text="{Binding LocalizedResources.LabelUploadPhotosTakenAfter, Source={StaticResource LocalizedStrings}}"
+                                       Style="{StaticResource PhoneTextSubtleStyle}"/>
+                            <toolkit:DatePicker Value="{Binding AfterDateTime, Mode=TwoWay}"/>
+                        </StackPanel>
+                    </StackPanel>
                 </ScrollViewer>
             </Grid>
         </Grid>

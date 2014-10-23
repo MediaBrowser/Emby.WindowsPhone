@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Diagnostics;
+using System.Threading.Tasks;
 using JetBrains.Annotations;
 using MediaBrowser.Model;
 using MediaBrowser.WindowsPhone.Model.Interfaces;
@@ -18,6 +20,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Settings
         private readonly INavigationService _navigationService;
         private readonly IExtendedApiClient _apiClient;
 
+        private bool _ignoreChange;
+
         /// <summary>
         /// Initializes a new instance of the PhotoUploadViewModel class.
         /// </summary>
@@ -32,11 +36,18 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Settings
             }
             else
             {
+                _ignoreChange = true;
                 IsPhotoUploadsEnabled = App.SpecificSettings.IsPhotoUploadsEnabled;
+                UploadAll = App.SpecificSettings.UploadAllPhotos;
+                AfterDateTime = App.SpecificSettings.UploadAfterDateTime;
+                _ignoreChange = false;
             }
         }
 
         public bool IsPhotoUploadsEnabled { get; set; }
+
+        public bool UploadAll { get; set; }
+        public DateTime AfterDateTime { get; set; }
 
         [UsedImplicitly]
         private async void OnIsPhotoUploadsEnabledChanged()
@@ -45,18 +56,37 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Settings
             await AddRemoveBackgroundTask();
         }
 
+        [UsedImplicitly]
+        private void OnUploadAllChanged()
+        {
+            App.SpecificSettings.UploadAllPhotos = UploadAll;
+        }
+
+        [UsedImplicitly]
+        private void OnAfterDateTimeChanged()
+        {
+            App.SpecificSettings.UploadAfterDateTime = AfterDateTime;
+        }
+
         private async Task AddRemoveBackgroundTask()
         {
-            if (IsInDesignMode) return;
+            if (IsInDesignMode || _ignoreChange) return;
 
             if (IsPhotoUploadsEnabled)
             {
                 BackgroundTaskService.Current.CreateTask();
+                LaunchBackgroundTask();
             }
             else
             {
                 BackgroundTaskService.Current.RemoveTask();
             }
+        }
+
+        [Conditional("DEBUG")]
+        private void LaunchBackgroundTask()
+        {
+            BackgroundTaskService.Current.LaunchTask();
         }
     }
 }

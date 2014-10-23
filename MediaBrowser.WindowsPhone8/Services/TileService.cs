@@ -101,6 +101,9 @@ namespace MediaBrowser.WindowsPhone.Services
                 case "livetv":
                     _logger.Info("Live TV pinned tile");
                     return Constants.Pages.LiveTv.LiveTvView;
+                case "photouploadsettings":
+                    _logger.Info("Going to photo upload settings");
+                    return Constants.Pages.SettingsViews.PhotoUploadSettingsView;
                 default:
                     return Constants.Pages.MainPage;
             }

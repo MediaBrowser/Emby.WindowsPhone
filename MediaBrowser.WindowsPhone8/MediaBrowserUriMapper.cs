@@ -17,7 +17,7 @@ namespace MediaBrowser.WindowsPhone
 
             if (uri.ToString().Contains(PhotoUploadProtocol))
             {
-                return new Uri(Constants.Pages.SettingsViews.PhotoUploadSettingsView, UriKind.Relative);
+                return new Uri(string.Format(Constants.PhoneTileUrlFormat, "photouploadsettings", string.Empty, string.Empty), UriKind.Relative);
             }
 
             return uri;

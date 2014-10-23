@@ -376,6 +376,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This background task is used to automatically upload any photos from your phone, this feature can be turned on from inside the app..
+        /// </summary>
+        public static string BackgroundTaskDescription {
+            get {
+                return ResourceManager.GetString("BackgroundTaskDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Folders.
         /// </summary>
         public static string Collections {
@@ -2001,6 +2010,24 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string LabelUpcoming {
             get {
                 return ResourceManager.GetString("LabelUpcoming", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Upload all pictures.
+        /// </summary>
+        public static string LabelUploadAll {
+            get {
+                return ResourceManager.GetString("LabelUploadAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Upload photos taken/saved after this date.
+        /// </summary>
+        public static string LabelUploadPhotosTakenAfter {
+            get {
+                return ResourceManager.GetString("LabelUploadPhotosTakenAfter", resourceCulture);
             }
         }
         

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using GalaSoft.MvvmLight.Messaging;
@@ -23,6 +24,8 @@ namespace MediaBrowser.WindowsPhone
             DisplayBackdropOnTile = true;
             StreamingQuality = StreamingQuality.SevenTwentyMedium;
             WifiStreamingQuality = StreamingQuality.SevenTwentyMedium;
+            UploadAllPhotos = true;
+            UploadAfterDateTime = DateTime.Now;
         }
 
         public bool IncludeTrailersInRecent { get; set; }
@@ -46,6 +49,8 @@ namespace MediaBrowser.WindowsPhone
         public bool OnlyStreamOnWifi { get; set; }
 
         public bool IsPhotoUploadsEnabled { get; set; }
+        public bool UploadAllPhotos { get; set; }
+        public DateTime UploadAfterDateTime { get; set; }
         
         [UsedImplicitly]
         private void OnLockScreenCollectionIdChanged()
