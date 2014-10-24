@@ -27,7 +27,7 @@ namespace MediaBrowser.WindowsPhone.Model
                 {
                     Name = x.Name,
                     Album = x.Album != null ? x.Album.Name : string.Empty,
-                    FullPath = string.Format("{0}//{1}", x.Album != null ? x.Album.Name : string.Empty, x.Name),
+                    Id = string.Format("{0}.{1}", x.Album != null ? x.Album.Name : string.Empty, x.Name),
                     MimeType = GetMimeType(x)
                 }).ToList();
 
