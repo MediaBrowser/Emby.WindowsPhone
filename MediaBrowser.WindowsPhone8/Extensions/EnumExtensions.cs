@@ -46,7 +46,7 @@ namespace MediaBrowser.WindowsPhone.Extensions
             return recordedGroupBy.ToString();
         }
 
-        public static string GetBitrateLabel(this StreamingLMH lmh)
+        public static string GetBitrateLabel(this StreamingLMH lmh, bool isWifi)
         {
             var vm = SimpleIoc.Default.GetInstance<SettingsViewModel>();
             if (vm == null)
@@ -54,7 +54,7 @@ namespace MediaBrowser.WindowsPhone.Extensions
                 return string.Empty;
             }
 
-            var res = vm.StreamingResolution;
+            var res = isWifi ? vm.WifiStreamingResolution : vm.StreamingResolution;
 
             switch (res)
             {

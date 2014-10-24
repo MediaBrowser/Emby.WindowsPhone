@@ -37,7 +37,14 @@ namespace MediaBrowser.WindowsPhone.Converters
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var lmh = (StreamingLMH) value;
-            return lmh.GetBitrateLabel();
+            bool isWifi = false;
+
+            if (parameter != null)
+            {
+                isWifi = bool.Parse(parameter.ToString());
+            }
+
+            return lmh.GetBitrateLabel(isWifi);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

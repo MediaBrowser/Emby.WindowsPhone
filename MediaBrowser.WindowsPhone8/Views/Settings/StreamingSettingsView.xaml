@@ -140,7 +140,7 @@
                                                 IsEnabled="{Binding CanChangeWifiQuality}">
                                 <toolkit:ListPicker.ItemTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding Converter={StaticResource BitRateLabelConverter}}" />
+                                        <TextBlock Text="{Binding Converter={StaticResource BitRateLabelConverter}, ConverterParameter=true}" />
                                     </DataTemplate>
                                 </toolkit:ListPicker.ItemTemplate>
                             </toolkit:ListPicker>

@@ -20,7 +20,7 @@ namespace MediaBrowser.WindowsPhone
             DefaultRecordedGroupBy = RecordedGroupByItems.FirstOrDefault(x => x == DefaultRecordedGroupBy);
             UseRichWideTile = true;
             DisplayBackdropOnTile = true;
-            StreamingQuality = StreamingQuality.SevenTwentyMedium;
+            StreamingQuality = StreamingQuality.FourEightyLow;
             WifiStreamingQuality = StreamingQuality.SevenTwentyMedium;
         }
 
