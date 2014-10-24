@@ -835,6 +835,24 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please note that the uploads will only take place when your device is on charge, wifi and charge is over 90%..
+        /// </summary>
+        public static string LabelAutoUploadConstraints {
+            get {
+                return ResourceManager.GetString("LabelAutoUploadConstraints", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Auto-upload your pictures straight from your device right into Media Browser Server..
+        /// </summary>
+        public static string LabelAutoUploadDescription {
+            get {
+                return ResourceManager.GetString("LabelAutoUploadDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to bio.
         /// </summary>
         public static string LabelBio {

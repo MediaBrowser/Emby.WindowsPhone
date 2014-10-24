@@ -6,7 +6,8 @@
                     xmlns:cimbalino="clr-namespace:Cimbalino.Phone.Toolkit.Converters;assembly=Cimbalino.Phone.Toolkit"
                     xmlns:progress="clr-namespace:MediaBrowser.WindowsPhone.Progress"
                     xmlns:local="clr-namespace:MediaBrowser.WindowsPhone.Controls"
-                    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit">
+                    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
     <!-- Resource dictionary entries should be defined here. -->
 
     <Color x:Key="MediaBrowserBackgroundColor">#2F2F2F</Color>
@@ -20,6 +21,8 @@
     <Color x:Key="BlackTransparentColor">#C4000000</Color>
     <SolidColorBrush x:Key="BlackTransparentBrush"
                      Color="{StaticResource BlackTransparentColor}" />
+    
+    <system:Double x:Key="MediaBrowserFontSizeSmall">15</system:Double>
 
     <!-- Converters from ScottIsAFool.WindowsPhone.Converters -->
     <scottConverters:VisibilityConverter x:Key="VisibilityConverter" />
