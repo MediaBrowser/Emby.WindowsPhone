@@ -1969,6 +1969,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to In order for this to work, you must go to the  server dashboard, click on Devices, then Camera Upload, then enable your device. If you don&apos;t have access to this, please speak to your server administator..
+        /// </summary>
+        public static string LabelTurnPhotoUploadOnServer {
+            get {
+                return ResourceManager.GetString("LabelTurnPhotoUploadOnServer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to TV.
         /// </summary>
         public static string LabelTv {

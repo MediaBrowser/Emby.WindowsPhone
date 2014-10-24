@@ -200,7 +200,8 @@
     <Compile Include="Converters\TicksToTimespanConverter.cs" />
     <Compile Include="Converters\VirtualConverter.cs" />
     <Compile Include="Converters\ZeroCountBrushConverter.cs" />
-    <Compile Include="ExtensionMethods.cs" />
+    <Compile Include="Model\Enum{T}.cs" />
+    <Compile Include="Extensions\ExtensionMethods.cs" />
     <Compile Include="Extensions\ApiClientExtensions.cs" />
     <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Extensions\LiveTvExtensions.cs" />
@@ -247,7 +248,7 @@
     <Compile Include="Services\ReviewReminderService.cs" />
     <Compile Include="Services\TileService.cs" />
     <Compile Include="Services\TrialHelper.cs" />
-    <Compile Include="SpecificSettings.cs" />
+    <Compile Include="Model\SpecificSettings.cs" />
     <Compile Include="Splashscreen.xaml.cs">
       <DependentUpon>Splashscreen.xaml</DependentUpon>
     </Compile>

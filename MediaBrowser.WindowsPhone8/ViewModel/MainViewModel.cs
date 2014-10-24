@@ -16,6 +16,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using MediaBrowser.Model.Dto;
 using System.Threading.Tasks;
+using MediaBrowser.WindowsPhone.Extensions;
 using MediaBrowser.WindowsPhone.Messaging;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Resources;

@@ -13,6 +13,7 @@ using MediaBrowser.Model.LiveTv;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Session;
 using MediaBrowser.Services;
+using MediaBrowser.WindowsPhone.Extensions;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Resources;
 using MediaBrowser.WindowsPhone.Services;

@@ -1072,4 +1072,7 @@
   <data name="LabelUploadPhotosTakenAfter" xml:space="preserve">
     <value>Upload photos taken/saved after this date</value>
   </data>
+  <data name="LabelTurnPhotoUploadOnServer" xml:space="preserve">
+    <value>In order for this to work, you must go to the  server dashboard, click on Devices, then Camera Upload, then enable your device. If you don't have access to this, please speak to your server administator.</value>
+  </data>
 </root>

@@ -87,23 +87,47 @@
                   Grid.Row="1"
                   Margin="12,0,12,0">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                
+
                 <toolkit:ToggleSwitch IsChecked="{Binding IsPhotoUploadsEnabled, Mode=TwoWay}"
-                                      Header="{Binding LocalizedResources.LabelPhotoUpload, Source={StaticResource LocalizedStrings}, StringFormat='\{0\}:'}"/>
-                
+                                      Header="{Binding LocalizedResources.LabelPhotoUpload, Source={StaticResource LocalizedStrings}, StringFormat='\{0\}:'}" />
+
                 <ScrollViewer Grid.Row="1"
                               Visibility="{Binding IsPhotoUploadsEnabled, Converter={StaticResource VisibilityConverter}}">
                     <StackPanel Orientation="Vertical">
+                        <RichTextBox TextAlignment="Left"
+                                     UseLayoutRounding="True"
+                                     IsReadOnly="True">
+                            <Paragraph>
+                                <Span>
+                                    <InlineUIContainer>
+                                        <Grid>
+                                            <Ellipse Height="43"
+                                                     Width="43"
+                                                     Margin="0,6,6,6"
+                                                     Fill="White"/>
+                                            <Path Width="45"
+                                                  Height="45"
+                                                  Stretch="Fill"
+                                                  Fill="{StaticResource PhoneAccentBrush}"
+                                                  Data="F1 M 38,19C 48.4934,19 57,27.5066 57,38C 57,48.4934 48.4934,57 38,57C 27.5066,57 19,48.4934 19,38C 19,27.5066 27.5066,19 38,19 Z M 33.25,33.25L 33.25,36.4167L 36.4166,36.4167L 36.4166,47.5L 33.25,47.5L 33.25,50.6667L 44.3333,50.6667L 44.3333,47.5L 41.1666,47.5L 41.1666,36.4167L 41.1666,33.25L 33.25,33.25 Z M 38.7917,25.3333C 37.48,25.3333 36.4167,26.3967 36.4167,27.7083C 36.4167,29.02 37.48,30.0833 38.7917,30.0833C 40.1033,30.0833 41.1667,29.02 41.1667,27.7083C 41.1667,26.3967 40.1033,25.3333 38.7917,25.3333 Z "
+                                                  Margin="0,6,6,6" />
+                                        </Grid>
+                                    </InlineUIContainer>
+                                    <Run Text="{Binding LocalizedResources.LabelTurnPhotoUploadOnServer, Source={StaticResource LocalizedStrings}}"
+                                         Foreground="{StaticResource PhoneSubtleBrush}" />
+                                </Span>
+                            </Paragraph>
+                        </RichTextBox>
                         <CheckBox IsChecked="{Binding UploadAll, Mode=TwoWay}"
-                                  Content="{Binding LocalizedResources.LabelUploadAll, Source={StaticResource LocalizedStrings}}"/>
+                                  Content="{Binding LocalizedResources.LabelUploadAll, Source={StaticResource LocalizedStrings}}" />
                         <StackPanel Orientation="Vertical"
                                     Visibility="{Binding UploadAll, Converter={StaticResource InvertedVisibilityConverter}}">
                             <TextBlock Text="{Binding LocalizedResources.LabelUploadPhotosTakenAfter, Source={StaticResource LocalizedStrings}}"
-                                       Style="{StaticResource PhoneTextSubtleStyle}"/>
-                            <toolkit:DatePicker Value="{Binding AfterDateTime, Mode=TwoWay}"/>
+                                       Style="{StaticResource PhoneTextSubtleStyle}" />
+                            <toolkit:DatePicker Value="{Binding AfterDateTime, Mode=TwoWay}" />
                         </StackPanel>
                     </StackPanel>
                 </ScrollViewer>

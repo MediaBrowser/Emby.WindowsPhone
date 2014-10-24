@@ -7,6 +7,7 @@ using MediaBrowser.Model;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Search;
 using MediaBrowser.Services;
+using MediaBrowser.WindowsPhone.Extensions;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Model.Interfaces;
 using MediaBrowser.WindowsPhone.Resources;
