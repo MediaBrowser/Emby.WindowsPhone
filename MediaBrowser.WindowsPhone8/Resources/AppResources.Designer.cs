@@ -844,7 +844,7 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Auto-upload your pictures straight from your device right into Media Browser Server..
+        ///   Looks up a localized string similar to Auto-upload your pictures straight from your phone right into Media Browser Server..
         /// </summary>
         public static string LabelAutoUploadDescription {
             get {

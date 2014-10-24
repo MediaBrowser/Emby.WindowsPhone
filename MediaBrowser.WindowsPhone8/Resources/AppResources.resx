@@ -1076,7 +1076,7 @@
     <value>Please note that the uploads will only take place when your device is on charge, wifi and charge is over 90%.</value>
   </data>
   <data name="LabelAutoUploadDescription" xml:space="preserve">
-    <value>Auto-upload your pictures straight from your device right into Media Browser Server.</value>
+    <value>Auto-upload your pictures straight from your phone right into Media Browser Server.</value>
   </data>
   <data name="LabelTurnPhotoUploadOnServer" xml:space="preserve">
     <value>In order for this to work, you must go to the  server dashboard, click on Devices, then Camera Upload, then enable your device. If you don't have access to this, please speak to your server administator.</value>

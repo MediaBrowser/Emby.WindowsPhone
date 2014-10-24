@@ -60,10 +60,6 @@
         </toolkit:NavigationOutTransition>
     </toolkit:TransitionService.NavigationOutTransition>
 
-    <views:SettingsBasePage.Resources>
-        <converters:LocalisedEnumConverter x:Key="LocalisedEnumConverter" />
-    </views:SettingsBasePage.Resources>
-
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot"
           Background="{StaticResource MediaBrowserBackground}">
