@@ -163,7 +163,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Settings
         {
             App.SpecificSettings.WifiStreamingQuality = WifiStreamingResolution.ToStreamingQuality(WifiStreamingLmh);
             WifiStreamingLmhs = null;
-            SetQuality(WifiStreamingLmh);
+            SetQuality(WifiStreamingLmh, true);
         }
 
         public bool IsLockScreenProvider
