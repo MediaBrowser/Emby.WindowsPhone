@@ -1,16 +1,13 @@
 ﻿using System;
-using System.Threading.Tasks;
 using System.Windows;
 using Cimbalino.Phone.Toolkit.Helpers;
 using Cimbalino.Phone.Toolkit.Services;
 using GalaSoft.MvvmLight.Command;
-using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.ApiInteraction;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Model.Photo;
 using MediaBrowser.WindowsPhone.Resources;
-using MediaBrowser.WindowsPhone.ViewModel.Settings;
 using Microsoft.Phone.Controls;
 using MediaBrowser.Model;
 using ScottIsAFool.WindowsPhone.ViewModel;
@@ -126,7 +123,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                             // Server has been found 
                             if (App.Settings.SystemStatus != null)
                             {
-                                await SetPushSettings();
                                 SetProgressBar(AppResources.SysTrayAuthenticating);
                                 await Utils.CheckProfiles(_navigationService, Log, _apiClient);
                             }
@@ -141,51 +137,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     }
                 }
             });
-        }
-
-        private async Task SetPushSettings()
-        {
-            var settings = SimpleIoc.Default.GetInstance<SettingsViewModel>();
-            settings.LoadingFromSettings = true;
-
-            settings.ServerPluginInstalled = _applicationSettings.Get<bool>(Constants.Settings.ServerPluginInstalled);
-
-            if (settings.ServerPluginInstalled)
-            {
-                //settings.UseNotifications = _applicationSettings.Get<bool>(Constants.Settings.UseNotifications);
-                //if (settings.UseNotifications)
-                //{
-                //    App.SpecificSettings.DeviceSettings = await _apiClient.GetDeviceSettingsAsync(settings.DeviceId);
-
-                //    settings.IsRegistered = _applicationSettings.Get<bool>(Constants.Settings.IsRegistered);
-                //    settings.SendTileUpdates = App.SpecificSettings.DeviceSettings.SendLiveTiles;
-                //    settings.SendToastUpdates = App.SpecificSettings.DeviceSettings.SendToasts;
-
-                //    var tilesToRemove = App.SpecificSettings.DeviceSettings.LiveTiles.Where(x => ShellTile.ActiveTiles.All(p => p.NavigationUri.ToString() != x.LiveTileId)).ToList();
-
-                //    if (tilesToRemove.Any())
-                //    {
-                //        foreach (var tile in tilesToRemove)
-                //        {
-                //            //await ApiClient.DeleteLiveTile(settings.DeviceId, tile.LiveTileId);
-                //        }
-                //        App.SpecificSettings.DeviceSettings = await _apiClient.GetDeviceSettingsAsync(settings.DeviceId);
-                //    }
-
-                //    settings.LoadingFromSettings = false;
-                //    await settings.RegisterService();
-                //    try
-                //    {
-                //        await _apiClient.PushHeartbeatAsync(settings.DeviceId);
-                //    }
-                //    catch (HttpException ex)
-                //    {
-                //        Log.ErrorException("SetPushSettings()", ex);
-                //    }
-                //}
-            }
-
-            settings.LoadingFromSettings = false;
         }
 
         public RelayCommand TestConnectionCommand { get; set; }

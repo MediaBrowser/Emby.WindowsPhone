@@ -417,5 +417,17 @@ namespace MediaBrowser.WindowsPhone
 
             return theDate == today.AddDays(1) ? AppResources.LabelScheduleTomorrow : theDate.ToLongDateString();
         }
+
+        internal static bool IsNewerThanServerVersion(string serverVersionString, string requiredVersionString)
+        {
+#if DEBUG
+            return true;
+#else
+            var serverVersion = new Version(serverVersionString);
+            var requiredVersion = new Version(requiredVersionString);
+
+            return serverVersion >= requiredVersion;
+#endif
+        }
     }
 }

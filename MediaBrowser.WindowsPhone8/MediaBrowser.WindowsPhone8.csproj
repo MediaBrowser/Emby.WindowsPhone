@@ -189,6 +189,8 @@
     <Compile Include="Converters\RatingConverter.cs" />
     <Compile Include="Converters\RecordingNameConverter.cs" />
     <Compile Include="Converters\RemoteClientMultiConverter.cs" />
+    <Compile Include="Converters\RequiresServerBooleanConverter.cs" />
+    <Compile Include="Converters\RequiresServerVisibilityConverter.cs" />
     <Compile Include="Converters\RoleConverter.cs" />
     <Compile Include="Converters\RuntimeConverter.cs" />
     <Compile Include="Converters\ScheduledRecordingTimeConverter.cs" />

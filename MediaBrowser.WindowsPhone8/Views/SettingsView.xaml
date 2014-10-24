@@ -291,7 +291,8 @@
                         <controls:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
                                                         Margin="12,0,0,12"
                                                         VerticalContentAlignment="Stretch"
-                                                        NavigateUri="/Views/Settings/PhotoUploadSettingsView.xaml">
+                                                        NavigateUri="/Views/Settings/PhotoUploadSettingsView.xaml"
+                                                        Visibility="{Binding SystemStatus.Version, Source={StaticResource AppSettings}, Converter={StaticResource RequiresServerVisibilityConverter}, ConverterParameter='3.0.5410.21298'}">
                             <Grid Background="{StaticResource PhoneAccentBrush}">
                                 <Path Width="{StaticResource TileImageSize}"
                                       Stretch="Uniform"
