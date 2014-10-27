@@ -296,7 +296,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     ExcludeItemTypes = new []{"Photo"},
                     IsVirtualUnaired = App.SpecificSettings.ShowUnairedEpisodes,
                     IsMissing = App.SpecificSettings.ShowMissingEpisodes,
-                    Recursive = true
+                    Recursive = true,
+                    Limit = 50
                 };
                 var items = await _apiClient.GetItemsAsync(query);
                 _recentItems = items.Items;

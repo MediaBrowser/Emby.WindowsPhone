@@ -182,7 +182,7 @@ namespace MediaBrowser.WindowsPhone
                     .Select(g => new
                     {
                         Id = g.Select(l => l.ParentId).FirstOrDefault(),
-                        Name = g.Key,
+                        Name = g.Select(x => x.Album).FirstOrDefault(),
                         CreatedDate = g.OrderByDescending(l => l.DateCreated).First().DateCreated,
                         ImageTags = g.SelectMany(x => x.ParentBackdropImageTags ?? new List<string>()).Distinct().ToList(),
                         PrimaryImage = g.Select(l => new KeyValuePair<ImageType, string>(ImageType.Primary, string.IsNullOrEmpty(l.AlbumPrimaryImageTag) ? l.AlbumPrimaryImageTag : Guid.Empty.ToString())).Distinct().ToDictionary(y => y.Key, y => y.Value)
