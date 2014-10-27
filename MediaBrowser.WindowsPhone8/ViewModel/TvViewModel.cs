@@ -222,20 +222,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             try
             {
-                var query = new ItemQuery
-                {
-                    UserId = AuthenticationService.Current.LoggedInUser.Id,
-                    ParentId = SelectedTvSeries.Id,
-                    Filters = new[] {ItemFilter.IsRecentlyAdded},
-                    ExcludeItemTypes = new []{ "Season" },
-                    Fields = new[]
-                    {
-                        ItemFields.ParentId
-                    },
-                    Recursive = true,
-                    IsMissing = App.SpecificSettings.ShowMissingEpisodes,
-                    IsUnaired = App.SpecificSettings.ShowUnairedEpisodes
-                };
+                var query = Utils.GetRecentItemsQuery(SelectedTvSeries.Id, new[] {"Season"});
 
                 Log.Info("Getting recent items for TV Show [{0}] ({1})", SelectedTvSeries.Name, SelectedTvSeries.Id);
 

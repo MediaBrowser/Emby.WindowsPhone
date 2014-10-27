@@ -11,6 +11,7 @@ using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Library;
 using MediaBrowser.Model.LiveTv;
 using MediaBrowser.Model.Net;
+using MediaBrowser.Model.Querying;
 using MediaBrowser.Model.Session;
 using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Extensions;
@@ -428,6 +429,31 @@ namespace MediaBrowser.WindowsPhone
 
             return serverVersion >= requiredVersion;
 #endif
+        }
+
+        internal static ItemQuery GetRecentItemsQuery(string id = null, string[] excludedItemTypes = null)
+        {
+            var query = new ItemQuery
+            {
+                Filters = new[] { ItemFilter.IsRecentlyAdded, ItemFilter.IsNotFolder },
+                ParentId = id,
+                UserId = AuthenticationService.Current.LoggedInUser.Id,
+                Fields = new[]
+                {
+                    ItemFields.DateCreated,
+                    ItemFields.ProviderIds,
+                    ItemFields.ParentId,
+                    ItemFields.CumulativeRunTimeTicks
+                },
+                ExcludeItemTypes = excludedItemTypes,
+                IsVirtualUnaired = App.SpecificSettings.ShowUnairedEpisodes,
+                IsMissing = App.SpecificSettings.ShowMissingEpisodes,
+                Recursive = true,
+                Limit = 50,
+                SortBy = new []{ItemSortBy.DateCreated},
+                SortOrder = SortOrder.Descending
+            };
+            return query;
         }
     }
 }

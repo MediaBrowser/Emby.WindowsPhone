@@ -169,23 +169,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
         private async Task<bool> GetRecentCollectionItems()
         {
-            var query = new ItemQuery
-            {
-                Filters = new[] { ItemFilter.IsNotFolder},
-                UserId = AuthenticationService.Current.LoggedInUser.Id,
-                Fields = new[]
-                {
-                    ItemFields.DateCreated,
-                    ItemFields.ProviderIds,
-                    ItemFields.ParentId,
-                    ItemFields.CumulativeRunTimeTicks
-                },
-                ParentId = SelectedFolder.Id,
-                Recursive = true,
-                Limit = 15,
-                SortBy = new []{ItemSortBy.DateCreated},
-                SortOrder = SortOrder.Descending
-            };
+            var query = Utils.GetRecentItemsQuery(SelectedFolder.Id);
 
             try
             {

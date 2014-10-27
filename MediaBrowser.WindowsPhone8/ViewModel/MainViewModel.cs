@@ -284,21 +284,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 Log.Info("Getting most recent items");
 
-                var query = new ItemQuery
-                {
-                    Filters = new[] {ItemFilter.IsRecentlyAdded, ItemFilter.IsNotFolder},
-                    UserId = AuthenticationService.Current.LoggedInUser.Id,
-                    Fields = new[]
-                    {
-                        ItemFields.DateCreated,
-                        ItemFields.ParentId,
-                    },
-                    ExcludeItemTypes = new []{"Photo"},
-                    IsVirtualUnaired = App.SpecificSettings.ShowUnairedEpisodes,
-                    IsMissing = App.SpecificSettings.ShowMissingEpisodes,
-                    Recursive = true,
-                    Limit = 50
-                };
+                var query = Utils.GetRecentItemsQuery(excludedItemTypes: new[] { "Photo" });
+                
                 var items = await _apiClient.GetItemsAsync(query);
                 _recentItems = items.Items;
                 await SortRecent(_recentItems);
