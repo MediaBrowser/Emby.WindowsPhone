@@ -78,7 +78,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     SimpleIoc.Default.Register<IAsyncStorageService, AsyncStorageService>();
 
                 if(!SimpleIoc.Default.IsRegistered<AuthenticationService>())
-                    SimpleIoc.Default.Register<AuthenticationService>();
+                    SimpleIoc.Default.Register<AuthenticationService>(true);
+
+                if(!SimpleIoc.Default.IsRegistered<Services.LockScreenService>())
+                    SimpleIoc.Default.Register<Services.LockScreenService>(true);
             }
 
             SimpleIoc.Default.Register<MainViewModel>();

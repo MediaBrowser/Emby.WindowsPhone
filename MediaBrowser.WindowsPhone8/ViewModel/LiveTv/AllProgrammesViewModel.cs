@@ -60,7 +60,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
 
         private async Task LoadData(bool isRefresh)
         {
-            if (!_navigationService.IsNetworkAvailable || (_programmesLoaded && !isRefresh))
+            if (!NavigationService.IsNetworkAvailable || (_programmesLoaded && !isRefresh))
             {
                 return;
             }
@@ -88,7 +88,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
 
             try
             {
-                var items = await _apiClient.GetRecommendedLiveTvProgramsAsync(query);
+                var items = await ApiClient.GetRecommendedLiveTvProgramsAsync(query);
 
                 if (items != null && !items.Items.IsNullOrEmpty())
                 {
@@ -98,7 +98,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
             }
             catch (HttpException ex)
             {
-                Utils.HandleHttpException(ex, "LoadData(" + isRefresh + ")", _navigationService, Log);
+                Utils.HandleHttpException(ex, "LoadData(" + isRefresh + ")", NavigationService, Log);
             }
 
             SetProgressBar();

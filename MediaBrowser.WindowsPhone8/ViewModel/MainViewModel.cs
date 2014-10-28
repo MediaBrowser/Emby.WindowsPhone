@@ -98,7 +98,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                 AuthenticationService.Current.SignOut().ConfigureAwait(false);
 
-                _navigationService.NavigateTo(Constants.Pages.ChooseProfileView);
+                NavigationService.NavigateTo(Constants.Pages.ChooseProfileView);
             });
 
             PinCollectionCommand = new RelayCommand<BaseItemDto>(collection =>
@@ -142,15 +142,15 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 await PlayVideo(item, true);
             });
 
-            NavigateToPage = new RelayCommand<BaseItemDto>(_navigationService.NavigateTo);
+            NavigateToPage = new RelayCommand<BaseItemDto>(NavigationService.NavigateTo);
 
-            NavigateToAPage = new RelayCommand<string>(_navigationService.NavigateTo);
+            NavigateToAPage = new RelayCommand<string>(NavigationService.NavigateTo);
 
             NavigateToNotificationsCommand = new RelayCommand(() =>
             {
                 Messenger.Default.Send(new NotificationMessage(Constants.Messages.NotifcationNavigationMsg));
 
-                _navigationService.NavigateTo(Constants.Pages.NotificationsView);
+                NavigationService.NavigateTo(Constants.Pages.NotificationsView);
             });
         }
 
@@ -158,7 +158,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             if (item.IsAudio)
             {
-                var playlistItem = item.ToPlaylistItem(_apiClient);
+                var playlistItem = item.ToPlaylistItem(ApiClient);
                 Messenger.Default.Send(new NotificationMessage<List<PlaylistItem>>(new List<PlaylistItem> { playlistItem }, Constants.Messages.SetPlaylistAsMsg));
                 return;
             }
@@ -182,7 +182,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     }
 
                     TrialHelper.Current.SetNewVideoItem(item.Id);
-                    _navigationService.NavigateTo(string.Format(Constants.Pages.VideoPlayerView, item.Id, item.Type));
+                    NavigationService.NavigateTo(string.Format(Constants.Pages.VideoPlayerView, item.Id, item.Type));
                 }
             }
 
@@ -200,7 +200,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
         private async Task GetEverything(bool isRefresh)
         {
-            if (_navigationService.IsNetworkAvailable
+            if (NavigationService.IsNetworkAvailable
                 && (!_hasLoaded || isRefresh))
             {
 
@@ -234,8 +234,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 StartIndex = 0,
                 UserId = AuthenticationService.Current.LoggedInUser.Id
             };
-            var summary = await _apiClient.GetNotificationsSummary(AuthenticationService.Current.LoggedInUser.Id);
-            var notifications = await _apiClient.GetNotificationsAsync(query);
+            var summary = await ApiClient.GetNotificationsSummary(AuthenticationService.Current.LoggedInUser.Id);
+            var notifications = await ApiClient.GetNotificationsAsync(query);
         }
 
         private async Task<bool> GetFavouriteItems()
@@ -251,7 +251,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     Filters = new[] {ItemFilter.IsFavorite},
                     Recursive = true
                 };
-                var items = await _apiClient.GetItemsAsync(query);
+                var items = await ApiClient.GetItemsAsync(query);
                 if (items != null && items.Items != null)
                 {
                     foreach (var item in items.Items.Take(6))
@@ -263,7 +263,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
             catch (HttpException ex)
             {
-                Utils.HandleHttpException("GetFavouriteItems()", ex, _navigationService, Log);
+                Utils.HandleHttpException("GetFavouriteItems()", ex, NavigationService, Log);
                 return false;
             }
         }
@@ -276,14 +276,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                 var query = Utils.GetRecentItemsQuery(excludedItemTypes: new[] { "Photo" });
                 
-                var items = await _apiClient.GetItemsAsync(query);
+                var items = await ApiClient.GetItemsAsync(query);
                 _recentItems = items.Items;
                 await SortRecent(_recentItems);
                 return true;
             }
             catch (HttpException ex)
             {
-                Utils.HandleHttpException("GetRecent()", ex, _navigationService, Log);
+                Utils.HandleHttpException("GetRecent()", ex, NavigationService, Log);
                 return false;
             }
         }
@@ -309,7 +309,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     SortBy = new[] {ItemSortBy.SortName}
                 };
 
-                var item = await _apiClient.GetItemsAsync(query);
+                var item = await ApiClient.GetItemsAsync(query);
 
                 Folders.Clear();
 
@@ -319,7 +319,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
             catch (HttpException ex)
             {
-                Utils.HandleHttpException("GetFolders()", ex, _navigationService, Log);
+                Utils.HandleHttpException("GetFolders()", ex, NavigationService, Log);
                 return false;
             }
         }

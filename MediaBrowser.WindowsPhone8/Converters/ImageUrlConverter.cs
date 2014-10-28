@@ -18,7 +18,7 @@ namespace MediaBrowser.WindowsPhone.Converters
             {
                 var type = value.GetType();
                 var manager = SimpleIoc.Default.GetInstance<IConnectionManager>();
-                var apiClient = manager.GetApiClient(null);
+                var apiClient = manager.CurrentApiClient;
                 if (type == typeof(BaseItemDto))
                 {
 

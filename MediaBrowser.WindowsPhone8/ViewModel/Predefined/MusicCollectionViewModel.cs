@@ -146,12 +146,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
 
                     try
                     {
-                        var tracks = await _apiClient.GetInstantMixPlaylist(item);
+                        var tracks = await ApiClient.GetInstantMixPlaylist(item);
                         Messenger.Default.Send(new NotificationMessage<List<PlaylistItem>>(tracks, Constants.Messages.SetPlaylistAsMsg));
                     }
                     catch (HttpException ex)
                     {
-                        Utils.HandleHttpException(ex, "StartInstantMix", _navigationService, Log);
+                        Utils.HandleHttpException(ex, "StartInstantMix", NavigationService, Log);
                     }
 
                     SetProgressBar();
@@ -255,13 +255,13 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
         {
             get
             {
-                return new RelayCommand<BaseItemDto>(_navigationService.NavigateTo);
+                return new RelayCommand<BaseItemDto>(NavigationService.NavigateTo);
             }
         }
         
         private async Task GetAlbumTracks(BaseItemDto item)
         {
-            if (!_navigationService.IsNetworkAvailable)
+            if (!NavigationService.IsNetworkAvailable)
             {
                 return;
             }
@@ -282,13 +282,13 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
 
                 Log.Info("Getting tracks for album [{0}] ({1})", item.Name, item.Id);
 
-                var itemResponse = await _apiClient.GetItemsAsync(query);
+                var itemResponse = await ApiClient.GetItemsAsync(query);
 
                 await SendItemsToPlaylist(itemResponse);
             }
             catch (HttpException ex)
             {
-                Utils.HandleHttpException(string.Format("GetAlbumTracks({0})", item.Name), ex, _navigationService, Log);
+                Utils.HandleHttpException(string.Format("GetAlbumTracks({0})", item.Name), ex, NavigationService, Log);
             }
 
             SetProgressBar();
@@ -296,7 +296,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
 
         private async Task GetArtistTracks(string artistName)
         {
-            if (!_navigationService.IsNetworkAvailable)
+            if (!NavigationService.IsNetworkAvailable)
             {
                 return;
             }
@@ -316,13 +316,13 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
 
                 Log.Info("Getting tracks for artist [{0}]", artistName);
 
-                var itemResponse = await _apiClient.GetItemsAsync(query);
+                var itemResponse = await ApiClient.GetItemsAsync(query);
 
                 await SendItemsToPlaylist(itemResponse);
             }
             catch (HttpException ex)
             {
-                Utils.HandleHttpException(string.Format("GetArtistTracks({0})", artistName), ex, _navigationService, Log);
+                Utils.HandleHttpException(string.Format("GetArtistTracks({0})", artistName), ex, NavigationService, Log);
             }
 
             SetProgressBar();
@@ -330,7 +330,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
 
         private async Task GetGenreTracks(string genreName)
         {
-            if (!_navigationService.IsNetworkAvailable)
+            if (!NavigationService.IsNetworkAvailable)
             {
                 return;
             }
@@ -349,13 +349,13 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
 
                 Log.Info("Getting tracks for genre [{0}]", genreName);
 
-                var itemResponse = await _apiClient.GetItemsAsync(query);
+                var itemResponse = await ApiClient.GetItemsAsync(query);
 
                 await SendItemsToPlaylist(itemResponse);
             }
             catch (HttpException ex)
             {
-                Utils.HandleHttpException(string.Format("GetGenreTracks({0})", genreName), ex, _navigationService, Log);
+                Utils.HandleHttpException(string.Format("GetGenreTracks({0})", genreName), ex, NavigationService, Log);
             }
 
             SetProgressBar();
@@ -370,16 +370,16 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
 
             var items = itemResponse.Items.ToList();
 
-            var newList = await items.ToPlayListItems(_apiClient);
+            var newList = await items.ToPlayListItems(ApiClient);
 
             Messenger.Default.Send(new NotificationMessage<List<PlaylistItem>>(newList, Constants.Messages.SetPlaylistAsMsg));
 
-            Deployment.Current.Dispatcher.BeginInvoke(() => _navigationService.NavigateTo(Constants.Pages.NowPlayingView));
+            Deployment.Current.Dispatcher.BeginInvoke(() => NavigationService.NavigateTo(Constants.Pages.NowPlayingView));
         }
 
         private async Task GetMusicCollection()
         {
-            if (!_navigationService.IsNetworkAvailable || _artistsLoaded)
+            if (!NavigationService.IsNetworkAvailable || _artistsLoaded)
             {
                 return;
             }
@@ -402,7 +402,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
             switch (PivotSelectedIndex)
             {
                 case 0: // Artists
-                    if (!_navigationService.IsNetworkAvailable || _artistsLoaded)
+                    if (!NavigationService.IsNetworkAvailable || _artistsLoaded)
                     {
                         return;
                     }
@@ -412,7 +412,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                     SetProgressBar();
                     break;
                 case 1: // Albums
-                    if (!_navigationService.IsNetworkAvailable || _albumsLoaded)
+                    if (!NavigationService.IsNetworkAvailable || _albumsLoaded)
                     {
                         return;
                     }
@@ -422,7 +422,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                     SetProgressBar();
                     break;
                 case 2: // Songs
-                    if (!_navigationService.IsNetworkAvailable || _songsLoaded)
+                    if (!NavigationService.IsNetworkAvailable || _songsLoaded)
                     {
                         return;
                     }
@@ -432,7 +432,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                     SetProgressBar();
                     break;
                 case 3: // Genres
-                    if (!_navigationService.IsNetworkAvailable || _genresLoaded)
+                    if (!NavigationService.IsNetworkAvailable || _genresLoaded)
                     {
                         return;
                     }
@@ -457,7 +457,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
 
             try
             {
-                var itemsResponse = await _apiClient.GetAlbumArtistsAsync(query);
+                var itemsResponse = await ApiClient.GetAlbumArtistsAsync(query);
 
                 if (itemsResponse == null)
                 {
@@ -472,7 +472,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
             }
             catch (HttpException ex)
             {
-                Utils.HandleHttpException("GetArtists()", ex, _navigationService, Log);
+                Utils.HandleHttpException("GetArtists()", ex, NavigationService, Log);
             }
 
             return false;
@@ -492,7 +492,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
 
             try
             {
-                var genresResponse = await _apiClient.GetGenresAsync(query);
+                var genresResponse = await ApiClient.GetGenresAsync(query);
 
                 if (genresResponse == null)
                 {
@@ -505,7 +505,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
             }
             catch (HttpException ex)
             {
-                Utils.HandleHttpException("GetGenres()", ex, _navigationService, Log);
+                Utils.HandleHttpException("GetGenres()", ex, NavigationService, Log);
             }
 
             return false;
@@ -523,7 +523,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
 
             try
             {
-                var itemsResponse = await _apiClient.GetItemsAsync(query);
+                var itemsResponse = await ApiClient.GetItemsAsync(query);
 
                 if (itemsResponse == null)
                 {
@@ -538,7 +538,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
             }
             catch (HttpException ex)
             {
-                Utils.HandleHttpException("GetSongs()", ex, _navigationService, Log);
+                Utils.HandleHttpException("GetSongs()", ex, NavigationService, Log);
             }
 
             return false;
@@ -555,7 +555,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
             };
             try
             {
-                var itemsResponse = await _apiClient.GetItemsAsync(query);
+                var itemsResponse = await ApiClient.GetItemsAsync(query);
 
                 if (itemsResponse == null)
                 {
@@ -570,7 +570,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
             }
             catch (HttpException ex)
             {
-                Utils.HandleHttpException("GetAlbums()", ex, _navigationService, Log);
+                Utils.HandleHttpException("GetAlbums()", ex, NavigationService, Log);
             }
 
             return false;

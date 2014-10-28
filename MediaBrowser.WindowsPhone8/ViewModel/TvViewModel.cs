@@ -94,7 +94,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                 };
 
-                if (_navigationService.IsNetworkAvailable && !ShowDataLoaded)
+                if (NavigationService.IsNetworkAvailable && !ShowDataLoaded)
                 {
                     if (SelectedTvSeries != null)
                     {
@@ -104,12 +104,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         {
                             Log.Info("Getting information for TV Series [{0}] ({1})", SelectedTvSeries.Name, SelectedTvSeries.Id);
 
-                            SelectedTvSeries = await _apiClient.GetItemAsync(SelectedTvSeries.Id, AuthenticationService.Current.LoggedInUser.Id);
+                            SelectedTvSeries = await ApiClient.GetItemAsync(SelectedTvSeries.Id, AuthenticationService.Current.LoggedInUser.Id);
                             CastAndCrew = Utils.GroupCastAndCrew(SelectedTvSeries.People);
                         }
                         catch (HttpException ex)
                         {
-                            if (Utils.HandleHttpException("TvSeriesPageLoaded", ex, _navigationService, Log))
+                            if (Utils.HandleHttpException("TvSeriesPageLoaded", ex, NavigationService, Log))
                             {
                                 SetProgressBar();
                                 return;
@@ -130,7 +130,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             SeasonPageLoaded = new RelayCommand(async () =>
             {
-                if (_navigationService.IsNetworkAvailable && !SeasonDataLoaded)
+                if (NavigationService.IsNetworkAvailable && !SeasonDataLoaded)
                 {
                     if (SelectedSeason != null)
                     {
@@ -166,11 +166,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     
                     CanUpdateFavourites = false;
 
-                    item.UserData = await _apiClient.UpdateFavoriteStatusAsync(item.Id, AuthenticationService.Current.LoggedInUser.Id, !item.UserData.IsFavorite);
+                    item.UserData = await ApiClient.UpdateFavoriteStatusAsync(item.Id, AuthenticationService.Current.LoggedInUser.Id, !item.UserData.IsFavorite);
                 }
                 catch (HttpException ex)
                 {
-                    if (Utils.HandleHttpException("AddRemoveFavouriteCommand (TV)", ex, _navigationService, Log))
+                    if (Utils.HandleHttpException("AddRemoveFavouriteCommand (TV)", ex, NavigationService, Log))
                     {
                         SetProgressBar();
                         return;
@@ -186,10 +186,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             ShowOtherFilmsCommand = new RelayCommand<BaseItemPerson>(person =>
             {
                 App.SelectedItem = person;
-                _navigationService.NavigateTo(Constants.Pages.ActorView);
+                NavigationService.NavigateTo(Constants.Pages.ActorView);
             });
 
-            NavigateTo = new RelayCommand<BaseItemDto>(_navigationService.NavigateTo);
+            NavigateTo = new RelayCommand<BaseItemDto>(NavigationService.NavigateTo);
         }
 
         private async Task<bool> GetEpisode()
@@ -198,12 +198,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 Log.Info("Getting information for episode [{0}] ({1})", SelectedEpisode.Name, SelectedEpisode.Id);
 
-                var episode = await _apiClient.GetItemAsync(SelectedEpisode.Id, AuthenticationService.Current.LoggedInUser.Id);
+                var episode = await ApiClient.GetItemAsync(SelectedEpisode.Id, AuthenticationService.Current.LoggedInUser.Id);
                 return true;
             }
             catch (HttpException ex)
             {
-                Utils.HandleHttpException("GetEpisode()", ex, _navigationService, Log);
+                Utils.HandleHttpException("GetEpisode()", ex, NavigationService, Log);
 
                 App.ShowMessage(AppResources.ErrorEpisodeDetails);
                 return false;
@@ -218,7 +218,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                 Log.Info("Getting recent items for TV Show [{0}] ({1})", SelectedTvSeries.Name, SelectedTvSeries.Id);
 
-                var recent = await _apiClient.GetItemsAsync(query);
+                var recent = await ApiClient.GetItemsAsync(query);
                 if (recent != null && recent.Items != null)
                 {
                     RecentItems.Clear();
@@ -232,7 +232,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
             catch (HttpException ex)
             {
-                Utils.HandleHttpException("GetRecentItems()", ex, _navigationService, Log);
+                Utils.HandleHttpException("GetRecentItems()", ex, NavigationService, Log);
 
                 App.ShowMessage(AppResources.ErrorRecentItems);
                 return false;
@@ -257,13 +257,13 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                 Log.Info("Getting seasons for TV Show [{0}] ({1})", SelectedTvSeries.Name, SelectedTvSeries.Id);
 
-                var seasons = await _apiClient.GetSeasonsAsync(query);
+                var seasons = await ApiClient.GetSeasonsAsync(query);
                 Seasons = seasons.Items.OrderBy(x => x.IndexNumber).ToList();
                 return true;
             }
             catch (HttpException ex)
             {
-                Utils.HandleHttpException("GetSeasons()", ex, _navigationService, Log);
+                Utils.HandleHttpException("GetSeasons()", ex, NavigationService, Log);
 
                 App.ShowMessage(AppResources.ErrorSeasons);
                 return false;
@@ -290,13 +290,13 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                 Log.Info("Getting episodes for Season [{0}] ({1}) of TV Show [{2}] ({3})", SelectedSeason.Name, SelectedSeason.Id, SelectedTvSeries.Name, SelectedTvSeries.Id);
 
-                var episodes = await _apiClient.GetEpisodesAsync(query);
+                var episodes = await ApiClient.GetEpisodesAsync(query);
                 Episodes = episodes.Items.ToList();
                 return true;
             }
             catch (HttpException ex)
             {
-                Utils.HandleHttpException("GetEpisodes()", ex, _navigationService, Log);
+                Utils.HandleHttpException("GetEpisodes()", ex, NavigationService, Log);
 
                 App.ShowMessage(AppResources.ErrorEpisodes);
                 return false;
@@ -310,7 +310,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
         public async Task GetEpisodeDetails()
         {
-            if (_navigationService.IsNetworkAvailable)
+            if (NavigationService.IsNetworkAvailable)
             {
                 var index = SelectedEpisode.IndexNumber;
                 if (SelectedEpisode != null && Episodes.IsNullOrEmpty())
@@ -333,12 +333,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                         //Log.Info("Getting episodes for Season [{0}] ({1}) of TV Show [{2}] ({3})", SelectedSeason.Name, SelectedSeason.Id, SelectedTvSeries.Name, SelectedTvSeries.Id);
 
-                        var episodes = await _apiClient.GetEpisodesAsync(query);
+                        var episodes = await ApiClient.GetEpisodesAsync(query);
                         Episodes = episodes.Items.OrderBy(x => x.IndexNumber).ToList();
                     }
                     catch (HttpException ex)
                     {
-                        Utils.HandleHttpException("GetEpisodeDetails()", ex, _navigationService, Log);
+                        Utils.HandleHttpException("GetEpisodeDetails()", ex, NavigationService, Log);
                     }
 
                     SetProgressBar();
@@ -372,7 +372,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
         private async Task MarkAsWatched(BaseItemDto item)
         {
-            if (!_navigationService.IsNetworkAvailable)
+            if (!NavigationService.IsNetworkAvailable)
             {
                 return;
             }
@@ -380,13 +380,13 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             try
             {
                 item.UserData = item.UserData.Played 
-                    ? await _apiClient.MarkUnplayedAsync(item.Id, AuthenticationService.Current.LoggedInUserId) 
-                    : await _apiClient.MarkPlayedAsync(item.Id, AuthenticationService.Current.LoggedInUserId, DateTime.Now);
+                    ? await ApiClient.MarkUnplayedAsync(item.Id, AuthenticationService.Current.LoggedInUserId) 
+                    : await ApiClient.MarkPlayedAsync(item.Id, AuthenticationService.Current.LoggedInUserId, DateTime.Now);
             }
             catch (HttpException ex)
             {
                 MessageBox.Show(AppResources.ErrorProblemUpdatingItem, AppResources.ErrorTitle, MessageBoxButton.OK);
-                Utils.HandleHttpException("MarkAsWatchedCommand", ex, _navigationService, Log);
+                Utils.HandleHttpException("MarkAsWatchedCommand", ex, NavigationService, Log);
             }
         }
 

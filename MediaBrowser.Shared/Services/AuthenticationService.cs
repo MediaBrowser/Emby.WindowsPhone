@@ -14,7 +14,6 @@ namespace MediaBrowser.WindowsPhone.Services
     {
         private readonly IConnectionManager _connectionManager;
         private IApplicationSettingsService _settingsService;
-        private static IApiClient _apiClient;
         private static ILog _logger;
 
         public AuthenticationResult AuthenticationResult { get; set; }
@@ -31,8 +30,6 @@ namespace MediaBrowser.WindowsPhone.Services
         public void Start()
         {
             _settingsService = new ApplicationSettingsService();
-            _apiClient = _connectionManager.GetApiClient(null);
-
             CheckIfUserSignedIn();
         }
 
@@ -54,7 +51,7 @@ namespace MediaBrowser.WindowsPhone.Services
             {
                 _logger.Info("Authenticating user [{0}]", selectedUserName);
 
-                var result = await _apiClient.AuthenticateUserAsync(selectedUserName, pinCode);
+                var result = await _connectionManager.CurrentApiClient.AuthenticateUserAsync(selectedUserName, pinCode);
 
                 _logger.Info("Logged in as [{0}]", selectedUserName);
 
@@ -74,15 +71,15 @@ namespace MediaBrowser.WindowsPhone.Services
 
         public void SetAuthenticationInfo()
         {
-            _apiClient.ClearAuthenticationInfo();
-            _apiClient.SetAuthenticationInfo(AuthenticationResult.AccessToken, LoggedInUserId);
+            _connectionManager.CurrentApiClient.ClearAuthenticationInfo();
+            _connectionManager.CurrentApiClient.SetAuthenticationInfo(AuthenticationResult.AccessToken, LoggedInUserId);
         }
 
         public async Task SignOut()
         {
             try
             {
-                await _apiClient.Logout();
+                await _connectionManager.CurrentApiClient.Logout();
             }
             catch (HttpException ex)
             {

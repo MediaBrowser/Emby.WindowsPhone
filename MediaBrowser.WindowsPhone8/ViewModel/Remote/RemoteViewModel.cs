@@ -78,9 +78,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
                 {
                     IsPinned = TileService.Current.TileExists(_tileUrl);
 
-                    await _apiClient.StartReceivingSessionUpdates(1500);
+                    await ApiClient.StartReceivingSessionUpdates(1500);
 
-                    _apiClient.SessionsUpdated += WebSocketClientOnSessionsUpdated;
+                    ApiClient.SessionsUpdated += WebSocketClientOnSessionsUpdated;
 
                     await GetClients(false);
 
@@ -109,9 +109,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
             {
                 return new RelayCommand(() =>
                 {
-                    _apiClient.SessionsUpdated -= WebSocketClientOnSessionsUpdated;
+                    ApiClient.SessionsUpdated -= WebSocketClientOnSessionsUpdated;
 
-                    _apiClient.StopReceivingSessionUpdates().ConfigureAwait(false);
+                    ApiClient.StopReceivingSessionUpdates().ConfigureAwait(false);
                 });
             }
         }
@@ -190,15 +190,15 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
                         SelectedClient = client;
                         //ServerIdItem = SelectedClient;
 
-                        await _apiClient.SendPlayCommandAsync(SelectedClient.Id, new PlayRequest { ItemIds = new[] { _videoId }, PlayCommand = PlayCommand.PlayNow });
+                        await ApiClient.SendPlayCommandAsync(SelectedClient.Id, new PlayRequest { ItemIds = new[] { _videoId }, PlayCommand = PlayCommand.PlayNow });
 
-                        _navigationService.NavigateTo(Constants.Pages.Remote.RemoteView);
+                        NavigationService.NavigateTo(Constants.Pages.Remote.RemoteView);
                     }
                     catch (HttpException ex)
                     {
-                        Utils.HandleHttpException("ClientSelectedCommand", ex, _navigationService, Log);
+                        Utils.HandleHttpException("ClientSelectedCommand", ex, NavigationService, Log);
                         MessageBox.Show("Unable to start your item.", "Error", MessageBoxButton.OK);
-                        _navigationService.GoBack();
+                        NavigationService.GoBack();
                     }
                 });
             }
@@ -219,11 +219,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
                                 Name = GeneralCommandType.ToggleMute.ToString()
                             };
 
-                            await _apiClient.SendCommandAsync(SelectedClient.Id, command);
+                            await ApiClient.SendCommandAsync(SelectedClient.Id, command);
                         }
                         catch (HttpException ex)
                         {
-                            Utils.HandleHttpException("SendMuteCommand", ex, _navigationService, Log);
+                            Utils.HandleHttpException("SendMuteCommand", ex, NavigationService, Log);
                         }
                     }
                 });
@@ -243,11 +243,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
                             Name = isVolumeUp ? GeneralCommandType.VolumeUp.ToString() : GeneralCommandType.VolumeDown.ToString()
                         };
 
-                        await _apiClient.SendCommandAsync(SelectedClient.Id, command);
+                        await ApiClient.SendCommandAsync(SelectedClient.Id, command);
                     }
                     catch (HttpException ex)
                     {
-                        Utils.HandleHttpException("AdjustVolumeCommand", ex, _navigationService, Log);
+                        Utils.HandleHttpException("AdjustVolumeCommand", ex, NavigationService, Log);
                     }
                 });
             }
@@ -281,11 +281,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
                 try
                 {
                     SendingCommand = true;
-                    await _apiClient.SendPlaystateCommandAsync(SelectedClient.Id, request);
+                    await ApiClient.SendPlaystateCommandAsync(SelectedClient.Id, request);
                 }
                 catch (HttpException ex)
                 {
-                    Utils.HandleHttpException("SendPlaystateCommand(" + commandString + ")", ex, _navigationService, Log);
+                    Utils.HandleHttpException("SendPlaystateCommand(" + commandString + ")", ex, NavigationService, Log);
                 }
 
                 SendingCommand = false;
@@ -305,7 +305,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
 
                     _videoId = id;
                     _startPositionTicks = null;
-                    _navigationService.NavigateTo(Constants.Pages.Remote.ChooseClientView);
+                    NavigationService.NavigateTo(Constants.Pages.Remote.ChooseClientView);
                 });
             }
         }
@@ -314,13 +314,13 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
         {
             get
             {
-                return new RelayCommand<BaseItemInfo>(_navigationService.NavigateTo);
+                return new RelayCommand<BaseItemInfo>(NavigationService.NavigateTo);
             }
         }
 
         private async Task GetClients(bool isRefresh)
         {
-            if (!_navigationService.IsNetworkAvailable || (_dataLoaded && !isRefresh))
+            if (!NavigationService.IsNetworkAvailable || (_dataLoaded && !isRefresh))
             {
                 return;
             }
@@ -333,9 +333,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
                 {
                     ControllableByUserId = AuthenticationService.Current.LoggedInUserId,
                 };
-                var clients = await _apiClient.GetClientSessionsAsync(query);
+                var clients = await ApiClient.GetClientSessionsAsync(query);
 
-                Clients = clients.Where(x => x.DeviceId != _apiClient.DeviceId && x.SupportsRemoteControl).ToList();
+                Clients = clients.Where(x => x.DeviceId != ApiClient.DeviceId && x.SupportsRemoteControl).ToList();
 
                 if (!Clients.IsNullOrEmpty())
                 {
@@ -355,7 +355,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
             }
             catch (HttpException ex)
             {
-                Utils.HandleHttpException("GetClients()", ex, _navigationService, Log);
+                Utils.HandleHttpException("GetClients()", ex, NavigationService, Log);
             }
 
             SetProgressBar();

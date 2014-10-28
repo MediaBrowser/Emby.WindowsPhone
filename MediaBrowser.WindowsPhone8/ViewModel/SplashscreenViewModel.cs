@@ -1,10 +1,12 @@
-﻿using Cimbalino.Phone.Toolkit.Services;
+﻿using System.Threading;
+using Cimbalino.Phone.Toolkit.Services;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Model.Photo;
 using MediaBrowser.WindowsPhone.Resources;
+using MediaBrowser.WindowsPhone.Services;
 using Microsoft.Phone.Controls;
 using INavigationService = MediaBrowser.WindowsPhone.Model.Interfaces.INavigationService;
 
@@ -44,7 +46,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                     if (!doNotShowFirstRun)
                     {
-                        _navigationService.NavigateTo(Constants.Pages.FirstRun.WelcomeView);
+                        NavigationService.NavigateTo(Constants.Pages.FirstRun.WelcomeView);
                         return;
                     }
 
@@ -70,63 +72,70 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     //    Log.ErrorException("GetAppInformationAsync()", ex);
                     //}
 #endif
+                    ConnectionResult result = null;
 
                     // Get settings from storage 
                     var connectionDetails = _applicationSettings.Get<ConnectionDetails>(Constants.Settings.ConnectionSettings);
-                    if (connectionDetails == null)
+                    if (connectionDetails != null)
                     {
-                        var messageBox = new CustomMessageBox
-                        {
-                            Caption = AppResources.ErrorConnectionDetailsTitle,
-                            Message = AppResources.ErrorConnectionDetailsMessage,
-                            LeftButtonContent = AppResources.LabelYes,
-                            RightButtonContent = AppResources.LabelNo,
-                            IsFullScreen = false
-                        };
-
-                        messageBox.Dismissed += (sender, args) =>
-                        {
-                            if (args.Result == CustomMessageBoxResult.LeftButton)
-                            {
-                                _navigationService.NavigateTo(Constants.Pages.SettingsViewConnection);
-                            }
-                        };
-
-                        messageBox.Show();
+                        result = await ConnectionManager.Connect(connectionDetails.ServerAddress, default(CancellationToken));
                     }
-                    else
+                    //    var messageBox = new CustomMessageBox
+                    //    {
+                    //        Caption = AppResources.ErrorConnectionDetailsTitle,
+                    //        Message = AppResources.ErrorConnectionDetailsMessage,
+                    //        LeftButtonContent = AppResources.LabelYes,
+                    //        RightButtonContent = AppResources.LabelNo,
+                    //        IsFullScreen = false
+                    //    };
+
+                    //    messageBox.Dismissed += (sender, args) =>
+                    //    {
+                    //        if (args.Result == CustomMessageBoxResult.LeftButton)
+                    //        {
+                    //            NavigationService.NavigateTo(Constants.Pages.SettingsViewConnection);
+                    //        }
+                    //    };
+
+                    //    messageBox.Show();
+                    //}
+                    //else
+                    //{
+                    //App.Settings.ConnectionDetails = connectionDetails;
+
+                    // Get and set the app specific settings 
+                    var specificSettings = _applicationSettings.Get<SpecificSettings>(Constants.Settings.SpecificSettings);
+                    if (specificSettings != null) Utils.CopyItem(specificSettings, App.SpecificSettings);
+
+                    var uploadSettings = _applicationSettings.Get<UploadSettings>(Constants.Settings.PhotoUploadSettings);
+                    if (uploadSettings != null) Utils.CopyItem(uploadSettings, App.UploadSettings);
+
+                    // See if we can find and communicate with the server
+                    SetProgressBar(AppResources.SysTrayGettingServerDetails);
+
+                    if (result == null || result.State == ConnectionState.Unavailable)
                     {
-                        App.Settings.ConnectionDetails = connectionDetails;
-
-                        // Get and set the app specific settings 
-                        var specificSettings = _applicationSettings.Get<SpecificSettings>(Constants.Settings.SpecificSettings);
-                        if (specificSettings != null) Utils.CopyItem(specificSettings, App.SpecificSettings);
-
-                        var uploadSettings = _applicationSettings.Get<UploadSettings>(Constants.Settings.PhotoUploadSettings);
-                        if (uploadSettings != null) Utils.CopyItem(uploadSettings, App.UploadSettings);
-                        
-                        // See if we can find and communicate with the server
-                        if (_navigationService.IsNetworkAvailable && App.Settings.ConnectionDetails != null)
-                        {
-                            SetProgressBar(AppResources.SysTrayGettingServerDetails);
-
-                            await Utils.GetServerConfiguration(_apiClient, Log);
-
-                            // Server has been found 
-                            if (App.Settings.SystemStatus != null)
-                            {
-                                SetProgressBar(AppResources.SysTrayAuthenticating);
-                                await Utils.CheckProfiles(_navigationService, Log, _apiClient);
-                            }
-                            else
-                            {
-                                App.ShowMessage(AppResources.ErrorCouldNotFindServer);
-                                _navigationService.NavigateTo(Constants.Pages.SettingsViewConnection);
-                            }
-                        }
-
-                        SetProgressBar();
+                        result = await ConnectionManager.Connect(default(CancellationToken));
                     }
+
+                    switch (result.State)
+                    {
+                        case ConnectionState.Unavailable:
+                            App.ShowMessage(AppResources.ErrorCouldNotFindServer);
+                            NavigationService.NavigateTo(Constants.Pages.SettingsViewConnection);
+                            break;
+                        case ConnectionState.ServerSelection:
+
+                            break;
+                        case ConnectionState.ServerSignIn:
+                            await Utils.CheckProfiles(NavigationService, Log, ApiClient);
+                            break;
+                        case ConnectionState.SignedIn:
+                            AuthenticationService.Current.SetAuthenticationInfo();
+                            break;
+                    }
+
+                    SetProgressBar();
                 }
             });
         }

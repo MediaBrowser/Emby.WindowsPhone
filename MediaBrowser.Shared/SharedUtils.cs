@@ -3,6 +3,7 @@ using Ailon.WP.Utils;
 using Cimbalino.Phone.Toolkit.Helpers;
 using Cimbalino.Phone.Toolkit.Services;
 using MediaBrowser.ApiInteraction;
+using MediaBrowser.Model;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Logging;
 using MediaBrowser.Model.Session;
@@ -43,7 +44,8 @@ namespace MediaBrowser.WindowsPhone
                     ApplicationManifest.Current.App.Version,
                     device,
                     new ClientCapabilities {SupportsContentUploading = true, SupportsMediaControl = false},
-                    new CryptographyProvider());
+                    new CryptographyProvider(),
+                    () => new WebSocketClient());
 
             return manager;
         }

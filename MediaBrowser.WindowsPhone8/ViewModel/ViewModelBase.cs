@@ -6,20 +6,20 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 {
     public class ViewModelBase : ScottIsAFool.WindowsPhone.ViewModel.ViewModelBase
     {
-        protected readonly INavigationService _navigationService;
-        protected readonly IConnectionManager _connectionManager;
+        protected readonly INavigationService NavigationService;
+        protected readonly IConnectionManager ConnectionManager;
 
         protected IHasServerId ServerIdItem;
 
         public ViewModelBase(INavigationService navigationService, IConnectionManager connectionManager)
         {
-            _navigationService = navigationService;
-            _connectionManager = connectionManager;
+            NavigationService = navigationService;
+            ConnectionManager = connectionManager;
         }
 
-        protected IApiClient _apiClient
+        protected IApiClient ApiClient
         {
-            get { return _connectionManager.CurrentApiClient; }
+            get { return ServerIdItem == null ? ConnectionManager.CurrentApiClient : ConnectionManager.GetApiClient(ServerIdItem); }
         }
     }
 }

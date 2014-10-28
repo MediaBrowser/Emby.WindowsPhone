@@ -63,7 +63,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                     {
                         SetProgressBar(AppResources.SysTraySettingProgrammeToRecord);
 
-                        var id = await LiveTvUtils.RecordProgramme(SelectedProgramme, _apiClient, _navigationService, Log);
+                        var id = await LiveTvUtils.RecordProgramme(SelectedProgramme, ApiClient, NavigationService, Log);
 
                         if (!string.IsNullOrEmpty(id))
                         {
@@ -74,7 +74,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                     {
                         SetProgressBar(AppResources.SysTrayCancellingProgramme);
 
-                        if (await LiveTvUtils.CancelRecording(SelectedProgramme.TimerId, _navigationService, _apiClient, Log))
+                        if (await LiveTvUtils.CancelRecording(SelectedProgramme.TimerId, NavigationService, ApiClient, Log))
                         {
                             SelectedProgramme.TimerId = null;
                         }
@@ -95,7 +95,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                     {
                         SetProgressBar(AppResources.SysTraySettingSeriesToRecord);
 
-                        var id = await LiveTvUtils.CreateSeriesLink(SelectedProgramme, _apiClient, _navigationService, Log);
+                        var id = await LiveTvUtils.CreateSeriesLink(SelectedProgramme, ApiClient, NavigationService, Log);
 
                         if (!string.IsNullOrEmpty(id))
                         {
@@ -106,7 +106,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                     {
                         SetProgressBar(AppResources.SysTrayCancellingSeriesRecording);
 
-                        if (await LiveTvUtils.CancelSeries(SelectedProgramme.SeriesTimerId, _navigationService, _apiClient, Log, false))
+                        if (await LiveTvUtils.CancelSeries(SelectedProgramme.SeriesTimerId, NavigationService, ApiClient, Log, false))
                         {
                             SelectedProgramme.SeriesTimerId = null;
                         }
@@ -132,16 +132,16 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
 
                     try
                     {
-                        var series = await _apiClient.GetLiveTvSeriesTimerAsync(SelectedProgramme.SeriesTimerId, default(CancellationToken));
+                        var series = await ApiClient.GetLiveTvSeriesTimerAsync(SelectedProgramme.SeriesTimerId, default(CancellationToken));
                         if (SimpleIoc.Default.GetInstance<ScheduledSeriesViewModel>() != null)
                         {
                             Messenger.Default.Send(new NotificationMessage(series, false, Constants.Messages.ScheduledSeriesChangedMsg));
-                            _navigationService.NavigateTo(Constants.Pages.LiveTv.ScheduledSeriesView);
+                            NavigationService.NavigateTo(Constants.Pages.LiveTv.ScheduledSeriesView);
                         }
                     }
                     catch (HttpException ex)
                     {
-                        Utils.HandleHttpException(ex, "ShowSeriesRecordingCommand", _navigationService, Log);
+                        Utils.HandleHttpException(ex, "ShowSeriesRecordingCommand", NavigationService, Log);
                     }
 
                     SetProgressBar();
@@ -159,17 +159,17 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                     {
                         SetProgressBar(AppResources.SysTrayPreparing);
 
-                        var series = await _apiClient.GetDefaultLiveTvTimerInfo(SelectedProgramme.Id, default(CancellationToken));
+                        var series = await ApiClient.GetDefaultLiveTvTimerInfo(SelectedProgramme.Id, default(CancellationToken));
 
                         if (series != null && SimpleIoc.Default.GetInstance<ScheduledSeriesViewModel>() != null)
                         {
                             Messenger.Default.Send(new NotificationMessage(series, true, Constants.Messages.ScheduledSeriesChangedMsg));
-                            _navigationService.NavigateTo(Constants.Pages.LiveTv.ScheduledSeriesView);
+                            NavigationService.NavigateTo(Constants.Pages.LiveTv.ScheduledSeriesView);
                         }
                     }
                     catch (HttpException ex)
                     {
-                        Utils.HandleHttpException(ex, "AdvancedSeriesRecordCommand", _navigationService, Log);
+                        Utils.HandleHttpException(ex, "AdvancedSeriesRecordCommand", NavigationService, Log);
                     }
 
                     SetProgressBar();
@@ -186,7 +186,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                     if (SimpleIoc.Default.GetInstance<VideoPlayerViewModel>() != null)
                     {
                         Messenger.Default.Send(new VideoMessage(SelectedRecording, false));
-                        _navigationService.NavigateTo(string.Format(Constants.Pages.VideoPlayerView, SelectedRecording.Id, SelectedRecording.Type));
+                        NavigationService.NavigateTo(string.Format(Constants.Pages.VideoPlayerView, SelectedRecording.Id, SelectedRecording.Type));
                     }
                 });
             }
@@ -201,7 +201,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                     if (SimpleIoc.Default.GetInstance<VideoPlayerViewModel>() != null)
                     {
                         Messenger.Default.Send(new VideoMessage(SelectedProgramme, false));
-                        _navigationService.NavigateTo(string.Format(Constants.Pages.VideoPlayerView,  SelectedProgramme.Id, SelectedProgramme.Type));
+                        NavigationService.NavigateTo(string.Format(Constants.Pages.VideoPlayerView,  SelectedProgramme.Id, SelectedProgramme.Type));
                     }
                 });
             }

@@ -48,12 +48,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
         private async Task GetItemDetails()
         {
-            if (!_navigationService.IsNetworkAvailable || _dataLoaded || SelectedItem == null)
+            if (!NavigationService.IsNetworkAvailable || _dataLoaded || SelectedItem == null)
             {
                 return;
             }
 
-            var item = await _apiClient.GetItemAsync(SelectedItem.Id, AuthenticationService.Current.LoggedInUserId);
+            var item = await ApiClient.GetItemAsync(SelectedItem.Id, AuthenticationService.Current.LoggedInUserId);
 
             SelectedItem = item;
         }

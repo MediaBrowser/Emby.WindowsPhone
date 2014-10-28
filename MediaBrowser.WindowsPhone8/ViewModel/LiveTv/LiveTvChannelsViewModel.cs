@@ -65,7 +65,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
         {
             get
             {
-                return new RelayCommand<string>(_navigationService.NavigateTo);
+                return new RelayCommand<string>(NavigationService.NavigateTo);
             }
         }
 
@@ -99,14 +99,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                 {
                     if (SimpleIoc.Default.GetInstance<GuideViewModel>() != null)
                         Messenger.Default.Send(new NotificationMessage(channel, Constants.Messages.ChangeChannelMsg));
-                    _navigationService.NavigateTo(Constants.Pages.LiveTv.GuideView);
+                    NavigationService.NavigateTo(Constants.Pages.LiveTv.GuideView);
                 });
             }
         }
 
         private async Task GetChannels(bool isRefresh)
         {
-            if (!_navigationService.IsNetworkAvailable || (_channelsLoaded && !isRefresh))
+            if (!NavigationService.IsNetworkAvailable || (_channelsLoaded && !isRefresh))
             {
                 return;
             }
@@ -121,7 +121,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                     UserId = AuthenticationService.Current.LoggedInUserId
                 };
 
-                var items = await _apiClient.GetLiveTvChannelsAsync(query, default(CancellationToken));
+                var items = await ApiClient.GetLiveTvChannelsAsync(query, default(CancellationToken));
 
                 if (items != null && !items.Items.IsNullOrEmpty())
                 {
@@ -133,7 +133,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
             }
             catch (HttpException ex)
             {
-                Utils.HandleHttpException(ex, "GetChannels()", _navigationService, Log);
+                Utils.HandleHttpException(ex, "GetChannels()", NavigationService, Log);
             }
 
             SetProgressBar();

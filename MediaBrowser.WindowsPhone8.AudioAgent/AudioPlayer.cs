@@ -1,20 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 using Cimbalino.Phone.Toolkit.Helpers;
 using Cimbalino.Phone.Toolkit.Services;
-using MediaBrowser.ApiInteraction;
-using MediaBrowser.Model;
 using MediaBrowser.Model.ApiClient;
-using MediaBrowser.Model.Logging;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Session;
 using MediaBrowser.WindowsPhone.Logging;
 using MediaBrowser.WindowsPhone.Model;
-using MediaBrowser.WindowsPhone.Model.Connection;
 using MediaBrowser.WindowsPhone.Services;
 using Microsoft.Phone.BackgroundAudio;
 using ScottIsAFool.WindowsPhone.Logging;
@@ -38,7 +35,7 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
         {
             _playlistHelper = new PlaylistHelper(new StorageService());
             _logger = new WPLogger(GetType());
-            _apiClient = CreateClient();
+            CreateClient();
             WPLogger.AppVersion = ApplicationManifest.Current.App.Version;
             WPLogger.LogConfiguration.LogType = LogType.WriteToFile;
             WPLogger.LogConfiguration.LoggingIsEnabled = true;
@@ -84,23 +81,23 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
             }
         }
 
-        private static IApiClient CreateClient()
+        private static async void CreateClient()
         {
             try
             {
-                var applicationSettings = new ApplicationSettingsService();
-                var connectionDetails = applicationSettings.Get<ConnectionDetails>(Constants.Settings.ConnectionSettings);
                 var device = new Device {DeviceId = SharedUtils.GetDeviceId(), DeviceName = SharedUtils.GetDeviceName() + " Audio Player"};
                 var manager = SharedUtils.CreateConnectionManager(device, new MBLogger(typeof (AudioPlayer)));
-                var auth = new AuthenticationService(manager);
-                auth.Start();
+                await manager.Connect(default(CancellationToken)).ContinueWith(task =>
+                {
+                    var auth = new AuthenticationService(manager);
+                    auth.Start();
 
-                return manager.GetApiClient(null);
+                    _apiClient = manager.CurrentApiClient;
+                });
             }
             catch (Exception ex)
             {
                 _logger.FatalException("Error creating ApiClient", ex);
-                return null;
             }
         }
 

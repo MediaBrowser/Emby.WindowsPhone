@@ -55,8 +55,7 @@
                Grid.ColumnSpan="2"
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
-               Stretch="UniformToFill"
-               Opacity="0.3"/>
+               Stretch="UniformToFill"/>
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel"

@@ -61,13 +61,13 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Channels
         {
             get
             {
-                return new RelayCommand<BaseItemDto>(item => _navigationService.NavigateTo(item));
+                return new RelayCommand<BaseItemDto>(item => NavigationService.NavigateTo(item));
             }
         }
 
         private async Task LoadData(bool isRefresh)
         {
-            if (!_navigationService.IsNetworkAvailable ||
+            if (!NavigationService.IsNetworkAvailable ||
                 SelectedChannel == null ||
                 (_channelItemsLoaded && !isRefresh))
             {
@@ -84,7 +84,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Channels
                     FolderId = SelectedChannel.Type.ToLower() == "channel" ? "" : SelectedChannel.Id,
                     UserId = AuthenticationService.Current.LoggedInUserId
                 };
-                var items = await _apiClient.GetChannelItems(query);
+                var items = await ApiClient.GetChannelItems(query);
 
                 ChannelItems = new ObservableCollection<BaseItemDto>(items.Items);
 
@@ -92,7 +92,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Channels
             }
             catch (HttpException ex)
             {
-                Utils.HandleHttpException(ex, "LoadData(" + isRefresh + ")", _navigationService, Log);
+                Utils.HandleHttpException(ex, "LoadData(" + isRefresh + ")", NavigationService, Log);
             }
 
             SetProgressBar();

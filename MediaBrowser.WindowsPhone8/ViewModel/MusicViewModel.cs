@@ -105,7 +105,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             ArtistPageLoaded = new RelayCommand(async () =>
             {
-                if (_navigationService.IsNetworkAvailable && !_gotAlbums)
+                if (NavigationService.IsNetworkAvailable && !_gotAlbums)
                 {
                     SetProgressBar(AppResources.SysTrayGettingAlbums);
 
@@ -159,7 +159,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                .OrderBy(x => x.IndexNumber)
                                                .ToList();
 
-                var newList = await albumTracks.ToPlayListItems(_apiClient);
+                var newList = await albumTracks.ToPlayListItems(ApiClient);
 
                 Messenger.Default.Send(new NotificationMessage<List<PlaylistItem>>(newList, Constants.Messages.SetPlaylistAsMsg));
             });
@@ -192,7 +192,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     return;
                 }
 
-                var newList = await SelectedTracks.ToPlayListItems(_apiClient);
+                var newList = await SelectedTracks.ToPlayListItems(ApiClient);
 
                 Messenger.Default.Send(new NotificationMessage<List<PlaylistItem>>(newList, Constants.Messages.AddToPlaylistMsg));
 
@@ -205,7 +205,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             PlayItemsCommand = new RelayCommand(async () =>
             {
-                var newList = await SelectedTracks.ToPlayListItems(_apiClient);
+                var newList = await SelectedTracks.ToPlayListItems(ApiClient);
 
                 Messenger.Default.Send(new NotificationMessage<List<PlaylistItem>>(newList, Constants.Messages.SetPlaylistAsMsg));
             });
@@ -219,7 +219,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                 var playlist = new List<PlaylistItem>
                 {
-                    song.ToPlaylistItem(_apiClient)
+                    song.ToPlaylistItem(ApiClient)
                 };
 
                 Messenger.Default.Send(new NotificationMessage<List<PlaylistItem>>(playlist, Constants.Messages.SetPlaylistAsMsg));
@@ -233,11 +233,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                     CanUpdateFavourites = false;
 
-                    item.UserData = await _apiClient.UpdateFavoriteStatusAsync(item.Id, AuthenticationService.Current.LoggedInUser.Id, !item.UserData.IsFavorite);
+                    item.UserData = await ApiClient.UpdateFavoriteStatusAsync(item.Id, AuthenticationService.Current.LoggedInUser.Id, !item.UserData.IsFavorite);
                 }
                 catch (HttpException ex)
                 {
-                    Utils.HandleHttpException("AddRemoveFavouriteCommand (Music)", ex, _navigationService, Log);
+                    Utils.HandleHttpException("AddRemoveFavouriteCommand (Music)", ex, NavigationService, Log);
                     App.ShowMessage(AppResources.ErrorMakingChanges);
                 }
 
@@ -253,7 +253,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     return;
                 }
 
-                var playlist = await _artistTracks.ToPlayListItems(_apiClient);
+                var playlist = await _artistTracks.ToPlayListItems(ApiClient);
 
                 Messenger.Default.Send(new NotificationMessage<List<PlaylistItem>>(playlist, Constants.Messages.SetPlaylistAsMsg));
             });
@@ -270,7 +270,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     UserId = AuthenticationService.Current.LoggedInUserId
                 };
 
-                var tracks = await _apiClient.GetItemsAsync(query);
+                var tracks = await ApiClient.GetItemsAsync(query);
 
                 if (tracks.Items.IsNullOrEmpty())
                 {
@@ -282,7 +282,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
             catch (HttpException ex)
             {
-                Utils.HandleHttpException("GetAlbumTracks()", ex, _navigationService, Log);
+                Utils.HandleHttpException("GetAlbumTracks()", ex, NavigationService, Log);
             }
         }
 
@@ -292,11 +292,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 Log.Info("Getting information for Artist [{0}] ({1})", SelectedArtist.Name, SelectedArtist.Id);
 
-                SelectedArtist = await _apiClient.GetItemAsync(SelectedArtist.Id, AuthenticationService.Current.LoggedInUser.Id);
+                SelectedArtist = await ApiClient.GetItemAsync(SelectedArtist.Id, AuthenticationService.Current.LoggedInUser.Id);
             }
             catch (HttpException ex)
             {
-                Utils.HandleHttpException("GetArtistInfo()", ex, _navigationService, Log);
+                Utils.HandleHttpException("GetArtistInfo()", ex, NavigationService, Log);
             }
 
             _gotAlbums = await GetAlbums();
@@ -329,7 +329,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                 Log.Info("Getting tracks for artist [{0}] ({1})", SelectedArtist.Name, SelectedArtist.Id);
 
-                var items = await _apiClient.GetItemsAsync(query);
+                var items = await ApiClient.GetItemsAsync(query);
 
                 if (items != null && items.Items.Any())
                 {
@@ -340,7 +340,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
             catch (HttpException ex)
             {
-                Utils.HandleHttpException("GetArtistTracks()", ex, _navigationService, Log);
+                Utils.HandleHttpException("GetArtistTracks()", ex, NavigationService, Log);
                 return false;
             }
         }
@@ -360,7 +360,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                 Log.Info("Getting albums for artist [{0}] ({1})", SelectedArtist.Name, SelectedArtist.Id);
 
-                var items = await _apiClient.GetItemsAsync(query);
+                var items = await ApiClient.GetItemsAsync(query);
                 if (items != null && items.Items.Any())
                 {
                     //// Extract the album items from the results
@@ -448,12 +448,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                     try
                     {
-                        var tracks = await _apiClient.GetInstantMixPlaylist(item);
+                        var tracks = await ApiClient.GetInstantMixPlaylist(item);
                         Messenger.Default.Send(new NotificationMessage<List<PlaylistItem>>(tracks, Constants.Messages.SetPlaylistAsMsg));
                     }
                     catch (HttpException ex)
                     {
-                        Utils.HandleHttpException(ex, "StartInstantMix", _navigationService, Log);
+                        Utils.HandleHttpException(ex, "StartInstantMix", NavigationService, Log);
                     }
 
                     SetProgressBar();

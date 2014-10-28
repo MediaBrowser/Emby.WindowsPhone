@@ -22,19 +22,23 @@ namespace MediaBrowser.WindowsPhone.Services
 {
     public class LockScreenService : Cimbalino.Phone.Toolkit.Services.LockScreenService
     {
+        private readonly IConnectionManager _connectionManager;
         private const string LockScreenImageUrlNormal = "ms-appdata:///Local/shared/shellcontent/MBWallpaper.png";
         private const string LockScreenImageUrlAlternative = "ms-appdata:///Local/shared/shellcontent/MBWallpaper2.png";
         private const string LockScreenFileNormal = "shared\\shellcontent\\MBWallpaper.png";
         private const string LockScreenFileAlternative = "shared\\shellcontent\\MBWallpaper2.png";
         private const string DefaultLockScreenImageFormat = "ms-appx:///DefaultLockScreen.jpg";
-        private static LockScreenService _current;
         private readonly IAsyncStorageService _storageService = new AsyncStorageService();
         private readonly ILog _logger = new WPLogger(typeof(LockScreenService));
-        private IApiClient _apiClient;
 
         private bool _serviceStarted;
-        
-        public static LockScreenService Current { get { return _current ?? (_current = new LockScreenService()); }}
+
+        public static LockScreenService Current { get; private set; }
+
+        public LockScreenService(IConnectionManager connectionManager)
+        {
+            _connectionManager = connectionManager;
+        }
 
         public string LockScreenImageUrl
         {
@@ -99,8 +103,6 @@ namespace MediaBrowser.WindowsPhone.Services
 
         public void Start()
         {
-            var manager = SimpleIoc.Default.GetInstance<IConnectionManager>();
-            _apiClient = manager.GetApiClient(null);
             _serviceStarted = true;
         }
 
@@ -183,7 +185,7 @@ namespace MediaBrowser.WindowsPhone.Services
                 query.ParentId = CollectionId;
             }
 
-            var itemResponse = await _apiClient.GetItemsAsync(query);
+            var itemResponse = await _connectionManager.CurrentApiClient.GetItemsAsync(query);
             return itemResponse;
         }
 
@@ -193,10 +195,10 @@ namespace MediaBrowser.WindowsPhone.Services
 
             foreach (var item in items)
             {
-                var url = _apiClient.GetImageUrl(item, MultiplePostersOptions);
+                var url = _connectionManager.CurrentApiClient.GetImageUrl(item, MultiplePostersOptions);
                 try
                 {
-                    var stream = await _apiClient.GetImageStreamAsync(url);
+                    var stream = await _connectionManager.CurrentApiClient.GetImageStreamAsync(url);
                     list.Add(stream);
                 }
                 catch (HttpException ex)
@@ -224,10 +226,10 @@ namespace MediaBrowser.WindowsPhone.Services
 
             foreach (var item in items)
             {
-                var url = _apiClient.GetImageUrl(item, CollageOptions);
+                var url = _connectionManager.CurrentApiClient.GetImageUrl(item, CollageOptions);
                 try
                 {
-                    var stream = await _apiClient.GetImageStreamAsync(url);
+                    var stream = await _connectionManager.CurrentApiClient.GetImageStreamAsync(url);
                     list.Add(stream);
                 }
                 catch (HttpException ex)

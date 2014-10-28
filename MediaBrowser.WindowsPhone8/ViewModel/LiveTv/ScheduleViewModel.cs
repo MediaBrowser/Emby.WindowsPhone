@@ -50,7 +50,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
         {
             get
             {
-                return new RelayCommand<string>(_navigationService.NavigateTo);
+                return new RelayCommand<string>(NavigationService.NavigateTo);
             }
         }
 
@@ -84,7 +84,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                 {
                     SetProgressBar(AppResources.SysTrayCancellingSeriesRecording);
 
-                    await LiveTvUtils.CancelSeries(SelectedSeries, _navigationService, _apiClient, Log, false);
+                    await LiveTvUtils.CancelSeries(SelectedSeries, NavigationService, ApiClient, Log, false);
 
                     SetProgressBar();
                 });
@@ -113,7 +113,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
 
                     SetProgressBar(AppResources.SysTrayCancellingProgramme);
 
-                    await LiveTvUtils.CancelRecording(item, _navigationService, _apiClient, Log);
+                    await LiveTvUtils.CancelRecording(item, NavigationService, ApiClient, Log);
 
                     SetProgressBar();
                 });
@@ -129,7 +129,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                     if (SimpleIoc.Default.GetInstance<ScheduledSeriesViewModel>() != null)
                     {
                         Messenger.Default.Send(new NotificationMessage(series, false, Constants.Messages.ScheduledSeriesChangedMsg));
-                        _navigationService.NavigateTo(Constants.Pages.LiveTv.ScheduledSeriesView);
+                        NavigationService.NavigateTo(Constants.Pages.LiveTv.ScheduledSeriesView);
                     }
                 });
             }
@@ -144,7 +144,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                     if (SimpleIoc.Default.GetInstance<ScheduledRecordingViewModel>() != null)
                         Messenger.Default.Send(new NotificationMessage(item, Constants.Messages.ScheduledRecordingChangedMsg));
 
-                    _navigationService.NavigateTo(Constants.Pages.LiveTv.ScheduledRecordingView);
+                    NavigationService.NavigateTo(Constants.Pages.LiveTv.ScheduledRecordingView);
                 });
             }
         }
@@ -170,7 +170,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
 
         private async Task GetScheduledSeriesRecordings(bool refresh)
         {
-            if (!_navigationService.IsNetworkAvailable || (_seriesLoaded && !refresh))
+            if (!NavigationService.IsNetworkAvailable || (_seriesLoaded && !refresh))
             {
                 return;
             }
@@ -180,7 +180,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                 SetProgressBar(AppResources.SysTrayGettingSeriesRecordings);
 
                 var query = new SeriesTimerQuery();
-                var items = await _apiClient.GetLiveTvSeriesTimersAsync(query, default(CancellationToken));
+                var items = await ApiClient.GetLiveTvSeriesTimersAsync(query, default(CancellationToken));
 
                 if (items != null && !items.Items.IsNullOrEmpty())
                 {
@@ -191,7 +191,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
             }
             catch (HttpException ex)
             {
-                Utils.HandleHttpException(ex, "GetScheduledRecordings()", _navigationService, Log);
+                Utils.HandleHttpException(ex, "GetScheduledRecordings()", NavigationService, Log);
             }
 
             SetProgressBar();
@@ -199,7 +199,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
 
         private async Task GetScheduledUpcomingRecordings(bool isRefresh)
         {
-            if (!_navigationService.IsNetworkAvailable || (_upcomingLoaded & !isRefresh))
+            if (!NavigationService.IsNetworkAvailable || (_upcomingLoaded & !isRefresh))
             {
                 return;
             }
@@ -208,7 +208,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
             {
                 SetProgressBar(AppResources.SysTrayGettingUpcomingRecordings);
 
-                var items = await _apiClient.GetLiveTvTimersAsync(new TimerQuery(), default(CancellationToken));
+                var items = await ApiClient.GetLiveTvTimersAsync(new TimerQuery(), default(CancellationToken));
 
                 if (items != null && !items.Items.IsNullOrEmpty())
                 {
@@ -227,7 +227,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
             }
             catch (HttpException ex)
             {
-                Utils.HandleHttpException("GetScheduledUpcomingRecordings()", ex, _navigationService, Log);
+                Utils.HandleHttpException("GetScheduledUpcomingRecordings()", ex, NavigationService, Log);
             }
 
             SetProgressBar();

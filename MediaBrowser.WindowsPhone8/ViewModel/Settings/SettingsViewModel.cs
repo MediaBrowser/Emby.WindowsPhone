@@ -1,16 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using Windows.Networking;
-using Windows.Networking.Sockets;
-using Windows.Storage.Streams;
 using Cimbalino.Phone.Toolkit.Services;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Ioc;
@@ -23,8 +19,6 @@ using MediaBrowser.WindowsPhone.Model.Streaming;
 using MediaBrowser.WindowsPhone.Resources;
 using Microsoft.Phone.Net.NetworkInformation;
 using Microsoft.Phone.Notification;
-using Newtonsoft.Json;
-
 using INavigationService = MediaBrowser.WindowsPhone.Model.Interfaces.INavigationService;
 using LockScreenService = MediaBrowser.WindowsPhone.Services.LockScreenService;
 
@@ -52,13 +46,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Settings
 
             if (IsInDesignMode)
             {
-                IsRegistered = UseNotifications = true;
-                RegisteredText = "Device registered";
-                ServerPluginInstalled = false;
-
-                FoundServers = new ObservableCollection<UdpResponse>
+                FoundServers = new ObservableCollection<ServerInfo>
                 {
-                    new UdpResponse{Id = Guid.NewGuid().ToString(), Name = "Home", ServerAddress = "http://192.168.0.2"}
+                    new ServerInfo{Id = Guid.NewGuid().ToString(), Name = "Home", LocalAddress = "http://192.168.0.2:8096"}
                 };
             }
             else
@@ -67,7 +57,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Settings
                 SendTileUpdates = SendToastUpdates = true;
                 RegisteredText = AppResources.DeviceNotRegistered;
                 LoadingFromSettings = false;
-                ServerPluginInstalled = false;
 
                 SetStreamingQuality();
             }
@@ -108,11 +97,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Settings
         public string RegisteredText { get; set; }
         public bool SendToastUpdates { get; set; }
         public bool SendTileUpdates { get; set; }
-
-        public bool IsRegistered { get; set; }
-        public bool ServerPluginInstalled { get; set; }
-        public bool UseNotifications { get; set; }
-        public HttpNotificationChannel HttpNotificationChannel { get; set; }
 
         public List<StreamingLMH> StreamingLmhs { get; set; }
         public StreamingLMH StreamingLmh { get; set; }
@@ -270,7 +254,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Settings
         {
             SetProgressBar(AppResources.SysTrayAuthenticating);
 
-            if (_navigationService.IsNetworkAvailable)
+            if (NavigationService.IsNetworkAvailable)
             {
                 Log.Info("Testing connection");
 
@@ -282,7 +266,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Settings
                     return;
                 }
 
-                if (await Utils.GetServerConfiguration(_apiClient, Log))
+                var result = await ConnectionManager.Connect(App.Settings.ConnectionDetails.HostName, default(CancellationToken));
+
+                if (await Utils.GetServerConfiguration(ApiClient, Log))
                 {
                     if (!IsInDesignMode)
                     {
@@ -291,7 +277,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Settings
                     }
 
                     SetProgressBar(AppResources.SysTrayAuthenticating);
-                    await Utils.CheckProfiles(_navigationService, Log, _apiClient);
+                    await Utils.CheckProfiles(NavigationService, Log, ApiClient);
                 }
                 else
                 {
@@ -306,7 +292,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Settings
 
         #region Server Broadcast code WP8 only
 
-        public ObservableCollection<UdpResponse> FoundServers { get; set; }
+        public ObservableCollection<ServerInfo> FoundServers { get; set; }
 
         public RelayCommand FindServerLoaded
         {
@@ -315,7 +301,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Settings
                 return new RelayCommand(async () =>
                 {
                     // If we're not connected to wifi or ethernet then we don't want to attempt this
-                    if (!_navigationService.IsNetworkAvailable ||
+                    if (!NavigationService.IsNetworkAvailable ||
                         (NetworkInterface.NetworkInterfaceType != NetworkInterfaceType.Ethernet
                          && NetworkInterface.NetworkInterfaceType != NetworkInterfaceType.Wireless80211))
                     {
@@ -325,66 +311,41 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Settings
                     SetProgressBar(AppResources.SysTrayFindingServer);
 
                     Log.Info("Sending UDP broadcast");
-                    await SendMessage("who is MediaBrowserServer_v2?", 7359);
-
+                    var servers = await ConnectionManager.GetAvailableServers(default(CancellationToken));
+                    FoundServers = new ObservableCollection<ServerInfo>(servers);
+                    
                     SetProgressBar();
                 });
             }
         }
 
-        public RelayCommand<Server> ServerTappedCommand
+        public RelayCommand<ServerInfo> ServerTappedCommand
         {
             get
             {
-                return new RelayCommand<Server>(async server =>
+                return new RelayCommand<ServerInfo>(async server =>
                 {
-                    App.Settings.ConnectionDetails.HostName = server.IpAddress;
-                    App.Settings.ConnectionDetails.PortNo = int.Parse(server.PortNo);
+                    var address = new Uri(server.LocalAddress);
+                    App.Settings.ConnectionDetails.HostName = address.Host;
+                    App.Settings.ConnectionDetails.PortNo = address.Port;
                     //NavigationService.GoBack();
 
                     SetProgressBar(AppResources.SysTrayAuthenticating);
 
-                    await TestConnection();
+                    var result = await ConnectionManager.Connect(server, default(CancellationToken));
+
+                    if (result.State == ConnectionState.Unavailable)
+                    {
+                        Log.Info("Invalid connection details");
+                        App.ShowMessage(AppResources.ErrorConnectionDetailsInvalid);
+                    }
+
+                    if (result.State == ConnectionState.ServerSignIn)
+                    {
+                        await Utils.CheckProfiles(NavigationService, Log, result.ApiClient);
+                    }
 
                     SetProgressBar();
-                });
-            }
-        }
-
-        private async Task SendMessage(string message, int port)
-        {
-            FoundServers = new ObservableCollection<UdpResponse>();
-            var socket = new DatagramSocket();
-
-            socket.MessageReceived += SocketOnMessageReceived;
-
-            using (var stream = await socket.GetOutputStreamAsync(new HostName("255.255.255.255"), port.ToString(CultureInfo.InvariantCulture)))
-            {
-                using (var writer = new DataWriter(stream))
-                {
-                    var data = Encoding.UTF8.GetBytes(message);
-
-                    writer.WriteBytes(data);
-                    writer.StoreAsync();
-                }
-            }
-        }
-
-        private async void SocketOnMessageReceived(DatagramSocket sender, DatagramSocketMessageReceivedEventArgs args)
-        {
-            var result = args.GetDataStream();
-            var resultStream = result.AsStreamForRead(1024);
-
-            using (var reader = new StreamReader(resultStream))
-            {
-                var text = await reader.ReadToEndAsync();
-                Deployment.Current.Dispatcher.BeginInvoke(() =>
-                {
-                    Log.Info("UDP response received");
-
-                    var response = JsonConvert.DeserializeObject<UdpResponse>(text);
-
-                    FoundServers.Add(response);
                 });
             }
         }

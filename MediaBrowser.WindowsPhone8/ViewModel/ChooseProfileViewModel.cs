@@ -83,7 +83,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             ChooseProfilePageLoaded = new RelayCommand(async () =>
             {
-                if (_navigationService.IsNetworkAvailable)
+                if (NavigationService.IsNetworkAvailable)
                 {
                     SetProgressBar(AppResources.SysTrayGettingProfiles);
 
@@ -91,7 +91,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                     try
                     {
-                        var profiles = await _apiClient.GetPublicUsersAsync(new CancellationToken());
+                        var profiles = await ApiClient.GetPublicUsersAsync(new CancellationToken());
                         Profiles = new ObservableCollection<UserDto>();
 
                         foreach (var profile in profiles)
@@ -101,12 +101,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                         if (!Profiles.Any())
                         {
-                            _navigationService.NavigateTo(Constants.Pages.ManualUsernameView);
+                            NavigationService.NavigateTo(Constants.Pages.ManualUsernameView);
                         }
                     }
                     catch (HttpException ex)
                     {
-                        Utils.HandleHttpException(ex, "GettingProfiles()", _navigationService, Log);
+                        Utils.HandleHttpException(ex, "GettingProfiles()", NavigationService, Log);
                     }
 
                     SetProgressBar();
@@ -144,7 +144,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 Services.LockScreenService.Current.Start();
                 TileService.Current.UpdatePrimaryTile(App.SpecificSettings.DisplayBackdropOnTile, App.SpecificSettings.UseRichWideTile, App.SpecificSettings.UseTransparentTile).ConfigureAwait(false);
                 var page = TileService.Current.PinnedPage();
-                _navigationService.NavigateTo(page + "?clearbackstack=true");
+                NavigationService.NavigateTo(page + "?clearbackstack=true");
                 Username = Password = string.Empty;
             }
             else

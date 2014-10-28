@@ -65,12 +65,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     PositionTicks = totalTicks
                 };
 
-                await _apiClient.ReportPlaybackProgressAsync(info);
+                await ApiClient.ReportPlaybackProgressAsync(info);
                 SetPlaybackTicks(totalTicks);
             }
             catch (HttpException ex)
             {
-                Utils.HandleHttpException("TimerOnTick()", ex, _navigationService, Log);
+                Utils.HandleHttpException("TimerOnTick()", ex, NavigationService, Log);
             }
         }
 
@@ -210,7 +210,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                             PositionTicks = totalTicks
                         };
 
-                        await _apiClient.ReportPlaybackStoppedAsync(info);
+                        await ApiClient.ReportPlaybackStoppedAsync(info);
 
                         SetPlaybackTicks(totalTicks);
 
@@ -221,7 +221,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     }
                     catch (HttpException ex)
                     {
-                        Utils.HandleHttpException("SendVideoTimeToServer", ex, _navigationService, Log);
+                        Utils.HandleHttpException("SendVideoTimeToServer", ex, NavigationService, Log);
                     }
                 }
 
@@ -261,12 +261,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                             IsPaused = isPaused
                         };
 
-                        await _apiClient.ReportPlaybackProgressAsync(info);
+                        await ApiClient.ReportPlaybackProgressAsync(info);
                         SetPlaybackTicks(totalTicks);
                     }
                     catch (HttpException ex)
                     {
-                        Utils.HandleHttpException("VideoStateChanged", ex, _navigationService, Log);
+                        Utils.HandleHttpException("VideoStateChanged", ex, NavigationService, Log);
                     }
                 }
             });
@@ -311,16 +311,16 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 {
                     if (App.SpecificSettings.OnlyStreamOnWifi)
                     {
-                        if (!_navigationService.IsOnWifi)
+                        if (!NavigationService.IsOnWifi)
                         {
                             MessageBox.Show(AppResources.ErrorNoWifi, AppResources.ErrorNoWifiTitle, MessageBoxButton.OK);
-                            if (_navigationService.CanGoBack)
+                            if (NavigationService.CanGoBack)
                             {
-                                _navigationService.GoBack();
+                                NavigationService.GoBack();
                             }
                             else
                             {
-                                _navigationService.NavigateTo(Constants.Pages.MainPage);
+                                NavigationService.NavigateTo(Constants.Pages.MainPage);
                             }
                             return;
                         }
@@ -347,7 +347,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         var result = MessageBox.Show(AppResources.MessageExperimentalVideo, AppResources.MessageExperimentalTitle, MessageBoxButton.OKCancel);
                         if (result == MessageBoxResult.Cancel)
                         {
-                            _navigationService.GoBack();
+                            NavigationService.GoBack();
                             return;
                         }
                     }
@@ -387,7 +387,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 query.SubtitleStreamIndex = subtitleIndex.Value;
             }
 
-            var url = PlayerSourceType == PlayerSourceType.Programme ? _apiClient.GetHlsVideoStreamUrl(query) : _apiClient.GetVideoStreamUrl(query);
+            var url = PlayerSourceType == PlayerSourceType.Programme ? ApiClient.GetHlsVideoStreamUrl(query) : ApiClient.GetVideoStreamUrl(query);
             Captions = GetSubtitles(SelectedItem);
 
             VideoUrl = url;
@@ -407,11 +407,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     QueueableMediaTypes = new List<string>()
                 };
 
-                await _apiClient.ReportPlaybackStartAsync(info);
+                await ApiClient.ReportPlaybackStartAsync(info);
             }
             catch (HttpException ex)
             {
-                Utils.HandleHttpException("VideoPageLoaded", ex, _navigationService, Log);
+                Utils.HandleHttpException("VideoPageLoaded", ex, NavigationService, Log);
             }
         }
 
@@ -427,7 +427,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             _itemId = itemId;
 
-            var streamingSettings = _navigationService.IsOnWifi 
+            var streamingSettings = NavigationService.IsOnWifi 
                 ? App.SpecificSettings.WifiStreamingQuality.GetSettings() 
                 : App.SpecificSettings.StreamingQuality.GetSettings();
 
@@ -464,7 +464,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 if (ItemType == "Program")
                 {
-                    var program = await _apiClient.GetLiveTvProgramAsync(ItemId, AuthenticationService.Current.LoggedInUserId, cts.Token);
+                    var program = await ApiClient.GetLiveTvProgramAsync(ItemId, AuthenticationService.Current.LoggedInUserId, cts.Token);
                     if (program == null || program.UserData == null)
                         return;
                     PlayerSourceType = PlayerSourceType.Programme;
@@ -473,7 +473,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 }
                 else if (ItemType == "Recording") //TODO Verify this
                 {
-                    var recording = await _apiClient.GetLiveTvRecordingAsync(ItemId, AuthenticationService.Current.LoggedInUserId, cts.Token);
+                    var recording = await ApiClient.GetLiveTvRecordingAsync(ItemId, AuthenticationService.Current.LoggedInUserId, cts.Token);
                     if (recording == null || recording.UserData == null)
                         return;
                     PlayerSourceType = PlayerSourceType.Recording;
@@ -482,7 +482,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 }
                 else
                 {
-                    var item = await _apiClient.GetItemAsync(ItemId, AuthenticationService.Current.LoggedInUserId);
+                    var item = await ApiClient.GetItemAsync(ItemId, AuthenticationService.Current.LoggedInUserId);
                     if (item == null || item.UserData == null)
                         return;
                     PlayerSourceType = PlayerSourceType.Video;
@@ -518,7 +518,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 {
                     var source = item.MediaSources.FirstOrDefault();
                     var id = source != null ? source.Id : string.Empty;
-                    menuItem.Source = new Uri(string.Format("{0}/mediabrowser/Videos/{1}/{2}/Subtitles/{3}/Stream.vtt", _apiClient.ServerAddress, item.Id, id, caption.Index));
+                    menuItem.Source = new Uri(string.Format("{0}/mediabrowser/Videos/{1}/{2}/Subtitles/{3}/Stream.vtt", ApiClient.ServerAddress, item.Id, id, caption.Index));
                 }
 
                 list.Add(menuItem);

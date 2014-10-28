@@ -75,14 +75,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                     SelectedNotification = notification;
 
-                    _navigationService.NavigateTo(Constants.Pages.NotificationView);
+                    NavigationService.NavigateTo(Constants.Pages.NotificationView);
                 });
             }
         }
 
         private async Task GetNotifications()
         {
-            if (!_navigationService.IsNetworkAvailable || _dataLoaded)
+            if (!NavigationService.IsNetworkAvailable || _dataLoaded)
             {
                 return;
             }
@@ -98,12 +98,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     Limit = 20
                 };
 
-                var notifications = await _apiClient.GetNotificationsAsync(query);
+                var notifications = await ApiClient.GetNotificationsAsync(query);
                 Notifications = new ObservableCollection<Notification>(notifications.Notifications);
 
-                await _apiClient.MarkNotificationsRead(AuthenticationService.Current.LoggedInUser.Id, Notifications.Select(x => x.Id), true);
+                await ApiClient.MarkNotificationsRead(AuthenticationService.Current.LoggedInUser.Id, Notifications.Select(x => x.Id), true);
 
-                var summary = await _apiClient.GetNotificationsSummary(AuthenticationService.Current.LoggedInUser.Id);
+                var summary = await ApiClient.GetNotificationsSummary(AuthenticationService.Current.LoggedInUser.Id);
 
                 Messenger.Default.Send(new NotificationMessage(summary, Constants.Messages.NotificationCountMsg));
 
@@ -111,7 +111,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
             catch (HttpException ex)
             {
-                Utils.HandleHttpException("GetNotifications()", ex, _navigationService, Log);
+                Utils.HandleHttpException("GetNotifications()", ex, NavigationService, Log);
             }
 
             SetProgressBar();

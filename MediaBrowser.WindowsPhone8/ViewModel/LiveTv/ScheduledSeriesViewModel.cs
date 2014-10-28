@@ -82,16 +82,16 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                     {
                         if (IsAdd)
                         {
-                            await _apiClient.CreateLiveTvSeriesTimerAsync(SelectedSeries, default(CancellationToken));
+                            await ApiClient.CreateLiveTvSeriesTimerAsync(SelectedSeries, default(CancellationToken));
                         }
                         else
                         {
-                            await _apiClient.UpdateLiveTvSeriesTimerAsync(SelectedSeries, default(CancellationToken));
+                            await ApiClient.UpdateLiveTvSeriesTimerAsync(SelectedSeries, default(CancellationToken));
                         }
                     }
                     catch (HttpException ex)
                     {
-                        Utils.HandleHttpException(ex, "SaveCommand", _navigationService, Log);
+                        Utils.HandleHttpException(ex, "SaveCommand", NavigationService, Log);
                         App.ShowMessage(AppResources.ErrorMakingChanges);
                     }
 
@@ -122,7 +122,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
 
                     SetProgressBar(AppResources.SysTrayCancellingProgramme);
 
-                    if (!await LiveTvUtils.CancelRecording(item, _navigationService, _apiClient, Log))
+                    if (!await LiveTvUtils.CancelRecording(item, NavigationService, ApiClient, Log))
                     {
                         App.ShowMessage(AppResources.ErrorMakingChanges);
                     }
@@ -141,7 +141,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                     if (SimpleIoc.Default.GetInstance<ScheduledRecordingViewModel>() != null)
                     {
                         Messenger.Default.Send(new NotificationMessage(item, Constants.Messages.ScheduledRecordingChangedMsg));
-                        _navigationService.NavigateTo(Constants.Pages.LiveTv.ScheduledRecordingView);
+                        NavigationService.NavigateTo(Constants.Pages.LiveTv.ScheduledRecordingView);
                     }
                 });
             }
@@ -169,7 +169,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
 
                     SetProgressBar(AppResources.SysTrayCancellingSeriesRecording);
 
-                    if (!await LiveTvUtils.CancelSeries(SelectedSeries, _navigationService, _apiClient, Log, true))
+                    if (!await LiveTvUtils.CancelSeries(SelectedSeries, NavigationService, ApiClient, Log, true))
                     {
                         App.ShowMessage(AppResources.ErrorMakingChanges);
                     }
@@ -264,7 +264,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                     SeriesTimerId = SelectedSeries.Id
                 };
 
-                var items = await _apiClient.GetLiveTvTimersAsync(query, default(CancellationToken));
+                var items = await ApiClient.GetLiveTvTimersAsync(query, default(CancellationToken));
 
                 if (items != null && !items.Items.IsNullOrEmpty())
                 {
@@ -284,7 +284,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
             }
             catch (HttpException ex)
             {
-                Utils.HandleHttpException(ex, "GetScheduledRecordings()", _navigationService, Log);
+                Utils.HandleHttpException(ex, "GetScheduledRecordings()", NavigationService, Log);
             }
 
             SetProgressBar();
@@ -303,7 +303,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                     UserId = AuthenticationService.Current.LoggedInUserId
                 };
 
-                var items = await _apiClient.GetLiveTvRecordingsAsync(query, default(CancellationToken));
+                var items = await ApiClient.GetLiveTvRecordingsAsync(query, default(CancellationToken));
 
                 if (items != null && !items.Items.IsNullOrEmpty())
                 {
@@ -314,7 +314,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
             }
             catch (HttpException ex)
             {
-                Utils.HandleHttpException(ex, "GetAlreadyRecorded()", _navigationService, Log);
+                Utils.HandleHttpException(ex, "GetAlreadyRecorded()", NavigationService, Log);
             }
 
             SetProgressBar();

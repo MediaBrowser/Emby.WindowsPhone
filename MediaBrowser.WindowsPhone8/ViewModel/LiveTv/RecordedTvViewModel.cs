@@ -82,7 +82,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                     if (SimpleIoc.Default.GetInstance<ProgrammeViewModel>() != null)
                     {
                         Messenger.Default.Send(new NotificationMessage(item, Constants.Messages.ProgrammeItemChangedMsg));
-                        _navigationService.NavigateTo(Constants.Pages.LiveTv.RecordingView);
+                        NavigationService.NavigateTo(Constants.Pages.LiveTv.RecordingView);
                     }   
                 });
             }
@@ -90,7 +90,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
 
         private async Task LoadProgrammes(bool isRefresh)
         {
-            if (!_navigationService.IsNetworkAvailable || (_programmesLoaded && !isRefresh && !LiveTvUtils.HasExpired(_programmesLastRun)))
+            if (!NavigationService.IsNetworkAvailable || (_programmesLoaded && !isRefresh && !LiveTvUtils.HasExpired(_programmesLastRun)))
             {
                 return;
             }
@@ -106,7 +106,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                     UserId = AuthenticationService.Current.LoggedInUserId
                 };
 
-                var items = await _apiClient.GetLiveTvRecordingsAsync(query, default(CancellationToken));
+                var items = await ApiClient.GetLiveTvRecordingsAsync(query, default(CancellationToken));
 
                 if (items != null && !items.Items.IsNullOrEmpty())
                 {
@@ -120,7 +120,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
             }
             catch (HttpException ex)
             {
-                Utils.HandleHttpException(ex, "LoadProgrammes(" + isRefresh + ")", _navigationService, Log);
+                Utils.HandleHttpException(ex, "LoadProgrammes(" + isRefresh + ")", NavigationService, Log);
             }
 
             SetProgressBar();

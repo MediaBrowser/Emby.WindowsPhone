@@ -104,7 +104,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             PageLoaded = new RelayCommand(async () =>
             {
-                if (_navigationService.IsNetworkAvailable && !_dataLoaded)
+                if (NavigationService.IsNetworkAvailable && !_dataLoaded)
                 {
                     SetProgressBar(AppResources.SysTrayGettingItems);
 
@@ -119,7 +119,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             CollectionPageLoaded = new RelayCommand(async () =>
             {
-                if (_navigationService.IsNetworkAvailable && !_dataLoaded && SelectedFolder != null)
+                if (NavigationService.IsNetworkAvailable && !_dataLoaded && SelectedFolder != null)
                 {
                     SetProgressBar(AppResources.SysTrayCheckingCollection);
 
@@ -141,10 +141,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             SeeMoreCommand = new RelayCommand(() =>
             {
                 App.SelectedItem = SelectedFolder;
-                _navigationService.NavigateTo("/Views/FolderView.xaml");
+                NavigationService.NavigateTo("/Views/FolderView.xaml");
             });
 
-            NavigateTo = new RelayCommand<BaseItemDto>(_navigationService.NavigateTo);
+            NavigateTo = new RelayCommand<BaseItemDto>(NavigationService.NavigateTo);
         }
 
         private void GetRandomItems()
@@ -171,7 +171,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 Log.Info("Getting recent items for collection [{0}]", SelectedFolder.Name);
 
-                var items = await _apiClient.GetItemsAsync(query);
+                var items = await ApiClient.GetItemsAsync(query);
 
                 if (items != null && items.Items != null)
                 {
@@ -183,7 +183,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
             catch (HttpException ex)
             {
-                Utils.HandleHttpException(ex, "GetRecentCollectionItems()", _navigationService, Log);
+                Utils.HandleHttpException(ex, "GetRecentCollectionItems()", NavigationService, Log);
                 return false;
             }
         }
@@ -250,14 +250,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         query.ParentId = SelectedFolder.Id;
                     }
                 }
-                var items = await _apiClient.GetItemsAsync(query);
+                var items = await ApiClient.GetItemsAsync(query);
                 
                 CurrentItems = isRecent ? await Utils.SortRecentItems(items.Items, App.SpecificSettings.IncludeTrailersInRecent) : items.Items.ToList();
                 return true;
             }
             catch (HttpException ex)
             {
-                Utils.HandleHttpException("GetItems()", ex, _navigationService, Log);
+                Utils.HandleHttpException("GetItems()", ex, NavigationService, Log);
 
                 App.ShowMessage(AppResources.ErrorGettingData);
                 return false;

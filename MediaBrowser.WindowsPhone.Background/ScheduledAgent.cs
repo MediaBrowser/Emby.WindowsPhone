@@ -19,7 +19,7 @@ namespace MediaBrowser.WindowsPhone.Background
 {
     public class ScheduledAgent : ScheduledTaskAgent
     {
-        private readonly IApiClient _apiClient;
+        private IApiClient _apiClient;
         private readonly ILogger _mediaBrowserLogger = new MBLogger(typeof(ScheduledAgent));
         private readonly IApplicationSettingsService _applicationSettings = new ApplicationSettingsService();
         private static ContentUploader _contentUploader;
@@ -31,7 +31,7 @@ namespace MediaBrowser.WindowsPhone.Background
         public ScheduledAgent()
         {
             _logger = new WPLogger(GetType());
-            _apiClient = CreateClient();
+            CreateClient();
             WPLogger.AppVersion = ApplicationManifest.Current.App.Version;
             WPLogger.LogConfiguration.LogType = LogType.WriteToFile;
             WPLogger.LogConfiguration.LoggingIsEnabled = true;
@@ -55,23 +55,23 @@ namespace MediaBrowser.WindowsPhone.Background
             }
         }
 
-        private IApiClient CreateClient()
+        private async void CreateClient()
         {
             try
             {
-                var applicationSettings = new ApplicationSettingsService();
-                var connectionDetails = applicationSettings.Get<ConnectionDetails>(Constants.Settings.ConnectionSettings);
                 var device = new Device { DeviceId = SharedUtils.GetDeviceId(), DeviceName = SharedUtils.GetDeviceName() + " Audio Player" };
                 var manager = SharedUtils.CreateConnectionManager(device, _mediaBrowserLogger);
-                var auth = new AuthenticationService(manager);
-                auth.Start();
+                await manager.Connect(default(CancellationToken)).ContinueWith(task =>
+                {
+                    var auth = new AuthenticationService(manager);
+                    auth.Start();
 
-                return manager.GetApiClient(null);
+                    _apiClient = manager.CurrentApiClient;
+                });
             }
             catch (Exception ex)
             {
                 _logger.FatalException("Error creating ApiClient", ex);
-                return null;
             }
         }
 

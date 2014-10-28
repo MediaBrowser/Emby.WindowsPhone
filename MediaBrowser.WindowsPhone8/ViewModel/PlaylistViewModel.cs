@@ -290,7 +290,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                     _playlistHelper.AddToPlaylist(m.Content);
 
-                    _navigationService.NavigateTo(Constants.Pages.NowPlayingView);
+                    NavigationService.NavigateTo(Constants.Pages.NowPlayingView);
 
                     if (BackgroundAudioPlayer.Instance.PlayerState != PlayState.Playing)
                     {

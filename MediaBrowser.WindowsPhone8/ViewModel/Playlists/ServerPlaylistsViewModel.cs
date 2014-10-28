@@ -106,7 +106,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Playlists
         private async Task LoadData(bool isRefresh)
         {
             if (SelectedPlaylist == null ||
-                !_navigationService.IsNetworkAvailable
+                !NavigationService.IsNetworkAvailable
                 || (_playlistLoaded && !isRefresh))
             {
                 return;
@@ -121,7 +121,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Playlists
                     Id = SelectedPlaylist.Id,
                     UserId = AuthenticationService.Current.LoggedInUserId
                 };
-                var items = await _apiClient.GetPlaylistItems(query);
+                var items = await ApiClient.GetPlaylistItems(query);
 
                 if (items != null && !items.Items.IsNullOrEmpty())
                 {
@@ -130,7 +130,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Playlists
             }
             catch (HttpException ex)
             {
-                Utils.HandleHttpException(ex, "LoadData(" + isRefresh + ")", _navigationService, Log);
+                Utils.HandleHttpException(ex, "LoadData(" + isRefresh + ")", NavigationService, Log);
             }
 
             SetProgressBar();
@@ -148,12 +148,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Playlists
                         if (SimpleIoc.Default.GetInstance<VideoPlayerViewModel>() != null)
                         {
                             Messenger.Default.Send(message);
-                            _navigationService.NavigateTo(Constants.Pages.VideoPlayerView);
+                            NavigationService.NavigateTo(Constants.Pages.VideoPlayerView);
                         }
                     }
                     else if (SelectedPlaylist.MediaType.Equals("Audio"))
                     {
-                        var tracks = new List<PlaylistItem> {item.ToPlaylistItem(_apiClient)};
+                        var tracks = new List<PlaylistItem> {item.ToPlaylistItem(ApiClient)};
 
                         Messenger.Default.Send(new NotificationMessage<List<PlaylistItem>>(tracks, Constants.Messages.SetPlaylistAsMsg));
                     }
@@ -178,12 +178,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Playlists
                         if (SimpleIoc.Default.GetInstance<VideoPlayerViewModel>() != null)
                         {
                             Messenger.Default.Send(message);
-                            _navigationService.NavigateTo(Constants.Pages.VideoPlayerView);
+                            NavigationService.NavigateTo(Constants.Pages.VideoPlayerView);
                         }
                     }
                     else if (SelectedPlaylist.MediaType.Equals("Audio"))
                     {
-                        var tracks = await PlaylistItems.ToList().ToPlayListItems(_apiClient);
+                        var tracks = await PlaylistItems.ToList().ToPlayListItems(ApiClient);
 
                         Messenger.Default.Send(new NotificationMessage<List<PlaylistItem>>(tracks, Constants.Messages.SetPlaylistAsMsg));
                     }
@@ -222,7 +222,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Playlists
                     {
                         SetProgressBar(AppResources.SysTrayRemoving);
 
-                        await _apiClient.RemoveFromPlaylist(SelectedPlaylist.Id, itemIds);
+                        await ApiClient.RemoveFromPlaylist(SelectedPlaylist.Id, itemIds);
 
                         foreach (var item in SelectedItems.ToList())
                         {
@@ -244,7 +244,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Playlists
                     }
                     catch (HttpException ex)
                     {
-                        Utils.HandleHttpException(ex, "DeleteItemsFromPlaylist", _navigationService, Log);
+                        Utils.HandleHttpException(ex, "DeleteItemsFromPlaylist", NavigationService, Log);
                     }
 
                     SetProgressBar();
@@ -262,12 +262,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Playlists
 
                     try
                     {
-                        var tracks = await _apiClient.GetInstantMixPlaylist(item);
+                        var tracks = await ApiClient.GetInstantMixPlaylist(item);
                         Messenger.Default.Send(new NotificationMessage<List<PlaylistItem>>(tracks, Constants.Messages.SetPlaylistAsMsg));
                     }
                     catch (HttpException ex)
                     {
-                        Utils.HandleHttpException(ex, "StartInstantMix", _navigationService, Log);
+                        Utils.HandleHttpException(ex, "StartInstantMix", NavigationService, Log);
                     }
 
                     SetProgressBar();
@@ -290,12 +290,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Playlists
                     {
                         SetProgressBar(AppResources.SysTrayRemoving);
 
-                        await _apiClient.RemoveFromPlaylist(SelectedPlaylist.Id, new List<string> {item.Id});
+                        await ApiClient.RemoveFromPlaylist(SelectedPlaylist.Id, new List<string> {item.Id});
                         PlaylistItems.Remove(item);
                     }
                     catch (HttpException ex)
                     {
-                        Utils.HandleHttpException(ex, "DeleteFromPlaylist", _navigationService, Log);
+                        Utils.HandleHttpException(ex, "DeleteFromPlaylist", NavigationService, Log);
                     }
 
                     SetProgressBar();

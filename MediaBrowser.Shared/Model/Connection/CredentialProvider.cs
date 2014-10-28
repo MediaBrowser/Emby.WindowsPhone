@@ -12,6 +12,11 @@ namespace MediaBrowser.WindowsPhone.Model.Connection
 
         public async Task<ServerCredentials> GetServerCredentials()
         {
+            if (!await _storageService.FileExistsAsync(Constants.Settings.ServerCredentialSettings))
+            {
+                return new ServerCredentials();
+            }
+
             var json = await _storageService.ReadAllTextAsync(Constants.Settings.ServerCredentialSettings);
 
             var credentials = JsonConvert.DeserializeObject<ServerCredentials>(json);

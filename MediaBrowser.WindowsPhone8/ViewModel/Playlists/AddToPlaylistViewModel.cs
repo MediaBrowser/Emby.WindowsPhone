@@ -109,7 +109,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Playlists
         {
             AddingText = AddingTo();
             PlaylistName = string.Empty;
-            _navigationService.NavigateTo(Constants.Pages.Playlists.AddToPlaylistView);
+            NavigationService.NavigateTo(Constants.Pages.Playlists.AddToPlaylistView);
 
             await LoadPlaylists(false);
 
@@ -191,7 +191,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Playlists
             {
                 SetProgressBar(AppResources.SysTrayAddingToPlaylist);
 
-                var result = await _apiClient.CreatePlaylist(request);
+                var result = await ApiClient.CreatePlaylist(request);
 
                 var playlist = new BaseItemDto
                 {
@@ -204,14 +204,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Playlists
 
                 PlaylistName = string.Empty;
 
-                if (_navigationService.CanGoBack)
+                if (NavigationService.CanGoBack)
                 {
-                    _navigationService.GoBack();
+                    NavigationService.GoBack();
                 }
             }
             catch (HttpException ex)
             {
-                Utils.HandleHttpException(ex, "CreateNewPlaylist()", _navigationService, Log);
+                Utils.HandleHttpException(ex, "CreateNewPlaylist()", NavigationService, Log);
                 App.ShowMessage(AppResources.ErrorAddingToPlaylist);
             }
 
@@ -224,17 +224,17 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Playlists
             {
                 SetProgressBar(AppResources.SysTrayAddingToPlaylist);
 
-                await _apiClient.AddToPlaylist(SelectedPlaylist.Id, items.Select(x => x.Id), AuthenticationService.Current.LoggedInUserId);
+                await ApiClient.AddToPlaylist(SelectedPlaylist.Id, items.Select(x => x.Id), AuthenticationService.Current.LoggedInUserId);
                 PlaylistName = string.Empty;
 
-                if (_navigationService.CanGoBack)
+                if (NavigationService.CanGoBack)
                 {
-                    _navigationService.GoBack();
+                    NavigationService.GoBack();
                 }
             }
             catch (HttpException ex)
             {
-                Utils.HandleHttpException(ex, "AddToExistingPlaylist()", _navigationService, Log);
+                Utils.HandleHttpException(ex, "AddToExistingPlaylist()", NavigationService, Log);
                 App.ShowMessage(AppResources.ErrorAddingToPlaylist);
             }
 
@@ -243,7 +243,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Playlists
 
         private async Task LoadPlaylists(bool isRefresh)
         {
-            if (!_navigationService.IsNetworkAvailable
+            if (!NavigationService.IsNetworkAvailable
                 || (_playlistsLoaded && !isRefresh))
             {
                 return;
@@ -259,7 +259,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Playlists
                     Recursive = true
                 };
 
-                var items = await _apiClient.GetItemsAsync(query);
+                var items = await ApiClient.GetItemsAsync(query);
 
                 if (items != null && !items.Items.IsNullOrEmpty())
                 {
@@ -273,7 +273,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Playlists
             }
             catch (HttpException ex)
             {
-                Utils.HandleHttpException(ex, "LoadPlaylists(" + isRefresh + ")", _navigationService, Log);
+                Utils.HandleHttpException(ex, "LoadPlaylists(" + isRefresh + ")", NavigationService, Log);
                 IsAddingToPlaylist = false;
             }
 

@@ -118,7 +118,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
         {
             get
             {
-                return new RelayCommand<BaseItemDto>(_navigationService.NavigateTo);
+                return new RelayCommand<BaseItemDto>(NavigationService.NavigateTo);
             }
         }
 
@@ -128,19 +128,19 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
             {
                 return new RelayCommand<BaseItemDto>(async item =>
                 {
-                    if (!_navigationService.IsNetworkAvailable)
+                    if (!NavigationService.IsNetworkAvailable)
                     {
                         return;
                     }
 
                     try
                     {
-                        item.UserData = await _apiClient.MarkPlayedAsync(item.Id, AuthenticationService.Current.LoggedInUser.Id, DateTime.Now);
+                        item.UserData = await ApiClient.MarkPlayedAsync(item.Id, AuthenticationService.Current.LoggedInUser.Id, DateTime.Now);
                     }
                     catch (HttpException ex)
                     {
                         MessageBox.Show(AppResources.ErrorProblemUpdatingItem, AppResources.ErrorTitle, MessageBoxButton.OK);
-                        Utils.HandleHttpException("MarkAsWatchedCommand", ex, _navigationService, Log);
+                        Utils.HandleHttpException("MarkAsWatchedCommand", ex, NavigationService, Log);
                     }
                 });
             }
@@ -162,7 +162,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
             switch (PivotSelectedIndex)
             {
                 case LatestIndex:
-                    if (!_navigationService.IsNetworkAvailable || (_latestUnwatchedLoaded && !isRefresh))
+                    if (!NavigationService.IsNetworkAvailable || (_latestUnwatchedLoaded && !isRefresh))
                     {
                         return;
                     }
@@ -171,7 +171,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
 
                     break;
                 case BoxsetsIndex:
-                    if (!_navigationService.IsNetworkAvailable || (_boxsetsLoaded && !isRefresh))
+                    if (!NavigationService.IsNetworkAvailable || (_boxsetsLoaded && !isRefresh))
                     {
                         return;
                     }
@@ -180,7 +180,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
 
                     break;
                 case MoviesIndex:
-                    if (!_navigationService.IsNetworkAvailable || (_moviesLoaded && !isRefresh))
+                    if (!NavigationService.IsNetworkAvailable || (_moviesLoaded && !isRefresh))
                     {
                         return;
                     }
@@ -188,7 +188,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                     _moviesLoaded = await GetMovies();
                     break;
                 case GenresIndex:
-                    if (!_navigationService.IsNetworkAvailable || (_genresLoaded && !isRefresh))
+                    if (!NavigationService.IsNetworkAvailable || (_genresLoaded && !isRefresh))
                     {
                         return;
                     }
@@ -214,13 +214,13 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                     Fields = new[] {  ItemFields.DateCreated }
                 };
 
-                var moviesResponse = await _apiClient.GetItemsAsync(query);
+                var moviesResponse = await ApiClient.GetItemsAsync(query);
 
                 return await SetMovies(moviesResponse);
             }
             catch (HttpException ex)
             {
-                Utils.HandleHttpException("GetMovies()", ex, _navigationService, Log);
+                Utils.HandleHttpException("GetMovies()", ex, NavigationService, Log);
             }
 
             SetProgressBar();
@@ -255,12 +255,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                     Recursive = true
                 };
 
-                var itemResponse = await _apiClient.GetItemsAsync(query);
+                var itemResponse = await ApiClient.GetItemsAsync(query);
                 return await SetBoxsets(itemResponse);
             }
             catch (HttpException ex)
             {
-                Utils.HandleHttpException("GetBoxsets()", ex, _navigationService, Log);
+                Utils.HandleHttpException("GetBoxsets()", ex, NavigationService, Log);
             }
 
             SetProgressBar();
@@ -301,13 +301,13 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
 
                 Log.Info("Getting next up items");
 
-                var itemResponse = await _apiClient.GetItemsAsync(query);
+                var itemResponse = await ApiClient.GetItemsAsync(query);
 
                 return SetLatestUnwatched(itemResponse);
             }
             catch (HttpException ex)
             {
-                Utils.HandleHttpException("GetLatestUnwatched()", ex, _navigationService, Log);
+                Utils.HandleHttpException("GetLatestUnwatched()", ex, NavigationService, Log);
             }
 
             SetProgressBar();
@@ -331,7 +331,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                     UserId = AuthenticationService.Current.LoggedInUser.Id
                 };
 
-                var items = await _apiClient.GetGenresAsync(query);
+                var items = await ApiClient.GetGenresAsync(query);
 
                 if (!items.Items.IsNullOrEmpty())
                 {
@@ -347,7 +347,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
             }
             catch (HttpException ex)
             {
-                Utils.HandleHttpException("GetGenres()", ex, _navigationService, Log);
+                Utils.HandleHttpException("GetGenres()", ex, NavigationService, Log);
             }
 
             SetProgressBar();

@@ -72,7 +72,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 return new RelayCommand(async () =>
                 {
-                    if (!_navigationService.IsNetworkAvailable || _dataLoaded)
+                    if (!NavigationService.IsNetworkAvailable || _dataLoaded)
                     {
                         return;
                     }
@@ -88,7 +88,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 SetProgressBar(AppResources.SysTrayGettingDetails);
 
-                var actorResponse = await _apiClient.GetPersonAsync(SelectedPerson.Name, AuthenticationService.Current.LoggedInUser.Id);
+                var actorResponse = await ApiClient.GetPersonAsync(SelectedPerson.Name, AuthenticationService.Current.LoggedInUser.Id);
 
                 if (actorResponse == null)
                 {
@@ -108,13 +108,13 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     Recursive = true
                 };
 
-                var itemResponse = await _apiClient.GetItemsAsync(query);
+                var itemResponse = await ApiClient.GetItemsAsync(query);
 
                 return await SetFilms(itemResponse);
             }
             catch (HttpException ex)
             {
-                Utils.HandleHttpException("GetActorInformation()", ex, _navigationService, Log);
+                Utils.HandleHttpException("GetActorInformation()", ex, NavigationService, Log);
             }
 
             SetProgressBar();
@@ -134,7 +134,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             get
             {
-                return new RelayCommand<BaseItemDto>(_navigationService.NavigateTo);
+                return new RelayCommand<BaseItemDto>(NavigationService.NavigateTo);
             }
         }
     }

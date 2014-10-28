@@ -19,6 +19,8 @@ namespace MediaBrowser.WindowsPhone.Model.Connection
         public async Task<List<ServerDiscoveryInfo>> FindServers(int timeoutMs, CancellationToken cancellationToken)
         {
             var result = new List<ServerDiscoveryInfo>();
+
+            return result;
             var tcs = new TaskCompletionSource<List<ServerDiscoveryInfo>>();
 
             var ct = new CancellationTokenSource(timeoutMs);

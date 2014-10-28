@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Threading;
 using System.Windows;
 using System.Windows.Markup;
 using System.Windows.Media;
@@ -162,12 +163,15 @@ namespace MediaBrowser.WindowsPhone
             ApplicationUsageHelper.OnApplicationActivated();
         }
 
-        private static void AppStartup()
+        private static async void AppStartup()
         {
             var manager = SimpleIoc.Default.GetInstance<IConnectionManager>();
-            var client = manager.GetApiClient(null);
-            AuthenticationService.Current.Start();
-            TileService.Current.StartService(client, SimpleIoc.Default.GetInstance<IAsyncStorageService>());
+            await manager.Connect(default(CancellationToken)).ContinueWith(task =>
+            {
+                var client = manager.CurrentApiClient;
+                AuthenticationService.Current.Start();
+                TileService.Current.StartService(client, SimpleIoc.Default.GetInstance<IAsyncStorageService>());
+            });
         }
 
         // Code to execute when the application is deactivated (sent to background)

@@ -62,7 +62,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     SearchTerm = SearchText
                 };
 
-                var items = await _apiClient.GetSearchHintsAsync(query);
+                var items = await ApiClient.GetSearchHintsAsync(query);
 
                 if (items != null)
                 {
@@ -73,7 +73,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
             catch (HttpException ex)
             {
-                Utils.HandleHttpException("DoSearch()", ex, _navigationService, Log);
+                Utils.HandleHttpException("DoSearch()", ex, NavigationService, Log);
 
                 App.ShowMessage(AppResources.ErrorFailedToSearch);
             }
@@ -120,7 +120,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 return new RelayCommand(async () =>
                 {
-                    if (string.IsNullOrEmpty(SearchText) || !_navigationService.IsNetworkAvailable)
+                    if (string.IsNullOrEmpty(SearchText) || !NavigationService.IsNetworkAvailable)
                     {
                         return;
                     }
@@ -134,7 +134,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             get
             {
-                return new RelayCommand<SearchHint>(item => _navigationService.NavigateTo(item.ToBaseItemDto()));
+                return new RelayCommand<SearchHint>(item => NavigationService.NavigateTo(item.ToBaseItemDto()));
             }
         }
     }

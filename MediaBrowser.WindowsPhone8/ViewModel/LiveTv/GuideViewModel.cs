@@ -69,7 +69,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
         {
             get
             {
-                return new RelayCommand<string>(_navigationService.NavigateTo);
+                return new RelayCommand<string>(NavigationService.NavigateTo);
             }
         }
 
@@ -109,7 +109,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                     if (SimpleIoc.Default.GetInstance<ProgrammeViewModel>() != null)
                     {
                         Messenger.Default.Send(new NotificationMessage(item, Constants.Messages.ProgrammeItemChangedMsg));
-                        _navigationService.NavigateTo(Constants.Pages.LiveTv.ProgrammeView);
+                        NavigationService.NavigateTo(Constants.Pages.LiveTv.ProgrammeView);
                     }
                 });
             }
@@ -123,7 +123,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                 {
                     SetProgressBar(AppResources.SysTraySettingProgrammeToRecord);
 
-                    var id = await LiveTvUtils.RecordProgramme(SelectedProgramme, _apiClient, _navigationService, Log);
+                    var id = await LiveTvUtils.RecordProgramme(SelectedProgramme, ApiClient, NavigationService, Log);
 
                     if (!string.IsNullOrEmpty(id))
                     {
@@ -148,7 +148,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
 
                     SetProgressBar(AppResources.SysTraySettingSeriesToRecord);
 
-                    var id = await LiveTvUtils.CreateSeriesLink(SelectedProgramme, _apiClient, _navigationService, Log);
+                    var id = await LiveTvUtils.CreateSeriesLink(SelectedProgramme, ApiClient, NavigationService, Log);
 
                     if (!string.IsNullOrEmpty(id))
                     {
@@ -176,7 +176,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
 
         private async Task GetProgrammes(bool refresh)
         {
-            if (!_navigationService.IsNetworkAvailable || (_programmesLoaded && !refresh))
+            if (!NavigationService.IsNetworkAvailable || (_programmesLoaded && !refresh))
             {
                 return;
             }
@@ -191,7 +191,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                     ChannelIdList = new[] {SelectedChannel.Id},
                     MaxEndDate = DateTime.Now.AddDays(1).Date
                 };
-                var items = await _apiClient.GetLiveTvProgramsAsync(query);
+                var items = await ApiClient.GetLiveTvProgramsAsync(query);
 
                 if (items != null && !items.Items.IsNullOrEmpty())
                 {
@@ -202,7 +202,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
             }
             catch (HttpException ex)
             {
-                Utils.HandleHttpException(ex, "GetProgrammes()", _navigationService, Log);
+                Utils.HandleHttpException(ex, "GetProgrammes()", NavigationService, Log);
             }
 
             SetProgressBar();

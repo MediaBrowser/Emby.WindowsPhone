@@ -70,7 +70,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             TrailerPageLoaded = new RelayCommand(async () =>
             {
-                if (_navigationService.IsNetworkAvailable && !_dataLoaded)
+                if (NavigationService.IsNetworkAvailable && !_dataLoaded)
                 {
                     SetProgressBar(AppResources.SysTrayGettingTrailerDetails);
 
@@ -78,7 +78,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     {
                         Log.Info("Getting information for trailer [{0}] ({1})", SelectedTrailer.Name, SelectedTrailer.Id);
 
-                        SelectedTrailer = await _apiClient.GetItemAsync(SelectedTrailer.Id, AuthenticationService.Current.LoggedInUser.Id);
+                        SelectedTrailer = await ApiClient.GetItemAsync(SelectedTrailer.Id, AuthenticationService.Current.LoggedInUser.Id);
 
                         CastAndCrew = Utils.GroupCastAndCrew(SelectedTrailer.People);
 
@@ -86,7 +86,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     }
                     catch (HttpException ex)
                     {
-                        Utils.HandleHttpException("TrailerPageLoaded", ex, _navigationService, Log);
+                        Utils.HandleHttpException("TrailerPageLoaded", ex, NavigationService, Log);
 
                         App.ShowMessage(AppResources.ErrorGettingTrailerDetails);
                     }

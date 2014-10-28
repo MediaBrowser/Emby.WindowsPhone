@@ -64,7 +64,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             MoviePageLoaded = new RelayCommand(async () =>
             {
-                if (SelectedMovie != null && _navigationService.IsNetworkAvailable)
+                if (SelectedMovie != null && NavigationService.IsNetworkAvailable)
                 {
                     SetProgressBar(AppResources.SysTrayGettingMovieInfo);
 
@@ -102,11 +102,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                     CanUpdateFavourites = false;
 
-                    SelectedMovie.UserData = await _apiClient.UpdateFavoriteStatusAsync(SelectedMovie.Id, AuthenticationService.Current.LoggedInUser.Id, !SelectedMovie.UserData.IsFavorite);
+                    SelectedMovie.UserData = await ApiClient.UpdateFavoriteStatusAsync(SelectedMovie.Id, AuthenticationService.Current.LoggedInUser.Id, !SelectedMovie.UserData.IsFavorite);
                 }
                 catch (HttpException ex)
                 {
-                    Utils.HandleHttpException("AddRemoveFavouriteCommand (Movies)", ex, _navigationService, Log);
+                    Utils.HandleHttpException("AddRemoveFavouriteCommand (Movies)", ex, NavigationService, Log);
                     App.ShowMessage(AppResources.ErrorMakingChanges);
                 }
 
@@ -118,10 +118,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             ShowOtherFilmsCommand = new RelayCommand<BaseItemPerson>(person =>
             {
                 App.SelectedItem = person;
-                _navigationService.NavigateTo(Constants.Pages.ActorView);
+                NavigationService.NavigateTo(Constants.Pages.ActorView);
             });
 
-            NavigateTopage = new RelayCommand<BaseItemDto>(_navigationService.NavigateTo);
+            NavigateTopage = new RelayCommand<BaseItemDto>(NavigationService.NavigateTo);
 
 #if WP8
             SetPosterAsLockScreenCommand = new RelayCommand(async () =>
@@ -136,7 +136,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     }
                 }
 
-                var url = _apiClient.GetImageUrl(SelectedMovie, LockScreenService.Current.SinglePosterOptions);
+                var url = ApiClient.GetImageUrl(SelectedMovie, LockScreenService.Current.SinglePosterOptions);
 
                 LockScreenService.Current.ManuallySet = true;
                 await LockScreenService.Current.SetLockScreenImage(url);
@@ -152,7 +152,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 Log.Info("Getting details for movie [{0}] ({1})", SelectedMovie.Name, SelectedMovie.Id);
 
-                var item = await _apiClient.GetItemAsync(SelectedMovie.Id, AuthenticationService.Current.LoggedInUser.Id);
+                var item = await ApiClient.GetItemAsync(SelectedMovie.Id, AuthenticationService.Current.LoggedInUser.Id);
                 SelectedMovie = item;
                 CastAndCrew = Utils.GroupCastAndCrew(item.People);
                 Chapters = SelectedMovie.Chapters.Select(x => new Chapter(x)
@@ -162,7 +162,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                 if (SelectedMovie.LocalTrailerCount.HasValue && SelectedMovie.LocalTrailerCount.Value > 0)
                 {
-                    var trailers = await _apiClient.GetLocalTrailersAsync(AuthenticationService.Current.LoggedInUserId, SelectedMovie.Id);
+                    var trailers = await ApiClient.GetLocalTrailersAsync(AuthenticationService.Current.LoggedInUserId, SelectedMovie.Id);
                     Trailers = trailers.ToList();
                 }
 
@@ -170,7 +170,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
             catch (HttpException ex)
             {
-                Utils.HandleHttpException("GetMovieDetails()", ex, _navigationService, Log);
+                Utils.HandleHttpException("GetMovieDetails()", ex, NavigationService, Log);
 
                 App.ShowMessage(AppResources.ErrorGettingExtraInfo);
                 result = false;
@@ -190,7 +190,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 EnableImageEnhancers = App.SpecificSettings.EnableImageEnhancers
             };
 
-            return chapter.HasImage ? _apiClient.GetImageUrl(SelectedMovie, imageOptions) : string.Empty;
+            return chapter.HasImage ? ApiClient.GetImageUrl(SelectedMovie, imageOptions) : string.Empty;
         }
 
         public bool CanUpdateFavourites { get; set; }
