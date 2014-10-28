@@ -1,11 +1,9 @@
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Windows.Networking;
-using Windows.Networking.Connectivity;
 using Windows.Networking.Sockets;
 using Windows.Storage.Streams;
 using MediaBrowser.ApiInteraction;
@@ -20,7 +18,6 @@ namespace MediaBrowser.WindowsPhone.Model.Connection
         {
             var result = new List<ServerDiscoveryInfo>();
 
-            return result;
             var tcs = new TaskCompletionSource<List<ServerDiscoveryInfo>>();
 
             var ct = new CancellationTokenSource(timeoutMs);
