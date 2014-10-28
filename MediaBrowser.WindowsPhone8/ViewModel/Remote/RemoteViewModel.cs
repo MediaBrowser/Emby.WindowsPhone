@@ -6,18 +6,16 @@ using System.Windows;
 using Cimbalino.Phone.Toolkit.Services;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
-using MediaBrowser.Model;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Events;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Querying;
 using MediaBrowser.Model.Session;
-using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Messaging;
 using MediaBrowser.WindowsPhone.Resources;
 using MediaBrowser.WindowsPhone.Services;
-using ScottIsAFool.WindowsPhone.ViewModel;
+
 using INavigationService = MediaBrowser.WindowsPhone.Model.Interfaces.INavigationService;
 
 namespace MediaBrowser.WindowsPhone.ViewModel.Remote
@@ -30,9 +28,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
     /// </summary>
     public class RemoteViewModel : ViewModelBase
     {
-        private readonly INavigationService _navigationService;
-        private readonly IExtendedApiClient _apiClient;
-
         private bool _dataLoaded;
         private string _videoId;
         private long? _startPositionTicks;
@@ -42,11 +37,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
         /// <summary>
         /// Initializes a new instance of the RemoteViewModel class.
         /// </summary>
-        public RemoteViewModel(INavigationService navigationService, IExtendedApiClient apiClient)
+        public RemoteViewModel(INavigationService navigationService, IConnectionManager connectionManager)
+            : base(navigationService, connectionManager)
         {
-            _navigationService = navigationService;
-            _apiClient = apiClient;
-
             if (IsInDesignMode)
             {
                 Clients = new List<SessionInfoDto>
@@ -195,6 +188,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
                     try
                     {
                         SelectedClient = client;
+                        //ServerIdItem = SelectedClient;
 
                         await _apiClient.SendPlayCommandAsync(SelectedClient.Id, new PlayRequest { ItemIds = new[] { _videoId }, PlayCommand = PlayCommand.PlayNow });
 

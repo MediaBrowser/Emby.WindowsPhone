@@ -10,12 +10,13 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using JetBrains.Annotations;
 using MediaBrowser.Model;
+using MediaBrowser.Model.ApiClient;
 using MediaBrowser.WindowsPhone.AudioAgent;
 using MediaBrowser.WindowsPhone.Messaging;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Resources;
 using Microsoft.Phone.BackgroundAudio;
-using ScottIsAFool.WindowsPhone.ViewModel;
+
 using INavigationService = MediaBrowser.WindowsPhone.Model.Interfaces.INavigationService;
 
 namespace MediaBrowser.WindowsPhone.ViewModel
@@ -28,7 +29,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     /// </summary>
     public class PlaylistViewModel : ViewModelBase
     {
-        private readonly INavigationService _navigationService;
         private readonly PlaylistHelper _playlistHelper;
         private readonly DispatcherTimer _playlistChecker;
 
@@ -37,9 +37,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         /// <summary>
         /// Initializes a new instance of the PlaylistViewModel class.
         /// </summary>
-        public PlaylistViewModel(INavigationService navigationService, IStorageService storageService)
+        public PlaylistViewModel(INavigationService navigationService, IConnectionManager connectionManager, IStorageService storageService)
+            :base (navigationService, connectionManager)
         {
-            _navigationService = navigationService;
             _playlistChecker = new DispatcherTimer { Interval = new TimeSpan(0, 0, 3) };
             _playlistChecker.Tick += PlaylistCheckerOnTick;
 

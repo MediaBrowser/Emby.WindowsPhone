@@ -21,6 +21,7 @@
             public const string UseNotifications = "UseNotifications";
             public const string DoNotShowFirstRun = "DoNotShowFirstRun";
             public const string PhotoUploadSettings = "PhotoUploadSettings";
+            public const string ServerCredentialSettings = "ServerCredentialSettings.json";
         }
 
         public class Messages

@@ -3,26 +3,23 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using Coding4Fun.Toolkit.Controls;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
 using JetBrains.Annotations;
-using MediaBrowser.Model;
+using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Querying;
-using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Extensions;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Model.Interfaces;
 using MediaBrowser.WindowsPhone.Resources;
+using MediaBrowser.WindowsPhone.Services;
 using MediaBrowser.WindowsPhone.ViewModel.Playlists;
 using Microsoft.Phone.Shell;
-using Microsoft.Xna.Framework.Media;
 using ScottIsAFool.WindowsPhone;
-using ScottIsAFool.WindowsPhone.ViewModel;
 
 namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
 {
@@ -34,9 +31,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
     /// </summary>
     public class MusicCollectionViewModel : ViewModelBase
     {
-        private readonly INavigationService _navigationService;
-        private readonly IExtendedApiClient _apiClient;
-
         private bool _artistsLoaded;
         private bool _albumsLoaded;
         private bool _songsLoaded;
@@ -45,10 +39,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
         /// <summary>
         /// Initializes a new instance of the MusicCollectionViewModel class.
         /// </summary>
-        public MusicCollectionViewModel(INavigationService navigationService, IExtendedApiClient apiClient)
+        public MusicCollectionViewModel(INavigationService navigationService, IConnectionManager connectionManager)
+            : base(navigationService, connectionManager)
         {
-            _navigationService = navigationService;
-            _apiClient = apiClient;
             SelectedTracks = new List<BaseItemDto>();
 
             if (IsInDesignMode)
@@ -523,7 +516,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
             var query = new ItemQuery
             {
                 Recursive = true,
-                Fields = new[] { ItemFields.ParentId,},
+                Fields = new[] { ItemFields.ParentId },
                 IncludeItemTypes = new[] { "Audio" },
                 UserId = AuthenticationService.Current.LoggedInUser.Id
             };

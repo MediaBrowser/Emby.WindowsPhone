@@ -1,9 +1,10 @@
 ﻿using Cimbalino.Phone.Toolkit.Services;
-using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using MediaBrowser.Design;
-using MediaBrowser.Model.Session;
+using MediaBrowser.Model.ApiClient;
 using MediaBrowser.WindowsPhone.Design;
+using MediaBrowser.WindowsPhone.Logging;
+using MediaBrowser.WindowsPhone.Services;
 using MediaBrowser.WindowsPhone.ViewModel.Channels;
 using MediaBrowser.WindowsPhone.ViewModel.Playlists;
 using MediaBrowser.WindowsPhone.ViewModel.Predefined;
@@ -14,7 +15,6 @@ using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.Model;
 using INavigationService = MediaBrowser.WindowsPhone.Model.Interfaces.INavigationService;
 using NavigationService = MediaBrowser.WindowsPhone.Services.NavigationService;
-using Cimbalino.Phone.Toolkit.Helpers;
 using MediaBrowser.WindowsPhone.ViewModel.LiveTv;
 
 namespace MediaBrowser.WindowsPhone.ViewModel
@@ -44,8 +44,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             if (ViewModelBase.IsInDesignModeStatic)
             {
-                if (!SimpleIoc.Default.IsRegistered<IExtendedApiClient>())
-                    SimpleIoc.Default.Register<IExtendedApiClient>(() => new ExtendedApiClient(new MBLogger(), "scottisafool.homeserver.com", "Windows Phone 8", device, ApplicationManifest.Current.App.Version, new ClientCapabilities { SupportsContentUploading = true, SupportsMediaControl = false }));
+                //if (!SimpleIoc.Default.IsRegistered<IExtendedApiClient>())
+                //    SimpleIoc.Default.Register<IExtendedApiClient>(() => new ExtendedApiClient(new MBLogger(), "scottisafool.homeserver.com", "Windows Phone 8", device, ApplicationManifest.Current.App.Version, new ClientCapabilities { SupportsContentUploading = true, SupportsMediaControl = false }));
                 SimpleIoc.Default.Register<INavigationService, NavigationService>();
                 SimpleIoc.Default.Register<FolderViewModel>();
                 SimpleIoc.Default.Register<MovieViewModel>();
@@ -59,8 +59,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 SimpleIoc.Default.Register<INavigationService, NavigationService>();
                 SimpleIoc.Default.Register<ISettingsService, SettingsService>();
-                if (!SimpleIoc.Default.IsRegistered<IExtendedApiClient>())
-                    SimpleIoc.Default.Register<IExtendedApiClient>(() => new ExtendedApiClient(new MBLogger(), "dummy", "Windows Phone 8", device, ApplicationManifest.Current.App.Version, new ClientCapabilities{SupportsContentUploading = true, SupportsMediaControl = false}));
+                //if (!SimpleIoc.Default.IsRegistered<IExtendedApiClient>())
+                //    SimpleIoc.Default.Register<IExtendedApiClient>(() => new ExtendedApiClient(new MBLogger(), "dummy", "Windows Phone 8", device, ApplicationManifest.Current.App.Version, new ClientCapabilities{SupportsContentUploading = true, SupportsMediaControl = false}));
+
+                if(!SimpleIoc.Default.IsRegistered<IConnectionManager>())
+                    SimpleIoc.Default.Register(() => SharedUtils.CreateConnectionManager(device, new MBLogger()));
 
                 if (!SimpleIoc.Default.IsRegistered<IUserExtendedPropertiesService>())
                     SimpleIoc.Default.Register<IUserExtendedPropertiesService, UserExtendedPropertiesService>();
@@ -73,6 +76,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                 if (!SimpleIoc.Default.IsRegistered<IAsyncStorageService>())
                     SimpleIoc.Default.Register<IAsyncStorageService, AsyncStorageService>();
+
+                if(!SimpleIoc.Default.IsRegistered<AuthenticationService>())
+                    SimpleIoc.Default.Register<AuthenticationService>();
             }
 
             SimpleIoc.Default.Register<MainViewModel>();
@@ -376,9 +382,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             return ServiceLocator.Current.GetInstance<ChannelViewModel>(itemId);
         }
 
-        public static IExtendedApiClient ApiClient
+        public static IConnectionManager ConnectionManager
         {
-            get { return ServiceLocator.Current.GetInstance<IExtendedApiClient>(); }
+            get { return ServiceLocator.Current.GetInstance<IConnectionManager>(); }
         }
 
         public static INavigationService NavigationService

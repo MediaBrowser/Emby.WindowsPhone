@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model;
+using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.LiveTv;
 using MediaBrowser.Model.Net;
-using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Resources;
-using ScottIsAFool.WindowsPhone.ViewModel;
+using MediaBrowser.WindowsPhone.Services;
 using INavigationService = MediaBrowser.WindowsPhone.Model.Interfaces.INavigationService;
 
 namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
@@ -22,19 +22,15 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
     /// </summary>
     public class AllProgrammesViewModel : ViewModelBase
     {
-        private readonly INavigationService _navigationService;
-        private readonly IExtendedApiClient _apiClient;
-
         private bool _programmesLoaded;
         private bool _isWhatsOn;
 
         /// <summary>
         /// Initializes a new instance of the AllProgrammesViewModel class.
         /// </summary>
-        public AllProgrammesViewModel(INavigationService navigationService, IExtendedApiClient apiClient)
+        public AllProgrammesViewModel(INavigationService navigationService, IConnectionManager connectionManager)
+            : base(navigationService, connectionManager)
         {
-            _navigationService = navigationService;
-            _apiClient = apiClient;
         }
 
         public List<ProgramInfoDto> Programmes { get; set; }
@@ -92,7 +88,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
 
             try
             {
-                var items = await _apiClient.GetRecommendedLiveTvProgramsAsync(query, default(CancellationToken));
+                var items = await _apiClient.GetRecommendedLiveTvProgramsAsync(query);
 
                 if (items != null && !items.Items.IsNullOrEmpty())
                 {

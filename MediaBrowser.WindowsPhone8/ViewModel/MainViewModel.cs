@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Windows;
 using Cimbalino.Phone.Toolkit.Services;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
-using MediaBrowser.Model;
+using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Notifications;
 using MediaBrowser.Model.Querying;
-using MediaBrowser.Model.Session;
-using MediaBrowser.Services;
 using GalaSoft.MvvmLight.Command;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -21,9 +18,6 @@ using MediaBrowser.WindowsPhone.Messaging;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Resources;
 using MediaBrowser.WindowsPhone.Services;
-using Microsoft.Phone.Controls;
-using ScottIsAFool.WindowsPhone.ViewModel;
-using Microsoft.Phone.Tasks;
 using INavigationService = MediaBrowser.WindowsPhone.Model.Interfaces.INavigationService;
 
 namespace MediaBrowser.WindowsPhone.ViewModel
@@ -39,19 +33,15 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     /// </summary>
     public class MainViewModel : ViewModelBase
     {
-        private readonly INavigationService _navService;
-        private readonly IExtendedApiClient _apiClient;
         private bool _hasLoaded;
         private BaseItemDto[] _recentItems;
 
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
-        public MainViewModel(IExtendedApiClient apiClient, INavigationService navService)
+        public MainViewModel(IConnectionManager connectionManager, INavigationService navigationService)
+            : base(navigationService, connectionManager)
         {
-            _apiClient = apiClient;
-            _navService = navService;
-
             Folders = new ObservableCollection<BaseItemDto>();
             RecentItems = new ObservableCollection<BaseItemDto>();
             FavouriteItems = new ObservableCollection<BaseItemDto>();
@@ -108,7 +98,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                 AuthenticationService.Current.SignOut().ConfigureAwait(false);
 
-                _navService.NavigateTo(Constants.Pages.ChooseProfileView);
+                _navigationService.NavigateTo(Constants.Pages.ChooseProfileView);
             });
 
             PinCollectionCommand = new RelayCommand<BaseItemDto>(collection =>
@@ -152,15 +142,15 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 await PlayVideo(item, true);
             });
 
-            NavigateToPage = new RelayCommand<BaseItemDto>(_navService.NavigateTo);
+            NavigateToPage = new RelayCommand<BaseItemDto>(_navigationService.NavigateTo);
 
-            NavigateToAPage = new RelayCommand<string>(_navService.NavigateTo);
+            NavigateToAPage = new RelayCommand<string>(_navigationService.NavigateTo);
 
             NavigateToNotificationsCommand = new RelayCommand(() =>
             {
                 Messenger.Default.Send(new NotificationMessage(Constants.Messages.NotifcationNavigationMsg));
 
-                _navService.NavigateTo(Constants.Pages.NotificationsView);
+                _navigationService.NavigateTo(Constants.Pages.NotificationsView);
             });
         }
 
@@ -192,7 +182,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     }
 
                     TrialHelper.Current.SetNewVideoItem(item.Id);
-                    _navService.NavigateTo(string.Format(Constants.Pages.VideoPlayerView, item.Id, item.Type));
+                    _navigationService.NavigateTo(string.Format(Constants.Pages.VideoPlayerView, item.Id, item.Type));
                 }
             }
 
@@ -210,7 +200,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
         private async Task GetEverything(bool isRefresh)
         {
-            if (_navService.IsNetworkAvailable
+            if (_navigationService.IsNetworkAvailable
                 && (!_hasLoaded || isRefresh))
             {
 
@@ -273,7 +263,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
             catch (HttpException ex)
             {
-                Utils.HandleHttpException("GetFavouriteItems()", ex, _navService, Log);
+                Utils.HandleHttpException("GetFavouriteItems()", ex, _navigationService, Log);
                 return false;
             }
         }
@@ -293,7 +283,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
             catch (HttpException ex)
             {
-                Utils.HandleHttpException("GetRecent()", ex, _navService, Log);
+                Utils.HandleHttpException("GetRecent()", ex, _navigationService, Log);
                 return false;
             }
         }
@@ -329,7 +319,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
             catch (HttpException ex)
             {
-                Utils.HandleHttpException("GetFolders()", ex, _navService, Log);
+                Utils.HandleHttpException("GetFolders()", ex, _navigationService, Log);
                 return false;
             }
         }

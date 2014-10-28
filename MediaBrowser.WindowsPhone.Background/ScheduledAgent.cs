@@ -1,29 +1,25 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Linq;
-using System.Net;
 using System.Threading;
 using System.Windows;
 using Cimbalino.Phone.Toolkit.Helpers;
 using Cimbalino.Phone.Toolkit.Services;
 using MediaBrowser.ApiInteraction;
-using MediaBrowser.Model;
-using MediaBrowser.Model.Devices;
+using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Logging;
 using MediaBrowser.Model.Net;
-using MediaBrowser.Model.Session;
-using MediaBrowser.Services;
+using MediaBrowser.WindowsPhone.Logging;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Model.Photo;
+using MediaBrowser.WindowsPhone.Services;
 using Microsoft.Phone.Scheduler;
-using Microsoft.Xna.Framework.Media;
 using ScottIsAFool.WindowsPhone.Logging;
 
 namespace MediaBrowser.WindowsPhone.Background
 {
     public class ScheduledAgent : ScheduledTaskAgent
     {
-        private readonly IExtendedApiClient _apiClient;
+        private readonly IApiClient _apiClient;
         private readonly ILogger _mediaBrowserLogger = new MBLogger(typeof(ScheduledAgent));
         private readonly IApplicationSettingsService _applicationSettings = new ApplicationSettingsService();
         private static ContentUploader _contentUploader;
@@ -59,18 +55,18 @@ namespace MediaBrowser.WindowsPhone.Background
             }
         }
 
-        private IExtendedApiClient CreateClient()
+        private IApiClient CreateClient()
         {
             try
             {
                 var applicationSettings = new ApplicationSettingsService();
                 var connectionDetails = applicationSettings.Get<ConnectionDetails>(Constants.Settings.ConnectionSettings);
-                var device = new Device { DeviceId = SharedUtils.GetDeviceId(), DeviceName = SharedUtils.GetDeviceName() };
-                var client = new ExtendedApiClient(_mediaBrowserLogger, connectionDetails.ServerAddress, "Windows Phone 8", device, ApplicationManifest.Current.App.Version, new ClientCapabilities { SupportsContentUploading = true });
+                var device = new Device { DeviceId = SharedUtils.GetDeviceId(), DeviceName = SharedUtils.GetDeviceName() + " Audio Player" };
+                var manager = SharedUtils.CreateConnectionManager(device, _mediaBrowserLogger);
+                var auth = new AuthenticationService(manager);
+                auth.Start();
 
-                AuthenticationService.Current.Start(client);
-
-                return client;
+                return manager.GetApiClient(null);
             }
             catch (Exception ex)
             {

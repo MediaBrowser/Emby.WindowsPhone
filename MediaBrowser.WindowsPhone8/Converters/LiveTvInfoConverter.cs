@@ -3,8 +3,8 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
 using MediaBrowser.Model.LiveTv;
-using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Extensions;
+using MediaBrowser.WindowsPhone.Services;
 
 namespace MediaBrowser.WindowsPhone.Converters
 {

@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
 using MediaBrowser.ApiInteraction;
-using MediaBrowser.Model;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Logging;
@@ -12,7 +10,7 @@ using MediaBrowser.WindowsPhone.Model.Security;
 
 namespace MediaBrowser.WindowsPhone.Model
 {
-    public class ExtendedApiClient : ApiClient, IExtendedApiClient
+    public class ExtendedApiClient : ApiClient
     {
         public ExtendedApiClient(ILogger logger, string serverHostName, string clientName, IDevice device, string appVersion, ClientCapabilities capabilities)
             : base(logger, serverHostName, clientName, device, appVersion, capabilities, new CryptographyProvider())

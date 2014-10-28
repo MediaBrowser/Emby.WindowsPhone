@@ -12,11 +12,11 @@ using Cimbalino.Phone.Toolkit.Extensions;
 using Cimbalino.Phone.Toolkit.Helpers;
 using Cimbalino.Phone.Toolkit.Services;
 using MediaBrowser.Model;
+using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Querying;
-using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Controls;
 using MediaBrowser.WindowsPhone.Resources;
 using ScottIsAFool.WindowsPhone.Logging;
@@ -29,7 +29,7 @@ namespace MediaBrowser.WindowsPhone.Services
         private readonly ILog _logger;
         private static TileService _current;
 
-        private IExtendedApiClient _apiClient;
+        private IApiClient _apiClient;
         private IAsyncStorageService _storageService;
 
         private const string WideTileUrl = "shared\\shellcontent\\WideTileImage.png";
@@ -52,7 +52,7 @@ namespace MediaBrowser.WindowsPhone.Services
             get { return _current ?? (_current = new TileService()); }
         }
 
-        public void StartService(IExtendedApiClient apiClient, IAsyncStorageService storageService)
+        public void StartService(IApiClient apiClient, IAsyncStorageService storageService)
         {
             _logger.Info("Starting TileService");
             _apiClient = apiClient;

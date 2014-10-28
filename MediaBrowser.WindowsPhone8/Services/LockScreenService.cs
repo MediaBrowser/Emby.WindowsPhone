@@ -9,12 +9,10 @@ using Cimbalino.Phone.Toolkit.Services;
 using GalaSoft.MvvmLight.Ioc;
 using ImageTools;
 using ImageTools.IO.Png;
-using MediaBrowser.Model;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Querying;
-using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Controls;
 using MediaBrowser.WindowsPhone.Model;
 using ScottIsAFool.WindowsPhone.Logging;
@@ -32,7 +30,7 @@ namespace MediaBrowser.WindowsPhone.Services
         private static LockScreenService _current;
         private readonly IAsyncStorageService _storageService = new AsyncStorageService();
         private readonly ILog _logger = new WPLogger(typeof(LockScreenService));
-        private IExtendedApiClient _apiClient;
+        private IApiClient _apiClient;
 
         private bool _serviceStarted;
         
@@ -101,7 +99,8 @@ namespace MediaBrowser.WindowsPhone.Services
 
         public void Start()
         {
-            _apiClient = SimpleIoc.Default.GetInstance<IExtendedApiClient>(); 
+            var manager = SimpleIoc.Default.GetInstance<IConnectionManager>();
+            _apiClient = manager.GetApiClient(null);
             _serviceStarted = true;
         }
 

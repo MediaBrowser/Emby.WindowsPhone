@@ -41,7 +41,7 @@ namespace MediaBrowser.WindowsPhone.Views
                 {
                     selectedItem = (BaseItemDto) App.SelectedItem;
                 }
-                DataContext = new FolderViewModel(ViewModelLocator.NavigationService, ViewModelLocator.ApiClient)
+                DataContext = new FolderViewModel(ViewModelLocator.NavigationService, ViewModelLocator.ConnectionManager)
                 {
                     SelectedFolder = selectedItem
                 };

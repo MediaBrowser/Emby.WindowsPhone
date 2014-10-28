@@ -3,14 +3,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
-using MediaBrowser.Model;
+using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Notifications;
-using MediaBrowser.Services;
-using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Model.Interfaces;
 using MediaBrowser.WindowsPhone.Resources;
-using ScottIsAFool.WindowsPhone.ViewModel;
+using MediaBrowser.WindowsPhone.Services;
+
 
 namespace MediaBrowser.WindowsPhone.ViewModel
 {
@@ -22,18 +21,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     /// </summary>
     public class NotificationsViewModel : ViewModelBase
     {
-        private readonly IExtendedApiClient _apiClient;
-        private readonly INavigationService _navigationService;
-
         private bool _dataLoaded;
 
         /// <summary>
         /// Initializes a new instance of the NotificationsViewModel class.
         /// </summary>
-        public NotificationsViewModel(IExtendedApiClient apiClient, INavigationService navigationService)
+        public NotificationsViewModel(IConnectionManager connectionManager, INavigationService navigationService)
+            : base(navigationService, connectionManager)
         {
-            _apiClient = apiClient;
-            _navigationService = navigationService;
             Notifications = new ObservableCollection<Notification>();
         }
 

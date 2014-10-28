@@ -138,13 +138,13 @@
       <HintPath>..\packages\JetBrainsAnnotations.Fody.1.0.2\Lib\JetBrains.Annotations.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="MediaBrowser.ApiInteraction.Portable, Version=3.0.5409.42263, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="MediaBrowser.ApiInteraction.Portable, Version=3.0.5413.26851, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MediaBrowser.ApiClient.3.0.0.444\lib\portable-net45+sl4+wp71+win8+wpa81\MediaBrowser.ApiInteraction.Portable.dll</HintPath>
+      <HintPath>..\packages\MediaBrowser.ApiClient.3.0.0.449\lib\portable-net45+sl4+wp71+win8+wpa81\MediaBrowser.ApiInteraction.Portable.dll</HintPath>
     </Reference>
-    <Reference Include="MediaBrowser.Model, Version=3.0.5409.42015, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="MediaBrowser.Model, Version=3.0.5413.26547, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MediaBrowser.Common.3.0.498\lib\portable-net4+sl4+wp71+win8+wpa81\MediaBrowser.Model.dll</HintPath>
+      <HintPath>..\packages\MediaBrowser.Common.3.0.501\lib\portable-net4+sl4+wp71+win8+wpa81\MediaBrowser.Model.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -178,15 +178,16 @@
   <ItemGroup>
     <Compile Include="Constants.cs" />
     <Compile Include="Design\ApplicationSettingsDesignService.cs" />
-    <Compile Include="Design\ExtendedApiClientDesign.cs" />
     <Compile Include="Design\StorageDesignService.cs" />
     <Compile Include="History.cs" />
     <Compile Include="Logging\MBLogger.cs" />
     <Compile Include="Model\ConnectionDetails.cs" />
+    <Compile Include="Model\Connection\CredentialProvider.cs" />
+    <Compile Include="Model\Connection\NetworkConnection.cs" />
+    <Compile Include="Model\Connection\ServerLocator.cs" />
     <Compile Include="Model\Day.cs" />
     <Compile Include="Model\Device.cs" />
     <Compile Include="Model\ExtendedApiClient.cs" />
-    <Compile Include="Model\IExtendedApiClient.cs" />
     <Compile Include="Model\ISettingsService.cs" />
     <Compile Include="Model\Photo\UploadSettings.cs" />
     <Compile Include="Model\Playlist.cs" />

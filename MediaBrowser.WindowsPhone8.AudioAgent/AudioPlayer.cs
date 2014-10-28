@@ -8,11 +8,14 @@ using Cimbalino.Phone.Toolkit.Helpers;
 using Cimbalino.Phone.Toolkit.Services;
 using MediaBrowser.ApiInteraction;
 using MediaBrowser.Model;
+using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Logging;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Session;
-using MediaBrowser.Services;
+using MediaBrowser.WindowsPhone.Logging;
 using MediaBrowser.WindowsPhone.Model;
+using MediaBrowser.WindowsPhone.Model.Connection;
+using MediaBrowser.WindowsPhone.Services;
 using Microsoft.Phone.BackgroundAudio;
 using ScottIsAFool.WindowsPhone.Logging;
 
@@ -23,7 +26,7 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
         private static ILog _logger;
         private static volatile bool _classInitialized;
         private readonly PlaylistHelper _playlistHelper;
-        private static IExtendedApiClient _apiClient;
+        private static IApiClient _apiClient;
         private static DispatcherTimer _dispatcherTimer;
 
         /// <remarks>
@@ -81,18 +84,18 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
             }
         }
 
-        private static IExtendedApiClient CreateClient()
+        private static IApiClient CreateClient()
         {
             try
             {
                 var applicationSettings = new ApplicationSettingsService();
                 var connectionDetails = applicationSettings.Get<ConnectionDetails>(Constants.Settings.ConnectionSettings);
                 var device = new Device {DeviceId = SharedUtils.GetDeviceId(), DeviceName = SharedUtils.GetDeviceName() + " Audio Player"};
-                var client = new ExtendedApiClient(new MBLogger(typeof(AudioPlayer)), connectionDetails.ServerAddress, "Windows Phone 8", device, ApplicationManifest.Current.App.Version, new ClientCapabilities());
+                var manager = SharedUtils.CreateConnectionManager(device, new MBLogger(typeof (AudioPlayer)));
+                var auth = new AuthenticationService(manager);
+                auth.Start();
 
-                AuthenticationService.Current.Start(client);
-
-                return client;
+                return manager.GetApiClient(null);
             }
             catch (Exception ex)
             {

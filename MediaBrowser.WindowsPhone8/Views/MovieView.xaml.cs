@@ -36,7 +36,7 @@ namespace MediaBrowser.WindowsPhone.Views
             }
             else if(e.NavigationMode == NavigationMode.New)
             {
-                DataContext = new MovieViewModel(ViewModelLocator.NavigationService, ViewModelLocator.ApiClient)
+                DataContext = new MovieViewModel(ViewModelLocator.NavigationService, ViewModelLocator.ConnectionManager)
                                   {
                                       SelectedMovie = (BaseItemDto)App.SelectedItem
                                   };

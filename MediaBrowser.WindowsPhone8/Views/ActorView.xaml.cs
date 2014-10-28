@@ -23,7 +23,7 @@ namespace MediaBrowser.WindowsPhone.Views
             {
                 if (App.SelectedItem is BaseItemPerson)
                 {
-                    DataContext = new ActorViewModel(ViewModelLocator.ApiClient, ViewModelLocator.NavigationService)
+                    DataContext = new ActorViewModel(ViewModelLocator.ConnectionManager, ViewModelLocator.NavigationService)
                     {
                         SelectedPerson = (BaseItemPerson) App.SelectedItem
                     };

@@ -7,13 +7,12 @@ using Cimbalino.Phone.Toolkit.Services;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
-using MediaBrowser.Model;
+using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.LiveTv;
 using MediaBrowser.Model.Net;
-using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Resources;
 using MediaBrowser.WindowsPhone.Services;
-using ScottIsAFool.WindowsPhone.ViewModel;
+
 using INavigationService = MediaBrowser.WindowsPhone.Model.Interfaces.INavigationService;
 
 namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
@@ -26,9 +25,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
     /// </summary>
     public class LiveTvViewModel : ViewModelBase
     {
-        private readonly INavigationService _navigationService;
-        private readonly IExtendedApiClient _apiClient;
-
         private bool _upcomingLoaded;
         private bool _whatsOnLoaded;
         private bool _currentlyRecordingLoaded;
@@ -42,10 +38,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
         /// <summary>
         /// Initializes a new instance of the LiveTvViewModel class.
         /// </summary>
-        public LiveTvViewModel(INavigationService navigationService, IExtendedApiClient apiClient)
+        public LiveTvViewModel(INavigationService navigationService, IConnectionManager connectionManager)
+            : base (navigationService, connectionManager)
         {
-            _navigationService = navigationService;
-            _apiClient = apiClient;
         }
 
         public List<ProgramInfoDto> WhatsOn { get; set; }
@@ -212,7 +207,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                     UserId = AuthenticationService.Current.LoggedInUserId
                 };
 
-                var items = await _apiClient.GetRecommendedLiveTvProgramsAsync(query, default(CancellationToken));
+                var items = await _apiClient.GetRecommendedLiveTvProgramsAsync(query);
 
                 if (items != null && !items.Items.IsNullOrEmpty())
                 {
@@ -250,7 +245,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                     UserId = AuthenticationService.Current.LoggedInUserId
                 };
 
-                var items = await _apiClient.GetRecommendedLiveTvProgramsAsync(query, default(CancellationToken));
+                var items = await _apiClient.GetRecommendedLiveTvProgramsAsync(query);
 
                 if (items != null && !items.Items.IsNullOrEmpty())
                 {
@@ -288,7 +283,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                     UserId = AuthenticationService.Current.LoggedInUserId
                 };
 
-                var items = await _apiClient.GetLiveTvRecordingsAsync(query, default(CancellationToken));
+                var items = await _apiClient.GetLiveTvRecordingsAsync(query);
 
                 if (items != null && !items.Items.IsNullOrEmpty())
                 {

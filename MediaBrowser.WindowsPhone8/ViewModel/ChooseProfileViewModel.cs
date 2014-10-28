@@ -9,12 +9,12 @@ using Cimbalino.Phone.Toolkit.Services;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model;
+using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Net;
-using MediaBrowser.Services;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.WindowsPhone.Resources;
 using MediaBrowser.WindowsPhone.Services;
-using ScottIsAFool.WindowsPhone.ViewModel;
+
 using INavigationService = MediaBrowser.WindowsPhone.Model.Interfaces.INavigationService;
 
 namespace MediaBrowser.WindowsPhone.ViewModel
@@ -27,17 +27,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     /// </summary>
     public class ChooseProfileViewModel : ViewModelBase
     {
-        private readonly IExtendedApiClient _apiClient;
-        private readonly INavigationService _navigationService;
-
         /// <summary>
         /// Initializes a new instance of the ChooseProfileViewModel class.
         /// </summary>
-        public ChooseProfileViewModel(IExtendedApiClient apiClient, INavigationService navigationService, IApplicationSettingsService applicationSettings)
+        public ChooseProfileViewModel(IConnectionManager connectionManager, INavigationService navigationService, IApplicationSettingsService applicationSettings)
+            : base(navigationService, connectionManager)
         {
-            _apiClient = apiClient;
-            _navigationService = navigationService;
-
             Profiles = new ObservableCollection<UserDto>();
             if (IsInDesignMode)
             {

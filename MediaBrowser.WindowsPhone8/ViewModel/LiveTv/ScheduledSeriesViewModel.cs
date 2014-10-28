@@ -8,16 +8,17 @@ using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
 using JetBrains.Annotations;
 using MediaBrowser.Model;
+using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.LiveTv;
 using MediaBrowser.Model.Net;
-using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Extensions;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Model.Interfaces;
 using MediaBrowser.WindowsPhone.Resources;
+using MediaBrowser.WindowsPhone.Services;
 using Microsoft.Phone.Controls;
 using ScottIsAFool.WindowsPhone;
-using ScottIsAFool.WindowsPhone.ViewModel;
+
 using CustomMessageBox = MediaBrowser.WindowsPhone.Controls.CustomMessageBox;
 
 namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
@@ -30,9 +31,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
     /// </summary>
     public class ScheduledSeriesViewModel : ViewModelBase
     {
-        private readonly INavigationService _navigationService;
-        private readonly IExtendedApiClient _apiClient;
-
         private SeriesTimerInfoDto _originalTimer;
         private bool _scheduledLoaded;
         private bool _recordingsLoaded;
@@ -40,16 +38,21 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
         /// <summary>
         /// Initializes a new instance of the ScheduledSeriesViewModel class.
         /// </summary>
-        public ScheduledSeriesViewModel(INavigationService navigationService, IExtendedApiClient apiClient)
+        public ScheduledSeriesViewModel(INavigationService navigationService, IConnectionManager connectionManager)
+            : base(navigationService, connectionManager)
         {
-            _navigationService = navigationService;
-            _apiClient = apiClient;
-
             var days = Enum.GetValues(typeof (DayOfWeek)).Cast<DayOfWeek>();
             DaysOfWeekList = days.Select(x => new Day {DayOfWeek = x, DisplayName = x.GetLocalisedName()}).ToList();
         }
 
         public SeriesTimerInfoDto SelectedSeries { get; set; }
+
+        [UsedImplicitly]
+        private void OnSelectedSeriesChanged()
+        {
+            //ServerIdItem = SelectedSeries;
+        }
+
         public List<Day> DaysOfWeekList { get; set; }
         public int SelectedPivotIndex { get; set; }
         public List<Group<TimerInfoDto>> ScheduledRecordings { get; set; }

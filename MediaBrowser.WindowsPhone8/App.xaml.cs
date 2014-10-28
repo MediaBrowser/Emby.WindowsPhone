@@ -9,7 +9,7 @@ using Cimbalino.Phone.Toolkit.Services;
 using Coding4Fun.Toolkit.Controls;
 using GalaSoft.MvvmLight.Ioc;
 using MediaBrowser.Model;
-using MediaBrowser.Services;
+using MediaBrowser.Model.ApiClient;
 using MediaBrowser.WindowsPhone.Model.Photo;
 using MediaBrowser.WindowsPhone.Services;
 using MediaBrowser.WindowsPhone.ViewModel;
@@ -164,8 +164,9 @@ namespace MediaBrowser.WindowsPhone
 
         private static void AppStartup()
         {
-            var client = SimpleIoc.Default.GetInstance<IExtendedApiClient>();
-            AuthenticationService.Current.Start(client);
+            var manager = SimpleIoc.Default.GetInstance<IConnectionManager>();
+            var client = manager.GetApiClient(null);
+            AuthenticationService.Current.Start();
             TileService.Current.StartService(client, SimpleIoc.Default.GetInstance<IAsyncStorageService>());
         }
 

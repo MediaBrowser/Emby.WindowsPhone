@@ -7,15 +7,14 @@ using System.Windows;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
-using MediaBrowser.Model;
+using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.LiveTv;
 using MediaBrowser.Model.Net;
-using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Model.Interfaces;
 using MediaBrowser.WindowsPhone.Resources;
+using MediaBrowser.WindowsPhone.Services;
 using ScottIsAFool.WindowsPhone;
-using ScottIsAFool.WindowsPhone.ViewModel;
 
 namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
 {
@@ -27,9 +26,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
     /// </summary>
     public class RecordedTvViewModel : ViewModelBase
     {
-        private readonly INavigationService _navigationService;
-        private readonly IExtendedApiClient _apiClient;
-
         private bool _programmesLoaded;
 
         private DateTime? _programmesLastRun;
@@ -37,10 +33,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
         /// <summary>
         /// Initializes a new instance of the RecordedTvViewModel class.
         /// </summary>
-        public RecordedTvViewModel(INavigationService navigationService, IExtendedApiClient apiClient)
+        public RecordedTvViewModel(INavigationService navigationService, IConnectionManager connectionManager)
+            : base(navigationService, connectionManager)
         {
-            _navigationService = navigationService;
-            _apiClient = apiClient;
 
             GroupBy = RecordedGroupBy.RecordedDate;
         }

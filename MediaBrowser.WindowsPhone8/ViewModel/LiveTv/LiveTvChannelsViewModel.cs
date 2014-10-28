@@ -5,15 +5,13 @@ using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
-using MediaBrowser.Model;
+using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.LiveTv;
 using MediaBrowser.Model.Net;
-using MediaBrowser.Services;
-using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Model.Interfaces;
 using MediaBrowser.WindowsPhone.Resources;
+using MediaBrowser.WindowsPhone.Services;
 using ScottIsAFool.WindowsPhone;
-using ViewModelBase = ScottIsAFool.WindowsPhone.ViewModel.ViewModelBase;
 
 namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
 {
@@ -25,19 +23,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
     /// </summary>
     public class LiveTvChannelsViewModel : ViewModelBase
     {
-        private readonly INavigationService _navigationService;
-        private readonly IExtendedApiClient _apiClient;
-
         private bool _channelsLoaded;
 
         /// <summary>
         /// Initializes a new instance of the ChannelsViewModel class.
         /// </summary>
-        public LiveTvChannelsViewModel(INavigationService navigationService, IExtendedApiClient apiClient)
+        public LiveTvChannelsViewModel(INavigationService navigationService, IConnectionManager connectionManager)
+            : base(navigationService, connectionManager)
         {
-            _navigationService = navigationService;
-            _apiClient = apiClient;
-
             if (IsInDesignMode)
             {
                 Channels = new List<ChannelInfoDto>

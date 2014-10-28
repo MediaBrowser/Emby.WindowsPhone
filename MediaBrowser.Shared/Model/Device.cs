@@ -12,7 +12,7 @@ namespace MediaBrowser.WindowsPhone.Model
 {
     public class Device : IDevice
     {
-        public IEnumerable<LocalFileInfo> GetLocalPhotos()
+        public async Task<IEnumerable<LocalFileInfo>> GetLocalPhotos()
         {
             var items = GetPhotos(library => library.Pictures);
             return items;
@@ -51,7 +51,7 @@ namespace MediaBrowser.WindowsPhone.Model
             return "image/" + (string.IsNullOrEmpty(ext) ? "jpeg" : ext.Replace(".", string.Empty));
         }
 
-        public IEnumerable<LocalFileInfo> GetLocalVideos()
+        public async Task<IEnumerable<LocalFileInfo>> GetLocalVideos()
         {
             return new List<LocalFileInfo>();
         }

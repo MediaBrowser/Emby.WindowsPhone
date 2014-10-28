@@ -1,15 +1,14 @@
 ﻿using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Command;
-using MediaBrowser.Model;
+using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Channels;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Net;
-using MediaBrowser.Services;
-using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Model.Interfaces;
 using MediaBrowser.WindowsPhone.Resources;
-using ScottIsAFool.WindowsPhone.ViewModel;
+using MediaBrowser.WindowsPhone.Services;
+
 
 namespace MediaBrowser.WindowsPhone.ViewModel.Channels
 {
@@ -21,18 +20,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Channels
     /// </summary>
     public class ChannelViewModel : ViewModelBase
     {
-        private readonly INavigationService _navigationService;
-        private readonly IExtendedApiClient _apiClient;
-
         private bool _channelItemsLoaded;
 
         /// <summary>
         /// Initializes a new instance of the ChannelViewModel class.
         /// </summary>
-        public ChannelViewModel(INavigationService navigationService, IExtendedApiClient apiClient)
+        public ChannelViewModel(INavigationService navigationService, IConnectionManager connectionManager)
+            : base(navigationService, connectionManager)
         {
-            _navigationService = navigationService;
-            _apiClient = apiClient;
         }
 
         public BaseItemDto SelectedChannel { get; set; }
@@ -45,6 +40,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Channels
             {
                 return new RelayCommand(async () =>
                 {
+                    ServerIdItem = SelectedChannel;
                     await LoadData(false);
                 });
             }

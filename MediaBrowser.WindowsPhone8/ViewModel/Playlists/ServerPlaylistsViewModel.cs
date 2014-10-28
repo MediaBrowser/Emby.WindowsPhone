@@ -6,19 +6,18 @@ using Cimbalino.Phone.Toolkit.Extensions;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
-using MediaBrowser.Model;
+using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Playlists;
-using MediaBrowser.Model.Querying;
-using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Extensions;
 using MediaBrowser.WindowsPhone.Messaging;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Model.Interfaces;
 using MediaBrowser.WindowsPhone.Resources;
+using MediaBrowser.WindowsPhone.Services;
 using Microsoft.Phone.Controls;
-using ScottIsAFool.WindowsPhone.ViewModel;
+
 using CustomMessageBox = MediaBrowser.WindowsPhone.Controls.CustomMessageBox;
 
 namespace MediaBrowser.WindowsPhone.ViewModel.Playlists
@@ -31,19 +30,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Playlists
     /// </summary>
     public class ServerPlaylistsViewModel : ViewModelBase
     {
-        private readonly INavigationService _navigationService;
-        private readonly IExtendedApiClient _apiClient;
-
         private bool _playlistLoaded;
 
         /// <summary>
         /// Initializes a new instance of the ServerPlaylistsViewModel class.
         /// </summary>
-        public ServerPlaylistsViewModel(INavigationService navigationService, IExtendedApiClient apiClient)
+        public ServerPlaylistsViewModel(INavigationService navigationService, IConnectionManager connectionManager)
+            : base(navigationService, connectionManager)
         {
-            _navigationService = navigationService;
-            _apiClient = apiClient;
-
             if (IsInDesignMode)
             {
                 SelectedPlaylist = new BaseItemDto
@@ -327,6 +321,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Playlists
                 if (m.Notification.Equals(Constants.Messages.ServerPlaylistChangedMsg))
                 {
                     SelectedPlaylist = m.Sender as BaseItemDto;
+                    ServerIdItem = SelectedPlaylist;
                     PlaylistItems = null;
                     _playlistLoaded = false;
                 }

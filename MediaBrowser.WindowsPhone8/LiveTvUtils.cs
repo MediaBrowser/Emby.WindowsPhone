@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using GalaSoft.MvvmLight.Messaging;
-using MediaBrowser.Model;
+using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.LiveTv;
 using MediaBrowser.Model.Net;
-using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Model.Interfaces;
 using MediaBrowser.WindowsPhone.Resources;
 using ScottIsAFool.WindowsPhone.Logging;
@@ -15,15 +13,15 @@ namespace MediaBrowser.WindowsPhone
 {
     public static class LiveTvUtils
     {
-        public static async Task<string> CreateSeriesLink(ProgramInfoDto item, IExtendedApiClient apiClient, INavigationService navigationService, ILog log)
+        public static async Task<string> CreateSeriesLink(ProgramInfoDto item, IApiClient apiClient, INavigationService navigationService, ILog log)
         {
             try
             {
-                var timer = await apiClient.GetDefaultLiveTvTimerInfo(item.Id, default(CancellationToken));
+                var timer = await apiClient.GetDefaultLiveTvTimerInfo(item.Id);
 
                 if (timer != null)
                 {
-                    await apiClient.CreateLiveTvSeriesTimerAsync(timer, default(CancellationToken));
+                    await apiClient.CreateLiveTvSeriesTimerAsync(timer);
 
                     Messenger.Default.Send(new NotificationMessage(Constants.Messages.NewSeriesRecordingAddedMsg));
 
@@ -38,15 +36,15 @@ namespace MediaBrowser.WindowsPhone
             return null;
         }
 
-        public static async Task<string> RecordProgramme(ProgramInfoDto item, IExtendedApiClient apiClient, INavigationService navigationService, ILog log)
+        public static async Task<string> RecordProgramme(ProgramInfoDto item, IApiClient apiClient, INavigationService navigationService, ILog log)
         {
             try
             {
-                var timer = await apiClient.GetDefaultLiveTvTimerInfo(item.Id, default(CancellationToken));
+                var timer = await apiClient.GetDefaultLiveTvTimerInfo(item.Id);
 
                 if (timer != null)
                 {
-                    await apiClient.CreateLiveTvTimerAsync(timer, default(CancellationToken));
+                    await apiClient.CreateLiveTvTimerAsync(timer);
 
                     return timer.Id;
                 }
@@ -59,16 +57,16 @@ namespace MediaBrowser.WindowsPhone
             return null;
         }
 
-        public static async Task<bool> CancelSeries(SeriesTimerInfoDto selectedSeries, INavigationService navigationService, IExtendedApiClient apiClient, ILog log, bool goBack)
+        public static async Task<bool> CancelSeries(SeriesTimerInfoDto selectedSeries, INavigationService navigationService, IApiClient apiClient, ILog log, bool goBack)
         {
             return await CancelSeries(selectedSeries.Id, navigationService, apiClient, log, goBack);
         }
 
-        public static async Task<bool> CancelSeries(string seriesId, INavigationService navigationService, IExtendedApiClient apiClient, ILog log, bool goBack)
+        public static async Task<bool> CancelSeries(string seriesId, INavigationService navigationService, IApiClient apiClient, ILog log, bool goBack)
         {
             try
             {
-                await apiClient.CancelLiveTvSeriesTimerAsync(seriesId, default(CancellationToken));
+                await apiClient.CancelLiveTvSeriesTimerAsync(seriesId);
 
                 Messenger.Default.Send(new NotificationMessage(seriesId, Constants.Messages.LiveTvSeriesDeletedMsg));
 
@@ -88,16 +86,16 @@ namespace MediaBrowser.WindowsPhone
             return false;
         }
 
-        public static async Task<bool> CancelRecording(TimerInfoDto item, INavigationService navigationService, IExtendedApiClient apiClient, ILog log, bool goBack = false)
+        public static async Task<bool> CancelRecording(TimerInfoDto item, INavigationService navigationService, IApiClient apiClient, ILog log, bool goBack = false)
         {
             return await CancelRecording(item.Id, navigationService, apiClient, log, goBack);
         }
 
-        public static async Task<bool> CancelRecording(string itemId, INavigationService navigationService, IExtendedApiClient apiClient, ILog log, bool goBack = false)
+        public static async Task<bool> CancelRecording(string itemId, INavigationService navigationService, IApiClient apiClient, ILog log, bool goBack = false)
         {
             try
             {
-                await apiClient.CancelLiveTvTimerAsync(itemId, default(CancellationToken));
+                await apiClient.CancelLiveTvTimerAsync(itemId);
 
                 if (navigationService.CanGoBack && goBack)
                 {

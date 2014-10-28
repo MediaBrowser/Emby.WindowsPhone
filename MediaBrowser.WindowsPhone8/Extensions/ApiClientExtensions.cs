@@ -1,17 +1,17 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using MediaBrowser.Model;
+using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Querying;
-using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Model;
+using MediaBrowser.WindowsPhone.Services;
 
 namespace MediaBrowser.WindowsPhone.Extensions
 {
     public static class ApiClientExtensions
     {
-        internal static async Task<List<PlaylistItem>> GetInstantMixPlaylist(this IExtendedApiClient apiClient, BaseItemDto item)
+        internal static async Task<List<PlaylistItem>> GetInstantMixPlaylist(this IApiClient apiClient, BaseItemDto item)
         {
             ItemsResult result;
             var audioQuery = new SimilarItemsQuery { UserId = AuthenticationService.Current.LoggedInUserId, Id = item.Id };

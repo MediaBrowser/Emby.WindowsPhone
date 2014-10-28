@@ -1,9 +1,7 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
-using MediaBrowser.Model;
+using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.LiveTv;
-using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Model.Interfaces;
-using ScottIsAFool.WindowsPhone.ViewModel;
 
 namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
 {
@@ -15,16 +13,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
     /// </summary>
     public class ScheduledRecordingViewModel : ViewModelBase
     {
-        private readonly INavigationService _navigationService;
-        private readonly IExtendedApiClient _apiClient;
-
         /// <summary>
         /// Initializes a new instance of the ScheduledRecordingViewModel class.
         /// </summary>
-        public ScheduledRecordingViewModel(INavigationService navigationService, IExtendedApiClient apiClient)
+        public ScheduledRecordingViewModel(INavigationService navigationService, IConnectionManager connectionManager) 
+            : base(navigationService, connectionManager)
         {
-            _navigationService = navigationService;
-            _apiClient = apiClient;
         }
 
         public TimerInfoDto SelectedRecording { get; set; }
@@ -36,6 +30,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                 if (m.Notification.Equals(Constants.Messages.ScheduledRecordingChangedMsg))
                 {
                     SelectedRecording = (TimerInfoDto) m.Sender;
+                    //ServerIdItem = SelectedRecording;
                 }
             });
         }

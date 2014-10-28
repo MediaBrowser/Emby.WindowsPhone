@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using MediaBrowser.Model.LiveTv;
-using MediaBrowser.Services;
+using MediaBrowser.WindowsPhone.Services;
 
 namespace MediaBrowser.WindowsPhone.Extensions
 {

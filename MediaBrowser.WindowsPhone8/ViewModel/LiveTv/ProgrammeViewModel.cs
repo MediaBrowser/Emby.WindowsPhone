@@ -3,14 +3,13 @@ using System.Threading;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
-using MediaBrowser.Model;
+using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.LiveTv;
 using MediaBrowser.Model.Net;
 using MediaBrowser.WindowsPhone.Messaging;
-using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Model.Interfaces;
 using MediaBrowser.WindowsPhone.Resources;
-using ScottIsAFool.WindowsPhone.ViewModel;
+
 
 namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
 {
@@ -22,13 +21,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
     /// </summary>
     public class ProgrammeViewModel : ViewModelBase
     {
-        private readonly INavigationService _navigationService;
-        private readonly IExtendedApiClient _apiClient;
-
-        public ProgrammeViewModel(INavigationService navigationService, IExtendedApiClient apiClient)
+        public ProgrammeViewModel(INavigationService navigationService, IConnectionManager connectionManager)
+            : base(navigationService, connectionManager)
         {
-            _navigationService = navigationService;
-            _apiClient = apiClient;
         }
 
         public ProgramInfoDto SelectedProgramme { get; set; }
@@ -221,10 +216,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                     if (m.Sender is ProgramInfoDto)
                     {
                         SelectedProgramme = (ProgramInfoDto)m.Sender;
+                        //ServerIdItem = SelectedProgramme;
                     }
                     else if (m.Sender is RecordingInfoDto)
                     {
                         SelectedRecording = (RecordingInfoDto) m.Sender;
+                        //ServerIdItem = SelectedRecording;
                     }
                 }
             });

@@ -7,15 +7,14 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
 using JetBrains.Annotations;
-using MediaBrowser.Model;
+using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.LiveTv;
 using MediaBrowser.Model.Net;
-using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Model.Interfaces;
 using MediaBrowser.WindowsPhone.Resources;
 using Microsoft.Phone.Controls;
 using ScottIsAFool.WindowsPhone;
-using ScottIsAFool.WindowsPhone.ViewModel;
+
 using CustomMessageBox = MediaBrowser.WindowsPhone.Controls.CustomMessageBox;
 
 namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
@@ -28,9 +27,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
     /// </summary>
     public class ScheduleViewModel : ViewModelBase
     {
-        private readonly INavigationService _navigationService;
-        private readonly IExtendedApiClient _apiClient;
-
         private bool _seriesLoaded;
         private bool _upcomingLoaded;
 
@@ -40,10 +36,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
         /// <summary>
         /// Initializes a new instance of the ScheduleViewModel class.
         /// </summary>
-        public ScheduleViewModel(INavigationService navigationService, IExtendedApiClient apiClient)
+        public ScheduleViewModel(INavigationService navigationService, IConnectionManager connectionManager)
+            : base(navigationService, connectionManager)
         {
-            _navigationService = navigationService;
-            _apiClient = apiClient;
         }
 
         public int SelectedIndex { get; set; }

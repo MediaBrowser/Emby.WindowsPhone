@@ -6,14 +6,13 @@ using Cimbalino.Phone.Toolkit.Extensions;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
-using MediaBrowser.Model;
+using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.LiveTv;
 using MediaBrowser.Model.Net;
-using MediaBrowser.Services;
-using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Model.Interfaces;
 using MediaBrowser.WindowsPhone.Resources;
-using ScottIsAFool.WindowsPhone.ViewModel;
+using MediaBrowser.WindowsPhone.Services;
+
 
 namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
 {
@@ -25,19 +24,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
     /// </summary>
     public class GuideViewModel : ViewModelBase
     {
-        private readonly INavigationService _navigationService;
-        private readonly IExtendedApiClient _apiClient;
-
         private bool _programmesLoaded;
 
         /// <summary>
         /// Initializes a new instance of the GuideViewModel class.
         /// </summary>
-        public GuideViewModel(INavigationService navigationService, IExtendedApiClient apiClient)
+        public GuideViewModel(INavigationService navigationService, IConnectionManager connectionManager)
+            : base(navigationService, connectionManager)
         {
-            _navigationService = navigationService;
-            _apiClient = apiClient;
-
             if (IsInDesignMode)
             {
                 SelectedChannel = new ChannelInfoDto
@@ -174,6 +168,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                 {
                     _programmesLoaded = false;
                     SelectedChannel = (ChannelInfoDto) m.Sender;
+                    //ServerIdItem = SelectedChannel;
                     Programmes = null;
                 }
             });
@@ -196,7 +191,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                     ChannelIdList = new[] {SelectedChannel.Id},
                     MaxEndDate = DateTime.Now.AddDays(1).Date
                 };
-                var items = await _apiClient.GetLiveTvProgramsAsync(query, default(CancellationToken));
+                var items = await _apiClient.GetLiveTvProgramsAsync(query);
 
                 if (items != null && !items.Items.IsNullOrEmpty())
                 {

@@ -2,15 +2,13 @@
 using System.Collections.Generic;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
-using MediaBrowser.Model;
+using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Net;
-using MediaBrowser.Services;
-using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Model.Interfaces;
 using MediaBrowser.WindowsPhone.Resources;
+using MediaBrowser.WindowsPhone.Services;
 using ScottIsAFool.WindowsPhone;
-using ScottIsAFool.WindowsPhone.ViewModel;
 
 namespace MediaBrowser.WindowsPhone.ViewModel
 {
@@ -22,19 +20,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     /// </summary>
     public class TrailerViewModel : ViewModelBase
     {
-        private readonly INavigationService _navigationService;
-        private readonly IExtendedApiClient _apiClient;
-
         private bool _dataLoaded;
 
         /// <summary>
         /// Initializes a new instance of the TrailerViewModel class.
         /// </summary>
-        public TrailerViewModel(INavigationService navigation, IExtendedApiClient apiClient)
+        public TrailerViewModel(INavigationService navigation, IConnectionManager connectionManager)
+            : base(navigation, connectionManager)
         {
-            _navigationService = navigation;
-            _apiClient = apiClient;
-
             if (IsInDesignMode)
             {
                 SelectedTrailer = new BaseItemDto

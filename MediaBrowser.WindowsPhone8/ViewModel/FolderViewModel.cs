@@ -2,11 +2,12 @@
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using JetBrains.Annotations;
 using MediaBrowser.Model;
+using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Querying;
-using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Model;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
@@ -18,7 +19,6 @@ using MediaBrowser.WindowsPhone.Model.Interfaces;
 using MediaBrowser.WindowsPhone.Resources;
 using MediaBrowser.WindowsPhone.Services;
 using ScottIsAFool.WindowsPhone;
-using ScottIsAFool.WindowsPhone.ViewModel;
 
 namespace MediaBrowser.WindowsPhone.ViewModel
 {
@@ -33,20 +33,16 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     /// </summary>
     public class FolderViewModel : ViewModelBase
     {
-        private readonly INavigationService _navigationService;
-        private readonly IExtendedApiClient _apiClient;
         private bool _dataLoaded;
 
         /// <summary>
         /// Initializes a new instance of the FolderViewModel class.
         /// </summary>
-        public FolderViewModel(INavigationService navigationService, IExtendedApiClient apiClient)
+        public FolderViewModel(INavigationService navigationService, IConnectionManager connectionManager)
+            : base(navigationService, connectionManager)
         {
             RecentItems = new ObservableCollection<BaseItemDto>();
             RandomItems = new ObservableCollection<BaseItemDto>();
-
-            _apiClient = apiClient;
-            _navigationService = navigationService;
 
             if (IsInDesignMode)
             {
@@ -390,7 +386,20 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
         public string PageTitle { get; set; }
         public BaseItemDto SelectedFolder { get; set; }
+
+        [UsedImplicitly]
+        private void OnSelectedFolderChanged()
+        {
+            ServerIdItem = SelectedFolder;            
+        }
         public BaseItemPerson SelectedPerson { get; set; }
+
+        [UsedImplicitly]
+        private void OnSelectedPersonChanged()
+        {
+            //ServerIdItem = SelectedPerson;
+        }
+
         public List<Group<BaseItemDto>> FolderGroupings { get; set; }
         public List<BaseItemDto> CurrentItems { get; set; }
         public ObservableCollection<BaseItemDto> RecentItems { get; set; }

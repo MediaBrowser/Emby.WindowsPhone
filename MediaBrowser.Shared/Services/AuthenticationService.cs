@@ -1,43 +1,42 @@
 ﻿using System.Threading.Tasks;
 using Cimbalino.Phone.Toolkit.Services;
-using MediaBrowser.Model;
+using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Users;
 using PropertyChanged;
 using ScottIsAFool.WindowsPhone.Logging;
 
-namespace MediaBrowser.Services
+namespace MediaBrowser.WindowsPhone.Services
 {
     [ImplementPropertyChanged]
     public class AuthenticationService
     {
-        private static AuthenticationService _current;
+        private readonly IConnectionManager _connectionManager;
         private IApplicationSettingsService _settingsService;
-        private static IExtendedApiClient _apiClient;
+        private static IApiClient _apiClient;
         private static ILog _logger;
 
         public AuthenticationResult AuthenticationResult { get; set; }
-        
-        public static AuthenticationService Current
-        {
-            get { return _current ?? (_current = new AuthenticationService()); }
-        }
 
-        public AuthenticationService()
+        public static AuthenticationService Current { get; private set; }
+
+        public AuthenticationService(IConnectionManager connectionManager)
         {
+            _connectionManager = connectionManager;
             _logger = new WPLogger(typeof (AuthenticationService));
+            Current = this;
         }
 
-        public void Start(IExtendedApiClient apiClient)
+        public void Start()
         {
-            _apiClient = apiClient;
             _settingsService = new ApplicationSettingsService();
+            _apiClient = _connectionManager.GetApiClient(null);
 
             CheckIfUserSignedIn();
         }
 
-        private void CheckIfUserSignedIn()
+        public void CheckIfUserSignedIn()
         {
             var user = _settingsService.Get<AuthenticationResult>(Constants.Settings.SelectedUserSetting);
 

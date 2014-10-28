@@ -2,10 +2,9 @@
 using System.Diagnostics;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
-using MediaBrowser.Model;
+using MediaBrowser.Model.ApiClient;
 using MediaBrowser.WindowsPhone.Model.Interfaces;
 using MediaBrowser.WindowsPhone.Services;
-using ScottIsAFool.WindowsPhone.ViewModel;
 
 namespace MediaBrowser.WindowsPhone.ViewModel.Settings
 {
@@ -17,19 +16,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Settings
     /// </summary>
     public class PhotoUploadViewModel : ViewModelBase
     {
-        private readonly INavigationService _navigationService;
-        private readonly IExtendedApiClient _apiClient;
-
         private bool _ignoreChange;
 
         /// <summary>
         /// Initializes a new instance of the PhotoUploadViewModel class.
         /// </summary>
-        public PhotoUploadViewModel(INavigationService navigationService, IExtendedApiClient apiClient)
+        public PhotoUploadViewModel(INavigationService navigationService, IConnectionManager connectionManager)
+            : base(navigationService, connectionManager)
         {
-            _navigationService = navigationService;
-            _apiClient = apiClient;
-
             if (IsInDesignMode)
             {
                 IsPhotoUploadsEnabled = true;

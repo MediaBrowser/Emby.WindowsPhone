@@ -3,16 +3,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using GalaSoft.MvvmLight.Command;
-using MediaBrowser.Model;
+using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Search;
-using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Extensions;
-using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Model.Interfaces;
 using MediaBrowser.WindowsPhone.Resources;
+using MediaBrowser.WindowsPhone.Services;
 using ScottIsAFool.WindowsPhone;
-using ScottIsAFool.WindowsPhone.ViewModel;
 
 namespace MediaBrowser.WindowsPhone.ViewModel
 {
@@ -24,17 +22,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     /// </summary>
     public class SearchViewModel : ViewModelBase
     {
-        private readonly IExtendedApiClient _apiClient;
-        private readonly INavigationService _navigationService;
-
         /// <summary>
         /// Initializes a new instance of the SearchViewModel class.
         /// </summary>
-        public SearchViewModel(IExtendedApiClient apiClient, INavigationService navigationService)
+        public SearchViewModel(IConnectionManager connectionManager, INavigationService navigationService)
+            : base(navigationService, connectionManager)
         {
-            _apiClient = apiClient;
-            _navigationService = navigationService;
-
             SearchResults = new List<Group<SearchHint>>();
 
             if (IsInDesignMode)

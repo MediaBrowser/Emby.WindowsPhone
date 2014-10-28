@@ -1,20 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model;
+using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Playlists;
 using MediaBrowser.Model.Querying;
-using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Converters;
-using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Model.Interfaces;
 using MediaBrowser.WindowsPhone.Resources;
-using ScottIsAFool.WindowsPhone.ViewModel;
+using MediaBrowser.WindowsPhone.Services;
+
 
 namespace MediaBrowser.WindowsPhone.ViewModel.Playlists
 {
@@ -26,19 +25,15 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Playlists
     /// </summary>
     public class AddToPlaylistViewModel : ViewModelBase
     {
-        private readonly INavigationService _navigationService;
-        private readonly IExtendedApiClient _apiClient;
-
         private bool _playlistsLoaded;
         private List<BaseItemDto> _listOfItemsToAdd;
 
         /// <summary>
         /// Initializes a new instance of the AddToPlaylistViewModel class.
         /// </summary>
-        public AddToPlaylistViewModel(INavigationService navigationService, IExtendedApiClient apiClient)
+        public AddToPlaylistViewModel(INavigationService navigationService, IConnectionManager connectionManager)
+            : base (navigationService, connectionManager)
         {
-            _navigationService = navigationService;
-            _apiClient = apiClient;
         }
 
         public bool IsAddingToPlaylist { get; set; }

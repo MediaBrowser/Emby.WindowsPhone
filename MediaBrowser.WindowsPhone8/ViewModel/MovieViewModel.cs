@@ -4,21 +4,18 @@ using System.Linq;
 using System.Threading.Tasks;
 using Cimbalino.Phone.Toolkit.Services;
 using GalaSoft.MvvmLight.Command;
-using MediaBrowser.Model;
+using JetBrains.Annotations;
+using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Net;
-using MediaBrowser.Services;
 using MediaBrowser.Model.Dto;
-using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Resources;
+using MediaBrowser.WindowsPhone.Services;
 using ScottIsAFool.WindowsPhone;
-using ScottIsAFool.WindowsPhone.ViewModel;
-using INavigationService = MediaBrowser.WindowsPhone.Model.Interfaces.INavigationService;
 
-#if WP8
+using INavigationService = MediaBrowser.WindowsPhone.Model.Interfaces.INavigationService;
 using LockScreenService = MediaBrowser.WindowsPhone.Services.LockScreenService;
-#endif
 
 namespace MediaBrowser.WindowsPhone.ViewModel
 {
@@ -33,17 +30,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     /// </summary>
     public class MovieViewModel : ViewModelBase
     {
-        private readonly INavigationService _navService;
-        private readonly IExtendedApiClient _apiClient;
-
         /// <summary>
         /// Initializes a new instance of the MovieViewModel class.
         /// </summary>
-        public MovieViewModel(INavigationService navService, IExtendedApiClient apiClient)
+        public MovieViewModel(INavigationService navigationService, IConnectionManager connectionManager)
+            : base(navigationService, connectionManager)
         {
-            _navService = navService;
-            _apiClient = apiClient;
-
             CanUpdateFavourites = true;
             if (IsInDesignMode)
             {
@@ -67,20 +59,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 WireCommands();
             }
         }
-
-        public override void WireMessages()
-        {
-            Messenger.Default.Register<NotificationMessage>(this, m =>
-            {
-
-            });
-        }
-
+        
         private void WireCommands()
         {
             MoviePageLoaded = new RelayCommand(async () =>
             {
-                if (SelectedMovie != null && _navService.IsNetworkAvailable)
+                if (SelectedMovie != null && _navigationService.IsNetworkAvailable)
                 {
                     SetProgressBar(AppResources.SysTrayGettingMovieInfo);
 
@@ -122,7 +106,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 }
                 catch (HttpException ex)
                 {
-                    Utils.HandleHttpException("AddRemoveFavouriteCommand (Movies)", ex, _navService, Log);
+                    Utils.HandleHttpException("AddRemoveFavouriteCommand (Movies)", ex, _navigationService, Log);
                     App.ShowMessage(AppResources.ErrorMakingChanges);
                 }
 
@@ -134,10 +118,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             ShowOtherFilmsCommand = new RelayCommand<BaseItemPerson>(person =>
             {
                 App.SelectedItem = person;
-                _navService.NavigateTo(Constants.Pages.ActorView);
+                _navigationService.NavigateTo(Constants.Pages.ActorView);
             });
 
-            NavigateTopage = new RelayCommand<BaseItemDto>(_navService.NavigateTo);
+            NavigateTopage = new RelayCommand<BaseItemDto>(_navigationService.NavigateTo);
 
 #if WP8
             SetPosterAsLockScreenCommand = new RelayCommand(async () =>
@@ -186,7 +170,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
             catch (HttpException ex)
             {
-                Utils.HandleHttpException("GetMovieDetails()", ex, _navService, Log);
+                Utils.HandleHttpException("GetMovieDetails()", ex, _navigationService, Log);
 
                 App.ShowMessage(AppResources.ErrorGettingExtraInfo);
                 result = false;
@@ -214,6 +198,13 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public Uri FavouriteIcon { get; set; }
 
         public BaseItemDto SelectedMovie { get; set; }
+
+        [UsedImplicitly]
+        private void OnSelectedMovieChanged()
+        {
+            ServerIdItem = SelectedMovie;
+        }
+
         public List<Group<BaseItemPerson>> CastAndCrew { get; set; }
         public string ImdbId { get; set; }
         public string RunTime { get; set; }

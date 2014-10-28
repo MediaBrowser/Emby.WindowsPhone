@@ -5,16 +5,15 @@ using System.Threading.Tasks;
 using System.Windows;
 using GalaSoft.MvvmLight.Command;
 using JetBrains.Annotations;
-using MediaBrowser.Model;
+using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Querying;
-using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Model.Interfaces;
 using MediaBrowser.WindowsPhone.Resources;
+using MediaBrowser.WindowsPhone.Services;
 using ScottIsAFool.WindowsPhone;
-using ScottIsAFool.WindowsPhone.ViewModel;
 
 namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
 {
@@ -26,9 +25,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
     /// </summary>
     public class MovieCollectionViewModel : ViewModelBase
     {
-        private readonly INavigationService _navigationService;
-        private readonly IExtendedApiClient _apiClient;
-
         private bool _moviesLoaded;
         private bool _boxsetsLoaded;
         private bool _latestUnwatchedLoaded;
@@ -42,11 +38,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
         /// <summary>
         /// Initializes a new instance of the MovieCollectionViewModel class.
         /// </summary>
-        public MovieCollectionViewModel(INavigationService navigationService, IExtendedApiClient apiClient)
+        public MovieCollectionViewModel(INavigationService navigationService, IConnectionManager connectionManager)
+            : base(navigationService, connectionManager)
         {
-            _apiClient = apiClient;
-            _navigationService = navigationService;
-
             if (IsInDesignMode)
             {
                 UnseenHeader = new BaseItemDto

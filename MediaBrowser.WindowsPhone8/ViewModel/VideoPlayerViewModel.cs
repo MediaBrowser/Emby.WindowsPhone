@@ -5,23 +5,21 @@ using System.Globalization;
 using System.Linq;
 using System.Windows;
 using System.Windows.Threading;
-using Cimbalino.Phone.Toolkit.Extensions;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
-using MediaBrowser.Model;
+using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.LiveTv;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Session;
-using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Extensions;
 using MediaBrowser.WindowsPhone.Messaging;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Model.Interfaces;
 using MediaBrowser.WindowsPhone.Resources;
+using MediaBrowser.WindowsPhone.Services;
 using Microsoft.PlayerFramework;
-using ScottIsAFool.WindowsPhone.ViewModel;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -35,22 +33,18 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     /// </summary>
     public class VideoPlayerViewModel : ViewModelBase
     {
-        private readonly IExtendedApiClient _apiClient;
-        private readonly INavigationService _navigationService;
-
         private readonly DispatcherTimer _timer;
 
         private bool _isResume;
-        private long _startPositionTicks = 0;
+        private long _startPositionTicks;
         private string _itemId;
 
         /// <summary>
         /// Initializes a new instance of the VideoPlayerViewModel class.
         /// </summary>
-        public VideoPlayerViewModel(IExtendedApiClient apiClient, INavigationService navigationService)
+        public VideoPlayerViewModel(IConnectionManager connectionManager, INavigationService navigationService)
+            : base(navigationService, connectionManager)
         {
-            _apiClient = apiClient;
-            _navigationService = navigationService;
             _timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(10) };
             _timer.Tick += TimerOnTick;
         }

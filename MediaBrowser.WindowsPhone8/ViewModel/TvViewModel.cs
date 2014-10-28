@@ -3,22 +3,19 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
 using GalaSoft.MvvmLight.Command;
-using GalaSoft.MvvmLight.Ioc;
 using JetBrains.Annotations;
-using MediaBrowser.Model;
+using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Querying;
-using MediaBrowser.Services;
-using MediaBrowser.WindowsPhone.Model;
 using GalaSoft.MvvmLight.Messaging;
 using System.Linq;
 using System.Threading.Tasks;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.WindowsPhone.Model.Interfaces;
 using MediaBrowser.WindowsPhone.Resources;
-using MediaBrowser.WindowsPhone.ViewModel.Playlists;
+using MediaBrowser.WindowsPhone.Services;
 using ScottIsAFool.WindowsPhone;
-using ScottIsAFool.WindowsPhone.ViewModel;
+
 
 namespace MediaBrowser.WindowsPhone.ViewModel
 {
@@ -33,20 +30,15 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     /// </summary>
     public class TvViewModel : ViewModelBase
     {
-        private readonly INavigationService _navigationService;
-        private readonly IExtendedApiClient _apiClient;
-
         public bool ShowDataLoaded;
         public bool SeasonDataLoaded;
 
         /// <summary>
         /// Initializes a new instance of the TvViewModel class.
         /// </summary>
-        public TvViewModel(INavigationService navigationService, IExtendedApiClient apiClient)
+        public TvViewModel(INavigationService navigationService, IConnectionManager connectionManager) 
+            : base(navigationService, connectionManager)
         {
-            _navigationService = navigationService;
-            _apiClient = apiClient;
-
             RecentItems = new ObservableCollection<BaseItemDto>();
             Episodes = new List<BaseItemDto>();
             CanUpdateFavourites = true;

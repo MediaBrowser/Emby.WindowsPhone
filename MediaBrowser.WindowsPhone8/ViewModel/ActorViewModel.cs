@@ -1,20 +1,16 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Command;
-using GalaSoft.MvvmLight.Messaging;
-using MediaBrowser.Model;
+using JetBrains.Annotations;
+using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Querying;
-using MediaBrowser.Services;
-using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Model.Interfaces;
 using MediaBrowser.WindowsPhone.Resources;
+using MediaBrowser.WindowsPhone.Services;
 using ScottIsAFool.WindowsPhone;
-using ScottIsAFool.WindowsPhone.ViewModel;
 
 namespace MediaBrowser.WindowsPhone.ViewModel
 {
@@ -26,19 +22,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     /// </summary>
     public class ActorViewModel : ViewModelBase
     {
-        private readonly IExtendedApiClient _apiClient;
-        private readonly INavigationService _navigationService;
-
         private bool _dataLoaded;
         
         /// <summary>
         /// Initializes a new instance of the ActorViewModel class.
         /// </summary>
-        public ActorViewModel(IExtendedApiClient apiClient, INavigationService navigationService)
+        public ActorViewModel(IConnectionManager connectionManager, INavigationService navigationService)
+            : base (navigationService, connectionManager)
         {
-            _apiClient = apiClient;
-            _navigationService = navigationService;
-
             if (IsInDesignMode)
             {
                 SelectedPerson = new BaseItemPerson {Name = "Jeff Goldblum"};
@@ -68,6 +59,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public BaseItemDto SelectedActor { get; set; }
         public BaseItemPerson SelectedPerson { get; set; }
         public List<Group<BaseItemDto>> Films { get; set; }
+
+        [UsedImplicitly]
+        private void OnSelectedPersonChanged()
+        {
+            //ServerIdItem = SelectedPerson;
+        }
 
         public RelayCommand PageLoadedCommand
         {
@@ -99,6 +96,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 }
 
                 SelectedActor = actorResponse;
+                ServerIdItem = SelectedActor;
 
                 var query = new ItemQuery
                 {
@@ -110,7 +108,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     Recursive = true
                 };
 
-                var itemResponse = await _apiClient.GetItemsAsync(query, default(CancellationToken));
+                var itemResponse = await _apiClient.GetItemsAsync(query);
 
                 return await SetFilms(itemResponse);
             }

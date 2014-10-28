@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Linq;
-using System.Windows.Controls;
 using System.Windows.Data;
 using GalaSoft.MvvmLight.Ioc;
-using MediaBrowser.Model;
+using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.LiveTv;
@@ -18,7 +17,8 @@ namespace MediaBrowser.WindowsPhone.Converters
             if (value != null)
             {
                 var type = value.GetType();
-                var apiClient = SimpleIoc.Default.GetInstance<IExtendedApiClient>();
+                var manager = SimpleIoc.Default.GetInstance<IConnectionManager>();
+                var apiClient = manager.GetApiClient(null);
                 if (type == typeof(BaseItemDto))
                 {
 
@@ -153,7 +153,7 @@ namespace MediaBrowser.WindowsPhone.Converters
             return "";
         }
 
-        private static object GetDtoImage(BaseItemDto item, string imageType, IExtendedApiClient apiClient)
+        private static object GetDtoImage(BaseItemDto item, string imageType, IApiClient apiClient)
         {
             if (item.ImageTags.IsNullOrEmpty() && item.BackdropImageTags.IsNullOrEmpty())
             {

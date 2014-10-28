@@ -6,6 +6,7 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Windows;
 using MediaBrowser.Model;
+using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Library;
@@ -13,7 +14,6 @@ using MediaBrowser.Model.LiveTv;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Querying;
 using MediaBrowser.Model.Session;
-using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Extensions;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Resources;
@@ -218,7 +218,7 @@ namespace MediaBrowser.WindowsPhone
             });
         }
 
-        internal static async Task<bool> GetServerConfiguration(IExtendedApiClient apiClient, ILog logger)
+        internal static async Task<bool> GetServerConfiguration(IApiClient apiClient, ILog logger)
         {
             try
             {
@@ -245,7 +245,7 @@ namespace MediaBrowser.WindowsPhone
             }
         }
 
-        internal static async Task CheckProfiles(INavigationService navigationService, ILog logger, IExtendedApiClient apiClient)
+        internal static async Task CheckProfiles(INavigationService navigationService, ILog logger, IApiClient apiClient)
         {
             var clients = false;
             var loginPage = clients ? Constants.Pages.ManualUsernameView : Constants.Pages.ChooseProfileView;
@@ -292,7 +292,7 @@ namespace MediaBrowser.WindowsPhone
             return HandleHttpException(ex, message, navigationService, log);
         }
 
-        internal static async Task<List<PlaylistItem>> ToPlayListItems(this List<BaseItemDto> list, IExtendedApiClient apiClient)
+        internal static async Task<List<PlaylistItem>> ToPlayListItems(this List<BaseItemDto> list, IApiClient apiClient)
         {
             var newList = new List<PlaylistItem>();
             await Task.Factory.StartNew(() => list.ForEach(item =>

@@ -44,14 +44,14 @@ namespace MediaBrowser.WindowsPhone.Views
             {
                 if (App.SelectedItem is BaseItemDto)
                 {
-                    DataContext = new FolderViewModel(ViewModelLocator.NavigationService, ViewModelLocator.ApiClient)
+                    DataContext = new FolderViewModel(ViewModelLocator.NavigationService, ViewModelLocator.ConnectionManager)
                                       {
                                           SelectedFolder = (BaseItemDto) App.SelectedItem
                                       };
                 }
                 else if (App.SelectedItem is BaseItemPerson)
                 {
-                    DataContext = new FolderViewModel(ViewModelLocator.NavigationService, ViewModelLocator.ApiClient)
+                    DataContext = new FolderViewModel(ViewModelLocator.NavigationService, ViewModelLocator.ConnectionManager)
                     {
                         SelectedPerson = (BaseItemPerson)App.SelectedItem
                     };

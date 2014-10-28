@@ -1,12 +1,11 @@
 ﻿using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
-using MediaBrowser.Model;
+using JetBrains.Annotations;
+using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Dto;
-using MediaBrowser.Services;
-using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Model.Interfaces;
-using ScottIsAFool.WindowsPhone.ViewModel;
+using MediaBrowser.WindowsPhone.Services;
 
 namespace MediaBrowser.WindowsPhone.ViewModel
 {
@@ -18,21 +17,23 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     /// </summary>
     public class GenericItemViewModel : ViewModelBase
     {
-        private readonly INavigationService _navigationService;
-        private readonly IExtendedApiClient _apiClient;
-
         private bool _dataLoaded;
 
         /// <summary>
         /// Initializes a new instance of the GenericItemViewModel class.
         /// </summary>
-        public GenericItemViewModel(INavigationService navigationService, IExtendedApiClient apiClient)
+        public GenericItemViewModel(INavigationService navigationService, IConnectionManager connectionManager)
+            : base(navigationService, connectionManager)
         {
-            _navigationService = navigationService;
-            _apiClient = apiClient;
         }
 
         public BaseItemDto SelectedItem { get; set; }
+
+        [UsedImplicitly]
+        private void OnSelectedItemChanged()
+        {
+            ServerIdItem = SelectedItem;
+        }
 
         public RelayCommand PageLoadedCommand
         {

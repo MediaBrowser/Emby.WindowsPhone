@@ -15,9 +15,8 @@ using Cimbalino.Phone.Toolkit.Services;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Ioc;
 using JetBrains.Annotations;
-using MediaBrowser.Model;
+using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Dto;
-using MediaBrowser.Model.Net;
 using MediaBrowser.WindowsPhone.Extensions;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Model.Streaming;
@@ -25,7 +24,7 @@ using MediaBrowser.WindowsPhone.Resources;
 using Microsoft.Phone.Net.NetworkInformation;
 using Microsoft.Phone.Notification;
 using Newtonsoft.Json;
-using ScottIsAFool.WindowsPhone.ViewModel;
+
 using INavigationService = MediaBrowser.WindowsPhone.Model.Interfaces.INavigationService;
 using LockScreenService = MediaBrowser.WindowsPhone.Services.LockScreenService;
 
@@ -39,21 +38,16 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Settings
     /// </summary>
     public class SettingsViewModel : ViewModelBase
     {
-        private readonly IExtendedApiClient _apiClient;
-        private readonly INavigationService _navigationService;
         private readonly IApplicationSettingsService _applicationSettings;
-
-        private const string PushServiceName = "MediaBrowser.WindowsPhone.PushService";
 
         public bool LoadingFromSettings;
 
         /// <summary>
         /// Initializes a new instance of the PushViewModel class.
         /// </summary>
-        public SettingsViewModel(IExtendedApiClient apiClient, INavigationService navigationService, IApplicationSettingsService applicationSettings)
+        public SettingsViewModel(IConnectionManager connectionManager, INavigationService navigationService, IApplicationSettingsService applicationSettings)
+            : base(navigationService, connectionManager)
         {
-            _apiClient = apiClient;
-            _navigationService = navigationService;
             _applicationSettings = applicationSettings;
 
             if (IsInDesignMode)

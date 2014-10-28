@@ -2,8 +2,8 @@
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.LiveTv;
 using MediaBrowser.Model.System;
-using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Model;
+using MediaBrowser.WindowsPhone.Services;
 using PropertyChanged;
 
 namespace MediaBrowser.Model

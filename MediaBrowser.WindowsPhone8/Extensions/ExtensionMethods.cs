@@ -1,4 +1,4 @@
-﻿using MediaBrowser.Model;
+﻿using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Logging;
 using MediaBrowser.Model.Search;
@@ -28,7 +28,7 @@ namespace MediaBrowser.WindowsPhone.Extensions
             }
         }
 
-        internal static PlaylistItem ToPlaylistItem(this BaseItemDto item, IExtendedApiClient apiClient)
+        internal static PlaylistItem ToPlaylistItem(this BaseItemDto item, IApiClient apiClient)
         {
             var streamUrl = apiClient.GetAudioStreamUrl(new StreamOptions
             {

@@ -5,16 +5,15 @@ using System.Threading.Tasks;
 using System.Windows;
 using GalaSoft.MvvmLight.Command;
 using JetBrains.Annotations;
-using MediaBrowser.Model;
+using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Querying;
-using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Model.Interfaces;
 using MediaBrowser.WindowsPhone.Resources;
+using MediaBrowser.WindowsPhone.Services;
 using ScottIsAFool.WindowsPhone;
-using ScottIsAFool.WindowsPhone.ViewModel;
 
 namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
 {
@@ -26,9 +25,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
     /// </summary>
     public class TvCollectionViewModel : ViewModelBase
     {
-        private readonly INavigationService _navigationService;
-        private readonly IExtendedApiClient _apiClient;
-
         private bool _nextUpLoaded;
         private bool _latestUnwatchedLoaded;
         private bool _upcomingLoaded;
@@ -44,11 +40,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
         /// <summary>
         /// Initializes a new instance of the TvCollectionViewModel class.
         /// </summary>
-        public TvCollectionViewModel(INavigationService navigationService, IExtendedApiClient apiClient)
+        public TvCollectionViewModel(INavigationService navigationService, IConnectionManager connectionManager)
+            : base(navigationService, connectionManager)
         {
-            _navigationService = navigationService;
-            _apiClient = apiClient;
-
             if (IsInDesignMode)
             {
                 NextUpList = new List<BaseItemDto>
