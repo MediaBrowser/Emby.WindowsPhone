@@ -1,6 +1,7 @@
 ﻿using System.Threading;
 using GalaSoft.MvvmLight.Command;
 using MediaBrowser.Model.ApiClient;
+using MediaBrowser.Model.Net;
 using MediaBrowser.WindowsPhone.Model.Interfaces;
 using MediaBrowser.WindowsPhone.Resources;
 using MediaBrowser.WindowsPhone.Services;
@@ -50,21 +51,28 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Settings
 
                     SetProgressBar(AppResources.SysTrayAuthenticating);
 
-                    var success = await AuthenticationService.Current.LoginWithConnect(Username, Password);
+                    try
+                    {
+                        var success = await AuthenticationService.Current.LoginWithConnect(Username, Password);
+
+                        if (success)
+                        {
+                            await ConnectionManager.Connect(default(CancellationToken));
+                            var user = await ApiClient.GetUserAsync(ApiClient.CurrentUserId);
+                            AuthenticationService.Current.SetUser(user);
+                            NavigationService.NavigateTo(Constants.Pages.MainPage, true);
+                        }
+                        else
+                        {
+                            App.ShowMessage(AppResources.ErrorSigningIn);
+                        }
+                    }
+                    catch (HttpException ex)
+                    {
+                        Utils.HandleHttpException("SignInWithConnectCommand", ex, NavigationService, Log);
+                    }
 
                     SetProgressBar();
-
-                    if(success)
-                    {
-                        await ConnectionManager.Connect(default(CancellationToken));
-                        var user = await ApiClient.GetUserAsync(ApiClient.CurrentUserId);
-                        AuthenticationService.Current.SetUser(user);
-                        NavigationService.NavigateTo(Constants.Pages.MainPage);
-                    }
-                    else
-                    {
-                        App.ShowMessage(AppResources.ErrorSigningIn);
-                    }
                 });
             }
         }

@@ -127,7 +127,7 @@ namespace MediaBrowser.WindowsPhone.Services
             get { return _connectionManager.CurrentApiClient != null ? _connectionManager.CurrentApiClient.CurrentUserId : null; }
         }
 
-        public bool SignedInUsingConnect { get { return LoggedInConnectUser != null; } }
+        public bool SignedInUsingConnect { get { return LoggedInConnectUser != null && LoggedInUser != null; } }
 
         public ConnectUser LoggedInConnectUser { get; set; }
 

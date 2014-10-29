@@ -141,10 +141,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             await AuthenticationService.Current.Login(selectedUserName, pinCode);
             if (AuthenticationService.Current.IsLoggedIn)
             {
-                Services.LockScreenService.Current.Start();
-                TileService.Current.UpdatePrimaryTile(App.SpecificSettings.DisplayBackdropOnTile, App.SpecificSettings.UseRichWideTile, App.SpecificSettings.UseTransparentTile).ConfigureAwait(false);
+                await Utils.StartEverything(NavigationService, Log, ApiClient);
                 var page = TileService.Current.PinnedPage();
-                NavigationService.NavigateTo(page + "?clearbackstack=true");
+                NavigationService.NavigateTo(page, true);
                 Username = Password = string.Empty;
             }
             else

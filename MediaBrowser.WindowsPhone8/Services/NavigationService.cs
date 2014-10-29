@@ -35,6 +35,12 @@ namespace MediaBrowser.WindowsPhone.Services
             }
         }
 
+        public void NavigateTo(string uri, bool clearBackStack)
+        {
+            var extra = clearBackStack ? "?clearbackstack=true" : string.Empty;
+            NavigateTo(uri + extra);
+        }
+
         public void NavigateTo(BaseItemInfo item)
         {
             var dto = new BaseItemDto

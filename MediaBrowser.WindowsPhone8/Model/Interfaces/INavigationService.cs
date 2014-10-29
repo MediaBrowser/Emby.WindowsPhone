@@ -9,5 +9,6 @@ namespace MediaBrowser.WindowsPhone.Model.Interfaces
         bool IsOnWifi { get; }
         void NavigateTo(BaseItemDto item);
         void NavigateTo(BaseItemInfo item);
+        void NavigateTo(string uri, bool clearBackStack);
     }
 }
