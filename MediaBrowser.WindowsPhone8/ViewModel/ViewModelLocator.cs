@@ -82,6 +82,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                 if(!SimpleIoc.Default.IsRegistered<Services.LockScreenService>())
                     SimpleIoc.Default.Register<Services.LockScreenService>(true);
+
+                if(!SimpleIoc.Default.IsRegistered<TileService>())
+                    SimpleIoc.Default.Register<TileService>(true);
             }
 
             SimpleIoc.Default.Register<MainViewModel>();
@@ -115,6 +118,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             SimpleIoc.Default.Register<ServerPlaylistsViewModel>();
             SimpleIoc.Default.Register<AddToPlaylistViewModel>();
             SimpleIoc.Default.Register<PhotoUploadViewModel>();
+            SimpleIoc.Default.Register<MbConnectViewModel>();
         }
 
         /// <summary>
@@ -375,6 +379,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             get { return ServiceLocator.Current.GetInstance<PhotoUploadViewModel>(); }
         }
 
+        public MbConnectViewModel MbConnect
+        {
+            get { return ServiceLocator.Current.GetInstance<MbConnectViewModel>(); }
+        }
+
         public static TvViewModel GetTvViewModel(string itemId)
         {
             return ServiceLocator.Current.GetInstance<TvViewModel>(itemId);
@@ -393,6 +402,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public static INavigationService NavigationService
         {
             get { return ServiceLocator.Current.GetInstance<INavigationService>(); }
+        }
+
+        public static AuthenticationService Auth
+        {
+            get { return ServiceLocator.Current.GetInstance<AuthenticationService>(); }
         }
 
         /// <summary>

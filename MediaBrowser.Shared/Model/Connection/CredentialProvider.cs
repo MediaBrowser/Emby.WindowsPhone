@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using System.Windows;
 using Cimbalino.Phone.Toolkit.Services;
 using MediaBrowser.ApiInteraction;
 using MediaBrowser.Model.ApiClient;
@@ -24,11 +25,19 @@ namespace MediaBrowser.WindowsPhone.Model.Connection
             return credentials ?? new ServerCredentials();
         }
 
+        private object lockObject = new object();
+
         public async Task SaveServerCredentials(ServerCredentials configuration)
         {
-            var json = JsonConvert.SerializeObject(configuration);
+            Deployment.Current.Dispatcher.BeginInvoke(async () =>
+            {
+                lock (lockObject)
+                {
+                    var json = JsonConvert.SerializeObject(configuration);
 
-            await _storageService.WriteAllTextAsync(Constants.Settings.ServerCredentialSettings, json);
+                    _storageService.WriteAllTextAsync(Constants.Settings.ServerCredentialSettings, json).ConfigureAwait(false);
+                }
+            });
         }
     }
 }

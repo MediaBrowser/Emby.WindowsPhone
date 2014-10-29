@@ -272,7 +272,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
             {
                 var query = new ItemQuery
                 {
-                    UserId = AuthenticationService.Current.LoggedInUser.Id,
+                    UserId = AuthenticationService.Current.LoggedInUserId,
                     Recursive = true,
                     Fields = new[] { ItemFields.ParentId },
                     ParentId = item.Id,
@@ -307,7 +307,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
             {
                 var query = new ItemQuery
                 {
-                    UserId = AuthenticationService.Current.LoggedInUser.Id,
+                    UserId = AuthenticationService.Current.LoggedInUserId,
                     Artists = new[] {artistName},
                     Recursive = true,
                     Fields = new[] { ItemFields.ParentId},
@@ -341,7 +341,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
             {
                 var query = new ItemQuery
                 {
-                    UserId = AuthenticationService.Current.LoggedInUser.Id,
+                    UserId = AuthenticationService.Current.LoggedInUserId,
                     Genres = new[] {genreName},
                     Recursive = true,
                     IncludeItemTypes = new[] {"Audio"}
@@ -452,7 +452,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                 Fields= new []{ItemFields.SortName},
                 SortOrder = SortOrder.Ascending,
                 Recursive = true,
-                UserId = AuthenticationService.Current.LoggedInUser.Id
+                UserId = AuthenticationService.Current.LoggedInUserId
             };
 
             try
@@ -487,7 +487,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                 IncludeItemTypes = new[] { "Audio", "MusicVideo" },
                 Recursive = true,
                 Fields = new[] {  ItemFields.DateCreated },
-                UserId = AuthenticationService.Current.LoggedInUser.Id
+                UserId = AuthenticationService.Current.LoggedInUserId
             };
 
             try
@@ -518,7 +518,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                 Recursive = true,
                 Fields = new[] { ItemFields.ParentId },
                 IncludeItemTypes = new[] { "Audio" },
-                UserId = AuthenticationService.Current.LoggedInUser.Id
+                UserId = AuthenticationService.Current.LoggedInUserId
             };
 
             try
@@ -551,7 +551,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                 Recursive = true,
                 Fields = new[] { ItemFields.ParentId, ItemFields.SortName },
                 IncludeItemTypes = new[] { "MusicAlbum" },
-                UserId = AuthenticationService.Current.LoggedInUser.Id
+                UserId = AuthenticationService.Current.LoggedInUserId
             };
             try
             {

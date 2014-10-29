@@ -233,7 +233,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                     CanUpdateFavourites = false;
 
-                    item.UserData = await ApiClient.UpdateFavoriteStatusAsync(item.Id, AuthenticationService.Current.LoggedInUser.Id, !item.UserData.IsFavorite);
+                    item.UserData = await ApiClient.UpdateFavoriteStatusAsync(item.Id, AuthenticationService.Current.LoggedInUserId, !item.UserData.IsFavorite);
                 }
                 catch (HttpException ex)
                 {
@@ -292,7 +292,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 Log.Info("Getting information for Artist [{0}] ({1})", SelectedArtist.Name, SelectedArtist.Id);
 
-                SelectedArtist = await ApiClient.GetItemAsync(SelectedArtist.Id, AuthenticationService.Current.LoggedInUser.Id);
+                SelectedArtist = await ApiClient.GetItemAsync(SelectedArtist.Id, AuthenticationService.Current.LoggedInUserId);
             }
             catch (HttpException ex)
             {
@@ -320,7 +320,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 var query = new ItemQuery
                 {
-                    UserId = AuthenticationService.Current.LoggedInUser.Id,
+                    UserId = AuthenticationService.Current.LoggedInUserId,
                     Artists = new[] {SelectedArtist.Name},
                     Recursive = true,
                     Fields = new[] { ItemFields.ParentId},
@@ -351,7 +351,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 var query = new ItemQuery
                 {
-                    UserId = AuthenticationService.Current.LoggedInUser.Id,
+                    UserId = AuthenticationService.Current.LoggedInUserId,
                     Artists = new[] {SelectedArtist.Name},
                     Recursive = true,
                     Fields = new[] { ItemFields.ParentId},

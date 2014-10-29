@@ -55,7 +55,7 @@
                Grid.ColumnSpan="2"
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
-               Stretch="UniformToFill"/>
+               Stretch="Fill"/>
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel"
@@ -96,7 +96,7 @@
                     Width="240"
                     x:Name="QuitButton"
                     Click="QuitButton_OnClick" />
-            <Button Content="{Binding LocalizedResources.Settings, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+            <Button Content="{Binding LocalizedResources.AppBarNext, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                     Width="240"
                     HorizontalAlignment="Right"
                     x:Name="SettingsButton"

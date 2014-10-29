@@ -102,7 +102,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                     CanUpdateFavourites = false;
 
-                    SelectedMovie.UserData = await ApiClient.UpdateFavoriteStatusAsync(SelectedMovie.Id, AuthenticationService.Current.LoggedInUser.Id, !SelectedMovie.UserData.IsFavorite);
+                    SelectedMovie.UserData = await ApiClient.UpdateFavoriteStatusAsync(SelectedMovie.Id, AuthenticationService.Current.LoggedInUserId, !SelectedMovie.UserData.IsFavorite);
                 }
                 catch (HttpException ex)
                 {
@@ -152,7 +152,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 Log.Info("Getting details for movie [{0}] ({1})", SelectedMovie.Name, SelectedMovie.Id);
 
-                var item = await ApiClient.GetItemAsync(SelectedMovie.Id, AuthenticationService.Current.LoggedInUser.Id);
+                var item = await ApiClient.GetItemAsync(SelectedMovie.Id, AuthenticationService.Current.LoggedInUserId);
                 SelectedMovie = item;
                 CastAndCrew = Utils.GroupCastAndCrew(item.People);
                 Chapters = SelectedMovie.Chapters.Select(x => new Chapter(x)

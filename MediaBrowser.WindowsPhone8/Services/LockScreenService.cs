@@ -38,6 +38,7 @@ namespace MediaBrowser.WindowsPhone.Services
         public LockScreenService(IConnectionManager connectionManager)
         {
             _connectionManager = connectionManager;
+            Current = this;
         }
 
         public string LockScreenImageUrl
@@ -175,7 +176,7 @@ namespace MediaBrowser.WindowsPhone.Services
                 IncludeItemTypes = new[] {"Season", "Series", "Movie"},
                 Limit = limit,
                 SortBy = new[] {ItemSortBy.Random},
-                UserId = AuthenticationService.Current.LoggedInUser.Id,
+                UserId = AuthenticationService.Current.LoggedInUserId,
                 ImageTypes = new []{ImageType.Primary},
                 Recursive = true
             };

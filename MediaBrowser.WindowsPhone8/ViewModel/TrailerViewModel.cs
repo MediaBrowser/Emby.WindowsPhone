@@ -78,7 +78,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     {
                         Log.Info("Getting information for trailer [{0}] ({1})", SelectedTrailer.Name, SelectedTrailer.Id);
 
-                        SelectedTrailer = await ApiClient.GetItemAsync(SelectedTrailer.Id, AuthenticationService.Current.LoggedInUser.Id);
+                        SelectedTrailer = await ApiClient.GetItemAsync(SelectedTrailer.Id, AuthenticationService.Current.LoggedInUserId);
 
                         CastAndCrew = Utils.GroupCastAndCrew(SelectedTrailer.People);
 

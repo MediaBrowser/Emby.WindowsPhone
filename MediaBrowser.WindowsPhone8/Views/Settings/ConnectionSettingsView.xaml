@@ -74,7 +74,7 @@
                         Grid.Row="0"
                         Margin="12,17,0,28">
                 <controls:MediaBrowserLogo AltText="{Binding LocalizedResources.Settings, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToUppercaseConverter}}" />
-                <TextBlock Text="{Binding LocalizedResources.LabelConnection, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                <TextBlock Text="{Binding LocalizedResources.HeaderManualConnection, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                            Margin="9,-7,0,0"
                            Style="{StaticResource PhoneTextTitle1Style}" />
             </StackPanel>
@@ -114,9 +114,6 @@
                                            Content="{Binding LocalizedResources.LabelConnect, Source={StaticResource LocalizedStrings}}"
                                            TapCommand="{Binding Settings.TestConnectionCommand, Source={StaticResource Locator}}"
                                            Style="{StaticResource HeroButtonStyle}" />
-                    <controls:CustomButton Content="{Binding LocalizedResources.LabelFindServer, Source={StaticResource LocalizedStrings}}"
-                                           TapCommand="{Binding Main.NavigateToAPage, Source={StaticResource Locator}}"
-                                           CommandParameter="/Views/FindServerView.xaml" />
                 </StackPanel>
             </Grid>
         </Grid>

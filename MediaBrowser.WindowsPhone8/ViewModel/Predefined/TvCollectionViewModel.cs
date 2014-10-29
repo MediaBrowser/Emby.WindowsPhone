@@ -99,7 +99,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
 
                     try
                     {
-                        item.UserData = await ApiClient.MarkPlayedAsync(item.Id, AuthenticationService.Current.LoggedInUser.Id, DateTime.Now);
+                        item.UserData = await ApiClient.MarkPlayedAsync(item.Id, AuthenticationService.Current.LoggedInUserId, DateTime.Now);
                     }
                     catch (HttpException ex)
                     {
@@ -118,7 +118,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
 
                 var query = new NextUpQuery
                 {
-                    UserId = AuthenticationService.Current.LoggedInUser.Id,
+                    UserId = AuthenticationService.Current.LoggedInUserId,
                     Fields = new[] { ItemFields.PrimaryImageAspectRatio, ItemFields.ParentId },
                 };
 
@@ -146,7 +146,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
 
                 var query = new NextUpQuery
                 {
-                    UserId = AuthenticationService.Current.LoggedInUser.Id,
+                    UserId = AuthenticationService.Current.LoggedInUserId,
                     Fields = new[] { ItemFields.ParentId },
                     Limit = 30,
                 };
@@ -175,7 +175,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
 
                 var query = new ItemQuery
                 {
-                    UserId = AuthenticationService.Current.LoggedInUser.Id,
+                    UserId = AuthenticationService.Current.LoggedInUserId,
                     SortBy = new[] { "DateCreated" },
                     SortOrder = SortOrder.Descending,
                     IncludeItemTypes = new[] { "Episode" },
@@ -211,7 +211,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
 
                 var query = new ItemQuery
                 {
-                    UserId = AuthenticationService.Current.LoggedInUser.Id,
+                    UserId = AuthenticationService.Current.LoggedInUserId,
                     SortBy = new[] { "SortName" },
                     SortOrder = SortOrder.Ascending,
                     IncludeItemTypes = new[] { "Series" },
@@ -248,7 +248,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                     IncludeItemTypes = new[] { "Series" },
                     Recursive = true,
                     Fields = new[] { ItemFields.DateCreated },
-                    UserId = AuthenticationService.Current.LoggedInUser.Id
+                    UserId = AuthenticationService.Current.LoggedInUserId
                 };
 
                 var items = await ApiClient.GetGenresAsync(query);

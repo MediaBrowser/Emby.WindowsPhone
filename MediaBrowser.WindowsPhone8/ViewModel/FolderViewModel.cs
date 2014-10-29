@@ -194,7 +194,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 var query = new ItemQuery
                 {
-                    UserId = AuthenticationService.Current.LoggedInUser.Id,
+                    UserId = AuthenticationService.Current.LoggedInUserId,
                     SortBy = new[] {ItemSortBy.SortName},
                     SortOrder = SortOrder.Ascending,
                     Fields = new[]

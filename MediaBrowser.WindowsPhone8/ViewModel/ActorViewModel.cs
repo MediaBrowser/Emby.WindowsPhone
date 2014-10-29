@@ -88,7 +88,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 SetProgressBar(AppResources.SysTrayGettingDetails);
 
-                var actorResponse = await ApiClient.GetPersonAsync(SelectedPerson.Name, AuthenticationService.Current.LoggedInUser.Id);
+                var actorResponse = await ApiClient.GetPersonAsync(SelectedPerson.Name, AuthenticationService.Current.LoggedInUserId);
 
                 if (actorResponse == null)
                 {
@@ -101,7 +101,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 var query = new ItemQuery
                 {
                     Person = SelectedPerson.Name,
-                    UserId = AuthenticationService.Current.LoggedInUser.Id,
+                    UserId = AuthenticationService.Current.LoggedInUserId,
                     SortBy = new []{"SortName"},
                     SortOrder = SortOrder.Ascending,
                     Fields = new[] { ItemFields.People },

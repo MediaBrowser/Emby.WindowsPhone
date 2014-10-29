@@ -135,7 +135,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
 
                     try
                     {
-                        item.UserData = await ApiClient.MarkPlayedAsync(item.Id, AuthenticationService.Current.LoggedInUser.Id, DateTime.Now);
+                        item.UserData = await ApiClient.MarkPlayedAsync(item.Id, AuthenticationService.Current.LoggedInUserId, DateTime.Now);
                     }
                     catch (HttpException ex)
                     {
@@ -206,7 +206,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
 
                 var query = new ItemQuery
                 {
-                    UserId = AuthenticationService.Current.LoggedInUser.Id,
+                    UserId = AuthenticationService.Current.LoggedInUserId,
                     SortBy = new[] { "SortName" },
                     SortOrder = SortOrder.Ascending,
                     IncludeItemTypes = new[] { "Movie" },
@@ -248,7 +248,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
 
                 var query = new ItemQuery
                 {
-                    UserId = AuthenticationService.Current.LoggedInUser.Id,
+                    UserId = AuthenticationService.Current.LoggedInUserId,
                     SortBy = new[] {"SortName"},
                     SortOrder = SortOrder.Ascending,
                     IncludeItemTypes = new[] {"BoxSet"},
@@ -289,7 +289,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
 
                 var query = new ItemQuery
                 {
-                    UserId = AuthenticationService.Current.LoggedInUser.Id,
+                    UserId = AuthenticationService.Current.LoggedInUserId,
                     SortBy = new[] {"DateCreated"},
                     SortOrder = SortOrder.Descending,
                     IncludeItemTypes = new[] {"Movie"},
@@ -328,7 +328,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                     IncludeItemTypes = new[] { "Movie", "Trailer" },
                     Recursive = true,
                     Fields = new[] { ItemFields.DateCreated },
-                    UserId = AuthenticationService.Current.LoggedInUser.Id
+                    UserId = AuthenticationService.Current.LoggedInUserId
                 };
 
                 var items = await ApiClient.GetGenresAsync(query);

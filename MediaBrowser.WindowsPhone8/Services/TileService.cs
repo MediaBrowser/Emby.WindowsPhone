@@ -11,7 +11,6 @@ using System.Windows.Media.Imaging;
 using Cimbalino.Phone.Toolkit.Extensions;
 using Cimbalino.Phone.Toolkit.Helpers;
 using Cimbalino.Phone.Toolkit.Services;
-using MediaBrowser.Model;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
@@ -26,10 +25,9 @@ namespace MediaBrowser.WindowsPhone.Services
 {
     public class TileService : ShellTileWithCreateService
     {
+        private readonly IConnectionManager _connectionManager;
         private readonly ILog _logger;
-        private static TileService _current;
 
-        private IApiClient _apiClient;
         private IAsyncStorageService _storageService;
 
         private const string WideTileUrl = "shared\\shellcontent\\WideTileImage.png";
@@ -42,21 +40,15 @@ namespace MediaBrowser.WindowsPhone.Services
         private const string WideTileBackActualUrl = "isostore:/" + WideTileBackUrl;
         private const string MediumTileActualUrl = "isostore:/" + MediumTileBackUrl;
 
-        public TileService()
+        public static TileService Current { get; private set; }
+
+        public TileService(IConnectionManager connectionManager, IAsyncStorageService storageService)
         {
             _logger = new WPLogger(typeof(TileService));
-        }
-
-        public static TileService Current
-        {
-            get { return _current ?? (_current = new TileService()); }
-        }
-
-        public void StartService(IApiClient apiClient, IAsyncStorageService storageService)
-        {
             _logger.Info("Starting TileService");
-            _apiClient = apiClient;
+            _connectionManager = connectionManager;
             _storageService = storageService;
+            Current = this;
         }
 
         public IDictionary<string, string> PinnedUrlQuery { get; set; }
@@ -213,7 +205,7 @@ namespace MediaBrowser.WindowsPhone.Services
             var taskList = new List<Task>();
             foreach (var item in items.Items)
             {
-                var url = _apiClient.GetImageUrl(item, new ImageOptions
+                var url = _connectionManager.CurrentApiClient.GetImageUrl(item, new ImageOptions
                 {
                     ImageType = ImageType.Primary,
                     MaxWidth = 112,
@@ -278,7 +270,7 @@ namespace MediaBrowser.WindowsPhone.Services
             }
 
             var item = items.Items.FirstOrDefault();
-            var wideUrl = _apiClient.GetImageUrl(item, new ImageOptions
+            var wideUrl = _connectionManager.CurrentApiClient.GetImageUrl(item, new ImageOptions
             {
                 ImageType = ImageType.Backdrop,
                 MaxWidth = 691,
@@ -365,14 +357,14 @@ namespace MediaBrowser.WindowsPhone.Services
                 IncludeItemTypes = new[] { "Season", "Series", "Movie", "Album" },
                 Limit = limit,
                 SortBy = new[] { ItemSortBy.Random },
-                UserId = AuthenticationService.Current.LoggedInUser.Id,
+                UserId = AuthenticationService.Current.LoggedInUserId,
                 ImageTypes = new[] { imageType },
                 Recursive = true
             };
 
             try
             {
-                var itemResponse = await _apiClient.GetItemsAsync(query);
+                var itemResponse = await _connectionManager.CurrentApiClient.GetItemsAsync(query);
                 return itemResponse;
             }
             catch (HttpException ex)

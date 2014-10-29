@@ -58,7 +58,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                 var query = new SearchQuery
                 {
-                    UserId = AuthenticationService.Current.LoggedInUser.Id,
+                    UserId = AuthenticationService.Current.LoggedInUserId,
                     SearchTerm = SearchText
                 };
 

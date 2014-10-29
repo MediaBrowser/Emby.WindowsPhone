@@ -101,9 +101,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 var notifications = await ApiClient.GetNotificationsAsync(query);
                 Notifications = new ObservableCollection<Notification>(notifications.Notifications);
 
-                await ApiClient.MarkNotificationsRead(AuthenticationService.Current.LoggedInUser.Id, Notifications.Select(x => x.Id), true);
+                await ApiClient.MarkNotificationsRead(AuthenticationService.Current.LoggedInUserId, Notifications.Select(x => x.Id), true);
 
-                var summary = await ApiClient.GetNotificationsSummary(AuthenticationService.Current.LoggedInUser.Id);
+                var summary = await ApiClient.GetNotificationsSummary(AuthenticationService.Current.LoggedInUserId);
 
                 Messenger.Default.Send(new NotificationMessage(summary, Constants.Messages.NotificationCountMsg));
 

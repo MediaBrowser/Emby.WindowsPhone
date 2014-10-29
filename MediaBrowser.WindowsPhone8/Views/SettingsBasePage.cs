@@ -1,4 +1,5 @@
 using System;
+using Microsoft.Phone.Shell;
 using Microsoft.Phone.Tasks;
 using ScottIsAFool.WindowsPhone.Controls;
 using ScottIsAFool.WindowsPhone.Logging;
@@ -7,6 +8,12 @@ namespace MediaBrowser.WindowsPhone.Views
 {
     public class SettingsBasePage : BasePage
     {
+        public SettingsBasePage()
+        {
+            SystemTray.IsVisible = true;
+            SystemTray.Opacity = 0;
+        }
+
         public void EmailLogs()
         {
             new EmailComposeTask

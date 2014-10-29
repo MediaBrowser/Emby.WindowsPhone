@@ -463,7 +463,7 @@
     <value>overview</value>
   </data>
   <data name="LabelPassword" xml:space="preserve">
-    <value>password:</value>
+    <value>Password:</value>
   </data>
   <data name="LabelPort" xml:space="preserve">
     <value>Port:</value>
@@ -553,7 +553,7 @@
     <value>Unwatched:</value>
   </data>
   <data name="LabelUsername" xml:space="preserve">
-    <value>username:</value>
+    <value>Username:</value>
   </data>
   <data name="LabelViews" xml:space="preserve">
     <value>Views</value>
@@ -746,7 +746,7 @@
     <value>enter a username</value>
   </data>
   <data name="LabelLogIn" xml:space="preserve">
-    <value>Log In</value>
+    <value>Login</value>
   </data>
   <data name="LabelNoFoldersFound" xml:space="preserve">
     <value>No folders found</value>
@@ -1080,5 +1080,35 @@
   </data>
   <data name="LabelTurnPhotoUploadOnServer" xml:space="preserve">
     <value>In order for this to work, you must go to the  server dashboard, click on Devices, then Camera Upload, then enable your device. If you don't have access to this, please speak to your server administator.</value>
+  </data>
+  <data name="HeaderManualConnection" xml:space="preserve">
+    <value>Manual Connection</value>
+  </data>
+  <data name="HeaderWhatIsMbConnect" xml:space="preserve">
+    <value>What is MB Connect?</value>
+  </data>
+  <data name="LabelManualServerEntry" xml:space="preserve">
+    <value>Enter server details manually</value>
+  </data>
+  <data name="LabelMbConnect" xml:space="preserve">
+    <value>MB Connect</value>
+  </data>
+  <data name="LabelMbConnectAlreadyGotAccount" xml:space="preserve">
+    <value>If you have a Media Browser account, you can login now.</value>
+  </data>
+  <data name="LabelMbConnectDescriptionPara1" xml:space="preserve">
+    <value>With MB Connect, you can easily access your Media Browser server wherever you are and share with your family and friends</value>
+  </data>
+  <data name="LabelMbConnectFreeAccount" xml:space="preserve">
+    <value>If you don't already have a Media Browser account, you can sign up now, it's FREE!</value>
+  </data>
+  <data name="LabelSignUp" xml:space="preserve">
+    <value>Sign Up</value>
+  </data>
+  <data name="LabelSkip" xml:space="preserve">
+    <value>Skip</value>
+  </data>
+  <data name="ErrorSigningIn" xml:space="preserve">
+    <value>Error signing in</value>
   </data>
 </root>

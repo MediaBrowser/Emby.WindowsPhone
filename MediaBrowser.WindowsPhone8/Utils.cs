@@ -252,24 +252,29 @@ namespace MediaBrowser.WindowsPhone
 
             if (AuthenticationService.Current.IsLoggedIn)
             {
-                LockScreenService.Current.Start();
-                TileService.Current.UpdatePrimaryTile(App.SpecificSettings.DisplayBackdropOnTile, App.SpecificSettings.UseRichWideTile, App.SpecificSettings.UseTransparentTile).ConfigureAwait(false);
-
-                try
-                {
-                    logger.Info("Checking if live TV is supported");
-
-                    var liveTv = await apiClient.GetLiveTvInfoAsync();
-                    App.Settings.LiveTvInfo = liveTv;
-                }
-                catch (HttpException ex)
-                {
-                    HandleHttpException(ex, "Live TV Check", navigationService, logger);
-                }
+                await StartEverything(navigationService, logger, apiClient);
             }
 
             // If one exists, then authenticate that user.
             navigationService.NavigateTo(AuthenticationService.Current.IsLoggedIn ? TileService.Current.PinnedPage() : loginPage);
+        }
+
+        internal static async Task StartEverything(INavigationService navigationService, ILog logger, IApiClient apiClient)
+        {
+            LockScreenService.Current.Start();
+            TileService.Current.UpdatePrimaryTile(App.SpecificSettings.DisplayBackdropOnTile, App.SpecificSettings.UseRichWideTile, App.SpecificSettings.UseTransparentTile).ConfigureAwait(false);
+
+            try
+            {
+                logger.Info("Checking if live TV is supported");
+
+                var liveTv = await apiClient.GetLiveTvInfoAsync();
+                App.Settings.LiveTvInfo = liveTv;
+            }
+            catch (HttpException ex)
+            {
+                HandleHttpException(ex, "Live TV Check", navigationService, logger);
+            }
         }
 
         internal static bool HandleHttpException(HttpException ex, string message, INavigationService navigationService, ILog log)
@@ -437,7 +442,7 @@ namespace MediaBrowser.WindowsPhone
             {
                 Filters = new[] { ItemFilter.IsRecentlyAdded, ItemFilter.IsNotFolder },
                 ParentId = id,
-                UserId = AuthenticationService.Current.LoggedInUser.Id,
+                UserId = AuthenticationService.Current.LoggedInUserId,
                 Fields = new[]
                 {
                     ItemFields.DateCreated,

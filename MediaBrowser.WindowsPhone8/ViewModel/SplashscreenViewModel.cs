@@ -1,7 +1,9 @@
 ﻿using System.Threading;
+using System.Windows;
 using Cimbalino.Phone.Toolkit.Services;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
+using GalaSoft.MvvmLight.Threading;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Model.Photo;
@@ -80,28 +82,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     {
                         result = await ConnectionManager.Connect(connectionDetails.ServerAddress, default(CancellationToken));
                     }
-                    //    var messageBox = new CustomMessageBox
-                    //    {
-                    //        Caption = AppResources.ErrorConnectionDetailsTitle,
-                    //        Message = AppResources.ErrorConnectionDetailsMessage,
-                    //        LeftButtonContent = AppResources.LabelYes,
-                    //        RightButtonContent = AppResources.LabelNo,
-                    //        IsFullScreen = false
-                    //    };
 
-                    //    messageBox.Dismissed += (sender, args) =>
-                    //    {
-                    //        if (args.Result == CustomMessageBoxResult.LeftButton)
-                    //        {
-                    //            NavigationService.NavigateTo(Constants.Pages.SettingsViewConnection);
-                    //        }
-                    //    };
-
-                    //    messageBox.Show();
-                    //}
-                    //else
-                    //{
-                    //App.Settings.ConnectionDetails = connectionDetails;
+                    var savedServer = _applicationSettings.Get<ServerInfo>(Constants.Settings.DefaultServerConnection);
+                    if (savedServer != null)
+                    {
+                        result = await ConnectionManager.Connect(savedServer, default(CancellationToken));
+                    }
 
                     // Get and set the app specific settings 
                     var specificSettings = _applicationSettings.Get<SpecificSettings>(Constants.Settings.SpecificSettings);
@@ -118,24 +104,36 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         result = await ConnectionManager.Connect(default(CancellationToken));
                     }
 
-                    switch (result.State)
+                    Deployment.Current.Dispatcher.BeginInvoke(async () =>
                     {
-                        case ConnectionState.Unavailable:
-                            App.ShowMessage(AppResources.ErrorCouldNotFindServer);
-                            NavigationService.NavigateTo(Constants.Pages.SettingsViewConnection);
-                            break;
-                        case ConnectionState.ServerSelection:
+                        switch (result.State)
+                        {
+                            case ConnectionState.Unavailable:
+                                App.ShowMessage(AppResources.ErrorCouldNotFindServer);
+                                NavigationService.NavigateTo(Constants.Pages.SettingsViewConnection);
+                                break;
+                            case ConnectionState.ServerSelection:
 
-                            break;
-                        case ConnectionState.ServerSignIn:
-                            await Utils.CheckProfiles(NavigationService, Log, ApiClient);
-                            break;
-                        case ConnectionState.SignedIn:
-                            AuthenticationService.Current.SetAuthenticationInfo();
-                            break;
-                    }
+                                break;
+                            case ConnectionState.ServerSignIn:
+                                await Utils.CheckProfiles(NavigationService, Log, ApiClient);
+                                break;
+                            case ConnectionState.SignedIn:
+                                if (AuthenticationService.Current.LoggedInUser == null)
+                                {
+                                    var user = await ApiClient.GetUserAsync(ApiClient.CurrentUserId);
+                                    AuthenticationService.Current.SetUser(user);
+                                }
 
-                    SetProgressBar();
+                                await Utils.StartEverything(NavigationService, Log, ApiClient);
+
+                                NavigationService.NavigateTo(Constants.Pages.MainPage);
+                                break;
+                        }
+
+                        SetProgressBar();    
+                    });
+                    
                 }
             });
         }

@@ -412,7 +412,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
 
             var e = args.Argument;
 
-            var session = e.Sessions.First(x => x.DeviceId == SelectedClient.DeviceId);
+            var session = e.Sessions.FirstOrDefault(x => x.DeviceId == SelectedClient.DeviceId);
+
+            if (session == null)
+            {
+                return;
+            }
 
             Deployment.Current.Dispatcher.BeginInvoke(() =>
             {

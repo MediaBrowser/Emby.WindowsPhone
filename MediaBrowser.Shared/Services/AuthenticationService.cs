@@ -1,7 +1,12 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Net;
+using System.Threading.Tasks;
+using System.Windows;
 using Cimbalino.Phone.Toolkit.Services;
 using MediaBrowser.Model.ApiClient;
+using MediaBrowser.Model.Connect;
 using MediaBrowser.Model.Dto;
+using MediaBrowser.Model.Events;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Users;
 using PropertyChanged;
@@ -25,6 +30,31 @@ namespace MediaBrowser.WindowsPhone.Services
             _connectionManager = connectionManager;
             _logger = new WPLogger(typeof (AuthenticationService));
             Current = this;
+
+            _connectionManager.ConnectUserSignIn += ConnectionManagerOnConnectUserSignIn;
+            _connectionManager.ConnectUserSignOut += ConnectionManagerOnConnectUserSignOut;
+            _connectionManager.LocalUserSignIn += ConnectionManagerOnLocalUserSignIn;
+            _connectionManager.LocalUserSignOut += ConnectionManagerOnLocalUserSignOut;
+        }
+
+        private void ConnectionManagerOnLocalUserSignOut(object sender, EventArgs eventArgs)
+        {
+            Deployment.Current.Dispatcher.BeginInvoke(() => LoggedInUser = null);
+        }
+
+        private void ConnectionManagerOnLocalUserSignIn(object sender, GenericEventArgs<UserDto> e)
+        {
+            Deployment.Current.Dispatcher.BeginInvoke(() => LoggedInUser = e.Argument);
+        }
+
+        private void ConnectionManagerOnConnectUserSignOut(object sender, EventArgs eventArgs)
+        {
+            Deployment.Current.Dispatcher.BeginInvoke(() => LoggedInConnectUser = null);
+        }
+
+        private void ConnectionManagerOnConnectUserSignIn(object sender, GenericEventArgs<ConnectUser> e)
+        {
+            Deployment.Current.Dispatcher.BeginInvoke(() => LoggedInConnectUser = e.Argument);
         }
 
         public void Start()
@@ -35,13 +65,11 @@ namespace MediaBrowser.WindowsPhone.Services
 
         public void CheckIfUserSignedIn()
         {
-            var user = _settingsService.Get<AuthenticationResult>(Constants.Settings.SelectedUserSetting);
+            var user = _settingsService.Get<UserDto>(Constants.Settings.SelectedUserSetting);
 
-            if (user != null && !string.IsNullOrEmpty(user.AccessToken))
+            if (user != null)
             {
-                AuthenticationResult = user;
-                IsLoggedIn = true;
-                SetAuthenticationInfo();
+                LoggedInUser = user;
             }
         }
 
@@ -56,7 +84,6 @@ namespace MediaBrowser.WindowsPhone.Services
                 _logger.Info("Logged in as [{0}]", selectedUserName);
 
                 AuthenticationResult = result;
-                IsLoggedIn = true;
                 SetAuthenticationInfo();
 
                 _settingsService.Set(Constants.Settings.SelectedUserSetting, result);
@@ -89,25 +116,54 @@ namespace MediaBrowser.WindowsPhone.Services
 
         public void Logout()
         {
-            IsLoggedIn = false;
-
+            LoggedInUser = null;
             _settingsService.Reset(Constants.Settings.SelectedUserSetting);
             _settingsService.Save();
         }
 
-        public UserDto LoggedInUser
-        {
-            get { return AuthenticationResult != null ? AuthenticationResult.User : null; }
-        }
+        public UserDto LoggedInUser { get; private set; }
 
-        public bool IsLoggedIn { get; private set; }
+        public bool IsLoggedIn { get { return LoggedInUser != null; } }
 
         public string LoggedInUserId
         {
-            get
+            get { return _connectionManager.CurrentApiClient != null ? _connectionManager.CurrentApiClient.CurrentUserId : null; }
+        }
+
+        public bool SignedInUsingConnect { get { return LoggedInConnectUser != null; } }
+
+        public ConnectUser LoggedInConnectUser { get; set; }
+
+        public async Task<bool> LoginWithConnect(string username, string password)
+        {
+            try
             {
-                return LoggedInUser != null ? LoggedInUser.Id : null;
+                await _connectionManager.LoginToConnect(username, password);
+                return true;
             }
+            catch (HttpException ex)
+            {
+                _logger.ErrorException("Error logging into MB Connect", ex);
+                return false;
+            }
+            catch (WebException wex)
+            {
+                var s = "";
+                return false;
+            }
+            catch (Exception eex)
+            {
+                var s = "";
+                return false;
+            }
+        }
+
+        public void SetUser(UserDto user)
+        {
+            LoggedInUser = user;
+
+            _settingsService.Set(Constants.Settings.SelectedUserSetting, LoggedInUser);
+            _settingsService.Save();
         }
     }
 }

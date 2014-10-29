@@ -127,6 +127,7 @@
     </Compile>
     <Compile Include="Behaviours\AddCheckedItemsBehaviour.cs" />
     <Compile Include="Behaviours\EnterKeyBehaviour.cs" />
+    <Compile Include="Behaviours\MbAutoFocusBehaviour.cs" />
     <Compile Include="Behaviours\MBSysTray.cs" />
     <Compile Include="Behaviours\OnTextPropertyChangedBehaviour.cs" />
     <Compile Include="Behaviours\PanoramaBackgroundBehaviour.cs" />
@@ -155,6 +156,7 @@
     </Compile>
     <Compile Include="Converters\AccentBrushConverter.cs" />
     <Compile Include="Converters\AlreadyPlayedConverter.cs" />
+    <Compile Include="Converters\AppBarModeConverter.cs" />
     <Compile Include="Converters\BooleanToValueConverter.cs" />
     <Compile Include="Converters\AnyChannelConverter.cs" />
     <Compile Include="Converters\AnyTimeConverter.cs" />
@@ -283,6 +285,7 @@
     <Compile Include="ViewModel\Predefined\TvCollectionViewModel.cs" />
     <Compile Include="ViewModel\Remote\RemoteViewModel.cs" />
     <Compile Include="ViewModel\SearchViewModel.cs" />
+    <Compile Include="ViewModel\Settings\MbConnectViewModel.cs" />
     <Compile Include="ViewModel\Settings\PhotoUploadViewModel.cs" />
     <Compile Include="ViewModel\Settings\SettingsViewModel.cs" />
     <Compile Include="ViewModel\SplashscreenViewModel.cs" />
@@ -315,7 +318,10 @@
     <Compile Include="Views\EpisodeView.xaml.cs">
       <DependentUpon>EpisodeView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\FindServerView.xaml.cs">
+    <Compile Include="Views\FirstRun\MbConnectFirstRunView.xaml.cs">
+      <DependentUpon>MbConnectFirstRunView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Settings\FindServerView.xaml.cs">
       <DependentUpon>FindServerView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\FirstRun\ConfigureView.xaml.cs">
@@ -414,6 +420,9 @@
     </Compile>
     <Compile Include="Views\Settings\ConnectionSettingsView.xaml.cs">
       <DependentUpon>ConnectionSettingsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Settings\MbConnectView.xaml.cs">
+      <DependentUpon>MbConnectView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Settings\PhotoUploadSettingsView.xaml.cs">
       <DependentUpon>PhotoUploadSettingsView.xaml</DependentUpon>
@@ -592,7 +601,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\FindServerView.xaml">
+    <Page Include="Views\FirstRun\MbConnectFirstRunView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Settings\FindServerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -731,6 +744,10 @@
     <Page Include="Views\Settings\ConnectionSettingsView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Settings\MbConnectView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Settings\PhotoUploadSettingsView.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -892,13 +909,13 @@
       <HintPath>..\packages\JetBrainsAnnotations.Fody.1.0.2\Lib\JetBrains.Annotations.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="MediaBrowser.ApiInteraction.Portable, Version=3.0.5413.26851, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="MediaBrowser.ApiInteraction.Portable, Version=3.0.5415.17590, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MediaBrowser.ApiClient.3.0.0.449\lib\portable-net45+sl4+wp71+win8+wpa81\MediaBrowser.ApiInteraction.Portable.dll</HintPath>
+      <HintPath>..\packages\MediaBrowser.ApiClient.3.0.0.453\lib\portable-net45+sl4+wp71+win8+wpa81\MediaBrowser.ApiInteraction.Portable.dll</HintPath>
     </Reference>
-    <Reference Include="MediaBrowser.Model, Version=3.0.5413.26547, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="MediaBrowser.Model, Version=3.0.5414.32669, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MediaBrowser.Common.3.0.501\lib\portable-net4+sl4+wp71+win8+wpa81\MediaBrowser.Model.dll</HintPath>
+      <HintPath>..\packages\MediaBrowser.Common.3.0.502\lib\portable-net4+sl4+wp71+win8+wpa81\MediaBrowser.Model.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Phone.Controls, Version=8.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Phone.Controls.Toolkit, Version=8.0.1.0, Culture=neutral, PublicKeyToken=b772ad94eb9ca604, processorArchitecture=MSIL">

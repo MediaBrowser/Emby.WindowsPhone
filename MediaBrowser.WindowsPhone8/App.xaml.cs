@@ -163,15 +163,9 @@ namespace MediaBrowser.WindowsPhone
             ApplicationUsageHelper.OnApplicationActivated();
         }
 
-        private static async void AppStartup()
+        private static void AppStartup()
         {
-            var manager = SimpleIoc.Default.GetInstance<IConnectionManager>();
-            await manager.Connect(default(CancellationToken)).ContinueWith(task =>
-            {
-                var client = manager.CurrentApiClient;
-                AuthenticationService.Current.Start();
-                TileService.Current.StartService(client, SimpleIoc.Default.GetInstance<IAsyncStorageService>());
-            });
+            AuthenticationService.Current.Start();
         }
 
         // Code to execute when the application is deactivated (sent to background)

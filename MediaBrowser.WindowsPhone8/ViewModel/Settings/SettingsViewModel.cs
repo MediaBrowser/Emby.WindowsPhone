@@ -350,6 +350,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Settings
             }
         }
 
+        public RelayCommand GoToManualServerCommand
+        {
+            get
+            {
+                return new RelayCommand(() => NavigationService.NavigateTo(Constants.Pages.SettingsViewConnection));
+            }
+        }
+
         #endregion
 
         internal string DeviceId

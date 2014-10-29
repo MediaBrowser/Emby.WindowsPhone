@@ -232,9 +232,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 Limit = 5,
                 StartIndex = 0,
-                UserId = AuthenticationService.Current.LoggedInUser.Id
+                UserId = AuthenticationService.Current.LoggedInUserId
             };
-            var summary = await ApiClient.GetNotificationsSummary(AuthenticationService.Current.LoggedInUser.Id);
+            var summary = await ApiClient.GetNotificationsSummary(AuthenticationService.Current.LoggedInUserId);
             var notifications = await ApiClient.GetNotificationsAsync(query);
         }
 
@@ -243,11 +243,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             try
             {
                 FavouriteItems.Clear();
-                Log.Info("Getting favourites for user [{0}]", AuthenticationService.Current.LoggedInUser.Name);
+                Log.Info("Getting favourites for user [{0}]", AuthenticationService.Current.LoggedInUserId);
 
                 var query = new ItemQuery
                 {
-                    UserId = AuthenticationService.Current.LoggedInUser.Id,
+                    UserId = AuthenticationService.Current.LoggedInUserId,
                     Filters = new[] {ItemFilter.IsFavorite},
                     Recursive = true
                 };
@@ -300,11 +300,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             try
             {
-                Log.Info("Getting collections for [{0}] ({1})", AuthenticationService.Current.LoggedInUser.Name, AuthenticationService.Current.LoggedInUser.Id);
+                //Log.Info("Getting collections for [{0}] ({1})", AuthenticationService.Current.LoggedInUser.Name, AuthenticationService.Current.LoggedInUserId);
 
                 var query = new ItemQuery
                 {
-                    UserId = AuthenticationService.Current.LoggedInUser.Id,
+                    UserId = AuthenticationService.Current.LoggedInUserId,
                     SortOrder = SortOrder.Ascending,
                     SortBy = new[] {ItemSortBy.SortName}
                 };

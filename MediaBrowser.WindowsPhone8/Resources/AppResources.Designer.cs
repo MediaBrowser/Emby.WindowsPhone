@@ -619,6 +619,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error signing in.
+        /// </summary>
+        public static string ErrorSigningIn {
+            get {
+                return ResourceManager.GetString("ErrorSigningIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error.
         /// </summary>
         public static string ErrorTitle {
@@ -709,6 +718,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Manual Connection.
+        /// </summary>
+        public static string HeaderManualConnection {
+            get {
+                return ResourceManager.GetString("HeaderManualConnection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Playlist name:.
         /// </summary>
         public static string HeaderPlaylistName {
@@ -759,6 +777,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string HeaderTV {
             get {
                 return ResourceManager.GetString("HeaderTV", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What is MB Connect?.
+        /// </summary>
+        public static string HeaderWhatIsMbConnect {
+            get {
+                return ResourceManager.GetString("HeaderWhatIsMbConnect", resourceCulture);
             }
         }
         
@@ -1213,7 +1240,7 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Log In.
+        ///   Looks up a localized string similar to Login.
         /// </summary>
         public static string LabelLogIn {
             get {
@@ -1236,6 +1263,51 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string LabelManuallyLogin {
             get {
                 return ResourceManager.GetString("LabelManuallyLogin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter server details manually.
+        /// </summary>
+        public static string LabelManualServerEntry {
+            get {
+                return ResourceManager.GetString("LabelManualServerEntry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MB Connect.
+        /// </summary>
+        public static string LabelMbConnect {
+            get {
+                return ResourceManager.GetString("LabelMbConnect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If you have a Media Browser account, you can login now..
+        /// </summary>
+        public static string LabelMbConnectAlreadyGotAccount {
+            get {
+                return ResourceManager.GetString("LabelMbConnectAlreadyGotAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to With MB Connect, you can easily access your Media Browser server wherever you are and share with your family and friends.
+        /// </summary>
+        public static string LabelMbConnectDescriptionPara1 {
+            get {
+                return ResourceManager.GetString("LabelMbConnectDescriptionPara1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If you don&apos;t already have a Media Browser account, you can sign up now, it&apos;s FREE!.
+        /// </summary>
+        public static string LabelMbConnectFreeAccount {
+            get {
+                return ResourceManager.GetString("LabelMbConnectFreeAccount", resourceCulture);
             }
         }
         
@@ -1474,7 +1546,7 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to password:.
+        ///   Looks up a localized string similar to Password:.
         /// </summary>
         public static string LabelPassword {
             get {
@@ -1915,11 +1987,29 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sign Up.
+        /// </summary>
+        public static string LabelSignUp {
+            get {
+                return ResourceManager.GetString("LabelSignUp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Single poster.
         /// </summary>
         public static string LabelSinglePoster {
             get {
                 return ResourceManager.GetString("LabelSinglePoster", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Skip.
+        /// </summary>
+        public static string LabelSkip {
+            get {
+                return ResourceManager.GetString("LabelSkip", resourceCulture);
             }
         }
         
@@ -2059,7 +2149,7 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to username:.
+        ///   Looks up a localized string similar to Username:.
         /// </summary>
         public static string LabelUsername {
             get {

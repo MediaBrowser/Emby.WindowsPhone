@@ -104,7 +104,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         {
                             Log.Info("Getting information for TV Series [{0}] ({1})", SelectedTvSeries.Name, SelectedTvSeries.Id);
 
-                            SelectedTvSeries = await ApiClient.GetItemAsync(SelectedTvSeries.Id, AuthenticationService.Current.LoggedInUser.Id);
+                            SelectedTvSeries = await ApiClient.GetItemAsync(SelectedTvSeries.Id, AuthenticationService.Current.LoggedInUserId);
                             CastAndCrew = Utils.GroupCastAndCrew(SelectedTvSeries.People);
                         }
                         catch (HttpException ex)
@@ -166,7 +166,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     
                     CanUpdateFavourites = false;
 
-                    item.UserData = await ApiClient.UpdateFavoriteStatusAsync(item.Id, AuthenticationService.Current.LoggedInUser.Id, !item.UserData.IsFavorite);
+                    item.UserData = await ApiClient.UpdateFavoriteStatusAsync(item.Id, AuthenticationService.Current.LoggedInUserId, !item.UserData.IsFavorite);
                 }
                 catch (HttpException ex)
                 {
@@ -198,7 +198,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 Log.Info("Getting information for episode [{0}] ({1})", SelectedEpisode.Name, SelectedEpisode.Id);
 
-                var episode = await ApiClient.GetItemAsync(SelectedEpisode.Id, AuthenticationService.Current.LoggedInUser.Id);
+                var episode = await ApiClient.GetItemAsync(SelectedEpisode.Id, AuthenticationService.Current.LoggedInUserId);
                 return true;
             }
             catch (HttpException ex)
@@ -245,7 +245,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 var query = new SeasonQuery
                 {
-                    UserId = AuthenticationService.Current.LoggedInUser.Id,
+                    UserId = AuthenticationService.Current.LoggedInUserId,
                     SeriesId = SelectedTvSeries.Id,
                     Fields = new[]
                     {
@@ -276,7 +276,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 var query = new EpisodeQuery
                 {
-                    UserId = AuthenticationService.Current.LoggedInUser.Id,
+                    UserId = AuthenticationService.Current.LoggedInUserId,
                     SeasonId = SelectedSeason.Id,
                     SeriesId = SelectedSeason.SeriesId,
                     Fields = new[]
@@ -321,7 +321,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     {
                         var query = new EpisodeQuery
                         {
-                            UserId = AuthenticationService.Current.LoggedInUser.Id,
+                            UserId = AuthenticationService.Current.LoggedInUserId,
                             SeasonId = SelectedEpisode.SeasonId,
                             SeriesId = SelectedEpisode.SeriesId,
                             Fields = new[]

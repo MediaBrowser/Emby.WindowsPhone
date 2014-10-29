@@ -1,4 +1,4 @@
-﻿namespace MediaBrowser
+﻿namespace MediaBrowser.WindowsPhone
 {
     public class Constants
     {
@@ -12,7 +12,7 @@
         
         public class Settings
         {
-            public const string SelectedUserSetting = "SelectedUserSetting";
+            public const string SelectedUserSetting = "UserSetting";
             public const string SelectedUserPinSetting = "SelectedUserPin";
             public const string ConnectionSettings = "ConnectionSettings";
             public const string SpecificSettings = "SpecificSettings";
@@ -22,6 +22,7 @@
             public const string DoNotShowFirstRun = "DoNotShowFirstRun";
             public const string PhotoUploadSettings = "PhotoUploadSettings";
             public const string ServerCredentialSettings = "ServerCredentialSettings.json";
+            public const string DefaultServerConnection = "DefaultServerConnection";
         }
 
         public class Messages
@@ -138,6 +139,8 @@
                 public const string PhotoUploadSettingsView = SettingsViewPath + "PhotoUploadSettingsView.xaml";
                 public const string StreamingSettingsView = SettingsViewPath + "StreamingSettingsView.xaml";
                 public const string TileSettingsView = SettingsViewPath + "TileSettingsView.xaml";
+                public const string FindServerView = SettingsViewPath + "FindServerView.xaml";
+                public const string MbConnectView = SettingsViewPath + "MbConnectView.xaml";
             }
 
             public class LiveTv
@@ -182,6 +185,7 @@
                 private const string FirstRunPath = ViewsPath + "FirstRun/";
                 public const string WelcomeView = FirstRunPath + "WelcomeView.xaml";
                 public const string ConfigureView = FirstRunPath + "ConfigureView.xaml";
+                public const string MbConnectFirstRunView = FirstRunPath + "MbConnectFirstRunView.xaml";
             }
 
             public class Channels
