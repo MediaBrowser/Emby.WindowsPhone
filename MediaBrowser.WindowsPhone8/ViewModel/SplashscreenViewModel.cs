@@ -110,10 +110,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         {
                             case ConnectionState.Unavailable:
                                 App.ShowMessage(AppResources.ErrorCouldNotFindServer);
-                                NavigationService.NavigateTo(Constants.Pages.SettingsViewConnection);
+                                NavigationService.NavigateTo(Constants.Pages.FirstRun.MbConnectFirstRunView);
                                 break;
                             case ConnectionState.ServerSelection:
-
+                                NavigationService.NavigateTo(Constants.Pages.SettingsViews.FindServerView);
                                 break;
                             case ConnectionState.ServerSignIn:
                                 await Utils.CheckProfiles(NavigationService, Log, ApiClient);

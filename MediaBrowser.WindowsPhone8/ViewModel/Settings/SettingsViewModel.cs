@@ -266,7 +266,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Settings
                     return;
                 }
 
-                var result = await ConnectionManager.Connect(App.Settings.ConnectionDetails.HostName, default(CancellationToken));
+                var result = await ConnectionManager.Connect(App.Settings.ConnectionDetails.ServerAddress, default(CancellationToken));
 
                 if (await Utils.GetServerConfiguration(ApiClient, Log))
                 {

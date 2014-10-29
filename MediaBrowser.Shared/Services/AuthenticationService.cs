@@ -84,10 +84,7 @@ namespace MediaBrowser.WindowsPhone.Services
                 _logger.Info("Logged in as [{0}]", selectedUserName);
 
                 AuthenticationResult = result;
-                SetAuthenticationInfo();
-
-                _settingsService.Set(Constants.Settings.SelectedUserSetting, result);
-                _settingsService.Save();
+                SetUser(result.User);
                 _logger.Info("User [{0}] has been saved", selectedUserName);
             }
             catch (HttpException ex)
