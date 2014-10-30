@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -17,6 +18,7 @@ using MediaBrowser.WindowsPhone.Extensions;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Model.Streaming;
 using MediaBrowser.WindowsPhone.Resources;
+using MediaBrowser.WindowsPhone.Services;
 using Microsoft.Phone.Net.NetworkInformation;
 using Microsoft.Phone.Notification;
 using INavigationService = MediaBrowser.WindowsPhone.Model.Interfaces.INavigationService;
@@ -157,6 +159,21 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Settings
             get
             {
                 return IsLockScreenProvider ? AppResources.LabelIsLockScreenProvider : AppResources.LabelIsNotLockScreenProvider;
+            }
+        }
+
+        public RelayCommand MbConnectCommand
+        {
+            get
+            {
+                return new RelayCommand(() =>
+                {
+                    var page = !AuthenticationService.Current.SignedInUsingConnect 
+                        ? Constants.Pages.FirstRun.MbConnectFirstRunView 
+                        : Constants.Pages.SettingsViews.ConnectionSettingsView;
+
+                    NavigationService.NavigateTo(page);
+                });
             }
         }
 

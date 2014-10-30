@@ -200,6 +200,22 @@
                         <controls:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
                                                         Margin="12,0,0,12"
                                                         VerticalContentAlignment="Stretch"
+                                                        TapCommand="{Binding MbConnectCommand}">
+                            <Grid Background="{StaticResource PhoneAccentBrush}">
+                                <Path Width="{StaticResource TileImageSize}"
+                                      Height="{StaticResource TileImageSize}"
+                                      Stretch="Fill"
+                                      Fill="{StaticResource PhoneForegroundBrush}"
+                                      Data="F1 M 25.7639,28.0031L 20.0866,22.3258C 19.4683,21.7075 19.4683,20.705 20.0866,20.0866C 20.705,19.4683 21.7075,19.4683 22.3258,20.0867L 28.0031,25.7639C 32.3443,22.5092 38.5302,22.856 42.4783,26.8042L 26.8041,42.4784C 22.856,38.5302 22.5092,32.3443 25.7639,28.0031 Z M 49.1958,33.5217C 53.144,37.4699 53.4908,43.6557 50.2361,47.9969L 55.9133,53.6742C 56.5317,54.2925 56.5317,55.295 55.9133,55.9134C 55.295,56.5317 54.2925,56.5317 53.6742,55.9134L 47.9969,50.2361C 43.6557,53.4908 37.4698,53.1441 33.5216,49.1959L 36.8804,45.8371L 34.0814,43.0381C 33.1539,42.1107 33.1539,40.6069 34.0814,39.6794C 35.0089,38.7519 36.5127,38.7519 37.4402,39.6794L 40.2392,42.4784L 42.4783,40.2392L 39.6794,37.4402C 38.7519,36.5127 38.7519,35.009 39.6794,34.0815C 40.6069,33.154 42.1106,33.154 43.0381,34.0815L 45.8371,36.8804L 49.1958,33.5217 Z " />
+                                <TextBlock Text="mb connect"
+                                           Style="{StaticResource PhoneTextNormalStyle}"
+                                           VerticalAlignment="Bottom"
+                                           Margin="12,0,12,6" />
+                            </Grid>
+                        </controls:CustomHyperlinkButton>
+                        <controls:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                                        Margin="12,0,0,12"
+                                                        VerticalContentAlignment="Stretch"
                                                         NavigateUri="/Views/Settings/ConnectionSettingsView.xaml">
                             <Grid Background="{StaticResource PhoneAccentBrush}">
                                 <Path Width="{StaticResource TileImageSize}"

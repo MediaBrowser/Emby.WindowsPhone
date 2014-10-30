@@ -87,7 +87,8 @@
                         <controls:CustomHyperlinkButton Content="{Binding LocalizedResources.LabelManualServerEntry, Source={StaticResource LocalizedStrings}}"
                                                         HorizontalContentAlignment="Left"
                                                         Foreground="{StaticResource PhoneAccentBrush}"
-                                                        TapCommand="{Binding GoToManualServerCommand}"/>
+                                                        TapCommand="{Binding GoToManualServerCommand}"
+                                                        NavigateUri="/Views/Settings/ConnectionSettingsView.xaml"/>
                     </telerikPrimitives:RadDataBoundListBox.ListFooterContent>
                     <telerikPrimitives:RadDataBoundListBox.ItemTemplate>
                         <DataTemplate>
