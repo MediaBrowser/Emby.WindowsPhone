@@ -234,7 +234,7 @@ namespace MediaBrowser.WindowsPhone
                 var sysInfo = await apiClient.GetPublicSystemInfoAsync();
                 App.Settings.SystemStatus = sysInfo;
 
-                apiClient.OpenWebSocket(() => new WebSocketClient());
+                //apiClient.OpenWebSocket(() => new WebSocketClient());
 
                 return true;
             }
@@ -247,16 +247,13 @@ namespace MediaBrowser.WindowsPhone
 
         internal static async Task CheckProfiles(INavigationService navigationService, ILog logger, IApiClient apiClient)
         {
-            var clients = false;
-            var loginPage = clients ? Constants.Pages.ManualUsernameView : Constants.Pages.ChooseProfileView;
-
             if (AuthenticationService.Current.IsLoggedIn)
             {
                 await StartEverything(navigationService, logger, apiClient);
             }
 
             // If one exists, then authenticate that user.
-            navigationService.NavigateTo(AuthenticationService.Current.IsLoggedIn ? TileService.Current.PinnedPage() : loginPage);
+            navigationService.NavigateTo(AuthenticationService.Current.IsLoggedIn ? TileService.Current.PinnedPage() : Constants.Pages.ChooseProfileView);
         }
 
         internal static async Task StartEverything(INavigationService navigationService, ILog logger, IApiClient apiClient)

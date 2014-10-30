@@ -148,7 +148,7 @@ namespace MediaBrowser.WindowsPhone.Services
 
         public bool SignedInUsingConnect { get { return LoggedInConnectUser != null && LoggedInUser != null; } }
 
-        public ConnectUser LoggedInConnectUser { get; set; }
+        public ConnectUser LoggedInConnectUser { get; private set; }
 
         public async Task<bool> LoginWithConnect(string username, string password)
         {

@@ -258,7 +258,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Settings
             {
                 Log.Info("Testing connection");
 
-
                 var hostnameType = Uri.CheckHostName(App.Settings.ConnectionDetails.HostName);
                 if (hostnameType == UriHostNameType.Unknown)
                 {
@@ -268,7 +267,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Settings
 
                 var result = await ConnectionManager.Connect(App.Settings.ConnectionDetails.ServerAddress, default(CancellationToken));
 
-                if (await Utils.GetServerConfiguration(ApiClient, Log))
+                //if (await Utils.GetServerConfiguration(ApiClient, Log))
+                if(result.State != ConnectionState.Unavailable)
                 {
                     if (!IsInDesignMode)
                     {
@@ -359,31 +359,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Settings
         }
 
         #endregion
-
-        internal string DeviceId
-        {
-            get
-            {
-                var id = SimpleIoc.Default.GetInstance<IUserExtendedPropertiesService>().AnonymousUserID;
-                return string.IsNullOrEmpty(id) ? "emulator" : id;
-            }
-        }
-
-        [UsedImplicitly]
-        private static string ParseANID(string anid)
-        {
-            if (!string.IsNullOrEmpty(anid))
-            {
-                var parts = anid.Split('&');
-                var pairs = parts.Select(part => part.Split('='));
-                var id = pairs
-                    .Where(pair => pair.Length == 2 && pair[0] == "A")
-                    .Select(pair => pair[1])
-                    .FirstOrDefault();
-                return id;
-            }
-            return "emulator";
-        }
 
         private void SettingsSet(string key, object value)
         {
