@@ -114,7 +114,15 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                 NavigationService.NavigateTo(Constants.Pages.SettingsViews.FindServerView);
                                 break;
                             case ConnectionState.ServerSignIn:
-                                await Utils.CheckProfiles(NavigationService, Log, ApiClient);
+                                if (AuthenticationService.Current.LoggedInUser == null)
+                                {
+                                    await Utils.CheckProfiles(NavigationService, Log, ApiClient);
+                                }
+                                else
+                                {
+                                    AuthenticationService.Current.SetAuthenticationInfo();
+                                    NavigationService.NavigateTo(Constants.Pages.MainPage);
+                                }
                                 break;
                             case ConnectionState.SignedIn:
                                 if (AuthenticationService.Current.LoggedInUser == null)

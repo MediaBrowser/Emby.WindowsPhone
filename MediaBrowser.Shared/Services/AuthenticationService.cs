@@ -44,7 +44,14 @@ namespace MediaBrowser.WindowsPhone.Services
 
         private void ConnectionManagerOnLocalUserSignIn(object sender, GenericEventArgs<UserDto> e)
         {
-            Deployment.Current.Dispatcher.BeginInvoke(() => LoggedInUser = e.Argument);
+            Deployment.Current.Dispatcher.BeginInvoke(() =>
+            {
+                LoggedInUser = e.Argument;
+                if (AuthenticationResult != null)
+                {
+                    _connectionManager.CurrentApiClient.SetAuthenticationInfo(AuthenticationResult.AccessToken, LoggedInUserId);
+                }
+            });
         }
 
         private void ConnectionManagerOnConnectUserSignOut(object sender, EventArgs eventArgs)
@@ -90,6 +97,9 @@ namespace MediaBrowser.WindowsPhone.Services
                 _logger.Info("Logged in as [{0}]", selectedUserName);
 
                 AuthenticationResult = result;
+                _settingsService.Set(Constants.Settings.AuthUserSetting, AuthenticationResult);
+                _settingsService.Save();
+
                 SetUser(result.User);
                 _logger.Info("User [{0}] has been saved", selectedUserName);
             }
@@ -101,8 +111,11 @@ namespace MediaBrowser.WindowsPhone.Services
 
         public void SetAuthenticationInfo()
         {
-            _connectionManager.CurrentApiClient.ClearAuthenticationInfo();
-            _connectionManager.CurrentApiClient.SetAuthenticationInfo(AuthenticationResult.AccessToken, LoggedInUserId);
+            if (AuthenticationResult != null && !string.IsNullOrEmpty(LoggedInUserId))
+            {
+                _connectionManager.CurrentApiClient.ClearAuthenticationInfo();
+                _connectionManager.CurrentApiClient.SetAuthenticationInfo(AuthenticationResult.AccessToken, LoggedInUserId);
+            }
         }
 
         public async Task SignOut()
