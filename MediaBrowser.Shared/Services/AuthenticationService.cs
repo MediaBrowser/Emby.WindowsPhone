@@ -111,10 +111,10 @@ namespace MediaBrowser.WindowsPhone.Services
 
         public void SetAuthenticationInfo()
         {
-            if (AuthenticationResult != null && !string.IsNullOrEmpty(LoggedInUserId))
+            if (AuthenticationResult != null && AuthenticationResult.User != null && !string.IsNullOrEmpty(AuthenticationResult.User.Id))
             {
                 _connectionManager.CurrentApiClient.ClearAuthenticationInfo();
-                _connectionManager.CurrentApiClient.SetAuthenticationInfo(AuthenticationResult.AccessToken, LoggedInUserId);
+                _connectionManager.CurrentApiClient.SetAuthenticationInfo(AuthenticationResult.AccessToken, AuthenticationResult.User.Id);
             }
         }
 
