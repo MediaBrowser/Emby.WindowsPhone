@@ -11,8 +11,11 @@
     <!-- Resource dictionary entries should be defined here. -->
 
     <Color x:Key="MediaBrowserBackgroundColor">#2F2F2F</Color>
-    <SolidColorBrush x:Key="MediaBrowserBackground"
+    <SolidColorBrush x:Key="MediaBrowserPlainBackground"
                      Color="{StaticResource MediaBrowserBackgroundColor}"/>
+    
+    <ImageBrush ImageSource="/Images/PortraitBackground.jpg"
+                x:Key="MediaBrowserBackground"/>
 
     <Color x:Key="SecondaryAccentColor">#224568</Color>
     <SolidColorBrush x:Key="SecondaryAccentColorBrush"

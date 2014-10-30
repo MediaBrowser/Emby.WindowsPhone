@@ -66,8 +66,9 @@
     </toolkit:TransitionService.NavigationOutTransition>
 
     <!--LayoutRoot contains the root grid where all other page content is placed-->
-    <Grid x:Name="LayoutRoot"
-          Background="{StaticResource MediaBrowserBackground}">
+    <Grid x:Name="LayoutRoot">
+          <!--Background="{StaticResource MediaBrowserBackground}">-->
+
         <i:Interaction.Behaviors>
             <cimbalino:ApplicationBarBehavior IsMenuEnabled="True">
                 <cimbalino:ApplicationBarIconButton Text="{Binding LocalizedResources.AppBarSearch, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
@@ -99,6 +100,9 @@
         </i:Interaction.Behaviors>
         <phone:Panorama Title=""
                         HeaderTemplate="{StaticResource LikeWp7ItemHeaderTemplate}">
+            <phone:Panorama.Background>
+                <ImageBrush ImageSource="/Images/PanoBackground.jpg" />
+            </phone:Panorama.Background>
             <phone:Panorama.TitleTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal"

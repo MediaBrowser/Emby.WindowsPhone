@@ -486,6 +486,8 @@
     <Content Include="Images\LogoNoPadding.png" />
     <Content Include="Images\MBBackground.jpg" />
     <Content Include="Images\MBBackgroundWithTv.png" />
+    <Content Include="Images\PanoBackground.jpg" />
+    <Content Include="Images\PortraitBackground.jpg" />
     <Content Include="Images\Remote\add.png" />
     <Content Include="Images\Remote\appbar.control.stop.png" />
     <Content Include="Images\Remote\appbar.navigate.next.png" />
@@ -506,7 +508,6 @@
     <Content Include="Images\LockScreenBackground.jpg" />
     <Content Include="Images\Logo.png" />
     <Content Include="Images\moviecollection.png" />
-    <Content Include="Images\Play128.png" />
     <Content Include="Images\Remote\appbar.sound.3.png" />
     <Content Include="Images\Remote\appbar.sound.mute.png" />
     <Content Include="Images\Remote\Clients\android.png" />

@@ -81,7 +81,7 @@
     </toolkit:TransitionService.NavigationOutTransition>
 
     <Grid x:Name="LayoutRoot"
-          Background="{StaticResource MediaBrowserBackground}">
+          Background="{StaticResource MediaBrowserPlainBackground}">
 
         <phone:Panorama Title="{Binding SelectedMovie.Name, Converter={StaticResource StringCaseConverter}}"
                         x:Name="MainPanorama"

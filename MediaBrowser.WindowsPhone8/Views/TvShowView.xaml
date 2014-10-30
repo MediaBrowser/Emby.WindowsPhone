@@ -67,7 +67,7 @@
     </toolkit:TransitionService.NavigationOutTransition>
 
     <Grid x:Name="LayoutRoot"
-          Background="{StaticResource MediaBrowserBackground}">
+          Background="{StaticResource MediaBrowserPlainBackground}">
         <phone:Panorama Title="{Binding SelectedTvSeries.Name, Converter={StaticResource StringCaseConverter}}"
                         x:Name="MainPanorama"
                         HeaderTemplate="{StaticResource LikeWp7ItemHeaderTemplate}"
