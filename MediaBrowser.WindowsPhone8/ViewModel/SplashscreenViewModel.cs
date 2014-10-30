@@ -3,13 +3,11 @@ using System.Windows;
 using Cimbalino.Phone.Toolkit.Services;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
-using GalaSoft.MvvmLight.Threading;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Model.Photo;
 using MediaBrowser.WindowsPhone.Resources;
 using MediaBrowser.WindowsPhone.Services;
-using Microsoft.Phone.Controls;
 using INavigationService = MediaBrowser.WindowsPhone.Model.Interfaces.INavigationService;
 
 namespace MediaBrowser.WindowsPhone.ViewModel
@@ -129,11 +127,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                                 NavigationService.NavigateTo(Constants.Pages.MainPage);
                                 break;
+                            case ConnectionState.ConnectSignIn:
+                                NavigationService.NavigateTo(Constants.Pages.FirstRun.MbConnectFirstRunView);
+                                break;
                         }
 
-                        SetProgressBar();    
+                        SetProgressBar();
                     });
-                    
+
                 }
             });
         }

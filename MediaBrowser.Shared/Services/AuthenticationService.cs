@@ -66,10 +66,16 @@ namespace MediaBrowser.WindowsPhone.Services
         public void CheckIfUserSignedIn()
         {
             var user = _settingsService.Get<UserDto>(Constants.Settings.SelectedUserSetting);
+            var oldUser = _settingsService.Get<AuthenticationResult>(Constants.Settings.AuthUserSetting);
 
             if (user != null)
             {
                 LoggedInUser = user;
+            }
+
+            if (oldUser != null)
+            {
+                AuthenticationResult = oldUser;
             }
         }
 
