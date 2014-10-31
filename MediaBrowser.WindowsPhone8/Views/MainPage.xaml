@@ -99,10 +99,8 @@
             </cimbalino:ApplicationBarBehavior>
         </i:Interaction.Behaviors>
         <phone:Panorama Title=""
-                        HeaderTemplate="{StaticResource LikeWp7ItemHeaderTemplate}">
-            <phone:Panorama.Background>
-                <ImageBrush ImageSource="/Images/PanoBackground.jpg" />
-            </phone:Panorama.Background>
+                        HeaderTemplate="{StaticResource LikeWp7ItemHeaderTemplate}"
+                        Background="{StaticResource MediaBrowserPanoBackground}">
             <phone:Panorama.TitleTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal"

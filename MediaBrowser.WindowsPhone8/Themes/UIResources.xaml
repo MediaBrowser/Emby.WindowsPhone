@@ -17,6 +17,9 @@
     <ImageBrush ImageSource="/Images/PortraitBackground.jpg"
                 x:Key="MediaBrowserBackground"/>
 
+    <ImageBrush ImageSource="/Images/PanoBackground.jpg"
+                x:Key="MediaBrowserPanoBackground" />
+
     <Color x:Key="SecondaryAccentColor">#224568</Color>
     <SolidColorBrush x:Key="SecondaryAccentColorBrush"
                      Color="{StaticResource SecondaryAccentColor}"/>

@@ -58,8 +58,7 @@
     </toolkit:TransitionService.NavigationOutTransition>
 
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot"
-          Background="{StaticResource MediaBrowserBackground}">
+    <Grid x:Name="LayoutRoot">
         <i:Interaction.Behaviors>
             <cimbalino:ApplicationBarBehavior>
                 <cimbalino:ApplicationBarIconButton IconUri="{Binding CanPinCollection, Converter={StaticResource PinnedItemConverter}}"
@@ -71,7 +70,8 @@
         <phone:Panorama Title="{Binding SelectedFolder.Name, Converter={StaticResource StringCaseConverter}}"
                         HeaderTemplate="{StaticResource LikeWp7ItemHeaderTemplate}"
                         TitleTemplate="{StaticResource LikeWp7TitleTemplate}"
-                        x:Name="ThePanorama">
+                        x:Name="ThePanorama"
+                        Background="{StaticResource MediaBrowserPanoBackground}">
             <i:Interaction.Behaviors>
                 <behaviours:ControlBackgroundBehaviour Source="{Binding SelectedFolder, Converter={StaticResource ImageUrlConverter}, ConverterParameter=backdrop}"
                                                        Stretch="UniformToFill"
