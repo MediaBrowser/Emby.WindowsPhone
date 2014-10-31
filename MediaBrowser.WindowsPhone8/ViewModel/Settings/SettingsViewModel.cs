@@ -282,10 +282,20 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Settings
                     return;
                 }
 
-                var result = await ConnectionManager.Connect(App.Settings.ConnectionDetails.ServerAddress, default(CancellationToken));
+                var serverAddress = App.Settings.ConnectionDetails.ServerAddress;
+
+                var result = await ConnectionManager.Connect(serverAddress, default(CancellationToken));
 
                 if (result.State != ConnectionState.Unavailable)
                 {
+                    var server = result.Servers.FirstOrDefault(x => 
+                        string.Equals(x.LocalAddress, serverAddress, StringComparison.CurrentCultureIgnoreCase) 
+                        || string.Equals(x.RemoteAddress, serverAddress, StringComparison.CurrentCultureIgnoreCase));
+                    if (server != null)
+                    {
+                        SaveServer(server);
+                    }
+
                     AuthenticationService.Current.ClearLoggedInUser();
                     await Utils.HandleConnectedState(result, ApiClient, NavigationService, Log);
                 }
@@ -310,14 +320,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Settings
             {
                 return new RelayCommand(async () =>
                 {
-                    // If we're not connected to wifi or ethernet then we don't want to attempt this
-                    if (!NavigationService.IsNetworkAvailable ||
-                        (NetworkInterface.NetworkInterfaceType != NetworkInterfaceType.Ethernet
-                         && NetworkInterface.NetworkInterfaceType != NetworkInterfaceType.Wireless80211))
-                    {
-                        return;
-                    }
-
                     SetProgressBar(AppResources.SysTrayFindingServer);
 
                     Log.Info("Sending UDP broadcast");
@@ -349,15 +351,21 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Settings
                         Log.Info("Invalid connection details");
                         App.ShowMessage(AppResources.ErrorConnectionDetailsInvalid);
                     }
-
-                    if (result.State == ConnectionState.ServerSignIn)
+                    else
                     {
-                        await Utils.CheckProfiles(NavigationService, Log, result.ApiClient);
+                        await Utils.HandleConnectedState(result, ApiClient, NavigationService, Log);
+                        SaveServer(server);
                     }
 
                     SetProgressBar();
                 });
             }
+        }
+
+        private void SaveServer(ServerInfo server)
+        {
+            _applicationSettings.Set(Constants.Settings.DefaultServerConnection, server);
+            _applicationSettings.Save();
         }
 
         public RelayCommand GoToManualServerCommand

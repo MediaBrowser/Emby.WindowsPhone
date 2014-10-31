@@ -1,10 +1,11 @@
 ﻿using System.Threading;
+using Cimbalino.Phone.Toolkit.Services;
 using GalaSoft.MvvmLight.Command;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Net;
-using MediaBrowser.WindowsPhone.Model.Interfaces;
 using MediaBrowser.WindowsPhone.Resources;
 using MediaBrowser.WindowsPhone.Services;
+using INavigationService = MediaBrowser.WindowsPhone.Model.Interfaces.INavigationService;
 
 namespace MediaBrowser.WindowsPhone.ViewModel.Settings
 {
@@ -16,13 +17,15 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Settings
     /// </summary>
     public class MbConnectViewModel : ViewModelBase
     {
+        private readonly IApplicationSettingsService _appSettings;
+
         /// <summary>
         /// Initializes a new instance of the MbConnectViewModel class.
         /// </summary>
-        public MbConnectViewModel(INavigationService navigationService, IConnectionManager connectionManager)
+        public MbConnectViewModel(INavigationService navigationService, IConnectionManager connectionManager, IApplicationSettingsService appSettings)
             : base(navigationService, connectionManager)
         {
-            
+            _appSettings = appSettings;
         }
 
         public string Username { get; set; }
@@ -58,6 +61,13 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Settings
                         if (success)
                         {
                             var result = await ConnectionManager.Connect(default(CancellationToken));
+
+                            if (result.State == ConnectionState.SignedIn && result.Servers.Count == 1)
+                            {
+                                _appSettings.Set(Constants.Settings.DefaultServerConnection, result.Servers[0]);
+                                _appSettings.Save();
+                            }
+
                             await Utils.HandleConnectedState(result, ApiClient, NavigationService, Log);
                         }
                         else

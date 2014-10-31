@@ -1,4 +1,6 @@
-﻿using System.Threading;
+﻿using System;
+using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using Cimbalino.Phone.Toolkit.Services;
@@ -108,6 +110,20 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             if (_connectionDetails != null)
             {
                 result = await ConnectionManager.Connect(_connectionDetails.ServerAddress, default(CancellationToken));
+                var server = result.Servers.FirstOrDefault(x =>
+                        string.Equals(x.LocalAddress, _connectionDetails.ServerAddress, StringComparison.CurrentCultureIgnoreCase)
+                        || string.Equals(x.RemoteAddress, _connectionDetails.ServerAddress, StringComparison.CurrentCultureIgnoreCase));
+
+                if (server != null)
+                {
+                    _applicationSettings.Set(Constants.Settings.DefaultServerConnection, server);
+                    _applicationSettings.Save();
+
+                    _savedServer = server;
+
+                    _applicationSettings.Reset(Constants.Settings.ConnectionSettings);
+                    _connectionDetails = null;
+                }
             }
 
             if (_savedServer != null)
