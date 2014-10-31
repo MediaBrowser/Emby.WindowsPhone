@@ -170,7 +170,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Settings
                 {
                     var page = !AuthenticationService.Current.SignedInUsingConnect 
                         ? Constants.Pages.FirstRun.MbConnectFirstRunView 
-                        : Constants.Pages.SettingsViews.ConnectionSettingsView;
+                        : Constants.Pages.SettingsViews.MbConnectView;
 
                     NavigationService.NavigateTo(page);
                 });

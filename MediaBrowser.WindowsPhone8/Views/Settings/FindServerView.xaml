@@ -79,11 +79,14 @@
                   Grid.Row="1"
                   Margin="12,0,12,0">
                 <telerikPrimitives:RadDataBoundListBox ItemsSource="{Binding FoundServers}"
-                                                       EmptyContentDisplayMode="Always">
-                    <telerikPrimitives:RadDataBoundListBox.EmptyContent>
-                        <TextBlock Text="{Binding LocalizedResources.NoItemsFound, Source={StaticResource LocalizedStrings}}"
-                                   Style="{StaticResource PhoneTextTitle3Style}"/>
-                    </telerikPrimitives:RadDataBoundListBox.EmptyContent>
+                                                       EmptyContentDisplayMode="Always"
+                                                       EmptyContent="">
+                    <telerikPrimitives:RadDataBoundListBox.EmptyContentTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding LocalizedResources.NoItemsFound, Source={StaticResource LocalizedStrings}}"
+                                       Style="{StaticResource PhoneTextTitle3Style}" />
+                        </DataTemplate>
+                    </telerikPrimitives:RadDataBoundListBox.EmptyContentTemplate>
                     <telerikPrimitives:RadDataBoundListBox.ListFooterContent>
                         <controls:CustomHyperlinkButton Content="{Binding LocalizedResources.LabelManualServerEntry, Source={StaticResource LocalizedStrings}}"
                                                         HorizontalContentAlignment="Left"
