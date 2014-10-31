@@ -24,11 +24,12 @@
         <behaviours:MBSysTray Text="{Binding ProgressText}"
                               IsVisible="{Binding ProgressIsVisible}"
                               IsIndeterminate="{Binding ProgressIsVisible}" />
+        <behaviors:AutoFocusBehavior/>
         <behaviors:ApplicationBarBehavior IsMenuEnabled="True">
             <behaviors:ApplicationBarIconButton Text="{Binding LocalizedResources.AppBarLogin, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                 IconUri="/Icons/appbar.check.rest.png"
                                                 Command="{Binding ManualLoginCommand}"
-                                                IsEnabled="{Binding Text.Length, ElementName=UsernameTextBox, Converter={StaticResource CountToEnabled}, ConverterParameter=delete}" />
+                                                IsEnabled="{Binding CanLogin}" />
             <behaviors:ApplicationBarBehavior.MenuItems>
                 <behaviors:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarSettings, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                   Command="{Binding Main.NavigateToAPage, Source={StaticResource Locator}}"
@@ -88,7 +89,6 @@
                                           x:Name="UsernameTextBox">
                         <i:Interaction.Behaviors>
                             <scottBehaviours:UpdateTextBindingOnPropertyChanged />
-                            <behaviours:EnterKeyHandler />
                         </i:Interaction.Behaviors>
                     </toolkit:PhoneTextBox>
                     <TextBlock Text="{Binding LocalizedResources.LabelPassword, Source={StaticResource LocalizedStrings}}"

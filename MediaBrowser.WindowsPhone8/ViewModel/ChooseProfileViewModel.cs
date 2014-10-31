@@ -64,7 +64,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             get
             {
-                return true;// !string.IsNullOrEmpty(Username);
+                return !string.IsNullOrEmpty(Username) && !ProgressIsVisible;
             }
         }
 
@@ -91,7 +91,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                     try
                     {
-                        var profiles = await ApiClient.GetPublicUsersAsync(new CancellationToken());
+                        var profiles = await ApiClient.GetPublicUsersAsync();
                         Profiles = new ObservableCollection<UserDto>();
 
                         foreach (var profile in profiles)
@@ -159,5 +159,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public RelayCommand ChooseProfilePageLoaded { get; set; }
         public RelayCommand<object[]> LoginCommand { get; set; }
         public RelayCommand ManualLoginCommand { get; set; }
+
+        public override void UpdateProperties()
+        {
+            RaisePropertyChanged(() => CanLogin);
+        }
     }
 }
