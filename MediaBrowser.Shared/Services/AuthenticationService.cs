@@ -129,7 +129,7 @@ namespace MediaBrowser.WindowsPhone.Services
         {
             try
             {
-                await _connectionManager.CurrentApiClient.Logout();
+                var result = await _connectionManager.Logout();
             }
             catch (HttpException ex)
             {
@@ -140,7 +140,10 @@ namespace MediaBrowser.WindowsPhone.Services
         public void Logout()
         {
             LoggedInUser = null;
+            LoggedInConnectUser = null;
+            AuthenticationResult = null;
             _settingsService.Reset(Constants.Settings.SelectedUserSetting);
+            _settingsService.Reset(Constants.Settings.AuthUserSetting);
             _settingsService.Save();
         }
 

@@ -116,17 +116,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     return;
                 }
 
-                //var tileDate = new ShellTileServiceCycleTileData
-                //{
-                //    Title = collection.Name,
-                //    CycleImages = new Collection<Uri>
-                //    {
-                //        new Uri("/Assets/Tiles/FlipCycleTileLarge.png", UriKind.Relative),
-                //        new Uri("/Assets/Tiles/FlipCycleTileMedium.png", UriKind.Relative)
-                //    },
-                //    SmallBackgroundImage = new Uri("/Assets/Tiles/FlipCycleTileSmall.png", UriKind.Relative)
-                //};
-
                 TileService.Current.PinCollection(collection.Name, collection.Id, App.SpecificSettings.UseTransparentTile, true);
                 Messenger.Default.Send(new NotificationMessage(tileUrl, Constants.Messages.CollectionPinnedMsg));
 
