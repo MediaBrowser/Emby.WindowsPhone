@@ -9,7 +9,6 @@
                 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
                 xmlns:behaviors="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
                 xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
-                
                 xmlns:c4F="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
                 xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
                 xmlns:controls="clr-namespace:MediaBrowser.WindowsPhone.Controls"
@@ -100,10 +99,10 @@
     </scott:BasePage.Resources>
 
     <!--LayoutRoot contains the root grid where all other page content is placed-->
-    <Grid x:Name="LayoutRoot"
-          Background="{StaticResource MediaBrowserBackground}">
+    <Grid x:Name="LayoutRoot">
         <phone:Panorama Title=""
-                        HeaderTemplate="{StaticResource LikeWp7ItemHeaderTemplate}">
+                        HeaderTemplate="{StaticResource LikeWp7ItemHeaderTemplate}"
+                        Background="{StaticResource MediaBrowserPanoBackground}">
             <phone:Panorama.TitleTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal"
