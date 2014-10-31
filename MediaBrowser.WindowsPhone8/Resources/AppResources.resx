@@ -1111,4 +1111,7 @@
   <data name="ErrorSigningIn" xml:space="preserve">
     <value>Error signing in</value>
   </data>
+  <data name="LabelRetry" xml:space="preserve">
+    <value>Retry</value>
+  </data>
 </root>

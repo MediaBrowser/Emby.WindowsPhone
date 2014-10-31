@@ -1816,6 +1816,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Retry.
+        /// </summary>
+        public static string LabelRetry {
+            get {
+                return ResourceManager.GetString("LabelRetry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Running time:.
         /// </summary>
         public static string LabelRunningTime {

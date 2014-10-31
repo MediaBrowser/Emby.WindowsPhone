@@ -11,6 +11,7 @@
                 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
                 xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
                 xmlns:controls="clr-namespace:InTheHand.UI.Xaml.Controls;assembly=InTheHand.UI.Xaml.Controls.ProgressRing"
+                xmlns:controls1="clr-namespace:MediaBrowser.WindowsPhone.Controls"
                 mc:Ignorable="d ignore"
                 d:DesignWidth="480"
                 d:DesignHeight="768"
@@ -67,21 +68,30 @@
                     VerticalAlignment="Top"
                     x:Name="Text">
             <Image Source="/Assets/MediaTextWhite.png"
-                   Height="45"/>
+                   Height="45" />
             <Image Source="/Assets/BrowserText.png"
-                   Height="45"/>
+                   Height="45" />
         </StackPanel>
-        
+
         <StackPanel Orientation="Vertical"
                     Grid.Row="2"
-                    Margin="0,24">
+                    Margin="0,24"
+                    Visibility="{Binding RetryButtonIsVisible, Converter={StaticResource InvertedVisibilityConverter}}">
             <controls:ProgressRing IsActive="{Binding ProgressIsVisible}"
                                    Margin="0,0,0,12"
-                                   Foreground="{StaticResource PhoneAccentBrush}"/>
+                                   Foreground="{StaticResource PhoneAccentBrush}" />
             <TextBlock Text="{Binding ProgressText}"
                        HorizontalAlignment="Center"
-                       Style="{StaticResource PhoneTextTitle3Style}"/>
+                       Style="{StaticResource PhoneTextTitle3Style}" />
         </StackPanel>
+
+        <controls1:CustomHyperlinkButton Grid.Row="2"
+                                         Margin="0,24"
+                                         Content="{Binding LocalizedResources.LabelRetry, Source={StaticResource LocalizedStrings}}" 
+                                         VerticalAlignment="Top"
+                                         Foreground="{StaticResource PhoneAccentBrush}"
+                                         TapCommand="{Binding RetryConnectionCommand}"
+                                         Visibility="{Binding RetryButtonIsVisible, Converter={StaticResource VisibilityConverter}}"/>
 
     </Grid>
 
