@@ -14,6 +14,7 @@
                         xmlns:behaviours1="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
                         xmlns:behaviors="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
                         xmlns:converters="clr-namespace:MediaBrowser.WindowsPhone.Converters"
+                        xmlns:controls1="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
                         mc:Ignorable="d ignore"
                         FontFamily="{StaticResource PhoneFontFamilyNormal}"
                         FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -41,8 +42,8 @@
     <Grid x:Name="LayoutRoot"
           Background="{StaticResource MediaBrowserBackground}">
         <i:Interaction.Behaviors>
-            <behaviors:ApplicationBarBehavior IsMenuEnabled="True">
-                                              <!--Mode="{Binding Auth.SignedInUsingConnect, Source={StaticResource Locator}, Converter={StaticResource AppBarModeConverter}}">-->
+            <behaviors:ApplicationBarBehavior IsMenuEnabled="True"
+                                              Mode="{Binding Auth.SignedInUsingConnect, Source={StaticResource Locator}, Converter={StaticResource AppBarModeConverter}}">
                 <behaviors:ApplicationBarBehavior.Buttons>
                     <behaviors:ApplicationBarIconButton IconUri="/Icons/appbar.check.rest.png"
                                                         Text="{Binding LocalizedResources.AppBarLogin, Source={StaticResource LocalizedStrings}}"
@@ -51,6 +52,9 @@
                                                         Command="{Binding SignInCommand}"/>
                 </behaviors:ApplicationBarBehavior.Buttons>
                 <behaviors:ApplicationBarBehavior.MenuItems>
+                    <behaviors:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarLogout, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                      Command="{Binding LogOutCommand}"
+                                                      IsVisible="{Binding Auth.SignedInUsingConnect, Source={StaticResource Locator}}"/>
                     <behaviors:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarSendLogs, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                       x:Name="EmailLogs"
                                                       Click="EmailLogs_OnClick" />
@@ -81,10 +85,32 @@
                   Grid.Row="1"
                   Margin="12,0,12,0">
                 <Grid x:Name="IsLoggedInGrid"
-                      Visibility="{Binding Auth.SignedInUsingConnect, Source={StaticResource Locator}, Converter={StaticResource VisibilityConverter}, FallbackValue=Collapsed}"></Grid>
+                      Visibility="{Binding Auth.SignedInUsingConnect, Source={StaticResource Locator}, Converter={StaticResource VisibilityConverter}, FallbackValue=Visible}"
+                      DataContext="{Binding Auth.LoggedInConnectUser, Source={StaticResource Locator}}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    
+                    <Grid Margin="12,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <controls1:SuperImage Source="{Binding ImageUrl}"
+                                              Stretch="UniformToFill"/>
+                        
+                        <StackPanel Orientation="Vertical"
+                                    Grid.Column="1">
+                            <TextBlock Text="{Binding Name}"
+                                       Style="{StaticResource PhoneTextTitle2Style}"/>
+                        </StackPanel>
+                    </Grid>
+                </Grid>
 
                 <Grid x:Name="IsNotLoggedInGrid"
-                      Visibility="{Binding Auth.SignedInUsingConnect, Source={StaticResource Locator}, Converter={StaticResource InvertedVisibilityConverter}, FallbackValue=Visible}">
+                      Visibility="{Binding Auth.SignedInUsingConnect, Source={StaticResource Locator}, Converter={StaticResource InvertedVisibilityConverter}, FallbackValue=Collapsed}">
                     <StackPanel Orientation="Vertical">
                         <TextBlock Text="{Binding LocalizedResources.LabelUsername, Source={StaticResource LocalizedStrings}}"
                                    Style="{StaticResource PhoneTextSubtleStyle}" />

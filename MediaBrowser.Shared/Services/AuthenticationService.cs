@@ -130,6 +130,7 @@ namespace MediaBrowser.WindowsPhone.Services
             try
             {
                 var result = await _connectionManager.Logout();
+                var state = result.State;
             }
             catch (HttpException ex)
             {

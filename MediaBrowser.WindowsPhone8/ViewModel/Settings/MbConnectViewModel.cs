@@ -85,6 +85,21 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Settings
             }
         }
 
+        public RelayCommand LogOutCommand
+        {
+            get
+            {
+                return new RelayCommand(() =>
+                {
+                    AuthenticationService.Current.SignOut().ConfigureAwait(false);
+
+                    NavigationService.NavigateTo(Constants.Pages.FirstRun.MbConnectFirstRunView, true);
+
+                    AuthenticationService.Current.Logout();
+                });
+            }
+        }
+
         public override void UpdateProperties()
         {
             RaisePropertyChanged(() => CanSignIn);
