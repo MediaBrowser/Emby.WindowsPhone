@@ -284,28 +284,21 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Settings
 
                 var result = await ConnectionManager.Connect(App.Settings.ConnectionDetails.ServerAddress, default(CancellationToken));
 
-                //if (await Utils.GetServerConfiguration(ApiClient, Log))
-                if(result.State != ConnectionState.Unavailable)
+                if (result.State != ConnectionState.Unavailable)
                 {
-                    if (!IsInDesignMode)
-                    {
-                        _applicationSettings.Reset(Constants.Settings.SelectedUserSetting);
-                        SettingsSet(Constants.Settings.ConnectionSettings, App.Settings.ConnectionDetails);
-                    }
-
-                    SetProgressBar(AppResources.SysTrayAuthenticating);
-                    await Utils.CheckProfiles(NavigationService, Log, ApiClient);
+                    AuthenticationService.Current.ClearLoggedInUser();
+                    await Utils.HandleConnectedState(result, ApiClient, NavigationService, Log);
                 }
                 else
                 {
                     Log.Info("Invalid connection details");
                     App.ShowMessage(AppResources.ErrorConnectionDetailsInvalid);
                 }
+
             }
 
             SetProgressBar();
         }
-
 
         #region Server Broadcast code WP8 only
 
@@ -376,14 +369,5 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Settings
         }
 
         #endregion
-
-        private void SettingsSet(string key, object value)
-        {
-            if (!IsInDesignMode)
-            {
-                _applicationSettings.Set(key, value);
-                _applicationSettings.Save();
-            }
-        }
     }
 }

@@ -118,6 +118,13 @@ namespace MediaBrowser.WindowsPhone.Services
             }
         }
 
+        public void ClearLoggedInUser()
+        {
+            LoggedInUser = null;
+            _settingsService.Reset(Constants.Settings.SelectedUserSetting);
+            _settingsService.Save();
+        }
+
         public async Task SignOut()
         {
             try

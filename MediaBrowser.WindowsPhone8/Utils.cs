@@ -61,7 +61,7 @@ namespace MediaBrowser.WindowsPhone
                                          into grp
                                          orderby grp.Key
                                          select new Group<BaseItemDto>(grp.Key, grp.OrderBy(x => x.SortName))).ToList();
-                
+
                 var result = (from g in groupedTracks.Union(emptyGroups)
                               where g.Count > 0
                               orderby g.Title
@@ -245,6 +245,49 @@ namespace MediaBrowser.WindowsPhone
             }
         }
 
+        internal static async Task HandleConnectedState(
+            ConnectionResult result,
+            IApiClient apiClient,
+            INavigationService navigationService,
+            ILog log)
+        {
+            switch (result.State)
+            {
+                case ConnectionState.Unavailable:
+                    App.ShowMessage(AppResources.ErrorCouldNotFindServer);
+                    navigationService.NavigateTo(Constants.Pages.FirstRun.MbConnectFirstRunView);
+                    break;
+                case ConnectionState.ServerSelection:
+                    navigationService.NavigateTo(Constants.Pages.SettingsViews.FindServerView);
+                    break;
+                case ConnectionState.ServerSignIn:
+                    if (AuthenticationService.Current.LoggedInUser == null)
+                    {
+                        await CheckProfiles(navigationService, log, apiClient);
+                    }
+                    else
+                    {
+                        AuthenticationService.Current.SetAuthenticationInfo();
+                        navigationService.NavigateTo(Constants.Pages.MainPage);
+                    }
+                    break;
+                case ConnectionState.SignedIn:
+                    if (AuthenticationService.Current.LoggedInUser == null)
+                    {
+                        var user = await apiClient.GetUserAsync(apiClient.CurrentUserId);
+                        AuthenticationService.Current.SetUser(user);
+                    }
+
+                    await StartEverything(navigationService, log, apiClient);
+
+                    navigationService.NavigateTo(Constants.Pages.MainPage);
+                    break;
+                case ConnectionState.ConnectSignIn:
+                    navigationService.NavigateTo(Constants.Pages.FirstRun.MbConnectFirstRunView);
+                    break;
+            }
+        }
+
         internal static async Task CheckProfiles(INavigationService navigationService, ILog logger, IApiClient apiClient)
         {
             if (AuthenticationService.Current.IsLoggedIn)
@@ -283,7 +326,7 @@ namespace MediaBrowser.WindowsPhone
                 navigationService.NavigateTo(Constants.Pages.ChooseProfileView);
                 return true;
             }
-            
+
             log.ErrorException(message, ex);
 
             return false;
@@ -452,7 +495,7 @@ namespace MediaBrowser.WindowsPhone
                 IsMissing = App.SpecificSettings.ShowMissingEpisodes,
                 Recursive = true,
                 Limit = 50,
-                SortBy = new []{ItemSortBy.DateCreated},
+                SortBy = new[] { ItemSortBy.DateCreated },
                 SortOrder = SortOrder.Descending
             };
             return query;

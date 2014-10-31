@@ -1,4 +1,5 @@
 ﻿using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using Cimbalino.Phone.Toolkit.Services;
 using GalaSoft.MvvmLight.Command;
@@ -8,6 +9,7 @@ using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Model.Photo;
 using MediaBrowser.WindowsPhone.Resources;
 using MediaBrowser.WindowsPhone.Services;
+using ScottIsAFool.WindowsPhone.Logging;
 using INavigationService = MediaBrowser.WindowsPhone.Model.Interfaces.INavigationService;
 
 namespace MediaBrowser.WindowsPhone.ViewModel
@@ -104,41 +106,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                     Deployment.Current.Dispatcher.BeginInvoke(async () =>
                     {
-                        switch (result.State)
-                        {
-                            case ConnectionState.Unavailable:
-                                App.ShowMessage(AppResources.ErrorCouldNotFindServer);
-                                NavigationService.NavigateTo(Constants.Pages.FirstRun.MbConnectFirstRunView);
-                                break;
-                            case ConnectionState.ServerSelection:
-                                NavigationService.NavigateTo(Constants.Pages.SettingsViews.FindServerView);
-                                break;
-                            case ConnectionState.ServerSignIn:
-                                if (AuthenticationService.Current.LoggedInUser == null)
-                                {
-                                    await Utils.CheckProfiles(NavigationService, Log, ApiClient);
-                                }
-                                else
-                                {
-                                    AuthenticationService.Current.SetAuthenticationInfo();
-                                    NavigationService.NavigateTo(Constants.Pages.MainPage);
-                                }
-                                break;
-                            case ConnectionState.SignedIn:
-                                if (AuthenticationService.Current.LoggedInUser == null)
-                                {
-                                    var user = await ApiClient.GetUserAsync(ApiClient.CurrentUserId);
-                                    AuthenticationService.Current.SetUser(user);
-                                }
-
-                                await Utils.StartEverything(NavigationService, Log, ApiClient);
-
-                                NavigationService.NavigateTo(Constants.Pages.MainPage);
-                                break;
-                            case ConnectionState.ConnectSignIn:
-                                NavigationService.NavigateTo(Constants.Pages.FirstRun.MbConnectFirstRunView);
-                                break;
-                        }
+                        await Utils.HandleConnectedState(result, ApiClient, NavigationService, Log);
 
                         SetProgressBar();
                     });
