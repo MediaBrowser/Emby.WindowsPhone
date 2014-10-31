@@ -171,12 +171,12 @@ namespace MediaBrowser.WindowsPhone.Services
             }
             catch (WebException wex)
             {
-                var s = "";
+                _logger.ErrorException("Error logging into MB Connect", wex);
                 return false;
             }
             catch (Exception eex)
             {
-                var s = "";
+                _logger.ErrorException("Error logging into MB Connect", eex);
                 return false;
             }
         }

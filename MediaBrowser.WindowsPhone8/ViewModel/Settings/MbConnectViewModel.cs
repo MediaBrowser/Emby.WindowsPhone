@@ -57,10 +57,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Settings
 
                         if (success)
                         {
-                            await ConnectionManager.Connect(default(CancellationToken));
-                            var user = await ApiClient.GetUserAsync(ApiClient.CurrentUserId);
-                            AuthenticationService.Current.SetUser(user);
-                            NavigationService.NavigateTo(Constants.Pages.MainPage, true);
+                            var result = await ConnectionManager.Connect(default(CancellationToken));
+                            await Utils.HandleConnectedState(result, ApiClient, NavigationService, Log);
                         }
                         else
                         {

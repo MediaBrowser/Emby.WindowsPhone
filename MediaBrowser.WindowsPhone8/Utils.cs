@@ -268,7 +268,7 @@ namespace MediaBrowser.WindowsPhone
                     else
                     {
                         AuthenticationService.Current.SetAuthenticationInfo();
-                        navigationService.NavigateTo(Constants.Pages.MainPage);
+                        navigationService.NavigateTo(Constants.Pages.MainPage, true);
                     }
                     break;
                 case ConnectionState.SignedIn:
@@ -280,7 +280,7 @@ namespace MediaBrowser.WindowsPhone
 
                     await StartEverything(navigationService, log, apiClient);
 
-                    navigationService.NavigateTo(Constants.Pages.MainPage);
+                    navigationService.NavigateTo(Constants.Pages.MainPage, true);
                     break;
                 case ConnectionState.ConnectSignIn:
                     navigationService.NavigateTo(Constants.Pages.FirstRun.MbConnectFirstRunView);
