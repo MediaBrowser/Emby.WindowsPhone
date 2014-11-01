@@ -7,11 +7,14 @@ using System.Windows;
 using System.Windows.Threading;
 using Cimbalino.Phone.Toolkit.Helpers;
 using Cimbalino.Phone.Toolkit.Services;
+using MediaBrowser.ApiInteraction;
 using MediaBrowser.Model.ApiClient;
+using MediaBrowser.Model.Logging;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Session;
 using MediaBrowser.WindowsPhone.Logging;
 using MediaBrowser.WindowsPhone.Model;
+using MediaBrowser.WindowsPhone.Model.Security;
 using MediaBrowser.WindowsPhone.Services;
 using Microsoft.Phone.BackgroundAudio;
 using ScottIsAFool.WindowsPhone.Logging;
@@ -23,8 +26,10 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
         private static ILog _logger;
         private static volatile bool _classInitialized;
         private readonly PlaylistHelper _playlistHelper;
+        private static readonly IApplicationSettingsService ApplicationSettings = new ApplicationSettingsService();
         private static IApiClient _apiClient;
         private static DispatcherTimer _dispatcherTimer;
+        private static ILogger _mbLogger = new MBLogger(typeof(AudioPlayer));
 
         /// <remarks>
         /// AudioPlayer instances can share the same process. 
@@ -81,19 +86,16 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
             }
         }
 
-        private static async void CreateClient()
+        private static void CreateClient()
         {
             try
             {
                 var device = new Device {DeviceId = SharedUtils.GetDeviceId(), DeviceName = SharedUtils.GetDeviceName() + " Audio Player"};
-                var manager = SharedUtils.CreateConnectionManager(device, new MBLogger(typeof (AudioPlayer)));
-                await manager.Connect(default(CancellationToken)).ContinueWith(task =>
-                {
-                    var auth = new AuthenticationService(manager);
-                    auth.Start();
+                var server = ApplicationSettings.Get<ServerInfo>(Constants.Settings.DefaultServerConnection);
+                var client = new ApiClient(_mbLogger, server.RemoteAddress, "Windows Phone 8", device, ApplicationManifest.Current.App.Version, new ClientCapabilities(), new CryptographyProvider());
+                client.SetAuthenticationInfo(server.AccessToken, server.UserId);
 
-                    _apiClient = manager.CurrentApiClient;
-                });
+                _apiClient = client;
             }
             catch (Exception ex)
             {

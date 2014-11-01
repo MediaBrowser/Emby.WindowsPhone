@@ -134,6 +134,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             if (result != null && result.State == ConnectionState.Unavailable && _savedServer != null)
             {
                 RetryButtonIsVisible = true;
+                return;
             }
 
             // See if we can find and communicate with the server

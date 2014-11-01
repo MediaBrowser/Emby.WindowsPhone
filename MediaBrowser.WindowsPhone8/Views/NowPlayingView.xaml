@@ -64,7 +64,7 @@
     </toolkit:TransitionService.NavigationOutTransition>
 
     <Grid x:Name="LayoutRoot"
-          Background="{StaticResource MediaBrowserBackground}">
+          Background="{StaticResource MediaBrowserPlainBackground}">
         <i:Interaction.Behaviors>
             <cimbalino:ApplicationBarBehavior IsMenuEnabled="True">
                 <cimbalino:ApplicationBarIconButton Text="{Binding LocalizedResources.AppBarPrevious, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"

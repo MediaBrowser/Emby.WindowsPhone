@@ -8,9 +8,11 @@ using MediaBrowser.ApiInteraction;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Logging;
 using MediaBrowser.Model.Net;
+using MediaBrowser.Model.Session;
 using MediaBrowser.WindowsPhone.Logging;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Model.Photo;
+using MediaBrowser.WindowsPhone.Model.Security;
 using MediaBrowser.WindowsPhone.Services;
 using Microsoft.Phone.Scheduler;
 using ScottIsAFool.WindowsPhone.Logging;
@@ -19,9 +21,9 @@ namespace MediaBrowser.WindowsPhone.Background
 {
     public class ScheduledAgent : ScheduledTaskAgent
     {
-        private IApiClient _apiClient;
-        private readonly ILogger _mediaBrowserLogger = new MBLogger(typeof(ScheduledAgent));
-        private readonly IApplicationSettingsService _applicationSettings = new ApplicationSettingsService();
+        private static IApiClient _apiClient;
+        private static readonly ILogger MediaBrowserLogger = new MBLogger(typeof(ScheduledAgent));
+        private static readonly IApplicationSettingsService ApplicationSettings = new ApplicationSettingsService();
         private static ContentUploader _contentUploader;
         private static ILog _logger;
 
@@ -36,7 +38,7 @@ namespace MediaBrowser.WindowsPhone.Background
             WPLogger.LogConfiguration.LogType = LogType.WriteToFile;
             WPLogger.LogConfiguration.LoggingIsEnabled = true;
 
-            _contentUploader = new ContentUploader(_apiClient, _mediaBrowserLogger);
+            _contentUploader = new ContentUploader(_apiClient, MediaBrowserLogger);
 
             // Subscribe to the managed exception handler
             Deployment.Current.Dispatcher.BeginInvoke(delegate
@@ -55,19 +57,16 @@ namespace MediaBrowser.WindowsPhone.Background
             }
         }
 
-        private async void CreateClient()
+        private static void CreateClient()
         {
             try
             {
-                var device = new Device { DeviceId = SharedUtils.GetDeviceId(), DeviceName = SharedUtils.GetDeviceName() + " Audio Player" };
-                var manager = SharedUtils.CreateConnectionManager(device, _mediaBrowserLogger);
-                await manager.Connect(default(CancellationToken)).ContinueWith(task =>
-                {
-                    var auth = new AuthenticationService(manager);
-                    auth.Start();
+                var device = new Device { DeviceId = SharedUtils.GetDeviceId(), DeviceName = SharedUtils.GetDeviceName() };
+                var server = ApplicationSettings.Get<ServerInfo>(Constants.Settings.DefaultServerConnection);
+                var client = new ApiClient(MediaBrowserLogger, server.RemoteAddress, "Windows Phone 8", device, ApplicationManifest.Current.App.Version, new ClientCapabilities{SupportsContentUploading = true}, new CryptographyProvider());
+                client.SetAuthenticationInfo(server.AccessToken, server.UserId);
 
-                    _apiClient = manager.CurrentApiClient;
-                });
+                _apiClient = client;
             }
             catch (Exception ex)
             {
@@ -93,7 +92,7 @@ namespace MediaBrowser.WindowsPhone.Background
                 return;
             }
 
-            var uploadSettings = _applicationSettings.Get<UploadSettings>(Constants.Settings.PhotoUploadSettings);
+            var uploadSettings = ApplicationSettings.Get<UploadSettings>(Constants.Settings.PhotoUploadSettings);
 
             if (uploadSettings == null || !uploadSettings.IsPhotoUploadsEnabled)
             {
