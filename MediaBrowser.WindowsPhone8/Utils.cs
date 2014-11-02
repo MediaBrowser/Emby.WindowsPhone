@@ -218,33 +218,6 @@ namespace MediaBrowser.WindowsPhone
             });
         }
 
-        internal static async Task<bool> GetServerConfiguration(IApiClient apiClient, ILog logger)
-        {
-            try
-            {
-                apiClient.ChangeServerLocation(App.Settings.ConnectionDetails.ServerAddress);
-
-                if (AuthenticationService.Current.IsLoggedIn)
-                {
-                    AuthenticationService.Current.SetAuthenticationInfo();
-                }
-
-                logger.Info("Getting server information. Server address ({0})", apiClient.ServerAddress);
-
-                var sysInfo = await apiClient.GetPublicSystemInfoAsync();
-                App.Settings.SystemStatus = sysInfo;
-
-                //apiClient.OpenWebSocket(() => new WebSocketClient());
-
-                return true;
-            }
-            catch (HttpException ex)
-            {
-                logger.ErrorException("GetServerConfiguration()", ex);
-                return false;
-            }
-        }
-
         internal static async Task HandleConnectedState(
             ConnectionResult result,
             IApiClient apiClient,
