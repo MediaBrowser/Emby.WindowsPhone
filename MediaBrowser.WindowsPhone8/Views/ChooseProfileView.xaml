@@ -31,6 +31,9 @@
         <behaviors:ApplicationBarBehavior Mode="Minimized"
                                           IsMenuEnabled="True">
             <behaviors:ApplicationBarBehavior.MenuItems>
+                <behaviors:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarChangeServer, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                  Command="{Binding Main.NavigateToAPage, Source={StaticResource Locator}}"
+                                                  CommandParameter="/Views/Settings/ConnectionSettingsView.xaml"/>
                 <behaviors:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarSettings, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                   Command="{Binding Main.NavigateToAPage, Source={StaticResource Locator}}"
                                                   CommandParameter="/Views/SettingsView.xaml" />
@@ -100,6 +103,12 @@
                                                             NavigateUri="/Views/ManualUsernameView.xaml"
                                                             Margin="-12,0,0,0"
                                                             Foreground="{StaticResource PhoneAccentBrush}" />
+                            
+                            <controls:CustomHyperlinkButton Content="{Binding LocalizedResources.LabelSignInWithConnect, Source={StaticResource LocalizedStrings}}"
+                                                            HorizontalContentAlignment="Left"
+                                                            NavigateUri="/Views/Settings/MbConnectView.xaml"
+                                                            Margin="-12,12,0,0"
+                                                            Foreground="{StaticResource PhoneAccentBrush}"/>
                         </StackPanel>
                     </phone:LongListSelector.ListFooter>
                     <phone:LongListSelector.ItemTemplate>

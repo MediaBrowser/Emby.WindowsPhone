@@ -129,8 +129,7 @@ namespace MediaBrowser.WindowsPhone.Services
         {
             try
             {
-                var result = await _connectionManager.Logout();
-                var state = result.State;
+                await _connectionManager.Logout();
             }
             catch (HttpException ex)
             {
@@ -145,6 +144,7 @@ namespace MediaBrowser.WindowsPhone.Services
             AuthenticationResult = null;
             _settingsService.Reset(Constants.Settings.SelectedUserSetting);
             _settingsService.Reset(Constants.Settings.AuthUserSetting);
+            _settingsService.Reset(Constants.Settings.DefaultServerConnection);
             _settingsService.Save();
         }
 

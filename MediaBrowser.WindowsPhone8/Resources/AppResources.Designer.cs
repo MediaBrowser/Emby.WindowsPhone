@@ -97,6 +97,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to change server.
+        /// </summary>
+        public static string AppBarChangeServer {
+            get {
+                return ResourceManager.GetString("AppBarChangeServer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to channel.
         /// </summary>
         public static string AppBarChannel {
@@ -2001,6 +2010,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string LabelShowTrailers {
             get {
                 return ResourceManager.GetString("LabelShowTrailers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sign in with Media Browser Connect.
+        /// </summary>
+        public static string LabelSignInWithConnect {
+            get {
+                return ResourceManager.GetString("LabelSignInWithConnect", resourceCulture);
             }
         }
         
