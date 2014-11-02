@@ -5,6 +5,8 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Windows;
+using Cimbalino.Phone.Toolkit.Services;
+using GalaSoft.MvvmLight.Ioc;
 using MediaBrowser.Model;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
@@ -22,6 +24,7 @@ using Newtonsoft.Json;
 using ScottIsAFool.WindowsPhone;
 using ScottIsAFool.WindowsPhone.Logging;
 using INavigationService = MediaBrowser.WindowsPhone.Model.Interfaces.INavigationService;
+using LockScreenService = MediaBrowser.WindowsPhone.Services.LockScreenService;
 
 namespace MediaBrowser.WindowsPhone
 {
@@ -235,6 +238,15 @@ namespace MediaBrowser.WindowsPhone
                 App.Settings.SystemStatus = sysInfo;
 
                 apiClient.OpenWebSocket(() => new WebSocketClient());
+                if (string.IsNullOrEmpty(App.Settings.ConnectionDetails.ServerId))
+                {
+                    App.Settings.ConnectionDetails.ServerId = sysInfo.Id;
+                    var appSettings = SimpleIoc.Default.GetInstance<IApplicationSettingsService>();
+                    appSettings.Set(Constants.Settings.ConnectionSettings, App.Settings.ConnectionDetails);
+                    appSettings.Save();
+                }
+
+                logger.Info("Checking if live TV is supported");
 
                 return true;
             }

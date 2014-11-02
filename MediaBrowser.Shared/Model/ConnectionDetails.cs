@@ -7,6 +7,7 @@ namespace MediaBrowser.WindowsPhone.Model
     {
         public string HostName { get; set; }
         public int PortNo { get; set; }
+        public string ServerId { get; set; }
 
         public string DisplayUrl
         {
