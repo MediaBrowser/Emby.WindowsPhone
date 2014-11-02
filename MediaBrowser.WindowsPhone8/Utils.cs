@@ -241,6 +241,11 @@ namespace MediaBrowser.WindowsPhone
                 var sysInfo = await apiClient.GetSystemInfoAsync();
                 App.Settings.SystemStatus = sysInfo;
 
+                if (string.IsNullOrEmpty(App.Settings.ConnectionDetails.ServerId))
+                {
+                    App.Settings.ConnectionDetails.ServerId = sysInfo.Id;
+                }
+
                 logger.Info("Checking if live TV is supported");
 
                 var liveTv = await apiClient.GetLiveTvInfoAsync();
