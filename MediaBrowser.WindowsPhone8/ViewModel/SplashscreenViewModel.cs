@@ -107,12 +107,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             SetProgressBar(AppResources.SysTrayGettingServerDetails);
 
-            if (_connectionDetails != null)
+            if (_connectionDetails != null && !string.IsNullOrEmpty(_connectionDetails.ServerId))
             {
                 result = await ConnectionManager.Connect(_connectionDetails.ServerAddress, default(CancellationToken));
                 var server = result.Servers.FirstOrDefault(x =>
-                        string.Equals(x.LocalAddress, _connectionDetails.ServerAddress, StringComparison.CurrentCultureIgnoreCase)
-                        || string.Equals(x.RemoteAddress, _connectionDetails.ServerAddress, StringComparison.CurrentCultureIgnoreCase));
+                        string.Equals(x.Id, _connectionDetails.ServerId, StringComparison.CurrentCultureIgnoreCase));
 
                 if (server != null)
                 {
