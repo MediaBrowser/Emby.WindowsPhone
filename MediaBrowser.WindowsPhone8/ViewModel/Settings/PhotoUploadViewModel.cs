@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using System.Windows;
+using Cimbalino.Phone.Toolkit.Services;
 using JetBrains.Annotations;
 using MediaBrowser.Model.ApiClient;
-using MediaBrowser.WindowsPhone.Model.Interfaces;
 using MediaBrowser.WindowsPhone.Services;
+using INavigationService = MediaBrowser.WindowsPhone.Model.Interfaces.INavigationService;
 
 namespace MediaBrowser.WindowsPhone.ViewModel.Settings
 {
@@ -16,14 +18,16 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Settings
     /// </summary>
     public class PhotoUploadViewModel : ViewModelBase
     {
+        private readonly IApplicationSettingsService _appSettingsService;
         private bool _ignoreChange;
 
         /// <summary>
         /// Initializes a new instance of the PhotoUploadViewModel class.
         /// </summary>
-        public PhotoUploadViewModel(INavigationService navigationService, IConnectionManager connectionManager)
+        public PhotoUploadViewModel(INavigationService navigationService, IConnectionManager connectionManager, IApplicationSettingsService appSettingsService)
             : base(navigationService, connectionManager)
         {
+            _appSettingsService = appSettingsService;
             if (IsInDesignMode)
             {
                 IsPhotoUploadsEnabled = true;
@@ -69,6 +73,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Settings
             if (IsPhotoUploadsEnabled)
             {
                 BackgroundTaskService.Current.CreateTask();
+
+                _appSettingsService.Set(Constants.Settings.PhotoUploadSettings, App.UploadSettings);
+                _appSettingsService.Save();
+
                 LaunchBackgroundTask();
             }
             else
