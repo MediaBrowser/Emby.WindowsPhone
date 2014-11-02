@@ -52,9 +52,6 @@
                                                         Command="{Binding SignInCommand}"/>
                 </behaviors:ApplicationBarBehavior.Buttons>
                 <behaviors:ApplicationBarBehavior.MenuItems>
-                    <behaviors:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarLogout, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
-                                                      Command="{Binding LogOutCommand}"
-                                                      IsVisible="{Binding Auth.SignedInUsingConnect, Source={StaticResource Locator}}"/>
                     <behaviors:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarSendLogs, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                       x:Name="EmailLogs"
                                                       Click="EmailLogs_OnClick" />
@@ -85,21 +82,22 @@
                   Grid.Row="1"
                   Margin="12,0,12,0">
                 <Grid x:Name="IsLoggedInGrid"
-                      Visibility="{Binding Auth.SignedInUsingConnect, Source={StaticResource Locator}, Converter={StaticResource VisibilityConverter}, FallbackValue=Visible}"
-                      DataContext="{Binding Auth.LoggedInConnectUser, Source={StaticResource Locator}}">
+                      Visibility="{Binding Auth.SignedInUsingConnect, Source={StaticResource Locator}, Converter={StaticResource VisibilityConverter}, FallbackValue=Visible}">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     
-                    <Grid Margin="12,0">
+                    <Grid Margin="12,0"
+                          DataContext="{Binding Auth.LoggedInConnectUser, Source={StaticResource Locator}}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="150"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         
                         <controls1:SuperImage Source="{Binding ImageUrl}"
-                                              Stretch="UniformToFill"/>
+                                              Stretch="UniformToFill"
+                                              PlaceholderImageSource="/Images/default_avatar.png"/>
                         
                         <StackPanel Orientation="Vertical"
                                     Grid.Column="1">
@@ -107,6 +105,13 @@
                                        Style="{StaticResource PhoneTextTitle2Style}"/>
                         </StackPanel>
                     </Grid>
+                    
+                    <controls:CustomHyperlinkButton Content="{Binding LocalizedResources.LabelLogout, Source={StaticResource LocalizedStrings}}"
+                                                    Grid.Row="1"
+                                                    VerticalAlignment="Top"
+                                                    HorizontalContentAlignment="Left"
+                                                    Margin="0,24,0,0"
+                                                    TapCommand="{Binding LogOutCommand}"/>
                 </Grid>
 
                 <Grid x:Name="IsNotLoggedInGrid"

@@ -1114,8 +1114,8 @@
   <data name="LabelRetry" xml:space="preserve">
     <value>Retry</value>
   </data>
-  <data name="AppBarLogout" xml:space="preserve">
-    <value>log out</value>
+  <data name="LabelLogout" xml:space="preserve">
+    <value>Log out</value>
   </data>
   <data name="AppBarChangeServer" xml:space="preserve">
     <value>change server</value>

@@ -169,15 +169,6 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to log out.
-        /// </summary>
-        public static string AppBarLogout {
-            get {
-                return ResourceManager.GetString("AppBarLogout", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to mark as unwatched.
         /// </summary>
         public static string AppBarMarkAsUnwatched {
@@ -1263,6 +1254,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string LabelLogIn {
             get {
                 return ResourceManager.GetString("LabelLogIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Log out.
+        /// </summary>
+        public static string LabelLogout {
+            get {
+                return ResourceManager.GetString("LabelLogout", resourceCulture);
             }
         }
         
