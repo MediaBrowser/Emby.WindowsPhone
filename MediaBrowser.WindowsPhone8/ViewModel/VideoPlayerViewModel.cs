@@ -362,11 +362,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         try
                         {
                             var items = await ApiClient.GetIntrosAsync(SelectedItem.Id, AuthenticationService.Current.LoggedInUserId);
-                            if (items != null && items.Items.IsNullOrEmpty())
+                            if (items != null && !items.Items.IsNullOrEmpty())
                             {
                                 if (PlaylistItems == null)
                                 {
-                                    PlaylistItems = new List<BaseItemDto>(items.Items);
+                                    PlaylistItems = new List<BaseItemDto>(items.Items) {SelectedItem};
                                 }
                                 else
                                 {
@@ -374,9 +374,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                     list.AddRange(PlaylistItems);
 
                                     PlaylistItems = list;
-                                    var firstItem = PlaylistItems.FirstOrDefault();
-                                    if (firstItem != null) SelectedItem = firstItem;
                                 }
+
+                                var firstItem = PlaylistItems.FirstOrDefault();
+                                if (firstItem != null) SelectedItem = firstItem;
                             }
                         }
                         catch (HttpException ex)
