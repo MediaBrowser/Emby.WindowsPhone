@@ -91,7 +91,8 @@
                                                       Command="{Binding NavigateToAPage}"
                                                       CommandParameter="/Views/SettingsView.xaml" />
                     <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarChangeProfile, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
-                                                      Command="{Binding ChangeProfileCommand}" />
+                                                      Command="{Binding ChangeProfileCommand}" 
+                                                      IsVisible="{Binding Auth.SignedInUsingConnect, Source={StaticResource Locator}, Converter={StaticResource NegativeBooleanConverter}}"/>
                     <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarAbout, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                       Command="{Binding NavigateToAPage}"
                                                       CommandParameter="/YourLastAboutDialog;component/AboutPage.xaml" />
