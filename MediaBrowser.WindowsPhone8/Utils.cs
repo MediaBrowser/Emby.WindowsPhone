@@ -5,8 +5,9 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Windows;
+using Cimbalino.Phone.Toolkit.Services;
+using GalaSoft.MvvmLight.Ioc;
 using MediaBrowser.Model;
-using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Library;
@@ -14,6 +15,7 @@ using MediaBrowser.Model.LiveTv;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Querying;
 using MediaBrowser.Model.Session;
+using MediaBrowser.Services;
 using MediaBrowser.WindowsPhone.Extensions;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Resources;
@@ -22,6 +24,7 @@ using Newtonsoft.Json;
 using ScottIsAFool.WindowsPhone;
 using ScottIsAFool.WindowsPhone.Logging;
 using INavigationService = MediaBrowser.WindowsPhone.Model.Interfaces.INavigationService;
+using LockScreenService = MediaBrowser.WindowsPhone.Services.LockScreenService;
 
 namespace MediaBrowser.WindowsPhone
 {
@@ -61,7 +64,7 @@ namespace MediaBrowser.WindowsPhone
                                          into grp
                                          orderby grp.Key
                                          select new Group<BaseItemDto>(grp.Key, grp.OrderBy(x => x.SortName))).ToList();
-
+                
                 var result = (from g in groupedTracks.Union(emptyGroups)
                               where g.Count > 0
                               orderby g.Title
@@ -218,76 +221,67 @@ namespace MediaBrowser.WindowsPhone
             });
         }
 
-        internal static async Task HandleConnectedState(
-            ConnectionResult result,
-            IApiClient apiClient,
-            INavigationService navigationService,
-            ILog log)
+        internal static async Task<bool> GetServerConfiguration(IExtendedApiClient apiClient, ILog logger)
         {
-            switch (result.State)
-            {
-                case ConnectionState.Unavailable:
-                    App.ShowMessage(AppResources.ErrorCouldNotFindServer);
-                    navigationService.NavigateTo(Constants.Pages.FirstRun.MbConnectFirstRunView);
-                    break;
-                case ConnectionState.ServerSelection:
-                    navigationService.NavigateTo(Constants.Pages.SettingsViews.FindServerView);
-                    break;
-                case ConnectionState.ServerSignIn:
-                    if (AuthenticationService.Current.LoggedInUser == null)
-                    {
-                        await CheckProfiles(navigationService, log, apiClient);
-                    }
-                    else
-                    {
-                        AuthenticationService.Current.SetAuthenticationInfo();
-                        navigationService.NavigateTo(Constants.Pages.MainPage, true);
-                    }
-                    break;
-                case ConnectionState.SignedIn:
-                    if (AuthenticationService.Current.LoggedInUser == null)
-                    {
-                        var user = await apiClient.GetUserAsync(apiClient.CurrentUserId);
-                        AuthenticationService.Current.SetUser(user);
-                    }
-
-                    await StartEverything(navigationService, log, apiClient);
-
-                    navigationService.NavigateTo(Constants.Pages.MainPage, true);
-                    break;
-                case ConnectionState.ConnectSignIn:
-                    navigationService.NavigateTo(Constants.Pages.FirstRun.MbConnectFirstRunView);
-                    break;
-            }
-        }
-
-        internal static async Task CheckProfiles(INavigationService navigationService, ILog logger, IApiClient apiClient)
-        {
-            if (AuthenticationService.Current.IsLoggedIn)
-            {
-                await StartEverything(navigationService, logger, apiClient);
-            }
-
-            // If one exists, then authenticate that user.
-            navigationService.NavigateTo(AuthenticationService.Current.IsLoggedIn ? TileService.Current.PinnedPage() : Constants.Pages.ChooseProfileView);
-        }
-
-        internal static async Task StartEverything(INavigationService navigationService, ILog logger, IApiClient apiClient)
-        {
-            LockScreenService.Current.Start();
-            TileService.Current.UpdatePrimaryTile(App.SpecificSettings.DisplayBackdropOnTile, App.SpecificSettings.UseRichWideTile, App.SpecificSettings.UseTransparentTile).ConfigureAwait(false);
-
             try
             {
+                apiClient.ChangeServerLocation(App.Settings.ConnectionDetails.ServerAddress);
+
+                if (AuthenticationService.Current.IsLoggedIn)
+                {
+                    AuthenticationService.Current.SetAuthenticationInfo();
+                }
+
+                logger.Info("Getting server information. Server address ({0})", apiClient.ServerAddress);
+
+                var sysInfo = await apiClient.GetPublicSystemInfoAsync();
+                App.Settings.SystemStatus = sysInfo;
+
+                apiClient.OpenWebSocket(() => new WebSocketClient());
+                if (string.IsNullOrEmpty(App.Settings.ConnectionDetails.ServerId))
+                {
+                    App.Settings.ConnectionDetails.ServerId = sysInfo.Id;
+                    var appSettings = SimpleIoc.Default.GetInstance<IApplicationSettingsService>();
+                    appSettings.Set(Constants.Settings.ConnectionSettings, App.Settings.ConnectionDetails);
+                    appSettings.Save();
+                }
+
                 logger.Info("Checking if live TV is supported");
 
-                var liveTv = await apiClient.GetLiveTvInfoAsync();
-                App.Settings.LiveTvInfo = liveTv;
+                return true;
             }
             catch (HttpException ex)
             {
-                HandleHttpException(ex, "Live TV Check", navigationService, logger);
+                logger.ErrorException("GetServerConfiguration()", ex);
+                return false;
             }
+        }
+
+        internal static async Task CheckProfiles(INavigationService navigationService, ILog logger, IExtendedApiClient apiClient)
+        {
+            var clients = false;
+            var loginPage = clients ? Constants.Pages.ManualUsernameView : Constants.Pages.ChooseProfileView;
+
+            if (AuthenticationService.Current.IsLoggedIn)
+            {
+                LockScreenService.Current.Start();
+                TileService.Current.UpdatePrimaryTile(App.SpecificSettings.DisplayBackdropOnTile, App.SpecificSettings.UseRichWideTile, App.SpecificSettings.UseTransparentTile).ConfigureAwait(false);
+
+                try
+                {
+                    logger.Info("Checking if live TV is supported");
+
+                    var liveTv = await apiClient.GetLiveTvInfoAsync();
+                    App.Settings.LiveTvInfo = liveTv;
+                }
+                catch (HttpException ex)
+                {
+                    HandleHttpException(ex, "Live TV Check", navigationService, logger);
+                }
+            }
+
+            // If one exists, then authenticate that user.
+            navigationService.NavigateTo(AuthenticationService.Current.IsLoggedIn ? TileService.Current.PinnedPage() : loginPage);
         }
 
         internal static bool HandleHttpException(HttpException ex, string message, INavigationService navigationService, ILog log)
@@ -299,7 +293,7 @@ namespace MediaBrowser.WindowsPhone
                 navigationService.NavigateTo(Constants.Pages.ChooseProfileView);
                 return true;
             }
-
+            
             log.ErrorException(message, ex);
 
             return false;
@@ -310,7 +304,7 @@ namespace MediaBrowser.WindowsPhone
             return HandleHttpException(ex, message, navigationService, log);
         }
 
-        internal static async Task<List<PlaylistItem>> ToPlayListItems(this List<BaseItemDto> list, IApiClient apiClient)
+        internal static async Task<List<PlaylistItem>> ToPlayListItems(this List<BaseItemDto> list, IExtendedApiClient apiClient)
         {
             var newList = new List<PlaylistItem>();
             await Task.Factory.StartNew(() => list.ForEach(item =>
@@ -455,7 +449,7 @@ namespace MediaBrowser.WindowsPhone
             {
                 Filters = new[] { ItemFilter.IsRecentlyAdded, ItemFilter.IsNotFolder },
                 ParentId = id,
-                UserId = AuthenticationService.Current.LoggedInUserId,
+                UserId = AuthenticationService.Current.LoggedInUser.Id,
                 Fields = new[]
                 {
                     ItemFields.DateCreated,
@@ -468,7 +462,7 @@ namespace MediaBrowser.WindowsPhone
                 IsMissing = App.SpecificSettings.ShowMissingEpisodes,
                 Recursive = true,
                 Limit = 50,
-                SortBy = new[] { ItemSortBy.DateCreated },
+                SortBy = new []{ItemSortBy.DateCreated},
                 SortOrder = SortOrder.Descending
             };
             return query;
