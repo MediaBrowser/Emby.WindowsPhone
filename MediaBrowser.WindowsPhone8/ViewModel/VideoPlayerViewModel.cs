@@ -357,6 +357,34 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         _startPositionTicks = SelectedItem.UserData.PlaybackPositionTicks;
                     }
 
+                    if (_startPositionTicks == 0)
+                    {
+                        try
+                        {
+                            var items = await ApiClient.GetIntrosAsync(SelectedItem.Id, AuthenticationService.Current.LoggedInUserId);
+                            if (items != null && items.Items.IsNullOrEmpty())
+                            {
+                                if (PlaylistItems == null)
+                                {
+                                    PlaylistItems = new List<BaseItemDto>(items.Items);
+                                }
+                                else
+                                {
+                                    var list = items.Items.ToList();
+                                    list.AddRange(PlaylistItems);
+
+                                    PlaylistItems = list;
+                                    var firstItem = PlaylistItems.FirstOrDefault();
+                                    if (firstItem != null) SelectedItem = firstItem;
+                                }
+                            }
+                        }
+                        catch (HttpException ex)
+                        {
+                            Log.ErrorException("GetIntros (Cinema Mode)", ex);
+                        }
+                    }
+
                     query = CreateVideoStreamOptions(SelectedItem.Id, _startPositionTicks, SelectedItem.Type.ToLower().Equals("channelvideoitem"));
 
                     if (SelectedItem.RunTimeTicks.HasValue)
