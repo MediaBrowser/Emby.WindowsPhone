@@ -328,7 +328,7 @@
     <value>anslutning</value>
   </data>
   <data name="LabelConnectionDetails" xml:space="preserve">
-    <value>Fyll i anslutningsinformation till datorn som kör Media Browser 3. Tryck sedan för att testa och godkänna.</value>
+    <value>Fyll i anslutningsinformation till datorn som kör Media Browser. Tryck sedan för att testa och godkänna.</value>
   </data>
   <data name="LabelConnectionWarning" xml:space="preserve">
     <value>VARNING: Ändring av servernamnet medför radering av alla sparade profiler.</value>

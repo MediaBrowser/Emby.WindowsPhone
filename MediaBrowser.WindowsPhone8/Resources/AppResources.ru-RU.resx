@@ -328,7 +328,7 @@
     <value>соединение</value>
   </data>
   <data name="LabelConnectionDetails" xml:space="preserve">
-    <value>Введите детали для подключения к компьютеру, где работает Media Browser 3. Затем просто проверьте для подтверждения.</value>
+    <value>Введите детали для подключения к компьютеру, где работает Media Browser. Затем просто проверьте для подтверждения.</value>
   </data>
   <data name="LabelConnectionWarning" xml:space="preserve">
     <value>ПРЕДУПРЕЖДЕНИЕ: При изменении имени хоста уберутся все сохранённые профили.</value>

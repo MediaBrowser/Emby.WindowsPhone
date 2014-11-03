@@ -328,7 +328,7 @@
     <value>connessione</value>
   </data>
   <data name="LabelConnectionDetails" xml:space="preserve">
-    <value>Immetti le informazioni per la connessione al computer dove è installato Media Browser 3. il test verrà avviato alla conferma</value>
+    <value>Immetti le informazioni per la connessione al computer dove è installato Media Browser. il test verrà avviato alla conferma</value>
   </data>
   <data name="LabelConnectionWarning" xml:space="preserve">
     <value>ATTENZIONE: Cambiare il nome host rimuoverà eventuali profili salvati.</value>

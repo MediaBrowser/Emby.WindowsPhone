@@ -328,7 +328,7 @@
     <value>Connexion</value>
   </data>
   <data name="LabelConnectionDetails" xml:space="preserve">
-    <value>Entrez les détails de connexion afin de pointer vers le PC avec le serveur Media Browser 3. Ensuite, testez pour confirmer.</value>
+    <value>Entrez les détails de connexion afin de pointer vers le PC avec le serveur Media Browser. Ensuite, testez pour confirmer.</value>
   </data>
   <data name="LabelConnectionWarning" xml:space="preserve">
     <value>ATTENTION: Changer le nom d'hôte supprimera les profils enregistrés.</value>

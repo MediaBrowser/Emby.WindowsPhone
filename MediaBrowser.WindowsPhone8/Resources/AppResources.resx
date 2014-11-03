@@ -328,7 +328,7 @@
     <value>connection</value>
   </data>
   <data name="LabelConnectionDetails" xml:space="preserve">
-    <value>Put the connection details in to point to the computer running Media Browser 3. Then simply test them to confirm.</value>
+    <value>Put the connection details in to point to the computer running Media Browser. Then simply test them to confirm.</value>
   </data>
   <data name="LabelConnectionWarning" xml:space="preserve">
     <value>WARNING: Changing the hostname will remove any saved profiles.</value>

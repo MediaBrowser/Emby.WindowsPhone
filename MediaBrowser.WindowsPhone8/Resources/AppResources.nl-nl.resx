@@ -328,7 +328,7 @@
     <value>verbinding</value>
   </data>
   <data name="LabelConnectionDetails" xml:space="preserve">
-    <value>Stel de verbinding gegevens in naar de computer waarop Media Browser 3 draait . Dan gewoon testen om te bevestigen .</value>
+    <value>Stel de verbinding gegevens in naar de computer waarop Media Browser draait . Dan gewoon testen om te bevestigen .</value>
   </data>
   <data name="LabelConnectionWarning" xml:space="preserve">
     <value>WAARSCHUWING : Wijziging van de hostnaam zal alle opgeslagen profielen  verwijderen .</value>

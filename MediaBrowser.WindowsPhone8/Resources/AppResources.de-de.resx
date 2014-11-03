@@ -329,7 +329,7 @@
     <value>Verbindung</value>
   </data>
   <data name="LabelConnectionDetails" xml:space="preserve">
-    <value>Tragen Sie die Verbindungsdetails zu dem Rechner ein, auf dem Media Browser 3 läuft. Führen Sie 
+    <value>Tragen Sie die Verbindungsdetails zu dem Rechner ein, auf dem Media Browser läuft. Führen Sie 
 anschließend zur Bestätigung dieser den Test aus.</value>
   </data>
   <data name="LabelConnectionWarning" xml:space="preserve">

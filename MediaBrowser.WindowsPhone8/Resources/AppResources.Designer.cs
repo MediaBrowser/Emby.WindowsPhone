@@ -997,7 +997,7 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Put the connection details in to point to the computer running Media Browser 3. Then simply test them to confirm..
+        ///   Looks up a localized string similar to Put the connection details in to point to the computer running Media Browser. Then simply test them to confirm..
         /// </summary>
         public static string LabelConnectionDetails {
             get {

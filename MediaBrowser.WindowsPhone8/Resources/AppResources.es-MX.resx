@@ -328,7 +328,7 @@
     <value>conexión</value>
   </data>
   <data name="LabelConnectionDetails" xml:space="preserve">
-    <value>Capture los detalles de la conexión para apuntar a la computadora que ejecuta Media Browser 3. Después simplemente pruebe para confirmar.</value>
+    <value>Capture los detalles de la conexión para apuntar a la computadora que ejecuta Media Browser. Después simplemente pruebe para confirmar.</value>
   </data>
   <data name="LabelConnectionWarning" xml:space="preserve">
     <value>ADVERTENCIA: Cambiar el nombre del equipo removerá todos los perfiles guardados.</value>

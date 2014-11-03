@@ -328,7 +328,7 @@
     <value>қосылым</value>
   </data>
   <data name="LabelConnectionDetails" xml:space="preserve">
-    <value>Media Browser 3 орындаудағы компьютерге бағыттайтын қосылым мәліметтерін орналастырыңыз. Сосын растау үшін мұны жай сынақтаңыз.</value>
+    <value>Media Browser орындаудағы компьютерге бағыттайтын қосылым мәліметтерін орналастырыңыз. Сосын растау үшін мұны жай сынақтаңыз.</value>
   </data>
   <data name="LabelConnectionWarning" xml:space="preserve">
     <value>ЕСКЕРТУ: Хост атын өзгерткенде барлық сақталған профильдер аластатылады.</value>

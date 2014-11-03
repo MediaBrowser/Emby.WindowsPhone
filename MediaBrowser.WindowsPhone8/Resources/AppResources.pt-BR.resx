@@ -328,7 +328,7 @@
     <value>conexão</value>
   </data>
   <data name="LabelConnectionDetails" xml:space="preserve">
-    <value>Coloque os detalhes da conexão para apontar para o computador executando o Media Browser 3. Depois, teste para confirmar.</value>
+    <value>Coloque os detalhes da conexão para apontar para o computador executando o Media Browser. Depois, teste para confirmar.</value>
   </data>
   <data name="LabelConnectionWarning" xml:space="preserve">
     <value>AVISO: Ao alterar o nome do host os perfis salvos serão removidos.</value>
