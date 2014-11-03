@@ -87,6 +87,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     SimpleIoc.Default.Register<TileService>(true);
             }
 
+            if(!SimpleIoc.Default.IsRegistered<IMessageBoxService>())
+                SimpleIoc.Default.Register<IMessageBoxService, MessageBoxService>();
+
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<VideoPlayerViewModel>();
             SimpleIoc.Default.Register<SplashscreenViewModel>();

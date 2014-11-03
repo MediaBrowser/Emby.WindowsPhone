@@ -11,6 +11,7 @@ using Coding4Fun.Toolkit.Controls;
 using GalaSoft.MvvmLight.Ioc;
 using MediaBrowser.Model;
 using MediaBrowser.Model.ApiClient;
+using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Model.Photo;
 using MediaBrowser.WindowsPhone.Services;
 using MediaBrowser.WindowsPhone.ViewModel;

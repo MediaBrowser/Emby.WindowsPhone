@@ -1,31 +1,30 @@
 ﻿<views:SettingsBasePage x:Class="MediaBrowser.WindowsPhone.Views.Settings.GeneralSettingsView"
-                   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                   xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
-                   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                   xmlns:ignore="http://www.ignore.com"
-                   xmlns:scott="clr-namespace:ScottIsAFool.WindowsPhone.Controls;assembly=ScottIsAFool.WindowsPhone"
-                   xmlns:controls="clr-namespace:MediaBrowser.WindowsPhone.Controls"
-                   xmlns:views="clr-namespace:MediaBrowser.WindowsPhone.Views"
-                   xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-                   xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
-                   xmlns:behaviors="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
-                   xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
-                   xmlns:converters="clr-namespace:MediaBrowser.WindowsPhone.Converters"
-                   mc:Ignorable="d ignore"
-                   FontFamily="{StaticResource PhoneFontFamilyNormal}"
-                   FontSize="{StaticResource PhoneFontSizeNormal}"
-                   Foreground="{StaticResource PhoneForegroundBrush}"
-                   SupportedOrientations="Portrait"
-                   Orientation="Portrait"
-                   shell:SystemTray.IsVisible="True"
-                   shell:SystemTray.Opacity="0"
-                   DataContext="{Binding Settings, Source={StaticResource Locator}}">
+                        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                        xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+                        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                        xmlns:ignore="http://www.ignore.com"
+                        xmlns:controls="clr-namespace:MediaBrowser.WindowsPhone.Controls"
+                        xmlns:views="clr-namespace:MediaBrowser.WindowsPhone.Views"
+                        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+                        xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
+                        xmlns:behaviors="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
+                        xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+                        xmlns:converters="clr-namespace:MediaBrowser.WindowsPhone.Converters"
+                        mc:Ignorable="d ignore"
+                        FontFamily="{StaticResource PhoneFontFamilyNormal}"
+                        FontSize="{StaticResource PhoneFontSizeNormal}"
+                        Foreground="{StaticResource PhoneForegroundBrush}"
+                        SupportedOrientations="Portrait"
+                        Orientation="Portrait"
+                        shell:SystemTray.IsVisible="True"
+                        shell:SystemTray.Opacity="0"
+                        DataContext="{Binding Settings, Source={StaticResource Locator}}">
     <i:Interaction.Behaviors>
         <behaviours:MBSysTray Text="{Binding ProgressText}"
-                               IsVisible="{Binding ProgressIsVisible}"
-                               IsIndeterminate="{Binding ProgressIsVisible}" />
+                              IsVisible="{Binding ProgressIsVisible}"
+                              IsIndeterminate="{Binding ProgressIsVisible}" />
         <behaviors:ApplicationBarBehavior Mode="Minimized"
                                           IsMenuEnabled="True">
             <behaviors:ApplicationBarBehavior.MenuItems>
@@ -59,7 +58,7 @@
             </toolkit:NavigationOutTransition.Forward>
         </toolkit:NavigationOutTransition>
     </toolkit:TransitionService.NavigationOutTransition>
-    
+
     <views:SettingsBasePage.Resources>
         <converters:LocalisedEnumConverter x:Key="LocalisedEnumConverter" />
     </views:SettingsBasePage.Resources>
@@ -87,34 +86,42 @@
             <Grid x:Name="ContentPanel"
                   Grid.Row="1"
                   Margin="12,0,12,0">
-                <StackPanel>
-                    <CheckBox Content="{Binding LocalizedResources.LabelShowTrailers, Source={StaticResource LocalizedStrings}}"
-                              IsChecked="{Binding IncludeTrailersInRecent, Source={StaticResource SpecificSettings}, Mode=TwoWay}" />
-                    <toolkit:ListPicker ItemsSource="{Binding GroupByItems, Source={StaticResource SpecificSettings}}"
-                                        SelectedItem="{Binding DefaultGroupBy, Source={StaticResource SpecificSettings}, Mode=TwoWay}"
-                                        Header="{Binding LocalizedResources.HeaderDefaultGrouping, Source={StaticResource LocalizedStrings}}"
-                                        toolkit:TiltEffect.SuppressTilt="True">
-                        <toolkit:ListPicker.ItemTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Converter={StaticResource LocalisedEnumConverter}}" />
-                            </DataTemplate>
-                        </toolkit:ListPicker.ItemTemplate>
-                    </toolkit:ListPicker>
-                    <CheckBox IsChecked="{Binding JustShowFolderView, Source={StaticResource SpecificSettings}, Mode=TwoWay}">
-                        <TextBlock Text="{Binding LocalizedResources.LabelJustShowList, Source={StaticResource LocalizedStrings}}"
+                <ScrollViewer>
+                    <StackPanel>
+                        <CheckBox Content="{Binding LocalizedResources.LabelShowTrailers, Source={StaticResource LocalizedStrings}}"
+                                  IsChecked="{Binding IncludeTrailersInRecent, Source={StaticResource SpecificSettings}, Mode=TwoWay}" />
+                        <toolkit:ListPicker ItemsSource="{Binding GroupByItems, Source={StaticResource SpecificSettings}}"
+                                            SelectedItem="{Binding DefaultGroupBy, Source={StaticResource SpecificSettings}, Mode=TwoWay}"
+                                            Header="{Binding LocalizedResources.HeaderDefaultGrouping, Source={StaticResource LocalizedStrings}}"
+                                            toolkit:TiltEffect.SuppressTilt="True" Visibility="Collapsed">
+                            <toolkit:ListPicker.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Converter={StaticResource LocalisedEnumConverter}}" />
+                                </DataTemplate>
+                            </toolkit:ListPicker.ItemTemplate>
+                        </toolkit:ListPicker>
+                        <CheckBox IsChecked="{Binding JustShowFolderView, Source={StaticResource SpecificSettings}, Mode=TwoWay}">
+                            <TextBlock Text="{Binding LocalizedResources.LabelJustShowList, Source={StaticResource LocalizedStrings}}"
+                                       TextWrapping="Wrap"
+                                       VerticalAlignment="Top" />
+                        </CheckBox>
+                        <CheckBox IsChecked="{Binding ShowMissingEpisodes, Source={StaticResource SpecificSettings}, Mode=TwoWay}"
+                                  Content="{Binding LocalizedResources.LabelMissingEpisodes, Source={StaticResource LocalizedStrings}}" />
+                        <CheckBox IsChecked="{Binding ShowUnairedEpisodes, Source={StaticResource SpecificSettings}, Mode=TwoWay}"
+                                  Content="{Binding LocalizedResources.LabelUnairedEpisodes, Source={StaticResource LocalizedStrings}}" />
+                        <CheckBox IsChecked="{Binding EnableImageEnhancers, Source={StaticResource SpecificSettings}, Mode=TwoWay}">
+                            <TextBlock Text="{Binding LocalizedResources.LabelImageEnhancers, Source={StaticResource LocalizedStrings}}"
+                                       TextWrapping="Wrap"
+                                       VerticalAlignment="Top" />
+                        </CheckBox>
+                        <CheckBox IsChecked="{Binding RunUnderLock, Mode=TwoWay}"
+                                  Content="{Binding LocalizedResources.LabelPlayUnderLock, Source={StaticResource LocalizedStrings}}" />
+                        <TextBlock Text="{Binding LocalizedResources.LabelPlayUnderLockWarning, Source={StaticResource LocalizedStrings}}"
+                                   Style="{StaticResource PhoneTextSubtleStyle}"
                                    TextWrapping="Wrap"
-                                   VerticalAlignment="Top" />
-                    </CheckBox>
-                    <CheckBox IsChecked="{Binding ShowMissingEpisodes, Source={StaticResource SpecificSettings}, Mode=TwoWay}"
-                              Content="{Binding LocalizedResources.LabelMissingEpisodes, Source={StaticResource LocalizedStrings}}" />
-                    <CheckBox IsChecked="{Binding ShowUnairedEpisodes, Source={StaticResource SpecificSettings}, Mode=TwoWay}"
-                              Content="{Binding LocalizedResources.LabelUnairedEpisodes, Source={StaticResource LocalizedStrings}}" />
-                    <CheckBox IsChecked="{Binding EnableImageEnhancers, Source={StaticResource SpecificSettings}, Mode=TwoWay}">
-                        <TextBlock Text="{Binding LocalizedResources.LabelImageEnhancers, Source={StaticResource LocalizedStrings}}"
-                                   TextWrapping="Wrap"
-                                   VerticalAlignment="Top" />
-                    </CheckBox>
-                </StackPanel>
+                                   Margin="57,-24,12,0" />
+                    </StackPanel>
+                </ScrollViewer>
             </Grid>
         </Grid>
         <!--Uncomment to see an alignment grid to help ensure your controls are

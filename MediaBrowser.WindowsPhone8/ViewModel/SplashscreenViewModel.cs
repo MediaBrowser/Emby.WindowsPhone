@@ -10,6 +10,7 @@ using MediaBrowser.Model.ApiClient;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Model.Photo;
 using MediaBrowser.WindowsPhone.Resources;
+using Microsoft.Phone.Shell;
 using INavigationService = MediaBrowser.WindowsPhone.Model.Interfaces.INavigationService;
 
 namespace MediaBrowser.WindowsPhone.ViewModel
@@ -91,6 +92,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             _specificSettings = _applicationSettings.Get<SpecificSettings>(Constants.Settings.SpecificSettings);
             if (_specificSettings != null) Utils.CopyItem(_specificSettings, App.SpecificSettings);
 
+            SetRunUnderLock();
+
             _uploadSettings = _applicationSettings.Get<UploadSettings>(Constants.Settings.PhotoUploadSettings);
             if (_uploadSettings != null) Utils.CopyItem(_uploadSettings, App.UploadSettings);
 
@@ -98,6 +101,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             _savedServer = _applicationSettings.Get<ServerInfo>(Constants.Settings.DefaultServerConnection);
 
             await ConnectToServer();
+        }
+
+        private static void SetRunUnderLock()
+        {
+            var runUnderLock = App.SpecificSettings.PlayVideosUnderLock;
+            PhoneApplicationService.Current.ApplicationIdleDetectionMode = runUnderLock ? IdleDetectionMode.Disabled : IdleDetectionMode.Enabled;
         }
 
         private async Task ConnectToServer()

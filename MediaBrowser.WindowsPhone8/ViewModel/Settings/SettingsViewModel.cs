@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
-using System.Net.Http.Headers;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -19,8 +18,6 @@ using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Model.Streaming;
 using MediaBrowser.WindowsPhone.Resources;
 using MediaBrowser.WindowsPhone.Services;
-using Microsoft.Phone.Net.NetworkInformation;
-using Microsoft.Phone.Notification;
 using INavigationService = MediaBrowser.WindowsPhone.Model.Interfaces.INavigationService;
 using LockScreenService = MediaBrowser.WindowsPhone.Services.LockScreenService;
 
@@ -35,16 +32,20 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Settings
     public class SettingsViewModel : ViewModelBase
     {
         private readonly IApplicationSettingsService _applicationSettings;
+        private readonly IMessageBoxService _messageBox;
 
         public bool LoadingFromSettings;
+
+        private bool _ignoreRunUnderLockChanged;
 
         /// <summary>
         /// Initializes a new instance of the PushViewModel class.
         /// </summary>
-        public SettingsViewModel(IConnectionManager connectionManager, INavigationService navigationService, IApplicationSettingsService applicationSettings)
+        public SettingsViewModel(IConnectionManager connectionManager, INavigationService navigationService, IApplicationSettingsService applicationSettings, IMessageBoxService messageBox)
             : base(navigationService, connectionManager)
         {
             _applicationSettings = applicationSettings;
+            _messageBox = messageBox;
 
             if (IsInDesignMode)
             {
@@ -61,6 +62,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Settings
                 LoadingFromSettings = false;
 
                 SetStreamingQuality();
+
+                _ignoreRunUnderLockChanged = true;
+                RunUnderLock = App.SpecificSettings.PlayVideosUnderLock;
+                _ignoreRunUnderLockChanged = false;
             }
         }
 
@@ -162,14 +167,34 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Settings
             }
         }
 
+        public bool RunUnderLock { get; set; }
+
+        [UsedImplicitly]
+        private async void OnRunUnderLockChanged()
+        {
+            if (_ignoreRunUnderLockChanged) return; 
+
+            var result = await _messageBox.ShowAsync(AppResources.ErrorPlayUnderLock, AppResources.ErrorPleaseRestart, new List<string> { AppResources.LabelRestartNow, AppResources.LabelLater });
+
+            App.SpecificSettings.PlayVideosUnderLock = RunUnderLock;
+
+            if (result == 0)
+            {
+                _applicationSettings.Set(Constants.Settings.SpecificSettings, App.SpecificSettings);
+                _applicationSettings.Save();
+
+                Application.Current.Terminate();
+            }
+        }
+
         public RelayCommand MbConnectCommand
         {
             get
             {
                 return new RelayCommand(() =>
                 {
-                    var page = !AuthenticationService.Current.SignedInUsingConnect 
-                        ? Constants.Pages.FirstRun.MbConnectFirstRunView 
+                    var page = !AuthenticationService.Current.SignedInUsingConnect
+                        ? Constants.Pages.FirstRun.MbConnectFirstRunView
                         : Constants.Pages.SettingsViews.MbConnectView;
 
                     NavigationService.NavigateTo(page);
@@ -209,13 +234,13 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Settings
                         return;
                     }
 
-                    var collection = (BaseItemDto) args.AddedItems[0];
+                    var collection = (BaseItemDto)args.AddedItems[0];
                     App.SpecificSettings.LockScreenCollectionId = collection.Id;
                     SelectedCollection = Folders.FirstOrDefault(x => x.Id == App.SpecificSettings.LockScreenCollectionId);
                     await LockScreenService.Current.SetLockScreen(App.SpecificSettings.LockScreenType);
                 });
             }
-        } 
+        }
 
         private void LoadPosterStreams()
         {
@@ -288,8 +313,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Settings
 
                 if (result.State != ConnectionState.Unavailable)
                 {
-                    var server = result.Servers.FirstOrDefault(x => 
-                        string.Equals(x.LocalAddress, serverAddress, StringComparison.CurrentCultureIgnoreCase) 
+                    var server = result.Servers.FirstOrDefault(x =>
+                        string.Equals(x.LocalAddress, serverAddress, StringComparison.CurrentCultureIgnoreCase)
                         || string.Equals(x.RemoteAddress, serverAddress, StringComparison.CurrentCultureIgnoreCase));
                     if (server != null)
                     {
@@ -325,7 +350,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Settings
                     Log.Info("Sending UDP broadcast");
                     var servers = await ConnectionManager.GetAvailableServers(default(CancellationToken));
                     FoundServers = new ObservableCollection<ServerInfo>(servers);
-                    
+
                     SetProgressBar();
                 });
             }

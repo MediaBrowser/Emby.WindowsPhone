@@ -601,6 +601,24 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to In order to change this setting again, you must restart the application..
+        /// </summary>
+        public static string ErrorPlayUnderLock {
+            get {
+                return ResourceManager.GetString("ErrorPlayUnderLock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please Restart.
+        /// </summary>
+        public static string ErrorPleaseRestart {
+            get {
+                return ResourceManager.GetString("ErrorPleaseRestart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to There was a problem updating this item, please try again later..
         /// </summary>
         public static string ErrorProblemUpdatingItem {
@@ -1204,6 +1222,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to later.
+        /// </summary>
+        public static string LabelLater {
+            get {
+                return ResourceManager.GetString("LabelLater", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to latest unseen.
         /// </summary>
         public static string LabelLatestUnseen {
@@ -1582,6 +1609,24 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Play videos when screen is locked.
+        /// </summary>
+        public static string LabelPlayUnderLock {
+            get {
+                return ResourceManager.GetString("LabelPlayUnderLock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This will have an effect on your battery life.
+        /// </summary>
+        public static string LabelPlayUnderLockWarning {
+            get {
+                return ResourceManager.GetString("LabelPlayUnderLockWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Port:.
         /// </summary>
         public static string LabelPort {
@@ -1830,6 +1875,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string LabelResolution {
             get {
                 return ResourceManager.GetString("LabelResolution", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to restart now?.
+        /// </summary>
+        public static string LabelRestartNow {
+            get {
+                return ResourceManager.GetString("LabelRestartNow", resourceCulture);
             }
         }
         

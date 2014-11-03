@@ -11,7 +11,8 @@
              xmlns:model="clr-namespace:MediaBrowser.Model;assembly=MediaBrowser.Shared"
              xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
              xmlns:controls="clr-namespace:MediaBrowser.WindowsPhone.Controls"
-             xmlns:converters="clr-namespace:Cimbalino.Phone.Toolkit.Converters;assembly=Cimbalino.Phone.Toolkit">
+             xmlns:converters="clr-namespace:Cimbalino.Phone.Toolkit.Converters;assembly=Cimbalino.Phone.Toolkit"
+             xmlns:model1="clr-namespace:MediaBrowser.WindowsPhone.Model">
     <!--Application Resources-->
     <Application.Resources>
         <ResourceDictionary>
@@ -24,7 +25,7 @@
             <vm:ViewModelLocator x:Key="Locator"
                                  d:IsDataSource="True" />
             <model:SettingsService x:Key="AppSettings" />
-            <windowsPhone:SpecificSettings x:Key="SpecificSettings" />
+            <model1:SpecificSettings x:Key="SpecificSettings" />
             <sys:String x:Key="AppName">MediaBrowser</sys:String>
             <!--Panorama templates-->
             <DataTemplate x:Key="LikeWp7TitleTemplate">

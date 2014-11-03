@@ -1123,4 +1123,22 @@
   <data name="LabelSignInWithConnect" xml:space="preserve">
     <value>Sign in with Media Browser Connect</value>
   </data>
+  <data name="ErrorPlayUnderLock" xml:space="preserve">
+    <value>In order to change this setting again, you must restart the application.</value>
+  </data>
+  <data name="ErrorPleaseRestart" xml:space="preserve">
+    <value>Please Restart</value>
+  </data>
+  <data name="LabelLater" xml:space="preserve">
+    <value>later</value>
+  </data>
+  <data name="LabelPlayUnderLock" xml:space="preserve">
+    <value>Play videos when screen is locked</value>
+  </data>
+  <data name="LabelPlayUnderLockWarning" xml:space="preserve">
+    <value>This will have an effect on your battery life</value>
+  </data>
+  <data name="LabelRestartNow" xml:space="preserve">
+    <value>restart now?</value>
+  </data>
 </root>

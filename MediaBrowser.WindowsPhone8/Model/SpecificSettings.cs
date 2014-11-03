@@ -3,11 +3,10 @@ using System.ComponentModel;
 using System.Linq;
 using GalaSoft.MvvmLight.Messaging;
 using JetBrains.Annotations;
-using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Model.Streaming;
 using MediaBrowser.WindowsPhone.Services;
 
-namespace MediaBrowser.WindowsPhone
+namespace MediaBrowser.WindowsPhone.Model
 {
     public class SpecificSettings : INotifyPropertyChanged
     {
@@ -33,6 +32,7 @@ namespace MediaBrowser.WindowsPhone
         public bool ShowMissingEpisodes { get; set; }
         public bool ShowUnairedEpisodes { get; set; }
         public bool EnableImageEnhancers { get; set; }
+        public bool PlayVideosUnderLock { get; set; }
 
         public LockScreenType LockScreenType { get; set; }
         public string LockScreenCollectionId { get; set; }
