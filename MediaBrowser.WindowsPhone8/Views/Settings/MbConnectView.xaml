@@ -120,7 +120,8 @@
                         <TextBlock Text="{Binding LocalizedResources.LabelUsername, Source={StaticResource LocalizedStrings}}"
                                    Style="{StaticResource PhoneTextSubtleStyle}" />
                         <toolkit:PhoneTextBox Text="{Binding Username, Mode=TwoWay}"
-                                              IsEnabled="{Binding ProgressIsVisible, Converter={StaticResource NegativeBooleanConverter}}">
+                                              IsEnabled="{Binding ProgressIsVisible, Converter={StaticResource NegativeBooleanConverter}}"
+                                              InputScope="EmailUserName">
                             <i:Interaction.Behaviors>
                                 <behaviours:UpdateTextBindingOnPropertyChanged />
                             </i:Interaction.Behaviors>
