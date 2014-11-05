@@ -163,18 +163,21 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         if (m.VideoItem != null)
                         {
                             SelectedItem = m.VideoItem;
+                            PlaylistItems = null;
                         }
                         break;
                     case PlayerSourceType.Recording:
                         if (m.RecordingItem != null)
                         {
                             RecordingItem = m.RecordingItem;
+                            PlaylistItems = null;
                         }
                         break;
                     case PlayerSourceType.Programme:
                         if (m.ProgrammeItem != null)
                         {
                             ProgrammeItem = m.ProgrammeItem;
+                            PlaylistItems = null;
                         }
                         break;
                     case PlayerSourceType.Playlist:
@@ -222,6 +225,16 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     catch (HttpException ex)
                     {
                         Utils.HandleHttpException("SendVideoTimeToServer", ex, NavigationService, Log);
+                    }
+
+                    if (!PlaylistItems.IsNullOrEmpty())
+                    {
+                        var index = PlaylistItems.IndexOf(SelectedItem);
+                        if (index >= 0 && index < PlaylistItems.Count - 1)
+                        {
+                            SelectedItem = PlaylistItems[index + 1];
+                            await InitiatePlayback(false);
+                        }
                     }
                 }
 
