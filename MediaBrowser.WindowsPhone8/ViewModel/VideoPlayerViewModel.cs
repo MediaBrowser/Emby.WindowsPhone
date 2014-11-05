@@ -214,6 +214,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         };
 
                         await ApiClient.ReportPlaybackStoppedAsync(info);
+                        await ApiClient.StopTranscodingProcesses(ApiClient.DeviceId);
 
                         SetPlaybackTicks(totalTicks);
 
