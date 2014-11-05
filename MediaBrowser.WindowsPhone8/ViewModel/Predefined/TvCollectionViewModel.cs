@@ -32,10 +32,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
         private bool _genresLoaded;
 
         private const int NextUpIndex = 0;
-        private const int LatestIndex = 1;
-        private const int ShowsIndex = 2;
-        private const int UpcomingIndex = 3;
-        private const int GenresIndex = 4;
+        private const int LatestIndex = 2;
+        private const int ShowsIndex = 1;
+        private const int UpcomingIndex = 4;
+        private const int GenresIndex = 3;
 
         /// <summary>
         /// Initializes a new instance of the TvCollectionViewModel class.
