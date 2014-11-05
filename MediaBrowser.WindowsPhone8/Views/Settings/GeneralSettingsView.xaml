@@ -114,12 +114,15 @@
                                        TextWrapping="Wrap"
                                        VerticalAlignment="Top" />
                         </CheckBox>
-                        <CheckBox IsChecked="{Binding RunUnderLock, Mode=TwoWay}"
-                                  Content="{Binding LocalizedResources.LabelPlayUnderLock, Source={StaticResource LocalizedStrings}}" />
-                        <TextBlock Text="{Binding LocalizedResources.LabelPlayUnderLockWarning, Source={StaticResource LocalizedStrings}}"
-                                   Style="{StaticResource PhoneTextSubtleStyle}"
-                                   TextWrapping="Wrap"
-                                   Margin="57,-24,12,0" />
+                        <StackPanel Orientation="Vertical"
+                                    Visibility="Collapsed">
+                            <CheckBox IsChecked="{Binding RunUnderLock, Mode=TwoWay}"
+                                      Content="{Binding LocalizedResources.LabelPlayUnderLock, Source={StaticResource LocalizedStrings}}" />
+                            <TextBlock Text="{Binding LocalizedResources.LabelPlayUnderLockWarning, Source={StaticResource LocalizedStrings}}"
+                                       Style="{StaticResource PhoneTextSubtleStyle}"
+                                       TextWrapping="Wrap"
+                                       Margin="57,-24,12,0" />
+                        </StackPanel>
                     </StackPanel>
                 </ScrollViewer>
             </Grid>

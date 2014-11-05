@@ -105,8 +105,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
         private static void SetRunUnderLock()
         {
-            var runUnderLock = App.SpecificSettings.PlayVideosUnderLock;
-            PhoneApplicationService.Current.ApplicationIdleDetectionMode = runUnderLock ? IdleDetectionMode.Disabled : IdleDetectionMode.Enabled;
+            //var runUnderLock = App.SpecificSettings.PlayVideosUnderLock;
+            //PhoneApplicationService.Current.ApplicationIdleDetectionMode = runUnderLock ? IdleDetectionMode.Disabled : IdleDetectionMode.Enabled;
         }
 
         private async Task ConnectToServer()
