@@ -416,8 +416,8 @@ namespace MediaBrowser.WindowsPhone
 
         public static async Task<TReturnType> Clone<TReturnType>(this TReturnType item)
         {
-            var json = await JsonConvert.SerializeObjectAsync(item);
-            return await JsonConvert.DeserializeObjectAsync<TReturnType>(json);
+            var json = JsonConvert.SerializeObject(item);
+            return JsonConvert.DeserializeObject<TReturnType>(json);
         }
 
         internal static string CoolDateName(DateTime? dateTime)
