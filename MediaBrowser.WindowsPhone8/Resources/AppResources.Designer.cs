@@ -1096,7 +1096,7 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to find server.
+        ///   Looks up a localized string similar to choose server.
         /// </summary>
         public static string LabelFindServer {
             get {

@@ -355,7 +355,7 @@
     <value>Episode</value>
   </data>
   <data name="LabelFindServer" xml:space="preserve">
-    <value>find server</value>
+    <value>choose server</value>
   </data>
   <data name="LabelFirstRunAccessible" xml:space="preserve">
     <value>Once the Media Browser server is configured, make sure it's accessible from where you are, whether that's being on your local wireless network, or an external static address.</value>
