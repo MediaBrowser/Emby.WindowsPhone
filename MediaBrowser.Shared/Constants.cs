@@ -100,6 +100,7 @@
             public const string ClearNowPlayingMsg = "ClearNowPlayingMsg";
             public const string ServerPlaylistChangedMsg = "ServerPlaylistChangedMsg";
             public const string AddToServerPlaylistsMsg = "AddToServerPlaylistsMsg";
+            public const string ReconnectToWebSocketMsg = "ReconnectToWebSocketMsg";
         }
 
         public class Pages

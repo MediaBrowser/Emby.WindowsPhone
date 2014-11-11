@@ -6,6 +6,7 @@ using System.Windows;
 using Cimbalino.Phone.Toolkit.Services;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
+using MediaBrowser.Model;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Events;
@@ -78,20 +79,25 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
                 {
                     IsPinned = TileService.Current.TileExists(_tileUrl);
 
-                    await ApiClient.StartReceivingSessionUpdates(1500);
-
-                    ApiClient.SessionsUpdated += WebSocketClientOnSessionsUpdated;
-
-                    await GetClients(false);
-
-                    ReviewReminderService.Current.Notify();
-
-                    if (_startPositionTicks.HasValue)
-                    {
-                        SendCommand("Seek", _startPositionTicks.Value).ConfigureAwait(false);
-                        _startPositionTicks = null;
-                    }
+                    await StartWebSocket();
                 });
+            }
+        }
+
+        private async Task StartWebSocket()
+        {
+            await ApiClient.StartReceivingSessionUpdates(1500);
+
+            ApiClient.SessionsUpdated += WebSocketClientOnSessionsUpdated;
+
+            await GetClients(false);
+
+            ReviewReminderService.Current.Notify();
+
+            if (_startPositionTicks.HasValue)
+            {
+                SendCommand("Seek", _startPositionTicks.Value).ConfigureAwait(false);
+                _startPositionTicks = null;
             }
         }
 
@@ -109,11 +115,16 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
             {
                 return new RelayCommand(() =>
                 {
-                    ApiClient.SessionsUpdated -= WebSocketClientOnSessionsUpdated;
-
-                    ApiClient.StopReceivingSessionUpdates().ConfigureAwait(false);
+                    StopWebSocket();
                 });
             }
+        }
+
+        private async Task StopWebSocket()
+        {
+            ApiClient.SessionsUpdated -= WebSocketClientOnSessionsUpdated;
+
+            await ApiClient.StopReceivingSessionUpdates().ConfigureAwait(false);
         }
 
         public RelayCommand PinTileCommand
@@ -440,6 +451,20 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
             {
                 _videoId = m.ItemId;
                 _startPositionTicks = m.StartPositionTicks;
+            });
+
+            Messenger.Default.Register<NotificationMessage>(this, async m =>
+            {
+                if (m.Notification.Equals(Constants.Messages.ReconnectToWebSocketMsg))
+                {
+                    var client = ConnectionManager.CurrentApiClient;
+                    client.OpenWebSocket(() => new WebSocketClient());
+
+                    await Task.Delay(TimeSpan.FromSeconds(1));
+
+                    await StopWebSocket();
+                    await StartWebSocket();
+                }
             });
         }
     }
