@@ -98,16 +98,16 @@
                                     <coding4Fun:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
                                                            Stretch="UniformToFill"
                                                            PlaceholderImageSource="/Images/MBBackgroundWithTv.png"
-                                                           PlaceholderImageStretch="Uniform"
+                                                           PlaceholderImageStretch="Fill"
                                                            VerticalAlignment="Top"
-                                                           MaxHeight="80"
+                                                           MinHeight="80"
                                                            Width="135"/>
                                     <StackPanel Orientation="Vertical"
                                                 VerticalAlignment="Top"
                                                 Width="280">
                                         <TextBlock Style="{StaticResource PhoneTextTitle3Style}"
                                                    TextWrapping="Wrap"
-                                                   Text="{Binding Name}" />
+                                                   Text="{Binding Name}"/>
                                     </StackPanel>
                                 </StackPanel>
                             </controls:CustomButton>
