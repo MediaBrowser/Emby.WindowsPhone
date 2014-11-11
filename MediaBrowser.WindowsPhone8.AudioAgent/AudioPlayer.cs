@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
@@ -15,7 +14,6 @@ using MediaBrowser.Model.Session;
 using MediaBrowser.WindowsPhone.Logging;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Model.Security;
-using MediaBrowser.WindowsPhone.Services;
 using Microsoft.Phone.BackgroundAudio;
 using ScottIsAFool.WindowsPhone.Logging;
 
@@ -40,7 +38,7 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
         {
             _playlistHelper = new PlaylistHelper(new StorageService());
             _logger = new WPLogger(GetType());
-            CreateClient();
+            if(_apiClient == null) CreateClient();
             WPLogger.AppVersion = ApplicationManifest.Current.App.Version;
             WPLogger.LogConfiguration.LogType = LogType.WriteToFile;
             WPLogger.LogConfiguration.LoggingIsEnabled = true;
@@ -92,6 +90,11 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
             {
                 var device = new Device {DeviceId = SharedUtils.GetDeviceId(), DeviceName = SharedUtils.GetDeviceName() + " Audio Player"};
                 var server = ApplicationSettings.Get<ServerInfo>(Constants.Settings.DefaultServerConnection);
+                if (server == null)
+                {
+                    return;
+                }
+
                 var client = new ApiClient(_mbLogger, server.RemoteAddress, "Windows Phone 8", device, ApplicationManifest.Current.App.Version, new ClientCapabilities(), new CryptographyProvider());
                 client.SetAuthenticationInfo(server.AccessToken, server.UserId);
 
