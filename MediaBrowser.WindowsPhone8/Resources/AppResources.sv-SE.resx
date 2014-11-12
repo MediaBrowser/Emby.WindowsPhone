@@ -349,7 +349,7 @@
     <value>Regissör</value>
   </data>
   <data name="LabelDisplayRandomImages" xml:space="preserve">
-    <value>Visa slumpmässiga fondbilder på rutans baksida</value>
+    <value>Visa slumpmässiga fondbilder på brickans baksida</value>
   </data>
   <data name="LabelEpisode" xml:space="preserve">
     <value>Avsnitt</value>
@@ -463,7 +463,7 @@
     <value>synopsis</value>
   </data>
   <data name="LabelPassword" xml:space="preserve">
-    <value>lösenord:</value>
+    <value>Lösenord:</value>
   </data>
   <data name="LabelPort" xml:space="preserve">
     <value>Port:</value>
@@ -535,10 +535,10 @@
     <value>låtar</value>
   </data>
   <data name="LabelTile" xml:space="preserve">
-    <value>ruta</value>
+    <value>bricka</value>
   </data>
   <data name="LabelTileBackInformation" xml:space="preserve">
-    <value>För att visa upp en del av de fina bilderna ur din samling kommer vissa av dessa att visas i rutan. Här kan du ställa in hur detta kommer att se ut</value>
+    <value>För att visa upp en del av de fina bilderna ur din samling kommer vissa av dessa att visas i brickan. Här kan du ställa in hur detta kommer att se ut</value>
   </data>
   <data name="LabelTrailers" xml:space="preserve">
     <value>trailers</value>
@@ -553,7 +553,7 @@
     <value>Ej visad:</value>
   </data>
   <data name="LabelUsername" xml:space="preserve">
-    <value>användarnamn:</value>
+    <value>Användarnamn:</value>
   </data>
   <data name="LabelViews" xml:space="preserve">
     <value>Visningar</value>
@@ -580,7 +580,7 @@
     <value>Är du säker?</value>
   </data>
   <data name="MessageBoxUnpinText" xml:space="preserve">
-    <value>Är du säker på att du vill ta bort den här rutan?</value>
+    <value>Är du säker på att du vill ta bort den här brickan?</value>
   </data>
   <data name="MessageClearPlayList" xml:space="preserve">
     <value>Är du säker på att du vill rensa spellistan?</value>
@@ -971,7 +971,175 @@
     <value>TV</value>
   </data>
   <data name="LabelUseTransparentTile" xml:space="preserve">
-    <value>Använd genomskinliga tiles</value>
+    <value>Använd genomskinliga brickor</value>
+  </data>
+  <data name="TitleChannels" xml:space="preserve">
+    <value>Kanaler</value>
+  </data>
+  <data name="LabelMultipleItems" xml:space="preserve">
+    <value>{0} objekt</value>
+    <comment>{0} is the number of items</comment>
+  </data>
+  <data name="LabelNoItems" xml:space="preserve">
+    <value>Tom</value>
+  </data>
+  <data name="LabelOneItem" xml:space="preserve">
+    <value>1 objekt</value>
+  </data>
+  <data name="ErrorAddingToPlaylist" xml:space="preserve">
+    <value>Ett fel uppstod</value>
+  </data>
+  <data name="HeaderPlaylistName" xml:space="preserve">
+    <value>Namn på spellista:</value>
+  </data>
+  <data name="HeaderPlaylists" xml:space="preserve">
+    <value>Spellista</value>
+  </data>
+  <data name="LabelAddToPlaylist" xml:space="preserve">
+    <value>Lägg till i spellista</value>
+  </data>
+  <data name="LabelNewPlaylist" xml:space="preserve">
+    <value>Ny spellista</value>
+  </data>
+  <data name="LabelSave" xml:space="preserve">
+    <value>Spara</value>
+  </data>
+  <data name="SysTrayAddingToPlaylist" xml:space="preserve">
+    <value>Lägger till i spellista...</value>
+  </data>
+  <data name="SysTrayLoadingPlaylists" xml:space="preserve">
+    <value>Laddar spellistor...</value>
+  </data>
+  <data name="LabelAddingXToPlaylist" xml:space="preserve">
+    <value>Lägger till {0}</value>
+    <comment>{0} could be anything from "TV show" to "3 items"</comment>
+  </data>
+  <data name="LabelSeasonX" xml:space="preserve">
+    <value>Säsong {0}</value>
+    <comment>{0} is the season number</comment>
+  </data>
+  <data name="MenuRemoveFromPlaylist" xml:space="preserve">
+    <value>ta bort från spellista</value>
+  </data>
+  <data name="SysTrayDeleting" xml:space="preserve">
+    <value>Raderar...</value>
+  </data>
+  <data name="SysTrayRemoving" xml:space="preserve">
+    <value>Tar bort...</value>
+  </data>
+  <data name="LabelStreaming" xml:space="preserve">
+    <value>Streaming</value>
+  </data>
+  <data name="LabelQuality" xml:space="preserve">
+    <value>Kvalitet:</value>
+  </data>
+  <data name="LabelResolution" xml:space="preserve">
+    <value>Upplösning:</value>
+  </data>
+  <data name="ErrorNoWifi" xml:space="preserve">
+    <value>Tyvärr, det verkar som att du inte är ansluten med Wifi, vänligen anslut till ett trådlöst nätverk eller ändra din "Endast Wifi" inställning</value>
+  </data>
+  <data name="ErrorNoWifiTitle" xml:space="preserve">
+    <value>Ingen Wifi</value>
+  </data>
+  <data name="LabelChooseQuality" xml:space="preserve">
+    <value>Välj vilken kvalitet du önskar ha på video streaming. Notera att, om du strömmar via din mobils data-uppkopling, desto högre upplösning, desto mer datatrafik går det åt.</value>
+  </data>
+  <data name="LabelMobile" xml:space="preserve">
+    <value>mobil</value>
+  </data>
+  <data name="LabelStreamWifi" xml:space="preserve">
+    <value>Strömma video endast över Wifi</value>
+  </data>
+  <data name="LabelWifi" xml:space="preserve">
+    <value>wifi</value>
+  </data>
+  <data name="LabelInstantMix" xml:space="preserve">
+    <value>Snabbmix</value>
+  </data>
+  <data name="SysTrayGettingInstantMix" xml:space="preserve">
+    <value>Laddar Snabbmix...</value>
+  </data>
+  <data name="LabelPhotoUpload" xml:space="preserve">
+    <value>Foto uppladdning</value>
+  </data>
+  <data name="BackgroundTaskDescription" xml:space="preserve">
+    <value>Denna bakgrunds uppgift används för att ladda upp bilder ifrån din enhet, detta kan ändras inuti appen.</value>
+  </data>
+  <data name="LabelUploadAll" xml:space="preserve">
+    <value>Ladda up alla bilder</value>
+  </data>
+  <data name="LabelUploadPhotosTakenAfter" xml:space="preserve">
+    <value>Ladda up foton tagna/sparade efter detta datum</value>
+  </data>
+  <data name="LabelAutoUploadConstraints" xml:space="preserve">
+    <value>Var vänlig notera att uppladdningar kommer endast utföras när din enhet laddas, är ansluten till wifi och batteriet är över 90%.</value>
+  </data>
+  <data name="LabelAutoUploadDescription" xml:space="preserve">
+    <value>Auto-uppladda dina bilder direkt ifrån din telefon till Media Browser Server.</value>
+  </data>
+  <data name="LabelTurnPhotoUploadOnServer" xml:space="preserve">
+    <value>För att detta ska fungera måste du gå till din Server överblick, klicka på Enheter, sedan Kamera Uppladdning, och tillåt sedan denna enhet. Om du inte har tillgång till detta var vänlig prata med din server administratör.</value>
+  </data>
+  <data name="HeaderManualConnection" xml:space="preserve">
+    <value>Manuell anslutning</value>
+  </data>
+  <data name="HeaderWhatIsMbConnect" xml:space="preserve">
+    <value>Vad är MB Connect?</value>
+  </data>
+  <data name="LabelManualServerEntry" xml:space="preserve">
+    <value>Skriv in server detaljerna manuellt</value>
+  </data>
+  <data name="LabelMbConnect" xml:space="preserve">
+    <value>MB Connect</value>
+  </data>
+  <data name="LabelMbConnectAlreadyGotAccount" xml:space="preserve">
+    <value>Om du har ett Media Browser konto så kan du logga in nu.</value>
+  </data>
+  <data name="LabelMbConnectDescriptionPara1" xml:space="preserve">
+    <value>Med MB Connect, kan du enkelt komma åt din Media Browser server oavsett vart du är, och samtidigt dela med din familj och vänner</value>
+  </data>
+  <data name="LabelMbConnectFreeAccount" xml:space="preserve">
+    <value>Om du inte redan har ett Meda Browser konto, kan du registrera dig nu, det är GRATIS!</value>
+  </data>
+  <data name="LabelSignUp" xml:space="preserve">
+    <value>Registrera</value>
+  </data>
+  <data name="LabelSkip" xml:space="preserve">
+    <value>Hoppa över</value>
+  </data>
+  <data name="ErrorSigningIn" xml:space="preserve">
+    <value>Fel vid inloggning</value>
+  </data>
+  <data name="LabelRetry" xml:space="preserve">
+    <value>Prova igen</value>
+  </data>
+  <data name="LabelLogout" xml:space="preserve">
+    <value>Logga ut</value>
+  </data>
+  <data name="AppBarChangeServer" xml:space="preserve">
+    <value>Byt server</value>
+  </data>
+  <data name="LabelSignInWithConnect" xml:space="preserve">
+    <value>Logga in med Media Browser Connect</value>
+  </data>
+  <data name="ErrorPlayUnderLock" xml:space="preserve">
+    <value>För att ändra denna inställning måste du starta om programmet.</value>
+  </data>
+  <data name="ErrorPleaseRestart" xml:space="preserve">
+    <value>Var vänlig starta om</value>
+  </data>
+  <data name="LabelLater" xml:space="preserve">
+    <value>Senare</value>
+  </data>
+  <data name="LabelPlayUnderLock" xml:space="preserve">
+    <value>Spela vidoes under låsskärm.</value>
+  </data>
+  <data name="LabelPlayUnderLockWarning" xml:space="preserve">
+    <value>Detta kommer att påverka din batteritid</value>
+  </data>
+  <data name="LabelRestartNow" xml:space="preserve">
+    <value>Start om nu?</value>
   </data>
 
 </root>

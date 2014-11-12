@@ -558,7 +558,7 @@ können Sie einstellen, wie es aussehen soll.</value>
     <value>ungesehen:</value>
   </data>
   <data name="LabelUsername" xml:space="preserve">
-    <value>Benutzername:</value>
+    <value>Benutzername</value>
   </data>
   <data name="LabelViews" xml:space="preserve">
     <value>Ansichten</value>
@@ -980,6 +980,174 @@ durchstöbern und jeden verfügbaren Media Browser Client fernbedienen.</value>
   </data>
   <data name="LabelUseTransparentTile" xml:space="preserve">
     <value>Transparente Tiles verwenden</value>
+  </data>
+  <data name="TitleChannels" xml:space="preserve">
+    <value>Kanäle</value>
+  </data>
+  <data name="LabelMultipleItems" xml:space="preserve">
+    <value>{0} Stück</value>
+    <comment>{0} is the number of items</comment>
+  </data>
+  <data name="LabelNoItems" xml:space="preserve">
+    <value>Keine Stücke</value>
+  </data>
+  <data name="LabelOneItem" xml:space="preserve">
+    <value>1 Stück</value>
+  </data>
+  <data name="ErrorAddingToPlaylist" xml:space="preserve">
+    <value>Fehler beim Hinzufügen zur Wiedergabeliste</value>
+  </data>
+  <data name="HeaderPlaylistName" xml:space="preserve">
+    <value>Wiedergabeliste Name:</value>
+  </data>
+  <data name="HeaderPlaylists" xml:space="preserve">
+    <value>Wiedergabeliste:</value>
+  </data>
+  <data name="LabelAddToPlaylist" xml:space="preserve">
+    <value>Zur Wiedergabeliste hinzufügen</value>
+  </data>
+  <data name="LabelNewPlaylist" xml:space="preserve">
+    <value>Neue Wiedergabeliste</value>
+  </data>
+  <data name="LabelSave" xml:space="preserve">
+    <value>Speichern</value>
+  </data>
+  <data name="SysTrayAddingToPlaylist" xml:space="preserve">
+    <value>Hinzufügen zu Wiedergabeliste...</value>
+  </data>
+  <data name="SysTrayLoadingPlaylists" xml:space="preserve">
+    <value>Lade Wiedergabelisten...</value>
+  </data>
+  <data name="LabelAddingXToPlaylist" xml:space="preserve">
+    <value>{0} Hinzufügen</value>
+    <comment>{0} could be anything from "TV show" to "3 items"</comment>
+  </data>
+  <data name="LabelSeasonX" xml:space="preserve">
+    <value>Staffel {0}</value>
+    <comment>{0} is the season number</comment>
+  </data>
+  <data name="MenuRemoveFromPlaylist" xml:space="preserve">
+    <value>Von Wiedergabeliste entfernen</value>
+  </data>
+  <data name="SysTrayDeleting" xml:space="preserve">
+    <value>Löschen...</value>
+  </data>
+  <data name="SysTrayRemoving" xml:space="preserve">
+    <value>Entfernen...</value>
+  </data>
+  <data name="LabelStreaming" xml:space="preserve">
+    <value>Streaming</value>
+  </data>
+  <data name="LabelQuality" xml:space="preserve">
+    <value>Streaming</value>
+  </data>
+  <data name="LabelResolution" xml:space="preserve">
+    <value>Auflösung:</value>
+  </data>
+  <data name="ErrorNoWifi" xml:space="preserve">
+    <value>Entschuldigung, du nutzt zur Zeit offenbar kein Wifi. Bitte verbinde dich mit einem Wifi Netzwerk oder ändere deine Wifi Einstellungen.</value>
+  </data>
+  <data name="ErrorNoWifiTitle" xml:space="preserve">
+    <value>Kein Wifi</value>
+  </data>
+  <data name="LabelChooseQuality" xml:space="preserve">
+    <value>Wähle die gewünschte Qualität deiner Video Streams. Bitte beachte, dass falls du über dein Mobilnetz streamst, eine höhere Qualität auch einen höheren Datenverbrauch verursacht.</value>
+  </data>
+  <data name="LabelMobile" xml:space="preserve">
+    <value>Mobil</value>
+  </data>
+  <data name="LabelStreamWifi" xml:space="preserve">
+    <value>Streame Video nur über Wifi</value>
+  </data>
+  <data name="LabelWifi" xml:space="preserve">
+    <value>Wifi</value>
+  </data>
+  <data name="LabelInstantMix" xml:space="preserve">
+    <value>Schnellmix</value>
+  </data>
+  <data name="SysTrayGettingInstantMix" xml:space="preserve">
+    <value>Generiere Schnellmix...</value>
+  </data>
+  <data name="LabelPhotoUpload" xml:space="preserve">
+    <value>Foto Upload</value>
+  </data>
+  <data name="BackgroundTaskDescription" xml:space="preserve">
+    <value>Diese Hintergrundaufgabe wird genutzt um deine Fotos automatisch von deinem Telefon hochzuladen. Diese Funktion kann innerhalb der App aktiviert werden.</value>
+  </data>
+  <data name="LabelUploadAll" xml:space="preserve">
+    <value>Alle Bilder hochladen</value>
+  </data>
+  <data name="LabelUploadPhotosTakenAfter" xml:space="preserve">
+    <value>Lade Fotos hoch, die nach diesem Datum aufgenommen oder gespeichert wurden</value>
+  </data>
+  <data name="LabelAutoUploadConstraints" xml:space="preserve">
+    <value>Bitte beachte, dass die Uploads nur durchggeführt werden, während dein Telefon lädt oder es über Wifi und über 90% Akkuleistung verfügt</value>
+  </data>
+  <data name="LabelAutoUploadDescription" xml:space="preserve">
+    <value>Lade deine Bilder automatisch direkt von deinem Telefon in den Media Browser Server</value>
+  </data>
+  <data name="LabelTurnPhotoUploadOnServer" xml:space="preserve">
+    <value>Um diese Funktion zu aktivieren, musst du auf deine Server Übersicht gehen und dort unter Geräte den Kamera-Upload für dein Geräte aktivieren. Fall du darauf keinen Zugriff hast, kontaktiere bitte deinen Server Administrator.</value>
+  </data>
+  <data name="HeaderManualConnection" xml:space="preserve">
+    <value>Manuelle Verbindung</value>
+  </data>
+  <data name="HeaderWhatIsMbConnect" xml:space="preserve">
+    <value>Was ist MB Connect?</value>
+  </data>
+  <data name="LabelManualServerEntry" xml:space="preserve">
+    <value>Gib die Serverdaten manuell ein</value>
+  </data>
+  <data name="LabelMbConnect" xml:space="preserve">
+    <value>MB Connect</value>
+  </data>
+  <data name="LabelMbConnectAlreadyGotAccount" xml:space="preserve">
+    <value>Fall du einen Media Browser Account hast, kannst du dich jetzt anmelden</value>
+  </data>
+  <data name="LabelMbConnectDescriptionPara1" xml:space="preserve">
+    <value>Mit MB Connect hast du einen einfachen Zugriff auf deinen Server, wo auch immer du dich gerade befindest, und kannst diesen mit deiner Familie und Freunden teilen.</value>
+  </data>
+  <data name="LabelMbConnectFreeAccount" xml:space="preserve">
+    <value>Falls du noch keinen Media Browser Account hast, kannst du dich jetzt registrieren. Es ist KOSTENLOS!</value>
+  </data>
+  <data name="LabelSignUp" xml:space="preserve">
+    <value>Registrierung</value>
+  </data>
+  <data name="LabelSkip" xml:space="preserve">
+    <value>Überspringen</value>
+  </data>
+  <data name="ErrorSigningIn" xml:space="preserve">
+    <value>Fehler bei Anmeldung</value>
+  </data>
+  <data name="LabelRetry" xml:space="preserve">
+    <value>Wiederholen</value>
+  </data>
+  <data name="LabelLogout" xml:space="preserve">
+    <value>Abmelden</value>
+  </data>
+  <data name="AppBarChangeServer" xml:space="preserve">
+    <value>Server wechseln</value>
+  </data>
+  <data name="LabelSignInWithConnect" xml:space="preserve">
+    <value>Melde dich mit Media Browser Connect an</value>
+  </data>
+  <data name="ErrorPlayUnderLock" xml:space="preserve">
+    <value>Um diese Einstellung wieder ändern zu können, musst du die Anwendung neu starten.</value>
+  </data>
+  <data name="ErrorPleaseRestart" xml:space="preserve">
+    <value>Bitte Neustarten</value>
+  </data>
+  <data name="LabelLater" xml:space="preserve">
+    <value>Später</value>
+  </data>
+  <data name="LabelPlayUnderLock" xml:space="preserve">
+    <value>Videos abspielen, wenn der Bildschirm gesperrt ist</value>
+  </data>
+  <data name="LabelPlayUnderLockWarning" xml:space="preserve">
+    <value>Dies wird Auswirkungen auf die Akkulaufzeit haben</value>
+  </data>
+  <data name="LabelRestartNow" xml:space="preserve">
+    <value>Jetzt Neustarten?</value>
   </data>
 
 </root>
