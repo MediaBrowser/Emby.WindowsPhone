@@ -1,4 +1,6 @@
-﻿using MediaBrowser.Model.ApiClient;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Logging;
 using MediaBrowser.Model.Search;
@@ -51,6 +53,19 @@ namespace MediaBrowser.WindowsPhone.Extensions
                 BackgroundImageUrl = (string) converter.Convert(item, typeof (string), "backdrop", null),
                 RunTimeTicks = item.RunTimeTicks.HasValue ? item.RunTimeTicks.Value : 0
             };
+        }
+
+
+        internal static async Task<List<PlaylistItem>> ToPlayListItems(this List<BaseItemDto> list, IApiClient apiClient)
+        {
+            var newList = new List<PlaylistItem>();
+            await Task.Factory.StartNew(() => list.ForEach(item =>
+            {
+                var playlistItem = item.ToPlaylistItem(apiClient);
+                newList.Add(playlistItem);
+            }));
+
+            return newList;
         }
 
         public static BaseItemDto ToBaseItemDto(this SearchHint searchHint)

@@ -363,8 +363,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Settings
                 return new RelayCommand<ServerInfo>(async server =>
                 {
                     var address = new Uri(server.LocalAddress);
-                    App.Settings.ConnectionDetails.HostName = address.Host;
-                    App.Settings.ConnectionDetails.PortNo = address.Port;
+                    //App.Settings.ConnectionDetails.HostName = address.Host;
+                    //App.Settings.ConnectionDetails.PortNo = address.Port;
                     //NavigationService.GoBack();
 
                     SetProgressBar(AppResources.SysTrayAuthenticating);

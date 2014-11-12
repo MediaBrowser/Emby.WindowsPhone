@@ -224,6 +224,7 @@ namespace MediaBrowser.WindowsPhone
             INavigationService navigationService,
             ILog log)
         {
+            var page = TileService.Current.PinnedPage();
             switch (result.State)
             {
                 case ConnectionState.Unavailable:
@@ -241,7 +242,7 @@ namespace MediaBrowser.WindowsPhone
                     else
                     {
                         AuthenticationService.Current.SetAuthenticationInfo();
-                        navigationService.NavigateTo(Constants.Pages.MainPage, true);
+                        navigationService.NavigateTo(page, true);
                     }
                     break;
                 case ConnectionState.SignedIn:
@@ -253,7 +254,7 @@ namespace MediaBrowser.WindowsPhone
 
                     await StartEverything(navigationService, log, apiClient);
 
-                    navigationService.NavigateTo(Constants.Pages.MainPage, true);
+                    navigationService.NavigateTo(page, true);
                     break;
                 case ConnectionState.ConnectSignIn:
                     navigationService.NavigateTo(Constants.Pages.FirstRun.MbConnectFirstRunView);
@@ -308,18 +309,6 @@ namespace MediaBrowser.WindowsPhone
         internal static bool HandleHttpException(string message, HttpException ex, INavigationService navigationService, ILog log)
         {
             return HandleHttpException(ex, message, navigationService, log);
-        }
-
-        internal static async Task<List<PlaylistItem>> ToPlayListItems(this List<BaseItemDto> list, IApiClient apiClient)
-        {
-            var newList = new List<PlaylistItem>();
-            await Task.Factory.StartNew(() => list.ForEach(item =>
-            {
-                var playlistItem = item.ToPlaylistItem(apiClient);
-                newList.Add(playlistItem);
-            }));
-
-            return newList;
         }
 
         internal static bool IsNullOrEmpty<T>(this IEnumerable<T> list)
