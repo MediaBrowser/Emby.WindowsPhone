@@ -291,9 +291,7 @@
                         </phone:LongListSelector.ListHeader>
                         <phone:LongListSelector.ListFooter>
                             <local:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                                         DataContext="{Binding DummyFolder}"
-                                                         TapCommand="{Binding Main.NavigateToPage, Source={StaticResource Locator}}"
-                                                         CommandParameter="{Binding}"
+                                                         TapCommand="{Binding Main.MoreRecentCommand, Source={StaticResource Locator}}"
                                                          Visibility="{Binding Path=ItemsSource.Count, ElementName=RecentItemsList, Converter={StaticResource IntToVisibilityConverter}, ConverterParameter=false}">
                                 <TextBlock Text="{Binding LocalizedResources.More, Source={StaticResource LocalizedStrings}}"
                                            Style="{StaticResource PhoneTextLargeStyle}" />
@@ -316,6 +314,14 @@
                                    Style="{StaticResource PhoneTextLargeStyle}"
                                    Visibility="{Binding RecentItems.Count, Converter={StaticResource IntToVisibilityConverter}, ConverterParameter=true}" />
                     </phone:LongListSelector.ListHeader>
+                    <phone:LongListSelector.ListFooter>
+                        <local:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                                     TapCommand="{Binding Main.MoreFavouritesCommand, Source={StaticResource Locator}}"
+                                                     Visibility="{Binding Path=ItemsSource.Count, ElementName=FavouriteItemsList, Converter={StaticResource IntToVisibilityConverter}, ConverterParameter=false}">
+                            <TextBlock Text="{Binding LocalizedResources.More, Source={StaticResource LocalizedStrings}}"
+                                       Style="{StaticResource PhoneTextLargeStyle}" />
+                        </local:CustomHyperlinkButton>
+                    </phone:LongListSelector.ListFooter>
                 </phone:LongListSelector>
             </phone:PanoramaItem>
         </phone:Panorama>

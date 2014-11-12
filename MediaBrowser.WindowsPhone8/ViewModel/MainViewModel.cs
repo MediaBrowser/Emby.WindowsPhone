@@ -313,6 +313,30 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
         }
 
+        public RelayCommand MoreRecentCommand
+        {
+            get
+            {
+                return new RelayCommand(() =>
+                {
+                    DummyFolder.Name = AppResources.LabelRecent.ToLower();
+                    NavigationService.NavigateTo(DummyFolder);
+                });
+            }
+        }
+
+        public RelayCommand MoreFavouritesCommand
+        {
+            get
+            {
+                return new RelayCommand(() =>
+                {
+                    DummyFolder.Name = AppResources.Favourites.ToLower();
+                    NavigationService.NavigateTo(DummyFolder);
+                });
+            }
+        }
+
         public RelayCommand PageLoaded { get; set; }
         public RelayCommand ChangeProfileCommand { get; set; }
         public RelayCommand RefreshDataCommand { get; set; }

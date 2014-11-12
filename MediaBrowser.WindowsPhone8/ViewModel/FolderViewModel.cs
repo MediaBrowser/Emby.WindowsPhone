@@ -226,6 +226,13 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         query.Recursive = true;
                         isRecent = true;
                     }
+                    else if (SelectedFolder.Name.Equals(AppResources.Favourites.ToLower()))
+                    {
+                        Log.Info("Getting favourite items");
+                        PageTitle = AppResources.Favourites.ToLower();
+                        query.Filters = new[] {ItemFilter.IsFavorite};
+                        query.Recursive = true;
+                    }
                     else if (SelectedFolder.Type.StartsWith(AppResources.Genre))
                     {
                         Log.Info("Getting items for genre [{0}]", SelectedFolder.Name);
