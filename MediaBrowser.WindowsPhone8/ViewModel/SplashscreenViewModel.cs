@@ -100,6 +100,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             _connectionDetails = _applicationSettings.Get<ConnectionDetails>(Constants.Settings.ConnectionSettings);
             _savedServer = _applicationSettings.Get<ServerInfo>(Constants.Settings.DefaultServerConnection);
 
+            App.ServerInfo = _savedServer;
+
             await ConnectToServer();
         }
 
@@ -124,6 +126,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                 if (server != null)
                 {
+                    App.ServerInfo = server;
                     _applicationSettings.Set(Constants.Settings.DefaultServerConnection, server);
                     _applicationSettings.Save();
 
