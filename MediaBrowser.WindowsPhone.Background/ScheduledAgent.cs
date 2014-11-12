@@ -13,7 +13,6 @@ using MediaBrowser.WindowsPhone.Logging;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Model.Photo;
 using MediaBrowser.WindowsPhone.Model.Security;
-using MediaBrowser.WindowsPhone.Services;
 using Microsoft.Phone.Scheduler;
 using ScottIsAFool.WindowsPhone.Logging;
 
@@ -33,7 +32,7 @@ namespace MediaBrowser.WindowsPhone.Background
         public ScheduledAgent()
         {
             _logger = new WPLogger(GetType());
-            CreateClient();
+            if(_apiClient == null) CreateClient();
             WPLogger.AppVersion = ApplicationManifest.Current.App.Version;
             WPLogger.LogConfiguration.LogType = LogType.WriteToFile;
             WPLogger.LogConfiguration.LoggingIsEnabled = true;
@@ -63,6 +62,11 @@ namespace MediaBrowser.WindowsPhone.Background
             {
                 var device = new Device { DeviceId = SharedUtils.GetDeviceId(), DeviceName = SharedUtils.GetDeviceName() };
                 var server = ApplicationSettings.Get<ServerInfo>(Constants.Settings.DefaultServerConnection);
+                if (server == null)
+                {
+                    return;
+                }
+
                 var client = new ApiClient(MediaBrowserLogger, server.RemoteAddress, "Windows Phone 8", device, ApplicationManifest.Current.App.Version, new ClientCapabilities{SupportsContentUploading = true}, new CryptographyProvider());
                 client.SetAuthenticationInfo(server.AccessToken, server.UserId);
 
