@@ -64,6 +64,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Settings
 
                             if (result.State == ConnectionState.SignedIn && result.Servers.Count == 1)
                             {
+                                App.ServerInfo = result.Servers[0];
                                 _appSettings.Set(Constants.Settings.DefaultServerConnection, result.Servers[0]);
                                 _appSettings.Save();
                             }

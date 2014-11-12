@@ -389,6 +389,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Settings
 
         private void SaveServer(ServerInfo server)
         {
+            App.ServerInfo = server;
             _applicationSettings.Set(Constants.Settings.DefaultServerConnection, server);
             _applicationSettings.Save();
         }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Threading;
 using System.Windows;
 using System.Windows.Markup;
 using System.Windows.Media;
@@ -56,6 +55,8 @@ namespace MediaBrowser.WindowsPhone
         }
 
         public static object SelectedItem { get; set; }
+
+        public static ServerInfo ServerInfo { get; set; }
 
         public static void ShowMessage(string message, string title = "", Action action = null)
         {
