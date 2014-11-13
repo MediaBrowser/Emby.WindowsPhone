@@ -311,11 +311,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Settings
 
                 var result = await ConnectionManager.Connect(serverAddress, default(CancellationToken));
 
-                if (result.State != ConnectionState.Unavailable)
+                if (result.State != ConnectionState.Unavailable && !result.Servers.IsNullOrEmpty())
                 {
-                    var server = result.Servers.FirstOrDefault(x =>
-                        string.Equals(x.LocalAddress, serverAddress, StringComparison.CurrentCultureIgnoreCase)
-                        || string.Equals(x.RemoteAddress, serverAddress, StringComparison.CurrentCultureIgnoreCase));
+                    var server = result.Servers[0];
                     if (server != null)
                     {
                         SaveServer(server);
