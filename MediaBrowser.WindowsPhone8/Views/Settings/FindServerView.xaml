@@ -74,6 +74,23 @@
                            Style="{StaticResource PhoneTextTitle1Style}" />
             </StackPanel>
 
+            <controls:CustomButton Style="{StaticResource EmptyButtonStyle}"
+                                   Grid.Row="0"
+                                   HorizontalAlignment="Right"
+                                   Margin="0,17,24,0"
+                                   Height="24"
+                                   VerticalAlignment="Top"
+                                   Visibility="{Binding Auth.LoggedInConnectUser, Source={StaticResource Locator}, Converter={StaticResource NullVisibilityConverter}}"
+                                   TapCommand="{Binding GoToMbConnectProfileCommand}">
+                <StackPanel Orientation="Horizontal">
+
+                    <Image Source="{Binding Auth.LoggedInConnectUser.ImageUrl, Source={StaticResource Locator}}"
+                           Height="24" />
+                    <TextBlock Text="{Binding Auth.LoggedInConnectUser.Name, Source={StaticResource Locator}}"
+                               Style="{StaticResource PhoneTextNormalStyle}" />
+                </StackPanel>
+            </controls:CustomButton>
+
             <!--ContentPanel - place additional content here-->
             <Grid x:Name="ContentPanel"
                   Grid.Row="1"
@@ -91,8 +108,7 @@
                         <controls:CustomHyperlinkButton Content="{Binding LocalizedResources.LabelManualServerEntry, Source={StaticResource LocalizedStrings}}"
                                                         HorizontalContentAlignment="Left"
                                                         Foreground="{StaticResource PhoneAccentBrush}"
-                                                        TapCommand="{Binding GoToManualServerCommand}"
-                                                        NavigateUri="/Views/Settings/ConnectionSettingsView.xaml"/>
+                                                        NavigateUri="/Views/Settings/ConnectionSettingsView.xaml" />
                     </telerikPrimitives:RadDataBoundListBox.ListFooterContent>
                     <telerikPrimitives:RadDataBoundListBox.ItemTemplate>
                         <DataTemplate>

@@ -392,11 +392,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Settings
             _applicationSettings.Save();
         }
 
-        public RelayCommand GoToManualServerCommand
+        public RelayCommand GoToMbConnectProfileCommand
         {
             get
             {
-                return new RelayCommand(() => NavigationService.NavigateTo(Constants.Pages.SettingsViewConnection));
+                return new RelayCommand(() => NavigationService.NavigateTo(Constants.Pages.SettingsViews.MbConnectView));
             }
         }
 
