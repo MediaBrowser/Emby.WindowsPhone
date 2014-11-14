@@ -109,6 +109,12 @@
                                                             NavigateUri="/Views/Settings/MbConnectView.xaml"
                                                             Margin="-12,12,0,0"
                                                             Foreground="{StaticResource PhoneAccentBrush}"/>
+
+                            <controls:CustomHyperlinkButton HorizontalContentAlignment="Left"
+                                                            Content="{Binding LocalizedResources.LabelFindServer, Source={StaticResource LocalizedStrings}}"
+                                                            NavigateUri="/Views/Settings/FindServerView.xaml"
+                                                            Margin="-12,12,0,0"
+                                                            Foreground="{StaticResource PhoneAccentBrush}" />
                         </StackPanel>
                     </phone:LongListSelector.ListFooter>
                     <phone:LongListSelector.ItemTemplate>
