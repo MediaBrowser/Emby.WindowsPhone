@@ -40,10 +40,11 @@
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot"
-          Background="{StaticResource MediaBrowserBackground}">
+          Background="{StaticResource MediaBrowserBackground}"
+          Tag="{Binding Auth.LoggedInConnectUser, Source={StaticResource Locator}, Converter={StaticResource NullBooleanConverter}}">
         <i:Interaction.Behaviors>
             <behaviors:ApplicationBarBehavior IsMenuEnabled="True"
-                                              Mode="{Binding Auth.SignedInUsingConnect, Source={StaticResource Locator}, Converter={StaticResource AppBarModeConverter}}">
+                                              Mode="{Binding Tag, ElementName=LayoutRoot, Converter={StaticResource AppBarModeConverter}}">
                 <behaviors:ApplicationBarBehavior.Buttons>
                     <behaviors:ApplicationBarIconButton IconUri="/Icons/appbar.check.rest.png"
                                                         Text="{Binding LocalizedResources.AppBarLogin, Source={StaticResource LocalizedStrings}}"
@@ -82,7 +83,7 @@
                   Grid.Row="1"
                   Margin="12,0,12,0">
                 <Grid x:Name="IsLoggedInGrid"
-                      Visibility="{Binding Auth.SignedInUsingConnect, Source={StaticResource Locator}, Converter={StaticResource VisibilityConverter}, FallbackValue=Visible}">
+                      Visibility="{Binding Auth.LoggedInConnectUser, Source={StaticResource Locator}, Converter={StaticResource NullVisibilityConverter}, FallbackValue=Visible}">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*" />
@@ -115,7 +116,7 @@
                 </Grid>
 
                 <Grid x:Name="IsNotLoggedInGrid"
-                      Visibility="{Binding Auth.SignedInUsingConnect, Source={StaticResource Locator}, Converter={StaticResource InvertedVisibilityConverter}, FallbackValue=Collapsed}">
+                      Visibility="{Binding Auth.LoggedInConnectUser, Source={StaticResource Locator}, Converter={StaticResource InvertedNullVisibilityConverter}, FallbackValue=Collapsed}">
                     <StackPanel Orientation="Vertical">
                         <TextBlock Text="{Binding LocalizedResources.LabelUsername, Source={StaticResource LocalizedStrings}}"
                                    Style="{StaticResource PhoneTextSubtleStyle}" />

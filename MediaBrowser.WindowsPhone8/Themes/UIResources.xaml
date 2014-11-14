@@ -76,6 +76,9 @@
     <converters:CollectionVisibilityConverter x:Key="CollectionVisibilityConverter" />
     <converters:RequiresServerBooleanConverter x:Key="RequiresServerBooleanConverter"/>
     <converters:RequiresServerVisibilityConverter x:Key="RequiresServerVisibilityConverter"/>
+    <converters:NullBooleanConverter x:Key="NullBooleanConverter"/>
+    <converters:NullBooleanConverter x:Key="InvertedNullBooleanConverter"
+                                     Inverted="True"/>
 
     <local:LocalizedStrings xmlns:local="clr-namespace:MediaBrowser.WindowsPhone"
                             x:Key="LocalizedStrings" />

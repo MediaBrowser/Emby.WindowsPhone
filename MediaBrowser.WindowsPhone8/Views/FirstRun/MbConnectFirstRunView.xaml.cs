@@ -31,7 +31,7 @@ namespace MediaBrowser.WindowsPhone.Views.FirstRun
 
         private void SignUpButton_OnTap(object sender, GestureEventArgs e)
         {
-            
+            new WebBrowserService().Show("http://mediabrowser.tv/community/index.php?app=core&module=global&section=register");
         }
 
         private void SkipButton_OnTap(object sender, GestureEventArgs e)

@@ -184,6 +184,7 @@
     <Compile Include="Converters\NotificationLevelToBrushConverter.cs" />
     <Compile Include="Converters\NowPlayingConverter.cs" />
     <Compile Include="Converters\NowPlayingProgressConverter.cs" />
+    <Compile Include="Converters\NullBooleanConverter.cs" />
     <Compile Include="Converters\PinnedItemConverter.cs" />
     <Compile Include="Converters\PlaylistCountConverter.cs" />
     <Compile Include="Converters\ProgrammeTypeToColourConverter.cs" />
