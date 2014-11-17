@@ -122,7 +122,8 @@
                                    Style="{StaticResource PhoneTextSubtleStyle}" />
                         <toolkit:PhoneTextBox Text="{Binding Username, Mode=TwoWay}"
                                               IsEnabled="{Binding ProgressIsVisible, Converter={StaticResource NegativeBooleanConverter}}"
-                                              InputScope="EmailUserName">
+                                              InputScope="EmailUserName"
+                                              x:Name="UsernameBox">
                             <i:Interaction.Behaviors>
                                 <behaviours:UpdateTextBindingOnPropertyChanged />
                             </i:Interaction.Behaviors>

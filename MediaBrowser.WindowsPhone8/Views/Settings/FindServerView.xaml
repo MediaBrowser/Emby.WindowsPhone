@@ -13,6 +13,7 @@
                 xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
                 xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
                 xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
+                xmlns:converters="clr-namespace:MediaBrowser.WindowsPhone.Converters"
                 mc:Ignorable="d ignore"
                 FontFamily="{StaticResource PhoneFontFamilyNormal}"
                 FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -54,6 +55,10 @@
             </toolkit:NavigationOutTransition.Forward>
         </toolkit:NavigationOutTransition>
     </toolkit:TransitionService.NavigationOutTransition>
+    
+    <scott:BasePage.Resources>
+        <converters:ServerAddresssDisplayConverter x:Key="ServerAddresssDisplayConverter"/>
+    </scott:BasePage.Resources>
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot"
@@ -120,7 +125,7 @@
                                 <controls1:HeaderAndDetail HeaderText="{Binding Name}"
                                                            HeaderTextForeground="{StaticResource PhoneAccentBrush}"
                                                            HeaderTextStyle="{StaticResource PhoneTextTitle2Style}"
-                                                           DetailText="{Binding LocalAddress}"
+                                                           DetailText="{Binding Converter={StaticResource ServerAddresssDisplayConverter}}"
                                                            DetailTextStyle="{StaticResource PhoneTextSubtleStyle}"
                                                            DetailTextForeground="{StaticResource PhoneSubtleBrush}" />
                             </controls:CustomHyperlinkButton>

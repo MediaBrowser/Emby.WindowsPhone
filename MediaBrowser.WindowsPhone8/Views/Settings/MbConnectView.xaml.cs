@@ -1,4 +1,6 @@
-﻿namespace MediaBrowser.WindowsPhone.Views.Settings
+﻿using Microsoft.Phone.Shell;
+
+namespace MediaBrowser.WindowsPhone.Views.Settings
 {
     public partial class MbConnectView 
     {
@@ -6,6 +8,13 @@
         public MbConnectView()
         {
             InitializeComponent();
+            Loaded += (sender, args) =>
+            {
+                if (ApplicationBar != null && ApplicationBar.Mode == ApplicationBarMode.Default)
+                {
+                    UsernameBox.Focus();
+                }
+            };
         }
 
         private void EmailLogs_OnClick(object sender, System.EventArgs e)

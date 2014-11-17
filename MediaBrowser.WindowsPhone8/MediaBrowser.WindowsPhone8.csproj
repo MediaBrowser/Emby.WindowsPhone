@@ -199,6 +199,7 @@
     <Compile Include="Converters\ScheduledRecordingTimeConverter.cs" />
     <Compile Include="Converters\SeasonEpisodeConverter.cs" />
     <Compile Include="Converters\SecondsToMinuteConverter.cs" />
+    <Compile Include="Converters\ServerAddresssDisplayConverter.cs" />
     <Compile Include="Converters\SettingsConverters.cs" />
     <Compile Include="Converters\SimpleDaysAgoConverter.cs" />
     <Compile Include="Converters\StringToLowercaseConverter.cs" />
