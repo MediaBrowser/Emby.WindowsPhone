@@ -1,4 +1,5 @@
-﻿using Microsoft.Phone.Shell;
+﻿using System;
+using Microsoft.Phone.Shell;
 
 namespace MediaBrowser.WindowsPhone.Views.Settings
 {
@@ -17,12 +18,12 @@ namespace MediaBrowser.WindowsPhone.Views.Settings
             };
         }
 
-        private void EmailLogs_OnClick(object sender, System.EventArgs e)
+        private void EmailLogs_OnClick(object sender, EventArgs e)
         {
             EmailLogs();
         }
 
-        private void AboutItem_OnClick(object sender, System.EventArgs e)
+        private void AboutItem_OnClick(object sender, EventArgs e)
         {
             AboutItem();
         }

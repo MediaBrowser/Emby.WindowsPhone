@@ -287,7 +287,7 @@
                                        HorizontalAlignment="Center"
                                        VerticalAlignment="Top"
                                        Style="{StaticResource PhoneTextLargeStyle}"
-                                       Visibility="{Binding RecentItems.Count, Converter={StaticResource IntToVisibilityConverter}, ConverterParameter=true}" />
+                                       Visibility="{Binding Main.RecentItems.Count, Source={StaticResource Locator}, Converter={StaticResource IntToVisibilityConverter}, ConverterParameter=true}" />
                         </phone:LongListSelector.ListHeader>
                         <phone:LongListSelector.ListFooter>
                             <local:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
@@ -312,7 +312,7 @@
                                    HorizontalAlignment="Center"
                                    VerticalAlignment="Top"
                                    Style="{StaticResource PhoneTextLargeStyle}"
-                                   Visibility="{Binding RecentItems.Count, Converter={StaticResource IntToVisibilityConverter}, ConverterParameter=true}" />
+                                   Visibility="{Binding Main.FavouriteItems.Count, Source={StaticResource Locator}, Converter={StaticResource IntToVisibilityConverter}, ConverterParameter=true}" />
                     </phone:LongListSelector.ListHeader>
                     <phone:LongListSelector.ListFooter>
                         <local:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
