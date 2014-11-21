@@ -328,7 +328,7 @@
     <value>verbinding</value>
   </data>
   <data name="LabelConnectionDetails" xml:space="preserve">
-    <value>Stel de verbinding gegevens in naar de computer waarop Media Browser draait . Dan gewoon testen om te bevestigen .</value>
+    <value>Stel de verbinding gegevens in naar de computer waarop Media Browser 3 draait . Dan gewoon testen om te bevestigen .</value>
   </data>
   <data name="LabelConnectionWarning" xml:space="preserve">
     <value>WAARSCHUWING : Wijziging van de hostnaam zal alle opgeslagen profielen  verwijderen .</value>
@@ -463,7 +463,7 @@
     <value>overzicht</value>
   </data>
   <data name="LabelPassword" xml:space="preserve">
-    <value>wachtwoord :</value>
+    <value>Wachtwoord :</value>
   </data>
   <data name="LabelPort" xml:space="preserve">
     <value>poort:</value>
@@ -553,7 +553,7 @@
     <value>Onbekeken:</value>
   </data>
   <data name="LabelUsername" xml:space="preserve">
-    <value>gebruikersnaam :</value>
+    <value>Gebruikersnaam :</value>
   </data>
   <data name="LabelViews" xml:space="preserve">
     <value>Bekeken</value>
@@ -746,7 +746,7 @@
     <value>gebruikersnaam</value>
   </data>
   <data name="LabelLogIn" xml:space="preserve">
-    <value>inloggen</value>
+    <value>Inloggen</value>
   </data>
   <data name="LabelNoFoldersFound" xml:space="preserve">
     <value>Geen mappen gevonden</value>
@@ -972,6 +972,174 @@
   </data>
   <data name="LabelUseTransparentTile" xml:space="preserve">
     <value>Gebruik transparante tegels</value>
+  </data>
+  <data name="TitleChannels" xml:space="preserve">
+    <value>Kanalen</value>
+  </data>
+  <data name="LabelMultipleItems" xml:space="preserve">
+    <value>{0} items</value>
+    <comment>{0} is the number of items</comment>
+  </data>
+  <data name="LabelNoItems" xml:space="preserve">
+    <value>Geen items</value>
+  </data>
+  <data name="LabelOneItem" xml:space="preserve">
+    <value>1 item</value>
+  </data>
+  <data name="ErrorAddingToPlaylist" xml:space="preserve">
+    <value>Fout bij toevoegen aan afspeellijst</value>
+  </data>
+  <data name="HeaderPlaylistName" xml:space="preserve">
+    <value>Afspeellijst naam:</value>
+  </data>
+  <data name="HeaderPlaylists" xml:space="preserve">
+    <value>Afspeellijst</value>
+  </data>
+  <data name="LabelAddToPlaylist" xml:space="preserve">
+    <value>Voeg toe aan afspeellijst</value>
+  </data>
+  <data name="LabelNewPlaylist" xml:space="preserve">
+    <value>Nieuwe afspeellijst</value>
+  </data>
+  <data name="LabelSave" xml:space="preserve">
+    <value>Opslaan</value>
+  </data>
+  <data name="SysTrayAddingToPlaylist" xml:space="preserve">
+    <value>Toevoegen aan afspeellijst...</value>
+  </data>
+  <data name="SysTrayLoadingPlaylists" xml:space="preserve">
+    <value>Afspeellijst laden...</value>
+  </data>
+  <data name="LabelAddingXToPlaylist" xml:space="preserve">
+    <value>Voeg toe {0}</value>
+    <comment>{0} could be anything from "TV show" to "3 items"</comment>
+  </data>
+  <data name="LabelSeasonX" xml:space="preserve">
+    <value>Seizoen {0}</value>
+    <comment>{0} is the season number</comment>
+  </data>
+  <data name="MenuRemoveFromPlaylist" xml:space="preserve">
+    <value>Verwijder van afspeellijst</value>
+  </data>
+  <data name="SysTrayDeleting" xml:space="preserve">
+    <value>Verwijderen...</value>
+  </data>
+  <data name="SysTrayRemoving" xml:space="preserve">
+    <value>Verwijderen...</value>
+  </data>
+  <data name="LabelStreaming" xml:space="preserve">
+    <value>Steraming</value>
+  </data>
+  <data name="LabelQuality" xml:space="preserve">
+    <value>Kwaliteit:</value>
+  </data>
+  <data name="LabelResolution" xml:space="preserve">
+    <value>Resolutie:</value>
+  </data>
+  <data name="ErrorNoWifi" xml:space="preserve">
+    <value>Sorry, het lijkt erop dat je geen wifi verbinding hebt. Verbind met een wifi netwerk of wijzig de 'alleen wifi' instelling.</value>
+  </data>
+  <data name="ErrorNoWifiTitle" xml:space="preserve">
+    <value>Geen wifi</value>
+  </data>
+  <data name="LabelChooseQuality" xml:space="preserve">
+    <value>Selecteer de gewenste kwaliteit van de video steram. Let op, hoe hoger de kwaliteit hoe hoger het data gebruik/</value>
+  </data>
+  <data name="LabelMobile" xml:space="preserve">
+    <value>Mobiel</value>
+  </data>
+  <data name="LabelStreamWifi" xml:space="preserve">
+    <value>Stream alleen over wifi</value>
+  </data>
+  <data name="LabelWifi" xml:space="preserve">
+    <value>wifi</value>
+  </data>
+  <data name="LabelInstantMix" xml:space="preserve">
+    <value>Instant mix</value>
+  </data>
+  <data name="SysTrayGettingInstantMix" xml:space="preserve">
+    <value>Instant mix aan het laden...</value>
+  </data>
+  <data name="LabelPhotoUpload" xml:space="preserve">
+    <value>Foto upload</value>
+  </data>
+  <data name="BackgroundTaskDescription" xml:space="preserve">
+    <value>Deze achtergrondtaak wordt gebruikt om foto's automatisch van je telefoon te uploaden. Deze functie kan in de app uitgeschakeld worden.</value>
+  </data>
+  <data name="LabelUploadAll" xml:space="preserve">
+    <value>Upload alle afbeeldingen</value>
+  </data>
+  <data name="LabelUploadPhotosTakenAfter" xml:space="preserve">
+    <value>Upload foto's genomen of opgeslagen na deze datum</value>
+  </data>
+  <data name="LabelAutoUploadConstraints" xml:space="preserve">
+    <value>Let op, uploaden vindt alleen plaats als het toestel geladen wordt, er wifi verbinding is en de accu voor 90% geladen is.</value>
+  </data>
+  <data name="LabelAutoUploadDescription" xml:space="preserve">
+    <value>Upload je foto's automatisch van je telefoon naar je Media Browser server.</value>
+  </data>
+  <data name="LabelTurnPhotoUploadOnServer" xml:space="preserve">
+    <value>Ga om dit in te schakelen in het server dashboard naar apparaten, Camera upload en schakel je apparaat in. Als je hier geen toegang toe hebt, neem dan contact op met de beheerder van de server.</value>
+  </data>
+  <data name="HeaderManualConnection" xml:space="preserve">
+    <value>Handmatige verbinding</value>
+  </data>
+  <data name="HeaderWhatIsMbConnect" xml:space="preserve">
+    <value>Wat is MB Connect?</value>
+  </data>
+  <data name="LabelManualServerEntry" xml:space="preserve">
+    <value>Vul de server gegevens handmatig in</value>
+  </data>
+  <data name="LabelMbConnect" xml:space="preserve">
+    <value>MB Connect</value>
+  </data>
+  <data name="LabelMbConnectAlreadyGotAccount" xml:space="preserve">
+    <value>Als je een Media Browser account hebt kan je nu aanmelden</value>
+  </data>
+  <data name="LabelMbConnectDescriptionPara1" xml:space="preserve">
+    <value>Met MB Connect kan je eenvoudig verbinding maken met je server waar je ook bent en deze eenvoudig delen met familie en vrienden</value>
+  </data>
+  <data name="LabelMbConnectFreeAccount" xml:space="preserve">
+    <value>Als je nog geen Media Browser account hebt kan je deze nu gratis aanmaken.</value>
+  </data>
+  <data name="LabelSignUp" xml:space="preserve">
+    <value>Aanmaken</value>
+  </data>
+  <data name="LabelSkip" xml:space="preserve">
+    <value>Overslaan</value>
+  </data>
+  <data name="ErrorSigningIn" xml:space="preserve">
+    <value>Fout bij aanmelden</value>
+  </data>
+  <data name="LabelRetry" xml:space="preserve">
+    <value>Opnieuw</value>
+  </data>
+  <data name="LabelLogout" xml:space="preserve">
+    <value>Uit loggen</value>
+  </data>
+  <data name="AppBarChangeServer" xml:space="preserve">
+    <value>Wijzig server</value>
+  </data>
+  <data name="LabelSignInWithConnect" xml:space="preserve">
+    <value>Meld aan met Media Browser Connect</value>
+  </data>
+  <data name="ErrorPlayUnderLock" xml:space="preserve">
+    <value>Om deze instelling opnieuw aan te passen moet de applicatie opnieuw opgestart worden.</value>
+  </data>
+  <data name="ErrorPleaseRestart" xml:space="preserve">
+    <value>Start opnieuw op</value>
+  </data>
+  <data name="LabelLater" xml:space="preserve">
+    <value>later</value>
+  </data>
+  <data name="LabelPlayUnderLock" xml:space="preserve">
+    <value>Speel video als het scherm gelocked is</value>
+  </data>
+  <data name="LabelPlayUnderLockWarning" xml:space="preserve">
+    <value>Dit beinvloed je accuduur</value>
+  </data>
+  <data name="LabelRestartNow" xml:space="preserve">
+    <value>Opnieuw opstarten?</value>
   </data>
 
 </root>

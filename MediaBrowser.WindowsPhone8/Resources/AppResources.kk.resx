@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AppBarAbout" xml:space="preserve">
-    <value>Туралы</value>
+    <value>туралы</value>
   </data>
   <data name="AppBarAddToNowPlaying" xml:space="preserve">
     <value>қазір ойнатылғанға үстеу</value>
@@ -286,7 +286,7 @@
     <value>Әдепкі топтау</value>
   </data>
   <data name="HeaderFromCollection" xml:space="preserve">
-    <value>Жинақтан (қолданылатында)</value>
+    <value>Тасушы қалтадан (қолданылатында)</value>
   </data>
   <data name="LabelActor" xml:space="preserve">
     <value>Актер</value>
@@ -334,7 +334,7 @@
     <value>ЕСКЕРТУ: Хост атын өзгерткенде барлық сақталған профильдер аластатылады.</value>
   </data>
   <data name="LabelDate" xml:space="preserve">
-    <value>күн-айы</value>
+    <value>күні</value>
   </data>
   <data name="LabelDaysAgo" xml:space="preserve">
     <value>{0} күн бұрын</value>
@@ -391,7 +391,7 @@
     <value>Media Browser құлыптау экрандың жеткізушісі емес</value>
   </data>
   <data name="LabelJustShowList" xml:space="preserve">
-    <value>Жай элементтер тізімн бейнелеу, тасушы қалтаны емес</value>
+    <value>Жай элементтер тізімн бейнелеу, тасушы қалта аспектін емес</value>
   </data>
   <data name="LabelLatestUnseen" xml:space="preserve">
     <value>ең соңғы рет болмаған</value>
@@ -427,7 +427,7 @@
     <value>Музыка</value>
   </data>
   <data name="LabelNextUp" xml:space="preserve">
-    <value>алдағы</value>
+    <value>кезектегілер</value>
   </data>
   <data name="LabelNo" xml:space="preserve">
     <value>жоқ</value>
@@ -463,7 +463,7 @@
     <value>шолу</value>
   </data>
   <data name="LabelPassword" xml:space="preserve">
-    <value>құпия сөз:</value>
+    <value>Құпия сөз:</value>
   </data>
   <data name="LabelPort" xml:space="preserve">
     <value>Порт:</value>
@@ -490,7 +490,7 @@
     <value>Кездейсоқ элементтер</value>
   </data>
   <data name="LabelRandomPictures" xml:space="preserve">
-    <value>Жинақтағы кездейсоқ суреттер</value>
+    <value>Тасушы қалтадағы кездейсоқ суреттер</value>
   </data>
   <data name="LabelRating" xml:space="preserve">
     <value>Бағалауы:</value>
@@ -523,7 +523,7 @@
     <value>барлық элементтерді көрсету...</value>
   </data>
   <data name="LabelShows" xml:space="preserve">
-    <value>сериалдар</value>
+    <value>көрсетімдер</value>
   </data>
   <data name="LabelShowTrailers" xml:space="preserve">
     <value>Жақындағы элементтерде трейлерлерді көрсету</value>
@@ -532,13 +532,13 @@
     <value>Жалғыз постер</value>
   </data>
   <data name="LabelSongs" xml:space="preserve">
-    <value>әндер</value>
+    <value>әуендер</value>
   </data>
   <data name="LabelTile" xml:space="preserve">
-    <value>атау</value>
+    <value>қатар</value>
   </data>
   <data name="LabelTileBackInformation" xml:space="preserve">
-    <value>Тасушыға арналған қол жетімді тамаша суреттемелерді көрсету үшін, қатарда суреттемелер арасынан кейбіреу пайданылады, осында сол қатар қалай көрінетінін таңдаңуыз мүмкін.</value>
+    <value>Тасушыдеректерге арналған қол жетімді тамаша суреттемелерді көрсету үшін, қатарда суреттемелер арасынан кейбіреу пайданылады, осында сол қатар қалай көрінетінін таңдаңуыз мүмкін.</value>
   </data>
   <data name="LabelTrailers" xml:space="preserve">
     <value>трелерлер</value>
@@ -553,13 +553,13 @@
     <value>Карап шықпаған:</value>
   </data>
   <data name="LabelUsername" xml:space="preserve">
-    <value>пайдаланушы аты:</value>
+    <value>Пайдаланушы аты:</value>
   </data>
   <data name="LabelViews" xml:space="preserve">
-    <value>Көрініс</value>
+    <value>Аспекттер</value>
   </data>
   <data name="LabelWelcomeText" xml:space="preserve">
-    <value>Windows Phone өніміне арналған Media Browser қолданбасына қош келдіңіз! Бұл қолданба тасушы шарлау, телефонға ағынмен тасымалдау және басқа басқарылатын Media Browser клиенттерінің қайсыбіріне алыстан басқару үшін рұқсат етеді.</value>
+    <value>Windows Phone өніміне арналған Media Browser қолданбасына қош келдіңіз! Бұл қолданба тасушыхананы шолу, телефонға ағынмен тасымалдау және басқа басқарылатын Media Browser клиенттерінің қайсыбіріне алыстан басқару үшін рұқсат етеді.</value>
   </data>
   <data name="LabelWriter" xml:space="preserve">
     <value>Жазушы</value>
@@ -628,7 +628,7 @@
     <value>Нақтылық тексерілуде...</value>
   </data>
   <data name="SysTrayCheckingCollection" xml:space="preserve">
-    <value>Жинақ тексерілуде...</value>
+    <value>Тасушы қлта тексерілуде...</value>
   </data>
   <data name="SysTrayCheckingConnection" xml:space="preserve">
     <value>Қосылым тексерілуде...</value>
@@ -682,7 +682,7 @@
     <value>Фильмдер алынуда...</value>
   </data>
   <data name="SysTrayGettingNextUp" xml:space="preserve">
-    <value>Алдағы элементтер алынуда...</value>
+    <value>Кезектегі элементтер алынуда...</value>
   </data>
   <data name="SysTrayGettingNotifications" xml:space="preserve">
     <value>Хабарландырулар алынуда...</value>
@@ -697,13 +697,13 @@
     <value>Сервер мәліметтері алынуда...</value>
   </data>
   <data name="SysTrayGettingShowInformation" xml:space="preserve">
-    <value>Сериал мәліметтері алынуда...</value>
+    <value>Көрсетім мәліметтері алынуда...</value>
   </data>
   <data name="SysTrayGettingShows" xml:space="preserve">
-    <value>Сериалдар алынуда...</value>
+    <value>ТД көрсетімдері алынуда...</value>
   </data>
   <data name="SysTrayGettingSongs" xml:space="preserve">
-    <value>Әндер алынуда...</value>
+    <value>Әуендер алынуда...</value>
   </data>
   <data name="SysTrayGettingTracks" xml:space="preserve">
     <value>Жолшықтар алынуда...</value>
@@ -715,7 +715,7 @@
     <value>Ең соңғы қаралып шықпаған эелементтер алынуда...</value>
   </data>
   <data name="SysTrayLoadingCollections" xml:space="preserve">
-    <value>Жинақтар алынуда...</value>
+    <value>Тасушы қалталар алынуда...</value>
   </data>
   <data name="SysTrayLoadingSettings" xml:space="preserve">
     <value>Параметрлер жүктелініп алынуда...</value>
@@ -765,7 +765,7 @@
     <comment>eg, Released in 1993</comment>
   </data>
   <data name="LabelWelcomeTextPhone7" xml:space="preserve">
-    <value>Windows Phone өніміне арналған Media Browser қолданбасына қош келдіңіз! Бұл қолданба тасушы шарлау және басқа басқарылатын Media Browser клиенттерінің қайсыбіріне алыстан басқару үшін рұқсат етеді.</value>
+    <value>Windows Phone өніміне арналған Media Browser қолданбасына қош келдіңіз! Бұл қолданба тасушыхананы шолу және басқа басқарылатын Media Browser клиенттерінің қайсыбіріне алыстан басқару үшін рұқсат етеді.</value>
   </data>
   <data name="LabelChannels" xml:space="preserve">
     <value>Телеканалдар</value>
@@ -874,7 +874,7 @@
     <value>Арна:</value>
   </data>
   <data name="LabelNew" xml:space="preserve">
-    <value>Жаңа</value>
+    <value>Жасау</value>
   </data>
   <data name="LabelPrePostPadding" xml:space="preserve">
     <value>Алға/Артқа шегініс</value>
@@ -943,7 +943,7 @@
     <value>арна</value>
   </data>
   <data name="AppBarRecordedDate" xml:space="preserve">
-    <value>жазылған күн-айы</value>
+    <value>жазылған күні</value>
   </data>
   <data name="AppBarShowName" xml:space="preserve">
     <value>көрсетім аты</value>
@@ -955,7 +955,7 @@
     <value>Ешқандай жазылған элементтер жоқ сияқты.</value>
   </data>
   <data name="LabelRecordedDate" xml:space="preserve">
-    <value>Жазылған күн-айы</value>
+    <value>Жазылған күні</value>
   </data>
   <data name="LabelShowName" xml:space="preserve">
     <value>Көрсетім аты</value>
@@ -972,6 +972,174 @@
   </data>
   <data name="LabelUseTransparentTile" xml:space="preserve">
     <value>Мөлдір қатарларды пайдалану</value>
+  </data>
+  <data name="TitleChannels" xml:space="preserve">
+    <value>Арналар</value>
+  </data>
+  <data name="LabelMultipleItems" xml:space="preserve">
+    <value>{0} элемент</value>
+    <comment>{0} is the number of items</comment>
+  </data>
+  <data name="LabelNoItems" xml:space="preserve">
+    <value>Элементтер жоқ</value>
+  </data>
+  <data name="LabelOneItem" xml:space="preserve">
+    <value>1 элемент</value>
+  </data>
+  <data name="ErrorAddingToPlaylist" xml:space="preserve">
+    <value>Ойнату тізіміне үстелу қатесі</value>
+  </data>
+  <data name="HeaderPlaylistName" xml:space="preserve">
+    <value>Ойнату тізім аты:</value>
+  </data>
+  <data name="HeaderPlaylists" xml:space="preserve">
+    <value>Ойнату тізімі:</value>
+  </data>
+  <data name="LabelAddToPlaylist" xml:space="preserve">
+    <value>Ойнату тізіміне үстеу</value>
+  </data>
+  <data name="LabelNewPlaylist" xml:space="preserve">
+    <value>Жаңа ойнату тізімі</value>
+  </data>
+  <data name="LabelSave" xml:space="preserve">
+    <value>Сақтау</value>
+  </data>
+  <data name="SysTrayAddingToPlaylist" xml:space="preserve">
+    <value>Ойнату тізіміне үстеуде...</value>
+  </data>
+  <data name="SysTrayLoadingPlaylists" xml:space="preserve">
+    <value>Ойнату тізімін жүктеуде...</value>
+  </data>
+  <data name="LabelAddingXToPlaylist" xml:space="preserve">
+    <value>Үстелуде {0}</value>
+    <comment>{0} could be anything from "TV show" to "3 items"</comment>
+  </data>
+  <data name="LabelSeasonX" xml:space="preserve">
+    <value>{0}-сезон</value>
+    <comment>{0} is the season number</comment>
+  </data>
+  <data name="MenuRemoveFromPlaylist" xml:space="preserve">
+    <value>ойнату тізімінен аластау</value>
+  </data>
+  <data name="SysTrayDeleting" xml:space="preserve">
+    <value>Жойылуда...</value>
+  </data>
+  <data name="SysTrayRemoving" xml:space="preserve">
+    <value>Аласталуда...</value>
+  </data>
+  <data name="LabelStreaming" xml:space="preserve">
+    <value>Ағынмен тасымалдау</value>
+  </data>
+  <data name="LabelQuality" xml:space="preserve">
+    <value>Сапасы:</value>
+  </data>
+  <data name="LabelResolution" xml:space="preserve">
+    <value>Ажыратылымдығы:</value>
+  </data>
+  <data name="ErrorNoWifi" xml:space="preserve">
+    <value>Жүйеңізде wifi жоқ сияқты, wifi желісіне қосылыңыз, немесе "тек қана wifiә деген параметрді өзгертіңіз.</value>
+  </data>
+  <data name="ErrorNoWifiTitle" xml:space="preserve">
+    <value>Wifi жоқ</value>
+  </data>
+  <data name="LabelChooseQuality" xml:space="preserve">
+    <value>Қалауыңыз бойынша бейнені ағынмен тасымалдау сапасын таңдаңыз. Ескеріңіз, егер ағынмен тасымалдау телефоныңыздың тарифтік жоспарынан жоғарылау болса, жоғарғы сапа көбірек деректерді пайдалануға келтіреді.</value>
+  </data>
+  <data name="LabelMobile" xml:space="preserve">
+    <value>ұтқыр</value>
+  </data>
+  <data name="LabelStreamWifi" xml:space="preserve">
+    <value>Бейнені тек қана wifi үстімен тасымалдау</value>
+  </data>
+  <data name="LabelWifi" xml:space="preserve">
+    <value>wifi</value>
+  </data>
+  <data name="LabelInstantMix" xml:space="preserve">
+    <value>Лездік қоспа</value>
+  </data>
+  <data name="SysTrayGettingInstantMix" xml:space="preserve">
+    <value>Лездік қоспаны алуда...</value>
+  </data>
+  <data name="LabelPhotoUpload" xml:space="preserve">
+    <value>Фотосуретті жүктеп беру</value>
+  </data>
+  <data name="BackgroundTaskDescription" xml:space="preserve">
+    <value>Осы ендік тапсырма телефоныңыздан қайсыбір фотосуретті автоматты түрде жүктеп беру үшін пайдаланылады. Бұл қасиет қолданба ішінен қосулы мүмкін.</value>
+  </data>
+  <data name="LabelUploadAll" xml:space="preserve">
+    <value>Барлық суреттерді жүктеп беру</value>
+  </data>
+  <data name="LabelUploadPhotosTakenAfter" xml:space="preserve">
+    <value>Осы күннен кейін тусірілген/сақталған фотосуреттерді жүктеп беру</value>
+  </data>
+  <data name="LabelAutoUploadConstraints" xml:space="preserve">
+    <value>Ескеріңіз, жүктеп беру тек қана жабдығыңыз зарядталу кезінде, wifi болғанда және заряды 90 % астам болғанда орын алады.</value>
+  </data>
+  <data name="LabelAutoUploadDescription" xml:space="preserve">
+    <value>Телефондағы суреттеріңізді автоматты түрде тікелей Media Browser серверіне жүктеп беру.</value>
+  </data>
+  <data name="LabelTurnPhotoUploadOnServer" xml:space="preserve">
+    <value>Бұл жұмысын істеуі үшін сервердің бақылау тақтасына барып Жабдықтарды нұқыңыз, кейін Камерадан жүктеп беруді, сонда жабдығыңызды іске қосыңыз. Егер бұған қатынас болмаса, жүйе әкімшісімен хабарласыңыз.</value>
+  </data>
+  <data name="HeaderManualConnection" xml:space="preserve">
+    <value>Қолмен қосылу</value>
+  </data>
+  <data name="HeaderWhatIsMbConnect" xml:space="preserve">
+    <value>MB Connect деген не?</value>
+  </data>
+  <data name="LabelManualServerEntry" xml:space="preserve">
+    <value>Сервер егжей-тегжейлерін қолмен енгізу</value>
+  </data>
+  <data name="LabelMbConnect" xml:space="preserve">
+    <value>MB Connect</value>
+  </data>
+  <data name="LabelMbConnectAlreadyGotAccount" xml:space="preserve">
+    <value>Егер Media Browser тіркелгіңіз болса, қазір кіруіңіз мүмкін.</value>
+  </data>
+  <data name="LabelMbConnectDescriptionPara1" xml:space="preserve">
+    <value>MB Connect арқылы қайда болсаңыз Media Browser серверіңізге жеңіл қатынасуыңыз, сонымен қатар отасыңызбен және достарыңызбен ортақтасуыңыз мүмкін.</value>
+  </data>
+  <data name="LabelMbConnectFreeAccount" xml:space="preserve">
+    <value>Егер сізде әлі Media Browser тіркелгісі болмаса, дәл қазір тіркелуіңіз мүмкін, бұл АҚЫСЫЗ!</value>
+  </data>
+  <data name="LabelSignUp" xml:space="preserve">
+    <value>Тіркелу</value>
+  </data>
+  <data name="LabelSkip" xml:space="preserve">
+    <value>Өткізіп жіберу</value>
+  </data>
+  <data name="ErrorSigningIn" xml:space="preserve">
+    <value>Кіру қатесі</value>
+  </data>
+  <data name="LabelRetry" xml:space="preserve">
+    <value>Қайталу</value>
+  </data>
+  <data name="LabelLogout" xml:space="preserve">
+    <value>Шығу</value>
+  </data>
+  <data name="AppBarChangeServer" xml:space="preserve">
+    <value>серверді ауыстыру</value>
+  </data>
+  <data name="LabelSignInWithConnect" xml:space="preserve">
+    <value>Media Browser Connect арқылы кіру</value>
+  </data>
+  <data name="ErrorPlayUnderLock" xml:space="preserve">
+    <value>Осы параметрді қайта өзгерту үшін қолданбаны қайта іске қосу керек.</value>
+  </data>
+  <data name="ErrorPleaseRestart" xml:space="preserve">
+    <value>Қайта іске қосыңыз</value>
+  </data>
+  <data name="LabelLater" xml:space="preserve">
+    <value>кейін</value>
+  </data>
+  <data name="LabelPlayUnderLock" xml:space="preserve">
+    <value>Экран құрсауланғанда бейнелерді ойнату</value>
+  </data>
+  <data name="LabelPlayUnderLockWarning" xml:space="preserve">
+    <value>Бұл батареяңыздың қызмет мерзіміне әсер етеді</value>
+  </data>
+  <data name="LabelRestartNow" xml:space="preserve">
+    <value>қайта іске қосамыз ба?</value>
   </data>
 
 </root>
