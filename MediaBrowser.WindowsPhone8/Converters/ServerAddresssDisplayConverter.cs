@@ -12,6 +12,11 @@ namespace MediaBrowser.WindowsPhone.Converters
             var server = value as ServerInfo;
             if (server == null) return string.Empty;
 
+            if (string.IsNullOrEmpty(server.RemoteAddress))
+            {
+                return server.LocalAddress;
+            }
+
             return string.Format("{0},\n{1}", server.LocalAddress, server.RemoteAddress);
         }
 
