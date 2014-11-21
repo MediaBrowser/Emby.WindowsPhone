@@ -6,15 +6,20 @@ using System.Threading;
 using System.Threading.Tasks;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Devices;
+using MediaBrowser.Model.Net;
 using Microsoft.Xna.Framework.Media;
+using ScottIsAFool.WindowsPhone.Logging;
 
 namespace MediaBrowser.WindowsPhone.Model
 {
     public class Device : IDevice
     {
+        private readonly static ILog Log = new WPLogger(typeof(Device));
+
         public async Task<IEnumerable<LocalFileInfo>> GetLocalPhotos()
         {
             var items = GetPhotos(library => library.Pictures);
+            Log.Info("Photos found: {0}", items.Count());
             return items;
         }
 
@@ -64,9 +69,17 @@ namespace MediaBrowser.WindowsPhone.Model
 
                 if (picture != null)
                 {
+                    Log.Info("Uploading file '{0}'", file.Id);
                     using (var stream = picture.GetImage())
                     {
-                        await apiClient.UploadFile(stream, file, cancellationToken);
+                        try
+                        {
+                            await apiClient.UploadFile(stream, file, cancellationToken);
+                        }
+                        catch (HttpException ex)
+                        {
+                            Log.ErrorException("Uploadfile(" + file.Id + ")", ex);
+                        }
                     }
                 }
             }

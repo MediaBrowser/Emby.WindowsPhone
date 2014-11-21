@@ -37,7 +37,10 @@ namespace MediaBrowser.WindowsPhone.Background
             WPLogger.LogConfiguration.LogType = LogType.WriteToFile;
             WPLogger.LogConfiguration.LoggingIsEnabled = true;
 
-            _contentUploader = new ContentUploader(_apiClient, MediaBrowserLogger);
+            if (_apiClient != null)
+            {
+                _contentUploader = new ContentUploader(_apiClient, MediaBrowserLogger);
+            }
 
             // Subscribe to the managed exception handler
             Deployment.Current.Dispatcher.BeginInvoke(delegate
@@ -60,16 +63,19 @@ namespace MediaBrowser.WindowsPhone.Background
         {
             try
             {
+                _logger.Info("Creating API Client");
                 var device = new Device { DeviceId = SharedUtils.GetDeviceId(), DeviceName = SharedUtils.GetDeviceName() };
                 var server = ApplicationSettings.Get<ServerInfo>(Constants.Settings.DefaultServerConnection);
                 if (server == null)
                 {
+                    _logger.Info("No server details found");
                     return;
                 }
 
                 var client = new ApiClient(MediaBrowserLogger, server.RemoteAddress, "Windows Phone 8", device, ApplicationManifest.Current.App.Version, new ClientCapabilities{SupportsContentUploading = true}, new CryptographyProvider());
                 client.SetAuthenticationInfo(server.AccessToken, server.UserId);
 
+                _logger.Info("Client created");
                 _apiClient = client;
             }
             catch (Exception ex)
@@ -89,17 +95,30 @@ namespace MediaBrowser.WindowsPhone.Background
         /// </remarks>
         protected override async void OnInvoke(ScheduledTask task)
         {
+            _logger.Info("Task started");
             var uploadTask = task as ResourceIntensiveTask;
             if (uploadTask == null)
             {
+                _logger.Info("Not a photo upload task");
                 NotifyComplete();
                 return;
             }
 
+            if (_contentUploader == null)
+            {
+                _logger.Info("ContentUploader is null, nothing to do");
+                NotifyComplete();
+                return;
+            }
+
+            _logger.Info("Getting upload settings");
             var uploadSettings = ApplicationSettings.Get<UploadSettings>(Constants.Settings.PhotoUploadSettings);
 
             if (uploadSettings == null || !uploadSettings.IsPhotoUploadsEnabled)
             {
+                if(uploadSettings == null) _logger.Info("No upload settings found");
+                else if(!uploadSettings.IsPhotoUploadsEnabled) _logger.Info("Photo uploads not enabled");
+
                 NotifyComplete();
                 return;
             }
@@ -113,6 +132,7 @@ namespace MediaBrowser.WindowsPhone.Background
 
             try
             {
+                _logger.Info("Start upload");
                 await _contentUploader.UploadImages(new Progress<double>(), CancellationToken.None);
             }
             catch (HttpException ex)
