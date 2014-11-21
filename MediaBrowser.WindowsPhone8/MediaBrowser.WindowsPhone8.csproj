@@ -488,6 +488,7 @@
     <Content Include="Images\LogoNoPadding.png" />
     <Content Include="Images\MBBackground.jpg" />
     <Content Include="Images\MBBackgroundWithTv.png" />
+    <Content Include="Images\MBConnectLogo.png" />
     <Content Include="Images\PanoBackground.jpg" />
     <Content Include="Images\PortraitBackground.jpg" />
     <Content Include="Images\Remote\add.png" />

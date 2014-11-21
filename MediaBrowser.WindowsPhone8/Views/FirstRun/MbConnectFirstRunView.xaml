@@ -17,10 +17,6 @@
                 shell:SystemTray.Opacity="0">
 
     <scott:BasePage.Resources>
-        <Color x:Key="AppBarColour">Black</Color>
-        <SolidColorBrush x:Key="AppBarBrush"
-                         Color="{StaticResource AppBarColour}"
-                         Opacity="0.6" />
     </scott:BasePage.Resources>
 
     <toolkit:TransitionService.NavigationInTransition>
@@ -60,15 +56,16 @@
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel"
-              Margin="12,68,12,0">
+              Margin="12,44,12,0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="200" />
+                <RowDefinition Height="224" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             
-            <Image Source="/Images/LogoNoPadding.png"
-                   Margin="24"/>
+            <Image Source="/Images/MBConnectLogo.png"
+                   Margin="0,0,0,24"
+                   VerticalAlignment="Top"/>
 
             <TextBlock Text="{Binding LocalizedResources.LabelMbConnectDescriptionPara1, Source={StaticResource LocalizedStrings}}"
                        Style="{StaticResource PhoneTextTitle3Style}"
