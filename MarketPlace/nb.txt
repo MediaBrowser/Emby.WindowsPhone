@@ -1,0 +1,23 @@
+﻿WP8:
+
+Media Browser er en måte å bla i dine egne media samlinger, enten det er filmer, tv eller musikk. Media Browser vil la deg se eller høre på dem på din Windows Phone eller spille dem av på en annen kompatibel Media Browser klient.
+
+****VIKTIG INFORMASJON****
+For å kunne bruke Media Browser må du ha innstallert Media Browser server fra http://www.mediabrowser.tv/download og ha konfigurert den.
+
+Funksjoner:
+-Bla i dine egne media samlinger
+-Strømme videoer til din telefon
+-Fjernstyre andre Media Browser avspillere (som Media Browser Classic)
+-Sette din lås skjerm basert på noe fra dine egene samlinger
+-Pinne dine favoritt samlinger til start menyen
+
+Prøve versjons begrensninger:
+-Se en video pr dag (så mange ganger eller så mye du vil, men bare denne ene)
+-Kun mulig å fjernstyre web grensesnittet
+
+Support:
+Support finnes på twitter (@mediabrowser), facebook (http://facebook.com/mediabrower.tv) eller epost (wpmb3@outlook.com).
+
+Anmeldelse:
+Vi elsker anmeldelser, de hjelper oss med å lage en bedre app. men hvis du skulle ha noen problemer, vennligst kontakt oss før du gir en negativ anmeldelse. Det kan hende vi kan hjelpe deg.

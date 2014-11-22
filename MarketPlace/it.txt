@@ -3,7 +3,7 @@ WP8:
 Media Browser ti permette di  avere la propria raccolta multimediale, che si tratti di film, tv o musica, Media Browser vi permetterà di guardare o ascoltare sul vostro Windows Phone o giocare su un altro client compatibile con Media Browser.
 
 **** INFORMAZIONI IMPORTANTI ****
-Per poter utilizzare Media Browser, è necessario aver installato il server di Media Browser da http://www.mediabrowser3.com/download e lo hanno configurato.
+Per poter utilizzare Media Browser, è necessario aver installato il server di Media Browser da http://www.mediabrowser.tv/download e lo hanno configurato.
 
 Caratteristiche:
 Sfoglia la tua raccolta multimediale
@@ -14,27 +14,6 @@ Sfoglia la tua raccolta multimediale
 
 Limitazioi  versione di prova:
 - Guarda un video al giorno (il numero di volte o tanto quanto si vuole, ma solo quello)
-- Solo in grado di controllare a distanza l'interfaccia Web
-
-Supporto:
-Il supporto può essere trovato su twitter (@ MediaBrowser), facebook (http://facebook.com/mediabrowser.tv) o via email (wpmb3@outlook.com).
-
-Recensioni:
-We love the reviews, it helps us to make the app better, however if you have any problems, please contact us prior to negative reviews, we might be able to help. 
-
-WP7:
-
-Media Browser è un modo di sfogliare la propria raccolta multimediale, che si tratti di film, tv o musica, Browser multimediale consente di ascoltare sul vostro Windows Phone o giocare su un altro client compatibile con Media Browser.
-
-**** INFORMAZIONI IMPORTANTI ****
-Per poter utilizzare Media Browser, è necessario aver installato il server di Media Browser da http://www.mediabrowser3.com/download e lo hanno configurato.
-
-Caratteristiche:
-Sfoglia la tua raccolta multimediale
-- Telecomando altri giocatori Browser multimediale (come il Media Browser Classic)
-- Pin tue collezioni preferite al menu di avvio
-
-Limitazioi  versione di prova:
 - Solo in grado di controllare a distanza l'interfaccia Web
 
 Supporto:

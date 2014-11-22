@@ -1,0 +1,1145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AppBarAbout" xml:space="preserve">
+    <value>Om</value>
+  </data>
+  <data name="AppBarAddToNowPlaying" xml:space="preserve">
+    <value>legg til avspilles nå</value>
+  </data>
+  <data name="AppBarChangeProfile" xml:space="preserve">
+    <value>Bytt profil</value>
+  </data>
+  <data name="AppBarClearNowPlaying" xml:space="preserve">
+    <value>fjern avspilles nå</value>
+  </data>
+  <data name="AppBarDeleteItems" xml:space="preserve">
+    <value>Slett elementer</value>
+  </data>
+  <data name="AppBarGroupBy" xml:space="preserve">
+    <value>Sorter etter</value>
+  </data>
+  <data name="AppBarLogin" xml:space="preserve">
+    <value>logginn</value>
+  </data>
+  <data name="AppBarMarkAsUnwatched" xml:space="preserve">
+    <value>merk som ikke sett</value>
+  </data>
+  <data name="AppBarMarkAsWatched" xml:space="preserve">
+    <value>merk som sett</value>
+  </data>
+  <data name="AppBarNext" xml:space="preserve">
+    <value>neste</value>
+  </data>
+  <data name="AppBarNotifications" xml:space="preserve">
+    <value>merknader</value>
+  </data>
+  <data name="AppBarNowPlaying" xml:space="preserve">
+    <value>avspilles nå</value>
+  </data>
+  <data name="AppBarPause" xml:space="preserve">
+    <value>pause</value>
+  </data>
+  <data name="AppBarPlay" xml:space="preserve">
+    <value>spill av</value>
+  </data>
+  <data name="AppBarPlayAll" xml:space="preserve">
+    <value>spill av alle</value>
+  </data>
+  <data name="AppBarPlayAllTracks" xml:space="preserve">
+    <value>spill alle sporene</value>
+  </data>
+  <data name="AppBarPlayItems" xml:space="preserve">
+    <value>spill av element</value>
+  </data>
+  <data name="AppBarPlayOn" xml:space="preserve">
+    <value>spill av på..</value>
+  </data>
+  <data name="AppBarPosterLockscreen" xml:space="preserve">
+    <value>velg poster som låst skjerm</value>
+  </data>
+  <data name="AppBarPrevious" xml:space="preserve">
+    <value>forrige</value>
+  </data>
+  <data name="AppBarRefresh" xml:space="preserve">
+    <value>oppdater</value>
+  </data>
+  <data name="AppBarRefreshInformation" xml:space="preserve">
+    <value>oppdater informasjon</value>
+  </data>
+  <data name="AppBarRemote" xml:space="preserve">
+    <value>fjernstyr</value>
+  </data>
+  <data name="AppBarResume" xml:space="preserve">
+    <value>fortsett</value>
+  </data>
+  <data name="AppBarSearch" xml:space="preserve">
+    <value>søk</value>
+  </data>
+  <data name="AppBarSelectItems" xml:space="preserve">
+    <value>velg artikkel</value>
+  </data>
+  <data name="AppBarSendLogs" xml:space="preserve">
+    <value>send logg</value>
+  </data>
+  <data name="AppBarSettings" xml:space="preserve">
+    <value>innstillinger</value>
+  </data>
+  <data name="Collections" xml:space="preserve">
+    <value>mapper</value>
+  </data>
+  <data name="DeviceNotRegistered" xml:space="preserve">
+    <value>enhet ikke registret</value>
+  </data>
+  <data name="DeviceRegistered" xml:space="preserve">
+    <value>enhet registert</value>
+  </data>
+  <data name="ErrorConnectionDetailsInvalid" xml:space="preserve">
+    <value>Tilkoblings-detaljene ugylidig. Prøv igjen.</value>
+  </data>
+  <data name="ErrorConnectionDetailsMessage" xml:space="preserve">
+    <value>Ingen tilkoblings-detaljer har blitt definert. Vil du gjøre dette nå?</value>
+  </data>
+  <data name="ErrorConnectionDetailsTitle" xml:space="preserve">
+    <value>Ingen opplysninger om tilkoblingen</value>
+  </data>
+  <data name="ErrorCouldNotFindServer" xml:space="preserve">
+    <value>Kunne ikke finne serveren din</value>
+  </data>
+  <data name="ErrorDisabledUser" xml:space="preserve">
+    <value>Beklager. Det ser ut som om kontoen har blit deaktivert. Du blir nå tatt tilbake til innloggings-skjermen</value>
+  </data>
+  <data name="ErrorDisabledUserTitle" xml:space="preserve">
+    <value>Kan ikke logge inn</value>
+  </data>
+  <data name="ErrorEpisodeDetails" xml:space="preserve">
+    <value>Feil i nedlasting av detaljer for episoden</value>
+  </data>
+  <data name="ErrorEpisodes" xml:space="preserve">
+    <value>Feil i innlasting av episoder</value>
+  </data>
+  <data name="ErrorFailedToSearch" xml:space="preserve">
+    <value>Fikk ikke gjennomført søket.</value>
+  </data>
+  <data name="ErrorGettingData" xml:space="preserve">
+    <value>Fikk ikke hentet dataene</value>
+  </data>
+  <data name="ErrorGettingExtraInfo" xml:space="preserve">
+    <value>Fikk ikke hentet ekstra opplysninger</value>
+  </data>
+  <data name="ErrorGettingTrailerDetails" xml:space="preserve">
+    <value>Fikk ikke hentet informasjon om traileren</value>
+  </data>
+  <data name="ErrorInvalidHostname" xml:space="preserve">
+    <value>Beklager, ditt vertsnavn er ugyldig, vennligst sjekk at du ikke har noen unødvendige mellomrom (for eksempel) i navnet.</value>
+  </data>
+  <data name="ErrorMakingChanges" xml:space="preserve">
+    <value>Kunne ikke gjøre endringene</value>
+  </data>
+  <data name="ErrorNoConnectionSettings" xml:space="preserve">
+    <value>Ingen tilkoblings-innstillinger, tap for å definere nå</value>
+  </data>
+  <data name="ErrorProblemUpdatingItem" xml:space="preserve">
+    <value>Kunne ikke oppdatere artikkelen, prøv igjen siden.</value>
+  </data>
+  <data name="ErrorRecentItems" xml:space="preserve">
+    <value>Fikk ikke lastet inn nylig lagt til</value>
+  </data>
+  <data name="ErrorSeasons" xml:space="preserve">
+    <value>Fikk ikke hentet sesonger</value>
+  </data>
+  <data name="ErrorTitle" xml:space="preserve">
+    <value>Feil</value>
+  </data>
+  <data name="ErrorUnableToSignIn" xml:space="preserve">
+    <value>Vi klarte ikke å logge deg inn nå, muligens grunnet feil i brukernavn/passord eller at din konto er deaktivert.</value>
+  </data>
+  <data name="ErrorUnableToSignInTitle" xml:space="preserve">
+    <value>Logginn mislykkes</value>
+  </data>
+  <data name="Favourites" xml:space="preserve">
+    <value>Favoritter</value>
+  </data>
+  <data name="Genre" xml:space="preserve">
+    <value>Sjanger</value>
+  </data>
+  <data name="HeaderChooseClient" xml:space="preserve">
+    <value>Velg klient</value>
+  </data>
+  <data name="HeaderDefaultGrouping" xml:space="preserve">
+    <value>Standard gruppe</value>
+  </data>
+  <data name="HeaderFromCollection" xml:space="preserve">
+    <value>Fra samling (hvor det er aktuelt):</value>
+  </data>
+  <data name="LabelActor" xml:space="preserve">
+    <value>Skuespiller</value>
+  </data>
+  <data name="LabelAdd" xml:space="preserve">
+    <value>legg til</value>
+  </data>
+  <data name="LabelAddToFavourites" xml:space="preserve">
+    <value>legg til favoritter</value>
+  </data>
+  <data name="LabelAlbums" xml:space="preserve">
+    <value>album</value>
+  </data>
+  <data name="LabelAnHourAgo" xml:space="preserve">
+    <value>en time siden</value>
+  </data>
+  <data name="LabelArtists" xml:space="preserve">
+    <value>artist</value>
+  </data>
+  <data name="LabelBio" xml:space="preserve">
+    <value>bio</value>
+  </data>
+  <data name="LabelBoxsets" xml:space="preserve">
+    <value>boks sett</value>
+  </data>
+  <data name="LabelCastCrew" xml:space="preserve">
+    <value>cast + crew</value>
+  </data>
+  <data name="LabelChapters" xml:space="preserve">
+    <value>kapittel</value>
+  </data>
+  <data name="LabelCollage" xml:space="preserve">
+    <value>Fullskjem kollasj</value>
+  </data>
+  <data name="LabelConnect" xml:space="preserve">
+    <value>koble til</value>
+  </data>
+  <data name="LabelConnection" xml:space="preserve">
+    <value>tilkobling</value>
+  </data>
+  <data name="LabelConnectionDetails" xml:space="preserve">
+    <value>Fyll ut tilkoblingsinfo som viser hvor Media Browser kjører. Test deretter for å bekrefte dette.</value>
+  </data>
+  <data name="LabelConnectionWarning" xml:space="preserve">
+    <value>ADVARSEL: Endring av vertsnavn vil slette alle lagrede profiler.</value>
+  </data>
+  <data name="LabelDate" xml:space="preserve">
+    <value>dato</value>
+  </data>
+  <data name="LabelDaysAgo" xml:space="preserve">
+    <value>{0} dager siden</value>
+  </data>
+  <data name="LabelDefaultLockScreen" xml:space="preserve">
+    <value>Standard låst skjerm</value>
+  </data>
+  <data name="LabelDetails" xml:space="preserve">
+    <value>detaljer</value>
+  </data>
+  <data name="LabelDirector" xml:space="preserve">
+    <value>Resissør</value>
+  </data>
+  <data name="LabelDisplayRandomImages" xml:space="preserve">
+    <value>Vis tilfeldig bakgrunns bilder bak tittelen</value>
+  </data>
+  <data name="LabelEpisode" xml:space="preserve">
+    <value>Episode</value>
+  </data>
+  <data name="LabelFindServer" xml:space="preserve">
+    <value>finn server</value>
+  </data>
+  <data name="LabelFirstRunAccessible" xml:space="preserve">
+    <value>Så snart Media Browser er konfigurert, sjekk tilgang fra der du er enten det er på trådløst nett eller en ekstern statisk adresse.</value>
+  </data>
+  <data name="LabelFirstRunHappyConfiguration" xml:space="preserve">
+    <value>Hvis du er fornøyd med hva du har konfigurert, klikk innstliings knappen og fyll ut server detaljer. Ellers kan du bare avslutte herfra.</value>
+  </data>
+  <data name="LabelFirstRunServerInfo" xml:space="preserve">
+    <value>Før vi kan starte må du forsikre deg om at Media Browser server kjører.</value>
+  </data>
+  <data name="LabelGeneral" xml:space="preserve">
+    <value>generelt</value>
+  </data>
+  <data name="LabelGenres" xml:space="preserve">
+    <value>sjanger</value>
+  </data>
+  <data name="LabelHostname" xml:space="preserve">
+    <value>Vertsnavn:</value>
+  </data>
+  <data name="LabelHoursAgo" xml:space="preserve">
+    <value>{0} timer siden</value>
+  </data>
+  <data name="LabelImageEnhancers" xml:space="preserve">
+    <value>Aktiver forbedrede bilder (hvis installert på server)</value>
+  </data>
+  <data name="LabelImdb" xml:space="preserve">
+    <value>se film på imdb</value>
+  </data>
+  <data name="LabelIsLockScreenProvider" xml:space="preserve">
+    <value>Media Browser er den nåværende lås skjerm tilbyder</value>
+  </data>
+  <data name="LabelIsNotLockScreenProvider" xml:space="preserve">
+    <value>Media Browser er ikke lås skjerm tilbyder</value>
+  </data>
+  <data name="LabelJustShowList" xml:space="preserve">
+    <value>Bare vis element listen, ikke media mappe visning</value>
+  </data>
+  <data name="LabelLatestUnseen" xml:space="preserve">
+    <value>siste usett</value>
+  </data>
+  <data name="LabelLiveTv" xml:space="preserve">
+    <value>Direkte TV</value>
+  </data>
+  <data name="LabelLockScreen" xml:space="preserve">
+    <value>lås skjerm</value>
+  </data>
+  <data name="LabelLockScreenSettinsg" xml:space="preserve">
+    <value>lås skjerm innstillinger</value>
+  </data>
+  <data name="LabelMakeLockScreenProvider" xml:space="preserve">
+    <value>Velg oss som lås skjerm tilbyder</value>
+  </data>
+  <data name="LabelManuallyLogin" xml:space="preserve">
+    <value>Manuell logginn</value>
+  </data>
+  <data name="LabelMinutesAgo" xml:space="preserve">
+    <value>{0} minutter siden</value>
+  </data>
+  <data name="LabelMissingEpisodes" xml:space="preserve">
+    <value>Vis manglende episoder</value>
+  </data>
+  <data name="LabelMonthsAgo" xml:space="preserve">
+    <value>{0} måneder siden</value>
+  </data>
+  <data name="LabelMovies" xml:space="preserve">
+    <value>Filmer</value>
+  </data>
+  <data name="LabelMusic" xml:space="preserve">
+    <value>Musikk</value>
+  </data>
+  <data name="LabelNextUp" xml:space="preserve">
+    <value>neste</value>
+  </data>
+  <data name="LabelNo" xml:space="preserve">
+    <value>nei</value>
+  </data>
+  <data name="LabelNoEpisodes" xml:space="preserve">
+    <value>Ingen episoder å vise</value>
+  </data>
+  <data name="LabelNone" xml:space="preserve">
+    <value>ingen</value>
+  </data>
+  <data name="LabelNoSeasonsFound" xml:space="preserve">
+    <value>Ingen sesonger funnet</value>
+  </data>
+  <data name="LabelNotifications" xml:space="preserve">
+    <value>merknader</value>
+  </data>
+  <data name="LabelNowPlaying" xml:space="preserve">
+    <value>avspilles nå</value>
+  </data>
+  <data name="LabelOneMinuteAgo" xml:space="preserve">
+    <value>ett minutt siden</value>
+  </data>
+  <data name="LabelOneMonthAgo" xml:space="preserve">
+    <value>en måned siden</value>
+  </data>
+  <data name="LabelOneSecondAgo" xml:space="preserve">
+    <value>ett sekund siden</value>
+  </data>
+  <data name="LabelOther" xml:space="preserve">
+    <value>Andre</value>
+  </data>
+  <data name="LabelOverview" xml:space="preserve">
+    <value>oversikt</value>
+  </data>
+  <data name="LabelPassword" xml:space="preserve">
+    <value>Passord:</value>
+  </data>
+  <data name="LabelPort" xml:space="preserve">
+    <value>Port:</value>
+  </data>
+  <data name="LabelPoster" xml:space="preserve">
+    <value>poster</value>
+  </data>
+  <data name="LabelProducer" xml:space="preserve">
+    <value>Produsent</value>
+  </data>
+  <data name="LabelProfile" xml:space="preserve">
+    <value>profil</value>
+  </data>
+  <data name="LabelProfileNotListed" xml:space="preserve">
+    <value>Profil ikke oppført?</value>
+  </data>
+  <data name="LabelProfiles" xml:space="preserve">
+    <value>profiler</value>
+  </data>
+  <data name="LabelQuit" xml:space="preserve">
+    <value>avslutt</value>
+  </data>
+  <data name="LabelRandomItems" xml:space="preserve">
+    <value>Tilfeldige elementer</value>
+  </data>
+  <data name="LabelRandomPictures" xml:space="preserve">
+    <value>Tilfeldige bilder fra samling</value>
+  </data>
+  <data name="LabelRating" xml:space="preserve">
+    <value>Rangering:</value>
+  </data>
+  <data name="LabelRecent" xml:space="preserve">
+    <value>Siste</value>
+  </data>
+  <data name="LabelRemote" xml:space="preserve">
+    <value>fjernstyr</value>
+  </data>
+  <data name="LabelRemove" xml:space="preserve">
+    <value>fjern</value>
+  </data>
+  <data name="LabelRunningTime" xml:space="preserve">
+    <value>Spille tid:</value>
+  </data>
+  <data name="LabelSearch" xml:space="preserve">
+    <value>søk</value>
+  </data>
+  <data name="LabelSeasons" xml:space="preserve">
+    <value>sesonger</value>
+  </data>
+  <data name="LabelSecondsAgo" xml:space="preserve">
+    <value>{0} sekunder siden</value>
+  </data>
+  <data name="LabelSeries" xml:space="preserve">
+    <value>Serier</value>
+  </data>
+  <data name="LabelShowAllItems" xml:space="preserve">
+    <value>vis alle elementer...</value>
+  </data>
+  <data name="LabelShows" xml:space="preserve">
+    <value>Program</value>
+  </data>
+  <data name="LabelShowTrailers" xml:space="preserve">
+    <value>Vis trailere i de siste elementene</value>
+  </data>
+  <data name="LabelSinglePoster" xml:space="preserve">
+    <value>Enkel poster</value>
+  </data>
+  <data name="LabelSongs" xml:space="preserve">
+    <value>sanger</value>
+  </data>
+  <data name="LabelTile" xml:space="preserve">
+    <value>flis</value>
+  </data>
+  <data name="LabelTileBackInformation" xml:space="preserve">
+    <value>For å vise noe av de fantastiske tilgjengelige kunstverkene for dine media vil flisene bruke noe av dem. Her kan du velge hvordan den flisen vil se ut.</value>
+  </data>
+  <data name="LabelTrailers" xml:space="preserve">
+    <value>trailere</value>
+  </data>
+  <data name="LabelTv" xml:space="preserve">
+    <value>TV</value>
+  </data>
+  <data name="LabelUnairedEpisodes" xml:space="preserve">
+    <value>Vis usendte episoder</value>
+  </data>
+  <data name="LabelUnwatched" xml:space="preserve">
+    <value>Ikke sett:</value>
+  </data>
+  <data name="LabelUsername" xml:space="preserve">
+    <value>Brukernavn:</value>
+  </data>
+  <data name="LabelViews" xml:space="preserve">
+    <value>Visninger</value>
+  </data>
+  <data name="LabelWelcomeText" xml:space="preserve">
+    <value>Velkommen til Media Browser for Windows Phone. Denne app'en vil la deg bla i din media samling, sende det til din telefon og fjernstyre andre kontrollerbare Media Browser klienter.</value>
+  </data>
+  <data name="LabelWriter" xml:space="preserve">
+    <value>Skribent</value>
+  </data>
+  <data name="LabelYes" xml:space="preserve">
+    <value>Ja</value>
+  </data>
+  <data name="LabelYesterday" xml:space="preserve">
+    <value>igår</value>
+  </data>
+  <data name="MenuPlayFrom" xml:space="preserve">
+    <value>Spill av fra</value>
+  </data>
+  <data name="MenuPlayFromOn" xml:space="preserve">
+    <value>Spill fra på</value>
+  </data>
+  <data name="MessageAreYouSureTitle" xml:space="preserve">
+    <value>Er du sikker?</value>
+  </data>
+  <data name="MessageBoxUnpinText" xml:space="preserve">
+    <value>Er du sikker på at du vil fjerne pinnen for denne flisen?</value>
+  </data>
+  <data name="MessageClearPlayList" xml:space="preserve">
+    <value>Er du sikker på at du vil tømme spillelisten din?</value>
+  </data>
+  <data name="MessageDeletePlaylistItems" xml:space="preserve">
+    <value>Er du sikker på om du vil slette disse elementene? Dette kan ikke angres.</value>
+  </data>
+  <data name="MessageExperimentalTitle" xml:space="preserve">
+    <value>Eksperimentell</value>
+  </data>
+  <data name="MessageExperimentalVideo" xml:space="preserve">
+    <value>Avspilling av denne type video er for tiden eksperimentell, så resultat vil variere. Ønsker du å fortsette?</value>
+  </data>
+  <data name="MessageTracksAddedSuccessfully" xml:space="preserve">
+    <value>{0} spor lagt til med suksess</value>
+  </data>
+  <data name="More" xml:space="preserve">
+    <value>mere...</value>
+  </data>
+  <data name="NameLabel" xml:space="preserve">
+    <value>Navn</value>
+  </data>
+  <data name="NoItemsFound" xml:space="preserve">
+    <value>Ingen elemeter funnet</value>
+  </data>
+  <data name="PinToStart" xml:space="preserve">
+    <value>Pinn til start</value>
+  </data>
+  <data name="ProductionYear" xml:space="preserve">
+    <value>Produksjons År</value>
+  </data>
+  <data name="RemoveFromFavouritesFull" xml:space="preserve">
+    <value>Fjern fra favoritter</value>
+  </data>
+  <data name="ResourceLanguage" xml:space="preserve">
+    <value>en-GB</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>innstillinger</value>
+  </data>
+  <data name="SysTrayAddingToFavourites" xml:space="preserve">
+    <value>legg til favoritter...</value>
+  </data>
+  <data name="SysTrayAuthenticating" xml:space="preserve">
+    <value>Autentisering...</value>
+  </data>
+  <data name="SysTrayCheckingCollection" xml:space="preserve">
+    <value>Sjekker samling...</value>
+  </data>
+  <data name="SysTrayCheckingConnection" xml:space="preserve">
+    <value>Sjekker tilkobling...</value>
+  </data>
+  <data name="SysTrayFindingServer" xml:space="preserve">
+    <value>Forsøker å finne din server...</value>
+  </data>
+  <data name="SysTrayGettingAlbums" xml:space="preserve">
+    <value>Henter album...</value>
+  </data>
+  <data name="SysTrayGettingAlbumTracks" xml:space="preserve">
+    <value>Henter album spor...</value>
+  </data>
+  <data name="SysTrayGettingAllTracks" xml:space="preserve">
+    <value>Henter alle spor...</value>
+  </data>
+  <data name="SysTrayGettingArtists" xml:space="preserve">
+    <value>Henter artister...</value>
+  </data>
+  <data name="SysTrayGettingArtistTracks" xml:space="preserve">
+    <value>Henter artist spor...</value>
+  </data>
+  <data name="SysTrayGettingBoxsets" xml:space="preserve">
+    <value>Henter boks sett..</value>
+  </data>
+  <data name="SysTrayGettingDetails" xml:space="preserve">
+    <value>Henter detaljer...</value>
+  </data>
+  <data name="SysTrayGettingEpisodeDetails" xml:space="preserve">
+    <value>Henter episode detaljer...</value>
+  </data>
+  <data name="SysTrayGettingEpisodes" xml:space="preserve">
+    <value>Henter episoder...</value>
+  </data>
+  <data name="SysTrayGettingFavourites" xml:space="preserve">
+    <value>Henter favoritter...</value>
+  </data>
+  <data name="SysTrayGettingGenres" xml:space="preserve">
+    <value>Henter sjangere..</value>
+  </data>
+  <data name="SysTrayGettingGenreTracks" xml:space="preserve">
+    <value>Henter sjangere spor...</value>
+  </data>
+  <data name="SysTrayGettingItems" xml:space="preserve">
+    <value>Henter elementer...</value>
+  </data>
+  <data name="SysTrayGettingMovieInfo" xml:space="preserve">
+    <value>Henter film informasjon...</value>
+  </data>
+  <data name="SysTrayGettingMovies" xml:space="preserve">
+    <value>Henter filmer...</value>
+  </data>
+  <data name="SysTrayGettingNextUp" xml:space="preserve">
+    <value>Henter de neste elementene...</value>
+  </data>
+  <data name="SysTrayGettingNotifications" xml:space="preserve">
+    <value>Henter notiser...</value>
+  </data>
+  <data name="SysTrayGettingProfiles" xml:space="preserve">
+    <value>Henter profiler...</value>
+  </data>
+  <data name="SysTrayGettingRecentItems" xml:space="preserve">
+    <value>Henter de siste elementene...</value>
+  </data>
+  <data name="SysTrayGettingServerDetails" xml:space="preserve">
+    <value>Henter server detaljer...</value>
+  </data>
+  <data name="SysTrayGettingShowInformation" xml:space="preserve">
+    <value>Henter program informasjon...</value>
+  </data>
+  <data name="SysTrayGettingShows" xml:space="preserve">
+    <value>Henter TV programmer...</value>
+  </data>
+  <data name="SysTrayGettingSongs" xml:space="preserve">
+    <value>Henter sanger...</value>
+  </data>
+  <data name="SysTrayGettingTracks" xml:space="preserve">
+    <value>Henter spor...</value>
+  </data>
+  <data name="SysTrayGettingTrailerDetails" xml:space="preserve">
+    <value>Henter trailer detaljer...</value>
+  </data>
+  <data name="SysTrayGettingUnwatchedItems" xml:space="preserve">
+    <value>Henter de siste usette elementene...</value>
+  </data>
+  <data name="SysTrayLoadingCollections" xml:space="preserve">
+    <value>Laster inn samlinger...</value>
+  </data>
+  <data name="SysTrayLoadingSettings" xml:space="preserve">
+    <value>Laster inn innstillinger...</value>
+  </data>
+  <data name="SysTrayRegisteringDevice" xml:space="preserve">
+    <value>Registrerer enhet...</value>
+  </data>
+  <data name="SysTrayRegrouping" xml:space="preserve">
+    <value>Re-grupper...</value>
+  </data>
+  <data name="SysTraySearching" xml:space="preserve">
+    <value>Søker...</value>
+  </data>
+  <data name="SysTrayUnregisteringDevice" xml:space="preserve">
+    <value>avregistrerer enhet...</value>
+  </data>
+  <data name="TrialVideoMessage" xml:space="preserve">
+    <value>i prøveversjons modus kan du kun avspille en video pr dag. Vennligst forsøk igjen i morgen eller kjøp full versjon.</value>
+  </data>
+  <data name="TvShowRecentItemsTitle" xml:space="preserve">
+    <value>{0} siste elementer</value>
+    <comment>{0} is the name of the tv show</comment>
+  </data>
+  <data name="Unpin" xml:space="preserve">
+    <value>Avpinn</value>
+  </data>
+  <data name="WatermarkEnterUsername" xml:space="preserve">
+    <value>Oppgi ett brukernavn</value>
+  </data>
+  <data name="LabelLogIn" xml:space="preserve">
+    <value>Logg inn</value>
+  </data>
+  <data name="LabelNoFoldersFound" xml:space="preserve">
+    <value>Ingen mappe funnet</value>
+  </data>
+  <data name="LabelNothingInPlaylist" xml:space="preserve">
+    <value>Ingenting i din spilleliste</value>
+  </data>
+  <data name="LabelUnplayedItems" xml:space="preserve">
+    <value>uavspilte:</value>
+  </data>
+  <data name="WatermarkPassword" xml:space="preserve">
+    <value>oppgi ett passord</value>
+  </data>
+  <data name="LabelReleasedIn" xml:space="preserve">
+    <value>Utgitt i</value>
+    <comment>eg, Released in 1993</comment>
+  </data>
+  <data name="LabelWelcomeTextPhone7" xml:space="preserve">
+    <value>Velkommen til Media browser for Windows Phone. Denne app'en lar deg bla i dine egne media samlinger og fjernstyre alle kompatible Media Browser klienter.</value>
+  </data>
+  <data name="LabelChannels" xml:space="preserve">
+    <value>Kanaler</value>
+  </data>
+  <data name="LabelRecordedTv" xml:space="preserve">
+    <value>Tv opptak</value>
+  </data>
+  <data name="LabelScheduledRecording" xml:space="preserve">
+    <value>Planlagte opptak</value>
+  </data>
+  <data name="LabelUpcoming" xml:space="preserve">
+    <value>kommende</value>
+  </data>
+  <data name="LabelWhatsOn" xml:space="preserve">
+    <value>Hva er på</value>
+  </data>
+  <data name="SysTrayGettingChannels" xml:space="preserve">
+    <value>Henter kanaler...</value>
+  </data>
+  <data name="SysTrayGettingProgrammes" xml:space="preserve">
+    <value>Henter programmer...</value>
+  </data>
+  <data name="SysTrayGettingSeriesRecordings" xml:space="preserve">
+    <value>Henter serie opptak...</value>
+  </data>
+  <data name="SysTrayGettingUpcomingRecordings" xml:space="preserve">
+    <value>Henter kommende opptak...</value>
+  </data>
+  <data name="ContextCancelSeries" xml:space="preserve">
+    <value>avbryt serier</value>
+  </data>
+  <data name="LabelScheduleAnyChannel" xml:space="preserve">
+    <value>hvilken som helst kanal</value>
+  </data>
+  <data name="LabelScheduleAnyTime" xml:space="preserve">
+    <value>Når som helst</value>
+  </data>
+  <data name="LabelScheduleDaily" xml:space="preserve">
+    <value>Daglig</value>
+  </data>
+  <data name="LabelScheduleToday" xml:space="preserve">
+    <value>Idag</value>
+  </data>
+  <data name="LabelScheduleTomorrow" xml:space="preserve">
+    <value>Imorgen</value>
+  </data>
+  <data name="LabelScheduleWeekdays" xml:space="preserve">
+    <value>Ukedager</value>
+  </data>
+  <data name="LabelScheduleWeekends" xml:space="preserve">
+    <value>Helger</value>
+  </data>
+  <data name="HeaderRecordings" xml:space="preserve">
+    <value>opptak</value>
+  </data>
+  <data name="HeaderScheduled" xml:space="preserve">
+    <value>planlagt</value>
+  </data>
+  <data name="HeaderSettings" xml:space="preserve">
+    <value>innstillinger</value>
+  </data>
+  <data name="AppBarSave" xml:space="preserve">
+    <value>lagre</value>
+  </data>
+  <data name="LabelDays" xml:space="preserve">
+    <value>Dager:</value>
+  </data>
+  <data name="LabelRecordOnlyNewEpisodes" xml:space="preserve">
+    <value>Ta opp kun nye episoder</value>
+  </data>
+  <data name="LabelRecordProgrammeAtAnyTime" xml:space="preserve">
+    <value>Ta opp programmer når som helst</value>
+  </data>
+  <data name="LabelRecordProgrammeOnAllChannels" xml:space="preserve">
+    <value>Ta opp programmer for alle kanaler</value>
+  </data>
+  <data name="AppBarCancel" xml:space="preserve">
+    <value>avbrytt</value>
+  </data>
+  <data name="LabelPostPaddingMinutes" xml:space="preserve">
+    <value>Post-padding minutter:</value>
+  </data>
+  <data name="LabelPostPaddingRequired" xml:space="preserve">
+    <value>Post-padding er påkrevd for opptak</value>
+  </data>
+  <data name="LabelPrePaddingMinutes" xml:space="preserve">
+    <value>Pre-padding minutter:</value>
+    <comment>Pre-padding = how long before programme's scheduled start time to record</comment>
+  </data>
+  <data name="LabelPrePaddingRequired" xml:space="preserve">
+    <value>Pre-padding er påkrevd for opptak</value>
+  </data>
+  <data name="SysTrayCancellingSeriesRecording" xml:space="preserve">
+    <value>avbryter serie link...</value>
+  </data>
+  <data name="SysTrayGettingRecordedItems" xml:space="preserve">
+    <value>Henter opptak elementer...</value>
+  </data>
+  <data name="AppBarDelete" xml:space="preserve">
+    <value>slett</value>
+  </data>
+  <data name="ErrorDeletingSeriesRecording" xml:space="preserve">
+    <value>Beklager, det oppstod en feil ved avbryting av denne serien nå</value>
+  </data>
+  <data name="LabelChannel" xml:space="preserve">
+    <value>Kanal:</value>
+  </data>
+  <data name="LabelNew" xml:space="preserve">
+    <value>Ny</value>
+  </data>
+  <data name="LabelPrePostPadding" xml:space="preserve">
+    <value>Pre/Post Padding</value>
+  </data>
+  <data name="LabelTime" xml:space="preserve">
+    <value>Tid:</value>
+  </data>
+  <data name="MenuCancelRecording" xml:space="preserve">
+    <value>Avbryt Opptak</value>
+  </data>
+  <data name="MessageDeleteSeriesRecording" xml:space="preserve">
+    <value>Er du sikker på at du vil avbryte denne serie linken? Dette kan ikke angres.</value>
+  </data>
+  <data name="SysTrayGettingUpcoming" xml:space="preserve">
+    <value>Henter kommende episoder...</value>
+  </data>
+  <data name="MessageCancelRecording" xml:space="preserve">
+    <value>Er du sikker på at du vil avbryte dette opptaket? Dette kan ikke angres.</value>
+  </data>
+  <data name="SysTraySaving" xml:space="preserve">
+    <value>Lagrer...</value>
+  </data>
+  <data name="MenuRecord" xml:space="preserve">
+    <value>opptak</value>
+  </data>
+  <data name="MenuRecordSeries" xml:space="preserve">
+    <value>serie opptak</value>
+  </data>
+  <data name="LabelReallyShortHours" xml:space="preserve">
+    <value>h</value>
+  </data>
+  <data name="LabelReallyShortMinutes" xml:space="preserve">
+    <value>m</value>
+  </data>
+  <data name="LabelLive" xml:space="preserve">
+    <value>Direkte</value>
+  </data>
+  <data name="SystemTrayGettingWhatsOn" xml:space="preserve">
+    <value>Henter hva som er på nå...</value>
+  </data>
+  <data name="SysTrayLoadingProgrammes" xml:space="preserve">
+    <value>Laster inn programmer...</value>
+  </data>
+  <data name="SysTraySettingProgrammeToRecord" xml:space="preserve">
+    <value>Setter program for opptak...</value>
+  </data>
+  <data name="SysTraySettingSeriesToRecord" xml:space="preserve">
+    <value>Setter serier for opptak...</value>
+  </data>
+  <data name="AppBarCreateAndEditSeries" xml:space="preserve">
+    <value>Opprett og rediger serie opptak</value>
+  </data>
+  <data name="SysTrayCancellingProgramme" xml:space="preserve">
+    <value>Avbryt program...</value>
+  </data>
+  <data name="SysTrayPreparing" xml:space="preserve">
+    <value>Forbereder...</value>
+  </data>
+  <data name="SysTrayGettingRecordingDetails" xml:space="preserve">
+    <value>Henter opptaks detaljer...</value>
+  </data>
+  <data name="LabelDefaultRecordedTvGrouping" xml:space="preserve">
+    <value>Standard opptak av TV gruppering</value>
+  </data>
+  <data name="AppBarChannel" xml:space="preserve">
+    <value>kanal</value>
+  </data>
+  <data name="AppBarRecordedDate" xml:space="preserve">
+    <value>opptaks dato</value>
+  </data>
+  <data name="AppBarShowName" xml:space="preserve">
+    <value>program navn</value>
+  </data>
+  <data name="HeaderActiveRecordings" xml:space="preserve">
+    <value>Aktiv</value>
+  </data>
+  <data name="LabelNoRecordedItems" xml:space="preserve">
+    <value>Det ser ikke ut til at du har noen opptak</value>
+  </data>
+  <data name="LabelRecordedDate" xml:space="preserve">
+    <value>Opptak dato</value>
+  </data>
+  <data name="LabelShowName" xml:space="preserve">
+    <value>Program navn</value>
+  </data>
+  <data name="SysTrayGettingCurrentlyRecording" xml:space="preserve">
+    <value>Henter aktive opptak...</value>
+  </data>
+  <data name="HeaderLive" xml:space="preserve">
+    <value>Direkte</value>
+    <comment>As in "live tv"</comment>
+  </data>
+  <data name="HeaderTV" xml:space="preserve">
+    <value>TV</value>
+  </data>
+  <data name="LabelUseTransparentTile" xml:space="preserve">
+    <value>bruk gjennomsiktige fliser</value>
+  </data>
+  <data name="TitleChannels" xml:space="preserve">
+    <value>Kanaler</value>
+  </data>
+  <data name="LabelMultipleItems" xml:space="preserve">
+    <value>{0} eksemplarer</value>
+    <comment>{0} is the number of items</comment>
+  </data>
+  <data name="LabelNoItems" xml:space="preserve">
+    <value>Ingen eksemplarer</value>
+  </data>
+  <data name="LabelOneItem" xml:space="preserve">
+    <value>1 eksemplar</value>
+  </data>
+  <data name="ErrorAddingToPlaylist" xml:space="preserve">
+    <value>Feil å legge til i spilleliste</value>
+  </data>
+  <data name="HeaderPlaylistName" xml:space="preserve">
+    <value>Navn på spilleliste:</value>
+  </data>
+  <data name="HeaderPlaylists" xml:space="preserve">
+    <value>Spilleliste:</value>
+  </data>
+  <data name="LabelAddToPlaylist" xml:space="preserve">
+    <value>Legg til i spilleliste</value>
+  </data>
+  <data name="LabelNewPlaylist" xml:space="preserve">
+    <value>Ny spilleliste</value>
+  </data>
+  <data name="LabelSave" xml:space="preserve">
+    <value>Lagre</value>
+  </data>
+  <data name="SysTrayAddingToPlaylist" xml:space="preserve">
+    <value>Legge til spilleliste ...</value>
+  </data>
+  <data name="SysTrayLoadingPlaylists" xml:space="preserve">
+    <value>Laster spilleliste...</value>
+  </data>
+  <data name="LabelAddingXToPlaylist" xml:space="preserve">
+    <value>Legger {0}</value>
+    <comment>{0} could be anything from "TV show" to "3 items"</comment>
+  </data>
+  <data name="LabelSeasonX" xml:space="preserve">
+    <value>Sesong {0}</value>
+    <comment>{0} is the season number</comment>
+  </data>
+  <data name="MenuRemoveFromPlaylist" xml:space="preserve">
+    <value>Fjern fra spilleliste</value>
+  </data>
+  <data name="SysTrayDeleting" xml:space="preserve">
+    <value>Sletter...</value>
+  </data>
+  <data name="SysTrayRemoving" xml:space="preserve">
+    <value>Sletter...</value>
+  </data>
+  <data name="LabelStreaming" xml:space="preserve">
+    <value>Strømming</value>
+  </data>
+  <data name="LabelQuality" xml:space="preserve">
+    <value>Kvalitet:</value>
+  </data>
+  <data name="LabelResolution" xml:space="preserve">
+    <value>Oppløsning:</value>
+  </data>
+  <data name="ErrorNoWifi" xml:space="preserve">
+    <value>Beklager, det ser ikke ut til at du er tilkoblet wifi. Vennligst koble til et wifi-nettverk eller endre dine wifi-instillinger.</value>
+  </data>
+  <data name="ErrorNoWifiTitle" xml:space="preserve">
+    <value>Ingen Wifi</value>
+  </data>
+  <data name="LabelChooseQuality" xml:space="preserve">
+    <value>Velg kvalitet på videostømmen du ønsker. Merk deg at hvis du spiller av over mobildata vil du bruke mer datatrafikk jo høyere kvalitet du velger.</value>
+  </data>
+  <data name="LabelMobile" xml:space="preserve">
+    <value>mobil</value>
+  </data>
+  <data name="LabelStreamWifi" xml:space="preserve">
+    <value>Strøm video kun over wifi</value>
+  </data>
+  <data name="LabelWifi" xml:space="preserve">
+    <value>wifi</value>
+  </data>
+  <data name="LabelInstantMix" xml:space="preserve">
+    <value>Instant Mix</value>
+  </data>
+  <data name="SysTrayGettingInstantMix" xml:space="preserve">
+    <value>Henter Instant Mix...</value>
+  </data>
+  <data name="LabelPhotoUpload" xml:space="preserve">
+    <value>Fotoopplasting</value>
+  </data>
+  <data name="BackgroundTaskDescription" xml:space="preserve">
+    <value>Denne bakgrunnsoppgaven brukes for å laste opp bilder fra telefonen automatisk. Du kan skru på denne funksjonen inne i programmet.</value>
+  </data>
+  <data name="LabelUploadAll" xml:space="preserve">
+    <value>Last opp alle bilder.</value>
+  </data>
+  <data name="LabelUploadPhotosTakenAfter" xml:space="preserve">
+    <value>Last opp bilder tatt/lagret etter denne datoen.</value>
+  </data>
+  <data name="LabelAutoUploadConstraints" xml:space="preserve">
+    <value>Merk at opplastingene kun skjer når enheten lader, er tilkoblet wifi or har mer enn 90% batterikapasitet.</value>
+  </data>
+  <data name="LabelAutoUploadDescription" xml:space="preserve">
+    <value>Automatisk opplasting av bilder direkte fra telefonen din til Media Browser Server.</value>
+  </data>
+  <data name="LabelTurnPhotoUploadOnServer" xml:space="preserve">
+    <value>For at dette skal fungere må du gå til serveren, klikke på Enheter og så Kameraopplasting. Deretter aktiverer du enheten din. Hvis du ikke har tilgang til dette, kontakt serveradministratoren din.</value>
+  </data>
+  <data name="HeaderManualConnection" xml:space="preserve">
+    <value>Manuell Tilkobling</value>
+  </data>
+  <data name="HeaderWhatIsMbConnect" xml:space="preserve">
+    <value>Hva er MB Connect?</value>
+  </data>
+  <data name="LabelManualServerEntry" xml:space="preserve">
+    <value>Skriv inn serverdetaljer manuelt</value>
+  </data>
+  <data name="LabelMbConnect" xml:space="preserve">
+    <value>MB Connect</value>
+  </data>
+  <data name="LabelMbConnectAlreadyGotAccount" xml:space="preserve">
+    <value>Hvis du har en Media Browser konto kan du logge inn nå.</value>
+  </data>
+  <data name="LabelMbConnectDescriptionPara1" xml:space="preserve">
+    <value>Med MB COnnect kan du lett få tilgang til din Media Browser server uansett hvor du er, og dele med familie og venner.</value>
+  </data>
+  <data name="LabelMbConnectFreeAccount" xml:space="preserve">
+    <value>Hvis du ikke har en Media Browser konto kan du få en nå. Det er gratis!</value>
+  </data>
+  <data name="LabelSignUp" xml:space="preserve">
+    <value>Registrering</value>
+  </data>
+  <data name="LabelSkip" xml:space="preserve">
+    <value>Hopp over</value>
+  </data>
+  <data name="ErrorSigningIn" xml:space="preserve">
+    <value>Feil under innlogging</value>
+  </data>
+  <data name="LabelRetry" xml:space="preserve">
+    <value>Prøv igjen</value>
+  </data>
+  <data name="LabelLogout" xml:space="preserve">
+    <value>Logg av</value>
+  </data>
+  <data name="AppBarChangeServer" xml:space="preserve">
+    <value>bytt server</value>
+  </data>
+  <data name="LabelSignInWithConnect" xml:space="preserve">
+    <value>Logg inn med Media Browser Connect</value>
+  </data>
+  <data name="ErrorPlayUnderLock" xml:space="preserve">
+    <value>For å endre på denne innstillingen igjen må du omstarte programmet.</value>
+  </data>
+  <data name="ErrorPleaseRestart" xml:space="preserve">
+    <value>Vennlig start på nytt.</value>
+  </data>
+  <data name="LabelLater" xml:space="preserve">
+    <value>senere</value>
+  </data>
+  <data name="LabelPlayUnderLock" xml:space="preserve">
+    <value>Spill av video mens skjermen er låst</value>
+  </data>
+  <data name="LabelPlayUnderLockWarning" xml:space="preserve">
+    <value>Dette vil påvirke batterilevetiden</value>
+  </data>
+  <data name="LabelRestartNow" xml:space="preserve">
+    <value>omstarte nå?</value>
+  </data>
+
+</root>

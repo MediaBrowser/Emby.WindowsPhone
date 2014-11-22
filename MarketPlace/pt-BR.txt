@@ -3,7 +3,7 @@ WP8:
 Media Browser é uma forma de navegar por suas mídias, como filmes, tv ou músicas. Media Browser permite assistir os vídeos ou escutar as músicas no seu Windows Phone ou, ainda, reproduzi-los em outro cliente do Media Browser.
 
 ****INFORMAÇÃO IMPORTANTE****
-Para usar o Media Browser, você precisa transferir o servidor Media Browser de http://www.mediabrowser3.com/download, instalá-lo e configurá-lo.
+Para usar o Media Browser, você precisa transferir o servidor Media Browser de http://www.mediabrowser.tv/download, instalá-lo e configurá-lo.
 
 Recursos:
 - Navegue por sua coleção de mídia
@@ -14,27 +14,6 @@ Recursos:
 
 Limitações  do período de teste:
 - Assista apenas um vídeo por dia (quantas vezes quiser, mas apenas um)
-- Pode controlar remotamente apenas a Interface Web
-
-Suporte:
-O suporte pode ser encontrado no twitter (@mediabrowser), facebook (http://facebook.com/mediabrowser.tv) ou email (wpmb3@outlook.com).
-
-Opiniões:
-Nós amamos as opiniões, ajuda-nos a fazer a app melhor, mas se você enfrentar qualquer problema, por favor entre em contato antes de uma opinião negativa, nós poderemos ajudar.
-
-WP7:
-
-Media Browser é uma forma de navegar por suas mídias, como filmes, tv ou músicas. Media Browser permite assistir os vídeos ou escutar as músicas no seu Windows Phone ou, ainda, reproduzi-los em outro cliente do Media Browser.
-
-****INFORMAÇÃO IMPORTANTE****
-Para usar o Media Browser, você precisa transferir o servidor Media Browser de http://www.mediabrowser3.com/download, instalá-lo e configurá-lo.
-
-Recursos:
-- Navegue por sua coleção de mídia
-- Controle remotamente outros reprodutores do Media Browser (como o Media Browser Classic)
-- Controle remotamente outros reprodutores do Media Browser (como o Media Browser Classic)
-
-Limitações  do período de teste:
 - Pode controlar remotamente apenas a Interface Web
 
 Suporte:
