@@ -777,7 +777,7 @@
     <value>Registrazioni schedulate</value>
   </data>
   <data name="LabelUpcoming" xml:space="preserve">
-    <value>In onda a breve</value>
+    <value>Prossimi</value>
   </data>
   <data name="LabelWhatsOn" xml:space="preserve">
     <value>Ora in onda</value>
