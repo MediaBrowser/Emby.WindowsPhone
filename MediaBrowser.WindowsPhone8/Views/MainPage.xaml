@@ -126,7 +126,8 @@
                             <StackPanel Orientation="Vertical">
                                 <Border Background="#0094FF"
                                         Height="{StaticResource ViewSize}"
-                                        Width="{StaticResource ViewSize}">
+                                        Width="{StaticResource ViewSize}"
+                                        HorizontalAlignment="Left">
                                     <Image Source="/Images/moviecollection.png"
                                            Height="{StaticResource ViewSize}"
                                            Width="{StaticResource ViewSize}"
