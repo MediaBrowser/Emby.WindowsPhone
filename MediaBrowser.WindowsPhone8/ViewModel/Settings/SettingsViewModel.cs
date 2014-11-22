@@ -376,6 +376,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Settings
                     }
                     else
                     {
+                        AuthenticationService.Current.ClearLoggedInUser();
                         await Utils.HandleConnectedState(result, ApiClient, NavigationService, Log);
                         SaveServer(server);
                     }

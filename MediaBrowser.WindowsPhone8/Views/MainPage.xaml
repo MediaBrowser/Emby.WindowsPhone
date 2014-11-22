@@ -148,7 +148,8 @@
                             <StackPanel Orientation="Vertical">
                                 <Border Background="#FF870F"
                                         Height="{StaticResource ViewSize}"
-                                        Width="{StaticResource ViewSize}">
+                                        Width="{StaticResource ViewSize}"
+                                        HorizontalAlignment="Left">
                                     <Image Source="/Images/tvcollection.png"
                                            Height="{StaticResource ViewSize}"
                                            Width="{StaticResource ViewSize}"
@@ -169,7 +170,8 @@
                             <StackPanel Orientation="Vertical">
                                 <Border Background="#6FBD45"
                                         Height="{StaticResource ViewSize}"
-                                        Width="{StaticResource ViewSize}">
+                                        Width="{StaticResource ViewSize}"
+                                        HorizontalAlignment="Left">
                                     <Image Source="/Images/audiocollection.png"
                                            Height="{StaticResource ViewSize}"
                                            Width="{StaticResource ViewSize}"
@@ -219,7 +221,8 @@
                             <StackPanel Orientation="Vertical">
                                 <Border Background="#FFD100FF"
                                         Height="{StaticResource ViewSize}"
-                                        Width="{StaticResource ViewSize}">
+                                        Width="{StaticResource ViewSize}"
+                                        HorizontalAlignment="Left">
                                     <local:ScheduledRecording Foreground="White"
                                                               Height="70"
                                                               Width="70"
@@ -313,6 +316,7 @@
                                    HorizontalAlignment="Center"
                                    VerticalAlignment="Top"
                                    Style="{StaticResource PhoneTextLargeStyle}"
+                                   TextWrapping="Wrap"
                                    Visibility="{Binding Main.FavouriteItems.Count, Source={StaticResource Locator}, Converter={StaticResource IntToVisibilityConverter}, ConverterParameter=true}" />
                     </phone:LongListSelector.ListHeader>
                     <phone:LongListSelector.ListFooter>
