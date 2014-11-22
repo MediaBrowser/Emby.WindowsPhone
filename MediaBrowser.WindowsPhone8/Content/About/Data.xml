@@ -59,6 +59,21 @@
     <!-- Supported types are "text" and "xaml", where text is nicely formatted automatically, and XAML is handled by the built-in XamlReader -->
     <Item Title="history"
           Type="text">
+      8.0.63.0
+      Enhancements:
+      - Support for Media Browser Connect
+      - Support for Channels
+      - Support for server playlists
+      - Support for Automatic picture uploading
+      - Support for Instant Mix from the server
+      - Support for Cinema Mode (requires trailers plugin on server)
+      - Shows the progress bar in the now playing for audio
+      - Option to stream video only when on Wifi
+      - Option to change the video streaming quality for wifi/mobile data
+      Fixes:
+      - Track ordering for music
+      - Remote not working when coming back into the app or from Fast App Resume
+      
       8.0.0.43
       Fixes:
       - Play button on TV episodes now working again.
