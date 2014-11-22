@@ -3,6 +3,7 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Windows;
 using Cimbalino.Phone.Toolkit.Services;
+using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Connect;
 using MediaBrowser.Model.Dto;
@@ -142,6 +143,8 @@ namespace MediaBrowser.WindowsPhone.Services
             LoggedInUser = null;
             LoggedInConnectUser = null;
             AuthenticationResult = null;
+            Messenger.Default.Send(new NotificationMessage(Constants.Messages.ClearNowPlayingMsg));
+
             _settingsService.Reset(Constants.Settings.SelectedUserSetting);
             _settingsService.Reset(Constants.Settings.AuthUserSetting);
             _settingsService.Reset(Constants.Settings.DefaultServerConnection);
