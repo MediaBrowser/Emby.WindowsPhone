@@ -46,7 +46,7 @@
               Content="wpmb3@outlook.com"
               Label="Support:" />
         <Link NavigateUri="http://mediabrowser.tv/community"
-              Content="http://mediabrowser3.tv/community"
+              Content="http://mediabrowser.tv/community"
               Label="Forums:"/>
         <Link NavigateUri="https://github.com/MediaBrowser/MediaBrowser.WindowsPhone/issues/new"
               Content="Raise an issue"

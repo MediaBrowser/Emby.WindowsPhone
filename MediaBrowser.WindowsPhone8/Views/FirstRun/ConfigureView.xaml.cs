@@ -25,7 +25,7 @@ namespace MediaBrowser.WindowsPhone.Views.FirstRun
         {
             new WebBrowserTask
             {
-                Uri = new Uri("http://mediabrowser3.com/download", UriKind.Absolute)
+                Uri = new Uri("http://mediabrowser.tv/download", UriKind.Absolute)
             }.Show();
         }
     }
