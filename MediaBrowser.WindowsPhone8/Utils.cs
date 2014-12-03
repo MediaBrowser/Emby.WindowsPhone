@@ -237,7 +237,7 @@ namespace MediaBrowser.WindowsPhone
                 case ConnectionState.ServerSignIn:
                     if (AuthenticationService.Current.LoggedInUser == null)
                     {
-                        await CheckProfiles(navigationService, log, apiClient);
+                        navigationService.NavigateTo(Constants.Pages.ChooseProfileView);
                     }
                     else
                     {
@@ -260,17 +260,6 @@ namespace MediaBrowser.WindowsPhone
                     navigationService.NavigateTo(Constants.Pages.FirstRun.MbConnectFirstRunView);
                     break;
             }
-        }
-
-        internal static async Task CheckProfiles(INavigationService navigationService, ILog logger, IApiClient apiClient)
-        {
-            if (AuthenticationService.Current.IsLoggedIn)
-            {
-                await StartEverything(navigationService, logger, apiClient);
-            }
-
-            // If one exists, then authenticate that user.
-            navigationService.NavigateTo(AuthenticationService.Current.IsLoggedIn ? TileService.Current.PinnedPage() : Constants.Pages.ChooseProfileView);
         }
 
         internal static async Task StartEverything(INavigationService navigationService, ILog logger, IApiClient apiClient)
