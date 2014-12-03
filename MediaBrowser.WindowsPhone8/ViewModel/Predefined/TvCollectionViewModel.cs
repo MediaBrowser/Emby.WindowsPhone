@@ -144,7 +144,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
             {
                 SetProgressBar(AppResources.SysTrayGettingUpcoming);
 
-                var query = new NextUpQuery
+                var query = new UpcomingEpisodesQuery
                 {
                     UserId = AuthenticationService.Current.LoggedInUserId,
                     Fields = new[] { ItemFields.ParentId },
