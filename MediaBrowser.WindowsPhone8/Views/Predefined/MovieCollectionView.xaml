@@ -270,9 +270,9 @@
                                                        Style="{StaticResource HeaderTextStyle}"
                                                        FontSize="{StaticResource PhoneFontSizeMediumLarge}" />
                                             <TextBlock Style="{StaticResource PhoneTextSubtleStyle}"
-                                                       Foreground="{Binding RecursiveUnplayedItemCount, Converter={StaticResource ZeroCountBrushConverter}}">
+                                                       Foreground="{Binding UserData.UnplayedItemCount, Converter={StaticResource ZeroCountBrushConverter}}">
                                                 <Run Text="{Binding LocalizedResources.LabelUnwatched, Source={StaticResource LocalizedStrings}}" />
-                                                <Run Text="{Binding RecursiveUnplayedItemCount}" />
+                                                <Run Text="{Binding UserData.UnplayedItemCount, FallbackValue=0}" />
                                             </TextBlock>
                                         </StackPanel>
                                     </StackPanel>

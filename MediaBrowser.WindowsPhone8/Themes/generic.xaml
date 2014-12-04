@@ -239,7 +239,7 @@
                                    HorizontalAlignment="Center"
                                    VerticalAlignment="Center" />
                         <TextBlock x:Name="UnwatchedText"
-                                   Text="{Binding RecursiveUnplayedItemCount}"
+                                   Text="{Binding UserData.UnplayedItemCount}"
                                    Foreground="White"
                                    Style="{StaticResource PhoneTextNormalStyle}"
                                    Margin="0,-3,0,0"
