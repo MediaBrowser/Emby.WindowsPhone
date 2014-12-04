@@ -46,7 +46,7 @@ namespace MediaBrowser.WindowsPhone.Extensions
                 Album = item.Album,
                 Artist = item.AlbumArtist,
                 TrackName = item.Name,
-                TrackUrl = streamUrl.Replace(App.ServerInfo.LocalAddress, App.ServerInfo.RemoteAddress),
+                TrackUrl = streamUrl.Replace(App.ServerInfo.LocalAddress, !string.IsNullOrEmpty(App.ServerInfo.ManualAddress) ? App.ServerInfo.ManualAddress : App.ServerInfo.RemoteAddress),
                 MediaBrowserId = item.Id,
                 IsJustAdded = true,
                 ImageUrl = (string) converter.Convert(item, typeof (string), null, null),
