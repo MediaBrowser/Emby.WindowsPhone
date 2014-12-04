@@ -13,7 +13,7 @@
     <Color x:Key="MediaBrowserBackgroundColor">#2F2F2F</Color>
     <SolidColorBrush x:Key="MediaBrowserPlainBackground"
                      Color="{StaticResource MediaBrowserBackgroundColor}"/>
-    
+
     <ImageBrush ImageSource="/Images/PortraitBackground.jpg"
                 x:Key="MediaBrowserBackground"/>
 
@@ -23,11 +23,11 @@
     <Color x:Key="SecondaryAccentColor">#224568</Color>
     <SolidColorBrush x:Key="SecondaryAccentColorBrush"
                      Color="{StaticResource SecondaryAccentColor}"/>
-    
+
     <Color x:Key="BlackTransparentColor">#C4000000</Color>
     <SolidColorBrush x:Key="BlackTransparentBrush"
                      Color="{StaticResource BlackTransparentColor}" />
-    
+
     <system:Double x:Key="MediaBrowserFontSizeSmall">15</system:Double>
 
     <!-- Converters from ScottIsAFool.WindowsPhone.Converters -->
@@ -671,4 +671,93 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style TargetType="toolkit:ListPicker">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="toolkit:ListPicker">
+                    <StackPanel>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="PickerStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="Highlighted">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="UserControl"
+                                                               Storyboard.TargetProperty="Foreground"
+                                                               Duration="0">
+                                            <DiscreteObjectKeyFrame Value="Black"
+                                                            KeyTime="0" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Border"
+                                                               Storyboard.TargetProperty="Background"
+                                                               Duration="0">
+                                            <DiscreteObjectKeyFrame Value="White"
+                                                            KeyTime="0" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Border"
+                                                               Storyboard.TargetProperty="BorderBrush"
+                                                               Duration="0">
+                                            <DiscreteObjectKeyFrame Value="{StaticResource PhoneTextBoxEditBorderBrush}"
+                                                            KeyTime="0" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Border"
+                                                               Storyboard.TargetProperty="Background"
+                                                               Duration="0">
+                                            <DiscreteObjectKeyFrame Value="{StaticResource TransparentBrush}"
+                                                            KeyTime="0" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Border"
+                                                               Storyboard.TargetProperty="BorderBrush"
+                                                               Duration="0">
+                                            <DiscreteObjectKeyFrame Value="{StaticResource PhoneDisabledBrush}"
+                                                            KeyTime="0" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="UserControl"
+                                                               Storyboard.TargetProperty="Foreground"
+                                                               Duration="0">
+                                            <DiscreteObjectKeyFrame Value="{StaticResource PhoneDisabledBrush}"
+                                                            KeyTime="0" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <ContentControl Content="{TemplateBinding Header}"
+                                ContentTemplate="{TemplateBinding HeaderTemplate}"
+                                Foreground="{StaticResource PhoneSubtleBrush}"
+                                FontSize="{StaticResource PhoneFontSizeNormal}"
+                                HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                Margin="0 0 0 8" />
+                        <Grid>
+                            <Border x:Name="Border"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                                <UserControl x:Name="UserControl"
+                                     Foreground="{TemplateBinding Foreground}">
+                                    <StackPanel>
+                                        <TextBlock x:Name="MultipleSelectionModeSummary"
+                                           Margin="8 8 0 8" />
+                                        <Canvas x:Name="ItemsPresenterHost"
+                                        MinHeight="46">
+                                            <ItemsPresenter x:Name="ItemsPresenter">
+                                                <ItemsPresenter.RenderTransform>
+                                                    <TranslateTransform x:Name="ItemsPresenterTranslateTransform" />
+                                                </ItemsPresenter.RenderTransform>
+                                            </ItemsPresenter>
+                                        </Canvas>
+                                    </StackPanel>
+                                </UserControl>
+                            </Border>
+                        </Grid>
+                    </StackPanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 </ResourceDictionary>

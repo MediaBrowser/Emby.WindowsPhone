@@ -97,7 +97,7 @@
                     <phone:Pivot.HeaderTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding}"
-                                       FontSize="30"/>
+                                       FontSize="30" />
                         </DataTemplate>
                     </phone:Pivot.HeaderTemplate>
                     <phone:PivotItem Header="{Binding LocalizedResources.LabelMobile, Source={StaticResource LocalizedStrings}}">
