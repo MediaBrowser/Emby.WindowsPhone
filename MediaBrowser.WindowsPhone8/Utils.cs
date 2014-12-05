@@ -447,7 +447,9 @@ namespace MediaBrowser.WindowsPhone
                 Recursive = true,
                 Limit = 50,
                 SortBy = new[] { ItemSortBy.DateCreated },
-                SortOrder = SortOrder.Descending
+                SortOrder = SortOrder.Descending,
+                ImageTypeLimit = 1,
+                EnableImageTypes = new[] { ImageType.Backdrop, ImageType.Primary, }
             };
             return query;
         }

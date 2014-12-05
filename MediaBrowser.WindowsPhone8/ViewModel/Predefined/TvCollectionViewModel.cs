@@ -120,6 +120,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                 {
                     UserId = AuthenticationService.Current.LoggedInUserId,
                     Fields = new[] { ItemFields.PrimaryImageAspectRatio, ItemFields.ParentId },
+                    ImageTypeLimit = 1,
+                    EnableImageTypes = new []{ImageType.Backdrop, ImageType.Primary, }
                 };
 
                 Log.Info("Getting next up items");
@@ -149,6 +151,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                     UserId = AuthenticationService.Current.LoggedInUserId,
                     Fields = new[] { ItemFields.ParentId },
                     Limit = 30,
+                    ImageTypeLimit = 1,
+                    EnableImageTypes = new[] { ImageType.Backdrop, ImageType.Primary, }
                 };
 
                 Log.Info("Getting upcoming items");
@@ -184,7 +188,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                     Filters = new[] { ItemFilter.IsUnplayed },
                     IsMissing = App.SpecificSettings.ShowMissingEpisodes,
                     IsUnaired = App.SpecificSettings.ShowUnairedEpisodes,
-                    Recursive = true
+                    Recursive = true,
+                    ImageTypeLimit = 1,
+                    EnableImageTypes = new[] { ImageType.Backdrop, ImageType.Primary, }
                 };
 
                 Log.Info("Getting next up items");
@@ -216,7 +222,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                     SortOrder = SortOrder.Ascending,
                     IncludeItemTypes = new[] { "Series" },
                     Fields = new[] { ItemFields.DateCreated },
-                    Recursive = true
+                    Recursive = true,
+                    ImageTypeLimit = 1,
+                    EnableImageTypes = new[] { ImageType.Backdrop, ImageType.Primary, }
                 };
 
                 Log.Info("Getting TV shows");
@@ -248,7 +256,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                     IncludeItemTypes = new[] { "Series" },
                     Recursive = true,
                     Fields = new[] { ItemFields.DateCreated },
-                    UserId = AuthenticationService.Current.LoggedInUserId
+                    UserId = AuthenticationService.Current.LoggedInUserId,
+                    ImageTypeLimit = 1,
+                    EnableImageTypes = new[] { ImageType.Backdrop, ImageType.Primary, }
                 };
 
                 var items = await ApiClient.GetGenresAsync(query);
