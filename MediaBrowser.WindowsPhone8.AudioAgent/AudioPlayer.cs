@@ -95,7 +95,8 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
                     return;
                 }
 
-                var client = new ApiClient(_mbLogger, server.RemoteAddress, "Windows Phone 8", device, ApplicationManifest.Current.App.Version, new ClientCapabilities(), new CryptographyProvider());
+                var serverAddress = server.LastConnectionMode.HasValue && server.LastConnectionMode.Value == ConnectionMode.Manual ? server.ManualAddress : server.RemoteAddress;
+                var client = new ApiClient(_mbLogger, serverAddress, "Windows Phone 8", device, ApplicationManifest.Current.App.Version, new ClientCapabilities(), new CryptographyProvider());
                 client.SetAuthenticationInfo(server.AccessToken, server.UserId);
 
                 _apiClient = client;
