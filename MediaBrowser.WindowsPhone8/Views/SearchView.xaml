@@ -134,7 +134,8 @@
                                                               DetailText="{Binding Type}"
                                                               DetailTextForeground="{StaticResource PhoneSubtleBrush}"
                                                               DetailTextStyle="{StaticResource PhoneTextSubtleStyle}"
-                                                              MaxWidth="342" />
+                                                              MaxWidth="318"
+                                                              Margin="12,0"/>
                                 </StackPanel>
                             </mb:CustomHyperlinkButton>
                         </DataTemplate>
