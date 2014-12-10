@@ -77,7 +77,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Settings
 
             StreamingResolution wifires;
             StreamingLMH wifilmh;
-            App.SpecificSettings.StreamingQuality.BreakDown(out wifires, out wifilmh);
+            App.SpecificSettings.WifiStreamingQuality.BreakDown(out wifires, out wifilmh);
 
             StreamingResolutions = Enum<StreamingResolution>.GetNames();
             StreamingResolution = StreamingResolutions.FirstOrDefault(x => x == res);
