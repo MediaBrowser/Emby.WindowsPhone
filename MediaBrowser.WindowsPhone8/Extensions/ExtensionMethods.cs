@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Dto;
+using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Logging;
 using MediaBrowser.Model.Search;
 using MediaBrowser.WindowsPhone.Model;
@@ -74,7 +75,8 @@ namespace MediaBrowser.WindowsPhone.Extensions
             {
                 Type = searchHint.Type,
                 Name = searchHint.Name,
-                Id = searchHint.ItemId
+                Id = searchHint.ItemId,
+                ImageTags = string.IsNullOrEmpty(searchHint.PrimaryImageTag) ? null : new Dictionary<ImageType, string> { { ImageType.Primary, searchHint.PrimaryImageTag} }
             };
 
             return item;

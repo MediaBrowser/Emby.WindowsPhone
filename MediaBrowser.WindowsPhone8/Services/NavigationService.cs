@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System;
+using System.Linq;
+using System.Windows;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model.Dto;
@@ -124,6 +126,17 @@ namespace MediaBrowser.WindowsPhone.Services
                         NavigateTo(Constants.Pages.Playlists.PlaylistView);
                     }
                         
+                    break;
+                case "person":
+                    var actor = new BaseItemPerson
+                    {
+                        Name = item.Name,
+                        Id = item.Id,
+                        PrimaryImageTag = item.HasPrimaryImage ? item.ImageTags.FirstOrDefault(x => x.Key == ImageType.Primary).Value : string.Empty
+                    };
+
+                    App.SelectedItem = actor;
+                    NavigateTo(Constants.Pages.ActorView);
                     break;
                 default:
                     if (SimpleIoc.Default.GetInstance<GenericItemViewModel>() != null)
