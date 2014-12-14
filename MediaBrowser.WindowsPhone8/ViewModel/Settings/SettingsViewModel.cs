@@ -296,7 +296,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Settings
         {
             SetProgressBar(AppResources.SysTrayAuthenticating);
 
-            if (NavigationService.IsNetworkAvailable)
+            if (NavigationService.IsNetworkAvailable && App.Settings.ConnectionDetails != null)
             {
                 Log.Info("Testing connection");
 
