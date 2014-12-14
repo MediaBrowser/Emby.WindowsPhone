@@ -14,8 +14,8 @@ namespace MediaBrowser.WindowsPhone.Extensions
         internal static async Task<List<PlaylistItem>> GetInstantMixPlaylist(this IApiClient apiClient, BaseItemDto item)
         {
             ItemsResult result;
-            var audioQuery = new SimilarItemsQuery { UserId = AuthenticationService.Current.LoggedInUserId, Id = item.Id };
-            var nameQuery = new SimilarItemsByNameQuery { Name = item.Name, UserId = AuthenticationService.Current.LoggedInUserId };
+            var audioQuery = new SimilarItemsQuery { UserId = AuthenticationService.Current.LoggedInUserId, Id = item.Id, Fields = new []{ ItemFields.MediaSources}};
+            var nameQuery = new SimilarItemsByNameQuery { Name = item.Name, UserId = AuthenticationService.Current.LoggedInUserId, Fields = new[] { ItemFields.MediaSources } };
 
             switch (item.Type)
             {

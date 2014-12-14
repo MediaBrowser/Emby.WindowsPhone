@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using MediaBrowser.Dlna.Profiles;
 using MediaBrowser.Model.ApiClient;
+using MediaBrowser.Model.Dlna;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Logging;
@@ -33,13 +35,20 @@ namespace MediaBrowser.WindowsPhone.Extensions
 
         internal static PlaylistItem ToPlaylistItem(this BaseItemDto item, IApiClient apiClient)
         {
-            var streamUrl = apiClient.GetAudioStreamUrl(new StreamOptions
+            var profile = new WindowsPhoneStandardProfile();
+            var options = new AudioOptions
             {
-                AudioBitRate = 128,
-                AudioCodec = "Mp3",
+                Profile = profile,
                 ItemId = item.Id,
-                OutputFileExtension = "mp3",
-            });
+                DeviceId = apiClient.DeviceId,
+                MaxBitrate = 128,
+                MediaSources = item.MediaSources
+            };
+
+            var builder = new StreamBuilder();
+            var streamInfo = builder.BuildAudioItem(options);
+
+            var streamUrl = streamInfo.ToUrl(apiClient.GetApiUrl("/"));
 
             var converter = new Converters.ImageUrlConverter();
             return new PlaylistItem

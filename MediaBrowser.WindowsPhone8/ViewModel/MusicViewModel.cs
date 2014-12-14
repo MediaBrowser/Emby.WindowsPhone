@@ -267,7 +267,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 {
                     ParentId = SelectedAlbum.Id,
                     IncludeItemTypes = new[] { "Audio" },
-                    UserId = AuthenticationService.Current.LoggedInUserId
+                    UserId = AuthenticationService.Current.LoggedInUserId,
+                    Fields = new[] { ItemFields.MediaSources }
                 };
 
                 var tracks = await ApiClient.GetItemsAsync(query);
@@ -323,7 +324,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     UserId = AuthenticationService.Current.LoggedInUserId,
                     Artists = new[] {SelectedArtist.Name},
                     Recursive = true,
-                    Fields = new[] { ItemFields.ParentId},
+                    Fields = new[] { ItemFields.ParentId, ItemFields.MediaSources},
                     IncludeItemTypes = new[] {"Audio"}
                 };
 
@@ -354,7 +355,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     UserId = AuthenticationService.Current.LoggedInUserId,
                     Artists = new[] {SelectedArtist.Name},
                     Recursive = true,
-                    Fields = new[] { ItemFields.ParentId},
+                    Fields = new[] { ItemFields.ParentId, ItemFields.MediaSources},
                     IncludeItemTypes = new[] {"MusicAlbum"}
                 };
 
