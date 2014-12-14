@@ -15,7 +15,8 @@ namespace MediaBrowser.WindowsPhone.Views.Settings
         private void DisplayUrlButton_OnTap(object sender, GestureEventArgs e)
         {
             var content = DisplayUrlButton.Content as string;
-            if (content != null)
+            
+            if (content != null && Uri.IsWellFormedUriString(content, UriKind.Absolute))
             {
                 new WebBrowserTask
                 {
