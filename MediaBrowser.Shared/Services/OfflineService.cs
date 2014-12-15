@@ -13,5 +13,11 @@
         {
             Current = this;
         }
+
+        private bool RequiresMoreSpace(float requestedSpace)
+        {
+
+            return false;
+        }
     }
 }

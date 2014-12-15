@@ -86,6 +86,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                 if(!SimpleIoc.Default.IsRegistered<TileService>())
                     SimpleIoc.Default.Register<TileService>(true);
+
+                if(!SimpleIoc.Default.IsRegistered<OfflineService>())
+                    SimpleIoc.Default.Register<OfflineService>(true);
             }
 
             if(!SimpleIoc.Default.IsRegistered<IMessageBoxService>())
