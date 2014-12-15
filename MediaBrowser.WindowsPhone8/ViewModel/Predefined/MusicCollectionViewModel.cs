@@ -274,7 +274,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                 {
                     UserId = AuthenticationService.Current.LoggedInUserId,
                     Recursive = true,
-                    Fields = new[] { ItemFields.ParentId, ItemFields.MediaSources },
+                    Fields = new[] { ItemFields.ParentId, ItemFields.MediaSources, ItemFields.SyncInfo,  },
                     ParentId = item.Id,
                     SortBy = new []{ItemSortBy.SortName},
                     IncludeItemTypes = new[] { "Audio" },
@@ -312,7 +312,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                     UserId = AuthenticationService.Current.LoggedInUserId,
                     Artists = new[] {artistName},
                     Recursive = true,
-                    Fields = new[] { ItemFields.ParentId, ItemFields.MediaSources},
+                    Fields = new[] { ItemFields.ParentId, ItemFields.MediaSources, ItemFields.SyncInfo, },
                     IncludeItemTypes = new[] {"Audio"},
                     ImageTypeLimit = 1,
                     EnableImageTypes = new[] { ImageType.Backdrop, ImageType.Primary, }
@@ -349,7 +349,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                     Genres = new[] {genreName},
                     Recursive = true,
                     IncludeItemTypes = new[] {"Audio"}, 
-                    Fields = new []{ ItemFields.MediaSources},
+                    Fields = new []{ ItemFields.MediaSources, ItemFields.SyncInfo, },
                     ImageTypeLimit = 1,
                     EnableImageTypes = new[] { ImageType.Backdrop, ImageType.Primary, }
                 };
@@ -456,7 +456,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
             var query = new ArtistsQuery
             {
                 SortBy = new[] {"SortName"},
-                Fields = new[] {ItemFields.SortName, ItemFields.MediaSources},
+                Fields = new[] {ItemFields.SortName, ItemFields.MediaSources, ItemFields.SyncInfo, },
                 SortOrder = SortOrder.Ascending,
                 Recursive = true,
                 UserId = AuthenticationService.Current.LoggedInUserId,
@@ -495,7 +495,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                 SortOrder = SortOrder.Ascending,
                 IncludeItemTypes = new[] { "Audio", "MusicVideo" },
                 Recursive = true,
-                Fields = new[] {  ItemFields.DateCreated, ItemFields.MediaSources },
+                Fields = new[] {  ItemFields.DateCreated, ItemFields.MediaSources, ItemFields.SyncInfo,  },
                 UserId = AuthenticationService.Current.LoggedInUserId,
                 ImageTypeLimit = 1,
                 EnableImageTypes = new[] { ImageType.Backdrop, ImageType.Primary, }
@@ -527,7 +527,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
             var query = new ItemQuery
             {
                 Recursive = true,
-                Fields = new[] { ItemFields.ParentId, ItemFields.MediaSources },
+                Fields = new[] { ItemFields.ParentId, ItemFields.MediaSources, ItemFields.SyncInfo,  },
                 IncludeItemTypes = new[] { "Audio" },
                 UserId = AuthenticationService.Current.LoggedInUserId,
                 ImageTypeLimit = 1,
@@ -562,7 +562,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
             var query = new ItemQuery
             {
                 Recursive = true,
-                Fields = new[] { ItemFields.ParentId, ItemFields.SortName, ItemFields.MediaSources },
+                Fields = new[] { ItemFields.ParentId, ItemFields.SortName, ItemFields.MediaSources, ItemFields.SyncInfo,  },
                 IncludeItemTypes = new[] { "MusicAlbum" },
                 UserId = AuthenticationService.Current.LoggedInUserId,
                 ImageTypeLimit = 1,

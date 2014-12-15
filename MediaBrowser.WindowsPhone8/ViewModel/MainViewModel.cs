@@ -238,6 +238,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 {
                     UserId = AuthenticationService.Current.LoggedInUserId,
                     Filters = new[] {ItemFilter.IsFavorite},
+                    Fields = new []{ ItemFields.MediaSources, ItemFields.SyncInfo },
                     Recursive = true
                 };
                 var items = await ApiClient.GetItemsAsync(query);

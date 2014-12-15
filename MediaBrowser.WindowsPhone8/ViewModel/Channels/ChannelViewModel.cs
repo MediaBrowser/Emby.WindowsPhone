@@ -5,6 +5,7 @@ using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Channels;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Net;
+using MediaBrowser.Model.Querying;
 using MediaBrowser.WindowsPhone.Model.Interfaces;
 using MediaBrowser.WindowsPhone.Resources;
 using MediaBrowser.WindowsPhone.Services;
@@ -82,7 +83,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Channels
                 {
                     ChannelId = SelectedChannel.Type.ToLower() == "channel" ? SelectedChannel.Id : SelectedChannel.ChannelId,
                     FolderId = SelectedChannel.Type.ToLower() == "channel" ? "" : SelectedChannel.Id,
-                    UserId = AuthenticationService.Current.LoggedInUserId
+                    UserId = AuthenticationService.Current.LoggedInUserId,
+                    Fields = new[] { ItemFields.SyncInfo }
                 };
                 var items = await ApiClient.GetChannelItems(query);
 

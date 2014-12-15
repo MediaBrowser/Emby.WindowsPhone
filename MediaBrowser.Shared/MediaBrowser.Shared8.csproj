@@ -205,7 +205,7 @@
     <Compile Include="Model\Day.cs" />
     <Compile Include="Model\Device.cs" />
     <Compile Include="Model\ExtendedApiClient.cs" />
-    <Compile Include="Model\ISettingsService.cs" />
+    <Compile Include="Interfaces\ISettingsService.cs" />
     <Compile Include="Model\Photo\UploadSettings.cs" />
     <Compile Include="Model\Playlist.cs" />
     <Compile Include="Model\PlaylistItem.cs" />

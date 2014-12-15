@@ -203,7 +203,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         ItemFields.Genres,
                         ItemFields.ProviderIds,
                         ItemFields.ParentId,
-                        ItemFields.CumulativeRunTimeTicks
+                        ItemFields.CumulativeRunTimeTicks,
+                        ItemFields.MediaSources, 
+                        ItemFields.SyncInfo
                     },
                     ExcludeItemTypes = SelectedFolder != null && SelectedFolder.Name.ToLower().Contains("recent") ? new[] {"Season", "Series"} : null,
                     ImageTypeLimit = 1,

@@ -121,7 +121,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                     UserId = AuthenticationService.Current.LoggedInUserId
                 };
 
-                var items = await ApiClient.GetLiveTvChannelsAsync(query, default(CancellationToken));
+                var items = await ApiClient.GetLiveTvChannelsAsync(query);
 
                 if (items != null && !items.Items.IsNullOrEmpty())
                 {

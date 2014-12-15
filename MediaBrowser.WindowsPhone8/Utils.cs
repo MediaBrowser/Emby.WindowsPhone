@@ -439,7 +439,9 @@ namespace MediaBrowser.WindowsPhone
                     ItemFields.DateCreated,
                     ItemFields.ProviderIds,
                     ItemFields.ParentId,
-                    ItemFields.CumulativeRunTimeTicks
+                    ItemFields.CumulativeRunTimeTicks,
+                    ItemFields.MediaSources,
+                    ItemFields.SyncInfo
                 },
                 ExcludeItemTypes = excludedItemTypes,
                 IsVirtualUnaired = App.SpecificSettings.ShowUnairedEpisodes,

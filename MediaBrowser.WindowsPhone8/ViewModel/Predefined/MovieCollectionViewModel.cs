@@ -211,7 +211,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                     SortOrder = SortOrder.Ascending,
                     IncludeItemTypes = new[] { "Movie" },
                     Recursive = true,
-                    Fields = new[] {  ItemFields.DateCreated },
+                    Fields = new[] { ItemFields.DateCreated, ItemFields.MediaSources, ItemFields.SyncInfo },
                     ImageTypeLimit = 1,
                     EnableImageTypes = new[] { ImageType.Backdrop, ImageType.Primary, }
                 };
@@ -251,12 +251,13 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                 var query = new ItemQuery
                 {
                     UserId = AuthenticationService.Current.LoggedInUserId,
-                    SortBy = new[] {"SortName"},
+                    SortBy = new[] { "SortName" },
                     SortOrder = SortOrder.Ascending,
-                    IncludeItemTypes = new[] {"BoxSet"},
+                    IncludeItemTypes = new[] { "BoxSet" },
                     Recursive = true,
                     ImageTypeLimit = 1,
-                    EnableImageTypes = new[] { ImageType.Backdrop, ImageType.Primary, }
+                    EnableImageTypes = new[] { ImageType.Backdrop, ImageType.Primary, },
+                    Fields = new[] { ItemFields.SyncInfo }
                 };
 
                 var itemResponse = await ApiClient.GetItemsAsync(query);
@@ -294,12 +295,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                 var query = new ItemQuery
                 {
                     UserId = AuthenticationService.Current.LoggedInUserId,
-                    SortBy = new[] {"DateCreated"},
+                    SortBy = new[] { "DateCreated" },
                     SortOrder = SortOrder.Descending,
-                    IncludeItemTypes = new[] {"Movie"},
+                    IncludeItemTypes = new[] { "Movie" },
                     Limit = 9,
-                    Fields = new[] {ItemFields.PrimaryImageAspectRatio},
-                    Filters = new[] {ItemFilter.IsUnplayed},
+                    Fields = new[] { ItemFields.PrimaryImageAspectRatio },
+                    Filters = new[] { ItemFilter.IsUnplayed },
                     Recursive = true,
                     ImageTypeLimit = 1,
                     EnableImageTypes = new[] { ImageType.Backdrop, ImageType.Primary, }

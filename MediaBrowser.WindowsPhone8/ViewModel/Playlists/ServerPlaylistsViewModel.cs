@@ -121,7 +121,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Playlists
                 {
                     Id = SelectedPlaylist.Id,
                     UserId = AuthenticationService.Current.LoggedInUserId,
-                    Fields = new[] { ItemFields.MediaSources }
+                    Fields = new[] { ItemFields.MediaSources, ItemFields.SyncInfo }
                 };
                 var items = await ApiClient.GetPlaylistItems(query);
 

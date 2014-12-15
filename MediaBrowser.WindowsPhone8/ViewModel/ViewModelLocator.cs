@@ -3,6 +3,7 @@ using GalaSoft.MvvmLight.Ioc;
 using MediaBrowser.Design;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.WindowsPhone.Design;
+using MediaBrowser.WindowsPhone.Interfaces;
 using MediaBrowser.WindowsPhone.Logging;
 using MediaBrowser.WindowsPhone.Services;
 using MediaBrowser.WindowsPhone.ViewModel.Channels;

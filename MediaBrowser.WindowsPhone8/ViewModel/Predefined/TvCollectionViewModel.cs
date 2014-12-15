@@ -119,7 +119,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                 var query = new NextUpQuery
                 {
                     UserId = AuthenticationService.Current.LoggedInUserId,
-                    Fields = new[] { ItemFields.PrimaryImageAspectRatio, ItemFields.ParentId },
+                    Fields = new[] { ItemFields.PrimaryImageAspectRatio, ItemFields.ParentId, ItemFields.MediaSources, ItemFields.SyncInfo },
                     ImageTypeLimit = 1,
                     EnableImageTypes = new []{ImageType.Backdrop, ImageType.Primary, }
                 };
@@ -184,7 +184,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                     SortOrder = SortOrder.Descending,
                     IncludeItemTypes = new[] { "Episode" },
                     Limit = 8,
-                    Fields = new[] { ItemFields.PrimaryImageAspectRatio, ItemFields.ParentId },
+                    Fields = new[] { ItemFields.PrimaryImageAspectRatio, ItemFields.ParentId, ItemFields.MediaSources, ItemFields.SyncInfo },
                     Filters = new[] { ItemFilter.IsUnplayed },
                     IsMissing = App.SpecificSettings.ShowMissingEpisodes,
                     IsUnaired = App.SpecificSettings.ShowUnairedEpisodes,
@@ -221,7 +221,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                     SortBy = new[] { "SortName" },
                     SortOrder = SortOrder.Ascending,
                     IncludeItemTypes = new[] { "Series" },
-                    Fields = new[] { ItemFields.DateCreated },
+                    Fields = new[] { ItemFields.DateCreated, ItemFields.SyncInfo },
                     Recursive = true,
                     ImageTypeLimit = 1,
                     EnableImageTypes = new[] { ImageType.Backdrop, ImageType.Primary, }
