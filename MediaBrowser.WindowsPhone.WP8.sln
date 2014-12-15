@@ -18,6 +18,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaBrowser.Shared8", "Med
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaBrowser.WindowsPhone.Background", "MediaBrowser.WindowsPhone.Background\MediaBrowser.WindowsPhone.Background.csproj", "{0EE0D99C-5AD8-4C43-8C70-E3BB77226340}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaBrowser.SyncManager", "MediaBrowser.SyncManager\MediaBrowser.SyncManager.csproj", "{CDC2A602-2A3C-468E-9B40-595BF6E5B435}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -121,6 +123,21 @@ Global
 		{0EE0D99C-5AD8-4C43-8C70-E3BB77226340}.Release|x64.ActiveCfg = Release|Any CPU
 		{0EE0D99C-5AD8-4C43-8C70-E3BB77226340}.Release|x86.ActiveCfg = Release|x86
 		{0EE0D99C-5AD8-4C43-8C70-E3BB77226340}.Release|x86.Build.0 = Release|x86
+		{CDC2A602-2A3C-468E-9B40-595BF6E5B435}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDC2A602-2A3C-468E-9B40-595BF6E5B435}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDC2A602-2A3C-468E-9B40-595BF6E5B435}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{CDC2A602-2A3C-468E-9B40-595BF6E5B435}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{CDC2A602-2A3C-468E-9B40-595BF6E5B435}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{CDC2A602-2A3C-468E-9B40-595BF6E5B435}.DebugTrial|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDC2A602-2A3C-468E-9B40-595BF6E5B435}.DebugTrial|Any CPU.Build.0 = Debug|Any CPU
+		{CDC2A602-2A3C-468E-9B40-595BF6E5B435}.DebugTrial|ARM.ActiveCfg = Debug|Any CPU
+		{CDC2A602-2A3C-468E-9B40-595BF6E5B435}.DebugTrial|x64.ActiveCfg = Debug|Any CPU
+		{CDC2A602-2A3C-468E-9B40-595BF6E5B435}.DebugTrial|x86.ActiveCfg = Debug|Any CPU
+		{CDC2A602-2A3C-468E-9B40-595BF6E5B435}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDC2A602-2A3C-468E-9B40-595BF6E5B435}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDC2A602-2A3C-468E-9B40-595BF6E5B435}.Release|ARM.ActiveCfg = Release|Any CPU
+		{CDC2A602-2A3C-468E-9B40-595BF6E5B435}.Release|x64.ActiveCfg = Release|Any CPU
+		{CDC2A602-2A3C-468E-9B40-595BF6E5B435}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
