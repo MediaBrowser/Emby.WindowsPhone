@@ -1,0 +1,11 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<Target Name="CheckAnyCPU" Condition="('$(Platform)' != 'x86') AND ('$(Platform)' != 'ARM')" BeforeTargets="BeforeBuild">
+		<Error Text="SQLite does not support the $(Platform) target platform." />
+	</Target>
+
+	<ItemGroup>
+		<Reference Include="SQLite">
+			<HintPath>$(MSBuildThisFileDirectory)\..\other-packages\SQLite\$(Platform)\sqlite3.dll</HintPath>	
+		</Reference>
+	</ItemGroup>
+</Project>
