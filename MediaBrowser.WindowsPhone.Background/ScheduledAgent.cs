@@ -11,6 +11,7 @@ using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Session;
 using MediaBrowser.WindowsPhone.Logging;
 using MediaBrowser.WindowsPhone.Model;
+using MediaBrowser.WindowsPhone.Model.Connection;
 using MediaBrowser.WindowsPhone.Model.Photo;
 using MediaBrowser.WindowsPhone.Model.Security;
 using Microsoft.Phone.Scheduler;
@@ -73,7 +74,7 @@ namespace MediaBrowser.WindowsPhone.Background
                 }
 
                 var serverAddress = server.LastConnectionMode.HasValue && server.LastConnectionMode.Value == ConnectionMode.Manual ? server.ManualAddress : server.RemoteAddress;
-                var client = new ApiClient(MediaBrowserLogger, serverAddress, "Windows Phone 8", device, ApplicationManifest.Current.App.Version, new ClientCapabilities(), new CryptographyProvider());
+                var client = new ApiClient(MediaBrowserLogger, serverAddress, "Windows Phone 8", device, ApplicationManifest.Current.App.Version, WindowsPhoneCapabilities.Photos, new CryptographyProvider());
                 client.SetAuthenticationInfo(server.AccessToken, server.UserId);
 
                 _logger.Info("Client created");

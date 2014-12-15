@@ -202,6 +202,7 @@
     <Compile Include="Model\Connection\CredentialProvider.cs" />
     <Compile Include="Model\Connection\NetworkConnection.cs" />
     <Compile Include="Model\Connection\ServerLocator.cs" />
+    <Compile Include="Model\Connection\WindowsPhoneCapabilities.cs" />
     <Compile Include="Model\Day.cs" />
     <Compile Include="Model\Device.cs" />
     <Compile Include="Model\ExtendedApiClient.cs" />
@@ -218,6 +219,7 @@
     <Compile Include="RequestResult.cs" />
     <Compile Include="Services\AuthenticationService.cs" />
     <Compile Include="Model\WebSocketClient.cs" />
+    <Compile Include="Services\OfflineService.cs" />
     <Compile Include="SharedUtils.cs" />
   </ItemGroup>
   <ItemGroup>

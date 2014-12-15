@@ -13,6 +13,7 @@ using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Session;
 using MediaBrowser.WindowsPhone.Logging;
 using MediaBrowser.WindowsPhone.Model;
+using MediaBrowser.WindowsPhone.Model.Connection;
 using MediaBrowser.WindowsPhone.Model.Security;
 using Microsoft.Phone.BackgroundAudio;
 using ScottIsAFool.WindowsPhone.Logging;
@@ -38,7 +39,7 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
         {
             _playlistHelper = new PlaylistHelper(new StorageService());
             _logger = new WPLogger(GetType());
-            if(_apiClient == null) CreateClient();
+            if (_apiClient == null) CreateClient();
             WPLogger.AppVersion = ApplicationManifest.Current.App.Version;
             WPLogger.LogConfiguration.LogType = LogType.WriteToFile;
             WPLogger.LogConfiguration.LoggingIsEnabled = true;
@@ -88,7 +89,7 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
         {
             try
             {
-                var device = new Device {DeviceId = SharedUtils.GetDeviceId(), DeviceName = SharedUtils.GetDeviceName() + " Audio Player"};
+                var device = new Device { DeviceId = SharedUtils.GetDeviceId(), DeviceName = SharedUtils.GetDeviceName() + " Audio Player" };
                 var server = ApplicationSettings.Get<ServerInfo>(Constants.Settings.DefaultServerConnection);
                 if (server == null)
                 {
@@ -96,7 +97,7 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
                 }
 
                 var serverAddress = server.LastConnectionMode.HasValue && server.LastConnectionMode.Value == ConnectionMode.Manual ? server.ManualAddress : server.RemoteAddress;
-                var client = new ApiClient(_mbLogger, serverAddress, "Windows Phone 8", device, ApplicationManifest.Current.App.Version, new ClientCapabilities(), new CryptographyProvider());
+                var client = new ApiClient(_mbLogger, serverAddress, "Windows Phone 8", device, ApplicationManifest.Current.App.Version, WindowsPhoneCapabilities.Audio, new CryptographyProvider());
                 client.SetAuthenticationInfo(server.AccessToken, server.UserId);
 
                 _apiClient = client;

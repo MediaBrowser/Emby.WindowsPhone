@@ -43,7 +43,7 @@ namespace MediaBrowser.WindowsPhone
                     "Windows Phone 8",
                     ApplicationManifest.Current.App.Version,
                     device,
-                    new ClientCapabilities {SupportsContentUploading = true, SupportsMediaControl = false},
+                    WindowsPhoneCapabilities.App,
                     new CryptographyProvider(),
                     () => new WebSocketClient());
 
