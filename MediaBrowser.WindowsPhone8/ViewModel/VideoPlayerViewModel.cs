@@ -431,7 +431,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
 
             var url = PlayerSourceType == PlayerSourceType.Programme ? ApiClient.GetHlsVideoStreamUrl(query) : ApiClient.GetVideoStreamUrl(query);
-            Captions = GetSubtitles(SelectedItem);
+            //Captions = GetSubtitles(SelectedItem);
 
             VideoUrl = url;
             Debug.WriteLine(VideoUrl);            

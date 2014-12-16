@@ -5,6 +5,7 @@ using System.Windows;
 using Cimbalino.Phone.Toolkit.Helpers;
 using Cimbalino.Phone.Toolkit.Services;
 using MediaBrowser.ApiInteraction;
+using MediaBrowser.ApiInteraction.Sync;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Logging;
 using MediaBrowser.Model.Net;
