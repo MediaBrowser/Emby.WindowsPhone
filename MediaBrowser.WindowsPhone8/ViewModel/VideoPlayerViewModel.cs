@@ -483,7 +483,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             options.DeviceId = ApiClient.DeviceId;
             options.MaxBitrate = streamingSettings.VideoBitrate;
             options.MediaSources = mediaSources;
-            options.MaxAudioChannels = streamingSettings.AudioChannels;
 
             var builder = new StreamBuilder();
             var streamInfo = builder.BuildVideoItem(options);
