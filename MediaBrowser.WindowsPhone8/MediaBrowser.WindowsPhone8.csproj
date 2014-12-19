@@ -460,6 +460,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Content Include="..\other-packages\SQLite\$(Platform)\sqlite3.dll">
+      <Link>sqlite3.dll</Link>
+    </Content>
     <Content Include="Assets\BrowserText.png" />
     <Content Include="Assets\MediaTextBlack.png" />
     <Content Include="Assets\MediaTextWhite.png" />
@@ -967,6 +970,9 @@
     <Reference Include="SM.TsParser">
       <HintPath>..\other-packages\HLS\SM.TsParser.dll</HintPath>
     </Reference>
+    <Reference Include="SQLite.Platform">
+      <HintPath>..\other-packages\SQLite\$(Platform)\sqlite3.dll</HintPath>
+    </Reference>
     <Reference Include="System.Net.Http, Version=1.5.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.Net.Http.2.2.28\lib\sl4-windowsphone71\System.Net.Http.dll</HintPath>
@@ -1069,10 +1075,8 @@
     <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
     <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets'))" />
     <Error Condition="!Exists('..\packages\Fody.1.26.1\build\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.1.26.1\build\Fody.targets'))" />
-    <Error Condition="!Exists('..\Build\Sqlite.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\Build\Sqlite.targets'))" />
   </Target>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
   <Import Project="..\packages\Fody.1.26.1\build\Fody.targets" Condition="Exists('..\packages\Fody.1.26.1\build\Fody.targets')" />
-  <Import Project="..\Build\Sqlite.targets" Condition="Exists('..\Build\Sqlite.targets')" />
 </Project>
