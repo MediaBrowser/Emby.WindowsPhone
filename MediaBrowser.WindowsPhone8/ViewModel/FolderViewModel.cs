@@ -205,7 +205,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         ItemFields.ParentId,
                         ItemFields.CumulativeRunTimeTicks
                     },
-                    ExcludeItemTypes = SelectedFolder != null && SelectedFolder.Name.ToLower().Contains("recent") ? new[] {"Season", "Series"} : null
+                    ExcludeItemTypes = SelectedFolder != null && SelectedFolder.Name.ToLower().Contains("recent") ? new[] {"Season", "Series"} : null,
+                    ImageTypeLimit = 1,
+                    EnableImageTypes = new[] { ImageType.Backdrop, ImageType.Primary, }
                 };
                 var isRecent = false;
                 if (SelectedPerson != null)

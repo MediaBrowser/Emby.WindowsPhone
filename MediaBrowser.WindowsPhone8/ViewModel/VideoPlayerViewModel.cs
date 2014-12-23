@@ -7,7 +7,9 @@ using System.Windows;
 using System.Windows.Threading;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
+using MediaBrowser.Dlna.Profiles;
 using MediaBrowser.Model.ApiClient;
+using MediaBrowser.Model.Dlna;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.LiveTv;
@@ -351,6 +353,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             Messenger.Default.Send(new NotificationMessage(Constants.Messages.ClearNowPlayingMsg));
             EndTime = TimeSpan.Zero;
 
+            //var query = new StreamInfo();
             var query = new VideoStreamOptions();
             switch (PlayerSourceType)
             {
@@ -400,6 +403,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         }
                     }
 
+                    //query = CreateVideoStream(SelectedItem.Id, _startPositionTicks, SelectedItem.MediaSources ,SelectedItem.Type.ToLower().Equals("channelvideoitem"));
                     query = CreateVideoStreamOptions(SelectedItem.Id, _startPositionTicks, SelectedItem.Type.ToLower().Equals("channelvideoitem"));
 
                     if (SelectedItem.RunTimeTicks.HasValue)
@@ -430,8 +434,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 query.SubtitleStreamIndex = subtitleIndex.Value;
             }
 
+            //var url = query.ToUrl(ApiClient.GetApiUrl("/"));
             var url = PlayerSourceType == PlayerSourceType.Programme ? ApiClient.GetHlsVideoStreamUrl(query) : ApiClient.GetVideoStreamUrl(query);
-            Captions = GetSubtitles(SelectedItem);
+            //Captions = GetSubtitles(SelectedItem);
 
             VideoUrl = url;
             Debug.WriteLine(VideoUrl);            
@@ -470,8 +475,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             _itemId = itemId;
 
-            var streamingSettings = NavigationService.IsOnWifi 
-                ? App.SpecificSettings.WifiStreamingQuality.GetSettings() 
+            var streamingSettings = NavigationService.IsOnWifi
+                ? App.SpecificSettings.WifiStreamingQuality.GetSettings()
                 : App.SpecificSettings.StreamingQuality.GetSettings();
 
             var query = new VideoStreamOptions
@@ -490,6 +495,29 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             };
 
             return query;
+        }
+
+        private StreamInfo CreateVideoStream(string itemId, long startTimeTicks, List<MediaSourceInfo> mediaSources = null, bool useHls = false)
+        {
+            var normalProfile = new WindowsPhoneStandardProfile();
+            var hlsProfile = new WindowsPhoneHlsProfile();
+
+            var streamingSettings = NavigationService.IsOnWifi
+                ? App.SpecificSettings.WifiStreamingQuality.GetSettings()
+                : App.SpecificSettings.StreamingQuality.GetSettings();
+
+            var options = useHls ? new VideoOptions {Profile = hlsProfile} : new VideoOptions {Profile = normalProfile};
+
+            options.ItemId = itemId;
+            options.DeviceId = ApiClient.DeviceId;
+            options.MaxBitrate = streamingSettings.VideoBitrate;
+            options.MediaSources = mediaSources;
+
+            var builder = new StreamBuilder();
+            var streamInfo = builder.BuildVideoItem(options);
+            streamInfo.StartPositionTicks = startTimeTicks;
+
+            return streamInfo;
         }
 
         public async void Seek(long newPosition, int? subtitleIndex = null)

@@ -61,7 +61,7 @@ namespace MediaBrowser.WindowsPhone.Controls
                 {
                     if (played._unwatchedGrid != null && played._theEllipse != null && played._watchedPath != null)
                     {
-                        played._unwatchedGrid.Visibility = item.RecursiveUnplayedItemCount > 0 ? Visibility.Visible : Visibility.Collapsed;
+                        played._unwatchedGrid.Visibility = item.UserData != null && item.UserData.UnplayedItemCount.HasValue && item.UserData.UnplayedItemCount.Value > 0 ? Visibility.Visible : Visibility.Collapsed;
                         played._theEllipse.Visibility = played._unwatchedGrid.Visibility;
 
                         if (item.UserData != null)
@@ -80,7 +80,7 @@ namespace MediaBrowser.WindowsPhone.Controls
                 {
                     if (played._unwatchedGrid != null && played._watchedPath != null && played._theEllipse != null)
                     {
-                        played._unwatchedGrid.Visibility = item.RecursiveUnplayedItemCount.HasValue && item.RecursiveUnplayedItemCount.Value > 0
+                        played._unwatchedGrid.Visibility = item.UserData != null && item.UserData.UnplayedItemCount.HasValue && item.UserData.UnplayedItemCount.Value > 0
                             ? Visibility.Visible
                             : Visibility.Collapsed;
 

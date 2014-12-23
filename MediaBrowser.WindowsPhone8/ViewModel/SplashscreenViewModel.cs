@@ -175,5 +175,13 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 });
             }
         }
+
+        public RelayCommand ChangeServerCommand
+        {
+            get
+            {
+                return new RelayCommand(() => NavigationService.NavigateTo(Constants.Pages.SettingsViews.FindServerView));
+            }
+        }
     }
 }

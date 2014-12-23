@@ -48,7 +48,7 @@ namespace MediaBrowser.WindowsPhone.Services
             Deployment.Current.Dispatcher.BeginInvoke(() =>
             {
                 LoggedInUser = e.Argument;
-                if (AuthenticationResult != null)
+                if (AuthenticationResult != null && _connectionManager.CurrentApiClient != null)
                 {
                     _connectionManager.CurrentApiClient.SetAuthenticationInfo(AuthenticationResult.AccessToken, LoggedInUserId);
                 }

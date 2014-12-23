@@ -211,7 +211,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                     SortOrder = SortOrder.Ascending,
                     IncludeItemTypes = new[] { "Movie" },
                     Recursive = true,
-                    Fields = new[] {  ItemFields.DateCreated }
+                    Fields = new[] {  ItemFields.DateCreated },
+                    ImageTypeLimit = 1,
+                    EnableImageTypes = new[] { ImageType.Backdrop, ImageType.Primary, }
                 };
 
                 var moviesResponse = await ApiClient.GetItemsAsync(query);
@@ -252,7 +254,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                     SortBy = new[] {"SortName"},
                     SortOrder = SortOrder.Ascending,
                     IncludeItemTypes = new[] {"BoxSet"},
-                    Recursive = true
+                    Recursive = true,
+                    ImageTypeLimit = 1,
+                    EnableImageTypes = new[] { ImageType.Backdrop, ImageType.Primary, }
                 };
 
                 var itemResponse = await ApiClient.GetItemsAsync(query);
@@ -296,7 +300,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                     Limit = 9,
                     Fields = new[] {ItemFields.PrimaryImageAspectRatio},
                     Filters = new[] {ItemFilter.IsUnplayed},
-                    Recursive = true
+                    Recursive = true,
+                    ImageTypeLimit = 1,
+                    EnableImageTypes = new[] { ImageType.Backdrop, ImageType.Primary, }
                 };
 
                 Log.Info("Getting next up items");
@@ -328,7 +334,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                     IncludeItemTypes = new[] { "Movie", "Trailer" },
                     Recursive = true,
                     Fields = new[] { ItemFields.DateCreated },
-                    UserId = AuthenticationService.Current.LoggedInUserId
+                    UserId = AuthenticationService.Current.LoggedInUserId,
+                    ImageTypeLimit = 1,
+                    EnableImageTypes = new[] { ImageType.Backdrop, ImageType.Primary, }
                 };
 
                 var items = await ApiClient.GetGenresAsync(query);

@@ -5,13 +5,10 @@
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:ignore="http://www.ignore.com"
-                xmlns:windowsPhone="clr-namespace:MediaBrowser.WindowsPhone"
                 xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
                 xmlns:scott="clr-namespace:ScottIsAFool.WindowsPhone.Controls;assembly=ScottIsAFool.WindowsPhone"
-                xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-                xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
                 xmlns:controls="clr-namespace:InTheHand.UI.Xaml.Controls;assembly=InTheHand.UI.Xaml.Controls.ProgressRing"
-                xmlns:controls1="clr-namespace:MediaBrowser.WindowsPhone.Controls"
+                xmlns:localControls="clr-namespace:MediaBrowser.WindowsPhone.Controls"
                 mc:Ignorable="d ignore"
                 d:DesignWidth="480"
                 d:DesignHeight="768"
@@ -85,26 +82,20 @@
                        Style="{StaticResource PhoneTextTitle3Style}" />
         </StackPanel>
 
-        <controls1:CustomHyperlinkButton Grid.Row="2"
-                                         Margin="0,24"
-                                         Content="{Binding LocalizedResources.LabelRetry, Source={StaticResource LocalizedStrings}}" 
-                                         VerticalAlignment="Top"
-                                         Foreground="{StaticResource PhoneAccentBrush}"
-                                         TapCommand="{Binding RetryConnectionCommand}"
-                                         Visibility="{Binding RetryButtonIsVisible, Converter={StaticResource VisibilityConverter}}"/>
+        <StackPanel Orientation="Vertical"
+                    Grid.Row="2"
+                    Visibility="{Binding RetryButtonIsVisible, Converter={StaticResource VisibilityConverter}}">
+            <localControls:CustomHyperlinkButton Margin="0,24"
+                                                 Content="{Binding LocalizedResources.LabelRetry, Source={StaticResource LocalizedStrings}}"
+                                                 VerticalAlignment="Top"
+                                                 Foreground="{StaticResource PhoneAccentBrush}"
+                                                 TapCommand="{Binding RetryConnectionCommand}" />
+            <localControls:CustomHyperlinkButton Content="{Binding LocalizedResources.AppBarChangeServer, Source={StaticResource LocalizedStrings}}"
+                                                 VerticalAlignment="Top"
+                                                 Foreground="{StaticResource PhoneAccentBrush}"
+                                                 TapCommand="{Binding ChangeServerCommand}" />
+        </StackPanel>
 
     </Grid>
-
-    <!--Sample code showing usage of ApplicationBar-->
-    <!--<scott:BasePage.ApplicationBar>
-        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button1.png" Text="Button 1"/>
-            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button2.png" Text="Button 2"/>
-            <shell:ApplicationBar.MenuItems>
-                <shell:ApplicationBarMenuItem Text="MenuItem 1"/>
-                <shell:ApplicationBarMenuItem Text="MenuItem 2"/>
-            </shell:ApplicationBar.MenuItems>
-        </shell:ApplicationBar>
-    </scott:BasePage.ApplicationBar>-->
 
 </scott:BasePage>

@@ -10,6 +10,7 @@ using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Playlists;
+using MediaBrowser.Model.Querying;
 using MediaBrowser.WindowsPhone.Extensions;
 using MediaBrowser.WindowsPhone.Messaging;
 using MediaBrowser.WindowsPhone.Model;
@@ -119,7 +120,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Playlists
                 var query = new PlaylistItemQuery
                 {
                     Id = SelectedPlaylist.Id,
-                    UserId = AuthenticationService.Current.LoggedInUserId
+                    UserId = AuthenticationService.Current.LoggedInUserId,
+                    Fields = new[] { ItemFields.MediaSources }
                 };
                 var items = await ApiClient.GetPlaylistItems(query);
 

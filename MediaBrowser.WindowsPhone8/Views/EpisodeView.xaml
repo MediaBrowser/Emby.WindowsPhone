@@ -40,8 +40,8 @@
         <converters:VirtualConverter x:Key="VirtualConverter" />
         <converters:VirtualVisibilityConverter x:Key="VirtualVisibilityConverter" />
         <converters:BooleanToStringConverter x:Key="MarkAsWatchedConverter"
-                                             TrueValue="{Binding LocalizedResources.AppBarMarkAsWatched, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
-                                             FalseValue="{Binding LocalizedResources.AppBarMarkAsUnwatched, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}" />
+                                             TrueValue="{Binding LocalizedResources.AppBarMarkAsUnwatched, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                             FalseValue="{Binding LocalizedResources.AppBarMarkAsWatched, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}" />
     </scott:BasePage.Resources>
 
     <toolkit:TransitionService.NavigationInTransition>

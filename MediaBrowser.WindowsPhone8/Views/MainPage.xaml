@@ -263,12 +263,13 @@
                                                          Width="62"
                                                          VerticalAlignment="Top" />
                                     <StackPanel Orientation="Vertical"
-                                                VerticalAlignment="Center">
+                                                VerticalAlignment="Center"
+                                                Visibility="{Binding UserData.UnplayedItemCount, Converter={StaticResource NullVisibilityConverter}}">
                                         <TextBlock Text="{Binding Name}"
                                                    Style="{StaticResource PhoneTextLargeStyle}" />
                                         <TextBlock Style="{StaticResource PhoneTextSubtleStyle}">
                                             <Run Text="{Binding LocalizedResources.LabelUnplayedItems, Source={StaticResource LocalizedStrings}}" />
-                                            <Run Text="{Binding RecursiveUnplayedItemCount}" />
+                                            <Run Text="{Binding UserData.UnplayedItemCount}" />
                                         </TextBlock>
                                     </StackPanel>
                                 </StackPanel>

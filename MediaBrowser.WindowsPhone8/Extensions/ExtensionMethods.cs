@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using MediaBrowser.Dlna.Profiles;
 using MediaBrowser.Model.ApiClient;
+using MediaBrowser.Model.Dlna;
 using MediaBrowser.Model.Dto;
+using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Logging;
 using MediaBrowser.Model.Search;
 using MediaBrowser.WindowsPhone.Model;
@@ -32,13 +35,20 @@ namespace MediaBrowser.WindowsPhone.Extensions
 
         internal static PlaylistItem ToPlaylistItem(this BaseItemDto item, IApiClient apiClient)
         {
-            var streamUrl = apiClient.GetAudioStreamUrl(new StreamOptions
+            var profile = new WindowsPhoneStandardProfile();
+            var options = new AudioOptions
             {
-                AudioBitRate = 128,
-                AudioCodec = "Mp3",
+                Profile = profile,
                 ItemId = item.Id,
-                OutputFileExtension = "mp3",
-            });
+                DeviceId = apiClient.DeviceId,
+                MaxBitrate = 128,
+                MediaSources = item.MediaSources
+            };
+
+            var builder = new StreamBuilder();
+            var streamInfo = builder.BuildAudioItem(options);
+
+            var streamUrl = streamInfo.ToUrl(apiClient.GetApiUrl("/"));
 
             var converter = new Converters.ImageUrlConverter();
             return new PlaylistItem
@@ -46,12 +56,12 @@ namespace MediaBrowser.WindowsPhone.Extensions
                 Album = item.Album,
                 Artist = item.AlbumArtist,
                 TrackName = item.Name,
-                TrackUrl = streamUrl.Replace(App.ServerInfo.LocalAddress, App.ServerInfo.RemoteAddress),
+                TrackUrl = streamUrl.Replace(App.ServerInfo.LocalAddress, !string.IsNullOrEmpty(App.ServerInfo.ManualAddress) ? App.ServerInfo.ManualAddress : App.ServerInfo.RemoteAddress),
                 MediaBrowserId = item.Id,
                 IsJustAdded = true,
                 ImageUrl = (string) converter.Convert(item, typeof (string), null, null),
                 BackgroundImageUrl = (string) converter.Convert(item, typeof (string), "backdrop", null),
-                RunTimeTicks = item.RunTimeTicks.HasValue ? item.RunTimeTicks.Value : 0
+                RunTimeTicks = item.RunTimeTicks ?? 0
             };
         }
 
@@ -74,7 +84,8 @@ namespace MediaBrowser.WindowsPhone.Extensions
             {
                 Type = searchHint.Type,
                 Name = searchHint.Name,
-                Id = searchHint.ItemId
+                Id = searchHint.ItemId,
+                ImageTags = string.IsNullOrEmpty(searchHint.PrimaryImageTag) ? null : new Dictionary<ImageType, string> { { ImageType.Primary, searchHint.PrimaryImageTag} }
             };
 
             return item;

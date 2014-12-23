@@ -89,12 +89,13 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
             }
         }
 
-        public RelayCommand<bool> MoreCommand
+        public RelayCommand<string> MoreCommand
         {
             get
             {
-                return new RelayCommand<bool>(isWhatsOn =>
+                return new RelayCommand<string>(parameter =>
                 {
+                    var isWhatsOn = bool.Parse(parameter);
                     if (SimpleIoc.Default.GetInstance<AllProgrammesViewModel>() != null)
                     {
                         Messenger.Default.Send(new NotificationMessage(isWhatsOn, Constants.Messages.ShowAllProgrammesMsg));
