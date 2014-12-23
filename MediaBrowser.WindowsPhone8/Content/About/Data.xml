@@ -59,6 +59,15 @@
     <!-- Supported types are "text" and "xaml", where text is nicely formatted automatically, and XAML is handled by the built-in XamlReader -->
     <Item Title="history"
           Type="text">
+      8.0.64.0
+      Fixes:
+      - Live TV, tapping "More" did nothing
+      - Updated to use newer profile based audio streams
+      - Wifi streaming setting could get reset when going into any settings page
+      - Unable to navigate to a Person from search
+      - Query optimisations (speed up responses from server)
+      - Watched/Unwatched menu items displayed wrong way round
+      
       8.0.63.0
       Enhancements:
       - Support for Media Browser Connect
