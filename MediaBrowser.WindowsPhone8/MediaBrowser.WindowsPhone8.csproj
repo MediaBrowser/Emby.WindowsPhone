@@ -846,7 +846,7 @@
     <EmbeddedResource Include="Resources\AppResources.kk.resx" />
     <EmbeddedResource Include="Resources\AppResources.nb-NO.resx" />
     <EmbeddedResource Include="Resources\AppResources.nl-nl.resx" />
-    <EmbeddedResource Include="Resources\AppResources.pt-BR.resx" />
+    <EmbeddedResource Include="Resources\AppResources.pt.resx" />
     <EmbeddedResource Include="Resources\AppResources.qps-ploc.resx" />
     <EmbeddedResource Include="Resources\AppResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
