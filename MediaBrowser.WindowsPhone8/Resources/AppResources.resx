@@ -1118,7 +1118,7 @@
     <value>Log out</value>
   </data>
   <data name="AppBarChangeServer" xml:space="preserve">
-    <value>change server</value>
+    <value>Change server</value>
   </data>
   <data name="LabelSignInWithConnect" xml:space="preserve">
     <value>Sign in with Media Browser Connect</value>

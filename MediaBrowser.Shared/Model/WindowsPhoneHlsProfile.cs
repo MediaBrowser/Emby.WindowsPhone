@@ -1,10 +1,11 @@
-using System.Xml.Serialization;
 using MediaBrowser.Model.Dlna;
+using MediaBrowser.Model.Dlna.Profiles;
+using System.Xml.Serialization;
 
 namespace MediaBrowser.Dlna.Profiles
 {
     [XmlRoot("Profile")]
-    public class WindowsPhoneHlsProfile : DeviceProfile
+    public class WindowsPhoneHlsProfile : DefaultProfile
     {
         public WindowsPhoneHlsProfile()
         {
@@ -104,20 +105,6 @@ namespace MediaBrowser.Dlna.Profiles
                 new CodecProfile
                 {
                     Type = CodecType.Video,
-                    Conditions = new []
-                    {
-                        new ProfileCondition
-                        {
-                            Condition = ProfileConditionType.NotEquals,
-                            Property = ProfileConditionValue.IsAnamorphic,
-                            Value = "true"
-                        }
-                    }
-                },
-
-                new CodecProfile
-                {
-                    Type = CodecType.Video,
                     Codec="h264",
                     Conditions = new []
                     {
@@ -152,6 +139,13 @@ namespace MediaBrowser.Dlna.Profiles
                             Condition = ProfileConditionType.LessThanEqual,
                             Property = ProfileConditionValue.VideoLevel,
                             Value = "3"
+                        },
+                        new ProfileCondition(ProfileConditionType.EqualsAny, ProfileConditionValue.VideoProfile, "baseline|constrained baseline"),
+                        new ProfileCondition
+                        {
+                            Condition = ProfileConditionType.NotEquals,
+                            Property = ProfileConditionValue.IsAnamorphic,
+                            Value = "true"
                         }
                     }
                 },
@@ -186,6 +180,12 @@ namespace MediaBrowser.Dlna.Profiles
                             Property = ProfileConditionValue.VideoFramerate,
                             Value = "24",
                             IsRequired = false
+                        },
+                        new ProfileCondition
+                        {
+                            Condition = ProfileConditionType.NotEquals,
+                            Property = ProfileConditionValue.IsAnamorphic,
+                            Value = "true"
                         }
                     }
                 },
