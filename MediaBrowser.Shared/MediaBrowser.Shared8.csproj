@@ -211,7 +211,6 @@
     <Compile Include="Model\PlaylistItem.cs" />
     <Compile Include="Model\Security\CryptographyProvider.cs" />
     <Compile Include="Model\SettingsService.cs" />
-    <Compile Include="Model\WindowsPhoneHlsProfile.cs" />
     <Compile Include="Model\WindowsPhoneProfile.cs" />
     <Compile Include="PhoneNameResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

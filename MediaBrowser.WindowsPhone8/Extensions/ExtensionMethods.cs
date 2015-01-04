@@ -35,7 +35,7 @@ namespace MediaBrowser.WindowsPhone.Extensions
 
         internal static PlaylistItem ToPlaylistItem(this BaseItemDto item, IApiClient apiClient)
         {
-            var profile = new WindowsPhoneStandardProfile();
+            var profile = new WindowsPhoneProfile();
             var options = new AudioOptions
             {
                 Profile = profile,
