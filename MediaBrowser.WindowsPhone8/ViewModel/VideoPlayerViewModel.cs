@@ -422,7 +422,17 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     break;
                 case PlayerSourceType.Programme:
                     //query = CreateVideoStreamOptions(ProgrammeItem.ChannelId, _startPositionTicks, true);
-                    query = CreateVideoStream(ProgrammeItem.ChannelId, _startPositionTicks, useHls: true);
+                    try
+                    {
+                        var channel = await ApiClient.GetItemAsync(ProgrammeItem.ChannelId, AuthenticationService.Current.LoggedInUserId);
+                        query = CreateVideoStream(ProgrammeItem.ChannelId, _startPositionTicks, channel.MediaSources, useHls: true);
+                    }
+                    catch (HttpException ex)
+                    {
+                        Utils.HandleHttpException(ex, "GetVideoChannel", NavigationService, Log);
+                        NavigationService.GoBack();
+                        return;
+                    }
 
                     if (ProgrammeItem.RunTimeTicks.HasValue)
                         EndTime = TimeSpan.FromTicks(ProgrammeItem.RunTimeTicks.Value - _startPositionTicks);
