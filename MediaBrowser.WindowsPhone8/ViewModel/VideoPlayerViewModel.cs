@@ -519,6 +519,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             var streamInfo = builder.BuildVideoItem(options);
             streamInfo.StartPositionTicks = startTimeTicks;
             streamInfo.MaxWidth = streamingSettings.Width;
+            streamInfo.MaxHeight = streamingSettings.Height;
 
             return streamInfo;
         }
