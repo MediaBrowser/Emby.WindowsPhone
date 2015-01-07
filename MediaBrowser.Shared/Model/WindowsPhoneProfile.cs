@@ -10,7 +10,7 @@ namespace MediaBrowser.Dlna.Profiles
     [XmlRoot("Profile")]
     public class WindowsPhoneProfile : DefaultProfile
     {
-        public WindowsPhoneProfile()
+        private WindowsPhoneProfile()
         {
             Name = "Windows Phone";
         }
