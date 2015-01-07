@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -60,6 +61,18 @@ namespace MediaBrowser.WindowsPhone.Model.Connection
             });
 
             return await tsc.Task;
+        }
+
+        public async Task RemoveServer(ServerInfo server)
+        {
+            var creds = await GetServerCredentials();
+
+            var serverExists = creds.Servers.FirstOrDefault(x => x.Id == server.Id);
+            if (serverExists != null)
+            {
+                creds.Servers.Remove(serverExists);
+                await SaveServerCredentials(creds);
+            }
         }
     }
 }
