@@ -65,8 +65,6 @@ namespace MediaBrowser.WindowsPhone.Converters
 
                     switch (searchHint.Type)
                     {
-                        case "Person":
-                            return apiClient.GetPersonImageUrl(searchHint.Name, imageOptions);
                         case "Artist":
                             return apiClient.GetArtistImageUrl(searchHint.Name, imageOptions);
                         case "MusicGenre":
