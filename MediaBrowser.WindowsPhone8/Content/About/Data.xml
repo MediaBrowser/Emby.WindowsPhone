@@ -59,6 +59,14 @@
     <!-- Supported types are "text" and "xaml", where text is nicely formatted automatically, and XAML is handled by the built-in XamlReader -->
     <Item Title="history"
           Type="text">
+      8.0.65.0
+      Enhancements: 
+      - Enabled Portuguese localisation
+      Fixes: 
+      - Big improvements for video streaming, better for the app and the server
+      - Allow old servers to be deleted from the list of servers
+      - Added default image to search results
+      
       8.0.64.0
       Fixes:
       - Live TV, tapping "More" did nothing
