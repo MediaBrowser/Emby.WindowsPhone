@@ -15,6 +15,7 @@ using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.WindowsPhone.Extensions;
 using MediaBrowser.WindowsPhone.Model;
+using MediaBrowser.WindowsPhone.Model.Connection;
 using MediaBrowser.WindowsPhone.Model.Streaming;
 using MediaBrowser.WindowsPhone.Resources;
 using MediaBrowser.WindowsPhone.Services;
@@ -382,6 +383,19 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Settings
                     }
 
                     SetProgressBar();
+                });
+            }
+        }
+
+        public RelayCommand<ServerInfo> DeleteServerCommand
+        {
+            get
+            {
+                return new RelayCommand<ServerInfo>(async server =>
+                {
+                    var credsProvider = new CredentialProvider();
+                    await credsProvider.RemoveServer(server);
+                    FoundServers.Remove(server);
                 });
             }
         }

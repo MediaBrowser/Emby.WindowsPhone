@@ -88,7 +88,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 SetProgressBar(AppResources.SysTrayGettingDetails);
 
-                var actorResponse = await ApiClient.GetPersonAsync(SelectedPerson.Name, AuthenticationService.Current.LoggedInUserId);
+                var actorResponse = await ApiClient.GetItemAsync(SelectedPerson.Id, AuthenticationService.Current.LoggedInUserId);
 
                 if (actorResponse == null)
                 {

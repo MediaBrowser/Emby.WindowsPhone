@@ -1,4 +1,4 @@
-﻿using Microsoft.Phone.Controls;
+﻿using System.Windows.Input;
 
 namespace MediaBrowser.WindowsPhone.Views
 {
@@ -13,6 +13,14 @@ namespace MediaBrowser.WindowsPhone.Views
         public SearchView()
         {
             InitializeComponent();
+        }
+
+        private void UIElement_OnKeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                this.Focus();
+            }
         }
     }
 }

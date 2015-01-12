@@ -13,6 +13,7 @@
                 xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
                 xmlns:controls="clr-namespace:ScottIsAFool.WindowsPhone.Controls;assembly=ScottIsAFool.WindowsPhone"
                 xmlns:behaviours1="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
+                xmlns:coding4Fun="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
                 mc:Ignorable="d ignore"
                 d:DesignWidth="480"
                 d:DesignHeight="768"
@@ -96,7 +97,8 @@
                     <TextBox Text="{Binding SearchText, Mode=TwoWay}"
                              HorizontalAlignment="Stretch"
                              Width="455"
-                             InputScope="Search">
+                             InputScope="Search"
+                             KeyUp="UIElement_OnKeyUp">
                         <i:Interaction.Behaviors>
                             <behaviours:UpdateTextBindingOnPropertyChanged EnterHitCommand="{Binding DoSearchCommand}" />
                         </i:Interaction.Behaviors>
@@ -125,17 +127,19 @@
                                 </toolkit:ContextMenuService.ContextMenu>
                                 <StackPanel Orientation="Horizontal"
                                             Margin="12,6,0,6">
-                                    <Image Source="{Binding Converter={StaticResource ImageUrlConverter}}"
-                                           Height="100"
-                                           Width="100"
-                                           Stretch="UniformToFill" />
+                                    <coding4Fun:SuperImage PlaceholderImageSource="/Images/LogoNoPadding.png"
+                                                           PlaceholderImageStretch="Uniform"
+                                                           Source="{Binding Converter={StaticResource ImageUrlConverter}}"
+                                                           Height="100"
+                                                           Width="100"
+                                                           Stretch="UniformToFill" />
                                     <controls:HeaderAndDetail HeaderText="{Binding Name, Converter={StaticResource StringCaseConverter}, ConverterParameter=false}"
                                                               HeaderTextStyle="{StaticResource PhoneTextScottStyle}"
                                                               DetailText="{Binding Type}"
                                                               DetailTextForeground="{StaticResource PhoneSubtleBrush}"
                                                               DetailTextStyle="{StaticResource PhoneTextSubtleStyle}"
                                                               MaxWidth="318"
-                                                              Margin="12,0"/>
+                                                              Margin="12,0" />
                                 </StackPanel>
                             </mb:CustomHyperlinkButton>
                         </DataTemplate>

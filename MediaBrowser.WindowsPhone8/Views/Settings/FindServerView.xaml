@@ -122,6 +122,13 @@
                                                             CommandParameter="{Binding}"
                                                             Margin="12,0,0,12"
                                                             d:DataContext="{Binding Settings.FoundServers[0], Source={StaticResource Locator}}">
+                                <toolkit:ContextMenuService.ContextMenu>
+                                    <toolkit:ContextMenu>
+                                        <toolkit:MenuItem Header="{Binding LocalizedResources.AppBarDelete, Source={StaticResource LocalizedStrings}}"
+                                                          Command="{Binding Settings.DeleteServerCommand, Source={StaticResource Locator}}"
+                                                          CommandParameter="{Binding}"/>
+                                    </toolkit:ContextMenu>
+                                </toolkit:ContextMenuService.ContextMenu>
                                 <controls1:HeaderAndDetail HeaderText="{Binding Name}"
                                                            HeaderTextForeground="{StaticResource PhoneAccentBrush}"
                                                            HeaderTextStyle="{StaticResource PhoneTextTitle2Style}"

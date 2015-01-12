@@ -1,16 +1,25 @@
-﻿using MediaBrowser.Model.Dlna;
+﻿using System.Collections.Generic;
+using Cimbalino.Phone.Toolkit.Extensions;
+using Cimbalino.Phone.Toolkit.Services;
+using MediaBrowser.Model.Dlna;
+using MediaBrowser.Model.Dlna.Profiles;
 using System.Xml.Serialization;
 
 namespace MediaBrowser.Dlna.Profiles
 {
     [XmlRoot("Profile")]
-    public class WindowsPhoneStandardProfile : DeviceProfile
+    public class WindowsPhoneProfile : DefaultProfile
     {
-        public WindowsPhoneStandardProfile()
+        private WindowsPhoneProfile()
         {
             Name = "Windows Phone";
+        }
 
-            TranscodingProfiles = new[]
+        public static WindowsPhoneProfile GetProfile(float maxBitrate = 2000000, bool isHls = false)
+        {
+            var screenInfo = new ScreenInfoService();
+            var profile = new WindowsPhoneProfile();
+            var transcodingProfiles = new List<TranscodingProfile>
             {
                 new TranscodingProfile
                 {
@@ -24,19 +33,35 @@ namespace MediaBrowser.Dlna.Profiles
                     VideoCodec = "h264",
                     AudioCodec = "aac",
                     Type = DlnaProfileType.Video,
-                    Context = EncodingContext.Streaming
-                },
-                new TranscodingProfile
-                {
-                    Container = "mp4",
-                    VideoCodec = "h264",
-                    AudioCodec = "aac",
-                    Type = DlnaProfileType.Video,
                     Context = EncodingContext.Static
                 }
             };
 
-            DirectPlayProfiles = new[]
+            if (isHls)
+            {
+                transcodingProfiles.Add(new TranscodingProfile
+                {
+                    Protocol = "hls",
+                    Container = "ts",
+                    VideoCodec = "h264",
+                    AudioCodec = "aac",
+                    Type = DlnaProfileType.Video,
+                    Context = EncodingContext.Streaming
+                });
+            }
+
+            transcodingProfiles.Add(new TranscodingProfile
+            {
+                Container = "mp4",
+                VideoCodec = "h264",
+                AudioCodec = "aac",
+                Type = DlnaProfileType.Video,
+                Context = EncodingContext.Streaming
+            });
+
+            profile.TranscodingProfiles = transcodingProfiles.ToArray();
+            
+            profile.DirectPlayProfiles = new[]
             {
                 new DirectPlayProfile
                 {
@@ -90,22 +115,8 @@ namespace MediaBrowser.Dlna.Profiles
                 }
             };
 
-            CodecProfiles = new[]
+            profile.CodecProfiles = new[]
             {
-                new CodecProfile
-                {
-                    Type = CodecType.Video,
-                    Conditions = new []
-                    {
-                        new ProfileCondition
-                        {
-                            Condition = ProfileConditionType.NotEquals,
-                            Property = ProfileConditionValue.IsAnamorphic,
-                            Value = "true"
-                        }
-                    }
-                },
-
                 new CodecProfile
                 {
                     Type = CodecType.Video,
@@ -116,19 +127,19 @@ namespace MediaBrowser.Dlna.Profiles
                         {
                             Condition = ProfileConditionType.LessThanEqual,
                             Property = ProfileConditionValue.Width,
-                            Value = "800"
+                            Value = screenInfo.Size.Height.ToStringInvariantCulture()
                         },
                         new ProfileCondition
                         {
                             Condition = ProfileConditionType.LessThanEqual,
                             Property = ProfileConditionValue.Height,
-                            Value = "480"
+                            Value = screenInfo.Size.Width.ToStringInvariantCulture()
                         },
                         new ProfileCondition
                         {
                             Condition = ProfileConditionType.LessThanEqual,
                             Property = ProfileConditionValue.VideoBitrate,
-                            Value = "1000000",
+                            Value = maxBitrate.ToStringInvariantCulture(), //"1000000",
                             IsRequired = false
                         },
                         new ProfileCondition
@@ -143,6 +154,13 @@ namespace MediaBrowser.Dlna.Profiles
                             Condition = ProfileConditionType.LessThanEqual,
                             Property = ProfileConditionValue.VideoLevel,
                             Value = "3"
+                        },
+                        new ProfileCondition(ProfileConditionType.EqualsAny, ProfileConditionValue.VideoProfile, "baseline|constrained baseline"),
+                        new ProfileCondition
+                        {
+                            Condition = ProfileConditionType.NotEquals,
+                            Property = ProfileConditionValue.IsAnamorphic,
+                            Value = "true"
                         }
                     }
                 },
@@ -177,6 +195,12 @@ namespace MediaBrowser.Dlna.Profiles
                             Property = ProfileConditionValue.VideoFramerate,
                             Value = "24",
                             IsRequired = false
+                        },
+                        new ProfileCondition
+                        {
+                            Condition = ProfileConditionType.NotEquals,
+                            Property = ProfileConditionValue.IsAnamorphic,
+                            Value = "true"
                         }
                     }
                 },
@@ -217,6 +241,7 @@ namespace MediaBrowser.Dlna.Profiles
                 }
             };
 
+            return profile;
         }
     }
 }
