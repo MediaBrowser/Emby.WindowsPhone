@@ -250,8 +250,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     Fields = new[]
                     {
                         ItemFields.ParentId,
-                        ItemFields.MediaSources,
-                        ItemFields.SyncInfo, 
+                        ItemFields.MediaSources, 
                     },
                     IsMissing = App.SpecificSettings.ShowMissingEpisodes,
                     IsVirtualUnaired = App.SpecificSettings.ShowUnairedEpisodes
@@ -286,7 +285,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         ItemFields.ParentId,
                         ItemFields.Overview,
                         ItemFields.MediaSources, 
-                        ItemFields.SyncInfo, 
                     },
                     IsMissing = App.SpecificSettings.ShowMissingEpisodes,
                     IsVirtualUnaired = App.SpecificSettings.ShowUnairedEpisodes
@@ -333,7 +331,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                 ItemFields.ParentId,
                                 ItemFields.Overview,
                                 ItemFields.MediaSources, 
-                                ItemFields.SyncInfo, 
                             }
                         };
 

@@ -422,7 +422,17 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     break;
                 case PlayerSourceType.Programme:
                     //query = CreateVideoStreamOptions(ProgrammeItem.ChannelId, _startPositionTicks, true);
-                    query = CreateVideoStream(ProgrammeItem.ChannelId, _startPositionTicks, useHls: true);
+                    try
+                    {
+                        var channel = await ApiClient.GetItemAsync(ProgrammeItem.ChannelId, AuthenticationService.Current.LoggedInUserId);
+                        query = CreateVideoStream(ProgrammeItem.ChannelId, _startPositionTicks, channel.MediaSources, useHls: true);
+                    }
+                    catch (HttpException ex)
+                    {
+                        Utils.HandleHttpException(ex, "GetVideoChannel", NavigationService, Log);
+                        NavigationService.GoBack();
+                        return;
+                    }
 
                     if (ProgrammeItem.RunTimeTicks.HasValue)
                         EndTime = TimeSpan.FromTicks(ProgrammeItem.RunTimeTicks.Value - _startPositionTicks);
@@ -501,24 +511,24 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
         private StreamInfo CreateVideoStream(string itemId, long startTimeTicks, List<MediaSourceInfo> mediaSources = null, bool useHls = false)
         {
-            var normalProfile = new WindowsPhoneStandardProfile();
-            var hlsProfile = new WindowsPhoneHlsProfile();
+            var profile = WindowsPhoneProfile.GetProfile(isHls: useHls);
 
             var streamingSettings = NavigationService.IsOnWifi
                 ? App.SpecificSettings.WifiStreamingQuality.GetSettings()
                 : App.SpecificSettings.StreamingQuality.GetSettings();
 
-            var options = useHls ? new VideoOptions {Profile = hlsProfile} : new VideoOptions {Profile = normalProfile};
-
-            options.ItemId = itemId;
-            options.DeviceId = ApiClient.DeviceId;
-            options.MaxBitrate = streamingSettings.VideoBitrate;
-            options.MediaSources = mediaSources;
+            var options = new VideoOptions
+            {
+                Profile = profile, 
+                ItemId = itemId, 
+                DeviceId = ApiClient.DeviceId, 
+                MaxBitrate = streamingSettings.VideoBitrate,
+                MediaSources = mediaSources
+            };
 
             var builder = new StreamBuilder();
             var streamInfo = builder.BuildVideoItem(options);
             streamInfo.StartPositionTicks = startTimeTicks;
-            streamInfo.MaxWidth = streamingSettings.Width;
 
             return streamInfo;
         }
