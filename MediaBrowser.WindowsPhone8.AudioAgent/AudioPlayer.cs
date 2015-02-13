@@ -341,7 +341,7 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
             }
             else
             {
-                if (!playlist.IsOnRepeat && currentTrack.Id == items.Count)
+                if (!playlist.IsOnRepeat && currentTrack.Id == items.Count && items.Count > 1)
                 {
                     _logger.Info("GetNextTrack() : End of playlist");
                     return null;
