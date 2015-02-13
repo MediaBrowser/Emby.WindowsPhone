@@ -483,32 +483,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
         }
 
-        private VideoStreamOptions CreateVideoStreamOptions(string itemId, long startTimeTicks, bool useHls = false)
-        {
-            _itemId = itemId;
-
-            var streamingSettings = NavigationService.IsOnWifi
-                ? App.SpecificSettings.WifiStreamingQuality.GetSettings()
-                : App.SpecificSettings.StreamingQuality.GetSettings();
-
-            var query = new VideoStreamOptions
-            {
-                ItemId = itemId,
-                VideoCodec = "H264",
-                OutputFileExtension = useHls ? ".m3u8" : ".mp4",
-                AudioCodec = "Aac",
-                VideoBitRate = streamingSettings.VideoBitrate,
-                AudioBitRate = streamingSettings.AudioBitrate,
-                MaxAudioChannels = streamingSettings.AudioChannels,
-                StartTimeTicks = startTimeTicks,
-                Profile = "baseline",
-                Level = "3",
-                MaxWidth = streamingSettings.Width
-            };
-
-            return query;
-        }
-
         private StreamInfo CreateVideoStream(string itemId, long startTimeTicks, List<MediaSourceInfo> mediaSources = null, bool useHls = false)
         {
             var profile = WindowsPhoneProfile.GetProfile(isHls: useHls);
