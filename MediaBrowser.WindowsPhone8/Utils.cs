@@ -267,6 +267,11 @@ namespace MediaBrowser.WindowsPhone
             LockScreenService.Current.Start();
             TileService.Current.UpdatePrimaryTile(App.SpecificSettings.DisplayBackdropOnTile, App.SpecificSettings.UseRichWideTile, App.SpecificSettings.UseTransparentTile).ConfigureAwait(false);
 
+            if (LockScreenService.Current.IsProvidedByCurrentApplication)
+            {
+                LockScreenService.Current.SetLockScreen(App.SpecificSettings.LockScreenType);
+            }
+
             try
             {
                 logger.Info("Checking if live TV is supported");
