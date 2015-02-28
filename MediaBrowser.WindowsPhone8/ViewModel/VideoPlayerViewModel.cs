@@ -446,7 +446,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 query.SubtitleStreamIndex = subtitleIndex.Value;
             }
 
-            var url = query.ToUrl(ApiClient.GetApiUrl("/"));
+            var url = query.ToUrl(ApiClient.GetApiUrl("/"), ApiClient.AccessToken);
             //var url = PlayerSourceType == PlayerSourceType.Programme ? ApiClient.GetHlsVideoStreamUrl(query) : ApiClient.GetVideoStreamUrl(query);
             //Captions = GetSubtitles(SelectedItem);
 

@@ -94,12 +94,12 @@
       <HintPath>..\packages\Cimbalino.Phone.Toolkit.Background.3.2.3\lib\wp8\Cimbalino.Phone.Toolkit.Background.dll</HintPath>
     </Reference>
     <Reference Include="MediaBrowser.ApiInteraction.Portable">
-      <HintPath>..\packages\MediaBrowser.ApiClient.3.0.0.559\lib\portable-net45+sl4+wp71+win8+wpa81\MediaBrowser.ApiInteraction.Portable.dll</HintPath>
+      <HintPath>..\packages\MediaBrowser.ApiClient.3.0.0.569\lib\portable-net45+sl4+wp71+win8+wpa81\MediaBrowser.ApiInteraction.Portable.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="MediaBrowser.Model">
-      <HintPath>..\packages\MediaBrowser.Common.3.0.567\lib\portable-net4+sl4+wp71+win8+wpa81\MediaBrowser.Model.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="MediaBrowser.Model, Version=3.0.5537.17268, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\MediaBrowser.Common.3.0.579\lib\portable-net4+sl4+wp71+win8+wpa81\MediaBrowser.Model.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>

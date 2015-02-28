@@ -48,7 +48,7 @@ namespace MediaBrowser.WindowsPhone.Extensions
             var builder = new StreamBuilder();
             var streamInfo = builder.BuildAudioItem(options);
 
-            var streamUrl = streamInfo.ToUrl(apiClient.GetApiUrl("/"));
+            var streamUrl = streamInfo.ToUrl(apiClient.GetApiUrl("/"), apiClient.AccessToken);
 
             var converter = new Converters.ImageUrlConverter();
             return new PlaylistItem
