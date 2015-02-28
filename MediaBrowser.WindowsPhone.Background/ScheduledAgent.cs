@@ -75,7 +75,7 @@ namespace MediaBrowser.WindowsPhone.Background
                 }
 
                 var serverAddress = server.LastConnectionMode.HasValue && server.LastConnectionMode.Value == ConnectionMode.Manual ? server.ManualAddress : server.RemoteAddress;
-                var client = new ApiClient(MediaBrowserLogger, serverAddress, "Windows Phone 8", device, ApplicationManifest.Current.App.Version, WindowsPhoneCapabilities.Photos, new CryptographyProvider());
+                var client = new ApiClient(MediaBrowserLogger, serverAddress, "Windows Phone 8", device, ApplicationManifest.Current.App.Version, new CryptographyProvider());
                 client.SetAuthenticationInfo(server.AccessToken, server.UserId);
 
                 _logger.Info("Client created");

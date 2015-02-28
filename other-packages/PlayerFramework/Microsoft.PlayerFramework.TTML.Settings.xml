@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.PlayerFramework.TTML.Settings</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.PlayerFramework.TTML.CaptionSettings.TTMLCaptionSettingsPlugin">
+            <summary>
+            TTML Caption Settings Plug-in for Microsoft Media Platform Player Framework
+            </summary>
+            <remarks>TimedTextStyle.FontFamily is not implemented for Windows Phone 8.
+            Do not call MediaPlayer.Dispose() when navigating away from 
+            the page hosting the player.
+            </remarks>
+        </member>
+        <member name="F:Microsoft.PlayerFramework.TTML.CaptionSettings.TTMLCaptionSettingsPlugin.fontMap">
+            <summary>
+            the font map
+            </summary>
+        </member>
+        <member name="M:Microsoft.PlayerFramework.TTML.CaptionSettings.TTMLCaptionSettingsPlugin.OnApplyCaptionSettings(Microsoft.PlayerFramework.CaptionSettings.Model.CustomCaptionSettings)">
+            <summary>
+            Reset the selected caption to parse it with the new settings.
+            </summary>
+            <param name="settings">the updated caption settings</param>
+        </member>
+        <member name="M:Microsoft.PlayerFramework.TTML.CaptionSettings.TTMLCaptionSettingsPlugin.OnActivate">
+            <summary>
+            Attach the CaptionParsed event handler
+            </summary>
+            <returns>true if the TTML CaptionsPlugin is registered</returns>
+        </member>
+        <member name="M:Microsoft.PlayerFramework.TTML.CaptionSettings.TTMLCaptionSettingsPlugin.OnDeactivate">
+            <summary>
+            Detach the CaptionParsed event handler
+            </summary>
+        </member>
+        <member name="M:Microsoft.PlayerFramework.TTML.CaptionSettings.TTMLCaptionSettingsPlugin.UpdateElement(Microsoft.TimedText.TimedTextElement,Microsoft.PlayerFramework.CaptionSettings.Model.CustomCaptionSettings,System.UInt32)">
+            <summary>
+            Recursively update the caption elements
+            </summary>
+            <param name="captionElement">the caption element</param>
+            <param name="userSettings">the user settings</param>
+            <param name="level">the 0-based level of the caption element</param>
+        </member>
+        <member name="M:Microsoft.PlayerFramework.TTML.CaptionSettings.TTMLCaptionSettingsPlugin.ApplyFontStyle(Microsoft.TimedText.TimedTextElement,Microsoft.PlayerFramework.CaptionSettings.Model.CustomCaptionSettings)">
+            <summary>
+            Apply the font style
+            </summary>
+            <param name="captionElement">the caption element</param>
+            <param name="userSettings">the user settings</param>
+        </member>
+        <member name="M:Microsoft.PlayerFramework.TTML.CaptionSettings.TTMLCaptionSettingsPlugin.GetFontFamily(Microsoft.PlayerFramework.CaptionSettings.Model.CustomCaptionSettings)">
+            <summary>
+            Gets the font family from the user settings Font
+            </summary>
+            <param name="userSettings">the user settings</param>
+            <returns>the font family</returns>
+        </member>
+        <member name="M:Microsoft.PlayerFramework.TTML.CaptionSettings.TTMLCaptionSettingsPlugin.OnCaptionParsed(System.Object,Microsoft.TimedText.CaptionParsedEventArgs)">
+            <summary>
+            Update the caption elements when the captions are parsed
+            </summary>
+            <param name="sender">the sender</param>
+            <param name="e">the caption parsed event arguments</param>
+        </member>
+    </members>
+</doc>

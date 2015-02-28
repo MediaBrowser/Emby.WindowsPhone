@@ -7,6 +7,7 @@ using Windows.Networking;
 using Windows.Networking.Sockets;
 using Windows.Storage.Streams;
 using MediaBrowser.ApiInteraction;
+using MediaBrowser.Model.ApiClient;
 using Microsoft.Phone.Net.NetworkInformation;
 
 namespace MediaBrowser.WindowsPhone.Model.Connection

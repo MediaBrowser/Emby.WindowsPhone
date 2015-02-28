@@ -363,7 +363,7 @@ namespace MediaBrowser.WindowsPhone
 
         public static bool CanStream(object value)
         {
-            if (!App.Settings.LoggedInUser.Configuration.EnableMediaPlayback)
+            if (!App.Settings.LoggedInUser.Policy.EnableMediaPlayback)
             {
                 return false;
             }
