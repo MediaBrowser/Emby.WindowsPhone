@@ -174,19 +174,19 @@ namespace MediaBrowser.Dlna.Profiles
                         {
                             Condition = ProfileConditionType.LessThanEqual,
                             Property = ProfileConditionValue.Width,
-                            Value = "800"
+                            Value = screenInfo.Size.Height.ToStringInvariantCulture()
                         },
                         new ProfileCondition
                         {
                             Condition = ProfileConditionType.LessThanEqual,
                             Property = ProfileConditionValue.Height,
-                            Value = "480"
+                            Value = screenInfo.Size.Width.ToStringInvariantCulture()
                         },
                         new ProfileCondition
                         {
                             Condition = ProfileConditionType.LessThanEqual,
                             Property = ProfileConditionValue.VideoBitrate,
-                            Value = "1000000",
+                            Value = maxBitrate.ToStringInvariantCulture(), //"1000000",
                             IsRequired = false
                         },
                         new ProfileCondition
