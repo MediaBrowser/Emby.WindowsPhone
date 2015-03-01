@@ -8,6 +8,7 @@ using Cimbalino.Phone.Toolkit.Helpers;
 using Cimbalino.Phone.Toolkit.Services;
 using Coding4Fun.Toolkit.Controls;
 using GalaSoft.MvvmLight.Ioc;
+using GalaSoft.MvvmLight.Threading;
 using MediaBrowser.Model;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.WindowsPhone.Model;
@@ -252,6 +253,8 @@ namespace MediaBrowser.WindowsPhone
 
             // Ensure we don't initialize again
             _phoneApplicationInitialized = true;
+            
+            DispatcherHelper.Initialize();
         }
 
         // Do not add any additional code to this method

@@ -8,6 +8,7 @@ using System.Windows.Threading;
 using Cimbalino.Phone.Toolkit.Services;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
+using GalaSoft.MvvmLight.Threading;
 using JetBrains.Annotations;
 using MediaBrowser.Model;
 using MediaBrowser.Model.ApiClient;
@@ -261,6 +262,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             Position = BackgroundAudioPlayer.Instance.Position;
         }
 
+        private AudioTrack _previousTrack;
         private void OnPlayStateChanged(object sender, EventArgs e)
         {
             try
@@ -369,6 +371,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             var nowPlaying = playlist.PlaylistItems.FirstOrDefault(x => x.IsPlaying);
             NowPlayingItem = nowPlaying;
+
+            if (DispatcherHelper.UIDispatcher != null)
+            {
+                DispatcherHelper.CheckBeginInvokeOnUI(() => RaisePropertyChanged(() => PlayedPercentage));
+            }
         }
 
         [UsedImplicitly]
