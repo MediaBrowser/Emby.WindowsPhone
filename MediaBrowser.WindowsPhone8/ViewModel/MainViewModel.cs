@@ -300,17 +300,21 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                 var item = await ApiClient.GetItemsAsync(query);
 
-                Folders.Clear();
+                if (item != null && !item.Items.IsNullOrEmpty())
+                {
+                    Folders.Clear();
 
-                item.Items.OrderByDescending(x => x.SortName).ToList().ForEach(folder => Folders.Add(folder));
+                    item.Items.OrderByDescending(x => x.SortName).ToList().ForEach(folder => Folders.Add(folder));
 
-                return true;
+                    return true;
+                }
             }
             catch (HttpException ex)
             {
                 Utils.HandleHttpException("GetFolders()", ex, NavigationService, Log);
-                return false;
             }
+
+            return false;
         }
 
         public RelayCommand MoreRecentCommand
