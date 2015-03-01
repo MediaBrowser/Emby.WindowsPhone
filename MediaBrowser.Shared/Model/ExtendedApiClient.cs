@@ -5,6 +5,7 @@ using MediaBrowser.ApiInteraction;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Logging;
+using MediaBrowser.Model.Session;
 using MediaBrowser.WindowsPhone.Model.Security;
 
 namespace MediaBrowser.WindowsPhone.Model
