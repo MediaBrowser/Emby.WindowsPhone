@@ -25,7 +25,7 @@
                 shell:SystemTray.IsVisible="True"
                 shell:SystemTray.Opacity="0"
                 toolkit:TiltEffect.IsTiltEnabled="True"
-                DataContext="{Binding Playlist, Source={StaticResource Locator}}">
+                DataContext="{Binding NowPlaying, Source={StaticResource Locator}}">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding PlaylistPageLoaded}" />
@@ -134,7 +134,7 @@
                                         VerticalAlignment="Top"
                                         Margin="0,30,100,0">
                                 <controls:OpacityToggleButton VerticalAlignment="Top"
-                                                              IsChecked="{Binding Playlist.IsShuffled, Source={StaticResource Locator}, Mode=TwoWay}"
+                                                              IsChecked="{Binding NowPlaying.IsShuffled, Source={StaticResource Locator}, Mode=TwoWay}"
                                                               ImageSource="/Images/appbar.shuffle.png"
                                                               ButtonHeight="32"
                                                               ButtonWidth="32" />
@@ -142,7 +142,7 @@
                                                               ImageSource="/Images/appbar.repeat.png"
                                                               ButtonHeight="32"
                                                               ButtonWidth="32"
-                                                              IsChecked="{Binding Playlist.IsOnRepeat, Source={StaticResource Locator}, Mode=TwoWay}" />
+                                                              IsChecked="{Binding NowPlaying.IsOnRepeat, Source={StaticResource Locator}, Mode=TwoWay}" />
                             </StackPanel>
                         </Grid>
                         <Grid HorizontalAlignment="Stretch"
@@ -152,14 +152,14 @@
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
-                            <TextBlock Text="{Binding Playlist.Position.Ticks, Source={StaticResource Locator}, Converter={StaticResource RuntimeConverter}, ConverterParameter=audio}"
+                            <TextBlock Text="{Binding NowPlaying.Position.Ticks, Source={StaticResource Locator}, Converter={StaticResource RuntimeConverter}, ConverterParameter=audio}"
                                        Style="{StaticResource PhoneTextNormalStyle}"
                                        Margin="12,0,6,0" />
                             <ProgressBar Margin="0"
                                          Grid.Column="1"
                                          Foreground="{StaticResource PhoneAccentBrush}"
                                          HorizontalAlignment="Stretch"
-                                         Value="{Binding Playlist.PlayedPercentage, Source={StaticResource Locator}}" />
+                                         Value="{Binding NowPlaying.PlayedPercentage, Source={StaticResource Locator}}" />
                             <TextBlock Text="{Binding RunTimeTicks, Converter={StaticResource RuntimeConverter}, ConverterParameter=audio}"
                                        Style="{StaticResource PhoneTextNormalStyle}"
                                        Grid.Column="2"

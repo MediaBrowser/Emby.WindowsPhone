@@ -21,7 +21,7 @@
                 Orientation="Portrait"
                 shell:SystemTray.IsVisible="True"
                 shell:SystemTray.Opacity="0"
-                DataContext="{Binding Playlist, Source={StaticResource Locator}}">
+                DataContext="{Binding NowPlaying, Source={StaticResource Locator}}">
     <i:Interaction.Behaviors>
         <behaviours:MBSysTray Text="{Binding ProgressText}"
                               IsVisible="{Binding ProgressIsVisible}"
@@ -377,7 +377,7 @@
                     <toolkit:LongListMultiSelector.ItemTemplate>
                         <DataTemplate>
                             <mb:CustomButton Style="{StaticResource EmptyButtonStyle}"
-                                             Command="{Binding Playlist.ChangeTrackCommand, Source={StaticResource Locator}}"
+                                             Command="{Binding NowPlaying.ChangeTrackCommand, Source={StaticResource Locator}}"
                                              CommandParameter="{Binding}">
                                 <Grid HorizontalAlignment="Left"
                                       Margin="-36,0,0,0">

@@ -83,11 +83,11 @@
                                                                     Grid.Row="1"
                                                                     VerticalAlignment="Stretch"
                                                                     NavigateUri="/Views/NowPlayingView.xaml"
-                                                                    Visibility="{Binding Playlist.NowPlayingItem, Source={StaticResource Locator}, Converter={StaticResource NullVisibilityConverter}}">
-                                        <controls:NowPlayingBar ImageUrl="{Binding Playlist.NowPlayingItem.ImageUrl, Source={StaticResource Locator}}"
-                                                                Artist="{Binding Playlist.NowPlayingItem.Artist, Source={StaticResource Locator}}"
-                                                                TrackName="{Binding Playlist.NowPlayingItem.TrackName, Source={StaticResource Locator}}"
-                                                                IsPlaying="{Binding Playlist.IsPlaying, Source={StaticResource Locator}}" />
+                                                                    Visibility="{Binding NowPlaying.NowPlayingItem, Source={StaticResource Locator}, Converter={StaticResource NullVisibilityConverter}}">
+                                        <controls:NowPlayingBar ImageUrl="{Binding NowPlaying.NowPlayingItem.ImageUrl, Source={StaticResource Locator}}"
+                                                                Artist="{Binding NowPlaying.NowPlayingItem.Artist, Source={StaticResource Locator}}"
+                                                                TrackName="{Binding NowPlaying.NowPlayingItem.TrackName, Source={StaticResource Locator}}"
+                                                                IsPlaying="{Binding NowPlaying.IsPlaying, Source={StaticResource Locator}}" />
                                     </controls:CustomHyperlinkButton>
                                 </Grid>
                             </Border>

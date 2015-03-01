@@ -99,7 +99,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             SimpleIoc.Default.Register<SettingsViewModel>();
             SimpleIoc.Default.Register<MusicViewModel>();
             SimpleIoc.Default.Register<SearchViewModel>();
-            SimpleIoc.Default.Register<PlaylistViewModel>(true);
+            SimpleIoc.Default.Register<NowPlayingViewModel>(true);
             SimpleIoc.Default.Register<NotificationsViewModel>();
             SimpleIoc.Default.Register<RemoteViewModel>();
             SimpleIoc.Default.Register<MovieCollectionViewModel>();
@@ -209,9 +209,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             get { return ServiceLocator.Current.GetInstance<SearchViewModel>(); }
         }
 
-        public PlaylistViewModel Playlist
+        public NowPlayingViewModel NowPlaying
         {
-            get { return ServiceLocator.Current.GetInstance<PlaylistViewModel>(); }
+            get { return ServiceLocator.Current.GetInstance<NowPlayingViewModel>(); }
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",

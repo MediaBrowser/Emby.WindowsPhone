@@ -27,7 +27,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     /// See http://www.galasoft.ch/mvvm
     /// </para>
     /// </summary>
-    public class PlaylistViewModel : ViewModelBase
+    public class NowPlayingViewModel : ViewModelBase
     {
         private readonly PlaylistHelper _playlistHelper;
         private readonly DispatcherTimer _playlistChecker;
@@ -37,7 +37,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         /// <summary>
         /// Initializes a new instance of the PlaylistViewModel class.
         /// </summary>
-        public PlaylistViewModel(INavigationService navigationService, IConnectionManager connectionManager, IStorageService storageService)
+        public NowPlayingViewModel(INavigationService navigationService, IConnectionManager connectionManager, IStorageService storageService)
             :base (navigationService, connectionManager)
         {
             _playlistChecker = new DispatcherTimer { Interval = new TimeSpan(0, 0, 3) };
