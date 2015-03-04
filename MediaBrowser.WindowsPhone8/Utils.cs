@@ -134,19 +134,6 @@ namespace MediaBrowser.WindowsPhone
             return AppResources.LabelOther;
         }
 
-        internal static void CopyItem<T>(T source, T destination) where T : class
-        {
-            foreach (var sourcePropertyInfo in source.GetType().GetProperties())
-            {
-                var destPropertyInfo = source.GetType().GetProperty(sourcePropertyInfo.Name);
-
-                destPropertyInfo.SetValue(
-                    destination,
-                    sourcePropertyInfo.GetValue(source, null),
-                    null);
-            }
-        }
-
         internal static async Task<List<BaseItemDto>> SortRecentItems(BaseItemDto[] items, bool includeTrailers)
         {
             return await Task.Run(() =>

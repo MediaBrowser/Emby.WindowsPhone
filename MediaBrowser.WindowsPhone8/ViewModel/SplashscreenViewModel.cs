@@ -90,12 +90,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 #endif
             // Get and set the app specific settings 
             _specificSettings = _applicationSettings.Get<SpecificSettings>(Constants.Settings.SpecificSettings);
-            if (_specificSettings != null) Utils.CopyItem(_specificSettings, App.SpecificSettings);
+            if (_specificSettings != null) SharedUtils.CopyItem(_specificSettings, App.SpecificSettings);
 
             SetRunUnderLock();
 
             _uploadSettings = _applicationSettings.Get<UploadSettings>(Constants.Settings.PhotoUploadSettings);
-            if (_uploadSettings != null) Utils.CopyItem(_uploadSettings, App.UploadSettings);
+            if (_uploadSettings != null) SharedUtils.CopyItem(_uploadSettings, App.UploadSettings);
 
             _connectionDetails = _applicationSettings.Get<ConnectionDetails>(Constants.Settings.ConnectionSettings);
             _savedServer = _applicationSettings.Get<ServerInfo>(Constants.Settings.DefaultServerConnection);
