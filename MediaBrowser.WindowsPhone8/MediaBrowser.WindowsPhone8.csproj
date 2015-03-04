@@ -26,7 +26,7 @@
     <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
-    <NuGetPackageImportStamp>7b37020d</NuGetPackageImportStamp>
+    <NuGetPackageImportStamp>013d9b72</NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -460,9 +460,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
-    <Content Include="..\other-packages\SQLite\$(Platform)\sqlite3.dll">
-      <Link>sqlite3.dll</Link>
-    </Content>
     <Content Include="Assets\BrowserText.png" />
     <Content Include="Assets\MediaTextBlack.png" />
     <Content Include="Assets\MediaTextWhite.png" />
@@ -879,9 +876,16 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Cimbalino.Phone.Toolkit.UserInfo.3.2.3\lib\wp8\Cimbalino.Phone.Toolkit.UserInfo.dll</HintPath>
     </Reference>
-    <Reference Include="Coding4Fun.Toolkit.Controls, Version=2.0.7.0, Culture=neutral, PublicKeyToken=c5fd7b72b1a17ce4, processorArchitecture=MSIL">
+    <Reference Include="Coding4Fun.Toolkit, Version=2.0.8.0, Culture=neutral, PublicKeyToken=c5fd7b72b1a17ce4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Coding4Fun.Toolkit.Controls.2.0.9\lib\windowsphone8\Coding4Fun.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="Coding4Fun.Toolkit.Controls, Version=2.0.9.0, Culture=neutral, PublicKeyToken=c5fd7b72b1a17ce4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Coding4Fun.Toolkit.Controls.2.0.7\lib\windowsphone8\Coding4Fun.Toolkit.Controls.dll</HintPath>
+      <HintPath>..\packages\Coding4Fun.Toolkit.Controls.2.0.9\lib\windowsphone8\Coding4Fun.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="Coding4Fun.Toolkit.Controls, Version=2.0.9.0, Culture=neutral, PublicKeyToken=c5fd7b72b1a17ce4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Coding4Fun.Toolkit.Controls.2.0.9\lib\windowsphone8\Coding4Fun.Toolkit.Controls.dll</HintPath>
     </Reference>
     <Reference Include="GalaSoft.MvvmLight">
       <HintPath>..\packages\MvvmLightLibs.5.0.0.0\lib\wp8\GalaSoft.MvvmLight.dll</HintPath>
@@ -917,32 +921,66 @@
       <HintPath>..\packages\JetBrainsAnnotations.Fody.1.0.2\Lib\JetBrains.Annotations.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="MediaBrowser.ApiInteraction.Portable">
-      <HintPath>..\packages\MediaBrowser.ApiClient.3.0.0.517\lib\portable-net45+sl4+wp71+win8+wpa81\MediaBrowser.ApiInteraction.Portable.dll</HintPath>
-    </Reference>
-    <Reference Include="MediaBrowser.Model, Version=3.0.5465.41962, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="MediaBrowser.ApiInteraction.Portable, Version=3.0.5537.42193, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MediaBrowser.Common.3.0.541\lib\portable-net4+sl4+wp71+win8+wpa81\MediaBrowser.Model.dll</HintPath>
+      <HintPath>..\packages\MediaBrowser.ApiClient.3.0.0.570\lib\portable-net45+sl4+wp71+win8+wpa81\MediaBrowser.ApiInteraction.Portable.dll</HintPath>
+    </Reference>
+    <Reference Include="MediaBrowser.Model, Version=3.0.5537.17268, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\MediaBrowser.Common.3.0.579\lib\portable-net4+sl4+wp71+win8+wpa81\MediaBrowser.Model.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Phone.Controls, Version=8.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Phone.Controls.Toolkit, Version=8.0.1.0, Culture=neutral, PublicKeyToken=b772ad94eb9ca604, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\WPtoolkit.4.2013.08.16\lib\wp8\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.PlayerFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c9240785c8c0b56a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\other-packages\PlayerFramework\Microsoft.PlayerFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.PlayerFramework.TimedText, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c9240785c8c0b56a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\other-packages\PlayerFramework\Microsoft.PlayerFramework.TimedText.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.PlayerFramework.TTML.CaptionSettings">
+      <HintPath>..\other-packages\PlayerFramework\Microsoft.PlayerFramework.TTML.CaptionSettings.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.PlayerFramework.TTML.Settings, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\other-packages\PlayerFramework\Microsoft.PlayerFramework.TTML.Settings.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.PlayerFramework.WebVTT, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c9240785c8c0b56a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\other-packages\PlayerFramework\Microsoft.PlayerFramework.WebVTT.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.PlayerFramework.WebVTT.CaptionSettings">
+      <HintPath>..\other-packages\PlayerFramework\Microsoft.PlayerFramework.WebVTT.CaptionSettings.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.PlayerFramework.WebVTT.Settings, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\other-packages\PlayerFramework\Microsoft.PlayerFramework.WebVTT.Settings.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.TimedText, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c9240785c8c0b56a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Newtonsoft.Json.6.0.7\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\other-packages\PlayerFramework\Microsoft.TimedText.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WebVTT, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c9240785c8c0b56a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\other-packages\PlayerFramework\Microsoft.WebVTT.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="PhoneCodeContractsAssemblies">
       <HintPath>..\packages\ImageTools.0.3.1\lib\sl3-wp\PhoneCodeContractsAssemblies.dll</HintPath>
     </Reference>
-    <Reference Include="PropertyChanged, Version=1.48.5.0, Culture=neutral, PublicKeyToken=ee3ee20bcf148ddd, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\PropertyChanged.Fody.1.48.5\Lib\portable-net4+sl4+wp8+win8+wpa81+MonoAndroid16+MonoTouch40\PropertyChanged.dll</HintPath>
+    <Reference Include="PropertyChanged">
+      <HintPath>..\packages\PropertyChanged.Fody.1.49.0\Lib\portable-net4+sl4+wp8+win8+wpa81+MonoAndroid16+MonoTouch40\PropertyChanged.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="ScottIsAFool.WindowsPhone, Version=1.0.18.11, Culture=neutral, processorArchitecture=MSIL">
@@ -969,20 +1007,16 @@
     <Reference Include="SM.TsParser">
       <HintPath>..\other-packages\HLS\SM.TsParser.dll</HintPath>
     </Reference>
-    <Reference Include="SQLite.Platform">
-      <HintPath>..\other-packages\SQLite\$(Platform)\sqlite3.dll</HintPath>
-    </Reference>
     <Reference Include="System.Net.Http, Version=1.5.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.Net.Http.2.2.28\lib\sl4-windowsphone71\System.Net.Http.dll</HintPath>
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\sl4-windowsphone71\System.Net.Http.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http.Extensions, Version=1.5.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.Net.Http.2.2.28\lib\sl4-windowsphone71\System.Net.Http.Extensions.dll</HintPath>
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\sl4-windowsphone71\System.Net.Http.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http.Primitives, Version=1.5.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.Net.Http.2.2.28\lib\sl4-windowsphone71\System.Net.Http.Primitives.dll</HintPath>
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\sl4-windowsphone71\System.Net.Http.Primitives.dll</HintPath>
     </Reference>
     <Reference Include="System.Windows.Interactivity, Version=3.9.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmLightLibs.5.0.0.0\lib\wp8\System.Windows.Interactivity.dll</HintPath>
@@ -996,9 +1030,9 @@
     <Reference Include="Telerik.Windows.Core">
       <HintPath>..\lib\RCWP\2013.2.718.3040\Telerik.Windows.Core.dll</HintPath>
     </Reference>
-    <Reference Include="WebSocket4Net, Version=0.10.0.0, Culture=neutral, PublicKeyToken=eb4e154b696bf72a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\WebSocket4Net.0.10\lib\sl40-windowsphone71\WebSocket4Net.dll</HintPath>
+    <Reference Include="WebSocket4Net">
+      <HintPath>..\packages\WebSocket4Net.0.11\lib\sl40-windowsphone71\WebSocket4Net.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="WriteableBitmapExWinPhone, Version=1.0.12.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -1026,23 +1060,6 @@
       <Project>{62509334-83BD-4D52-9387-498D59630832}</Project>
       <Name>MediaBrowser.WindowsPhone8.AudioAgent</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <SDKReference Include="Microsoft.PlayerFramework.WP8.Core, Version=1.8.2.2">
-      <Name>Microsoft Player Framework</Name>
-    </SDKReference>
-    <SDKReference Include="Microsoft.PlayerFramework.WP8.TimedText, Version=1.8.2.2">
-      <Name>Microsoft Player Framework TimedText Plugin</Name>
-    </SDKReference>
-    <SDKReference Include="Microsoft.PlayerFramework.WP8.TTML.Settings, Version=1.8.2.2">
-      <Name>Microsoft Player Framework TTML Caption Settings Plugin</Name>
-    </SDKReference>
-    <SDKReference Include="Microsoft.PlayerFramework.WP8.WebVTT, Version=1.8.2.2">
-      <Name>Microsoft Player Framework WebVTT Plugin</Name>
-    </SDKReference>
-    <SDKReference Include="Microsoft.PlayerFramework.WP8.WebVTT.Settings, Version=1.8.2.2">
-      <Name>Microsoft Player Framework WebVTT Caption Settings Plugin</Name>
-    </SDKReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
@@ -1073,9 +1090,9 @@
     </PropertyGroup>
     <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
     <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets'))" />
-    <Error Condition="!Exists('..\packages\Fody.1.26.1\build\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.1.26.1\build\Fody.targets'))" />
+    <Error Condition="!Exists('..\packages\Fody.1.27.1\build\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.1.27.1\build\Fody.targets'))" />
   </Target>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
-  <Import Project="..\packages\Fody.1.26.1\build\Fody.targets" Condition="Exists('..\packages\Fody.1.26.1\build\Fody.targets')" />
+  <Import Project="..\packages\Fody.1.27.1\build\Fody.targets" Condition="Exists('..\packages\Fody.1.27.1\build\Fody.targets')" />
 </Project>

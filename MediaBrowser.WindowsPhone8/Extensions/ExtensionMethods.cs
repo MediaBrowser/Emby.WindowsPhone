@@ -8,6 +8,7 @@ using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Logging;
 using MediaBrowser.Model.Search;
 using MediaBrowser.WindowsPhone.Model;
+using MediaBrowser.WindowsPhone.Services;
 using ScottIsAFool.WindowsPhone.Logging;
 
 namespace MediaBrowser.WindowsPhone.Extensions
@@ -48,7 +49,7 @@ namespace MediaBrowser.WindowsPhone.Extensions
             var builder = new StreamBuilder();
             var streamInfo = builder.BuildAudioItem(options);
 
-            var streamUrl = streamInfo.ToUrl(apiClient.GetApiUrl("/"));
+            var streamUrl = streamInfo.ToUrl(apiClient.GetApiUrl("/"), apiClient.AccessToken);
 
             var converter = new Converters.ImageUrlConverter();
             return new PlaylistItem
