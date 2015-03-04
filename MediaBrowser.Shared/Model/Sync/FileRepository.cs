@@ -81,9 +81,14 @@ namespace MediaBrowser.WindowsPhone.Model.Sync
             return Path.GetDirectoryName(path);
         }
 
-        public Task<Stream> GetFileStream(string path)
+        public async Task<Stream> GetFileStream(string path)
         {
-            throw new NotImplementedException();
+            if (await _storage.FileExistsAsync(path))
+            {
+                return await _storage.OpenFileForReadAsync(path);
+            }
+
+            return null;
         }
 
         public async Task SaveFile(Stream stream, string path)

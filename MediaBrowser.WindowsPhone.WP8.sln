@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{47317A2D-29F2-4E48-A986-DDDA2467158E}"
 	ProjectSection(SolutionItems) = preProject
@@ -17,8 +17,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaBrowser.Shared8", "MediaBrowser.Shared\MediaBrowser.Shared8.csproj", "{0663D56B-A326-4E58-939B-B20ADEE2C7E7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaBrowser.WindowsPhone.Background", "MediaBrowser.WindowsPhone.Background\MediaBrowser.WindowsPhone.Background.csproj", "{0EE0D99C-5AD8-4C43-8C70-E3BB77226340}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaBrowser.SyncManager", "MediaBrowser.SyncManager\MediaBrowser.SyncManager.csproj", "{CDC2A602-2A3C-468E-9B40-595BF6E5B435}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -125,23 +123,6 @@ Global
 		{0EE0D99C-5AD8-4C43-8C70-E3BB77226340}.Release|x64.ActiveCfg = Release|Any CPU
 		{0EE0D99C-5AD8-4C43-8C70-E3BB77226340}.Release|x86.ActiveCfg = Release|x86
 		{0EE0D99C-5AD8-4C43-8C70-E3BB77226340}.Release|x86.Build.0 = Release|x86
-		{CDC2A602-2A3C-468E-9B40-595BF6E5B435}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CDC2A602-2A3C-468E-9B40-595BF6E5B435}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CDC2A602-2A3C-468E-9B40-595BF6E5B435}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{CDC2A602-2A3C-468E-9B40-595BF6E5B435}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{CDC2A602-2A3C-468E-9B40-595BF6E5B435}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{CDC2A602-2A3C-468E-9B40-595BF6E5B435}.DebugTrial|Any CPU.ActiveCfg = Debug|Any CPU
-		{CDC2A602-2A3C-468E-9B40-595BF6E5B435}.DebugTrial|Any CPU.Build.0 = Debug|Any CPU
-		{CDC2A602-2A3C-468E-9B40-595BF6E5B435}.DebugTrial|ARM.ActiveCfg = Debug|Any CPU
-		{CDC2A602-2A3C-468E-9B40-595BF6E5B435}.DebugTrial|x64.ActiveCfg = Debug|Any CPU
-		{CDC2A602-2A3C-468E-9B40-595BF6E5B435}.DebugTrial|x86.ActiveCfg = Debug|Any CPU
-		{CDC2A602-2A3C-468E-9B40-595BF6E5B435}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CDC2A602-2A3C-468E-9B40-595BF6E5B435}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CDC2A602-2A3C-468E-9B40-595BF6E5B435}.Release|ARM.ActiveCfg = Release|Any CPU
-		{CDC2A602-2A3C-468E-9B40-595BF6E5B435}.Release|ARM.Build.0 = Release|Any CPU
-		{CDC2A602-2A3C-468E-9B40-595BF6E5B435}.Release|x64.ActiveCfg = Release|Any CPU
-		{CDC2A602-2A3C-468E-9B40-595BF6E5B435}.Release|x86.ActiveCfg = Release|Any CPU
-		{CDC2A602-2A3C-468E-9B40-595BF6E5B435}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

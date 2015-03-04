@@ -6,7 +6,6 @@ using MediaBrowser.ApiInteraction;
 using MediaBrowser.Model;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Logging;
-using MediaBrowser.Model.Session;
 using MediaBrowser.WindowsPhone.Model.Connection;
 using MediaBrowser.WindowsPhone.Model.Security;
 using Microsoft.Phone.Info;
@@ -35,17 +34,17 @@ namespace MediaBrowser.WindowsPhone
 
         public static IConnectionManager CreateConnectionManager(IDevice device, ILogger logger)
         {
-            var manager = new ConnectionManager
-                (logger,
-                    new CredentialProvider(),
-                    new NetworkConnection(),
-                    new ServerLocator(),
-                    "Windows Phone 8",
-                    ApplicationManifest.Current.App.Version,
-                    device,
-                    WindowsPhoneCapabilities.App,
-                    new CryptographyProvider(),
-                    () => new WebSocketClient());
+            var manager = new ConnectionManager(
+                logger,
+                new CredentialProvider(),
+                new NetworkConnection(),
+                new ServerLocator(),
+                "Windows Phone 8",
+                ApplicationManifest.Current.App.Version,
+                device,
+                WindowsPhoneCapabilities.App,
+                new CryptographyProvider(),
+                () => new WebSocketClient());
 
             return manager;
         }
