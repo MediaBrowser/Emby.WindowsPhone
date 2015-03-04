@@ -138,13 +138,7 @@ namespace MediaBrowser.WindowsPhone.Model.Sync
                 return;
             }
 
-            if (!await _storageService.FileExistsAsync(ItemsFile))
-            {
-                _items = new List<LocalItem>();
-                return;
-            }
-
-            var json = await _storageService.ReadAllTextAsync(ItemsFile);
+            var json = await _storageService.ReadStringIfFileExists(ItemsFile);
             var items = await json.DeserialiseAsync<List<LocalItem>>();
             _items = items;
         }
@@ -156,20 +150,12 @@ namespace MediaBrowser.WindowsPhone.Model.Sync
                 return;
             }
 
-            await CheckAndCreateDirectory("Cache");
+            await _storageService.CreateDirectoryIfNotThere("Cache");
 
             var json = await _items.SerialiseAsync();
             await _storageService.WriteAllTextAsync(ItemsFile, json);
         }
-
-        private async Task CheckAndCreateDirectory(string path)
-        {
-            if (!await _storageService.DirectoryExistsAsync(path))
-            {
-                await _storageService.CreateDirectoryAsync(path);
-            }
-        }
-
+        
         private async Task<List<LocalItem>> GetItemsInternal(Func<LocalItem, bool> func)
         {
             await LoadItems();

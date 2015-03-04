@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Cimbalino.Phone.Toolkit.Extensions;
 using Cimbalino.Phone.Toolkit.Services;
 using MediaBrowser.ApiInteraction.Data;
+using MediaBrowser.WindowsPhone.Extensions;
 
 namespace MediaBrowser.WindowsPhone.Model.Sync
 {
@@ -32,12 +33,7 @@ namespace MediaBrowser.WindowsPhone.Model.Sync
             var itemCacheFolder = GetItemCachePath(itemId);
 
             var imageFile = GetItemImagePath(itemCacheFolder, imageId);
-            if (!await _storageService.FileExistsAsync(imageFile))
-            {
-                return await _storageService.OpenFileForReadAsync(imageFile);
-            }
-
-            return null;
+            return await _storageService.OpenFileIfExists(imageFile);
         }
 
         public async Task DeleteImage(string itemId, string imageId)
@@ -45,10 +41,7 @@ namespace MediaBrowser.WindowsPhone.Model.Sync
             var itemCacheFolder = GetItemCachePath(itemId);
 
             var imageFile = GetItemImagePath(itemCacheFolder, imageId);
-            if (!await _storageService.FileExistsAsync(imageFile))
-            {
-                await _storageService.DeleteFileAsync(imageFile);
-            }
+            await _storageService.DeleteFileIfExists(imageFile);
         }
 
         public async Task<bool> HasImage(string itemId, string imageId)
@@ -63,10 +56,7 @@ namespace MediaBrowser.WindowsPhone.Model.Sync
         {
             var itemCacheFolder = GetItemCachePath(itemId);
 
-            if (!await _storageService.DirectoryExistsAsync(itemCacheFolder))
-            {
-                await _storageService.DeleteDirectoryAsync(itemCacheFolder);
-            }
+            await _storageService.DeleteDirectoryIfExists(itemCacheFolder);
         }
 
         private static string GetItemCachePath(string itemId)
@@ -81,20 +71,12 @@ namespace MediaBrowser.WindowsPhone.Model.Sync
 
         private async Task CheckAndCreateCacheFolder(string path = null)
         {
-            await CheckAndCreateDirectory("Cache");
-            await CheckAndCreateDirectory(ImageCachePath);
+            await _storageService.CreateDirectoryIfNotThere("Cache");
+            await _storageService.CreateDirectoryIfNotThere(ImageCachePath);
 
             if (!string.IsNullOrEmpty(path))
             {
-                await CheckAndCreateDirectory(path);
-            }
-        }
-
-        private async Task CheckAndCreateDirectory(string path)
-        {
-            if (!await _storageService.DirectoryExistsAsync(path))
-            {
-                await _storageService.CreateDirectoryAsync(path);
+                await _storageService.CreateDirectoryIfNotThere(path);
             }
         }
     }

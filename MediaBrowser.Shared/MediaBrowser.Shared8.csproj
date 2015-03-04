@@ -194,6 +194,7 @@
     <Compile Include="Design\ApplicationSettingsDesignService.cs" />
     <Compile Include="Design\StorageDesignService.cs" />
     <Compile Include="Extensions\SerialisationExtensions.cs" />
+    <Compile Include="Extensions\StorageServiceExtensions.cs" />
     <Compile Include="History.cs" />
     <Compile Include="Logging\MBLogger.cs" />
     <Compile Include="Model\ConnectionDetails.cs" />

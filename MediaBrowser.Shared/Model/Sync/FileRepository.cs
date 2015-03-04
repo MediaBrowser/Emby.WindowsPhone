@@ -9,6 +9,7 @@ using Cimbalino.Phone.Toolkit.Extensions;
 using Cimbalino.Phone.Toolkit.Services;
 using MediaBrowser.ApiInteraction.Data;
 using MediaBrowser.Model.Sync;
+using MediaBrowser.WindowsPhone.Extensions;
 
 namespace MediaBrowser.WindowsPhone.Model.Sync
 {
@@ -83,12 +84,7 @@ namespace MediaBrowser.WindowsPhone.Model.Sync
 
         public async Task<Stream> GetFileStream(string path)
         {
-            if (await _storage.FileExistsAsync(path))
-            {
-                return await _storage.OpenFileForReadAsync(path);
-            }
-
-            return null;
+            return await _storage.OpenFileIfExists(path);
         }
 
         public async Task SaveFile(Stream stream, string path)
