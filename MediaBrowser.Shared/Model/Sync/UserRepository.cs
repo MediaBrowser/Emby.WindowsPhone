@@ -21,9 +21,19 @@ namespace MediaBrowser.WindowsPhone.Model.Sync
         {
             _storageService = storageService;
         }
-        public Task AddOrUpdate(string id, UserDto user)
+        public async Task AddOrUpdate(string id, UserDto user)
         {
-            throw new NotImplementedException();
+            var item = await GetItemInternal(x => x.Id == id);
+            if (item == null)
+            {
+                _items.Add(user);
+            }
+            else
+            {
+                user.CopyItem(item);
+            }
+
+            await SaveItems();
         }
 
         public async Task Delete(string id)
