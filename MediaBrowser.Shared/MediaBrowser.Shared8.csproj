@@ -126,13 +126,8 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Cimbalino.Phone.Toolkit.Background, Version=3.2.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Cimbalino.Phone.Toolkit.Background.3.2.3\lib\wp8\Cimbalino.Phone.Toolkit.Background.dll</HintPath>
-    </Reference>
-    <Reference Include="Cimbalino.Phone.Toolkit.DeviceInfo, Version=3.2.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Cimbalino.Phone.Toolkit.DeviceInfo.3.2.3\lib\wp8\Cimbalino.Phone.Toolkit.DeviceInfo.dll</HintPath>
+    <Reference Include="Cimbalino.Toolkit.Core">
+      <HintPath>..\packages\Cimbalino.Toolkit.Core.1.2.4\lib\wp8\Cimbalino.Toolkit.Core.dll</HintPath>
     </Reference>
     <Reference Include="GalaSoft.MvvmLight">
       <HintPath>..\packages\MvvmLightLibs.5.0.0.0\lib\wp8\GalaSoft.MvvmLight.dll</HintPath>
@@ -171,6 +166,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\ScottIsAFool.WindowsPhone.Background.1.0.18.11\lib\wp8\ScottIsAFool.WindowsPhone.Background.dll</HintPath>
     </Reference>
+    <Reference Include="System.IO.Compression">
+      <HintPath>..\packages\Microsoft.Bcl.Compression.3.9.83\lib\wp8\System.IO.Compression.dll</HintPath>
+    </Reference>
     <Reference Include="System.Net.Http, Version=1.5.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\sl4-windowsphone71\System.Net.Http.dll</HintPath>
     </Reference>
@@ -191,9 +189,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cimbalino\Tiles\IShellTileService.cs" />
+    <Compile Include="Cimbalino\Tiles\IShellTileServiceTile.cs" />
+    <Compile Include="Cimbalino\Tiles\IShellTileServiceTileData.cs" />
+    <Compile Include="Cimbalino\Tiles\ShellTileService.cs" />
+    <Compile Include="Cimbalino\Tiles\ShellTileServiceCycleTileData.cs" />
+    <Compile Include="Cimbalino\Tiles\ShellTileServiceFlipTileData.cs" />
+    <Compile Include="Cimbalino\Tiles\ShellTileServiceIconicTileData.cs" />
+    <Compile Include="Cimbalino\Tiles\ShellTileServiceStandardTileData.cs" />
+    <Compile Include="Cimbalino\Tiles\ShellTileServiceTile.cs" />
+    <Compile Include="Cimbalino\Tiles\ShellTileServiceTileDataBase.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Design\ApplicationSettingsDesignService.cs" />
     <Compile Include="Design\StorageDesignService.cs" />
+    <Compile Include="Extensions\UriExtensions.cs" />
     <Compile Include="History.cs" />
     <Compile Include="Logging\MBLogger.cs" />
     <Compile Include="Model\ConnectionDetails.cs" />
@@ -224,6 +233,7 @@
   <ItemGroup>
     <Content Include="FodyWeavers.xml" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
   <ProjectExtensions />
@@ -237,6 +247,11 @@
   </Target>
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
   <Import Project="..\packages\Fody.1.27.1\build\Fody.targets" Condition="Exists('..\packages\Fody.1.27.1\build\Fody.targets')" />
+  <Import Project="..\packages\Microsoft.Bcl.Compression.3.9.83\tools\Microsoft.Bcl.Compression.targets" Condition="Exists('..\packages\Microsoft.Bcl.Compression.3.9.83\tools\Microsoft.Bcl.Compression.targets')" />
+  <Target Name="EnsureBclCompressionImported" BeforeTargets="BeforeBuild" Condition="'$(BclCompressionImported)' == ''">
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Compression.3.9.83\tools\Microsoft.Bcl.Compression.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
+    <Error Condition="Exists('..\packages\Microsoft.Bcl.Compression.3.9.83\tools\Microsoft.Bcl.Compression.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2002" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

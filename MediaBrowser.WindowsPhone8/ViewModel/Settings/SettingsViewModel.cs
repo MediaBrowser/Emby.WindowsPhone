@@ -7,7 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using Cimbalino.Phone.Toolkit.Services;
+using Cimbalino.Toolkit.Services;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Ioc;
 using JetBrains.Annotations;
@@ -32,7 +32,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Settings
     /// </summary>
     public class SettingsViewModel : ViewModelBase
     {
-        private readonly IApplicationSettingsService _applicationSettings;
+        private readonly IApplicationSettingsServiceHandler _applicationSettings;
         private readonly IMessageBoxService _messageBox;
 
         public bool LoadingFromSettings;
@@ -45,7 +45,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Settings
         public SettingsViewModel(IConnectionManager connectionManager, INavigationService navigationService, IApplicationSettingsService applicationSettings, IMessageBoxService messageBox)
             : base(navigationService, connectionManager)
         {
-            _applicationSettings = applicationSettings;
+            _applicationSettings = applicationSettings.Legacy;
             _messageBox = messageBox;
 
             if (IsInDesignMode)

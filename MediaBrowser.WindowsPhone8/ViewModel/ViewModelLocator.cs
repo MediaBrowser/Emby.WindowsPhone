@@ -1,6 +1,5 @@
 ﻿using Cimbalino.Phone.Toolkit.Services;
 using GalaSoft.MvvmLight.Ioc;
-using MediaBrowser.Design;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.WindowsPhone.Design;
 using MediaBrowser.WindowsPhone.Logging;

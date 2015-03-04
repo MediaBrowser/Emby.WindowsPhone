@@ -4,7 +4,6 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
-using Cimbalino.Phone.Toolkit.Services;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model.ApiClient;
@@ -28,7 +27,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         /// <summary>
         /// Initializes a new instance of the ChooseProfileViewModel class.
         /// </summary>
-        public ChooseProfileViewModel(IConnectionManager connectionManager, INavigationService navigationService, IApplicationSettingsService applicationSettings)
+        public ChooseProfileViewModel(IConnectionManager connectionManager, INavigationService navigationService)
             : base(navigationService, connectionManager)
         {
             Profiles = new ObservableCollection<UserDto>();

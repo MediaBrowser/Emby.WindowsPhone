@@ -2,7 +2,7 @@
 using System.Net;
 using System.Threading.Tasks;
 using System.Windows;
-using Cimbalino.Phone.Toolkit.Services;
+using Cimbalino.Toolkit.Services;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Connect;
@@ -19,7 +19,7 @@ namespace MediaBrowser.WindowsPhone.Services
     public class AuthenticationService
     {
         private readonly IConnectionManager _connectionManager;
-        private IApplicationSettingsService _settingsService;
+        private IApplicationSettingsServiceHandler _settingsService;
         private static ILog _logger;
 
         public AuthenticationResult AuthenticationResult { get; set; }
@@ -67,7 +67,7 @@ namespace MediaBrowser.WindowsPhone.Services
 
         public void Start()
         {
-            _settingsService = new ApplicationSettingsService();
+            _settingsService = new ApplicationSettingsService().Legacy;
             CheckIfUserSignedIn();
         }
 
@@ -99,7 +99,6 @@ namespace MediaBrowser.WindowsPhone.Services
 
                 AuthenticationResult = result;
                 _settingsService.Set(Constants.Settings.AuthUserSetting, AuthenticationResult);
-                _settingsService.Save();
 
                 SetUser(result.User);
                 _logger.Info("User [{0}] has been saved", selectedUserName);
@@ -122,8 +121,7 @@ namespace MediaBrowser.WindowsPhone.Services
         public void ClearLoggedInUser()
         {
             LoggedInUser = null;
-            _settingsService.Reset(Constants.Settings.SelectedUserSetting);
-            _settingsService.Save();
+            _settingsService.Remove(Constants.Settings.SelectedUserSetting);
         }
 
         public async Task SignOut()
@@ -145,10 +143,9 @@ namespace MediaBrowser.WindowsPhone.Services
             AuthenticationResult = null;
             Messenger.Default.Send(new NotificationMessage(Constants.Messages.ClearNowPlayingMsg));
 
-            _settingsService.Reset(Constants.Settings.SelectedUserSetting);
-            _settingsService.Reset(Constants.Settings.AuthUserSetting);
-            _settingsService.Reset(Constants.Settings.DefaultServerConnection);
-            _settingsService.Save();
+            _settingsService.Remove(Constants.Settings.SelectedUserSetting);
+            _settingsService.Remove(Constants.Settings.AuthUserSetting);
+            _settingsService.Remove(Constants.Settings.DefaultServerConnection);
         }
 
         public UserDto LoggedInUser { get; private set; }
@@ -193,7 +190,6 @@ namespace MediaBrowser.WindowsPhone.Services
             LoggedInUser = user;
 
             _settingsService.Set(Constants.Settings.SelectedUserSetting, LoggedInUser);
-            _settingsService.Save();
         }
     }
 }

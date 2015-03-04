@@ -1,5 +1,5 @@
 ﻿using System.Threading;
-using Cimbalino.Phone.Toolkit.Services;
+using Cimbalino.Toolkit.Services;
 using GalaSoft.MvvmLight.Command;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Net;
@@ -17,7 +17,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Settings
     /// </summary>
     public class MbConnectViewModel : ViewModelBase
     {
-        private readonly IApplicationSettingsService _appSettings;
+        private readonly IApplicationSettingsServiceHandler _appSettings;
 
         /// <summary>
         /// Initializes a new instance of the MbConnectViewModel class.
@@ -25,7 +25,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Settings
         public MbConnectViewModel(INavigationService navigationService, IConnectionManager connectionManager, IApplicationSettingsService appSettings)
             : base(navigationService, connectionManager)
         {
-            _appSettings = appSettings;
+            _appSettings = appSettings.Legacy;
         }
 
         public string Username { get; set; }

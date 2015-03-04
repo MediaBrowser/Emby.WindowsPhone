@@ -19,8 +19,9 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using Cimbalino.Phone.Toolkit.Behaviors;
-using Cimbalino.Phone.Toolkit.Extensions;
+using System.Windows.Interactivity;
+using Cimbalino.Toolkit.Behaviors;
+using Cimbalino.Toolkit.Extensions;
 using Telerik.Windows.Controls;
 
 namespace MediaBrowser.WindowsPhone.Behaviours
@@ -28,7 +29,7 @@ namespace MediaBrowser.WindowsPhone.Behaviours
     /// <summary>
     /// The behavior that enables automatic control focus.
     /// </summary>
-    public class MbAutoFocusBehaviour : SafeBehavior<FrameworkElement>
+    public class MbAutoFocusBehaviour : Behavior<FrameworkElement>
     {
         /// <summary>
         /// Occurs when the focus automatically moves from one control to the next.
@@ -46,14 +47,10 @@ namespace MediaBrowser.WindowsPhone.Behaviours
             base.OnAttached();
         }
 
-        /// <summary>
-        /// Releases all resources used by this instance.
-        /// </summary>
-        protected override void CleanUp()
+        protected override void OnDetaching()
         {
             AssociatedObject.KeyUp -= AssociatedObjectKeyUp;
-
-            base.CleanUp();
+            base.OnDetaching();
         }
 
         /// <summary>
