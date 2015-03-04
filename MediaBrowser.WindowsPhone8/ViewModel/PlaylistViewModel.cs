@@ -8,6 +8,7 @@ using System.Windows.Threading;
 using Cimbalino.Phone.Toolkit.Services;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
+using GalaSoft.MvvmLight.Threading;
 using JetBrains.Annotations;
 using MediaBrowser.Model;
 using MediaBrowser.Model.ApiClient;
@@ -27,7 +28,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     /// See http://www.galasoft.ch/mvvm
     /// </para>
     /// </summary>
-    public class PlaylistViewModel : ViewModelBase
+    public class NowPlayingViewModel : ViewModelBase
     {
         private readonly PlaylistHelper _playlistHelper;
         private readonly DispatcherTimer _playlistChecker;
@@ -37,7 +38,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         /// <summary>
         /// Initializes a new instance of the PlaylistViewModel class.
         /// </summary>
-        public PlaylistViewModel(INavigationService navigationService, IConnectionManager connectionManager, IStorageService storageService)
+        public NowPlayingViewModel(INavigationService navigationService, IConnectionManager connectionManager, IStorageService storageService)
             :base (navigationService, connectionManager)
         {
             _playlistChecker = new DispatcherTimer { Interval = new TimeSpan(0, 0, 3) };
@@ -261,6 +262,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             Position = BackgroundAudioPlayer.Instance.Position;
         }
 
+        private AudioTrack _previousTrack;
         private void OnPlayStateChanged(object sender, EventArgs e)
         {
             try
@@ -369,6 +371,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             var nowPlaying = playlist.PlaylistItems.FirstOrDefault(x => x.IsPlaying);
             NowPlayingItem = nowPlaying;
+
+            if (DispatcherHelper.UIDispatcher != null)
+            {
+                DispatcherHelper.CheckBeginInvokeOnUI(() => RaisePropertyChanged(() => PlayedPercentage));
+            }
         }
 
         [UsedImplicitly]
