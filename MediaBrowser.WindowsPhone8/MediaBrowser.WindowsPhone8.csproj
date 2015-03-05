@@ -131,8 +131,8 @@
     <Compile Include="Behaviours\MBSysTray.cs" />
     <Compile Include="Behaviours\OnTextPropertyChangedBehaviour.cs" />
     <Compile Include="Behaviours\PanoramaBackgroundBehaviour.cs" />
-    <Compile Include="Cimbalino\LockScreenService.cs" />
-    <Compile Include="Cimbalino\Tiles\ShellTileWithCreateService.cs" />
+    <Compile Include="CimbalinoToolkit\LockScreenService.cs" />
+    <Compile Include="CimbalinoToolkit\Tiles\ShellTileWithCreateService.cs" />
     <Compile Include="Controls\CustomButton.cs" />
     <Compile Include="Controls\CustomHyperlinkButton.cs" />
     <Compile Include="Controls\NowPlayingBar.cs" />
@@ -234,6 +234,7 @@
     <Compile Include="Model\Streaming\TranscodeSetting480p.cs" />
     <Compile Include="Model\Streaming\TranscodeSetting720p.cs" />
     <Compile Include="Model\Streaming\TranscodeSettingCopy.cs" />
+    <Compile Include="Model\WindowsPhoneProfile.cs" />
     <Compile Include="Services\BackgroundTaskService.cs" />
     <Compile Include="Services\NavigationService.cs" />
     <Compile Include="Model\PlayerSourceType.cs" />

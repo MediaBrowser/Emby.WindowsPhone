@@ -127,11 +127,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 {
                     App.ServerInfo = server;
                     _applicationSettings.Set(Constants.Settings.DefaultServerConnection, server);
-                    _applicationSettings.Save();
 
                     _savedServer = server;
 
-                    _applicationSettings.Reset(Constants.Settings.ConnectionSettings);
+                    _applicationSettings.Remove(Constants.Settings.ConnectionSettings);
                     _connectionDetails = null;
                 }
             }

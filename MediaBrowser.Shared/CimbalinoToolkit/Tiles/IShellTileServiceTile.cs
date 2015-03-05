@@ -15,7 +15,7 @@
 
 using System;
 
-namespace Cimbalino.Phone.Toolkit.Services
+namespace MediaBrowser.WindowsPhone.CimbalinoToolkit.Tiles
 {
     /// <summary>
     /// Represents an object capable of managing a Tile for an application.

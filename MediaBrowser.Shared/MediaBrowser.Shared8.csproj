@@ -189,16 +189,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cimbalino\Tiles\IShellTileService.cs" />
-    <Compile Include="Cimbalino\Tiles\IShellTileServiceTile.cs" />
-    <Compile Include="Cimbalino\Tiles\IShellTileServiceTileData.cs" />
-    <Compile Include="Cimbalino\Tiles\ShellTileService.cs" />
-    <Compile Include="Cimbalino\Tiles\ShellTileServiceCycleTileData.cs" />
-    <Compile Include="Cimbalino\Tiles\ShellTileServiceFlipTileData.cs" />
-    <Compile Include="Cimbalino\Tiles\ShellTileServiceIconicTileData.cs" />
-    <Compile Include="Cimbalino\Tiles\ShellTileServiceStandardTileData.cs" />
-    <Compile Include="Cimbalino\Tiles\ShellTileServiceTile.cs" />
-    <Compile Include="Cimbalino\Tiles\ShellTileServiceTileDataBase.cs" />
+    <Compile Include="CimbalinoToolkit\DeviceExtendedInfoService.cs" />
+    <Compile Include="CimbalinoToolkit\Tiles\IShellTileService.cs" />
+    <Compile Include="CimbalinoToolkit\Tiles\IShellTileServiceTile.cs" />
+    <Compile Include="CimbalinoToolkit\Tiles\IShellTileServiceTileData.cs" />
+    <Compile Include="CimbalinoToolkit\Tiles\ShellTileService.cs" />
+    <Compile Include="CimbalinoToolkit\Tiles\ShellTileServiceCycleTileData.cs" />
+    <Compile Include="CimbalinoToolkit\Tiles\ShellTileServiceFlipTileData.cs" />
+    <Compile Include="CimbalinoToolkit\Tiles\ShellTileServiceIconicTileData.cs" />
+    <Compile Include="CimbalinoToolkit\Tiles\ShellTileServiceStandardTileData.cs" />
+    <Compile Include="CimbalinoToolkit\Tiles\ShellTileServiceTile.cs" />
+    <Compile Include="CimbalinoToolkit\Tiles\ShellTileServiceTileDataBase.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Design\ApplicationSettingsDesignService.cs" />
     <Compile Include="Design\StorageDesignService.cs" />
@@ -218,7 +219,6 @@
     <Compile Include="Model\PlaylistItem.cs" />
     <Compile Include="Model\Security\CryptographyProvider.cs" />
     <Compile Include="Model\SettingsService.cs" />
-    <Compile Include="Model\WindowsPhoneProfile.cs" />
     <Compile Include="PhoneNameResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RequestResult.cs" />

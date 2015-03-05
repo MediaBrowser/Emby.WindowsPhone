@@ -17,7 +17,7 @@ using System;
 using System.Threading.Tasks;
 using Windows.Phone.System.UserProfile;
 
-namespace Cimbalino.Toolkit.Services
+namespace MediaBrowser.WindowsPhone.CimbalinoToolkit
 {
     /// <summary>
     /// Indicates if the app was successfully or unsuccessfully set as the lock screen background provider.

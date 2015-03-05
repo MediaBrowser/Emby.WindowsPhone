@@ -8,7 +8,7 @@
                 xmlns:mb="clr-namespace:MediaBrowser.WindowsPhone.Controls"
                 xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
                 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-                xmlns:behaviors="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
+                xmlns:behaviors="clr-namespace:Cimbalino.Toolkit.Behaviors;assembly=Cimbalino.Toolkit"
                 xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
                 xmlns:scottBehaviours="clr-namespace:ScottIsAFool.WindowsPhone.Behaviours;assembly=ScottIsAFool.WindowsPhone"
                 FontFamily="{StaticResource PhoneFontFamilyNormal}"

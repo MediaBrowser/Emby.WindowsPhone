@@ -1,5 +1,5 @@
 ﻿// ****************************************************************************
-// <copyright file="ShellTileServiceTileDataBase.cs" company="Pedro Lamas">
+// <copyright file="IShellTileServiceTileData.cs" company="Pedro Lamas">
 // Copyright © Pedro Lamas 2013
 // </copyright>
 // ****************************************************************************
@@ -13,25 +13,17 @@
 // </license>
 // ****************************************************************************
 
-using Microsoft.Phone.Shell;
-
-namespace Cimbalino.Phone.Toolkit.Services
+namespace MediaBrowser.WindowsPhone.CimbalinoToolkit.Tiles
 {
     /// <summary>
-    /// Represents an implementation of the <see cref="IShellTileServiceTileData"/>.
+    /// Represents an object capable of handling tile data.
     /// </summary>
-    public abstract class ShellTileServiceTileDataBase : IShellTileServiceTileData
+    public interface IShellTileServiceTileData
     {
-        #region Properties
-
         /// <summary>
         /// Gets or sets the text to display in the tile.
         /// </summary>
         /// <value>The text to display in the tile.</value>
-        public string Title { get; set; }
-
-        #endregion
-
-        internal abstract ShellTileData ToShellTileData();
+        string Title { get; set; }
     }
 }

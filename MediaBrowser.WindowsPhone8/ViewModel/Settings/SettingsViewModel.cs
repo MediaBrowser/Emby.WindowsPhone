@@ -13,6 +13,7 @@ using GalaSoft.MvvmLight.Ioc;
 using JetBrains.Annotations;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Dto;
+using MediaBrowser.WindowsPhone.CimbalinoToolkit;
 using MediaBrowser.WindowsPhone.Extensions;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Model.Connection;
@@ -182,7 +183,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Settings
             if (result == 0)
             {
                 _applicationSettings.Set(Constants.Settings.SpecificSettings, App.SpecificSettings);
-                _applicationSettings.Save();
 
                 Application.Current.Terminate();
             }
@@ -404,7 +404,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Settings
         {
             App.ServerInfo = server;
             _applicationSettings.Set(Constants.Settings.DefaultServerConnection, server);
-            _applicationSettings.Save();
         }
 
         public RelayCommand GoToMbConnectProfileCommand

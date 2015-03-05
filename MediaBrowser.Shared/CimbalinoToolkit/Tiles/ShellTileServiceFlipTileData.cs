@@ -14,12 +14,9 @@
 // ****************************************************************************
 
 using System;
-#if !WP8
-using Cimbalino.Phone.Toolkit.Extensions;
-#endif
 using Microsoft.Phone.Shell;
 
-namespace Cimbalino.Phone.Toolkit.Services
+namespace MediaBrowser.WindowsPhone.CimbalinoToolkit.Tiles
 {
     /// <summary>
     /// Describes a Tile template that flips from the front to the back side. Allows customization of the background image and text for both the front and back Tile.
@@ -54,9 +51,8 @@ namespace Cimbalino.Phone.Toolkit.Services
 
         #endregion
 
-        internal override ShellTileData ToShellTileData()
+        public override ShellTileData ToShellTileData()
         {
-#if WP8
             return new FlipTileData()
             {
                 Title = Title,
@@ -70,29 +66,6 @@ namespace Cimbalino.Phone.Toolkit.Services
                 WideBackContent = WideBackContent,
                 WideBackgroundImage = WideBackgroundImage
             };
-#else
-            if (!ShellTileService.LiveTilesSupportedStatic)
-            {
-                return base.ToShellTileData();
-            }
-
-            var flipTileDataType = Type.GetType("Microsoft.Phone.Shell.FlipTileData, Microsoft.Phone");
-
-            var flipTileData = (StandardTileData)flipTileDataType.GetConstructor(new Type[] { }).Invoke(null);
-
-            flipTileData.Title = Title;
-            flipTileData.BackBackgroundImage = BackBackgroundImage;
-            flipTileData.BackContent = BackContent;
-            flipTileData.BackgroundImage = BackgroundImage;
-            flipTileData.BackTitle = BackTitle;
-            flipTileData.Count = Count;
-            flipTileData.SetPropertyValue("SmallBackgroundImage", SmallBackgroundImage);
-            flipTileData.SetPropertyValue("WideBackgroundImage", WideBackgroundImage);
-            flipTileData.SetPropertyValue("WideBackBackgroundImage", WideBackBackgroundImage);
-            flipTileData.SetPropertyValue("WideBackContent", WideBackContent);
-
-            return flipTileData;
-#endif
         }
     }
 }

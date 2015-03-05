@@ -15,13 +15,9 @@
 
 using System;
 using System.Collections.Generic;
-#if !WP8
-using System.Linq;
-using Cimbalino.Phone.Toolkit.Extensions;
-#endif
 using Microsoft.Phone.Shell;
 
-namespace Cimbalino.Phone.Toolkit.Services
+namespace MediaBrowser.WindowsPhone.CimbalinoToolkit.Tiles
 {
     /// <summary>
     /// Describes a Tile template that cycles between 1 to 9 background images.
@@ -50,9 +46,8 @@ namespace Cimbalino.Phone.Toolkit.Services
 
         #endregion
 
-        internal override ShellTileData ToShellTileData()
+        public override ShellTileData ToShellTileData()
         {
-#if WP8
             return new CycleTileData()
             {
                 Title = Title,
@@ -60,28 +55,6 @@ namespace Cimbalino.Phone.Toolkit.Services
                 CycleImages = CycleImages,
                 SmallBackgroundImage = SmallBackgroundImage
             };
-#else
-            if (!ShellTileService.LiveTilesSupportedStatic)
-            {
-                return new StandardTileData()
-                {
-                    Title = Title,
-                    Count = Count,
-                    BackgroundImage = CycleImages.FirstOrDefault()
-                };
-            }
-
-            var flipTileDataType = Type.GetType("Microsoft.Phone.Shell.CycleTileData, Microsoft.Phone");
-
-            var flipTileData = (ShellTileData)flipTileDataType.GetConstructor(new Type[] { }).Invoke(null);
-
-            flipTileData.Title = Title;
-            flipTileData.SetPropertyValue("Count", Count);
-            flipTileData.SetPropertyValue("SmallBackgroundImage", SmallBackgroundImage);
-            flipTileData.SetPropertyValue("CycleImages", CycleImages);
-
-            return flipTileData;
-#endif
         }
     }
 }

@@ -19,7 +19,7 @@ using MediaBrowser.Model.ApiClient;
 
 namespace MediaBrowser.WindowsPhone.Services
 {
-    public class LockScreenService : Cimbalino.Toolkit.Services.LockScreenService
+    public class LockScreenService : CimbalinoToolkit.LockScreenService
     {
         private readonly IConnectionManager _connectionManager;
         private const string LockScreenImageUrlNormal = "ms-appdata:///Local/shared/shellcontent/MBWallpaper.png";

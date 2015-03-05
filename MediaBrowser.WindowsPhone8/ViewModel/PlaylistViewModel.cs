@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
-using Cimbalino.Phone.Toolkit.Services;
+using Cimbalino.Toolkit.Services;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using GalaSoft.MvvmLight.Threading;
@@ -356,9 +357,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
         }
 
-        private void GetPlaylistItems()
+        private async Task GetPlaylistItems()
         {
-            var playlist = _playlistHelper.GetPlaylist();
+            var playlist = await _playlistHelper.GetPlaylist();
 
             if (playlist == null || playlist.ModifiedDate == _lastReadDate) return;
 
@@ -379,16 +380,16 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         }
 
         [UsedImplicitly]
-        private void OnIsShuffledChanged()
+        private async void OnIsShuffledChanged()
         {
-            if (_playlistHelper.RandomiseTrackNumbers(IsShuffled))
-                GetPlaylistItems();
+            if (await _playlistHelper.RandomiseTrackNumbers(IsShuffled))
+                await GetPlaylistItems();
         }
 
         [UsedImplicitly]
-        private void OnIsOnRepeatChanged()
+        private async void OnIsOnRepeatChanged()
         {
-            _playlistHelper.SetRepeat(IsOnRepeat);
+            await _playlistHelper.SetRepeat(IsOnRepeat);
         }
 
         #endregion

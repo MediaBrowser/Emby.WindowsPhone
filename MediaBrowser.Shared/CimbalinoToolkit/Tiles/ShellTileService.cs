@@ -18,17 +18,13 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Phone.Shell;
 
-namespace Cimbalino.Phone.Toolkit.Services
+namespace MediaBrowser.WindowsPhone.CimbalinoToolkit.Tiles
 {
     /// <summary>
     /// Represents an implementation of the <see cref="IShellTileService"/>.
     /// </summary>
     public class ShellTileService : IShellTileService
     {
-#if !WP8
-        internal static readonly bool LiveTilesSupportedStatic = Environment.OSVersion.Version >= new Version(7, 10, 8858);
-#endif
-
         /// <summary>
         /// Gets a value indicating whether live tiles are supported.
         /// </summary>
@@ -37,11 +33,7 @@ namespace Cimbalino.Phone.Toolkit.Services
         {
             get
             {
-#if !WP8
-                return LiveTilesSupportedStatic;
-#else
                 return true;
-#endif
             }
         }
 

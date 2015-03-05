@@ -7,11 +7,9 @@
              xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
              xmlns:vm="clr-namespace:MediaBrowser.WindowsPhone.ViewModel"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
-             xmlns:windowsPhone="clr-namespace:MediaBrowser.WindowsPhone"
              xmlns:model="clr-namespace:MediaBrowser.Model;assembly=MediaBrowser.Shared"
              xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
              xmlns:controls="clr-namespace:MediaBrowser.WindowsPhone.Controls"
-             xmlns:converters="clr-namespace:Cimbalino.Phone.Toolkit.Converters;assembly=Cimbalino.Phone.Toolkit"
              xmlns:model1="clr-namespace:MediaBrowser.WindowsPhone.Model">
     <!--Application Resources-->
     <Application.Resources>

@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
-using Cimbalino.Phone.Toolkit.Services;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.LiveTv;
 using MediaBrowser.Model.Net;
+using MediaBrowser.WindowsPhone.CimbalinoToolkit.Tiles;
 using MediaBrowser.WindowsPhone.Resources;
 using MediaBrowser.WindowsPhone.Services;
 

@@ -1,4 +1,4 @@
-﻿using Cimbalino.Phone.Toolkit.Services;
+﻿using Cimbalino.Toolkit.Services;
 using GalaSoft.MvvmLight.Ioc;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.WindowsPhone.Design;
@@ -63,18 +63,15 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                 if(!SimpleIoc.Default.IsRegistered<IConnectionManager>())
                     SimpleIoc.Default.Register(() => SharedUtils.CreateConnectionManager(device, new MBLogger()));
-
-                if (!SimpleIoc.Default.IsRegistered<IUserExtendedPropertiesService>())
-                    SimpleIoc.Default.Register<IUserExtendedPropertiesService, UserExtendedPropertiesService>();
-
+                
                 if (!SimpleIoc.Default.IsRegistered<IApplicationSettingsService>())
                     SimpleIoc.Default.Register<IApplicationSettingsService, ApplicationSettingsService>();
 
                 if (!SimpleIoc.Default.IsRegistered<IStorageService>())
                     SimpleIoc.Default.Register<IStorageService, StorageService>();
 
-                if (!SimpleIoc.Default.IsRegistered<IAsyncStorageService>())
-                    SimpleIoc.Default.Register<IAsyncStorageService, AsyncStorageService>();
+                if (!SimpleIoc.Default.IsRegistered<IStorageService>())
+                    SimpleIoc.Default.Register<IStorageService, StorageService>();
 
                 if(!SimpleIoc.Default.IsRegistered<AuthenticationService>())
                     SimpleIoc.Default.Register<AuthenticationService>(true);

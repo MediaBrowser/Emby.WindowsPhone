@@ -3,11 +3,11 @@
                     xmlns:controls="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
                     xmlns:scottConverters="clr-namespace:ScottIsAFool.WindowsPhone.Converters;assembly=ScottIsAFool.WindowsPhone"
                     xmlns:converters="clr-namespace:MediaBrowser.WindowsPhone.Converters"
-                    xmlns:cimbalino="clr-namespace:Cimbalino.Phone.Toolkit.Converters;assembly=Cimbalino.Phone.Toolkit"
                     xmlns:progress="clr-namespace:MediaBrowser.WindowsPhone.Progress"
                     xmlns:local="clr-namespace:MediaBrowser.WindowsPhone.Controls"
                     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
-                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+                    xmlns:system="clr-namespace:System;assembly=mscorlib"
+                    xmlns:cimbalinoConverters="clr-namespace:Cimbalino.Toolkit.Converters;assembly=Cimbalino.Toolkit">
     <!-- Resource dictionary entries should be defined here. -->
 
     <Color x:Key="MediaBrowserBackgroundColor">#2F2F2F</Color>
@@ -41,9 +41,9 @@
                                              Inverted="True"/>
 
     <!--Cimbalino Converters-->
-    <cimbalino:StringToUppercaseConverter x:Key="StringToUppercaseConverter" />
+    <cimbalinoConverters:StringToUppercaseConverter x:Key="StringToUppercaseConverter" />
     <converters:StringToLowercaseConverter x:Key="StringToLowercaseConverter" />
-    <cimbalino:NegativeBooleanConverter x:Key="NegativeBooleanConverter" />
+    <cimbalinoConverters:NegativeBooleanConverter x:Key="NegativeBooleanConverter" />
 
     <!-- Local Converters -->
     <converters:ImageUrlConverter x:Key="ImageUrlConverter" />

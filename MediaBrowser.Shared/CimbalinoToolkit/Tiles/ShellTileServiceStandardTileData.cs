@@ -16,7 +16,7 @@
 using System;
 using Microsoft.Phone.Shell;
 
-namespace Cimbalino.Phone.Toolkit.Services
+namespace MediaBrowser.WindowsPhone.CimbalinoToolkit.Tiles
 {
     /// <summary>
     /// Data for a tile pinned to Start. Tiles have a ‘front’ and ‘back’ to them and this class holds all this data.
@@ -57,7 +57,7 @@ namespace Cimbalino.Phone.Toolkit.Services
 
         #endregion
 
-        internal override ShellTileData ToShellTileData()
+        public override ShellTileData ToShellTileData()
         {
             return new StandardTileData()
             {

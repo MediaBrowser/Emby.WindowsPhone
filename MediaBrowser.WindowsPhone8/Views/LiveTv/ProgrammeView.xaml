@@ -11,7 +11,7 @@
                 xmlns:coding4Fun="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
                 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
                 xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
-                xmlns:behaviors="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
+                xmlns:behaviors="clr-namespace:Cimbalino.Toolkit.Behaviors;assembly=Cimbalino.Toolkit"
                 xmlns:converters="clr-namespace:MediaBrowser.WindowsPhone.Converters"
                 mc:Ignorable="d ignore"
                 FontFamily="{StaticResource PhoneFontFamilyNormal}"

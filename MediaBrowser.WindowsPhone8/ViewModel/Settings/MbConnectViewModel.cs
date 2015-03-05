@@ -66,7 +66,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Settings
                             {
                                 App.ServerInfo = result.Servers[0];
                                 _appSettings.Set(Constants.Settings.DefaultServerConnection, result.Servers[0]);
-                                _appSettings.Save();
                             }
 
                             await Utils.HandleConnectedState(result, ApiClient, NavigationService, Log);

@@ -18,7 +18,7 @@ using System.IO;
 using System.Xml;
 using Microsoft.Phone.Shell;
 
-namespace Cimbalino.Phone.Toolkit.Services
+namespace MediaBrowser.WindowsPhone.CimbalinoToolkit.Tiles
 {
     /// <summary>
     /// Represents an implementation of the <see cref="IShellTileServiceTile"/>.
@@ -70,7 +70,6 @@ namespace Cimbalino.Phone.Toolkit.Services
         /// <param name="xmlData">The XML document that contains the tile data template information.</param>
         public void Update(string xmlData)
         {
-#if WP8
             switch (GetTileTypeFromXmlString(xmlData))
             {
                 case "CycleTile":
@@ -89,12 +88,8 @@ namespace Cimbalino.Phone.Toolkit.Services
                     _shellTile.Update(new StandardTileData(xmlData));
                     break;
             }
-#else
-            throw new NotSupportedException("This method is not supported in Windows Phone 7.x");
-#endif
         }
 
-#if WP8
         private string GetTileTypeFromXmlString(string xmlData)
         {
             using (var stringReader = new StringReader(xmlData))
@@ -110,7 +105,6 @@ namespace Cimbalino.Phone.Toolkit.Services
 
             return null;
         }
-#endif
 
         /// <summary>
         /// Unpins and deletes a secondary tile.

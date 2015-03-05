@@ -10,7 +10,7 @@
                 xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
                 xmlns:converters="clr-namespace:MediaBrowser.WindowsPhone.Converters"
                 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-                xmlns:cimbalino="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
+                xmlns:cimbalino="clr-namespace:Cimbalino.Toolkit.Behaviors;assembly=Cimbalino.Toolkit"
                 xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
                 xmlns:toolkitPrimitives="clr-namespace:Microsoft.Phone.Controls.Primitives;assembly=Microsoft.Phone.Controls.Toolkit"
                 mc:Ignorable="d ignore"

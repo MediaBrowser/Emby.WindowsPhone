@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Globalization;
-using Cimbalino.Phone.Toolkit.Converters;
+using Cimbalino.Toolkit.Converters;
 
 namespace MediaBrowser.WindowsPhone.Converters
 {

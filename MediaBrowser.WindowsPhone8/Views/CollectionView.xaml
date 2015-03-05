@@ -10,8 +10,7 @@
                 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
                 xmlns:controls="clr-namespace:ScottIsAFool.WindowsPhone.Controls;assembly=ScottIsAFool.WindowsPhone"
                 xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
-                
-                xmlns:cimbalino="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
+                xmlns:cimbalino="clr-namespace:Cimbalino.Toolkit.Behaviors;assembly=Cimbalino.Toolkit"
                 xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
                 xmlns:c4F="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
                 xmlns:local="clr-namespace:MediaBrowser.WindowsPhone.Controls"

@@ -15,12 +15,9 @@
 
 using System;
 using System.Windows.Media;
-#if !WP8
-using Cimbalino.Phone.Toolkit.Extensions;
-#endif
 using Microsoft.Phone.Shell;
 
-namespace Cimbalino.Phone.Toolkit.Services
+namespace MediaBrowser.WindowsPhone.CimbalinoToolkit.Tiles
 {
     /// <summary>
     /// Describes an iconic Tile template.
@@ -73,9 +70,8 @@ namespace Cimbalino.Phone.Toolkit.Services
 
         #endregion
 
-        internal override ShellTileData ToShellTileData()
+        public override ShellTileData ToShellTileData()
         {
-#if WP8
             return new IconicTileData()
             {
                 Title = Title,
@@ -87,33 +83,6 @@ namespace Cimbalino.Phone.Toolkit.Services
                 WideContent2 = WideContent2,
                 WideContent3 = WideContent3
             };
-#else
-            if (!ShellTileService.LiveTilesSupportedStatic)
-            {
-                return new StandardTileData()
-                {
-                    Title = Title,
-                    Count = Count,
-                    BackTitle = WideContent1,
-                    BackContent = WideContent2
-                };
-            }
-
-            var iconicTileDataType = Type.GetType("Microsoft.Phone.Shell.IconicTileData, Microsoft.Phone");
-
-            var iconicTileData = (ShellTileData)iconicTileDataType.GetConstructor(new Type[] { }).Invoke(null);
-
-            iconicTileData.Title = Title;
-            iconicTileData.SetPropertyValue("BackgroundColor", BackgroundColor);
-            iconicTileData.SetPropertyValue("Count", Count);
-            iconicTileData.SetPropertyValue("IconImage", IconImage);
-            iconicTileData.SetPropertyValue("SmallIconImage", SmallIconImage);
-            iconicTileData.SetPropertyValue("WideContent1", WideContent1);
-            iconicTileData.SetPropertyValue("WideContent2", WideContent2);
-            iconicTileData.SetPropertyValue("WideContent3", WideContent3);
-
-            return iconicTileData;
-#endif
         }
     }
 }
