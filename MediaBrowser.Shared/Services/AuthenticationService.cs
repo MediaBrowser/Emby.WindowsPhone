@@ -26,8 +26,9 @@ namespace MediaBrowser.WindowsPhone.Services
 
         public static AuthenticationService Current { get; private set; }
 
-        public AuthenticationService(IConnectionManager connectionManager)
+        public AuthenticationService(IConnectionManager connectionManager, IApplicationSettingsService settingsService)
         {
+            _settingsService = settingsService.Legacy;
             _connectionManager = connectionManager;
             _logger = new WPLogger(typeof (AuthenticationService));
             Current = this;
@@ -67,7 +68,6 @@ namespace MediaBrowser.WindowsPhone.Services
 
         public void Start()
         {
-            _settingsService = new ApplicationSettingsService().Legacy;
             CheckIfUserSignedIn();
         }
 

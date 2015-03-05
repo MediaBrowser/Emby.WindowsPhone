@@ -25,43 +25,33 @@
                         shell:SystemTray.Opacity="0"
                         DataContext="{Binding MbConnect, Source={StaticResource Locator}}">
     <i:Interaction.Behaviors>
+        <behaviors:ApplicationBarBehavior IsMenuEnabled="True"
+                                          Mode="{Binding Auth.LoggedInConnectUser, Source={StaticResource Locator}, Converter={StaticResource AppBarModeConverter}}">
+            <behaviors:ApplicationBarBehavior.Buttons>
+                <behaviors:ApplicationBarIconButton IconUri="/Icons/appbar.check.rest.png"
+                                                    Text="{Binding LocalizedResources.AppBarLogin, Source={StaticResource LocalizedStrings}}"
+                                                    IsEnabled="{Binding CanSignIn}"
+                                                    IsVisible="{Binding Auth.SignedInUsingConnect, Source={StaticResource Locator}, Converter={StaticResource NegativeBooleanConverter}}"
+                                                    Command="{Binding SignInCommand}" />
+            </behaviors:ApplicationBarBehavior.Buttons>
+            <behaviors:ApplicationBarBehavior.MenuItems>
+                <behaviors:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarSendLogs, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                  x:Name="EmailLogs"
+                                                  Click="EmailLogs_OnClick" />
+                <behaviors:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarAbout, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                  x:Name="AboutItem"
+                                                  Click="AboutItem_OnClick" />
+            </behaviors:ApplicationBarBehavior.MenuItems>
+        </behaviors:ApplicationBarBehavior>
         <behaviours1:MBSysTray Text="{Binding ProgressText}"
                                IsVisible="{Binding ProgressIsVisible}"
                                IsIndeterminate="{Binding ProgressIsVisible}" />
         <behaviors:AutoFocusBehavior/>
     </i:Interaction.Behaviors>
 
-
-    <views:SettingsBasePage.Resources>
-        <converters:AppBarModeConverter x:Key="AppBarModeConverter"
-                                        TrueValue="Minimized"
-                                        FalseValue="Default"/>
-    </views:SettingsBasePage.Resources>
-
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot"
-          Background="{StaticResource MediaBrowserBackground}"
-          Tag="{Binding Auth.LoggedInConnectUser, Source={StaticResource Locator}, Converter={StaticResource NullBooleanConverter}}">
-        <i:Interaction.Behaviors>
-            <behaviors:ApplicationBarBehavior IsMenuEnabled="True"
-                                              Mode="{Binding Tag, ElementName=LayoutRoot, Converter={StaticResource AppBarModeConverter}}">
-                <behaviors:ApplicationBarBehavior.Buttons>
-                    <behaviors:ApplicationBarIconButton IconUri="/Icons/appbar.check.rest.png"
-                                                        Text="{Binding LocalizedResources.AppBarLogin, Source={StaticResource LocalizedStrings}}"
-                                                        IsEnabled="{Binding CanSignIn}"
-                                                        IsVisible="{Binding Auth.SignedInUsingConnect, Source={StaticResource Locator}, Converter={StaticResource NegativeBooleanConverter}}"
-                                                        Command="{Binding SignInCommand}"/>
-                </behaviors:ApplicationBarBehavior.Buttons>
-                <behaviors:ApplicationBarBehavior.MenuItems>
-                    <behaviors:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarSendLogs, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
-                                                      x:Name="EmailLogs"
-                                                      Click="EmailLogs_OnClick" />
-                    <behaviors:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarAbout, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
-                                                      x:Name="AboutItem"
-                                                      Click="AboutItem_OnClick" />
-                </behaviors:ApplicationBarBehavior.MenuItems>
-            </behaviors:ApplicationBarBehavior>
-        </i:Interaction.Behaviors>
+          Background="{StaticResource MediaBrowserBackground}">
         <Grid Margin="0,32,0,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />

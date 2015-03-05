@@ -33,6 +33,12 @@
         <behaviours:MBSysTray Text="{Binding ProgressText}"
                               IsVisible="{Binding ProgressIsVisible}"
                               IsIndeterminate="{Binding ProgressIsVisible}" />
+        <cimbalino:ApplicationBarBehavior>
+            <cimbalino:ApplicationBarIconButton IconUri="{Binding CanPinCollection, Converter={StaticResource PinnedItemConverter}}"
+                                                Text="{Binding CanPinCollection, Converter={StaticResource PinnedItemConverter}, ConverterParameter=text}"
+                                                Command="{Binding Main.PinCollectionCommand, Source={StaticResource Locator}}"
+                                                CommandParameter="{Binding SelectedFolder}" />
+        </cimbalino:ApplicationBarBehavior>
     </i:Interaction.Behaviors>
 
     <toolkit:TransitionService.NavigationInTransition>
@@ -58,14 +64,6 @@
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot">
-        <i:Interaction.Behaviors>
-            <cimbalino:ApplicationBarBehavior>
-                <cimbalino:ApplicationBarIconButton IconUri="{Binding CanPinCollection, Converter={StaticResource PinnedItemConverter}}"
-                                                    Text="{Binding CanPinCollection, Converter={StaticResource PinnedItemConverter}, ConverterParameter=text}"
-                                                    Command="{Binding Main.PinCollectionCommand, Source={StaticResource Locator}}"
-                                                    CommandParameter="{Binding SelectedFolder}" />
-            </cimbalino:ApplicationBarBehavior>
-        </i:Interaction.Behaviors>
         <phone:Panorama Title="{Binding SelectedFolder.Name, Converter={StaticResource StringCaseConverter}}"
                         HeaderTemplate="{StaticResource LikeWp7ItemHeaderTemplate}"
                         TitleTemplate="{StaticResource LikeWp7TitleTemplate}"

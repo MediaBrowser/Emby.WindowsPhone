@@ -79,6 +79,7 @@
     <converters:NullBooleanConverter x:Key="NullBooleanConverter"/>
     <converters:NullBooleanConverter x:Key="InvertedNullBooleanConverter"
                                      Inverted="True"/>
+    <converters:AppBarModeConverter x:Key="AppBarModeConverter" />
 
     <local:LocalizedStrings xmlns:local="clr-namespace:MediaBrowser.WindowsPhone"
                             x:Key="LocalizedStrings" />

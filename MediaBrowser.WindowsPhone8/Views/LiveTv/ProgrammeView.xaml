@@ -26,6 +26,23 @@
         <behaviours:MBSysTray IsIndeterminate="{Binding ProgressIsVisible}"
                               IsVisible="{Binding ProgressIsVisible}"
                               Text="{Binding ProgressText}" />
+        <behaviors:ApplicationBarBehavior IsMenuEnabled="True">
+            <behaviors:ApplicationBarBehavior.Buttons>
+                <behaviors:ApplicationBarIconButton Text="{Binding IsRecordNotCancel, Converter={StaticResource RecordTextConverter}}"
+                                                    Command="{Binding RecordProgrammeCommand}"
+                                                    IconUri="{Binding IsRecordNotCancel, Converter={StaticResource RecordIconConverter}}"
+                                                    IsEnabled="{Binding RecordIsEnabled}" />
+                <behaviors:ApplicationBarIconButton Text="{Binding IsRecordSeriesNotCancel, Converter={StaticResource SeriesTextConverter}}"
+                                                    Command="{Binding CreateSeriesLinkCommand}"
+                                                    IconUri="{Binding IsRecordSeriesNotCancel, Converter={StaticResource SeriesIconConverter}}"
+                                                    IsEnabled="{Binding SeriesIsEnabled}" />
+            </behaviors:ApplicationBarBehavior.Buttons>
+            <behaviors:ApplicationBarBehavior.MenuItems>
+                <behaviors:ApplicationBarMenuItem Text="{Binding IsRecordSeriesNotCancel, Converter={StaticResource SeriesMenuTextConverter}}"
+                                                  Command="{Binding AdvancedSeriesRecordCommand}"
+                                                  IsEnabled="{Binding SeriesIsEnabled}" />
+            </behaviors:ApplicationBarBehavior.MenuItems>
+        </behaviors:ApplicationBarBehavior>
     </i:Interaction.Behaviors>
 
     <toolkit:TransitionService.NavigationInTransition>
@@ -49,46 +66,9 @@
         </toolkit:NavigationOutTransition>
     </toolkit:TransitionService.NavigationOutTransition>
 
-    <scott:BasePage.Resources>
-        <converters:BooleanToStringConverter x:Key="RecordIconConverter"
-                                             FalseValue="/Icons/appbar.cancel.record.png"
-                                             TrueValue="/Icons/appbar.record.png" />
-        <converters:BooleanToStringConverter x:Key="SeriesIconConverter"
-                                             FalseValue="/Icons/appbar.cancel.serieslink.png"
-                                             TrueValue="/Icons/appbar.serieslink.png" />
-        <converters:BooleanToStringConverter x:Key="RecordTextConverter"
-                                             FalseValue="{Binding LocalizedResources.MenuCancelRecording, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
-                                             TrueValue="{Binding LocalizedResources.MenuRecord, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}" />
-        <converters:BooleanToStringConverter x:Key="SeriesTextConverter"
-                                             FalseValue="{Binding LocalizedResources.ContextCancelSeries, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
-                                             TrueValue="{Binding LocalizedResources.MenuRecordSeries, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}" />
-        <converters:BooleanToStringConverter x:Key="SeriesMenuTextConverter"
-                                             FalseValue="{Binding LocalizedResources.ContextCancelSeries, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
-                                             TrueValue="{Binding LocalizedResources.AppBarCreateAndEditSeries, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}" />
-    </scott:BasePage.Resources>
-
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot"
           Background="{StaticResource MediaBrowserBackground}">
-        <i:Interaction.Behaviors>
-            <behaviors:ApplicationBarBehavior IsMenuEnabled="True">
-                <behaviors:ApplicationBarBehavior.Buttons>
-                    <behaviors:ApplicationBarIconButton Text="{Binding IsRecordNotCancel, Converter={StaticResource RecordTextConverter}}"
-                                                        Command="{Binding RecordProgrammeCommand}"
-                                                        IconUri="{Binding IsRecordNotCancel, Converter={StaticResource RecordIconConverter}}"
-                                                        IsEnabled="{Binding RecordIsEnabled}" />
-                    <behaviors:ApplicationBarIconButton Text="{Binding IsRecordSeriesNotCancel, Converter={StaticResource SeriesTextConverter}}"
-                                                        Command="{Binding CreateSeriesLinkCommand}"
-                                                        IconUri="{Binding IsRecordSeriesNotCancel, Converter={StaticResource SeriesIconConverter}}"
-                                                        IsEnabled="{Binding SeriesIsEnabled}" />
-                </behaviors:ApplicationBarBehavior.Buttons>
-                <behaviors:ApplicationBarBehavior.MenuItems>
-                    <behaviors:ApplicationBarMenuItem Text="{Binding IsRecordSeriesNotCancel, Converter={StaticResource SeriesMenuTextConverter}}"
-                                                      Command="{Binding AdvancedSeriesRecordCommand}"
-                                                      IsEnabled="{Binding SeriesIsEnabled}" />
-                </behaviors:ApplicationBarBehavior.MenuItems>
-            </behaviors:ApplicationBarBehavior>
-        </i:Interaction.Behaviors>
         <Grid Margin="0,32,0,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />

@@ -66,18 +66,15 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 
                 if (!SimpleIoc.Default.IsRegistered<IApplicationSettingsService>())
                     SimpleIoc.Default.Register<IApplicationSettingsService, ApplicationSettingsService>();
-
-                if (!SimpleIoc.Default.IsRegistered<IStorageService>())
-                    SimpleIoc.Default.Register<IStorageService, StorageService>();
-
+                
                 if (!SimpleIoc.Default.IsRegistered<IStorageService>())
                     SimpleIoc.Default.Register<IStorageService, StorageService>();
 
                 if(!SimpleIoc.Default.IsRegistered<AuthenticationService>())
                     SimpleIoc.Default.Register<AuthenticationService>(true);
 
-                if(!SimpleIoc.Default.IsRegistered<Services.LockScreenService>())
-                    SimpleIoc.Default.Register<Services.LockScreenService>(true);
+                if(!SimpleIoc.Default.IsRegistered<LockScreenService>())
+                    SimpleIoc.Default.Register<LockScreenService>(true);
 
                 if(!SimpleIoc.Default.IsRegistered<TileService>())
                     SimpleIoc.Default.Register<TileService>(true);
