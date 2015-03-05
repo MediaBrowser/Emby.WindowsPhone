@@ -25,7 +25,8 @@ namespace MediaBrowser.WindowsPhone.Model.Connection
             {
                 SupportsMediaControl = supportsPlayback,
                 SupportsContentUploading = supportsContentUpload,
-                SupportsSync = supportsSync
+                SupportsSync = supportsSync,
+                SupportsOfflineAccess = supportsSync
             };
         }
     }
