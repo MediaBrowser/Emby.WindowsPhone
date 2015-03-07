@@ -23,8 +23,8 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
     {
         private static ILog _logger;
         private static volatile bool _classInitialized;
-        private readonly PlaylistHelper _playlistHelper;
-        private static readonly IApplicationSettingsServiceHandler ApplicationSettings = new ApplicationSettingsService().Legacy;
+        private PlaylistHelper _playlistHelper;
+        private static IApplicationSettingsServiceHandler ApplicationSettings;
         private static IApiClient _apiClient;
         private static DispatcherTimer _dispatcherTimer;
         private static ILogger _mbLogger = new MBLogger(typeof(AudioPlayer));
@@ -36,24 +36,46 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
         /// </remarks>
         public AudioPlayer()
         {
-            _playlistHelper = new PlaylistHelper(new StorageService());
-            _logger = new WPLogger(GetType());
-            if(_apiClient == null) CreateClient();
-            WPLogger.AppVersion = ApplicationManifest.Current.App.Version;
-            WPLogger.LogConfiguration.LogType = LogType.WriteToFile;
-            WPLogger.LogConfiguration.LoggingIsEnabled = true;
-
             if (!_classInitialized)
             {
                 _classInitialized = true;
                 // Subscribe to the managed exception handler
                 Deployment.Current.Dispatcher.BeginInvoke(delegate
                 {
+                    ConfigureThePlayer();
+
                     Application.Current.UnhandledException += AudioPlayer_UnhandledException;
                     _dispatcherTimer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(5) };
                     _dispatcherTimer.Tick += DispatcherTimerOnTick;
                     _dispatcherTimer.Start();
                 });
+            }
+        }
+
+        private void ConfigureThePlayer()
+        {
+            if (ApplicationSettings == null)
+            {
+                ApplicationSettings = new ApplicationSettingsService().Legacy;
+            }
+
+            if (_logger == null)
+            {
+                _logger = new WPLogger(GetType());
+            }
+
+            if (_playlistHelper == null)
+            {
+                _playlistHelper = new PlaylistHelper(new StorageService());
+            }
+
+            if (_apiClient == null) CreateClient();
+
+            if (!_classInitialized)
+            {
+                WPLogger.AppVersion = ApplicationManifest.Current.App.Version;
+                WPLogger.LogConfiguration.LogType = LogType.WriteToFile;
+                WPLogger.LogConfiguration.LoggingIsEnabled = true;
             }
         }
 
@@ -137,6 +159,7 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
         /// </remarks>
         protected override async void OnPlayStateChanged(BackgroundAudioPlayer player, AudioTrack track, PlayState playState)
         {
+            ConfigureThePlayer();
             switch (playState)
             {
                 case PlayState.TrackEnded:
@@ -254,6 +277,7 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
         /// </remarks>
         protected override async void OnUserAction(BackgroundAudioPlayer player, AudioTrack track, UserAction action, object param)
         {
+            ConfigureThePlayer();
             switch (action)
             {
                 case UserAction.Play:
@@ -372,7 +396,7 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
                     item.IsPlaying = true;
                 }
 
-                _playlistHelper.SavePlaylist(playlist);
+                await _playlistHelper.SavePlaylist(playlist);
 
                 // specify the track
 
@@ -450,7 +474,7 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
                     item.IsPlaying = true;
                 }
 
-                _playlistHelper.SavePlaylist(playlist);
+                await _playlistHelper.SavePlaylist(playlist);
 
                 // specify the track
 

@@ -116,9 +116,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             get
             {
-                return new RelayCommand(() =>
+                return new RelayCommand(async () =>
                 {
-                    GetPlaylistItems();
+                    await GetPlaylistItems();
 
                     if (!_playlistChecker.IsEnabled)
                     {
@@ -132,15 +132,15 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             get
             {
-                return new RelayCommand(() =>
+                return new RelayCommand(async () =>
                 {
                     var result = MessageBox.Show(AppResources.MessageClearPlayList, AppResources.MessageAreYouSureTitle, MessageBoxButton.OKCancel);
 
                     if (result == MessageBoxResult.OK)
                     {
-                        _playlistHelper.ClearPlaylist();
+                        await _playlistHelper.ClearPlaylist();
 
-                        GetPlaylistItems();
+                        await GetPlaylistItems();
                     }
                 });
             }
@@ -150,7 +150,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             get
             {
-                return new RelayCommand<PlaylistItem>(item =>
+                return new RelayCommand<PlaylistItem>(async item =>
                 {
                     if (Playlist.IsNullOrEmpty())
                     {
@@ -177,7 +177,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         IsOnRepeat = IsOnRepeat,
                         ModifiedDate = DateTime.Now
                     };
-                    _playlistHelper.SavePlaylist(playList);
+
+                    await _playlistHelper.SavePlaylist(playList);
 
                     BackgroundAudioPlayer.Instance.SkipNext();
                 });
@@ -214,16 +215,16 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             get
             {
-                return new RelayCommand(() =>
+                return new RelayCommand(async () =>
                 {
                     var result = MessageBox.Show(AppResources.MessageDeletePlaylistItems, AppResources.MessageAreYouSureTitle, MessageBoxButton.OKCancel);
                     if (result == MessageBoxResult.OK)
                     {
-                        _playlistHelper.RemoveFromPlaylist(SelectedItems);
+                        await _playlistHelper.RemoveFromPlaylist(SelectedItems);
 
                         IsInSelectionMode = false;
 
-                        GetPlaylistItems();
+                        await GetPlaylistItems();
                     }
                 });
             }
@@ -249,7 +250,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             get
             {
-                return new RelayCommand(PlayPause);
+                return new RelayCommand(async () => await PlayPause());
             }
         }
 
@@ -257,13 +258,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
         #region Private methods
 
-        private void PlaylistCheckerOnTick(object sender, EventArgs eventArgs)
+        private async void PlaylistCheckerOnTick(object sender, EventArgs eventArgs)
         {
-            GetPlaylistItems();
+            await GetPlaylistItems();
             Position = BackgroundAudioPlayer.Instance.Position;
         }
 
-        private AudioTrack _previousTrack;
         private void OnPlayStateChanged(object sender, EventArgs e)
         {
             try
@@ -278,22 +278,22 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
         public override void WireMessages()
         {
-            Messenger.Default.Register<NotificationMessage<List<PlaylistItem>>>(this, m =>
+            Messenger.Default.Register<NotificationMessage<List<PlaylistItem>>>(this, async m =>
             {
                 if (m.Notification.Equals(Constants.Messages.AddToPlaylistMsg))
                 {
-                    _playlistHelper.AddToPlaylist(m.Content);
+                    await _playlistHelper.AddToPlaylist(m.Content);
 
                     Log.Info("Adding {0} item(s) to the playlist", m.Content.Count);
                 }
 
                 if (m.Notification.Equals(Constants.Messages.SetPlaylistAsMsg))
                 {
-                    _playlistHelper.ClearPlaylist();
+                    await _playlistHelper.ClearPlaylist();
 
-                    _playlistHelper.AddToPlaylist(m.Content);
+                    await _playlistHelper.AddToPlaylist(m.Content);
 
-                    PlayPause();
+                    await PlayPause();
 
                     NavigationService.NavigateTo(Constants.Pages.NowPlayingView);
 
@@ -331,7 +331,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             });
         }
 
-        private void PlayPause()
+        private async Task PlayPause()
         {
             if (BackgroundAudioPlayer.Instance.PlayerState == PlayState.Playing)
             {
@@ -342,7 +342,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 BackgroundAudioPlayer.Instance.Play();
             }
 
-            GetPlaylistItems();
+            await GetPlaylistItems();
         }
 
         private void GetTrack(bool isNextNotPrevious)

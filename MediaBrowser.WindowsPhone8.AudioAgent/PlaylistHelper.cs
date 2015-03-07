@@ -21,7 +21,7 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
             _playlistFile = String.Format("{0}.json", Constants.Messages.CurrentPlaylist);
         }
 
-        public async void ClearPlaylist()
+        public async Task ClearPlaylist()
         {
             if(await _storageService.FileExistsAsync(_playlistFile))
                 await _storageService.DeleteFileAsync(_playlistFile);
@@ -46,15 +46,15 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
             }
         }
 
-        public async void SavePlaylist(Playlist list)
+        public async Task SavePlaylist(Playlist list)
         {
             if (list == null) return;
 
-            ClearPlaylist();
+            await ClearPlaylist();
 
             list.ModifiedDate = DateTime.Now;
             
-            using (var file = new StreamWriter(await _storageService.OpenFileForReadAsync(_playlistFile)))
+            using (var file = new StreamWriter(await _storageService.CreateFileAsync(_playlistFile)))
             {
                 var json = JsonConvert.SerializeObject(list);
 
@@ -62,7 +62,7 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
             }
         }
 
-        public void ResetTrackNumbers(Playlist playlist)
+        public async Task ResetTrackNumbers(Playlist playlist)
         {
             if (playlist == null) return;
 
@@ -78,7 +78,7 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
                 i++;
             }
 
-            SavePlaylist(playlist);
+            await SavePlaylist(playlist);
         }
 
         public async Task<bool> RandomiseTrackNumbers(bool randomise)
@@ -97,14 +97,14 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
 
                 playlist.PlaylistItems = randomisedList;
 
-                ResetTrackNumbers(playlist);
+                await ResetTrackNumbers(playlist);
             }
             else
             {
                 playlist.PlaylistItems.ForEach(item => item.Id = item.OriginalId);
                 playlist.PlaylistItems = playlist.PlaylistItems.OrderBy(x => x.Id).ToList();
 
-                SavePlaylist(playlist);
+                await SavePlaylist(playlist);
             }
 
             return true;
@@ -120,7 +120,7 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
 
             list.ForEach(items.Add);
 
-            ResetTrackNumbers(playlist);
+            await ResetTrackNumbers(playlist);
         }
 
         public async Task RemoveFromPlaylist(List<PlaylistItem> list)
@@ -135,7 +135,7 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
 
             playlist.PlaylistItems = afterRemoval;
 
-            ResetTrackNumbers(playlist);
+            await ResetTrackNumbers(playlist);
         }
 
         public async Task SetRepeat(bool repeat)
@@ -146,7 +146,7 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
 
             playlist.IsOnRepeat = repeat;
 
-            SavePlaylist(playlist);
+            await SavePlaylist(playlist);
         }
 
         public async Task SetAllTracksToNotPlayingAndSave()
@@ -155,7 +155,7 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
 
             SetAllTracksToNotPlaying(list.PlaylistItems);
 
-            SavePlaylist(list);
+            await SavePlaylist(list);
         }
 
         public void SetAllTracksToNotPlaying(List<PlaylistItem> list)
