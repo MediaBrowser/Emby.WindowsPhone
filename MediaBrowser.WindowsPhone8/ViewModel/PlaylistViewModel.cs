@@ -261,7 +261,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         private async void PlaylistCheckerOnTick(object sender, EventArgs eventArgs)
         {
             await GetPlaylistItems();
-            Position = BackgroundAudioPlayer.Instance.Position;
+            try
+            {
+                Position = BackgroundAudioPlayer.Instance.Position;
+            }
+            catch (InvalidOperationException)
+            {
+                BackgroundAudioPlayer.Instance.Play();
+            }
         }
 
         private void OnPlayStateChanged(object sender, EventArgs e)
