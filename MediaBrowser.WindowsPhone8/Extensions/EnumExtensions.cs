@@ -4,7 +4,6 @@ using GalaSoft.MvvmLight.Ioc;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Model.Streaming;
 using MediaBrowser.WindowsPhone.Resources;
-using MediaBrowser.WindowsPhone.ViewModel;
 using MediaBrowser.WindowsPhone.ViewModel.Settings;
 
 namespace MediaBrowser.WindowsPhone.Extensions
@@ -112,11 +111,6 @@ namespace MediaBrowser.WindowsPhone.Extensions
                     return "1080p";
             }
             return string.Empty;
-        }
-
-        public static string GetLocalisedName<T>(this Enum<T> item)
-        {
-            return item.ToString();
         }
     }
 }

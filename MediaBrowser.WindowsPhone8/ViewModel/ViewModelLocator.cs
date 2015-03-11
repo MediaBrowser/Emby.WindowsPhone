@@ -1,10 +1,16 @@
 ﻿using Cimbalino.Toolkit.Services;
 using GalaSoft.MvvmLight.Ioc;
+using MediaBrowser.ApiInteraction.Cryptography;
+using MediaBrowser.ApiInteraction.Data;
+using MediaBrowser.ApiInteraction.Playback;
 using MediaBrowser.Model.ApiClient;
+using MediaBrowser.Model.Logging;
 using MediaBrowser.WindowsPhone.Design;
 using MediaBrowser.WindowsPhone.Extensions;
 using MediaBrowser.WindowsPhone.Interfaces;
 using MediaBrowser.WindowsPhone.Logging;
+using MediaBrowser.WindowsPhone.Model.Security;
+using MediaBrowser.WindowsPhone.Model.Sync;
 using MediaBrowser.WindowsPhone.Services;
 using MediaBrowser.WindowsPhone.ViewModel.Channels;
 using MediaBrowser.WindowsPhone.ViewModel.Playlists;
@@ -43,6 +49,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 DeviceId = SharedUtils.GetDeviceId()
             };
 
+            var logger = new MBLogger();
+
+            SimpleIoc.Default.RegisterIf<ILogger>(() => logger);
+            SimpleIoc.Default.RegisterIf<IDevice>(() => device);
+
             if (ViewModelBase.IsInDesignModeStatic)
             {
                 SimpleIoc.Default.RegisterIf<INavigationService, NavigationService>();
@@ -55,13 +66,17 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 SimpleIoc.Default.RegisterIf<INavigationService, NavigationService>();
                 SimpleIoc.Default.RegisterIf<ISettingsService, SettingsService>();
-                SimpleIoc.Default.RegisterIf(() => SharedUtils.CreateConnectionManager(device, new MBLogger()));
+                SimpleIoc.Default.RegisterIf(() => SharedUtils.CreateConnectionManager(device, logger));
                 SimpleIoc.Default.RegisterIf<IApplicationSettingsService, ApplicationSettingsService>();
                 SimpleIoc.Default.RegisterIf<IStorageService, StorageService>();
                 SimpleIoc.Default.RegisterIf<AuthenticationService>(true);
                 SimpleIoc.Default.RegisterIf<LockScreenService>(true);
                 SimpleIoc.Default.RegisterIf<TileService>(true);
                 SimpleIoc.Default.RegisterIf<SyncService>(true);
+
+                AddSyncInterfaces();
+
+                SimpleIoc.Default.RegisterIf<PlaybackManager>();
             }
 
             SimpleIoc.Default.RegisterIf<IMessageBoxService, MessageBoxService>();
@@ -98,6 +113,17 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             SimpleIoc.Default.Register<AddToPlaylistViewModel>();
             SimpleIoc.Default.Register<PhotoUploadViewModel>();
             SimpleIoc.Default.Register<MbConnectViewModel>();
+        }
+
+        private static void AddSyncInterfaces()
+        {
+            SimpleIoc.Default.RegisterIf<IUserActionRepository, UserActionRepository>();
+            SimpleIoc.Default.RegisterIf<IItemRepository, ItemRepository>();
+            SimpleIoc.Default.RegisterIf<IFileRepository, FileRepository>();
+            SimpleIoc.Default.RegisterIf<ICryptographyProvider, CryptographyProvider>();
+            SimpleIoc.Default.RegisterIf<IUserRepository, UserRepository>();
+            SimpleIoc.Default.RegisterIf<IImageRepository, ImageRepository>();
+            SimpleIoc.Default.RegisterIf<ILocalAssetManager, LocalAssetManager>();
         }
 
         /// <summary>
