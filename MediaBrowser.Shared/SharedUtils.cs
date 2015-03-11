@@ -1,12 +1,10 @@
 ﻿using System;
 using Ailon.WP.Utils;
-using Cimbalino.Toolkit.Services;
 using Cimbalino.Toolkit.Helpers;
 using MediaBrowser.ApiInteraction;
 using MediaBrowser.Model;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Logging;
-using MediaBrowser.Model.Session;
 using MediaBrowser.WindowsPhone.CimbalinoToolkit;
 using MediaBrowser.WindowsPhone.Model.Connection;
 using MediaBrowser.WindowsPhone.Model.Security;

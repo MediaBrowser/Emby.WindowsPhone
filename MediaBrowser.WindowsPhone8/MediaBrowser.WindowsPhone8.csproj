@@ -208,6 +208,7 @@
     <Compile Include="Converters\TicksToTimespanConverter.cs" />
     <Compile Include="Converters\VirtualConverter.cs" />
     <Compile Include="Converters\ZeroCountBrushConverter.cs" />
+    <Compile Include="Extensions\ContainerExtensions.cs" />
     <Compile Include="Model\Enum{T}.cs" />
     <Compile Include="Extensions\ExtensionMethods.cs" />
     <Compile Include="Extensions\ApiClientExtensions.cs" />

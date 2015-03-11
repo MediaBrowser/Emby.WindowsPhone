@@ -2,6 +2,7 @@
 using GalaSoft.MvvmLight.Ioc;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.WindowsPhone.Design;
+using MediaBrowser.WindowsPhone.Extensions;
 using MediaBrowser.WindowsPhone.Interfaces;
 using MediaBrowser.WindowsPhone.Logging;
 using MediaBrowser.WindowsPhone.Services;
@@ -44,48 +45,26 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             if (ViewModelBase.IsInDesignModeStatic)
             {
-                //if (!SimpleIoc.Default.IsRegistered<IExtendedApiClient>())
-                //    SimpleIoc.Default.Register<IExtendedApiClient>(() => new ExtendedApiClient(new MBLogger(), "scottisafool.homeserver.com", "Windows Phone 8", device, ApplicationManifest.Current.App.Version, new ClientCapabilities { SupportsContentUploading = true, SupportsMediaControl = false }));
-                SimpleIoc.Default.Register<INavigationService, NavigationService>();
-                SimpleIoc.Default.Register<FolderViewModel>();
-                SimpleIoc.Default.Register<MovieViewModel>();
-                if (!SimpleIoc.Default.IsRegistered<IApplicationSettingsService>())
-                    SimpleIoc.Default.Register<IApplicationSettingsService, ApplicationSettingsDesignService>();
-
-                if (!SimpleIoc.Default.IsRegistered<IStorageService>())
-                    SimpleIoc.Default.Register<IStorageService, StorageDesignService>();
+                SimpleIoc.Default.RegisterIf<INavigationService, NavigationService>();
+                SimpleIoc.Default.RegisterIf<FolderViewModel>();
+                SimpleIoc.Default.RegisterIf<MovieViewModel>();
+                SimpleIoc.Default.RegisterIf<IApplicationSettingsService, ApplicationSettingsDesignService>();
+                SimpleIoc.Default.RegisterIf<IStorageService, StorageDesignService>();
             }
             else
             {
-                SimpleIoc.Default.Register<INavigationService, NavigationService>();
-                SimpleIoc.Default.Register<ISettingsService, SettingsService>();
-                //if (!SimpleIoc.Default.IsRegistered<IExtendedApiClient>())
-                //    SimpleIoc.Default.Register<IExtendedApiClient>(() => new ExtendedApiClient(new MBLogger(), "dummy", "Windows Phone 8", device, ApplicationManifest.Current.App.Version, new ClientCapabilities{SupportsContentUploading = true, SupportsMediaControl = false}));
-
-                if(!SimpleIoc.Default.IsRegistered<IConnectionManager>())
-                    SimpleIoc.Default.Register(() => SharedUtils.CreateConnectionManager(device, new MBLogger()));
-                
-                if (!SimpleIoc.Default.IsRegistered<IApplicationSettingsService>())
-                    SimpleIoc.Default.Register<IApplicationSettingsService, ApplicationSettingsService>();
-                
-                if (!SimpleIoc.Default.IsRegistered<IStorageService>())
-                    SimpleIoc.Default.Register<IStorageService, StorageService>();
-
-                if(!SimpleIoc.Default.IsRegistered<AuthenticationService>())
-                    SimpleIoc.Default.Register<AuthenticationService>(true);
-
-                if(!SimpleIoc.Default.IsRegistered<LockScreenService>())
-                    SimpleIoc.Default.Register<LockScreenService>(true);
-
-                if(!SimpleIoc.Default.IsRegistered<TileService>())
-                    SimpleIoc.Default.Register<TileService>(true);
-
-                if(!SimpleIoc.Default.IsRegistered<SyncService>())
-                    SimpleIoc.Default.Register<SyncService>(true);
+                SimpleIoc.Default.RegisterIf<INavigationService, NavigationService>();
+                SimpleIoc.Default.RegisterIf<ISettingsService, SettingsService>();
+                SimpleIoc.Default.RegisterIf(() => SharedUtils.CreateConnectionManager(device, new MBLogger()));
+                SimpleIoc.Default.RegisterIf<IApplicationSettingsService, ApplicationSettingsService>();
+                SimpleIoc.Default.RegisterIf<IStorageService, StorageService>();
+                SimpleIoc.Default.RegisterIf<AuthenticationService>(true);
+                SimpleIoc.Default.RegisterIf<LockScreenService>(true);
+                SimpleIoc.Default.RegisterIf<TileService>(true);
+                SimpleIoc.Default.RegisterIf<SyncService>(true);
             }
 
-            if(!SimpleIoc.Default.IsRegistered<IMessageBoxService>())
-                SimpleIoc.Default.Register<IMessageBoxService, MessageBoxService>();
+            SimpleIoc.Default.RegisterIf<IMessageBoxService, MessageBoxService>();
 
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<VideoPlayerViewModel>();
