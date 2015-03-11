@@ -5,8 +5,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media.Imaging;
-using Cimbalino.Phone.Toolkit.Services;
-using GalaSoft.MvvmLight.Ioc;
+using Cimbalino.Toolkit.Services;
 using ImageTools;
 using ImageTools.IO.Png;
 using MediaBrowser.Model.Dto;
@@ -20,7 +19,7 @@ using MediaBrowser.Model.ApiClient;
 
 namespace MediaBrowser.WindowsPhone.Services
 {
-    public class LockScreenService : Cimbalino.Phone.Toolkit.Services.LockScreenService
+    public class LockScreenService : CimbalinoToolkit.LockScreenService
     {
         private readonly IConnectionManager _connectionManager;
         private const string LockScreenImageUrlNormal = "ms-appdata:///Local/shared/shellcontent/MBWallpaper.png";
@@ -28,7 +27,7 @@ namespace MediaBrowser.WindowsPhone.Services
         private const string LockScreenFileNormal = "shared\\shellcontent\\MBWallpaper.png";
         private const string LockScreenFileAlternative = "shared\\shellcontent\\MBWallpaper2.png";
         private const string DefaultLockScreenImageFormat = "ms-appx:///DefaultLockScreen.jpg";
-        private readonly IAsyncStorageService _storageService = new AsyncStorageService();
+        private readonly IStorageServiceHandler _storageService = new StorageService().Local;
         private readonly ILog _logger = new WPLogger(typeof(LockScreenService));
 
         private bool _serviceStarted;

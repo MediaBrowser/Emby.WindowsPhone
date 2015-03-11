@@ -1,8 +1,8 @@
-﻿#if !TRIAL
+﻿using Cimbalino.Toolkit.Services;
+#if !TRIAL
 using Microsoft.Phone.Marketplace;
 #endif
 using System;
-using Cimbalino.Phone.Toolkit.Services;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Tasks;
 
@@ -12,11 +12,11 @@ namespace MediaBrowser.WindowsPhone.Services
     {
         private const string VideoItem = "VideoItem";
         private static TrialHelper _current;
-        private readonly ApplicationSettingsService _settings;
+        private readonly IApplicationSettingsServiceHandler _settings;
 
         public TrialHelper()
         {
-            _settings = new ApplicationSettingsService();
+            _settings = new ApplicationSettingsService().Legacy;
 #if TRIAL
             IsTrial = true;
 #else
@@ -61,7 +61,6 @@ namespace MediaBrowser.WindowsPhone.Services
             };
 
             _settings.Set(VideoItem, item);
-            _settings.Save();
         }
 
         public void ShowTrialMessage(string message)

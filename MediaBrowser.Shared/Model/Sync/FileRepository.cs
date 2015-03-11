@@ -5,8 +5,8 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.Storage;
-using Cimbalino.Phone.Toolkit.Extensions;
-using Cimbalino.Phone.Toolkit.Services;
+using Cimbalino.Toolkit.Extensions;
+using Cimbalino.Toolkit.Services;
 using MediaBrowser.ApiInteraction.Data;
 using MediaBrowser.Model.Sync;
 using MediaBrowser.WindowsPhone.Extensions;
@@ -15,11 +15,11 @@ namespace MediaBrowser.WindowsPhone.Model.Sync
 {
     public class FileRepository : IFileRepository
     {
-        private readonly IAsyncStorageService _storage;
+        private readonly IStorageServiceHandler _storage;
 
-        public FileRepository(IAsyncStorageService storage)
+        public FileRepository(IStorageService storage)
         {
-            _storage = storage;
+            _storage = storage.Local;
         }
 
         public string GetValidFileName(string name)

@@ -70,11 +70,11 @@ namespace MediaBrowser.WindowsPhone.Extensions
         internal static async Task<List<PlaylistItem>> ToPlayListItems(this List<BaseItemDto> list, IApiClient apiClient)
         {
             var newList = new List<PlaylistItem>();
-            await Task.Factory.StartNew(() => list.ForEach(item =>
+            list.ForEach(item =>
             {
                 var playlistItem = item.ToPlaylistItem(apiClient);
                 newList.Add(playlistItem);
-            }));
+            });
 
             return newList;
         }

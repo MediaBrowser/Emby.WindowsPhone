@@ -15,7 +15,7 @@
 
 using System;
 using System.Windows.Data;
-using Cimbalino.Phone.Toolkit.Converters;
+using Cimbalino.Toolkit.Converters;
 
 namespace MediaBrowser.WindowsPhone.Converters
 {

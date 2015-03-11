@@ -8,14 +8,15 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media.Imaging;
-using Cimbalino.Phone.Toolkit.Extensions;
-using Cimbalino.Phone.Toolkit.Helpers;
-using Cimbalino.Phone.Toolkit.Services;
+using Cimbalino.Toolkit.Extensions;
+using Cimbalino.Toolkit.Helpers;
+using Cimbalino.Toolkit.Services;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Querying;
+using MediaBrowser.WindowsPhone.CimbalinoToolkit.Tiles;
 using MediaBrowser.WindowsPhone.Controls;
 using MediaBrowser.WindowsPhone.Resources;
 using ScottIsAFool.WindowsPhone.Logging;
@@ -28,7 +29,7 @@ namespace MediaBrowser.WindowsPhone.Services
         private readonly IConnectionManager _connectionManager;
         private readonly ILog _logger;
 
-        private IAsyncStorageService _storageService;
+        private IStorageServiceHandler _storageService;
 
         private const string WideTileUrl = "shared\\shellcontent\\WideTileImage.png";
         private const string WideTileBackUrl = "shared\\shellcontent\\WideTileBackImage.png";
@@ -42,12 +43,12 @@ namespace MediaBrowser.WindowsPhone.Services
 
         public static TileService Current { get; private set; }
 
-        public TileService(IConnectionManager connectionManager, IAsyncStorageService storageService)
+        public TileService(IConnectionManager connectionManager, IStorageService storageService)
         {
             _logger = new WPLogger(typeof(TileService));
             _logger.Info("Starting TileService");
             _connectionManager = connectionManager;
-            _storageService = storageService;
+            _storageService = storageService.Local;
             Current = this;
         }
 
@@ -159,7 +160,7 @@ namespace MediaBrowser.WindowsPhone.Services
             foreach (var tile in collectionTiles)
             {
                 var uri = new Uri("http://mediabrowser.tv" + tile.NavigationUri.OriginalString);
-                var queries = uri.QueryString();
+                var queries = uri.QueryDictionary();
                 var name = queries["name"];
                 var id = queries["id"];
                 PinCollection(name, id, useTransparentTiles, false);
@@ -346,7 +347,7 @@ namespace MediaBrowser.WindowsPhone.Services
 
             using (var fileStream = await _storageService.CreateFileAsync(filename))
             {
-                bitmap.SavePng(fileStream);
+                await bitmap.SavePngAsync(fileStream);
             }
         }
 

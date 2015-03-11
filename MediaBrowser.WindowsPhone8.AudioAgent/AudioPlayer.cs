@@ -4,8 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
-using Cimbalino.Phone.Toolkit.Helpers;
-using Cimbalino.Phone.Toolkit.Services;
+using Cimbalino.Toolkit.Helpers;
+using Cimbalino.Toolkit.Services;
 using MediaBrowser.ApiInteraction;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Logging;
@@ -24,8 +24,8 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
     {
         private static ILog _logger;
         private static volatile bool _classInitialized;
-        private readonly PlaylistHelper _playlistHelper;
-        private static readonly IApplicationSettingsService ApplicationSettings = new ApplicationSettingsService();
+        private PlaylistHelper _playlistHelper;
+        private static IApplicationSettingsServiceHandler ApplicationSettings;
         private static IApiClient _apiClient;
         private static DispatcherTimer _dispatcherTimer;
         private static ILogger _mbLogger = new MBLogger(typeof(AudioPlayer));
@@ -37,24 +37,46 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
         /// </remarks>
         public AudioPlayer()
         {
-            _playlistHelper = new PlaylistHelper(new StorageService());
-            _logger = new WPLogger(GetType());
-            if (_apiClient == null) CreateClient();
-            WPLogger.AppVersion = ApplicationManifest.Current.App.Version;
-            WPLogger.LogConfiguration.LogType = LogType.WriteToFile;
-            WPLogger.LogConfiguration.LoggingIsEnabled = true;
-
             if (!_classInitialized)
             {
                 _classInitialized = true;
                 // Subscribe to the managed exception handler
                 Deployment.Current.Dispatcher.BeginInvoke(delegate
                 {
+                    ConfigureThePlayer();
+
                     Application.Current.UnhandledException += AudioPlayer_UnhandledException;
                     _dispatcherTimer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(5) };
                     _dispatcherTimer.Tick += DispatcherTimerOnTick;
                     _dispatcherTimer.Start();
                 });
+            }
+        }
+
+        private void ConfigureThePlayer()
+        {
+            if (ApplicationSettings == null)
+            {
+                ApplicationSettings = new ApplicationSettingsService().Legacy;
+            }
+
+            if (_logger == null)
+            {
+                _logger = new WPLogger(GetType());
+            }
+
+            if (_playlistHelper == null)
+            {
+                _playlistHelper = new PlaylistHelper(new StorageService());
+            }
+
+            if (_apiClient == null) CreateClient();
+
+            if (!_classInitialized)
+            {
+                WPLogger.AppVersion = ApplicationManifest.Current.App.Version;
+                WPLogger.LogConfiguration.LogType = LogType.WriteToFile;
+                WPLogger.LogConfiguration.LoggingIsEnabled = true;
             }
         }
 
@@ -138,11 +160,12 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
         /// </remarks>
         protected override async void OnPlayStateChanged(BackgroundAudioPlayer player, AudioTrack track, PlayState playState)
         {
+            ConfigureThePlayer();
             switch (playState)
             {
                 case PlayState.TrackEnded:
                     _logger.Info("PlayStateChanged.TrackEnded");
-                    player.Track = GetNextTrack();
+                    player.Track = await GetNextTrack();
                     await InformOfPlayingTrack();
                     break;
                 case PlayState.TrackReady:
@@ -171,7 +194,7 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
                     break;
                 case PlayState.Paused:
                     _logger.Info("PlayStateChanged.Paused");
-                    _playlistHelper.SetAllTracksToNotPlayingAndSave();
+                    await _playlistHelper.SetAllTracksToNotPlayingAndSave();
                     await InformOfStoppedTrack();
                     break;
                 default:
@@ -255,6 +278,7 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
         /// </remarks>
         protected override async void OnUserAction(BackgroundAudioPlayer player, AudioTrack track, UserAction action, object param)
         {
+            ConfigureThePlayer();
             switch (action)
             {
                 case UserAction.Play:
@@ -285,7 +309,7 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
                     break;
                 case UserAction.SkipNext:
                     _logger.Info("OnUserAction.SkipNext");
-                    var nextTrack = GetNextTrack();
+                    var nextTrack = await GetNextTrack();
                     if (nextTrack != null)
                     {
                         player.Track = nextTrack;
@@ -294,7 +318,7 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
                     break;
                 case UserAction.SkipPrevious:
                     _logger.Info("OnUserAction.SkipPrevious");
-                    var previousTrack = GetPreviousTrack();
+                    var previousTrack = await GetPreviousTrack();
                     if (previousTrack != null)
                     {
                         player.Track = previousTrack;
@@ -318,9 +342,9 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
         /// (c) MediaStreamSource (null)
         /// </remarks>
         /// <returns>an instance of AudioTrack, or null if the playback is completed</returns>
-        private AudioTrack GetNextTrack()
+        private async Task<AudioTrack> GetNextTrack()
         {
-            var playlist = _playlistHelper.GetPlaylist();
+            var playlist = await _playlistHelper.GetPlaylist();
 
             var items = playlist.PlaylistItems;
 
@@ -373,7 +397,7 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
                     item.IsPlaying = true;
                 }
 
-                _playlistHelper.SavePlaylist(playlist);
+                await _playlistHelper.SavePlaylist(playlist);
 
                 // specify the track
 
@@ -397,9 +421,9 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
         /// (c) MediaStreamSource (null)
         /// </remarks>
         /// <returns>an instance of AudioTrack, or null if previous track is not allowed</returns>
-        private AudioTrack GetPreviousTrack()
+        private async Task<AudioTrack> GetPreviousTrack()
         {
-            var playlist = _playlistHelper.GetPlaylist();
+            var playlist = await _playlistHelper.GetPlaylist();
 
             var items = playlist.PlaylistItems;
 
@@ -451,7 +475,7 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
                     item.IsPlaying = true;
                 }
 
-                _playlistHelper.SavePlaylist(playlist);
+                await _playlistHelper.SavePlaylist(playlist);
 
                 // specify the track
 

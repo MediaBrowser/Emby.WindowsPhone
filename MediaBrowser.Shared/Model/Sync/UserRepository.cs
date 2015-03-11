@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Cimbalino.Phone.Toolkit.Services;
+using Cimbalino.Toolkit.Services;
 using MediaBrowser.ApiInteraction.Data;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.WindowsPhone.Extensions;
@@ -13,13 +13,13 @@ namespace MediaBrowser.WindowsPhone.Model.Sync
     public class UserRepository : IUserRepository
     {
         private const string ItemsFile = "Cache\\Users.json"; 
-        private readonly IAsyncStorageService _storageService;
+        private readonly IStorageServiceHandler _storageService;
 
         private List<UserDto> _items; 
 
-        public UserRepository(IAsyncStorageService storageService)
+        public UserRepository(IStorageService storageService)
         {
-            _storageService = storageService;
+            _storageService = storageService.Local;
         }
         public async Task AddOrUpdate(string id, UserDto user)
         {

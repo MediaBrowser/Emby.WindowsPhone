@@ -2,8 +2,8 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Windows.Storage;
-using Cimbalino.Phone.Toolkit.Helpers;
-using Cimbalino.Phone.Toolkit.Services;
+using Cimbalino.Toolkit.Helpers;
+using Cimbalino.Toolkit.Services;
 using MediaBrowser.ApiInteraction.Data;
 using MediaBrowser.ApiInteraction.Sync;
 using MediaBrowser.Model.ApiClient;
@@ -16,12 +16,12 @@ namespace MediaBrowser.WindowsPhone.Model.Sync
     public class FileTransferManager : IFileTransferManager
     {
         private readonly ILocalAssetManager _localAssetManager;
-        private readonly IAsyncStorageService _storageService;
+        private readonly IStorageServiceHandler _storageService;
 
-        public FileTransferManager(ILocalAssetManager localAssetManager, IAsyncStorageService storageService)
+        public FileTransferManager(ILocalAssetManager localAssetManager, IStorageService storageService)
         {
             _localAssetManager = localAssetManager;
-            _storageService = storageService;
+            _storageService = storageService.Local;
         }
 
         public Task GetItemFileAsync(IApiClient apiClient, ServerInfo server, LocalItem item, string syncJobItemId, IProgress<double> transferProgress, CancellationToken cancellationToken)

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using Cimbalino.Phone.Toolkit.Extensions;
-using Cimbalino.Phone.Toolkit.Services;
+using System.Globalization;
+using Cimbalino.Toolkit.Services;
 using MediaBrowser.Model.Dlna;
 using MediaBrowser.Model.Dlna.Profiles;
 using System.Xml.Serialization;
@@ -17,7 +17,7 @@ namespace MediaBrowser.Dlna.Profiles
 
         public static WindowsPhoneProfile GetProfile(float maxBitrate = 2000000, bool isHls = false)
         {
-            var screenInfo = new ScreenInfoService();
+            var screenInfo = new DisplayPropertiesService();
             var profile = new WindowsPhoneProfile();
             var transcodingProfiles = new List<TranscodingProfile>
             {
@@ -127,19 +127,19 @@ namespace MediaBrowser.Dlna.Profiles
                         {
                             Condition = ProfileConditionType.LessThanEqual,
                             Property = ProfileConditionValue.Width,
-                            Value = screenInfo.Size.Height.ToStringInvariantCulture()
+                            Value = screenInfo.Bounds.Height.ToString(CultureInfo.InvariantCulture)
                         },
                         new ProfileCondition
                         {
                             Condition = ProfileConditionType.LessThanEqual,
                             Property = ProfileConditionValue.Height,
-                            Value = screenInfo.Size.Width.ToStringInvariantCulture()
+                            Value = screenInfo.Bounds.Width.ToString(CultureInfo.InvariantCulture)
                         },
                         new ProfileCondition
                         {
                             Condition = ProfileConditionType.LessThanEqual,
                             Property = ProfileConditionValue.VideoBitrate,
-                            Value = maxBitrate.ToStringInvariantCulture(), //"1000000",
+                            Value = maxBitrate.ToString(CultureInfo.InvariantCulture), //"1000000",
                             IsRequired = false
                         },
                         new ProfileCondition
@@ -174,19 +174,19 @@ namespace MediaBrowser.Dlna.Profiles
                         {
                             Condition = ProfileConditionType.LessThanEqual,
                             Property = ProfileConditionValue.Width,
-                            Value = screenInfo.Size.Height.ToStringInvariantCulture()
+                            Value = screenInfo.Bounds.Height.ToString(CultureInfo.InvariantCulture)
                         },
                         new ProfileCondition
                         {
                             Condition = ProfileConditionType.LessThanEqual,
                             Property = ProfileConditionValue.Height,
-                            Value = screenInfo.Size.Width.ToStringInvariantCulture()
+                            Value = screenInfo.Bounds.Width.ToString(CultureInfo.InvariantCulture)
                         },
                         new ProfileCondition
                         {
                             Condition = ProfileConditionType.LessThanEqual,
                             Property = ProfileConditionValue.VideoBitrate,
-                            Value = maxBitrate.ToStringInvariantCulture(), //"1000000",
+                            Value = maxBitrate.ToString(CultureInfo.InvariantCulture), //"1000000",
                             IsRequired = false
                         },
                         new ProfileCondition

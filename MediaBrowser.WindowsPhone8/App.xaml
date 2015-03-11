@@ -7,12 +7,11 @@
              xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
              xmlns:vm="clr-namespace:MediaBrowser.WindowsPhone.ViewModel"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
-             xmlns:windowsPhone="clr-namespace:MediaBrowser.WindowsPhone"
              xmlns:model="clr-namespace:MediaBrowser.Model;assembly=MediaBrowser.Shared"
              xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
              xmlns:controls="clr-namespace:MediaBrowser.WindowsPhone.Controls"
-             xmlns:converters="clr-namespace:Cimbalino.Phone.Toolkit.Converters;assembly=Cimbalino.Phone.Toolkit"
-             xmlns:model1="clr-namespace:MediaBrowser.WindowsPhone.Model">
+             xmlns:model1="clr-namespace:MediaBrowser.WindowsPhone.Model"
+             xmlns:converters="clr-namespace:MediaBrowser.WindowsPhone.Converters">
     <!--Application Resources-->
     <Application.Resources>
         <ResourceDictionary>
@@ -95,6 +94,32 @@
                     </Setter.Value>
                 </Setter>
             </Style>
+            <converters:VirtualConverter x:Key="VirtualConverter" />
+            <converters:BooleanToStringConverter x:Key="MarkAsWatchedConverter"
+                                                 TrueValue="{Binding LocalizedResources.AppBarMarkAsUnwatched, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                 FalseValue="{Binding LocalizedResources.AppBarMarkAsWatched, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}" />
+            <converters:BooleanToStringConverter x:Key="RecordIconConverter"
+                                                 FalseValue="/Icons/appbar.cancel.record.png"
+                                                 TrueValue="/Icons/appbar.record.png" />
+            <converters:BooleanToStringConverter x:Key="SeriesIconConverter"
+                                                 FalseValue="/Icons/appbar.cancel.serieslink.png"
+                                                 TrueValue="/Icons/appbar.serieslink.png" />
+            <converters:BooleanToStringConverter x:Key="RecordTextConverter"
+                                                 FalseValue="{Binding LocalizedResources.MenuCancelRecording, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                 TrueValue="{Binding LocalizedResources.MenuRecord, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}" />
+            <converters:BooleanToStringConverter x:Key="SeriesTextConverter"
+                                                 FalseValue="{Binding LocalizedResources.ContextCancelSeries, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                 TrueValue="{Binding LocalizedResources.MenuRecordSeries, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}" />
+            <converters:BooleanToStringConverter x:Key="SeriesMenuTextConverter"
+                                                 FalseValue="{Binding LocalizedResources.ContextCancelSeries, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                 TrueValue="{Binding LocalizedResources.AppBarCreateAndEditSeries, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}" />
+            <converters:BooleanToStringConverter x:Key="PlayIconConverter"
+                                                      FalseValue="/Icons/appbar.transport.play.png"
+                                                      TrueValue="/Icons/transport.pause.png" />
+            <converters:BooleanToStringConverter x:Key="PlayTextConverter"
+                                                      TrueValue="{Binding LocalizedResources.AppBarPause, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                      FalseValue="{Binding LocalizedResources.AppBarPlay, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}" />
+            <converters:PlaylistCountConverter x:Key="PlaylistCountConverter" />
         </ResourceDictionary>
     </Application.Resources>
     <Application.ApplicationLifetimeObjects>

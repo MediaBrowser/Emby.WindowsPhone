@@ -1,7 +1,7 @@
 using System.IO;
 using System.Threading.Tasks;
-using Cimbalino.Phone.Toolkit.Extensions;
-using Cimbalino.Phone.Toolkit.Services;
+using Cimbalino.Toolkit.Extensions;
+using Cimbalino.Toolkit.Services;
 using MediaBrowser.ApiInteraction.Data;
 using MediaBrowser.WindowsPhone.Extensions;
 
@@ -9,14 +9,14 @@ namespace MediaBrowser.WindowsPhone.Model.Sync
 {
     public class ImageRepository : IImageRepository
     {
-        private readonly IAsyncStorageService _storageService;
+        private readonly IStorageServiceHandler _storageService;
         private const string ImageCachePath = "Cache\\Images";
         private const string ImageCacheItemPath = ImageCachePath + "\\{0}\\"; // {0} = itemId
         private const string ImageCacheItemImage = "{1}{0}.jpg";
 
-        public ImageRepository(IAsyncStorageService storageService)
+        public ImageRepository(IStorageService storageService)
         {
-            _storageService = storageService;
+            _storageService = storageService.Local;
         }
 
         public async Task SaveImage(string itemId, string imageId, Stream stream)

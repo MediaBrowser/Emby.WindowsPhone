@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using Cimbalino.Phone.Toolkit.Services;
+using Cimbalino.Toolkit.Services;
 using MediaBrowser.ApiInteraction;
 using MediaBrowser.Model.ApiClient;
 using Newtonsoft.Json;
@@ -12,7 +12,7 @@ namespace MediaBrowser.WindowsPhone.Model.Connection
 {
     public class CredentialProvider : ICredentialProvider
     {
-        private readonly IAsyncStorageService _storageService = new AsyncStorageService();
+        private readonly IStorageServiceHandler _storageService = new StorageService().Local;
 
         public async Task<ServerCredentials> GetServerCredentials()
         {

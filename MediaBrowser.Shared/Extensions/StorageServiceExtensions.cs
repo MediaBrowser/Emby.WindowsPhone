@@ -1,12 +1,12 @@
 ﻿using System.IO;
 using System.Threading.Tasks;
-using Cimbalino.Phone.Toolkit.Services;
+using Cimbalino.Toolkit.Services;
 
 namespace MediaBrowser.WindowsPhone.Extensions
 {
     public static class StorageServiceExtensions
     {
-        public static async Task DeleteDirectoryIfExists(this IAsyncStorageService storageService, string path)
+        public static async Task DeleteDirectoryIfExists(this IStorageServiceHandler storageService, string path)
         {
             if (await storageService.DirectoryExistsAsync(path))
             {
@@ -14,7 +14,7 @@ namespace MediaBrowser.WindowsPhone.Extensions
             }
         }
 
-        public static async Task CreateDirectoryIfNotThere(this IAsyncStorageService storageService, string path)
+        public static async Task CreateDirectoryIfNotThere(this IStorageServiceHandler storageService, string path)
         {
             if (!await storageService.DirectoryExistsAsync(path))
             {
@@ -22,7 +22,7 @@ namespace MediaBrowser.WindowsPhone.Extensions
             }
         }
 
-        public static async Task DeleteFileIfExists(this IAsyncStorageService storageService, string file)
+        public static async Task DeleteFileIfExists(this IStorageServiceHandler storageService, string file)
         {
             if (await storageService.FileExistsAsync(file))
             {
@@ -30,7 +30,7 @@ namespace MediaBrowser.WindowsPhone.Extensions
             }
         }
 
-        public static async Task<Stream> OpenFileIfExists(this IAsyncStorageService storageService, string file)
+        public static async Task<Stream> OpenFileIfExists(this IStorageServiceHandler storageService, string file)
         {
             if (await storageService.FileExistsAsync(file))
             {
@@ -40,7 +40,7 @@ namespace MediaBrowser.WindowsPhone.Extensions
             return null;
         }
 
-        public static async Task<string> ReadStringIfFileExists(this IAsyncStorageService storageService, string file)
+        public static async Task<string> ReadStringIfFileExists(this IStorageServiceHandler storageService, string file)
         {
             if (!await storageService.FileExistsAsync(file))
             {

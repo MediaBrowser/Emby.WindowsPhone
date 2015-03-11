@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Cimbalino.Phone.Toolkit.Services;
 using GalaSoft.MvvmLight.Command;
 using JetBrains.Annotations;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Dto;
+using MediaBrowser.WindowsPhone.CimbalinoToolkit;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Resources;
 using MediaBrowser.WindowsPhone.Services;
@@ -123,7 +123,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             NavigateTopage = new RelayCommand<BaseItemDto>(NavigationService.NavigateTo);
 
-#if WP8
             SetPosterAsLockScreenCommand = new RelayCommand(async () =>
             {
                 if (!LockScreenService.Current.IsProvidedByCurrentApplication)
@@ -141,7 +140,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 LockScreenService.Current.ManuallySet = true;
                 await LockScreenService.Current.SetLockScreenImage(url);
             });
-#endif
         }
 
         private async Task<bool> GetMovieDetails()
