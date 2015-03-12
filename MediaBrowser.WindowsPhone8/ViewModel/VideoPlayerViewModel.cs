@@ -83,12 +83,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
         public PlayerSourceType PlayerSourceType { get; set; }
         public List<Caption> Captions { get; set; }
-
-        public bool IsHls
-        {
-            get { return PlayerSourceType == PlayerSourceType.Programme || (SelectedItem != null && SelectedItem.Type.ToLower().Equals("channelvideoitem")); }
-        }
-
+        
         public IList<BaseItemDto> PlaylistItems { get; set; }
 
         public bool IsPlaylist
@@ -275,7 +270,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         {
                             IsMuted = false,
                             ItemId = _itemId,
-                            //UserId = AuthenticationService.Current.LoggedInUserId,
                             PositionTicks = totalTicks,
                             IsPaused = isPaused
                         };
