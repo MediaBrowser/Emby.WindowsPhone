@@ -225,6 +225,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         {
                             _timer.Stop();
                         }
+
+                        Messenger.Default.Send(new NotificationMessage(_itemId, totalTicks, Constants.Messages.RefreshResumeMsg));
                     }
                     catch (HttpException ex)
                     {
