@@ -2,6 +2,7 @@
 using System.Windows;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
+using MediaBrowser.ApiInteraction.Playback;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Net;
@@ -33,15 +34,17 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     /// </summary>
     public class MainViewModel : ViewModelBase
     {
+        private readonly PlaybackManager _playbackManager;
         private bool _hasLoaded;
         private BaseItemDto[] _recentItems;
 
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
-        public MainViewModel(IConnectionManager connectionManager, INavigationService navigationService)
+        public MainViewModel(IConnectionManager connectionManager, INavigationService navigationService, PlaybackManager playbackManager)
             : base(navigationService, connectionManager)
         {
+            _playbackManager = playbackManager;
             Folders = new ObservableCollection<BaseItemDto>();
             RecentItems = new ObservableCollection<BaseItemDto>();
             FavouriteItems = new ObservableCollection<BaseItemDto>();
@@ -147,7 +150,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             if (item.IsAudio)
             {
-                var playlistItem = item.ToPlaylistItem(ApiClient);
+                var playlistItem = await item.ToPlaylistItem(ApiClient, _playbackManager);
                 Messenger.Default.Send(new NotificationMessage<List<PlaylistItem>>(new List<PlaylistItem> { playlistItem }, Constants.Messages.SetPlaylistAsMsg));
                 return;
             }

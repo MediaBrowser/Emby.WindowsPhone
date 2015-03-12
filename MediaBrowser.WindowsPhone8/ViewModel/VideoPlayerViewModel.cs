@@ -43,6 +43,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         private bool _isResume;
         private long _startPositionTicks;
         private string _itemId;
+        private StreamInfo _streamInfo;
 
         /// <summary>
         /// Initializes a new instance of the VideoPlayerViewModel class.
@@ -71,7 +72,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     PositionTicks = totalTicks
                 };
 
-                await ApiClient.ReportPlaybackProgressAsync(info);
+                await _playbackManager.ReportPlaybackProgress(info, false, ApiClient);
                 SetPlaybackTicks(totalTicks);
             }
             catch (HttpException ex)
@@ -215,12 +216,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         var info = new PlaybackStopInfo
                         {
                             ItemId = _itemId,
-                            //UserId = AuthenticationService.Current.LoggedInUserId,
                             PositionTicks = totalTicks
                         };
 
-                        await ApiClient.ReportPlaybackStoppedAsync(info);
-                        await ApiClient.StopTranscodingProcesses(ApiClient.DeviceId);
+                        await _playbackManager.ReportPlaybackStopped(info, _streamInfo, App.ServerInfo.Id, AuthenticationService.Current.LoggedInUserId, false, ApiClient);
 
                         SetPlaybackTicks(totalTicks);
 
@@ -357,8 +356,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             Messenger.Default.Send(new NotificationMessage(Constants.Messages.ClearNowPlayingMsg));
             EndTime = TimeSpan.Zero;
 
-            var query = new StreamInfo();
-            //var query = new VideoStreamOptions();
+            var streamInfo = new StreamInfo();
             switch (PlayerSourceType)
             {
                 case PlayerSourceType.Playlist:
@@ -407,8 +405,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         }
                     }
 
-                    query = await CreateVideoStream(SelectedItem.Id, _startPositionTicks, SelectedItem.MediaSources, SelectedItem.Type.ToLower().Equals("channelvideoitem"));
-                    //query = CreateVideoStreamOptions(SelectedItem.Id, _startPositionTicks, SelectedItem.Type.ToLower().Equals("channelvideoitem"));
+                    streamInfo = await CreateVideoStream(SelectedItem.Id, _startPositionTicks, SelectedItem.MediaSources, SelectedItem.Type.ToLower().Equals("channelvideoitem"));
 
                     if (SelectedItem.RunTimeTicks.HasValue)
                         EndTime = TimeSpan.FromTicks(SelectedItem.RunTimeTicks.Value - _startPositionTicks);
@@ -416,8 +413,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     Log.Info("Playing {0} [{1}] ({2})", SelectedItem.Type, SelectedItem.Name, SelectedItem.Id);
                     break;
                 case PlayerSourceType.Recording:
-                    //query = CreateVideoStreamOptions(RecordingItem.Id, _startPositionTicks);
-                    query = await CreateVideoStream(RecordingItem.Id, _startPositionTicks);
+                    streamInfo = await CreateVideoStream(RecordingItem.Id, _startPositionTicks);
 
                     if (RecordingItem.RunTimeTicks.HasValue)
                         EndTime = TimeSpan.FromTicks(RecordingItem.RunTimeTicks.Value - _startPositionTicks);
@@ -425,11 +421,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     Log.Info("Playing {0} [{1}] ({2})", RecordingItem.Type, RecordingItem.Name, RecordingItem.Id);
                     break;
                 case PlayerSourceType.Programme:
-                    //query = CreateVideoStreamOptions(ProgrammeItem.ChannelId, _startPositionTicks, true);
                     try
                     {
                         var channel = await ApiClient.GetItemAsync(ProgrammeItem.ChannelId, AuthenticationService.Current.LoggedInUserId);
-                        query = await CreateVideoStream(ProgrammeItem.ChannelId, _startPositionTicks, channel.MediaSources, useHls: true);
+                        streamInfo = await CreateVideoStream(ProgrammeItem.ChannelId, _startPositionTicks, channel.MediaSources, useHls: true);
                     }
                     catch (HttpException ex)
                     {
@@ -445,7 +440,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     break;
             }
 
-            if (query == null)
+            if (streamInfo == null)
             {
                 NavigationService.GoBack();
                 return;
@@ -453,15 +448,15 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             if (subtitleIndex.HasValue)
             {
-                query.SubtitleStreamIndex = subtitleIndex.Value;
+                streamInfo.SubtitleStreamIndex = subtitleIndex.Value;
             }
 
-            var url = query.ToUrl(ApiClient.GetApiUrl("/"), ApiClient.AccessToken);
-            //var url = PlayerSourceType == PlayerSourceType.Programme ? ApiClient.GetHlsVideoStreamUrl(query) : ApiClient.GetVideoStreamUrl(query);
+            var url = streamInfo.ToUrl(ApiClient.GetApiUrl("/"), ApiClient.AccessToken);
             //Captions = GetSubtitles(SelectedItem);
 
             StopAudioPlayback();
 
+            _streamInfo = streamInfo;
             VideoUrl = url;
             Debug.WriteLine(VideoUrl);
 
@@ -471,7 +466,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 Log.Info("Sending playback started message to the server.");
 
-                _itemId = query.ItemId;
+                _itemId = streamInfo.ItemId;
 
                 var info = new PlaybackStartInfo
                 {
@@ -501,6 +496,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
             catch
             {
+                Log.Error("Error when attempting to stop any music playback");
             }
         }
 
@@ -577,37 +573,44 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 {
                     var program = await ApiClient.GetLiveTvProgramAsync(ItemId, AuthenticationService.Current.LoggedInUserId, cts.Token);
                     if (program == null || program.UserData == null)
+                    {
                         return;
-                    PlayerSourceType = PlayerSourceType.Programme;
+                    }
 
+                    PlayerSourceType = PlayerSourceType.Programme;
                     ProgrammeItem = program;
                 }
                 else if (ItemType == "Recording") //TODO Verify this
                 {
                     var recording = await ApiClient.GetLiveTvRecordingAsync(ItemId, AuthenticationService.Current.LoggedInUserId, cts.Token);
                     if (recording == null || recording.UserData == null)
+                    {
                         return;
-                    PlayerSourceType = PlayerSourceType.Recording;
+                    }
 
+                    PlayerSourceType = PlayerSourceType.Recording;
                     RecordingItem = recording;
                 }
                 else
                 {
                     var item = await ApiClient.GetItemAsync(ItemId, AuthenticationService.Current.LoggedInUserId);
                     if (item == null || item.UserData == null)
+                    {
                         return;
-                    PlayerSourceType = PlayerSourceType.Video;
+                    }
 
+                    PlayerSourceType = PlayerSourceType.Video;
                     SelectedItem = item;
                 }
+
                 await InitiatePlayback(true);
             }
             catch (TaskCanceledException ex)
             {
                 Log.ErrorException("RecoverState timedout", ex);
             }
-            Recover = false;
 
+            Recover = false;
         }
 
         internal List<Caption> GetSubtitles(BaseItemDto item)
