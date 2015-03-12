@@ -462,10 +462,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 Log.Info("Sending playback started message to the server.");
 
+                _itemId = query.ItemId;
+
                 var info = new PlaybackStartInfo
                 {
-                    ItemId = query.ItemId,
-                    //UserId = AuthenticationService.Current.LoggedInUserId,
+                    ItemId = _itemId,
                     CanSeek = false,
                     QueueableMediaTypes = new List<string>()
                 };
