@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using MediaBrowser.ApiInteraction.Playback;
 using MediaBrowser.Dlna.Profiles;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Dlna;
@@ -8,7 +9,6 @@ using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Logging;
 using MediaBrowser.Model.Search;
 using MediaBrowser.WindowsPhone.Model;
-using MediaBrowser.WindowsPhone.Services;
 using ScottIsAFool.WindowsPhone.Logging;
 
 namespace MediaBrowser.WindowsPhone.Extensions
@@ -34,7 +34,7 @@ namespace MediaBrowser.WindowsPhone.Extensions
             }
         }
 
-        internal static PlaylistItem ToPlaylistItem(this BaseItemDto item, IApiClient apiClient)
+        internal static async Task<PlaylistItem> ToPlaylistItem(this BaseItemDto item, IApiClient apiClient, PlaybackManager playbackManager)
         {
             var profile = WindowsPhoneProfile.GetProfile();
             var options = new AudioOptions
@@ -46,8 +46,7 @@ namespace MediaBrowser.WindowsPhone.Extensions
                 MediaSources = item.MediaSources
             };
 
-            var builder = new StreamBuilder();
-            var streamInfo = builder.BuildAudioItem(options);
+            var streamInfo = await playbackManager.GetAudioStreamInfo(App.ServerInfo.Id, options, false, apiClient);
 
             var streamUrl = streamInfo.ToUrl(apiClient.GetApiUrl("/"), apiClient.AccessToken);
 
@@ -67,12 +66,12 @@ namespace MediaBrowser.WindowsPhone.Extensions
         }
 
 
-        internal static async Task<List<PlaylistItem>> ToPlayListItems(this List<BaseItemDto> list, IApiClient apiClient)
+        internal static async Task<List<PlaylistItem>> ToPlayListItems(this List<BaseItemDto> list, IApiClient apiClient, PlaybackManager playbackManager)
         {
             var newList = new List<PlaylistItem>();
-            list.ForEach(item =>
+            list.ForEach(async item =>
             {
-                var playlistItem = item.ToPlaylistItem(apiClient);
+                var playlistItem = await item.ToPlaylistItem(apiClient, playbackManager);
                 newList.Add(playlistItem);
             });
 

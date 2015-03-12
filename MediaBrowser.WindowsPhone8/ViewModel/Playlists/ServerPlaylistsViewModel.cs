@@ -6,6 +6,7 @@ using Cimbalino.Toolkit.Extensions;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
+using MediaBrowser.ApiInteraction.Playback;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Net;
@@ -31,14 +32,16 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Playlists
     /// </summary>
     public class ServerPlaylistsViewModel : ViewModelBase
     {
+        private readonly PlaybackManager _playbackManager;
         private bool _playlistLoaded;
 
         /// <summary>
         /// Initializes a new instance of the ServerPlaylistsViewModel class.
         /// </summary>
-        public ServerPlaylistsViewModel(INavigationService navigationService, IConnectionManager connectionManager)
+        public ServerPlaylistsViewModel(INavigationService navigationService, IConnectionManager connectionManager, PlaybackManager playbackManager)
             : base(navigationService, connectionManager)
         {
+            _playbackManager = playbackManager;
             if (IsInDesignMode)
             {
                 SelectedPlaylist = new BaseItemDto
@@ -142,7 +145,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Playlists
         {
             get
             {
-                return new RelayCommand<BaseItemDto>(item =>
+                return new RelayCommand<BaseItemDto>(async item =>
                 {
                     if (SelectedPlaylist.MediaType.Equals("Video"))
                     {
@@ -155,7 +158,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Playlists
                     }
                     else if (SelectedPlaylist.MediaType.Equals("Audio"))
                     {
-                        var tracks = new List<PlaylistItem> {item.ToPlaylistItem(ApiClient)};
+                        var playlistItem = await item.ToPlaylistItem(ApiClient, _playbackManager);
+                        var tracks = new List<PlaylistItem> { playlistItem };
 
                         Messenger.Default.Send(new NotificationMessage<List<PlaylistItem>>(tracks, Constants.Messages.SetPlaylistAsMsg));
                     }
@@ -185,7 +189,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Playlists
                     }
                     else if (SelectedPlaylist.MediaType.Equals("Audio"))
                     {
-                        var tracks = await PlaylistItems.ToList().ToPlayListItems(ApiClient);
+                        var tracks = await PlaylistItems.ToList().ToPlayListItems(ApiClient, _playbackManager);
 
                         Messenger.Default.Send(new NotificationMessage<List<PlaylistItem>>(tracks, Constants.Messages.SetPlaylistAsMsg));
                     }
@@ -264,7 +268,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Playlists
 
                     try
                     {
-                        var tracks = await ApiClient.GetInstantMixPlaylist(item);
+                        var tracks = await ApiClient.GetInstantMixPlaylist(item, _playbackManager);
                         Messenger.Default.Send(new NotificationMessage<List<PlaylistItem>>(tracks, Constants.Messages.SetPlaylistAsMsg));
                     }
                     catch (HttpException ex)
@@ -304,18 +308,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Playlists
                 });
             }
         }
-
-        public RelayCommand DeletePlaylistCommand
-        {
-            get
-            {
-                return new RelayCommand(async () =>
-                {
-                    //await _apiClient.playlist
-                });
-            }
-        }
-
+        
         public override void WireMessages()
         {
             Messenger.Default.Register<NotificationMessage>(this, m =>

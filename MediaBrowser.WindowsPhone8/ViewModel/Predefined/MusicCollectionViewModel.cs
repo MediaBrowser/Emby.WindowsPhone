@@ -7,6 +7,7 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
 using JetBrains.Annotations;
+using MediaBrowser.ApiInteraction.Playback;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
@@ -31,6 +32,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
     /// </summary>
     public class MusicCollectionViewModel : ViewModelBase
     {
+        private readonly PlaybackManager _playbackManager;
         private bool _artistsLoaded;
         private bool _albumsLoaded;
         private bool _songsLoaded;
@@ -39,9 +41,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
         /// <summary>
         /// Initializes a new instance of the MusicCollectionViewModel class.
         /// </summary>
-        public MusicCollectionViewModel(INavigationService navigationService, IConnectionManager connectionManager)
+        public MusicCollectionViewModel(INavigationService navigationService, IConnectionManager connectionManager, PlaybackManager playbackManager)
             : base(navigationService, connectionManager)
         {
+            _playbackManager = playbackManager;
             SelectedTracks = new List<BaseItemDto>();
 
             if (IsInDesignMode)
@@ -146,7 +149,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
 
                     try
                     {
-                        var tracks = await ApiClient.GetInstantMixPlaylist(item);
+                        var tracks = await ApiClient.GetInstantMixPlaylist(item, _playbackManager);
                         Messenger.Default.Send(new NotificationMessage<List<PlaylistItem>>(tracks, Constants.Messages.SetPlaylistAsMsg));
                     }
                     catch (HttpException ex)
@@ -377,7 +380,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
 
             var items = itemResponse.Items.ToList();
 
-            var newList = await items.ToPlayListItems(ApiClient);
+            var newList = await items.ToPlayListItems(ApiClient, _playbackManager);
 
             Messenger.Default.Send(new NotificationMessage<List<PlaylistItem>>(newList, Constants.Messages.SetPlaylistAsMsg));
 

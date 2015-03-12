@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Threading;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
+using MediaBrowser.ApiInteraction.Playback;
 using MediaBrowser.Dlna.Profiles;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Dlna;
@@ -36,6 +37,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     /// </summary>
     public class VideoPlayerViewModel : ViewModelBase
     {
+        private readonly PlaybackManager _playbackManager;
         private readonly DispatcherTimer _timer;
 
         private bool _isResume;
@@ -45,9 +47,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         /// <summary>
         /// Initializes a new instance of the VideoPlayerViewModel class.
         /// </summary>
-        public VideoPlayerViewModel(IConnectionManager connectionManager, INavigationService navigationService)
+        public VideoPlayerViewModel(IConnectionManager connectionManager, INavigationService navigationService, PlaybackManager playbackManager)
             : base(navigationService, connectionManager)
         {
+            _playbackManager = playbackManager;
             _timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(10) };
             _timer.Tick += TimerOnTick;
         }
@@ -306,7 +309,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
             set
             {
-                _endTime = value;                
+                _endTime = value;
             }
         }
 
@@ -343,8 +346,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         }
                     }
 
-                    if (!Recover)                       
-                        await InitiatePlayback(_isResume);                    
+                    if (!Recover)
+                        await InitiatePlayback(_isResume);
                 });
             }
         }
@@ -384,7 +387,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                             {
                                 if (PlaylistItems == null)
                                 {
-                                    PlaylistItems = new List<BaseItemDto>(items.Items) {SelectedItem};
+                                    PlaylistItems = new List<BaseItemDto>(items.Items) { SelectedItem };
                                 }
                                 else
                                 {
@@ -404,7 +407,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         }
                     }
 
-                    query = CreateVideoStream(SelectedItem.Id, _startPositionTicks, SelectedItem.MediaSources, SelectedItem.Type.ToLower().Equals("channelvideoitem"));
+                    query = await CreateVideoStream(SelectedItem.Id, _startPositionTicks, SelectedItem.MediaSources, SelectedItem.Type.ToLower().Equals("channelvideoitem"));
                     //query = CreateVideoStreamOptions(SelectedItem.Id, _startPositionTicks, SelectedItem.Type.ToLower().Equals("channelvideoitem"));
 
                     if (SelectedItem.RunTimeTicks.HasValue)
@@ -414,7 +417,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     break;
                 case PlayerSourceType.Recording:
                     //query = CreateVideoStreamOptions(RecordingItem.Id, _startPositionTicks);
-                    query = CreateVideoStream(RecordingItem.Id, _startPositionTicks);
+                    query = await CreateVideoStream(RecordingItem.Id, _startPositionTicks);
 
                     if (RecordingItem.RunTimeTicks.HasValue)
                         EndTime = TimeSpan.FromTicks(RecordingItem.RunTimeTicks.Value - _startPositionTicks);
@@ -426,7 +429,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     try
                     {
                         var channel = await ApiClient.GetItemAsync(ProgrammeItem.ChannelId, AuthenticationService.Current.LoggedInUserId);
-                        query = CreateVideoStream(ProgrammeItem.ChannelId, _startPositionTicks, channel.MediaSources, useHls: true);
+                        query = await CreateVideoStream(ProgrammeItem.ChannelId, _startPositionTicks, channel.MediaSources, useHls: true);
                     }
                     catch (HttpException ex)
                     {
@@ -442,6 +445,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     break;
             }
 
+            if (query == null)
+            {
+                NavigationService.GoBack();
+                return;
+            }
+
             if (subtitleIndex.HasValue)
             {
                 query.SubtitleStreamIndex = subtitleIndex.Value;
@@ -454,7 +463,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             StopAudioPlayback();
 
             VideoUrl = url;
-            Debug.WriteLine(VideoUrl);            
+            Debug.WriteLine(VideoUrl);
 
             Log.Debug(VideoUrl);
 
@@ -503,7 +512,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
         }
 
-        private StreamInfo CreateVideoStream(string itemId, long startTimeTicks, List<MediaSourceInfo> mediaSources = null, bool useHls = false)
+        private async Task<StreamInfo> CreateVideoStream(string itemId, long startTimeTicks, List<MediaSourceInfo> mediaSources = null, bool useHls = false)
         {
             var profile = WindowsPhoneProfile.GetProfile(isHls: useHls);
 
@@ -513,18 +522,42 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             var options = new VideoOptions
             {
-                Profile = profile, 
-                ItemId = itemId, 
-                DeviceId = ApiClient.DeviceId, 
+                Profile = profile,
+                ItemId = itemId,
+                DeviceId = ApiClient.DeviceId,
                 MaxBitrate = streamingSettings.VideoBitrate,
                 MediaSources = mediaSources
             };
 
-            var builder = new StreamBuilder();
-            var streamInfo = builder.BuildVideoItem(options);
-            streamInfo.StartPositionTicks = startTimeTicks;
+            try
+            {
+                var streamInfo = await _playbackManager.GetVideoStreamInfo(App.ServerInfo.Id, options, false, ApiClient);
+                streamInfo.StartPositionTicks = startTimeTicks;
 
-            return streamInfo;
+                return streamInfo;
+            }
+            catch (PlaybackException pex)
+            {
+                Log.ErrorException("CreateVideoStream: " + pex.ErrorCode, pex);
+                switch (pex.ErrorCode)
+                {
+                    case PlaybackErrorCode.NoCompatibleStream:
+
+                        break;
+                    case PlaybackErrorCode.NotAllowed:
+
+                        break;
+                    case PlaybackErrorCode.RateLimitExceeded:
+
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.ErrorException("CreateVideoStream", ex);
+            }
+
+            return null;
         }
 
         public async void Seek(long newPosition, int? subtitleIndex = null)
@@ -534,7 +567,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             await InitiatePlayback(false, subtitleIndex);
         }
         public async void RecoverState()
-        {            
+        {
             _isResume = true;
 
             var cts = new CancellationTokenSource(7000);
@@ -569,12 +602,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 }
                 await InitiatePlayback(true);
             }
-            catch(TaskCanceledException ex)
+            catch (TaskCanceledException ex)
             {
                 Log.ErrorException("RecoverState timedout", ex);
-            }            
+            }
             Recover = false;
-                
+
         }
 
         internal List<Caption> GetSubtitles(BaseItemDto item)

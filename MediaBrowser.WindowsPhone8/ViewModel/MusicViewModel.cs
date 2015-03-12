@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
+using MediaBrowser.ApiInteraction.Playback;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Net;
@@ -30,15 +31,17 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     /// </summary>
     public class MusicViewModel : ViewModelBase
     {
+        private readonly PlaybackManager _playbackManager;
         private List<BaseItemDto> _artistTracks;
         private bool _gotAlbums;
 
         /// <summary>
         /// Initializes a new instance of the MusicViewModel class.
         /// </summary>
-        public MusicViewModel(IConnectionManager connectionManager, INavigationService navigationService)
+        public MusicViewModel(IConnectionManager connectionManager, INavigationService navigationService, PlaybackManager playbackManager)
             : base(navigationService, connectionManager)
         {
+            _playbackManager = playbackManager;
             SelectedTracks = new List<BaseItemDto>();
             CanUpdateFavourites = true;
             if (IsInDesignMode)
@@ -159,7 +162,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                                                .OrderBy(x => x.IndexNumber)
                                                .ToList();
 
-                var newList = await albumTracks.ToPlayListItems(ApiClient);
+                var newList = await albumTracks.ToPlayListItems(ApiClient, _playbackManager);
 
                 Messenger.Default.Send(new NotificationMessage<List<PlaylistItem>>(newList, Constants.Messages.SetPlaylistAsMsg));
             });
@@ -192,7 +195,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     return;
                 }
 
-                var newList = await SelectedTracks.ToPlayListItems(ApiClient);
+                var newList = await SelectedTracks.ToPlayListItems(ApiClient, _playbackManager);
 
                 Messenger.Default.Send(new NotificationMessage<List<PlaylistItem>>(newList, Constants.Messages.AddToPlaylistMsg));
 
@@ -205,21 +208,22 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             PlayItemsCommand = new RelayCommand(async () =>
             {
-                var newList = await SelectedTracks.ToPlayListItems(ApiClient);
+                var newList = await SelectedTracks.ToPlayListItems(ApiClient, _playbackManager);
 
                 Messenger.Default.Send(new NotificationMessage<List<PlaylistItem>>(newList, Constants.Messages.SetPlaylistAsMsg));
             });
 
-            PlaySongCommand = new RelayCommand<BaseItemDto>(song =>
+            PlaySongCommand = new RelayCommand<BaseItemDto>(async song =>
             {
                 if (song == null)
                 {
                     return;
                 }
 
+                var playlistItem = await song.ToPlaylistItem(ApiClient, _playbackManager);
                 var playlist = new List<PlaylistItem>
                 {
-                    song.ToPlaylistItem(ApiClient)
+                    playlistItem
                 };
 
                 Messenger.Default.Send(new NotificationMessage<List<PlaylistItem>>(playlist, Constants.Messages.SetPlaylistAsMsg));
@@ -253,7 +257,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     return;
                 }
 
-                var playlist = await _artistTracks.ToPlayListItems(ApiClient);
+                var playlist = await _artistTracks.ToPlayListItems(ApiClient, _playbackManager);
 
                 Messenger.Default.Send(new NotificationMessage<List<PlaylistItem>>(playlist, Constants.Messages.SetPlaylistAsMsg));
             });
@@ -449,7 +453,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                     try
                     {
-                        var tracks = await ApiClient.GetInstantMixPlaylist(item);
+                        var tracks = await ApiClient.GetInstantMixPlaylist(item, _playbackManager);
                         Messenger.Default.Send(new NotificationMessage<List<PlaylistItem>>(tracks, Constants.Messages.SetPlaylistAsMsg));
                     }
                     catch (HttpException ex)

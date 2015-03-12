@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MediaBrowser.ApiInteraction.Playback;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Querying;
@@ -11,7 +12,7 @@ namespace MediaBrowser.WindowsPhone.Extensions
 {
     public static class ApiClientExtensions
     {
-        internal static async Task<List<PlaylistItem>> GetInstantMixPlaylist(this IApiClient apiClient, BaseItemDto item)
+        internal static async Task<List<PlaylistItem>> GetInstantMixPlaylist(this IApiClient apiClient, BaseItemDto item, PlaybackManager playbackManager)
         {
             ItemsResult result;
             var audioQuery = new SimilarItemsQuery { UserId = AuthenticationService.Current.LoggedInUserId, Id = item.Id, Fields = new []{ ItemFields.MediaSources}};
@@ -40,7 +41,7 @@ namespace MediaBrowser.WindowsPhone.Extensions
                 return new List<PlaylistItem>();
             }
 
-            return await result.Items.ToList().ToPlayListItems(apiClient);
+            return await result.Items.ToList().ToPlayListItems(apiClient, playbackManager);
         }
     }
 }
