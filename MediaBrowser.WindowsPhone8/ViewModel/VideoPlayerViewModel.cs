@@ -21,6 +21,7 @@ using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Model.Interfaces;
 using MediaBrowser.WindowsPhone.Resources;
 using MediaBrowser.WindowsPhone.Services;
+using Microsoft.Phone.BackgroundAudio;
 using Microsoft.PlayerFramework;
 using System.Threading;
 using System.Threading.Tasks;
@@ -450,6 +451,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             //var url = PlayerSourceType == PlayerSourceType.Programme ? ApiClient.GetHlsVideoStreamUrl(query) : ApiClient.GetVideoStreamUrl(query);
             //Captions = GetSubtitles(SelectedItem);
 
+            StopAudioPlayback();
+
             VideoUrl = url;
             Debug.WriteLine(VideoUrl);            
 
@@ -472,6 +475,22 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             catch (HttpException ex)
             {
                 Utils.HandleHttpException("VideoPageLoaded", ex, NavigationService, Log);
+            }
+        }
+
+        private void StopAudioPlayback()
+        {
+            try
+            {
+                if (BackgroundAudioPlayer.Instance.PlayerState == PlayState.Playing)
+                {
+                    BackgroundAudioPlayer.Instance.Stop();
+                }
+
+                BackgroundAudioPlayer.Instance.Close();
+            }
+            catch
+            {
             }
         }
 
