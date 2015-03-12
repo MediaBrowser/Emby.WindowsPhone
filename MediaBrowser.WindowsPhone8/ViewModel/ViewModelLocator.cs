@@ -77,7 +77,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                 AddSyncInterfaces();
 
-                SimpleIoc.Default.RegisterIf<PlaybackManager>();
+                SimpleIoc.Default.RegisterIf(() => new PlaybackManager(AssetManager, device, logger));
             }
 
             SimpleIoc.Default.RegisterIf<IMessageBoxService, MessageBoxService>();
@@ -413,6 +413,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public static AuthenticationService Auth
         {
             get { return ServiceLocator.Current.GetInstance<AuthenticationService>(); }
+        }
+
+        public static ILocalAssetManager AssetManager
+        {
+            get { return ServiceLocator.Current.GetInstance<ILocalAssetManager>(); }
         }
 
         /// <summary>
