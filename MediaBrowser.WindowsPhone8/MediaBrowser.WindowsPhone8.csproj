@@ -863,11 +863,13 @@
     <Reference Include="Autofac">
       <HintPath>..\other-packages\HLS\Autofac.dll</HintPath>
     </Reference>
-    <Reference Include="Cimbalino.Toolkit">
-      <HintPath>..\packages\Cimbalino.Toolkit.1.2.5\lib\wp8\Cimbalino.Toolkit.dll</HintPath>
+    <Reference Include="Cimbalino.Toolkit, Version=1.2.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Cimbalino.Toolkit.1.2.6\lib\wp8\Cimbalino.Toolkit.dll</HintPath>
     </Reference>
-    <Reference Include="Cimbalino.Toolkit.Core">
-      <HintPath>..\packages\Cimbalino.Toolkit.Core.1.2.5\lib\wp8\Cimbalino.Toolkit.Core.dll</HintPath>
+    <Reference Include="Cimbalino.Toolkit.Core, Version=1.2.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Cimbalino.Toolkit.Core.1.2.6\lib\wp8\Cimbalino.Toolkit.Core.dll</HintPath>
     </Reference>
     <Reference Include="Coding4Fun.Toolkit, Version=2.0.8.0, Culture=neutral, PublicKeyToken=c5fd7b72b1a17ce4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

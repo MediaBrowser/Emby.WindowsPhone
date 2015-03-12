@@ -126,8 +126,9 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Cimbalino.Toolkit.Core">
-      <HintPath>..\packages\Cimbalino.Toolkit.Core.1.2.5\lib\wp8\Cimbalino.Toolkit.Core.dll</HintPath>
+    <Reference Include="Cimbalino.Toolkit.Core, Version=1.2.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Cimbalino.Toolkit.Core.1.2.6\lib\wp8\Cimbalino.Toolkit.Core.dll</HintPath>
     </Reference>
     <Reference Include="GalaSoft.MvvmLight">
       <HintPath>..\packages\MvvmLightLibs.5.0.0.0\lib\wp8\GalaSoft.MvvmLight.dll</HintPath>
