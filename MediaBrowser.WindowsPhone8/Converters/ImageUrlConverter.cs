@@ -65,13 +65,9 @@ namespace MediaBrowser.WindowsPhone.Converters
 
                     switch (searchHint.Type)
                     {
-                        case "Artist":
-                            return apiClient.GetArtistImageUrl(searchHint.Name, imageOptions);
                         case "MusicGenre":
                         case "GameGenre":
                             return apiClient.GetGenreImageUrl(searchHint.Name, imageOptions);
-                        case "Studio":
-                            return apiClient.GetStudioImageUrl(searchHint.Name, imageOptions);
                         default:
                             return apiClient.GetImageUrl(searchHint.ItemId, imageOptions);
                     }

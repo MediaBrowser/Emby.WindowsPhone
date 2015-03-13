@@ -15,22 +15,21 @@ namespace MediaBrowser.WindowsPhone.Extensions
         internal static async Task<List<PlaylistItem>> GetInstantMixPlaylist(this IApiClient apiClient, BaseItemDto item, PlaybackManager playbackManager)
         {
             ItemsResult result;
-            var audioQuery = new SimilarItemsQuery { UserId = AuthenticationService.Current.LoggedInUserId, Id = item.Id, Fields = new []{ ItemFields.MediaSources}};
-            var nameQuery = new SimilarItemsByNameQuery { Name = item.Name, UserId = AuthenticationService.Current.LoggedInUserId, Fields = new[] { ItemFields.MediaSources } };
+            var query = new SimilarItemsQuery { UserId = AuthenticationService.Current.LoggedInUserId, Id = item.Id, Fields = new []{ ItemFields.MediaSources}};
 
             switch (item.Type)
             {
                 case "Audio":
-                    result = await apiClient.GetInstantMixFromSongAsync(audioQuery);
+                    result = await apiClient.GetInstantMixFromSongAsync(query);
                     break;
                 case "MusicArtist":
-                    result = await apiClient.GetInstantMixFromArtistAsync(nameQuery);
+                    result = await apiClient.GetInstantMixFromArtistAsync(query);
                     break;
                 case "MusicAlbum":
-                    result = await apiClient.GetInstantMixFromAlbumAsync(audioQuery);
+                    result = await apiClient.GetInstantMixFromAlbumAsync(query);
                     break;
                 case "Genre":
-                    result = await apiClient.GetInstantMixFromMusicGenreAsync(nameQuery);
+                    result = await apiClient.GetInstantMixFromMusicGenreAsync(query);
                     break;
                 default:
                     return new List<PlaylistItem>();

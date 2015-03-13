@@ -326,7 +326,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 var query = new ItemQuery
                 {
                     UserId = AuthenticationService.Current.LoggedInUserId,
-                    Artists = new[] {SelectedArtist.Name},
+                    ArtistIds = new[] {SelectedArtist.Id},
                     Recursive = true,
                     Fields = new[] { ItemFields.ParentId, ItemFields.MediaSources, ItemFields.SyncInfo },
                     IncludeItemTypes = new[] {"Audio"}
@@ -357,7 +357,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 var query = new ItemQuery
                 {
                     UserId = AuthenticationService.Current.LoggedInUserId,
-                    Artists = new[] {SelectedArtist.Name},
+                    ArtistIds = new[] {SelectedArtist.Id},
                     Recursive = true,
                     Fields = new[] { ItemFields.ParentId, ItemFields.MediaSources, ItemFields.SyncInfo, },
                     IncludeItemTypes = new[] {"MusicAlbum"}
@@ -368,22 +368,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 var items = await ApiClient.GetItemsAsync(query);
                 if (items != null && items.Items.Any())
                 {
-                    //// Extract the album items from the results
-                    //var albums = items.Items.Where(x => x.Type == "MusicAlbum").ToList();
-
-                    //// Extract the track items from the results
-                    //_artistTracks = items.Items.Where(y => y.Type == "Audio").ToList();
-
-                    //var nameId = (from a in _artistTracks
-                    //              select new KeyValuePair<string, string>(a.Album, a.ParentId)).Distinct();
-
-                    //// This sets the album names correctly based on what's in the track information (rather than folder name)
-                    //foreach (var ni in nameId)
-                    //{
-                    //    var item = albums.SingleOrDefault(x => x.Id == ni.Value);
-                    //    item.Name = ni.Key;
-                    //}
-
                     foreach (var album in items.Items)
                     {
                         Albums.Add(album);
