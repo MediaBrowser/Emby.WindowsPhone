@@ -165,6 +165,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     Trailers = trailers.ToList();
                 }
 
+                CanResume = SelectedMovie.CanResume;
+
                 result = true;
             }
             catch (HttpException ex)
@@ -202,6 +204,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         private void OnSelectedMovieChanged()
         {
             ServerIdItem = SelectedMovie;
+            CanResume = SelectedMovie != null && SelectedMovie.CanResume;
         }
 
         public List<Group<BaseItemPerson>> CastAndCrew { get; set; }
