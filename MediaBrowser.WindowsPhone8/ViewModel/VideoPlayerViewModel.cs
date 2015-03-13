@@ -462,7 +462,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 Log.Info("Sending playback started message to the server.");
 
-                _itemId = query.ItemId;
+                _itemId = streamInfo.ItemId;
 
                 var info = new PlaybackStartInfo
                 {
