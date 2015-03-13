@@ -168,11 +168,13 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             NextEpisodeCommand = new RelayCommand(() =>
             {
                 SelectedEpisode = SelectedEpisode.IndexNumber + 1 > Episodes.Count ? Episodes[0] : Episodes[SelectedEpisode.IndexNumber.Value];
+                CanResume = SelectedEpisode != null && SelectedEpisode.CanResume;
             });
 
             PreviousEpisodeCommand = new RelayCommand(() =>
             {
                 SelectedEpisode = SelectedEpisode.IndexNumber - 1 == 0 ? Episodes[Episodes.Count - 1] : Episodes[SelectedEpisode.IndexNumber.Value - 2];
+                CanResume = SelectedEpisode != null && SelectedEpisode.CanResume;
             });
 
             AddRemoveFavouriteCommand = new RelayCommand<BaseItemDto>(async item =>
@@ -367,6 +369,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 if (SelectedEpisode != null)
                 {
                     SelectedEpisode = Episodes.FirstOrDefault(x => x.IndexNumber == index);
+                    CanResume = SelectedEpisode != null && SelectedEpisode.CanResume;
                 }
             }
         }
@@ -376,6 +379,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             Episodes = new List<BaseItemDto>();
             SelectedEpisode = null;
+            CanResume = false;
         }
 
         public RelayCommand<BaseItemDto> MarkAsWatchedEpisodeViewCommand
@@ -433,7 +437,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         [UsedImplicitly]
         private void OnSelectedEpisodeChanged()
         {
-            CanResume = SelectedEpisode.CanResume;
+            CanResume = SelectedEpisode != null && SelectedEpisode.CanResume;
         }
     }
 }
