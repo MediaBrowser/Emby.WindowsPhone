@@ -79,6 +79,23 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 {
                     Episodes.Clear();
                 }
+
+                if (m.Notification.Equals(Constants.Messages.RefreshResumeMsg))
+                {
+                    var id = (string)m.Sender;
+                    var ticks = (long)m.Target;
+                    if (id == SelectedEpisode.Id)
+                    {
+                        if (SelectedEpisode.UserData == null)
+                        {
+                            SelectedEpisode.UserData = new UserItemDataDto();
+                        }
+
+                        SelectedEpisode.UserData.PlaybackPositionTicks = ticks;
+
+                        CanResume = SelectedEpisode.CanResume;
+                    }
+                }
             });
         }
 
@@ -411,5 +428,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public RelayCommand<BaseItemDto> AddRemoveFavouriteCommand { get; set; }
         public RelayCommand<BaseItemPerson> ShowOtherFilmsCommand { get; set; }
         public bool CanUpdateFavourites { get; set; }
+        public bool CanResume { get; set; }
+
+        [UsedImplicitly]
+        private void OnSelectedEpisodeChanged()
+        {
+            CanResume = SelectedEpisode.CanResume;
+        }
     }
 }

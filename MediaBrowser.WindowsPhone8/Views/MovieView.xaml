@@ -41,7 +41,7 @@
                                                 CommandParameter="{Binding SelectedMovie.Id}" />
             <cimbalino:ApplicationBarBehavior.MenuItems>
                 <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarResume, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
-                                                  IsEnabled="{Binding SelectedMovie.CanResume}"
+                                                  IsEnabled="{Binding CanResume}"
                                                   Command="{Binding Main.ResumeMovieCommand, Source={StaticResource Locator}}"
                                                   CommandParameter="{Binding SelectedMovie}" />
                 <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarPosterLockscreen, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"

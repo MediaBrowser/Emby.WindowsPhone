@@ -222,6 +222,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         {
                             _timer.Stop();
                         }
+
+                        Messenger.Default.Send(new NotificationMessage(_itemId, totalTicks, Constants.Messages.RefreshResumeMsg));
                     }
                     catch (HttpException ex)
                     {
@@ -460,7 +462,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 Log.Info("Sending playback started message to the server.");
 
-                _itemId = streamInfo.ItemId;
+                _itemId = query.ItemId;
 
                 var info = new PlaybackStartInfo
                 {
