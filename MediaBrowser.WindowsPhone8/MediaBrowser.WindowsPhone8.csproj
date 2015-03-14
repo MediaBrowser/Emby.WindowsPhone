@@ -449,6 +449,9 @@
     <Compile Include="Views\Settings\GeneralSettingsView.xaml.cs">
       <DependentUpon>GeneralSettingsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Sync\SyncView.xaml.cs">
+      <DependentUpon>SyncView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\TrailerView.xaml.cs">
       <DependentUpon>TrailerView.xaml</DependentUpon>
     </Compile>
@@ -779,6 +782,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Settings\GeneralSettingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Sync\SyncView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

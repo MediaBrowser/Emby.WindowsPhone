@@ -20,6 +20,7 @@ using MediaBrowser.WindowsPhone.ViewModel.Playlists;
 using MediaBrowser.WindowsPhone.ViewModel.Predefined;
 using MediaBrowser.WindowsPhone.ViewModel.Remote;
 using MediaBrowser.WindowsPhone.ViewModel.Settings;
+using MediaBrowser.WindowsPhone.ViewModel.Sync;
 using Microsoft.Practices.ServiceLocation;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.Model;
@@ -118,6 +119,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             SimpleIoc.Default.Register<AddToPlaylistViewModel>();
             SimpleIoc.Default.Register<PhotoUploadViewModel>();
             SimpleIoc.Default.Register<MbConnectViewModel>();
+            SimpleIoc.Default.Register<SyncViewModel>();
         }
 
         private static void AddSyncInterfaces()
@@ -395,6 +397,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public MbConnectViewModel MbConnect
         {
             get { return ServiceLocator.Current.GetInstance<MbConnectViewModel>(); }
+        }
+
+        public SyncViewModel Sync
+        {
+            get { return ServiceLocator.Current.GetInstance<SyncViewModel>(); }
         }
 
         public static TvViewModel GetTvViewModel(string itemId)

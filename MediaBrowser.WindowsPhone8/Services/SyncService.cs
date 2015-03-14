@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
 using MediaBrowser.ApiInteraction.Sync;
 using MediaBrowser.Model.ApiClient;
@@ -46,9 +45,9 @@ namespace MediaBrowser.WindowsPhone.Services
             }
         }
 
-        public async Task Sync()
+        public Task Sync()
         {
-            //return _mediaSync.Sync(_connectionManager.CurrentApiClient, App.ServerInfo, new Progress<double>(), default(CancellationToken))
+            return _mediaSync.Sync(new Progress<double>());
         }
 
         private bool RequiresMoreSpace(float requestedSpace)
