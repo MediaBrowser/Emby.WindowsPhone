@@ -46,9 +46,9 @@ namespace MediaBrowser.WindowsPhone.Services
             }
         }
 
-        public Task Sync()
+        public async Task Sync()
         {
-            return _mediaSync.Sync(_connectionManager.CurrentApiClient, App.ServerInfo, new Progress<double>(), default(CancellationToken))
+            //return _mediaSync.Sync(_connectionManager.CurrentApiClient, App.ServerInfo, new Progress<double>(), default(CancellationToken))
         }
 
         private bool RequiresMoreSpace(float requestedSpace)

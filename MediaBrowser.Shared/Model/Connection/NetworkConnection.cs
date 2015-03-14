@@ -32,7 +32,9 @@ namespace MediaBrowser.WindowsPhone.Model.Connection
                 IsNetworkAvailable = result && NetworkInterface.NetworkInterfaceType != NetworkInterfaceType.None
             };
         }
-        
+
+        public event EventHandler<EventArgs> NetworkChanged;
+
         private async Task DoWakeOnLan(string macAddress, string ipAddress, string port)
         {
             var socket = new DatagramSocket();

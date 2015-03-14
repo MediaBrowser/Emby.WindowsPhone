@@ -696,12 +696,12 @@ namespace MediaBrowser.WindowsPhone
             return profile;
         }
 
-        public static IConnectionManager CreateConnectionManager(IDevice device, ILogger logger)
+        public static IConnectionManager CreateConnectionManager(IDevice device, ILogger logger, INetworkConnection networkConnection)
         {
             var manager = new ConnectionManager(
                 logger,
                 new CredentialProvider(),
-                new NetworkConnection(),
+                networkConnection,
                 new ServerLocator(),
                 "Windows Phone 8",
                 ApplicationManifest.Current.App.Version,

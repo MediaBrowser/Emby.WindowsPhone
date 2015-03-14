@@ -1,5 +1,6 @@
 ﻿using Cimbalino.Toolkit.Services;
 using GalaSoft.MvvmLight.Ioc;
+using MediaBrowser.ApiInteraction;
 using MediaBrowser.ApiInteraction.Cryptography;
 using MediaBrowser.ApiInteraction.Data;
 using MediaBrowser.ApiInteraction.Playback;
@@ -10,6 +11,7 @@ using MediaBrowser.WindowsPhone.Design;
 using MediaBrowser.WindowsPhone.Extensions;
 using MediaBrowser.WindowsPhone.Interfaces;
 using MediaBrowser.WindowsPhone.Logging;
+using MediaBrowser.WindowsPhone.Model.Connection;
 using MediaBrowser.WindowsPhone.Model.Security;
 using MediaBrowser.WindowsPhone.Model.Sync;
 using MediaBrowser.WindowsPhone.Services;
@@ -51,9 +53,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             };
 
             var logger = new MBLogger();
+            var network = new NetworkConnection();
 
             SimpleIoc.Default.RegisterIf<ILogger>(() => logger);
             SimpleIoc.Default.RegisterIf<IDevice>(() => device);
+            SimpleIoc.Default.RegisterIf<INetworkConnection>(() => network);
 
             if (ViewModelBase.IsInDesignModeStatic)
             {
@@ -68,7 +72,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             { 
                 SimpleIoc.Default.RegisterIf<INavigationService, NavigationService>();
                 SimpleIoc.Default.RegisterIf<ISettingsService, SettingsService>();
-                SimpleIoc.Default.RegisterIf(() => Utils.CreateConnectionManager(device, logger));
+                SimpleIoc.Default.RegisterIf(() => Utils.CreateConnectionManager(device, logger, network));
                 SimpleIoc.Default.RegisterIf<IApplicationSettingsService, ApplicationSettingsService>();
                 SimpleIoc.Default.RegisterIf<IStorageService, StorageService>();
                 SimpleIoc.Default.RegisterIf<AuthenticationService>(true);
@@ -77,7 +81,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                 AddSyncInterfaces();
 
-                SimpleIoc.Default.RegisterIf(() => new PlaybackManager(AssetManager, device, logger));
+                SimpleIoc.Default.RegisterIf<IPlaybackManager, PlaybackManager>();
             }
 
             SimpleIoc.Default.RegisterIf<IMessageBoxService, MessageBoxService>();
