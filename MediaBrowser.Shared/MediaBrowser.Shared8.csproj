@@ -229,6 +229,7 @@
     <Compile Include="Model\Sync\ItemRepository.cs" />
     <Compile Include="Model\Sync\UserActionRepository.cs" />
     <Compile Include="Model\Sync\UserRepository.cs" />
+    <Compile Include="Model\WindowsPhoneProfile.cs" />
     <Compile Include="PhoneNameResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RequestResult.cs" />

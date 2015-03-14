@@ -3,6 +3,7 @@ using GalaSoft.MvvmLight.Ioc;
 using MediaBrowser.ApiInteraction.Cryptography;
 using MediaBrowser.ApiInteraction.Data;
 using MediaBrowser.ApiInteraction.Playback;
+using MediaBrowser.ApiInteraction.Sync;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Logging;
 using MediaBrowser.WindowsPhone.Design;
@@ -64,16 +65,15 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 SimpleIoc.Default.RegisterIf<ILocalAssetManager, NullAssetManager>();
             }
             else
-            {
+            { 
                 SimpleIoc.Default.RegisterIf<INavigationService, NavigationService>();
                 SimpleIoc.Default.RegisterIf<ISettingsService, SettingsService>();
-                SimpleIoc.Default.RegisterIf(() => SharedUtils.CreateConnectionManager(device, logger));
+                SimpleIoc.Default.RegisterIf(() => Utils.CreateConnectionManager(device, logger));
                 SimpleIoc.Default.RegisterIf<IApplicationSettingsService, ApplicationSettingsService>();
                 SimpleIoc.Default.RegisterIf<IStorageService, StorageService>();
                 SimpleIoc.Default.RegisterIf<AuthenticationService>(true);
                 SimpleIoc.Default.RegisterIf<LockScreenService>(true);
                 SimpleIoc.Default.RegisterIf<TileService>(true);
-                SimpleIoc.Default.RegisterIf<SyncService>(true);
 
                 AddSyncInterfaces();
 
@@ -125,6 +125,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             SimpleIoc.Default.RegisterIf<IUserRepository, UserRepository>();
             SimpleIoc.Default.RegisterIf<IImageRepository, ImageRepository>();
             SimpleIoc.Default.RegisterIf<ILocalAssetManager, LocalAssetManager>();
+
+            SimpleIoc.Default.RegisterIf<SyncService>(true);
         }
 
         /// <summary>

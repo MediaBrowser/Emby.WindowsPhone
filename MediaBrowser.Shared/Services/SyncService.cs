@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using MediaBrowser.ApiInteraction.Sync;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Sync;
@@ -9,11 +10,13 @@ namespace MediaBrowser.WindowsPhone.Services
     public class SyncService
     {
         private readonly IConnectionManager _connectionManager;
+        private readonly MediaSync _mediaSync;
         public static SyncService Current { get; private set; }
 
-        public SyncService(IConnectionManager connectionManager)
+        public SyncService(IConnectionManager connectionManager, MediaSync mediaSync)
         {
             _connectionManager = connectionManager;
+            _mediaSync = mediaSync;
             Current = this;
         }
 

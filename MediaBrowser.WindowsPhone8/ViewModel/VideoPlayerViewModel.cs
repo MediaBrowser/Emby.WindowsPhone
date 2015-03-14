@@ -506,7 +506,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
         private async Task<StreamInfo> CreateVideoStream(string itemId, long startTimeTicks, List<MediaSourceInfo> mediaSources = null, bool useHls = false)
         {
-            var profile = WindowsPhoneProfile.GetProfile(isHls: useHls);
+            var profile = Utils.GetWindowsPhoneProfile(isHls: useHls);
 
             var streamingSettings = NavigationService.IsOnWifi
                 ? App.SpecificSettings.WifiStreamingQuality.GetSettings()

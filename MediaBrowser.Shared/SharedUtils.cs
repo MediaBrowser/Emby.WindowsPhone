@@ -46,22 +46,5 @@ namespace MediaBrowser.WindowsPhone
 
             return deviceId;
         }
-
-        public static IConnectionManager CreateConnectionManager(IDevice device, ILogger logger)
-        {
-            var manager = new ConnectionManager(
-                logger,
-                new CredentialProvider(),
-                new NetworkConnection(),
-                new ServerLocator(),
-                "Windows Phone 8",
-                ApplicationManifest.Current.App.Version,
-                device,
-                WindowsPhoneCapabilities.App,
-                new CryptographyProvider(),
-                () => new WebSocketClient());
-
-            return manager;
-        }
     }
 }
