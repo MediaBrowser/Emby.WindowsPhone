@@ -1,8 +1,10 @@
-﻿using PropertyChanged;
+﻿using System.Diagnostics;
+using PropertyChanged;
 
 namespace MediaBrowser.WindowsPhone.Model
 {
     [ImplementPropertyChanged]
+    [DebuggerDisplay("Title: {TrackName}")]
     public class PlaylistItem 
     {
         public int Id { get; set; }

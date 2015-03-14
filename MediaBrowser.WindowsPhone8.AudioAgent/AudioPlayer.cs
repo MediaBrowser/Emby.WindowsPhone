@@ -11,11 +11,13 @@ using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Logging;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Session;
+using MediaBrowser.Model.Users;
 using MediaBrowser.WindowsPhone.Logging;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Model.Security;
 using Microsoft.Phone.BackgroundAudio;
 using ScottIsAFool.WindowsPhone.Logging;
+using UserAction = Microsoft.Phone.BackgroundAudio.UserAction;
 
 namespace MediaBrowser.WindowsPhone.AudioAgent
 {
@@ -40,9 +42,9 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
             {
                 _classInitialized = true;
                 // Subscribe to the managed exception handler
-                Deployment.Current.Dispatcher.BeginInvoke(delegate
+                Deployment.Current.Dispatcher.BeginInvoke(async () =>
                 {
-                    ConfigureThePlayer();
+                    await ConfigureThePlayer();
 
                     Application.Current.UnhandledException += AudioPlayer_UnhandledException;
                     _dispatcherTimer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(5) };
@@ -52,31 +54,37 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
             }
         }
 
-        private void ConfigureThePlayer()
+        private async Task ConfigureThePlayer()
         {
-            if (ApplicationSettings == null)
-            {
-                ApplicationSettings = new ApplicationSettingsService().Legacy;
-            }
+            var tcs = new TaskCompletionSource<bool>();
 
-            if (_logger == null)
+            Deployment.Current.Dispatcher.BeginInvoke(() =>
             {
-                _logger = new WPLogger(GetType());
-            }
+                if (ApplicationSettings == null)
+                {
+                    ApplicationSettings = new ApplicationSettingsService().Legacy;
+                }
 
-            if (_playlistHelper == null)
-            {
-                _playlistHelper = new PlaylistHelper(new StorageService());
-            }
+                if (_logger == null)
+                {
+                    _logger = new WPLogger(GetType());
+                }
 
-            if (_apiClient == null) CreateClient();
+                if (_playlistHelper == null)
+                {
+                    _playlistHelper = new PlaylistHelper(new StorageService());
+                }
 
-            if (!_classInitialized)
-            {
+                if (_apiClient == null) CreateClient();
+
                 WPLogger.AppVersion = ApplicationManifest.Current.App.Version;
                 WPLogger.LogConfiguration.LogType = LogType.WriteToFile;
                 WPLogger.LogConfiguration.LoggingIsEnabled = true;
-            }
+
+                tcs.SetResult(true);
+            });
+
+            await tcs.Task;
         }
 
         private static async void DispatcherTimerOnTick(object sender, EventArgs eventArgs)
@@ -110,16 +118,17 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
         {
             try
             {
-                var device = new Device {DeviceId = SharedUtils.GetDeviceId(), DeviceName = SharedUtils.GetDeviceName()};
+                var device = new Device { DeviceId = SharedUtils.GetDeviceId(), DeviceName = SharedUtils.GetDeviceName() };
                 var server = ApplicationSettings.Get<ServerInfo>(Constants.Settings.DefaultServerConnection);
-                if (server == null)
+                var auth = ApplicationSettings.Get<AuthenticationResult>(Constants.Settings.AuthUserSetting);
+                if (server == null || auth == null || auth.User == null)
                 {
                     return;
                 }
 
                 var serverAddress = server.LastConnectionMode.HasValue && server.LastConnectionMode.Value == ConnectionMode.Manual ? server.ManualAddress : server.RemoteAddress;
                 var client = new ApiClient(_mbLogger, serverAddress, "Windows Phone 8", device, ApplicationManifest.Current.App.Version, new CryptographyProvider());
-                client.SetAuthenticationInfo(server.AccessToken, server.UserId);
+                client.SetAuthenticationInfo(auth.AccessToken, auth.User.Id);
 
                 _apiClient = client;
             }
@@ -159,7 +168,7 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
         /// </remarks>
         protected override async void OnPlayStateChanged(BackgroundAudioPlayer player, AudioTrack track, PlayState playState)
         {
-            ConfigureThePlayer();
+            await ConfigureThePlayer();
             switch (playState)
             {
                 case PlayState.TrackEnded:
@@ -277,7 +286,7 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
         /// </remarks>
         protected override async void OnUserAction(BackgroundAudioPlayer player, AudioTrack track, UserAction action, object param)
         {
-            ConfigureThePlayer();
+            await ConfigureThePlayer();
             switch (action)
             {
                 case UserAction.Play:
