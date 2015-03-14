@@ -26,7 +26,7 @@ namespace MediaBrowser.WindowsPhone.Model.Sync
 
         public Task GetItemFileAsync(IApiClient apiClient, ServerInfo server, LocalItem item, string syncJobItemId, IProgress<double> transferProgress, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return Task.FromResult(0);
         }
 
         private async Task<BackgroundTransferRequest> CreateDownload(string source, IApiClient client, StorageFile destiantionFile, string notificationName)
@@ -41,10 +41,6 @@ namespace MediaBrowser.WindowsPhone.Model.Sync
             downloader.Method = "GET";
 
             var downloadLocation = new Uri("shared/transfers/sync/", UriKind.RelativeOrAbsolute);
-
-            //TileUpdateManager.GetTemplateContent(TileTemplateType.TileSquare310x310BlockAndText01);
-            //downloader.SuccessToastNotification = Notification.NotificationManager.CreateToast(Shared.Globalization.Strings.SyncJobItemStatusSynced, notificationName.Replace("&", "&amp;"));
-            //downloader.FailureToastNotification = Notification.NotificationManager.CreateToast(Shared.Globalization.Strings.SyncJobItemStatusFailed, notificationName.Replace("&", "&amp;"));
 
             return downloader;
         }

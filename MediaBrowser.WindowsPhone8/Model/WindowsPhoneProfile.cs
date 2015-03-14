@@ -34,6 +34,19 @@ namespace MediaBrowser.Dlna.Profiles
                     AudioCodec = "aac",
                     Type = DlnaProfileType.Video,
                     Context = EncodingContext.Static
+                },
+                new TranscodingProfile
+                {
+                    Container = "mp3",
+                    AudioCodec = "mp3",
+                    Type = DlnaProfileType.Audio,
+                    Context = EncodingContext.Static
+                },
+                new TranscodingProfile
+                {
+                    Container = "jpeg,png,gif,bmp",
+                    Type = DlnaProfileType.Photo,
+                    Context = EncodingContext.Static
                 }
             };
 
