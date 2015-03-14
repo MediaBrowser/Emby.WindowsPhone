@@ -125,6 +125,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             SimpleIoc.Default.RegisterIf<IUserRepository, UserRepository>();
             SimpleIoc.Default.RegisterIf<IImageRepository, ImageRepository>();
             SimpleIoc.Default.RegisterIf<ILocalAssetManager, LocalAssetManager>();
+            SimpleIoc.Default.RegisterIf<MultiServerSync>();
 
             SimpleIoc.Default.RegisterIf<SyncService>(true);
         }

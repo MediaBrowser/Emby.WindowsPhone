@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using MediaBrowser.ApiInteraction.Sync;
 using MediaBrowser.Model.ApiClient;
@@ -10,10 +12,10 @@ namespace MediaBrowser.WindowsPhone.Services
     public class SyncService
     {
         private readonly IConnectionManager _connectionManager;
-        private readonly MediaSync _mediaSync;
+        private readonly MultiServerSync _mediaSync;
         public static SyncService Current { get; private set; }
 
-        public SyncService(IConnectionManager connectionManager, MediaSync mediaSync)
+        public SyncService(IConnectionManager connectionManager, MultiServerSync mediaSync)
         {
             _connectionManager = connectionManager;
             _mediaSync = mediaSync;
@@ -42,6 +44,11 @@ namespace MediaBrowser.WindowsPhone.Services
             {
                 
             }
+        }
+
+        public Task Sync()
+        {
+            return _mediaSync.Sync(_connectionManager.CurrentApiClient, App.ServerInfo, new Progress<double>(), default(CancellationToken))
         }
 
         private bool RequiresMoreSpace(float requestedSpace)
