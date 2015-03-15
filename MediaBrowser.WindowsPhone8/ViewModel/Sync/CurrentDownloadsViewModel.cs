@@ -4,6 +4,7 @@ using Cimbalino.Toolkit.Extensions;
 using GalaSoft.MvvmLight.Command;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.WindowsPhone.Model.Interfaces;
+using MediaBrowser.WindowsPhone.ViewModel.Items;
 using Microsoft.Phone.BackgroundTransfer;
 using Microsoft.Phone.Controls;
 
@@ -25,7 +26,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Sync
         {
         }
 
-        public ObservableCollection<TransferMonitor> Transfers { get; set; }
+        public ObservableCollection<TransferMonitorViewModel> Transfers { get; set; }
 
         public RelayCommand PageLoadedCommand
         {
@@ -45,11 +46,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Sync
 
         public void LoadTransfers()
         {
-            var requests = BackgroundTransferService.Requests.Select(x => new TransferMonitor(x)).ToList();
+            var requests = BackgroundTransferService.Requests.Select(TransferMonitorViewModel.Create).ToList();
 
             if (Transfers == null)
             {
-                Transfers = new ObservableCollection<TransferMonitor>(requests);
+                Transfers = new ObservableCollection<TransferMonitorViewModel>(requests);
             }
             else
             {

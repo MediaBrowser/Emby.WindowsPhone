@@ -269,6 +269,7 @@
     <Compile Include="ViewModel\ChooseProfileViewModel.cs" />
     <Compile Include="ViewModel\FolderViewModel.cs" />
     <Compile Include="ViewModel\GenericItemViewModel.cs" />
+    <Compile Include="ViewModel\Items\TransferMonitorViewModel.cs" />
     <Compile Include="ViewModel\LiveTv\AllProgrammesViewModel.cs" />
     <Compile Include="ViewModel\LiveTv\LiveTvChannelsViewModel.cs" />
     <Compile Include="ViewModel\LiveTv\ProgrammeViewModel.cs" />

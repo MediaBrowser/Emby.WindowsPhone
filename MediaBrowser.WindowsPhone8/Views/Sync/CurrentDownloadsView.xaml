@@ -74,7 +74,7 @@
                 <phone:LongListSelector ItemsSource="{Binding Transfers}">
                     <phone:LongListSelector.ItemTemplate>
                         <DataTemplate>
-                            <toolkit:TransferControl Monitor="{Binding}"
+                            <toolkit:TransferControl Monitor="{Binding Monitor}"
                                                      Margin="12,0"/>
                         </DataTemplate>
                     </phone:LongListSelector.ItemTemplate>
