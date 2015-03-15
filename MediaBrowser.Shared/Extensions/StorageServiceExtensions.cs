@@ -49,5 +49,23 @@ namespace MediaBrowser.WindowsPhone.Extensions
 
             return await storageService.ReadAllTextAsync(file);
         }
+
+        public static Task MoveFileIfExists(this IStorageServiceHandler storageService, string source, string destination)
+        {
+            return storageService.MoveFileIfExists(source, destination, false);
+        }
+
+        public static async Task MoveFileIfExists(this IStorageServiceHandler storageService, string source, string destination, bool overwrite)
+        {
+            if (await storageService.FileExistsAsync(source))
+            {
+                var destinationFolder = Path.GetDirectoryName(destination);
+                if (!await storageService.DirectoryExistsAsync(destinationFolder))
+                {
+                    await storageService.CreateDirectoryAsync(destinationFolder);
+                }
+                await storageService.MoveFileAsync(source, destination, overwrite);
+            }
+        }
     }
 }
