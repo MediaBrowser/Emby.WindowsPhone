@@ -209,7 +209,7 @@
         public class AnyTime
         {
             public const string DownloadLocation = "Shared\\transfers\\sync\\{0}";
-            public const string MoveToLocation = "AnyTime\\{0}";
+            public const string AnyTimeLocation = "AnyTime\\{0}";
         }
     }
 }

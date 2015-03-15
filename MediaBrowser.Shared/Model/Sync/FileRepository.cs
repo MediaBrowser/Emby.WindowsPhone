@@ -15,11 +15,11 @@ namespace MediaBrowser.WindowsPhone.Model.Sync
 {
     public class FileRepository : IFileRepository
     {
-        private readonly IStorageServiceHandler _storage;
+        private readonly IStorageServiceHandler _storageService;
 
-        public FileRepository(IStorageService storage)
+        public FileRepository(IStorageService storageService)
         {
-            _storage = storage.Local;
+            _storageService = storageService.Local;
         }
 
         public string GetValidFileName(string name)
@@ -34,19 +34,22 @@ namespace MediaBrowser.WindowsPhone.Model.Sync
 
         public async Task DeleteFile(string path)
         {
-            await _storage.DeleteFileAsync(path);
+            path = AnyTimePath(path); 
+            await _storageService.DeleteFileIfExists(path);
         }
 
         public async Task DeleteFolder(string path)
         {
-            await _storage.DeleteDirectoryAsync(path);
+            path = AnyTimePath(path);
+            await _storageService.DeleteDirectoryIfExists(path);
         }
 
         public async Task<bool> FileExists(string path)
         {
             try
             {
-                return await _storage.FileExistsAsync(path);
+                path = AnyTimePath(path);
+                return await _storageService.FileExistsAsync(path);
             }
             catch
             {
@@ -54,12 +57,19 @@ namespace MediaBrowser.WindowsPhone.Model.Sync
             }
         }
 
+        private static string AnyTimePath(string path)
+        {
+            path = string.Format(Constants.AnyTime.AnyTimeLocation, path);
+            return path;
+        }
+
         public async Task<List<DeviceFileInfo>> GetFileSystemEntries(string path)
         {
             var list = new List<DeviceFileInfo>();
             try
             {
-                if (await _storage.DirectoryExistsAsync(path))
+                path = AnyTimePath(path);
+                if (await _storageService.DirectoryExistsAsync(path))
                 {
                     var folder = await StorageFolder.GetFolderFromPathAsync(path);
                     if (folder != null)
@@ -82,17 +92,20 @@ namespace MediaBrowser.WindowsPhone.Model.Sync
 
         public string GetParentDirectoryPath(string path)
         {
+            path = AnyTimePath(path); 
             return Path.GetDirectoryName(path);
         }
 
         public async Task<Stream> GetFileStream(string path)
         {
-            return await _storage.OpenFileIfExists(path);
+            path = AnyTimePath(path); 
+            return await _storageService.OpenFileIfExists(path);
         }
 
         public async Task SaveFile(Stream stream, string path)
         {
-            await _storage.WriteAllBytesAsync(path, await stream.ToArrayAsync());
+            path = AnyTimePath(path); 
+            await _storageService.WriteAllBytesAsync(path, await stream.ToArrayAsync());
         }
     }
 }
