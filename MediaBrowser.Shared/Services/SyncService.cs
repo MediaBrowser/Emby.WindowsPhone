@@ -85,6 +85,8 @@ namespace MediaBrowser.WindowsPhone.Services
 
             await _storageService.MoveFileIfExists(downloadLocation, finalFile, true);
             await _storageService.DeleteFileIfExists(downloadLocation);
+
+            BackgroundTransferService.Remove(request);
         }
 
         public Task Sync()
