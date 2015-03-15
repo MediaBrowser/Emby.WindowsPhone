@@ -12,7 +12,7 @@ namespace MediaBrowser.WindowsPhone.Extensions
 {
     public static class ApiClientExtensions
     {
-        internal static async Task<List<PlaylistItem>> GetInstantMixPlaylist(this IApiClient apiClient, BaseItemDto item, PlaybackManager playbackManager)
+        internal static async Task<List<PlaylistItem>> GetInstantMixPlaylist(this IApiClient apiClient, BaseItemDto item, IPlaybackManager playbackManager)
         {
             ItemsResult result;
             var query = new SimilarItemsQuery { UserId = AuthenticationService.Current.LoggedInUserId, Id = item.Id, Fields = new []{ ItemFields.MediaSources}};

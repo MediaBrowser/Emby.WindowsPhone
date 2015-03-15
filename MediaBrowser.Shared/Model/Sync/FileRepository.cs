@@ -59,11 +59,14 @@ namespace MediaBrowser.WindowsPhone.Model.Sync
             var list = new List<DeviceFileInfo>();
             try
             {
-                var folder = await StorageFolder.GetFolderFromPathAsync(path);
-                if (folder != null)
+                if (await _storage.DirectoryExistsAsync(path))
                 {
-                    var files = await folder.GetFilesAsync();
-                    list.AddRange(files.Select(f => new DeviceFileInfo { Name = f.Name, Path = f.Path }));
+                    var folder = await StorageFolder.GetFolderFromPathAsync(path);
+                    if (folder != null)
+                    {
+                        var files = await folder.GetFilesAsync();
+                        list.AddRange(files.Select(f => new DeviceFileInfo {Name = f.Name, Path = f.Path}));
+                    }
                 }
             }
             catch

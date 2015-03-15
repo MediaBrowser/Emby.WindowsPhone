@@ -37,6 +37,9 @@
                                                 Command="{Binding NavigateToAPage}"
                                                 CommandParameter="/Views/SearchView.xaml" />
             <cimbalino:ApplicationBarBehavior.MenuItems>
+                <cimbalino:ApplicationBarMenuItem Text="sync"
+                                                  Command="{Binding NavigateToAPage}"
+                                                  CommandParameter="/Views/Sync/SyncView.xaml"/>
                 <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarRefreshInformation, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                   Command="{Binding RefreshDataCommand}" />
                 <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarNowPlaying, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"

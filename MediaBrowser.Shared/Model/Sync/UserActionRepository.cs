@@ -51,7 +51,7 @@ namespace MediaBrowser.WindowsPhone.Model.Sync
 
             var json = await _storageService.ReadStringIfFileExists(ItemsFile);
             var items = await json.DeserialiseAsync<List<UserAction>>();
-            _items = items;
+            _items = items ?? new List<UserAction>();
         }
 
         private async Task SaveItems()

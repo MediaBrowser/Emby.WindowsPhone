@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using MediaBrowser.ApiInteraction.Sync;
 using MediaBrowser.Model.ApiClient;
@@ -23,7 +24,7 @@ namespace MediaBrowser.WindowsPhone.Services
 
         public Task AddJobAsync(string id)
         {
-            return AddJobAsync(new List<string> {id});
+            return AddJobAsync(new List<string> { id });
         }
 
         public async Task AddJobAsync(List<string> itemIds)
@@ -35,14 +36,18 @@ namespace MediaBrowser.WindowsPhone.Services
                 TargetId = _connectionManager.CurrentApiClient.DeviceId
             };
 
-            try
+            var job = await _connectionManager.CurrentApiClient.CreateSyncJob(request);
+        }
+
+        public async Task<List<SyncJob>>  GetSyncJobs()
+        {
+            var query = new SyncJobQuery
             {
-                var job = await _connectionManager.CurrentApiClient.CreateSyncJob(request);
-            }
-            catch (HttpException ex)
-            {
-                
-            }
+                UserId = AuthenticationService.Current.LoggedInUserId
+            };
+            var jobs = await _connectionManager.CurrentApiClient.GetSyncJobs(query);
+
+            return jobs != null && !jobs.Items.IsNullOrEmpty() ? jobs.Items.ToList() : new List<SyncJob>();
         }
 
         public Task Sync()

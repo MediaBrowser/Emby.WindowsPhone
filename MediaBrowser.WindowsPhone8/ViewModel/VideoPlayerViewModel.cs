@@ -37,7 +37,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     /// </summary>
     public class VideoPlayerViewModel : ViewModelBase
     {
-        private readonly PlaybackManager _playbackManager;
+        private readonly IPlaybackManager _playbackManager;
         private readonly DispatcherTimer _timer;
 
         private bool _isResume;
@@ -48,7 +48,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         /// <summary>
         /// Initializes a new instance of the VideoPlayerViewModel class.
         /// </summary>
-        public VideoPlayerViewModel(IConnectionManager connectionManager, INavigationService navigationService, PlaybackManager playbackManager)
+        public VideoPlayerViewModel(IConnectionManager connectionManager, INavigationService navigationService, IPlaybackManager playbackManager)
             : base(navigationService, connectionManager)
         {
             _playbackManager = playbackManager;

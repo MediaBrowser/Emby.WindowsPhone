@@ -11,8 +11,8 @@ namespace MediaBrowser.WindowsPhone.Model.Sync
     {
         private readonly IStorageServiceHandler _storageService;
         private const string ImageCachePath = "Cache\\Images";
-        private const string ImageCacheItemPath = ImageCachePath + "\\{0}\\"; // {0} = itemId
-        private const string ImageCacheItemImage = "{1}{0}.jpg";
+        private const string ImageCacheItemPath = ImageCachePath + "\\{0}"; // {0} = itemId
+        private const string ImageCacheItemImage = "{0}\\{1}.jpg";
 
         public ImageRepository(IStorageService storageService)
         {

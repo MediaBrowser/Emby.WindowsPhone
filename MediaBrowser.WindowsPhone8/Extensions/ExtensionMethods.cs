@@ -34,7 +34,7 @@ namespace MediaBrowser.WindowsPhone.Extensions
             }
         }
 
-        internal static async Task<PlaylistItem> ToPlaylistItem(this BaseItemDto item, IApiClient apiClient, PlaybackManager playbackManager)
+        internal static async Task<PlaylistItem> ToPlaylistItem(this BaseItemDto item, IApiClient apiClient, IPlaybackManager playbackManager)
         {
             var profile = Utils.GetWindowsPhoneProfile();
             var options = new AudioOptions
@@ -66,7 +66,7 @@ namespace MediaBrowser.WindowsPhone.Extensions
         }
 
 
-        internal static async Task<List<PlaylistItem>> ToPlayListItems(this List<BaseItemDto> list, IApiClient apiClient, PlaybackManager playbackManager)
+        internal static async Task<List<PlaylistItem>> ToPlayListItems(this List<BaseItemDto> list, IApiClient apiClient, IPlaybackManager playbackManager)
         {
             var newList = new List<PlaylistItem>();
             list.ForEach(async item =>

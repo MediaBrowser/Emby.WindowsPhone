@@ -82,7 +82,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                 AddSyncInterfaces();
 
-                SimpleIoc.Default.RegisterIf<IPlaybackManager, PlaybackManager>();
+                SimpleIoc.Default.RegisterIf<IPlaybackManager>(() => new PlaybackManager(AssetManager, device, logger, network));
             }
 
             SimpleIoc.Default.RegisterIf<IMessageBoxService, MessageBoxService>();
@@ -127,6 +127,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             SimpleIoc.Default.RegisterIf<IUserActionRepository, UserActionRepository>();
             SimpleIoc.Default.RegisterIf<IItemRepository, ItemRepository>();
             SimpleIoc.Default.RegisterIf<IFileRepository, FileRepository>();
+            SimpleIoc.Default.RegisterIf<IFileTransferManager, FileTransferManager>();
             SimpleIoc.Default.RegisterIf<ICryptographyProvider, CryptographyProvider>();
             SimpleIoc.Default.RegisterIf<IUserRepository, UserRepository>();
             SimpleIoc.Default.RegisterIf<IImageRepository, ImageRepository>();

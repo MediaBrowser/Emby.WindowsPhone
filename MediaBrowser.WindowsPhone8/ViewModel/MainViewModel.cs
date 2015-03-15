@@ -34,14 +34,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     /// </summary>
     public class MainViewModel : ViewModelBase
     {
-        private readonly PlaybackManager _playbackManager;
+        private readonly IPlaybackManager _playbackManager;
         private bool _hasLoaded;
         private BaseItemDto[] _recentItems;
 
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
-        public MainViewModel(IConnectionManager connectionManager, INavigationService navigationService, PlaybackManager playbackManager)
+        public MainViewModel(IConnectionManager connectionManager, INavigationService navigationService, IPlaybackManager playbackManager)
             : base(navigationService, connectionManager)
         {
             _playbackManager = playbackManager;

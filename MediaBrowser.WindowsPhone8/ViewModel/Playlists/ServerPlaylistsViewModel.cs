@@ -32,13 +32,13 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Playlists
     /// </summary>
     public class ServerPlaylistsViewModel : ViewModelBase
     {
-        private readonly PlaybackManager _playbackManager;
+        private readonly IPlaybackManager _playbackManager;
         private bool _playlistLoaded;
 
         /// <summary>
         /// Initializes a new instance of the ServerPlaylistsViewModel class.
         /// </summary>
-        public ServerPlaylistsViewModel(INavigationService navigationService, IConnectionManager connectionManager, PlaybackManager playbackManager)
+        public ServerPlaylistsViewModel(INavigationService navigationService, IConnectionManager connectionManager, IPlaybackManager playbackManager)
             : base(navigationService, connectionManager)
         {
             _playbackManager = playbackManager;

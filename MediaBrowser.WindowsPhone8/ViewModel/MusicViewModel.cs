@@ -31,14 +31,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     /// </summary>
     public class MusicViewModel : ViewModelBase
     {
-        private readonly PlaybackManager _playbackManager;
+        private readonly IPlaybackManager _playbackManager;
         private List<BaseItemDto> _artistTracks;
         private bool _gotAlbums;
 
         /// <summary>
         /// Initializes a new instance of the MusicViewModel class.
         /// </summary>
-        public MusicViewModel(IConnectionManager connectionManager, INavigationService navigationService, PlaybackManager playbackManager)
+        public MusicViewModel(IConnectionManager connectionManager, INavigationService navigationService, IPlaybackManager playbackManager)
             : base(navigationService, connectionManager)
         {
             _playbackManager = playbackManager;

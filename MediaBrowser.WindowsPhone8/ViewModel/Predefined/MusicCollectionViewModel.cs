@@ -32,7 +32,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
     /// </summary>
     public class MusicCollectionViewModel : ViewModelBase
     {
-        private readonly PlaybackManager _playbackManager;
+        private readonly IPlaybackManager _playbackManager;
         private bool _artistsLoaded;
         private bool _albumsLoaded;
         private bool _songsLoaded;
@@ -41,7 +41,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
         /// <summary>
         /// Initializes a new instance of the MusicCollectionViewModel class.
         /// </summary>
-        public MusicCollectionViewModel(INavigationService navigationService, IConnectionManager connectionManager, PlaybackManager playbackManager)
+        public MusicCollectionViewModel(INavigationService navigationService, IConnectionManager connectionManager, IPlaybackManager playbackManager)
             : base(navigationService, connectionManager)
         {
             _playbackManager = playbackManager;
