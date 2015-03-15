@@ -5,12 +5,14 @@ using System.Threading.Tasks;
 using Cimbalino.Toolkit.Services;
 using MediaBrowser.ApiInteraction.Sync;
 using MediaBrowser.Model.ApiClient;
+using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Sync;
 using MediaBrowser.WindowsPhone.Extensions;
 using MediaBrowser.WindowsPhone.Model.Sync;
 using Microsoft.Phone.BackgroundTransfer;
 using Newtonsoft.Json;
 using ScottIsAFool.WindowsPhone.Extensions;
+using ScottIsAFool.WindowsPhone.Logging;
 
 namespace MediaBrowser.WindowsPhone.Services
 {
@@ -19,6 +21,7 @@ namespace MediaBrowser.WindowsPhone.Services
         private readonly IConnectionManager _connectionManager;
         private readonly IMultiServerSync _mediaSync;
         private readonly IStorageServiceHandler _storageService;
+        private readonly ILog _logger;
         public static SyncService Current { get; private set; }
 
         public SyncService(IConnectionManager connectionManager, IMultiServerSync mediaSync, IStorageService storageService)
@@ -26,7 +29,16 @@ namespace MediaBrowser.WindowsPhone.Services
             _connectionManager = connectionManager;
             _mediaSync = mediaSync;
             _storageService = storageService.Local;
+            _logger = new WPLogger(GetType());
             Current = this;
+        }
+
+        public Task StartService()
+        {
+            Sync().ConfigureAwait(false);
+            CheckAndMoveFinishedFiles().ConfigureAwait(false);
+
+            return Task.FromResult(0);
         }
 
         public Task AddJobAsync(string id)
@@ -62,7 +74,7 @@ namespace MediaBrowser.WindowsPhone.Services
             var completedTasks = BackgroundTransferService.Requests.Where(x => x.TransferStatus == TransferStatus.Completed).ToList();
             var list = completedTasks.Select(MoveCompleted).ToList();
 
-            return Task.WhenAll(list);
+            return Task.WhenAll(list).ContinueWith(task => completedTasks = null);
         }
 
         public async Task MoveCompleted(BackgroundTransferRequest request)
@@ -77,7 +89,16 @@ namespace MediaBrowser.WindowsPhone.Services
 
         public Task Sync()
         {
-            return _mediaSync.Sync(new Progress<double>());
+            try
+            {
+                return _mediaSync.Sync(new Progress<double>());
+            }
+            catch (HttpException ex)
+            {
+                
+            }
+
+            return Task.FromResult(0);
         }
 
         private bool RequiresMoreSpace(float requestedSpace)

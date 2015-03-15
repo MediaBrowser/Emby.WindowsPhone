@@ -262,8 +262,10 @@ namespace MediaBrowser.WindowsPhone
 
             if (LockScreenService.Current.IsProvidedByCurrentApplication)
             {
-                LockScreenService.Current.SetLockScreen(App.SpecificSettings.LockScreenType);
+                LockScreenService.Current.SetLockScreen(App.SpecificSettings.LockScreenType).ConfigureAwait(false);
             }
+
+            SyncService.Current.StartService().ConfigureAwait(false);
 
             try
             {
