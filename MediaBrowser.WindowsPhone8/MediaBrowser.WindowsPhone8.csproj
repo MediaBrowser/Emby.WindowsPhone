@@ -255,7 +255,6 @@
     </Compile>
     <Compile Include="Services\LockScreenService.cs" />
     <Compile Include="Services\ReviewReminderService.cs" />
-    <Compile Include="Services\SyncService.cs" />
     <Compile Include="Services\TileService.cs" />
     <Compile Include="Services\TrialHelper.cs" />
     <Compile Include="Model\SpecificSettings.cs" />
@@ -295,6 +294,7 @@
     <Compile Include="ViewModel\Settings\PhotoUploadViewModel.cs" />
     <Compile Include="ViewModel\Settings\SettingsViewModel.cs" />
     <Compile Include="ViewModel\SplashscreenViewModel.cs" />
+    <Compile Include="ViewModel\Sync\CurrentDownloadsViewModel.cs" />
     <Compile Include="ViewModel\Sync\SyncViewModel.cs" />
     <Compile Include="ViewModel\TrailerViewModel.cs" />
     <Compile Include="ViewModel\TvViewModel.cs" />
@@ -448,6 +448,9 @@
     </Compile>
     <Compile Include="Views\Settings\GeneralSettingsView.xaml.cs">
       <DependentUpon>GeneralSettingsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Sync\CurrentDownloadsView.xaml.cs">
+      <DependentUpon>CurrentDownloadsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Sync\SyncView.xaml.cs">
       <DependentUpon>SyncView.xaml</DependentUpon>
@@ -783,6 +786,10 @@
     </Page>
     <Page Include="Views\Settings\GeneralSettingsView.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Sync\CurrentDownloadsView.xaml">
+      <SubType>Form</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Sync\SyncView.xaml">

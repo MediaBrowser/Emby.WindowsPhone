@@ -120,6 +120,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             SimpleIoc.Default.Register<PhotoUploadViewModel>();
             SimpleIoc.Default.Register<MbConnectViewModel>();
             SimpleIoc.Default.Register<SyncViewModel>();
+            SimpleIoc.Default.Register<CurrentDownloadsViewModel>();
         }
 
         private static void AddSyncInterfaces()
@@ -132,7 +133,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             SimpleIoc.Default.RegisterIf<IUserRepository, UserRepository>();
             SimpleIoc.Default.RegisterIf<IImageRepository, ImageRepository>();
             SimpleIoc.Default.RegisterIf<ILocalAssetManager, LocalAssetManager>();
-            SimpleIoc.Default.RegisterIf<MultiServerSync>();
+            SimpleIoc.Default.RegisterIf<IMultiServerSync, MultiServerSync>();
 
             SimpleIoc.Default.RegisterIf<SyncService>(true);
         }
@@ -403,6 +404,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public SyncViewModel Sync
         {
             get { return ServiceLocator.Current.GetInstance<SyncViewModel>(); }
+        }
+
+        public CurrentDownloadsViewModel CurrentDownloads
+        {
+            get { return ServiceLocator.Current.GetInstance<CurrentDownloadsViewModel>(); }
         }
 
         public static TvViewModel GetTvViewModel(string itemId)

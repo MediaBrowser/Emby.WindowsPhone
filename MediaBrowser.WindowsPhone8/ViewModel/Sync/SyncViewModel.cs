@@ -58,6 +58,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Sync
             }
         }
 
+        public RelayCommand NavigateToCurrentDownloadsCommand
+        {
+            get
+            {
+                return new RelayCommand(() => NavigationService.NavigateTo(Constants.Pages.Sync.CurrentDownloadsView));
+            }
+        }
+
         private async Task LoadData(bool isRefresh)
         {
             if (!isRefresh && _jobsLoaded)

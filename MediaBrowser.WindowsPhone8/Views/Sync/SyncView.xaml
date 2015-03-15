@@ -69,9 +69,13 @@
             <Grid x:Name="ContentPanel"
                   Grid.Row="1"
                   Margin="12,0,12,0">
-                <Button Content="Sync"
-                        VerticalAlignment="Top"
-                        Command="{Binding SyncJobsCommand}"/>
+                <StackPanel>
+                    <Button Content="Sync"
+                            VerticalAlignment="Top"
+                            Command="{Binding SyncJobsCommand}" />
+                    <Button Content="Current downloads"
+                            Command="{Binding NavigateToCurrentDownloadsCommand}" />
+                </StackPanel>
             </Grid>
         </Grid>
     </Grid>

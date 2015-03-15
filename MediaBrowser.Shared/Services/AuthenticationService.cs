@@ -19,7 +19,7 @@ namespace MediaBrowser.WindowsPhone.Services
     public class AuthenticationService
     {
         private readonly IConnectionManager _connectionManager;
-        private IApplicationSettingsServiceHandler _settingsService;
+        private readonly IApplicationSettingsServiceHandler _settingsService;
         private static ILog _logger;
 
         public AuthenticationResult AuthenticationResult { get; set; }

@@ -235,6 +235,7 @@
     <Compile Include="RequestResult.cs" />
     <Compile Include="Services\AuthenticationService.cs" />
     <Compile Include="Model\WebSocketClient.cs" />
+    <Compile Include="Services\SyncService.cs" />
     <Compile Include="SharedUtils.cs" />
   </ItemGroup>
   <ItemGroup>

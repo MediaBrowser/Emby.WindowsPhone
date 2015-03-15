@@ -197,6 +197,19 @@
                 public const string ChannelsView = ChannelsPath + "ChannelsView.xaml";
                 public const string ChannelView = ChannelsPath + "ChannelView.xaml?id=";
             }
+
+            public class Sync
+            {
+                private const string SyncPath = ViewsPath + "Sync/";
+                public const string SyncView = SyncPath + "SyncView.xaml";
+                public const string CurrentDownloadsView = SyncPath + "CurrentDownloadsView.xaml";
+            }
+        }
+
+        public class AnyTime
+        {
+            public const string DownloadLocation = "Shared\\transfers\\sync\\{0}";
+            public const string MoveToLocation = "AnyTime\\{0}";
         }
     }
 }

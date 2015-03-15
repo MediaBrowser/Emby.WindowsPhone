@@ -2,7 +2,6 @@ using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Windows.Storage;
 using Cimbalino.Toolkit.Helpers;
 using Cimbalino.Toolkit.Services;
 using MediaBrowser.ApiInteraction.Data;
@@ -11,7 +10,6 @@ using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Sync;
 using MediaBrowser.WindowsPhone.Extensions;
 using Microsoft.Phone.BackgroundTransfer;
-using Microsoft.Phone.SecureElement;
 using Newtonsoft.Json;
 using ScottIsAFool.WindowsPhone.Extensions;
 
@@ -19,8 +17,6 @@ namespace MediaBrowser.WindowsPhone.Model.Sync
 {
     public class FileTransferManager : IFileTransferManager
     {
-        private const string DownloadLocation = "Shared\\transfers\\sync\\{0}";
-        private const string MoveToLocation = "AnyTime\\{0}";
         private readonly ILocalAssetManager _localAssetManager;
         private readonly IStorageServiceHandler _storageService;
 
@@ -40,12 +36,12 @@ namespace MediaBrowser.WindowsPhone.Model.Sync
         {
             var downloadUrl = apiClient.GetSyncJobItemFileUrl(syncJobItemId);
 
-            await CreateDownload(downloadUrl, apiClient, item, syncJobItemId);
+            await CreateDownload(downloadUrl, apiClient, item);
         }
 
-        private async Task CreateDownload(string source, IApiClient client, LocalItem destiantionFile, string syncJobId)
+        private async Task CreateDownload(string source, IApiClient client, LocalItem localItem)
         {
-            var existingRequest = BackgroundTransferService.Requests.FirstOrDefault(x => x.Tag != null && x.Tag.Contains(destiantionFile.Id));
+            var existingRequest = BackgroundTransferService.Requests.FirstOrDefault(x => x.Tag != null && x.Tag.Contains(localItem.Id));
             if (existingRequest != null)
             {
                 return;
@@ -61,9 +57,9 @@ namespace MediaBrowser.WindowsPhone.Model.Sync
             var authorization = string.Format("MediaBrowser UserId=\"{0}\", Client=\"{1}\", Device=\"{2}\", DeviceId=\"{3}\", Version=\"{4}\"", client.CurrentUserId, client.ClientName, client.DeviceName, client.DeviceId, stringVersion);
             downloader.Headers.Add("Authorization", authorization);
             downloader.Method = "GET";
-            downloader.Tag = JsonConvert.SerializeObject(new JobData(destiantionFile.Id, destiantionFile.LocalPath));
+            downloader.Tag = JsonConvert.SerializeObject(new JobData(localItem.Id, localItem.LocalPath, localItem.Item.Name));
 
-            var downloadLocation = new Uri(string.Format(DownloadLocation, destiantionFile.Id), UriKind.RelativeOrAbsolute);
+            var downloadLocation = new Uri(string.Format(Constants.AnyTime.DownloadLocation, localItem.Id), UriKind.RelativeOrAbsolute);
             downloader.DownloadLocation = downloadLocation;
             downloader.TransferStatusChanged += DownloaderOnTransferStatusChanged;
 
@@ -89,25 +85,23 @@ namespace MediaBrowser.WindowsPhone.Model.Sync
         {
             if (e.Request.TransferStatus == TransferStatus.Completed)
             {
-                var item = JsonConvert.DeserializeObject<JobData>(e.Request.Tag);
-                var finalFile = string.Format(MoveToLocation, item.Location);
-                var downloadLocation = string.Format(DownloadLocation, item.Id);
-
-                await _storageService.MoveFileIfExists(downloadLocation, finalFile, true);
-                await _storageService.DeleteFileIfExists(downloadLocation);
+                var request = e.Request;
+                
             }
         }
+    }
 
-        private class JobData
+    public class JobData
+    {
+        public string Id { get; private set; }
+        public string Location { get; private set; }
+        public string Name { get; private set; }
+
+        public JobData(string id, string location, string name)
         {
-            public string Id { get; private set; }
-            public string Location { get; private set; }
-
-            public JobData(string id, string location)
-            {
-                Id = id;
-                Location = location;
-            }
+            Id = id;
+            Location = location;
+            Name = name;
         }
     }
 }
