@@ -918,9 +918,8 @@
       <HintPath>..\packages\JetBrainsAnnotations.Fody.1.0.2\Lib\JetBrains.Annotations.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="MediaBrowser.ApiInteraction.Portable, Version=3.0.5551.23989, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MediaBrowser.ApiClient.3.0.0.581\lib\portable-net45+sl4+wp71+win8+wpa81\MediaBrowser.ApiInteraction.Portable.dll</HintPath>
+    <Reference Include="MediaBrowser.ApiInteraction.Portable">
+      <HintPath>..\packages\MediaBrowser.ApiClient.3.0.0.582\lib\portable-net45+sl4+wp71+win8+wpa81\MediaBrowser.ApiInteraction.Portable.dll</HintPath>
     </Reference>
     <Reference Include="MediaBrowser.Model, Version=3.0.5551.22421, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
