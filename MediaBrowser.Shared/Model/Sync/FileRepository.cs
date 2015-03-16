@@ -34,13 +34,18 @@ namespace MediaBrowser.WindowsPhone.Model.Sync
 
         public async Task DeleteFile(string path)
         {
-            path = AnyTimePath(path); 
+            
+
             await _storageService.DeleteFileIfExists(path);
         }
 
         public async Task DeleteFolder(string path)
         {
-            path = AnyTimePath(path);
+            if (!path.StartsWith("AnyTime"))
+            {
+                path = AnyTimePath(path);
+            }
+
             await _storageService.DeleteDirectoryIfExists(path);
         }
 
@@ -48,7 +53,11 @@ namespace MediaBrowser.WindowsPhone.Model.Sync
         {
             try
             {
-                path = AnyTimePath(path);
+                if (!path.StartsWith("AnyTime"))
+                {
+                    path = AnyTimePath(path);
+                }
+
                 return await _storageService.FileExistsAsync(path);
             }
             catch
@@ -68,14 +77,18 @@ namespace MediaBrowser.WindowsPhone.Model.Sync
             var list = new List<DeviceFileInfo>();
             try
             {
-                path = AnyTimePath(path);
+                if (!path.StartsWith("AnyTime"))
+                {
+                    path = AnyTimePath(path);
+                }
+
                 if (await _storageService.DirectoryExistsAsync(path))
                 {
-                    var folder = await StorageFolder.GetFolderFromPathAsync(path);
+                    var folder = await ApplicationData.Current.LocalFolder.GetFolderAsync(path);
                     if (folder != null)
                     {
                         var files = await folder.GetFilesAsync();
-                        list.AddRange(files.Select(f => new DeviceFileInfo {Name = f.Name, Path = f.Path}));
+                        list.AddRange(files.Select(f => new DeviceFileInfo {Name = f.Name, Path = string.Concat(path + "\\", f.Name)}));
                     }
                 }
             }
@@ -92,7 +105,11 @@ namespace MediaBrowser.WindowsPhone.Model.Sync
 
         public string GetParentDirectoryPath(string path)
         {
-            path = AnyTimePath(path); 
+            if (!path.StartsWith("AnyTime"))
+            {
+                path = AnyTimePath(path);
+            }
+
             return Path.GetDirectoryName(path);
         }
 
