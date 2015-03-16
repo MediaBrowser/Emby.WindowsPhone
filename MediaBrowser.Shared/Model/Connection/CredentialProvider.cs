@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -48,7 +49,7 @@ namespace MediaBrowser.WindowsPhone.Model.Connection
                 {
                     var json = JsonConvert.SerializeObject(configuration);
 
-                    _storageService.WriteAllTextAsync(Constants.Settings.ServerCredentialSettings, json).ConfigureAwait(false);
+                    await _storageService.WriteAllTextAsync(Constants.Settings.ServerCredentialSettings, json).ConfigureAwait(false);
                 }
                 finally
                 {

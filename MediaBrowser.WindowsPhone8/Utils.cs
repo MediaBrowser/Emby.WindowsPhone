@@ -234,7 +234,6 @@ namespace MediaBrowser.WindowsPhone
                     }
                     else
                     {
-                        AuthenticationService.Current.SetAuthenticationInfo();
                         navigationService.NavigateTo(page, true);
                     }
                     break;
@@ -265,7 +264,10 @@ namespace MediaBrowser.WindowsPhone
                 LockScreenService.Current.SetLockScreen(App.SpecificSettings.LockScreenType).ConfigureAwait(false);
             }
 
-            SyncService.Current.StartService().ConfigureAwait(false);
+            Task.Delay(1500).ContinueWith(task =>
+            {
+                SyncService.Current.StartService().ConfigureAwait(false);
+            }).ConfigureAwait(false);
 
             try
             {
@@ -600,7 +602,7 @@ namespace MediaBrowser.WindowsPhone
                         {
                             Condition = ProfileConditionType.LessThanEqual,
                             Property = ProfileConditionValue.VideoFramerate,
-                            Value = "24",
+                            Value = "30",
                             IsRequired = false
                         },
                         new ProfileCondition
@@ -647,7 +649,7 @@ namespace MediaBrowser.WindowsPhone
                         {
                             Condition = ProfileConditionType.LessThanEqual,
                             Property = ProfileConditionValue.VideoFramerate,
-                            Value = "24",
+                            Value = "30",
                             IsRequired = false
                         },
                         new ProfileCondition
@@ -668,7 +670,7 @@ namespace MediaBrowser.WindowsPhone
                         {
                             Condition = ProfileConditionType.LessThanEqual,
                             Property = ProfileConditionValue.AudioBitrate,
-                            Value = "128000"
+                            Value = "320000"
                         },
 
                         new ProfileCondition
@@ -689,7 +691,7 @@ namespace MediaBrowser.WindowsPhone
                         {
                             Condition = ProfileConditionType.LessThanEqual,
                             Property = ProfileConditionValue.AudioBitrate,
-                            Value = "128000"
+                            Value = "320000"
                         }
                     }
                 }
