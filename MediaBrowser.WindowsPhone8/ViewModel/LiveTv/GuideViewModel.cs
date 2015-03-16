@@ -187,7 +187,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                 var query = new ProgramQuery
                 {
                     UserId = AuthenticationService.Current.LoggedInUserId,
-                    ChannelIdList = new[] {SelectedChannel.Id},
+                    ChannelIds = new[] {SelectedChannel.Id},
                     MaxEndDate = DateTime.Now.AddDays(1).Date
                 };
                 var items = await ApiClient.GetLiveTvProgramsAsync(query);
