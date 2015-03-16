@@ -15,13 +15,18 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Items
         public static TransferMonitorViewModel Create(BackgroundTransferRequest request)
         {
             var vm = new TransferMonitorViewModel(new TransferMonitor(request));
-            var json = request.Tag;
-            var jobData = JsonConvert.DeserializeObject<JobData>(json);
-            vm.JobData = jobData;
-
-            vm.Monitor.Name = jobData.Name;
+            vm.CreateJobData(request);
 
             return vm;
+        }
+
+        private void CreateJobData(BackgroundTransferRequest request)
+        {
+            var json = request.Tag;
+            var jobData = JsonConvert.DeserializeObject<JobData>(json);
+            JobData = jobData;
+
+            Monitor.Name = jobData.Name;
         }
 
         public TransferMonitor Monitor { get; set; }
