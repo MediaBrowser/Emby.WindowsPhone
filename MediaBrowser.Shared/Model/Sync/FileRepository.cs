@@ -34,18 +34,12 @@ namespace MediaBrowser.WindowsPhone.Model.Sync
 
         public async Task DeleteFile(string path)
         {
-            
-
             await _storageService.DeleteFileIfExists(path);
         }
 
         public async Task DeleteFolder(string path)
         {
-            if (!path.StartsWith("AnyTime"))
-            {
-                path = AnyTimePath(path);
-            }
-
+            path = AnyTimePath(path);
             await _storageService.DeleteDirectoryIfExists(path);
         }
 
@@ -53,11 +47,8 @@ namespace MediaBrowser.WindowsPhone.Model.Sync
         {
             try
             {
-                if (!path.StartsWith("AnyTime"))
-                {
-                    path = AnyTimePath(path);
-                }
 
+                path = AnyTimePath(path);
                 return await _storageService.FileExistsAsync(path);
             }
             catch
@@ -68,7 +59,11 @@ namespace MediaBrowser.WindowsPhone.Model.Sync
 
         private static string AnyTimePath(string path)
         {
-            path = string.Format(Constants.AnyTime.AnyTimeLocation, path);
+            if (!path.StartsWith("AnyTime"))
+            {
+                path = string.Format(Constants.AnyTime.AnyTimeLocation, path);
+            }
+
             return path;
         }
 
@@ -77,10 +72,7 @@ namespace MediaBrowser.WindowsPhone.Model.Sync
             var list = new List<DeviceFileInfo>();
             try
             {
-                if (!path.StartsWith("AnyTime"))
-                {
-                    path = AnyTimePath(path);
-                }
+                path = AnyTimePath(path);
 
                 if (await _storageService.DirectoryExistsAsync(path))
                 {
@@ -88,7 +80,7 @@ namespace MediaBrowser.WindowsPhone.Model.Sync
                     if (folder != null)
                     {
                         var files = await folder.GetFilesAsync();
-                        list.AddRange(files.Select(f => new DeviceFileInfo {Name = f.Name, Path = string.Concat(path + "\\", f.Name)}));
+                        list.AddRange(files.Select(f => new DeviceFileInfo { Name = f.Name, Path = string.Concat(path + "\\", f.Name) }));
                     }
                 }
             }
@@ -100,28 +92,32 @@ namespace MediaBrowser.WindowsPhone.Model.Sync
         public string GetFullLocalPath(IEnumerable<string> path)
         {
             var paths = path.ToList();
+            if (paths.Count > 0)
+            {
+                if (paths[0] != "AnyTime")
+                {
+                    paths.Insert(0, "AnyTime");
+                }
+            }
             return Path.Combine(paths.ToArray());
         }
 
         public string GetParentDirectoryPath(string path)
         {
-            if (!path.StartsWith("AnyTime"))
-            {
-                path = AnyTimePath(path);
-            }
+            path = AnyTimePath(path);
 
             return Path.GetDirectoryName(path);
         }
 
         public async Task<Stream> GetFileStream(string path)
         {
-            path = AnyTimePath(path); 
+            path = AnyTimePath(path);
             return await _storageService.OpenFileIfExists(path);
         }
 
         public async Task SaveFile(Stream stream, string path)
         {
-            path = AnyTimePath(path); 
+            path = AnyTimePath(path);
             await _storageService.WriteAllBytesAsync(path, await stream.ToArrayAsync());
         }
     }

@@ -15,7 +15,7 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
 
             result.BeginEdit();
 
-            result.Source = new Uri(playlistItem.TrackUrl, UriKind.Absolute);
+            result.Source = new Uri(playlistItem.TrackUrl, UriKind.RelativeOrAbsolute);
             result.Title = playlistItem.TrackName;
             result.Artist = playlistItem.Artist;
             result.Album = playlistItem.Album;

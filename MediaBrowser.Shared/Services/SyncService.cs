@@ -80,7 +80,7 @@ namespace MediaBrowser.WindowsPhone.Services
         public async Task MoveCompleted(BackgroundTransferRequest request)
         {
             var item = JsonConvert.DeserializeObject<JobData>(request.Tag);
-            var finalFile = string.Format(Constants.AnyTime.AnyTimeLocation, item.Location);
+            var finalFile = item.Location;
             var downloadLocation = string.Format(Constants.AnyTime.DownloadLocation, item.Id);
 
             await _storageService.MoveFileIfExists(downloadLocation, finalFile, true);
