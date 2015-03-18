@@ -23,16 +23,16 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     public class ActorViewModel : ViewModelBase
     {
         private bool _dataLoaded;
-        
+
         /// <summary>
         /// Initializes a new instance of the ActorViewModel class.
         /// </summary>
         public ActorViewModel(IConnectionManager connectionManager, INavigationService navigationService)
-            : base (navigationService, connectionManager)
+            : base(navigationService, connectionManager)
         {
             if (IsInDesignMode)
             {
-                SelectedPerson = new BaseItemPerson {Name = "Jeff Goldblum"};
+                SelectedPerson = new BaseItemPerson { Name = "Jeff Goldblum" };
                 var list = new List<BaseItemDto>
                 {
                     new BaseItemDto
@@ -53,7 +53,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                 Films = Utils.GroupItemsByName(list).Result;
             }
-        
+
         }
 
         public BaseItemDto SelectedActor { get; set; }
@@ -100,9 +100,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                 var query = new ItemQuery
                 {
-                    Person = SelectedPerson.Name,
+                    PersonIds = new[] { SelectedPerson.Id },
                     UserId = AuthenticationService.Current.LoggedInUserId,
-                    SortBy = new []{"SortName"},
+                    SortBy = new[] { "SortName" },
                     SortOrder = SortOrder.Ascending,
                     Fields = new[] { ItemFields.People },
                     Recursive = true

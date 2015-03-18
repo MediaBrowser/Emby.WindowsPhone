@@ -84,7 +84,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 }
                 else if (m.Notification.Equals(Constants.Messages.ChangeGroupingMsg))
                 {
-                    GroupBy = (GroupBy) m.Sender;
+                    GroupBy = (GroupBy)m.Sender;
                     SortList();
                 }
                 else if (m.Notification.Equals(Constants.Messages.ClearFoldersMsg))
@@ -94,7 +94,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 }
                 else if (m.Notification.Equals(Constants.Messages.CollectionPinnedMsg))
                 {
-                    var tileUrl = (string) m.Sender;
+                    var tileUrl = (string)m.Sender;
                     CanPinCollection = TileService.Current.TileExists(tileUrl);
                 }
             });
@@ -195,7 +195,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 var query = new ItemQuery
                 {
                     UserId = AuthenticationService.Current.LoggedInUserId,
-                    SortBy = new[] {ItemSortBy.SortName},
+                    SortBy = new[] { ItemSortBy.SortName },
                     SortOrder = SortOrder.Ascending,
                     Fields = new[]
                     {
@@ -207,7 +207,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         ItemFields.MediaSources, 
                         ItemFields.SyncInfo
                     },
-                    ExcludeItemTypes = SelectedFolder != null && SelectedFolder.Name.ToLower().Contains("recent") ? new[] {"Season", "Series"} : null,
+                    ExcludeItemTypes = SelectedFolder != null && SelectedFolder.Name.ToLower().Contains("recent") ? new[] { "Season", "Series" } : null,
                     ImageTypeLimit = 1,
                     EnableImageTypes = new[] { ImageType.Backdrop, ImageType.Primary, }
                 };
@@ -216,8 +216,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 {
                     Log.Info("Getting items for {0}", SelectedPerson.Name);
                     PageTitle = SelectedPerson.Name.ToLower();
-                    query.Person = SelectedPerson.Name;
-                    query.PersonTypes = new[] {SelectedPerson.Type};
+                    query.PersonIds = new[] { SelectedPerson.Id };
+                    query.PersonTypes = new[] { SelectedPerson.Type };
                     query.Recursive = true;
                 }
                 else
@@ -226,31 +226,31 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     {
                         Log.Info("Getting recent items");
                         PageTitle = AppResources.LabelRecent.ToLower();
-                        query = Utils.GetRecentItemsQuery(excludedItemTypes: new[] {"Photo", "Season", "Series"});
+                        query = Utils.GetRecentItemsQuery(excludedItemTypes: new[] { "Photo", "Season", "Series" });
                         isRecent = true;
                     }
                     else if (SelectedFolder.Name.Equals(AppResources.Favourites.ToLower()))
                     {
                         Log.Info("Getting favourite items");
                         PageTitle = AppResources.Favourites.ToLower();
-                        query.Filters = new[] {ItemFilter.IsFavorite};
+                        query.Filters = new[] { ItemFilter.IsFavorite };
                         query.Recursive = true;
                     }
                     else if (SelectedFolder.Type.StartsWith(AppResources.Genre))
                     {
                         Log.Info("Getting items for genre [{0}]", SelectedFolder.Name);
                         PageTitle = SelectedFolder.Name.ToLower();
-                        query.Genres = new[] {SelectedFolder.Name};
+                        query.Genres = new[] { SelectedFolder.Name };
                         query.Recursive = true;
 
                         if (SelectedFolder.Type.Contains(" - " + AppResources.LabelTv.ToUpper()))
                         {
-                            query.IncludeItemTypes = new[] {"Series"};
+                            query.IncludeItemTypes = new[] { "Series" };
                         }
                         else if (SelectedFolder.Type.Contains(" - " + AppResources.LabelMovies.ToUpper()))
                         {
                             query.ExcludeItemTypes = new[] { "Series" };
-                            query.IncludeItemTypes = new[] {"Movie", "Trailer"};
+                            query.IncludeItemTypes = new[] { "Movie", "Trailer" };
                         }
                     }
                     else
@@ -261,7 +261,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     }
                 }
                 var items = await ApiClient.GetItemsAsync(query);
-                
+
                 CurrentItems = isRecent ? await Utils.SortRecentItems(items.Items, App.SpecificSettings.IncludeTrailersInRecent) : items.Items.ToList();
                 return true;
             }
@@ -285,51 +285,51 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             switch (GroupBy)
             {
                 case GroupBy.Name:
-                    GroupHeaderTemplate = (DataTemplate) Application.Current.Resources["LLSGroupHeaderTemplateName"];
-                    GroupItemTemplate = (Style) Application.Current.Resources["LLSGroupItemStyle"];
-                    var headers = new List<string> {"#", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
+                    GroupHeaderTemplate = (DataTemplate)Application.Current.Resources["LLSGroupHeaderTemplateName"];
+                    GroupItemTemplate = (Style)Application.Current.Resources["LLSGroupItemStyle"];
+                    var headers = new List<string> { "#", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
                     headers.ForEach(item => emptyGroups.Add(new Group<BaseItemDto>(item, new List<BaseItemDto>())));
                     var groupedNameItems = (from c in CurrentItems
-                        group c by Utils.GetSortByNameHeader(c)
-                        into grp
-                        orderby grp.Key
-                        select new Group<BaseItemDto>(grp.Key, grp)).ToList();
+                                            group c by Utils.GetSortByNameHeader(c)
+                                                into grp
+                                                orderby grp.Key
+                                                select new Group<BaseItemDto>(grp.Key, grp)).ToList();
                     FolderGroupings = groupedNameItems.ToList();
                     break;
                 case GroupBy.ProductionYear:
-                    GroupHeaderTemplate = (DataTemplate) Application.Current.Resources["LLSGroupHeaderTemplateLong"];
-                    GroupItemTemplate = (Style) Application.Current.Resources["LLSGroupItemStyle"];
+                    GroupHeaderTemplate = (DataTemplate)Application.Current.Resources["LLSGroupHeaderTemplateLong"];
+                    GroupItemTemplate = (Style)Application.Current.Resources["LLSGroupItemStyle"];
                     var movieYears = (from y in CurrentItems
-                        where y.ProductionYear != null
-                        orderby y.ProductionYear
-                        select y.ProductionYear.ToString()).Distinct().ToList();
+                                      where y.ProductionYear != null
+                                      orderby y.ProductionYear
+                                      select y.ProductionYear.ToString()).Distinct().ToList();
                     movieYears.Insert(0, "?");
                     movieYears.ForEach(item => emptyGroups.Add(new Group<BaseItemDto>(item, new List<BaseItemDto>())));
 
                     var groupedYearItems = from t in CurrentItems
-                        group t by GetSortByProductionYearHeader(t)
-                        into grp
-                        orderby grp.Key
-                        select new Group<BaseItemDto>(grp.Key, grp);
+                                           group t by GetSortByProductionYearHeader(t)
+                                               into grp
+                                               orderby grp.Key
+                                               select new Group<BaseItemDto>(grp.Key, grp);
                     FolderGroupings = groupedYearItems.ToList();
                     break;
                 case GroupBy.Genre:
-                    GroupHeaderTemplate = (DataTemplate) Application.Current.Resources["LLSGroupHeaderTemplateLong"];
-                    GroupItemTemplate = (Style) Application.Current.Resources["LLSGroupItemLongStyle"];
+                    GroupHeaderTemplate = (DataTemplate)Application.Current.Resources["LLSGroupHeaderTemplateLong"];
+                    GroupItemTemplate = (Style)Application.Current.Resources["LLSGroupItemLongStyle"];
                     var genres = (from t in CurrentItems
-                        where t.Genres != null
-                        from s in t.Genres
-                        select s).Distinct().ToList();
+                                  where t.Genres != null
+                                  from s in t.Genres
+                                  select s).Distinct().ToList();
                     genres.Insert(0, "none");
                     genres.ForEach(item => emptyGroups.Add(new Group<BaseItemDto>(item, new List<BaseItemDto>())));
 
                     var groupedGenreItems = (from genre in genres
-                        let films = (from f in CurrentItems
-                            where CheckGenre(f)
-                            where f.Genres.Contains(genre)
-                            orderby Utils.GetSortByNameHeader(f)
-                            select f).ToList()
-                        select new Group<BaseItemDto>(genre, films)).ToList();
+                                             let films = (from f in CurrentItems
+                                                          where CheckGenre(f)
+                                                          where f.Genres.Contains(genre)
+                                                          orderby Utils.GetSortByNameHeader(f)
+                                                          select f).ToList()
+                                             select new Group<BaseItemDto>(genre, films)).ToList();
                     FolderGroupings = groupedGenreItems.OrderBy(x => x.Title).ToList();
                     break;
 
@@ -344,7 +344,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 return true;
             }
-            dtoBaseItem.Genres = new List<string> {AppResources.LabelNone};
+            dtoBaseItem.Genres = new List<string> { AppResources.LabelNone };
             return true;
         }
 
@@ -361,7 +361,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         [UsedImplicitly]
         private void OnSelectedFolderChanged()
         {
-            ServerIdItem = SelectedFolder;            
+            ServerIdItem = SelectedFolder;
         }
         public BaseItemPerson SelectedPerson { get; set; }
 
