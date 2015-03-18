@@ -79,7 +79,7 @@ namespace MediaBrowser.WindowsPhone.Model.Sync
                     if (folder != null)
                     {
                         var files = await folder.GetFilesAsync();
-                        list.AddRange(files.Select(f => new DeviceFileInfo { Name = f.Name, Path = string.Concat(path + "\\", f.Name) }));
+                        list.AddRange(files.Select(f => new DeviceFileInfo { Name = f.Name, Path = string.Concat(path, "\\", f.Name) }));
                     }
                 }
             }
@@ -91,14 +91,8 @@ namespace MediaBrowser.WindowsPhone.Model.Sync
         public string GetFullLocalPath(IEnumerable<string> path)
         {
             var paths = path.ToList();
-            if (paths.Count > 0)
-            {
-                if (paths[0] != "AnyTime")
-                {
-                    paths.Insert(0, "AnyTime");
-                }
-            }
-            return Path.Combine(paths.ToArray());
+            var itemPath = Path.Combine(paths.ToArray());
+            return AnyTimePath(itemPath);
         }
 
         public string GetParentDirectoryPath(string path)
