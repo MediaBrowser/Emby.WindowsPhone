@@ -1,5 +1,8 @@
 ﻿using System.IO;
+using System.Reflection;
 using System.Threading.Tasks;
+using Windows.Storage;
+using Cimbalino.Toolkit.Extensions;
 using Cimbalino.Toolkit.Services;
 
 namespace MediaBrowser.WindowsPhone.Extensions
@@ -66,6 +69,25 @@ namespace MediaBrowser.WindowsPhone.Extensions
                 }
                 await storageService.MoveFileAsync(source, destination, overwrite);
             }
+        }
+
+        public static StorageFolder RootFolder(this IStorageServiceHandler storageService)
+        {
+            var service = storageService as StorageServiceHandler;
+            if (service != null)
+            {
+                var fields = service.GetType().GetField("_storageFolder", BindingFlags.Instance | BindingFlags.NonPublic);
+                if (fields != null)
+                {
+                    var storage = fields.GetValue(service) as StorageFolder;
+                    if (storage != null)
+                    {
+                        return storage;
+                    }
+                }
+            }
+
+            return ApplicationData.Current.LocalFolder;
         }
     }
 }
