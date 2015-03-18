@@ -2,7 +2,6 @@
 using System.Reflection;
 using System.Threading.Tasks;
 using Windows.Storage;
-using Cimbalino.Toolkit.Extensions;
 using Cimbalino.Toolkit.Services;
 
 namespace MediaBrowser.WindowsPhone.Extensions

@@ -4,7 +4,6 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Windows.Storage;
 using Cimbalino.Toolkit.Extensions;
 using Cimbalino.Toolkit.Services;
 using MediaBrowser.ApiInteraction.Data;
@@ -76,7 +75,7 @@ namespace MediaBrowser.WindowsPhone.Model.Sync
 
                 if (await _storageService.DirectoryExistsAsync(path))
                 {
-                    var folder = await ApplicationData.Current.LocalFolder.GetFolderAsync(path);
+                    var folder = await _storageService.RootFolder().GetFolderAsync(path);
                     if (folder != null)
                     {
                         var files = await folder.GetFilesAsync();
