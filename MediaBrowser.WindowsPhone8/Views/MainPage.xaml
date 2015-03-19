@@ -44,7 +44,8 @@
                                                   CommandParameter="/Views/NowPlayingView.xaml" />
                 <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarRemote, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                   Command="{Binding NavigateToAPage}"
-                                                  CommandParameter="/Views/Remote/RemoteView.xaml" />
+                                                  CommandParameter="/Views/Remote/RemoteView.xaml" 
+                                                  IsVisible="{Binding Auth.LoggedInUser.Policy.EnableRemoteControlOfOtherUsers, Source={StaticResource Locator}}"/>
                 <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarNotifications, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                   IsVisible="{Binding LoggedInUser.Configuration.IsAdministrator, Source={StaticResource AppSettings}}"
                                                   Command="{Binding NavigateToNotificationsCommand}" />
