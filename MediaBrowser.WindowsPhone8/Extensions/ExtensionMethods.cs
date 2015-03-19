@@ -35,7 +35,7 @@ namespace MediaBrowser.WindowsPhone.Extensions
 
         internal static async Task<PlaylistItem> ToPlaylistItem(this BaseItemDto item, IApiClient apiClient, IPlaybackManager playbackManager)
         {
-            var profile = Utils.GetWindowsPhoneProfile();
+            var profile = VideoProfileHelper.GetWindowsPhoneProfile();
             var options = new AudioOptions
             {
                 Profile = profile,
