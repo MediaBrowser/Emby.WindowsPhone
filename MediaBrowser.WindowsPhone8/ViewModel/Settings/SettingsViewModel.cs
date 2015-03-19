@@ -15,6 +15,7 @@ using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.WindowsPhone.CimbalinoToolkit;
 using MediaBrowser.WindowsPhone.Extensions;
+using MediaBrowser.WindowsPhone.Interfaces;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Model.Connection;
 using MediaBrowser.WindowsPhone.Model.Streaming;
@@ -35,6 +36,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Settings
     {
         private readonly IApplicationSettingsServiceHandler _applicationSettings;
         private readonly IMessageBoxService _messageBox;
+        private readonly IServerInfoService _serverInfo;
 
         public bool LoadingFromSettings;
 
@@ -43,11 +45,17 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Settings
         /// <summary>
         /// Initializes a new instance of the PushViewModel class.
         /// </summary>
-        public SettingsViewModel(IConnectionManager connectionManager, INavigationService navigationService, IApplicationSettingsService applicationSettings, IMessageBoxService messageBox)
+        public SettingsViewModel(
+            IConnectionManager connectionManager,
+            INavigationService navigationService,
+            IApplicationSettingsService applicationSettings, 
+            IMessageBoxService messageBox,
+            IServerInfoService serverInfo)
             : base(navigationService, connectionManager)
         {
             _applicationSettings = applicationSettings.Legacy;
             _messageBox = messageBox;
+            _serverInfo = serverInfo;
 
             if (IsInDesignMode)
             {
@@ -402,7 +410,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Settings
 
         private void SaveServer(ServerInfo server)
         {
-            App.ServerInfo = server;
+            _serverInfo.SetServerInfo(server);
             _applicationSettings.Set(Constants.Settings.DefaultServerConnection, server);
         }
 

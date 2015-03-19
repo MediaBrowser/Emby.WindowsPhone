@@ -7,6 +7,7 @@ using Cimbalino.Toolkit.Services;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model.ApiClient;
+using MediaBrowser.WindowsPhone.Interfaces;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Model.Photo;
 using MediaBrowser.WindowsPhone.Resources;
@@ -22,6 +23,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     /// </summary>
     public class SplashscreenViewModel : ViewModelBase
     {
+        private readonly IServerInfoService _serverInfo;
         private readonly IApplicationSettingsServiceHandler _applicationSettings;
 
         private SpecificSettings _specificSettings;
@@ -32,9 +34,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         /// <summary>
         /// Initializes a new instance of the SplashscreenViewModel class.
         /// </summary>
-        public SplashscreenViewModel(IConnectionManager connectionManager, INavigationService navigationService, IApplicationSettingsService applicationSettings)
+        public SplashscreenViewModel(IConnectionManager connectionManager, INavigationService navigationService, IApplicationSettingsService applicationSettings, IServerInfoService serverInfo)
             : base(navigationService, connectionManager)
         {
+            _serverInfo = serverInfo;
             _applicationSettings = applicationSettings.Legacy;
         }
 
@@ -99,7 +102,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             _connectionDetails = _applicationSettings.Get<ConnectionDetails>(Constants.Settings.ConnectionSettings);
             _savedServer = _applicationSettings.Get<ServerInfo>(Constants.Settings.DefaultServerConnection);
 
-            App.ServerInfo = _savedServer;
+            _serverInfo.SetServerInfo(_savedServer);
 
             await ConnectToServer();
         }
@@ -125,7 +128,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                 if (server != null)
                 {
-                    App.ServerInfo = server;
+                    _serverInfo.SetServerInfo(server);
                     _applicationSettings.Set(Constants.Settings.DefaultServerConnection, server);
 
                     _savedServer = server;
@@ -137,7 +140,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             if (_savedServer != null)
             {
-                result = await ConnectionManager.Connect(_savedServer, default(CancellationToken));
+                result = await ConnectionManager.Connect(_savedServer);
             }
 
             if (result != null && result.State == ConnectionState.Unavailable && _savedServer != null)

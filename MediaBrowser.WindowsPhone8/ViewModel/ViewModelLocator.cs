@@ -76,6 +76,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 SimpleIoc.Default.RegisterIf(() => Utils.CreateConnectionManager(device, logger, network));
                 SimpleIoc.Default.RegisterIf<IApplicationSettingsService, ApplicationSettingsService>();
                 SimpleIoc.Default.RegisterIf<IStorageService, StorageService>();
+                SimpleIoc.Default.RegisterIf<IServerInfoService, ServerInfoService>();
                 SimpleIoc.Default.RegisterIf<AuthenticationService>(true);
                 SimpleIoc.Default.RegisterIf<LockScreenService>(true);
                 SimpleIoc.Default.RegisterIf<TileService>(true);
@@ -439,6 +440,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public static ILocalAssetManager AssetManager
         {
             get { return ServiceLocator.Current.GetInstance<ILocalAssetManager>(); }
+        }
+
+        public static IServerInfoService ServerInfo
+        {
+            get { return ServiceLocator.Current.GetInstance<IServerInfoService>(); }
         }
 
         /// <summary>

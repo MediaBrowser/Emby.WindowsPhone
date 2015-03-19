@@ -8,6 +8,7 @@ using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Sync;
 using MediaBrowser.WindowsPhone.Extensions;
+using MediaBrowser.WindowsPhone.Interfaces;
 using MediaBrowser.WindowsPhone.Model.Sync;
 using Microsoft.Phone.BackgroundTransfer;
 using Newtonsoft.Json;
@@ -20,14 +21,16 @@ namespace MediaBrowser.WindowsPhone.Services
     {
         private readonly IConnectionManager _connectionManager;
         private readonly IMultiServerSync _mediaSync;
+        private readonly IServerInfoService _serverInfo;
         private readonly IStorageServiceHandler _storageService;
         private readonly ILog _logger;
         public static SyncService Current { get; private set; }
 
-        public SyncService(IConnectionManager connectionManager, IMultiServerSync mediaSync, IStorageService storageService)
+        public SyncService(IConnectionManager connectionManager, IMultiServerSync mediaSync, IStorageService storageService, IServerInfoService serverInfo)
         {
             _connectionManager = connectionManager;
             _mediaSync = mediaSync;
+            _serverInfo = serverInfo;
             _storageService = storageService.Local;
             _logger = new WPLogger(GetType());
             Current = this;
@@ -64,7 +67,7 @@ namespace MediaBrowser.WindowsPhone.Services
             {
                 UserId = AuthenticationService.Current.LoggedInUserId
             };
-            var jobs = await _connectionManager.CurrentApiClient.GetSyncJobs(query);
+            var jobs = await _connectionManager.GetApiClient(_serverInfo.ServerInfo.Id).GetSyncJobs(query);
 
             return jobs != null && !jobs.Items.IsNullOrEmpty() ? jobs.Items.ToList() : new List<SyncJob>();
         }

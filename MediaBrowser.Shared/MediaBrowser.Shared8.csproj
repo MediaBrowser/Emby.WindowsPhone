@@ -208,6 +208,7 @@
     <Compile Include="Extensions\StorageServiceExtensions.cs" />
     <Compile Include="Extensions\UriExtensions.cs" />
     <Compile Include="History.cs" />
+    <Compile Include="Interfaces\IServerInfoService.cs" />
     <Compile Include="Interfaces\ISettingsService.cs" />
     <Compile Include="Logging\MBLogger.cs" />
     <Compile Include="Model\ConnectionDetails.cs" />

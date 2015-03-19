@@ -57,7 +57,10 @@ namespace MediaBrowser.WindowsPhone
 
         public static object SelectedItem { get; set; }
 
-        public static ServerInfo ServerInfo { get; set; }
+        public static ServerInfo ServerInfo
+        {
+            get { return ViewModelLocator.ServerInfo.ServerInfo; }
+        }
 
         public static void ShowMessage(string message, string title = "", Action action = null)
         {
