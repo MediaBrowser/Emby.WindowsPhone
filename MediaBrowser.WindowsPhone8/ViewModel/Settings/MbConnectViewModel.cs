@@ -63,7 +63,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Settings
 
                         if (success)
                         {
-                            var result = await ConnectionManager.Connect(default(CancellationToken));
+                            var result = await ConnectionManager.Connect();
 
                             if (result.State == ConnectionState.SignedIn && result.Servers.Count == 1)
                             {

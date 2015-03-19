@@ -180,7 +180,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                 SetProgressBar(AppResources.SysTrayGettingSeriesRecordings);
 
                 var query = new SeriesTimerQuery();
-                var items = await ApiClient.GetLiveTvSeriesTimersAsync(query, default(CancellationToken));
+                var items = await ApiClient.GetLiveTvSeriesTimersAsync(query);
 
                 if (items != null && !items.Items.IsNullOrEmpty())
                 {
@@ -208,7 +208,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
             {
                 SetProgressBar(AppResources.SysTrayGettingUpcomingRecordings);
 
-                var items = await ApiClient.GetLiveTvTimersAsync(new TimerQuery(), default(CancellationToken));
+                var items = await ApiClient.GetLiveTvTimersAsync(new TimerQuery());
 
                 if (items != null && !items.Items.IsNullOrEmpty())
                 {

@@ -122,7 +122,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             if (_connectionDetails != null && !string.IsNullOrEmpty(_connectionDetails.ServerId))
             {
-                result = await ConnectionManager.Connect(_connectionDetails.ServerAddress, default(CancellationToken));
+                result = await ConnectionManager.Connect(_connectionDetails.ServerAddress);
                 var server = result.Servers.FirstOrDefault(x =>
                         string.Equals(x.Id, _connectionDetails.ServerId, StringComparison.CurrentCultureIgnoreCase));
 
@@ -153,7 +153,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             if (result == null || result.State == ConnectionState.Unavailable)
             {
-                result = await ConnectionManager.Connect(default(CancellationToken));
+                result = await ConnectionManager.Connect();
             }
 
             Deployment.Current.Dispatcher.BeginInvoke(async () =>

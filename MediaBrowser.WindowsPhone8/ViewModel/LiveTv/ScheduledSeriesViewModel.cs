@@ -82,11 +82,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                     {
                         if (IsAdd)
                         {
-                            await ApiClient.CreateLiveTvSeriesTimerAsync(SelectedSeries, default(CancellationToken));
+                            await ApiClient.CreateLiveTvSeriesTimerAsync(SelectedSeries);
                         }
                         else
                         {
-                            await ApiClient.UpdateLiveTvSeriesTimerAsync(SelectedSeries, default(CancellationToken));
+                            await ApiClient.UpdateLiveTvSeriesTimerAsync(SelectedSeries);
                         }
                     }
                     catch (HttpException ex)
@@ -264,7 +264,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                     SeriesTimerId = SelectedSeries.Id
                 };
 
-                var items = await ApiClient.GetLiveTvTimersAsync(query, default(CancellationToken));
+                var items = await ApiClient.GetLiveTvTimersAsync(query);
 
                 if (items != null && !items.Items.IsNullOrEmpty())
                 {
@@ -303,7 +303,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                     UserId = AuthenticationService.Current.LoggedInUserId
                 };
 
-                var items = await ApiClient.GetLiveTvRecordingsAsync(query, default(CancellationToken));
+                var items = await ApiClient.GetLiveTvRecordingsAsync(query);
 
                 if (items != null && !items.Items.IsNullOrEmpty())
                 {

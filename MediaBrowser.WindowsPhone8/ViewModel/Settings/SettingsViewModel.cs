@@ -318,7 +318,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Settings
 
                 var serverAddress = App.Settings.ConnectionDetails.ServerAddress;
 
-                var result = await ConnectionManager.Connect(serverAddress, default(CancellationToken));
+                var result = await ConnectionManager.Connect(serverAddress);
 
                 if (result.State != ConnectionState.Unavailable && !result.Servers.IsNullOrEmpty())
                 {
@@ -355,7 +355,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Settings
                     SetProgressBar(AppResources.SysTrayFindingServer);
 
                     Log.Info("Sending UDP broadcast");
-                    var servers = await ConnectionManager.GetAvailableServers(default(CancellationToken));
+                    var servers = await ConnectionManager.GetAvailableServers();
                     FoundServers = new ObservableCollection<ServerInfo>(servers);
 
                     SetProgressBar();
@@ -369,14 +369,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Settings
             {
                 return new RelayCommand<ServerInfo>(async server =>
                 {
-                    var address = new Uri(server.LocalAddress);
-                    //App.Settings.ConnectionDetails.HostName = address.Host;
-                    //App.Settings.ConnectionDetails.PortNo = address.Port;
-                    //NavigationService.GoBack();
-
                     SetProgressBar(AppResources.SysTrayAuthenticating);
 
-                    var result = await ConnectionManager.Connect(server, default(CancellationToken));
+                    var result = await ConnectionManager.Connect(server);
 
                     if (result.State == ConnectionState.Unavailable)
                     {

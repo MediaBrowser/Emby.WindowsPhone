@@ -132,7 +132,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
 
                     try
                     {
-                        var series = await ApiClient.GetLiveTvSeriesTimerAsync(SelectedProgramme.SeriesTimerId, default(CancellationToken));
+                        var series = await ApiClient.GetLiveTvSeriesTimerAsync(SelectedProgramme.SeriesTimerId);
                         if (SimpleIoc.Default.GetInstance<ScheduledSeriesViewModel>() != null)
                         {
                             Messenger.Default.Send(new NotificationMessage(series, false, Constants.Messages.ScheduledSeriesChangedMsg));
@@ -159,7 +159,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                     {
                         SetProgressBar(AppResources.SysTrayPreparing);
 
-                        var series = await ApiClient.GetDefaultLiveTvTimerInfo(SelectedProgramme.Id, default(CancellationToken));
+                        var series = await ApiClient.GetDefaultLiveTvTimerInfo(SelectedProgramme.Id);
 
                         if (series != null && SimpleIoc.Default.GetInstance<ScheduledSeriesViewModel>() != null)
                         {

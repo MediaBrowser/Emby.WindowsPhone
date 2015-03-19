@@ -106,7 +106,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                     UserId = AuthenticationService.Current.LoggedInUserId
                 };
 
-                var items = await ApiClient.GetLiveTvRecordingsAsync(query, default(CancellationToken));
+                var items = await ApiClient.GetLiveTvRecordingsAsync(query);
 
                 if (items != null && !items.Items.IsNullOrEmpty())
                 {
