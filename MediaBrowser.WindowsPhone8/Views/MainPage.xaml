@@ -329,7 +329,10 @@
             </phone:PanoramaItem>
             <phone:PanoramaItem Header="{Binding LocalizedResources.LabelInProgress, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                 x:Name="InProgressPano">
-                
+                <phone:LongListSelector ItemsSource="{Binding InProgressItems}"
+                                        ItemTemplate="{StaticResource FullTileItemStyle}"
+                                        LayoutMode="Grid"
+                                        GridCellSize="200,300" />
             </phone:PanoramaItem>
         </phone:Panorama>
     </Grid>
