@@ -1141,4 +1141,10 @@
   <data name="LabelRestartNow" xml:space="preserve">
     <value>restart now?</value>
   </data>
+  <data name="LabelInProgress" xml:space="preserve">
+    <value>in progress</value>
+  </data>
+  <data name="SysTrayCheckingInProgress" xml:space="preserve">
+    <value>Checking for in progress items</value>
+  </data>
 </root>
