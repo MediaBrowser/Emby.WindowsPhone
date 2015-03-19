@@ -19,7 +19,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
         protected IApiClient ApiClient
         {
-            get { return ConnectionManager.GetApiClient(App.ServerInfo.Id); }
+            get { return App.ServerInfo != null && !string.IsNullOrEmpty(App.ServerInfo.Id) ? ConnectionManager.GetApiClient(App.ServerInfo.Id) : ConnectionManager.CurrentApiClient; }
         }
     }
 }
