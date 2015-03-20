@@ -751,7 +751,7 @@
         <playerFramework:MediaPlayer x:Name="ThePlayer"
                                      Visibility="{Binding IsHls, Converter={StaticResource InvertedVisibilityConverter}, FallbackValue=Visible}"
                                      Source="{Binding VideoUrl}"
-                                     AutoPlay="True"
+                                     AutoPlay="{Binding IsDirectStream, Converter={StaticResource NegativeBooleanConverter}}"
                                      MediaEnded="ThePlayerMediaEnded"
                                      MediaFailed="ThePlayerMediaFailed"
                                      MediaOpened="ThePlayer_OnMediaOpened"
