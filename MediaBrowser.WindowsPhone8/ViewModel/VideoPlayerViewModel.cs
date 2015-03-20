@@ -42,6 +42,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         private string _itemId;
         private StreamInfo _streamInfo;
 
+        public TimeSpan _startFrom;
+
         /// <summary>
         /// Initializes a new instance of the VideoPlayerViewModel class.
         /// </summary>
@@ -465,6 +467,13 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
 
             StopAudioPlayback();
+
+            if (_isResume && IsDirectStream)
+            {
+                _startFrom = TimeSpan.FromTicks(_startPositionTicks);
+            }
+
+            RaisePropertyChanged(() => IsDirectStream);
 
             VideoUrl = url;
             Debug.WriteLine(VideoUrl);            
