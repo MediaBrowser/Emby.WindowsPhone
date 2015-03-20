@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using MediaBrowser.Dlna.Profiles;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Dlna;
 using MediaBrowser.Model.Dto;
@@ -35,7 +34,7 @@ namespace MediaBrowser.WindowsPhone.Extensions
 
         internal static PlaylistItem ToPlaylistItem(this BaseItemDto item, IApiClient apiClient)
         {
-            var profile = WindowsPhoneProfile.GetProfile();
+            var profile = VideoProfileHelper.GetWindowsPhoneProfile();
             var options = new AudioOptions
             {
                 Profile = profile,

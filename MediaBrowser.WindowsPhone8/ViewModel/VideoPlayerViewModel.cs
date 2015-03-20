@@ -7,7 +7,6 @@ using System.Windows;
 using System.Windows.Threading;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
-using MediaBrowser.Dlna.Profiles;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Dlna;
 using MediaBrowser.Model.Dto;
@@ -507,7 +506,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
         private StreamInfo CreateVideoStream(string itemId, long startTimeTicks, List<MediaSourceInfo> mediaSources = null, bool useHls = false)
         {
-            var profile = WindowsPhoneProfile.GetProfile(isHls: useHls);
+            var profile = VideoProfileHelper.GetWindowsPhoneProfile(useHls);
 
             var streamingSettings = NavigationService.IsOnWifi
                 ? App.SpecificSettings.WifiStreamingQuality.GetSettings()

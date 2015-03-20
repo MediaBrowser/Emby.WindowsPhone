@@ -234,7 +234,6 @@
     <Compile Include="Model\Streaming\TranscodeSetting480p.cs" />
     <Compile Include="Model\Streaming\TranscodeSetting720p.cs" />
     <Compile Include="Model\Streaming\TranscodeSettingCopy.cs" />
-    <Compile Include="Model\WindowsPhoneProfile.cs" />
     <Compile Include="Services\BackgroundTaskService.cs" />
     <Compile Include="Services\NavigationService.cs" />
     <Compile Include="Model\PlayerSourceType.cs" />
@@ -263,6 +262,7 @@
     </Compile>
     <Compile Include="ThemeManager.cs" />
     <Compile Include="Utils.cs" />
+    <Compile Include="VideoProfileHelper.cs" />
     <Compile Include="ViewModel\ActorViewModel.cs" />
     <Compile Include="ViewModel\Channels\ChannelsViewModel.cs" />
     <Compile Include="ViewModel\Channels\ChannelViewModel.cs" />
