@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Media;
+using System.Windows.Navigation;
 using GalaSoft.MvvmLight.Messaging;
 using Microsoft.PlayerFramework;
 using MediaBrowser.WindowsPhone.ViewModel;
@@ -74,6 +75,16 @@ namespace MediaBrowser.WindowsPhone.Views
         private void ThePlayer_OnMediaStarting(object sender, MediaPlayerDeferrableEventArgs e)
         {
 
+        }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            base.OnNavigatedFrom(e);
+            var vm = DataContext as VideoPlayerViewModel;
+            if (vm != null)
+            {
+                vm.VideoStream = null;
+            }
         }
 
         private void ThePlayer_OnMediaStarted(object sender, RoutedEventArgs e)

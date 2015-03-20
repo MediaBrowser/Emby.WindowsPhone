@@ -12,6 +12,7 @@
                 xmlns:System="clr-namespace:System;assembly=mscorlib"
                 xmlns:mediaPlayer="clr-namespace:SM.Media.MediaPlayer;assembly=SM.Media.MediaPlayer.WP8"
                 xmlns:tt="clr-namespace:Microsoft.PlayerFramework.WebVTT;assembly=Microsoft.PlayerFramework.WebVTT"
+                xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
                 x:Class="MediaBrowser.WindowsPhone.Views.VideoPlayerView"
                 mc:Ignorable="d ignore"
                 SupportedOrientations="PortraitOrLandscape"
@@ -768,6 +769,9 @@
                                      ScrubbingCompleted="thePlayer_ScrubbingCompleted"
                                      Seeked="thePlayer_Seeked"
                                      Style="{StaticResource MediaPlayerStyle1}">
+            <i:Interaction.Behaviors>
+                <behaviours:VideoStreamBehaviour VideoStream="{Binding VideoStream}"/>
+            </i:Interaction.Behaviors>
             <playerFramework:MediaPlayer.Plugins>
                 <tt:WebVTTPlugin/>
             </playerFramework:MediaPlayer.Plugins>

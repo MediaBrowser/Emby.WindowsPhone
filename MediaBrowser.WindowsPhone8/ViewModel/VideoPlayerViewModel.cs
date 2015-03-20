@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
+using System.IO;
+using System.IO.IsolatedStorage;
 using System.Linq;
 using System.Windows;
 using System.Windows.Threading;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
+using MediaBrowser.ApiInteraction.Data;
 using MediaBrowser.ApiInteraction.Playback;
-using MediaBrowser.Dlna.Profiles;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Dlna;
 using MediaBrowser.Model.Dto;
@@ -39,6 +41,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     public class VideoPlayerViewModel : ViewModelBase
     {
         private readonly IPlaybackManager _playbackManager;
+        private readonly IFileRepository _fileRepository;
         private readonly DispatcherTimer _timer;
 
         private bool _isResume;
@@ -49,10 +52,15 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         /// <summary>
         /// Initializes a new instance of the VideoPlayerViewModel class.
         /// </summary>
-        public VideoPlayerViewModel(IConnectionManager connectionManager, INavigationService navigationService, IPlaybackManager playbackManager)
+        public VideoPlayerViewModel(
+            IConnectionManager connectionManager,
+            INavigationService navigationService, 
+            IPlaybackManager playbackManager,
+            IFileRepository fileRepository)
             : base(navigationService, connectionManager)
         {
             _playbackManager = playbackManager;
+            _fileRepository = fileRepository;
             _timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(10) };
             _timer.Tick += TimerOnTick;
         }
@@ -137,6 +145,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     InitiatePlayback(false).ConfigureAwait(false);
                 });
             }
+        }
+
+        public bool IsHls
+        {
+            get { return PlayerSourceType == PlayerSourceType.Programme || (SelectedItem != null && SelectedItem.Type.ToLower().Equals("channelvideoitem")); }
         }
 
         private void SetPlaybackTicks(long totalTicks)
@@ -289,6 +302,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         }
 
         public string VideoUrl { get; set; }
+        public IsolatedStorageFileStream VideoStream { get; set; }
         public TimeSpan StartTime
         {
             get
@@ -456,9 +470,28 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             StopAudioPlayback();
 
             _streamInfo = streamInfo;
-            VideoUrl = url;
-            Debug.WriteLine(VideoUrl);
 
+            if (isSyncedVideo)
+            {
+                VideoUrl = string.Empty;
+                if (VideoStream == null || _storageUrl != url)
+                {
+                    _storageUrl = url;
+                    using (var storage = IsolatedStorageFile.GetUserStoreForApplication())
+                    {
+                        var stream = storage.OpenFile(url, FileMode.Open);
+                        VideoStream = stream;
+                    }
+                }
+            }
+            else
+            {
+                VideoStream = null;
+                VideoUrl = url;
+                _storageUrl = string.Empty;
+            }
+            
+            Debug.WriteLine(VideoUrl);
             Log.Debug(VideoUrl);
 
             try
@@ -481,6 +514,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 Utils.HandleHttpException("VideoPageLoaded", ex, NavigationService, Log);
             }
         }
+
+        private string _storageUrl;
 
         private void StopAudioPlayback()
         {

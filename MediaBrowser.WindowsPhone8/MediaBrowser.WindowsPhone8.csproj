@@ -131,6 +131,7 @@
     <Compile Include="Behaviours\MBSysTray.cs" />
     <Compile Include="Behaviours\OnTextPropertyChangedBehaviour.cs" />
     <Compile Include="Behaviours\PanoramaBackgroundBehaviour.cs" />
+    <Compile Include="Behaviours\VideoStreamBehaviour.cs" />
     <Compile Include="CimbalinoToolkit\LockScreenService.cs" />
     <Compile Include="CimbalinoToolkit\Tiles\ShellTileWithCreateService.cs" />
     <Compile Include="Controls\CustomButton.cs" />
