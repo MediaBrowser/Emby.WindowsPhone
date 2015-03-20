@@ -40,6 +40,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         private bool _isResume;
         private long _startPositionTicks;
         private string _itemId;
+        private StreamInfo _streamInfo;
 
         /// <summary>
         /// Initializes a new instance of the VideoPlayerViewModel class.
@@ -355,7 +356,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             Messenger.Default.Send(new NotificationMessage(Constants.Messages.ClearNowPlayingMsg));
             EndTime = TimeSpan.Zero;
 
-            var query = new StreamInfo();
+            var streamInfo = new StreamInfo();
             //var query = new VideoStreamOptions();
             switch (PlayerSourceType)
             {
@@ -405,7 +406,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         }
                     }
 
-                    query = CreateVideoStream(SelectedItem.Id, _startPositionTicks, SelectedItem.MediaSources, SelectedItem.Type.ToLower().Equals("channelvideoitem"));
+                    streamInfo = CreateVideoStream(SelectedItem.Id, _startPositionTicks, SelectedItem.MediaSources, SelectedItem.Type.ToLower().Equals("channelvideoitem"));
                     //query = CreateVideoStreamOptions(SelectedItem.Id, _startPositionTicks, SelectedItem.Type.ToLower().Equals("channelvideoitem"));
 
                     if (SelectedItem.RunTimeTicks.HasValue)
@@ -415,7 +416,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     break;
                 case PlayerSourceType.Recording:
                     //query = CreateVideoStreamOptions(RecordingItem.Id, _startPositionTicks);
-                    query = CreateVideoStream(RecordingItem.Id, _startPositionTicks);
+                    streamInfo = CreateVideoStream(RecordingItem.Id, _startPositionTicks);
 
                     if (RecordingItem.RunTimeTicks.HasValue)
                         EndTime = TimeSpan.FromTicks(RecordingItem.RunTimeTicks.Value - _startPositionTicks);
@@ -427,7 +428,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     try
                     {
                         var channel = await ApiClient.GetItemAsync(ProgrammeItem.ChannelId, AuthenticationService.Current.LoggedInUserId);
-                        query = CreateVideoStream(ProgrammeItem.ChannelId, _startPositionTicks, channel.MediaSources, useHls: true);
+                        streamInfo = CreateVideoStream(ProgrammeItem.ChannelId, _startPositionTicks, channel.MediaSources, useHls: true);
                     }
                     catch (HttpException ex)
                     {
@@ -445,10 +446,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             if (subtitleIndex.HasValue)
             {
-                query.SubtitleStreamIndex = subtitleIndex.Value;
+                streamInfo.SubtitleStreamIndex = subtitleIndex.Value;
             }
 
-            var url = query.ToUrl(ApiClient.GetApiUrl("/"), ApiClient.AccessToken);
+            var url = streamInfo.ToUrl(ApiClient.GetApiUrl("/"), ApiClient.AccessToken);
+            _streamInfo = streamInfo;
             //var url = PlayerSourceType == PlayerSourceType.Programme ? ApiClient.GetHlsVideoStreamUrl(query) : ApiClient.GetVideoStreamUrl(query);
             //Captions = GetSubtitles(SelectedItem);
 
@@ -463,7 +465,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 Log.Info("Sending playback started message to the server.");
 
-                _itemId = query.ItemId;
+                _itemId = streamInfo.ItemId;
 
                 var info = new PlaybackStartInfo
                 {
@@ -530,9 +532,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
         public async void Seek(long newPosition, int? subtitleIndex = null)
         {
-            _timer.Stop();
-            _startPositionTicks += newPosition;
-            await InitiatePlayback(false, subtitleIndex);
+            if (_streamInfo != null && !_streamInfo.IsDirectStream)
+            {
+                _timer.Stop();
+                _startPositionTicks += newPosition;
+                await InitiatePlayback(false, subtitleIndex);
+            }
         }
         public async void RecoverState()
         {            
