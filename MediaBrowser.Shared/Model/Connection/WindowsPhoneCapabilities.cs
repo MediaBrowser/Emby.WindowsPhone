@@ -1,4 +1,4 @@
-﻿using MediaBrowser.Dlna.Profiles;
+﻿using MediaBrowser.Model.Dlna;
 using MediaBrowser.Model.Session;
 
 namespace MediaBrowser.WindowsPhone.Model.Connection
@@ -15,12 +15,12 @@ namespace MediaBrowser.WindowsPhone.Model.Connection
             get { return CreateCapabilities(false, true, false); }
         }
 
-        public static ClientCapabilities App(WindowsPhoneProfile profile = null)
+        public static ClientCapabilities App(DeviceProfile profile = null)
         {
             return CreateCapabilities(false, true, true, profile); 
         }
 
-        public static ClientCapabilities CreateCapabilities(bool supportsPlayback, bool supportsContentUpload, bool supportsSync, WindowsPhoneProfile profile = null)
+        public static ClientCapabilities CreateCapabilities(bool supportsPlayback, bool supportsContentUpload, bool supportsSync, DeviceProfile profile = null)
         {
             return new ClientCapabilities
             {

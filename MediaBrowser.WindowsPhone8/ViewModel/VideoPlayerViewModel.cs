@@ -14,6 +14,7 @@ using MediaBrowser.Model.Dlna;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.LiveTv;
+using MediaBrowser.Model.MediaInfo;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Session;
 using MediaBrowser.WindowsPhone.Extensions;
@@ -449,6 +450,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             var url = streamInfo.ToUrl(ApiClient.GetApiUrl("/"), ApiClient.AccessToken);
             //Captions = GetSubtitles(SelectedItem);
+
+            var isSyncedVideo = streamInfo.MediaSource != null && streamInfo.MediaSource.Protocol == MediaProtocol.File;
 
             StopAudioPlayback();
 
