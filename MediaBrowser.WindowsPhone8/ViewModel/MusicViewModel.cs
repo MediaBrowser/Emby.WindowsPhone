@@ -13,6 +13,7 @@ using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Querying;
 using MediaBrowser.WindowsPhone.Extensions;
+using MediaBrowser.WindowsPhone.Helpers;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Resources;
 using MediaBrowser.WindowsPhone.Services;
@@ -212,7 +213,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                 try
                 {
-                    await SyncService.Current.AddJobAsync(trackIds);
+                    var request = SyncRequestHelper.CreateRequest(trackIds);
+                    await SyncService.Current.AddJobAsync(request);
                 }
                 catch (HttpException ex)
                 {

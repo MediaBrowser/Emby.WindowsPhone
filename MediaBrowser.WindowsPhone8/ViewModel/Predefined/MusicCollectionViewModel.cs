@@ -14,6 +14,7 @@ using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Querying;
 using MediaBrowser.WindowsPhone.Extensions;
+using MediaBrowser.WindowsPhone.Helpers;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Model.Interfaces;
 using MediaBrowser.WindowsPhone.Resources;
@@ -196,7 +197,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
 
                     try
                     {
-                        await SyncService.Current.AddJobAsync(trackIds);
+                        var request = SyncRequestHelper.CreateRequest(trackIds);
+                        await SyncService.Current.AddJobAsync(request);
                     }
                     catch (HttpException ex)
                     {

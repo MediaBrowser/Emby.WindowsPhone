@@ -207,6 +207,7 @@
     <Compile Include="Extensions\SerialisationExtensions.cs" />
     <Compile Include="Extensions\StorageServiceExtensions.cs" />
     <Compile Include="Extensions\UriExtensions.cs" />
+    <Compile Include="Helpers\SyncRequestHelper.cs" />
     <Compile Include="History.cs" />
     <Compile Include="Interfaces\IServerInfoService.cs" />
     <Compile Include="Interfaces\ISettingsService.cs" />
@@ -246,9 +247,7 @@
   <ItemGroup>
     <Content Include="FodyWeavers.xml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Helpers\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
   <ProjectExtensions />

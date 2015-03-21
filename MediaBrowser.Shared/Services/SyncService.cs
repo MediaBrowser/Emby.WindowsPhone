@@ -45,23 +45,10 @@ namespace MediaBrowser.WindowsPhone.Services
             return Task.FromResult(0);
         }
 
-        public Task AddJobAsync(string id)
-        {
-            return AddJobAsync(new List<string> { id });
-        }
-
-        public async Task AddJobAsync(List<string> itemIds)
+        public async Task AddJobAsync(SyncJobRequest request)
         {
             var apiClient = _connectionManager.GetApiClient(_serverInfo.ServerInfo.Id);
-            var request = new SyncJobRequest
-            {
-                ItemIds = itemIds,
-                UserId = AuthenticationService.Current.LoggedInUserId,
-                TargetId = apiClient.DeviceId,
-                Name = Guid.NewGuid().ToString(),
-                Quality = ""
-            };
-
+            
             var options = await apiClient.GetSyncOptions(request);
             var job = await apiClient.CreateSyncJob(request);
             if (job != null)

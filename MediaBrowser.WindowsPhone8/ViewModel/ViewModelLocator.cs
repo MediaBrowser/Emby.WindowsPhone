@@ -9,6 +9,7 @@ using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Logging;
 using MediaBrowser.WindowsPhone.Design;
 using MediaBrowser.WindowsPhone.Extensions;
+using MediaBrowser.WindowsPhone.Helpers;
 using MediaBrowser.WindowsPhone.Interfaces;
 using MediaBrowser.WindowsPhone.Logging;
 using MediaBrowser.WindowsPhone.Model.Connection;
@@ -126,6 +127,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
         private static void AddSyncInterfaces()
         {
+            SimpleIoc.Default.RegisterIf<SyncRequestHelper>(true);
             SimpleIoc.Default.RegisterIf<IUserActionRepository, UserActionRepository>();
             SimpleIoc.Default.RegisterIf<IItemRepository, ItemRepository>();
             SimpleIoc.Default.RegisterIf<IFileRepository, FileRepository>();
