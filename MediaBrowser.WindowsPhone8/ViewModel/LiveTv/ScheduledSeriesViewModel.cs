@@ -12,6 +12,7 @@ using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.LiveTv;
 using MediaBrowser.Model.Net;
 using MediaBrowser.WindowsPhone.Extensions;
+using MediaBrowser.WindowsPhone.Helpers;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Model.Interfaces;
 using MediaBrowser.WindowsPhone.Resources;
@@ -122,7 +123,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
 
                     SetProgressBar(AppResources.SysTrayCancellingProgramme);
 
-                    if (!await LiveTvUtils.CancelRecording(item, NavigationService, ApiClient, Log))
+                    if (!await LiveTvHelper.CancelRecording(item, NavigationService, ApiClient, Log))
                     {
                         App.ShowMessage(AppResources.ErrorMakingChanges);
                     }
@@ -169,7 +170,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
 
                     SetProgressBar(AppResources.SysTrayCancellingSeriesRecording);
 
-                    if (!await LiveTvUtils.CancelSeries(SelectedSeries, NavigationService, ApiClient, Log, true))
+                    if (!await LiveTvHelper.CancelSeries(SelectedSeries, NavigationService, ApiClient, Log, true))
                     {
                         App.ShowMessage(AppResources.ErrorMakingChanges);
                     }

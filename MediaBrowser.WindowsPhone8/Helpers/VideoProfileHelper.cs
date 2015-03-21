@@ -2,7 +2,7 @@
 using MediaBrowser.Model.Dlna;
 using Microsoft.Phone.Info;
 
-namespace MediaBrowser.WindowsPhone
+namespace MediaBrowser.WindowsPhone.Helpers
 {
     public static class VideoProfileHelper
     {

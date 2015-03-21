@@ -9,9 +9,9 @@ using MediaBrowser.WindowsPhone.Model.Interfaces;
 using MediaBrowser.WindowsPhone.Resources;
 using ScottIsAFool.WindowsPhone.Logging;
 
-namespace MediaBrowser.WindowsPhone
+namespace MediaBrowser.WindowsPhone.Helpers
 {
-    public static class LiveTvUtils
+    public static class LiveTvHelper
     {
         public static async Task<string> CreateSeriesLink(ProgramInfoDto item, IApiClient apiClient, INavigationService navigationService, ILog log)
         {

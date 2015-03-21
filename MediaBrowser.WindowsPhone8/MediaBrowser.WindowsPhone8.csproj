@@ -219,7 +219,7 @@
     <Compile Include="Extensions\ToolkitExtensions.cs" />
     <Compile Include="Extensions\WriteableBitmapExt.cs" />
     <Compile Include="Helpers\ResolutionHelper.cs" />
-    <Compile Include="LiveTvUtils.cs" />
+    <Compile Include="Helpers\LiveTvHelper.cs" />
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="MediaBrowserUriMapper.cs" />
     <Compile Include="Messaging\NowPlayingMessage.cs" />
@@ -265,7 +265,7 @@
     </Compile>
     <Compile Include="ThemeManager.cs" />
     <Compile Include="Utils.cs" />
-    <Compile Include="VideoProfileHelper.cs" />
+    <Compile Include="Helpers\VideoProfileHelper.cs" />
     <Compile Include="ViewModel\ActorViewModel.cs" />
     <Compile Include="ViewModel\Channels\ChannelsViewModel.cs" />
     <Compile Include="ViewModel\Channels\ChannelViewModel.cs" />
@@ -489,6 +489,7 @@
     <Content Include="DefaultLockScreen.jpg" />
     <Content Include="Icons\appbar.cancel.record.png" />
     <Content Include="Icons\appbar.cancel.serieslink.png" />
+    <Content Include="Icons\appbar.cloud.png" />
     <Content Include="Icons\appbar.connection.playon.png" />
     <Content Include="Icons\appbar.feature.search.rest.png" />
     <Content Include="Icons\appbar.check.rest.png" />

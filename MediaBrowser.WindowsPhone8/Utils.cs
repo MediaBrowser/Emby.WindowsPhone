@@ -17,6 +17,7 @@ using MediaBrowser.Model.Logging;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Querying;
 using MediaBrowser.Model.Session;
+using MediaBrowser.WindowsPhone.Helpers;
 using MediaBrowser.WindowsPhone.Model.Connection;
 using MediaBrowser.WindowsPhone.Model.Security;
 using MediaBrowser.WindowsPhone.Resources;

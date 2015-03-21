@@ -9,6 +9,7 @@ using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.LiveTv;
 using MediaBrowser.Model.Net;
 using MediaBrowser.WindowsPhone.CimbalinoToolkit.Tiles;
+using MediaBrowser.WindowsPhone.Helpers;
 using MediaBrowser.WindowsPhone.Resources;
 using MediaBrowser.WindowsPhone.Services;
 
@@ -191,7 +192,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
 
         private async Task GetUpcoming(bool isRefresh)
         {
-            if (_upcomingLoaded && !isRefresh && !LiveTvUtils.HasExpired(_upcomingLastRun))
+            if (_upcomingLoaded && !isRefresh && !LiveTvHelper.HasExpired(_upcomingLastRun))
             {
                 return;
             }
@@ -229,7 +230,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
 
         private async Task GetWhatsOn(bool isRefresh)
         {
-            if (_whatsOnLoaded && !isRefresh && !LiveTvUtils.HasExpired(_whatsOnLastRun))
+            if (_whatsOnLoaded && !isRefresh && !LiveTvHelper.HasExpired(_whatsOnLastRun))
             {
                 return;
             }
@@ -267,7 +268,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
 
         private async Task LoadCurrentlyRecording(bool isRefresh)
         {
-            if (!NavigationService.IsNetworkAvailable || (_currentlyRecordingLoaded && !isRefresh && !LiveTvUtils.HasExpired(_currentlyRecordingLastRun, 5)))
+            if (!NavigationService.IsNetworkAvailable || (_currentlyRecordingLoaded && !isRefresh && !LiveTvHelper.HasExpired(_currentlyRecordingLastRun, 5)))
             {
                 return;
             }

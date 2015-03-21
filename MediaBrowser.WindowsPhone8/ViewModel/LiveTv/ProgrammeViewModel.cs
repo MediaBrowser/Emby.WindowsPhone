@@ -6,6 +6,7 @@ using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.LiveTv;
 using MediaBrowser.Model.Net;
+using MediaBrowser.WindowsPhone.Helpers;
 using MediaBrowser.WindowsPhone.Messaging;
 using MediaBrowser.WindowsPhone.Model.Interfaces;
 using MediaBrowser.WindowsPhone.Resources;
@@ -63,7 +64,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                     {
                         SetProgressBar(AppResources.SysTraySettingProgrammeToRecord);
 
-                        var id = await LiveTvUtils.RecordProgramme(SelectedProgramme, ApiClient, NavigationService, Log);
+                        var id = await LiveTvHelper.RecordProgramme(SelectedProgramme, ApiClient, NavigationService, Log);
 
                         if (!string.IsNullOrEmpty(id))
                         {
@@ -74,7 +75,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                     {
                         SetProgressBar(AppResources.SysTrayCancellingProgramme);
 
-                        if (await LiveTvUtils.CancelRecording(SelectedProgramme.TimerId, NavigationService, ApiClient, Log))
+                        if (await LiveTvHelper.CancelRecording(SelectedProgramme.TimerId, NavigationService, ApiClient, Log))
                         {
                             SelectedProgramme.TimerId = null;
                         }
@@ -95,7 +96,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                     {
                         SetProgressBar(AppResources.SysTraySettingSeriesToRecord);
 
-                        var id = await LiveTvUtils.CreateSeriesLink(SelectedProgramme, ApiClient, NavigationService, Log);
+                        var id = await LiveTvHelper.CreateSeriesLink(SelectedProgramme, ApiClient, NavigationService, Log);
 
                         if (!string.IsNullOrEmpty(id))
                         {
@@ -106,7 +107,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                     {
                         SetProgressBar(AppResources.SysTrayCancellingSeriesRecording);
 
-                        if (await LiveTvUtils.CancelSeries(SelectedProgramme.SeriesTimerId, NavigationService, ApiClient, Log, false))
+                        if (await LiveTvHelper.CancelSeries(SelectedProgramme.SeriesTimerId, NavigationService, ApiClient, Log, false))
                         {
                             SelectedProgramme.SeriesTimerId = null;
                         }

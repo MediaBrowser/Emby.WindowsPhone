@@ -10,6 +10,7 @@ using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.LiveTv;
 using MediaBrowser.Model.Net;
+using MediaBrowser.WindowsPhone.Helpers;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Model.Interfaces;
 using MediaBrowser.WindowsPhone.Resources;
@@ -90,7 +91,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
 
         private async Task LoadProgrammes(bool isRefresh)
         {
-            if (!NavigationService.IsNetworkAvailable || (_programmesLoaded && !isRefresh && !LiveTvUtils.HasExpired(_programmesLastRun)))
+            if (!NavigationService.IsNetworkAvailable || (_programmesLoaded && !isRefresh && !LiveTvHelper.HasExpired(_programmesLastRun)))
             {
                 return;
             }

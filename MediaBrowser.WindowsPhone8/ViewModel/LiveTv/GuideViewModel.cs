@@ -8,6 +8,7 @@ using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.LiveTv;
 using MediaBrowser.Model.Net;
+using MediaBrowser.WindowsPhone.Helpers;
 using MediaBrowser.WindowsPhone.Model.Interfaces;
 using MediaBrowser.WindowsPhone.Resources;
 using MediaBrowser.WindowsPhone.Services;
@@ -122,7 +123,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
                 {
                     SetProgressBar(AppResources.SysTraySettingProgrammeToRecord);
 
-                    var id = await LiveTvUtils.RecordProgramme(SelectedProgramme, ApiClient, NavigationService, Log);
+                    var id = await LiveTvHelper.RecordProgramme(SelectedProgramme, ApiClient, NavigationService, Log);
 
                     if (!string.IsNullOrEmpty(id))
                     {
@@ -147,7 +148,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
 
                     SetProgressBar(AppResources.SysTraySettingSeriesToRecord);
 
-                    var id = await LiveTvUtils.CreateSeriesLink(SelectedProgramme, ApiClient, NavigationService, Log);
+                    var id = await LiveTvHelper.CreateSeriesLink(SelectedProgramme, ApiClient, NavigationService, Log);
 
                     if (!string.IsNullOrEmpty(id))
                     {
