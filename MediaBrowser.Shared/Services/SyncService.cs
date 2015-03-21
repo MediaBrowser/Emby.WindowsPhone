@@ -24,6 +24,7 @@ namespace MediaBrowser.WindowsPhone.Services
         private readonly IServerInfoService _serverInfo;
         private readonly IStorageServiceHandler _storageService;
         private readonly ILog _logger;
+
         public static SyncService Current { get; private set; }
 
         public SyncService(IConnectionManager connectionManager, IMultiServerSync mediaSync, IStorageService storageService, IServerInfoService serverInfo)
@@ -51,14 +52,22 @@ namespace MediaBrowser.WindowsPhone.Services
 
         public async Task AddJobAsync(List<string> itemIds)
         {
+            var apiClient = _connectionManager.GetApiClient(_serverInfo.ServerInfo.Id);
             var request = new SyncJobRequest
             {
                 ItemIds = itemIds,
                 UserId = AuthenticationService.Current.LoggedInUserId,
-                TargetId = _connectionManager.CurrentApiClient.DeviceId
+                TargetId = apiClient.DeviceId,
+                Name = Guid.NewGuid().ToString(),
+                Quality = ""
             };
 
-            var job = await _connectionManager.CurrentApiClient.CreateSyncJob(request);
+            var options = await apiClient.GetSyncOptions(request);
+            var job = await apiClient.CreateSyncJob(request);
+            if (job != null)
+            {
+                await Sync().ConfigureAwait(false);
+            }
         }
 
         public async Task<List<SyncJob>> GetSyncJobs()

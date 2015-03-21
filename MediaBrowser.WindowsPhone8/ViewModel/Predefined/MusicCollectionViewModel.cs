@@ -186,6 +186,26 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
             }
         }
 
+        public RelayCommand SyncItemsCommand
+        {
+            get
+            {
+                return new RelayCommand(async () =>
+                {
+                    var trackIds = SelectedTracks.Select(x => x.Id).ToList();
+
+                    try
+                    {
+                        await SyncService.Current.AddJobAsync(trackIds);
+                    }
+                    catch (HttpException ex)
+                    {
+                        Utils.HandleHttpException("SyncItemsCommand", ex, NavigationService, Log);
+                    }
+                }, () => SelectedTracks.Any());
+            }
+        }
+
         public RelayCommand<BaseItemDto> PlayItemCommand
         {
             get
