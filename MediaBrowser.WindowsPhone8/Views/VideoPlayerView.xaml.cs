@@ -5,35 +5,34 @@ using GalaSoft.MvvmLight.Messaging;
 using Microsoft.PlayerFramework;
 using MediaBrowser.WindowsPhone.ViewModel;
 using System;
-using System.Threading.Tasks;
 
 namespace MediaBrowser.WindowsPhone.Views
 {
     public partial class VideoPlayerView
     {
-        private bool _seeking = false;
+        private bool _seeking;
         // Constructor
         public VideoPlayerView()
         {
             InitializeComponent();
         }
 
-        protected override void OnNavigatingFrom(System.Windows.Navigation.NavigatingCancelEventArgs e)
+        protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
-            if (e.NavigationMode != System.Windows.Navigation.NavigationMode.Back)
+            if (e.NavigationMode != NavigationMode.Back)
                 Messenger.Default.Send(new NotificationMessage(Constants.Messages.SendVideoTimeToServerMsg));
             base.OnNavigatingFrom(e);
         }
 
-        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            if (e.NavigationMode == System.Windows.Navigation.NavigationMode.Back)
+            if (e.NavigationMode == NavigationMode.Back)
             {
-                if (!this.NavigationContext.QueryString.ContainsKey("id") || !this.NavigationContext.QueryString.ContainsKey("type"))
+                if (!NavigationContext.QueryString.ContainsKey("id") || !NavigationContext.QueryString.ContainsKey("type"))
                     return;
-                var itemId = this.NavigationContext.QueryString["id"];
-                var type = this.NavigationContext.QueryString["type"];
-                var model = this.DataContext as VideoPlayerViewModel;
+                var itemId = NavigationContext.QueryString["id"];
+                var type = NavigationContext.QueryString["type"];
+                var model = DataContext as VideoPlayerViewModel;
                 if (model != null)
                 {
                     model.Recover = true;
@@ -45,11 +44,11 @@ namespace MediaBrowser.WindowsPhone.Views
             base.OnNavigatedTo(e);
         }
 
-        protected override async void InitialiseOnBack()
+        protected override void InitialiseOnBack()
         {
             base.InitialiseOnBack();
             Messenger.Default.Send(new NotificationMessage(Constants.Messages.SetResumeMsg));
-            var model = this.DataContext as VideoPlayerViewModel;
+            var model = DataContext as VideoPlayerViewModel;
             if (model != null && model.Recover)
             {
                 model.RecoverState();
@@ -130,17 +129,17 @@ namespace MediaBrowser.WindowsPhone.Views
         private void ThePlayer_OnCurrentStateChanged(object sender, RoutedEventArgs e)
         {
             var player = sender as MediaPlayer;
-            if (player.CurrentState == MediaElementState.Playing || player.CurrentState == MediaElementState.Paused)
+            if (player != null && (player.CurrentState == MediaElementState.Playing || player.CurrentState == MediaElementState.Paused))
             {
                 var isPaused = player.CurrentState == MediaElementState.Paused;
                 Messenger.Default.Send(new NotificationMessage(isPaused, Constants.Messages.VideoStateChangedMsg));
             }
         }
 
-        private async void thePlayer_ScrubbingCompleted(object sender, ScrubProgressRoutedEventArgs e)
+        private void ThePlayerScrubbingCompleted(object sender, ScrubProgressRoutedEventArgs e)
         {
             e.Canceled = true;
-            var model = this.DataContext as VideoPlayerViewModel;
+            var model = DataContext as VideoPlayerViewModel;
             if (model != null)
             {
                 _seeking = true;
@@ -148,10 +147,10 @@ namespace MediaBrowser.WindowsPhone.Views
             }
         }
 
-        private async void thePlayer_Seeked(object sender, SeekRoutedEventArgs e)
+        private void ThePlayerSeeked(object sender, SeekRoutedEventArgs e)
         {
             e.Canceled = true;
-            var model = this.DataContext as VideoPlayerViewModel;
+            var model = DataContext as VideoPlayerViewModel;
             if (model != null)
             {
                 _seeking = true;

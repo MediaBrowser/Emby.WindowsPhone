@@ -766,8 +766,8 @@
                                      StartTime="{Binding StartTime}"
                                      Position="{Binding PlayedVideoDuration, Mode=TwoWay}"
                                      EndTime="{Binding EndTime}"
-                                     ScrubbingCompleted="thePlayer_ScrubbingCompleted"
-                                     Seeked="thePlayer_Seeked"
+                                     ScrubbingCompleted="ThePlayerScrubbingCompleted"
+                                     Seeked="ThePlayerSeeked"
                                      Style="{StaticResource MediaPlayerStyle1}">
             <i:Interaction.Behaviors>
                 <behaviours:VideoStreamBehaviour VideoStream="{Binding VideoStream}"/>
@@ -797,8 +797,8 @@
                                      StartTime="{Binding StartTime}"
                                      Position="{Binding PlayedVideoDuration, Mode=TwoWay}"
                                      EndTime="{Binding EndTime}"
-                                     ScrubbingCompleted="thePlayer_ScrubbingCompleted"
-                                     Seeked="thePlayer_Seeked"
+                                     ScrubbingCompleted="ThePlayerScrubbingCompleted"
+                                     Seeked="ThePlayerSeeked"
                                      Style="{StaticResource MediaPlayerStyle1}">
             <playerFramework:MediaPlayer.Plugins>
                 <mediaPlayer:StreamingMediaPlugin />
