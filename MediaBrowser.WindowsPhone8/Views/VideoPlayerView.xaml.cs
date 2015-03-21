@@ -70,7 +70,7 @@ namespace MediaBrowser.WindowsPhone.Views
         private void ThePlayer_OnMediaOpened(object sender, RoutedEventArgs e)
         {
             var player = sender as MediaPlayer;
-            var model = this.DataContext as VideoPlayerViewModel;
+            var model = DataContext as VideoPlayerViewModel;
             if (model != null && player != null)
             {
                 if (model.IsDirectStream)
@@ -103,16 +103,13 @@ namespace MediaBrowser.WindowsPhone.Views
         {
             _seeking = false;
             var player = sender as MediaPlayer;
-            var model = this.DataContext as VideoPlayerViewModel;
-            if (model != null && player != null)
+            var model = DataContext as VideoPlayerViewModel;
+            if (model != null && player != null & !model.IsDirectStream)
             {
-                if (!model.IsDirectStream)
-                {
-                    player.StartTime = model.StartTime;
-                    player.EndTime = model.EndTime;
-                    player.Position = TimeSpan.FromTicks(model.StartTime.Ticks*-1);
-                    model.StartUpdateTimer();
-                }
+                player.StartTime = model.StartTime;
+                player.EndTime = model.EndTime;
+                player.Position = TimeSpan.FromTicks(model.StartTime.Ticks * -1);
+                model.StartUpdateTimer();
             }
         }
 
@@ -156,7 +153,7 @@ namespace MediaBrowser.WindowsPhone.Views
             e.Canceled = true;
             var model = this.DataContext as VideoPlayerViewModel;
             if (model != null)
-            {                
+            {
                 _seeking = true;
                 model.Seek(e.Position.Ticks);
             }
