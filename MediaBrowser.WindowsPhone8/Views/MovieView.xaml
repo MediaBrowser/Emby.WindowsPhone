@@ -39,6 +39,9 @@
                                                 IconUri="/Icons/appbar.connection.playon.png"
                                                 Command="{Binding Remote.SendPlayCommand, Source={StaticResource Locator}}"
                                                 CommandParameter="{Binding SelectedMovie.Id}" />
+            <cimbalino:ApplicationBarIconButton Text="sync"
+                                                IconUri="/Icons/appbar.cloud.png"
+                                                Command="{Binding SyncItemCommand}"/>
             <cimbalino:ApplicationBarBehavior.MenuItems>
                 <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarResume, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                   IsEnabled="{Binding CanResume}"

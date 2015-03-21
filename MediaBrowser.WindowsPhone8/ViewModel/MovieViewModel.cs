@@ -10,6 +10,7 @@ using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.WindowsPhone.CimbalinoToolkit;
+using MediaBrowser.WindowsPhone.Helpers;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Resources;
 using MediaBrowser.WindowsPhone.Services;
@@ -141,6 +142,17 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 LockScreenService.Current.ManuallySet = true;
                 await LockScreenService.Current.SetLockScreenImage(url);
             });
+
+            SyncItemCommand = new RelayCommand(async () =>
+            {
+                var request = SyncRequestHelper.CreateRequest(SelectedMovie.Id);
+                var options = await ApiClient.GetSyncOptions(request);
+
+                if (options != null)
+                {
+                    
+                }
+            }, () => SelectedMovie != null && SelectedMovie.SupportsSync.HasValue && SelectedMovie.SupportsSync.Value);
         }
 
         private async Task<bool> GetMovieDetails()
@@ -154,10 +166,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 var item = await ApiClient.GetItemAsync(SelectedMovie.Id, AuthenticationService.Current.LoggedInUserId);
                 SelectedMovie = item;
                 CastAndCrew = Utils.GroupCastAndCrew(item.People);
-                Chapters = SelectedMovie.Chapters.Select(x => new Chapter(x)
+                Chapters = SelectedMovie.Chapters != null ? SelectedMovie.Chapters.Select(x => new Chapter(x)
                 {
                     ImageUrl = GetChapterUrl(x)
-                }).ToList();
+                }).ToList() : new List<Chapter>();
 
                 if (SelectedMovie.LocalTrailerCount.HasValue && SelectedMovie.LocalTrailerCount.Value > 0)
                 {
@@ -220,6 +232,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public RelayCommand AddRemoveFavouriteCommand { get; set; }
         public RelayCommand<BaseItemPerson> ShowOtherFilmsCommand { get; set; }
         public RelayCommand SetPosterAsLockScreenCommand { get; set; }
+        public RelayCommand SyncItemCommand { get; set; }
 
         public override void WireMessages()
         {
