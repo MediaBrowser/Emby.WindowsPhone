@@ -81,6 +81,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 SimpleIoc.Default.RegisterIf<AuthenticationService>(true);
                 SimpleIoc.Default.RegisterIf<LockScreenService>(true);
                 SimpleIoc.Default.RegisterIf<TileService>(true);
+                SimpleIoc.Default.RegisterIf<IMessagePromptService, MessagePromptService>();
 
                 AddSyncInterfaces();
 

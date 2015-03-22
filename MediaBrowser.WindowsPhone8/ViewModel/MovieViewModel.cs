@@ -150,17 +150,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             SyncItemCommand = new RelayCommand(async () =>
             {
                 var request = SyncRequestHelper.CreateRequest(SelectedMovie.Id, SelectedMovie.Name);
-                var options = await ApiClient.GetSyncOptions(request);
-
-                if (options != null)
-                {
-                    var result = await SyncOptionsHelper.RequestSyncOption(options.QualityOptions);
-                    if (result != null)
-                    {
-                        request.Quality = result.Name;
-                        await SyncService.Current.AddJobAsync(request);
-                    }
-                }
+                
+                await SyncService.Current.AddJobAsync(request);
             }, () => SelectedMovie != null && SelectedMovie.SupportsSync.HasValue && SelectedMovie.SupportsSync.Value);
         }
 

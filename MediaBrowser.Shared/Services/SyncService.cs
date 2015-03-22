@@ -22,16 +22,23 @@ namespace MediaBrowser.WindowsPhone.Services
         private readonly IConnectionManager _connectionManager;
         private readonly IMultiServerSync _mediaSync;
         private readonly IServerInfoService _serverInfo;
+        private readonly IMessagePromptService _messagePrompt;
         private readonly IStorageServiceHandler _storageService;
         private readonly ILog _logger;
 
         public static SyncService Current { get; private set; }
 
-        public SyncService(IConnectionManager connectionManager, IMultiServerSync mediaSync, IStorageService storageService, IServerInfoService serverInfo)
+        public SyncService(
+            IConnectionManager connectionManager, 
+            IMultiServerSync mediaSync, 
+            IStorageService storageService, 
+            IServerInfoService serverInfo,
+            IMessagePromptService messagePrompt)
         {
             _connectionManager = connectionManager;
             _mediaSync = mediaSync;
             _serverInfo = serverInfo;
+            _messagePrompt = messagePrompt;
             _storageService = storageService.Local;
             _logger = new WPLogger(GetType());
             Current = this;
@@ -48,12 +55,31 @@ namespace MediaBrowser.WindowsPhone.Services
         public async Task AddJobAsync(SyncJobRequest request)
         {
             var apiClient = _connectionManager.GetApiClient(_serverInfo.ServerInfo.Id);
-            
+
+            _logger.Info("Getting sync options");
             var options = await apiClient.GetSyncOptions(request);
-            var job = await apiClient.CreateSyncJob(request);
-            if (job != null)
+            if (options != null)
             {
-                await Sync().ConfigureAwait(false);
+                _logger.Info("Request quality from user");
+                var quality = await _messagePrompt.RequestSyncOption(options.QualityOptions);
+
+                if (quality != null)
+                {
+                    _logger.Info("Quality requested for {0} is {1}", request.Name, quality.Name);
+                    request.Quality = quality.Name;
+
+                    _logger.Info("Create sync job");
+                    var job = await apiClient.CreateSyncJob(request);
+                    if (job != null)
+                    {
+                        _logger.Info("Job created, start sync request");
+                        await Sync().ConfigureAwait(false);
+                    }
+                }
+                else
+                {
+                    _logger.Info("No quality given by the user, most likely dismissed (back button)");
+                }
             }
         }
 

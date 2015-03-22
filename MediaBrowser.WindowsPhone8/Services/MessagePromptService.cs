@@ -3,12 +3,13 @@ using System.Threading.Tasks;
 using Coding4Fun.Toolkit.Controls;
 using MediaBrowser.Model.Sync;
 using MediaBrowser.WindowsPhone.Controls;
+using MediaBrowser.WindowsPhone.Interfaces;
 
-namespace MediaBrowser.WindowsPhone.Helpers
+namespace MediaBrowser.WindowsPhone.Services
 {
-    public static class SyncOptionsHelper
+    public class MessagePromptService : IMessagePromptService
     {
-        public static async Task<SyncQualityOption> RequestSyncOption(List<SyncQualityOption> options)
+        public async Task<SyncQualityOption> RequestSyncOption(List<SyncQualityOption> options)
         {
             var tcs = new TaskCompletionSource<SyncQualityOption>();
 
