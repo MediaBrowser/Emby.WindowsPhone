@@ -102,6 +102,7 @@
             public const string AddToServerPlaylistsMsg = "AddToServerPlaylistsMsg";
             public const string ReconnectToWebSocketMsg = "ReconnectToWebSocketMsg";
             public const string RefreshResumeMsg = "RefreshResumeMsg";
+            public const string ShowHideInProgressMsg = "ShowHideInProgressMsg";
         }
 
         public class Pages

@@ -2,6 +2,7 @@
 using System.Windows;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
+using ImageTools.Helpers;
 using MediaBrowser.ApiInteraction.Playback;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Entities;
@@ -48,6 +49,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             Folders = new ObservableCollection<BaseItemDto>();
             RecentItems = new ObservableCollection<BaseItemDto>();
             FavouriteItems = new ObservableCollection<BaseItemDto>();
+            InProgressItems = new ObservableCollection<BaseItemDto>();
 
             if (IsInDesignMode)
             {
@@ -208,7 +210,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                 var favouritesLoaded = await GetFavouriteItems();
 
-                _hasLoaded = (folderLoaded && recentLoaded && favouritesLoaded);
+                SetProgressBar(AppResources.SysTrayCheckingInProgress);
+
+                var inProgressLoaded = await GetInProgressItems();
+
+                _hasLoaded = (folderLoaded && recentLoaded && favouritesLoaded && inProgressLoaded);
 
                 //SetProgressBar("Checking notifications...");
 
@@ -228,6 +234,38 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             };
             var summary = await ApiClient.GetNotificationsSummary(AuthenticationService.Current.LoggedInUserId);
             var notifications = await ApiClient.GetNotificationsAsync(query);
+        }
+
+        private async Task<bool> GetInProgressItems()
+        {
+            try
+            {
+                Log.Info("Getting in progress items for user [{0}]", AuthenticationService.Current.LoggedInUserId);
+
+                var query = new ItemQuery
+                {
+                    UserId = AuthenticationService.Current.LoggedInUserId,
+                    Recursive = true,
+                    Filters = new[] {ItemFilter.IsResumable,}
+                };
+
+                var items = await ApiClient.GetItemsAsync(query);
+                if (items != null && !items.Items.IsNullOrEmpty())
+                {
+                    InProgressItems.Clear();
+                    items.Items.Foreach(InProgressItems.Add);
+                }
+
+                ShowInProgress = !InProgressItems.IsNullOrEmpty();
+                Messenger.Default.Send(new NotificationMessage(ShowInProgress, Constants.Messages.ShowHideInProgressMsg));
+                return true;
+            }
+            catch (HttpException ex)
+            {
+                Utils.HandleHttpException("GetInProgressItems()", ex, NavigationService, Log);
+            }
+
+            return false;
         }
 
         private async Task<bool> GetFavouriteItems()
@@ -357,6 +395,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public ObservableCollection<BaseItemDto> Folders { get; set; }
         public ObservableCollection<BaseItemDto> RecentItems { get; set; }
         public ObservableCollection<BaseItemDto> FavouriteItems { get; set; }
+        public ObservableCollection<BaseItemDto> InProgressItems { get; set; }
         public BaseItemDto DummyFolder { get; set; }
+        public bool ShowInProgress { get; set; }
     }
 }

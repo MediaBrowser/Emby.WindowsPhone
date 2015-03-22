@@ -1186,6 +1186,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to in progress.
+        /// </summary>
+        public static string LabelInProgress {
+            get {
+                return ResourceManager.GetString("LabelInProgress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Instant Mix.
         /// </summary>
         public static string LabelInstantMix {
@@ -2604,6 +2613,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string SysTrayCheckingConnection {
             get {
                 return ResourceManager.GetString("SysTrayCheckingConnection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Checking for in progress items.
+        /// </summary>
+        public static string SysTrayCheckingInProgress {
+            get {
+                return ResourceManager.GetString("SysTrayCheckingInProgress", resourceCulture);
             }
         }
         
