@@ -474,7 +474,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             _streamInfo = streamInfo;
             //Captions = GetSubtitles(SelectedItem);
 
-            var isSyncedVideo = streamInfo.MediaSource != null && streamInfo.MediaSource.Protocol == MediaProtocol.File;
+            var isSyncedVideo = url.StartsWith("AnyTime", StringComparison.InvariantCultureIgnoreCase);
 
             if (EndTime.Ticks > 0 && !IsDirectStream)
             {
