@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Coding4Fun.Toolkit.Controls;
 using MediaBrowser.Model.Sync;
 using GestureEventArgs = System.Windows.Input.GestureEventArgs;
@@ -25,6 +26,7 @@ namespace MediaBrowser.WindowsPhone.Controls
         public void SetOptions(List<SyncQualityOption> options)
         {
             OptionsPicker.ItemsSource = options;
+            OptionsPicker.SelectedItem = OptionsPicker.Items.FirstOrDefault(x => (x as SyncQualityOption).IsDefault);
         }
 
         public SyncQualityOption GetSelectedOption()

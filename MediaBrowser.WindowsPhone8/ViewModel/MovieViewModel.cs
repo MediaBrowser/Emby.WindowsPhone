@@ -149,7 +149,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             SyncItemCommand = new RelayCommand(async () =>
             {
-                var request = SyncRequestHelper.CreateRequest(SelectedMovie.Id);
+                var request = SyncRequestHelper.CreateRequest(SelectedMovie.Id, SelectedMovie.Name);
                 var options = await ApiClient.GetSyncOptions(request);
 
                 if (options != null)
@@ -157,11 +157,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     var result = await SyncOptionsHelper.RequestSyncOption(options.QualityOptions);
                     if (result != null)
                     {
-                        var s = result.Description;
-                        if (string.IsNullOrEmpty(s))
-                        {
-                            
-                        }
+                        request.Quality = result.Name;
+                        await SyncService.Current.AddJobAsync(request);
                     }
                 }
             }, () => SelectedMovie != null && SelectedMovie.SupportsSync.HasValue && SelectedMovie.SupportsSync.Value);
@@ -190,6 +187,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 }
 
                 CanResume = SelectedMovie.CanResume;
+                SyncItemCommand.RaiseCanExecuteChanged();
 
                 result = true;
             }

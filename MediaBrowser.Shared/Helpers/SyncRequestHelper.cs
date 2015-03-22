@@ -18,7 +18,7 @@ namespace MediaBrowser.WindowsPhone.Helpers
             _serverInfo = serverInfo;
         }
 
-        public static SyncJobRequest CreateRequest(List<string> itemIds)
+        public static SyncJobRequest CreateRequest(List<string> itemIds, string name = null)
         {
             var apiClient = _connectionManager.GetApiClient(_serverInfo.ServerInfo.Id);
             var request = new SyncJobRequest
@@ -26,15 +26,15 @@ namespace MediaBrowser.WindowsPhone.Helpers
                 ItemIds = itemIds,
                 UserId = AuthenticationService.Current.LoggedInUserId,
                 TargetId = apiClient.DeviceId,
-                Name = Guid.NewGuid().ToString(),
+                Name = !string.IsNullOrEmpty(name) ? name : Guid.NewGuid().ToString(),
             };
 
             return request;
         }
 
-        public static SyncJobRequest CreateRequest(string itemId)
+        public static SyncJobRequest CreateRequest(string itemId, string name = null)
         {
-            return CreateRequest(new List<string> {itemId});
+            return CreateRequest(new List<string> {itemId}, name);
         }
     }
 }
