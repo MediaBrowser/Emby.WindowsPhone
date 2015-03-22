@@ -233,6 +233,7 @@ namespace MediaBrowser.WindowsPhone
                     }
                     else
                     {
+                        AuthenticationService.Current.SetAuthenticationInfo();
                         navigationService.NavigateTo(page, true);
                     }
                     break;
