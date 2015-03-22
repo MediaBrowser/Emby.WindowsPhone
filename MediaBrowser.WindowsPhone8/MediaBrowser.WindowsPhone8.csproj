@@ -154,6 +154,9 @@
     <Compile Include="Controls\ScrollableTextBlock.cs" />
     <Compile Include="Controls\Played.cs" />
     <Compile Include="Controls\AsyncMessageBox.cs" />
+    <Compile Include="Controls\SyncOptionsControl.xaml.cs">
+      <DependentUpon>SyncOptionsControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\WideTileControl.xaml.cs">
       <DependentUpon>WideTileControl.xaml</DependentUpon>
     </Compile>
@@ -210,6 +213,7 @@
     <Compile Include="Converters\VirtualConverter.cs" />
     <Compile Include="Converters\ZeroCountBrushConverter.cs" />
     <Compile Include="Extensions\ContainerExtensions.cs" />
+    <Compile Include="Helpers\SyncOptionsHelper.cs" />
     <Compile Include="Model\Enum{T}.cs" />
     <Compile Include="Extensions\ExtensionMethods.cs" />
     <Compile Include="Extensions\ApiClientExtensions.cs" />
@@ -572,6 +576,10 @@
     <Page Include="Controls\LogFileView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\SyncOptionsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\WideTileControl.xaml">
       <SubType>Designer</SubType>

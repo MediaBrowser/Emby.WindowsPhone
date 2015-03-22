@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Controls;
+using System.Windows.Media;
+using Coding4Fun.Toolkit.Controls;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using JetBrains.Annotations;
@@ -14,6 +17,7 @@ using MediaBrowser.WindowsPhone.Helpers;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Resources;
 using MediaBrowser.WindowsPhone.Services;
+using Microsoft.Phone.Controls;
 using ScottIsAFool.WindowsPhone;
 
 using INavigationService = MediaBrowser.WindowsPhone.Model.Interfaces.INavigationService;
@@ -150,7 +154,15 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                 if (options != null)
                 {
-                    
+                    var result = await SyncOptionsHelper.RequestSyncOption(options.QualityOptions);
+                    if (result != null)
+                    {
+                        var s = result.Description;
+                        if (string.IsNullOrEmpty(s))
+                        {
+                            
+                        }
+                    }
                 }
             }, () => SelectedMovie != null && SelectedMovie.SupportsSync.HasValue && SelectedMovie.SupportsSync.Value);
         }
