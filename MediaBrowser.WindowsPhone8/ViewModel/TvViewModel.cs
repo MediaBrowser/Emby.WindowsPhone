@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
+using Cimbalino.Toolkit.Services;
 using GalaSoft.MvvmLight.Command;
 using JetBrains.Annotations;
 using MediaBrowser.Model.ApiClient;
@@ -11,10 +12,10 @@ using GalaSoft.MvvmLight.Messaging;
 using System.Linq;
 using System.Threading.Tasks;
 using MediaBrowser.Model.Dto;
-using MediaBrowser.WindowsPhone.Model.Interfaces;
 using MediaBrowser.WindowsPhone.Resources;
 using MediaBrowser.WindowsPhone.Services;
 using ScottIsAFool.WindowsPhone;
+using INavigationService = MediaBrowser.WindowsPhone.Model.Interfaces.INavigationService;
 
 
 namespace MediaBrowser.WindowsPhone.ViewModel
@@ -30,15 +31,17 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     /// </summary>
     public class TvViewModel : ViewModelBase
     {
+        private readonly IMessageBoxService _messageBox;
         public bool ShowDataLoaded;
         public bool SeasonDataLoaded;
 
         /// <summary>
         /// Initializes a new instance of the TvViewModel class.
         /// </summary>
-        public TvViewModel(INavigationService navigationService, IConnectionManager connectionManager) 
+        public TvViewModel(INavigationService navigationService, IConnectionManager connectionManager, IMessageBoxService messageBox) 
             : base(navigationService, connectionManager)
         {
+            _messageBox = messageBox;
             RecentItems = new ObservableCollection<BaseItemDto>();
             Episodes = new List<BaseItemDto>();
             CanUpdateFavourites = true;
@@ -340,6 +343,19 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                     try
                     {
+                        if (string.IsNullOrEmpty(SelectedEpisode.SeriesId))
+                        {
+                            var episode = await ApiClient.GetItemAsync(SelectedEpisode.Id, AuthenticationService.Current.LoggedInUserId);
+                            if (episode == null)
+                            {
+                                await _messageBox.ShowAsync("Error getting episode details");
+                                NavigationService.GoBack();
+                                return;
+                            }
+
+                            SelectedEpisode = episode;
+                        }
+
                         var query = new EpisodeQuery
                         {
                             UserId = AuthenticationService.Current.LoggedInUserId,
