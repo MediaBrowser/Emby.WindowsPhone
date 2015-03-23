@@ -147,7 +147,7 @@
                                                  TapCommand="{Binding Main.NavigateToPage, Source={StaticResource Locator}}"
                                                  CommandParameter="{Binding}"
                                                  Grid.Row="1"
-                                                 Visibility="{Binding RecentItems.Count, Converter={StaticResource IntToVisibilityConverter}, ConverterParameter=false}">
+                                                 Visibility="{Binding DataContext.RecentItems.Count, ElementName=lbRecentItems, Converter={StaticResource IntToVisibilityConverter}, ConverterParameter=false}">
                         <TextBlock Text="{Binding LocalizedResources.More, Source={StaticResource LocalizedStrings}}"
                                    Style="{StaticResource PhoneTextLargeStyle}" />
                     </local:CustomHyperlinkButton>
