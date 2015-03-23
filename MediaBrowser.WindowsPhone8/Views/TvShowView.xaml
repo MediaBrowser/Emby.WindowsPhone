@@ -28,7 +28,7 @@
         <behaviours:MBSysTray Text="{Binding ProgressText}"
                               IsVisible="{Binding ProgressIsVisible}"
                               IsIndeterminate="{Binding ProgressIsVisible}" />
-        <cimbalino:ApplicationBarBehavior Mode="Minimized"
+        <cimbalino:ApplicationBarBehavior Mode="{Binding Auth.LoggedInUser.Policy.EnableSync, Source={StaticResource Locator}, Converter={StaticResource BoolAppBarModeConverter}}"
                                           IsMenuEnabled="True">
             <cimbalino:ApplicationBarBehavior.Buttons>
                 <cimbalino:ApplicationBarIconButton Text="{Binding LocalizedResources.AppBarOffline, Source={StaticResource LocalizedStrings}}"

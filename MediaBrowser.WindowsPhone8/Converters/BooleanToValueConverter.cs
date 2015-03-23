@@ -16,6 +16,7 @@
 using System;
 using System.Windows;
 using System.Windows.Data;
+using Microsoft.Phone.Shell;
 
 namespace MediaBrowser.WindowsPhone.Converters
 {
@@ -71,4 +72,6 @@ namespace MediaBrowser.WindowsPhone.Converters
     }
 
     public class BooleanToStringConverter : BooleanToValueConverterBase<string>{}
+
+    public class BooleanToAppBarModeConverter : BooleanToValueConverterBase<ApplicationBarMode> { }
 }
