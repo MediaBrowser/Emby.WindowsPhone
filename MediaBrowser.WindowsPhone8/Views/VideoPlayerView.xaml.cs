@@ -76,7 +76,7 @@ namespace MediaBrowser.WindowsPhone.Views
                 {
                     player.StartTime = TimeSpan.FromSeconds(0);
                     player.EndTime = model.EndTime;
-                    player.StartupPosition = model._startFrom;
+                    player.StartupPosition = model.StartFrom;
                     model.StartUpdateTimer();
                     player.Play();
                 }

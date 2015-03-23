@@ -9,14 +9,12 @@ using System.Windows;
 using System.Windows.Threading;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
-using MediaBrowser.ApiInteraction.Data;
 using MediaBrowser.ApiInteraction.Playback;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Dlna;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.LiveTv;
-using MediaBrowser.Model.MediaInfo;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Session;
 using MediaBrowser.WindowsPhone.Extensions;
@@ -42,7 +40,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     public class VideoPlayerViewModel : ViewModelBase
     {
         private readonly IPlaybackManager _playbackManager;
-        private readonly IFileRepository _fileRepository;
         private readonly DispatcherTimer _timer;
 
         private bool _isResume;
@@ -50,7 +47,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         private string _itemId;
         private StreamInfo _streamInfo;
 
-        public TimeSpan _startFrom;
+        public TimeSpan StartFrom;
 
         /// <summary>
         /// Initializes a new instance of the VideoPlayerViewModel class.
@@ -58,12 +55,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public VideoPlayerViewModel(
             IConnectionManager connectionManager,
             INavigationService navigationService, 
-            IPlaybackManager playbackManager,
-            IFileRepository fileRepository)
+            IPlaybackManager playbackManager)
             : base(navigationService, connectionManager)
         {
             _playbackManager = playbackManager;
-            _fileRepository = fileRepository;
             _timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(10) };
             _timer.Tick += TimerOnTick;
         }
@@ -487,7 +482,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             if (_isResume && IsDirectStream)
             {
-                _startFrom = TimeSpan.FromTicks(_startPositionTicks);
+                StartFrom = TimeSpan.FromTicks(_startPositionTicks);
             }
 
             RaisePropertyChanged(() => IsDirectStream);
