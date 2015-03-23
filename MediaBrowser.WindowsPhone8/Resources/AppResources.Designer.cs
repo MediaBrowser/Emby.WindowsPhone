@@ -214,6 +214,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to offline.
+        /// </summary>
+        public static string AppBarOffline {
+            get {
+                return ResourceManager.GetString("AppBarOffline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to pause.
         /// </summary>
         public static string AppBarPause {
@@ -736,6 +745,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Item limit:.
+        /// </summary>
+        public static string HeaderItemLimit {
+            get {
+                return ResourceManager.GetString("HeaderItemLimit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Live.
         /// </summary>
         public static string HeaderLive {
@@ -768,6 +786,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string HeaderPlaylists {
             get {
                 return ResourceManager.GetString("HeaderPlaylists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Quality:.
+        /// </summary>
+        public static string HeaderQuality {
+            get {
+                return ResourceManager.GetString("HeaderQuality", resourceCulture);
             }
         }
         
@@ -1578,6 +1605,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string LabelOneSecondAgo {
             get {
                 return ResourceManager.GetString("LabelOneSecondAgo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to optional.
+        /// </summary>
+        public static string LabelOptional {
+            get {
+                return ResourceManager.GetString("LabelOptional", resourceCulture);
             }
         }
         

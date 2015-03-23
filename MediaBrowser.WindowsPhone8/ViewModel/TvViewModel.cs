@@ -12,6 +12,7 @@ using GalaSoft.MvvmLight.Messaging;
 using System.Linq;
 using System.Threading.Tasks;
 using MediaBrowser.Model.Dto;
+using MediaBrowser.WindowsPhone.Helpers;
 using MediaBrowser.WindowsPhone.Resources;
 using MediaBrowser.WindowsPhone.Services;
 using ScottIsAFool.WindowsPhone;
@@ -209,6 +210,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 App.SelectedItem = person;
                 NavigationService.NavigateTo(Constants.Pages.ActorView);
+            });
+
+            EpisodeOfflineCommand = new RelayCommand(async () =>
+            {
+                var ep = SelectedEpisode;
+                var name = string.Format("{0} - {1}x{2} - {3}", ep.SeriesName, ep.ParentIndexNumber, ep.IndexNumber, ep.Name);
+
+                var request = SyncRequestHelper.CreateRequest(ep.Id, name);
             });
 
             NavigateTo = new RelayCommand<BaseItemDto>(NavigationService.NavigateTo);
@@ -449,6 +458,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public RelayCommand<BaseItemPerson> ShowOtherFilmsCommand { get; set; }
         public bool CanUpdateFavourites { get; set; }
         public bool CanResume { get; set; }
+
+        public RelayCommand EpisodeOfflineCommand { get; set; }
+        public RelayCommand SeasonOfflineCommand { get; set; }
+        public RelayCommand ShowOfflineCommand { get; set; }
 
         [UsedImplicitly]
         private void OnSelectedEpisodeChanged()

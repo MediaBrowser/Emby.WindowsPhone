@@ -1147,4 +1147,16 @@
   <data name="SysTrayCheckingInProgress" xml:space="preserve">
     <value>Checking for in progress items</value>
   </data>
+  <data name="AppBarOffline" xml:space="preserve">
+    <value>offline</value>
+  </data>
+  <data name="HeaderItemLimit" xml:space="preserve">
+    <value>Item limit:</value>
+  </data>
+  <data name="HeaderQuality" xml:space="preserve">
+    <value>Quality:</value>
+  </data>
+  <data name="LabelOptional" xml:space="preserve">
+    <value>optional</value>
+  </data>
 </root>

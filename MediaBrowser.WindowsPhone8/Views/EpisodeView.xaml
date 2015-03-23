@@ -37,6 +37,9 @@
                                                 IconUri="/Icons/appbar.connection.playon.png"
                                                 Command="{Binding Remote.SendPlayCommand, Source={StaticResource Locator}}"
                                                 CommandParameter="{Binding SelectedEpisode.Id}" />
+            <cimbalino:ApplicationBarIconButton Text="{Binding LocalizedResources.AppBarOffline, Source={StaticResource LocalizedStrings}}"
+                                                IconUri="/Icons/appbar.cloud.png"
+                                                Command="{Binding EpisodeOfflineCommand}"/>
             <cimbalino:ApplicationBarIconButton Text="{Binding LocalizedResources.AppBarNext, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                 Command="{Binding NextEpisodeCommand}"
                                                 IconUri="/icons/appbar.next.rest.png" />

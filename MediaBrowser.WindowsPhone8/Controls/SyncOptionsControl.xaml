@@ -4,24 +4,44 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+             xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
+             xmlns:telerikInput="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Input"
              mc:Ignorable="d"
              FontFamily="{StaticResource PhoneFontFamilyNormal}"
              FontSize="{StaticResource PhoneFontSizeNormal}"
              Foreground="{StaticResource PhoneForegroundBrush}"
-             d:DesignHeight="200"
+             d:DesignHeight="400"
              d:DesignWidth="480">
+    
+    <UserControl.Resources>
+        <Style TargetType="ContentControl"
+               x:Key="HeaderStyle">
+            <Setter Property="HorizontalAlignment"
+                    Value="Left" />
+            <Setter Property="Foreground"
+                    Value="{StaticResource PhoneBackgroundBrush}" />
+        </Style>
+    </UserControl.Resources>
 
     <Grid x:Name="LayoutRoot"
           Background="White">
-        <StackPanel Orientation="Vertical">
-            <toolkit:ListPicker x:Name="OptionsPicker"
-                                DisplayMemberPath="Name"
-                                BorderBrush="Black"
-                                Foreground="Black"/>
+        <StackPanel Orientation="Vertical"
+                    VerticalAlignment="Bottom">
+            <telerikPrimitives:RadTextBox InputScope="Number"
+                                          BorderBrush="Black"
+                                          Header="{Binding LocalizedResources.HeaderItemLimit, Source={StaticResource LocalizedStrings}}"
+                                          Watermark="{Binding LocalizedResources.LabelOptional, Source={StaticResource LocalizedStrings}}"
+                                          HeaderStyle="{StaticResource HeaderStyle}"/>
+            <telerikInput:RadListPicker x:Name="OptionsPicker"
+                                        DisplayMemberPath="Name"
+                                        BorderBrush="Black"
+                                        Foreground="Black"
+                                        Header="{Binding LocalizedResources.HeaderQuality, Source={StaticResource LocalizedStrings}}" 
+                                        HeaderStyle="{StaticResource HeaderStyle}"/>
             <Button Style="{StaticResource HeroButtonStyle}"
                     Content="sync"
                     Tap="SyncButton_OnTap"
-                    x:Name="SyncButton"/>
+                    x:Name="SyncButton" />
         </StackPanel>
     </Grid>
 </UserControl>
