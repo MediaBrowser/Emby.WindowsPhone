@@ -28,6 +28,13 @@
                               IsIndeterminate="{Binding ProgressIsVisible}" />
         <behaviors:ApplicationBarBehavior Mode="Minimized"
                                           IsMenuEnabled="True">
+            <behaviors:ApplicationBarBehavior.Buttons>
+                <behaviors:ApplicationBarIconButton Text="{Binding LocalizedResources.AppBarOffline, Source={StaticResource LocalizedStrings}}"
+                                                    Command="{Binding SeasonOfflineCommand}"
+                                                    IconUri="/Icons/appbar.cloud.png"
+                                                    IsEnabled="{Binding SelectedSeason.SupportsSync}" 
+                                                    IsVisible="{Binding Auth.LoggedInUser.Policy.EnableSync, Source={StaticResource Locator}}"/>
+            </behaviors:ApplicationBarBehavior.Buttons>
             <behaviors:ApplicationBarBehavior.MenuItems>
                 <behaviors:ApplicationBarMenuItem Text="{Binding LocalizedResources.LabelAddToPlaylist, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                   Command="{Binding AddToPlaylist.AddToPlaylistCommand, Source={StaticResource Locator}}"

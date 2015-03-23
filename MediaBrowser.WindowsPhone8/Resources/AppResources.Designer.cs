@@ -718,6 +718,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Automatically sync new items.
+        /// </summary>
+        public static string HeaderAutoSync {
+            get {
+                return ResourceManager.GetString("HeaderAutoSync", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Choose a client.
         /// </summary>
         public static string HeaderChooseClient {
@@ -831,6 +840,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string HeaderTV {
             get {
                 return ResourceManager.GetString("HeaderTV", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sync unwatched videos only.
+        /// </summary>
+        public static string HeaderUnwatchedItems {
+            get {
+                return ResourceManager.GetString("HeaderUnwatchedItems", resourceCulture);
             }
         }
         

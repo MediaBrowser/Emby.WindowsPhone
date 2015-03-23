@@ -52,7 +52,7 @@ namespace MediaBrowser.WindowsPhone.Services
             return Task.FromResult(0);
         }
 
-        public async Task AddJobAsync(SyncRequest request)
+        public async Task AddJobAsync(SyncJobRequest request)
         {
             var apiClient = _connectionManager.GetApiClient(_serverInfo.ServerInfo.Id);
 
@@ -61,12 +61,15 @@ namespace MediaBrowser.WindowsPhone.Services
             if (options != null)
             {
                 _logger.Info("Request quality from user");
-                var quality = await _messagePrompt.RequestSyncOption(options.QualityOptions);
+                var qualityOptions = await _messagePrompt.RequestSyncOption(options);
 
-                if (quality != null)
+                if (qualityOptions != null)
                 {
-                    _logger.Info("Quality requested for {0} is {1}", request.Name, quality.Name);
-                    request.Quality = quality.Name;
+                    _logger.Info("Quality requested for {0} is {1}", request.Name, qualityOptions.Quality.Name);
+                    request.Quality = qualityOptions.Quality.Name;
+                    request.ItemLimit = qualityOptions.ItemLimit;
+                    request.SyncNewContent = qualityOptions.AutoSyncNewItems;
+                    request.UnwatchedOnly = qualityOptions.UnwatchedItems;
 
                     _logger.Info("Create sync job");
                     var job = await apiClient.CreateSyncJob(request);

@@ -39,7 +39,9 @@
                                                 CommandParameter="{Binding SelectedEpisode.Id}" />
             <cimbalino:ApplicationBarIconButton Text="{Binding LocalizedResources.AppBarOffline, Source={StaticResource LocalizedStrings}}"
                                                 IconUri="/Icons/appbar.cloud.png"
-                                                Command="{Binding EpisodeOfflineCommand}"/>
+                                                Command="{Binding EpisodeOfflineCommand}"
+                                                IsEnabled="{Binding SelectedEpisode.SupportsSync}"
+                                                IsVisible="{Binding Auth.LoggedInUser.Policy.EnableSync, Source={StaticResource Locator}}"/>
             <cimbalino:ApplicationBarIconButton Text="{Binding LocalizedResources.AppBarNext, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                 Command="{Binding NextEpisodeCommand}"
                                                 IconUri="/icons/appbar.next.rest.png" />

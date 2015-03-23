@@ -1,11 +1,11 @@
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using MediaBrowser.Model.Sync;
+using MediaBrowser.WindowsPhone.Model.Sync;
 
 namespace MediaBrowser.WindowsPhone.Interfaces
 {
     public interface IMessagePromptService
     {
-        Task<SyncQualityOption> RequestSyncOption(List<SyncQualityOption> options);
+        Task<SyncOption> RequestSyncOption(SyncDialogOptions options);
     }
 }

@@ -218,6 +218,45 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 var name = string.Format("{0} - {1}x{2} - {3}", ep.SeriesName, ep.ParentIndexNumber, ep.IndexNumber, ep.Name);
 
                 var request = SyncRequestHelper.CreateRequest(ep.Id, name);
+                try
+                {
+                    await SyncService.Current.AddJobAsync(request);
+                }
+                catch (HttpException ex)
+                {
+                    
+                }
+            });
+
+            SeasonOfflineCommand = new RelayCommand(async () =>
+            {
+                var season = SelectedSeason;
+                var name = string.Format("{0} - {1}", season.SeriesName, season.Name);
+
+                var request = SyncRequestHelper.CreateRequest(season.Id, name);
+                try
+                {
+                    await SyncService.Current.AddJobAsync(request);
+                }
+                catch (HttpException ex)
+                {
+                    
+                }
+            });
+
+            ShowOfflineCommand = new RelayCommand(async () =>
+            {
+                var show = SelectedTvSeries;
+
+                var request = SyncRequestHelper.CreateRequest(show.Id, show.Name);
+                try
+                {
+                    await SyncService.Current.AddJobAsync(request);
+                }
+                catch (HttpException ex)
+                {
+                    
+                }
             });
 
             NavigateTo = new RelayCommand<BaseItemDto>(NavigationService.NavigateTo);

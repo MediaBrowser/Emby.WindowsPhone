@@ -1150,11 +1150,17 @@
   <data name="AppBarOffline" xml:space="preserve">
     <value>offline</value>
   </data>
+  <data name="HeaderAutoSync" xml:space="preserve">
+    <value>Automatically sync new items</value>
+  </data>
   <data name="HeaderItemLimit" xml:space="preserve">
     <value>Item limit:</value>
   </data>
   <data name="HeaderQuality" xml:space="preserve">
     <value>Quality:</value>
+  </data>
+  <data name="HeaderUnwatchedItems" xml:space="preserve">
+    <value>Sync unwatched videos only</value>
   </data>
   <data name="LabelOptional" xml:space="preserve">
     <value>optional</value>
