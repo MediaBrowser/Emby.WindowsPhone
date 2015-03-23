@@ -348,7 +348,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                             var episode = await ApiClient.GetItemAsync(SelectedEpisode.Id, AuthenticationService.Current.LoggedInUserId);
                             if (episode == null)
                             {
-                                await _messageBox.ShowAsync("Error getting episode details");
+                                await _messageBox.ShowAsync(AppResources.ErrorEpisodeDetails);
                                 NavigationService.GoBack();
                                 return;
                             }
