@@ -52,7 +52,7 @@ namespace MediaBrowser.WindowsPhone.Services
             return Task.FromResult(0);
         }
 
-        public async Task AddJobAsync(SyncJobRequest request)
+        public async Task AddJobAsync(SyncRequest request)
         {
             var apiClient = _connectionManager.GetApiClient(_serverInfo.ServerInfo.Id);
 

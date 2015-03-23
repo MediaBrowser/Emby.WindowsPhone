@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Sync;
 using MediaBrowser.WindowsPhone.Interfaces;
+using MediaBrowser.WindowsPhone.Model.Sync;
 using MediaBrowser.WindowsPhone.Services;
 
 namespace MediaBrowser.WindowsPhone.Helpers
@@ -18,10 +19,10 @@ namespace MediaBrowser.WindowsPhone.Helpers
             _serverInfo = serverInfo;
         }
 
-        public static SyncJobRequest CreateRequest(List<string> itemIds, string name = null)
+        public static SyncRequest CreateRequest(List<string> itemIds, string name = null)
         {
             var apiClient = _connectionManager.GetApiClient(_serverInfo.ServerInfo.Id);
-            var request = new SyncJobRequest
+            var request = new SyncRequest
             {
                 ItemIds = itemIds,
                 UserId = AuthenticationService.Current.LoggedInUserId,
@@ -32,7 +33,7 @@ namespace MediaBrowser.WindowsPhone.Helpers
             return request;
         }
 
-        public static SyncJobRequest CreateRequest(string itemId, string name = null)
+        public static SyncRequest CreateRequest(string itemId, string name = null)
         {
             return CreateRequest(new List<string> {itemId}, name);
         }

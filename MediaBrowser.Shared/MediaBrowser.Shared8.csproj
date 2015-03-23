@@ -230,6 +230,7 @@
     <Compile Include="Model\Sync\FileTransferManager.cs" />
     <Compile Include="Model\Sync\ImageRepository.cs" />
     <Compile Include="Model\Sync\ItemRepository.cs" />
+    <Compile Include="Model\Sync\SyncRequest.cs" />
     <Compile Include="Model\Sync\UserActionRepository.cs" />
     <Compile Include="Model\Sync\UserRepository.cs" />
     <Compile Include="Model\WindowsPhoneProfile.cs" />
