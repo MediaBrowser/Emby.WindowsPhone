@@ -228,6 +228,21 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 await TakeOffline(SelectedTvSeries);
             });
 
+            ItemOfflineCommand = new RelayCommand<BaseItemDto>(async item =>
+            {
+                if (!item.CanTakeOffline()) return;
+
+                try
+                {
+                    var request = SyncRequestHelper.CreateRequest(item.Id, item.GetTvTypeName());
+                    await SyncService.Current.AddJobAsync(request);
+                }
+                catch (HttpException ex)
+                {
+                    Utils.HandleHttpException("ItemOfflineCommand", ex, NavigationService, Log);
+                }
+            });
+
             NavigateTo = new RelayCommand<BaseItemDto>(NavigationService.NavigateTo);
         }
 
@@ -287,6 +302,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     {
                         ItemFields.ParentId,
                         ItemFields.MediaSources, 
+                        ItemFields.SyncInfo
                     },
                     IsMissing = App.SpecificSettings.ShowMissingEpisodes,
                     IsVirtualUnaired = App.SpecificSettings.ShowUnairedEpisodes
@@ -467,6 +483,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public RelayCommand EpisodeOfflineCommand { get; set; }
         public RelayCommand SeasonOfflineCommand { get; set; }
         public RelayCommand ShowOfflineCommand { get; set; }
+        public RelayCommand<BaseItemDto> ItemOfflineCommand { get; set; }
 
         [UsedImplicitly]
         private void OnSelectedEpisodeChanged()

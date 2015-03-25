@@ -87,7 +87,8 @@
                 <Grid>
                     <phone:LongListSelector ItemsSource="{Binding Seasons}"
                                             LayoutMode="Grid"
-                                            GridCellSize="200,300">
+                                            GridCellSize="200,300"
+                                            x:Name="SeasonList">
                         <phone:LongListSelector.ListHeader>
                             <TextBlock Text="{Binding LocalizedResources.LabelNoSeasonsFound, Source={StaticResource LocalizedStrings}}"
                                        HorizontalAlignment="Center"
@@ -101,6 +102,14 @@
                                                              Margin="6"
                                                              TapCommand="{Binding Main.NavigateToPage, Source={StaticResource Locator}}"
                                                              CommandParameter="{Binding}">
+                                    <toolkit:ContextMenuService.ContextMenu>
+                                        <toolkit:ContextMenu>
+                                            <toolkit:MenuItem Header="{Binding LocalizedResources.AppBarOffline, Source={StaticResource LocalizedStrings}}"
+                                                              Command="{Binding DataContext.ItemOfflineCommand, ElementName=SeasonList}"
+                                                              CommandParameter="{Binding}"
+                                                              Visibility="{Binding Auth.LoggedInUser.Policy.EnableSync, Source={StaticResource Locator}, Converter={StaticResource VisibilityConverter}}" />
+                                        </toolkit:ContextMenu>
+                                    </toolkit:ContextMenuService.ContextMenu>
                                     <Grid>
                                         <controls:SuperImage PlaceholderImageSource="/Images/Logo.png"
                                                              Source="{Binding Converter={StaticResource ImageUrlConverter}}"
