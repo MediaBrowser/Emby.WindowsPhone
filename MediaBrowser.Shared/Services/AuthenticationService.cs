@@ -48,7 +48,7 @@ namespace MediaBrowser.WindowsPhone.Services
         {
             Deployment.Current.Dispatcher.BeginInvoke(() =>
             {
-                LoggedInUser = e.Argument;
+                SetUser(e.Argument);
                 if (AuthenticationResult != null && _connectionManager.CurrentApiClient != null)
                 {
                     _connectionManager.CurrentApiClient.SetAuthenticationInfo(AuthenticationResult.AccessToken, LoggedInUserId);
@@ -170,17 +170,17 @@ namespace MediaBrowser.WindowsPhone.Services
             }
             catch (HttpException ex)
             {
-                _logger.ErrorException("Error logging into MB Connect", ex);
+                _logger.ErrorException("Error logging into MB Connect\n", ex);
                 return false;
             }
             catch (WebException wex)
             {
-                _logger.ErrorException("Error logging into MB Connect", wex);
+                _logger.ErrorException("Error logging into MB Connect\n", wex);
                 return false;
             }
             catch (Exception eex)
             {
-                _logger.ErrorException("Error logging into MB Connect", eex);
+                _logger.ErrorException("Error logging into MB Connect\n", eex);
                 return false;
             }
         }
