@@ -214,52 +214,50 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             EpisodeOfflineCommand = new RelayCommand(async () =>
             {
-                var ep = SelectedEpisode;
-                var name = string.Format("{0} - {1}x{2} - {3}", ep.SeriesName, ep.ParentIndexNumber, ep.IndexNumber, ep.Name);
-
-                var request = SyncRequestHelper.CreateRequest(ep.Id, name);
-                try
-                {
-                    await SyncService.Current.AddJobAsync(request);
-                }
-                catch (HttpException ex)
-                {
-                    
-                }
+                var item = SelectedEpisode;
+                var name = string.Format("{0} - {1}x{2} - {3}", item.SeriesName, item.ParentIndexNumber, item.IndexNumber, item.Name);
+                await TakeOffline(item, name);
             });
 
             SeasonOfflineCommand = new RelayCommand(async () =>
             {
-                var season = SelectedSeason;
-                var name = string.Format("{0} - {1}", season.SeriesName, season.Name);
+                var item = SelectedSeason;
+                var name = string.Format("{0} - {1}", item.SeriesName, item.Name);
 
-                var request = SyncRequestHelper.CreateRequest(season.Id, name);
-                try
-                {
-                    await SyncService.Current.AddJobAsync(request);
-                }
-                catch (HttpException ex)
-                {
-                    
-                }
+                await TakeOffline(item, name);
             });
 
             ShowOfflineCommand = new RelayCommand(async () =>
             {
-                var show = SelectedTvSeries;
-
-                var request = SyncRequestHelper.CreateRequest(show.Id, show.Name);
-                try
-                {
-                    await SyncService.Current.AddJobAsync(request);
-                }
-                catch (HttpException ex)
-                {
-                    
-                }
+                var item = SelectedTvSeries;
+                var name = item.Name;
+                await TakeOffline(item, name);
             });
 
             NavigateTo = new RelayCommand<BaseItemDto>(NavigationService.NavigateTo);
+        }
+
+        private static async Task TakeOffline(BaseItemDto item, string name)
+        {
+            if (!item.SupportsSync.HasValue || !item.SupportsSync.Value)
+            {
+                App.ShowMessage(AppResources.ErrorNoSyncSupport);
+                return;
+            }
+
+            if (item.HasSyncJob.HasValue && item.HasSyncJob.Value)
+            {
+                return;
+            }
+
+            var request = SyncRequestHelper.CreateRequest(item.Id, name);
+            try
+            {
+                await SyncService.Current.AddJobAsync(request);
+            }
+            catch (HttpException ex)
+            {
+            }
         }
 
         private async Task<bool> GetEpisode()
