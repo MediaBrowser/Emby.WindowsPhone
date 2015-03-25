@@ -10,6 +10,7 @@ using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Querying;
+using MediaBrowser.WindowsPhone.Extensions;
 using MediaBrowser.WindowsPhone.Helpers;
 using MediaBrowser.WindowsPhone.Model.Interfaces;
 using MediaBrowser.WindowsPhone.Resources;
@@ -153,16 +154,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
             {
                 return new RelayCommand<BaseItemDto>(async item =>
                 {
-                    if (!item.SupportsSync.HasValue || !item.SupportsSync.Value)
-                    {
-                        App.ShowMessage(AppResources.ErrorNoSyncSupport);
-                        return;
-                    }
-
-                    if (item.HasSyncJob.HasValue && item.HasSyncJob.Value)
-                    {
-                        return; 
-                    }
+                    if (!item.CanTakeOffline()) return;
 
                     var request = SyncRequestHelper.CreateRequest(item.Id, item.Name);
                     await SyncService.Current.AddJobAsync(request);

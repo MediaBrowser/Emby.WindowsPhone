@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Windows.Controls;
-using System.Windows.Media;
-using Coding4Fun.Toolkit.Controls;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using JetBrains.Annotations;
@@ -13,11 +10,11 @@ using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.WindowsPhone.CimbalinoToolkit;
+using MediaBrowser.WindowsPhone.Extensions;
 using MediaBrowser.WindowsPhone.Helpers;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Resources;
 using MediaBrowser.WindowsPhone.Services;
-using Microsoft.Phone.Controls;
 using ScottIsAFool.WindowsPhone;
 
 using INavigationService = MediaBrowser.WindowsPhone.Model.Interfaces.INavigationService;
@@ -149,6 +146,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             SyncItemCommand = new RelayCommand(async () =>
             {
+                if (!SelectedMovie.CanTakeOffline()) return;
+
                 var request = SyncRequestHelper.CreateRequest(SelectedMovie.Id, SelectedMovie.Name);
                 
                 await SyncService.Current.AddJobAsync(request);

@@ -12,6 +12,7 @@ using GalaSoft.MvvmLight.Messaging;
 using System.Linq;
 using System.Threading.Tasks;
 using MediaBrowser.Model.Dto;
+using MediaBrowser.WindowsPhone.Extensions;
 using MediaBrowser.WindowsPhone.Helpers;
 using MediaBrowser.WindowsPhone.Resources;
 using MediaBrowser.WindowsPhone.Services;
@@ -223,7 +224,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 var item = SelectedSeason;
                 var name = string.Format("{0} - {1}", item.SeriesName, item.Name);
-
                 await TakeOffline(item, name);
             });
 
@@ -239,16 +239,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
         private static async Task TakeOffline(BaseItemDto item, string name)
         {
-            if (!item.SupportsSync.HasValue || !item.SupportsSync.Value)
-            {
-                App.ShowMessage(AppResources.ErrorNoSyncSupport);
-                return;
-            }
-
-            if (item.HasSyncJob.HasValue && item.HasSyncJob.Value)
-            {
-                return;
-            }
+            if (!item.CanTakeOffline()) return;
 
             var request = SyncRequestHelper.CreateRequest(item.Id, name);
             try
