@@ -61,10 +61,7 @@ namespace MediaBrowser.WindowsPhone.Services
 
         private void ApiClientOnUserUpdated(object sender, GenericEventArgs<UserDto> e)
         {
-            Deployment.Current.Dispatcher.BeginInvoke(() =>
-            {
-                SetUser(e.Argument);
-            });
+            Deployment.Current.Dispatcher.BeginInvoke(() => SetUser(e.Argument));
         }
 
         private void ServerInfoServiceOnServerInfoChanged(object sender, ServerInfo serverInfo)
