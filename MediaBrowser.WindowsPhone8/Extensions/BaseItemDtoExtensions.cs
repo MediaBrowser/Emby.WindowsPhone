@@ -13,7 +13,7 @@ namespace MediaBrowser.WindowsPhone.Extensions
                 return false;
             }
 
-            return !item.HasSyncJob.HasValue || !item.HasSyncJob.Value;
+            return item.HasSyncJob.HasValue && item.HasSyncJob.Value;
         }
 
         public static string EpisodeString(this BaseItemDto item)
