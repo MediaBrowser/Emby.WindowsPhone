@@ -40,11 +40,22 @@ namespace MediaBrowser.WindowsPhone.Services
             _connectionManager.ConnectUserSignOut += ConnectionManagerOnConnectUserSignOut;
             _connectionManager.LocalUserSignIn += ConnectionManagerOnLocalUserSignIn;
             _connectionManager.LocalUserSignOut += ConnectionManagerOnLocalUserSignOut;
+            _connectionManager.Connected += ConnectionManagerOnConnected;
             _serverInfoService.ServerInfoChanged += ServerInfoServiceOnServerInfoChanged;
 
             if (serverInfoService.HasServer)
             {
                 SetUserUpdateHandler(serverInfoService.ServerInfo);
+            }
+        }
+
+        private void ConnectionManagerOnConnected(object sender, GenericEventArgs<ConnectionResult> e)
+        {
+            var apiClient = e.Argument.ApiClient;
+            if (apiClient != null)
+            {
+                apiClient.UserUpdated -= ApiClientOnUserUpdated;
+                apiClient.UserUpdated += ApiClientOnUserUpdated;
             }
         }
 
