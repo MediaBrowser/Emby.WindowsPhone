@@ -1148,7 +1148,7 @@
     <value>Checking for in progress items</value>
   </data>
   <data name="AppBarOffline" xml:space="preserve">
-    <value>offline</value>
+    <value>sync</value>
   </data>
   <data name="HeaderAutoSync" xml:space="preserve">
     <value>Automatically sync new items</value>
@@ -1164,5 +1164,8 @@
   </data>
   <data name="LabelOptional" xml:space="preserve">
     <value>optional</value>
+  </data>
+  <data name="ErrorNoSyncSupport" xml:space="preserve">
+    <value>Sorry, this item isn't supported for sync</value>
   </data>
 </root>

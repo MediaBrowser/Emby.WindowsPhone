@@ -10,6 +10,7 @@ using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Querying;
+using MediaBrowser.WindowsPhone.Helpers;
 using MediaBrowser.WindowsPhone.Model.Interfaces;
 using MediaBrowser.WindowsPhone.Resources;
 using MediaBrowser.WindowsPhone.Services;
@@ -142,6 +143,29 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                         MessageBox.Show(AppResources.ErrorProblemUpdatingItem, AppResources.ErrorTitle, MessageBoxButton.OK);
                         Utils.HandleHttpException("MarkAsWatchedCommand", ex, NavigationService, Log);
                     }
+                });
+            }
+        }
+
+        public RelayCommand<BaseItemDto> ItemOfflineCommand
+        {
+            get
+            {
+                return new RelayCommand<BaseItemDto>(async item =>
+                {
+                    if (!item.SupportsSync.HasValue || !item.SupportsSync.Value)
+                    {
+                        App.ShowMessage(AppResources.ErrorNoSyncSupport);
+                        return;
+                    }
+
+                    if (item.HasSyncJob.HasValue && item.HasSyncJob.Value)
+                    {
+                        return; 
+                    }
+
+                    var request = SyncRequestHelper.CreateRequest(item.Id, item.Name);
+                    await SyncService.Current.AddJobAsync(request);
                 });
             }
         }

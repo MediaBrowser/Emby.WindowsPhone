@@ -214,7 +214,7 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to offline.
+        ///   Looks up a localized string similar to sync.
         /// </summary>
         public static string AppBarOffline {
             get {
@@ -588,6 +588,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string ErrorNoConnectionSettings {
             get {
                 return ResourceManager.GetString("ErrorNoConnectionSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sorry, this item isn&apos;t supported for sync.
+        /// </summary>
+        public static string ErrorNoSyncSupport {
+            get {
+                return ResourceManager.GetString("ErrorNoSyncSupport", resourceCulture);
             }
         }
         
