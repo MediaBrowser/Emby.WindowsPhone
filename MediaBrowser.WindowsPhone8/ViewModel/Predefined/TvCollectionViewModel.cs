@@ -121,7 +121,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                     UserId = AuthenticationService.Current.LoggedInUserId,
                     Fields = new[] { ItemFields.PrimaryImageAspectRatio, ItemFields.ParentId, ItemFields.MediaSources, ItemFields.SyncInfo },
                     ImageTypeLimit = 1,
-                    EnableImageTypes = new []{ImageType.Backdrop, ImageType.Primary, }
+                    EnableImageTypes = new []{ImageType.Backdrop, ImageType.Primary}
                 };
 
                 Log.Info("Getting next up items");
@@ -152,7 +152,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                     Fields = new[] { ItemFields.ParentId },
                     Limit = 30,
                     ImageTypeLimit = 1,
-                    EnableImageTypes = new[] { ImageType.Backdrop, ImageType.Primary, }
+                    EnableImageTypes = new[] { ImageType.Backdrop, ImageType.Primary}
                 };
 
                 Log.Info("Getting upcoming items");
@@ -190,7 +190,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                     IsUnaired = App.SpecificSettings.ShowUnairedEpisodes,
                     Recursive = true,
                     ImageTypeLimit = 1,
-                    EnableImageTypes = new[] { ImageType.Backdrop, ImageType.Primary, }
+                    EnableImageTypes = new[] { ImageType.Backdrop, ImageType.Primary}
                 };
 
                 Log.Info("Getting next up items");
@@ -224,7 +224,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                     Fields = new[] { ItemFields.DateCreated, ItemFields.SyncInfo },
                     Recursive = true,
                     ImageTypeLimit = 1,
-                    EnableImageTypes = new[] { ImageType.Backdrop, ImageType.Primary, }
+                    EnableImageTypes = new[] { ImageType.Backdrop, ImageType.Primary}
                 };
 
                 Log.Info("Getting TV shows");
@@ -258,7 +258,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                     Fields = new[] { ItemFields.DateCreated },
                     UserId = AuthenticationService.Current.LoggedInUserId,
                     ImageTypeLimit = 1,
-                    EnableImageTypes = new[] { ImageType.Backdrop, ImageType.Primary, }
+                    EnableImageTypes = new[] { ImageType.Backdrop, ImageType.Primary}
                 };
 
                 var items = await ApiClient.GetGenresAsync(query);

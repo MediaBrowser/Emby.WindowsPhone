@@ -215,32 +215,27 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             EpisodeOfflineCommand = new RelayCommand(async () =>
             {
-                var item = SelectedEpisode;
-                var name = string.Format("{0} - {1}x{2} - {3}", item.SeriesName, item.ParentIndexNumber, item.IndexNumber, item.Name);
-                await TakeOffline(item, name);
+                await TakeOffline(SelectedEpisode);
             });
 
             SeasonOfflineCommand = new RelayCommand(async () =>
             {
-                var item = SelectedSeason;
-                var name = string.Format("{0} - {1}", item.SeriesName, item.Name);
-                await TakeOffline(item, name);
+                await TakeOffline(SelectedSeason);
             });
 
             ShowOfflineCommand = new RelayCommand(async () =>
             {
-                var item = SelectedTvSeries;
-                var name = item.Name;
-                await TakeOffline(item, name);
+                await TakeOffline(SelectedTvSeries);
             });
 
             NavigateTo = new RelayCommand<BaseItemDto>(NavigationService.NavigateTo);
         }
 
-        private static async Task TakeOffline(BaseItemDto item, string name)
+        private static async Task TakeOffline(BaseItemDto item)
         {
             if (!item.CanTakeOffline()) return;
 
+            var name = item.GetTvTypeName();
             var request = SyncRequestHelper.CreateRequest(item.Id, name);
             try
             {
@@ -248,24 +243,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             }
             catch (HttpException ex)
             {
-            }
-        }
-
-        private async Task<bool> GetEpisode()
-        {
-            try
-            {
-                Log.Info("Getting information for episode [{0}] ({1})", SelectedEpisode.Name, SelectedEpisode.Id);
-
-                var episode = await ApiClient.GetItemAsync(SelectedEpisode.Id, AuthenticationService.Current.LoggedInUserId);
-                return true;
-            }
-            catch (HttpException ex)
-            {
-                Utils.HandleHttpException("GetEpisode()", ex, NavigationService, Log);
-
-                App.ShowMessage(AppResources.ErrorEpisodeDetails);
-                return false;
             }
         }
 
