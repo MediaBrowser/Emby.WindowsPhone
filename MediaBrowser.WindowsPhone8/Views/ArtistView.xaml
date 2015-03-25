@@ -120,7 +120,8 @@
                                                                  VerticalAlignment="Center"
                                                                  Margin="6"
                                                                  Command="{Binding Music.AlbumPlayTapped, Source={StaticResource Locator}}"
-                                                                 CommandParameter="{Binding}" />
+                                                                 CommandParameter="{Binding}"
+                                                                 Style="{StaticResource WhiteRoundButtonStyle}"/>
                                             </Grid>
                                             <TextBlock Text="{Binding Name}"
                                                        Style="{StaticResource PhoneTextTitle2Style}"
@@ -161,7 +162,8 @@
                                         <c4f:RoundButton ImageSource="/Icons/appbar.transport.play.rest.png"
                                                          Margin="-6,0,0,0"
                                                          Command="{Binding Music.PlaySongCommand, Source={StaticResource Locator}}"
-                                                         CommandParameter="{Binding}" />
+                                                         CommandParameter="{Binding}"
+                                                         Style="{StaticResource WhiteRoundButtonStyle}" />
                                         <StackPanel Orientation="Vertical"
                                                     Margin="0,-12,0,0">
                                             <TextBlock Text="{Binding Name}"

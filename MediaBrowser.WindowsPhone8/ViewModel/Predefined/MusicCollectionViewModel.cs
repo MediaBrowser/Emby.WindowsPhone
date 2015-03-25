@@ -163,6 +163,27 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
             }
         }
 
+        public RelayCommand<BaseItemDto> ItemOfflineCommand
+        {
+            get
+            {
+                return new RelayCommand<BaseItemDto>(async item =>
+                {
+                    if (!item.CanTakeOffline()) return;
+
+                    try
+                    {
+                        var request = SyncRequestHelper.CreateRequest(item.Id, item.Name);
+                        await SyncService.Current.AddJobAsync(request);
+                    }
+                    catch (HttpException ex)
+                    {
+                        Utils.HandleHttpException("ItemOfflineCommand", ex, NavigationService, Log);
+                    }
+                });
+            }
+        }
+
         public RelayCommand SelectItemsCommand
         {
             get

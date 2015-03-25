@@ -113,6 +113,14 @@
         </Setter>
     </Style>
 
+    <Style TargetType="controls:RoundButton"
+           x:Key="WhiteRoundButtonStyle">
+        <Setter Property="Foreground"
+                Value="White" />
+        <Setter Property="BorderBrush"
+                Value="White" />
+    </Style>
+
     <Style TargetType="TextBlock"
            BasedOn="{StaticResource PhoneTextTitle2Style}"
            x:Key="HeaderTextStyle">

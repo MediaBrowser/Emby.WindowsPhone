@@ -8,7 +8,6 @@
                 xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
                 xmlns:mb="clr-namespace:MediaBrowser.WindowsPhone.Controls"
                 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-                
                 xmlns:c4F="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
                 xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
                 xmlns:behaviors="clr-namespace:Cimbalino.Toolkit.Behaviors;assembly=Cimbalino.Toolkit"
@@ -122,6 +121,10 @@
                                             <toolkit:MenuItem Header="{Binding LocalizedResources.LabelInstantMix, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                               Command="{Binding MusicCollection.StartInstantMixCommand, Source={StaticResource Locator}}"
                                                               CommandParameter="{Binding}" />
+                                            <toolkit:MenuItem Header="{Binding LocalizedResources.AppBarOffline, Source={StaticResource LocalizedStrings}}"
+                                                              Command="{Binding MusicCollection.ItemOfflineCommand, Source={StaticResource Locator}}"
+                                                              CommandParameter="{Binding}"
+                                                              Visibility="{Binding Auth.LoggedInUser.Policy.EnableSync, Source={StaticResource Locator}, Converter={StaticResource VisibilityConverter}}" />
                                         </toolkit:ContextMenu>
                                     </toolkit:ContextMenuService.ContextMenu>
                                     <StackPanel Orientation="Horizontal"
@@ -131,7 +134,8 @@
                                                          VerticalAlignment="Center"
                                                          Margin="6"
                                                          Command="{Binding MusicCollection.PlayItemCommand, Source={StaticResource Locator}}"
-                                                         CommandParameter="{Binding}" />
+                                                         CommandParameter="{Binding}"
+                                                         Style="{StaticResource WhiteRoundButtonStyle}"/>
                                         <TextBlock Text="{Binding Name}"
                                                    Style="{StaticResource PhoneTextTitle2Style}" />
                                     </StackPanel>
@@ -160,6 +164,10 @@
                                             <toolkit:MenuItem Header="{Binding LocalizedResources.LabelInstantMix, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                               Command="{Binding MusicCollection.StartInstantMixCommand, Source={StaticResource Locator}}"
                                                               CommandParameter="{Binding}" />
+                                            <toolkit:MenuItem Header="{Binding LocalizedResources.AppBarOffline, Source={StaticResource LocalizedStrings}}"
+                                                              Command="{Binding MusicCollection.ItemOfflineCommand, Source={StaticResource Locator}}"
+                                                              CommandParameter="{Binding}"
+                                                              Visibility="{Binding Auth.LoggedInUser.Policy.EnableSync, Source={StaticResource Locator}, Converter={StaticResource VisibilityConverter}}" />
                                         </toolkit:ContextMenu>
                                     </toolkit:ContextMenuService.ContextMenu>
                                     <StackPanel Orientation="Horizontal"
@@ -179,7 +187,8 @@
                                                              VerticalAlignment="Center"
                                                              Margin="6"
                                                              Command="{Binding MusicCollection.PlayItemCommand, Source={StaticResource Locator}}"
-                                                             CommandParameter="{Binding}" />
+                                                             CommandParameter="{Binding}"
+                                                             Style="{StaticResource WhiteRoundButtonStyle}" />
                                         </Grid>
                                         <StackPanel Orientation="Vertical"
                                                     VerticalAlignment="Top">
@@ -222,6 +231,10 @@
                                             <toolkit:MenuItem Header="{Binding LocalizedResources.LabelInstantMix, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                               Command="{Binding MusicCollection.StartInstantMixCommand, Source={StaticResource Locator}}"
                                                               CommandParameter="{Binding}" />
+                                            <toolkit:MenuItem Header="{Binding LocalizedResources.AppBarOffline, Source={StaticResource LocalizedStrings}}"
+                                                              Command="{Binding MusicCollection.ItemOfflineCommand, Source={StaticResource Locator}}"
+                                                              CommandParameter="{Binding}"
+                                                              Visibility="{Binding Auth.LoggedInUser.Policy.EnableSync, Source={StaticResource Locator}, Converter={StaticResource VisibilityConverter}}" />
                                         </toolkit:ContextMenu>
                                     </toolkit:ContextMenuService.ContextMenu>
                                     <c4F:RoundButton ImageSource="/Icons/appbar.transport.play.rest.png"
@@ -229,7 +242,8 @@
                                                      VerticalAlignment="Center"
                                                      Margin="6"
                                                      Command="{Binding MusicCollection.PlayItemCommand, Source={StaticResource Locator}}"
-                                                     CommandParameter="{Binding}" />
+                                                     CommandParameter="{Binding}"
+                                                     Style="{StaticResource WhiteRoundButtonStyle}" />
                                     <StackPanel Orientation="Vertical"
                                                 Margin="{Binding MusicCollection.SongsMargin, Source={StaticResource Locator}}">
                                         <TextBlock Text="{Binding Name}"
@@ -269,7 +283,8 @@
                                                          VerticalAlignment="Center"
                                                          Margin="6"
                                                          Command="{Binding MusicCollection.PlayItemCommand, Source={StaticResource Locator}}"
-                                                         CommandParameter="{Binding}" />
+                                                         CommandParameter="{Binding}"
+                                                         Style="{StaticResource WhiteRoundButtonStyle}"/>
                                         <TextBlock Text="{Binding Name}"
                                                    Style="{StaticResource PhoneTextTitle2Style}" />
                                     </StackPanel>
