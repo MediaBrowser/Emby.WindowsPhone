@@ -156,8 +156,15 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                 {
                     if (!item.CanTakeOffline()) return;
 
-                    var request = SyncRequestHelper.CreateRequest(item.Id, item.Name);
-                    await SyncService.Current.AddJobAsync(request);
+                    try
+                    {
+                        var request = SyncRequestHelper.CreateRequest(item.Id, item.Name);
+                        await SyncService.Current.AddJobAsync(request);
+                    }
+                    catch (HttpException ex)
+                    {
+                        Utils.HandleHttpException("ItemOfflineCommand", ex, NavigationService, Log);
+                    }
                 });
             }
         }

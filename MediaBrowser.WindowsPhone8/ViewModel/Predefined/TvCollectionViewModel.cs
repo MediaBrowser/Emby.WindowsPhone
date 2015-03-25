@@ -10,6 +10,8 @@ using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Querying;
+using MediaBrowser.WindowsPhone.Extensions;
+using MediaBrowser.WindowsPhone.Helpers;
 using MediaBrowser.WindowsPhone.Model.Interfaces;
 using MediaBrowser.WindowsPhone.Resources;
 using MediaBrowser.WindowsPhone.Services;
@@ -105,6 +107,27 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                     {
                         MessageBox.Show(AppResources.ErrorProblemUpdatingItem, AppResources.ErrorTitle, MessageBoxButton.OK);
                         Utils.HandleHttpException("MarkAsWatchedCommand", ex, NavigationService, Log);
+                    }
+                });
+            }
+        }
+
+        public RelayCommand<BaseItemDto> ItemOfflineCommand
+        {
+            get
+            {
+                return new RelayCommand<BaseItemDto>(async item =>
+                {
+                    if (!item.CanTakeOffline()) return;
+
+                    try
+                    {
+                        var request = SyncRequestHelper.CreateRequest(item.Id, item.GetTvTypeName());
+                        await SyncService.Current.AddJobAsync(request);
+                    }
+                    catch (HttpException ex)
+                    {
+                        Utils.HandleHttpException("ItemOfflineCommand", ex, NavigationService, Log);
                     }
                 });
             }

@@ -35,17 +35,21 @@
 
     <scott:BasePage.Resources>
         <converters:SeasonEpisodeConverter x:Key="SeasonEpisodeConverter" />
-
         <DataTemplate x:Key="EpisodeDataTemplate">
             <mb:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
                                       Margin="12,6,0,6"
                                       TapCommand="{Binding TvCollection.NavigateToCommand, Source={StaticResource Locator}}"
-                                      CommandParameter="{Binding}">
+                                      CommandParameter="{Binding}"
+                                      d:DataContext="{Binding TvCollection.NextUpList[0], Source={StaticResource Locator}}">
                 <toolkit:ContextMenuService.ContextMenu>
                     <toolkit:ContextMenu>
                         <toolkit:MenuItem Header="{Binding LocalizedResources.LabelAddToPlaylist, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                           Command="{Binding AddToPlaylist.AddToPlaylistCommand, Source={StaticResource Locator}}"
                                           CommandParameter="{Binding}" />
+                        <toolkit:MenuItem Header="{Binding LocalizedResources.AppBarOffline, Source={StaticResource LocalizedStrings}}"
+                                          Command="{Binding TvCollection.ItemOfflineCommand, Source={StaticResource Locator}}"
+                                          CommandParameter="{Binding}"
+                                          Visibility="{Binding Auth.LoggedInUser.Policy.EnableSync, Source={StaticResource Locator}, Converter={StaticResource VisibilityConverter}}" />
                     </toolkit:ContextMenu>
                 </toolkit:ContextMenuService.ContextMenu>
                 <StackPanel Orientation="Horizontal">
@@ -134,6 +138,10 @@
                                             <toolkit:MenuItem Header="{Binding LocalizedResources.LabelAddToPlaylist, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                               Command="{Binding AddToPlaylist.AddToPlaylistCommand, Source={StaticResource Locator}}"
                                                               CommandParameter="{Binding}" />
+                                            <toolkit:MenuItem Header="{Binding LocalizedResources.AppBarOffline, Source={StaticResource LocalizedStrings}}"
+                                                              Command="{Binding TvCollection.ItemOfflineCommand, Source={StaticResource Locator}}"
+                                                              CommandParameter="{Binding}"
+                                                              Visibility="{Binding Auth.LoggedInUser.Policy.EnableSync, Source={StaticResource Locator}, Converter={StaticResource VisibilityConverter}}" />
                                         </toolkit:ContextMenu>
                                     </toolkit:ContextMenuService.ContextMenu>
                                     <StackPanel Orientation="Horizontal"
