@@ -44,8 +44,7 @@ namespace MediaBrowser.WindowsPhone.Services
 
             if (serverInfoService.HasServer)
             {
-                var apiClient = _connectionManager.GetApiClient(serverInfoService.ServerInfo.Id);
-                apiClient.UserUpdated += ApiClientOnUserUpdated;
+                SetUserUpdateHandler(serverInfoService.ServerInfo);
             }
         }
 
@@ -55,6 +54,11 @@ namespace MediaBrowser.WindowsPhone.Services
         }
 
         private void ServerInfoServiceOnServerInfoChanged(object sender, ServerInfo serverInfo)
+        {
+            SetUserUpdateHandler(serverInfo);
+        }
+
+        private void SetUserUpdateHandler(ServerInfo serverInfo)
         {
             var apiClient = _connectionManager.GetApiClient(serverInfo.Id);
             apiClient.UserUpdated -= ApiClientOnUserUpdated;
