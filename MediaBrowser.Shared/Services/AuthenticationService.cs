@@ -10,6 +10,7 @@ using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Events;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Users;
+using MediaBrowser.WindowsPhone.Interfaces;
 using PropertyChanged;
 using ScottIsAFool.WindowsPhone.Logging;
 
@@ -19,6 +20,7 @@ namespace MediaBrowser.WindowsPhone.Services
     public class AuthenticationService
     {
         private readonly IConnectionManager _connectionManager;
+        private readonly IServerInfoService _serverInfoService;
         private readonly IApplicationSettingsServiceHandler _settingsService;
         private static ILog _logger;
 
@@ -26,10 +28,11 @@ namespace MediaBrowser.WindowsPhone.Services
 
         public static AuthenticationService Current { get; private set; }
 
-        public AuthenticationService(IConnectionManager connectionManager, IApplicationSettingsService settingsService)
+        public AuthenticationService(IConnectionManager connectionManager, IApplicationSettingsService settingsService, IServerInfoService serverInfoService)
         {
             _settingsService = settingsService.Legacy;
             _connectionManager = connectionManager;
+            _serverInfoService = serverInfoService;
             _logger = new WPLogger(typeof (AuthenticationService));
             Current = this;
 
@@ -37,6 +40,25 @@ namespace MediaBrowser.WindowsPhone.Services
             _connectionManager.ConnectUserSignOut += ConnectionManagerOnConnectUserSignOut;
             _connectionManager.LocalUserSignIn += ConnectionManagerOnLocalUserSignIn;
             _connectionManager.LocalUserSignOut += ConnectionManagerOnLocalUserSignOut;
+            _serverInfoService.ServerInfoChanged += ServerInfoServiceOnServerInfoChanged;
+
+            if (serverInfoService.HasServer)
+            {
+                var apiClient = _connectionManager.GetApiClient(serverInfoService.ServerInfo.Id);
+                apiClient.UserUpdated += ApiClientOnUserUpdated;
+            }
+        }
+
+        private void ApiClientOnUserUpdated(object sender, GenericEventArgs<UserDto> e)
+        {
+            Deployment.Current.Dispatcher.BeginInvoke(() => SetUser(e.Argument));
+        }
+
+        private void ServerInfoServiceOnServerInfoChanged(object sender, ServerInfo serverInfo)
+        {
+            var apiClient = _connectionManager.GetApiClient(serverInfo.Id);
+            apiClient.UserUpdated -= ApiClientOnUserUpdated;
+            apiClient.UserUpdated += ApiClientOnUserUpdated;
         }
 
         private void ConnectionManagerOnLocalUserSignOut(object sender, EventArgs eventArgs)
