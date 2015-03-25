@@ -50,7 +50,10 @@ namespace MediaBrowser.WindowsPhone.Services
 
         private void ApiClientOnUserUpdated(object sender, GenericEventArgs<UserDto> e)
         {
-            Deployment.Current.Dispatcher.BeginInvoke(() => SetUser(e.Argument));
+            Deployment.Current.Dispatcher.BeginInvoke(() =>
+            {
+                SetUser(e.Argument);
+            });
         }
 
         private void ServerInfoServiceOnServerInfoChanged(object sender, ServerInfo serverInfo)
@@ -61,8 +64,11 @@ namespace MediaBrowser.WindowsPhone.Services
         private void SetUserUpdateHandler(ServerInfo serverInfo)
         {
             var apiClient = _connectionManager.GetApiClient(serverInfo.Id);
-            apiClient.UserUpdated -= ApiClientOnUserUpdated;
-            apiClient.UserUpdated += ApiClientOnUserUpdated;
+            if (apiClient != null)
+            {
+                apiClient.UserUpdated -= ApiClientOnUserUpdated;
+                apiClient.UserUpdated += ApiClientOnUserUpdated;
+            }
         }
 
         private void ConnectionManagerOnLocalUserSignOut(object sender, EventArgs eventArgs)
