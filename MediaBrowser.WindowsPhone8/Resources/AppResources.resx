@@ -1168,4 +1168,7 @@
   <data name="ErrorNoSyncSupport" xml:space="preserve">
     <value>Sorry, this item isn't supported for sync</value>
   </data>
+  <data name="LabelLoading" xml:space="preserve">
+    <value>Loading...</value>
+  </data>
 </root>

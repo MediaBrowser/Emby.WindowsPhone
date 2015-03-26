@@ -6,6 +6,6 @@ namespace MediaBrowser.WindowsPhone.Interfaces
 {
     public interface IMessagePromptService
     {
-        Task<SyncOption> RequestSyncOption(SyncDialogOptions options);
+        Task<SyncOption> RequestSyncOption(SyncJobRequest request);
     }
 }

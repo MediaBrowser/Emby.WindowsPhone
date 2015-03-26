@@ -1321,6 +1321,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Loading....
+        /// </summary>
+        public static string LabelLoading {
+            get {
+                return ResourceManager.GetString("LabelLoading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to lock screen.
         /// </summary>
         public static string LabelLockScreen {

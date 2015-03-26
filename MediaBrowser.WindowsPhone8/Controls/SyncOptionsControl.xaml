@@ -5,10 +5,12 @@
              xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
              xmlns:telerikInput="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Input"
              xmlns:toggleSwitch="clr-namespace:Telerik.Windows.Controls.ToggleSwitch;assembly=Telerik.Windows.Controls.Primitives"
+             xmlns:controls="clr-namespace:InTheHand.UI.Xaml.Controls;assembly=InTheHand.UI.Xaml.Controls.ProgressRing"
              x:Class="MediaBrowser.WindowsPhone.Controls.SyncOptionsControl"
              mc:Ignorable="d"
              d:DesignHeight="600"
-             d:DesignWidth="480">
+             d:DesignWidth="480"
+             MinHeight="100">
 
     <UserControl.Resources>
         <Style TargetType="ContentControl"
@@ -29,7 +31,8 @@
     <Grid x:Name="LayoutRoot"
           Background="White">
         <StackPanel Orientation="Vertical"
-                    VerticalAlignment="Bottom">
+                    VerticalAlignment="Bottom"
+                    Visibility="{Binding IsLoading, Converter={StaticResource InvertedVisibilityConverter}}">
             <telerikPrimitives:RadTextBox InputScope="Number"
                                           BorderBrush="Black"
                                           Header="{Binding LocalizedResources.HeaderItemLimit, Source={StaticResource LocalizedStrings}}"
@@ -59,6 +62,16 @@
                     Content="sync"
                     Tap="SyncButton_OnTap"
                     x:Name="SyncButton" />
+        </StackPanel>
+        <StackPanel Orientation="Vertical"
+                    HorizontalAlignment="Center"
+                    Visibility="{Binding IsLoading, Converter={StaticResource VisibilityConverter}}">
+            <controls:ProgressRing IsActive="{Binding IsLoading}"
+                                   Margin="0,0,0,12"
+                                   Foreground="{StaticResource PhoneAccentBrush}" />
+            <TextBlock Text="{Binding LocalizedResources.LabelLoading, Source={StaticResource LocalizedStrings}}"
+                       Style="{StaticResource PhoneTextNormalStyle}"
+                       Foreground="Black"/>
         </StackPanel>
     </Grid>
 </UserControl>

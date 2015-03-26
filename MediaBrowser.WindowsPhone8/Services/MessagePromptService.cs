@@ -9,9 +9,9 @@ namespace MediaBrowser.WindowsPhone.Services
 {
     public class MessagePromptService : IMessagePromptService
     {
-        public async Task<SyncOption> RequestSyncOption(SyncDialogOptions options)
+        public async Task<SyncOption> RequestSyncOption(SyncJobRequest request)
         {
-            var tcs = new TaskCompletionSource<SyncQualityOption>();
+            var tcs = new TaskCompletionSource<SyncOption>();
 
             var optionsControl = new SyncOptionsControl();
             var prompt = new MessagePrompt
@@ -19,12 +19,8 @@ namespace MediaBrowser.WindowsPhone.Services
                 Body = optionsControl
             };
 
-            var unwatched = options.Options.Contains(SyncJobOption.UnwatchedOnly);
-            var itemLimit = options.Options.Contains(SyncJobOption.ItemLimit);
-            var autoSync = options.Options.Contains(SyncJobOption.SyncNewContent);
-
             optionsControl.MessagePrompt = prompt;
-            optionsControl.SetOptions(options);
+            optionsControl.SetOptions(request);
 
             prompt.Completed += (sender, args) =>
             {
@@ -45,20 +41,7 @@ namespace MediaBrowser.WindowsPhone.Services
             {
                 var qualityResult = await tcs.Task;
 
-                var option = new SyncOption
-                {
-                    Quality = qualityResult,
-                    AutoSyncNewItems = autoSync && optionsControl.SyncNewContent,
-                    UnwatchedItems = unwatched && optionsControl.SyncUnwatched
-                };
-
-
-                if (itemLimit && !string.IsNullOrEmpty(optionsControl.ItemLimit))
-                {
-                    option.ItemLimit = int.Parse(optionsControl.ItemLimit);
-                }
-
-                return option;
+                return qualityResult;
             }
             catch (TaskCanceledException)
             {
