@@ -214,24 +214,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             NavigateTo = new RelayCommand<BaseItemDto>(NavigationService.NavigateTo);
         }
 
-        private async Task<bool> GetEpisode()
-        {
-            try
-            {
-                Log.Info("Getting information for episode [{0}] ({1})", SelectedEpisode.Name, SelectedEpisode.Id);
-
-                var episode = await ApiClient.GetItemAsync(SelectedEpisode.Id, AuthenticationService.Current.LoggedInUserId);
-                return true;
-            }
-            catch (HttpException ex)
-            {
-                Utils.HandleHttpException("GetEpisode()", ex, NavigationService, Log);
-
-                App.ShowMessage(AppResources.ErrorEpisodeDetails);
-                return false;
-            }
-        }
-
         private async Task<bool> GetRecentItems()
         {
             try
