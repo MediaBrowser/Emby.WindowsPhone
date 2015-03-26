@@ -7,6 +7,7 @@ using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.LiveTv;
 using MediaBrowser.Model.Search;
+using MediaBrowser.Model.Sync;
 
 namespace MediaBrowser.WindowsPhone.Converters
 {
@@ -18,7 +19,7 @@ namespace MediaBrowser.WindowsPhone.Converters
             {
                 var type = value.GetType();
                 var manager = SimpleIoc.Default.GetInstance<IConnectionManager>();
-                var apiClient = manager.CurrentApiClient;
+                var apiClient = manager.GetApiClient(App.ServerInfo.Id);
                 if (type == typeof(BaseItemDto))
                 {
 
@@ -48,7 +49,7 @@ namespace MediaBrowser.WindowsPhone.Converters
                     var user = (UserDto)value;
                     if (user.HasPrimaryImage)
                     {
-                        var url = apiClient.GetUserImageUrl(user, new ImageOptions { MaxHeight = 173, MaxWidth = 173, Quality = Constants.ImageQuality });
+                        var url = apiClient.GetUserImageUrl(user, new ImageOptions { MaxHeight = 250, MaxWidth = 250, Quality = Constants.ImageQuality });
                         return new Uri(url);
                     }
                 }
@@ -60,7 +61,8 @@ namespace MediaBrowser.WindowsPhone.Converters
                     {
                         EnableImageEnhancers = App.SpecificSettings.EnableImageEnhancers,
                         MaxHeight = 159,
-                        MaxWidth = 159
+                        MaxWidth = 159,
+                        Quality = Constants.ImageQuality
                     };
 
                     switch (searchHint.Type)
@@ -79,7 +81,8 @@ namespace MediaBrowser.WindowsPhone.Converters
                     var imageOptions = new ImageOptions
                     {
                         EnableImageEnhancers = App.SpecificSettings.EnableImageEnhancers,
-                        ImageType = ImageType.Primary
+                        ImageType = ImageType.Primary,
+                        Quality = Constants.ImageQuality
                     };
 
                     if (imageType.Equals("backdrop"))
@@ -100,7 +103,8 @@ namespace MediaBrowser.WindowsPhone.Converters
                     var imageOptions = new ImageOptions
                     {
                         ImageType = ImageType.Primary,
-                        MaxHeight = 122
+                        MaxHeight = 122,
+                        Quality = Constants.ImageQuality
                     };
 
                     return item.HasPrimaryImage ? apiClient.GetImageUrl(item, imageOptions) : string.Empty;
@@ -113,7 +117,8 @@ namespace MediaBrowser.WindowsPhone.Converters
                     var imageOptions = new ImageOptions
                     {
                         ImageType = ImageType.Primary,
-                        MaxHeight = 250
+                        MaxHeight = 250,
+                        Quality = Constants.ImageQuality
                     };
 
                     return item.HasPrimaryImage ? apiClient.GetImageUrl(item, imageOptions) : string.Empty;
@@ -125,22 +130,36 @@ namespace MediaBrowser.WindowsPhone.Converters
                     var imageOptions = new ImageOptions
                     {
                         ImageType = ImageType.Primary,
+                        Quality = Constants.ImageQuality,
                         MaxHeight = 250
                     };
 
                     return item.ProgramInfo.HasPrimaryImage ? apiClient.GetImageUrl(item.ProgramInfo, imageOptions) : string.Empty;
                 }
-
                 if (type == typeof (ProgramInfoDto))
                 {
                     var item = (ProgramInfoDto) value;
                     var imageOptions = new ImageOptions
                     {
                         ImageType = ImageType.Primary,
+                        Quality = Constants.ImageQuality,
                         MaxHeight = 250
                     };
 
                     return item.HasPrimaryImage ? apiClient.GetImageUrl(item, imageOptions) : string.Empty;
+                }
+                if (type == typeof (SyncJob))
+                {
+                    var item = (SyncJob) value;
+                    var imageOptions = new ImageOptions
+                    {
+                        ImageType = ImageType.Primary,
+                        Quality = Constants.ImageQuality,
+                        MaxHeight = 250,
+                        Tag = item.PrimaryImageTag
+                    };
+
+                    return apiClient.GetImageUrl(item.PrimaryImageItemId, imageOptions);
                 }
             }
 
