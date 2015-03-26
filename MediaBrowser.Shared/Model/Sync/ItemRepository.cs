@@ -68,14 +68,9 @@ namespace MediaBrowser.WindowsPhone.Model.Sync
         {
             await LoadItems();
             var filteredItems = _items.Where(i => i.ServerId == query.ServerId);
-            if (!string.IsNullOrWhiteSpace(query.AlbumArtist))
+            if (!string.IsNullOrWhiteSpace(query.AlbumArtistId))
             {
-                if (query.AlbumArtist == "Unknown")
-                {
-                    filteredItems = filteredItems.Where(i => i.Item.AlbumArtist == query.AlbumArtist || i.Item.AlbumArtist == null);
-                }
-                else
-                    filteredItems = filteredItems.Where(i => i.Item.AlbumArtist == query.AlbumArtist);
+                filteredItems = filteredItems.Where(i => i.Item.Artists.Contains(query.AlbumArtistId));
             }
             if (!string.IsNullOrWhiteSpace(query.AlbumId))
                 filteredItems = filteredItems.Where(i => i.Item.AlbumId == query.AlbumId);
@@ -94,10 +89,22 @@ namespace MediaBrowser.WindowsPhone.Model.Sync
             return filteredItems.ToList();
         }
 
-        public async Task<List<string>> GetAlbumArtists(string serverId, string userId)
+        public async Task<List<LocalItemInfo>> GetAlbumArtists(string serverId, string userId)
         {
-            var items = await GetItemsInternal(i => i.ServerId == serverId && i.UserIdsWithAccess.Contains(userId) && i.Item.Type == "Audio");
-            return items.Select(x => x.Item.AlbumArtist ?? "Unknown").Distinct().ToList();
+            var items = await GetItemsInternal(i => i.ServerId == serverId &&
+                                                    i.UserIdsWithAccess.Contains(userId)
+                                                    && i.Item.Type == "Audio"
+                                                    && i.Item.AlbumArtists.Any());
+            var list = new List<LocalItemInfo>();
+            foreach (var item in items)
+            {
+                list.AddRange(item.Item.AlbumArtists.Select(artist => new LocalItemInfo
+                {
+                    Id = artist.Id, Name = artist.Name, ServerId = item.ServerId
+                }));
+            }
+
+            return list;
         }
 
         public async Task<List<LocalItemInfo>> GetTvSeries(string serverId, string userId)
@@ -109,9 +116,9 @@ namespace MediaBrowser.WindowsPhone.Model.Sync
             var groupedItems = items.GroupBy(x => x.Item.SeriesId);
             return groupedItems.Select(g => new LocalItemInfo
             {
-                Name = g.First().Item.SeriesName, 
-                Id = g.First().Item.SeriesId, 
-                ServerId = serverId, 
+                Name = g.First().Item.SeriesName,
+                Id = g.First().Item.SeriesId,
+                ServerId = serverId,
                 PrimaryImageTag = g.First().Item.SeriesPrimaryImageTag
             }).ToList();
         }
@@ -155,7 +162,7 @@ namespace MediaBrowser.WindowsPhone.Model.Sync
             var json = await _items.SerialiseAsync();
             await _storageService.WriteAllTextAsync(ItemsFile, json);
         }
-        
+
         private async Task<List<LocalItem>> GetItemsInternal(Func<LocalItem, bool> func)
         {
             await LoadItems();
