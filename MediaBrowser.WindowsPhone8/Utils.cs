@@ -151,7 +151,8 @@ namespace MediaBrowser.WindowsPhone
                         Name = g.Select(l => l.SeriesName).FirstOrDefault(),
                         Count = g.Count(),
                         CreatedDate = g.OrderByDescending(l => l.DateCreated).First().DateCreated,
-                        UserData = new UserItemDataDto { Played = g.All(l => l.UserData != null && l.UserData.Played) }
+                        UserData = new UserItemDataDto { Played = g.All(l => l.UserData != null && l.UserData.Played) },
+                        SupportsSync = g.All(x => x.SupportsSync.HasValue && x.SupportsSync.Value)
                     }).ToList();
                 var seriesList = new List<BaseItemDto>();
                 if (episodesBySeries.Any())
@@ -164,7 +165,8 @@ namespace MediaBrowser.WindowsPhone
                         DateCreated = series.CreatedDate,
                         Type = "Series",
                         ImageTags = new Dictionary<ImageType, string> { { ImageType.Primary, Guid.NewGuid().ToString() } },
-                        UserData = series.UserData
+                        UserData = series.UserData,
+                        SupportsSync = series.SupportsSync
                     }));
                 }
 

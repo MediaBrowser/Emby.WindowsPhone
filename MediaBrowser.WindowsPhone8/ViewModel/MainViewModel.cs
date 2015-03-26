@@ -16,6 +16,7 @@ using MediaBrowser.Model.Dto;
 using System.Threading.Tasks;
 using MediaBrowser.WindowsPhone.CimbalinoToolkit.Tiles;
 using MediaBrowser.WindowsPhone.Extensions;
+using MediaBrowser.WindowsPhone.Helpers;
 using MediaBrowser.WindowsPhone.Messaging;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Resources;
@@ -145,6 +146,21 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 Messenger.Default.Send(new NotificationMessage(Constants.Messages.NotifcationNavigationMsg));
 
                 NavigationService.NavigateTo(Constants.Pages.NotificationsView);
+            });
+
+            ItemOfflineCommand = new RelayCommand<BaseItemDto>(async item =>
+            {
+                if (!item.CanTakeOffline()) return;
+
+                try
+                {
+                    var request = SyncRequestHelper.CreateRequest(item.Id, item.GetTvTypeName());
+                    await SyncService.Current.AddJobAsync(request);
+                }
+                catch (HttpException ex)
+                {
+                    Utils.HandleHttpException("ItemOfflineCommand", ex, NavigationService, Log);
+                }
             });
         }
 
@@ -392,6 +408,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public RelayCommand<BaseItemDto> PinCollectionCommand { get; set; }
         public RelayCommand<BaseItemDto> PlayMovieCommand { get; set; }
         public RelayCommand<BaseItemDto> ResumeMovieCommand { get; set; }
+        public RelayCommand<BaseItemDto> ItemOfflineCommand { get; set; }
         public ObservableCollection<BaseItemDto> Folders { get; set; }
         public ObservableCollection<BaseItemDto> RecentItems { get; set; }
         public ObservableCollection<BaseItemDto> FavouriteItems { get; set; }

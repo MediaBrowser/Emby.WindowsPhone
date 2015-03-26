@@ -34,7 +34,6 @@
                 <cimbalino:ApplicationBarIconButton Text="{Binding LocalizedResources.AppBarOffline, Source={StaticResource LocalizedStrings}}"
                                                     Command="{Binding ShowOfflineCommand}"
                                                     IconUri="/Icons/appbar.cloud.png"
-                                                    IsEnabled="{Binding SelectedTvSeries.SupportsSync}"
                                                     IsVisible="{Binding Auth.LoggedInUser.Policy.EnableSync, Source={StaticResource Locator}}"/>
             </cimbalino:ApplicationBarBehavior.Buttons>
             <cimbalino:ApplicationBarBehavior.MenuItems>

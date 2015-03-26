@@ -226,7 +226,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             ShowOfflineCommand = new RelayCommand(async () =>
             {
                 await TakeOffline(SelectedTvSeries);
-            });
+            }, () => SelectedTvSeries.SupportsSync.HasValue && SelectedTvSeries.SupportsSync.Value);
 
             ItemOfflineCommand = new RelayCommand<BaseItemDto>(async item =>
             {
@@ -489,6 +489,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         private void OnSelectedEpisodeChanged()
         {
             CanResume = SelectedEpisode != null && SelectedEpisode.CanResume;
+        }
+
+        [UsedImplicitly]
+        private void OnSelectedTvSeriesChanged()
+        {
+            ShowOfflineCommand.RaiseCanExecuteChanged();
         }
     }
 }

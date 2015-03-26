@@ -34,10 +34,8 @@ namespace MediaBrowser.WindowsPhone.Extensions
                     return item.EpisodeString();
                 case "season":
                     return item.SeasonString();
-                case "series":
-                    return item.Name;
                 default:
-                    return string.Empty;
+                    return item.Name;
             }
         }
     }
