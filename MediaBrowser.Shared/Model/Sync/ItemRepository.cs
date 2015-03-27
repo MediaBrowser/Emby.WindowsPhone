@@ -70,7 +70,7 @@ namespace MediaBrowser.WindowsPhone.Model.Sync
             var filteredItems = _items.Where(i => i.ServerId == query.ServerId);
             if (!string.IsNullOrWhiteSpace(query.AlbumArtistId))
             {
-                filteredItems = filteredItems.Where(i => i.Item.Artists.Contains(query.AlbumArtistId));
+                filteredItems = filteredItems.Where(i => i.Item.AlbumArtists.Any(x => x.Id == query.AlbumArtistId));
             }
             if (!string.IsNullOrWhiteSpace(query.AlbumId))
                 filteredItems = filteredItems.Where(i => i.Item.AlbumId == query.AlbumId);
