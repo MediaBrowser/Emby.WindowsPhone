@@ -296,22 +296,20 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                 if (m.Notification.Equals(Constants.Messages.SetPlaylistAsMsg))
                 {
+                    BackgroundAudioPlayer.Instance.Stop();
+                    BackgroundAudioPlayer.Instance.Track = null;
+
                     await _playlistHelper.ClearPlaylist();
 
                     await _playlistHelper.AddToPlaylist(m.Content);
 
-                    await PlayPause();
+                    var isNowPlaying = await PlayPause();
 
                     NavigationService.NavigateTo(Constants.Pages.NowPlayingView);
 
-                    if (BackgroundAudioPlayer.Instance.PlayerState != PlayState.Playing)
+                    if (!isNowPlaying)
                     {
                         BackgroundAudioPlayer.Instance.Play();
-                    }
-
-                    if (BackgroundAudioPlayer.Instance.Track != null)
-                    {
-                        BackgroundAudioPlayer.Instance.SkipNext();
                     }
                 }
 
@@ -338,8 +336,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             });
         }
 
-        private async Task PlayPause()
+        private async Task<bool> PlayPause()
         {
+            var isNowPlaying = false;
             if (BackgroundAudioPlayer.Instance.PlayerState == PlayState.Playing)
             {
                 BackgroundAudioPlayer.Instance.Stop();
@@ -347,9 +346,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             else
             {
                 BackgroundAudioPlayer.Instance.Play();
+                isNowPlaying = true;
             }
 
             await GetPlaylistItems();
+            return isNowPlaying;
         }
 
         private void GetTrack(bool isNextNotPrevious)
