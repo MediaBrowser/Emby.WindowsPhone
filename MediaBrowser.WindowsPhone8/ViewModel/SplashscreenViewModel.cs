@@ -3,14 +3,13 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using Cimbalino.Phone.Toolkit.Services;
+using Cimbalino.Toolkit.Services;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Model.Photo;
 using MediaBrowser.WindowsPhone.Resources;
-using Microsoft.Phone.Shell;
 using INavigationService = MediaBrowser.WindowsPhone.Model.Interfaces.INavigationService;
 
 namespace MediaBrowser.WindowsPhone.ViewModel
@@ -23,7 +22,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     /// </summary>
     public class SplashscreenViewModel : ViewModelBase
     {
-        private readonly IApplicationSettingsService _applicationSettings;
+        private readonly IApplicationSettingsServiceHandler _applicationSettings;
 
         private SpecificSettings _specificSettings;
         private UploadSettings _uploadSettings;
@@ -36,7 +35,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public SplashscreenViewModel(IConnectionManager connectionManager, INavigationService navigationService, IApplicationSettingsService applicationSettings)
             : base(navigationService, connectionManager)
         {
-            _applicationSettings = applicationSettings;
+            _applicationSettings = applicationSettings.Legacy;
         }
 
         public override void WireMessages()
@@ -128,11 +127,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 {
                     App.ServerInfo = server;
                     _applicationSettings.Set(Constants.Settings.DefaultServerConnection, server);
-                    _applicationSettings.Save();
 
                     _savedServer = server;
 
-                    _applicationSettings.Reset(Constants.Settings.ConnectionSettings);
+                    _applicationSettings.Remove(Constants.Settings.ConnectionSettings);
                     _connectionDetails = null;
                 }
             }

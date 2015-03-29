@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
+using Cimbalino.Toolkit.Services;
 using GalaSoft.MvvmLight.Command;
 using JetBrains.Annotations;
 using MediaBrowser.Model.ApiClient;
@@ -11,10 +12,10 @@ using GalaSoft.MvvmLight.Messaging;
 using System.Linq;
 using System.Threading.Tasks;
 using MediaBrowser.Model.Dto;
-using MediaBrowser.WindowsPhone.Model.Interfaces;
 using MediaBrowser.WindowsPhone.Resources;
 using MediaBrowser.WindowsPhone.Services;
 using ScottIsAFool.WindowsPhone;
+using INavigationService = MediaBrowser.WindowsPhone.Model.Interfaces.INavigationService;
 
 
 namespace MediaBrowser.WindowsPhone.ViewModel
@@ -30,15 +31,17 @@ namespace MediaBrowser.WindowsPhone.ViewModel
     /// </summary>
     public class TvViewModel : ViewModelBase
     {
+        private readonly IMessageBoxService _messageBox;
         public bool ShowDataLoaded;
         public bool SeasonDataLoaded;
 
         /// <summary>
         /// Initializes a new instance of the TvViewModel class.
         /// </summary>
-        public TvViewModel(INavigationService navigationService, IConnectionManager connectionManager) 
+        public TvViewModel(INavigationService navigationService, IConnectionManager connectionManager, IMessageBoxService messageBox) 
             : base(navigationService, connectionManager)
         {
+            _messageBox = messageBox;
             RecentItems = new ObservableCollection<BaseItemDto>();
             Episodes = new List<BaseItemDto>();
             CanUpdateFavourites = true;
@@ -78,6 +81,23 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 if (m.Notification.Equals(Constants.Messages.ClearEpisodesMsg))
                 {
                     Episodes.Clear();
+                }
+
+                if (m.Notification.Equals(Constants.Messages.RefreshResumeMsg))
+                {
+                    var id = (string)m.Sender;
+                    var ticks = (long)m.Target;
+                    if (id == SelectedEpisode.Id)
+                    {
+                        if (SelectedEpisode.UserData == null)
+                        {
+                            SelectedEpisode.UserData = new UserItemDataDto();
+                        }
+
+                        SelectedEpisode.UserData.PlaybackPositionTicks = ticks;
+
+                        CanResume = SelectedEpisode.CanResume;
+                    }
                 }
             });
         }
@@ -151,11 +171,13 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             NextEpisodeCommand = new RelayCommand(() =>
             {
                 SelectedEpisode = SelectedEpisode.IndexNumber + 1 > Episodes.Count ? Episodes[0] : Episodes[SelectedEpisode.IndexNumber.Value];
+                CanResume = SelectedEpisode != null && SelectedEpisode.CanResume;
             });
 
             PreviousEpisodeCommand = new RelayCommand(() =>
             {
                 SelectedEpisode = SelectedEpisode.IndexNumber - 1 == 0 ? Episodes[Episodes.Count - 1] : Episodes[SelectedEpisode.IndexNumber.Value - 2];
+                CanResume = SelectedEpisode != null && SelectedEpisode.CanResume;
             });
 
             AddRemoveFavouriteCommand = new RelayCommand<BaseItemDto>(async item =>
@@ -190,24 +212,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             });
 
             NavigateTo = new RelayCommand<BaseItemDto>(NavigationService.NavigateTo);
-        }
-
-        private async Task<bool> GetEpisode()
-        {
-            try
-            {
-                Log.Info("Getting information for episode [{0}] ({1})", SelectedEpisode.Name, SelectedEpisode.Id);
-
-                var episode = await ApiClient.GetItemAsync(SelectedEpisode.Id, AuthenticationService.Current.LoggedInUserId);
-                return true;
-            }
-            catch (HttpException ex)
-            {
-                Utils.HandleHttpException("GetEpisode()", ex, NavigationService, Log);
-
-                App.ShowMessage(AppResources.ErrorEpisodeDetails);
-                return false;
-            }
         }
 
         private async Task<bool> GetRecentItems()
@@ -321,6 +325,19 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                     try
                     {
+                        if (string.IsNullOrEmpty(SelectedEpisode.SeriesId))
+                        {
+                            var episode = await ApiClient.GetItemAsync(SelectedEpisode.Id, AuthenticationService.Current.LoggedInUserId);
+                            if (episode == null)
+                            {
+                                await _messageBox.ShowAsync(AppResources.ErrorEpisodeDetails);
+                                NavigationService.GoBack();
+                                return;
+                            }
+
+                            SelectedEpisode = episode;
+                        }
+
                         var query = new EpisodeQuery
                         {
                             UserId = AuthenticationService.Current.LoggedInUserId,
@@ -350,6 +367,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 if (SelectedEpisode != null)
                 {
                     SelectedEpisode = Episodes.FirstOrDefault(x => x.IndexNumber == index);
+                    CanResume = SelectedEpisode != null && SelectedEpisode.CanResume;
                 }
             }
         }
@@ -359,6 +377,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         {
             Episodes = new List<BaseItemDto>();
             SelectedEpisode = null;
+            CanResume = false;
         }
 
         public RelayCommand<BaseItemDto> MarkAsWatchedEpisodeViewCommand
@@ -411,5 +430,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public RelayCommand<BaseItemDto> AddRemoveFavouriteCommand { get; set; }
         public RelayCommand<BaseItemPerson> ShowOtherFilmsCommand { get; set; }
         public bool CanUpdateFavourites { get; set; }
+        public bool CanResume { get; set; }
+
+        [UsedImplicitly]
+        private void OnSelectedEpisodeChanged()
+        {
+            CanResume = SelectedEpisode != null && SelectedEpisode.CanResume;
+        }
     }
 }

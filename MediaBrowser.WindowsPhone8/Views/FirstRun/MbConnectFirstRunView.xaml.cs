@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 using System.Windows.Navigation;
-using Cimbalino.Phone.Toolkit.Services;
+using Cimbalino.Toolkit.Services;
 using GalaSoft.MvvmLight.Ioc;
 
 namespace MediaBrowser.WindowsPhone.Views.FirstRun
@@ -18,10 +18,9 @@ namespace MediaBrowser.WindowsPhone.Views.FirstRun
         {
             base.OnNavigatedFrom(e);
 
-            var appSettings = SimpleIoc.Default.GetInstance<IApplicationSettingsService>();
+            var appSettings = SimpleIoc.Default.GetInstance<IApplicationSettingsService>().Legacy;
 
             appSettings.Set(Constants.Settings.DoNotShowFirstRun, true);
-            appSettings.Save();
         }
 
         private void LoginButton_OnTap(object sender, GestureEventArgs e)
@@ -31,7 +30,7 @@ namespace MediaBrowser.WindowsPhone.Views.FirstRun
 
         private void SignUpButton_OnTap(object sender, GestureEventArgs e)
         {
-            new WebBrowserService().Show("http://mediabrowser.tv/community/index.php?app=core&module=global&section=register");
+            new LauncherService().LaunchUriAsync("http://mediabrowser.tv/community/index.php?app=core&module=global&section=register");
         }
 
         private void SkipButton_OnTap(object sender, GestureEventArgs e)

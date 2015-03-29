@@ -33,7 +33,7 @@ namespace MediaBrowser.WindowsPhone.Views
 
         private void PlaylistSelector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var vm = DataContext as PlaylistViewModel;
+            var vm = DataContext as NowPlayingViewModel;
             if (vm != null)
             {
                 vm.SelectionChangedCommand.Execute(e);

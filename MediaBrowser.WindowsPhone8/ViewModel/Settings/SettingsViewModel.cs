@@ -7,12 +7,13 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using Cimbalino.Phone.Toolkit.Services;
+using Cimbalino.Toolkit.Services;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Ioc;
 using JetBrains.Annotations;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Dto;
+using MediaBrowser.WindowsPhone.CimbalinoToolkit;
 using MediaBrowser.WindowsPhone.Extensions;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Model.Connection;
@@ -32,7 +33,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Settings
     /// </summary>
     public class SettingsViewModel : ViewModelBase
     {
-        private readonly IApplicationSettingsService _applicationSettings;
+        private readonly IApplicationSettingsServiceHandler _applicationSettings;
         private readonly IMessageBoxService _messageBox;
 
         public bool LoadingFromSettings;
@@ -45,7 +46,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Settings
         public SettingsViewModel(IConnectionManager connectionManager, INavigationService navigationService, IApplicationSettingsService applicationSettings, IMessageBoxService messageBox)
             : base(navigationService, connectionManager)
         {
-            _applicationSettings = applicationSettings;
+            _applicationSettings = applicationSettings.Legacy;
             _messageBox = messageBox;
 
             if (IsInDesignMode)
@@ -182,7 +183,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Settings
             if (result == 0)
             {
                 _applicationSettings.Set(Constants.Settings.SpecificSettings, App.SpecificSettings);
-                _applicationSettings.Save();
 
                 Application.Current.Terminate();
             }
@@ -404,7 +404,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Settings
         {
             App.ServerInfo = server;
             _applicationSettings.Set(Constants.Settings.DefaultServerConnection, server);
-            _applicationSettings.Save();
         }
 
         public RelayCommand GoToMbConnectProfileCommand

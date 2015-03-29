@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using MediaBrowser.Dlna.Profiles;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Dlna;
 using MediaBrowser.Model.Dto;
@@ -35,7 +34,7 @@ namespace MediaBrowser.WindowsPhone.Extensions
 
         internal static PlaylistItem ToPlaylistItem(this BaseItemDto item, IApiClient apiClient)
         {
-            var profile = WindowsPhoneProfile.GetProfile();
+            var profile = VideoProfileHelper.GetWindowsPhoneProfile();
             var options = new AudioOptions
             {
                 Profile = profile,
@@ -48,7 +47,7 @@ namespace MediaBrowser.WindowsPhone.Extensions
             var builder = new StreamBuilder();
             var streamInfo = builder.BuildAudioItem(options);
 
-            var streamUrl = streamInfo.ToUrl(apiClient.GetApiUrl("/"));
+            var streamUrl = streamInfo.ToUrl(apiClient.GetApiUrl("/"), apiClient.AccessToken);
 
             var converter = new Converters.ImageUrlConverter();
             return new PlaylistItem
@@ -69,11 +68,11 @@ namespace MediaBrowser.WindowsPhone.Extensions
         internal static async Task<List<PlaylistItem>> ToPlayListItems(this List<BaseItemDto> list, IApiClient apiClient)
         {
             var newList = new List<PlaylistItem>();
-            await Task.Factory.StartNew(() => list.ForEach(item =>
+            list.ForEach(item =>
             {
                 var playlistItem = item.ToPlaylistItem(apiClient);
                 newList.Add(playlistItem);
-            }));
+            });
 
             return newList;
         }

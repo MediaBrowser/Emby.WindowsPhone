@@ -8,8 +8,7 @@
                 xmlns:scott="clr-namespace:ScottIsAFool.WindowsPhone.Controls;assembly=ScottIsAFool.WindowsPhone"
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                
-                xmlns:cimbalino="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
+                xmlns:cimbalino="clr-namespace:Cimbalino.Toolkit.Behaviors;assembly=Cimbalino.Toolkit"
                 xmlns:controls="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
                 xmlns:system="clr-namespace:System;assembly=mscorlib"
                 xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
@@ -32,6 +31,35 @@
         <behaviours:MBSysTray Text="{Binding ProgressText}"
                               IsVisible="{Binding ProgressIsVisible}"
                               IsIndeterminate="{Binding ProgressIsVisible}" />
+        <cimbalino:ApplicationBarBehavior IsMenuEnabled="True">
+            <cimbalino:ApplicationBarIconButton Text="{Binding LocalizedResources.AppBarSearch, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                IconUri="/Icons/appbar.feature.search.rest.png"
+                                                Command="{Binding NavigateToAPage}"
+                                                CommandParameter="/Views/SearchView.xaml" />
+            <cimbalino:ApplicationBarBehavior.MenuItems>
+                <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarRefreshInformation, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                  Command="{Binding RefreshDataCommand}" />
+                <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarNowPlaying, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                  Command="{Binding Main.NavigateToAPage, Source={StaticResource Locator}}"
+                                                  CommandParameter="/Views/NowPlayingView.xaml" />
+                <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarRemote, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                  Command="{Binding NavigateToAPage}"
+                                                  CommandParameter="/Views/Remote/RemoteView.xaml" 
+                                                  IsVisible="{Binding Auth.LoggedInUser.Policy.EnableRemoteControlOfOtherUsers, Source={StaticResource Locator}}"/>
+                <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarNotifications, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                  IsVisible="{Binding LoggedInUser.Configuration.IsAdministrator, Source={StaticResource AppSettings}}"
+                                                  Command="{Binding NavigateToNotificationsCommand}" />
+                <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarSettings, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                  Command="{Binding NavigateToAPage}"
+                                                  CommandParameter="/Views/SettingsView.xaml" />
+                <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarChangeProfile, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                  Command="{Binding ChangeProfileCommand}"
+                                                  IsVisible="{Binding Auth.SignedInUsingConnect, Source={StaticResource Locator}, Converter={StaticResource NegativeBooleanConverter}}" />
+                <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarAbout, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                  Command="{Binding NavigateToAPage}"
+                                                  CommandParameter="/YourLastAboutDialog;component/AboutPage.xaml" />
+            </cimbalino:ApplicationBarBehavior.MenuItems>
+        </cimbalino:ApplicationBarBehavior>
     </i:Interaction.Behaviors>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
@@ -67,38 +95,6 @@
 
     <!--LayoutRoot contains the root grid where all other page content is placed-->
     <Grid x:Name="LayoutRoot">
-          <!--Background="{StaticResource MediaBrowserBackground}">-->
-
-        <i:Interaction.Behaviors>
-            <cimbalino:ApplicationBarBehavior IsMenuEnabled="True">
-                <cimbalino:ApplicationBarIconButton Text="{Binding LocalizedResources.AppBarSearch, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
-                                                    IconUri="/Icons/appbar.feature.search.rest.png"
-                                                    Command="{Binding NavigateToAPage}"
-                                                    CommandParameter="/Views/SearchView.xaml" />
-                <cimbalino:ApplicationBarBehavior.MenuItems>
-                    <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarRefreshInformation, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
-                                                      Command="{Binding RefreshDataCommand}" />
-                    <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarNowPlaying, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
-                                                      Command="{Binding Main.NavigateToAPage, Source={StaticResource Locator}}"
-                                                      CommandParameter="/Views/NowPlayingView.xaml" />
-                    <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarRemote, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
-                                                      Command="{Binding NavigateToAPage}"
-                                                      CommandParameter="/Views/Remote/RemoteView.xaml" />
-                    <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarNotifications, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
-                                                      IsVisible="{Binding LoggedInUser.Configuration.IsAdministrator, Source={StaticResource AppSettings}}"
-                                                      Command="{Binding NavigateToNotificationsCommand}" />
-                    <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarSettings, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
-                                                      Command="{Binding NavigateToAPage}"
-                                                      CommandParameter="/Views/SettingsView.xaml" />
-                    <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarChangeProfile, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
-                                                      Command="{Binding ChangeProfileCommand}" 
-                                                      IsVisible="{Binding Auth.SignedInUsingConnect, Source={StaticResource Locator}, Converter={StaticResource NegativeBooleanConverter}}"/>
-                    <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarAbout, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
-                                                      Command="{Binding NavigateToAPage}"
-                                                      CommandParameter="/YourLastAboutDialog;component/AboutPage.xaml" />
-                </cimbalino:ApplicationBarBehavior.MenuItems>
-            </cimbalino:ApplicationBarBehavior>
-        </i:Interaction.Behaviors>
         <phone:Panorama Title=""
                         HeaderTemplate="{StaticResource LikeWp7ItemHeaderTemplate}"
                         Background="{StaticResource MediaBrowserPanoBackground}">

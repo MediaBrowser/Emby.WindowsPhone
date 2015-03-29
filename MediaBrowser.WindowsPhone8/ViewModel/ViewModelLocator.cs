@@ -1,6 +1,5 @@
-﻿using Cimbalino.Phone.Toolkit.Services;
+﻿using Cimbalino.Toolkit.Services;
 using GalaSoft.MvvmLight.Ioc;
-using MediaBrowser.Design;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.WindowsPhone.Design;
 using MediaBrowser.WindowsPhone.Logging;
@@ -44,8 +43,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             if (ViewModelBase.IsInDesignModeStatic)
             {
-                //if (!SimpleIoc.Default.IsRegistered<IExtendedApiClient>())
-                //    SimpleIoc.Default.Register<IExtendedApiClient>(() => new ExtendedApiClient(new MBLogger(), "scottisafool.homeserver.com", "Windows Phone 8", device, ApplicationManifest.Current.App.Version, new ClientCapabilities { SupportsContentUploading = true, SupportsMediaControl = false }));
                 SimpleIoc.Default.Register<INavigationService, NavigationService>();
                 SimpleIoc.Default.Register<FolderViewModel>();
                 SimpleIoc.Default.Register<MovieViewModel>();
@@ -59,29 +56,21 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             {
                 SimpleIoc.Default.Register<INavigationService, NavigationService>();
                 SimpleIoc.Default.Register<ISettingsService, SettingsService>();
-                //if (!SimpleIoc.Default.IsRegistered<IExtendedApiClient>())
-                //    SimpleIoc.Default.Register<IExtendedApiClient>(() => new ExtendedApiClient(new MBLogger(), "dummy", "Windows Phone 8", device, ApplicationManifest.Current.App.Version, new ClientCapabilities{SupportsContentUploading = true, SupportsMediaControl = false}));
 
                 if(!SimpleIoc.Default.IsRegistered<IConnectionManager>())
                     SimpleIoc.Default.Register(() => SharedUtils.CreateConnectionManager(device, new MBLogger()));
-
-                if (!SimpleIoc.Default.IsRegistered<IUserExtendedPropertiesService>())
-                    SimpleIoc.Default.Register<IUserExtendedPropertiesService, UserExtendedPropertiesService>();
-
+                
                 if (!SimpleIoc.Default.IsRegistered<IApplicationSettingsService>())
                     SimpleIoc.Default.Register<IApplicationSettingsService, ApplicationSettingsService>();
-
+                
                 if (!SimpleIoc.Default.IsRegistered<IStorageService>())
                     SimpleIoc.Default.Register<IStorageService, StorageService>();
-
-                if (!SimpleIoc.Default.IsRegistered<IAsyncStorageService>())
-                    SimpleIoc.Default.Register<IAsyncStorageService, AsyncStorageService>();
 
                 if(!SimpleIoc.Default.IsRegistered<AuthenticationService>())
                     SimpleIoc.Default.Register<AuthenticationService>(true);
 
-                if(!SimpleIoc.Default.IsRegistered<Services.LockScreenService>())
-                    SimpleIoc.Default.Register<Services.LockScreenService>(true);
+                if(!SimpleIoc.Default.IsRegistered<LockScreenService>())
+                    SimpleIoc.Default.Register<LockScreenService>(true);
 
                 if(!SimpleIoc.Default.IsRegistered<TileService>())
                     SimpleIoc.Default.Register<TileService>(true);
@@ -99,7 +88,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             SimpleIoc.Default.Register<SettingsViewModel>();
             SimpleIoc.Default.Register<MusicViewModel>();
             SimpleIoc.Default.Register<SearchViewModel>();
-            SimpleIoc.Default.Register<PlaylistViewModel>(true);
+            SimpleIoc.Default.Register<NowPlayingViewModel>(true);
             SimpleIoc.Default.Register<NotificationsViewModel>();
             SimpleIoc.Default.Register<RemoteViewModel>();
             SimpleIoc.Default.Register<MovieCollectionViewModel>();
@@ -209,9 +198,9 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             get { return ServiceLocator.Current.GetInstance<SearchViewModel>(); }
         }
 
-        public PlaylistViewModel Playlist
+        public NowPlayingViewModel NowPlaying
         {
-            get { return ServiceLocator.Current.GetInstance<PlaylistViewModel>(); }
+            get { return ServiceLocator.Current.GetInstance<NowPlayingViewModel>(); }
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",

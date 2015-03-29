@@ -1,6 +1,6 @@
 ﻿using System.Text;
 using System.Windows;
-using Cimbalino.Phone.Toolkit.Helpers;
+using Cimbalino.Toolkit.Helpers;
 using Microsoft.Phone.Tasks;
 using ScottIsAFool.WindowsPhone.Logging;
 

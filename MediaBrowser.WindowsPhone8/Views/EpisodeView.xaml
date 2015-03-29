@@ -7,12 +7,12 @@
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
                 xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
-                xmlns:cimbalino="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
                 xmlns:controls="clr-namespace:MediaBrowser.WindowsPhone.Controls"
                 xmlns:coding4Fun="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
                 xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
                 xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
                 xmlns:converters="clr-namespace:MediaBrowser.WindowsPhone.Converters"
+                xmlns:cimbalino="clr-namespace:Cimbalino.Toolkit.Behaviors;assembly=Cimbalino.Toolkit"
                 mc:Ignorable="d"
                 d:DesignWidth="480"
                 d:DesignHeight="696"
@@ -29,20 +29,40 @@
         <behaviours:MBSysTray Text="{Binding ProgressText}"
                               IsVisible="{Binding ProgressIsVisible}"
                               IsIndeterminate="{Binding ProgressIsVisible}" />
+        <cimbalino:ApplicationBarBehavior IsMenuEnabled="True">
+            <cimbalino:ApplicationBarIconButton Command="{Binding PreviousEpisodeCommand}"
+                                                Text="{Binding LocalizedResources.AppBarPrevious, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                IconUri="/icons/appbar.back.rest.png" />
+            <cimbalino:ApplicationBarIconButton Text="{Binding LocalizedResources.AppBarPlayOn, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                IconUri="/Icons/appbar.connection.playon.png"
+                                                Command="{Binding Remote.SendPlayCommand, Source={StaticResource Locator}}"
+                                                CommandParameter="{Binding SelectedEpisode.Id}" />
+            <cimbalino:ApplicationBarIconButton Text="{Binding LocalizedResources.AppBarNext, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                Command="{Binding NextEpisodeCommand}"
+                                                IconUri="/icons/appbar.next.rest.png" />
+            <cimbalino:ApplicationBarBehavior.MenuItems>
+                <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarResume, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                  IsEnabled="{Binding CanResume}"
+                                                  Command="{Binding Main.ResumeMovieCommand, Source={StaticResource Locator}}"
+                                                  CommandParameter="{Binding SelectedEpisode}" />
+                <cimbalino:ApplicationBarMenuItem Text="{Binding SelectedEpisode.UserData.IsFavorite, Converter={StaticResource FavouritesConverter}, ConverterParameter=fulltext}"
+                                                  Command="{Binding AddRemoveFavouriteCommand}"
+                                                  CommandParameter="{Binding SelectedEpisode}"
+                                                  IsEnabled="{Binding CanUpdateFavourites}" />
+                <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.LabelAddToPlaylist, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                  Command="{Binding AddToPlaylist.AddToPlaylistCommand, Source={StaticResource Locator}}"
+                                                  CommandParameter="{Binding SelectedEpisode}" />
+                <cimbalino:ApplicationBarMenuItem Text="{Binding SelectedEpisode.UserData.Played, Converter={StaticResource MarkAsWatchedConverter}}"
+                                                  Command="{Binding DataContext.MarkAsWatchedEpisodeViewCommand, ElementName=LayoutRoot}"
+                                                  CommandParameter="{Binding SelectedEpisode}" />
+            </cimbalino:ApplicationBarBehavior.MenuItems>
+        </cimbalino:ApplicationBarBehavior>
     </i:Interaction.Behaviors>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding EpisodePageLoaded}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
-
-    <scott:BasePage.Resources>
-        <converters:VirtualConverter x:Key="VirtualConverter" />
-        <converters:VirtualVisibilityConverter x:Key="VirtualVisibilityConverter" />
-        <converters:BooleanToStringConverter x:Key="MarkAsWatchedConverter"
-                                             TrueValue="{Binding LocalizedResources.AppBarMarkAsUnwatched, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
-                                             FalseValue="{Binding LocalizedResources.AppBarMarkAsWatched, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}" />
-    </scott:BasePage.Resources>
 
     <toolkit:TransitionService.NavigationInTransition>
         <toolkit:NavigationInTransition>
@@ -67,36 +87,6 @@
 
     <Grid x:Name="LayoutRoot"
           Background="{StaticResource MediaBrowserBackground}">
-        <i:Interaction.Behaviors>
-            <cimbalino:ApplicationBarBehavior IsMenuEnabled="True">
-                <cimbalino:ApplicationBarIconButton Command="{Binding PreviousEpisodeCommand}"
-                                                    Text="{Binding LocalizedResources.AppBarPrevious, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
-                                                    IconUri="/icons/appbar.back.rest.png" />
-                <cimbalino:ApplicationBarIconButton Text="{Binding LocalizedResources.AppBarPlayOn, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
-                                                    IconUri="/Icons/appbar.connection.playon.png"
-                                                    Command="{Binding Remote.SendPlayCommand, Source={StaticResource Locator}}"
-                                                    CommandParameter="{Binding SelectedEpisode.Id}" />
-                <cimbalino:ApplicationBarIconButton Text="{Binding LocalizedResources.AppBarNext, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
-                                                    Command="{Binding NextEpisodeCommand}"
-                                                    IconUri="/icons/appbar.next.rest.png" />
-                <cimbalino:ApplicationBarBehavior.MenuItems>
-                    <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarResume, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
-                                                      IsEnabled="{Binding SelectedEpisode.CanResume}"
-                                                      Command="{Binding Main.ResumeMovieCommand, Source={StaticResource Locator}}"
-                                                      CommandParameter="{Binding SelectedEpisode}" />
-                    <cimbalino:ApplicationBarMenuItem Text="{Binding SelectedEpisode.UserData.IsFavorite, Converter={StaticResource FavouritesConverter}, ConverterParameter=fulltext}"
-                                                      Command="{Binding AddRemoveFavouriteCommand}"
-                                                      CommandParameter="{Binding SelectedEpisode}"
-                                                      IsEnabled="{Binding CanUpdateFavourites}" />
-                    <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.LabelAddToPlaylist, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
-                                                      Command="{Binding AddToPlaylist.AddToPlaylistCommand, Source={StaticResource Locator}}"
-                                                      CommandParameter="{Binding SelectedEpisode}"/>
-                    <cimbalino:ApplicationBarMenuItem Text="{Binding SelectedEpisode.UserData.Played, Converter={StaticResource MarkAsWatchedConverter}}"
-                                                      Command="{Binding DataContext.MarkAsWatchedEpisodeViewCommand, ElementName=LayoutRoot}"
-                                                      CommandParameter="{Binding SelectedEpisode}" />
-                </cimbalino:ApplicationBarBehavior.MenuItems>
-            </cimbalino:ApplicationBarBehavior>
-        </i:Interaction.Behaviors>
         <Grid Margin="0,32,0,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />

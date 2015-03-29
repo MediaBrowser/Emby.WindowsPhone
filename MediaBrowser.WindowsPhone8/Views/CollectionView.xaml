@@ -10,8 +10,7 @@
                 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
                 xmlns:controls="clr-namespace:ScottIsAFool.WindowsPhone.Controls;assembly=ScottIsAFool.WindowsPhone"
                 xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
-                
-                xmlns:cimbalino="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
+                xmlns:cimbalino="clr-namespace:Cimbalino.Toolkit.Behaviors;assembly=Cimbalino.Toolkit"
                 xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
                 xmlns:c4F="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
                 xmlns:local="clr-namespace:MediaBrowser.WindowsPhone.Controls"
@@ -34,6 +33,12 @@
         <behaviours:MBSysTray Text="{Binding ProgressText}"
                               IsVisible="{Binding ProgressIsVisible}"
                               IsIndeterminate="{Binding ProgressIsVisible}" />
+        <cimbalino:ApplicationBarBehavior>
+            <cimbalino:ApplicationBarIconButton IconUri="{Binding CanPinCollection, Converter={StaticResource PinnedItemConverter}}"
+                                                Text="{Binding CanPinCollection, Converter={StaticResource PinnedItemConverter}, ConverterParameter=text}"
+                                                Command="{Binding Main.PinCollectionCommand, Source={StaticResource Locator}}"
+                                                CommandParameter="{Binding SelectedFolder}" />
+        </cimbalino:ApplicationBarBehavior>
     </i:Interaction.Behaviors>
 
     <toolkit:TransitionService.NavigationInTransition>
@@ -59,14 +64,6 @@
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot">
-        <i:Interaction.Behaviors>
-            <cimbalino:ApplicationBarBehavior>
-                <cimbalino:ApplicationBarIconButton IconUri="{Binding CanPinCollection, Converter={StaticResource PinnedItemConverter}}"
-                                                    Text="{Binding CanPinCollection, Converter={StaticResource PinnedItemConverter}, ConverterParameter=text}"
-                                                    Command="{Binding Main.PinCollectionCommand, Source={StaticResource Locator}}"
-                                                    CommandParameter="{Binding SelectedFolder}" />
-            </cimbalino:ApplicationBarBehavior>
-        </i:Interaction.Behaviors>
         <phone:Panorama Title="{Binding SelectedFolder.Name, Converter={StaticResource StringCaseConverter}}"
                         HeaderTemplate="{StaticResource LikeWp7ItemHeaderTemplate}"
                         TitleTemplate="{StaticResource LikeWp7TitleTemplate}"

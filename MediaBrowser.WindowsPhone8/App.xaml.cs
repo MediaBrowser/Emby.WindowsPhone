@@ -4,10 +4,11 @@ using System.Windows;
 using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Navigation;
-using Cimbalino.Phone.Toolkit.Helpers;
-using Cimbalino.Phone.Toolkit.Services;
+using Cimbalino.Toolkit.Helpers;
+using Cimbalino.Toolkit.Services;
 using Coding4Fun.Toolkit.Controls;
 using GalaSoft.MvvmLight.Ioc;
+using GalaSoft.MvvmLight.Threading;
 using MediaBrowser.Model;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.WindowsPhone.Model;
@@ -187,10 +188,9 @@ namespace MediaBrowser.WindowsPhone
 
         private void SaveSettings()
         {
-            var ast = SimpleIoc.Default.GetInstance<IApplicationSettingsService>();
+            var ast = SimpleIoc.Default.GetInstance<IApplicationSettingsService>().Legacy;
             ast.Set(Constants.Settings.SpecificSettings, SpecificSettings);
             ast.Set(Constants.Settings.PhotoUploadSettings, UploadSettings);
-            ast.Save();
         }
 
         // Code to execute if a navigation fails
@@ -252,6 +252,8 @@ namespace MediaBrowser.WindowsPhone
 
             // Ensure we don't initialize again
             _phoneApplicationInitialized = true;
+            
+            DispatcherHelper.Initialize();
         }
 
         // Do not add any additional code to this method

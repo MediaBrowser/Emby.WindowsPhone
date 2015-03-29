@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Interactivity;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using Cimbalino.Phone.Toolkit.Behaviors;
 
 namespace MediaBrowser.WindowsPhone.Behaviours
 {
-    public class ControlBackgroundBehaviour : SafeBehavior<Control>
+    public class ControlBackgroundBehaviour : Behavior<Control>
     {
         public static readonly DependencyProperty SourceProperty =
             DependencyProperty.Register("Source", typeof(string), typeof(ControlBackgroundBehaviour), new PropertyMetadata(default(string), BackgroundChanged));
@@ -64,7 +64,7 @@ namespace MediaBrowser.WindowsPhone.Behaviours
         }
     }
 
-    public class PanelBackgroundBehaviour : SafeBehavior<Panel>
+    public class PanelBackgroundBehaviour : Behavior<Panel>
     {
         public static readonly DependencyProperty SourceProperty =
             DependencyProperty.Register("Source", typeof(string), typeof(PanelBackgroundBehaviour), new PropertyMetadata(default(string), BackgroundChanged));

@@ -1,36 +1,39 @@
-﻿using Cimbalino.Phone.Toolkit.Services;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using Cimbalino.Toolkit.Services;
 
 namespace MediaBrowser.WindowsPhone.Design
 {
-    public class ApplicationSettingsDesignService : IApplicationSettingsService
+    public class ApplicationSettingsDesignService : IApplicationSettingsServiceHandler
     {
+        public bool Contains(string key)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public T Get<T>(string key)
         {
-            return default(T);
+            throw new System.NotImplementedException();
         }
 
         public T Get<T>(string key, T defaultValue)
         {
-            return defaultValue;
+            throw new System.NotImplementedException();
         }
 
         public void Set<T>(string key, T value)
         {
+            throw new System.NotImplementedException();
         }
 
-        public void Reset(string key)
+        public void Remove(string key)
         {
+            throw new System.NotImplementedException();
         }
 
-        public void Save()
+        public Task<IEnumerable<KeyValuePair<string, object>>> GetValuesAsync()
         {
+            throw new System.NotImplementedException();
         }
-
-        public void Refresh()
-        {
-            
-        }
-
-        public bool IsDirty { get; private set; }
     }
 }

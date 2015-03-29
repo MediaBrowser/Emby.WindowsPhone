@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Cimbalino.Phone.Toolkit.Services;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 using JetBrains.Annotations;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Dto;
+using MediaBrowser.WindowsPhone.CimbalinoToolkit;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Resources;
 using MediaBrowser.WindowsPhone.Services;
@@ -123,7 +124,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
             NavigateTopage = new RelayCommand<BaseItemDto>(NavigationService.NavigateTo);
 
-#if WP8
             SetPosterAsLockScreenCommand = new RelayCommand(async () =>
             {
                 if (!LockScreenService.Current.IsProvidedByCurrentApplication)
@@ -141,7 +141,6 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 LockScreenService.Current.ManuallySet = true;
                 await LockScreenService.Current.SetLockScreenImage(url);
             });
-#endif
         }
 
         private async Task<bool> GetMovieDetails()
@@ -165,6 +164,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     var trailers = await ApiClient.GetLocalTrailersAsync(AuthenticationService.Current.LoggedInUserId, SelectedMovie.Id);
                     Trailers = trailers.ToList();
                 }
+
+                CanResume = SelectedMovie.CanResume;
 
                 result = true;
             }
@@ -203,6 +204,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         private void OnSelectedMovieChanged()
         {
             ServerIdItem = SelectedMovie;
+            CanResume = SelectedMovie != null && SelectedMovie.CanResume;
         }
 
         public List<Group<BaseItemPerson>> CastAndCrew { get; set; }
@@ -210,6 +212,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public string RunTime { get; set; }
         public List<Chapter> Chapters { get; set; }
         public List<BaseItemDto> Trailers { get; set; }
+        public bool CanResume { get; set; }
 
         public RelayCommand<BaseItemDto> NavigateTopage { get; set; }
         public RelayCommand MoviePageLoaded { get; set; }
@@ -217,5 +220,28 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public RelayCommand AddRemoveFavouriteCommand { get; set; }
         public RelayCommand<BaseItemPerson> ShowOtherFilmsCommand { get; set; }
         public RelayCommand SetPosterAsLockScreenCommand { get; set; }
+
+        public override void WireMessages()
+        {
+            Messenger.Default.Register<NotificationMessage>(this, m =>
+            {
+                if (m.Notification.Equals(Constants.Messages.RefreshResumeMsg))
+                {
+                    var id = (string) m.Sender;
+                    var ticks = (long) m.Target;
+                    if (id == SelectedMovie.Id)
+                    {
+                        if (SelectedMovie.UserData == null)
+                        {
+                            SelectedMovie.UserData = new UserItemDataDto();
+                        }
+
+                        SelectedMovie.UserData.PlaybackPositionTicks = ticks;
+
+                        CanResume = SelectedMovie.CanResume;
+                    }
+                }
+            });
+        }
     }
 }

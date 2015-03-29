@@ -8,10 +8,9 @@
                 xmlns:scott="clr-namespace:ScottIsAFool.WindowsPhone.Controls;assembly=ScottIsAFool.WindowsPhone"
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                
                 xmlns:controls="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
                 xmlns:behaviours="clr-namespace:MediaBrowser.WindowsPhone.Behaviours"
-                xmlns:cimbalino="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
+                xmlns:cimbalino="clr-namespace:Cimbalino.Toolkit.Behaviors;assembly=Cimbalino.Toolkit"
                 xmlns:local="clr-namespace:MediaBrowser.WindowsPhone.Controls"
                 mc:Ignorable="d"
                 d:DesignWidth="480"
@@ -148,7 +147,7 @@
                                                  TapCommand="{Binding Main.NavigateToPage, Source={StaticResource Locator}}"
                                                  CommandParameter="{Binding}"
                                                  Grid.Row="1"
-                                                 Visibility="{Binding RecentItems.Count, Converter={StaticResource IntToVisibilityConverter}, ConverterParameter=false}">
+                                                 Visibility="{Binding DataContext.RecentItems.Count, ElementName=lbRecentItems, Converter={StaticResource IntToVisibilityConverter}, ConverterParameter=false}">
                         <TextBlock Text="{Binding LocalizedResources.More, Source={StaticResource LocalizedStrings}}"
                                    Style="{StaticResource PhoneTextLargeStyle}" />
                     </local:CustomHyperlinkButton>

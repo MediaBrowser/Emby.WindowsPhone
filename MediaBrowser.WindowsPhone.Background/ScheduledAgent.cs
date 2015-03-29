@@ -2,14 +2,13 @@
 using System.Diagnostics;
 using System.Threading;
 using System.Windows;
-using Cimbalino.Phone.Toolkit.Helpers;
-using Cimbalino.Phone.Toolkit.Services;
+using Cimbalino.Toolkit.Helpers;
+using Cimbalino.Toolkit.Services;
 using MediaBrowser.ApiInteraction;
 using MediaBrowser.ApiInteraction.Sync;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Logging;
 using MediaBrowser.Model.Net;
-using MediaBrowser.Model.Session;
 using MediaBrowser.WindowsPhone.Logging;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Model.Photo;
@@ -23,7 +22,7 @@ namespace MediaBrowser.WindowsPhone.Background
     {
         private static IApiClient _apiClient;
         private static readonly ILogger MediaBrowserLogger = new MBLogger(typeof(ScheduledAgent));
-        private static readonly IApplicationSettingsService ApplicationSettings = new ApplicationSettingsService();
+        private static readonly IApplicationSettingsServiceHandler ApplicationSettings = new ApplicationSettingsService().Legacy;
         private static ContentUploader _contentUploader;
         private static ILog _logger;
 
@@ -74,7 +73,7 @@ namespace MediaBrowser.WindowsPhone.Background
                 }
 
                 var serverAddress = server.LastConnectionMode.HasValue && server.LastConnectionMode.Value == ConnectionMode.Manual ? server.ManualAddress : server.RemoteAddress;
-                var client = new ApiClient(MediaBrowserLogger, serverAddress, "Windows Phone 8", device, ApplicationManifest.Current.App.Version, new ClientCapabilities(), new CryptographyProvider());
+                var client = new ApiClient(MediaBrowserLogger, serverAddress, "Windows Phone 8", device, ApplicationManifest.Current.App.Version, new CryptographyProvider());
                 client.SetAuthenticationInfo(server.AccessToken, server.UserId);
 
                 _logger.Info("Client created");

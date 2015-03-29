@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Windows;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
@@ -12,7 +11,7 @@ using Microsoft.Phone.Net.NetworkInformation;
 
 namespace MediaBrowser.WindowsPhone.Services
 {
-    public class NavigationService : Cimbalino.Phone.Toolkit.Services.NavigationService, INavigationService
+    public class NavigationService : Cimbalino.Toolkit.Services.NavigationService, INavigationService
     {
         public bool IsNetworkAvailable
         {
@@ -35,6 +34,11 @@ namespace MediaBrowser.WindowsPhone.Services
                 return networkType.ToString().Contains("Ethernet")
                        || networkType == NetworkInterfaceType.Wireless80211;
             }
+        }
+
+        public void NavigateTo(string uri)
+        {
+            Navigate(uri);
         }
 
         public void NavigateTo(string uri, bool clearBackStack)

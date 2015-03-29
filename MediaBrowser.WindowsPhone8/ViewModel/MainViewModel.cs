@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
-using Cimbalino.Phone.Toolkit.Services;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model.ApiClient;
@@ -13,6 +12,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using MediaBrowser.Model.Dto;
 using System.Threading.Tasks;
+using MediaBrowser.WindowsPhone.CimbalinoToolkit.Tiles;
 using MediaBrowser.WindowsPhone.Extensions;
 using MediaBrowser.WindowsPhone.Messaging;
 using MediaBrowser.WindowsPhone.Model;
@@ -300,17 +300,21 @@ namespace MediaBrowser.WindowsPhone.ViewModel
 
                 var item = await ApiClient.GetItemsAsync(query);
 
-                Folders.Clear();
+                if (item != null && !item.Items.IsNullOrEmpty())
+                {
+                    Folders.Clear();
 
-                item.Items.OrderByDescending(x => x.SortName).ToList().ForEach(folder => Folders.Add(folder));
+                    item.Items.OrderByDescending(x => x.SortName).ToList().ForEach(folder => Folders.Add(folder));
 
-                return true;
+                    return true;
+                }
             }
             catch (HttpException ex)
             {
                 Utils.HandleHttpException("GetFolders()", ex, NavigationService, Log);
-                return false;
             }
+
+            return false;
         }
 
         public RelayCommand MoreRecentCommand

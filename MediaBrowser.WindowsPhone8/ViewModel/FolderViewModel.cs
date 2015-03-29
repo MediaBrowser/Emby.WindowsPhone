@@ -224,8 +224,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     {
                         Log.Info("Getting recent items");
                         PageTitle = AppResources.LabelRecent.ToLower();
-                        query.Filters = new[] {ItemFilter.IsRecentlyAdded};
-                        query.Recursive = true;
+                        query = Utils.GetRecentItemsQuery(excludedItemTypes: new[] {"Photo", "Season", "Series"});
                         isRecent = true;
                     }
                     else if (SelectedFolder.Name.Equals(AppResources.Favourites.ToLower()))
@@ -331,50 +330,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         select new Group<BaseItemDto>(genre, films)).ToList();
                     FolderGroupings = groupedGenreItems.OrderBy(x => x.Title).ToList();
                     break;
-//                case GroupBy.Studio:
-//                    GroupHeaderTemplate = (DataTemplate)Application.Current.Resources["LLSGroupHeaderTemplateLong"];
-//#if WP8
-//                    GroupItemTemplate = (Style)Application.Current.Resources["LLSGroupItemLongStyle"];
-//#else
-//                    GroupItemTemplate = (DataTemplate)Application.Current.Resources["LLSGroupItemTemplateLong"];
-//                    ItemsPanelTemplate = (ItemsPanelTemplate)Application.Current.Resources["StackPanelVerticalTemplate"];
-//#endif
-//                    var studios = (from s in CurrentItems
-//                                   where s.Studios != null
-//                                   from st in s.Studios
-//                                   select st).Distinct().ToList();
-//                    studios.Insert(0, new BaseItemStudio { Name = "none" });
-//                    studios.ForEach(item => emptyGroups.Add(new Group<BaseItemDto>(item.Name, new List<BaseItemDto>())));
 
-//                    var groupedStudioItems = (from studio in studios
-//                                              let films = (from f in CurrentItems
-//                                                           where CheckStudio(f)
-//                                                           where f.Studios.Contains(studio)
-//                                                           orderby GetSortByNameHeader(f)
-//                                                           select f).ToList()
-//                                              select new Group<BaseItemDto>(studio.Name, films)).ToList();
-//#if WP8
-//                    FolderGroupings = groupedStudioItems.ToList();
-//#else
-//                    FolderGroupings = (from g in groupedStudioItems.Union(emptyGroups)
-//                                       orderby g.Title
-//                                       select g).ToList();
-//#endif
-//                    break;
             }
 
             SetProgressBar();
         }
-
-        //private bool CheckStudio(BaseItemDto dtoBaseItem)
-        //{
-        //    if (dtoBaseItem.Studios != null && dtoBaseItem.Studios.Any())
-        //    {
-        //        return true;
-        //    }
-        //    dtoBaseItem.Studios = new[] { new BaseItemStudio { Name = "none" } };
-        //    return true;
-        //}
 
         private bool CheckGenre(BaseItemDto dtoBaseItem)
         {
