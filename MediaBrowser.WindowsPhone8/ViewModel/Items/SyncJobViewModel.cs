@@ -1,9 +1,13 @@
 ﻿using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Ioc;
+using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Sync;
+using MediaBrowser.WindowsPhone.Messaging;
 using MediaBrowser.WindowsPhone.Model.Interfaces;
 using MediaBrowser.WindowsPhone.Resources;
+using MediaBrowser.WindowsPhone.ViewModel.Sync;
 
 namespace MediaBrowser.WindowsPhone.ViewModel.Items
 {
@@ -61,6 +65,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Items
             {
                 return new RelayCommand(() =>
                 {
+                    if (SimpleIoc.Default.GetInstance<SyncJobDetailViewModel>() != null)
+                    {
+                        Messenger.Default.Send(new SyncJobMessage(SyncJob));
+                    }
+
                     NavigationService.NavigateTo(Constants.Pages.Sync.SyncJobDetailView);
                 });
             }

@@ -214,6 +214,7 @@
     <Compile Include="Converters\ZeroCountBrushConverter.cs" />
     <Compile Include="Extensions\BaseItemDtoExtensions.cs" />
     <Compile Include="Extensions\ContainerExtensions.cs" />
+    <Compile Include="Messaging\SyncJobMessage.cs" />
     <Compile Include="Services\MessagePromptService.cs" />
     <Compile Include="Model\Enum{T}.cs" />
     <Compile Include="Extensions\ExtensionMethods.cs" />
@@ -306,6 +307,7 @@
     <Compile Include="ViewModel\Settings\SettingsViewModel.cs" />
     <Compile Include="ViewModel\SplashscreenViewModel.cs" />
     <Compile Include="ViewModel\Sync\CurrentDownloadsViewModel.cs" />
+    <Compile Include="ViewModel\Sync\SyncJobDetailViewModel.cs" />
     <Compile Include="ViewModel\Sync\SyncViewModel.cs" />
     <Compile Include="ViewModel\TrailerViewModel.cs" />
     <Compile Include="ViewModel\TvViewModel.cs" />
@@ -881,7 +883,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\AppResources.de-de.resx" />
-    <EmbeddedResource Include="Resources\AppResources.en-US.resx" />
+    <EmbeddedResource Include="Resources\AppResources.en-US.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\AppResources.es-MX.resx" />
     <EmbeddedResource Include="Resources\AppResources.fr-fr.resx" />
     <EmbeddedResource Include="Resources\AppResources.it-IT.resx" />

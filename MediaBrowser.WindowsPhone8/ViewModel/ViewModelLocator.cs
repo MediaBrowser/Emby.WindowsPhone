@@ -124,6 +124,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             SimpleIoc.Default.Register<MbConnectViewModel>();
             SimpleIoc.Default.Register<SyncViewModel>();
             SimpleIoc.Default.Register<CurrentDownloadsViewModel>();
+            SimpleIoc.Default.Register<SyncJobDetailViewModel>();
         }
 
         private static void AddSyncInterfaces()
@@ -413,6 +414,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public CurrentDownloadsViewModel CurrentDownloads
         {
             get { return ServiceLocator.Current.GetInstance<CurrentDownloadsViewModel>(); }
+        }
+
+        public SyncJobDetailViewModel SyncJobDetail
+        {
+            get { return ServiceLocator.Current.GetInstance<SyncJobDetailViewModel>(); }
         }
 
         public static TvViewModel GetTvViewModel(string itemId)

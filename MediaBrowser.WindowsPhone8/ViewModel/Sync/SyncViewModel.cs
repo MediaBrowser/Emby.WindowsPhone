@@ -6,6 +6,7 @@ using GalaSoft.MvvmLight.Command;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Net;
 using MediaBrowser.WindowsPhone.Model.Interfaces;
+using MediaBrowser.WindowsPhone.Resources;
 using MediaBrowser.WindowsPhone.Services;
 using MediaBrowser.WindowsPhone.ViewModel.Items;
 
@@ -81,6 +82,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Sync
 
             try
             {
+                SetProgressBar(AppResources.SysTrayGettingItems);
+
                 var jobs = await SyncService.Current.GetSyncJobs();
 
                 SyncJobs = new ObservableCollection<SyncJobViewModel>();
@@ -93,6 +96,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Sync
             {
                 Utils.HandleHttpException(ex, "LoadData(" + isRefresh + ")", NavigationService, Log);
             }
+
+            SetProgressBar();
         }
     }
 }
