@@ -277,6 +277,7 @@
     <Compile Include="ViewModel\ChooseProfileViewModel.cs" />
     <Compile Include="ViewModel\FolderViewModel.cs" />
     <Compile Include="ViewModel\GenericItemViewModel.cs" />
+    <Compile Include="ViewModel\Items\SyncJobItemViewModel.cs" />
     <Compile Include="ViewModel\Items\SyncJobViewModel.cs" />
     <Compile Include="ViewModel\Items\TransferMonitorViewModel.cs" />
     <Compile Include="ViewModel\LiveTv\AllProgrammesViewModel.cs" />

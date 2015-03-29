@@ -1,17 +1,17 @@
 ﻿using GalaSoft.MvvmLight.Command;
+using MediaBrowser.Model.ApiClient;
+using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Sync;
 using MediaBrowser.WindowsPhone.Model.Interfaces;
 using MediaBrowser.WindowsPhone.Resources;
 
 namespace MediaBrowser.WindowsPhone.ViewModel.Items
 {
-    public class SyncJobViewModel : ScottIsAFool.WindowsPhone.ViewModel.ViewModelBase
+    public class SyncJobViewModel : ViewModelBase
     {
-        private readonly INavigationService _navigationService;
-
-        public SyncJobViewModel(SyncJob syncJob, INavigationService navigationService)
+        public SyncJobViewModel(SyncJob syncJob, INavigationService navigationService, IConnectionManager connectionManager)
+            : base(navigationService, connectionManager)
         {
-            _navigationService = navigationService;
             SyncJob = syncJob;
         }
 
@@ -54,14 +54,32 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Items
                 return AppResources.ResourceManager.GetString(id);
             }
         }
-        
+
         public RelayCommand NavigateToDetailsCommand
         {
             get
             {
                 return new RelayCommand(() =>
                 {
-                    _navigationService.NavigateTo(Constants.Pages.Sync.SyncJobDetailView);
+                    NavigationService.NavigateTo(Constants.Pages.Sync.SyncJobDetailView);
+                });
+            }
+        }
+
+        public RelayCommand DeleteSyncJobCommand
+        {
+            get
+            {
+                return new RelayCommand(async () =>
+                {
+                    try
+                    {
+                        await ApiClient.CancelSyncJob(SyncJob.Id);
+                    }
+                    catch (HttpException ex)
+                    {
+                        Utils.HandleHttpException("DeleteSyncJobCommand", ex, NavigationService, Log);
+                    }
                 });
             }
         }

@@ -98,6 +98,7 @@
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
                                     <coding4Fun:SuperImage PlaceholderImageSource="/Images/Logo.png"
+                                                           PlaceholderImageStretch="UniformToFill"
                                                            Source="{Binding SyncJob, Converter={StaticResource ImageUrlConverter}}"
                                                            Height="100"
                                                            Width="100"
