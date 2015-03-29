@@ -48,9 +48,6 @@
         <Link NavigateUri="http://mediabrowser.tv/community"
               Content="http://mediabrowser.tv/community"
               Label="Forums:"/>
-        <Link NavigateUri="https://github.com/MediaBrowser/MediaBrowser.WindowsPhone/issues/new"
-              Content="Raise an issue"
-              Label="Issues:" />
       </Links>
     </MainItem>
     <!-- For each additional pivot item, add a separate Item entry. Ideas for items are: license, tutorial or help, version history, show room for other apps from you etc. -->
@@ -59,6 +56,16 @@
     <!-- Supported types are "text" and "xaml", where text is nicely formatted automatically, and XAML is handled by the built-in XamlReader -->
     <Item Title="history"
           Type="text">
+      8.0.66.0
+      Enhancements:
+      - Massively improved video streaming. Now supports direct streaming from the server (ie, no transcoding if video is supported by the phone)
+      Fixes:
+      - Video now correctly reports playback progress
+      - Resume option now enabled when going back into an item after watching part of it
+      - Recent items from main page was pulling in entire library, not any more.
+      - Lockscreen had stopped updating, does now.
+      - App was unable to play a single track on its own, now can.
+      
       8.0.65.0
       Enhancements: 
       - Enabled Portuguese localisation
