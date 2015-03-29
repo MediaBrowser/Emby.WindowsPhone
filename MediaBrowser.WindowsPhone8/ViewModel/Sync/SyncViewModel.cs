@@ -1,9 +1,13 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
+using System.Linq;
+using System.Threading.Tasks;
+using Cimbalino.Toolkit.Extensions;
 using GalaSoft.MvvmLight.Command;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Net;
 using MediaBrowser.WindowsPhone.Model.Interfaces;
 using MediaBrowser.WindowsPhone.Services;
+using MediaBrowser.WindowsPhone.ViewModel.Items;
 
 namespace MediaBrowser.WindowsPhone.ViewModel.Sync
 {
@@ -24,6 +28,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Sync
             : base(navigationService, connectionManager)
         {
         }
+
+        public ObservableCollection<SyncJobViewModel> SyncJobs { get; set; }
 
         public RelayCommand PageLoadedCommand
         {
@@ -77,7 +83,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Sync
             {
                 var jobs = await SyncService.Current.GetSyncJobs();
 
-                _jobsLoaded = true;
+                SyncJobs = new ObservableCollection<SyncJobViewModel>();
+                
+                SyncJobs.AddRange(jobs.Select(x => new SyncJobViewModel(x, NavigationService)));
+
+                _jobsLoaded = SyncJobs.Any();
             }
             catch (HttpException ex)
             {

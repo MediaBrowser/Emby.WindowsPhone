@@ -277,6 +277,7 @@
     <Compile Include="ViewModel\ChooseProfileViewModel.cs" />
     <Compile Include="ViewModel\FolderViewModel.cs" />
     <Compile Include="ViewModel\GenericItemViewModel.cs" />
+    <Compile Include="ViewModel\Items\SyncJobViewModel.cs" />
     <Compile Include="ViewModel\Items\TransferMonitorViewModel.cs" />
     <Compile Include="ViewModel\LiveTv\AllProgrammesViewModel.cs" />
     <Compile Include="ViewModel\LiveTv\LiveTvChannelsViewModel.cs" />
@@ -460,6 +461,9 @@
     </Compile>
     <Compile Include="Views\Sync\CurrentDownloadsView.xaml.cs">
       <DependentUpon>CurrentDownloadsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Sync\SyncJobDetailView.xaml.cs">
+      <DependentUpon>SyncJobDetailView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Sync\SyncView.xaml.cs">
       <DependentUpon>SyncView.xaml</DependentUpon>
@@ -804,6 +808,10 @@
     </Page>
     <Page Include="Views\Sync\CurrentDownloadsView.xaml">
       <SubType>Form</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Sync\SyncJobDetailView.xaml">
+      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Sync\SyncView.xaml">

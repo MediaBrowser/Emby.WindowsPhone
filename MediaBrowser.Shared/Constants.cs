@@ -204,6 +204,7 @@
                 private const string SyncPath = ViewsPath + "Sync/";
                 public const string SyncView = SyncPath + "SyncView.xaml";
                 public const string CurrentDownloadsView = SyncPath + "CurrentDownloadsView.xaml";
+                public const string SyncJobDetailView = SyncPath + "SyncJobDetailView.xaml";
             }
         }
 

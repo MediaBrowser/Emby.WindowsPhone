@@ -844,6 +844,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to sync jobs.
+        /// </summary>
+        public static string HeaderSyncJobs {
+            get {
+                return ResourceManager.GetString("HeaderSyncJobs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to TV.
         /// </summary>
         public static string HeaderTV {
@@ -2284,6 +2293,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Untitled.
+        /// </summary>
+        public static string LabelUntitled {
+            get {
+                return ResourceManager.GetString("LabelUntitled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unwatched:.
         /// </summary>
         public static string LabelUnwatched {
@@ -2613,6 +2631,78 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string Settings {
             get {
                 return ResourceManager.GetString("Settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancelled.
+        /// </summary>
+        public static string SyncJobStatusCancelled {
+            get {
+                return ResourceManager.GetString("SyncJobStatusCancelled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Completed.
+        /// </summary>
+        public static string SyncJobStatusCompleted {
+            get {
+                return ResourceManager.GetString("SyncJobStatusCompleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Completed with errors.
+        /// </summary>
+        public static string SyncJobStatusCompletedWithError {
+            get {
+                return ResourceManager.GetString("SyncJobStatusCompletedWithError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Converting.
+        /// </summary>
+        public static string SyncJobStatusConverting {
+            get {
+                return ResourceManager.GetString("SyncJobStatusConverting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed.
+        /// </summary>
+        public static string SyncJobStatusFailed {
+            get {
+                return ResourceManager.GetString("SyncJobStatusFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Queued.
+        /// </summary>
+        public static string SyncJobStatusQueued {
+            get {
+                return ResourceManager.GetString("SyncJobStatusQueued", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ready to transfer.
+        /// </summary>
+        public static string SyncJobStatusReadyToTransfer {
+            get {
+                return ResourceManager.GetString("SyncJobStatusReadyToTransfer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Transferring.
+        /// </summary>
+        public static string SyncJobStatusTransferring {
+            get {
+                return ResourceManager.GetString("SyncJobStatusTransferring", resourceCulture);
             }
         }
         

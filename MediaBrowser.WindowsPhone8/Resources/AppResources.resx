@@ -1171,4 +1171,34 @@
   <data name="LabelLoading" xml:space="preserve">
     <value>Loading...</value>
   </data>
+  <data name="HeaderSyncJobs" xml:space="preserve">
+    <value>sync jobs</value>
+  </data>
+  <data name="LabelUntitled" xml:space="preserve">
+    <value>Untitled</value>
+  </data>
+  <data name="SyncJobStatusCancelled" xml:space="preserve">
+    <value>Cancelled</value>
+  </data>
+  <data name="SyncJobStatusCompleted" xml:space="preserve">
+    <value>Completed</value>
+  </data>
+  <data name="SyncJobStatusCompletedWithError" xml:space="preserve">
+    <value>Completed with errors</value>
+  </data>
+  <data name="SyncJobStatusConverting" xml:space="preserve">
+    <value>Converting</value>
+  </data>
+  <data name="SyncJobStatusFailed" xml:space="preserve">
+    <value>Failed</value>
+  </data>
+  <data name="SyncJobStatusQueued" xml:space="preserve">
+    <value>Queued</value>
+  </data>
+  <data name="SyncJobStatusReadyToTransfer" xml:space="preserve">
+    <value>Ready to transfer</value>
+  </data>
+  <data name="SyncJobStatusTransferring" xml:space="preserve">
+    <value>Transferring</value>
+  </data>
 </root>

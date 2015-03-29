@@ -79,7 +79,7 @@ namespace MediaBrowser.WindowsPhone.Services
             }
         }
 
-        public async Task<List<SyncJob>> GetSyncJobs()
+        public async Task<List<SyncJob>> GetSyncJobs(bool onlyThisDevice = true)
         {
             var query = new SyncJobQuery
             {
@@ -87,7 +87,18 @@ namespace MediaBrowser.WindowsPhone.Services
             };
             var jobs = await _connectionManager.GetApiClient(_serverInfo.ServerInfo.Id).GetSyncJobs(query);
 
-            return jobs != null && !jobs.Items.IsNullOrEmpty() ? jobs.Items.ToList() : new List<SyncJob>();
+            if (jobs != null && !jobs.Items.IsNullOrEmpty())
+            {
+                if (onlyThisDevice)
+                {
+                    var deviceJobs = jobs.Items.Where(x => x.TargetId == _connectionManager.Device.DeviceId).ToList();
+                    return deviceJobs;
+                }
+
+                return jobs.Items.ToList();
+            }
+
+            return new List<SyncJob>();
         }
 
         public Task CheckAndMoveFinishedFiles()
