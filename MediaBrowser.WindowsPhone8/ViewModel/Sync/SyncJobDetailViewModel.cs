@@ -1,5 +1,7 @@
 ﻿using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
+using Cimbalino.Toolkit.Extensions;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model.ApiClient;
@@ -9,7 +11,6 @@ using MediaBrowser.WindowsPhone.Messaging;
 using MediaBrowser.WindowsPhone.Model.Interfaces;
 using MediaBrowser.WindowsPhone.Resources;
 using MediaBrowser.WindowsPhone.ViewModel.Items;
-using Microsoft.Phone.Reactive;
 
 namespace MediaBrowser.WindowsPhone.ViewModel.Sync
 {
@@ -61,7 +62,10 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Sync
 
                 if (items != null && !items.Items.IsNullOrEmpty())
                 {
-                    
+                    var jobItems = items.Items.Select(x => new SyncJobItemViewModel(x, NavigationService, ConnectionManager));
+
+                    SyncJobItems = new ObservableCollection<SyncJobItemViewModel>();
+                    SyncJobItems.AddRange(jobItems);
                 }
             }
             catch (HttpException ex)
@@ -77,6 +81,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Sync
             Messenger.Default.Register<SyncJobMessage>(this, m =>
             {
                 _syncJob = m.SyncJob;
+                SyncJobItems = null;
             });
         }
     }
