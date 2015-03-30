@@ -16,15 +16,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Sync
 {
     public class SyncJobDetailViewModel : ViewModelBase
     {
-        private SyncJob _syncJob;
         public SyncJobDetailViewModel(IConnectionManager connectionManager, INavigationService navigationService)
             : base(navigationService, connectionManager)
         {
-            
         }
 
         public ObservableCollection<SyncJobItemViewModel> SyncJobItems { get; set; }
-
+        public SyncJobViewModel SyncJob { get; set; }
+        
         public RelayCommand PageLoadedCommand
         {
             get
@@ -55,17 +54,14 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Sync
 
                 var query = new SyncJobItemQuery
                 {
-                    JobId = _syncJob.Id,
+                    JobId = SyncJob.Id,
                     TargetId = ConnectionManager.Device.DeviceId
                 };
                 var items = await ApiClient.GetSyncJobItems(query);
 
                 if (items != null && !items.Items.IsNullOrEmpty())
                 {
-                    var jobItems = items.Items.Select(x => new SyncJobItemViewModel(x, NavigationService, ConnectionManager));
-
-                    SyncJobItems = new ObservableCollection<SyncJobItemViewModel>();
-                    SyncJobItems.AddRange(jobItems);
+                    SyncJobItems = items.Items.Select(x => new SyncJobItemViewModel(x, NavigationService, ConnectionManager)).ToObservableCollection();
                 }
             }
             catch (HttpException ex)
@@ -80,7 +76,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Sync
         {
             Messenger.Default.Register<SyncJobMessage>(this, m =>
             {
-                _syncJob = m.SyncJob;
+                SyncJob = m.SyncJob;
                 SyncJobItems = null;
             });
         }

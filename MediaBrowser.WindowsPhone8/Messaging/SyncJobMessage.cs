@@ -1,12 +1,12 @@
 using GalaSoft.MvvmLight.Messaging;
-using MediaBrowser.Model.Sync;
+using MediaBrowser.WindowsPhone.ViewModel.Items;
 
 namespace MediaBrowser.WindowsPhone.Messaging
 {
     public class SyncJobMessage : MessageBase
     {
-        public SyncJob SyncJob { get; set; }
-        public SyncJobMessage(SyncJob syncJob)
+        public SyncJobViewModel SyncJob { get; set; }
+        public SyncJobMessage(SyncJobViewModel syncJob)
         {
             SyncJob = syncJob;
         }

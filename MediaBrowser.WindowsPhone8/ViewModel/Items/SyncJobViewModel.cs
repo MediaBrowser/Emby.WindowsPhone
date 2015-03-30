@@ -59,6 +59,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Items
             }
         }
 
+        public string Id
+        {
+            get { return SyncJob != null ? SyncJob.Id : string.Empty; }
+        }
+
         public RelayCommand NavigateToDetailsCommand
         {
             get
@@ -67,7 +72,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Items
                 {
                     if (SimpleIoc.Default.GetInstance<SyncJobDetailViewModel>() != null)
                     {
-                        Messenger.Default.Send(new SyncJobMessage(SyncJob));
+                        Messenger.Default.Send(new SyncJobMessage(this));
                     }
 
                     NavigationService.NavigateTo(Constants.Pages.Sync.SyncJobDetailView);
