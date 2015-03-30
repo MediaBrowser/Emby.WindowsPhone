@@ -42,6 +42,11 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Items
             }
         }
 
+        public bool ActionIsVisible
+        {
+            get { return SyncJobItem != null && SyncJobItem.Status != SyncJobItemStatus.RemovedFromDevice; }
+        }
+
         public string ActionText
         {
             get

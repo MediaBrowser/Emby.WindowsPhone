@@ -108,7 +108,8 @@
                                 <toolkit:ContextMenuService.ContextMenu>
                                     <toolkit:ContextMenu>
                                         <toolkit:MenuItem Header="{Binding ActionText, Converter={StaticResource StringToLowercaseConverter}}"
-                                                          Command="{Binding ItemActionCommand}"/>
+                                                          Command="{Binding ItemActionCommand}"
+                                                          Visibility="{Binding ActionIsVisible, Converter={StaticResource VisibilityConverter}}"/>
                                     </toolkit:ContextMenu>
                                 </toolkit:ContextMenuService.ContextMenu>
                                 <Grid Margin="0,0,12,12">
