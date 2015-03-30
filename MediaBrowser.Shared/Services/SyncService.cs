@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Cimbalino.Toolkit.Services;
 using MediaBrowser.ApiInteraction.Sync;
 using MediaBrowser.Model.ApiClient;
+using MediaBrowser.Model.Events;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Sync;
 using MediaBrowser.WindowsPhone.Extensions;
@@ -49,7 +50,61 @@ namespace MediaBrowser.WindowsPhone.Services
             Sync().ConfigureAwait(false);
             CheckAndMoveFinishedFiles().ConfigureAwait(false);
 
+            ListenForEvents();
+
             return Task.FromResult(0);
+        }
+
+        private void ListenForEvents()
+        {
+            _connectionManager.Connected += ConnectionManagerOnConnected;
+
+            if (_serverInfo.HasServer)
+            {
+                var apiClient = _connectionManager.GetApiClient(_serverInfo.ServerInfo.Id);
+                WireUpApiClient(apiClient);
+            }
+        }
+
+        private void ConnectionManagerOnConnected(object sender, GenericEventArgs<ConnectionResult> e)
+        {
+            var apiClient = e.Argument.ApiClient;
+            WireUpApiClient(apiClient);
+        }
+
+        private void WireUpApiClient(IApiClient apiClient)
+        {
+            apiClient.SyncJobCreated -= ApiClientOnSyncJobCreated;
+            apiClient.SyncJobCreated += ApiClientOnSyncJobCreated;
+
+            apiClient.SyncJobCancelled -= ApiClientOnSyncJobCancelled; 
+            apiClient.SyncJobCancelled += ApiClientOnSyncJobCancelled;
+
+            apiClient.SyncJobUpdated -= ApiClientOnSyncJobUpdated;
+            apiClient.SyncJobUpdated += ApiClientOnSyncJobUpdated;
+
+            apiClient.SyncJobsUpdated -= ApiClientOnSyncJobsUpdated;
+            apiClient.SyncJobsUpdated += ApiClientOnSyncJobsUpdated;
+        }
+
+        private void ApiClientOnSyncJobsUpdated(object sender, GenericEventArgs<List<SyncJob>> genericEventArgs)
+        {
+            Sync().ConfigureAwait(false);
+        }
+
+        private void ApiClientOnSyncJobUpdated(object sender, GenericEventArgs<CompleteSyncJobInfo> genericEventArgs)
+        {
+            Sync().ConfigureAwait(false);
+        }
+
+        private void ApiClientOnSyncJobCancelled(object sender, GenericEventArgs<SyncJob> genericEventArgs)
+        {
+            Sync().ConfigureAwait(false);
+        }
+
+        private void ApiClientOnSyncJobCreated(object sender, GenericEventArgs<SyncJobCreationResult> genericEventArgs)
+        {
+            Sync().ConfigureAwait(false);
         }
 
         public async Task AddJobAsync(SyncJobRequest request)
