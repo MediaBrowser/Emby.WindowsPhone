@@ -103,6 +103,7 @@
             public const string ReconnectToWebSocketMsg = "ReconnectToWebSocketMsg";
             public const string RefreshResumeMsg = "RefreshResumeMsg";
             public const string ShowHideInProgressMsg = "ShowHideInProgressMsg";
+            public const string RefreshSyncJobsMsg = "RefreshSyncJobsMsg";
         }
 
         public class Pages

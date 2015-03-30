@@ -13,9 +13,12 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Items
 {
     public class SyncJobViewModel : ViewModelBase
     {
-        public SyncJobViewModel(SyncJob syncJob, INavigationService navigationService, IConnectionManager connectionManager)
+        private readonly SyncViewModel _syncViewModel;
+
+        public SyncJobViewModel(SyncJob syncJob, INavigationService navigationService, IConnectionManager connectionManager, SyncViewModel syncViewModel)
             : base(navigationService, connectionManager)
         {
+            _syncViewModel = syncViewModel;
             SyncJob = syncJob;
         }
 
@@ -89,6 +92,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Items
                     try
                     {
                         await ApiClient.CancelSyncJob(SyncJob.Id);
+                        _syncViewModel.SyncJobs.Remove(this);
                     }
                     catch (HttpException ex)
                     {

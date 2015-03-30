@@ -4,14 +4,18 @@ using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Sync;
 using MediaBrowser.WindowsPhone.Model.Interfaces;
 using MediaBrowser.WindowsPhone.Resources;
+using MediaBrowser.WindowsPhone.ViewModel.Sync;
 
 namespace MediaBrowser.WindowsPhone.ViewModel.Items
 {
     public class SyncJobItemViewModel : ViewModelBase
     {
-        public SyncJobItemViewModel(SyncJobItem syncJobItem, INavigationService navigationService, IConnectionManager connectionManager)
+        private readonly SyncJobDetailViewModel _syncJobDetailViewModel;
+
+        public SyncJobItemViewModel(SyncJobItem syncJobItem, INavigationService navigationService, IConnectionManager connectionManager, SyncJobDetailViewModel syncJobDetailViewModel)
             : base(navigationService, connectionManager)
         {
+            _syncJobDetailViewModel = syncJobDetailViewModel;
             SyncJobItem = syncJobItem;
         }
 
@@ -46,6 +50,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Items
                     try
                     {
                         await ApiClient.CancelSyncJobItem(SyncJobItem.Id);
+                        _syncJobDetailViewModel.SyncJobItems.Remove(this);
                     }
                     catch (HttpException ex)
                     {

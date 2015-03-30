@@ -31,14 +31,27 @@
         <behaviours:MBSysTray Text="{Binding ProgressText}"
                               IsIndeterminate="{Binding ProgressIsVisible}"
                               IsVisible="{Binding ProgressIsVisible}" />
-        <behaviors:ApplicationBarBehavior>
-            <behaviors:ApplicationBarBehavior.Buttons>
-                <behaviors:ApplicationBarIconButton IconUri="/Icons/appbar.refresh.rest.png"
-                                                    Text="{Binding LocalizedResources.AppBarRefresh, Source={StaticResource LocalizedStrings}}"
-                                                    Command="{Binding RefreshCommand}"
-                                                    IsEnabled="{Binding ProgressIsVisible, Converter={StaticResource NegativeBooleanConverter}}" />
-            </behaviors:ApplicationBarBehavior.Buttons>
-        </behaviors:ApplicationBarBehavior>
+        <behaviors:MultiApplicationBarBehavior SelectedIndex="{Binding SelectedIndex}">
+            <behaviors:ApplicationBar>
+                <behaviors:ApplicationBar.Buttons>
+                    <behaviors:ApplicationBarIconButton IconUri="/Icons/appbar.list.check.png"
+                                                        Text="{Binding LocalizedResources.AppBarSelectItems, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                        Command="{Binding TurnSelectionOnCommand}"/>
+                    <behaviors:ApplicationBarIconButton IconUri="/Icons/appbar.refresh.rest.png"
+                                                        Text="{Binding LocalizedResources.AppBarRefresh, Source={StaticResource LocalizedStrings}}"
+                                                        Command="{Binding RefreshCommand}"
+                                                        IsEnabled="{Binding ProgressIsVisible, Converter={StaticResource NegativeBooleanConverter}}" />
+                </behaviors:ApplicationBar.Buttons>
+            </behaviors:ApplicationBar>
+            <behaviors:ApplicationBar>
+                <behaviors:ApplicationBar.Buttons>
+                    <behaviors:ApplicationBarIconButton IconUri="/Icons/appbar.delete.rest.png"
+                                                        Text="{Binding LocalizedResources.AppBarDeleteItems, Source={StaticResource LocalizedStrings}}"
+                                                        Command="{Binding DeleteItemsCommand}"
+                                                        IsEnabled="{Binding ProgressIsVisible, Converter={StaticResource NegativeBooleanConverter}}" />
+                </behaviors:ApplicationBar.Buttons>
+            </behaviors:ApplicationBar>
+        </behaviors:MultiApplicationBarBehavior>
     </i:Interaction.Behaviors>
 
     <toolkit:TransitionService.NavigationInTransition>
@@ -65,7 +78,7 @@
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot"
           Background="{StaticResource MediaBrowserBackground}">
-        <Grid>
+        <Grid Margin="0,32,0,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
@@ -84,13 +97,21 @@
             <!--ContentPanel - place additional content here-->
             <Grid x:Name="ContentPanel"
                   Grid.Row="1"
-                  Margin="12,0,12,0">
-                <phone:LongListSelector ItemsSource="{Binding SyncJobItems}">
-                    <phone:LongListSelector.ItemTemplate>
+                  Margin="0,0,12,0">
+                <toolkit:LongListMultiSelector ItemsSource="{Binding SyncJobItems}"
+                                               IsSelectionEnabled="{Binding SelectionModeIsOn, Mode=TwoWay}"
+                                               SelectionChanged="LongListMultiSelector_OnSelectionChanged">
+                    <toolkit:LongListMultiSelector.ItemTemplate>
                         <DataTemplate>
                             <controls:CustomButton Style="{StaticResource EmptyButtonStyle}"
                                                    d:DataContext="{Binding SyncJobDetail.SyncJobItems[0], Source={StaticResource Locator}}">
-                                <Grid Margin="12,0,12,12">
+                                <toolkit:ContextMenuService.ContextMenu>
+                                    <toolkit:ContextMenu>
+                                        <toolkit:MenuItem Header="{Binding LocalizedResources.AppBarDelete, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                          Command="{Binding DeleteSyncJobItemCommand}"/>
+                                    </toolkit:ContextMenu>
+                                </toolkit:ContextMenuService.ContextMenu>
+                                <Grid Margin="0,0,12,12">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto" />
                                         <ColumnDefinition Width="*" />
@@ -112,8 +133,8 @@
                                 </Grid>
                             </controls:CustomButton>
                         </DataTemplate>
-                    </phone:LongListSelector.ItemTemplate>
-                </phone:LongListSelector>
+                    </toolkit:LongListMultiSelector.ItemTemplate>
+                </toolkit:LongListMultiSelector>
             </Grid>
         </Grid>
     </Grid>

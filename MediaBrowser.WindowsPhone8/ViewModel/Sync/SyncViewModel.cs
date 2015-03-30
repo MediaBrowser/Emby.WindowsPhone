@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Cimbalino.Toolkit.Extensions;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Net;
 using MediaBrowser.WindowsPhone.Model.Interfaces;
@@ -98,6 +99,17 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Sync
             }
 
             SetProgressBar();
+        }
+
+        public override void WireMessages()
+        {
+            Messenger.Default.Register<NotificationMessage>(this, m =>
+            {
+                if (m.Notification.Equals(Constants.Messages.RefreshSyncJobsMsg))
+                {
+                    LoadData(true).ConfigureAwait(false);
+                }
+            });
         }
     }
 }
