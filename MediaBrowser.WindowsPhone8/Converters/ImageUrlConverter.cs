@@ -161,6 +161,20 @@ namespace MediaBrowser.WindowsPhone.Converters
 
                     return apiClient.GetImageUrl(item.PrimaryImageItemId, imageOptions);
                 }
+
+                if (type == typeof(SyncJobItem))
+                {
+                    var item = (SyncJobItem)value;
+                    var imageOptions = new ImageOptions
+                    {
+                        ImageType = ImageType.Primary,
+                        Quality = Constants.ImageQuality,
+                        MaxHeight = 250,
+                        Tag = item.PrimaryImageTag
+                    };
+
+                    return apiClient.GetImageUrl(item.PrimaryImageItemId, imageOptions);
+                }
             }
 
             return "";

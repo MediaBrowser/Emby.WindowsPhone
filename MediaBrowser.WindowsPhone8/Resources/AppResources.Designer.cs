@@ -2698,6 +2698,24 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Removed from device.
+        /// </summary>
+        public static string SyncJobStatusRemovedFromDevice {
+            get {
+                return ResourceManager.GetString("SyncJobStatusRemovedFromDevice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Synced.
+        /// </summary>
+        public static string SyncJobStatusSynced {
+            get {
+                return ResourceManager.GetString("SyncJobStatusSynced", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Transferring.
         /// </summary>
         public static string SyncJobStatusTransferring {

@@ -55,7 +55,8 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Sync
                 var query = new SyncJobItemQuery
                 {
                     JobId = SyncJob.Id,
-                    TargetId = ConnectionManager.Device.DeviceId
+                    TargetId = ConnectionManager.Device.DeviceId,
+                    AddMetadata = true
                 };
                 var items = await ApiClient.GetSyncJobItems(query);
 

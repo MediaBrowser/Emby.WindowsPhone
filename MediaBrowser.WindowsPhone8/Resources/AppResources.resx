@@ -1201,4 +1201,10 @@
   <data name="SyncJobStatusTransferring" xml:space="preserve">
     <value>Transferring</value>
   </data>
+  <data name="SyncJobStatusRemovedFromDevice" xml:space="preserve">
+    <value>Removed from device</value>
+  </data>
+  <data name="SyncJobStatusSynced" xml:space="preserve">
+    <value>Synced</value>
+  </data>
 </root>
