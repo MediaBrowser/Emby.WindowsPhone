@@ -89,7 +89,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Sync
 
                 SyncJobs = new ObservableCollection<SyncJobViewModel>();
                 
-                SyncJobs.AddRange(jobs.Select(x => new SyncJobViewModel(x, NavigationService, ConnectionManager)));
+                SyncJobs.AddRange(jobs.Select(x => new SyncJobViewModel(x, NavigationService, ConnectionManager, this)));
 
                 _jobsLoaded = SyncJobs.Any();
             }
