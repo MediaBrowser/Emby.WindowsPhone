@@ -1207,4 +1207,16 @@
   <data name="SyncJobStatusSynced" xml:space="preserve">
     <value>Synced</value>
   </data>
+  <data name="MenuCancel" xml:space="preserve">
+    <value>cancel</value>
+  </data>
+  <data name="MenuMarkForRemoval" xml:space="preserve">
+    <value>mark for removal</value>
+  </data>
+  <data name="MenuRetry" xml:space="preserve">
+    <value>retry</value>
+  </data>
+  <data name="MenuUnmarkForRemoval" xml:space="preserve">
+    <value>unmark for removal</value>
+  </data>
 </root>

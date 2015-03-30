@@ -107,8 +107,8 @@
                                                    d:DataContext="{Binding SyncJobDetail.SyncJobItems[0], Source={StaticResource Locator}}">
                                 <toolkit:ContextMenuService.ContextMenu>
                                     <toolkit:ContextMenu>
-                                        <toolkit:MenuItem Header="{Binding LocalizedResources.AppBarDelete, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
-                                                          Command="{Binding DeleteSyncJobItemCommand}"/>
+                                        <toolkit:MenuItem Header="{Binding ActionText, Converter={StaticResource StringToLowercaseConverter}}"
+                                                          Command="{Binding ItemActionCommand}"/>
                                     </toolkit:ContextMenu>
                                 </toolkit:ContextMenuService.ContextMenu>
                                 <Grid Margin="0,0,12,12">

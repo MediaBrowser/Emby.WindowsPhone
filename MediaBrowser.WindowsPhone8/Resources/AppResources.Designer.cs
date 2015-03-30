@@ -2428,11 +2428,29 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to cancel.
+        /// </summary>
+        public static string MenuCancel {
+            get {
+                return ResourceManager.GetString("MenuCancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel Recording.
         /// </summary>
         public static string MenuCancelRecording {
             get {
                 return ResourceManager.GetString("MenuCancelRecording", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to mark for removal.
+        /// </summary>
+        public static string MenuMarkForRemoval {
+            get {
+                return ResourceManager.GetString("MenuMarkForRemoval", resourceCulture);
             }
         }
         
@@ -2478,6 +2496,24 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string MenuRemoveFromPlaylist {
             get {
                 return ResourceManager.GetString("MenuRemoveFromPlaylist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to retry.
+        /// </summary>
+        public static string MenuRetry {
+            get {
+                return ResourceManager.GetString("MenuRetry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to unmark for removal.
+        /// </summary>
+        public static string MenuUnmarkForRemoval {
+            get {
+                return ResourceManager.GetString("MenuUnmarkForRemoval", resourceCulture);
             }
         }
         

@@ -4,6 +4,7 @@ using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Sync;
 using MediaBrowser.WindowsPhone.Model.Interfaces;
 using MediaBrowser.WindowsPhone.Resources;
+using MediaBrowser.WindowsPhone.Services;
 using MediaBrowser.WindowsPhone.ViewModel.Sync;
 
 namespace MediaBrowser.WindowsPhone.ViewModel.Items
@@ -41,7 +42,30 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Items
             }
         }
 
-        public RelayCommand DeleteSyncJobItemCommand
+        public string ActionText
+        {
+            get
+            {
+                var status = SyncJobItem.Status;
+                switch (status)
+                {
+                    case SyncJobItemStatus.Cancelled:
+                    case SyncJobItemStatus.Failed:
+                        return AppResources.MenuRetry;
+                    case SyncJobItemStatus.Queued:
+                    case SyncJobItemStatus.Converting:
+                    case SyncJobItemStatus.ReadyToTransfer:
+                    case SyncJobItemStatus.Transferring:
+                        return AppResources.MenuCancel;
+                    case SyncJobItemStatus.Synced:
+                        return SyncJobItem.IsMarkedForRemoval ? AppResources.MenuUnmarkForRemoval : AppResources.MenuMarkForRemoval;
+                    default:
+                        return string.Empty;
+                }
+            }
+        }
+
+        public RelayCommand ItemActionCommand
         {
             get
             {
@@ -49,12 +73,40 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Items
                 {
                     try
                     {
-                        await ApiClient.CancelSyncJobItem(SyncJobItem.Id);
-                        _syncJobDetailViewModel.SyncJobItems.Remove(this);
+                        var status = SyncJobItem.Status;
+                        var id = SyncJobItem.Id;
+                        switch (status)
+                        {
+                            case SyncJobItemStatus.Cancelled:
+                                await ApiClient.EnableCancelledSyncJobItem(id);
+                                break;
+                            case SyncJobItemStatus.Failed:
+                                await ApiClient.QueueFailedSyncJobItemForRetry(id);
+                                break;
+                            case SyncJobItemStatus.Queued:
+                            case SyncJobItemStatus.Converting:
+                            case SyncJobItemStatus.ReadyToTransfer:
+                            case SyncJobItemStatus.Transferring:
+                                await ApiClient.CancelSyncJobItem(id);
+                                _syncJobDetailViewModel.SyncJobItems.Remove(this);
+                                break;
+                            case SyncJobItemStatus.Synced:
+                                if (SyncJobItem.IsMarkedForRemoval)
+                                {
+                                    await ApiClient.UnmarkSyncJobItemForRemoval(id);
+                                }
+                                else
+                                {
+                                    await ApiClient.MarkSyncJobItemForRemoval(id);
+                                }
+                                break;
+                        }
+
+                        SyncService.Current.Sync().ConfigureAwait(false);
                     }
                     catch (HttpException ex)
                     {
-                        Utils.HandleHttpException("DeleteSyncJobItemCommand", ex, NavigationService, Log);
+                        Utils.HandleHttpException("ItemActionCommand(" + SyncJobItem.Status + ")", ex, NavigationService, Log);
                     }
                 });
             }

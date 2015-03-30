@@ -159,7 +159,7 @@ namespace MediaBrowser.WindowsPhone.Converters
                         Tag = item.PrimaryImageTag
                     };
 
-                    return apiClient.GetImageUrl(item.PrimaryImageItemId, imageOptions);
+                    return string.IsNullOrEmpty(item.PrimaryImageItemId) ? string.Empty : apiClient.GetImageUrl(item.PrimaryImageItemId, imageOptions);
                 }
 
                 if (type == typeof(SyncJobItem))
@@ -173,7 +173,7 @@ namespace MediaBrowser.WindowsPhone.Converters
                         Tag = item.PrimaryImageTag
                     };
 
-                    return apiClient.GetImageUrl(item.PrimaryImageItemId, imageOptions);
+                    return string.IsNullOrEmpty(item.PrimaryImageItemId) ? string.Empty : apiClient.GetImageUrl(item.PrimaryImageItemId, imageOptions);
                 }
             }
 
