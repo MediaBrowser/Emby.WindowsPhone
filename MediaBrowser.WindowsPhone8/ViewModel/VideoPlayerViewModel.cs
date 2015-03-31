@@ -79,7 +79,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     PositionTicks = totalTicks
                 };
 
-                await _playbackManager.ReportPlaybackProgress(info, false, ApiClient);
+                await _playbackManager.ReportPlaybackProgress(info, _streamInfo, false, ApiClient);
                 SetPlaybackTicks(totalTicks);
             }
             catch (HttpException ex)
