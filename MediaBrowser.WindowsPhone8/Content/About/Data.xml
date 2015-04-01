@@ -56,6 +56,11 @@
     <!-- Supported types are "text" and "xaml", where text is nicely formatted automatically, and XAML is handled by the built-in XamlReader -->
     <Item Title="history"
           Type="text">
+      8.0.66.1
+      Fixes:
+      - Updated localisation files with updated translations.
+      - Added a setting that will be required for the next major version
+      
       8.0.66.0
       Enhancements:
       - Massively improved video streaming. Now supports direct streaming from the server (ie, no transcoding if video is supported by the phone)
