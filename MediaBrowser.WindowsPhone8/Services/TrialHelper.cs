@@ -21,6 +21,7 @@ namespace MediaBrowser.WindowsPhone.Services
             IsTrial = true;
 #else
             IsTrial = new LicenseInformation().IsTrial();
+            _settings.Set(Constants.Settings.AppIsBought, !IsTrial);
 #endif
         }
 
