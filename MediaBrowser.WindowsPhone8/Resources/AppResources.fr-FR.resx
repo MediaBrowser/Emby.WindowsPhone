@@ -130,7 +130,7 @@
     <value>Effacer la liste de lecture</value>
   </data>
   <data name="AppBarDeleteItems" xml:space="preserve">
-    <value>Supprimer items</value>
+    <value>Supprimer des éléments</value>
   </data>
   <data name="AppBarGroupBy" xml:space="preserve">
     <value>Grouper par</value>
@@ -271,7 +271,7 @@
     <value>Nous n'avons pas réussi à vous authentifier, ceci peut être dû à une erreur de nom d'utilisateur/mot de passe, ou votre compte a été désactivé.</value>
   </data>
   <data name="ErrorUnableToSignInTitle" xml:space="preserve">
-    <value>Connexion échouée</value>
+    <value>Echec de l'authentification</value>
   </data>
   <data name="Favourites" xml:space="preserve">
     <value>Favoris</value>
@@ -349,7 +349,7 @@
     <value>Réalisateur</value>
   </data>
   <data name="LabelDisplayRandomImages" xml:space="preserve">
-    <value>Afficher des images d'arrière-plan aléatoires sur l'arrière de la tuile.</value>
+    <value>Afficher des images d'arrière-plan aléatoires sur l'arrière de la vignette.</value>
   </data>
   <data name="LabelEpisode" xml:space="preserve">
     <value>Épisode</value>
@@ -463,7 +463,7 @@
     <value>résumé</value>
   </data>
   <data name="LabelPassword" xml:space="preserve">
-    <value>mot de passe:</value>
+    <value>Mot de passe :</value>
   </data>
   <data name="LabelPort" xml:space="preserve">
     <value>port:</value>
@@ -535,10 +535,10 @@
     <value>chansons</value>
   </data>
   <data name="LabelTile" xml:space="preserve">
-    <value>tuile</value>
+    <value>vignette</value>
   </data>
   <data name="LabelTileBackInformation" xml:space="preserve">
-    <value>Pour afficher quelques images de votre collection, la tuile en utilisera certaines, ici vous pouvez choisir l'apparence de la tuile.</value>
+    <value>Pour afficher quelques images de votre collection, la vignette en utilisera certaines, ici vous pouvez choisir l'apparence de la vignette.</value>
   </data>
   <data name="LabelTrailers" xml:space="preserve">
     <value>bandes-annonces</value>
@@ -553,7 +553,7 @@
     <value>Non vu:</value>
   </data>
   <data name="LabelUsername" xml:space="preserve">
-    <value>nom d'utilisateur</value>
+    <value>Nom d'utilisateur:</value>
   </data>
   <data name="LabelViews" xml:space="preserve">
     <value>Vues</value>
@@ -580,7 +580,7 @@
     <value>Etes-vous sûr?</value>
   </data>
   <data name="MessageBoxUnpinText" xml:space="preserve">
-    <value>Etes-vous sûr de vouloir retirer l'épingle de cette tuile?</value>
+    <value>Etes-vous sûr de vouloir retirer l'épingle de cette vignette ?</value>
   </data>
   <data name="MessageClearPlayList" xml:space="preserve">
     <value>Etes-vous sûr de vouloir vider votre liste de lecture?</value>
@@ -746,7 +746,7 @@
     <value>entrer un nom d'utilisateur</value>
   </data>
   <data name="LabelLogIn" xml:space="preserve">
-    <value>Se connecter</value>
+    <value>Connexion</value>
   </data>
   <data name="LabelNoFoldersFound" xml:space="preserve">
     <value>Aucun dossier trouvé</value>
@@ -971,7 +971,7 @@
     <value>TV</value>
   </data>
   <data name="LabelUseTransparentTile" xml:space="preserve">
-    <value>Utiliser les tuiles transparentes</value>
+    <value>Utiliser des vignette transparentes</value>
   </data>
   <data name="TitleChannels" xml:space="preserve">
     <value>Canaux</value>
@@ -1109,7 +1109,7 @@
     <value>Ignorer</value>
   </data>
   <data name="ErrorSigningIn" xml:space="preserve">
-    <value>Erreur lors de la connexion</value>
+    <value>Erreur d'authentification</value>
   </data>
   <data name="LabelRetry" xml:space="preserve">
     <value>Réessayez</value>
@@ -1136,7 +1136,7 @@
     <value>Lire les vidéos quand l'écran est verrouillé</value>
   </data>
   <data name="LabelPlayUnderLockWarning" xml:space="preserve">
-    <value>Ca aura un effet sur la durée de vie de votre batterie</value>
+    <value>Ca aura un effet sur l'autonomie de votre batterie</value>
   </data>
   <data name="LabelRestartNow" xml:space="preserve">
     <value>Redémarrez maintenant?</value>

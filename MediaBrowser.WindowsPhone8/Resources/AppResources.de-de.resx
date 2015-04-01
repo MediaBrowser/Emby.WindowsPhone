@@ -121,19 +121,19 @@
     <value>über</value>
   </data>
   <data name="AppBarAddToNowPlaying" xml:space="preserve">
-    <value>zur Wiedergabe hinzufügen</value>
+    <value>zur Wiedergabeliste hinzufügen</value>
   </data>
   <data name="AppBarChangeProfile" xml:space="preserve">
     <value>Profil wechseln</value>
   </data>
   <data name="AppBarClearNowPlaying" xml:space="preserve">
-    <value>Wiedergabe zurücksetzen</value>
+    <value>Wiedergabeliste zurücksetzen</value>
   </data>
   <data name="AppBarDeleteItems" xml:space="preserve">
     <value>Elemente löschen</value>
   </data>
   <data name="AppBarGroupBy" xml:space="preserve">
-    <value>sortieren nach</value>
+    <value>Gruppieren nach</value>
   </data>
   <data name="AppBarLogin" xml:space="preserve">
     <value>Anmelden</value>
@@ -205,22 +205,22 @@
     <value>Ordner</value>
   </data>
   <data name="DeviceNotRegistered" xml:space="preserve">
-    <value>Das Gerät wurde nicht registriert</value>
+    <value>Das Gerät ist nicht registriert</value>
   </data>
   <data name="DeviceRegistered" xml:space="preserve">
-    <value>Das Gerät wurde registriert</value>
+    <value>Das Gerät ist registriert</value>
   </data>
   <data name="ErrorConnectionDetailsInvalid" xml:space="preserve">
     <value>Die Verbindungsdetails sind ungültig, bitte versuchen Sie es erneut.</value>
   </data>
   <data name="ErrorConnectionDetailsMessage" xml:space="preserve">
-    <value>Es wurden keine Verbindungsdetails eingestellt, möchten Sie sie jetzt einstellen?</value>
+    <value>Es wurden keine Verbindungsdetails eingestellt. Möchten Sie diese jetzt einstellen?</value>
   </data>
   <data name="ErrorConnectionDetailsTitle" xml:space="preserve">
     <value>Keine Verbindungsdetails</value>
   </data>
   <data name="ErrorCouldNotFindServer" xml:space="preserve">
-    <value>Konnte Ihren Server nicht finden.</value>
+    <value>Konnte den Server nicht finden.</value>
   </data>
   <data name="ErrorDisabledUser" xml:space="preserve">
     <value>Entschuldigung, es sieht so aus, als sei dieses Benutzerkonto deaktiviert. Wir bringen Sie nun zurück zum Anmeldebildschirm.</value>
@@ -232,37 +232,37 @@
     <value>Der Download von Details zur Episode ist fehlgeschlagen</value>
   </data>
   <data name="ErrorEpisodes" xml:space="preserve">
-    <value>Der Abruf von Episoden ist fehlgeschlagen</value>
+    <value>Fehler beim aufrufen der Episoden</value>
   </data>
   <data name="ErrorFailedToSearch" xml:space="preserve">
-    <value>Das Ausführen der Suche ist fehlgeschlagen</value>
+    <value>Suche fehlgeschlagen</value>
   </data>
   <data name="ErrorGettingData" xml:space="preserve">
-    <value>Der Abruf der Daten ist fehlgeschlagen</value>
+    <value>Fehler beim aufrufen der Daten</value>
   </data>
   <data name="ErrorGettingExtraInfo" xml:space="preserve">
-    <value>Der Abruf zusätzlicher Informationen ist fehlgeschlagen</value>
+    <value>Fehler beim aufrufen der Extra Informationen</value>
   </data>
   <data name="ErrorGettingTrailerDetails" xml:space="preserve">
     <value>Kann die Trailer Informationen nicht abrufen</value>
   </data>
   <data name="ErrorInvalidHostname" xml:space="preserve">
-    <value>Entschuldigung, Ihr Hostname ist ungültig. Bitte stellen Sie sicher, dass er beispielsweise keine Leerzeichen enthält.</value>
+    <value>Entschuldigung, Ihr Hostname ist ungültig. Bitte überprüfen Sie den Hostname auf ungültige Zeichen (Leerzeichen etc.)</value>
   </data>
   <data name="ErrorMakingChanges" xml:space="preserve">
     <value>Übernehmen Ihrer Änderungen fehlgeschlagen</value>
   </data>
   <data name="ErrorNoConnectionSettings" xml:space="preserve">
-    <value>Keine Verbindungs-Einstellungen, tippen Sie hier, um diese nun vorzunehmen</value>
+    <value>Keine Verbindungs-Einstellungen, hier tippen zum einstellen.</value>
   </data>
   <data name="ErrorProblemUpdatingItem" xml:space="preserve">
     <value>Es gab ein Problem dieses Element zu aktualisieren. Bitte versuchen Sie es später erneut.</value>
   </data>
   <data name="ErrorRecentItems" xml:space="preserve">
-    <value>Abruf der letzten Elemente fehlgeschlagen</value>
+    <value>Fehler beim Aufruf der letzten Dateien</value>
   </data>
   <data name="ErrorSeasons" xml:space="preserve">
-    <value>Abruf der Seasons fehlgeschlagen</value>
+    <value>Fehler beim Aufruf der Staffeln</value>
   </data>
   <data name="ErrorTitle" xml:space="preserve">
     <value>Fehler</value>

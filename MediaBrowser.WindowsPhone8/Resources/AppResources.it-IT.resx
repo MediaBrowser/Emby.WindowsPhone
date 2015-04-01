@@ -184,7 +184,7 @@
     <value>aggiorna le informazioni</value>
   </data>
   <data name="AppBarRemote" xml:space="preserve">
-    <value>remoto</value>
+    <value>Remoto</value>
   </data>
   <data name="AppBarResume" xml:space="preserve">
     <value>riprendi</value>
@@ -298,7 +298,7 @@
     <value>aggiungi a preferiti</value>
   </data>
   <data name="LabelAlbums" xml:space="preserve">
-    <value>albums</value>
+    <value>album</value>
   </data>
   <data name="LabelAnHourAgo" xml:space="preserve">
     <value>un ora fa</value>
@@ -553,7 +553,7 @@
     <value>Non visto:</value>
   </data>
   <data name="LabelUsername" xml:space="preserve">
-    <value>Username:</value>
+    <value>Nome Utente:</value>
   </data>
   <data name="LabelViews" xml:space="preserve">
     <value>Viste</value>
@@ -607,7 +607,7 @@
     <value>nessun risultato</value>
   </data>
   <data name="PinToStart" xml:space="preserve">
-    <value>Pin to start</value>
+    <value>Aggiungi a Start</value>
   </data>
   <data name="ProductionYear" xml:space="preserve">
     <value>Anno di produzione</value>
