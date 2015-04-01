@@ -187,6 +187,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 }
 
                 SelectedTracks = SelectedTracks.OrderBy(x => x.IndexNumber).ToList();
+                SyncItemsCommand.RaiseCanExecuteChanged();
             });
 
             AddToNowPlayingCommand = new RelayCommand(async () =>
@@ -221,6 +222,19 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                     Utils.HandleHttpException("SyncItemsCommand", ex, NavigationService, Log);
                 }
             }, () => SelectedTracks.Any());
+
+            TakeOfflineCommand = new RelayCommand<BaseItemDto>(async item =>
+            {
+                try
+                {
+                    var request = SyncRequestHelper.CreateRequest(item.Id, item.Name);
+                    await SyncService.Current.AddJobAsync(request);
+                }
+                catch (HttpException ex)
+                {
+                    Utils.HandleHttpException("TakeOfflineCommand", ex, NavigationService, Log);
+                }
+            });
 
             PlayItemsCommand = new RelayCommand(async () =>
             {
@@ -477,6 +491,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public RelayCommand PlayAllItemsCommand { get; set; }
         public RelayCommand<BaseItemDto> AddRemoveFavouriteCommand { get; set; }
         public RelayCommand SyncItemsCommand { get; set; }
+        public RelayCommand<BaseItemDto> TakeOfflineCommand { get; set; }
         public bool CanUpdateFavourites { get; set; }
     }
 }

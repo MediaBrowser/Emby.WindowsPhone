@@ -31,6 +31,12 @@
                                                     IconUri="/Icons/appbar.list.check.png"
                                                     Click="ApplicationBarIconButton_OnClick"
                                                     IsEnabled="{Binding AlbumTracks.Count, Converter={StaticResource CountToEnabled}, ConverterParameter=delete}" />
+                <cimbalino:ApplicationBarIconButton Text="{Binding LocalizedResources.AppBarOffline, Source={StaticResource LocalizedStrings}}"
+                                                    IconUri="/Icons/appbar.cloud.png"
+                                                    Command="{Binding TakeOfflineCommand}"
+                                                    CommandParameter="{Binding SelectedAlbum}"
+                                                    IsEnabled="{Binding SelectedAlbum.SupportsSync}"
+                                                    IsVisible="{Binding Auth.LoggedInUser.Policy.EnableSync, Source={StaticResource Locator}}" />
                 <cimbalino:ApplicationBar.MenuItems>
                     <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarNowPlaying, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                       Command="{Binding Main.NavigateToAPage, Source={StaticResource Locator}}"
@@ -53,6 +59,10 @@
                                                     IconUri="/Icons/appbar.transport.play.png"
                                                     Command="{Binding PlayItemsCommand}"
                                                     IsEnabled="{Binding SelectedTracks.Count, Converter={StaticResource CountToEnabled}, ConverterParameter=delete}" />
+                <cimbalino:ApplicationBarIconButton Text="{Binding LocalizedResources.AppBarOffline, Source={StaticResource LocalizedStrings}}"
+                                                    IconUri="/Icons/appbar.cloud.png"
+                                                    Command="{Binding SyncItemsCommand}"
+                                                    IsVisible="{Binding Auth.LoggedInUser.Policy.EnableSync, Source={StaticResource Locator}}" />
                 <cimbalino:ApplicationBar.MenuItems>
                     <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarAddToNowPlaying, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                       Command="{Binding AddToNowPlayingCommand}"
@@ -128,7 +138,8 @@
                     <toolkit:LongListMultiSelector.ListHeaderTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal"
-                                        Margin="0,0,0,12">
+                                        Margin="0,0,0,12"
+                                        d:DataContext="{Binding Music.AlbumTracks[0], Source={StaticResource Locator}}">
                                 <toolkit:ContextMenuService.ContextMenu>
                                     <toolkit:ContextMenu>
                                         <toolkit:MenuItem Header="{Binding LocalizedResources.LabelAddToPlaylist, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
@@ -137,6 +148,10 @@
                                         <toolkit:MenuItem Header="{Binding LocalizedResources.LabelInstantMix, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                           Command="{Binding Music.StartInstantMixCommand, Source={StaticResource Locator}}"
                                                           CommandParameter="{Binding}" />
+                                        <toolkit:MenuItem Header="{Binding LocalizedResources.AppBarOffline, Source={StaticResource LocalizedStrings}}"
+                                                          Command="{Binding Music.TakeOfflineCommand, Source={StaticResource Locator}}"
+                                                          CommandParameter="{Binding}"
+                                                          Visibility="{Binding SupportsSync, Converter={StaticResource VisibilityConverter}}"/>
                                     </toolkit:ContextMenu>
                                 </toolkit:ContextMenuService.ContextMenu>
                                 <c4F:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
@@ -174,6 +189,10 @@
                                         <toolkit:MenuItem Header="{Binding LocalizedResources.LabelInstantMix, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                           Command="{Binding Music.StartInstantMixCommand, Source={StaticResource Locator}}"
                                                           CommandParameter="{Binding}" />
+                                        <toolkit:MenuItem Header="{Binding LocalizedResources.AppBarOffline, Source={StaticResource LocalizedStrings}}"
+                                                          Command="{Binding Music.TakeOfflineCommand, Source={StaticResource Locator}}"
+                                                          CommandParameter="{Binding}"
+                                                          Visibility="{Binding SupportsSync, Converter={StaticResource VisibilityConverter}}" />
                                     </toolkit:ContextMenu>
                                 </toolkit:ContextMenuService.ContextMenu>
                                 <c4F:RoundButton ImageSource="/Icons/appbar.transport.play.rest.png"

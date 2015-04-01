@@ -28,8 +28,15 @@
         <behaviours:MBSysTray Text="{Binding ProgressText}"
                               IsVisible="{Binding ProgressIsVisible}"
                               IsIndeterminate="{Binding ProgressIsVisible}" />
-        <cimbalino:ApplicationBarBehavior Mode="Minimized"
-                                          IsMenuEnabled="True">
+        <cimbalino:ApplicationBarBehavior IsMenuEnabled="True">
+            <cimbalino:ApplicationBarBehavior.Buttons>
+                <cimbalino:ApplicationBarIconButton Text="{Binding LocalizedResources.AppBarOffline, Source={StaticResource LocalizedStrings}}"
+                                                    IconUri="/Icons/appbar.cloud.png"
+                                                    Command="{Binding TakeOfflineCommand}"
+                                                    CommandParameter="{Binding SelectedArtist}"
+                                                    IsEnabled="{Binding SelectedArtist.SupportsSync}"
+                                                    IsVisible="{Binding Auth.LoggedInUser.Policy.EnableSync, Source={StaticResource Locator}}" />
+            </cimbalino:ApplicationBarBehavior.Buttons>
             <cimbalino:ApplicationBarBehavior.MenuItems>
                 <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarPlayAllTracks, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                   Command="{Binding PlayAllItemsCommand}"/>
@@ -102,6 +109,10 @@
                                                 <toolkit:MenuItem Header="{Binding LocalizedResources.LabelInstantMix, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                                   Command="{Binding Music.StartInstantMixCommand, Source={StaticResource Locator}}"
                                                                   CommandParameter="{Binding}"/>
+                                                <toolkit:MenuItem Header="{Binding LocalizedResources.AppBarOffline, Source={StaticResource LocalizedStrings}}"
+                                                                  Command="{Binding Music.TakeOfflineCommand, Source={StaticResource Locator}}"
+                                                                  CommandParameter="{Binding}"
+                                                                  Visibility="{Binding SupportsSync, Converter={StaticResource VisibilityConverter}}" />
                                             </toolkit:ContextMenu>
                                         </toolkit:ContextMenuService.ContextMenu>
                                         <StackPanel Orientation="Horizontal"
@@ -157,6 +168,10 @@
                                                 <toolkit:MenuItem Header="{Binding LocalizedResources.LabelInstantMix, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                                   Command="{Binding Music.StartInstantMixCommand, Source={StaticResource Locator}}"
                                                                   CommandParameter="{Binding}" />
+                                                <toolkit:MenuItem Header="{Binding LocalizedResources.AppBarOffline, Source={StaticResource LocalizedStrings}}"
+                                                                  Command="{Binding Music.TakeOfflineCommand, Source={StaticResource Locator}}"
+                                                                  CommandParameter="{Binding}"
+                                                                  Visibility="{Binding SupportsSync, Converter={StaticResource VisibilityConverter}}" />
                                             </toolkit:ContextMenu>
                                         </toolkit:ContextMenuService.ContextMenu>
                                         <c4f:RoundButton ImageSource="/Icons/appbar.transport.play.rest.png"
