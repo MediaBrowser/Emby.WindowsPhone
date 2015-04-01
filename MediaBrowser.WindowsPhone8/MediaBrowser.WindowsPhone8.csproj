@@ -131,6 +131,7 @@
     <Compile Include="Behaviours\MBSysTray.cs" />
     <Compile Include="Behaviours\OnTextPropertyChangedBehaviour.cs" />
     <Compile Include="Behaviours\PanoramaBackgroundBehaviour.cs" />
+    <Compile Include="Behaviours\SyncAppBarButton.cs" />
     <Compile Include="Behaviours\VideoStreamBehaviour.cs" />
     <Compile Include="CimbalinoToolkit\LockScreenService.cs" />
     <Compile Include="CimbalinoToolkit\Tiles\ShellTileWithCreateService.cs" />
@@ -501,6 +502,7 @@
     <Content Include="DefaultLockScreen.jpg" />
     <Content Include="Icons\appbar.cancel.record.png" />
     <Content Include="Icons\appbar.cancel.serieslink.png" />
+    <Content Include="Icons\appbar.cloud.delete.png" />
     <Content Include="Icons\appbar.cloud.png" />
     <Content Include="Icons\appbar.connection.playon.png" />
     <Content Include="Icons\appbar.feature.search.rest.png" />

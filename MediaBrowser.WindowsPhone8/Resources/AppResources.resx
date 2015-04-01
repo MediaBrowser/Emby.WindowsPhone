@@ -1219,4 +1219,7 @@
   <data name="MenuUnmarkForRemoval" xml:space="preserve">
     <value>unmark for removal</value>
   </data>
+  <data name="AppBarUnsync" xml:space="preserve">
+    <value>unsync</value>
+  </data>
 </root>

@@ -7,7 +7,6 @@
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:ignore="http://www.ignore.com"
                 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-                
                 xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
                 xmlns:c4f="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
                 xmlns:scott="clr-namespace:ScottIsAFool.WindowsPhone.Controls;assembly=ScottIsAFool.WindowsPhone"
@@ -30,23 +29,30 @@
                               IsIndeterminate="{Binding ProgressIsVisible}" />
         <cimbalino:ApplicationBarBehavior IsMenuEnabled="True">
             <cimbalino:ApplicationBarBehavior.Buttons>
-                <cimbalino:ApplicationBarIconButton Text="{Binding LocalizedResources.AppBarOffline, Source={StaticResource LocalizedStrings}}"
-                                                    IconUri="/Icons/appbar.cloud.png"
-                                                    Command="{Binding TakeOfflineCommand}"
-                                                    CommandParameter="{Binding SelectedArtist}"
-                                                    IsEnabled="{Binding SelectedArtist.SupportsSync}"
-                                                    IsVisible="{Binding Auth.LoggedInUser.Policy.EnableSync, Source={StaticResource Locator}}" />
+                <behaviours:SyncAppBarButton Text="{Binding LocalizedResources.AppBarOffline, Source={StaticResource LocalizedStrings}}"
+                                             IconUri="/Icons/appbar.cloud.png"
+                                             Command="{Binding TakeOfflineCommand}"
+                                             CommandParameter="{Binding SelectedArtist}"
+                                             IsEnabled="{Binding SelectedArtist.SupportsSync}"
+                                             SyncPolicy="{Binding Auth.LoggedInUser.Policy.EnableSync, Source={StaticResource Locator}}"/>
+                                             <!--HasSyncJob="{Binding SelectedArtist.HasSyncJob}"/>-->
+                <!--<behaviours:SyncAppBarButton Text="{Binding LocalizedResources.AppBarUnsync, Source={StaticResource LocalizedStrings}}"
+                                             IconUri="/Icons/appbar.cloud.delete.png"
+                                             IsEnabled="{Binding SelectedArtist.SupportsSync}"
+                                             SyncPolicy="{Binding Auth.LoggedInUser.Policy.EnableSync, Source={StaticResource Locator}}"
+                                             HasSyncJob="{Binding SelectedArtist.HasSyncJob}"
+                                             IsRemove="True"/>-->
             </cimbalino:ApplicationBarBehavior.Buttons>
             <cimbalino:ApplicationBarBehavior.MenuItems>
                 <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarPlayAllTracks, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
-                                                  Command="{Binding PlayAllItemsCommand}"/>
+                                                  Command="{Binding PlayAllItemsCommand}" />
                 <cimbalino:ApplicationBarMenuItem Text="{Binding SelectedArtist.UserData.IsFavorite, Converter={StaticResource FavouritesConverter}, ConverterParameter=fulltext}"
                                                   Command="{Binding AddRemoveFavouriteCommand}"
                                                   CommandParameter="{Binding SelectedArtist}"
                                                   IsEnabled="{Binding CanUpdateFavourites}" />
                 <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.LabelInstantMix, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                   Command="{Binding StartInstantMixCommand}"
-                                                  CommandParameter="{Binding SelectedArtist}"/>
+                                                  CommandParameter="{Binding SelectedArtist}" />
             </cimbalino:ApplicationBarBehavior.MenuItems>
         </cimbalino:ApplicationBarBehavior>
     </i:Interaction.Behaviors>
@@ -97,10 +103,10 @@
                             <phone:LongListSelector.ItemTemplate>
                                 <DataTemplate>
                                     <controls:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                                     VerticalContentAlignment="Top"
-                                                     NavigateUri="/Views/AlbumView.xaml"
-                                                     TapCommand="{Binding Music.AlbumTapped, Source={StaticResource Locator}}"
-                                                     CommandParameter="{Binding}">
+                                                                    VerticalContentAlignment="Top"
+                                                                    NavigateUri="/Views/AlbumView.xaml"
+                                                                    TapCommand="{Binding Music.AlbumTapped, Source={StaticResource Locator}}"
+                                                                    CommandParameter="{Binding}">
                                         <toolkit:ContextMenuService.ContextMenu>
                                             <toolkit:ContextMenu>
                                                 <toolkit:MenuItem Header="{Binding LocalizedResources.LabelAddToPlaylist, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
@@ -108,7 +114,7 @@
                                                                   CommandParameter="{Binding}" />
                                                 <toolkit:MenuItem Header="{Binding LocalizedResources.LabelInstantMix, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                                   Command="{Binding Music.StartInstantMixCommand, Source={StaticResource Locator}}"
-                                                                  CommandParameter="{Binding}"/>
+                                                                  CommandParameter="{Binding}" />
                                                 <toolkit:MenuItem Header="{Binding LocalizedResources.AppBarOffline, Source={StaticResource LocalizedStrings}}"
                                                                   Command="{Binding Music.TakeOfflineCommand, Source={StaticResource Locator}}"
                                                                   CommandParameter="{Binding}"
@@ -132,7 +138,7 @@
                                                                  Margin="6"
                                                                  Command="{Binding Music.AlbumPlayTapped, Source={StaticResource Locator}}"
                                                                  CommandParameter="{Binding}"
-                                                                 Style="{StaticResource WhiteRoundButtonStyle}"/>
+                                                                 Style="{StaticResource WhiteRoundButtonStyle}" />
                                             </Grid>
                                             <TextBlock Text="{Binding Name}"
                                                        Style="{StaticResource PhoneTextTitle2Style}"

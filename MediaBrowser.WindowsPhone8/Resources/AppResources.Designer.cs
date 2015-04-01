@@ -394,6 +394,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to unsync.
+        /// </summary>
+        public static string AppBarUnsync {
+            get {
+                return ResourceManager.GetString("AppBarUnsync", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This background task is used to automatically upload any photos from your phone, this feature can be turned on from inside the app..
         /// </summary>
         public static string BackgroundTaskDescription {
