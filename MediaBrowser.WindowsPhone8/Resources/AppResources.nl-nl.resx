@@ -220,10 +220,10 @@
     <value>Geen verbindingsgegevens</value>
   </data>
   <data name="ErrorCouldNotFindServer" xml:space="preserve">
-    <value>Kan uw server niet vinden</value>
+    <value>Kan uw server niet vinden.</value>
   </data>
   <data name="ErrorDisabledUser" xml:space="preserve">
-    <value>Sorry, het lijkt erop dat dit account is uitgeschakeld. We zullen nu u terug brengn naar het inlogscherm.</value>
+    <value>Sorry, het lijkt erop dat dit account is uitgeschakeld. We zullen nu u terug brengen naar het inlogscherm.</value>
   </data>
   <data name="ErrorDisabledUserTitle" xml:space="preserve">
     <value>Aanmelden niet mogelijk</value>
@@ -238,7 +238,7 @@
     <value>Mislukt zoekopdracht uit te voeren</value>
   </data>
   <data name="ErrorGettingData" xml:space="preserve">
-    <value>Fout bij het ophalen data</value>
+    <value>Fout bij het ophalen van data</value>
   </data>
   <data name="ErrorGettingExtraInfo" xml:space="preserve">
     <value>Fout bij het ophalen extra informatie</value>
@@ -247,13 +247,13 @@
     <value>Niet in staat om de trailer informatie te krijgen</value>
   </data>
   <data name="ErrorInvalidHostname" xml:space="preserve">
-    <value>Sorry , uw hostname is ongeldig, zorg ervoor dat u bijv. geen spaties gebruikt .</value>
+    <value>Sorry, uw hostname is ongeldig, zorg ervoor dat u bijv. geen spaties gebruikt.</value>
   </data>
   <data name="ErrorMakingChanges" xml:space="preserve">
     <value>Fout bij het maken van uw wijzigingen</value>
   </data>
   <data name="ErrorNoConnectionSettings" xml:space="preserve">
-    <value>Geen verbinding , tik om in te stellen</value>
+    <value>Geen verbinding, tik om in te stellen</value>
   </data>
   <data name="ErrorProblemUpdatingItem" xml:space="preserve">
     <value>Er was een probleem het bijwerken van dit item , Probeer het later opnieuw .</value>
@@ -268,7 +268,7 @@
     <value>Fout</value>
   </data>
   <data name="ErrorUnableToSignIn" xml:space="preserve">
-    <value>We waren niet in staat om u aan te melden op dit moment, kan dit te wijten zijn aan een onjuiste gebruikersnaam en / of wachtwoord , of uw account is uitgeschakeld .</value>
+    <value>We waren niet in staat om u aan te melden op dit moment, kan dit te wijten zijn aan een onjuiste gebruikersnaam en / of wachtwoord, of uw account is uitgeschakeld.</value>
   </data>
   <data name="ErrorUnableToSignInTitle" xml:space="preserve">
     <value>Inloggen mislukt</value>
@@ -331,7 +331,7 @@
     <value>Stel de verbinding gegevens in naar de computer waarop Media Browser 3 draait . Dan gewoon testen om te bevestigen .</value>
   </data>
   <data name="LabelConnectionWarning" xml:space="preserve">
-    <value>WAARSCHUWING : Wijziging van de hostnaam zal alle opgeslagen profielen  verwijderen .</value>
+    <value>WAARSCHUWING: Wijziging van de hostnaam zal alle opgeslagen profielen verwijderen.</value>
   </data>
   <data name="LabelDate" xml:space="preserve">
     <value>datum</value>
@@ -361,10 +361,10 @@
     <value>Zodra de Media Browser server is geconfigureerd , zorg ervoor dat het toegankelijk is van waar je bent , of dat nu uw lokale draadloze netwerk is , of een extern statisch adres .</value>
   </data>
   <data name="LabelFirstRunHappyConfiguration" xml:space="preserve">
-    <value>Wanneer u tevreden bent met uw instellingen , klikt dan op de instellingen knop en voer de gegevens van uw server in , anders kunt u de app gewoon sluiten vanaf hier.</value>
+    <value>Wanneer u tevreden bent met uw instellingen, klik dan op de instellingen knop en voer de gegevens van uw server in, anders kunt u de app gewoon sluiten vanaf hier.</value>
   </data>
   <data name="LabelFirstRunServerInfo" xml:space="preserve">
-    <value>Voordat we echter aan de slag kunnen , moet u ervoor zorgen dat u gebruik maakt van een werkende Media Browser server .</value>
+    <value>Voordat we echter aan de slag kunnen, moet u ervoor zorgen dat u gebruik maakt van een werkende Media Browser server.</value>
   </data>
   <data name="LabelGeneral" xml:space="preserve">
     <value>algemeen</value>
@@ -379,7 +379,7 @@
     <value>{0} uur geleden</value>
   </data>
   <data name="LabelImageEnhancers" xml:space="preserve">
-    <value>Inschakelen uitgebruide afbeeldingen ( indien geïnstalleerd op de server )</value>
+    <value>Inschakelen uitgebreide afbeeldingen (indien geïnstalleerd op de server)</value>
   </data>
   <data name="LabelImdb" xml:space="preserve">
     <value>Zie film op IMDB</value>
@@ -391,7 +391,7 @@
     <value>Media Browser is niet de lock screen provider</value>
   </data>
   <data name="LabelJustShowList" xml:space="preserve">
-    <value>Vertoon een lijst met items , geen media mapweergave</value>
+    <value>Vertoon een lijst met items, geen media mapweergave</value>
   </data>
   <data name="LabelLatestUnseen" xml:space="preserve">
     <value>laatste ongeziene</value>
@@ -478,7 +478,7 @@
     <value>profiel</value>
   </data>
   <data name="LabelProfileNotListed" xml:space="preserve">
-    <value>Het profiel is niet vermeld ?</value>
+    <value>Het profiel is niet vermeld?</value>
   </data>
   <data name="LabelProfiles" xml:space="preserve">
     <value>profielen</value>
@@ -520,7 +520,7 @@
     <value>Series</value>
   </data>
   <data name="LabelShowAllItems" xml:space="preserve">
-    <value>toon alle items ...</value>
+    <value>toon alle items...</value>
   </data>
   <data name="LabelShows" xml:space="preserve">
     <value>shows</value>
@@ -538,7 +538,7 @@
     <value>tegel</value>
   </data>
   <data name="LabelTileBackInformation" xml:space="preserve">
-    <value>Om enkele van de fantastische Artworks uit uw collectie te laten zien, worden deze weergegeven op de tegel. hier kunt u aangeven hoe u deze wilt weergeven</value>
+    <value>Om het fantastische artwork uit uw collectie te laten zien, wordt deze weergegeven op de tegel. Hier kunt u aangeven hoe u deze wilt weergeven.</value>
   </data>
   <data name="LabelTrailers" xml:space="preserve">
     <value>trailers</value>
@@ -547,7 +547,7 @@
     <value>TV</value>
   </data>
   <data name="LabelUnairedEpisodes" xml:space="preserve">
-    <value>Toon nog niet uitgezinden afleveringen</value>
+    <value>Toon nog niet uitgezonden afleveringen</value>
   </data>
   <data name="LabelUnwatched" xml:space="preserve">
     <value>Onbekeken:</value>
@@ -559,7 +559,7 @@
     <value>Bekeken</value>
   </data>
   <data name="LabelWelcomeText" xml:space="preserve">
-    <value>Welkom bij Media Browser voor Windows Phone . Deze app zal u in staat stellen om door uw mediacollectie te bladeren , naar uw telefoon te streamen en  Media Browser clients op afstand te bedienen.</value>
+    <value>Welkom bij Media Browser voor Windows Phone. Deze app stelt u in staat om door uw mediacollectie te bladeren, naar uw telefoon te streamen en Media Browser clients op afstand te bedienen.</value>
   </data>
   <data name="LabelWriter" xml:space="preserve">
     <value>Schrijver</value>
@@ -577,28 +577,28 @@
     <value>spelen van op</value>
   </data>
   <data name="MessageAreYouSureTitle" xml:space="preserve">
-    <value>Weet je het zeker ?</value>
+    <value>Weet u het zeker?</value>
   </data>
   <data name="MessageBoxUnpinText" xml:space="preserve">
-    <value>Weet u zeker dat u deze tegel wil losmaken ?</value>
+    <value>Weet u zeker dat u deze tegel wilt losmaken?</value>
   </data>
   <data name="MessageClearPlayList" xml:space="preserve">
-    <value>Weet u zeker dat u uw afspeellijst wil wissen ?</value>
+    <value>Weet u zeker dat u uw afspeellijst wilt wissen?</value>
   </data>
   <data name="MessageDeletePlaylistItems" xml:space="preserve">
-    <value>Weet u zeker dat u deze items wilt verwijderen ? Dit kan niet ongedaan worden gemaakt .</value>
+    <value>Weet u zeker dat u deze items wilt verwijderen? Dit kan niet ongedaan worden gemaakt.</value>
   </data>
   <data name="MessageExperimentalTitle" xml:space="preserve">
     <value>experimenteel</value>
   </data>
   <data name="MessageExperimentalVideo" xml:space="preserve">
-    <value>Het spelen van dit soort video is momenteel experimenteel,resultaten  kunnen  variëren , wilt u doorgaan?</value>
+    <value>Het spelen van dit soort video is momenteel experimenteel, resultaten kunnen variëren. Wilt u doorgaan?</value>
   </data>
   <data name="MessageTracksAddedSuccessfully" xml:space="preserve">
     <value>{0} tracks succesvol toegevoegd.</value>
   </data>
   <data name="More" xml:space="preserve">
-    <value>meer ...</value>
+    <value>meer...</value>
   </data>
   <data name="NameLabel" xml:space="preserve">
     <value>Naam</value>
@@ -607,7 +607,7 @@
     <value>Geen items  gevonden</value>
   </data>
   <data name="PinToStart" xml:space="preserve">
-    <value>Vastmaken om te beginnen</value>
+    <value>Vastmaken aan startscherm</value>
   </data>
   <data name="ProductionYear" xml:space="preserve">
     <value>Productie Jaar</value>
@@ -622,19 +622,19 @@
     <value>Instellingen</value>
   </data>
   <data name="SysTrayAddingToFavourites" xml:space="preserve">
-    <value>Toevoegen aan favorieten ...</value>
+    <value>Toevoegen aan favorieten...</value>
   </data>
   <data name="SysTrayAuthenticating" xml:space="preserve">
-    <value>Verifiëren ...</value>
+    <value>Verifiëren...</value>
   </data>
   <data name="SysTrayCheckingCollection" xml:space="preserve">
-    <value>Collectie controleren ...</value>
+    <value>Collectie controleren...</value>
   </data>
   <data name="SysTrayCheckingConnection" xml:space="preserve">
-    <value>Aansluiting controleren  ...</value>
+    <value>Aansluiting controleren...</value>
   </data>
   <data name="SysTrayFindingServer" xml:space="preserve">
-    <value>Poging om uw server te vinden ...</value>
+    <value>Poging om uw server te vinden...</value>
   </data>
   <data name="SysTrayGettingAlbums" xml:space="preserve">
     <value>albums ophalen...</value>
@@ -661,10 +661,10 @@
     <value>Episodedetails ophalen...</value>
   </data>
   <data name="SysTrayGettingEpisodes" xml:space="preserve">
-    <value>Afleveringen  ophalen...</value>
+    <value>Afleveringen ophalen...</value>
   </data>
   <data name="SysTrayGettingFavourites" xml:space="preserve">
-    <value>Favorieten  ophalen...</value>
+    <value>Favorieten ophalen...</value>
   </data>
   <data name="SysTrayGettingGenres" xml:space="preserve">
     <value>Genres  ophalen...</value>
@@ -673,46 +673,46 @@
     <value>Genre tracks  ophalen...</value>
   </data>
   <data name="SysTrayGettingItems" xml:space="preserve">
-    <value>Items  ophalen...</value>
+    <value>Items ophalen...</value>
   </data>
   <data name="SysTrayGettingMovieInfo" xml:space="preserve">
-    <value>Film informatie  ophalen...</value>
+    <value>Film informatie ophalen...</value>
   </data>
   <data name="SysTrayGettingMovies" xml:space="preserve">
     <value>Films  ophalen...</value>
   </data>
   <data name="SysTrayGettingNextUp" xml:space="preserve">
-    <value>Eerst volgende aflevering items  ophalen...</value>
+    <value>Eerst volgende aflevering items ophalen...</value>
   </data>
   <data name="SysTrayGettingNotifications" xml:space="preserve">
-    <value>Meldingen  ophalen...</value>
+    <value>Meldingen ophalen...</value>
   </data>
   <data name="SysTrayGettingProfiles" xml:space="preserve">
-    <value>Profielen  ophalen...</value>
+    <value>Profielen ophalen...</value>
   </data>
   <data name="SysTrayGettingRecentItems" xml:space="preserve">
-    <value>Recente artikelen  ophalen...</value>
+    <value>Recente artikelen ophalen...</value>
   </data>
   <data name="SysTrayGettingServerDetails" xml:space="preserve">
-    <value>Server details  ophalen...</value>
+    <value>Server details ophalen...</value>
   </data>
   <data name="SysTrayGettingShowInformation" xml:space="preserve">
-    <value>Show informatie  ophalen...</value>
+    <value>Show informatie ophalen...</value>
   </data>
   <data name="SysTrayGettingShows" xml:space="preserve">
-    <value>Tv-programma's  ophalen...</value>
+    <value>Tv-programma's ophalen...</value>
   </data>
   <data name="SysTrayGettingSongs" xml:space="preserve">
     <value>Liedjes  ophalen...</value>
   </data>
   <data name="SysTrayGettingTracks" xml:space="preserve">
-    <value>Tracks  ophalen...</value>
+    <value>Tracks ophalen...</value>
   </data>
   <data name="SysTrayGettingTrailerDetails" xml:space="preserve">
-    <value>Trailer details  ophalen...</value>
+    <value>Trailer details ophalen...</value>
   </data>
   <data name="SysTrayGettingUnwatchedItems" xml:space="preserve">
-    <value>Nieuwste niet-bekeken items  ophalen...</value>
+    <value>Nieuwste niet-bekeken items ophalen...</value>
   </data>
   <data name="SysTrayLoadingCollections" xml:space="preserve">
     <value>Collecties laden...</value>
@@ -765,7 +765,7 @@
     <comment>eg, Released in 1993</comment>
   </data>
   <data name="LabelWelcomeTextPhone7" xml:space="preserve">
-    <value>Welkom bij Media Browser voor Windows Phone . Deze app zal u in staat stellen om door uw mediacollectie te bladeren en  Media Browser clients op afstand te bedienen.</value>
+    <value>Welkom bij Media Browser voor Windows Phone. Deze app stelt u in staat om door uw mediacollectie te bladeren en Media Browser clients op afstand te bedienen.</value>
   </data>
   <data name="LabelChannels" xml:space="preserve">
     <value>Kanalen</value>
@@ -922,7 +922,7 @@
     <value>Stel programma in voor opname...</value>
   </data>
   <data name="SysTraySettingSeriesToRecord" xml:space="preserve">
-    <value>stel serie in voor opname...</value>
+    <value>Stel serie in voor opname...</value>
   </data>
   <data name="AppBarCreateAndEditSeries" xml:space="preserve">
     <value>maken en bewerken serie opname</value>
@@ -1028,7 +1028,7 @@
     <value>Verwijderen...</value>
   </data>
   <data name="LabelStreaming" xml:space="preserve">
-    <value>Steraming</value>
+    <value>Streaming</value>
   </data>
   <data name="LabelQuality" xml:space="preserve">
     <value>Kwaliteit:</value>
@@ -1037,13 +1037,13 @@
     <value>Resolutie:</value>
   </data>
   <data name="ErrorNoWifi" xml:space="preserve">
-    <value>Sorry, het lijkt erop dat je geen wifi verbinding hebt. Verbind met een wifi netwerk of wijzig de 'alleen wifi' instelling.</value>
+    <value>Sorry, het lijkt erop dat u geen wifi verbinding hebt. Verbind met een wifi netwerk of wijzig de 'alleen wifi' instelling.</value>
   </data>
   <data name="ErrorNoWifiTitle" xml:space="preserve">
     <value>Geen wifi</value>
   </data>
   <data name="LabelChooseQuality" xml:space="preserve">
-    <value>Selecteer de gewenste kwaliteit van de video steram. Let op, hoe hoger de kwaliteit hoe hoger het data gebruik/</value>
+    <value>Selecteer de gewenste kwaliteit van de video stream. Let op, hoe hoger de kwaliteit hoe hoger het data gebruik.</value>
   </data>
   <data name="LabelMobile" xml:space="preserve">
     <value>Mobiel</value>
@@ -1064,7 +1064,7 @@
     <value>Foto upload</value>
   </data>
   <data name="BackgroundTaskDescription" xml:space="preserve">
-    <value>Deze achtergrondtaak wordt gebruikt om foto's automatisch van je telefoon te uploaden. Deze functie kan in de app uitgeschakeld worden.</value>
+    <value>Deze achtergrondtaak wordt gebruikt om automatisch foto's van uw telefoon te uploaden. Deze functie kan in de app uitgeschakeld worden.</value>
   </data>
   <data name="LabelUploadAll" xml:space="preserve">
     <value>Upload alle afbeeldingen</value>
@@ -1076,10 +1076,10 @@
     <value>Let op, uploaden vindt alleen plaats als het toestel geladen wordt, er wifi verbinding is en de accu voor 90% geladen is.</value>
   </data>
   <data name="LabelAutoUploadDescription" xml:space="preserve">
-    <value>Upload je foto's automatisch van je telefoon naar je Media Browser server.</value>
+    <value>Upload uw foto's automatisch van uw telefoon naar uw Media Browser server.</value>
   </data>
   <data name="LabelTurnPhotoUploadOnServer" xml:space="preserve">
-    <value>Ga om dit in te schakelen in het server dashboard naar apparaten, Camera upload en schakel je apparaat in. Als je hier geen toegang toe hebt, neem dan contact op met de beheerder van de server.</value>
+    <value>Ga om dit in te schakelen in het server dashboard naar apparaten, Camera Upload en schakel uw apparaat in. Als u hier geen toegang toe hebt, neem dan contact op met de beheerder van de server.</value>
   </data>
   <data name="HeaderManualConnection" xml:space="preserve">
     <value>Handmatige verbinding</value>
@@ -1094,13 +1094,13 @@
     <value>MB Connect</value>
   </data>
   <data name="LabelMbConnectAlreadyGotAccount" xml:space="preserve">
-    <value>Als je een Media Browser account hebt kan je nu aanmelden</value>
+    <value>Als u een Media Browser account hebt kunt u zich nu aanmelden.</value>
   </data>
   <data name="LabelMbConnectDescriptionPara1" xml:space="preserve">
-    <value>Met MB Connect kan je eenvoudig verbinding maken met je server waar je ook bent en deze eenvoudig delen met familie en vrienden</value>
+    <value>Met MB Connect kunt u eenvoudig verbinding maken met uw server waar u ook bent en deze eenvoudig delen met familie en vrienden</value>
   </data>
   <data name="LabelMbConnectFreeAccount" xml:space="preserve">
-    <value>Als je nog geen Media Browser account hebt kan je deze nu gratis aanmaken.</value>
+    <value>Als u nog geen Media Browser account hebt kunt u deze nu GRATIS aanmaken.</value>
   </data>
   <data name="LabelSignUp" xml:space="preserve">
     <value>Aanmaken</value>
@@ -1136,7 +1136,7 @@
     <value>Speel video als het scherm gelocked is</value>
   </data>
   <data name="LabelPlayUnderLockWarning" xml:space="preserve">
-    <value>Dit beinvloed je accuduur</value>
+    <value>Dit beïnvloedt uw accuduur</value>
   </data>
   <data name="LabelRestartNow" xml:space="preserve">
     <value>Opnieuw opstarten?</value>
