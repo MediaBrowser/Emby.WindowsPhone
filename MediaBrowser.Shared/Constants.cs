@@ -24,6 +24,7 @@
             public const string ServerCredentialSettings = "ServerCredentialSettings.json";
             public const string DefaultServerConnection = "DefaultServerConnection";
             public const string AuthUserSetting = "SelectedUserSetting";
+            public const string AppIsBought = "AppIsBoughtSetting";
         }
 
         public class Messages

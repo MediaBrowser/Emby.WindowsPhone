@@ -130,7 +130,7 @@
     <value>қазір ойнатылғанды аластау</value>
   </data>
   <data name="AppBarDeleteItems" xml:space="preserve">
-    <value>элементтерді жою</value>
+    <value>тармақтарды жою</value>
   </data>
   <data name="AppBarGroupBy" xml:space="preserve">
     <value>топтау әдісі</value>
@@ -166,22 +166,22 @@
     <value>барлық жолшықтарды ойнату</value>
   </data>
   <data name="AppBarPlayItems" xml:space="preserve">
-    <value>элементтерді ойнату</value>
+    <value>тармақтарды ойнату</value>
   </data>
   <data name="AppBarPlayOn" xml:space="preserve">
     <value>Құрылғыда ойнату</value>
   </data>
   <data name="AppBarPosterLockscreen" xml:space="preserve">
-    <value>постерді құлыптау экранында орнату</value>
+    <value>жарқағаз құлыптау экранында орнату</value>
   </data>
   <data name="AppBarPrevious" xml:space="preserve">
     <value>алдыңғы</value>
   </data>
   <data name="AppBarRefresh" xml:space="preserve">
-    <value>жаңарту</value>
+    <value>жаңғырту</value>
   </data>
   <data name="AppBarRefreshInformation" xml:space="preserve">
-    <value>мәліметтерді жаңарту</value>
+    <value>мәліметтерді жаңғырту</value>
   </data>
   <data name="AppBarRemote" xml:space="preserve">
     <value>алыстан басқару</value>
@@ -193,7 +193,7 @@
     <value>іздеу</value>
   </data>
   <data name="AppBarSelectItems" xml:space="preserve">
-    <value>элементтерді бөлектеу</value>
+    <value>тармақтарды бөлектеу</value>
   </data>
   <data name="AppBarSendLogs" xml:space="preserve">
     <value>жұрналды жіберу</value>
@@ -229,10 +229,10 @@
     <value>Кіруге мүмкіндік болмады</value>
   </data>
   <data name="ErrorEpisodeDetails" xml:space="preserve">
-    <value>Эпизод мәліметтерін жүктеп алу қатесі</value>
+    <value>Бөлім мәліметтерін жүктеп алу қатесі</value>
   </data>
   <data name="ErrorEpisodes" xml:space="preserve">
-    <value>Эпизодтар алу қатесі</value>
+    <value>Бөлімдер алу қатесі</value>
   </data>
   <data name="ErrorFailedToSearch" xml:space="preserve">
     <value>Іздеу сәтсіз аяқталды</value>
@@ -256,10 +256,10 @@
     <value>Қосылым параметрлері жоқ, орнату үшін түртіңіз</value>
   </data>
   <data name="ErrorProblemUpdatingItem" xml:space="preserve">
-    <value>Бұл элементті жаңартуда ақаулық орын алды, әрекетті кейін қайталаңыз.</value>
+    <value>Бұл тармақты жаңартуда ақаулық орын алды, әрекетті кейін қайталаңыз.</value>
   </data>
   <data name="ErrorRecentItems" xml:space="preserve">
-    <value>Жақындағы элементтерді алу қатесі</value>
+    <value>Жақындағы тармақтардыі алу қатесі</value>
   </data>
   <data name="ErrorSeasons" xml:space="preserve">
     <value>Маусымдарды алу қатесі</value>
@@ -286,7 +286,7 @@
     <value>Әдепкі топтау</value>
   </data>
   <data name="HeaderFromCollection" xml:space="preserve">
-    <value>Тасушы қалтадан (қолданылатында)</value>
+    <value>Тасығыш қалтадан (қолданылатында)</value>
   </data>
   <data name="LabelActor" xml:space="preserve">
     <value>Актер</value>
@@ -352,7 +352,7 @@
     <value>Қатарда кездейсоқ артқы суреттерді бейнелеу</value>
   </data>
   <data name="LabelEpisode" xml:space="preserve">
-    <value>Эпизод</value>
+    <value>ТД-бөлімдер</value>
   </data>
   <data name="LabelFindServer" xml:space="preserve">
     <value>серверді табу</value>
@@ -391,7 +391,7 @@
     <value>Media Browser құлыптау экрандың жеткізушісі емес</value>
   </data>
   <data name="LabelJustShowList" xml:space="preserve">
-    <value>Жай элементтер тізімн бейнелеу, тасушы қалта аспектін емес</value>
+    <value>Жай тармақтар тізімн бейнелеу, тасығыш қалта аспектін емес</value>
   </data>
   <data name="LabelLatestUnseen" xml:space="preserve">
     <value>ең соңғы рет болмаған</value>
@@ -415,7 +415,7 @@
     <value>{0} минут бұрын</value>
   </data>
   <data name="LabelMissingEpisodes" xml:space="preserve">
-    <value>Жоқ эпизодтарды көрсету</value>
+    <value>Жоқ бөлімдерді көрсету</value>
   </data>
   <data name="LabelMonthsAgo" xml:space="preserve">
     <value>{0} ай бұрын</value>
@@ -433,7 +433,7 @@
     <value>жоқ</value>
   </data>
   <data name="LabelNoEpisodes" xml:space="preserve">
-    <value>Көрсететін эпизодтар жоқ</value>
+    <value>Көрсететін бөлімдер жоқ</value>
   </data>
   <data name="LabelNone" xml:space="preserve">
     <value>ешқайсысы</value>
@@ -469,7 +469,7 @@
     <value>Порт:</value>
   </data>
   <data name="LabelPoster" xml:space="preserve">
-    <value>постер</value>
+    <value>жарқағаз</value>
   </data>
   <data name="LabelProducer" xml:space="preserve">
     <value>Продюсер</value>
@@ -487,10 +487,10 @@
     <value>шығу</value>
   </data>
   <data name="LabelRandomItems" xml:space="preserve">
-    <value>Кездейсоқ элементтер</value>
+    <value>Кездейсоқ тармақтар</value>
   </data>
   <data name="LabelRandomPictures" xml:space="preserve">
-    <value>Тасушы қалтадағы кездейсоқ суреттер</value>
+    <value>Тасығыш қалтадағы кездейсоқ суреттер</value>
   </data>
   <data name="LabelRating" xml:space="preserve">
     <value>Бағалауы:</value>
@@ -517,19 +517,19 @@
     <value>{0} секунд бұрын</value>
   </data>
   <data name="LabelSeries" xml:space="preserve">
-    <value>Сериал</value>
+    <value>Телехикая</value>
   </data>
   <data name="LabelShowAllItems" xml:space="preserve">
-    <value>барлық элементтерді көрсету...</value>
+    <value>барлық тармақтарды көрсету...</value>
   </data>
   <data name="LabelShows" xml:space="preserve">
     <value>көрсетімдер</value>
   </data>
   <data name="LabelShowTrailers" xml:space="preserve">
-    <value>Жақындағы элементтерде трейлерлерді көрсету</value>
+    <value>Жақындағы тармақтарда трейлерлерді көрсету</value>
   </data>
   <data name="LabelSinglePoster" xml:space="preserve">
-    <value>Жалғыз постер</value>
+    <value>Жалғыз жарқағаз</value>
   </data>
   <data name="LabelSongs" xml:space="preserve">
     <value>әуендер</value>
@@ -538,7 +538,7 @@
     <value>қатар</value>
   </data>
   <data name="LabelTileBackInformation" xml:space="preserve">
-    <value>Тасушыдеректерге арналған қол жетімді тамаша суреттемелерді көрсету үшін, қатарда суреттемелер арасынан кейбіреу пайданылады, осында сол қатар қалай көрінетінін таңдаңуыз мүмкін.</value>
+    <value>Тасығышдеректерге арналған қол жетімді тамаша суреттемелерді көрсету үшін, қатарда суреттемелер арасынан кейбіреу пайданылады, осында сол қатар қалай көрінетінін таңдаңуыз мүмкін.</value>
   </data>
   <data name="LabelTrailers" xml:space="preserve">
     <value>трелерлер</value>
@@ -547,7 +547,7 @@
     <value>ТД</value>
   </data>
   <data name="LabelUnairedEpisodes" xml:space="preserve">
-    <value>Көрсетілмеген эпизодтарды көрсету</value>
+    <value>Көрсетілмеген бөлімдерді көрсету</value>
   </data>
   <data name="LabelUnwatched" xml:space="preserve">
     <value>Карап шықпаған:</value>
@@ -559,7 +559,7 @@
     <value>Аспекттер</value>
   </data>
   <data name="LabelWelcomeText" xml:space="preserve">
-    <value>Windows Phone өніміне арналған Media Browser қолданбасына қош келдіңіз! Бұл қолданба тасушыхананы шолу, телефонға ағынмен тасымалдау және басқа басқарылатын Media Browser клиенттерінің қайсыбіріне алыстан басқару үшін рұқсат етеді.</value>
+    <value>Windows Phone өніміне арналған Media Browser қолданбасына қош келдіңіз! Бұл қолданба тасығышхананы шолу, телефонға ағынмен тасымалдау және басқа басқарылатын Media Browser клиенттерінің қайсыбіріне алыстан басқару үшін рұқсат етеді.</value>
   </data>
   <data name="LabelWriter" xml:space="preserve">
     <value>Жазушы</value>
@@ -586,7 +586,7 @@
     <value>Бұл ойнату тізімді шынымен тазарту керек пе?</value>
   </data>
   <data name="MessageDeletePlaylistItems" xml:space="preserve">
-    <value>Бұл элементтерді шынымен жою керек пе? Бұны кері болдырмау мүмкін емес.</value>
+    <value>Бұл тармақтарды шынымен жою керек пе? Бұны кері болдырмау мүмкін емес.</value>
   </data>
   <data name="MessageExperimentalTitle" xml:space="preserve">
     <value>Эксперимент ретінде</value>
@@ -604,7 +604,7 @@
     <value>Аты</value>
   </data>
   <data name="NoItemsFound" xml:space="preserve">
-    <value>Элементтер табылмады</value>
+    <value>Тармақтар табылмады</value>
   </data>
   <data name="PinToStart" xml:space="preserve">
     <value>Бастау экранына бекіту</value>
@@ -628,7 +628,7 @@
     <value>Нақтылық тексерілуде...</value>
   </data>
   <data name="SysTrayCheckingCollection" xml:space="preserve">
-    <value>Тасушы қлта тексерілуде...</value>
+    <value>Тасығыш қалта тексерілуде...</value>
   </data>
   <data name="SysTrayCheckingConnection" xml:space="preserve">
     <value>Қосылым тексерілуде...</value>
@@ -658,10 +658,10 @@
     <value>Мәліметтер алынуда...</value>
   </data>
   <data name="SysTrayGettingEpisodeDetails" xml:space="preserve">
-    <value>Эпизод мәліметтері алынуда...</value>
+    <value>Бөлім мәліметтері алынуда...</value>
   </data>
   <data name="SysTrayGettingEpisodes" xml:space="preserve">
-    <value>Эпизодтар алынуда...</value>
+    <value>Бөлімдер алынуда...</value>
   </data>
   <data name="SysTrayGettingFavourites" xml:space="preserve">
     <value>Таңдаулылар алынуда...</value>
@@ -673,7 +673,7 @@
     <value>Жанр жолшықтары алынуда...</value>
   </data>
   <data name="SysTrayGettingItems" xml:space="preserve">
-    <value>Элементтер алынуда...</value>
+    <value>Тармақтар алынуда...</value>
   </data>
   <data name="SysTrayGettingMovieInfo" xml:space="preserve">
     <value>Фильм міліметтері алынуда...</value>
@@ -682,7 +682,7 @@
     <value>Фильмдер алынуда...</value>
   </data>
   <data name="SysTrayGettingNextUp" xml:space="preserve">
-    <value>Кезектегі элементтер алынуда...</value>
+    <value>Кезектегі тармақтар алынуда...</value>
   </data>
   <data name="SysTrayGettingNotifications" xml:space="preserve">
     <value>Хабарландырулар алынуда...</value>
@@ -691,7 +691,7 @@
     <value>Профильдер алынуда...</value>
   </data>
   <data name="SysTrayGettingRecentItems" xml:space="preserve">
-    <value>Жақындағы элементтер алынуда...</value>
+    <value>Жақындағы тармақтар алынуда...</value>
   </data>
   <data name="SysTrayGettingServerDetails" xml:space="preserve">
     <value>Сервер мәліметтері алынуда...</value>
@@ -712,10 +712,10 @@
     <value>Трейлер мәліметтері алынуда...</value>
   </data>
   <data name="SysTrayGettingUnwatchedItems" xml:space="preserve">
-    <value>Ең соңғы қаралып шықпаған эелементтер алынуда...</value>
+    <value>Ең соңғы қаралып шықпаған тармақтар алынуда...</value>
   </data>
   <data name="SysTrayLoadingCollections" xml:space="preserve">
-    <value>Тасушы қалталар алынуда...</value>
+    <value>Тасығыш қалталар алынуда...</value>
   </data>
   <data name="SysTrayLoadingSettings" xml:space="preserve">
     <value>Параметрлер жүктелініп алынуда...</value>
@@ -736,7 +736,7 @@
     <value>Сынақ режімінде күн бойынша тек қана бір бейне ойнатылуы мүмкін. Бұны ертең сынап көріңіз немесе толық нұсқасын сатып алыңыз.</value>
   </data>
   <data name="TvShowRecentItemsTitle" xml:space="preserve">
-    <value>{0} жақындағы элементтері</value>
+    <value>{0} жақындағы тармақтары</value>
     <comment>{0} is the name of the tv show</comment>
   </data>
   <data name="Unpin" xml:space="preserve">
@@ -765,7 +765,7 @@
     <comment>eg, Released in 1993</comment>
   </data>
   <data name="LabelWelcomeTextPhone7" xml:space="preserve">
-    <value>Windows Phone өніміне арналған Media Browser қолданбасына қош келдіңіз! Бұл қолданба тасушыхананы шолу және басқа басқарылатын Media Browser клиенттерінің қайсыбіріне алыстан басқару үшін рұқсат етеді.</value>
+    <value>Windows Phone өніміне арналған Media Browser қолданбасына қош келдіңіз! Бұл қолданба тасығышхананы шолу және басқа басқарылатын Media Browser клиенттерінің қайсыбіріне алыстан басқару үшін рұқсат етеді.</value>
   </data>
   <data name="LabelChannels" xml:space="preserve">
     <value>Телеканалдар</value>
@@ -789,13 +789,13 @@
     <value>Көрсетімдер алынуда...</value>
   </data>
   <data name="SysTrayGettingSeriesRecordings" xml:space="preserve">
-    <value>Сериалдың жазбалары алынуда...</value>
+    <value>Телехикаяның жазбалары алынуда...</value>
   </data>
   <data name="SysTrayGettingUpcomingRecordings" xml:space="preserve">
     <value>Күтілген жазбалар алынуда...</value>
   </data>
   <data name="ContextCancelSeries" xml:space="preserve">
-    <value>сериалды болдырмау</value>
+    <value>телехикаяны болдырмау</value>
   </data>
   <data name="LabelScheduleAnyChannel" xml:space="preserve">
     <value>Қайсыбір арна</value>
@@ -834,7 +834,7 @@
     <value>Күндер:</value>
   </data>
   <data name="LabelRecordOnlyNewEpisodes" xml:space="preserve">
-    <value>Тек қана жаңа эпизодтарды жазу</value>
+    <value>Тек қана жаңа бөлімдерді жазу</value>
   </data>
   <data name="LabelRecordProgrammeAtAnyTime" xml:space="preserve">
     <value>Көрсетімді қайсыбір уақытта жазу</value>
@@ -859,16 +859,16 @@
     <value>Алға шегініс жазу үшін қажет</value>
   </data>
   <data name="SysTrayCancellingSeriesRecording" xml:space="preserve">
-    <value>Сериал  байланыструн болдырмауда...</value>
+    <value>Телехикая байланыструын болдырмауда...</value>
   </data>
   <data name="SysTrayGettingRecordedItems" xml:space="preserve">
-    <value>Жазылған элементтер алынуда...</value>
+    <value>Жазылған тармақтар алынуда...</value>
   </data>
   <data name="AppBarDelete" xml:space="preserve">
     <value>жою</value>
   </data>
   <data name="ErrorDeletingSeriesRecording" xml:space="preserve">
-    <value>Кешіріңіз, тап осы кезде бұл сериалды болдырмауда қате орын алды.</value>
+    <value>Кешіріңіз, тап осы кезде бұл телехикаяны болдырмауда қате орын алды.</value>
   </data>
   <data name="LabelChannel" xml:space="preserve">
     <value>Арна:</value>
@@ -886,10 +886,10 @@
     <value>Жазуды болдырмау</value>
   </data>
   <data name="MessageDeleteSeriesRecording" xml:space="preserve">
-    <value>Бұл сериалдың байланысын шынымен болдырмау керек пе? Бұны кері болдырмау мүмкін емес.</value>
+    <value>Бұл телехикаяның байланысын шынымен болдырмау керек пе? Бұны кері болдырмау мүмкін емес.</value>
   </data>
   <data name="SysTrayGettingUpcoming" xml:space="preserve">
-    <value>Күтілген эпизодтар алынуда...</value>
+    <value>Күтілген бөлімдер алынуда...</value>
   </data>
   <data name="MessageCancelRecording" xml:space="preserve">
     <value>Бұл жазуды шынымен болдырмау керек пе? Бұны кері болдырмау мүмкін емес.</value>
@@ -901,7 +901,7 @@
     <value>жазу</value>
   </data>
   <data name="MenuRecordSeries" xml:space="preserve">
-    <value>сериалды жазу</value>
+    <value>телехикаяны жазу</value>
   </data>
   <data name="LabelReallyShortHours" xml:space="preserve">
     <value>сағ</value>
@@ -922,10 +922,10 @@
     <value>Көрсетім жазылуға қойылуда...</value>
   </data>
   <data name="SysTraySettingSeriesToRecord" xml:space="preserve">
-    <value>Сериал жазылуға қойылуда...</value>
+    <value>Телехикая жазылуға қойылуда...</value>
   </data>
   <data name="AppBarCreateAndEditSeries" xml:space="preserve">
-    <value>сериал жазбасын жасау және өңдеу</value>
+    <value>телехикая жазбасын жасау және өңдеу</value>
   </data>
   <data name="SysTrayCancellingProgramme" xml:space="preserve">
     <value>Көрсетім болдырмауда...</value>
@@ -952,7 +952,7 @@
     <value>Белсенді</value>
   </data>
   <data name="LabelNoRecordedItems" xml:space="preserve">
-    <value>Ешқандай жазылған элементтер жоқ сияқты.</value>
+    <value>Ешқандай жазылған тармақтар жоқ сияқты.</value>
   </data>
   <data name="LabelRecordedDate" xml:space="preserve">
     <value>Жазылған күні</value>
@@ -977,14 +977,14 @@
     <value>Арналар</value>
   </data>
   <data name="LabelMultipleItems" xml:space="preserve">
-    <value>{0} элемент</value>
+    <value>{0} тармақ</value>
     <comment>{0} is the number of items</comment>
   </data>
   <data name="LabelNoItems" xml:space="preserve">
-    <value>Элементтер жоқ</value>
+    <value>Тармақтар жоқ</value>
   </data>
   <data name="LabelOneItem" xml:space="preserve">
-    <value>1 элемент</value>
+    <value>1 тармақ</value>
   </data>
   <data name="ErrorAddingToPlaylist" xml:space="preserve">
     <value>Ойнату тізіміне үстелу қатесі</value>
@@ -1073,13 +1073,13 @@
     <value>Осы күннен кейін тусірілген/сақталған фотосуреттерді жүктеп беру</value>
   </data>
   <data name="LabelAutoUploadConstraints" xml:space="preserve">
-    <value>Ескеріңіз, жүктеп беру тек қана жабдығыңыз зарядталу кезінде, wifi болғанда және заряды 90 % астам болғанда орын алады.</value>
+    <value>Ескеріңіз, жүктеп беру тек қана құрылғығыңыз зарядталу кезінде, wifi болғанда және заряды 90 % астам болғанда орын алады.</value>
   </data>
   <data name="LabelAutoUploadDescription" xml:space="preserve">
     <value>Телефондағы суреттеріңізді автоматты түрде тікелей Media Browser серверіне жүктеп беру.</value>
   </data>
   <data name="LabelTurnPhotoUploadOnServer" xml:space="preserve">
-    <value>Бұл жұмысын істеуі үшін сервердің бақылау тақтасына барып Жабдықтарды нұқыңыз, кейін Камерадан жүктеп беруді, сонда жабдығыңызды іске қосыңыз. Егер бұған қатынас болмаса, жүйе әкімшісімен хабарласыңыз.</value>
+    <value>Бұл жұмысын істеуі үшін сервердің бақылау тақтасына барып Құрылғыларды нұқыңыз, кейін Камерадан жүктеп беруді, сонда құрылғыңызды іске қосыңыз. Егер бұған қатынас болмаса, жүйе әкімшісімен хабарласыңыз.</value>
   </data>
   <data name="HeaderManualConnection" xml:space="preserve">
     <value>Қолмен қосылу</value>
