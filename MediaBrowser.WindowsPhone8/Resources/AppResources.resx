@@ -1222,4 +1222,11 @@
   <data name="AppBarUnsync" xml:space="preserve">
     <value>unsync</value>
   </data>
+  <data name="HeaderSyncToDevice" xml:space="preserve">
+    <value>Sync to device:</value>
+  </data>
+  <data name="LabelThisDevice" xml:space="preserve">
+    <value>{0} (this device)</value>
+    <comment>{0} = the name of the device</comment>
+  </data>
 </root>

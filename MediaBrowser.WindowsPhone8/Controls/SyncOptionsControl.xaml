@@ -33,25 +33,35 @@
         <StackPanel Orientation="Vertical"
                     VerticalAlignment="Bottom"
                     Visibility="{Binding IsLoading, Converter={StaticResource InvertedVisibilityConverter}}">
+            <telerikInput:RadListPicker x:Name="TargetDevices"
+                                        BorderBrush="Black"
+                                        Foreground="Black"
+                                        DisplayMemberPath="Name"
+                                        Header="{Binding LocalizedResources.HeaderSyncToDevice, Source={StaticResource LocalizedStrings}}"
+                                        HeaderStyle="{StaticResource HeaderStyle}"
+                                        SelectionChanged="TargetDevices_OnSelectionChanged"/>
             <telerikPrimitives:RadTextBox InputScope="Number"
                                           BorderBrush="Black"
                                           Header="{Binding LocalizedResources.HeaderItemLimit, Source={StaticResource LocalizedStrings}}"
                                           Watermark="{Binding LocalizedResources.LabelOptional, Source={StaticResource LocalizedStrings}}"
                                           HeaderStyle="{StaticResource HeaderStyle}"
                                           x:Name="ItemLimitBox" 
-                                          Text="{Binding ItemLimit, Mode=TwoWay}"/>
+                                          Text="{Binding ItemLimit, Mode=TwoWay}"
+                                          Visibility="Collapsed"/>
             <telerikPrimitives:RadToggleSwitch Foreground="Black"
                                                Header="{Binding LocalizedResources.HeaderUnwatchedItems, Source={StaticResource LocalizedStrings}}"
                                                HeaderStyle="{StaticResource HeaderStyle}"
                                                x:Name="UnwatchedVideos"
                                                ButtonStyle="{StaticResource ToggleButton}"
-                                               IsChecked="{Binding SyncUnwatched, Mode=TwoWay}"/>
+                                               IsChecked="{Binding SyncUnwatched, Mode=TwoWay}"
+                                               Visibility="Collapsed"/>
             <telerikPrimitives:RadToggleSwitch Foreground="Black"
                                                Header="{Binding LocalizedResources.HeaderAutoSync, Source={StaticResource LocalizedStrings}}"
                                                HeaderStyle="{StaticResource HeaderStyle}"
                                                x:Name="AutoSyncVideos"
                                                ButtonStyle="{StaticResource ToggleButton}"
-                                               IsChecked="{Binding SyncNewContent, Mode=TwoWay}"/>
+                                               IsChecked="{Binding SyncNewContent, Mode=TwoWay}"
+                                               Visibility="Collapsed"/>
             <telerikInput:RadListPicker x:Name="OptionsPicker"
                                         DisplayMemberPath="Name"
                                         BorderBrush="Black"

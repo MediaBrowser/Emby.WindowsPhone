@@ -1,13 +1,16 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using Coding4Fun.Toolkit.Controls;
 using GalaSoft.MvvmLight.Ioc;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Sync;
+using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Model.Interfaces;
 using MediaBrowser.WindowsPhone.Model.Sync;
+using MediaBrowser.WindowsPhone.Resources;
 using ScottIsAFool.WindowsPhone.Logging;
 using GestureEventArgs = System.Windows.Input.GestureEventArgs;
 
@@ -79,15 +82,60 @@ namespace MediaBrowser.WindowsPhone.Controls
 
         private SyncDialogOptions _options;
         private bool _unwatched, _itemLimit, _autoSync;
+        private SyncJobRequest _request;
         public async Task SetOptions(SyncJobRequest request)
         {
             IsLoading = true;
+            _request = request;
             var apiClient = _connectionManager.GetApiClient(App.ServerInfo.Id);
 
             try
             {
                 _logger.Info("Getting sync options");
                 _options = await apiClient.GetSyncOptions(request);
+                if (_options != null && _options.Targets.Any())
+                {
+                    var thisDevice = _options.Targets.FirstOrDefault(x => x.Id == apiClient.DeviceId);
+                    if (thisDevice == null)
+                    {
+                        TargetDevices.ItemsSource = _options.Targets;
+                        TargetDevices.SelectedItem = _options.Targets.FirstOrDefault();
+                    }
+                    else
+                    {
+                        thisDevice.Name = string.Format(AppResources.LabelThisDevice, thisDevice.Name);
+                        _options.Targets.Remove(thisDevice);
+                        _options.Targets.Insert(0, thisDevice);
+                        
+                        TargetDevices.ItemsSource = _options.Targets;
+                        TargetDevices.SelectedItem = thisDevice;
+                        //GetOptionsForDevice(thisDevice.Id).ConfigureAwait(false);
+                    }
+                }
+                else
+                {
+                    Close();
+                }
+            }
+            catch (HttpException ex)
+            {
+                Close();
+                Utils.HandleHttpException("SetOptions()", ex, SimpleIoc.Default.GetInstance<INavigationService>(), _logger);
+            }
+
+            IsLoading = false;
+        }
+
+        private async Task GetOptionsForDevice(string deviceId)
+        {
+            IsLoading = true;
+            _request.TargetId = deviceId;
+            var apiClient = _connectionManager.GetApiClient(App.ServerInfo.Id);
+
+            try
+            {
+                _logger.Info("Getting sync options for device ({0})", deviceId);
+                _options = await apiClient.GetSyncOptions(_request);
                 if (_options != null)
                 {
                     _unwatched = _options.Options.Contains(SyncJobOption.UnwatchedOnly);
@@ -131,6 +179,18 @@ namespace MediaBrowser.WindowsPhone.Controls
             }
 
             return option;
+        }
+
+        private void TargetDevices_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.AddedItems.Count == 1)
+            {
+                var device = e.AddedItems[0] as SyncTarget;
+                if (device != null)
+                {
+                    GetOptionsForDevice(device.Id).ConfigureAwait(false);
+                }
+            }
         }
     }
 }

@@ -862,6 +862,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sync to device:.
+        /// </summary>
+        public static string HeaderSyncToDevice {
+            get {
+                return ResourceManager.GetString("HeaderSyncToDevice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to TV.
         /// </summary>
         public static string HeaderTV {
@@ -2226,6 +2235,15 @@ namespace MediaBrowser.WindowsPhone.Resources {
         public static string LabelStreamWifi {
             get {
                 return ResourceManager.GetString("LabelStreamWifi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} (this device).
+        /// </summary>
+        public static string LabelThisDevice {
+            get {
+                return ResourceManager.GetString("LabelThisDevice", resourceCulture);
             }
         }
         
