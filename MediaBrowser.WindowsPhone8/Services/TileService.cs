@@ -203,20 +203,9 @@ namespace MediaBrowser.WindowsPhone.Services
             }
 
             var list = new List<Stream>();
-            var taskList = new List<Task>();
             var apiClient = _connectionManager.GetApiClient(App.ServerInfo.Id);
-            foreach (var item in items.Items)
-            {
-                var url = apiClient.GetImageUrl(item, new ImageOptions
-                {
-                    ImageType = ImageType.Primary,
-                    MaxWidth = 112,
-                    Quality = Constants.ImageQuality,
-                    EnableImageEnhancers = false
-                });
 
-                taskList.Add(GetImageAddToList(url, list));
-            }
+            var taskList = items.Items.Select(item => GetImageAddToList(item, apiClient, list)).ToList();
 
             await Task.WhenAll(taskList).ContinueWith(item =>
             {
@@ -239,18 +228,30 @@ namespace MediaBrowser.WindowsPhone.Services
                     wideTile.UpdateBackground();
                     await wideTile.SetImages();
                     await ToImage(wideTile, 691, 336);
+
+                    list = null;
                 });
             });
         }
 
-        private async Task GetImageAddToList(string url, List<Stream> list)
+        private async Task GetImageAddToList(BaseItemDto item, IApiClient apiClient, List<Stream> list)
         {
             try
             {
-                var client = CreateClient();
-                var response = await client.GetAsync(url);
-                var stream = await response.Content.ReadAsStreamAsync();
-                list.Add(stream);
+                var options = new ImageOptions
+                {
+                    ImageType = ImageType.Primary,
+                    MaxWidth = 112,
+                    Quality = Constants.ImageQuality,
+                    EnableImageEnhancers = false
+                };
+                var url = apiClient.GetImageUrl(item, options);
+                using (var client = CreateClient())
+                {
+                    var response = await client.GetAsync(url);
+                    var stream = await response.Content.ReadAsStreamAsync();
+                    list.Add(stream);
+                }
             }
             catch (HttpException ex)
             {
@@ -305,7 +306,7 @@ namespace MediaBrowser.WindowsPhone.Services
             }
         }
 
-        private HttpClient CreateClient()
+        public static HttpClient CreateClient()
         {
             return new HttpClient(new HttpClientHandler { AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip });
         }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows;
@@ -194,19 +195,8 @@ namespace MediaBrowser.WindowsPhone.Services
             var list = new List<Stream>();
             var apiClient = _connectionManager.GetApiClient(App.ServerInfo.Id);
 
-            foreach (var item in items)
-            {
-                var url = apiClient.GetImageUrl(item, MultiplePostersOptions);
-                try
-                {
-                    var stream = await apiClient.GetImageStreamAsync(url);
-                    list.Add(stream);
-                }
-                catch (HttpException ex)
-                {
-                    _logger.ErrorException("ProcessMultipleImages()", ex);
-                }
-            }
+            var imageTasks = items.Select(item => GetImageStream(apiClient, item, list)).ToList();
+            await Task.WhenAll(imageTasks);
 
             if (list.IsNullOrEmpty())
             {
@@ -219,6 +209,8 @@ namespace MediaBrowser.WindowsPhone.Services
             await ToImage(lockscreen);
 
             await SetLockScreenImage(LockScreenImageUrl);
+
+            list = null;
         }
 
         private async Task ProcessCollageImages(IEnumerable<BaseItemDto> items)
@@ -226,19 +218,8 @@ namespace MediaBrowser.WindowsPhone.Services
             var list = new List<Stream>();
             var apiClient = _connectionManager.GetApiClient(App.ServerInfo.Id);
 
-            foreach (var item in items)
-            {
-                var url = apiClient.GetImageUrl(item, CollageOptions);
-                try
-                {
-                    var stream = await apiClient.GetImageStreamAsync(url);
-                    list.Add(stream);
-                }
-                catch (HttpException ex)
-                {
-                    _logger.ErrorException("ProcessCollageImages()", ex);
-                }
-            }
+            var imageTasks = items.Select(item => GetImageStream(apiClient, item, list)).ToList();
+            await Task.WhenAll(imageTasks);
 
             if (list.IsNullOrEmpty())
             {
@@ -251,6 +232,29 @@ namespace MediaBrowser.WindowsPhone.Services
             await ToImage(lockscreen);
 
             await SetLockScreenImage(LockScreenImageUrl);
+
+            list = null;
+        }
+
+        private async Task GetImageStream(IApiClient apiClient, BaseItemDto item, List<Stream> list)
+        {
+            var url = apiClient.GetImageUrl(item, CollageOptions);
+            try
+            {
+                using (var client = TileService.CreateClient())
+                {
+                    var response = await client.GetAsync(url);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var stream = await response.Content.ReadAsStreamAsync();
+                        list.Add(stream);
+                    }
+                }
+            }
+            catch (HttpException ex)
+            {
+                _logger.ErrorException("ProcessCollageImages()", ex);
+            }
         }
 
         private async Task ToImage(UIElement element)
