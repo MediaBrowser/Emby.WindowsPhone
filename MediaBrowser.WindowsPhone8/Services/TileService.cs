@@ -204,9 +204,10 @@ namespace MediaBrowser.WindowsPhone.Services
 
             var list = new List<Stream>();
             var taskList = new List<Task>();
+            var apiClient = _connectionManager.GetApiClient(App.ServerInfo.Id);
             foreach (var item in items.Items)
             {
-                var url = _connectionManager.CurrentApiClient.GetImageUrl(item, new ImageOptions
+                var url = apiClient.GetImageUrl(item, new ImageOptions
                 {
                     ImageType = ImageType.Primary,
                     MaxWidth = 112,
@@ -271,7 +272,8 @@ namespace MediaBrowser.WindowsPhone.Services
             }
 
             var item = items.Items.FirstOrDefault();
-            var wideUrl = _connectionManager.CurrentApiClient.GetImageUrl(item, new ImageOptions
+            var apiClient = _connectionManager.GetApiClient(App.ServerInfo.Id);
+            var wideUrl = apiClient.GetImageUrl(item, new ImageOptions
             {
                 ImageType = ImageType.Backdrop,
                 MaxWidth = 691,
@@ -365,7 +367,7 @@ namespace MediaBrowser.WindowsPhone.Services
 
             try
             {
-                var itemResponse = await _connectionManager.CurrentApiClient.GetItemsAsync(query);
+                var itemResponse = await _connectionManager.GetApiClient(App.ServerInfo.Id).GetItemsAsync(query);
                 return itemResponse;
             }
             catch (HttpException ex)

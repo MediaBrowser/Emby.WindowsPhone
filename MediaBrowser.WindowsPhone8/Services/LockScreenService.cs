@@ -185,20 +185,21 @@ namespace MediaBrowser.WindowsPhone.Services
                 query.ParentId = CollectionId;
             }
 
-            var itemResponse = await _connectionManager.CurrentApiClient.GetItemsAsync(query);
+            var itemResponse = await _connectionManager.GetApiClient(App.ServerInfo.Id).GetItemsAsync(query);
             return itemResponse;
         }
 
         private async Task ProcessMultipleImages(IEnumerable<BaseItemDto> items)
         {
             var list = new List<Stream>();
+            var apiClient = _connectionManager.GetApiClient(App.ServerInfo.Id);
 
             foreach (var item in items)
             {
-                var url = _connectionManager.CurrentApiClient.GetImageUrl(item, MultiplePostersOptions);
+                var url = apiClient.GetImageUrl(item, MultiplePostersOptions);
                 try
                 {
-                    var stream = await _connectionManager.CurrentApiClient.GetImageStreamAsync(url);
+                    var stream = await apiClient.GetImageStreamAsync(url);
                     list.Add(stream);
                 }
                 catch (HttpException ex)
@@ -223,13 +224,14 @@ namespace MediaBrowser.WindowsPhone.Services
         private async Task ProcessCollageImages(IEnumerable<BaseItemDto> items)
         {
             var list = new List<Stream>();
+            var apiClient = _connectionManager.GetApiClient(App.ServerInfo.Id);
 
             foreach (var item in items)
             {
-                var url = _connectionManager.CurrentApiClient.GetImageUrl(item, CollageOptions);
+                var url = apiClient.GetImageUrl(item, CollageOptions);
                 try
                 {
-                    var stream = await _connectionManager.CurrentApiClient.GetImageStreamAsync(url);
+                    var stream = await apiClient.GetImageStreamAsync(url);
                     list.Add(stream);
                 }
                 catch (HttpException ex)

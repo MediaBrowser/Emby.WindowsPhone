@@ -457,7 +457,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Remote
             {
                 if (m.Notification.Equals(Constants.Messages.ReconnectToWebSocketMsg))
                 {
-                    var client = ConnectionManager.CurrentApiClient;
+                    var client = ConnectionManager.GetApiClient(App.ServerInfo.Id);
                     client.OpenWebSocket(() => new WebSocketClient());
 
                     await Task.Delay(TimeSpan.FromSeconds(1));
