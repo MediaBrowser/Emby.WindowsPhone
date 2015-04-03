@@ -230,7 +230,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Settings
             {
                 return new RelayCommand<SelectionChangedEventArgs>(async args =>
                 {
-                    if (args == null)
+                    if (args == null || args.AddedItems.Count == 0)
                     {
                         return;
                     }
