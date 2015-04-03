@@ -61,6 +61,10 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
 
             Deployment.Current.Dispatcher.BeginInvoke(() =>
             {
+                WPLogger.AppVersion = ApplicationManifest.Current.App.Version;
+                WPLogger.LogConfiguration.LogType = LogType.WriteToFile;
+                WPLogger.LogConfiguration.LoggingIsEnabled = true;
+
                 if (ApplicationSettings == null)
                 {
                     ApplicationSettings = new ApplicationSettingsService().Legacy;
@@ -77,10 +81,6 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
                 }
 
                 if (_apiClient == null) CreateClient();
-
-                WPLogger.AppVersion = ApplicationManifest.Current.App.Version;
-                WPLogger.LogConfiguration.LogType = LogType.WriteToFile;
-                WPLogger.LogConfiguration.LoggingIsEnabled = true;
 
                 tcs.SetResult(true);
             });
@@ -119,11 +119,15 @@ namespace MediaBrowser.WindowsPhone.AudioAgent
         {
             try
             {
+                _logger.Info("Creating Client");
                 var device = new Device { DeviceId = SharedUtils.GetDeviceId(), DeviceName = SharedUtils.GetDeviceName() };
                 var server = ApplicationSettings.Get<ServerInfo>(Constants.Settings.DefaultServerConnection);
                 var auth = ApplicationSettings.Get<AuthenticationResult>(Constants.Settings.AuthUserSetting);
                 if (server == null || auth == null || auth.User == null)
                 {
+                    if (server == null) _logger.Info("No server information!");
+                    if(auth == null) _logger.Info("No authentication info");
+                    if(auth != null && auth.User == null) _logger.Info("No User info available");
                     return;
                 }
 

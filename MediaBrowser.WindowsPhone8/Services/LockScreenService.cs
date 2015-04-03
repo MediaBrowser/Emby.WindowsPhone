@@ -192,11 +192,8 @@ namespace MediaBrowser.WindowsPhone.Services
 
         private async Task ProcessMultipleImages(IEnumerable<BaseItemDto> items)
         {
-            var list = new List<Stream>();
+            var list = await GetImageStreams(items);
             var apiClient = _connectionManager.GetApiClient(App.ServerInfo.Id);
-
-            var imageTasks = items.Select(item => GetImageStream(apiClient, item, list)).ToList();
-            await Task.WhenAll(imageTasks);
 
             if (list.IsNullOrEmpty())
             {
@@ -215,11 +212,7 @@ namespace MediaBrowser.WindowsPhone.Services
 
         private async Task ProcessCollageImages(IEnumerable<BaseItemDto> items)
         {
-            var list = new List<Stream>();
-            var apiClient = _connectionManager.GetApiClient(App.ServerInfo.Id);
-
-            var imageTasks = items.Select(item => GetImageStream(apiClient, item, list)).ToList();
-            await Task.WhenAll(imageTasks);
+            var list = await GetImageStreams(items);
 
             if (list.IsNullOrEmpty())
             {
@@ -232,6 +225,39 @@ namespace MediaBrowser.WindowsPhone.Services
             await ToImage(lockscreen);
 
             await SetLockScreenImage(LockScreenImageUrl);
+
+            list = null;
+        }
+
+        private async Task<List<Stream>> GetImageStreams(IEnumerable<BaseItemDto> items)
+        {
+            var list = new List<Stream>();
+            var apiClient = _connectionManager.GetApiClient(App.ServerInfo.Id);
+
+            var imageTasks = items.Select(item => GetImageStream(apiClient, item, list)).ToList();
+            await Task.WhenAll(imageTasks);
+            return list;
+        }
+
+        private async Task GetImageStream(IApiClient apiClient, BaseItemDto item, List<Stream> list)
+        {
+            var url = apiClient.GetImageUrl(item, CollageOptions);
+            try
+            {
+                using (var client = TileService.CreateClient())
+                {
+                    var response = await client.GetAsync(url);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var stream = await response.Content.ReadAsStreamAsync();
+                        list.Add(stream);
+                    }
+                }
+            }
+            catch (HttpException ex)
+            {
+                _logger.ErrorException("ProcessCollageImages()", ex);
+            }
 
             list = null;
         }
