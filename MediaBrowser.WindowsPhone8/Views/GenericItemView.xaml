@@ -28,11 +28,11 @@
         <cimbalino:ApplicationBarBehavior IsMenuEnabled="True"
                                           Mode="Minimized">
             <cimbalino:ApplicationBarBehavior.MenuItems>
-                <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarResume, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                <cimbalino:ApplicationBarMenuItem Text="{Binding LocalisedResources.AppBarResume, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                   IsEnabled="{Binding SelectedItem.CanResume}"
                                                   Command="{Binding Main.ResumeMovieCommand, Source={StaticResource Locator}}"
                                                   CommandParameter="{Binding SelectedItem}" />
-                <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.LabelAddToPlaylist, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                <cimbalino:ApplicationBarMenuItem Text="{Binding LocalisedResources.LabelAddToPlaylist, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                   Command="{Binding AddToPlaylist.AddToPlaylistCommand, Source={StaticResource Locator}}"
                                                   CommandParameter="{Binding SelectedItem}" />
             </cimbalino:ApplicationBarBehavior.MenuItems>

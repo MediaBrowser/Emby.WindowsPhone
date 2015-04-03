@@ -6,7 +6,7 @@ using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Sync;
 using MediaBrowser.WindowsPhone.Messaging;
 using MediaBrowser.WindowsPhone.Model.Interfaces;
-using MediaBrowser.WindowsPhone.Resources;
+using Emby.WindowsPhone.Localisation;
 using MediaBrowser.WindowsPhone.ViewModel.Sync;
 
 namespace MediaBrowser.WindowsPhone.ViewModel.Items

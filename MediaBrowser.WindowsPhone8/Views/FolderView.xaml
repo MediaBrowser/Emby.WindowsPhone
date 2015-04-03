@@ -30,7 +30,7 @@
                               IsIndeterminate="{Binding ProgressIsVisible}" />
         <behaviors:ApplicationBarBehavior>
             <behaviors:ApplicationBarBehavior.Buttons>
-                <behaviors:ApplicationBarIconButton Text="{Binding LocalizedResources.AppBarGroupBy, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                <behaviors:ApplicationBarIconButton Text="{Binding LocalisedResources.AppBarGroupBy, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                     x:Name="btnChangeGrouping"
                                                     IconUri="/Icons/appbar.group.png"
                                                     Click="btnChangeGrouping_Click" />
@@ -102,7 +102,7 @@
                                          CommandParameter="{Binding}">
                             <toolkit:ContextMenuService.ContextMenu>
                                 <toolkit:ContextMenu>
-                                    <toolkit:MenuItem Header="{Binding LocalizedResources.LabelAddToPlaylist, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                    <toolkit:MenuItem Header="{Binding LocalisedResources.LabelAddToPlaylist, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                         Command="{Binding AddToPlaylist.AddToPlaylistCommand, Source={StaticResource Locator}}"
                                                         CommandParameter="{Binding}" />
                                 </toolkit:ContextMenu>

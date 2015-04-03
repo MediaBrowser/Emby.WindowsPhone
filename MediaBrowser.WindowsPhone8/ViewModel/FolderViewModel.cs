@@ -16,7 +16,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using MediaBrowser.WindowsPhone.Model.Interfaces;
-using MediaBrowser.WindowsPhone.Resources;
+using Emby.WindowsPhone.Localisation;
 using MediaBrowser.WindowsPhone.Services;
 using ScottIsAFool.WindowsPhone;
 

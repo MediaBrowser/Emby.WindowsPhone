@@ -8,7 +8,7 @@ using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Search;
 using MediaBrowser.WindowsPhone.Extensions;
 using MediaBrowser.WindowsPhone.Model.Interfaces;
-using MediaBrowser.WindowsPhone.Resources;
+using Emby.WindowsPhone.Localisation;
 using MediaBrowser.WindowsPhone.Services;
 using ScottIsAFool.WindowsPhone;
 

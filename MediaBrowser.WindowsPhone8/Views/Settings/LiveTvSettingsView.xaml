@@ -28,10 +28,10 @@
         <behaviors:ApplicationBarBehavior Mode="Minimized"
                                           IsMenuEnabled="True">
             <behaviors:ApplicationBarBehavior.MenuItems>
-                <behaviors:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarSendLogs, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                <behaviors:ApplicationBarMenuItem Text="{Binding LocalisedResources.AppBarSendLogs, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                   x:Name="EmailLogs"
                                                   Click="EmailLogs_OnClick" />
-                <behaviors:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarAbout, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                <behaviors:ApplicationBarMenuItem Text="{Binding LocalisedResources.AppBarAbout, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                   x:Name="AboutItem"
                                                   Click="AboutItem_OnClick" />
             </behaviors:ApplicationBarBehavior.MenuItems>
@@ -76,8 +76,8 @@
             <StackPanel x:Name="TitlePanel"
                         Grid.Row="0"
                         Margin="12,17,0,28">
-                <controls:MediaBrowserLogo AltText="{Binding LocalizedResources.Settings, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToUppercaseConverter}}" />
-                <TextBlock Text="{Binding LocalizedResources.LabelLiveTv, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                <controls:MediaBrowserLogo AltText="{Binding LocalisedResources.Settings, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToUppercaseConverter}}" />
+                <TextBlock Text="{Binding LocalisedResources.LabelLiveTv, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                            Margin="9,-7,0,0"
                            Style="{StaticResource PhoneTextTitle1Style}" />
             </StackPanel>
@@ -88,7 +88,7 @@
                   Margin="12,0,12,0">
                 <toolkit:ListPicker ItemsSource="{Binding RecordedGroupByItems, Source={StaticResource SpecificSettings}}"
                                     SelectedItem="{Binding DefaultRecordedGroupBy, Source={StaticResource SpecificSettings}, Mode=TwoWay}"
-                                    Header="{Binding LocalizedResources.LabelDefaultRecordedTvGrouping, Source={StaticResource LocalizedStrings}}"
+                                    Header="{Binding LocalisedResources.LabelDefaultRecordedTvGrouping, Source={StaticResource LocalisedStrings}}"
                                     toolkit:TiltEffect.SuppressTilt="True">
                     <toolkit:ListPicker.ItemTemplate>
                         <DataTemplate>

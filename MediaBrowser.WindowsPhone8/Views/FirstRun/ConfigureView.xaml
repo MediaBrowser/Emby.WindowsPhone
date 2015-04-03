@@ -66,7 +66,7 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <StackPanel Orientation="Vertical">
-                <TextBlock Text="{Binding LocalizedResources.LabelFirstRunServerInfo, Source={StaticResource LocalizedStrings}}"
+                <TextBlock Text="{Binding LocalisedResources.LabelFirstRunServerInfo, Source={StaticResource LocalisedStrings}}"
                            Style="{StaticResource PhoneTextTitle3Style}"
                            TextWrapping="Wrap" />
                 <HyperlinkButton Content="http://mediabrowser.tv/download"
@@ -75,7 +75,7 @@
                                  Click="DownloadButton_OnClick" />
             </StackPanel>
 
-            <TextBlock Text="{Binding LocalizedResources.LabelFirstRunAccessible, Source={StaticResource LocalizedStrings}}"
+            <TextBlock Text="{Binding LocalisedResources.LabelFirstRunAccessible, Source={StaticResource LocalisedStrings}}"
                        Style="{StaticResource PhoneTextTitle3Style}"
                        TextWrapping="Wrap"
                        Grid.Row="1"
@@ -83,7 +83,7 @@
 
             <TextBlock Grid.Row="2"
                        Style="{StaticResource PhoneTextTitle3Style}"
-                       Text="{Binding LocalizedResources.LabelFirstRunHappyConfiguration, Source={StaticResource LocalizedStrings}}"
+                       Text="{Binding LocalisedResources.LabelFirstRunHappyConfiguration, Source={StaticResource LocalisedStrings}}"
                        TextWrapping="Wrap" />
         </Grid>
 
@@ -91,12 +91,12 @@
               HorizontalAlignment="Stretch"
               Background="{StaticResource AppBarBrush}"
               Grid.RowSpan="2">
-            <Button Content="{Binding LocalizedResources.LabelQuit, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+            <Button Content="{Binding LocalisedResources.LabelQuit, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                     HorizontalAlignment="Left"
                     Width="240"
                     x:Name="QuitButton"
                     Click="QuitButton_OnClick" />
-            <Button Content="{Binding LocalizedResources.AppBarNext, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+            <Button Content="{Binding LocalisedResources.AppBarNext, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                     Width="240"
                     HorizontalAlignment="Right"
                     x:Name="SettingsButton"

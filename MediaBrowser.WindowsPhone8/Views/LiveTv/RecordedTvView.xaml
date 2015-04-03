@@ -29,11 +29,11 @@
                               Text="{Binding ProgressText}" />
         <behaviors:ApplicationBarBehavior>
             <behaviors:ApplicationBarBehavior.Buttons>
-                <behaviors:ApplicationBarIconButton Text="{Binding LocalizedResources.AppBarGroupBy, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                <behaviors:ApplicationBarIconButton Text="{Binding LocalisedResources.AppBarGroupBy, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                     x:Name="btnChangeGrouping"
                                                     IconUri="/Icons/appbar.group.png"
                                                     Click="btnChangeGrouping_Click" />
-                <behaviors:ApplicationBarIconButton Text="{Binding LocalizedResources.AppBarRefresh, Source={StaticResource LocalizedStrings}}"
+                <behaviors:ApplicationBarIconButton Text="{Binding LocalisedResources.AppBarRefresh, Source={StaticResource LocalisedStrings}}"
                                                     IconUri="/Icons/appbar.refresh.rest.png"
                                                     Command="{Binding RefreshCommand}"
                                                     IsEnabled="{Binding ProgressIsVisible, Converter={StaticResource NegativeBooleanConverter}}" />
@@ -80,7 +80,7 @@
             <StackPanel x:Name="TitlePanel"
                         Grid.Row="0"
                         Margin="12,17,0,28">
-                <controls:MediaBrowserLogo AltText="{Binding LocalizedResources.LabelRecordedTv, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToUppercaseConverter}}" />
+                <controls:MediaBrowserLogo AltText="{Binding LocalisedResources.LabelRecordedTv, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToUppercaseConverter}}" />
             </StackPanel>
 
             <!--ContentPanel - place additional content here-->
@@ -92,7 +92,7 @@
                                         JumpListStyle="{StaticResource LLSGroupItemLongStyle}"
                                         IsGroupingEnabled="True">
                     <phone:LongListSelector.ListHeader>
-                        <TextBlock Text="{Binding LocalizedResources.LabelNoRecordedItems, Source={StaticResource LocalizedStrings}}"
+                        <TextBlock Text="{Binding LocalisedResources.LabelNoRecordedItems, Source={StaticResource LocalisedStrings}}"
                                    TextAlignment="Center"
                                    Style="{StaticResource PhoneTextTitle3Style}"
                                    Foreground="{StaticResource PhoneSubtleBrush}"

@@ -2,7 +2,7 @@
 using Coding4Fun.Toolkit.Controls;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.WindowsPhone.Model;
-using MediaBrowser.WindowsPhone.Resources;
+using Emby.WindowsPhone.Localisation;
 using MediaBrowser.WindowsPhone.ViewModel;
 using Microsoft.Phone.Controls;
 using GalaSoft.MvvmLight.Messaging;

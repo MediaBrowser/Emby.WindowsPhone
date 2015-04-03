@@ -10,7 +10,7 @@ using MediaBrowser.Model.LiveTv;
 using MediaBrowser.Model.Net;
 using MediaBrowser.WindowsPhone.CimbalinoToolkit.Tiles;
 using MediaBrowser.WindowsPhone.Helpers;
-using MediaBrowser.WindowsPhone.Resources;
+using Emby.WindowsPhone.Localisation;
 using MediaBrowser.WindowsPhone.Services;
 
 using INavigationService = MediaBrowser.WindowsPhone.Model.Interfaces.INavigationService;

@@ -28,7 +28,7 @@
             <behaviors:ApplicationBarBehavior.Buttons>
                 <behaviors:ApplicationBarIconButton IconUri="/Icons/appbar.refresh.rest.png"
                                                     Command="{Binding RefreshCommand}"
-                                                    Text="{Binding LocalizedResources.AppBarRefresh, Source={StaticResource LocalizedStrings}}"
+                                                    Text="{Binding LocalisedResources.AppBarRefresh, Source={StaticResource LocalisedStrings}}"
                                                     IsEnabled="{Binding ProgressIsVisible, Converter={StaticResource NegativeBooleanConverter}}" />
             </behaviors:ApplicationBarBehavior.Buttons>
         </behaviors:ApplicationBarBehavior>
@@ -47,7 +47,7 @@
             <StackPanel x:Name="TitlePanel"
                         Grid.Row="0"
                         Margin="12,17,0,28">
-                <TextBlock Text="{Binding LocalizedResources.LabelAddToPlaylist, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToUppercaseConverter}}"
+                <TextBlock Text="{Binding LocalisedResources.LabelAddToPlaylist, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToUppercaseConverter}}"
                            Style="{StaticResource PhoneTextNormalStyle}"
                            Margin="12,0" />
             </StackPanel>
@@ -63,7 +63,7 @@
                     <toolkit:ListPicker ItemsSource="{Binding Playlists}"
                                         SelectedItem="{Binding SelectedPlaylist, Mode=TwoWay}"
                                         DisplayMemberPath="Name"
-                                        Header="{Binding LocalizedResources.HeaderPlaylists, Source={StaticResource LocalizedStrings}}">
+                                        Header="{Binding LocalisedResources.HeaderPlaylists, Source={StaticResource LocalisedStrings}}">
                         <toolkit:ListPicker.FullModeItemTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Name}"
@@ -75,7 +75,7 @@
                         </toolkit:ListPicker.FullModeItemTemplate>
                     </toolkit:ListPicker>
 
-                    <TextBlock Text="{Binding LocalizedResources.HeaderPlaylistName, Source={StaticResource LocalizedStrings}}"
+                    <TextBlock Text="{Binding LocalisedResources.HeaderPlaylistName, Source={StaticResource LocalisedStrings}}"
                                Style="{StaticResource PhoneTextSubtleStyle}"
                                Visibility="{Binding ShowNewPlaylistName, Converter={StaticResource VisibilityConverter}}"
                                Margin="12,12,12,0"/>
@@ -88,7 +88,7 @@
                             
                     </toolkit:PhoneTextBox>
                     <Button Style="{StaticResource HeroButtonStyle}"
-                            Content="{Binding LocalizedResources.LabelSave, Source={StaticResource LocalizedStrings}}"
+                            Content="{Binding LocalisedResources.LabelSave, Source={StaticResource LocalisedStrings}}"
                             Command="{Binding SaveToPlaylistCommand}"
                             IsEnabled="{Binding ProgressIsVisible, Converter={StaticResource NegativeBooleanConverter}}"/>
                 </StackPanel>

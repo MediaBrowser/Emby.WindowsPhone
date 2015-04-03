@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Coding4Fun.Toolkit.Controls;
 using MediaBrowser.Model.Sync;
 using MediaBrowser.WindowsPhone.Controls;
@@ -47,6 +48,11 @@ namespace MediaBrowser.WindowsPhone.Services
             {
                 return null;
             }
+        }
+
+        public void ShowMessage(string message, string title = "", Action action = null)
+        {
+            App.ShowMessage(message, title, action);
         }
     }
 }

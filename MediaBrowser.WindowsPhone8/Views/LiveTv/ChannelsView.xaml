@@ -31,7 +31,7 @@
             <behaviors:ApplicationBarBehavior.Buttons>
                 <behaviors:ApplicationBarIconButton IconUri="/Icons/appbar.refresh.rest.png"
                                                     Command="{Binding RefreshChannelsCommand}"
-                                                    Text="{Binding LocalizedResources.AppBarRefresh, Source={StaticResource LocalizedStrings}}"
+                                                    Text="{Binding LocalisedResources.AppBarRefresh, Source={StaticResource LocalisedStrings}}"
                                                     IsEnabled="{Binding ProgressIsVisible, Converter={StaticResource NegativeBooleanConverter}}" />
             </behaviors:ApplicationBarBehavior.Buttons>
         </behaviors:ApplicationBarBehavior>
@@ -77,7 +77,7 @@
                         Grid.Row="0"
                         Margin="12,17,0,28">
                 <controls:MediaBrowserLogo />
-                <TextBlock Text="{Binding LocalizedResources.LabelChannels, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                <TextBlock Text="{Binding LocalisedResources.LabelChannels, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                            Margin="9,-7,0,0"
                            Style="{StaticResource PhoneTextTitle1Style}" />
             </StackPanel>
@@ -93,7 +93,7 @@
                                         HideEmptyGroups="False"
                                         IsGroupingEnabled="True">
                     <phone:LongListSelector.ListHeader>
-                        <TextBlock Text="{Binding LocalizedResources.NoItemsFound, Source={StaticResource LocalizedStrings}}"
+                        <TextBlock Text="{Binding LocalisedResources.NoItemsFound, Source={StaticResource LocalisedStrings}}"
                                    Style="{StaticResource PhoneTextTitle3Style}"
                                    HorizontalAlignment="Center"
                                    VerticalAlignment="Top"

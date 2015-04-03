@@ -34,10 +34,10 @@
         <behaviors:ApplicationBarBehavior Mode="Minimized"
                                           IsMenuEnabled="True">
             <behaviors:ApplicationBarBehavior.MenuItems>
-                <behaviors:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarSendLogs, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                <behaviors:ApplicationBarMenuItem Text="{Binding LocalisedResources.AppBarSendLogs, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                   x:Name="EmailLogs"
                                                   Click="EmailLogs_OnClick" />
-                <behaviors:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarAbout, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                <behaviors:ApplicationBarMenuItem Text="{Binding LocalisedResources.AppBarAbout, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                   x:Name="AboutItem"
                                                   Click="AboutItem_OnClick" />
             </behaviors:ApplicationBarBehavior.MenuItems>
@@ -164,7 +164,7 @@
                         Margin="12,17,0,28">
                 <controls:MediaBrowserLogo />
                 <TextBlock x:Name="PageTitle"
-                           Text="{Binding LocalizedResources.Settings, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringCaseConverter}}"
+                           Text="{Binding LocalisedResources.Settings, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringCaseConverter}}"
                            Margin="9,-7,0,0"
                            Style="{StaticResource PhoneTextTitle1Style}" />
             </StackPanel>
@@ -187,7 +187,7 @@
                                       Stretch="Fill"
                                       Fill="{StaticResource PhoneForegroundBrush}"
                                       Data="F1 M 38,23.5C 38.8643,23.5 39.7109,23.5756 40.5337,23.7206L 42.6275,18.5381L 48.1901,20.787L 46.0964,25.9692C 47.6473,27.0149 48.9851,28.3527 50.0308,29.9036L 55.213,27.8099L 57.4619,33.3725L 52.2794,35.4664C 52.4244,36.2891 52.5,37.1357 52.5,38C 52.5,38.8643 52.4244,39.7109 52.2794,40.5337L 57.4619,42.6275L 55.213,48.1901L 50.0308,46.0964C 49.0795,47.5073 47.8865,48.7418 46.5112,49.7405L 48.7844,54.8462L 43.3041,57.2891L 41.0307,52.1828C 40.0533,52.3906 39.0394,52.5 38,52.5C 37.1357,52.5 36.2891,52.4244 35.4664,52.2794L 33.3725,57.462L 27.8099,55.213L 29.9036,50.0309C 28.3527,48.9851 27.0149,47.6473 25.9691,46.0964L 20.787,48.1901L 18.538,42.6275L 23.7206,40.5336C 23.5756,39.7109 23.5,38.8643 23.5,38C 23.5,37.1357 23.5756,36.2891 23.7206,35.4664L 18.538,33.3725L 20.787,27.8099L 25.9691,29.9036C 26.9205,28.4927 28.1135,27.2582 29.4889,26.2594L 27.2157,21.1537L 32.6959,18.7109L 34.9694,23.8172C 35.9468,23.6094 36.9606,23.5 38,23.5 Z M 38,28C 32.4771,28 28,32.4772 28,38C 28,43.5229 32.4771,48 38,48C 43.5228,48 48,43.5229 48,38C 48,32.4772 43.5228,28 38,28 Z " />
-                                <TextBlock Text="{Binding LocalizedResources.LabelGeneral, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                <TextBlock Text="{Binding LocalisedResources.LabelGeneral, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                            Style="{StaticResource PhoneTextNormalStyle}"
                                            VerticalAlignment="Bottom"
                                            Margin="12,0,12,6" />
@@ -217,7 +217,7 @@
                                       Stretch="Fill"
                                       Fill="{StaticResource PhoneForegroundBrush}"
                                       Data="F1 M 25.7639,28.0031L 20.0866,22.3258C 19.4683,21.7075 19.4683,20.705 20.0866,20.0866C 20.705,19.4683 21.7075,19.4683 22.3258,20.0867L 28.0031,25.7639C 32.3443,22.5092 38.5302,22.856 42.4783,26.8042L 26.8041,42.4784C 22.856,38.5302 22.5092,32.3443 25.7639,28.0031 Z M 49.1958,33.5217C 53.144,37.4699 53.4908,43.6557 50.2361,47.9969L 55.9133,53.6742C 56.5317,54.2925 56.5317,55.295 55.9133,55.9134C 55.295,56.5317 54.2925,56.5317 53.6742,55.9134L 47.9969,50.2361C 43.6557,53.4908 37.4698,53.1441 33.5216,49.1959L 36.8804,45.8371L 34.0814,43.0381C 33.1539,42.1107 33.1539,40.6069 34.0814,39.6794C 35.0089,38.7519 36.5127,38.7519 37.4402,39.6794L 40.2392,42.4784L 42.4783,40.2392L 39.6794,37.4402C 38.7519,36.5127 38.7519,35.009 39.6794,34.0815C 40.6069,33.154 42.1106,33.154 43.0381,34.0815L 45.8371,36.8804L 49.1958,33.5217 Z " />
-                                <TextBlock Text="{Binding LocalizedResources.LabelConnection, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                <TextBlock Text="{Binding LocalisedResources.LabelConnection, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                            Style="{StaticResource PhoneTextNormalStyle}"
                                            VerticalAlignment="Bottom"
                                            Margin="12,0,12,6" />
@@ -240,7 +240,7 @@
                                                    Margin="3" />
                                     </Grid>
                                 </Border>
-                                <TextBlock Text="{Binding LocalizedResources.LabelTile, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                <TextBlock Text="{Binding LocalisedResources.LabelTile, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                            Style="{StaticResource PhoneTextNormalStyle}"
                                            VerticalAlignment="Bottom"
                                            Margin="12,0,12,6" />
@@ -262,7 +262,7 @@
                                                                   HorizontalAlignment="Center"
                                                                   Style="{StaticResource TransparentBackgroundStyle}" />
                                 </Border>
-                                <TextBlock Text="{Binding LocalizedResources.LabelLockScreen, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                <TextBlock Text="{Binding LocalisedResources.LabelLockScreen, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                            Style="{StaticResource PhoneTextNormalStyle}"
                                            VerticalAlignment="Bottom"
                                            Margin="12,0,12,6" />
@@ -277,7 +277,7 @@
                                       Stretch="Uniform"
                                       Fill="{StaticResource PhoneForegroundBrush}"
                                       Data="F1 M 38,31.6667C 41.4978,31.6667 44.3333,34.5022 44.3333,38C 44.3333,41.4978 41.4978,44.3333 38,44.3333C 34.5022,44.3333 31.6667,41.4978 31.6667,38C 31.6667,34.5022 34.5022,31.6667 38,31.6667 Z M 26.9167,38C 26.9167,41.0606 28.1572,43.8314 30.1629,45.8371L 26.8041,49.1959C 23.9389,46.3306 22.1667,42.3723 22.1667,38C 22.1667,33.6278 23.9389,29.6694 26.8041,26.8041L 30.1629,30.1629C 28.1572,32.1686 26.9167,34.9394 26.9167,38 Z M 49.0833,38C 49.0833,34.9394 47.8428,32.1686 45.8371,30.1629L 49.1958,26.8042C 52.0611,29.6694 53.8333,33.6278 53.8333,38C 53.8333,42.3723 52.0611,46.3306 49.1958,49.1959L 45.8371,45.8371C 47.8428,43.8314 49.0833,41.0606 49.0833,38 Z M 17.4167,38C 17.4167,43.6839 19.7205,48.8298 23.4454,52.5546L 20.0866,55.9134C 15.5022,51.3289 12.6667,44.9956 12.6667,38C 12.6667,31.0044 15.5022,24.6711 20.0866,20.0866L 23.4454,23.4454C 19.7205,27.1702 17.4167,32.3161 17.4167,38 Z M 58.5833,38C 58.5833,32.3161 56.2795,27.1702 52.5546,23.4454L 55.9134,20.0866C 60.4978,24.6711 63.3333,31.0044 63.3333,38C 63.3333,44.9956 60.4978,51.3289 55.9134,55.9134L 52.5546,52.5546C 56.2795,48.8298 58.5833,43.6839 58.5833,38 Z " />
-                                <TextBlock Text="{Binding LocalizedResources.LabelStreaming, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                <TextBlock Text="{Binding LocalisedResources.LabelStreaming, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                            Style="{StaticResource PhoneTextNormalStyle}"
                                            VerticalAlignment="Bottom"
                                            Margin="12,0,12,6" />
@@ -292,7 +292,7 @@
                                                              Height="{StaticResource TileImageSize}"
                                                              Width="{StaticResource TileImageSize}"
                                                              SeriesVisibility="Visible" />
-                                <TextBlock Text="{Binding LocalizedResources.LabelLiveTv, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                <TextBlock Text="{Binding LocalisedResources.LabelLiveTv, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                            Style="{StaticResource PhoneTextNormalStyle}"
                                            VerticalAlignment="Bottom"
                                            Margin="12,0,12,6" />
@@ -308,7 +308,7 @@
                                       Stretch="Uniform"
                                       Fill="{StaticResource PhoneForegroundBrush}"
                                       Data="F1 M 49.0833,33.25C 53.4555,33.25 57,36.7944 57,41.1666C 57,45.5389 53.4045,48.9999 48.9999,49L 41,49L 41,43L 45,43L 39,37L 33,43L 37,43L 37,49L 23,49.0001C 20.8139,49 19,47.3111 19,45.125C 19,43.1866 20.3931,41.5737 22.2327,41.233L 22.1667,40.3749C 22.1667,37.3993 24.5122,34.9712 27.4553,34.8389C 28.7579,31.1462 32.2782,28.4999 36.4167,28.4999C 40.3458,28.4999 43.7179,30.8853 45.1637,34.2868C 46.3193,33.627 47.6573,33.25 49.0833,33.25 Z " />
-                                <TextBlock Text="{Binding LocalizedResources.LabelPhotoUpload, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                <TextBlock Text="{Binding LocalisedResources.LabelPhotoUpload, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                            Style="{StaticResource PhoneTextNormalStyle}"
                                            VerticalAlignment="Bottom"
                                            Margin="12,0,12,6" />

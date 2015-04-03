@@ -27,10 +27,10 @@
         <behaviors:ApplicationBarBehavior Mode="Minimized"
                                           IsMenuEnabled="True">
             <behaviors:ApplicationBarBehavior.MenuItems>
-                <behaviors:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarSendLogs, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                <behaviors:ApplicationBarMenuItem Text="{Binding LocalisedResources.AppBarSendLogs, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                   x:Name="EmailLogs"
                                                   Click="EmailLogs_OnClick" />
-                <behaviors:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarAbout, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                <behaviors:ApplicationBarMenuItem Text="{Binding LocalisedResources.AppBarAbout, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                   x:Name="AboutItem"
                                                   Click="AboutItem_OnClick" />
             </behaviors:ApplicationBarBehavior.MenuItems>
@@ -159,8 +159,8 @@
             <StackPanel x:Name="TitlePanel"
                         Grid.Row="0"
                         Margin="12,17,0,28">
-                <controls:MediaBrowserLogo AltText="{Binding LocalizedResources.Settings, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToUppercaseConverter}}" />
-                <TextBlock Text="{Binding LocalizedResources.LabelTile, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                <controls:MediaBrowserLogo AltText="{Binding LocalisedResources.Settings, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToUppercaseConverter}}" />
+                <TextBlock Text="{Binding LocalisedResources.LabelTile, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                            Margin="9,-7,0,0"
                            Style="{StaticResource PhoneTextTitle1Style}" />
             </StackPanel>
@@ -171,15 +171,15 @@
                   Margin="12,0,12,0">
                 <ScrollViewer>
                     <StackPanel Orientation="Vertical">
-                        <TextBlock Text="{Binding LocalizedResources.LabelTileBackInformation, Source={StaticResource LocalizedStrings}}"
+                        <TextBlock Text="{Binding LocalisedResources.LabelTileBackInformation, Source={StaticResource LocalisedStrings}}"
                                    TextWrapping="Wrap"
                                    Style="{StaticResource PhoneTextNormalStyle}" />
                         <CheckBox IsChecked="{Binding DisplayBackdropOnTile, Source={StaticResource SpecificSettings}, Mode=TwoWay}">
-                            <TextBlock Text="{Binding LocalizedResources.LabelDisplayRandomImages, Source={StaticResource LocalizedStrings}}"
+                            <TextBlock Text="{Binding LocalisedResources.LabelDisplayRandomImages, Source={StaticResource LocalisedStrings}}"
                                        TextWrapping="Wrap" />
                         </CheckBox>
                         <CheckBox IsChecked="{Binding UseTransparentTile, Source={StaticResource SpecificSettings}, Mode=TwoWay}">
-                            <TextBlock Text="{Binding LocalizedResources.LabelUseTransparentTile, Source={StaticResource LocalizedStrings}}"
+                            <TextBlock Text="{Binding LocalisedResources.LabelUseTransparentTile, Source={StaticResource LocalisedStrings}}"
                                        TextWrapping="Wrap" />
                         </CheckBox>
 

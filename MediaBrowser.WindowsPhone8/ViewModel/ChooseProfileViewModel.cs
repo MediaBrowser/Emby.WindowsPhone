@@ -9,7 +9,7 @@ using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Dto;
-using MediaBrowser.WindowsPhone.Resources;
+using Emby.WindowsPhone.Localisation;
 using MediaBrowser.WindowsPhone.Services;
 
 using INavigationService = MediaBrowser.WindowsPhone.Model.Interfaces.INavigationService;

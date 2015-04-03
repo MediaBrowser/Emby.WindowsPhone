@@ -3,7 +3,7 @@ using System.Globalization;
 using GalaSoft.MvvmLight.Ioc;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Model.Streaming;
-using MediaBrowser.WindowsPhone.Resources;
+using Emby.WindowsPhone.Localisation;
 using MediaBrowser.WindowsPhone.ViewModel.Settings;
 
 namespace MediaBrowser.WindowsPhone.Extensions

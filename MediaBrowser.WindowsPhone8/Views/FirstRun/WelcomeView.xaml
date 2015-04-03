@@ -63,13 +63,13 @@
               Margin="12,68,12,0">
             <TextBlock Style="{StaticResource PhoneTextTitle3Style}"
                        TextWrapping="Wrap"
-                       Text="{Binding LocalizedResources.LabelWelcomeText, Source={StaticResource LocalizedStrings}}"/>
+                       Text="{Binding LocalisedResources.LabelWelcomeText, Source={StaticResource LocalisedStrings}}"/>
         </Grid>
 
         <Grid VerticalAlignment="Bottom"
               HorizontalAlignment="Stretch"
               Background="{StaticResource AppBarBrush}">
-            <Button Content="{Binding LocalizedResources.AppBarNext, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+            <Button Content="{Binding LocalisedResources.AppBarNext, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                     Width="240"
                     HorizontalAlignment="Right"
                     x:Name="NextButton"

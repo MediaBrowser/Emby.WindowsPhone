@@ -74,7 +74,7 @@
                         Grid.Row="0"
                         Margin="12,17,0,28">
                 <controls:MediaBrowserLogo />
-                <TextBlock Text="{Binding LocalizedResources.LabelFindServer, Source={StaticResource LocalizedStrings}}"
+                <TextBlock Text="{Binding LocalisedResources.LabelFindServer, Source={StaticResource LocalisedStrings}}"
                            Margin="9,-7,0,0"
                            Style="{StaticResource PhoneTextTitle1Style}" />
             </StackPanel>
@@ -105,12 +105,12 @@
                                                        EmptyContent="">
                     <telerikPrimitives:RadDataBoundListBox.EmptyContentTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding LocalizedResources.NoItemsFound, Source={StaticResource LocalizedStrings}}"
+                            <TextBlock Text="{Binding LocalisedResources.NoItemsFound, Source={StaticResource LocalisedStrings}}"
                                        Style="{StaticResource PhoneTextTitle3Style}" />
                         </DataTemplate>
                     </telerikPrimitives:RadDataBoundListBox.EmptyContentTemplate>
                     <telerikPrimitives:RadDataBoundListBox.ListFooterContent>
-                        <controls:CustomHyperlinkButton Content="{Binding LocalizedResources.LabelManualServerEntry, Source={StaticResource LocalizedStrings}}"
+                        <controls:CustomHyperlinkButton Content="{Binding LocalisedResources.LabelManualServerEntry, Source={StaticResource LocalisedStrings}}"
                                                         HorizontalContentAlignment="Left"
                                                         Foreground="{StaticResource PhoneAccentBrush}"
                                                         NavigateUri="/Views/Settings/ConnectionSettingsView.xaml" />
@@ -124,7 +124,7 @@
                                                             d:DataContext="{Binding Settings.FoundServers[0], Source={StaticResource Locator}}">
                                 <toolkit:ContextMenuService.ContextMenu>
                                     <toolkit:ContextMenu>
-                                        <toolkit:MenuItem Header="{Binding LocalizedResources.AppBarDelete, Source={StaticResource LocalizedStrings}}"
+                                        <toolkit:MenuItem Header="{Binding LocalisedResources.AppBarDelete, Source={StaticResource LocalisedStrings}}"
                                                           Command="{Binding Settings.DeleteServerCommand, Source={StaticResource Locator}}"
                                                           CommandParameter="{Binding}"/>
                                     </toolkit:ContextMenu>

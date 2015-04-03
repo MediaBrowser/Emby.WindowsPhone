@@ -10,7 +10,7 @@ using MediaBrowser.Model.Sync;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Model.Interfaces;
 using MediaBrowser.WindowsPhone.Model.Sync;
-using MediaBrowser.WindowsPhone.Resources;
+using Emby.WindowsPhone.Localisation;
 using ScottIsAFool.WindowsPhone.Logging;
 using GestureEventArgs = System.Windows.Input.GestureEventArgs;
 

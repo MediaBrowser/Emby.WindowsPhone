@@ -29,16 +29,16 @@
                                           Mode="{Binding Auth.LoggedInConnectUser, Source={StaticResource Locator}, Converter={StaticResource AppBarModeConverter}}">
             <behaviors:ApplicationBarBehavior.Buttons>
                 <behaviors:ApplicationBarIconButton IconUri="/Icons/appbar.check.rest.png"
-                                                    Text="{Binding LocalizedResources.AppBarLogin, Source={StaticResource LocalizedStrings}}"
+                                                    Text="{Binding LocalisedResources.AppBarLogin, Source={StaticResource LocalisedStrings}}"
                                                     IsEnabled="{Binding CanSignIn}"
                                                     IsVisible="{Binding Auth.SignedInUsingConnect, Source={StaticResource Locator}, Converter={StaticResource NegativeBooleanConverter}}"
                                                     Command="{Binding SignInCommand}" />
             </behaviors:ApplicationBarBehavior.Buttons>
             <behaviors:ApplicationBarBehavior.MenuItems>
-                <behaviors:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarSendLogs, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                <behaviors:ApplicationBarMenuItem Text="{Binding LocalisedResources.AppBarSendLogs, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                   x:Name="EmailLogs"
                                                   Click="EmailLogs_OnClick" />
-                <behaviors:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarAbout, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                <behaviors:ApplicationBarMenuItem Text="{Binding LocalisedResources.AppBarAbout, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                   x:Name="AboutItem"
                                                   Click="AboutItem_OnClick" />
             </behaviors:ApplicationBarBehavior.MenuItems>
@@ -63,7 +63,7 @@
                         Grid.Row="0"
                         Margin="12,17,0,28">
                 <controls:MediaBrowserLogo />
-                <TextBlock Text="{Binding LocalizedResources.LabelMbConnect, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                <TextBlock Text="{Binding LocalisedResources.LabelMbConnect, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                            Margin="9,-7,0,0"
                            Style="{StaticResource PhoneTextTitle1Style}" />
             </StackPanel>
@@ -97,7 +97,7 @@
                         </StackPanel>
                     </Grid>
                     
-                    <controls:CustomHyperlinkButton Content="{Binding LocalizedResources.LabelLogout, Source={StaticResource LocalizedStrings}}"
+                    <controls:CustomHyperlinkButton Content="{Binding LocalisedResources.LabelLogout, Source={StaticResource LocalisedStrings}}"
                                                     Grid.Row="1"
                                                     VerticalAlignment="Top"
                                                     HorizontalContentAlignment="Left"
@@ -108,7 +108,7 @@
                 <Grid x:Name="IsNotLoggedInGrid"
                       Visibility="{Binding Auth.LoggedInConnectUser, Source={StaticResource Locator}, Converter={StaticResource InvertedNullVisibilityConverter}, FallbackValue=Collapsed}">
                     <StackPanel Orientation="Vertical">
-                        <TextBlock Text="{Binding LocalizedResources.LabelUsername, Source={StaticResource LocalizedStrings}}"
+                        <TextBlock Text="{Binding LocalisedResources.LabelUsername, Source={StaticResource LocalisedStrings}}"
                                    Style="{StaticResource PhoneTextSubtleStyle}" />
                         <toolkit:PhoneTextBox Text="{Binding Username, Mode=TwoWay}"
                                               IsEnabled="{Binding ProgressIsVisible, Converter={StaticResource NegativeBooleanConverter}}"
@@ -120,7 +120,7 @@
                         </toolkit:PhoneTextBox>
 
                         <telerikPrimitives:RadPasswordBox Password="{Binding Password, Mode=TwoWay}"
-                                                          Header="{Binding LocalizedResources.LabelPassword, Source={StaticResource LocalizedStrings}}"
+                                                          Header="{Binding LocalisedResources.LabelPassword, Source={StaticResource LocalisedStrings}}"
                                                           IsEnabled="{Binding ProgressIsVisible, Converter={StaticResource NegativeBooleanConverter}}">
                             <i:Interaction.Behaviors>
                                 <behaviours1:EnterKeyHandler EnterKeyAction="ExecuteCommand"

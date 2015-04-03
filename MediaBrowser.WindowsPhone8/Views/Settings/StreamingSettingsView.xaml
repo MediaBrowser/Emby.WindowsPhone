@@ -29,10 +29,10 @@
         <behaviors:ApplicationBarBehavior Mode="Minimized"
                                           IsMenuEnabled="True">
             <behaviors:ApplicationBarBehavior.MenuItems>
-                <behaviors:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarSendLogs, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                <behaviors:ApplicationBarMenuItem Text="{Binding LocalisedResources.AppBarSendLogs, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                   x:Name="EmailLogs"
                                                   Click="EmailLogs_OnClick" />
-                <behaviors:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarAbout, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                <behaviors:ApplicationBarMenuItem Text="{Binding LocalisedResources.AppBarAbout, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                   x:Name="AboutItem"
                                                   Click="AboutItem_OnClick" />
             </behaviors:ApplicationBarBehavior.MenuItems>
@@ -78,8 +78,8 @@
             <StackPanel x:Name="TitlePanel"
                         Grid.Row="0"
                         Margin="12,17,0,28">
-                <controls:MediaBrowserLogo AltText="{Binding LocalizedResources.Settings, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToUppercaseConverter}}" />
-                <TextBlock Text="{Binding LocalizedResources.LabelStreaming, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                <controls:MediaBrowserLogo AltText="{Binding LocalisedResources.Settings, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToUppercaseConverter}}" />
+                <TextBlock Text="{Binding LocalisedResources.LabelStreaming, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                            Margin="9,-7,0,0"
                            Style="{StaticResource PhoneTextTitle1Style}" />
             </StackPanel>
@@ -89,7 +89,7 @@
                         Grid.Row="1"
                         Margin="12,0,12,0"
                         Orientation="Vertical">
-                <TextBlock Text="{Binding LocalizedResources.LabelChooseQuality, Source={StaticResource LocalizedStrings}}"
+                <TextBlock Text="{Binding LocalisedResources.LabelChooseQuality, Source={StaticResource LocalisedStrings}}"
                            Style="{StaticResource PhoneTextNormalStyle}"
                            TextWrapping="Wrap" />
                 <phone:Pivot Margin="-12,0,0,0">
@@ -99,11 +99,11 @@
                                        FontSize="30" />
                         </DataTemplate>
                     </phone:Pivot.HeaderTemplate>
-                    <phone:PivotItem Header="{Binding LocalizedResources.LabelMobile, Source={StaticResource LocalizedStrings}}">
+                    <phone:PivotItem Header="{Binding LocalisedResources.LabelMobile, Source={StaticResource LocalisedStrings}}">
                         <StackPanel Margin="0,-20,0,0">
                             <toolkit:ListPicker ItemsSource="{Binding StreamingResolutions}"
                                                 SelectedItem="{Binding StreamingResolution, Mode=TwoWay}"
-                                                Header="{Binding LocalizedResources.LabelResolution, Source={StaticResource LocalizedStrings}}">
+                                                Header="{Binding LocalisedResources.LabelResolution, Source={StaticResource LocalisedStrings}}">
                                 <toolkit:ListPicker.ItemTemplate>
                                     <DataTemplate>
                                         <TextBlock Text="{Binding Converter={StaticResource ResolutionLabelConverter}}" />
@@ -112,7 +112,7 @@
                             </toolkit:ListPicker>
                             <toolkit:ListPicker ItemsSource="{Binding StreamingLmhs}"
                                                 SelectedItem="{Binding StreamingLmh, Mode=TwoWay}"
-                                                Header="{Binding LocalizedResources.LabelQuality, Source={StaticResource LocalizedStrings}}"
+                                                Header="{Binding LocalisedResources.LabelQuality, Source={StaticResource LocalisedStrings}}"
                                                 IsEnabled="{Binding CanChangeQuality}">
                                 <toolkit:ListPicker.ItemTemplate>
                                     <DataTemplate>
@@ -122,11 +122,11 @@
                             </toolkit:ListPicker>
                         </StackPanel>
                     </phone:PivotItem>
-                    <phone:PivotItem Header="{Binding LocalizedResources.LabelWifi, Source={StaticResource LocalizedStrings}}">
+                    <phone:PivotItem Header="{Binding LocalisedResources.LabelWifi, Source={StaticResource LocalisedStrings}}">
                         <StackPanel Margin="0,-20,0,0">
                             <toolkit:ListPicker ItemsSource="{Binding StreamingResolutions}"
                                                 SelectedItem="{Binding WifiStreamingResolution, Mode=TwoWay}"
-                                                Header="{Binding LocalizedResources.LabelResolution, Source={StaticResource LocalizedStrings}}">
+                                                Header="{Binding LocalisedResources.LabelResolution, Source={StaticResource LocalisedStrings}}">
                                 <toolkit:ListPicker.ItemTemplate>
                                     <DataTemplate>
                                         <TextBlock Text="{Binding Converter={StaticResource ResolutionLabelConverter}}" />
@@ -135,7 +135,7 @@
                             </toolkit:ListPicker>
                             <toolkit:ListPicker ItemsSource="{Binding WifiStreamingLmhs}"
                                                 SelectedItem="{Binding WifiStreamingLmh, Mode=TwoWay}"
-                                                Header="{Binding LocalizedResources.LabelQuality, Source={StaticResource LocalizedStrings}}"
+                                                Header="{Binding LocalisedResources.LabelQuality, Source={StaticResource LocalisedStrings}}"
                                                 IsEnabled="{Binding CanChangeWifiQuality}">
                                 <toolkit:ListPicker.ItemTemplate>
                                     <DataTemplate>
@@ -147,7 +147,7 @@
                     </phone:PivotItem>
                 </phone:Pivot>
 
-                <CheckBox Content="{Binding LocalizedResources.LabelStreamWifi, Source={StaticResource LocalizedStrings}}"
+                <CheckBox Content="{Binding LocalisedResources.LabelStreamWifi, Source={StaticResource LocalisedStrings}}"
                           IsChecked="{Binding OnlyStreamOnWifi, Source={StaticResource SpecificSettings}, Mode=TwoWay}" />
             </StackPanel>
         </Grid>

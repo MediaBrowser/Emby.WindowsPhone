@@ -36,7 +36,7 @@
                 <behaviors:ApplicationBar.Buttons>
                     <behaviors:ApplicationBarIconButton IconUri="/Icons/appbar.refresh.rest.png"
                                                         Command="{Binding RefreshCommand}"
-                                                        Text="{Binding LocalizedResources.AppBarRefresh, Source={StaticResource LocalizedStrings}}"
+                                                        Text="{Binding LocalisedResources.AppBarRefresh, Source={StaticResource LocalisedStrings}}"
                                                         IsEnabled="{Binding ProgressIsVisible, Converter={StaticResource NegativeBooleanConverter}}" />
                 </behaviors:ApplicationBar.Buttons>
             </behaviors:ApplicationBar>
@@ -44,7 +44,7 @@
             <behaviors:ApplicationBar>
                 <behaviors:ApplicationBar.Buttons>
                     <behaviors:ApplicationBarIconButton IconUri="/Icons/appbar.delete.rest.png"
-                                                        Text="{Binding LocalizedResources.AppBarDelete, Source={StaticResource LocalizedStrings}}"
+                                                        Text="{Binding LocalisedResources.AppBarDelete, Source={StaticResource LocalisedStrings}}"
                                                         Command="{Binding DeleteItemsFromPlaylistCommand}"
                                                         IsEnabled="{Binding SelectedItems.Count, Converter={StaticResource CountToEnabled}, ConverterParameter=delete}"/>
                 </behaviors:ApplicationBar.Buttons>
@@ -66,10 +66,10 @@
                                    d:DataContext="{Binding ServerPlaylists.PlaylistItems[0], Source={StaticResource Locator}}">
                 <toolkit:ContextMenuService.ContextMenu>
                     <toolkit:ContextMenu>
-                        <toolkit:MenuItem Header="{Binding LocalizedResources.MenuRemoveFromPlaylist, Source={StaticResource LocalizedStrings}}"
+                        <toolkit:MenuItem Header="{Binding LocalisedResources.MenuRemoveFromPlaylist, Source={StaticResource LocalisedStrings}}"
                                           Command="{Binding ServerPlaylists.DeleteFromPlaylistCommand, Source={StaticResource Locator}}"
                                           CommandParameter="{Binding}" />
-                        <toolkit:MenuItem Header="{Binding LocalizedResources.LabelInstantMix, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                        <toolkit:MenuItem Header="{Binding LocalisedResources.LabelInstantMix, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                           Command="{Binding ServerPlaylists.StartInstantMixCommand, Source={StaticResource Locator}}"
                                           CommandParameter="{Binding}" />
                     </toolkit:ContextMenu>
@@ -110,7 +110,7 @@
                                    d:DataContext="{Binding ServerPlaylists.PlaylistItems[0], Source={StaticResource Locator}}">
                 <toolkit:ContextMenuService.ContextMenu>
                     <toolkit:ContextMenu>
-                        <toolkit:MenuItem Header="{Binding LocalizedResources.MenuRemoveFromPlaylist, Source={StaticResource LocalizedStrings}}"
+                        <toolkit:MenuItem Header="{Binding LocalisedResources.MenuRemoveFromPlaylist, Source={StaticResource LocalisedStrings}}"
                                           Command="{Binding ServerPlaylists.DeleteFromPlaylistCommand, Source={StaticResource Locator}}"
                                           CommandParameter="{Binding}" />
                     </toolkit:ContextMenu>
@@ -148,7 +148,7 @@
                                             CommandParameter="{Binding}">
                 <toolkit:ContextMenuService.ContextMenu>
                     <toolkit:ContextMenu>
-                        <toolkit:MenuItem Header="{Binding LocalizedResources.MenuRemoveFromPlaylist, Source={StaticResource LocalizedStrings}}"
+                        <toolkit:MenuItem Header="{Binding LocalisedResources.MenuRemoveFromPlaylist, Source={StaticResource LocalisedStrings}}"
                                           Command="{Binding ServerPlaylists.DeleteFromPlaylistCommand, Source={StaticResource Locator}}"
                                           CommandParameter="{Binding}" />
                     </toolkit:ContextMenu>
@@ -229,7 +229,7 @@
                                    d:DataContext="{Binding ServerPlaylists.PlaylistItems[0], Source={StaticResource Locator}}">
                 <toolkit:ContextMenuService.ContextMenu>
                     <toolkit:ContextMenu>
-                        <toolkit:MenuItem Header="{Binding LocalizedResources.MenuRemoveFromPlaylist, Source={StaticResource LocalizedStrings}}"
+                        <toolkit:MenuItem Header="{Binding LocalisedResources.MenuRemoveFromPlaylist, Source={StaticResource LocalisedStrings}}"
                                           Command="{Binding ServerPlaylists.DeleteFromPlaylistCommand, Source={StaticResource Locator}}"
                                           CommandParameter="{Binding}" />
                     </toolkit:ContextMenu>

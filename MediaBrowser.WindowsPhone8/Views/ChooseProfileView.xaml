@@ -31,10 +31,10 @@
         <behaviors:ApplicationBarBehavior Mode="Minimized"
                                           IsMenuEnabled="True">
             <behaviors:ApplicationBarBehavior.MenuItems>
-                <behaviors:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarChangeServer, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                <behaviors:ApplicationBarMenuItem Text="{Binding LocalisedResources.AppBarChangeServer, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                   Command="{Binding Main.NavigateToAPage, Source={StaticResource Locator}}"
                                                   CommandParameter="/Views/Settings/ConnectionSettingsView.xaml"/>
-                <behaviors:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarSettings, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                <behaviors:ApplicationBarMenuItem Text="{Binding LocalisedResources.AppBarSettings, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                   Command="{Binding Main.NavigateToAPage, Source={StaticResource Locator}}"
                                                   CommandParameter="/Views/SettingsView.xaml" />
             </behaviors:ApplicationBarBehavior.MenuItems>
@@ -81,7 +81,7 @@
                         Margin="12,17,0,28">
                 <controls:MediaBrowserLogo />
                 <TextBlock x:Name="PageTitle"
-                           Text="{Binding LocalizedResources.LabelProfiles, Source={StaticResource LocalizedStrings}}"
+                           Text="{Binding LocalisedResources.LabelProfiles, Source={StaticResource LocalisedStrings}}"
                            Margin="9,-7,0,0"
                            Style="{StaticResource PhoneTextTitle1Style}" />
             </StackPanel>
@@ -95,23 +95,23 @@
                     <phone:LongListSelector.ListFooter>
                         <StackPanel Orientation="Vertical"
                                     Margin="0,12">
-                            <TextBlock Text="{Binding LocalizedResources.LabelProfileNotListed, Source={StaticResource LocalizedStrings}}"
+                            <TextBlock Text="{Binding LocalisedResources.LabelProfileNotListed, Source={StaticResource LocalisedStrings}}"
                                        Style="{StaticResource PhoneTextNormalStyle}"
                                        Margin="0" />
-                            <controls:CustomHyperlinkButton Content="{Binding LocalizedResources.LabelManuallyLogin, Source={StaticResource LocalizedStrings}}"
+                            <controls:CustomHyperlinkButton Content="{Binding LocalisedResources.LabelManuallyLogin, Source={StaticResource LocalisedStrings}}"
                                                             HorizontalContentAlignment="Left"
                                                             NavigateUri="/Views/ManualUsernameView.xaml"
                                                             Margin="-12,0,0,0"
                                                             Foreground="{StaticResource PhoneAccentBrush}" />
                             
-                            <controls:CustomHyperlinkButton Content="{Binding LocalizedResources.LabelSignInWithConnect, Source={StaticResource LocalizedStrings}}"
+                            <controls:CustomHyperlinkButton Content="{Binding LocalisedResources.LabelSignInWithConnect, Source={StaticResource LocalisedStrings}}"
                                                             HorizontalContentAlignment="Left"
                                                             NavigateUri="/Views/Settings/MbConnectView.xaml"
                                                             Margin="-12,12,0,0"
                                                             Foreground="{StaticResource PhoneAccentBrush}"/>
 
                             <controls:CustomHyperlinkButton HorizontalContentAlignment="Left"
-                                                            Content="{Binding LocalizedResources.LabelFindServer, Source={StaticResource LocalizedStrings}}"
+                                                            Content="{Binding LocalisedResources.LabelFindServer, Source={StaticResource LocalisedStrings}}"
                                                             NavigateUri="/Views/Settings/FindServerView.xaml"
                                                             Margin="-12,12,0,0"
                                                             Foreground="{StaticResource PhoneAccentBrush}" />

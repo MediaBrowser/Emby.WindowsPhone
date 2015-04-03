@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Cimbalino.Toolkit.Services;
+using Emby.WindowsPhone.Localisation;
 using MediaBrowser.ApiInteraction.Sync;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Events;
@@ -124,6 +125,7 @@ namespace MediaBrowser.WindowsPhone.Services
                 var job = await apiClient.CreateSyncJob(request);
                 if (job != null)
                 {
+                    _messagePrompt.ShowMessage(AppResources.MessageSyncJobCreated);
                     _logger.Info("Job created, start sync request");
                     await Sync().ConfigureAwait(false);
                 }

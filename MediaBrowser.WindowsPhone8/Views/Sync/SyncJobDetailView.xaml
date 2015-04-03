@@ -35,10 +35,10 @@
             <behaviors:ApplicationBar>
                 <behaviors:ApplicationBar.Buttons>
                     <behaviors:ApplicationBarIconButton IconUri="/Icons/appbar.list.check.png"
-                                                        Text="{Binding LocalizedResources.AppBarSelectItems, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                        Text="{Binding LocalisedResources.AppBarSelectItems, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                         Command="{Binding TurnSelectionOnCommand}"/>
                     <behaviors:ApplicationBarIconButton IconUri="/Icons/appbar.refresh.rest.png"
-                                                        Text="{Binding LocalizedResources.AppBarRefresh, Source={StaticResource LocalizedStrings}}"
+                                                        Text="{Binding LocalisedResources.AppBarRefresh, Source={StaticResource LocalisedStrings}}"
                                                         Command="{Binding RefreshCommand}"
                                                         IsEnabled="{Binding ProgressIsVisible, Converter={StaticResource NegativeBooleanConverter}}" />
                 </behaviors:ApplicationBar.Buttons>
@@ -46,7 +46,7 @@
             <behaviors:ApplicationBar>
                 <behaviors:ApplicationBar.Buttons>
                     <behaviors:ApplicationBarIconButton IconUri="/Icons/appbar.delete.rest.png"
-                                                        Text="{Binding LocalizedResources.AppBarDeleteItems, Source={StaticResource LocalizedStrings}}"
+                                                        Text="{Binding LocalisedResources.AppBarDeleteItems, Source={StaticResource LocalisedStrings}}"
                                                         Command="{Binding DeleteItemsCommand}"
                                                         IsEnabled="{Binding ProgressIsVisible, Converter={StaticResource NegativeBooleanConverter}}" />
                 </behaviors:ApplicationBar.Buttons>

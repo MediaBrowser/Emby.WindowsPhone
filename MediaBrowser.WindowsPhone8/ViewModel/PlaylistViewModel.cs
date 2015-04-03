@@ -16,7 +16,7 @@ using MediaBrowser.Model.ApiClient;
 using MediaBrowser.WindowsPhone.AudioAgent;
 using MediaBrowser.WindowsPhone.Messaging;
 using MediaBrowser.WindowsPhone.Model;
-using MediaBrowser.WindowsPhone.Resources;
+using Emby.WindowsPhone.Localisation;
 using Microsoft.Phone.BackgroundAudio;
 
 using INavigationService = MediaBrowser.WindowsPhone.Model.Interfaces.INavigationService;

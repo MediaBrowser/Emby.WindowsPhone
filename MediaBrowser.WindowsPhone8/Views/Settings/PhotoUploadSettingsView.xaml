@@ -28,10 +28,10 @@
         <behaviors:ApplicationBarBehavior Mode="Minimized"
                                           IsMenuEnabled="True">
             <behaviors:ApplicationBarBehavior.MenuItems>
-                <behaviors:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarSendLogs, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                <behaviors:ApplicationBarMenuItem Text="{Binding LocalisedResources.AppBarSendLogs, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                   x:Name="EmailLogs"
                                                   Click="EmailLogs_OnClick" />
-                <behaviors:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarAbout, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                <behaviors:ApplicationBarMenuItem Text="{Binding LocalisedResources.AppBarAbout, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                   x:Name="AboutItem"
                                                   Click="AboutItem_OnClick" />
             </behaviors:ApplicationBarBehavior.MenuItems>
@@ -72,8 +72,8 @@
             <StackPanel x:Name="TitlePanel"
                         Grid.Row="0"
                         Margin="12,17,0,28">
-                <controls:MediaBrowserLogo AltText="{Binding LocalizedResources.Settings, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToUppercaseConverter}}" />
-                <TextBlock Text="{Binding LocalizedResources.LabelPhotoUpload, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                <controls:MediaBrowserLogo AltText="{Binding LocalisedResources.Settings, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToUppercaseConverter}}" />
+                <TextBlock Text="{Binding LocalisedResources.LabelPhotoUpload, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                            Margin="9,-7,0,0"
                            Style="{StaticResource PhoneTextTitle1Style}" />
             </StackPanel>
@@ -94,11 +94,11 @@
                 </Grid.Resources>
 
                 <StackPanel Orientation="Vertical">
-                    <TextBlock Text="{Binding LocalizedResources.LabelAutoUploadDescription, Source={StaticResource LocalizedStrings}}"
+                    <TextBlock Text="{Binding LocalisedResources.LabelAutoUploadDescription, Source={StaticResource LocalisedStrings}}"
                                TextWrapping="Wrap"
                                Style="{StaticResource PhoneTextNormalStyle}" />
                     <toolkit:ToggleSwitch IsChecked="{Binding IsPhotoUploadsEnabled, Mode=TwoWay}"
-                                          Header="{Binding LocalizedResources.LabelPhotoUpload, Source={StaticResource LocalizedStrings}, StringFormat='\{0\}:'}" />
+                                          Header="{Binding LocalisedResources.LabelPhotoUpload, Source={StaticResource LocalisedStrings}, StringFormat='\{0\}:'}" />
                 </StackPanel>
 
                 <ScrollViewer Grid.Row="1"
@@ -123,7 +123,7 @@
                                       Data="F1 M 38,19C 48.4934,19 57,27.5066 57,38C 57,48.4934 48.4934,57 38,57C 27.5066,57 19,48.4934 19,38C 19,27.5066 27.5066,19 38,19 Z M 33.25,33.25L 33.25,36.4167L 36.4166,36.4167L 36.4166,47.5L 33.25,47.5L 33.25,50.6667L 44.3333,50.6667L 44.3333,47.5L 41.1666,47.5L 41.1666,36.4167L 41.1666,33.25L 33.25,33.25 Z M 38.7917,25.3333C 37.48,25.3333 36.4167,26.3967 36.4167,27.7083C 36.4167,29.02 37.48,30.0833 38.7917,30.0833C 40.1033,30.0833 41.1667,29.02 41.1667,27.7083C 41.1667,26.3967 40.1033,25.3333 38.7917,25.3333 Z "
                                       Margin="0,6,6,6" />
                             </Grid>
-                            <TextBlock Text="{Binding LocalizedResources.LabelTurnPhotoUploadOnServer, Source={StaticResource LocalizedStrings}}"
+                            <TextBlock Text="{Binding LocalisedResources.LabelTurnPhotoUploadOnServer, Source={StaticResource LocalisedStrings}}"
                                        Foreground="{StaticResource PhoneSubtleBrush}"
                                        FontSize="{StaticResource MediaBrowserFontSizeSmall}"
                                        TextWrapping="Wrap"
@@ -131,11 +131,11 @@
                         </Grid>
                         
                         <CheckBox IsChecked="{Binding UploadAll, Mode=TwoWay}"
-                                  Content="{Binding LocalizedResources.LabelUploadAll, Source={StaticResource LocalizedStrings}}"
+                                  Content="{Binding LocalisedResources.LabelUploadAll, Source={StaticResource LocalisedStrings}}"
                                   FontFamily="Portable User Interface" />
                         <StackPanel Orientation="Vertical"
                                     Visibility="{Binding UploadAll, Converter={StaticResource InvertedVisibilityConverter}}">
-                            <TextBlock Text="{Binding LocalizedResources.LabelUploadPhotosTakenAfter, Source={StaticResource LocalizedStrings}}"
+                            <TextBlock Text="{Binding LocalisedResources.LabelUploadPhotosTakenAfter, Source={StaticResource LocalisedStrings}}"
                                        Style="{StaticResource PhoneTextSubtleStyle}" />
                             <toolkit:DatePicker Value="{Binding AfterDateTime, Mode=TwoWay}" />
                         </StackPanel>
@@ -159,7 +159,7 @@
                                       Data="F1 M 38,19C 48.4934,19 57,27.5066 57,38C 57,48.4934 48.4934,57 38,57C 27.5066,57 19,48.4934 19,38C 19,27.5066 27.5066,19 38,19 Z M 33.25,33.25L 33.25,36.4167L 36.4166,36.4167L 36.4166,47.5L 33.25,47.5L 33.25,50.6667L 44.3333,50.6667L 44.3333,47.5L 41.1666,47.5L 41.1666,36.4167L 41.1666,33.25L 33.25,33.25 Z M 38.7917,25.3333C 37.48,25.3333 36.4167,26.3967 36.4167,27.7083C 36.4167,29.02 37.48,30.0833 38.7917,30.0833C 40.1033,30.0833 41.1667,29.02 41.1667,27.7083C 41.1667,26.3967 40.1033,25.3333 38.7917,25.3333 Z "
                                       Margin="0,6,6,6" />
                             </Grid>
-                            <TextBlock Text="{Binding LocalizedResources.LabelAutoUploadConstraints, Source={StaticResource LocalizedStrings}}"
+                            <TextBlock Text="{Binding LocalisedResources.LabelAutoUploadConstraints, Source={StaticResource LocalisedStrings}}"
                                        Foreground="{StaticResource PhoneSubtleBrush}"
                                        FontSize="{StaticResource MediaBrowserFontSizeSmall}"
                                        TextWrapping="Wrap"

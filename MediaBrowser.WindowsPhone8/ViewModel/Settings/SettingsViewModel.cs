@@ -19,7 +19,7 @@ using MediaBrowser.WindowsPhone.Interfaces;
 using MediaBrowser.WindowsPhone.Model;
 using MediaBrowser.WindowsPhone.Model.Connection;
 using MediaBrowser.WindowsPhone.Model.Streaming;
-using MediaBrowser.WindowsPhone.Resources;
+using Emby.WindowsPhone.Localisation;
 using MediaBrowser.WindowsPhone.Services;
 using INavigationService = MediaBrowser.WindowsPhone.Model.Interfaces.INavigationService;
 using LockScreenService = MediaBrowser.WindowsPhone.Services.LockScreenService;

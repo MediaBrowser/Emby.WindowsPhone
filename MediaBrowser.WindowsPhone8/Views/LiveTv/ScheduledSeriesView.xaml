@@ -33,11 +33,11 @@
             <behaviors:ApplicationBar>
                 <behaviors:ApplicationBar.Buttons>
                     <behaviors:ApplicationBarIconButton IconUri="/Icons/appbar.save.png"
-                                                        Text="{Binding LocalizedResources.AppBarSave, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                        Text="{Binding LocalisedResources.AppBarSave, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                         Command="{Binding SaveCommand}"
                                                         IsEnabled="{Binding ProgressIsVisible, Converter={StaticResource NegativeBooleanConverter}}"/>
                     <behaviors:ApplicationBarIconButton IconUri="/Icons/appbar.delete.rest.png"
-                                                        Text="{Binding LocalizedResources.AppBarDelete, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                        Text="{Binding LocalisedResources.AppBarDelete, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                         Command="{Binding DeleteCommand}" 
                                                         IsVisible="{Binding IsAdd, Converter={StaticResource NegativeBooleanConverter}}"
                                                         IsEnabled="{Binding ProgressIsVisible, Converter={StaticResource NegativeBooleanConverter}}"/>
@@ -46,10 +46,10 @@
             <behaviors:ApplicationBar>
                 <behaviors:ApplicationBar.Buttons>
                     <behaviors:ApplicationBarIconButton IconUri="/Icons/appbar.refresh.rest.png"
-                                                        Text="{Binding LocalizedResources.AppBarRefresh, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                        Text="{Binding LocalisedResources.AppBarRefresh, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                         Command="{Binding RefreshCommand}" />
                     <behaviors:ApplicationBarIconButton IconUri="/Icons/appbar.delete.rest.png"
-                                                        Text="{Binding LocalizedResources.AppBarDelete, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                        Text="{Binding LocalisedResources.AppBarDelete, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                         Command="{Binding DeleteCommand}"
                                                         IsVisible="{Binding IsAdd, Converter={StaticResource NegativeBooleanConverter}}"/>
                 </behaviors:ApplicationBar.Buttons>
@@ -116,7 +116,7 @@
 
                 <StackPanel Orientation="Horizontal"
                             Margin="12,12,12,0">
-                    <TextBlock Text="{Binding LocalizedResources.LabelChannel, Source={StaticResource LocalizedStrings}}"
+                    <TextBlock Text="{Binding LocalisedResources.LabelChannel, Source={StaticResource LocalisedStrings}}"
                                Style="{StaticResource PhoneTextSubtleStyle}" />
                     <controls:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
                                                     IsHitTestVisible="{Binding SelectedSeries.RecordAnyChannel, Converter={StaticResource NegativeBooleanConverter}}">
@@ -126,7 +126,7 @@
                                    Margin="0" />
                     </controls:CustomHyperlinkButton>
 
-                    <TextBlock Text="{Binding LocalizedResources.LabelTime, Source={StaticResource LocalizedStrings}}"
+                    <TextBlock Text="{Binding LocalisedResources.LabelTime, Source={StaticResource LocalisedStrings}}"
                                Style="{StaticResource PhoneTextSubtleStyle}" />
                     <TextBlock Text="{Binding SelectedSeries, Converter={StaticResource AnyTimeConverter}}"
                                Style="{StaticResource PhoneTextNormalStyle}"
@@ -143,12 +143,12 @@
                                        Margin="3,0" />
                         </DataTemplate>
                     </phone:Pivot.HeaderTemplate>
-                    <phone:PivotItem Header="{Binding LocalizedResources.HeaderSettings, Source={StaticResource LocalizedStrings}}">
+                    <phone:PivotItem Header="{Binding LocalisedResources.HeaderSettings, Source={StaticResource LocalisedStrings}}">
                         <ScrollViewer>
                             <StackPanel Orientation="Vertical">
-                                <TextBlock Text="{Binding LocalizedResources.LabelGeneral, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToUppercaseConverter}}"
+                                <TextBlock Text="{Binding LocalisedResources.LabelGeneral, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToUppercaseConverter}}"
                                            Style="{StaticResource HeaderTextStyle}" />
-                                <TextBlock Text="{Binding LocalizedResources.LabelDays, Source={StaticResource LocalizedStrings}}"
+                                <TextBlock Text="{Binding LocalisedResources.LabelDays, Source={StaticResource LocalisedStrings}}"
                                            Style="{StaticResource PhoneTextSubtleStyle}" />
                                 <phone:LongListSelector ItemsSource="{Binding DaysOfWeekList}"
                                                         Margin="12,0">
@@ -166,38 +166,38 @@
                                     </phone:LongListSelector.ItemTemplate>
                                 </phone:LongListSelector>
 
-                                <CheckBox Content="{Binding LocalizedResources.LabelRecordOnlyNewEpisodes, Source={StaticResource LocalizedStrings}}"
+                                <CheckBox Content="{Binding LocalisedResources.LabelRecordOnlyNewEpisodes, Source={StaticResource LocalisedStrings}}"
                                           IsChecked="{Binding SelectedSeries.RecordNewOnly, Mode=TwoWay}"
                                           Margin="0,6" />
 
-                                <CheckBox Content="{Binding LocalizedResources.LabelRecordProgrammeAtAnyTime, Source={StaticResource LocalizedStrings}}"
+                                <CheckBox Content="{Binding LocalisedResources.LabelRecordProgrammeAtAnyTime, Source={StaticResource LocalisedStrings}}"
                                           Margin="0,6"
                                           IsChecked="{Binding SelectedSeries.RecordAnyTime, Mode=TwoWay}" />
 
-                                <CheckBox Content="{Binding LocalizedResources.LabelRecordProgrammeOnAllChannels, Source={StaticResource LocalizedStrings}}"
+                                <CheckBox Content="{Binding LocalisedResources.LabelRecordProgrammeOnAllChannels, Source={StaticResource LocalisedStrings}}"
                                           Margin="0,6"
                                           IsChecked="{Binding SelectedSeries.RecordAnyChannel, Mode=TwoWay}" />
 
-                                <TextBlock Text="{Binding LocalizedResources.LabelPrePostPadding, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToUppercaseConverter}}"
+                                <TextBlock Text="{Binding LocalisedResources.LabelPrePostPadding, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToUppercaseConverter}}"
                                            Style="{StaticResource HeaderTextStyle}" />
 
                                 <telerikInput:RadNumericUpDown MinValue="0"
                                                                MaxValue="30"
                                                                Value="{Binding SelectedSeries.PrePaddingSeconds, Converter={StaticResource SecondsToMinuteConverter}, Mode=TwoWay}"
-                                                               Header="{Binding LocalizedResources.LabelPrePaddingMinutes, Source={StaticResource LocalizedStrings}}"/>
-                                <CheckBox Content="{Binding LocalizedResources.LabelPrePaddingRequired, Source={StaticResource LocalizedStrings}}"
+                                                               Header="{Binding LocalisedResources.LabelPrePaddingMinutes, Source={StaticResource LocalisedStrings}}"/>
+                                <CheckBox Content="{Binding LocalisedResources.LabelPrePaddingRequired, Source={StaticResource LocalisedStrings}}"
                                           IsChecked="{Binding SelectedSeries.IsPrePaddingRequired, Mode=TwoWay}"/>
 
                                 <telerikInput:RadNumericUpDown MinValue="0"
                                                                MaxValue="30"
                                                                Value="{Binding SelectedSeries.PostPaddingSeconds, Converter={StaticResource SecondsToMinuteConverter}, Mode=TwoWay}"
-                                                               Header="{Binding LocalizedResources.LabelPostPaddingMinutes, Source={StaticResource LocalizedStrings}}" />
-                                <CheckBox Content="{Binding LocalizedResources.LabelPostPaddingRequired, Source={StaticResource LocalizedStrings}}"
+                                                               Header="{Binding LocalisedResources.LabelPostPaddingMinutes, Source={StaticResource LocalisedStrings}}" />
+                                <CheckBox Content="{Binding LocalisedResources.LabelPostPaddingRequired, Source={StaticResource LocalisedStrings}}"
                                           IsChecked="{Binding SelectedSeries.IsPostPaddingRequired, Mode=TwoWay}" />
                             </StackPanel>
                         </ScrollViewer>
                     </phone:PivotItem>
-                    <phone:PivotItem Header="{Binding LocalizedResources.HeaderRecordings, Source={StaticResource LocalizedStrings}}">
+                    <phone:PivotItem Header="{Binding LocalisedResources.HeaderRecordings, Source={StaticResource LocalisedStrings}}">
                         <phone:LongListSelector ItemsSource="{Binding Recordings}"
                                                 LayoutMode="Grid"
                                                 GridCellSize="215,185"
@@ -238,7 +238,7 @@
                             </phone:LongListSelector.ItemTemplate>
                         </phone:LongListSelector>
                     </phone:PivotItem>
-                    <phone:PivotItem Header="{Binding LocalizedResources.HeaderScheduled, Source={StaticResource LocalizedStrings}}">
+                    <phone:PivotItem Header="{Binding LocalisedResources.HeaderScheduled, Source={StaticResource LocalisedStrings}}">
                         <phone:LongListSelector ItemsSource="{Binding ScheduledRecordings}"
                                                 IsGroupingEnabled="True"
                                                 JumpListStyle="{StaticResource LLSGroupItemLongStyle}"
@@ -259,7 +259,7 @@
                                             </Grid.RowDefinitions>
                                             <toolkit:ContextMenuService.ContextMenu>
                                                 <toolkit:ContextMenu>
-                                                    <toolkit:MenuItem Header="{Binding LocalizedResources.MenuCancelRecording, Source={StaticResource LocalizedStrings}}"
+                                                    <toolkit:MenuItem Header="{Binding LocalisedResources.MenuCancelRecording, Source={StaticResource LocalisedStrings}}"
                                                                       Command="{Binding ScheduledSeries.CancelRecordingCommand, Source={StaticResource Locator}}"
                                                                       CommandParameter="{Binding}" />
                                                 </toolkit:ContextMenu>
@@ -274,7 +274,7 @@
                                             <StackPanel Orientation="Horizontal"
                                                         Grid.Row="1"
                                                         HorizontalAlignment="Left">
-                                                <TextBlock Text="{Binding LocalizedResources.LabelNew, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToUppercaseConverter}}"
+                                                <TextBlock Text="{Binding LocalisedResources.LabelNew, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToUppercaseConverter}}"
                                                            Style="{StaticResource PhoneTextNormalStyle}"
                                                            Foreground="{StaticResource PhoneAccentBrush}"
                                                            Visibility="{Binding IsNew, Converter={StaticResource VisibilityConverter}}" />

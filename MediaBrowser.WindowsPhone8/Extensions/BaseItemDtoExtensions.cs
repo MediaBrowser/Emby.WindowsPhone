@@ -1,5 +1,5 @@
 ﻿using MediaBrowser.Model.Dto;
-using MediaBrowser.WindowsPhone.Resources;
+using Emby.WindowsPhone.Localisation;
 
 namespace MediaBrowser.WindowsPhone.Extensions
 {

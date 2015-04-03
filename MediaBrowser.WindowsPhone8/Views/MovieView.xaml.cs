@@ -6,7 +6,7 @@ using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.WindowsPhone.Messaging;
-using MediaBrowser.WindowsPhone.Resources;
+using Emby.WindowsPhone.Localisation;
 using MediaBrowser.WindowsPhone.ViewModel;
 using MediaBrowser.WindowsPhone.ViewModel.Remote;
 using Microsoft.Phone.Controls;

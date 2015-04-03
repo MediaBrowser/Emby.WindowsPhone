@@ -113,7 +113,7 @@
 
                         <StackPanel Orientation="Horizontal"
                                     Margin="12,12,12,0">
-                            <TextBlock Text="{Binding LocalizedResources.LabelLive, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToUppercaseConverter}}"
+                            <TextBlock Text="{Binding LocalisedResources.LabelLive, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToUppercaseConverter}}"
                                        Style="{StaticResource PhoneTextNormalStyle}"
                                        Foreground="{StaticResource LiveTvProgrammeBrush}"
                                        Visibility="{Binding SelectedRecording.IsLive, Converter={StaticResource VisibilityConverter}}" />

@@ -27,50 +27,50 @@
                               IsIndeterminate="{Binding ProgressIsVisible}" />
         <cimbalino:MultiApplicationBarBehavior SelectedIndex="{Binding SelectedAppBarIndex}">
             <cimbalino:ApplicationBar>
-                <cimbalino:ApplicationBarIconButton Text="{Binding LocalizedResources.AppBarSelectItems, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                <cimbalino:ApplicationBarIconButton Text="{Binding LocalisedResources.AppBarSelectItems, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                     IconUri="/Icons/appbar.list.check.png"
                                                     Click="ApplicationBarIconButton_OnClick"
                                                     IsEnabled="{Binding AlbumTracks.Count, Converter={StaticResource CountToEnabled}, ConverterParameter=delete}" />
-                <cimbalino:ApplicationBarIconButton Text="{Binding LocalizedResources.AppBarOffline, Source={StaticResource LocalizedStrings}}"
+                <cimbalino:ApplicationBarIconButton Text="{Binding LocalisedResources.AppBarOffline, Source={StaticResource LocalisedStrings}}"
                                                     IconUri="/Icons/appbar.cloud.png"
                                                     Command="{Binding TakeOfflineCommand}"
                                                     CommandParameter="{Binding SelectedAlbum}"
                                                     IsEnabled="{Binding SelectedAlbum.SupportsSync}"
                                                     IsVisible="{Binding Auth.LoggedInUser.Policy.EnableSync, Source={StaticResource Locator}}" />
                 <cimbalino:ApplicationBar.MenuItems>
-                    <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarNowPlaying, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                    <cimbalino:ApplicationBarMenuItem Text="{Binding LocalisedResources.AppBarNowPlaying, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                       Command="{Binding Main.NavigateToAPage, Source={StaticResource Locator}}"
                                                       CommandParameter="/Views/NowPlayingView.xaml" />
                     <cimbalino:ApplicationBarMenuItem Text="{Binding SelectedAlbum.UserData.IsFavorite, Converter={StaticResource FavouritesConverter}, ConverterParameter=fulltext}"
                                                       Command="{Binding AddRemoveFavouriteCommand}"
                                                       CommandParameter="{Binding SelectedAlbum}"
                                                       IsEnabled="{Binding CanUpdateFavourites}" />
-                    <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.LabelInstantMix, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                    <cimbalino:ApplicationBarMenuItem Text="{Binding LocalisedResources.LabelInstantMix, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                       Command="{Binding StartInstantMixCommand}"
                                                       CommandParameter="{Binding SelectedAlbum}" />
-                    <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.LabelAddToPlaylist, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                    <cimbalino:ApplicationBarMenuItem Text="{Binding LocalisedResources.LabelAddToPlaylist, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                       Command="{Binding AddItemToPlaylistCommand}"
                                                       CommandParameter="{Binding SelectedAlbum}"
                                                       IsEnabled="{Binding SelectedTracks.Count, Converter={StaticResource CountToEnabled}, ConverterParameter=delete}" />
                 </cimbalino:ApplicationBar.MenuItems>
             </cimbalino:ApplicationBar>
             <cimbalino:ApplicationBar>
-                <cimbalino:ApplicationBarIconButton Text="{Binding LocalizedResources.AppBarPlayItems, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                <cimbalino:ApplicationBarIconButton Text="{Binding LocalisedResources.AppBarPlayItems, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                     IconUri="/Icons/appbar.transport.play.png"
                                                     Command="{Binding PlayItemsCommand}"
                                                     IsEnabled="{Binding SelectedTracks.Count, Converter={StaticResource CountToEnabled}, ConverterParameter=delete}" />
-                <cimbalino:ApplicationBarIconButton Text="{Binding LocalizedResources.AppBarOffline, Source={StaticResource LocalizedStrings}}"
+                <cimbalino:ApplicationBarIconButton Text="{Binding LocalisedResources.AppBarOffline, Source={StaticResource LocalisedStrings}}"
                                                     IconUri="/Icons/appbar.cloud.png"
                                                     Command="{Binding SyncItemsCommand}"
                                                     IsVisible="{Binding Auth.LoggedInUser.Policy.EnableSync, Source={StaticResource Locator}}" />
                 <cimbalino:ApplicationBar.MenuItems>
-                    <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarAddToNowPlaying, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                    <cimbalino:ApplicationBarMenuItem Text="{Binding LocalisedResources.AppBarAddToNowPlaying, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                       Command="{Binding AddToNowPlayingCommand}"
                                                       IsEnabled="{Binding SelectedTracks.Count, Converter={StaticResource CountToEnabled}, ConverterParameter=delete}" />
-                    <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.LabelAddToPlaylist, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                    <cimbalino:ApplicationBarMenuItem Text="{Binding LocalisedResources.LabelAddToPlaylist, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                       Command="{Binding AddToPlaylistCommand}"
                                                       IsEnabled="{Binding SelectedTracks.Count, Converter={StaticResource CountToEnabled}, ConverterParameter=delete}" />
-                    <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarNowPlaying, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                    <cimbalino:ApplicationBarMenuItem Text="{Binding LocalisedResources.AppBarNowPlaying, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                       Command="{Binding Main.NavigateToAPage, Source={StaticResource Locator}}"
                                                       CommandParameter="/Views/NowPlayingView.xaml" />
 
@@ -142,13 +142,13 @@
                                         d:DataContext="{Binding Music.AlbumTracks[0], Source={StaticResource Locator}}">
                                 <toolkit:ContextMenuService.ContextMenu>
                                     <toolkit:ContextMenu>
-                                        <toolkit:MenuItem Header="{Binding LocalizedResources.LabelAddToPlaylist, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                        <toolkit:MenuItem Header="{Binding LocalisedResources.LabelAddToPlaylist, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                           Command="{Binding AddToPlaylist.AddToPlaylistCommand, Source={StaticResource Locator}}"
                                                           CommandParameter="{Binding}" />
-                                        <toolkit:MenuItem Header="{Binding LocalizedResources.LabelInstantMix, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                        <toolkit:MenuItem Header="{Binding LocalisedResources.LabelInstantMix, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                           Command="{Binding Music.StartInstantMixCommand, Source={StaticResource Locator}}"
                                                           CommandParameter="{Binding}" />
-                                        <toolkit:MenuItem Header="{Binding LocalizedResources.AppBarOffline, Source={StaticResource LocalizedStrings}}"
+                                        <toolkit:MenuItem Header="{Binding LocalisedResources.AppBarOffline, Source={StaticResource LocalisedStrings}}"
                                                           Command="{Binding Music.TakeOfflineCommand, Source={StaticResource Locator}}"
                                                           CommandParameter="{Binding}"
                                                           Visibility="{Binding SupportsSync, Converter={StaticResource VisibilityConverter}}"/>
@@ -183,13 +183,13 @@
                                         Margin="0,0,0,6">
                                 <toolkit:ContextMenuService.ContextMenu>
                                     <toolkit:ContextMenu>
-                                        <toolkit:MenuItem Header="{Binding LocalizedResources.LabelAddToPlaylist, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                        <toolkit:MenuItem Header="{Binding LocalisedResources.LabelAddToPlaylist, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                           Command="{Binding AddToPlaylist.AddToPlaylistCommand, Source={StaticResource Locator}}"
                                                           CommandParameter="{Binding}" />
-                                        <toolkit:MenuItem Header="{Binding LocalizedResources.LabelInstantMix, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                        <toolkit:MenuItem Header="{Binding LocalisedResources.LabelInstantMix, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                           Command="{Binding Music.StartInstantMixCommand, Source={StaticResource Locator}}"
                                                           CommandParameter="{Binding}" />
-                                        <toolkit:MenuItem Header="{Binding LocalizedResources.AppBarOffline, Source={StaticResource LocalizedStrings}}"
+                                        <toolkit:MenuItem Header="{Binding LocalisedResources.AppBarOffline, Source={StaticResource LocalisedStrings}}"
                                                           Command="{Binding Music.TakeOfflineCommand, Source={StaticResource Locator}}"
                                                           CommandParameter="{Binding}"
                                                           Visibility="{Binding SupportsSync, Converter={StaticResource VisibilityConverter}}" />

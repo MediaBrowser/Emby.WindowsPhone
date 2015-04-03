@@ -33,7 +33,7 @@
             <behaviors:ApplicationBarBehavior.Buttons>
                 <behaviors:ApplicationBarIconButton IconUri="/Icons/appbar.refresh.rest.png"
                                                     Command="{Binding RefreshGuideCommand}"
-                                                    Text="{Binding LocalizedResources.AppBarRefresh, Source={StaticResource LocalizedStrings}}"
+                                                    Text="{Binding LocalisedResources.AppBarRefresh, Source={StaticResource LocalisedStrings}}"
                                                     IsEnabled="{Binding ProgressIsVisible, Converter={StaticResource NegativeBooleanConverter}}" />
             </behaviors:ApplicationBarBehavior.Buttons>
         </behaviors:ApplicationBarBehavior>
@@ -87,7 +87,7 @@
                   Margin="0,0,12,0">
                 <phone:LongListSelector ItemsSource="{Binding Programmes}">
                     <phone:LongListSelector.ListHeader>
-                        <TextBlock Text="{Binding LocalizedResources.NoItemsFound, Source={StaticResource LocalizedStrings}}"
+                        <TextBlock Text="{Binding LocalisedResources.NoItemsFound, Source={StaticResource LocalisedStrings}}"
                                    Style="{StaticResource PhoneTextTitle3Style}"
                                    HorizontalAlignment="Center"
                                    VerticalAlignment="Top"
@@ -108,11 +108,11 @@
 
                                     <telerikPrimitives:RadContextMenu.ContextMenu>
                                         <telerikPrimitives:RadContextMenu>
-                                            <telerikPrimitives:RadContextMenuItem Content="{Binding LocalizedResources.MenuRecord, Source={StaticResource LocalizedStrings}}"
+                                            <telerikPrimitives:RadContextMenuItem Content="{Binding LocalisedResources.MenuRecord, Source={StaticResource LocalisedStrings}}"
                                                                                   Command="{Binding Guide.RecordProgrammeCommand, Source={StaticResource Locator}}"
                                                                                   CommandParameter="{Binding}"
                                                                                   IsEnabled="{Binding Converter={StaticResource HasAiredConverter}}" />
-                                            <telerikPrimitives:RadContextMenuItem Content="{Binding LocalizedResources.MenuRecordSeries, Source={StaticResource LocalizedStrings}}"
+                                            <telerikPrimitives:RadContextMenuItem Content="{Binding LocalisedResources.MenuRecordSeries, Source={StaticResource LocalisedStrings}}"
                                                                                   Command="{Binding Guide.CreateSeriesLinkCommand, Source={StaticResource Locator}}"
                                                                                   CommandParameter="{Binding}"
                                                                                   Visibility="{Binding IsSeries, Converter={StaticResource VisibilityConverter}}" />

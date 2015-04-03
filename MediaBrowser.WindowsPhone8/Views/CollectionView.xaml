@@ -75,7 +75,7 @@
                                                        Opacity="0.2" />
             </i:Interaction.Behaviors>
             <!--<phone:Panorama Title="movies">-->
-            <phone:PanoramaItem Header="{Binding LocalizedResources.LabelRecent, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
+            <phone:PanoramaItem Header="{Binding LocalisedResources.LabelRecent, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
                 <phone:LongListSelector ItemsSource="{Binding RecentItems}">
                     <phone:LongListSelector.ItemTemplate>
                         <DataTemplate>
@@ -113,11 +113,11 @@
                 </phone:LongListSelector>
             </phone:PanoramaItem>
 
-            <phone:PanoramaItem Header="{Binding LocalizedResources.LabelRandomItems, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+            <phone:PanoramaItem Header="{Binding LocalisedResources.LabelRandomItems, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                 Orientation="Horizontal">
                 <Grid>
                     <controls:PhoneListBox ItemsSource="{Binding RandomItems}"
-                                           Text="{Binding LocalizedResources.NoItemsFound, Source={StaticResource LocalizedStrings}}"
+                                           Text="{Binding LocalisedResources.NoItemsFound, Source={StaticResource LocalisedStrings}}"
                                            TextHorizontalAlignment="Center"
                                            TextVerticalAlignment="Top"
                                            TextStyle="{StaticResource PhoneTextLargeStyle}"
@@ -135,7 +135,7 @@
                     <local:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
                                                  VerticalAlignment="Bottom"
                                                  TapCommand="{Binding SeeMoreCommand}">
-                        <TextBlock Text="{Binding LocalizedResources.LabelShowAllItems, Source={StaticResource LocalizedStrings}}"
+                        <TextBlock Text="{Binding LocalisedResources.LabelShowAllItems, Source={StaticResource LocalisedStrings}}"
                                    Style="{StaticResource PhoneTextLargeStyle}" />
                     </local:CustomHyperlinkButton>
                 </Grid>

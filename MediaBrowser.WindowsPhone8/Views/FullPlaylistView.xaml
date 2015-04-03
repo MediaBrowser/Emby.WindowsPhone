@@ -28,12 +28,12 @@
                               IsIndeterminate="{Binding ProgressIsVisible}" />
         <cimbalino:MultiApplicationBarBehavior SelectedIndex="{Binding SelectedAppBarIndex}">
             <cimbalino:ApplicationBar>
-                <cimbalino:ApplicationBarIconButton Text="{Binding LocalizedResources.AppBarSelectItems, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                <cimbalino:ApplicationBarIconButton Text="{Binding LocalisedResources.AppBarSelectItems, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                     IconUri="/Icons/appbar.list.check.png"
                                                     Click="ApplicationBarIconButton_OnClick" />
             </cimbalino:ApplicationBar>
             <cimbalino:ApplicationBar>
-                <cimbalino:ApplicationBarIconButton Text="{Binding LocalizedResources.AppBarDeleteItems, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                <cimbalino:ApplicationBarIconButton Text="{Binding LocalisedResources.AppBarDeleteItems, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                     IconUri="/Icons/appbar.delete.rest.png"
                                                     Command="{Binding DeleteItemsCommand}"
                                                     IsEnabled="{Binding SelectedItems.Count, Converter={StaticResource CountToEnabled}, ConverterParameter=delete}" />

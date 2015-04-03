@@ -67,7 +67,7 @@
                    Margin="0,0,0,24"
                    VerticalAlignment="Top"/>
 
-            <TextBlock Text="{Binding LocalizedResources.LabelMbConnectDescriptionPara1, Source={StaticResource LocalizedStrings}}"
+            <TextBlock Text="{Binding LocalisedResources.LabelMbConnectDescriptionPara1, Source={StaticResource LocalisedStrings}}"
                        Style="{StaticResource PhoneTextTitle3Style}"
                        TextWrapping="Wrap"
                        Grid.Row="1"/>
@@ -76,26 +76,26 @@
                         Grid.Row="2"
                         Margin="0,12"
                         VerticalAlignment="Top">
-                <TextBlock Text="{Binding LocalizedResources.LabelMbConnectAlreadyGotAccount, Source={StaticResource LocalizedStrings}}"
+                <TextBlock Text="{Binding LocalisedResources.LabelMbConnectAlreadyGotAccount, Source={StaticResource LocalisedStrings}}"
                            Style="{StaticResource PhoneTextNormalStyle}"
                            TextWrapping="Wrap" />
                 <controls:CustomButton Style="{StaticResource HeroButtonStyle}"
-                                       Content="{Binding LocalizedResources.LabelLogIn, Source={StaticResource LocalizedStrings}}"
+                                       Content="{Binding LocalisedResources.LabelLogIn, Source={StaticResource LocalisedStrings}}"
                                        x:Name="LoginButton"
                                        Tap="LoginButton_OnTap"/>
-                <TextBlock Text="{Binding LocalizedResources.LabelMbConnectFreeAccount, Source={StaticResource LocalizedStrings}}"
+                <TextBlock Text="{Binding LocalisedResources.LabelMbConnectFreeAccount, Source={StaticResource LocalisedStrings}}"
                            Style="{StaticResource PhoneTextNormalStyle}"
                            TextWrapping="Wrap"
                            Margin="12"
                            Foreground="{StaticResource PhoneSubtleBrush}"/>
-                <controls:CustomHyperlinkButton Content="{Binding LocalizedResources.LabelSignUp, Source={StaticResource LocalizedStrings}}"
+                <controls:CustomHyperlinkButton Content="{Binding LocalisedResources.LabelSignUp, Source={StaticResource LocalisedStrings}}"
                                                 HorizontalContentAlignment="Left"
                                                 Foreground="{StaticResource PhoneAccentBrush}"
                                                 x:Name="SignUpButton"
                                                 Tap="SignUpButton_OnTap"/>
             </StackPanel>
             
-            <controls:CustomHyperlinkButton Content="{Binding LocalizedResources.LabelSkip, Source={StaticResource LocalizedStrings}}"
+            <controls:CustomHyperlinkButton Content="{Binding LocalisedResources.LabelSkip, Source={StaticResource LocalisedStrings}}"
                                             HorizontalContentAlignment="Left"
                                             Grid.Row="2"
                                             VerticalAlignment="Bottom"

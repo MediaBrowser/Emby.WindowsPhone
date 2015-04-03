@@ -1,7 +1,7 @@
 ﻿using Coding4Fun.Toolkit.Controls;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.WindowsPhone.Model;
-using MediaBrowser.WindowsPhone.Resources;
+using Emby.WindowsPhone.Localisation;
 
 namespace MediaBrowser.WindowsPhone.Views.LiveTv
 {

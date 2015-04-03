@@ -256,31 +256,10 @@ namespace MediaBrowser.WindowsPhone.Services
             }
             catch (HttpException ex)
             {
-                _logger.ErrorException("ProcessCollageImages()", ex);
+                _logger.ErrorException("GetImageStream()", ex);
             }
 
             list = null;
-        }
-
-        private async Task GetImageStream(IApiClient apiClient, BaseItemDto item, List<Stream> list)
-        {
-            var url = apiClient.GetImageUrl(item, CollageOptions);
-            try
-            {
-                using (var client = TileService.CreateClient())
-                {
-                    var response = await client.GetAsync(url);
-                    if (response.IsSuccessStatusCode)
-                    {
-                        var stream = await response.Content.ReadAsStreamAsync();
-                        list.Add(stream);
-                    }
-                }
-            }
-            catch (HttpException ex)
-            {
-                _logger.ErrorException("ProcessCollageImages()", ex);
-            }
         }
 
         private async Task ToImage(UIElement element)

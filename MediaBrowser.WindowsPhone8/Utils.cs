@@ -20,7 +20,7 @@ using MediaBrowser.Model.Session;
 using MediaBrowser.WindowsPhone.Helpers;
 using MediaBrowser.WindowsPhone.Model.Connection;
 using MediaBrowser.WindowsPhone.Model.Security;
-using MediaBrowser.WindowsPhone.Resources;
+using Emby.WindowsPhone.Localisation;
 using MediaBrowser.WindowsPhone.Services;
 using Newtonsoft.Json;
 using ScottIsAFool.WindowsPhone;

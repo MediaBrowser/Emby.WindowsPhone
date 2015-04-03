@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel;
-using MediaBrowser.WindowsPhone.Resources;
 
 namespace MediaBrowser.WindowsPhone.Model
 {

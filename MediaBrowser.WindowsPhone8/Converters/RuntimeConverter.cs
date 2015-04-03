@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Data;
-using MediaBrowser.WindowsPhone.Resources;
+using Emby.WindowsPhone.Localisation;
 
 namespace MediaBrowser.WindowsPhone.Converters
 {

@@ -7,7 +7,8 @@
                     xmlns:local="clr-namespace:MediaBrowser.WindowsPhone.Controls"
                     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
                     xmlns:system="clr-namespace:System;assembly=mscorlib"
-                    xmlns:cimbalinoConverters="clr-namespace:Cimbalino.Toolkit.Converters;assembly=Cimbalino.Toolkit">
+                    xmlns:cimbalinoConverters="clr-namespace:Cimbalino.Toolkit.Converters;assembly=Cimbalino.Toolkit"
+                    xmlns:localisation="clr-namespace:Emby.WindowsPhone.Localisation;assembly=Emby.WindowsPhone.Localisation">
     <!-- Resource dictionary entries should be defined here. -->
 
     <Color x:Key="MediaBrowserBackgroundColor">#2F2F2F</Color>
@@ -84,8 +85,7 @@
                                              TrueValue="Default"
                                              FalseValue="Minimized"/>
 
-    <local:LocalizedStrings xmlns:local="clr-namespace:MediaBrowser.WindowsPhone"
-                            x:Key="LocalizedStrings" />
+    <localisation:LocalisedStrings x:Key="LocalisedStrings" />
 
     <!-- Control Styles -->
     <Style x:Key="EmptyButtonStyle"
@@ -232,10 +232,10 @@
                                      CommandParameter="{Binding}">
             <toolkit:ContextMenuService.ContextMenu>
                 <toolkit:ContextMenu>
-                    <toolkit:MenuItem Header="{Binding LocalizedResources.LabelAddToPlaylist, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                    <toolkit:MenuItem Header="{Binding LocalisedResources.LabelAddToPlaylist, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                       Command="{Binding AddToPlaylist.AddToPlaylistCommand, Source={StaticResource Locator}}"
                                       CommandParameter="{Binding}" />
-                    <toolkit:MenuItem Header="{Binding LocalizedResources.AppBarOffline, Source={StaticResource LocalizedStrings}}"
+                    <toolkit:MenuItem Header="{Binding LocalisedResources.AppBarOffline, Source={StaticResource LocalisedStrings}}"
                                       Command="{Binding Main.ItemOfflineCommand, Source={StaticResource Locator}}"
                                       CommandParameter="{Binding}"
                                       Visibility="{Binding Auth.LoggedInUser.Policy.EnableSync, Source={StaticResource Locator}, Converter={StaticResource VisibilityConverter}}" />
@@ -283,10 +283,10 @@
                                      VerticalContentAlignment="Top">
             <toolkit:ContextMenuService.ContextMenu>
                 <toolkit:ContextMenu>
-                    <toolkit:MenuItem Header="{Binding LocalizedResources.LabelAddToPlaylist, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                    <toolkit:MenuItem Header="{Binding LocalisedResources.LabelAddToPlaylist, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                       Command="{Binding AddToPlaylist.AddToPlaylistCommand, Source={StaticResource Locator}}"
                                       CommandParameter="{Binding}" />
-                    <toolkit:MenuItem Header="{Binding LocalizedResources.AppBarOffline, Source={StaticResource LocalizedStrings}}"
+                    <toolkit:MenuItem Header="{Binding LocalisedResources.AppBarOffline, Source={StaticResource LocalisedStrings}}"
                                       Command="{Binding Main.ItemOfflineCommand, Source={StaticResource Locator}}"
                                       CommandParameter="{Binding}"
                                       Visibility="{Binding Auth.LoggedInUser.Policy.EnableSync, Source={StaticResource Locator}, Converter={StaticResource VisibilityConverter}}" />

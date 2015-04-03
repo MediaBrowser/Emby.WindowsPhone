@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using MediaBrowser.WindowsPhone.Resources;
+using Emby.WindowsPhone.Localisation;
 using Microsoft.Phone.Scheduler;
 
 namespace MediaBrowser.WindowsPhone.Services

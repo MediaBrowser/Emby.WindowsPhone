@@ -9,7 +9,7 @@ using MediaBrowser.Model.Net;
 using MediaBrowser.WindowsPhone.Helpers;
 using MediaBrowser.WindowsPhone.Messaging;
 using MediaBrowser.WindowsPhone.Model.Interfaces;
-using MediaBrowser.WindowsPhone.Resources;
+using Emby.WindowsPhone.Localisation;
 
 
 namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv

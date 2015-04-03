@@ -36,7 +36,7 @@
                                                 Text="{Binding IsPinned, Converter={StaticResource PinnedItemConverter}, ConverterParameter=text}"
                                                 Command="{Binding PinCommand}" />
             <behaviors:ApplicationBarIconButton IconUri="/Icons/appbar.refresh.rest.png"
-                                                Text="{Binding LocalizedResources.AppBarRefresh, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                Text="{Binding LocalisedResources.AppBarRefresh, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                 Command="{Binding RefreshCommand}" />
         </behaviors:ApplicationBarBehavior>
     </i:Interaction.Behaviors>
@@ -107,15 +107,15 @@
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal"
                                 Margin="-12,-41,0,18">
-                        <TextBlock Text="{Binding LocalizedResources.HeaderLive, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                        <TextBlock Text="{Binding LocalisedResources.HeaderLive, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                    Foreground="{StaticResource PhoneForegroundBrush}" />
-                        <TextBlock Text="{Binding LocalizedResources.HeaderTV, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                        <TextBlock Text="{Binding LocalisedResources.HeaderTV, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                    Foreground="Green" />
                     </StackPanel>
                 </DataTemplate>
             </phone:Panorama.TitleTemplate>
 
-            <phone:PanoramaItem Header="{Binding LocalizedResources.LabelWhatsOn, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
+            <phone:PanoramaItem Header="{Binding LocalisedResources.LabelWhatsOn, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
                 <Grid>
                     <phone:LongListSelector ItemsSource="{Binding WhatsOn}"
                                             LayoutMode="Grid"
@@ -123,7 +123,7 @@
                                             Margin="12,0,0,0"
                                             ItemTemplate="{StaticResource TvItemTemplate}">
                         <phone:LongListSelector.ListHeader>
-                            <TextBlock Text="{Binding LocalizedResources.NoItemsFound, Source={StaticResource LocalizedStrings}}"
+                            <TextBlock Text="{Binding LocalisedResources.NoItemsFound, Source={StaticResource LocalisedStrings}}"
                                        TextAlignment="Center"
                                        Style="{StaticResource PhoneTextTitle3Style}"
                                        Foreground="{StaticResource PhoneSubtleBrush}"
@@ -134,7 +134,7 @@
                                                             TapCommand="{Binding LiveTv.MoreCommand, Source={StaticResource Locator}}"
                                                             CommandParameter="True"
                                                             Visibility="{Binding LiveTv.ShowMoreWhatsOn, Source={StaticResource Locator}, Converter={StaticResource VisibilityConverter}}">
-                                <TextBlock Text="{Binding LocalizedResources.More, Source={StaticResource LocalizedStrings}}"
+                                <TextBlock Text="{Binding LocalisedResources.More, Source={StaticResource LocalisedStrings}}"
                                            Style="{StaticResource PhoneTextLargeStyle}" />
                             </controls:CustomHyperlinkButton>
                         </phone:LongListSelector.ListFooter>
@@ -142,7 +142,7 @@
                 </Grid>
             </phone:PanoramaItem>
 
-            <phone:PanoramaItem Header="{Binding LocalizedResources.LabelUpcoming, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
+            <phone:PanoramaItem Header="{Binding LocalisedResources.LabelUpcoming, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
                 <Grid>
                     <phone:LongListSelector ItemsSource="{Binding Upcoming}"
                                             LayoutMode="Grid"
@@ -150,7 +150,7 @@
                                             Margin="12,0,0,0"
                                             ItemTemplate="{StaticResource TvItemTemplate}">
                         <phone:LongListSelector.ListHeader>
-                            <TextBlock Text="{Binding LocalizedResources.NoItemsFound, Source={StaticResource LocalizedStrings}}"
+                            <TextBlock Text="{Binding LocalisedResources.NoItemsFound, Source={StaticResource LocalisedStrings}}"
                                        TextAlignment="Center"
                                        Style="{StaticResource PhoneTextTitle3Style}"
                                        Foreground="{StaticResource PhoneSubtleBrush}"
@@ -161,7 +161,7 @@
                                                             TapCommand="{Binding LiveTv.MoreCommand, Source={StaticResource Locator}}"
                                                             CommandParameter="False"
                                                             Visibility="{Binding LiveTv.ShowMoreUpcoming, Source={StaticResource Locator}, Converter={StaticResource VisibilityConverter}}">
-                                <TextBlock Text="{Binding LocalizedResources.More, Source={StaticResource LocalizedStrings}}"
+                                <TextBlock Text="{Binding LocalisedResources.More, Source={StaticResource LocalisedStrings}}"
                                            Style="{StaticResource PhoneTextLargeStyle}" />
                             </controls:CustomHyperlinkButton>
                         </phone:LongListSelector.ListFooter>
@@ -169,10 +169,10 @@
                 </Grid>
             </phone:PanoramaItem>
 
-            <phone:PanoramaItem Header="{Binding LocalizedResources.HeaderActiveRecordings, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
+            <phone:PanoramaItem Header="{Binding LocalisedResources.HeaderActiveRecordings, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
                 <phone:LongListSelector ItemsSource="{Binding CurrentlyRecording}">
                     <phone:LongListSelector.ListHeader>
-                        <TextBlock Text="{Binding LocalizedResources.NoItemsFound, Source={StaticResource LocalizedStrings}}"
+                        <TextBlock Text="{Binding LocalisedResources.NoItemsFound, Source={StaticResource LocalisedStrings}}"
                                    TextAlignment="Center"
                                    Style="{StaticResource PhoneTextTitle3Style}"
                                    Foreground="{StaticResource PhoneSubtleBrush}"
@@ -209,25 +209,25 @@
                 </phone:LongListSelector>
             </phone:PanoramaItem>
 
-            <phone:PanoramaItem Header="{Binding LocalizedResources.LabelOther, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
+            <phone:PanoramaItem Header="{Binding LocalisedResources.LabelOther, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
                 <StackPanel Orientation="Vertical">
                     <controls:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
                                                     Margin="0,0,0,12"
                                                     NavigateUri="/Views/LiveTv/ChannelsView.xaml">
-                        <TextBlock Text="{Binding LocalizedResources.LabelChannels, Source={StaticResource LocalizedStrings}}"
+                        <TextBlock Text="{Binding LocalisedResources.LabelChannels, Source={StaticResource LocalisedStrings}}"
                                    Style="{StaticResource PhoneTextTitle2Style}" />
                     </controls:CustomHyperlinkButton>
                     <controls:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
                                                     Margin="0,0,0,12"
                                                     NavigateUri="/Views/LiveTv/RecordedTvView.xaml">
-                        <TextBlock Text="{Binding LocalizedResources.LabelRecordedTv, Source={StaticResource LocalizedStrings}}"
+                        <TextBlock Text="{Binding LocalisedResources.LabelRecordedTv, Source={StaticResource LocalisedStrings}}"
                                    Style="{StaticResource PhoneTextTitle2Style}" />
                     </controls:CustomHyperlinkButton>
                     <controls:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
                                                     Margin="0,0,0,12"
                                                     NavigateUri="/Views/LiveTv/ScheduleView.xaml"
                                                     Visibility="{Binding LoggedInUser.Configuration.EnableLiveTvManagement, Source={StaticResource AppSettings}, Converter={StaticResource VisibilityConverter}}">
-                        <TextBlock Text="{Binding LocalizedResources.LabelScheduledRecording, Source={StaticResource LocalizedStrings}}"
+                        <TextBlock Text="{Binding LocalisedResources.LabelScheduledRecording, Source={StaticResource LocalisedStrings}}"
                                    Style="{StaticResource PhoneTextTitle2Style}" />
                     </controls:CustomHyperlinkButton>
                 </StackPanel>

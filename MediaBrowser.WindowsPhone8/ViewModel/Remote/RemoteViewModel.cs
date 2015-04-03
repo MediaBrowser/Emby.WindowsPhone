@@ -14,7 +14,7 @@ using MediaBrowser.Model.Querying;
 using MediaBrowser.Model.Session;
 using MediaBrowser.WindowsPhone.CimbalinoToolkit.Tiles;
 using MediaBrowser.WindowsPhone.Messaging;
-using MediaBrowser.WindowsPhone.Resources;
+using Emby.WindowsPhone.Localisation;
 using MediaBrowser.WindowsPhone.Services;
 
 using INavigationService = MediaBrowser.WindowsPhone.Model.Interfaces.INavigationService;

@@ -17,7 +17,7 @@ using MediaBrowser.WindowsPhone.Services;
 using MediaBrowser.WindowsPhone.ViewModel;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
-using MediaBrowser.WindowsPhone.Resources;
+using Emby.WindowsPhone.Localisation;
 using Windows.Phone.ApplicationModel;
 using ScottIsAFool.WindowsPhone.Logging;
 using Telerik.Windows.Controls;

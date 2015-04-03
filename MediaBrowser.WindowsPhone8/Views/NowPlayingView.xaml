@@ -26,7 +26,7 @@
                 DataContext="{Binding NowPlaying, Source={StaticResource Locator}}">
     <i:Interaction.Behaviors>
         <cimbalino:ApplicationBarBehavior IsMenuEnabled="True">
-            <cimbalino:ApplicationBarIconButton Text="{Binding LocalizedResources.AppBarPrevious, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+            <cimbalino:ApplicationBarIconButton Text="{Binding LocalisedResources.AppBarPrevious, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                 IconUri="/Icons/transport.rew.png"
                                                 IsEnabled="{Binding Playlist.Count, Converter={StaticResource PlaylistCountConverter}}"
                                                 Command="{Binding PreviousTrackCommand}" />
@@ -34,12 +34,12 @@
                                                 IconUri="{Binding IsPlaying, Converter={StaticResource PlayIconConverter}}"
                                                 IsEnabled="{Binding Playlist.Count, Converter={StaticResource PlaylistCountConverter}, ConverterParameter=true}"
                                                 Command="{Binding PlayPauseCommand}" />
-            <cimbalino:ApplicationBarIconButton Text="{Binding LocalizedResources.AppBarNext, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+            <cimbalino:ApplicationBarIconButton Text="{Binding LocalisedResources.AppBarNext, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                 IconUri="/Icons/transport.ff.png"
                                                 IsEnabled="{Binding Playlist.Count, Converter={StaticResource PlaylistCountConverter}}"
                                                 Command="{Binding NextTrackCommand}" />
             <cimbalino:ApplicationBarBehavior.MenuItems>
-                <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarClearNowPlaying, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                <cimbalino:ApplicationBarMenuItem Text="{Binding LocalisedResources.AppBarClearNowPlaying, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                   Command="{Binding ClearPlaylistCommand}" />
             </cimbalino:ApplicationBarBehavior.MenuItems>
         </cimbalino:ApplicationBarBehavior>
@@ -90,7 +90,7 @@
                         Margin="12,49,0,28">
                 <mb:MediaBrowserLogo />
                 <TextBlock x:Name="PageTitle"
-                           Text="{Binding LocalizedResources.LabelNowPlaying, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                           Text="{Binding LocalisedResources.LabelNowPlaying, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                            Margin="9,-7,0,0"
                            Style="{StaticResource PhoneTextTitle1Style}" />
             </StackPanel>

@@ -43,10 +43,10 @@
                                       d:DataContext="{Binding TvCollection.NextUpList[0], Source={StaticResource Locator}}">
                 <toolkit:ContextMenuService.ContextMenu>
                     <toolkit:ContextMenu>
-                        <toolkit:MenuItem Header="{Binding LocalizedResources.LabelAddToPlaylist, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                        <toolkit:MenuItem Header="{Binding LocalisedResources.LabelAddToPlaylist, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                           Command="{Binding AddToPlaylist.AddToPlaylistCommand, Source={StaticResource Locator}}"
                                           CommandParameter="{Binding}" />
-                        <toolkit:MenuItem Header="{Binding LocalizedResources.AppBarOffline, Source={StaticResource LocalizedStrings}}"
+                        <toolkit:MenuItem Header="{Binding LocalisedResources.AppBarOffline, Source={StaticResource LocalisedStrings}}"
                                           Command="{Binding TvCollection.ItemOfflineCommand, Source={StaticResource Locator}}"
                                           CommandParameter="{Binding}"
                                           Visibility="{Binding Auth.LoggedInUser.Policy.EnableSync, Source={StaticResource Locator}, Converter={StaticResource VisibilityConverter}}" />
@@ -109,16 +109,16 @@
                 <phone:Pivot.Title>
                     <StackPanel Orientation="Horizontal"
                                 Margin="-12,0,0,0">
-                        <mb:MediaBrowserLogo AltText="{Binding LocalizedResources.LabelTv, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToUppercaseConverter}}" />
+                        <mb:MediaBrowserLogo AltText="{Binding LocalisedResources.LabelTv, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToUppercaseConverter}}" />
                     </StackPanel>
                 </phone:Pivot.Title>
 
 
-                <phone:PivotItem Header="{Binding LocalizedResources.LabelNextUp, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
+                <phone:PivotItem Header="{Binding LocalisedResources.LabelNextUp, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
                     <phone:LongListSelector ItemsSource="{Binding NextUpList}"
                                             ItemTemplate="{StaticResource EpisodeDataTemplate}" />
                 </phone:PivotItem>
-                <phone:PivotItem Header="{Binding LocalizedResources.LabelShows, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
+                <phone:PivotItem Header="{Binding LocalisedResources.LabelShows, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
                     <phone:LongListSelector ItemsSource="{Binding Shows}"
                                             IsGroupingEnabled="True"
                                             HideEmptyGroups="False"
@@ -132,13 +132,13 @@
                                                           CommandParameter="{Binding}">
                                     <toolkit:ContextMenuService.ContextMenu>
                                         <toolkit:ContextMenu>
-                                            <toolkit:MenuItem Header="{Binding LocalizedResources.AppBarMarkAsWatched, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                            <toolkit:MenuItem Header="{Binding LocalisedResources.AppBarMarkAsWatched, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                               Command="{Binding TvCollection.MarkAsWatchedCommand, Source={StaticResource Locator}}"
                                                               CommandParameter="{Binding}" />
-                                            <toolkit:MenuItem Header="{Binding LocalizedResources.LabelAddToPlaylist, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                            <toolkit:MenuItem Header="{Binding LocalisedResources.LabelAddToPlaylist, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                               Command="{Binding AddToPlaylist.AddToPlaylistCommand, Source={StaticResource Locator}}"
                                                               CommandParameter="{Binding}" />
-                                            <toolkit:MenuItem Header="{Binding LocalizedResources.AppBarOffline, Source={StaticResource LocalizedStrings}}"
+                                            <toolkit:MenuItem Header="{Binding LocalisedResources.AppBarOffline, Source={StaticResource LocalisedStrings}}"
                                                               Command="{Binding TvCollection.ItemOfflineCommand, Source={StaticResource Locator}}"
                                                               CommandParameter="{Binding}"
                                                               Visibility="{Binding Auth.LoggedInUser.Policy.EnableSync, Source={StaticResource Locator}, Converter={StaticResource VisibilityConverter}}" />
@@ -161,7 +161,7 @@
                                                        Style="{StaticResource PhoneTextSubtleStyle}" />
                                             <TextBlock Style="{StaticResource PhoneTextSubtleStyle}"
                                                        Foreground="{Binding UserData.UnplayedItemCount, Converter={StaticResource ZeroCountBrushConverter}}">
-                                                <Run Text="{Binding LocalizedResources.LabelUnwatched, Source={StaticResource LocalizedStrings}}" />
+                                                <Run Text="{Binding LocalisedResources.LabelUnwatched, Source={StaticResource LocalisedStrings}}" />
                                                 <Run Text="{Binding UserData.UnplayedItemCount, FallbackValue=0}" />
                                             </TextBlock>
                                         </StackPanel>
@@ -171,11 +171,11 @@
                         </phone:LongListSelector.ItemTemplate>
                     </phone:LongListSelector>
                 </phone:PivotItem>
-                <phone:PivotItem Header="{Binding LocalizedResources.LabelLatestUnseen, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
+                <phone:PivotItem Header="{Binding LocalisedResources.LabelLatestUnseen, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
                     <phone:LongListSelector ItemsSource="{Binding LatestUnwatched}"
                                             ItemTemplate="{StaticResource EpisodeDataTemplate}" />
                 </phone:PivotItem>
-                <phone:PivotItem Header="{Binding LocalizedResources.LabelGenres, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
+                <phone:PivotItem Header="{Binding LocalisedResources.LabelGenres, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
                     <phone:LongListSelector ItemsSource="{Binding Genres}">
                         <phone:LongListSelector.ItemTemplate>
                             <DataTemplate>
@@ -185,7 +185,7 @@
                                                           Margin="12,0,0,12">
                                     <toolkit:ContextMenuService.ContextMenu>
                                         <toolkit:ContextMenu>
-                                            <toolkit:MenuItem Header="{Binding LocalizedResources.LabelAddToPlaylist, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                            <toolkit:MenuItem Header="{Binding LocalisedResources.LabelAddToPlaylist, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                               Command="{Binding AddToPlaylist.AddToPlaylistCommand, Source={StaticResource Locator}}"
                                                               CommandParameter="{Binding}" />
                                         </toolkit:ContextMenu>
@@ -219,7 +219,7 @@
                         </phone:LongListSelector.ItemTemplate>
                     </phone:LongListSelector>
                 </phone:PivotItem>
-                <phone:PivotItem Header="{Binding LocalizedResources.LabelUpcoming, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
+                <phone:PivotItem Header="{Binding LocalisedResources.LabelUpcoming, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
                     <phone:LongListSelector ItemsSource="{Binding Upcoming}"
                                             IsGroupingEnabled="True"
                                             JumpListStyle="{StaticResource LLSGroupItemLongStyle}"

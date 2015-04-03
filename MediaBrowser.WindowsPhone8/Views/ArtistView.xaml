@@ -29,14 +29,14 @@
                               IsIndeterminate="{Binding ProgressIsVisible}" />
         <cimbalino:ApplicationBarBehavior IsMenuEnabled="True">
             <cimbalino:ApplicationBarBehavior.Buttons>
-                <behaviours:SyncAppBarButton Text="{Binding LocalizedResources.AppBarOffline, Source={StaticResource LocalizedStrings}}"
+                <behaviours:SyncAppBarButton Text="{Binding LocalisedResources.AppBarOffline, Source={StaticResource LocalisedStrings}}"
                                              IconUri="/Icons/appbar.cloud.png"
                                              Command="{Binding TakeOfflineCommand}"
                                              CommandParameter="{Binding SelectedArtist}"
                                              IsEnabled="{Binding SelectedArtist.SupportsSync}"
                                              SyncPolicy="{Binding Auth.LoggedInUser.Policy.EnableSync, Source={StaticResource Locator}}"/>
                                              <!--HasSyncJob="{Binding SelectedArtist.HasSyncJob}"/>-->
-                <!--<behaviours:SyncAppBarButton Text="{Binding LocalizedResources.AppBarUnsync, Source={StaticResource LocalizedStrings}}"
+                <!--<behaviours:SyncAppBarButton Text="{Binding LocalisedResources.AppBarUnsync, Source={StaticResource LocalisedStrings}}"
                                              IconUri="/Icons/appbar.cloud.delete.png"
                                              IsEnabled="{Binding SelectedArtist.SupportsSync}"
                                              SyncPolicy="{Binding Auth.LoggedInUser.Policy.EnableSync, Source={StaticResource Locator}}"
@@ -44,13 +44,13 @@
                                              IsRemove="True"/>-->
             </cimbalino:ApplicationBarBehavior.Buttons>
             <cimbalino:ApplicationBarBehavior.MenuItems>
-                <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarPlayAllTracks, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                <cimbalino:ApplicationBarMenuItem Text="{Binding LocalisedResources.AppBarPlayAllTracks, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                   Command="{Binding PlayAllItemsCommand}" />
                 <cimbalino:ApplicationBarMenuItem Text="{Binding SelectedArtist.UserData.IsFavorite, Converter={StaticResource FavouritesConverter}, ConverterParameter=fulltext}"
                                                   Command="{Binding AddRemoveFavouriteCommand}"
                                                   CommandParameter="{Binding SelectedArtist}"
                                                   IsEnabled="{Binding CanUpdateFavourites}" />
-                <cimbalino:ApplicationBarMenuItem Text="{Binding LocalizedResources.LabelInstantMix, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                <cimbalino:ApplicationBarMenuItem Text="{Binding LocalisedResources.LabelInstantMix, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                   Command="{Binding StartInstantMixCommand}"
                                                   CommandParameter="{Binding SelectedArtist}" />
             </cimbalino:ApplicationBarBehavior.MenuItems>
@@ -98,7 +98,7 @@
                   Margin="0,32,0,0">
                 <phone:Pivot Title="{Binding SelectedArtist.Name, Converter={StaticResource StringToUppercaseConverter}}"
                              x:Name="MainPivot">
-                    <phone:PivotItem Header="{Binding LocalizedResources.LabelAlbums, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
+                    <phone:PivotItem Header="{Binding LocalisedResources.LabelAlbums, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
                         <phone:LongListSelector ItemsSource="{Binding Albums}">
                             <phone:LongListSelector.ItemTemplate>
                                 <DataTemplate>
@@ -109,13 +109,13 @@
                                                                     CommandParameter="{Binding}">
                                         <toolkit:ContextMenuService.ContextMenu>
                                             <toolkit:ContextMenu>
-                                                <toolkit:MenuItem Header="{Binding LocalizedResources.LabelAddToPlaylist, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                <toolkit:MenuItem Header="{Binding LocalisedResources.LabelAddToPlaylist, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                                   Command="{Binding AddToPlaylist.AddToPlaylistCommand, Source={StaticResource Locator}}"
                                                                   CommandParameter="{Binding}" />
-                                                <toolkit:MenuItem Header="{Binding LocalizedResources.LabelInstantMix, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                <toolkit:MenuItem Header="{Binding LocalisedResources.LabelInstantMix, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                                   Command="{Binding Music.StartInstantMixCommand, Source={StaticResource Locator}}"
                                                                   CommandParameter="{Binding}" />
-                                                <toolkit:MenuItem Header="{Binding LocalizedResources.AppBarOffline, Source={StaticResource LocalizedStrings}}"
+                                                <toolkit:MenuItem Header="{Binding LocalisedResources.AppBarOffline, Source={StaticResource LocalisedStrings}}"
                                                                   Command="{Binding Music.TakeOfflineCommand, Source={StaticResource Locator}}"
                                                                   CommandParameter="{Binding}"
                                                                   Visibility="{Binding SupportsSync, Converter={StaticResource VisibilityConverter}}" />
@@ -156,7 +156,7 @@
                         </phone:LongListSelector>
                     </phone:PivotItem>
 
-                    <phone:PivotItem Header="{Binding LocalizedResources.LabelSongs, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
+                    <phone:PivotItem Header="{Binding LocalisedResources.LabelSongs, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
                         <toolkit:LongListMultiSelector ItemsSource="{Binding SortedTracks}"
                                                        JumpListStyle="{StaticResource LLSGroupItemStyle}"
                                                        GroupHeaderTemplate="{StaticResource LLSGroupHeaderTemplateName}"
@@ -168,13 +168,13 @@
                                                 Margin="-12,12,0,0">
                                         <toolkit:ContextMenuService.ContextMenu>
                                             <toolkit:ContextMenu>
-                                                <toolkit:MenuItem Header="{Binding LocalizedResources.LabelAddToPlaylist, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                <toolkit:MenuItem Header="{Binding LocalisedResources.LabelAddToPlaylist, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                                   Command="{Binding AddToPlaylist.AddToPlaylistCommand, Source={StaticResource Locator}}"
                                                                   CommandParameter="{Binding}" />
-                                                <toolkit:MenuItem Header="{Binding LocalizedResources.LabelInstantMix, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                <toolkit:MenuItem Header="{Binding LocalisedResources.LabelInstantMix, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                                   Command="{Binding Music.StartInstantMixCommand, Source={StaticResource Locator}}"
                                                                   CommandParameter="{Binding}" />
-                                                <toolkit:MenuItem Header="{Binding LocalizedResources.AppBarOffline, Source={StaticResource LocalizedStrings}}"
+                                                <toolkit:MenuItem Header="{Binding LocalisedResources.AppBarOffline, Source={StaticResource LocalisedStrings}}"
                                                                   Command="{Binding Music.TakeOfflineCommand, Source={StaticResource Locator}}"
                                                                   CommandParameter="{Binding}"
                                                                   Visibility="{Binding SupportsSync, Converter={StaticResource VisibilityConverter}}" />
@@ -198,7 +198,7 @@
                         </toolkit:LongListMultiSelector>
                     </phone:PivotItem>
 
-                    <phone:PivotItem Header="{Binding LocalizedResources.LabelBio, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
+                    <phone:PivotItem Header="{Binding LocalisedResources.LabelBio, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
                         <TextBlock Text="{Binding SelectedArtist.Overview}"
                                    Style="{StaticResource PhoneTextNormalStyle}"
                                    TextWrapping="Wrap" />

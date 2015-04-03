@@ -2,7 +2,7 @@ using System;
 using System.Globalization;
 using System.Windows.Data;
 using MediaBrowser.Model.LiveTv;
-using MediaBrowser.WindowsPhone.Resources;
+using Emby.WindowsPhone.Localisation;
 
 namespace MediaBrowser.WindowsPhone.Converters
 {

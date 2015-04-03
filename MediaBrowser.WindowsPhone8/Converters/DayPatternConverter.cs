@@ -4,7 +4,7 @@ using System.Linq;
 using System.Windows.Data;
 using MediaBrowser.Model.LiveTv;
 using MediaBrowser.WindowsPhone.Extensions;
-using MediaBrowser.WindowsPhone.Resources;
+using Emby.WindowsPhone.Localisation;
 
 namespace MediaBrowser.WindowsPhone.Converters
 {

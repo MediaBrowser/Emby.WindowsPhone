@@ -37,26 +37,26 @@
                                         BorderBrush="Black"
                                         Foreground="Black"
                                         DisplayMemberPath="Name"
-                                        Header="{Binding LocalizedResources.HeaderSyncToDevice, Source={StaticResource LocalizedStrings}}"
+                                        Header="{Binding LocalisedResources.HeaderSyncToDevice, Source={StaticResource LocalisedStrings}}"
                                         HeaderStyle="{StaticResource HeaderStyle}"
                                         SelectionChanged="TargetDevices_OnSelectionChanged"/>
             <telerikPrimitives:RadTextBox InputScope="Number"
                                           BorderBrush="Black"
-                                          Header="{Binding LocalizedResources.HeaderItemLimit, Source={StaticResource LocalizedStrings}}"
-                                          Watermark="{Binding LocalizedResources.LabelOptional, Source={StaticResource LocalizedStrings}}"
+                                          Header="{Binding LocalisedResources.HeaderItemLimit, Source={StaticResource LocalisedStrings}}"
+                                          Watermark="{Binding LocalisedResources.LabelOptional, Source={StaticResource LocalisedStrings}}"
                                           HeaderStyle="{StaticResource HeaderStyle}"
                                           x:Name="ItemLimitBox" 
                                           Text="{Binding ItemLimit, Mode=TwoWay}"
                                           Visibility="Collapsed"/>
             <telerikPrimitives:RadToggleSwitch Foreground="Black"
-                                               Header="{Binding LocalizedResources.HeaderUnwatchedItems, Source={StaticResource LocalizedStrings}}"
+                                               Header="{Binding LocalisedResources.HeaderUnwatchedItems, Source={StaticResource LocalisedStrings}}"
                                                HeaderStyle="{StaticResource HeaderStyle}"
                                                x:Name="UnwatchedVideos"
                                                ButtonStyle="{StaticResource ToggleButton}"
                                                IsChecked="{Binding SyncUnwatched, Mode=TwoWay}"
                                                Visibility="Collapsed"/>
             <telerikPrimitives:RadToggleSwitch Foreground="Black"
-                                               Header="{Binding LocalizedResources.HeaderAutoSync, Source={StaticResource LocalizedStrings}}"
+                                               Header="{Binding LocalisedResources.HeaderAutoSync, Source={StaticResource LocalisedStrings}}"
                                                HeaderStyle="{StaticResource HeaderStyle}"
                                                x:Name="AutoSyncVideos"
                                                ButtonStyle="{StaticResource ToggleButton}"
@@ -66,7 +66,7 @@
                                         DisplayMemberPath="Name"
                                         BorderBrush="Black"
                                         Foreground="Black"
-                                        Header="{Binding LocalizedResources.HeaderQuality, Source={StaticResource LocalizedStrings}}"
+                                        Header="{Binding LocalisedResources.HeaderQuality, Source={StaticResource LocalisedStrings}}"
                                         HeaderStyle="{StaticResource HeaderStyle}" />
             <Button Style="{StaticResource HeroButtonStyle}"
                     Content="sync"
@@ -79,7 +79,7 @@
             <controls:ProgressRing IsActive="{Binding IsLoading}"
                                    Margin="0,0,0,12"
                                    Foreground="{StaticResource PhoneAccentBrush}" />
-            <TextBlock Text="{Binding LocalizedResources.LabelLoading, Source={StaticResource LocalizedStrings}}"
+            <TextBlock Text="{Binding LocalisedResources.LabelLoading, Source={StaticResource LocalisedStrings}}"
                        Style="{StaticResource PhoneTextNormalStyle}"
                        Foreground="Black"/>
         </StackPanel>

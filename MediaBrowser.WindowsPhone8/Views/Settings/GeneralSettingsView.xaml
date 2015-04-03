@@ -28,10 +28,10 @@
         <behaviors:ApplicationBarBehavior Mode="Minimized"
                                           IsMenuEnabled="True">
             <behaviors:ApplicationBarBehavior.MenuItems>
-                <behaviors:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarSendLogs, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                <behaviors:ApplicationBarMenuItem Text="{Binding LocalisedResources.AppBarSendLogs, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                   x:Name="EmailLogs"
                                                   Click="EmailLogs_OnClick" />
-                <behaviors:ApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarAbout, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                <behaviors:ApplicationBarMenuItem Text="{Binding LocalisedResources.AppBarAbout, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                   x:Name="AboutItem"
                                                   Click="AboutItem_OnClick" />
             </behaviors:ApplicationBarBehavior.MenuItems>
@@ -76,8 +76,8 @@
             <StackPanel x:Name="TitlePanel"
                         Grid.Row="0"
                         Margin="12,17,0,28">
-                <controls:MediaBrowserLogo AltText="{Binding LocalizedResources.Settings, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToUppercaseConverter}}" />
-                <TextBlock Text="{Binding LocalizedResources.LabelGeneral, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                <controls:MediaBrowserLogo AltText="{Binding LocalisedResources.Settings, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToUppercaseConverter}}" />
+                <TextBlock Text="{Binding LocalisedResources.LabelGeneral, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                            Margin="9,-7,0,0"
                            Style="{StaticResource PhoneTextTitle1Style}" />
             </StackPanel>
@@ -88,11 +88,11 @@
                   Margin="12,0,12,0">
                 <ScrollViewer>
                     <StackPanel>
-                        <CheckBox Content="{Binding LocalizedResources.LabelShowTrailers, Source={StaticResource LocalizedStrings}}"
+                        <CheckBox Content="{Binding LocalisedResources.LabelShowTrailers, Source={StaticResource LocalisedStrings}}"
                                   IsChecked="{Binding IncludeTrailersInRecent, Source={StaticResource SpecificSettings}, Mode=TwoWay}" />
                         <toolkit:ListPicker ItemsSource="{Binding GroupByItems, Source={StaticResource SpecificSettings}}"
                                             SelectedItem="{Binding DefaultGroupBy, Source={StaticResource SpecificSettings}, Mode=TwoWay}"
-                                            Header="{Binding LocalizedResources.HeaderDefaultGrouping, Source={StaticResource LocalizedStrings}}"
+                                            Header="{Binding LocalisedResources.HeaderDefaultGrouping, Source={StaticResource LocalisedStrings}}"
                                             toolkit:TiltEffect.SuppressTilt="True">
                             <toolkit:ListPicker.ItemTemplate>
                                 <DataTemplate>
@@ -101,24 +101,24 @@
                             </toolkit:ListPicker.ItemTemplate>
                         </toolkit:ListPicker>
                         <CheckBox IsChecked="{Binding JustShowFolderView, Source={StaticResource SpecificSettings}, Mode=TwoWay}">
-                            <TextBlock Text="{Binding LocalizedResources.LabelJustShowList, Source={StaticResource LocalizedStrings}}"
+                            <TextBlock Text="{Binding LocalisedResources.LabelJustShowList, Source={StaticResource LocalisedStrings}}"
                                        TextWrapping="Wrap"
                                        VerticalAlignment="Top" />
                         </CheckBox>
                         <CheckBox IsChecked="{Binding ShowMissingEpisodes, Source={StaticResource SpecificSettings}, Mode=TwoWay}"
-                                  Content="{Binding LocalizedResources.LabelMissingEpisodes, Source={StaticResource LocalizedStrings}}" />
+                                  Content="{Binding LocalisedResources.LabelMissingEpisodes, Source={StaticResource LocalisedStrings}}" />
                         <CheckBox IsChecked="{Binding ShowUnairedEpisodes, Source={StaticResource SpecificSettings}, Mode=TwoWay}"
-                                  Content="{Binding LocalizedResources.LabelUnairedEpisodes, Source={StaticResource LocalizedStrings}}" />
+                                  Content="{Binding LocalisedResources.LabelUnairedEpisodes, Source={StaticResource LocalisedStrings}}" />
                         <CheckBox IsChecked="{Binding EnableImageEnhancers, Source={StaticResource SpecificSettings}, Mode=TwoWay}">
-                            <TextBlock Text="{Binding LocalizedResources.LabelImageEnhancers, Source={StaticResource LocalizedStrings}}"
+                            <TextBlock Text="{Binding LocalisedResources.LabelImageEnhancers, Source={StaticResource LocalisedStrings}}"
                                        TextWrapping="Wrap"
                                        VerticalAlignment="Top" />
                         </CheckBox>
                         <StackPanel Orientation="Vertical"
                                     Visibility="Collapsed">
                             <CheckBox IsChecked="{Binding RunUnderLock, Mode=TwoWay}"
-                                      Content="{Binding LocalizedResources.LabelPlayUnderLock, Source={StaticResource LocalizedStrings}}" />
-                            <TextBlock Text="{Binding LocalizedResources.LabelPlayUnderLockWarning, Source={StaticResource LocalizedStrings}}"
+                                      Content="{Binding LocalisedResources.LabelPlayUnderLock, Source={StaticResource LocalisedStrings}}" />
+                            <TextBlock Text="{Binding LocalisedResources.LabelPlayUnderLockWarning, Source={StaticResource LocalisedStrings}}"
                                        Style="{StaticResource PhoneTextSubtleStyle}"
                                        TextWrapping="Wrap"
                                        Margin="57,-24,12,0" />

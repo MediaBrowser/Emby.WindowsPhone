@@ -86,11 +86,11 @@
                     Grid.Row="2"
                     Visibility="{Binding RetryButtonIsVisible, Converter={StaticResource VisibilityConverter}}">
             <localControls:CustomHyperlinkButton Margin="0,24"
-                                                 Content="{Binding LocalizedResources.LabelRetry, Source={StaticResource LocalizedStrings}}"
+                                                 Content="{Binding LocalisedResources.LabelRetry, Source={StaticResource LocalisedStrings}}"
                                                  VerticalAlignment="Top"
                                                  Foreground="{StaticResource PhoneAccentBrush}"
                                                  TapCommand="{Binding RetryConnectionCommand}" />
-            <localControls:CustomHyperlinkButton Content="{Binding LocalizedResources.AppBarChangeServer, Source={StaticResource LocalizedStrings}}"
+            <localControls:CustomHyperlinkButton Content="{Binding LocalisedResources.AppBarChangeServer, Source={StaticResource LocalisedStrings}}"
                                                  VerticalAlignment="Top"
                                                  Foreground="{StaticResource PhoneAccentBrush}"
                                                  TapCommand="{Binding ChangeServerCommand}" />

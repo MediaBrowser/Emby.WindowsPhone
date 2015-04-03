@@ -1,0 +1,1145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AppBarAbout" xml:space="preserve">
+    <value>о программе</value>
+  </data>
+  <data name="AppBarAddToNowPlaying" xml:space="preserve">
+    <value>добавить к воспроизводимым</value>
+  </data>
+  <data name="AppBarChangeProfile" xml:space="preserve">
+    <value>сменить профиль</value>
+  </data>
+  <data name="AppBarClearNowPlaying" xml:space="preserve">
+    <value>очистить воспроизводимые</value>
+  </data>
+  <data name="AppBarDeleteItems" xml:space="preserve">
+    <value>удалить элементы</value>
+  </data>
+  <data name="AppBarGroupBy" xml:space="preserve">
+    <value>группировать по</value>
+  </data>
+  <data name="AppBarLogin" xml:space="preserve">
+    <value>вход</value>
+  </data>
+  <data name="AppBarMarkAsUnwatched" xml:space="preserve">
+    <value>непросмотрено!</value>
+  </data>
+  <data name="AppBarMarkAsWatched" xml:space="preserve">
+    <value>просмотрено!</value>
+  </data>
+  <data name="AppBarNext" xml:space="preserve">
+    <value>следующее</value>
+  </data>
+  <data name="AppBarNotifications" xml:space="preserve">
+    <value>оповещения</value>
+  </data>
+  <data name="AppBarNowPlaying" xml:space="preserve">
+    <value>воспроизводится</value>
+  </data>
+  <data name="AppBarPause" xml:space="preserve">
+    <value>пауза</value>
+  </data>
+  <data name="AppBarPlay" xml:space="preserve">
+    <value>воспр</value>
+  </data>
+  <data name="AppBarPlayAll" xml:space="preserve">
+    <value>воспр все</value>
+  </data>
+  <data name="AppBarPlayAllTracks" xml:space="preserve">
+    <value>воспр все дорожки</value>
+  </data>
+  <data name="AppBarPlayItems" xml:space="preserve">
+    <value>воспр элементы</value>
+  </data>
+  <data name="AppBarPlayOn" xml:space="preserve">
+    <value>воспр на устройстве...</value>
+  </data>
+  <data name="AppBarPosterLockscreen" xml:space="preserve">
+    <value>поместить постер на экран блокировки</value>
+  </data>
+  <data name="AppBarPrevious" xml:space="preserve">
+    <value>предыдущее</value>
+  </data>
+  <data name="AppBarRefresh" xml:space="preserve">
+    <value>подновить</value>
+  </data>
+  <data name="AppBarRefreshInformation" xml:space="preserve">
+    <value>подновить информацию</value>
+  </data>
+  <data name="AppBarRemote" xml:space="preserve">
+    <value>пульт</value>
+  </data>
+  <data name="AppBarResume" xml:space="preserve">
+    <value>возобновить</value>
+  </data>
+  <data name="AppBarSearch" xml:space="preserve">
+    <value>поиск</value>
+  </data>
+  <data name="AppBarSelectItems" xml:space="preserve">
+    <value>выбрать элементы</value>
+  </data>
+  <data name="AppBarSendLogs" xml:space="preserve">
+    <value>отослать журналы</value>
+  </data>
+  <data name="AppBarSettings" xml:space="preserve">
+    <value>параметры</value>
+  </data>
+  <data name="Collections" xml:space="preserve">
+    <value>Папки</value>
+  </data>
+  <data name="DeviceNotRegistered" xml:space="preserve">
+    <value>Устройство не зарегистрировано</value>
+  </data>
+  <data name="DeviceRegistered" xml:space="preserve">
+    <value>Устройство зарегистрировано</value>
+  </data>
+  <data name="ErrorConnectionDetailsInvalid" xml:space="preserve">
+    <value>Параметры подключения недопустимы, попробуйте снова.</value>
+  </data>
+  <data name="ErrorConnectionDetailsMessage" xml:space="preserve">
+    <value>Ни одного параметра подключения не было указано, вы бы хотели, указать их сейчас?</value>
+  </data>
+  <data name="ErrorConnectionDetailsTitle" xml:space="preserve">
+    <value>Нет параметров подключения</value>
+  </data>
+  <data name="ErrorCouldNotFindServer" xml:space="preserve">
+    <value>Невозможно найти сервер.</value>
+  </data>
+  <data name="ErrorDisabledUser" xml:space="preserve">
+    <value>К сожалению, похоже, что данная учётная запись была отключена. Сейчас мы вернём вас обратно на экран входа.</value>
+  </data>
+  <data name="ErrorDisabledUserTitle" xml:space="preserve">
+    <value>Невозможно авторизоваться</value>
+  </data>
+  <data name="ErrorEpisodeDetails" xml:space="preserve">
+    <value>Ошибка загрузки деталей эпизода</value>
+  </data>
+  <data name="ErrorEpisodes" xml:space="preserve">
+    <value>Ошибка получения эпизодов</value>
+  </data>
+  <data name="ErrorFailedToSearch" xml:space="preserve">
+    <value>Не удалось выполнить поиск</value>
+  </data>
+  <data name="ErrorGettingData" xml:space="preserve">
+    <value>Ошибка получения данных</value>
+  </data>
+  <data name="ErrorGettingExtraInfo" xml:space="preserve">
+    <value>Ошибка получения дополнительной информации</value>
+  </data>
+  <data name="ErrorGettingTrailerDetails" xml:space="preserve">
+    <value>Невозможно получить информацию о трейлере</value>
+  </data>
+  <data name="ErrorInvalidHostname" xml:space="preserve">
+    <value>К сожалению, имя хоста недействительно, убедитесь, что нет никаких пробелов (как пример) в нём.</value>
+  </data>
+  <data name="ErrorMakingChanges" xml:space="preserve">
+    <value>Ошибка внесения изменений</value>
+  </data>
+  <data name="ErrorNoConnectionSettings" xml:space="preserve">
+    <value>Нет параметров соединения, коснитесь, чтобы указать их</value>
+  </data>
+  <data name="ErrorProblemUpdatingItem" xml:space="preserve">
+    <value>Существует проблема обновления этого элемента, повторите попытку позже.</value>
+  </data>
+  <data name="ErrorRecentItems" xml:space="preserve">
+    <value>Ошибка получения недавних элементов</value>
+  </data>
+  <data name="ErrorSeasons" xml:space="preserve">
+    <value>Ошибка получения сезонов</value>
+  </data>
+  <data name="ErrorTitle" xml:space="preserve">
+    <value>Ошибка</value>
+  </data>
+  <data name="ErrorUnableToSignIn" xml:space="preserve">
+    <value>Мы не смогли авторизовать вас в этот раз, это может быть из-за неверного имени пользователя / пароля, или ваша учётная запись была отключена.</value>
+  </data>
+  <data name="ErrorUnableToSignInTitle" xml:space="preserve">
+    <value>Авторизация безуспешна</value>
+  </data>
+  <data name="Favourites" xml:space="preserve">
+    <value>Избранное</value>
+  </data>
+  <data name="Genre" xml:space="preserve">
+    <value>Жанр</value>
+  </data>
+  <data name="HeaderChooseClient" xml:space="preserve">
+    <value>Выбор клиента</value>
+  </data>
+  <data name="HeaderDefaultGrouping" xml:space="preserve">
+    <value>Группировка по умолчанию</value>
+  </data>
+  <data name="HeaderFromCollection" xml:space="preserve">
+    <value>Из коллекции (где применимо)</value>
+  </data>
+  <data name="LabelActor" xml:space="preserve">
+    <value>Актёр</value>
+  </data>
+  <data name="LabelAdd" xml:space="preserve">
+    <value>добавить</value>
+  </data>
+  <data name="LabelAddToFavourites" xml:space="preserve">
+    <value>Добавить в Избранное</value>
+  </data>
+  <data name="LabelAlbums" xml:space="preserve">
+    <value>альбомы</value>
+  </data>
+  <data name="LabelAnHourAgo" xml:space="preserve">
+    <value>час назад</value>
+  </data>
+  <data name="LabelArtists" xml:space="preserve">
+    <value>исполнители</value>
+  </data>
+  <data name="LabelBio" xml:space="preserve">
+    <value>биография</value>
+  </data>
+  <data name="LabelBoxsets" xml:space="preserve">
+    <value>коллекции</value>
+  </data>
+  <data name="LabelCastCrew" xml:space="preserve">
+    <value>участники съёмок</value>
+  </data>
+  <data name="LabelChapters" xml:space="preserve">
+    <value>сцены</value>
+  </data>
+  <data name="LabelCollage" xml:space="preserve">
+    <value>Коллаж на полном экране</value>
+  </data>
+  <data name="LabelConnect" xml:space="preserve">
+    <value>Подключить</value>
+  </data>
+  <data name="LabelConnection" xml:space="preserve">
+    <value>соединение</value>
+  </data>
+  <data name="LabelConnectionDetails" xml:space="preserve">
+    <value>Введите детали для подключения к компьютеру, где работает Media Browser. Затем просто проверьте для подтверждения.</value>
+  </data>
+  <data name="LabelConnectionWarning" xml:space="preserve">
+    <value>ПРЕДУПРЕЖДЕНИЕ: При изменении имени хоста уберутся все сохранённые профили.</value>
+  </data>
+  <data name="LabelDate" xml:space="preserve">
+    <value>дата</value>
+  </data>
+  <data name="LabelDaysAgo" xml:space="preserve">
+    <value>{0} дней назад</value>
+  </data>
+  <data name="LabelDefaultLockScreen" xml:space="preserve">
+    <value>Экран блокировки по умолчанию</value>
+  </data>
+  <data name="LabelDetails" xml:space="preserve">
+    <value>детали</value>
+  </data>
+  <data name="LabelDirector" xml:space="preserve">
+    <value>Режиссёр</value>
+  </data>
+  <data name="LabelDisplayRandomImages" xml:space="preserve">
+    <value>Отображать случайные задники как фон этой плитки</value>
+  </data>
+  <data name="LabelEpisode" xml:space="preserve">
+    <value>Эпизод</value>
+  </data>
+  <data name="LabelFindServer" xml:space="preserve">
+    <value>найти сервер</value>
+  </data>
+  <data name="LabelFirstRunAccessible" xml:space="preserve">
+    <value>После того, как Media Browser сервер был сконфигурирован, убедитесь, что он доступен из места вашего нахождения, будь то ваша локальная беспроводная сеть или внешний статический адрес.</value>
+  </data>
+  <data name="LabelFirstRunHappyConfiguration" xml:space="preserve">
+    <value>Если вы удовлетворены тем, как сконфигурировали, нажмите на кнопку Параметры и введите детали сервера, иначе вы можете просто закрыть приложение отсюда.</value>
+  </data>
+  <data name="LabelFirstRunServerInfo" xml:space="preserve">
+    <value>Однако, прежде чем мы сможем начать, вы должны убедиться, что у вас работает Media Browser сервер.</value>
+  </data>
+  <data name="LabelGeneral" xml:space="preserve">
+    <value>общие</value>
+  </data>
+  <data name="LabelGenres" xml:space="preserve">
+    <value>жанры</value>
+  </data>
+  <data name="LabelHostname" xml:space="preserve">
+    <value>Имя хоста:</value>
+  </data>
+  <data name="LabelHoursAgo" xml:space="preserve">
+    <value>{0} часов назад</value>
+  </data>
+  <data name="LabelImageEnhancers" xml:space="preserve">
+    <value>Включить улучшенные рисунки (при их наличии на сервере)</value>
+  </data>
+  <data name="LabelImdb" xml:space="preserve">
+    <value>Сведения о фильме см. на IMDb</value>
+  </data>
+  <data name="LabelIsLockScreenProvider" xml:space="preserve">
+    <value>Media Browser является текущим поставщиком экрана блокировки</value>
+  </data>
+  <data name="LabelIsNotLockScreenProvider" xml:space="preserve">
+    <value>Media Browser не является поставщиком экрана блокировки</value>
+  </data>
+  <data name="LabelJustShowList" xml:space="preserve">
+    <value>Просто показывать список элементов, а не аспект медиапапки</value>
+  </data>
+  <data name="LabelLatestUnseen" xml:space="preserve">
+    <value>последнее непросмотренные</value>
+  </data>
+  <data name="LabelLiveTv" xml:space="preserve">
+    <value>ТВ эфир</value>
+  </data>
+  <data name="LabelLockScreen" xml:space="preserve">
+    <value>экран блокировки</value>
+  </data>
+  <data name="LabelLockScreenSettinsg" xml:space="preserve">
+    <value>параметры экрана блокировки</value>
+  </data>
+  <data name="LabelMakeLockScreenProvider" xml:space="preserve">
+    <value>Сделать MB поставщиком экрана блокировки</value>
+  </data>
+  <data name="LabelManuallyLogin" xml:space="preserve">
+    <value>Ручной вход</value>
+  </data>
+  <data name="LabelMinutesAgo" xml:space="preserve">
+    <value>{0} минут назад</value>
+  </data>
+  <data name="LabelMissingEpisodes" xml:space="preserve">
+    <value>Показывать пропущенные эпизоды</value>
+  </data>
+  <data name="LabelMonthsAgo" xml:space="preserve">
+    <value>{0} месяцев назад</value>
+  </data>
+  <data name="LabelMovies" xml:space="preserve">
+    <value>Фильмы</value>
+  </data>
+  <data name="LabelMusic" xml:space="preserve">
+    <value>Музыка</value>
+  </data>
+  <data name="LabelNextUp" xml:space="preserve">
+    <value>очередное</value>
+  </data>
+  <data name="LabelNo" xml:space="preserve">
+    <value>нет</value>
+  </data>
+  <data name="LabelNoEpisodes" xml:space="preserve">
+    <value>Нет эпизодов, чтобы показывать</value>
+  </data>
+  <data name="LabelNone" xml:space="preserve">
+    <value>ничего</value>
+  </data>
+  <data name="LabelNoSeasonsFound" xml:space="preserve">
+    <value>Не найдено сезонов</value>
+  </data>
+  <data name="LabelNotifications" xml:space="preserve">
+    <value>оповещение</value>
+  </data>
+  <data name="LabelNowPlaying" xml:space="preserve">
+    <value>воспроизводится</value>
+  </data>
+  <data name="LabelOneMinuteAgo" xml:space="preserve">
+    <value>одну минуту назад</value>
+  </data>
+  <data name="LabelOneMonthAgo" xml:space="preserve">
+    <value>один месяц назад</value>
+  </data>
+  <data name="LabelOneSecondAgo" xml:space="preserve">
+    <value>одну секунду назад</value>
+  </data>
+  <data name="LabelOther" xml:space="preserve">
+    <value>Другое</value>
+  </data>
+  <data name="LabelOverview" xml:space="preserve">
+    <value>обзор</value>
+  </data>
+  <data name="LabelPassword" xml:space="preserve">
+    <value>Пароль:</value>
+  </data>
+  <data name="LabelPort" xml:space="preserve">
+    <value>Порт:</value>
+  </data>
+  <data name="LabelPoster" xml:space="preserve">
+    <value>постер</value>
+  </data>
+  <data name="LabelProducer" xml:space="preserve">
+    <value>Продюсер</value>
+  </data>
+  <data name="LabelProfile" xml:space="preserve">
+    <value>профиль</value>
+  </data>
+  <data name="LabelProfileNotListed" xml:space="preserve">
+    <value>Профиля нет в списке?</value>
+  </data>
+  <data name="LabelProfiles" xml:space="preserve">
+    <value>профили</value>
+  </data>
+  <data name="LabelQuit" xml:space="preserve">
+    <value>закончить</value>
+  </data>
+  <data name="LabelRandomItems" xml:space="preserve">
+    <value>Случайные элементы</value>
+  </data>
+  <data name="LabelRandomPictures" xml:space="preserve">
+    <value>Случайные рисунки из коллекции</value>
+  </data>
+  <data name="LabelRating" xml:space="preserve">
+    <value>Оценка:</value>
+  </data>
+  <data name="LabelRecent" xml:space="preserve">
+    <value>Недавние</value>
+  </data>
+  <data name="LabelRemote" xml:space="preserve">
+    <value>Пульт</value>
+  </data>
+  <data name="LabelRemove" xml:space="preserve">
+    <value>убрать</value>
+  </data>
+  <data name="LabelRunningTime" xml:space="preserve">
+    <value>Время воспроизведения:</value>
+  </data>
+  <data name="LabelSearch" xml:space="preserve">
+    <value>поиск</value>
+  </data>
+  <data name="LabelSeasons" xml:space="preserve">
+    <value>сезоны</value>
+  </data>
+  <data name="LabelSecondsAgo" xml:space="preserve">
+    <value>{0} секунд назад</value>
+  </data>
+  <data name="LabelSeries" xml:space="preserve">
+    <value>Сериал</value>
+  </data>
+  <data name="LabelShowAllItems" xml:space="preserve">
+    <value>показать все элементы...</value>
+  </data>
+  <data name="LabelShows" xml:space="preserve">
+    <value>циклы</value>
+  </data>
+  <data name="LabelShowTrailers" xml:space="preserve">
+    <value>Показать трейлеры в недавних элементах</value>
+  </data>
+  <data name="LabelSinglePoster" xml:space="preserve">
+    <value>Единственный постер</value>
+  </data>
+  <data name="LabelSongs" xml:space="preserve">
+    <value>мелодии</value>
+  </data>
+  <data name="LabelTile" xml:space="preserve">
+    <value>плитка</value>
+  </data>
+  <data name="LabelTileBackInformation" xml:space="preserve">
+    <value>Чтобы показать некоторые из замечательных иллюстраций доступных для медиаданных, которые вы имеете, для плитки будут использоваться некоторые из этих иллюстраций, здесь вы сможете выбрать, как плитка будет выглядеть.</value>
+  </data>
+  <data name="LabelTrailers" xml:space="preserve">
+    <value>трейлеры</value>
+  </data>
+  <data name="LabelTv" xml:space="preserve">
+    <value>ТВ</value>
+  </data>
+  <data name="LabelUnairedEpisodes" xml:space="preserve">
+    <value>Показывать ожидаемые эпизоды</value>
+  </data>
+  <data name="LabelUnwatched" xml:space="preserve">
+    <value>Непросмотренное:</value>
+  </data>
+  <data name="LabelUsername" xml:space="preserve">
+    <value>Имя пользователя:</value>
+  </data>
+  <data name="LabelViews" xml:space="preserve">
+    <value>Аспекты</value>
+  </data>
+  <data name="LabelWelcomeText" xml:space="preserve">
+    <value>Вас приветствует Media Browser для Windows Phone! Это приложение предоставит вам возможность просмотра медиатеки, потокового воспроизведения на вашем телефоне и удалённого управления любым из контролируемых клиентов  Media Browser.</value>
+  </data>
+  <data name="LabelWriter" xml:space="preserve">
+    <value>Сценарист</value>
+  </data>
+  <data name="LabelYes" xml:space="preserve">
+    <value>да</value>
+  </data>
+  <data name="LabelYesterday" xml:space="preserve">
+    <value>вчера</value>
+  </data>
+  <data name="MenuPlayFrom" xml:space="preserve">
+    <value>воспроизвести от</value>
+  </data>
+  <data name="MenuPlayFromOn" xml:space="preserve">
+    <value>воспр с устройства</value>
+  </data>
+  <data name="MessageAreYouSureTitle" xml:space="preserve">
+    <value>Вы действительно уверены?</value>
+  </data>
+  <data name="MessageBoxUnpinText" xml:space="preserve">
+    <value>Вы действительно желаете открепить этот файл?</value>
+  </data>
+  <data name="MessageClearPlayList" xml:space="preserve">
+    <value>Вы действительно желаете очистить список воспроизведения?</value>
+  </data>
+  <data name="MessageDeletePlaylistItems" xml:space="preserve">
+    <value>Вы действительно желаете удалить эти элементы? Их нельзя восстановить.</value>
+  </data>
+  <data name="MessageExperimentalTitle" xml:space="preserve">
+    <value>Экспериментально</value>
+  </data>
+  <data name="MessageExperimentalVideo" xml:space="preserve">
+    <value>Воспроизведение этого типа видео является в настоящее время экспериментальным, результаты могут различаться, вы желаете продолжить?</value>
+  </data>
+  <data name="MessageTracksAddedSuccessfully" xml:space="preserve">
+    <value>{0} дорожек добавлено успешно.</value>
+  </data>
+  <data name="More" xml:space="preserve">
+    <value>дальше...</value>
+  </data>
+  <data name="NameLabel" xml:space="preserve">
+    <value>Название</value>
+  </data>
+  <data name="NoItemsFound" xml:space="preserve">
+    <value>Никаких элементов не найдено</value>
+  </data>
+  <data name="PinToStart" xml:space="preserve">
+    <value>Прикрепить на старт</value>
+  </data>
+  <data name="ProductionYear" xml:space="preserve">
+    <value>Год производства</value>
+  </data>
+  <data name="RemoveFromFavouritesFull" xml:space="preserve">
+    <value>Убрать из Избранного</value>
+  </data>
+  <data name="ResourceLanguage" xml:space="preserve">
+    <value>kk</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Параметры</value>
+  </data>
+  <data name="SysTrayAddingToFavourites" xml:space="preserve">
+    <value>Добавляем в Избранное...</value>
+  </data>
+  <data name="SysTrayAuthenticating" xml:space="preserve">
+    <value>Авторизуемся...</value>
+  </data>
+  <data name="SysTrayCheckingCollection" xml:space="preserve">
+    <value>Проверяем коллекцию...</value>
+  </data>
+  <data name="SysTrayCheckingConnection" xml:space="preserve">
+    <value>Проверяем соединение...</value>
+  </data>
+  <data name="SysTrayFindingServer" xml:space="preserve">
+    <value>Попытка найти сервер...</value>
+  </data>
+  <data name="SysTrayGettingAlbums" xml:space="preserve">
+    <value>Получаем альбомы...</value>
+  </data>
+  <data name="SysTrayGettingAlbumTracks" xml:space="preserve">
+    <value>Получаем дорожки альбома...</value>
+  </data>
+  <data name="SysTrayGettingAllTracks" xml:space="preserve">
+    <value>Получаем все дорожки...</value>
+  </data>
+  <data name="SysTrayGettingArtists" xml:space="preserve">
+    <value>Получаем исполнителей...</value>
+  </data>
+  <data name="SysTrayGettingArtistTracks" xml:space="preserve">
+    <value>Получаем  дорожки исполнителя...</value>
+  </data>
+  <data name="SysTrayGettingBoxsets" xml:space="preserve">
+    <value>Получаем коллекции...</value>
+  </data>
+  <data name="SysTrayGettingDetails" xml:space="preserve">
+    <value>Получаем детали...</value>
+  </data>
+  <data name="SysTrayGettingEpisodeDetails" xml:space="preserve">
+    <value>Получаем детали эпизода...</value>
+  </data>
+  <data name="SysTrayGettingEpisodes" xml:space="preserve">
+    <value>Получаем эпизоды...</value>
+  </data>
+  <data name="SysTrayGettingFavourites" xml:space="preserve">
+    <value>Получаем избранные...</value>
+  </data>
+  <data name="SysTrayGettingGenres" xml:space="preserve">
+    <value>Получаем жанры...</value>
+  </data>
+  <data name="SysTrayGettingGenreTracks" xml:space="preserve">
+    <value>Получаем дорожки жанра...</value>
+  </data>
+  <data name="SysTrayGettingItems" xml:space="preserve">
+    <value>Получаем элементы...</value>
+  </data>
+  <data name="SysTrayGettingMovieInfo" xml:space="preserve">
+    <value>Получаем данные фильма...</value>
+  </data>
+  <data name="SysTrayGettingMovies" xml:space="preserve">
+    <value>Получаем фильмы...</value>
+  </data>
+  <data name="SysTrayGettingNextUp" xml:space="preserve">
+    <value>Получаем очередные элементы...</value>
+  </data>
+  <data name="SysTrayGettingNotifications" xml:space="preserve">
+    <value>Получаем оповещения...</value>
+  </data>
+  <data name="SysTrayGettingProfiles" xml:space="preserve">
+    <value>Получаем профили...</value>
+  </data>
+  <data name="SysTrayGettingRecentItems" xml:space="preserve">
+    <value>Получаем недавние элементы...</value>
+  </data>
+  <data name="SysTrayGettingServerDetails" xml:space="preserve">
+    <value>Получаем детали сервера...</value>
+  </data>
+  <data name="SysTrayGettingShowInformation" xml:space="preserve">
+    <value>Получаем данные цикла...</value>
+  </data>
+  <data name="SysTrayGettingShows" xml:space="preserve">
+    <value>Получаем тв циклы...</value>
+  </data>
+  <data name="SysTrayGettingSongs" xml:space="preserve">
+    <value>Получаем мелодии...</value>
+  </data>
+  <data name="SysTrayGettingTracks" xml:space="preserve">
+    <value>Получаем дорожки...</value>
+  </data>
+  <data name="SysTrayGettingTrailerDetails" xml:space="preserve">
+    <value>Получаем детали трейлера...</value>
+  </data>
+  <data name="SysTrayGettingUnwatchedItems" xml:space="preserve">
+    <value>Получаем последние непросмотренные элементы...</value>
+  </data>
+  <data name="SysTrayLoadingCollections" xml:space="preserve">
+    <value>Загружаем коллекции...</value>
+  </data>
+  <data name="SysTrayLoadingSettings" xml:space="preserve">
+    <value>Параметры загружаются ...</value>
+  </data>
+  <data name="SysTrayRegisteringDevice" xml:space="preserve">
+    <value>Устройство регистрируется...</value>
+  </data>
+  <data name="SysTrayRegrouping" xml:space="preserve">
+    <value>Перегруппируется...</value>
+  </data>
+  <data name="SysTraySearching" xml:space="preserve">
+    <value>Идёт поиск...</value>
+  </data>
+  <data name="SysTrayUnregisteringDevice" xml:space="preserve">
+    <value>Регистрация устройства отменяется...</value>
+  </data>
+  <data name="TrialVideoMessage" xml:space="preserve">
+    <value>В пробном режиме вы можете воспроизводить только одно видео за день. Попробуйте это завтра или приобретите полную версию</value>
+  </data>
+  <data name="TvShowRecentItemsTitle" xml:space="preserve">
+    <value>Недавние элементы {0}</value>
+    <comment>{0} is the name of the tv show</comment>
+  </data>
+  <data name="Unpin" xml:space="preserve">
+    <value>Открепить</value>
+  </data>
+  <data name="WatermarkEnterUsername" xml:space="preserve">
+    <value>ввести имя пользователя</value>
+  </data>
+  <data name="LabelLogIn" xml:space="preserve">
+    <value>Вход</value>
+  </data>
+  <data name="LabelNoFoldersFound" xml:space="preserve">
+    <value>Не найдено папок</value>
+  </data>
+  <data name="LabelNothingInPlaylist" xml:space="preserve">
+    <value>Список воспроизведения пуст</value>
+  </data>
+  <data name="LabelUnplayedItems" xml:space="preserve">
+    <value>Непросмотренные:</value>
+  </data>
+  <data name="WatermarkPassword" xml:space="preserve">
+    <value>ввести пароль</value>
+  </data>
+  <data name="LabelReleasedIn" xml:space="preserve">
+    <value>Выпущено в</value>
+    <comment>eg, Released in 1993</comment>
+  </data>
+  <data name="LabelWelcomeTextPhone7" xml:space="preserve">
+    <value>Вас приветствует Media Browser для Windows Phone! Это приложение предоставит вам возможность просмотра вашей медиатеки и удалённого управления любым из контролируемых клиентов Media Browser.</value>
+  </data>
+  <data name="LabelChannels" xml:space="preserve">
+    <value>Телеканалы</value>
+  </data>
+  <data name="LabelRecordedTv" xml:space="preserve">
+    <value>Записанные передачи</value>
+  </data>
+  <data name="LabelScheduledRecording" xml:space="preserve">
+    <value>Назначенные записи</value>
+  </data>
+  <data name="LabelUpcoming" xml:space="preserve">
+    <value>Ожидаемое</value>
+  </data>
+  <data name="LabelWhatsOn" xml:space="preserve">
+    <value>В эфире</value>
+  </data>
+  <data name="SysTrayGettingChannels" xml:space="preserve">
+    <value>Получаем телеканалы...</value>
+  </data>
+  <data name="SysTrayGettingProgrammes" xml:space="preserve">
+    <value>Получаем передачи...</value>
+  </data>
+  <data name="SysTrayGettingSeriesRecordings" xml:space="preserve">
+    <value>Получаем записи серии передач...</value>
+  </data>
+  <data name="SysTrayGettingUpcomingRecordings" xml:space="preserve">
+    <value>Получаем ожидаемые записи...</value>
+  </data>
+  <data name="ContextCancelSeries" xml:space="preserve">
+    <value>отменить сериал</value>
+  </data>
+  <data name="LabelScheduleAnyChannel" xml:space="preserve">
+    <value>Любой канал</value>
+  </data>
+  <data name="LabelScheduleAnyTime" xml:space="preserve">
+    <value>Любое время</value>
+  </data>
+  <data name="LabelScheduleDaily" xml:space="preserve">
+    <value>Ежедневно</value>
+  </data>
+  <data name="LabelScheduleToday" xml:space="preserve">
+    <value>Сегодня</value>
+  </data>
+  <data name="LabelScheduleTomorrow" xml:space="preserve">
+    <value>Завтра</value>
+  </data>
+  <data name="LabelScheduleWeekdays" xml:space="preserve">
+    <value>По дням недели</value>
+  </data>
+  <data name="LabelScheduleWeekends" xml:space="preserve">
+    <value>В конце недели</value>
+  </data>
+  <data name="HeaderRecordings" xml:space="preserve">
+    <value>записи</value>
+  </data>
+  <data name="HeaderScheduled" xml:space="preserve">
+    <value>назначенные</value>
+  </data>
+  <data name="HeaderSettings" xml:space="preserve">
+    <value>параметры</value>
+  </data>
+  <data name="AppBarSave" xml:space="preserve">
+    <value>сохранить</value>
+  </data>
+  <data name="LabelDays" xml:space="preserve">
+    <value>Дни:</value>
+  </data>
+  <data name="LabelRecordOnlyNewEpisodes" xml:space="preserve">
+    <value>Записывать только новые эпизоды</value>
+  </data>
+  <data name="LabelRecordProgrammeAtAnyTime" xml:space="preserve">
+    <value>Записывать передачу в любое время</value>
+  </data>
+  <data name="LabelRecordProgrammeOnAllChannels" xml:space="preserve">
+    <value>Записывать передачу со всех каналов</value>
+  </data>
+  <data name="AppBarCancel" xml:space="preserve">
+    <value>отмена</value>
+  </data>
+  <data name="LabelPostPaddingMinutes" xml:space="preserve">
+    <value>Отбивка до, мин</value>
+  </data>
+  <data name="LabelPostPaddingRequired" xml:space="preserve">
+    <value>Требуется отбивка после конца записи передачи</value>
+  </data>
+  <data name="LabelPrePaddingMinutes" xml:space="preserve">
+    <value>Отбивка после, мин</value>
+    <comment>Pre-padding = how long before programme's scheduled start time to record</comment>
+  </data>
+  <data name="LabelPrePaddingRequired" xml:space="preserve">
+    <value>Требуется отбивка до начала записи передачи</value>
+  </data>
+  <data name="SysTrayCancellingSeriesRecording" xml:space="preserve">
+    <value>Отменяется ссылка серию передач...</value>
+  </data>
+  <data name="SysTrayGettingRecordedItems" xml:space="preserve">
+    <value>Получаем записанные элементы...</value>
+  </data>
+  <data name="AppBarDelete" xml:space="preserve">
+    <value>удалить</value>
+  </data>
+  <data name="ErrorDeletingSeriesRecording" xml:space="preserve">
+    <value>К сожалению, произошла ошибка отмены этой серии передач на это время.</value>
+  </data>
+  <data name="LabelChannel" xml:space="preserve">
+    <value>Телеканал:</value>
+  </data>
+  <data name="LabelNew" xml:space="preserve">
+    <value>Создать</value>
+  </data>
+  <data name="LabelPrePostPadding" xml:space="preserve">
+    <value>Отбивка до/после</value>
+  </data>
+  <data name="LabelTime" xml:space="preserve">
+    <value>Время:</value>
+  </data>
+  <data name="MenuCancelRecording" xml:space="preserve">
+    <value>Отмена записи</value>
+  </data>
+  <data name="MessageDeleteSeriesRecording" xml:space="preserve">
+    <value>Вы действительно желаете отменить эту связь с серией? Её нельзя восстановить.</value>
+  </data>
+  <data name="SysTrayGettingUpcoming" xml:space="preserve">
+    <value>Получаем ожидаемые эпизоды...</value>
+  </data>
+  <data name="MessageCancelRecording" xml:space="preserve">
+    <value>Вы действительно желаете отменить эту запись? Её нельзя восстановить.</value>
+  </data>
+  <data name="SysTraySaving" xml:space="preserve">
+    <value>Сохраняется...</value>
+  </data>
+  <data name="MenuRecord" xml:space="preserve">
+    <value>записать</value>
+  </data>
+  <data name="MenuRecordSeries" xml:space="preserve">
+    <value>записать серию передач</value>
+  </data>
+  <data name="LabelReallyShortHours" xml:space="preserve">
+    <value>час</value>
+  </data>
+  <data name="LabelReallyShortMinutes" xml:space="preserve">
+    <value>мин</value>
+  </data>
+  <data name="LabelLive" xml:space="preserve">
+    <value>Эфир</value>
+  </data>
+  <data name="SystemTrayGettingWhatsOn" xml:space="preserve">
+    <value>Получение эфирных...</value>
+  </data>
+  <data name="SysTrayLoadingProgrammes" xml:space="preserve">
+    <value>Загружаются передачи...</value>
+  </data>
+  <data name="SysTraySettingProgrammeToRecord" xml:space="preserve">
+    <value>Указание передачи для записи</value>
+  </data>
+  <data name="SysTraySettingSeriesToRecord" xml:space="preserve">
+    <value>Указание серии для записи</value>
+  </data>
+  <data name="AppBarCreateAndEditSeries" xml:space="preserve">
+    <value>создание и правка записи серии</value>
+  </data>
+  <data name="SysTrayCancellingProgramme" xml:space="preserve">
+    <value>Отменяется передача...</value>
+  </data>
+  <data name="SysTrayPreparing" xml:space="preserve">
+    <value>Подготавливается...</value>
+  </data>
+  <data name="SysTrayGettingRecordingDetails" xml:space="preserve">
+    <value>Получаем детали записи...</value>
+  </data>
+  <data name="LabelDefaultRecordedTvGrouping" xml:space="preserve">
+    <value>Группировка записей по умолчанию</value>
+  </data>
+  <data name="AppBarChannel" xml:space="preserve">
+    <value>телеканал</value>
+  </data>
+  <data name="AppBarRecordedDate" xml:space="preserve">
+    <value>дата записи</value>
+  </data>
+  <data name="AppBarShowName" xml:space="preserve">
+    <value>название цикла</value>
+  </data>
+  <data name="HeaderActiveRecordings" xml:space="preserve">
+    <value>Активно</value>
+  </data>
+  <data name="LabelNoRecordedItems" xml:space="preserve">
+    <value>Похоже, что у вас нет каких-либо записанных элементов</value>
+  </data>
+  <data name="LabelRecordedDate" xml:space="preserve">
+    <value>Дата записи</value>
+  </data>
+  <data name="LabelShowName" xml:space="preserve">
+    <value>Название цикла</value>
+  </data>
+  <data name="SysTrayGettingCurrentlyRecording" xml:space="preserve">
+    <value>Получение активных записей...</value>
+  </data>
+  <data name="HeaderLive" xml:space="preserve">
+    <value>Эфир</value>
+    <comment>As in "live tv"</comment>
+  </data>
+  <data name="HeaderTV" xml:space="preserve">
+    <value>ТВ</value>
+  </data>
+  <data name="LabelUseTransparentTile" xml:space="preserve">
+    <value>Использовать прозрачные плитки</value>
+  </data>
+  <data name="TitleChannels" xml:space="preserve">
+    <value>Каналы</value>
+  </data>
+  <data name="LabelMultipleItems" xml:space="preserve">
+    <value>{0} элемент(а/ов)</value>
+    <comment>{0} is the number of items</comment>
+  </data>
+  <data name="LabelNoItems" xml:space="preserve">
+    <value>Никаких элементов </value>
+  </data>
+  <data name="LabelOneItem" xml:space="preserve">
+    <value>1 элемент</value>
+  </data>
+  <data name="ErrorAddingToPlaylist" xml:space="preserve">
+    <value>Ошибка добавления в список воспроизведения</value>
+  </data>
+  <data name="HeaderPlaylistName" xml:space="preserve">
+    <value>Название списка воспроизведения:</value>
+  </data>
+  <data name="HeaderPlaylists" xml:space="preserve">
+    <value>Список воспроизведения:</value>
+  </data>
+  <data name="LabelAddToPlaylist" xml:space="preserve">
+    <value>Добавить в список воспроизведения</value>
+  </data>
+  <data name="LabelNewPlaylist" xml:space="preserve">
+    <value>Новый список воспроизведения</value>
+  </data>
+  <data name="LabelSave" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="SysTrayAddingToPlaylist" xml:space="preserve">
+    <value>Добавляется в список воспроизведения...</value>
+  </data>
+  <data name="SysTrayLoadingPlaylists" xml:space="preserve">
+    <value>Загружаются списки воспроизведения...</value>
+  </data>
+  <data name="LabelAddingXToPlaylist" xml:space="preserve">
+    <value>Добавляются {0}</value>
+    <comment>{0} could be anything from "TV show" to "3 items"</comment>
+  </data>
+  <data name="LabelSeasonX" xml:space="preserve">
+    <value>Сезон {0}</value>
+    <comment>{0} is the season number</comment>
+  </data>
+  <data name="MenuRemoveFromPlaylist" xml:space="preserve">
+    <value>изъять из списка воспроизведения</value>
+  </data>
+  <data name="SysTrayDeleting" xml:space="preserve">
+    <value>Удаляется...</value>
+  </data>
+  <data name="SysTrayRemoving" xml:space="preserve">
+    <value>Изымается...</value>
+  </data>
+  <data name="LabelStreaming" xml:space="preserve">
+    <value>Трансляция</value>
+  </data>
+  <data name="LabelQuality" xml:space="preserve">
+    <value>Качество</value>
+  </data>
+  <data name="LabelResolution" xml:space="preserve">
+    <value>Разрешение:</value>
+  </data>
+  <data name="ErrorNoWifi" xml:space="preserve">
+    <value>Не похоже, что вы в WiFi, подключитесь к WiFi или измените ваш параметр "только WiFi".</value>
+  </data>
+  <data name="ErrorNoWifiTitle" xml:space="preserve">
+    <value>Нет WiFi</value>
+  </data>
+  <data name="LabelChooseQuality" xml:space="preserve">
+    <value>Выберите желаемое качество видеотрансляции. Обратите внимание, если транслировать по тарифному плану для мобильных данных, то при высоком качестве используется больше данных.</value>
+  </data>
+  <data name="LabelMobile" xml:space="preserve">
+    <value>мобильный</value>
+  </data>
+  <data name="LabelStreamWifi" xml:space="preserve">
+    <value>Трансляция видео только поверх WiFi</value>
+  </data>
+  <data name="LabelWifi" xml:space="preserve">
+    <value>wifi</value>
+  </data>
+  <data name="LabelInstantMix" xml:space="preserve">
+    <value>Автомикс</value>
+  </data>
+  <data name="SysTrayGettingInstantMix" xml:space="preserve">
+    <value>Получение автомикса...</value>
+  </data>
+  <data name="LabelPhotoUpload" xml:space="preserve">
+    <value>Отправка фото</value>
+  </data>
+  <data name="BackgroundTaskDescription" xml:space="preserve">
+    <value>Фоновая задача используется, чтобы автоматически отправлять любые фотографии с вашего телефона, данная возможность может быть включена изнутри приложения.</value>
+  </data>
+  <data name="LabelUploadAll" xml:space="preserve">
+    <value>Отправка всех рисунков</value>
+  </data>
+  <data name="LabelUploadPhotosTakenAfter" xml:space="preserve">
+    <value>Отправка фотографий снятых или сохранённых после данной даты</value>
+  </data>
+  <data name="LabelAutoUploadConstraints" xml:space="preserve">
+    <value>Обратите внимание, что отправки возможны только, когда ваше устройство находится на зарядке, при wifi и зарядке свыше 90 %.</value>
+  </data>
+  <data name="LabelAutoUploadDescription" xml:space="preserve">
+    <value>Автоотправка ваших рисунков сразу с вашего телефона напрямую в Media Browser Server.</value>
+  </data>
+  <data name="LabelTurnPhotoUploadOnServer" xml:space="preserve">
+    <value>Для того, чтобы это работало, вам нужно перейти в инфопанель сервера, щёлкнуть на Устройства, затем на Отправка с камеры, потом подключить ваше устройство. Если вы не смогли получить доступ к этому, свяжитесь с администратором вашего сервера.</value>
+  </data>
+  <data name="HeaderManualConnection" xml:space="preserve">
+    <value>Соединение вручную</value>
+  </data>
+  <data name="HeaderWhatIsMbConnect" xml:space="preserve">
+    <value>Что такое MB Connect?</value>
+  </data>
+  <data name="LabelManualServerEntry" xml:space="preserve">
+    <value>Ввести детали сервера вручную</value>
+  </data>
+  <data name="LabelMbConnect" xml:space="preserve">
+    <value>MB Connect</value>
+  </data>
+  <data name="LabelMbConnectAlreadyGotAccount" xml:space="preserve">
+    <value>Если имеется учётная запись Media Browser, вы сможете войти немедленно.</value>
+  </data>
+  <data name="LabelMbConnectDescriptionPara1" xml:space="preserve">
+    <value>С помощью MB Connect вы сможете получить лёгкий доступ к вашему серверу Media Browser, где бы вы не были, и предоставить  общий доступ вашей семье и друзьям.</value>
+  </data>
+  <data name="LabelMbConnectFreeAccount" xml:space="preserve">
+    <value>Если у вас ещё нет учётной записи Media Browser, то вы можете зарегистрироваться прямо сейчас, это - БЕСПЛАТНО!</value>
+  </data>
+  <data name="LabelSignUp" xml:space="preserve">
+    <value>Зарегистрироваться</value>
+  </data>
+  <data name="LabelSkip" xml:space="preserve">
+    <value>Пропустить</value>
+  </data>
+  <data name="ErrorSigningIn" xml:space="preserve">
+    <value>Ошибка входа</value>
+  </data>
+  <data name="LabelRetry" xml:space="preserve">
+    <value>Повтор</value>
+  </data>
+  <data name="LabelLogout" xml:space="preserve">
+    <value>Выход</value>
+  </data>
+  <data name="AppBarChangeServer" xml:space="preserve">
+    <value>сменить сервер</value>
+  </data>
+  <data name="LabelSignInWithConnect" xml:space="preserve">
+    <value>Войти с помощью Media Browser Connect</value>
+  </data>
+  <data name="ErrorPlayUnderLock" xml:space="preserve">
+    <value>Для того, чтобы изменить данный параметр снова, необходимо перезапустить приложение.</value>
+  </data>
+  <data name="ErrorPleaseRestart" xml:space="preserve">
+    <value>Перезапустить</value>
+  </data>
+  <data name="LabelLater" xml:space="preserve">
+    <value>позже</value>
+  </data>
+  <data name="LabelPlayUnderLock" xml:space="preserve">
+    <value>Воспроизводить видео при блокировании экрана</value>
+  </data>
+  <data name="LabelPlayUnderLockWarning" xml:space="preserve">
+    <value>Это продлит ресурс вашей батареи</value>
+  </data>
+  <data name="LabelRestartNow" xml:space="preserve">
+    <value>перезапустить сейчас?</value>
+  </data>
+
+</root>

@@ -18,7 +18,7 @@ using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Querying;
 using MediaBrowser.WindowsPhone.CimbalinoToolkit.Tiles;
 using MediaBrowser.WindowsPhone.Controls;
-using MediaBrowser.WindowsPhone.Resources;
+using Emby.WindowsPhone.Localisation;
 using ScottIsAFool.WindowsPhone.Logging;
 using MediaBrowser.WindowsPhone.Extensions;
 

@@ -30,7 +30,7 @@
             <behaviors:ApplicationBarBehavior.Buttons>
                 <behaviors:ApplicationBarIconButton IconUri="/Icons/appbar.refresh.rest.png"
                                                     Command="{Binding RefreshCommand}"
-                                                    Text="{Binding LocalizedResources.AppBarRefresh, Source={StaticResource LocalizedStrings}}"
+                                                    Text="{Binding LocalisedResources.AppBarRefresh, Source={StaticResource LocalisedStrings}}"
                                                     IsEnabled="{Binding ProgressIsVisible, Converter={StaticResource NegativeBooleanConverter}}" />
             </behaviors:ApplicationBarBehavior.Buttons>
         </behaviors:ApplicationBarBehavior>

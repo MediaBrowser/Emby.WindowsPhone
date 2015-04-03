@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.WindowsPhone.Extensions;
 using MediaBrowser.WindowsPhone.Helpers;
-using MediaBrowser.WindowsPhone.Resources;
+using Emby.WindowsPhone.Localisation;
 using MediaBrowser.WindowsPhone.Services;
 using ScottIsAFool.WindowsPhone;
 using INavigationService = MediaBrowser.WindowsPhone.Model.Interfaces.INavigationService;
