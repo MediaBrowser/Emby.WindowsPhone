@@ -36,12 +36,12 @@
                                              IsEnabled="{Binding SelectedArtist.SupportsSync}"
                                              SyncPolicy="{Binding Auth.LoggedInUser.Policy.EnableSync, Source={StaticResource Locator}}"/>
                                              <!--HasSyncJob="{Binding SelectedArtist.HasSyncJob}"/>-->
-                <!--<behaviours:SyncAppBarButton Text="{Binding LocalisedResources.AppBarUnsync, Source={StaticResource LocalisedStrings}}"
+                <behaviours:SyncAppBarButton Text="{Binding LocalisedResources.AppBarUnsync, Source={StaticResource LocalisedStrings}}"
                                              IconUri="/Icons/appbar.cloud.delete.png"
                                              IsEnabled="{Binding SelectedArtist.SupportsSync}"
                                              SyncPolicy="{Binding Auth.LoggedInUser.Policy.EnableSync, Source={StaticResource Locator}}"
-                                             HasSyncJob="{Binding SelectedArtist.HasSyncJob}"
-                                             IsRemove="True"/>-->
+                                             HasSyncJob="{Binding SelectedArtist.IsSynced}"
+                                             IsRemove="True"/>
             </cimbalino:ApplicationBarBehavior.Buttons>
             <cimbalino:ApplicationBarBehavior.MenuItems>
                 <cimbalino:ApplicationBarMenuItem Text="{Binding LocalisedResources.AppBarPlayAllTracks, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
