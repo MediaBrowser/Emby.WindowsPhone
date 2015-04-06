@@ -2239,7 +2239,7 @@ namespace Emby.WindowsPhone.Localisation {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} (this device).
+        ///   Looks up a localized string similar to this device ({0}).
         /// </summary>
         public static string LabelThisDevice {
             get {

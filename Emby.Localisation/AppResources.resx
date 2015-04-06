@@ -1226,7 +1226,7 @@
     <value>Sync to device:</value>
   </data>
   <data name="LabelThisDevice" xml:space="preserve">
-    <value>{0} (this device)</value>
+    <value>this device ({0})</value>
     <comment>{0} = the name of the device</comment>
   </data>
   <data name="MessageSyncJobCreated" xml:space="preserve">
