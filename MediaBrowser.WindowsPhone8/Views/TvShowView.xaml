@@ -31,10 +31,20 @@
         <cimbalino:ApplicationBarBehavior Mode="{Binding Auth.LoggedInUser.Policy.EnableSync, Source={StaticResource Locator}, Converter={StaticResource BoolAppBarModeConverter}}"
                                           IsMenuEnabled="True">
             <cimbalino:ApplicationBarBehavior.Buttons>
-                <cimbalino:ApplicationBarIconButton Text="{Binding LocalisedResources.AppBarOffline, Source={StaticResource LocalisedStrings}}"
-                                                    Command="{Binding ShowOfflineCommand}"
-                                                    IconUri="/Icons/appbar.cloud.png"
-                                                    IsVisible="{Binding Auth.LoggedInUser.Policy.EnableSync, Source={StaticResource Locator}}"/>
+                <behaviours:SyncAppBarButton Text="{Binding LocalisedResources.AppBarOffline, Source={StaticResource LocalisedStrings}}"
+                                             IconUri="/Icons/appbar.cloud.png"
+                                             Command="{Binding ShowOfflineCommand}"
+                                             IsEnabled="{Binding SelectedTvSeries.SupportsSync}"
+                                             SyncPolicy="{Binding Auth.LoggedInUser.Policy.EnableSync, Source={StaticResource Locator}}"
+                                             HasSyncJob="{Binding SelectedTvSeries.HasSyncJob}" />
+                <behaviours:SyncAppBarButton Text="{Binding LocalisedResources.AppBarUnsync, Source={StaticResource LocalisedStrings}}"
+                                             IconUri="/Icons/appbar.cloud.delete.png"
+                                             IsEnabled="{Binding SelectedTvSeries.SupportsSync}"
+                                             SyncPolicy="{Binding Auth.LoggedInUser.Policy.EnableSync, Source={StaticResource Locator}}"
+                                             IsSynced="{Binding SelectedTvSeries.IsSynced}"
+                                             Command="{Binding UnsyncItemCommand}"
+                                             CommandParameter="{Binding SelectedTvSeries}"
+                                             IsRemove="True" />
             </cimbalino:ApplicationBarBehavior.Buttons>
             <cimbalino:ApplicationBarBehavior.MenuItems>
                 <cimbalino:ApplicationBarMenuItem Text="{Binding SelectedTvSeries.UserData.IsFavorite, Converter={StaticResource FavouritesConverter}, ConverterParameter=fulltext}"

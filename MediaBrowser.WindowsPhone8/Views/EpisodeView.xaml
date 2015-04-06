@@ -37,11 +37,20 @@
                                                 IconUri="/Icons/appbar.connection.playon.png"
                                                 Command="{Binding Remote.SendPlayCommand, Source={StaticResource Locator}}"
                                                 CommandParameter="{Binding SelectedEpisode.Id}" />
-            <cimbalino:ApplicationBarIconButton Text="{Binding LocalisedResources.AppBarOffline, Source={StaticResource LocalisedStrings}}"
-                                                IconUri="/Icons/appbar.cloud.png"
-                                                Command="{Binding EpisodeOfflineCommand}"
-                                                IsEnabled="{Binding SelectedEpisode.SupportsSync}"
-                                                IsVisible="{Binding Auth.LoggedInUser.Policy.EnableSync, Source={StaticResource Locator}}"/>
+            <behaviours:SyncAppBarButton Text="{Binding LocalisedResources.AppBarOffline, Source={StaticResource LocalisedStrings}}"
+                                         IconUri="/Icons/appbar.cloud.png"
+                                         Command="{Binding EpisodeOfflineCommand}"
+                                         IsEnabled="{Binding SelectedEpisode.SupportsSync}"
+                                         SyncPolicy="{Binding Auth.LoggedInUser.Policy.EnableSync, Source={StaticResource Locator}}"
+                                         HasSyncJob="{Binding SelectedEpisode.HasSyncJob}" />
+            <behaviours:SyncAppBarButton Text="{Binding LocalisedResources.AppBarUnsync, Source={StaticResource LocalisedStrings}}"
+                                         IconUri="/Icons/appbar.cloud.delete.png"
+                                         IsEnabled="{Binding SelectedEpisode.SupportsSync}"
+                                         SyncPolicy="{Binding Auth.LoggedInUser.Policy.EnableSync, Source={StaticResource Locator}}"
+                                         IsSynced="{Binding SelectedEpisode.IsSynced}"
+                                         Command="{Binding UnsyncItemCommand}"
+                                         CommandParameter="{Binding SelectedEpisode}"
+                                         IsRemove="True" />
             <cimbalino:ApplicationBarIconButton Text="{Binding LocalisedResources.AppBarNext, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                 Command="{Binding NextEpisodeCommand}"
                                                 IconUri="/icons/appbar.next.rest.png" />

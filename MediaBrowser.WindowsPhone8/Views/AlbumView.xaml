@@ -37,6 +37,21 @@
                                                     CommandParameter="{Binding SelectedAlbum}"
                                                     IsEnabled="{Binding SelectedAlbum.SupportsSync}"
                                                     IsVisible="{Binding Auth.LoggedInUser.Policy.EnableSync, Source={StaticResource Locator}}" />
+                <behaviours:SyncAppBarButton Text="{Binding LocalisedResources.AppBarOffline, Source={StaticResource LocalisedStrings}}"
+                                             IconUri="/Icons/appbar.cloud.png"
+                                             Command="{Binding TakeOfflineCommand}"
+                                             CommandParameter="{Binding SelectedAlbum}"
+                                             IsEnabled="{Binding SelectedAlbum.SupportsSync}"
+                                             SyncPolicy="{Binding Auth.LoggedInUser.Policy.EnableSync, Source={StaticResource Locator}}"
+                                             HasSyncJob="{Binding SelectedAlbum.HasSyncJob}" />
+                <behaviours:SyncAppBarButton Text="{Binding LocalisedResources.AppBarUnsync, Source={StaticResource LocalisedStrings}}"
+                                             IconUri="/Icons/appbar.cloud.delete.png"
+                                             IsEnabled="{Binding SelectedAlbum.SupportsSync}"
+                                             SyncPolicy="{Binding Auth.LoggedInUser.Policy.EnableSync, Source={StaticResource Locator}}"
+                                             IsSynced="{Binding SelectedAlbum.IsSynced}"
+                                             Command="{Binding UnsyncCommand}"
+                                             CommandParameter="{Binding SelectedAlbum}"
+                                             IsRemove="True" />
                 <cimbalino:ApplicationBar.MenuItems>
                     <cimbalino:ApplicationBarMenuItem Text="{Binding LocalisedResources.AppBarNowPlaying, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                       Command="{Binding Main.NavigateToAPage, Source={StaticResource Locator}}"

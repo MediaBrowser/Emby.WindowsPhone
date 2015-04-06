@@ -269,6 +269,18 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 }
             });
 
+            UnsyncCommand = new RelayCommand<BaseItemDto>(async item =>
+            {
+                try
+                {
+                    await SyncService.Current.UnsyncItem(item.Id);
+                }
+                catch (HttpException ex)
+                {
+                    Utils.HandleHttpException("UnsyncCommand", ex, NavigationService, Log);
+                }
+            });
+
             PlayItemsCommand = new RelayCommand(async () =>
             {
                 var newList = await SelectedTracks.ToPlayListItems(ApiClient, _playbackManager);
@@ -525,6 +537,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public RelayCommand<BaseItemDto> AddRemoveFavouriteCommand { get; set; }
         public RelayCommand SyncItemsCommand { get; set; }
         public RelayCommand<BaseItemDto> TakeOfflineCommand { get; set; }
+        public RelayCommand<BaseItemDto> UnsyncCommand { get; set; }
         public bool CanUpdateFavourites { get; set; }
     }
 }

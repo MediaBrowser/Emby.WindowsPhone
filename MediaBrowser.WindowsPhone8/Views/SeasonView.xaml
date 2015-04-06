@@ -34,6 +34,20 @@
                                                     IconUri="/Icons/appbar.cloud.png"
                                                     IsEnabled="{Binding SelectedSeason.SupportsSync}" 
                                                     IsVisible="{Binding Auth.LoggedInUser.Policy.EnableSync, Source={StaticResource Locator}}"/>
+                <behaviours:SyncAppBarButton Text="{Binding LocalisedResources.AppBarOffline, Source={StaticResource LocalisedStrings}}"
+                                             IconUri="/Icons/appbar.cloud.png"
+                                             Command="{Binding SeasonOfflineCommand}"
+                                             IsEnabled="{Binding SelectedSeason.SupportsSync}"
+                                             SyncPolicy="{Binding Auth.LoggedInUser.Policy.EnableSync, Source={StaticResource Locator}}"
+                                             HasSyncJob="{Binding SelectedSeason.HasSyncJob}" />
+                <behaviours:SyncAppBarButton Text="{Binding LocalisedResources.AppBarUnsync, Source={StaticResource LocalisedStrings}}"
+                                             IconUri="/Icons/appbar.cloud.delete.png"
+                                             IsEnabled="{Binding SelectedSeason.SupportsSync}"
+                                             SyncPolicy="{Binding Auth.LoggedInUser.Policy.EnableSync, Source={StaticResource Locator}}"
+                                             IsSynced="{Binding SelectedSeason.IsSynced}"
+                                             Command="{Binding UnsyncItemCommand}"
+                                             CommandParameter="{Binding SelectedSeason}"
+                                             IsRemove="True" />
             </behaviors:ApplicationBarBehavior.Buttons>
             <behaviors:ApplicationBarBehavior.MenuItems>
                 <behaviors:ApplicationBarMenuItem Text="{Binding LocalisedResources.LabelAddToPlaylist, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"

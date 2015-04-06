@@ -153,6 +153,23 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 
                 await SyncService.Current.AddJobAsync(request);
             }, () => SelectedMovie != null && SelectedMovie.SupportsSync.HasValue && SelectedMovie.SupportsSync.Value);
+
+            UnsyncItemCommand = new RelayCommand(async () =>
+            {
+                try
+                {
+                    if (SelectedMovie.IsSynced.HasValue && !SelectedMovie.IsSynced.Value)
+                    {
+                        return; 
+                    }
+
+                    await SyncService.Current.UnsyncItem(SelectedMovie.Id);
+                }
+                catch (HttpException ex)
+                {
+                    Utils.HandleHttpException("UnsyncItemCommand", ex, NavigationService, Log);
+                }
+            });
         }
 
         private async Task<bool> GetMovieDetails()
@@ -234,6 +251,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public RelayCommand<BaseItemPerson> ShowOtherFilmsCommand { get; set; }
         public RelayCommand SetPosterAsLockScreenCommand { get; set; }
         public RelayCommand SyncItemCommand { get; set; }
+        public RelayCommand UnsyncItemCommand { get; set; }
 
         public override void WireMessages()
         {

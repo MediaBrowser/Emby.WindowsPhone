@@ -39,9 +39,19 @@
                                                 IconUri="/Icons/appbar.connection.playon.png"
                                                 Command="{Binding Remote.SendPlayCommand, Source={StaticResource Locator}}"
                                                 CommandParameter="{Binding SelectedMovie.Id}" />
-            <cimbalino:ApplicationBarIconButton Text="{Binding LocalisedResources.AppBarOffline, Source={StaticResource LocalisedStrings}}"
-                                                IconUri="/Icons/appbar.cloud.png"
-                                                Command="{Binding SyncItemCommand}"/>
+            <behaviours:SyncAppBarButton Text="{Binding LocalisedResources.AppBarOffline, Source={StaticResource LocalisedStrings}}"
+                                         IconUri="/Icons/appbar.cloud.png"
+                                         Command="{Binding SyncItemCommand}"
+                                         IsEnabled="{Binding SelectedMovie.SupportsSync}"
+                                         SyncPolicy="{Binding Auth.LoggedInUser.Policy.EnableSync, Source={StaticResource Locator}}"
+                                         HasSyncJob="{Binding SelectedMovie.HasSyncJob}" />
+            <behaviours:SyncAppBarButton Text="{Binding LocalisedResources.AppBarUnsync, Source={StaticResource LocalisedStrings}}"
+                                         IconUri="/Icons/appbar.cloud.delete.png"
+                                         IsEnabled="{Binding SelectedMovie.SupportsSync}"
+                                         SyncPolicy="{Binding Auth.LoggedInUser.Policy.EnableSync, Source={StaticResource Locator}}"
+                                         IsSynced="{Binding SelectedMovie.IsSynced}"
+                                         Command="{Binding UnsyncItemCommand}"
+                                         IsRemove="True" />
             <cimbalino:ApplicationBarBehavior.MenuItems>
                 <cimbalino:ApplicationBarMenuItem Text="{Binding LocalisedResources.AppBarResume, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                   IsEnabled="{Binding CanResume}"

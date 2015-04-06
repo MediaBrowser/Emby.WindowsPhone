@@ -81,7 +81,7 @@ namespace MediaBrowser.WindowsPhone.Services
             apiClient.SyncJobCreated -= ApiClientOnSyncJobCreated;
             apiClient.SyncJobCreated += ApiClientOnSyncJobCreated;
 
-            apiClient.SyncJobCancelled -= ApiClientOnSyncJobCancelled; 
+            apiClient.SyncJobCancelled -= ApiClientOnSyncJobCancelled;
             apiClient.SyncJobCancelled += ApiClientOnSyncJobCancelled;
 
             apiClient.SyncJobUpdated -= ApiClientOnSyncJobUpdated;
@@ -141,24 +141,32 @@ namespace MediaBrowser.WindowsPhone.Services
 
         public async Task<List<SyncJob>> GetSyncJobs(bool onlyThisDevice = true)
         {
+            var apiClient = _connectionManager.GetApiClient(_serverInfo.ServerInfo.Id);
             var query = new SyncJobQuery
             {
-                UserId = AuthenticationService.Current.LoggedInUserId
+                UserId = AuthenticationService.Current.LoggedInUserId,
+                TargetId = onlyThisDevice ? apiClient.DeviceId : string.Empty
             };
-            var jobs = await _connectionManager.GetApiClient(_serverInfo.ServerInfo.Id).GetSyncJobs(query);
+
+            var jobs = await apiClient.GetSyncJobs(query);
 
             if (jobs != null && !jobs.Items.IsNullOrEmpty())
             {
-                if (onlyThisDevice)
-                {
-                    var deviceJobs = jobs.Items.Where(x => x.TargetId == _connectionManager.Device.DeviceId).ToList();
-                    return deviceJobs;
-                }
-
                 return jobs.Items.ToList();
             }
 
             return new List<SyncJob>();
+        }
+
+        public Task UnsyncItem(string id)
+        {
+            return UnsyncItems(new List<string> { id });
+        }
+
+        public async Task UnsyncItems(IEnumerable<string> itemIds)
+        {
+            var apiClient = _connectionManager.GetApiClient(_serverInfo.ServerInfo.Id);
+            await apiClient.CancelSyncLibraryItems(apiClient.DeviceId, itemIds);
         }
 
         public Task CheckAndMoveFinishedFiles()

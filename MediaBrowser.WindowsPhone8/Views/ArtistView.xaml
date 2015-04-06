@@ -34,13 +34,13 @@
                                              Command="{Binding TakeOfflineCommand}"
                                              CommandParameter="{Binding SelectedArtist}"
                                              IsEnabled="{Binding SelectedArtist.SupportsSync}"
-                                             SyncPolicy="{Binding Auth.LoggedInUser.Policy.EnableSync, Source={StaticResource Locator}}"/>
-                                             <!--HasSyncJob="{Binding SelectedArtist.HasSyncJob}"/>-->
+                                             SyncPolicy="{Binding Auth.LoggedInUser.Policy.EnableSync, Source={StaticResource Locator}}"
+                                             HasSyncJob="{Binding SelectedArtist.HasSyncJob}"/>
                 <behaviours:SyncAppBarButton Text="{Binding LocalisedResources.AppBarUnsync, Source={StaticResource LocalisedStrings}}"
                                              IconUri="/Icons/appbar.cloud.delete.png"
                                              IsEnabled="{Binding SelectedArtist.SupportsSync}"
                                              SyncPolicy="{Binding Auth.LoggedInUser.Policy.EnableSync, Source={StaticResource Locator}}"
-                                             HasSyncJob="{Binding SelectedArtist.IsSynced}"
+                                             IsSynced="{Binding SelectedArtist.IsSynced}"
                                              IsRemove="True"/>
             </cimbalino:ApplicationBarBehavior.Buttons>
             <cimbalino:ApplicationBarBehavior.MenuItems>

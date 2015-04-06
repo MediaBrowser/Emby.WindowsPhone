@@ -290,6 +290,23 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                 }
             });
 
+            UnsyncItemCommand = new RelayCommand<BaseItemDto>(async item =>
+            {
+                try
+                {
+                    if (item.IsSynced.HasValue && !item.IsSynced.Value)
+                    {
+                        return;
+                    }
+
+                    await SyncService.Current.UnsyncItem(item.Id);
+                }
+                catch (HttpException ex)
+                {
+                    Utils.HandleHttpException("UnsyncItemCommand", ex, NavigationService, Log);
+                }
+            });
+
             NavigateTo = new RelayCommand<BaseItemDto>(NavigationService.NavigateTo);
         }
 
@@ -531,6 +548,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
         public RelayCommand SeasonOfflineCommand { get; set; }
         public RelayCommand ShowOfflineCommand { get; set; }
         public RelayCommand<BaseItemDto> ItemOfflineCommand { get; set; }
+        public RelayCommand<BaseItemDto> UnsyncItemCommand { get; set; }
 
         [UsedImplicitly]
         private void OnSelectedEpisodeChanged()
