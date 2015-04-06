@@ -128,15 +128,11 @@
   <ItemGroup>
     <Reference Include="Cimbalino.Toolkit.Core, Version=1.2.6.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Cimbalino.Toolkit.Core.1.2.6\lib\wp8\Cimbalino.Toolkit.Core.dll</HintPath>
+      <HintPath>..\other-packages\Cimbalino.Core\Cimbalino.Toolkit.Core.dll</HintPath>
     </Reference>
     <Reference Include="JetBrains.Annotations">
       <HintPath>..\packages\JetBrainsAnnotations.Fody.1.0.2\Lib\JetBrains.Annotations.dll</HintPath>
       <Private>False</Private>
-    </Reference>
-    <Reference Include="MediaBrowser.ApiInteraction.Portable, Version=3.0.5573.17738, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MediaBrowser.ApiClient.3.0.0.611\lib\portable-net45+sl4+wp71+win8+wpa81\MediaBrowser.ApiInteraction.Portable.dll</HintPath>
     </Reference>
     <Reference Include="MediaBrowser.Model, Version=3.0.5573.17685, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -238,6 +234,10 @@
     <ProjectReference Include="..\Emby.Localisation\Emby.WindowsPhone.Localisation.csproj">
       <Project>{2d79c354-8b14-40a9-ae35-d4df051cc374}</Project>
       <Name>Emby.WindowsPhone.Localisation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Other\ApiClient\MediaBrowser.ApiInteraction.Portable\MediaBrowser.ApiInteraction.Portable.csproj">
+      <Project>{52e0c440-85c0-4a99-acfe-07c87b2600be}</Project>
+      <Name>MediaBrowser.ApiInteraction.Portable</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />

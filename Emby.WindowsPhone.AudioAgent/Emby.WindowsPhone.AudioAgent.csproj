@@ -125,11 +125,7 @@
   <ItemGroup>
     <Reference Include="Cimbalino.Toolkit.Core, Version=1.2.6.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Cimbalino.Toolkit.Core.1.2.6\lib\wp8\Cimbalino.Toolkit.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="MediaBrowser.ApiInteraction.Portable, Version=3.0.5573.17738, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MediaBrowser.ApiClient.3.0.0.611\lib\portable-net45+sl4+wp71+win8+wpa81\MediaBrowser.ApiInteraction.Portable.dll</HintPath>
+      <HintPath>..\other-packages\Cimbalino.Core\Cimbalino.Toolkit.Core.dll</HintPath>
     </Reference>
     <Reference Include="MediaBrowser.Model">
       <HintPath>..\packages\MediaBrowser.Common.3.0.616\lib\portable-net4+sl4+wp71+win8+wpa81\MediaBrowser.Model.dll</HintPath>
@@ -167,6 +163,10 @@
     <ProjectReference Include="..\Emby.Shared\Emby.Shared.csproj">
       <Project>{0663D56B-A326-4E58-939B-B20ADEE2C7E7}</Project>
       <Name>Emby.Shared8</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Other\ApiClient\MediaBrowser.ApiInteraction.Portable\MediaBrowser.ApiInteraction.Portable.csproj">
+      <Project>{52e0c440-85c0-4a99-acfe-07c87b2600be}</Project>
+      <Name>MediaBrowser.ApiInteraction.Portable</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

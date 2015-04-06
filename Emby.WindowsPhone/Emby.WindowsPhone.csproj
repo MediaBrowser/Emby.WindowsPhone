@@ -881,11 +881,11 @@
     </Reference>
     <Reference Include="Cimbalino.Toolkit, Version=1.2.6.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Cimbalino.Toolkit.1.2.6\lib\wp8\Cimbalino.Toolkit.dll</HintPath>
+      <HintPath>..\other-packages\Cimbalino\Cimbalino.Toolkit.dll</HintPath>
     </Reference>
     <Reference Include="Cimbalino.Toolkit.Core, Version=1.2.6.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Cimbalino.Toolkit.Core.1.2.6\lib\wp8\Cimbalino.Toolkit.Core.dll</HintPath>
+      <HintPath>..\other-packages\Cimbalino.Core\Cimbalino.Toolkit.Core.dll</HintPath>
     </Reference>
     <Reference Include="Coding4Fun.Toolkit.Controls, Version=2.0.9.0, Culture=neutral, PublicKeyToken=c5fd7b72b1a17ce4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -924,10 +924,6 @@
     <Reference Include="JetBrains.Annotations">
       <HintPath>..\packages\JetBrainsAnnotations.Fody.1.0.2\Lib\JetBrains.Annotations.dll</HintPath>
       <Private>False</Private>
-    </Reference>
-    <Reference Include="MediaBrowser.ApiInteraction.Portable, Version=3.0.5573.17738, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MediaBrowser.ApiClient.3.0.0.611\lib\portable-net45+sl4+wp71+win8+wpa81\MediaBrowser.ApiInteraction.Portable.dll</HintPath>
     </Reference>
     <Reference Include="MediaBrowser.Model, Version=3.0.5573.17685, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -1070,6 +1066,10 @@
     <ProjectReference Include="..\Emby.WindowsPhone.AudioAgent\Emby.WindowsPhone.AudioAgent.csproj">
       <Project>{62509334-83BD-4D52-9387-498D59630832}</Project>
       <Name>Emby.WindowsPhone.AudioAgent</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Other\ApiClient\MediaBrowser.ApiInteraction.Portable\MediaBrowser.ApiInteraction.Portable.csproj">
+      <Project>{52e0c440-85c0-4a99-acfe-07c87b2600be}</Project>
+      <Name>MediaBrowser.ApiInteraction.Portable</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

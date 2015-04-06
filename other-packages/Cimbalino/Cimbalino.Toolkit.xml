@@ -1,0 +1,1875 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Cimbalino.Toolkit</name>
+    </assembly>
+    <members>
+        <member name="T:Cimbalino.Toolkit.Behaviors.AfterAutoFocusEventArgs">
+            <summary>
+            Provides data for <see cref="E:Cimbalino.Toolkit.Behaviors.AutoFocusBehavior.AfterAutoFocus"/> events.
+            </summary>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Behaviors.AfterAutoFocusEventArgs.#ctor(System.Windows.Controls.Control,System.Windows.Controls.Control)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Cimbalino.Toolkit.Behaviors.AfterAutoFocusEventArgs"/> class.
+            </summary>
+            <param name="fromControl">The previous focused control.</param>
+            <param name="toControl">The current focused control.</param>
+        </member>
+        <member name="P:Cimbalino.Toolkit.Behaviors.AfterAutoFocusEventArgs.FromControl">
+            <summary>
+            Gets the previous focused control.
+            </summary>
+            <value>The previous focused control.</value>
+        </member>
+        <member name="P:Cimbalino.Toolkit.Behaviors.AfterAutoFocusEventArgs.ToControl">
+            <summary>
+            Gets the current focused control.
+            </summary>
+            <value>The current focused control.</value>
+        </member>
+        <member name="T:Cimbalino.Toolkit.Behaviors.ApplicationBar">
+            <summary>
+            An Application Bar control.
+            </summary>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Behaviors.ApplicationBar.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Cimbalino.Toolkit.Behaviors.ApplicationBar"/> class.
+            </summary>
+        </member>
+        <member name="F:Cimbalino.Toolkit.Behaviors.ApplicationBar.MenuItemsProperty">
+            <summary>
+            Identifier for the <see cref="P:Cimbalino.Toolkit.Behaviors.ApplicationBar.MenuItems"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Cimbalino.Toolkit.Behaviors.ApplicationBar.ButtonsProperty">
+            <summary>
+            Identifier for the <see cref="P:Cimbalino.Toolkit.Behaviors.ApplicationBar.Buttons"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Cimbalino.Toolkit.Behaviors.ApplicationBar.BackgroundColorProperty">
+            <summary>
+            Identifier for the <see cref="P:Cimbalino.Toolkit.Behaviors.ApplicationBar.BackgroundColor"/> dependency property.
+            </summary>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Behaviors.ApplicationBar.OnBackgroundColorChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            Called after the background color of the ApplicationBar is changed.
+            </summary>
+            <param name="d">The <see cref="T:System.Windows.DependencyObject"/>.</param>
+            <param name="e">The <see cref="T:System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="F:Cimbalino.Toolkit.Behaviors.ApplicationBar.ForegroundColorProperty">
+            <summary>
+            Identifier for the <see cref="P:Cimbalino.Toolkit.Behaviors.ApplicationBar.ForegroundColor"/> dependency property.
+            </summary>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Behaviors.ApplicationBar.OnForegroundColorChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            Called after the foreground color of the ApplicationBar is changed.
+            </summary>
+            <param name="d">The <see cref="T:System.Windows.DependencyObject"/>.</param>
+            <param name="e">The <see cref="T:System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="F:Cimbalino.Toolkit.Behaviors.ApplicationBar.IsMenuEnabledProperty">
+            <summary>
+            Identifier for the <see cref="P:Cimbalino.Toolkit.Behaviors.ApplicationBar.IsMenuEnabled"/> dependency property.
+            </summary>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Behaviors.ApplicationBar.OnIsMenuEnabledChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            Called after the menu enabled state of the Application Bar is changed.
+            </summary>
+            <param name="d">The <see cref="T:System.Windows.DependencyObject"/>.</param>
+            <param name="e">The <see cref="T:System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="F:Cimbalino.Toolkit.Behaviors.ApplicationBar.IsVisibleProperty">
+            <summary>
+            Identifier for the <see cref="P:Cimbalino.Toolkit.Behaviors.ApplicationBar.IsVisible"/> dependency property.
+            </summary>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Behaviors.ApplicationBar.OnIsVisibleChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            Called after the visible state of the Application Bar is changed.
+            </summary>
+            <param name="d">The <see cref="T:System.Windows.DependencyObject"/>.</param>
+            <param name="e">The <see cref="T:System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="F:Cimbalino.Toolkit.Behaviors.ApplicationBar.ModeProperty">
+            <summary>
+            Identifier for the <see cref="P:Cimbalino.Toolkit.Behaviors.ApplicationBar.Mode"/> dependency property.
+            </summary>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Behaviors.ApplicationBar.OnModeChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            Called after the size of the ApplicationBar is changed.
+            </summary>
+            <param name="d">The <see cref="T:System.Windows.DependencyObject"/>.</param>
+            <param name="e">The <see cref="T:System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="F:Cimbalino.Toolkit.Behaviors.ApplicationBar.OpacityProperty">
+            <summary>
+            Identifier for the <see cref="P:Cimbalino.Toolkit.Behaviors.ApplicationBar.Opacity"/> dependency property.
+            </summary>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Behaviors.ApplicationBar.OnOpacityChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            Called after the opacity of the ApplicationBar is changed.
+            </summary>
+            <param name="d">The <see cref="T:System.Windows.DependencyObject"/>.</param>
+            <param name="e">The <see cref="T:System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="F:Cimbalino.Toolkit.Behaviors.ApplicationBar.StateChangedCommandProperty">
+            <summary>
+            Identifier for the <see cref="P:Cimbalino.Toolkit.Behaviors.ApplicationBar.StateChangedCommand"/> dependency property.
+            </summary>
+        </member>
+        <member name="E:Cimbalino.Toolkit.Behaviors.ApplicationBar.StateChanged">
+            <summary>
+            Occurs when the user opens or closes the menu.
+            </summary>
+        </member>
+        <member name="P:Cimbalino.Toolkit.Behaviors.ApplicationBar.MenuItems">
+            <summary>
+            Gets the list of the menu items that appear on the Application Bar.
+            </summary>
+            <value>The list of menu items.</value>
+        </member>
+        <member name="P:Cimbalino.Toolkit.Behaviors.ApplicationBar.Buttons">
+            <summary>
+            Gets the list of the buttons that appear on the Application Bar.
+            </summary>
+            <value>The Application Bar buttons.</value>
+        </member>
+        <member name="P:Cimbalino.Toolkit.Behaviors.ApplicationBar.BackgroundColor">
+            <summary>
+            Gets or sets the background color of the Application Bar.
+            </summary>
+            <value>The background color of the Application Bar.</value>
+        </member>
+        <member name="P:Cimbalino.Toolkit.Behaviors.ApplicationBar.ForegroundColor">
+            <summary>
+            Gets or sets the foreground color of the Application Bar.
+            </summary>
+            <value>The foreground color of the Application Bar.</value>
+        </member>
+        <member name="P:Cimbalino.Toolkit.Behaviors.ApplicationBar.IsMenuEnabled">
+            <summary>
+            Gets or sets a value indicating whether the user can open the menu.
+            </summary>
+            <value>true if the menu is enabled; otherwise, false.</value>
+        </member>
+        <member name="P:Cimbalino.Toolkit.Behaviors.ApplicationBar.IsVisible">
+            <summary>
+            Gets or sets a value indicating whether the Application Bar is visible.
+            </summary>
+            <value>true if the Application Bar is visible; otherwise, false.</value>
+        </member>
+        <member name="P:Cimbalino.Toolkit.Behaviors.ApplicationBar.Mode">
+            <summary>
+            Gets or sets the size of the Application Bar.
+            </summary>
+            <value>One of the enumeration values that indicates the size of the Application Bar.</value>
+        </member>
+        <member name="P:Cimbalino.Toolkit.Behaviors.ApplicationBar.Opacity">
+            <summary>
+            Gets or sets the opacity of the Application Bar.
+            </summary>
+            <value>The opacity of the Application Bar.</value>
+        </member>
+        <member name="P:Cimbalino.Toolkit.Behaviors.ApplicationBar.StateChangedCommand">
+            <summary>
+            Gets or sets the command to invoke when the user opens or closes the menu. This is a DependencyProperty.
+            </summary>
+            <value>The command to invoke when the user opens or closes the menu. The default is null.</value>
+        </member>
+        <member name="T:Cimbalino.Toolkit.Behaviors.ApplicationBarBehavior">
+            <summary>
+            The behavior that creates a bindable <see cref="T:Microsoft.Phone.Shell.ApplicationBar"/>.
+            </summary>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Behaviors.ApplicationBarBehavior.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Cimbalino.Toolkit.Behaviors.ApplicationBarBehavior"/> class.
+            </summary>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Behaviors.ApplicationBarBehavior.OnAttached">
+            <summary>
+            Called after the behavior is attached to an AssociatedObject.
+            </summary>
+            <remarks>Override this to hook up functionality to the AssociatedObject.</remarks>
+        </member>
+        <member name="F:Cimbalino.Toolkit.Behaviors.ApplicationBarBehavior.MenuItemsProperty">
+            <summary>
+            Identifier for the <see cref="P:Cimbalino.Toolkit.Behaviors.ApplicationBarBehavior.MenuItems"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Cimbalino.Toolkit.Behaviors.ApplicationBarBehavior.ButtonsProperty">
+            <summary>
+            Identifier for the <see cref="P:Cimbalino.Toolkit.Behaviors.ApplicationBarBehavior.Buttons"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Cimbalino.Toolkit.Behaviors.ApplicationBarBehavior.BackgroundColorProperty">
+            <summary>
+            Identifier for the <see cref="P:Cimbalino.Toolkit.Behaviors.ApplicationBarBehavior.BackgroundColor"/> dependency property.
+            </summary>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Behaviors.ApplicationBarBehavior.OnBackgroundColorChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            Called after the background color of the ApplicationBar is changed.
+            </summary>
+            <param name="d">The <see cref="T:System.Windows.DependencyObject"/>.</param>
+            <param name="e">The <see cref="T:System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="F:Cimbalino.Toolkit.Behaviors.ApplicationBarBehavior.ForegroundColorProperty">
+            <summary>
+            Identifier for the <see cref="P:Cimbalino.Toolkit.Behaviors.ApplicationBarBehavior.ForegroundColor"/> dependency property.
+            </summary>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Behaviors.ApplicationBarBehavior.OnForegroundColorChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            Called after the foreground color of the ApplicationBar is changed.
+            </summary>
+            <param name="d">The <see cref="T:System.Windows.DependencyObject"/>.</param>
+            <param name="e">The <see cref="T:System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="F:Cimbalino.Toolkit.Behaviors.ApplicationBarBehavior.IsMenuEnabledProperty">
+            <summary>
+            Identifier for the <see cref="P:Cimbalino.Toolkit.Behaviors.ApplicationBarBehavior.IsMenuEnabled"/> dependency property.
+            </summary>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Behaviors.ApplicationBarBehavior.OnIsMenuEnabledChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            Called after the menu enabled state of the Application Bar is changed.
+            </summary>
+            <param name="d">The <see cref="T:System.Windows.DependencyObject"/>.</param>
+            <param name="e">The <see cref="T:System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="F:Cimbalino.Toolkit.Behaviors.ApplicationBarBehavior.IsVisibleProperty">
+            <summary>
+            Identifier for the <see cref="P:Cimbalino.Toolkit.Behaviors.ApplicationBarBehavior.IsVisible"/> dependency property.
+            </summary>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Behaviors.ApplicationBarBehavior.OnIsVisibleChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            Called after the visible state of the Application Bar is changed.
+            </summary>
+            <param name="d">The <see cref="T:System.Windows.DependencyObject"/>.</param>
+            <param name="e">The <see cref="T:System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="F:Cimbalino.Toolkit.Behaviors.ApplicationBarBehavior.ModeProperty">
+            <summary>
+            Identifier for the <see cref="P:Cimbalino.Toolkit.Behaviors.ApplicationBarBehavior.Mode"/> dependency property.
+            </summary>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Behaviors.ApplicationBarBehavior.OnModeChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            Called after the size of the ApplicationBar is changed.
+            </summary>
+            <param name="d">The <see cref="T:System.Windows.DependencyObject"/>.</param>
+            <param name="e">The <see cref="T:System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="F:Cimbalino.Toolkit.Behaviors.ApplicationBarBehavior.OpacityProperty">
+            <summary>
+            Identifier for the <see cref="P:Cimbalino.Toolkit.Behaviors.ApplicationBarBehavior.Opacity"/> dependency property.
+            </summary>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Behaviors.ApplicationBarBehavior.OnOpacityChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            Called after the opacity of the ApplicationBar is changed.
+            </summary>
+            <param name="d">The <see cref="T:System.Windows.DependencyObject"/>.</param>
+            <param name="e">The <see cref="T:System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="F:Cimbalino.Toolkit.Behaviors.ApplicationBarBehavior.StateChangedCommandProperty">
+            <summary>
+            Identifier for the <see cref="P:Cimbalino.Toolkit.Behaviors.ApplicationBarBehavior.StateChangedCommand"/> dependency property.
+            </summary>
+        </member>
+        <member name="E:Cimbalino.Toolkit.Behaviors.ApplicationBarBehavior.StateChanged">
+            <summary>
+            Occurs when the user opens or closes the menu.
+            </summary>
+        </member>
+        <member name="P:Cimbalino.Toolkit.Behaviors.ApplicationBarBehavior.MenuItems">
+            <summary>
+            Gets the <see cref="T:Cimbalino.Toolkit.Behaviors.ApplicationBarMenuItem"/> collection that appear on the Application Bar.
+            </summary>
+            <value>The <see cref="T:Cimbalino.Toolkit.Behaviors.ApplicationBarMenuItem"/> collection.</value>
+        </member>
+        <member name="P:Cimbalino.Toolkit.Behaviors.ApplicationBarBehavior.Buttons">
+            <summary>
+            Gets the <see cref="T:Cimbalino.Toolkit.Behaviors.ApplicationBarIconButton"/> collection that appear on the Application Bar.
+            </summary>
+            <value>The <see cref="T:Cimbalino.Toolkit.Behaviors.ApplicationBarIconButton"/> collection.</value>
+        </member>
+        <member name="P:Cimbalino.Toolkit.Behaviors.ApplicationBarBehavior.BackgroundColor">
+            <summary>
+            Gets or sets the background color of the Application Bar.
+            </summary>
+            <value>The background color of the Application Bar.</value>
+        </member>
+        <member name="P:Cimbalino.Toolkit.Behaviors.ApplicationBarBehavior.ForegroundColor">
+            <summary>
+            Gets or sets the foreground color of the Application Bar.
+            </summary>
+            <value>The foreground color of the Application Bar.</value>
+        </member>
+        <member name="P:Cimbalino.Toolkit.Behaviors.ApplicationBarBehavior.IsMenuEnabled">
+            <summary>
+            Gets or sets a value indicating whether the user can open the menu.
+            </summary>
+            <value>true if the menu is enabled; otherwise, false.</value>
+        </member>
+        <member name="P:Cimbalino.Toolkit.Behaviors.ApplicationBarBehavior.IsVisible">
+            <summary>
+            Gets or sets a value indicating whether the Application Bar is visible.
+            </summary>
+            <value>true if the Application Bar is visible; otherwise, false.</value>
+        </member>
+        <member name="P:Cimbalino.Toolkit.Behaviors.ApplicationBarBehavior.Mode">
+            <summary>
+            Gets or sets the size of the Application Bar.
+            </summary>
+            <value>One of the enumeration values that indicates the size of the Application Bar.</value>
+        </member>
+        <member name="P:Cimbalino.Toolkit.Behaviors.ApplicationBarBehavior.Opacity">
+            <summary>
+            Gets or sets the opacity of the Application Bar.
+            </summary>
+            <value>The opacity of the Application Bar.</value>
+        </member>
+        <member name="P:Cimbalino.Toolkit.Behaviors.ApplicationBarBehavior.StateChangedCommand">
+            <summary>
+            Gets or sets the command to invoke when the user opens or closes the menu. This is a DependencyProperty.
+            </summary>
+            <value>The command to invoke when the user opens or closes the menu. The default is null.</value>
+        </member>
+        <member name="T:Cimbalino.Toolkit.Behaviors.ApplicationBarCollection">
+            <summary>
+            Represents a collection of <see cref="T:Cimbalino.Toolkit.Behaviors.ApplicationBar"/>.
+            </summary>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Behaviors.ApplicationBarCollection.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Cimbalino.Toolkit.Behaviors.ApplicationBarCollection"/> class.
+            </summary>
+        </member>
+        <member name="T:Cimbalino.Toolkit.Behaviors.ApplicationBarIconButton">
+            <summary>
+            An Application Bar button with an icon.
+            </summary>
+        </member>
+        <member name="T:Cimbalino.Toolkit.Behaviors.ApplicationBarItemBase`1">
+            <summary>
+            Represents a base control for the <see cref="T:Cimbalino.Toolkit.Behaviors.ApplicationBarBehavior"/>.
+            </summary>
+            <typeparam name="T">The item type.</typeparam>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Behaviors.ApplicationBarItemBase`1.#ctor(`0)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Cimbalino.Toolkit.Behaviors.ApplicationBarItemBase`1"/> class.
+            </summary>
+            <param name="item">The internal item.</param>
+        </member>
+        <member name="F:Cimbalino.Toolkit.Behaviors.ApplicationBarItemBase`1.IsEnabledProperty">
+            <summary>
+            Identifier for the <see cref="P:Cimbalino.Toolkit.Behaviors.ApplicationBarItemBase`1.IsEnabled"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Cimbalino.Toolkit.Behaviors.ApplicationBarItemBase`1.TextProperty">
+            <summary>
+            Identifier for the <see cref="P:Cimbalino.Toolkit.Behaviors.ApplicationBarItemBase`1.Text"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Cimbalino.Toolkit.Behaviors.ApplicationBarItemBase`1.IsVisibleProperty">
+            <summary>
+            Identifier for the <see cref="P:Cimbalino.Toolkit.Behaviors.ApplicationBarItemBase`1.IsVisible"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Cimbalino.Toolkit.Behaviors.ApplicationBarItemBase`1.CommandProperty">
+            <summary>
+            Identifier for the <see cref="P:Cimbalino.Toolkit.Behaviors.ApplicationBarItemBase`1.Command"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Cimbalino.Toolkit.Behaviors.ApplicationBarItemBase`1.CommandParameterProperty">
+            <summary>
+            Identifier for the <see cref="P:Cimbalino.Toolkit.Behaviors.ApplicationBarItemBase`1.CommandParameter"/> dependency property.
+            </summary>
+        </member>
+        <member name="P:Cimbalino.Toolkit.Behaviors.ApplicationBarItemBase`1.InternalItem">
+            <summary>
+            Gets the internal item.
+            </summary>
+            <value>The internal item.</value>
+        </member>
+        <member name="P:Cimbalino.Toolkit.Behaviors.ApplicationBarItemBase`1.Parent">
+            <summary>
+            Gets or sets the parent <see cref="T:Cimbalino.Toolkit.Behaviors.ApplicationBarItemCollectionBase`1"/>.
+            </summary>
+            <value>The parent <see cref="T:Cimbalino.Toolkit.Behaviors.ApplicationBarItemCollectionBase`1"/>.</value>
+        </member>
+        <member name="E:Cimbalino.Toolkit.Behaviors.ApplicationBarItemBase`1.Click">
+            <summary>
+            Occurs when a <see cref="T:Cimbalino.Toolkit.Behaviors.ApplicationBarItemBase`1"/> is clicked.
+            </summary>
+        </member>
+        <member name="P:Cimbalino.Toolkit.Behaviors.ApplicationBarItemBase`1.IsEnabled">
+            <summary>
+            Gets or sets a value indicating whether the user can interact with the control.
+            </summary>
+            <value>true if the user can interact with the control; otherwise, false.</value>
+        </member>
+        <member name="P:Cimbalino.Toolkit.Behaviors.ApplicationBarItemBase`1.Text">
+            <summary>
+            Gets or sets the text string that is displayed as a label for the item.
+            </summary>
+            <value>The text string that is displayed as a label for the item.</value>
+        </member>
+        <member name="P:Cimbalino.Toolkit.Behaviors.ApplicationBarItemBase`1.IsVisible">
+            <summary>
+            Gets or sets a value indicating whether the item is visible.
+            </summary>
+            <value>true if the item is visible; otherwise, false.</value>
+        </member>
+        <member name="P:Cimbalino.Toolkit.Behaviors.ApplicationBarItemBase`1.Command">
+            <summary>
+            Gets or sets the command to invoke when this item is pressed. This is a DependencyProperty.
+            </summary>
+            <value>The command to invoke when this item is pressed. The default is null.</value>
+        </member>
+        <member name="P:Cimbalino.Toolkit.Behaviors.ApplicationBarItemBase`1.CommandParameter">
+            <summary>
+            Gets or sets the parameter to pass to the <see cref="P:Cimbalino.Toolkit.Behaviors.ApplicationBarItemBase`1.Command"/> property. This is a DependencyProperty.
+            </summary>
+            <value>The parameter to pass to the <see cref="P:Cimbalino.Toolkit.Behaviors.ApplicationBarItemBase`1.Command"/> property. The default is null.</value>
+        </member>
+        <member name="P:Cimbalino.Toolkit.Behaviors.ApplicationBarItemBase`1.CommandParameterValue">
+            <summary>
+            Gets or sets an object that will be passed to the <see cref="P:Cimbalino.Toolkit.Behaviors.ApplicationBarItemBase`1.Command"/> attached to this trigger. This property is here for compatibility with the Silverlight version. This is NOT a DependencyProperty. For databinding, use the <see cref="P:Cimbalino.Toolkit.Behaviors.ApplicationBarItemBase`1.CommandParameter"/> property.
+            </summary>
+            <value>The parameter value to pass to the <see cref="P:Cimbalino.Toolkit.Behaviors.ApplicationBarItemBase`1.Command"/> property. The default is null.</value>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Behaviors.ApplicationBarIconButton.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Cimbalino.Toolkit.Behaviors.ApplicationBarIconButton"/> class.
+            </summary>
+        </member>
+        <member name="F:Cimbalino.Toolkit.Behaviors.ApplicationBarIconButton.IconUriProperty">
+            <summary>
+            Identifier for the <see cref="P:Cimbalino.Toolkit.Behaviors.ApplicationBarIconButton.IconUri"/> dependency property.
+            </summary>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Behaviors.ApplicationBarIconButton.OnIconUriChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            Called after the URI of the icon to use for the button is changed.
+            </summary>
+            <param name="d">The <see cref="T:System.Windows.DependencyObject"/>.</param>
+            <param name="e">The <see cref="T:System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="P:Cimbalino.Toolkit.Behaviors.ApplicationBarIconButton.IconUri">
+            <summary>
+            Gets or sets the URI of the icon to use for the button.
+            </summary>
+            <value>The URI of the icon to use for the button.</value>
+        </member>
+        <member name="T:Cimbalino.Toolkit.Behaviors.ApplicationBarIconButtonCollection">
+            <summary>
+            Represents a collection of <see cref="T:Microsoft.Phone.Shell.IApplicationBarIconButton"/>
+            </summary>
+        </member>
+        <member name="T:Cimbalino.Toolkit.Behaviors.ApplicationBarItemCollectionBase`1">
+            <summary>
+            Represents a collection of <see cref="T:Cimbalino.Toolkit.Behaviors.ApplicationBarItemBase`1"/>.
+            </summary>
+            <typeparam name="T">The type of items in the collection.</typeparam>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Behaviors.ApplicationBarItemCollectionBase`1.#ctor(System.Collections.IList,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Cimbalino.Toolkit.Behaviors.ApplicationBarItemCollectionBase`1"/> class.
+            </summary>
+            <param name="itemsList">The items list.</param>
+            <param name="maxVisibleItems">The maximum visible items.</param>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Behaviors.ApplicationBarIconButtonCollection.#ctor(System.Collections.IList)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Cimbalino.Toolkit.Behaviors.ApplicationBarIconButtonCollection"/> class.
+            </summary>
+            <param name="itemsList">The items list.</param>
+        </member>
+        <member name="T:Cimbalino.Toolkit.Behaviors.ApplicationBarMenuItem">
+            <summary>
+            An item that can be added to the menu of an <see cref="T:Microsoft.Phone.Shell.ApplicationBar"/>.
+            </summary>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Behaviors.ApplicationBarMenuItem.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Cimbalino.Toolkit.Behaviors.ApplicationBarMenuItem"/> class.
+            </summary>
+        </member>
+        <member name="T:Cimbalino.Toolkit.Behaviors.ApplicationBarMenuItemCollection">
+            <summary>
+            Represents a collection of <see cref="T:Microsoft.Phone.Shell.IApplicationBarMenuItem"/>
+            </summary>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Behaviors.ApplicationBarMenuItemCollection.#ctor(System.Collections.IList)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Cimbalino.Toolkit.Behaviors.ApplicationBarMenuItemCollection"/> class.
+            </summary>
+            <param name="itemsList">The items list.</param>
+        </member>
+        <member name="T:Cimbalino.Toolkit.Behaviors.AutoFocusBehavior">
+            <summary>
+            The behavior that enables automatic control focus.
+            </summary>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Behaviors.AutoFocusBehavior.OnAttached">
+            <summary>
+            Called after the behavior is attached to an AssociatedObject.
+            </summary>
+            <remarks>Override this to hook up functionality to the AssociatedObject.</remarks>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Behaviors.AutoFocusBehavior.OnDetaching">
+            <summary>
+            Releases all resources used by this instance.
+            </summary>
+        </member>
+        <member name="F:Cimbalino.Toolkit.Behaviors.AutoFocusBehavior.CycleNavigationProperty">
+            <summary>
+            Identifier for the <see cref="P:Cimbalino.Toolkit.Behaviors.AutoFocusBehavior.CycleNavigation"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Cimbalino.Toolkit.Behaviors.AutoFocusBehavior.SelectAllOnFocusProperty">
+            <summary>
+            Identifier for the <see cref="P:Cimbalino.Toolkit.Behaviors.AutoFocusBehavior.SelectAllOnFocus"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Cimbalino.Toolkit.Behaviors.AutoFocusBehavior.AfterAutoFocusCommandProperty">
+            <summary>
+            Identifier for the <see cref="P:Cimbalino.Toolkit.Behaviors.AutoFocusBehavior.AfterAutoFocusCommand"/> dependency property.
+            </summary>
+        </member>
+        <member name="E:Cimbalino.Toolkit.Behaviors.AutoFocusBehavior.AfterAutoFocus">
+            <summary>
+            Occurs when the focus automatically moves from one control to the next.
+            </summary>
+        </member>
+        <member name="P:Cimbalino.Toolkit.Behaviors.AutoFocusBehavior.CycleNavigation">
+            <summary>
+            Gets or sets a value indicating whether focus will jump from last control to first one.
+            </summary>
+            <value>true if focus will jump from last control to first one; otherwise, false.</value>
+        </member>
+        <member name="P:Cimbalino.Toolkit.Behaviors.AutoFocusBehavior.SelectAllOnFocus">
+            <summary>
+            Gets or sets a value indicating whether the entire contents of a control will be selected on focus.
+            </summary>
+            <value>true if the entire contents of a control will be selected on focus; otherwise, false.</value>
+        </member>
+        <member name="P:Cimbalino.Toolkit.Behaviors.AutoFocusBehavior.AfterAutoFocusCommand">
+            <summary>
+            Gets or sets the command to invoke when the focus moves from one control to the next.
+            </summary>
+            <value>The command to invoke when the focus moves from one control to the next.</value>
+        </member>
+        <member name="T:Cimbalino.Toolkit.Behaviors.EnterKeyBehavior">
+            <summary>
+            The behavior that handles the Enter key press to execute a command.
+            </summary>
+        </member>
+        <member name="F:Cimbalino.Toolkit.Behaviors.EnterKeyBehavior.CommandProperty">
+            <summary>
+            Identifier for the <see cref="P:Cimbalino.Toolkit.Behaviors.EnterKeyBehavior.Command"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Cimbalino.Toolkit.Behaviors.EnterKeyBehavior.CommandParameterProperty">
+            <summary>
+            Identifier for the <see cref="P:Cimbalino.Toolkit.Behaviors.EnterKeyBehavior.CommandParameter"/> dependency property.
+            </summary>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Behaviors.EnterKeyBehavior.OnAttached">
+            <summary>
+            Called after the behavior is attached to an AssociatedObject.
+            </summary>
+            <remarks>
+            Override this to hook up functionality to the AssociatedObject.
+            </remarks>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Behaviors.EnterKeyBehavior.OnDetaching">
+            <summary>
+            Called when the behavior is being detached from its AssociatedObject, but before it has actually occurred.
+            </summary>
+            <remarks>
+            Override this to unhook functionality from the AssociatedObject.
+            </remarks>
+        </member>
+        <member name="P:Cimbalino.Toolkit.Behaviors.EnterKeyBehavior.Command">
+            <summary>
+            Gets or sets the command to invoke when the Enter key is pressed. This is a DependencyProperty.
+            </summary>
+            <value>The command to invoke when the Enter key is pressed. This is a DependencyProperty.</value>
+        </member>
+        <member name="P:Cimbalino.Toolkit.Behaviors.EnterKeyBehavior.CommandParameter">
+            <summary>
+            Gets or sets the parameter to pass to the <see cref="P:Cimbalino.Toolkit.Behaviors.EnterKeyBehavior.Command"/> property. This is a DependencyProperty.
+            </summary>
+            <value>The parameter to pass to the <see cref="P:Cimbalino.Toolkit.Behaviors.EnterKeyBehavior.Command"/> property. The default is null.</value>
+        </member>
+        <member name="T:Cimbalino.Toolkit.Behaviors.MultiApplicationBarBehavior">
+            <summary>
+            The behavior that creates a collection of bindable <see cref="T:Microsoft.Phone.Shell.ApplicationBar"/> controls.
+            </summary>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Behaviors.MultiApplicationBarBehavior.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Cimbalino.Toolkit.Behaviors.MultiApplicationBarBehavior"/> class.
+            </summary>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Behaviors.MultiApplicationBarBehavior.OnAttached">
+            <summary>
+            Called after the behavior is attached to an AssociatedObject.
+            </summary>
+            <remarks>Override this to hook up functionality to the AssociatedObject.</remarks>
+        </member>
+        <member name="F:Cimbalino.Toolkit.Behaviors.MultiApplicationBarBehavior.ApplicationBarsProperty">
+            <summary>
+            Identifier for the <see cref="P:Cimbalino.Toolkit.Behaviors.MultiApplicationBarBehavior.ApplicationBars"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Cimbalino.Toolkit.Behaviors.MultiApplicationBarBehavior.SelectedIndexProperty">
+            <summary>
+            Identifier for the <see cref="P:Cimbalino.Toolkit.Behaviors.MultiApplicationBarBehavior.SelectedIndex"/> dependency property.
+            </summary>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Behaviors.MultiApplicationBarBehavior.OnSelectedIndexChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            Called after the index of the selected Application Bar is changed.
+            </summary>
+            <param name="d">The <see cref="T:System.Windows.DependencyObject"/>.</param>
+            <param name="e">The <see cref="T:System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="F:Cimbalino.Toolkit.Behaviors.MultiApplicationBarBehavior.IsVisibleProperty">
+            <summary>
+            Identifier for the <see cref="P:Cimbalino.Toolkit.Behaviors.MultiApplicationBarBehavior.IsVisible"/> dependency property.
+            </summary>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Behaviors.MultiApplicationBarBehavior.OnIsVisibleChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            Called after the visible state of the Application Bar is changed.
+            </summary>
+            <param name="d">The <see cref="T:System.Windows.DependencyObject"/>.</param>
+            <param name="e">The <see cref="T:System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="P:Cimbalino.Toolkit.Behaviors.MultiApplicationBarBehavior.ApplicationBars">
+            <summary>
+            Gets the <see cref="T:Cimbalino.Toolkit.Behaviors.ApplicationBar"/> collection.
+            </summary>
+            <value>The <see cref="T:Cimbalino.Toolkit.Behaviors.ApplicationBar"/> collection.</value>
+        </member>
+        <member name="P:Cimbalino.Toolkit.Behaviors.MultiApplicationBarBehavior.SelectedIndex">
+            <summary>
+            Gets or sets the index of the selected Application Bar.
+            </summary>
+            <value>the index of the selected Application Bar.</value>
+        </member>
+        <member name="P:Cimbalino.Toolkit.Behaviors.MultiApplicationBarBehavior.IsVisible">
+            <summary>
+            Gets or sets a value indicating whether the Application Bar is visible.
+            </summary>
+            <value>true if the Application Bar is visible; otherwise, false.</value>
+        </member>
+        <member name="T:Cimbalino.Toolkit.Behaviors.MultiBindingBehavior">
+            <summary>
+            The behavior that enables multiple binding.
+            </summary>
+        </member>
+        <member name="F:Cimbalino.Toolkit.Behaviors.MultiBindingBehavior.ItemsProperty">
+            <summary>
+            Identifier for the <see cref="P:Cimbalino.Toolkit.Behaviors.MultiBindingBehavior.Items"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Cimbalino.Toolkit.Behaviors.MultiBindingBehavior.PropertyNameProperty">
+            <summary>
+            Identifier for the <see cref="P:Cimbalino.Toolkit.Behaviors.MultiBindingBehavior.PropertyName"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Cimbalino.Toolkit.Behaviors.MultiBindingBehavior.ConverterProperty">
+            <summary>
+            Identifier for the <see cref="P:Cimbalino.Toolkit.Behaviors.MultiBindingBehavior.Converter"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Cimbalino.Toolkit.Behaviors.MultiBindingBehavior.ConverterCultureProperty">
+            <summary>
+            Identifier for the <see cref="P:Cimbalino.Toolkit.Behaviors.MultiBindingBehavior.ConverterCulture"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Cimbalino.Toolkit.Behaviors.MultiBindingBehavior.ConverterParameterProperty">
+            <summary>
+            Identifier for the <see cref="P:Cimbalino.Toolkit.Behaviors.MultiBindingBehavior.ConverterParameter"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Cimbalino.Toolkit.Behaviors.MultiBindingBehavior.ModeProperty">
+            <summary>
+            Identifier for the <see cref="P:Cimbalino.Toolkit.Behaviors.MultiBindingBehavior.Mode"/> dependency property.
+            </summary>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Behaviors.MultiBindingBehavior.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Cimbalino.Toolkit.Behaviors.MultiBindingBehavior"/> class.
+            </summary>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Behaviors.MultiBindingBehavior.OnAttached">
+            <summary>
+            Called after the behavior is attached to an AssociatedObject.
+            </summary>
+            <remarks>Override this to hook up functionality to the AssociatedObject.</remarks>
+        </member>
+        <member name="P:Cimbalino.Toolkit.Behaviors.MultiBindingBehavior.Items">
+            <summary>
+            Gets the <see cref="T:Cimbalino.Toolkit.Behaviors.MultiBindingItem"/> collection within this <see cref="T:Cimbalino.Toolkit.Behaviors.MultiBindingBehavior"/> instance.
+            </summary>
+            <value>One or more <see cref="T:Cimbalino.Toolkit.Behaviors.MultiBindingItem"/> objects.</value>
+        </member>
+        <member name="P:Cimbalino.Toolkit.Behaviors.MultiBindingBehavior.PropertyName">
+            <summary>
+            Gets or sets the path to the binding source property.
+            </summary>
+            <value>The path to the binding source property.</value>
+        </member>
+        <member name="P:Cimbalino.Toolkit.Behaviors.MultiBindingBehavior.Converter">
+            <summary>
+            Gets or sets the converter to use to convert the source values to or from the target value.
+            </summary>
+            <value>A resource reference to a class that implements the <see cref="T:System.Windows.Data.IValueConverter"/> interface, which includes implementations of the <see cref="M:System.Windows.Data.IValueConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)"/> and <see cref="M:System.Windows.Data.IValueConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)"/> methods.</value>
+        </member>
+        <member name="P:Cimbalino.Toolkit.Behaviors.MultiBindingBehavior.ConverterCulture">
+            <summary>
+            Gets or sets the <see cref="T:System.Globalization.CultureInfo"/> object that applies to the converter.
+            </summary>
+            <value>The <see cref="T:System.Globalization.CultureInfo"/> object that applies to the converter.</value>
+        </member>
+        <member name="P:Cimbalino.Toolkit.Behaviors.MultiBindingBehavior.ConverterParameter">
+            <summary>
+            Gets or sets an optional parameter to pass to the converter as additional information.
+            </summary>
+            <value>A value of the type expected by the converter, which might be an object element or a string depending on the definition and XAML capabilities both of the property type being used and of the implementation of the converter.</value>
+        </member>
+        <member name="P:Cimbalino.Toolkit.Behaviors.MultiBindingBehavior.Mode">
+            <summary>
+            Gets or sets a value that indicates the direction of the data flow in the binding.
+            </summary>
+            <value>A value that indicates the direction of the data flow in the binding.</value>
+        </member>
+        <member name="T:Cimbalino.Toolkit.Behaviors.MultiBindingItem">
+            <summary>
+            A multiple binding item.
+            </summary>
+        </member>
+        <member name="F:Cimbalino.Toolkit.Behaviors.MultiBindingItem.ValueProperty">
+            <summary>
+            Identifier for the <see cref="P:Cimbalino.Toolkit.Behaviors.MultiBindingItem.Value"/> dependency property.
+            </summary>
+        </member>
+        <member name="P:Cimbalino.Toolkit.Behaviors.MultiBindingItem.Value">
+            <summary>
+            Gets or sets the binding value.
+            </summary>
+            <value>The binding value.</value>
+        </member>
+        <member name="T:Cimbalino.Toolkit.Behaviors.MultiBindingItemCollection">
+            <summary>
+            Represents a collection of <see cref="T:Cimbalino.Toolkit.Behaviors.MultiBindingBehavior"/>.
+            </summary>
+        </member>
+        <member name="F:Cimbalino.Toolkit.Behaviors.MultiBindingItemCollection.ValueProperty">
+            <summary>
+            Identifier for the <see cref="P:Cimbalino.Toolkit.Behaviors.MultiBindingItemCollection.Value"/> dependency property.
+            </summary>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Behaviors.MultiBindingItemCollection.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Cimbalino.Toolkit.Behaviors.MultiBindingItemCollection"/> class.
+            </summary>
+        </member>
+        <member name="P:Cimbalino.Toolkit.Behaviors.MultiBindingItemCollection.Value">
+            <summary>
+            Gets or sets the multiple binding value.
+            </summary>
+            <value>The multiple binding value.</value>
+        </member>
+        <member name="T:Cimbalino.Toolkit.Behaviors.ScreenCaptureBehavior">
+            <summary>
+            The behavior that controls the screen capture feature on Windows Phone.
+            </summary>
+        </member>
+        <member name="F:Cimbalino.Toolkit.Behaviors.ScreenCaptureBehavior.IsEnabledProperty">
+            <summary>
+            Identifier for the <see cref="P:Cimbalino.Toolkit.Behaviors.ScreenCaptureBehavior.IsEnabled"/> dependency property.
+            </summary>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Behaviors.ScreenCaptureBehavior.OnAttached">
+            <summary>
+            Called after the behavior is attached to an AssociatedObject.
+            </summary>
+        </member>
+        <member name="P:Cimbalino.Toolkit.Behaviors.ScreenCaptureBehavior.IsEnabled">
+            <summary>
+            Gets or sets a value indicating whether the screen capture functionality is enabled.
+            </summary>
+            <value>true if the screen capture functionality is enabled; otherwise, false.</value>
+        </member>
+        <member name="T:Cimbalino.Toolkit.Behaviors.UpdatePasswordBindingOnPropertyChanged">
+            <summary>
+            The behavior that updates a <see cref="P:System.Windows.Controls.PasswordBox.Password"/> binding when the text changes rather than when it loses focus.
+            </summary>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Behaviors.UpdatePasswordBindingOnPropertyChanged.OnAttached">
+            <summary>
+            Called after the behavior is attached to an AssociatedObject.
+            </summary>
+            <remarks>
+            Override this to hook up functionality to the AssociatedObject.
+            </remarks>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Behaviors.UpdatePasswordBindingOnPropertyChanged.OnDetaching">
+            <summary>
+            Called when the behavior is being detached from its AssociatedObject, but before it has actually occurred.
+            </summary>
+            <remarks>
+            Override this to unhook functionality from the AssociatedObject.
+            </remarks>
+        </member>
+        <member name="T:Cimbalino.Toolkit.Behaviors.UpdateTextBindingOnPropertyChanged">
+            <summary>
+            The behavior that updates a <see cref="P:System.Windows.Controls.TextBox.Text"/> binding when the text changes rather than when it loses focus.
+            </summary>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Behaviors.UpdateTextBindingOnPropertyChanged.OnAttached">
+            <summary>
+            Called after the behavior is attached to an AssociatedObject.
+            </summary>
+            <remarks>
+            Override this to hook up functionality to the AssociatedObject.
+            </remarks>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Behaviors.UpdateTextBindingOnPropertyChanged.OnDetaching">
+            <summary>
+            Called when the behavior is being detached from its AssociatedObject, but before it has actually occurred.
+            </summary>
+            <remarks>
+            Override this to unhook functionality from the AssociatedObject.
+            </remarks>
+        </member>
+        <member name="T:Cimbalino.Toolkit.Converters.BooleanToBrushConverter">
+            <summary>
+            An <see cref="T:System.Windows.Data.IValueConverter"/> which converts a <see cref="T:System.Boolean"/> value to a <see cref="T:System.Windows.Media.Brush"/> value.
+            </summary>
+        </member>
+        <member name="T:Cimbalino.Toolkit.Converters.BooleanToValueConverterBase`1">
+            <summary>
+            An <see cref="T:System.Windows.Data.IValueConverter"/> abstract implementation which converts a <see cref="T:System.Boolean"/> value to a value of the specified type.
+            </summary>
+            <typeparam name="T">The converter type.</typeparam>
+        </member>
+        <member name="T:Cimbalino.Toolkit.Converters.ValueConverterBase">
+            <summary>
+            An <see cref="T:System.Windows.Data.IValueConverter"/> abstract implementation.
+            </summary>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Converters.ValueConverterBase.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Modifies the source data before passing it to the target for display in the UI.
+            </summary>
+            <param name="value">The source data being passed to the target.</param>
+            <param name="targetType">The <see cref="T:System.Type"/> of data expected by the target dependency property.</param>
+            <param name="parameter">An optional parameter to be used in the converter logic.</param>
+            <param name="culture">The culture of the conversion.</param>
+            <returns>The value to be passed to the target dependency property.</returns>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Converters.ValueConverterBase.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Modifies the target data before passing it to the source object.  This method is called only in <see cref="F:System.Windows.Data.BindingMode.TwoWay"/> bindings.
+            </summary>
+            <param name="value">The target data being passed to the source.</param>
+            <param name="targetType">The <see cref="T:System.Type"/> of data expected by the source object.</param>
+            <param name="parameter">An optional parameter to be used in the converter logic.</param>
+            <param name="culture">The culture of the conversion.</param>
+            <returns>The value to be passed to the source object.</returns>
+        </member>
+        <member name="F:Cimbalino.Toolkit.Converters.BooleanToValueConverterBase`1.TrueValueProperty">
+            <summary>
+            Identifier for the <see cref="P:Cimbalino.Toolkit.Converters.BooleanToValueConverterBase`1.TrueValue"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Cimbalino.Toolkit.Converters.BooleanToValueConverterBase`1.FalseValueProperty">
+            <summary>
+            Identifier for the <see cref="P:Cimbalino.Toolkit.Converters.BooleanToValueConverterBase`1.FalseValue"/> dependency property.
+            </summary>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Converters.BooleanToValueConverterBase`1.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a <see cref="T:System.Boolean"/> value to a a value of the specified type.
+            </summary>
+            <param name="value">The value produced by the binding source.</param>
+            <param name="targetType">The type of the binding target property.</param>
+            <param name="parameter">The converter parameter to use.</param>
+            <param name="culture">The culture to use in the converter.</param>
+            <returns>A converted value. If the method returns null, the valid null value is used.</returns>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Converters.BooleanToValueConverterBase`1.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a value from the specified type to a <see cref="T:System.Boolean"/> value.
+            </summary>
+            <param name="value">The value produced by the binding source.</param>
+            <param name="targetType">The type of the binding target property.</param>
+            <param name="parameter">The converter parameter to use.</param>
+            <param name="culture">The culture to use in the converter.</param>
+            <returns>A converted value. If the method returns null, the valid null value is used.</returns>
+        </member>
+        <member name="P:Cimbalino.Toolkit.Converters.BooleanToValueConverterBase`1.TrueValue">
+            <summary>
+            Gets or sets the value to return if true.
+            </summary>
+            <value>The  value to return if true.</value>
+        </member>
+        <member name="P:Cimbalino.Toolkit.Converters.BooleanToValueConverterBase`1.FalseValue">
+            <summary>
+            Gets or sets the value to return if false.
+            </summary>
+            <value>The  value to return if false.</value>
+        </member>
+        <member name="T:Cimbalino.Toolkit.Converters.BooleanToIntConverter">
+            <summary>
+            An <see cref="T:System.Windows.Data.IValueConverter"/> which converts a <see cref="T:System.Boolean"/> value to a <see cref="T:System.Int32"/> value.
+            </summary>
+        </member>
+        <member name="T:Cimbalino.Toolkit.Converters.BooleanToStringConverter">
+            <summary>
+            An <see cref="T:System.Windows.Data.IValueConverter"/> which converts a <see cref="T:System.Boolean"/> value to a <see cref="T:System.String"/> value.
+            </summary>
+        </member>
+        <member name="T:Cimbalino.Toolkit.Converters.BooleanToVisibilityConverter">
+            <summary>
+            An <see cref="T:System.Windows.Data.IValueConverter"/> which converts a <see cref="T:System.Boolean"/> value to a <see cref="T:System.Windows.Visibility"/> value.
+            </summary>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Converters.BooleanToVisibilityConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a <see cref="T:System.Boolean"/> value to a <see cref="T:System.Windows.Visibility"/> value.
+            </summary>
+            <param name="value">The value produced by the binding source.</param>
+            <param name="targetType">The type of the binding target property.</param>
+            <param name="parameter">The converter parameter to use.</param>
+            <param name="culture">The culture to use in the converter.</param>
+            <returns>
+            A converted value. If the method returns null, the valid null value is used.
+            </returns>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Converters.BooleanToVisibilityConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a <see cref="T:System.Windows.Visibility"/> value to a <see cref="T:System.Boolean"/> value.
+            </summary>
+            <param name="value">The value produced by the binding source.</param>
+            <param name="targetType">The type of the binding target property.</param>
+            <param name="parameter">The converter parameter to use.</param>
+            <param name="culture">The culture to use in the converter.</param>
+            <returns>
+            A converted value. If the method returns null, the valid null value is used.
+            </returns>
+        </member>
+        <member name="P:Cimbalino.Toolkit.Converters.BooleanToVisibilityConverter.InvertValue">
+            <summary>
+            Gets or sets a value indicating whether the return value should be inverted.
+            </summary>
+            <value>true if the return value should be inverted; otherwise, false.</value>
+        </member>
+        <member name="T:Cimbalino.Toolkit.Converters.ColorToBrushConverter">
+            <summary>
+            An <see cref="T:System.Windows.Data.IValueConverter"/> which converts a <see cref="T:System.Windows.Media.Color"/> value to a <see cref="T:System.Windows.Media.SolidColorBrush"/> value.
+            </summary>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Converters.ColorToBrushConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a <see cref="T:System.Windows.Media.Color"/> value to a <see cref="T:System.Windows.Media.SolidColorBrush"/> value.
+            </summary>
+            <param name="value">The value produced by the binding source.</param>
+            <param name="targetType">The type of the binding target property.</param>
+            <param name="parameter">The converter parameter to use.</param>
+            <param name="culture">The culture to use in the converter.</param>
+            <returns>
+            A converted value. If the method returns null, the valid null value is used.
+            </returns>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Converters.ColorToBrushConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a <see cref="T:System.Windows.Media.SolidColorBrush"/> value to a <see cref="T:System.Windows.Media.Color"/> value.
+            </summary>
+            <param name="value">The value produced by the binding source.</param>
+            <param name="targetType">The type of the binding target property.</param>
+            <param name="parameter">The converter parameter to use.</param>
+            <param name="culture">The culture to use in the converter.</param>
+            <returns>
+            A converted value. If the method returns null, the valid null value is used.
+            </returns>
+        </member>
+        <member name="T:Cimbalino.Toolkit.Converters.MultiValueConverterBase">
+            <summary>
+            An <see cref="T:System.Windows.Data.IValueConverter"/> abstract implementation to be used with the <see cref="T:Cimbalino.Toolkit.Behaviors.MultiBindingBehavior"/>.
+            </summary>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Converters.MultiValueConverterBase.Convert(System.Object[],System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Modifies the source data before passing it to the target for display in the UI.
+            </summary>
+            <returns>The value to be passed to the target dependency property.</returns>
+            <param name="values">The source data being passed to the target.</param>
+            <param name="targetType">The <see cref="T:System.Type"/> of data expected by the target dependency property.</param>
+            <param name="parameter">An optional parameter to be used in the converter logic.</param>
+            <param name="culture">The culture of the conversion.</param>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Converters.MultiValueConverterBase.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Modifies the target data before passing it to the source object. This method is called only in <see cref="F:System.Windows.Data.BindingMode.TwoWay"/> bindings.
+            </summary>
+            <returns>The value to be passed to the source object.</returns>
+            <param name="value">The target data being passed to the source.</param>
+            <param name="targetType">The <see cref="T:System.Type"/> of data expected by the source object.</param>
+            <param name="parameter">An optional parameter to be used in the converter logic.</param>
+            <param name="culture">The culture of the conversion.</param>
+        </member>
+        <member name="T:Cimbalino.Toolkit.Converters.NegativeBooleanConverter">
+            <summary>
+            An <see cref="T:System.Windows.Data.IValueConverter"/> which negates a <see cref="T:System.Boolean"/> value.
+            </summary>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Converters.NegativeBooleanConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Negates a <see cref="T:System.Boolean"/> value.
+            </summary>
+            <param name="value">The value produced by the binding source.</param>
+            <param name="targetType">The type of the binding target property.</param>
+            <param name="parameter">The converter parameter to use.</param>
+            <param name="culture">The culture to use in the converter.</param>
+            <returns>
+            A converted value. If the method returns null, the valid null value is used.
+            </returns>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Converters.NegativeBooleanConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Negates a <see cref="T:System.Boolean"/> value.
+            </summary>
+            <param name="value">The value produced by the binding source.</param>
+            <param name="targetType">The type of the binding target property.</param>
+            <param name="parameter">The converter parameter to use.</param>
+            <param name="culture">The culture to use in the converter.</param>
+            <returns>
+            A converted value. If the method returns null, the valid null value is used.
+            </returns>
+        </member>
+        <member name="T:Cimbalino.Toolkit.Converters.NullToVisibilityConverter">
+            <summary>
+            An <see cref="T:System.Windows.Data.IValueConverter"/> which converts a <see cref="T:System.Object"/> value to a <see cref="T:System.Windows.Visibility"/> value.
+            </summary>
+        </member>
+        <member name="F:Cimbalino.Toolkit.Converters.NullToVisibilityConverter.InvertValueProperty">
+            <summary>
+            Identifier for the <see cref="P:Cimbalino.Toolkit.Converters.NullToVisibilityConverter.InvertValue"/> dependency property.
+            </summary>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Converters.NullToVisibilityConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a <see cref="T:System.Boolean"/> value to a <see cref="T:System.Windows.Visibility"/> value.
+            </summary>
+            <param name="value">The value produced by the binding source.</param>
+            <param name="targetType">The type of the binding target property.</param>
+            <param name="parameter">The converter parameter to use.</param>
+            <param name="culture">The culture to use in the converter.</param>
+            <returns>
+            A converted value. If the method returns null, the valid null value is used.
+            </returns>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Converters.NullToVisibilityConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a <see cref="T:System.Windows.Visibility"/> value to a <see cref="T:System.Boolean"/> value.
+            </summary>
+            <param name="value">The value produced by the binding source.</param>
+            <param name="targetType">The type of the binding target property.</param>
+            <param name="parameter">The converter parameter to use.</param>
+            <param name="culture">The culture to use in the converter.</param>
+            <returns>
+            A converted value. If the method returns null, the valid null value is used.
+            </returns>
+        </member>
+        <member name="P:Cimbalino.Toolkit.Converters.NullToVisibilityConverter.InvertValue">
+            <summary>
+            Gets or sets a value indicating whether the return value should be inverted.
+            </summary>
+            <value>true if the return value should be inverted; otherwise, false.</value>
+        </member>
+        <member name="T:Cimbalino.Toolkit.Converters.StringFormatConverter">
+            <summary>
+            An <see cref="T:System.Windows.Data.IValueConverter"/> which formats a <see cref="T:System.String"/> value.
+            </summary>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Converters.StringFormatConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Formats a <see cref="T:System.String"/> value.
+            </summary>
+            <param name="value">The value produced by the binding source.</param>
+            <param name="targetType">The type of the binding target property.</param>
+            <param name="parameter">The converter parameter to use.</param>
+            <param name="culture">The culture to use in the converter.</param>
+            <returns>
+            A converted value. If the method returns null, the valid null value is used.
+            </returns>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Converters.StringFormatConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Formats a <see cref="T:System.String"/> value.
+            </summary>
+            <param name="value">The value produced by the binding source.</param>
+            <param name="targetType">The type of the binding target property.</param>
+            <param name="parameter">The converter parameter to use.</param>
+            <param name="culture">The culture to use in the converter.</param>
+            <returns>
+            A converted value. If the method returns null, the valid null value is used.
+            </returns>
+        </member>
+        <member name="T:Cimbalino.Toolkit.Converters.StringRegexConverter">
+            <summary>
+            An <see cref="T:System.Windows.Data.IValueConverter"/> which formats a <see cref="T:System.String"/> value using a Regular Expression.
+            </summary>
+        </member>
+        <member name="F:Cimbalino.Toolkit.Converters.StringRegexConverter.PatternProperty">
+            <summary>
+            Identifier for the <see cref="P:Cimbalino.Toolkit.Converters.StringRegexConverter.Pattern"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Cimbalino.Toolkit.Converters.StringRegexConverter.ReplacementPatternProperty">
+            <summary>
+            Identifier for the <see cref="P:Cimbalino.Toolkit.Converters.StringRegexConverter.ReplacementPattern"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Cimbalino.Toolkit.Converters.StringRegexConverter.OptionsProperty">
+            <summary>
+            Identifier for the <see cref="P:Cimbalino.Toolkit.Converters.StringRegexConverter.Options"/> dependency property.
+            </summary>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Converters.StringRegexConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Formats a <see cref="T:System.String"/> value using a Regular Expression.
+            </summary>
+            <param name="value">The value produced by the binding source.</param>
+            <param name="targetType">The type of the binding target property.</param>
+            <param name="parameter">The converter parameter to use.</param>
+            <param name="culture">The culture to use in the converter.</param>
+            <returns>
+            A converted value. If the method returns null, the valid null value is used.
+            </returns>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Converters.StringRegexConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Modifies the target data before passing it to the source object.  This
+            method is called only in <see cref="F:System.Windows.Data.BindingMode.TwoWay" />
+            bindings.
+            </summary>
+            <param name="value">The value produced by the binding source.</param>
+            <param name="targetType">The type of the binding target property.</param>
+            <param name="parameter">The converter parameter to use.</param>
+            <param name="culture">The culture to use in the converter.</param>
+            <returns>
+            A converted value. If the method returns null, the valid null value is used.
+            </returns>
+        </member>
+        <member name="P:Cimbalino.Toolkit.Converters.StringRegexConverter.Pattern">
+            <summary>
+            Gets or sets the regular expression pattern to match.
+            </summary>
+            <value>The regular expression pattern to match.</value>
+        </member>
+        <member name="P:Cimbalino.Toolkit.Converters.StringRegexConverter.ReplacementPattern">
+            <summary>
+            Gets or sets the replacement pattern string.
+            </summary>
+            <value>The replacement pattern string.</value>
+        </member>
+        <member name="P:Cimbalino.Toolkit.Converters.StringRegexConverter.Options">
+            <summary>
+            Gets or sets the options that modify the matching operation.
+            </summary>
+            <value>A bitwise combination of the <see cref="T:System.Text.RegularExpressions.RegexOptions"/> values.</value>
+        </member>
+        <member name="T:Cimbalino.Toolkit.Converters.StringToLowercaseConverter">
+            <summary>
+            An <see cref="T:System.Windows.Data.IValueConverter"/> which formats a <see cref="T:System.String"/> value to lower case.
+            </summary>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Converters.StringToLowercaseConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Formats a <see cref="T:System.String"/> value to lower case.
+            </summary>
+            <param name="value">The value produced by the binding source.</param>
+            <param name="targetType">The type of the binding target property.</param>
+            <param name="parameter">The converter parameter to use.</param>
+            <param name="culture">The culture to use in the converter.</param>
+            <returns>
+            A converted value. If the method returns null, the valid null value is used.
+            </returns>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Converters.StringToLowercaseConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Formats a <see cref="T:System.String"/> value to lower case.
+            </summary>
+            <param name="value">The value produced by the binding source.</param>
+            <param name="targetType">The type of the binding target property.</param>
+            <param name="parameter">The converter parameter to use.</param>
+            <param name="culture">The culture to use in the converter.</param>
+            <returns>
+            A converted value. If the method returns null, the valid null value is used.
+            </returns>
+        </member>
+        <member name="T:Cimbalino.Toolkit.Converters.StringToUppercaseConverter">
+            <summary>
+            An <see cref="T:System.Windows.Data.IValueConverter"/> which formats a <see cref="T:System.String"/> value to upper case.
+            </summary>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Converters.StringToUppercaseConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Formats a <see cref="T:System.String"/> value to upper case.
+            </summary>
+            <param name="value">The value produced by the binding source.</param>
+            <param name="targetType">The type of the binding target property.</param>
+            <param name="parameter">The converter parameter to use.</param>
+            <param name="culture">The culture to use in the converter.</param>
+            <returns>
+            A converted value. If the method returns null, the valid null value is used.
+            </returns>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Converters.StringToUppercaseConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Formats a <see cref="T:System.String"/> value to upper case.
+            </summary>
+            <param name="value">The value produced by the binding source.</param>
+            <param name="targetType">The type of the binding target property.</param>
+            <param name="parameter">The converter parameter to use.</param>
+            <param name="culture">The culture to use in the converter.</param>
+            <returns>
+            A converted value. If the method returns null, the valid null value is used.
+            </returns>
+        </member>
+        <member name="T:Cimbalino.Toolkit.Converters.StringToVisibilityConverter">
+            <summary>
+            An <see cref="T:System.Windows.Data.IValueConverter"/> which converts a <see cref="T:System.String"/> value to a <see cref="T:System.Windows.Visibility"/> value.
+            </summary>
+        </member>
+        <member name="F:Cimbalino.Toolkit.Converters.StringToVisibilityConverter.InvertValueProperty">
+            <summary>
+            Identifier for the <see cref="P:Cimbalino.Toolkit.Converters.StringToVisibilityConverter.InvertValue"/> dependency property.
+            </summary>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Converters.StringToVisibilityConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a <see cref="T:System.String"/> value to a <see cref="T:System.Windows.Visibility"/> value.
+            </summary>
+            <param name="value">The value produced by the binding source.</param>
+            <param name="targetType">The type of the binding target property.</param>
+            <param name="parameter">The converter parameter to use.</param>
+            <param name="culture">The culture to use in the converter.</param>
+            <returns>
+            A converted value. If the method returns null, the valid null value is used.
+            </returns>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Converters.StringToVisibilityConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a <see cref="T:System.Windows.Visibility"/> value to a <see cref="T:System.String"/> value.
+            </summary>
+            <param name="value">The value produced by the binding source.</param>
+            <param name="targetType">The type of the binding target property.</param>
+            <param name="parameter">The converter parameter to use.</param>
+            <param name="culture">The culture to use in the converter.</param>
+            <returns>
+            A converted value. If the method returns null, the valid null value is used.
+            </returns>
+        </member>
+        <member name="P:Cimbalino.Toolkit.Converters.StringToVisibilityConverter.InvertValue">
+            <summary>
+            Gets or sets a value indicating whether the return value should be inverted.
+            </summary>
+            <value>true if the return value should be inverted; otherwise, false.</value>
+        </member>
+        <member name="T:Cimbalino.Toolkit.Extensions.FrameworkElementExtensions">
+            <summary>
+            Provides a set of static (Shared in Visual Basic) methods for <see cref="T:System.Windows.FrameworkElement"/> instances.
+            </summary>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Extensions.FrameworkElementExtensions.GetBehaviors(System.Windows.FrameworkElement)">
+            <summary>
+            Gets the <see cref="T:System.Windows.Interactivity.BehaviorCollection"/> associated with the framework element.
+            </summary>
+            <param name="frameworkElement">The framework element.</param>
+            <returns>The <see cref="T:System.Windows.Interactivity.BehaviorCollection"/> associated with the framework element.</returns>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Extensions.FrameworkElementExtensions.GetTriggers(System.Windows.FrameworkElement)">
+            <summary>
+            Returns the <see cref="T:System.Windows.Interactivity.TriggerCollection"/> associated with the framework element.
+            </summary>
+            <param name="frameworkElement">The framework element.</param>
+            <returns>The <see cref="T:System.Windows.Interactivity.TriggerCollection"/> associated with the framework element.</returns>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Extensions.FrameworkElementExtensions.GetBehavior``1(System.Windows.FrameworkElement)">
+            <summary>
+            Returns the <see cref="T:System.Windows.Interactivity.Behavior"/> attached to the framework element with the specified type.
+            </summary>
+            <param name="frameworkElement">The framework element.</param>
+            <typeparam name="T">The behavior type.</typeparam>
+            <returns>The <see cref="T:System.Windows.Interactivity.Behavior"/> attached to the framework element with the specified type.</returns>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Extensions.FrameworkElementExtensions.GetTrigger``1(System.Windows.FrameworkElement)">
+            <summary>
+            Returns the <see cref="T:System.Windows.Interactivity.TriggerBase"/> attached to the framework element with the specified type.
+            </summary>
+            <param name="frameworkElement">The framework element.</param>
+            <typeparam name="T">The trigger action type.</typeparam>
+            <returns>The <see cref="T:System.Windows.Interactivity.TriggerBase"/> attached to the framework element with the specified type.</returns>
+        </member>
+        <member name="T:Cimbalino.Toolkit.Helpers.NamescopeBinding">
+            <summary>
+            Allows binding of objects in a different XAML namescope.
+            </summary>
+        </member>
+        <member name="F:Cimbalino.Toolkit.Helpers.NamescopeBinding.SourceProperty">
+            <summary>
+            Identifier for the <see cref="P:Cimbalino.Toolkit.Helpers.NamescopeBinding.Source"/> dependency property.
+            </summary>
+        </member>
+        <member name="P:Cimbalino.Toolkit.Helpers.NamescopeBinding.Source">
+            <summary>
+            Gets or sets the source <see cref="T:System.Windows.FrameworkElement"/> to bind.
+            </summary>
+            <value>The source <see cref="T:System.Windows.FrameworkElement"/> to bind.</value>
+        </member>
+        <member name="T:Cimbalino.Toolkit.Services.DeviceSettingsService">
+            <summary>
+            Represents an implementation of the <see cref="T:Cimbalino.Toolkit.Services.IDeviceSettingsService"/>.
+            </summary>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Services.DeviceSettingsService.ShowAirplaneModeSettingsAsync">
+            <summary>
+            Shows the Airplane Mode settings dialog.
+            </summary>
+            <returns>The <see cref="T:System.Threading.Tasks.Task"/> object representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Services.DeviceSettingsService.ShowBluetoothSettingsAsync">
+            <summary>
+            Shows the Bluetooth settings dialog.
+            </summary>
+            <returns>The <see cref="T:System.Threading.Tasks.Task"/> object representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Services.DeviceSettingsService.ShowCameraSettingsAsync">
+            <summary>
+            Shows the Photos+Camera settings dialog.
+            </summary>
+            <returns>The <see cref="T:System.Threading.Tasks.Task"/> object representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Services.DeviceSettingsService.ShowCellularSettingsAsync">
+            <summary>
+            Shows the Cellular settings dialog.
+            </summary>
+            <returns>The <see cref="T:System.Threading.Tasks.Task"/> object representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Services.DeviceSettingsService.ShowEmailAndAccountsSettingsAsync">
+            <summary>
+            Shows the Email and Accounts settings dialog.
+            </summary>
+            <returns>The <see cref="T:System.Threading.Tasks.Task"/> object representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Services.DeviceSettingsService.ShowLocationSettingsAsync">
+            <summary>
+            Shows the Location settings dialog.
+            </summary>
+            <returns>The <see cref="T:System.Threading.Tasks.Task"/> object representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Services.DeviceSettingsService.ShowLockScreenSettingsAsync">
+            <summary>
+            Shows the Lock Screen settings dialog.
+            </summary>
+            <returns>The <see cref="T:System.Threading.Tasks.Task"/> object representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Services.DeviceSettingsService.ShowNotificationSettingsAsync">
+            <summary>
+            Shows the Notifications+Actions settings dialog.
+            </summary>
+            <returns>The <see cref="T:System.Threading.Tasks.Task"/> object representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Services.DeviceSettingsService.ShowPowerSettingsAsync">
+            <summary>
+            Shows the Power settings dialog.
+            </summary>
+            <returns>The <see cref="T:System.Threading.Tasks.Task"/> object representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Services.DeviceSettingsService.ShowProximitySettingsAsync">
+            <summary>
+            Shows the NFC settings dialog.
+            </summary>
+            <returns>The <see cref="T:System.Threading.Tasks.Task"/> object representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Services.DeviceSettingsService.ShowScreenRotationSettingsAsync">
+            <summary>
+            Shows the Screen Rotation settings dialog.
+            </summary>
+            <returns>The <see cref="T:System.Threading.Tasks.Task"/> object representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Services.DeviceSettingsService.ShowWiFiSettingsAsync">
+            <summary>
+            Shows the Wi-Fi settings dialog.
+            </summary>
+            <returns>The <see cref="T:System.Threading.Tasks.Task"/> object representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Services.DeviceSettingsService.ShowWorkplaceSettingsAsync">
+            <summary>
+            Shows the Workplace settings dialog.
+            </summary>
+            <returns>The <see cref="T:System.Threading.Tasks.Task"/> object representing the asynchronous operation.</returns>
+        </member>
+        <member name="T:Cimbalino.Toolkit.Services.DeviceStatusWithKeyboardService">
+            <summary>
+            Represents an implementation of the <see cref="T:Cimbalino.Toolkit.Services.IDeviceStatusService"/>.
+            </summary>
+        </member>
+        <member name="P:Cimbalino.Toolkit.Services.DeviceStatusWithKeyboardService.IsKeyboardDeployed">
+            <summary>
+            Gets a value indicating whether the user has deployed the physical hardware keyboard of the device.
+            </summary>
+            <value>true if the keyboard is deployed; otherwise, false.</value>
+        </member>
+        <member name="P:Cimbalino.Toolkit.Services.DeviceStatusWithKeyboardService.IsKeyboardPresent">
+            <summary>
+            Gets a value indicating whether the device contains a physical hardware keyboard.
+            </summary>
+            <value>true if the device contains a physical hardware keyboard; otherwise, false.</value>
+        </member>
+        <member name="T:Cimbalino.Toolkit.Services.DisplayPropertiesService">
+            <summary>
+            Represents an implementation of the <see cref="T:Cimbalino.Toolkit.Services.IDisplayPropertiesService"/>.
+            </summary>
+        </member>
+        <member name="P:Cimbalino.Toolkit.Services.DisplayPropertiesService.LogicalDpi">
+            <summary>
+            Gets the pixels per logical inch of the current environment.
+            </summary>
+            <value>The pixels per logical inch of the current environment.</value>
+        </member>
+        <member name="P:Cimbalino.Toolkit.Services.DisplayPropertiesService.RawDpiX">
+            <summary>
+            Gets the raw dots per inch (DPI) along the x axis of the display monitor.
+            </summary>
+            <value>The raw dots per inch (DPI) along the x axis of the display monitor.</value>
+        </member>
+        <member name="P:Cimbalino.Toolkit.Services.DisplayPropertiesService.RawDpiY">
+            <summary>
+            Gets the raw dots per inch (DPI) along the y axis of the display monitor.
+            </summary>
+            <value>The raw dots per inch (DPI) along the y axis of the display monitor.</value>
+        </member>
+        <member name="P:Cimbalino.Toolkit.Services.DisplayPropertiesService.Bounds">
+            <summary>
+            Gets the height and width of the application window, as a Rect value.
+            </summary>
+            <value>A value that reports the height and width of the application window.</value>
+        </member>
+        <member name="P:Cimbalino.Toolkit.Services.DisplayPropertiesService.PhysicalBounds">
+            <summary>
+            Gets the height and width of the physical screen, as a Rect value.
+            </summary>
+            <value>A value that reports the height and width of the physical screen window.</value>
+        </member>
+        <member name="P:Cimbalino.Toolkit.Services.DisplayPropertiesService.ScreenDiagonal">
+            <summary>
+            Gets the physical screen diagonal size.
+            </summary>
+            <value>The physical screen diagonal size.</value>
+        </member>
+        <member name="P:Cimbalino.Toolkit.Services.DisplayPropertiesService.RawPixelsPerViewPixel">
+            <summary>
+            Gets the number of raw (physical) pixels for each view (layout) pixel.
+            </summary>
+            <value>The number of raw (physical) pixels for each view (layout) pixel.</value>
+        </member>
+        <member name="T:Cimbalino.Toolkit.Services.EmailComposeService">
+            <summary>
+            Represents an implementation of the <see cref="T:Cimbalino.Toolkit.Services.IEmailComposeService"/>.
+            </summary>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Services.EmailComposeService.ShowAsync(System.String,System.String)">
+            <summary>
+            Shows the e-mail compose screen with the specified subject and message body.
+            </summary>
+            <param name="subject">The e-mail subject.</param>
+            <param name="body">The e-mail message body.</param>
+            <returns>The <see cref="T:System.Threading.Tasks.Task"/> object representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Services.EmailComposeService.ShowAsync(System.String,System.String,System.String)">
+            <summary>
+            Shows the e-mail compose screen with the specified recipients, subject and message body.
+            </summary>
+            <param name="to">The e-mail recipients.</param>
+            <param name="subject">The e-mail subject.</param>
+            <param name="body">The e-mail message body.</param>
+            <returns>The <see cref="T:System.Threading.Tasks.Task"/> object representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Services.EmailComposeService.ShowAsync(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Shows the e-mail compose screen with the specified recipients, CC recipients, BCC recipients, subject and message body.
+            </summary>
+            <param name="to">The e-mail recipients.</param>
+            <param name="cc">The e-mail CC recipients.</param>
+            <param name="bcc">The e-mail BCC recipients.</param>
+            <param name="subject">The e-mail subject.</param>
+            <param name="body">The e-mail message body.</param>
+            <returns>The <see cref="T:System.Threading.Tasks.Task"/> object representing the asynchronous operation.</returns>
+        </member>
+        <member name="T:Cimbalino.Toolkit.Services.LauncherService">
+            <summary>
+            Represents an implementation of the <see cref="T:Cimbalino.Toolkit.Services.ILauncherService"/>.
+            </summary>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Services.LauncherService.LaunchUriAsync(System.Uri)">
+            <summary>
+            Starts the default app associated with the URI scheme name for the specified <see cref="T:System.Uri"/>.
+            </summary>
+            <param name="uri">The <see cref="T:System.Uri"/> to start.</param>
+            <returns>The <see cref="T:System.Threading.Tasks.Task"/> object representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Services.LauncherService.LaunchUriAsync(System.String)">
+            <summary>
+            Starts the default app associated with the URI scheme name for the specified <see cref="T:System.Uri"/>.
+            </summary>
+            <param name="url">The URI to start.</param>
+            <returns>The <see cref="T:System.Threading.Tasks.Task"/> object representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Services.LauncherService.LaunchFileAsync(System.String)">
+            <summary>
+            Starts the default app associated with the specified file.
+            </summary>
+            <param name="file">The file to start.</param>
+            <returns>The <see cref="T:System.Threading.Tasks.Task"/> object representing the asynchronous operation.</returns>
+        </member>
+        <member name="T:Cimbalino.Toolkit.Services.MapManagerService">
+            <summary>
+            Represents an implementation of the <see cref="T:Cimbalino.Toolkit.Services.IMapManagerService"/>.
+            </summary>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Services.MapManagerService.ShowDownloadedMapsUI">
+            <summary>
+            Displays the UI that lets users download maps for offline use.
+            </summary>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Services.MapManagerService.ShowMapsUpdateUI">
+            <summary>
+            Displays the UI that lets users update maps that were previously downloaded for offline use.
+            </summary>
+        </member>
+        <member name="T:Cimbalino.Toolkit.Services.MessageBoxService">
+            <summary>
+            Represents an implementation of the <see cref="T:Cimbalino.Toolkit.Services.IMessageBoxService"/>.
+            </summary>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Services.MessageBoxService.ShowAsync(System.String)">
+            <summary>
+            Displays a message box that contains the specified text and an OK button.
+            </summary>
+            <param name="text">The message to display.</param>
+            <returns>The <see cref="T:System.Threading.Tasks.Task"/> object representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Services.MessageBoxService.ShowAsync(System.String,System.String)">
+            <summary>
+            Displays a message box that contains the specified text, title bar caption, and an OK button.
+            </summary>
+            <param name="text">The message to display.</param>
+            <param name="caption">The title of the message box.</param>
+            <returns>The <see cref="T:System.Threading.Tasks.Task"/> object representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Services.MessageBoxService.ShowAsync(System.String,System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Displays a message box that contains the specified text, title bar caption, and response buttons.
+            </summary>
+            <param name="text">The message to display.</param>
+            <param name="caption">The title of the message box.</param>
+            <param name="buttons">The captions for message box buttons. The maximum number of buttons is two.</param>
+            <returns>The <see cref="T:System.Threading.Tasks.Task"/> object representing the asynchronous operation.</returns>
+        </member>
+        <member name="T:Cimbalino.Toolkit.Services.NavigationService">
+            <summary>
+            Represents an implementation of the <see cref="T:Cimbalino.Toolkit.Services.INavigationService"/>.
+            </summary>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Services.NavigationService.Navigate(System.String)">
+            <summary>
+            Navigates to the content specified by the uniform resource identifier (URI).
+            </summary>
+            <param name="source">The URI for the desired content.</param>
+            <returns>true if navigation is not canceled; otherwise, false.</returns>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Services.NavigationService.Navigate(System.Uri)">
+            <summary>
+            Navigates to the content specified by the uniform resource identifier (URI).
+            </summary>
+            <param name="source">A <see cref="T:System.Uri"/> initialized with the URI for the desired content.</param>
+            <returns>true if navigation is not canceled; otherwise, false.</returns>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Services.NavigationService.Navigate``1">
+            <summary>
+            Navigates to the content specified by the type reference.
+            </summary>
+            <typeparam name="T">The page to navigate to, specified as a type reference to its partial class type.</typeparam>
+            <returns>true if navigation is not canceled; otherwise, false.</returns>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Services.NavigationService.Navigate``1(System.Object)">
+            <summary>
+            Navigates to the content specified by the type reference.
+            </summary>
+            <typeparam name="T">The page to navigate to, specified as a type reference to its partial class type.</typeparam>
+            <param name="parameter">The navigation parameter to pass to the target page; must have a basic type (string, char, numeric, or GUID).</param>
+            <returns>true if navigation is not canceled; otherwise, false.</returns>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Services.NavigationService.Navigate(System.Type)">
+            <summary>
+            Navigates to the content specified by the type reference.
+            </summary>
+            <param name="type">The page to navigate to, specified as a type reference to its partial class type.</param>
+            <returns>true if navigation is not canceled; otherwise, false.</returns>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Services.NavigationService.Navigate(System.Type,System.Object)">
+            <summary>
+            Navigates to the content specified by the type reference.
+            </summary>
+            <param name="type">The page to navigate to, specified as a type reference to its partial class type.</param>
+            <param name="parameter">The navigation parameter to pass to the target page; must have a basic type (string, char, numeric, or GUID).</param>
+            <returns>true if navigation is not canceled; otherwise, false.</returns>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Services.NavigationService.GoBack">
+            <summary>
+            Navigates to the most recent item in back navigation history.
+            </summary>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Services.NavigationService.GoForward">
+            <summary>
+            Navigates to the most recent item in forward navigation history.
+            </summary>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Services.NavigationService.RemoveBackEntry">
+            <summary>
+            Removes the most recent available entry from the back stack.
+            </summary>
+            <returns>true if successfully removed the most recent available entry from the back stack; otherwise, false.</returns>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Services.NavigationService.EnsureNavigationService">
+            <summary>
+            Ensure that a <see cref="T:System.Windows.Navigation.NavigationService"/> instance has been found.
+            </summary>
+            <returns>true if a <see cref="T:System.Windows.Navigation.NavigationService"/> instance has been found; otherwise, false.</returns>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Services.NavigationService.RaiseNavigated(System.EventArgs)">
+            <summary>
+            Raises the <see cref="E:Cimbalino.Toolkit.Services.NavigationService.Navigated"/> event with the provided event data.
+            </summary>
+            <param name="eventArgs">The event data.</param>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Services.NavigationService.RaiseBackKeyPressed(Cimbalino.Toolkit.Services.NavigationServiceBackKeyPressedEventArgs)">
+            <summary>
+            Raises the <see cref="E:Cimbalino.Toolkit.Services.NavigationService.BackKeyPressed"/> event with the provided event data.
+            </summary>
+            <param name="eventArgs">The event data.</param>
+        </member>
+        <member name="E:Cimbalino.Toolkit.Services.NavigationService.Navigated">
+            <summary>
+            Occurs when the content that is being navigated to has been found and is available, although it may not have completed loading.
+            </summary>
+        </member>
+        <member name="E:Cimbalino.Toolkit.Services.NavigationService.BackKeyPressed">
+            <summary>
+            Occurs when the user presses the hardware Back button.
+            </summary>
+        </member>
+        <member name="P:Cimbalino.Toolkit.Services.NavigationService.CurrentSource">
+            <summary>
+            Gets the uniform resource identifier (URI) of the content that is currently displayed.
+            </summary>
+            <value>Returns a value that represents the <see cref="T:System.Uri"/> of content that is currently displayed.</value>
+        </member>
+        <member name="P:Cimbalino.Toolkit.Services.NavigationService.CurrentParameter">
+            <summary>
+            Gets any parameter object passed to the target page for the navigation.
+            </summary>
+            <value>Any parameter object passed to the target page for the navigation.</value>
+        </member>
+        <member name="P:Cimbalino.Toolkit.Services.NavigationService.QueryString">
+            <summary>
+            Gets a collection of query string values.
+            </summary>
+            <value>Returns a <see cref="T:System.Collections.Generic.IDictionary`2"/> collection that contains the query string values.</value>
+        </member>
+        <member name="P:Cimbalino.Toolkit.Services.NavigationService.CanGoBack">
+            <summary>
+            Gets a value indicating whether there is at least one entry in back navigation history.
+            </summary>
+            <value>true if there is at least one entry in back navigation history; false if there are no entries in back navigation history.</value>
+        </member>
+        <member name="P:Cimbalino.Toolkit.Services.NavigationService.CanGoForward">
+            <summary>
+            Gets a value indicating whether there is at least one entry in forward navigation history.
+            </summary>
+            <value>true if there is at least one entry in forward navigation history; false if there are no entries in forward navigation history.</value>
+        </member>
+        <member name="T:Cimbalino.Toolkit.Services.PhoneCallService">
+            <summary>
+            Represents an implementation of the <see cref="T:Cimbalino.Toolkit.Services.IPhoneCallService"/>.
+            </summary>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Services.PhoneCallService.ShowAsync(System.String)">
+            <summary>
+            Shows the Phone application, using the specified phone number.
+            </summary>
+            <param name="phoneNumber">The phone number.</param>
+            <returns>The <see cref="T:System.Threading.Tasks.Task"/> object representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Services.PhoneCallService.ShowAsync(System.String,System.String)">
+            <summary>
+            Shows the Phone application, using the specified phone number and display name.
+            </summary>
+            <param name="phoneNumber">The phone number.</param>
+            <param name="displayName">The display name.</param>
+            <returns>The <see cref="T:System.Threading.Tasks.Task"/> object representing the asynchronous operation.</returns>
+        </member>
+        <member name="T:Cimbalino.Toolkit.Services.SmsComposeService">
+            <summary>
+            Represents an implementation of the <see cref="T:Cimbalino.Toolkit.Services.ISmsComposeService"/>.
+            </summary>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Services.SmsComposeService.ShowAsync(System.String)">
+            <summary>
+            Shows the Messaging application, using the specified recipient list.
+            </summary>
+            <param name="recipient">The recipient.</param>
+            <returns>The <see cref="T:System.Threading.Tasks.Task"/> object representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Services.SmsComposeService.ShowAsync(System.String,System.String)">
+            <summary>
+            Shows the Messaging application, using the specified recipient list and message body.
+            </summary>
+            <param name="recipient">The recipient list for the new SMS message.</param>
+            <param name="body">The body text of the new SMS message.</param>
+            <returns>The <see cref="T:System.Threading.Tasks.Task"/> object representing the asynchronous operation.</returns>
+        </member>
+        <member name="T:Cimbalino.Toolkit.Services.StoreService">
+            <summary>
+            Represents an implementation of the <see cref="T:Cimbalino.Toolkit.Services.IStoreService"/>.
+            </summary>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Services.StoreService.ShowAsync">
+            <summary>
+            Shows the Store application.
+            </summary>
+            <returns>The <see cref="T:System.Threading.Tasks.Task"/> object representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Services.StoreService.ShowPublisherAsync(System.String)">
+            <summary>
+            Shows the Store application.
+            </summary>
+            <param name="publisherName">The publisher display name.</param>
+            <returns>The <see cref="T:System.Threading.Tasks.Task"/> object representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Services.StoreService.SearchAsync(System.String)">
+            <summary>
+            Shows the Store application, optionally filtering results by keyword, publisher, and content type.
+            </summary>
+            <param name="keywords">The keywords to search for.</param>
+            <returns>The <see cref="T:System.Threading.Tasks.Task"/> object representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Services.StoreService.ReviewAsync(System.String)">
+            <summary>
+            Shows the Store application.
+            </summary>
+            <param name="applicationId">The application id.</param>
+            <returns>The <see cref="T:System.Threading.Tasks.Task"/> object representing the asynchronous operation.</returns>
+        </member>
+        <member name="T:Cimbalino.Toolkit.Services.StatusBarService">
+            <summary>
+            Represents an implementation of the <see cref="T:Cimbalino.Toolkit.Services.IStatusBarService"/>.
+            </summary>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Services.StatusBarService.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Cimbalino.Toolkit.Services.StatusBarService"/> class.
+            </summary>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Services.StatusBarService.ShowAsync(System.String)">
+            <summary>
+            Shows the status bar with the specified text.
+            </summary>
+            <param name="text">The text to display in the status bar.</param>
+            <returns>The <see cref="T:System.Threading.Tasks.Task"/> object representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Services.StatusBarService.ShowAsync(System.String,System.Boolean)">
+            <summary>
+            Shows the status bar with the specified text and an optional indeterminate progress indicator.
+            </summary>
+            <param name="text">The text to display in the status bar.</param>
+            <param name="isIndeterminate">true if the progress indicator is indeterminate; otherwise, false.</param>
+            <returns>The <see cref="T:System.Threading.Tasks.Task"/> object representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Services.StatusBarService.ShowAsync(System.String,System.Double)">
+            <summary>
+            Shows the status bar with the specified text and progress value.
+            </summary>
+            <param name="text">The text to display in the status bar.</param>
+            <param name="value">The progress indicator value.</param>
+            <returns>The <see cref="T:System.Threading.Tasks.Task"/> object representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Services.StatusBarService.HideAsync">
+            <summary>
+            Hides the status bar.
+            </summary>
+            <returns>The <see cref="T:System.Threading.Tasks.Task"/> object representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Services.StatusBarService.EnsureInitialization">
+            <summary>
+            Ensure that a <see cref="T:Microsoft.Phone.Controls.PhoneApplicationFrame"/> instance has been found.
+            </summary>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Services.StatusBarService.SetPageProgressIndicator(Microsoft.Phone.Controls.PhoneApplicationPage)">
+            <summary>
+            Sets a <see cref="T:Microsoft.Phone.Shell.ProgressIndicator"/> in the specified <see cref="T:Microsoft.Phone.Controls.PhoneApplicationPage"/> instance.
+            </summary>
+            <param name="page">The <see cref="T:Microsoft.Phone.Controls.PhoneApplicationPage"/> instance.</param>
+        </member>
+        <member name="T:Cimbalino.Toolkit.Services.VibrationService">
+            <summary>
+            Represents an implementation of the <see cref="T:Cimbalino.Toolkit.Services.IVibrationService"/>.
+            </summary>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Services.VibrationService.Vibrate">
+            <summary>
+            Vibrates the device for 200 milliseconds.
+            </summary>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Services.VibrationService.Vibrate(System.Double)">
+            <summary>
+            Vibrates the device for the specified duration (from 0 to 5000 milliseconds).
+            </summary>
+            <param name="duration">The duration (from 0 to 5000 milliseconds) for which the device vibrates.</param>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Services.VibrationService.Vibrate(System.TimeSpan)">
+            <summary>
+            Vibrates the device for the specified duration (from 0 to 5000 milliseconds).
+            </summary>
+            <param name="duration">The duration (from 0 to 5000 milliseconds) for which the device vibrates.</param>
+        </member>
+        <member name="M:Cimbalino.Toolkit.Services.VibrationService.Cancel">
+            <summary>
+            Stops the vibration of the device.
+            </summary>
+        </member>
+    </members>
+</doc>
