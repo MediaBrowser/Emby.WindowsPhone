@@ -1,0 +1,4 @@
+[submodule "Other/ApiClient"]
+	path = Other/ApiClient
+	url = g:/Documents/Visual Studio 2012/Projects/MediaBrowserServer/MediaBrowser.ApiClient
+	branch = master
