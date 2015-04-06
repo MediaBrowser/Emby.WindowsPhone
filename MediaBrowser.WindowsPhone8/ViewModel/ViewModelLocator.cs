@@ -74,6 +74,7 @@ namespace MediaBrowser.WindowsPhone.ViewModel
             { 
                 SimpleIoc.Default.RegisterIf<INavigationService, NavigationService>();
                 SimpleIoc.Default.RegisterIf<ISettingsService, SettingsService>();
+                SimpleIoc.Default.RegisterIf<IMessengerService, MessengerService>();
                 SimpleIoc.Default.RegisterIf(() => Utils.CreateConnectionManager(device, logger, network));
                 SimpleIoc.Default.RegisterIf<IApplicationSettingsService, ApplicationSettingsService>();
                 SimpleIoc.Default.RegisterIf<IStorageService, StorageService>();

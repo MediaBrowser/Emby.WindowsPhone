@@ -11,4 +11,26 @@ namespace MediaBrowser.WindowsPhone.Messaging
             SyncJob = syncJob;
         }
     }
+
+    public class SyncNotificationMessage : NotificationMessage
+    {
+        public string ItemId { get; private set; }
+
+        public SyncNotificationMessage(string notification, string itemId) : base(notification)
+        {
+            ItemId = itemId;
+        }
+
+        public SyncNotificationMessage(object sender, string notification, string itemId)
+            : base(sender, notification)
+        {
+            ItemId = itemId;
+        }
+
+        public SyncNotificationMessage(object sender, object target, string notification, string itemId)
+            : base(sender, target, notification)
+        {
+            ItemId = itemId;
+        }
+    }
 }

@@ -3,7 +3,6 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Windows;
 using Cimbalino.Toolkit.Services;
-using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Connect;
 using MediaBrowser.Model.Dto;
@@ -20,7 +19,7 @@ namespace MediaBrowser.WindowsPhone.Services
     public class AuthenticationService
     {
         private readonly IConnectionManager _connectionManager;
-        private readonly IServerInfoService _serverInfoService;
+        private readonly IMessengerService _messengerService;
         private readonly IApplicationSettingsServiceHandler _settingsService;
         private static ILog _logger;
 
@@ -28,11 +27,15 @@ namespace MediaBrowser.WindowsPhone.Services
 
         public static AuthenticationService Current { get; private set; }
 
-        public AuthenticationService(IConnectionManager connectionManager, IApplicationSettingsService settingsService, IServerInfoService serverInfoService)
+        public AuthenticationService(
+            IConnectionManager connectionManager,
+            IApplicationSettingsService settingsService,
+            IServerInfoService serverInfoService,
+            IMessengerService messengerService)
         {
             _settingsService = settingsService.Legacy;
             _connectionManager = connectionManager;
-            _serverInfoService = serverInfoService;
+            _messengerService = messengerService;
             _logger = new WPLogger(typeof (AuthenticationService));
             Current = this;
 
@@ -41,7 +44,7 @@ namespace MediaBrowser.WindowsPhone.Services
             _connectionManager.LocalUserSignIn += ConnectionManagerOnLocalUserSignIn;
             _connectionManager.LocalUserSignOut += ConnectionManagerOnLocalUserSignOut;
             _connectionManager.Connected += ConnectionManagerOnConnected;
-            _serverInfoService.ServerInfoChanged += ServerInfoServiceOnServerInfoChanged;
+            serverInfoService.ServerInfoChanged += ServerInfoServiceOnServerInfoChanged;
 
             if (serverInfoService.HasServer)
             {
@@ -181,7 +184,7 @@ namespace MediaBrowser.WindowsPhone.Services
             LoggedInUser = null;
             LoggedInConnectUser = null;
             AuthenticationResult = null;
-            Messenger.Default.Send(new NotificationMessage(Constants.Messages.ClearNowPlayingMsg));
+            _messengerService.SendNotification(Constants.Messages.ClearNowPlayingMsg);
 
             _settingsService.Remove(Constants.Settings.SelectedUserSetting);
             _settingsService.Remove(Constants.Settings.AuthUserSetting);

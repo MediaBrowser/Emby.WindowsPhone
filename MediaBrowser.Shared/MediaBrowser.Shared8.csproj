@@ -130,15 +130,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Cimbalino.Toolkit.Core.1.2.6\lib\wp8\Cimbalino.Toolkit.Core.dll</HintPath>
     </Reference>
-    <Reference Include="GalaSoft.MvvmLight">
-      <HintPath>..\packages\MvvmLightLibs.5.0.0.0\lib\wp8\GalaSoft.MvvmLight.dll</HintPath>
-    </Reference>
-    <Reference Include="GalaSoft.MvvmLight.Extras">
-      <HintPath>..\packages\MvvmLightLibs.5.0.0.0\lib\wp8\GalaSoft.MvvmLight.Extras.dll</HintPath>
-    </Reference>
-    <Reference Include="GalaSoft.MvvmLight.Platform">
-      <HintPath>..\packages\MvvmLightLibs.5.0.0.0\lib\wp8\GalaSoft.MvvmLight.Platform.dll</HintPath>
-    </Reference>
     <Reference Include="JetBrains.Annotations">
       <HintPath>..\packages\JetBrainsAnnotations.Fody.1.0.2\Lib\JetBrains.Annotations.dll</HintPath>
       <Private>False</Private>
@@ -150,10 +141,6 @@
     <Reference Include="MediaBrowser.Model, Version=3.0.5573.17685, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\MediaBrowser.Common.3.0.616\lib\portable-net4+sl4+wp71+win8+wpa81\MediaBrowser.Model.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
@@ -181,9 +168,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\sl4-windowsphone71\System.Net.Http.Primitives.dll</HintPath>
     </Reference>
-    <Reference Include="System.Windows.Interactivity, Version=3.9.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmLightLibs.5.0.0.0\lib\wp8\System.Windows.Interactivity.dll</HintPath>
-    </Reference>
     <Reference Include="WebSocket4Net, Version=0.12.0.0, Culture=neutral, PublicKeyToken=eb4e154b696bf72a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\WebSocket4Net.0.12\lib\sl40-windowsphone71\WebSocket4Net.dll</HintPath>
@@ -210,6 +194,7 @@
     <Compile Include="Helpers\SyncRequestHelper.cs" />
     <Compile Include="History.cs" />
     <Compile Include="Interfaces\IMessagePromptService.cs" />
+    <Compile Include="Interfaces\IMessengerService.cs" />
     <Compile Include="Interfaces\IServerInfoService.cs" />
     <Compile Include="Interfaces\ISettingsService.cs" />
     <Compile Include="Logging\MBLogger.cs" />

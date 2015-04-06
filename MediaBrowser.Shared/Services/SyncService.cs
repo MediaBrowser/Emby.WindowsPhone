@@ -25,6 +25,7 @@ namespace MediaBrowser.WindowsPhone.Services
         private readonly IMultiServerSync _mediaSync;
         private readonly IServerInfoService _serverInfo;
         private readonly IMessagePromptService _messagePrompt;
+        private readonly IMessengerService _messengerService;
         private readonly IStorageServiceHandler _storageService;
         private readonly ILog _logger;
 
@@ -35,12 +36,14 @@ namespace MediaBrowser.WindowsPhone.Services
             IMultiServerSync mediaSync,
             IStorageService storageService,
             IServerInfoService serverInfo,
-            IMessagePromptService messagePrompt)
+            IMessagePromptService messagePrompt,
+            IMessengerService messengerService)
         {
             _connectionManager = connectionManager;
             _mediaSync = mediaSync;
             _serverInfo = serverInfo;
             _messagePrompt = messagePrompt;
+            _messengerService = messengerService;
             _storageService = storageService.Local;
             _logger = new WPLogger(GetType());
             Current = this;
@@ -176,6 +179,8 @@ namespace MediaBrowser.WindowsPhone.Services
             await _storageService.DeleteFileIfExists(downloadLocation);
 
             BackgroundTransferService.Remove(request);
+
+
         }
 
         public Task Sync()
