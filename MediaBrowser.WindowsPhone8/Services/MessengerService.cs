@@ -11,9 +11,9 @@ namespace MediaBrowser.WindowsPhone.Services
             Messenger.Default.Send(new NotificationMessage(sender, target, notification));
         }
 
-        public void SendSyncNotification(string notification, string itemId, object sender = null, object target = null)
+        public void SendSyncNotification(string notification, string itemId, string itemType, object sender = null, object target = null)
         {
-            Messenger.Default.Send(new SyncNotificationMessage(sender, target, notification, itemId));
+            Messenger.Default.Send(new SyncNotificationMessage(sender, target, notification, itemId, itemType));
         }
     }
 }

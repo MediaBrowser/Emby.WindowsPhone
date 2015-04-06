@@ -14,6 +14,8 @@ using MediaBrowser.WindowsPhone.Extensions;
 using MediaBrowser.WindowsPhone.Helpers;
 using MediaBrowser.WindowsPhone.Model.Interfaces;
 using Emby.WindowsPhone.Localisation;
+using GalaSoft.MvvmLight.Messaging;
+using MediaBrowser.WindowsPhone.Messaging;
 using MediaBrowser.WindowsPhone.Services;
 using ScottIsAFool.WindowsPhone;
 
@@ -403,6 +405,45 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
                 return true;
             }
             return false;
+        }
+
+        public override void WireMessages()
+        {
+            Messenger.Default.Register<SyncNotificationMessage>(this, m =>
+            {
+                if (m.Notification.Equals(Constants.Messages.SyncJobFinishedMsg))
+                {
+                    if (m.ItemType.Equals("Movie"))
+                    {
+                        if (!Movies.IsNullOrEmpty())
+                        {
+                            foreach (var group in Movies)
+                            {
+                                var movie = group.FirstOrDefault(x => x.Id == m.ItemId);
+                                if (movie != null)
+                                {
+                                    movie.IsSynced = true;
+                                    break;
+                                }
+                            }
+                        }
+
+                        if (!LatestUnwatched.IsNullOrEmpty())
+                        {
+                            var movie = LatestUnwatched.FirstOrDefault(x => x.Id == m.ItemId);
+                            if (movie != null)
+                            {
+                                movie.IsSynced = true;
+                            }
+                        }
+
+                        if (UnseenHeader != null && UnseenHeader.Id == m.ItemId)
+                        {
+                            UnseenHeader.IsSynced = true;
+                        }
+                    }
+                }
+            });
         }
     }
 }

@@ -16,6 +16,7 @@ using MediaBrowser.WindowsPhone.Extensions;
 using MediaBrowser.WindowsPhone.Helpers;
 using MediaBrowser.WindowsPhone.Model;
 using Emby.WindowsPhone.Localisation;
+using MediaBrowser.WindowsPhone.Messaging;
 using MediaBrowser.WindowsPhone.Services;
 using MediaBrowser.WindowsPhone.ViewModel.Playlists;
 using ScottIsAFool.WindowsPhone;
@@ -100,6 +101,38 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         AlbumTracks = _artistTracks.Where(x => x.ParentId == SelectedAlbum.Id)
                                                    .OrderBy(x => x.ParentIndexNumber)
                                                    .ThenBy(x => x.IndexNumber).ToList();
+                    }
+                }
+            });
+
+            Messenger.Default.Register<SyncNotificationMessage>(this, m =>
+            {
+                if (m.Notification.Equals(Constants.Messages.SyncJobFinishedMsg))
+                {
+                    switch (m.ItemType.ToLower())
+                    {
+                        case "audio":
+                            if (!_artistTracks.IsNullOrEmpty())
+                            {
+                                var track = _artistTracks.FirstOrDefault(x => x.Id == m.ItemId);
+                                if (track != null)
+                                {
+                                    track.IsSynced = true;
+                                }
+                            }
+                            break;
+                        case "artist":
+                            if (SelectedArtist != null && SelectedArtist.Id == m.ItemId)
+                            {
+                                SelectedArtist.IsSynced = true;
+                            }
+                            break;
+                        case "album":
+                            if (SelectedAlbum != null && SelectedAlbum.Id == m.ItemId)
+                            {
+                                SelectedAlbum.IsSynced = true;
+                            }
+                            break;
                     }
                 }
             });

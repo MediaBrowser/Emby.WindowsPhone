@@ -180,7 +180,7 @@ namespace MediaBrowser.WindowsPhone.Services
 
             BackgroundTransferService.Remove(request);
 
-
+            _messengerService.SendSyncNotification(Constants.Messages.SyncJobFinishedMsg, item.Id, item.ItemType);
         }
 
         public Task Sync()

@@ -14,6 +14,8 @@ using MediaBrowser.WindowsPhone.Extensions;
 using MediaBrowser.WindowsPhone.Helpers;
 using MediaBrowser.WindowsPhone.Model.Interfaces;
 using Emby.WindowsPhone.Localisation;
+using GalaSoft.MvvmLight.Messaging;
+using MediaBrowser.WindowsPhone.Messaging;
 using MediaBrowser.WindowsPhone.Services;
 using ScottIsAFool.WindowsPhone;
 
@@ -421,6 +423,47 @@ namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
 
                     _genresLoaded = await GetGenres();
                     break;
+            }
+        }
+
+        public override void WireMessages()
+        {
+            Messenger.Default.Register<SyncNotificationMessage>(this, m =>
+            {
+                if (m.Notification.Equals(Constants.Messages.SyncJobFinishedMsg))
+                {
+                    var type = m.ItemType.ToLower();
+                    switch (type)
+                    {
+                        case "episode":
+                            SetEpisodeAsWatched(NextUpList, m.ItemId);
+                            SetEpisodeAsWatched(LatestUnwatched, m.ItemId);
+                            break;
+                        case "series":
+                            foreach (var group in Shows)
+                            {
+                                var series = group.FirstOrDefault(x => x.Id == m.ItemId);
+                                if (series != null)
+                                {
+                                    series.IsSynced = true;
+                                    break;
+                                }
+                            }
+                            break;
+                    }
+                }
+            });
+        }
+
+        private static void SetEpisodeAsWatched(List<BaseItemDto> list, string itemId)
+        {
+            if (!list.IsNullOrEmpty())
+            {
+                var episode = list.FirstOrDefault(x => x.Id == itemId);
+                if (episode != null)
+                {
+                    episode.IsSynced = true;
+                }
             }
         }
     }

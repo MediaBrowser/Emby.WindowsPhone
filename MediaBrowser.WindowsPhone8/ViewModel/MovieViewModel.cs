@@ -14,6 +14,7 @@ using MediaBrowser.WindowsPhone.Extensions;
 using MediaBrowser.WindowsPhone.Helpers;
 using MediaBrowser.WindowsPhone.Model;
 using Emby.WindowsPhone.Localisation;
+using MediaBrowser.WindowsPhone.Messaging;
 using MediaBrowser.WindowsPhone.Services;
 using ScottIsAFool.WindowsPhone;
 
@@ -252,6 +253,17 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         SelectedMovie.UserData.PlaybackPositionTicks = ticks;
 
                         CanResume = SelectedMovie.CanResume;
+                    }
+                }
+            });
+
+            Messenger.Default.Register<SyncNotificationMessage>(this, m =>
+            {
+                if (m.Notification.Equals(Constants.Messages.SyncJobFinishedMsg))
+                {
+                    if (m.ItemType.Equals("Movie") && SelectedMovie != null && SelectedMovie.Id == m.ItemId)
+                    {
+                        SelectedMovie.IsSynced = true;
                     }
                 }
             });

@@ -58,7 +58,7 @@ namespace MediaBrowser.WindowsPhone.Model.Sync
             var authorization = string.Format("MediaBrowser UserId=\"{0}\", Client=\"{1}\", Device=\"{2}\", DeviceId=\"{3}\", Version=\"{4}\"", client.CurrentUserId, client.ClientName, client.DeviceName, client.DeviceId, stringVersion);
             downloader.Headers.Add("Authorization", authorization);
             downloader.Method = "GET";
-            downloader.Tag = JsonConvert.SerializeObject(new JobData(localItem.Id, localItem.LocalPath, localItem.Item.Name));
+            downloader.Tag = JsonConvert.SerializeObject(new JobData(localItem.Id, localItem.LocalPath, localItem.Item.Name, localItem.Item.Type));
 
             var downloadLocation = new Uri(string.Format(Constants.AnyTime.DownloadLocation, localItem.Id), UriKind.RelativeOrAbsolute);
             downloader.DownloadLocation = downloadLocation;
@@ -97,12 +97,14 @@ namespace MediaBrowser.WindowsPhone.Model.Sync
         public string Id { get; private set; }
         public string Location { get; private set; }
         public string Name { get; private set; }
+        public string ItemType { get; private set; }
 
-        public JobData(string id, string location, string name)
+        public JobData(string id, string location, string name, string itemType)
         {
             Id = id;
             Location = location;
             Name = name;
+            ItemType = itemType;
         }
     }
 }

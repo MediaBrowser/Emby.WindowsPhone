@@ -15,6 +15,7 @@ using MediaBrowser.Model.Dto;
 using MediaBrowser.WindowsPhone.Extensions;
 using MediaBrowser.WindowsPhone.Helpers;
 using Emby.WindowsPhone.Localisation;
+using MediaBrowser.WindowsPhone.Messaging;
 using MediaBrowser.WindowsPhone.Services;
 using ScottIsAFool.WindowsPhone;
 using INavigationService = MediaBrowser.WindowsPhone.Model.Interfaces.INavigationService;
@@ -99,6 +100,52 @@ namespace MediaBrowser.WindowsPhone.ViewModel
                         SelectedEpisode.UserData.PlaybackPositionTicks = ticks;
 
                         CanResume = SelectedEpisode.CanResume;
+                    }
+                }
+            });
+
+            Messenger.Default.Register<SyncNotificationMessage>(this, m =>
+            {
+                if (m.Notification.Equals(Constants.Messages.SyncJobFinishedMsg))
+                {
+                    switch (m.ItemType.ToLower())
+                    {
+                        case "episode":
+                            if (SelectedEpisode != null && SelectedEpisode.Id == m.ItemId)
+                            {
+                                SelectedEpisode.IsSynced = true;
+                            }
+
+                            if (!Episodes.IsNullOrEmpty())
+                            {
+                                var episode = Episodes.FirstOrDefault(x => x.Id == m.ItemId);
+                                if (episode != null)
+                                {
+                                    episode.IsSynced = true;
+                                }
+                            }
+                            break;
+                        case "season":
+                            if (SelectedSeason != null)
+                            {
+                                SelectedSeason.IsSynced = true;
+                            }
+
+                            if (!Seasons.IsNullOrEmpty())
+                            {
+                                var season = Seasons.FirstOrDefault(x => x.Id == m.ItemId);
+                                if (season != null)
+                                {
+                                    season.IsSynced = true;
+                                }
+                            }
+                            break;
+                        case "series":
+                            if (SelectedTvSeries != null)
+                            {
+                                SelectedTvSeries.IsSynced = true;
+                            }
+                            break;
                     }
                 }
             });

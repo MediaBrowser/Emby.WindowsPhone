@@ -15,22 +15,26 @@ namespace MediaBrowser.WindowsPhone.Messaging
     public class SyncNotificationMessage : NotificationMessage
     {
         public string ItemId { get; private set; }
+        public string ItemType { get; private set; }
 
-        public SyncNotificationMessage(string notification, string itemId) : base(notification)
+        public SyncNotificationMessage(string notification, string itemId, string itemType) : base(notification)
         {
             ItemId = itemId;
+            ItemType = itemType;
         }
 
-        public SyncNotificationMessage(object sender, string notification, string itemId)
+        public SyncNotificationMessage(object sender, string notification, string itemId, string itemType)
             : base(sender, notification)
         {
             ItemId = itemId;
+            ItemType = itemType;
         }
 
-        public SyncNotificationMessage(object sender, object target, string notification, string itemId)
+        public SyncNotificationMessage(object sender, object target, string notification, string itemId, string itemType)
             : base(sender, target, notification)
         {
             ItemId = itemId;
+            ItemType = itemType;
         }
     }
 }
