@@ -12,14 +12,14 @@ using MediaBrowser.Model.Events;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Querying;
 using MediaBrowser.Model.Session;
-using MediaBrowser.WindowsPhone.CimbalinoToolkit.Tiles;
-using MediaBrowser.WindowsPhone.Messaging;
+using Emby.WindowsPhone.CimbalinoToolkit.Tiles;
+using Emby.WindowsPhone.Messaging;
 using Emby.WindowsPhone.Localisation;
-using MediaBrowser.WindowsPhone.Services;
+using Emby.WindowsPhone.Services;
 
-using INavigationService = MediaBrowser.WindowsPhone.Model.Interfaces.INavigationService;
+using INavigationService = Emby.WindowsPhone.Model.Interfaces.INavigationService;
 
-namespace MediaBrowser.WindowsPhone.ViewModel.Remote
+namespace Emby.WindowsPhone.ViewModel.Remote
 {
     /// <summary>
     /// This class contains properties that a View can data bind to.

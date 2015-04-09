@@ -9,13 +9,13 @@ using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Playlists;
 using MediaBrowser.Model.Querying;
-using MediaBrowser.WindowsPhone.Converters;
-using MediaBrowser.WindowsPhone.Model.Interfaces;
+using Emby.WindowsPhone.Converters;
+using Emby.WindowsPhone.Model.Interfaces;
 using Emby.WindowsPhone.Localisation;
-using MediaBrowser.WindowsPhone.Services;
+using Emby.WindowsPhone.Services;
 
 
-namespace MediaBrowser.WindowsPhone.ViewModel.Playlists
+namespace Emby.WindowsPhone.ViewModel.Playlists
 {
     /// <summary>
     /// This class contains properties that a View can data bind to.

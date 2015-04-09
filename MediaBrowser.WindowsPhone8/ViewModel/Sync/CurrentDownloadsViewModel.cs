@@ -3,12 +3,12 @@ using System.Linq;
 using Cimbalino.Toolkit.Extensions;
 using GalaSoft.MvvmLight.Command;
 using MediaBrowser.Model.ApiClient;
-using MediaBrowser.WindowsPhone.Model.Interfaces;
-using MediaBrowser.WindowsPhone.ViewModel.Items;
+using Emby.WindowsPhone.Model.Interfaces;
+using Emby.WindowsPhone.ViewModel.Items;
 using Microsoft.Phone.BackgroundTransfer;
 using Microsoft.Phone.Controls;
 
-namespace MediaBrowser.WindowsPhone.ViewModel.Sync
+namespace Emby.WindowsPhone.ViewModel.Sync
 {
     /// <summary>
     /// This class contains properties that a View can data bind to.

@@ -2,9 +2,9 @@
 using System.Windows;
 using System.Windows.Controls;
 using Windows.System;
-using MediaBrowser.WindowsPhone.ViewModel.Settings;
+using Emby.WindowsPhone.ViewModel.Settings;
 
-namespace MediaBrowser.WindowsPhone.Views.Settings
+namespace Emby.WindowsPhone.Views.Settings
 {
     public partial class LockScreenSettingsView
     {

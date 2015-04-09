@@ -1,9 +1,9 @@
 using System;
 using System.Threading.Tasks;
 using MediaBrowser.Model.Sync;
-using MediaBrowser.WindowsPhone.Model.Sync;
+using Emby.WindowsPhone.Model.Sync;
 
-namespace MediaBrowser.WindowsPhone.Interfaces
+namespace Emby.WindowsPhone.Interfaces
 {
     public interface IMessagePromptService
     {

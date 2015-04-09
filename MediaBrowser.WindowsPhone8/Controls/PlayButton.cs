@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace MediaBrowser.WindowsPhone.Controls
+namespace Emby.WindowsPhone.Controls
 {
     public class PlayButton : Control
     {

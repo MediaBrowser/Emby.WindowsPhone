@@ -3,10 +3,10 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
 using MediaBrowser.Model.LiveTv;
-using MediaBrowser.WindowsPhone.Extensions;
-using MediaBrowser.WindowsPhone.Services;
+using Emby.WindowsPhone.Extensions;
+using Emby.WindowsPhone.Services;
 
-namespace MediaBrowser.WindowsPhone.Converters
+namespace Emby.WindowsPhone.Converters
 {
     public class LiveTvInfoVisibilityConverter : IValueConverter
     {

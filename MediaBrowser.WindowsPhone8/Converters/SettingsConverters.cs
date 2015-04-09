@@ -1,9 +1,9 @@
 ﻿using MediaBrowser.Model;
 using System;
 using System.Windows.Data;
-using MediaBrowser.WindowsPhone.Model;
+using Emby.WindowsPhone.Model;
 
-namespace MediaBrowser.WindowsPhone.Converters
+namespace Emby.WindowsPhone.Converters
 {
     public class SettingsConverters : IValueConverter
     {

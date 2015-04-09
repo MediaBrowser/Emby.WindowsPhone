@@ -10,7 +10,7 @@ using MediaBrowser.ApiInteraction;
 using MediaBrowser.Model.ApiClient;
 using Microsoft.Phone.Net.NetworkInformation;
 
-namespace MediaBrowser.WindowsPhone.Model.Connection
+namespace Emby.WindowsPhone.Model.Connection
 {
     public class NetworkConnection : INetworkConnection
     {

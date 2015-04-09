@@ -1,7 +1,7 @@
 ﻿using System.Security.Cryptography;
 using MediaBrowser.ApiInteraction.Cryptography;
 
-namespace MediaBrowser.WindowsPhone.Model.Security
+namespace Emby.WindowsPhone.Model.Security
 {
     public class CryptographyProvider : ICryptographyProvider
     {

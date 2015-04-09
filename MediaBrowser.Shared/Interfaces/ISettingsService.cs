@@ -2,9 +2,9 @@
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.LiveTv;
 using MediaBrowser.Model.System;
-using MediaBrowser.WindowsPhone.Model;
+using Emby.WindowsPhone.Model;
 
-namespace MediaBrowser.WindowsPhone.Interfaces
+namespace Emby.WindowsPhone.Interfaces
 {
     public interface ISettingsService
     {

@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using GalaSoft.MvvmLight.Messaging;
 
-namespace MediaBrowser.WindowsPhone.Views.LiveTv
+namespace Emby.WindowsPhone.Views.LiveTv
 {
     public partial class ScheduledSeriesView
     {

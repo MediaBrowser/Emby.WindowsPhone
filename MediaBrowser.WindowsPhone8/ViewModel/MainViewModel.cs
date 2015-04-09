@@ -14,16 +14,16 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using MediaBrowser.Model.Dto;
 using System.Threading.Tasks;
-using MediaBrowser.WindowsPhone.CimbalinoToolkit.Tiles;
-using MediaBrowser.WindowsPhone.Extensions;
-using MediaBrowser.WindowsPhone.Helpers;
-using MediaBrowser.WindowsPhone.Messaging;
-using MediaBrowser.WindowsPhone.Model;
+using Emby.WindowsPhone.CimbalinoToolkit.Tiles;
+using Emby.WindowsPhone.Extensions;
+using Emby.WindowsPhone.Helpers;
+using Emby.WindowsPhone.Messaging;
+using Emby.WindowsPhone.Model;
 using Emby.WindowsPhone.Localisation;
-using MediaBrowser.WindowsPhone.Services;
-using INavigationService = MediaBrowser.WindowsPhone.Model.Interfaces.INavigationService;
+using Emby.WindowsPhone.Services;
+using INavigationService = Emby.WindowsPhone.Model.Interfaces.INavigationService;
 
-namespace MediaBrowser.WindowsPhone.ViewModel
+namespace Emby.WindowsPhone.ViewModel
 {
     /// <summary>
     /// This class contains properties that the main View can data bind to.

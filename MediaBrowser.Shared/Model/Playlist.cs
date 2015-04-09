@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using MediaBrowser.WindowsPhone.Model;
+using Emby.WindowsPhone.Model;
 using PropertyChanged;
 
 namespace MediaBrowser.Model

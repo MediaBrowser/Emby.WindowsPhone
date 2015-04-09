@@ -6,11 +6,11 @@ using System.Resources;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("MediaBrowser.WindowsPhone8.AudioAgent")]
+[assembly: AssemblyTitle("Emby.WindowsPhone8.AudioAgent")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("MediaBrowser.WindowsPhone8.AudioAgent")]
+[assembly: AssemblyProduct("Emby.WindowsPhone8.AudioAgent")]
 [assembly: AssemblyCopyright("Copyright ©  2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

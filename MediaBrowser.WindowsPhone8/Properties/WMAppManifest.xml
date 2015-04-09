@@ -33,7 +33,7 @@
       <DefaultTask Name="_default" NavigationPage="Splashscreen.xaml" />
     </Tasks>
     <Tokens>
-      <PrimaryToken TokenID="MediaBrowser.WindowsPhone8Token" TaskName="_default">
+      <PrimaryToken TokenID="Emby.WindowsPhone8Token" TaskName="_default">
         <TemplateFlip>
           <SmallImageURI IsRelative="true" IsResource="false">Assets\Tiles\FlipCycleTileSmall.png</SmallImageURI>
           <Count>0</Count>

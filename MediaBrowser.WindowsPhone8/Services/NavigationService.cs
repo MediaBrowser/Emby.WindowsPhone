@@ -4,12 +4,12 @@ using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
-using MediaBrowser.WindowsPhone.Model.Interfaces;
-using MediaBrowser.WindowsPhone.ViewModel;
-using MediaBrowser.WindowsPhone.ViewModel.Playlists;
+using Emby.WindowsPhone.Model.Interfaces;
+using Emby.WindowsPhone.ViewModel;
+using Emby.WindowsPhone.ViewModel.Playlists;
 using Microsoft.Phone.Net.NetworkInformation;
 
-namespace MediaBrowser.WindowsPhone.Services
+namespace Emby.WindowsPhone.Services
 {
     public class NavigationService : Cimbalino.Toolkit.Services.NavigationService, INavigationService
     {

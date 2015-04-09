@@ -4,10 +4,10 @@ using GalaSoft.MvvmLight.Messaging;
 using JetBrains.Annotations;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Dto;
-using MediaBrowser.WindowsPhone.Model.Interfaces;
-using MediaBrowser.WindowsPhone.Services;
+using Emby.WindowsPhone.Model.Interfaces;
+using Emby.WindowsPhone.Services;
 
-namespace MediaBrowser.WindowsPhone.ViewModel
+namespace Emby.WindowsPhone.ViewModel
 {
     /// <summary>
     /// This class contains properties that a View can data bind to.

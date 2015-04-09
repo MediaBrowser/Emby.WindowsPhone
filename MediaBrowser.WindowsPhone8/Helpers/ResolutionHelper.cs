@@ -1,4 +1,4 @@
-﻿namespace MediaBrowser.WindowsPhone.Helpers
+﻿namespace Emby.WindowsPhone.Helpers
 {
     public static class ResolutionHelper
     {

@@ -2,7 +2,7 @@
 using System.Windows.Input;
 using Microsoft.Phone.Tasks;
 
-namespace MediaBrowser.WindowsPhone.Views.Settings
+namespace Emby.WindowsPhone.Views.Settings
 {
     public partial class ConnectionSettingsView
     {

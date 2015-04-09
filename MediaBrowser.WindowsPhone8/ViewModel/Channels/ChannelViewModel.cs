@@ -6,12 +6,12 @@ using MediaBrowser.Model.Channels;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Querying;
-using MediaBrowser.WindowsPhone.Model.Interfaces;
+using Emby.WindowsPhone.Model.Interfaces;
 using Emby.WindowsPhone.Localisation;
-using MediaBrowser.WindowsPhone.Services;
+using Emby.WindowsPhone.Services;
 
 
-namespace MediaBrowser.WindowsPhone.ViewModel.Channels
+namespace Emby.WindowsPhone.ViewModel.Channels
 {
     /// <summary>
     /// This class contains properties that a View can data bind to.

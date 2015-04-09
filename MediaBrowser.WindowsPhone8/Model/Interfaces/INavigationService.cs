@@ -1,7 +1,7 @@
 ﻿using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
 
-namespace MediaBrowser.WindowsPhone.Model.Interfaces
+namespace Emby.WindowsPhone.Model.Interfaces
 {
     public interface INavigationService : Cimbalino.Toolkit.Services.INavigationService
     {

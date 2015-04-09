@@ -6,12 +6,12 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Net;
-using MediaBrowser.WindowsPhone.Model.Interfaces;
+using Emby.WindowsPhone.Model.Interfaces;
 using Emby.WindowsPhone.Localisation;
-using MediaBrowser.WindowsPhone.Services;
-using MediaBrowser.WindowsPhone.ViewModel.Items;
+using Emby.WindowsPhone.Services;
+using Emby.WindowsPhone.ViewModel.Items;
 
-namespace MediaBrowser.WindowsPhone.ViewModel.Sync
+namespace Emby.WindowsPhone.ViewModel.Sync
 {
     /// <summary>
     /// This class contains properties that a View can data bind to.

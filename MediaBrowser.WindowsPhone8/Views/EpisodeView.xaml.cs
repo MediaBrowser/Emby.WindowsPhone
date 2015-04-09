@@ -1,8 +1,8 @@
 ﻿using System.Windows.Navigation;
 using MediaBrowser.Model.Dto;
-using MediaBrowser.WindowsPhone.ViewModel;
+using Emby.WindowsPhone.ViewModel;
 
-namespace MediaBrowser.WindowsPhone.Views
+namespace Emby.WindowsPhone.Views
 {
     /// <summary>
     /// Description for EpisodeView.

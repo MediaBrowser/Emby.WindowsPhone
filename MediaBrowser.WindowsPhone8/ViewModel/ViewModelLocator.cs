@@ -7,29 +7,29 @@ using MediaBrowser.ApiInteraction.Playback;
 using MediaBrowser.ApiInteraction.Sync;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Logging;
-using MediaBrowser.WindowsPhone.Design;
-using MediaBrowser.WindowsPhone.Extensions;
-using MediaBrowser.WindowsPhone.Helpers;
-using MediaBrowser.WindowsPhone.Interfaces;
-using MediaBrowser.WindowsPhone.Logging;
-using MediaBrowser.WindowsPhone.Model.Connection;
-using MediaBrowser.WindowsPhone.Model.Security;
-using MediaBrowser.WindowsPhone.Model.Sync;
-using MediaBrowser.WindowsPhone.Services;
-using MediaBrowser.WindowsPhone.ViewModel.Channels;
-using MediaBrowser.WindowsPhone.ViewModel.Playlists;
-using MediaBrowser.WindowsPhone.ViewModel.Predefined;
-using MediaBrowser.WindowsPhone.ViewModel.Remote;
-using MediaBrowser.WindowsPhone.ViewModel.Settings;
-using MediaBrowser.WindowsPhone.ViewModel.Sync;
+using Emby.WindowsPhone.Design;
+using Emby.WindowsPhone.Extensions;
+using Emby.WindowsPhone.Helpers;
+using Emby.WindowsPhone.Interfaces;
+using Emby.WindowsPhone.Logging;
+using Emby.WindowsPhone.Model.Connection;
+using Emby.WindowsPhone.Model.Security;
+using Emby.WindowsPhone.Model.Sync;
+using Emby.WindowsPhone.Services;
+using Emby.WindowsPhone.ViewModel.Channels;
+using Emby.WindowsPhone.ViewModel.Playlists;
+using Emby.WindowsPhone.ViewModel.Predefined;
+using Emby.WindowsPhone.ViewModel.Remote;
+using Emby.WindowsPhone.ViewModel.Settings;
+using Emby.WindowsPhone.ViewModel.Sync;
 using Microsoft.Practices.ServiceLocation;
-using MediaBrowser.WindowsPhone.Model;
+using Emby.WindowsPhone.Model;
 using MediaBrowser.Model;
-using INavigationService = MediaBrowser.WindowsPhone.Model.Interfaces.INavigationService;
-using NavigationService = MediaBrowser.WindowsPhone.Services.NavigationService;
-using MediaBrowser.WindowsPhone.ViewModel.LiveTv;
+using INavigationService = Emby.WindowsPhone.Model.Interfaces.INavigationService;
+using NavigationService = Emby.WindowsPhone.Services.NavigationService;
+using Emby.WindowsPhone.ViewModel.LiveTv;
 
-namespace MediaBrowser.WindowsPhone.ViewModel
+namespace Emby.WindowsPhone.ViewModel
 {
     /// <summary>
     /// This class contains static references to all the view models in the

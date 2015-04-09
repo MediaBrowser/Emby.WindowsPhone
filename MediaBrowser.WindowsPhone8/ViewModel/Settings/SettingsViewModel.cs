@@ -13,18 +13,18 @@ using GalaSoft.MvvmLight.Ioc;
 using JetBrains.Annotations;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Dto;
-using MediaBrowser.WindowsPhone.CimbalinoToolkit;
-using MediaBrowser.WindowsPhone.Extensions;
-using MediaBrowser.WindowsPhone.Interfaces;
-using MediaBrowser.WindowsPhone.Model;
-using MediaBrowser.WindowsPhone.Model.Connection;
-using MediaBrowser.WindowsPhone.Model.Streaming;
+using Emby.WindowsPhone.CimbalinoToolkit;
+using Emby.WindowsPhone.Extensions;
+using Emby.WindowsPhone.Interfaces;
+using Emby.WindowsPhone.Model;
+using Emby.WindowsPhone.Model.Connection;
+using Emby.WindowsPhone.Model.Streaming;
 using Emby.WindowsPhone.Localisation;
-using MediaBrowser.WindowsPhone.Services;
-using INavigationService = MediaBrowser.WindowsPhone.Model.Interfaces.INavigationService;
-using LockScreenService = MediaBrowser.WindowsPhone.Services.LockScreenService;
+using Emby.WindowsPhone.Services;
+using INavigationService = Emby.WindowsPhone.Model.Interfaces.INavigationService;
+using LockScreenService = Emby.WindowsPhone.Services.LockScreenService;
 
-namespace MediaBrowser.WindowsPhone.ViewModel.Settings
+namespace Emby.WindowsPhone.ViewModel.Settings
 {
     /// <summary>
     /// This class contains properties that a View can data bind to.

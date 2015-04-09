@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.Phone.Shell;
 
-namespace MediaBrowser.WindowsPhone.Views.Settings
+namespace Emby.WindowsPhone.Views.Settings
 {
     public partial class MbConnectView 
     {

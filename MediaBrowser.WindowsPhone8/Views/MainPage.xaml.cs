@@ -1,7 +1,7 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Phone.Controls;
 
-namespace MediaBrowser.WindowsPhone.Views
+namespace Emby.WindowsPhone.Views
 {
     public partial class MainPage
     {

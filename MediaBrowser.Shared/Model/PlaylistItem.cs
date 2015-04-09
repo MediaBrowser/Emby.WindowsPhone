@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using PropertyChanged;
 
-namespace MediaBrowser.WindowsPhone.Model
+namespace Emby.WindowsPhone.Model
 {
     [ImplementPropertyChanged]
     [DebuggerDisplay("Title: {TrackName}")]

@@ -1,7 +1,7 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
-using MediaBrowser.WindowsPhone.Services;
+using Emby.WindowsPhone.Services;
 
-namespace MediaBrowser.WindowsPhone
+namespace Emby.WindowsPhone
 {
     /// <summary>
     /// Description for Splashscreen.

@@ -12,17 +12,17 @@ using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Playlists;
 using MediaBrowser.Model.Querying;
-using MediaBrowser.WindowsPhone.Extensions;
-using MediaBrowser.WindowsPhone.Messaging;
-using MediaBrowser.WindowsPhone.Model;
-using MediaBrowser.WindowsPhone.Model.Interfaces;
+using Emby.WindowsPhone.Extensions;
+using Emby.WindowsPhone.Messaging;
+using Emby.WindowsPhone.Model;
+using Emby.WindowsPhone.Model.Interfaces;
 using Emby.WindowsPhone.Localisation;
-using MediaBrowser.WindowsPhone.Services;
+using Emby.WindowsPhone.Services;
 using Microsoft.Phone.Controls;
 
-using CustomMessageBox = MediaBrowser.WindowsPhone.Controls.CustomMessageBox;
+using CustomMessageBox = Emby.WindowsPhone.Controls.CustomMessageBox;
 
-namespace MediaBrowser.WindowsPhone.ViewModel.Playlists
+namespace Emby.WindowsPhone.ViewModel.Playlists
 {
     /// <summary>
     /// This class contains properties that a View can data bind to.

@@ -9,8 +9,8 @@
     <ProjectTypeGuids>{C089C8C0-30E0-4E22-80C0-CE093F111A43};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MediaBrowser.WindowsPhone.Background</RootNamespace>
-    <AssemblyName>MediaBrowser.WindowsPhone.Background</AssemblyName>
+    <RootNamespace>Emby.WindowsPhone.Background</RootNamespace>
+    <AssemblyName>Emby.WindowsPhone.Background</AssemblyName>
     <TargetFrameworkIdentifier>WindowsPhone</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
     <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
@@ -118,9 +118,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MediaBrowser.Shared\MediaBrowser.Shared8.csproj">
+    <ProjectReference Include="..\MediaBrowser.Shared\Emby.Shared8.csproj">
       <Project>{0663d56b-a326-4e58-939b-b20adee2c7e7}</Project>
-      <Name>MediaBrowser.Shared8</Name>
+      <Name>Emby.Shared8</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />

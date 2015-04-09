@@ -9,15 +9,15 @@ using MediaBrowser.ApiInteraction.Sync;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Logging;
 using MediaBrowser.Model.Net;
-using MediaBrowser.WindowsPhone.Logging;
-using MediaBrowser.WindowsPhone.Model;
-using MediaBrowser.WindowsPhone.Model.Connection;
-using MediaBrowser.WindowsPhone.Model.Photo;
-using MediaBrowser.WindowsPhone.Model.Security;
+using Emby.WindowsPhone.Logging;
+using Emby.WindowsPhone.Model;
+using Emby.WindowsPhone.Model.Connection;
+using Emby.WindowsPhone.Model.Photo;
+using Emby.WindowsPhone.Model.Security;
 using Microsoft.Phone.Scheduler;
 using ScottIsAFool.WindowsPhone.Logging;
 
-namespace MediaBrowser.WindowsPhone.Background
+namespace Emby.WindowsPhone.Background
 {
     public class ScheduledAgent : ScheduledTaskAgent
     {

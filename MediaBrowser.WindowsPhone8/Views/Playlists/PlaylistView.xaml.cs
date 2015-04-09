@@ -1,4 +1,4 @@
-﻿namespace MediaBrowser.WindowsPhone.Views.Playlists
+﻿namespace Emby.WindowsPhone.Views.Playlists
 {
     public partial class PlaylistView 
     {

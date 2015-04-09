@@ -1,6 +1,6 @@
 ﻿using Telerik.Windows.Controls;
 
-namespace MediaBrowser.WindowsPhone.Services
+namespace Emby.WindowsPhone.Services
 {
     public class ReviewReminderService : RadRateApplicationReminder
     {

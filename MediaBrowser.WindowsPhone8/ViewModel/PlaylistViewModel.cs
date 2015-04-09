@@ -13,15 +13,15 @@ using GalaSoft.MvvmLight.Threading;
 using JetBrains.Annotations;
 using MediaBrowser.Model;
 using MediaBrowser.Model.ApiClient;
-using MediaBrowser.WindowsPhone.AudioAgent;
-using MediaBrowser.WindowsPhone.Messaging;
-using MediaBrowser.WindowsPhone.Model;
+using Emby.WindowsPhone.AudioAgent;
+using Emby.WindowsPhone.Messaging;
+using Emby.WindowsPhone.Model;
 using Emby.WindowsPhone.Localisation;
 using Microsoft.Phone.BackgroundAudio;
 
-using INavigationService = MediaBrowser.WindowsPhone.Model.Interfaces.INavigationService;
+using INavigationService = Emby.WindowsPhone.Model.Interfaces.INavigationService;
 
-namespace MediaBrowser.WindowsPhone.ViewModel
+namespace Emby.WindowsPhone.ViewModel
 {
     /// <summary>
     /// This class contains properties that a View can data bind to.

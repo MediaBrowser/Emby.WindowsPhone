@@ -1,9 +1,9 @@
 ﻿using Coding4Fun.Toolkit.Controls;
 using GalaSoft.MvvmLight.Messaging;
-using MediaBrowser.WindowsPhone.Model;
+using Emby.WindowsPhone.Model;
 using Emby.WindowsPhone.Localisation;
 
-namespace MediaBrowser.WindowsPhone.Views.LiveTv
+namespace Emby.WindowsPhone.Views.LiveTv
 {
     public partial class RecordedTvView
     {

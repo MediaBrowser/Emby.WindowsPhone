@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows;
 
-namespace MediaBrowser.WindowsPhone.Views.FirstRun
+namespace Emby.WindowsPhone.Views.FirstRun
 {
     public partial class WelcomeView
     {

@@ -1,9 +1,9 @@
 ﻿using System.Windows.Navigation;
 using MediaBrowser.Model.Dto;
-using MediaBrowser.WindowsPhone.ViewModel;
-using MediaBrowser.WindowsPhone.ViewModel.Channels;
+using Emby.WindowsPhone.ViewModel;
+using Emby.WindowsPhone.ViewModel.Channels;
 
-namespace MediaBrowser.WindowsPhone.Views.Channels
+namespace Emby.WindowsPhone.Views.Channels
 {
     public partial class ChannelView
     {

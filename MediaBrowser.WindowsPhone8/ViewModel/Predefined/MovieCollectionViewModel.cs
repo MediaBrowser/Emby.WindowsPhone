@@ -10,16 +10,16 @@ using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Querying;
-using MediaBrowser.WindowsPhone.Extensions;
-using MediaBrowser.WindowsPhone.Helpers;
-using MediaBrowser.WindowsPhone.Model.Interfaces;
+using Emby.WindowsPhone.Extensions;
+using Emby.WindowsPhone.Helpers;
+using Emby.WindowsPhone.Model.Interfaces;
 using Emby.WindowsPhone.Localisation;
 using GalaSoft.MvvmLight.Messaging;
-using MediaBrowser.WindowsPhone.Messaging;
-using MediaBrowser.WindowsPhone.Services;
+using Emby.WindowsPhone.Messaging;
+using Emby.WindowsPhone.Services;
 using ScottIsAFool.WindowsPhone;
 
-namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
+namespace Emby.WindowsPhone.ViewModel.Predefined
 {
     /// <summary>
     /// This class contains properties that a View can data bind to.

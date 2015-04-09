@@ -3,11 +3,11 @@ using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model;
 using MediaBrowser.Model.ApiClient;
-using MediaBrowser.WindowsPhone.Services;
-using MediaBrowser.WindowsPhone.ViewModel;
-using MediaBrowser.WindowsPhone.ViewModel.Remote;
+using Emby.WindowsPhone.Services;
+using Emby.WindowsPhone.ViewModel;
+using Emby.WindowsPhone.ViewModel.Remote;
 
-namespace MediaBrowser.WindowsPhone.Views.Remote
+namespace Emby.WindowsPhone.Views.Remote
 {
     /// <summary>
     /// Description for RemoteView.

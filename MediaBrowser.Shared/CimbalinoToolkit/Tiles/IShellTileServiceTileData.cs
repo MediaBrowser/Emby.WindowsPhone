@@ -13,7 +13,7 @@
 // </license>
 // ****************************************************************************
 
-namespace MediaBrowser.WindowsPhone.CimbalinoToolkit.Tiles
+namespace Emby.WindowsPhone.CimbalinoToolkit.Tiles
 {
     /// <summary>
     /// Represents an object capable of handling tile data.

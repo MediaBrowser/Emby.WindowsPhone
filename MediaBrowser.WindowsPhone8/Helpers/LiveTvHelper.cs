@@ -5,11 +5,11 @@ using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.LiveTv;
 using MediaBrowser.Model.Net;
-using MediaBrowser.WindowsPhone.Model.Interfaces;
+using Emby.WindowsPhone.Model.Interfaces;
 using Emby.WindowsPhone.Localisation;
 using ScottIsAFool.WindowsPhone.Logging;
 
-namespace MediaBrowser.WindowsPhone.Helpers
+namespace Emby.WindowsPhone.Helpers
 {
     public static class LiveTvHelper
     {

@@ -1,7 +1,7 @@
 using GalaSoft.MvvmLight.Messaging;
-using MediaBrowser.WindowsPhone.ViewModel.Items;
+using Emby.WindowsPhone.ViewModel.Items;
 
-namespace MediaBrowser.WindowsPhone.Messaging
+namespace Emby.WindowsPhone.Messaging
 {
     public class SyncJobMessage : MessageBase
     {

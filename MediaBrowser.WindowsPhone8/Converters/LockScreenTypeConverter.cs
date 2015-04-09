@@ -2,9 +2,9 @@
 using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
-using MediaBrowser.WindowsPhone.Model;
+using Emby.WindowsPhone.Model;
 
-namespace MediaBrowser.WindowsPhone.Converters
+namespace Emby.WindowsPhone.Converters
 {
     public class EnumToBooleanConverter<TEnum> : IValueConverter where TEnum : struct
     {

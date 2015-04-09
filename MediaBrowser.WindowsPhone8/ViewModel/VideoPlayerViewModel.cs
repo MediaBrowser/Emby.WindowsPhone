@@ -17,19 +17,19 @@ using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.LiveTv;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Session;
-using MediaBrowser.WindowsPhone.Extensions;
-using MediaBrowser.WindowsPhone.Helpers;
-using MediaBrowser.WindowsPhone.Messaging;
-using MediaBrowser.WindowsPhone.Model;
-using MediaBrowser.WindowsPhone.Model.Interfaces;
+using Emby.WindowsPhone.Extensions;
+using Emby.WindowsPhone.Helpers;
+using Emby.WindowsPhone.Messaging;
+using Emby.WindowsPhone.Model;
+using Emby.WindowsPhone.Model.Interfaces;
 using Emby.WindowsPhone.Localisation;
-using MediaBrowser.WindowsPhone.Services;
+using Emby.WindowsPhone.Services;
 using Microsoft.Phone.BackgroundAudio;
 using Microsoft.PlayerFramework;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace MediaBrowser.WindowsPhone.ViewModel
+namespace Emby.WindowsPhone.ViewModel
 {
     /// <summary>
     /// This class contains properties that a View can data bind to.

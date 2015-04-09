@@ -2,11 +2,11 @@
 using System.Threading.Tasks;
 using Coding4Fun.Toolkit.Controls;
 using MediaBrowser.Model.Sync;
-using MediaBrowser.WindowsPhone.Controls;
-using MediaBrowser.WindowsPhone.Interfaces;
-using MediaBrowser.WindowsPhone.Model.Sync;
+using Emby.WindowsPhone.Controls;
+using Emby.WindowsPhone.Interfaces;
+using Emby.WindowsPhone.Model.Sync;
 
-namespace MediaBrowser.WindowsPhone.Services
+namespace Emby.WindowsPhone.Services
 {
     public class MessagePromptService : IMessagePromptService
     {

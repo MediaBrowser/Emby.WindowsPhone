@@ -16,7 +16,7 @@
 using System;
 using Microsoft.Phone.Shell;
 
-namespace MediaBrowser.WindowsPhone.CimbalinoToolkit.Tiles
+namespace Emby.WindowsPhone.CimbalinoToolkit.Tiles
 {
     /// <summary>
     /// Describes a Tile template that flips from the front to the back side. Allows customization of the background image and text for both the front and back Tile.

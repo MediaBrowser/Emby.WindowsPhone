@@ -4,7 +4,7 @@ using System.Windows;
 using System.Windows.Interactivity;
 using Microsoft.PlayerFramework;
 
-namespace MediaBrowser.WindowsPhone.Behaviours
+namespace Emby.WindowsPhone.Behaviours
 {
     public class VideoStreamBehaviour : Behavior<MediaPlayer>
     {

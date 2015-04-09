@@ -1,7 +1,7 @@
 ﻿using System;
 using GalaSoft.MvvmLight.Ioc;
 
-namespace MediaBrowser.WindowsPhone.Extensions
+namespace Emby.WindowsPhone.Extensions
 {
     public static class ContainerExtensions
     {

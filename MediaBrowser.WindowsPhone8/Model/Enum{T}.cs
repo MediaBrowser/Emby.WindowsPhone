@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace MediaBrowser.WindowsPhone.Model
+namespace Emby.WindowsPhone.Model
 {
     public class Enum<T>
     {

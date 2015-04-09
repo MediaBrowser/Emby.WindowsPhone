@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 
-namespace MediaBrowser.WindowsPhone.Progress
+namespace Emby.WindowsPhone.Progress
 {
     public class GridUtils
   {

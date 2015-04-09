@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Windows.Data;
 using MediaBrowser.Model.ApiClient;
 
-namespace MediaBrowser.WindowsPhone.Converters
+namespace Emby.WindowsPhone.Converters
 {
     public class ServerAddresssDisplayConverter : IValueConverter
     {

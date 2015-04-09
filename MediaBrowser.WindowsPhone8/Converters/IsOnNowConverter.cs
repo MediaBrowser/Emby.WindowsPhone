@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Windows.Data;
 using MediaBrowser.Model.LiveTv;
 
-namespace MediaBrowser.WindowsPhone.Converters
+namespace Emby.WindowsPhone.Converters
 {
     public class IsOnNowConverter : IValueConverter 
     {

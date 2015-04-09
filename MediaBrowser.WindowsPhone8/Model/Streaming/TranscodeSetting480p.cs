@@ -1,4 +1,4 @@
-﻿namespace MediaBrowser.WindowsPhone.Model.Streaming
+﻿namespace Emby.WindowsPhone.Model.Streaming
 {
     public class TranscodeSetting480p : TranscodeSetting
     {

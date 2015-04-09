@@ -5,14 +5,14 @@ using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
-using MediaBrowser.WindowsPhone.Messaging;
+using Emby.WindowsPhone.Messaging;
 using Emby.WindowsPhone.Localisation;
-using MediaBrowser.WindowsPhone.ViewModel;
-using MediaBrowser.WindowsPhone.ViewModel.Remote;
+using Emby.WindowsPhone.ViewModel;
+using Emby.WindowsPhone.ViewModel.Remote;
 using Microsoft.Phone.Controls;
 using GestureEventArgs = System.Windows.Input.GestureEventArgs;
 
-namespace MediaBrowser.WindowsPhone.Views
+namespace Emby.WindowsPhone.Views
 {
     /// <summary>
     /// Description for MovieView.

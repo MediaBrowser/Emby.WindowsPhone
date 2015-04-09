@@ -1,7 +1,7 @@
 ﻿using System.Windows.Navigation;
 using GalaSoft.MvvmLight.Messaging;
 
-namespace MediaBrowser.WindowsPhone.Views
+namespace Emby.WindowsPhone.Views
 {
     /// <summary>
     /// Description for NowPlayingView.

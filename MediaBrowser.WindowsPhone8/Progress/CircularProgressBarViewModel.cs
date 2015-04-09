@@ -4,9 +4,9 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using MediaBrowser.WindowsPhone.Behaviours;
+using Emby.WindowsPhone.Behaviours;
 
-namespace MediaBrowser.WindowsPhone.Progress
+namespace Emby.WindowsPhone.Progress
 {
     /// <summary>
     /// An attached view model that adapts a ProgressBar control to provide properties

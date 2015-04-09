@@ -1,9 +1,9 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.LiveTv;
-using MediaBrowser.WindowsPhone.Model.Interfaces;
+using Emby.WindowsPhone.Model.Interfaces;
 
-namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
+namespace Emby.WindowsPhone.ViewModel.LiveTv
 {
     /// <summary>
     /// This class contains properties that a View can data bind to.

@@ -9,15 +9,15 @@ using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Events;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Sync;
-using MediaBrowser.WindowsPhone.Extensions;
-using MediaBrowser.WindowsPhone.Interfaces;
-using MediaBrowser.WindowsPhone.Model.Sync;
+using Emby.WindowsPhone.Extensions;
+using Emby.WindowsPhone.Interfaces;
+using Emby.WindowsPhone.Model.Sync;
 using Microsoft.Phone.BackgroundTransfer;
 using Newtonsoft.Json;
 using ScottIsAFool.WindowsPhone.Extensions;
 using ScottIsAFool.WindowsPhone.Logging;
 
-namespace MediaBrowser.WindowsPhone.Services
+namespace Emby.WindowsPhone.Services
 {
     public class SyncService
     {

@@ -1,6 +1,6 @@
 using GalaSoft.MvvmLight.Messaging;
 
-namespace MediaBrowser.WindowsPhone.Messaging
+namespace Emby.WindowsPhone.Messaging
 {
     public class NowPlayingMessage : MessageBase
     {

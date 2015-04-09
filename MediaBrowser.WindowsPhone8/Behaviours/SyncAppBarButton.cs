@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using Cimbalino.Toolkit.Behaviors;
 
-namespace MediaBrowser.WindowsPhone.Behaviours
+namespace Emby.WindowsPhone.Behaviours
 {
     public class SyncAppBarButton : ApplicationBarIconButton
     {

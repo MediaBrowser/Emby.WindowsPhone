@@ -1,8 +1,8 @@
 ﻿using System;
 using MediaBrowser.Model.ApiClient;
-using MediaBrowser.WindowsPhone.Interfaces;
+using Emby.WindowsPhone.Interfaces;
 
-namespace MediaBrowser.WindowsPhone.Services
+namespace Emby.WindowsPhone.Services
 {
     public class ServerInfoService : IServerInfoService
     {

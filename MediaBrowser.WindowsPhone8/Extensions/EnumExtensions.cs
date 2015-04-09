@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Globalization;
 using GalaSoft.MvvmLight.Ioc;
-using MediaBrowser.WindowsPhone.Model;
-using MediaBrowser.WindowsPhone.Model.Streaming;
+using Emby.WindowsPhone.Model;
+using Emby.WindowsPhone.Model.Streaming;
 using Emby.WindowsPhone.Localisation;
-using MediaBrowser.WindowsPhone.ViewModel.Settings;
+using Emby.WindowsPhone.ViewModel.Settings;
 
-namespace MediaBrowser.WindowsPhone.Extensions
+namespace Emby.WindowsPhone.Extensions
 {
     public static class EnumExtensions
     {

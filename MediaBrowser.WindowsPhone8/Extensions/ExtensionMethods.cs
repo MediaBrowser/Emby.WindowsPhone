@@ -7,11 +7,11 @@ using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Logging;
 using MediaBrowser.Model.Search;
-using MediaBrowser.WindowsPhone.Helpers;
-using MediaBrowser.WindowsPhone.Model;
+using Emby.WindowsPhone.Helpers;
+using Emby.WindowsPhone.Model;
 using ScottIsAFool.WindowsPhone.Logging;
 
-namespace MediaBrowser.WindowsPhone.Extensions
+namespace Emby.WindowsPhone.Extensions
 {
     internal static class ExtensionMethods
     {

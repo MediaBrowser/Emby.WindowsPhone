@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 using Cimbalino.Toolkit.Services;
 using MediaBrowser.ApiInteraction.Data;
 using MediaBrowser.Model.Sync;
-using MediaBrowser.WindowsPhone.Extensions;
+using Emby.WindowsPhone.Extensions;
 using ScottIsAFool.WindowsPhone.Extensions;
 
-namespace MediaBrowser.WindowsPhone.Model.Sync
+namespace Emby.WindowsPhone.Model.Sync
 {
     public class ItemRepository : IItemRepository
     {

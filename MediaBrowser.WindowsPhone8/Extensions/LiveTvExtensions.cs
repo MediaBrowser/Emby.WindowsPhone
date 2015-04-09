@@ -1,8 +1,8 @@
 ﻿using System.Linq;
 using MediaBrowser.Model.LiveTv;
-using MediaBrowser.WindowsPhone.Services;
+using Emby.WindowsPhone.Services;
 
-namespace MediaBrowser.WindowsPhone.Extensions
+namespace Emby.WindowsPhone.Extensions
 {
     public static class LiveTvExtensions
     {

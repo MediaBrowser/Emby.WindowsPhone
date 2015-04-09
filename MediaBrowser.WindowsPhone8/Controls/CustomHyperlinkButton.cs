@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace MediaBrowser.WindowsPhone.Controls
+namespace Emby.WindowsPhone.Controls
 {
     public class CustomHyperlinkButton : HyperlinkButton
     {

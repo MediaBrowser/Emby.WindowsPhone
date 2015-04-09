@@ -17,17 +17,17 @@ using MediaBrowser.Model.Logging;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Querying;
 using MediaBrowser.Model.Session;
-using MediaBrowser.WindowsPhone.Helpers;
-using MediaBrowser.WindowsPhone.Model.Connection;
-using MediaBrowser.WindowsPhone.Model.Security;
+using Emby.WindowsPhone.Helpers;
+using Emby.WindowsPhone.Model.Connection;
+using Emby.WindowsPhone.Model.Security;
 using Emby.WindowsPhone.Localisation;
-using MediaBrowser.WindowsPhone.Services;
+using Emby.WindowsPhone.Services;
 using Newtonsoft.Json;
 using ScottIsAFool.WindowsPhone;
 using ScottIsAFool.WindowsPhone.Logging;
-using INavigationService = MediaBrowser.WindowsPhone.Model.Interfaces.INavigationService;
+using INavigationService = Emby.WindowsPhone.Model.Interfaces.INavigationService;
 
-namespace MediaBrowser.WindowsPhone
+namespace Emby.WindowsPhone
 {
     public static class Utils
     {

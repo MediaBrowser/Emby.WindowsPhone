@@ -13,12 +13,12 @@ using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Querying;
-using MediaBrowser.WindowsPhone.Controls;
-using MediaBrowser.WindowsPhone.Model;
+using Emby.WindowsPhone.Controls;
+using Emby.WindowsPhone.Model;
 using ScottIsAFool.WindowsPhone.Logging;
 using MediaBrowser.Model.ApiClient;
 
-namespace MediaBrowser.WindowsPhone.Services
+namespace Emby.WindowsPhone.Services
 {
     public class LockScreenService : CimbalinoToolkit.LockScreenService
     {

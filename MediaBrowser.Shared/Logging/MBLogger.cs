@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Text;
 using MediaBrowser.Model.Logging;
-using MediaBrowser.WindowsPhone.Model;
+using Emby.WindowsPhone.Model;
 using ScottIsAFool.WindowsPhone.Logging;
 
-namespace MediaBrowser.WindowsPhone.Logging
+namespace Emby.WindowsPhone.Logging
 {
     public class MBLogger : ILogger
     {

@@ -17,7 +17,7 @@ using System;
 using System.Windows.Data;
 using Cimbalino.Toolkit.Converters;
 
-namespace MediaBrowser.WindowsPhone.Converters
+namespace Emby.WindowsPhone.Converters
 {
     /// <summary>
     /// An <see cref="IValueConverter"/> which formats a <see cref="string"/> value to lower case.

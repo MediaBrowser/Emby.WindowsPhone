@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows;
 
-namespace MediaBrowser.WindowsPhone.Progress
+namespace Emby.WindowsPhone.Progress
 {
     public static class Utils
     {

@@ -1,8 +1,8 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
-using MediaBrowser.WindowsPhone.Interfaces;
-using MediaBrowser.WindowsPhone.Messaging;
+using Emby.WindowsPhone.Interfaces;
+using Emby.WindowsPhone.Messaging;
 
-namespace MediaBrowser.WindowsPhone.Services
+namespace Emby.WindowsPhone.Services
 {
     public class MessengerService : IMessengerService
     {

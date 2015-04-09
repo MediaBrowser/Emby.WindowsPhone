@@ -4,10 +4,10 @@ using System.Threading.Tasks;
 using Cimbalino.Toolkit.Services;
 using JetBrains.Annotations;
 using MediaBrowser.Model.ApiClient;
-using MediaBrowser.WindowsPhone.Services;
-using INavigationService = MediaBrowser.WindowsPhone.Model.Interfaces.INavigationService;
+using Emby.WindowsPhone.Services;
+using INavigationService = Emby.WindowsPhone.Model.Interfaces.INavigationService;
 
-namespace MediaBrowser.WindowsPhone.ViewModel.Settings
+namespace Emby.WindowsPhone.ViewModel.Settings
 {
     /// <summary>
     /// This class contains properties that a View can data bind to.

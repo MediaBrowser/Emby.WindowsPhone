@@ -1,7 +1,7 @@
 ﻿using MediaBrowser.Model.Dlna;
 using MediaBrowser.Model.Session;
 
-namespace MediaBrowser.WindowsPhone.Model.Connection
+namespace Emby.WindowsPhone.Model.Connection
 {
     public static class WindowsPhoneCapabilities
     {

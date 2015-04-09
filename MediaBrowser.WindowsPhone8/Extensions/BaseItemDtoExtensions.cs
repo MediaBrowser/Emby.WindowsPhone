@@ -1,7 +1,7 @@
 ﻿using MediaBrowser.Model.Dto;
 using Emby.WindowsPhone.Localisation;
 
-namespace MediaBrowser.WindowsPhone.Extensions
+namespace Emby.WindowsPhone.Extensions
 {
     public static class BaseItemDtoExtensions
     {

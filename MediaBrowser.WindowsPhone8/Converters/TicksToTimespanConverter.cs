@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Data;
 
-namespace MediaBrowser.WindowsPhone.Converters
+namespace Emby.WindowsPhone.Converters
 {
     public class TicksToTimespanConverter : IValueConverter
     {

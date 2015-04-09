@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Cimbalino.Toolkit.Services;
 
-namespace MediaBrowser.WindowsPhone.Design
+namespace Emby.WindowsPhone.Design
 {
     public class ApplicationSettingsDesignService : IApplicationSettingsServiceHandler
     {

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using MediaBrowser.WindowsPhone.ViewModel;
+using Emby.WindowsPhone.ViewModel;
 
-namespace MediaBrowser.WindowsPhone.Views
+namespace Emby.WindowsPhone.Views
 {
     /// <summary>
     /// Description for ArtistView.

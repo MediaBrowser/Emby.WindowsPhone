@@ -5,7 +5,7 @@ using System.Windows.Data;
 using System.Windows.Media;
 using MediaBrowser.Model.LiveTv;
 
-namespace MediaBrowser.WindowsPhone.Converters
+namespace Emby.WindowsPhone.Converters
 {
     public class ProgrammeTypeToColourConverter : IValueConverter
     {

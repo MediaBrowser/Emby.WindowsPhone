@@ -1,7 +1,7 @@
 ﻿using System.Windows.Controls;
-using MediaBrowser.WindowsPhone.ViewModel.Sync;
+using Emby.WindowsPhone.ViewModel.Sync;
 
-namespace MediaBrowser.WindowsPhone.Views.Sync
+namespace Emby.WindowsPhone.Views.Sync
 {
     public partial class SyncJobDetailView
     {

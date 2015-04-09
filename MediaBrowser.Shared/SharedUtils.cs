@@ -1,11 +1,11 @@
 ﻿using System;
 using Ailon.WP.Utils;
 using MediaBrowser.ApiInteraction.Cryptography;
-using MediaBrowser.WindowsPhone.CimbalinoToolkit;
-using MediaBrowser.WindowsPhone.Model.Security;
+using Emby.WindowsPhone.CimbalinoToolkit;
+using Emby.WindowsPhone.Model.Security;
 using Microsoft.Phone.Info;
 
-namespace MediaBrowser.WindowsPhone
+namespace Emby.WindowsPhone
 {
     public static class SharedUtils
     {

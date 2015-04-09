@@ -3,12 +3,12 @@ using Cimbalino.Toolkit.Services;
 using GalaSoft.MvvmLight.Command;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Net;
-using MediaBrowser.WindowsPhone.Interfaces;
+using Emby.WindowsPhone.Interfaces;
 using Emby.WindowsPhone.Localisation;
-using MediaBrowser.WindowsPhone.Services;
-using INavigationService = MediaBrowser.WindowsPhone.Model.Interfaces.INavigationService;
+using Emby.WindowsPhone.Services;
+using INavigationService = Emby.WindowsPhone.Model.Interfaces.INavigationService;
 
-namespace MediaBrowser.WindowsPhone.ViewModel.Settings
+namespace Emby.WindowsPhone.ViewModel.Settings
 {
     /// <summary>
     /// This class contains properties that a View can data bind to.

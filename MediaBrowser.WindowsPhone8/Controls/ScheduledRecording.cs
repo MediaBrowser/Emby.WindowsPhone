@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 using MediaBrowser.Model.LiveTv;
 
-namespace MediaBrowser.WindowsPhone.Controls
+namespace Emby.WindowsPhone.Controls
 {
     public class ScheduledRecording : Control
     {

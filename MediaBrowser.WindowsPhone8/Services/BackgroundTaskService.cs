@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Emby.WindowsPhone.Localisation;
 using Microsoft.Phone.Scheduler;
 
-namespace MediaBrowser.WindowsPhone.Services
+namespace Emby.WindowsPhone.Services
 {
     public class BackgroundTaskService
     {

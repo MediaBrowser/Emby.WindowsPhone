@@ -9,11 +9,11 @@ using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Events;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Users;
-using MediaBrowser.WindowsPhone.Interfaces;
+using Emby.WindowsPhone.Interfaces;
 using PropertyChanged;
 using ScottIsAFool.WindowsPhone.Logging;
 
-namespace MediaBrowser.WindowsPhone.Services
+namespace Emby.WindowsPhone.Services
 {
     [ImplementPropertyChanged]
     public class AuthenticationService

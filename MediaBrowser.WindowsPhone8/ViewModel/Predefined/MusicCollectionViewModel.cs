@@ -13,17 +13,17 @@ using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Querying;
-using MediaBrowser.WindowsPhone.Extensions;
-using MediaBrowser.WindowsPhone.Helpers;
-using MediaBrowser.WindowsPhone.Model;
-using MediaBrowser.WindowsPhone.Model.Interfaces;
+using Emby.WindowsPhone.Extensions;
+using Emby.WindowsPhone.Helpers;
+using Emby.WindowsPhone.Model;
+using Emby.WindowsPhone.Model.Interfaces;
 using Emby.WindowsPhone.Localisation;
-using MediaBrowser.WindowsPhone.Services;
-using MediaBrowser.WindowsPhone.ViewModel.Playlists;
+using Emby.WindowsPhone.Services;
+using Emby.WindowsPhone.ViewModel.Playlists;
 using Microsoft.Phone.Shell;
 using ScottIsAFool.WindowsPhone;
 
-namespace MediaBrowser.WindowsPhone.ViewModel.Predefined
+namespace Emby.WindowsPhone.ViewModel.Predefined
 {
     /// <summary>
     /// This class contains properties that a View can data bind to.

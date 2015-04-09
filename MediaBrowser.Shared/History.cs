@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace MediaBrowser
+namespace Emby.WindowsPhone
 {
     public class History
     {

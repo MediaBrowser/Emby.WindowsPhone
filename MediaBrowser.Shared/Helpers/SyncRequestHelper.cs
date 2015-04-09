@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using MediaBrowser.Model.Sync;
-using MediaBrowser.WindowsPhone.Services;
+using Emby.WindowsPhone.Services;
 
-namespace MediaBrowser.WindowsPhone.Helpers
+namespace Emby.WindowsPhone.Helpers
 {
     public class SyncRequestHelper
     {

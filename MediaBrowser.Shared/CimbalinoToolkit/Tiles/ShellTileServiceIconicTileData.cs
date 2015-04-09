@@ -17,7 +17,7 @@ using System;
 using System.Windows.Media;
 using Microsoft.Phone.Shell;
 
-namespace MediaBrowser.WindowsPhone.CimbalinoToolkit.Tiles
+namespace Emby.WindowsPhone.CimbalinoToolkit.Tiles
 {
     /// <summary>
     /// Describes an iconic Tile template.

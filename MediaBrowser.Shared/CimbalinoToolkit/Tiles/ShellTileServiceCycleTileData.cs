@@ -17,7 +17,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.Phone.Shell;
 
-namespace MediaBrowser.WindowsPhone.CimbalinoToolkit.Tiles
+namespace Emby.WindowsPhone.CimbalinoToolkit.Tiles
 {
     /// <summary>
     /// Describes a Tile template that cycles between 1 to 9 background images.

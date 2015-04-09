@@ -6,7 +6,7 @@ using System;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Tasks;
 
-namespace MediaBrowser.WindowsPhone.Services
+namespace Emby.WindowsPhone.Services
 {
     public class TrialHelper
     {

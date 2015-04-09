@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using MediaBrowser.WindowsPhone.Model;
+using Emby.WindowsPhone.Model;
 using Microsoft.Phone.BackgroundAudio;
 
-namespace MediaBrowser.WindowsPhone.AudioAgent
+namespace Emby.WindowsPhone.AudioAgent
 {
     public static class ExtensionMethods
     {

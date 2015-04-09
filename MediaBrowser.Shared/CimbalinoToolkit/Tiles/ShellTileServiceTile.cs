@@ -18,7 +18,7 @@ using System.IO;
 using System.Xml;
 using Microsoft.Phone.Shell;
 
-namespace MediaBrowser.WindowsPhone.CimbalinoToolkit.Tiles
+namespace Emby.WindowsPhone.CimbalinoToolkit.Tiles
 {
     /// <summary>
     /// Represents an implementation of the <see cref="IShellTileServiceTile"/>.

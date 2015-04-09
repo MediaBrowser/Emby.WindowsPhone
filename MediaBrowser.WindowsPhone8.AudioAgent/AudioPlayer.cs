@@ -12,15 +12,15 @@ using MediaBrowser.Model.Logging;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Session;
 using MediaBrowser.Model.Users;
-using MediaBrowser.WindowsPhone.Logging;
-using MediaBrowser.WindowsPhone.Model;
-using MediaBrowser.WindowsPhone.Model.Connection;
-using MediaBrowser.WindowsPhone.Model.Security;
+using Emby.WindowsPhone.Logging;
+using Emby.WindowsPhone.Model;
+using Emby.WindowsPhone.Model.Connection;
+using Emby.WindowsPhone.Model.Security;
 using Microsoft.Phone.BackgroundAudio;
 using ScottIsAFool.WindowsPhone.Logging;
 using UserAction = Microsoft.Phone.BackgroundAudio.UserAction;
 
-namespace MediaBrowser.WindowsPhone.AudioAgent
+namespace Emby.WindowsPhone.AudioAgent
 {
     public class AudioPlayer : AudioPlayerAgent
     {

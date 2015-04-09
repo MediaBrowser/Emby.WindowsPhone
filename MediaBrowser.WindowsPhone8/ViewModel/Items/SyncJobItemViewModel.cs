@@ -2,12 +2,12 @@
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Sync;
-using MediaBrowser.WindowsPhone.Model.Interfaces;
+using Emby.WindowsPhone.Model.Interfaces;
 using Emby.WindowsPhone.Localisation;
-using MediaBrowser.WindowsPhone.Services;
-using MediaBrowser.WindowsPhone.ViewModel.Sync;
+using Emby.WindowsPhone.Services;
+using Emby.WindowsPhone.ViewModel.Sync;
 
-namespace MediaBrowser.WindowsPhone.ViewModel.Items
+namespace Emby.WindowsPhone.ViewModel.Items
 {
     public class SyncJobItemViewModel : ViewModelBase
     {

@@ -4,7 +4,7 @@ using System.Windows.Navigation;
 using Cimbalino.Toolkit.Services;
 using GalaSoft.MvvmLight.Ioc;
 
-namespace MediaBrowser.WindowsPhone.Views.FirstRun
+namespace Emby.WindowsPhone.Views.FirstRun
 {
     public partial class MbConnectFirstRunView
     {

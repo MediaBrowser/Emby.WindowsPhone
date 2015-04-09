@@ -1,6 +1,6 @@
 ﻿using System.Windows.Navigation;
 
-namespace MediaBrowser.WindowsPhone.Views.Remote
+namespace Emby.WindowsPhone.Views.Remote
 {
     /// <summary>
     /// Description for ChooseClientView.

@@ -4,7 +4,7 @@ using Microsoft.Phone.Tasks;
 using ScottIsAFool.WindowsPhone.Controls;
 using ScottIsAFool.WindowsPhone.Logging;
 
-namespace MediaBrowser.WindowsPhone.Views
+namespace Emby.WindowsPhone.Views
 {
     public class SettingsBasePage : BasePage
     {

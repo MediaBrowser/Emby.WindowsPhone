@@ -16,7 +16,7 @@
 using System;
 using Microsoft.Phone.Shell;
 
-namespace MediaBrowser.WindowsPhone.CimbalinoToolkit.Tiles
+namespace Emby.WindowsPhone.CimbalinoToolkit.Tiles
 {
     /// <summary>
     /// Data for a tile pinned to Start. Tiles have a ‘front’ and ‘back’ to them and this class holds all this data.

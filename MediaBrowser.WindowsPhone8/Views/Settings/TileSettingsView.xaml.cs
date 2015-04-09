@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Windows.Navigation;
-using MediaBrowser.WindowsPhone.Services;
+using Emby.WindowsPhone.Services;
 
-namespace MediaBrowser.WindowsPhone.Views.Settings
+namespace Emby.WindowsPhone.Views.Settings
 {
     public partial class TileSettingsView
     {

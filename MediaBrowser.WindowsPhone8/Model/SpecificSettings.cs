@@ -3,10 +3,10 @@ using System.ComponentModel;
 using System.Linq;
 using GalaSoft.MvvmLight.Messaging;
 using JetBrains.Annotations;
-using MediaBrowser.WindowsPhone.Model.Streaming;
-using MediaBrowser.WindowsPhone.Services;
+using Emby.WindowsPhone.Model.Streaming;
+using Emby.WindowsPhone.Services;
 
-namespace MediaBrowser.WindowsPhone.Model
+namespace Emby.WindowsPhone.Model
 {
     public class SpecificSettings : INotifyPropertyChanged
     {

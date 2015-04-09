@@ -2,7 +2,7 @@
 using System.Windows.Data;
 using Emby.WindowsPhone.Localisation;
 
-namespace MediaBrowser.WindowsPhone.Converters
+namespace Emby.WindowsPhone.Converters
 {
     public class RuntimeConverter : IValueConverter
     {

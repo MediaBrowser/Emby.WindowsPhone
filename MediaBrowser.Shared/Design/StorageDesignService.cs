@@ -1,6 +1,6 @@
 ﻿using Cimbalino.Toolkit.Services;
 
-namespace MediaBrowser.WindowsPhone.Design
+namespace Emby.WindowsPhone.Design
 {
     public class StorageDesignService : IStorageService
     {

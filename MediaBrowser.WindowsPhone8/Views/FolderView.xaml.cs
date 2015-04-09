@@ -1,13 +1,13 @@
 ﻿using System.Windows.Navigation;
 using Coding4Fun.Toolkit.Controls;
 using MediaBrowser.Model.Dto;
-using MediaBrowser.WindowsPhone.Model;
+using Emby.WindowsPhone.Model;
 using Emby.WindowsPhone.Localisation;
-using MediaBrowser.WindowsPhone.ViewModel;
+using Emby.WindowsPhone.ViewModel;
 using Microsoft.Phone.Controls;
 using GalaSoft.MvvmLight.Messaging;
 
-namespace MediaBrowser.WindowsPhone.Views
+namespace Emby.WindowsPhone.Views
 {
     /// <summary>
     /// Description for FolderView.

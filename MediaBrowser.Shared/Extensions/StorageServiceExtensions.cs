@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Windows.Storage;
 using Cimbalino.Toolkit.Services;
 
-namespace MediaBrowser.WindowsPhone.Extensions
+namespace Emby.WindowsPhone.Extensions
 {
     public static class StorageServiceExtensions
     {

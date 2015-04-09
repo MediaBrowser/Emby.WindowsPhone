@@ -1,9 +1,9 @@
-﻿using MediaBrowser.WindowsPhone.Model.Sync;
+﻿using Emby.WindowsPhone.Model.Sync;
 using Microsoft.Phone.BackgroundTransfer;
 using Microsoft.Phone.Controls;
 using Newtonsoft.Json;
 
-namespace MediaBrowser.WindowsPhone.ViewModel.Items
+namespace Emby.WindowsPhone.ViewModel.Items
 {
     public class TransferMonitorViewModel : ScottIsAFool.WindowsPhone.ViewModel.ViewModelBase
     {

@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Windows.Data;
 using MediaBrowser.Model.Dto;
 
-namespace MediaBrowser.WindowsPhone.Converters
+namespace Emby.WindowsPhone.Converters
 {
     public class AlreadyPlayedConverter : IValueConverter
     {

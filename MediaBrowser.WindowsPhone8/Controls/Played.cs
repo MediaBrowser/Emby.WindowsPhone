@@ -5,7 +5,7 @@ using System.Windows.Shapes;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.LiveTv;
 
-namespace MediaBrowser.WindowsPhone.Controls
+namespace Emby.WindowsPhone.Controls
 {
     [TemplatePart(Name = PartWatchedPath, Type = typeof(TextBlock))]
     [TemplatePart(Name = PartUnwatchedGrid, Type = typeof(TextBlock))]

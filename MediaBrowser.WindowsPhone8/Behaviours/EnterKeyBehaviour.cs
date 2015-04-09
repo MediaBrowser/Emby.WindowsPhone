@@ -7,7 +7,7 @@ using System.Windows.Input;
 using System.Windows.Interactivity;
 using System.Windows.Media;
 
-namespace MediaBrowser.WindowsPhone.Behaviours
+namespace Emby.WindowsPhone.Behaviours
 {
     /// <summary>
     /// Defines the possible actions when the Enter key is pressed.

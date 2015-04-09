@@ -3,10 +3,10 @@ using System.Globalization;
 using System.Linq;
 using System.Windows.Data;
 using MediaBrowser.Model.LiveTv;
-using MediaBrowser.WindowsPhone.Extensions;
+using Emby.WindowsPhone.Extensions;
 using Emby.WindowsPhone.Localisation;
 
-namespace MediaBrowser.WindowsPhone.Converters
+namespace Emby.WindowsPhone.Converters
 {
     public class DayPatternConverter : IValueConverter
     {

@@ -11,10 +11,10 @@ using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Threading;
 using MediaBrowser.Model;
 using MediaBrowser.Model.ApiClient;
-using MediaBrowser.WindowsPhone.Model;
-using MediaBrowser.WindowsPhone.Model.Photo;
-using MediaBrowser.WindowsPhone.Services;
-using MediaBrowser.WindowsPhone.ViewModel;
+using Emby.WindowsPhone.Model;
+using Emby.WindowsPhone.Model.Photo;
+using Emby.WindowsPhone.Services;
+using Emby.WindowsPhone.ViewModel;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Emby.WindowsPhone.Localisation;
@@ -22,7 +22,7 @@ using Windows.Phone.ApplicationModel;
 using ScottIsAFool.WindowsPhone.Logging;
 using Telerik.Windows.Controls;
 
-namespace MediaBrowser.WindowsPhone
+namespace Emby.WindowsPhone
 {
     public partial class App
     {

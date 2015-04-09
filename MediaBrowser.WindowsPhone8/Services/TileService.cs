@@ -16,13 +16,13 @@ using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Querying;
-using MediaBrowser.WindowsPhone.CimbalinoToolkit.Tiles;
-using MediaBrowser.WindowsPhone.Controls;
+using Emby.WindowsPhone.CimbalinoToolkit.Tiles;
+using Emby.WindowsPhone.Controls;
 using Emby.WindowsPhone.Localisation;
 using ScottIsAFool.WindowsPhone.Logging;
-using MediaBrowser.WindowsPhone.Extensions;
+using Emby.WindowsPhone.Extensions;
 
-namespace MediaBrowser.WindowsPhone.Services
+namespace Emby.WindowsPhone.Services
 {
     public class TileService : ShellTileWithCreateService
     {
@@ -159,7 +159,7 @@ namespace MediaBrowser.WindowsPhone.Services
             var collectionTiles = ActiveTiles.Where(x => x.NavigationUri.ToString().Contains("=Collection"));
             foreach (var tile in collectionTiles)
             {
-                var uri = new Uri("http://mediabrowser.tv" + tile.NavigationUri.OriginalString);
+                var uri = new Uri("http://emby.media" + tile.NavigationUri.OriginalString);
                 var queries = uri.QueryDictionary();
                 var name = queries["name"];
                 var id = queries["id"];

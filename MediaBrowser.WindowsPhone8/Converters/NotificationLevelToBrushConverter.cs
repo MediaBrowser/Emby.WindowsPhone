@@ -4,7 +4,7 @@ using System.Windows.Data;
 using System.Windows.Media;
 using MediaBrowser.Model.Notifications;
 
-namespace MediaBrowser.WindowsPhone.Converters
+namespace Emby.WindowsPhone.Converters
 {
     public class NotificationLevelToBrushConverter : IValueConverter
     {

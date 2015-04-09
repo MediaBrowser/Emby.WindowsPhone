@@ -9,12 +9,12 @@ using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Sync;
-using MediaBrowser.WindowsPhone.Messaging;
-using MediaBrowser.WindowsPhone.Model.Interfaces;
+using Emby.WindowsPhone.Messaging;
+using Emby.WindowsPhone.Model.Interfaces;
 using Emby.WindowsPhone.Localisation;
-using MediaBrowser.WindowsPhone.ViewModel.Items;
+using Emby.WindowsPhone.ViewModel.Items;
 
-namespace MediaBrowser.WindowsPhone.ViewModel.Sync
+namespace Emby.WindowsPhone.ViewModel.Sync
 {
     public class SyncJobDetailViewModel : ViewModelBase
     {

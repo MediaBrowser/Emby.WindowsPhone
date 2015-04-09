@@ -16,7 +16,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace MediaBrowser.WindowsPhone.CimbalinoToolkit.Tiles
+namespace Emby.WindowsPhone.CimbalinoToolkit.Tiles
 {
     /// <summary>
     /// Represents a service capable of managing the Application Tile and secondary Tiles for an application. 

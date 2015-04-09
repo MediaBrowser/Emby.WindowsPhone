@@ -3,7 +3,7 @@ using System.Windows.Controls;
 using System.IO;
 using System.Text;
 
-namespace MediaBrowser.WindowsPhone.Controls
+namespace Emby.WindowsPhone.Controls
 {
     public class ScrollableTextBlock : Control
     {

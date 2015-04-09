@@ -9,19 +9,19 @@ using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Dto;
-using MediaBrowser.WindowsPhone.CimbalinoToolkit;
-using MediaBrowser.WindowsPhone.Extensions;
-using MediaBrowser.WindowsPhone.Helpers;
-using MediaBrowser.WindowsPhone.Model;
+using Emby.WindowsPhone.CimbalinoToolkit;
+using Emby.WindowsPhone.Extensions;
+using Emby.WindowsPhone.Helpers;
+using Emby.WindowsPhone.Model;
 using Emby.WindowsPhone.Localisation;
-using MediaBrowser.WindowsPhone.Messaging;
-using MediaBrowser.WindowsPhone.Services;
+using Emby.WindowsPhone.Messaging;
+using Emby.WindowsPhone.Services;
 using ScottIsAFool.WindowsPhone;
 
-using INavigationService = MediaBrowser.WindowsPhone.Model.Interfaces.INavigationService;
-using LockScreenService = MediaBrowser.WindowsPhone.Services.LockScreenService;
+using INavigationService = Emby.WindowsPhone.Model.Interfaces.INavigationService;
+using LockScreenService = Emby.WindowsPhone.Services.LockScreenService;
 
-namespace MediaBrowser.WindowsPhone.ViewModel
+namespace Emby.WindowsPhone.ViewModel
 {
     /// <summary>
     /// This class contains properties that a View can data bind to.

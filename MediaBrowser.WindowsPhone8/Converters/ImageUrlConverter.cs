@@ -9,7 +9,7 @@ using MediaBrowser.Model.LiveTv;
 using MediaBrowser.Model.Search;
 using MediaBrowser.Model.Sync;
 
-namespace MediaBrowser.WindowsPhone.Converters
+namespace Emby.WindowsPhone.Converters
 {
     public class ImageUrlConverter : IValueConverter
     {

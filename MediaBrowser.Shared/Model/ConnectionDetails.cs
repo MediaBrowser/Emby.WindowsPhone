@@ -1,6 +1,6 @@
 using PropertyChanged;
 
-namespace MediaBrowser.WindowsPhone.Model
+namespace Emby.WindowsPhone.Model
 {
     [ImplementPropertyChanged]
     public class ConnectionDetails

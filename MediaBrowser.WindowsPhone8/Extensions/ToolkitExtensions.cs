@@ -2,9 +2,9 @@
 using System.Threading.Tasks;
 using System.Windows;
 using Microsoft.Phone.Controls;
-using CustomMessageBox = MediaBrowser.WindowsPhone.Controls.CustomMessageBox;
+using CustomMessageBox = Emby.WindowsPhone.Controls.CustomMessageBox;
 
-namespace MediaBrowser.WindowsPhone.Extensions
+namespace Emby.WindowsPhone.Extensions
 {
     public static class ToolkitExtensions
     {

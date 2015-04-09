@@ -6,7 +6,7 @@
              xmlns:telerikInput="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Input"
              xmlns:toggleSwitch="clr-namespace:Telerik.Windows.Controls.ToggleSwitch;assembly=Telerik.Windows.Controls.Primitives"
              xmlns:controls="clr-namespace:InTheHand.UI.Xaml.Controls;assembly=InTheHand.UI.Xaml.Controls.ProgressRing"
-             x:Class="MediaBrowser.WindowsPhone.Controls.SyncOptionsControl"
+             x:Class="Emby.WindowsPhone.Controls.SyncOptionsControl"
              mc:Ignorable="d"
              d:DesignHeight="600"
              d:DesignWidth="480"

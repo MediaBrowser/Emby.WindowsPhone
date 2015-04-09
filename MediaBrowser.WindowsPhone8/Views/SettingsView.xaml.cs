@@ -2,7 +2,7 @@
 using Microsoft.Phone.Tasks;
 using ScottIsAFool.WindowsPhone.Logging;
 
-namespace MediaBrowser.WindowsPhone.Views
+namespace Emby.WindowsPhone.Views
 {
     public partial class SettingsView
     {

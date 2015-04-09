@@ -5,10 +5,10 @@ using MediaBrowser.ApiInteraction.Playback;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Querying;
-using MediaBrowser.WindowsPhone.Model;
-using MediaBrowser.WindowsPhone.Services;
+using Emby.WindowsPhone.Model;
+using Emby.WindowsPhone.Services;
 
-namespace MediaBrowser.WindowsPhone.Extensions
+namespace Emby.WindowsPhone.Extensions
 {
     public static class ApiClientExtensions
     {

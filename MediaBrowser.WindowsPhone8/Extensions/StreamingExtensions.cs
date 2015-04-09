@@ -1,7 +1,7 @@
 ﻿using System;
-using MediaBrowser.WindowsPhone.Model.Streaming;
+using Emby.WindowsPhone.Model.Streaming;
 
-namespace MediaBrowser.WindowsPhone.Extensions
+namespace Emby.WindowsPhone.Extensions
 {
     public static class StreamingExtensions
     {

@@ -11,11 +11,11 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 using System.Windows.Shapes;
-using MediaBrowser.WindowsPhone.Extensions;
+using Emby.WindowsPhone.Extensions;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 
-namespace MediaBrowser.WindowsPhone.Controls
+namespace Emby.WindowsPhone.Controls
 {
     /// <summary>
     /// Represents a popup dialog with one or two buttons.

@@ -2,7 +2,7 @@
 using System.Windows;
 using Microsoft.Phone.Tasks;
 
-namespace MediaBrowser.WindowsPhone.Views.FirstRun
+namespace Emby.WindowsPhone.Views.FirstRun
 {
     public partial class ConfigureView
     {
@@ -25,7 +25,7 @@ namespace MediaBrowser.WindowsPhone.Views.FirstRun
         {
             new WebBrowserTask
             {
-                Uri = new Uri("http://mediabrowser3.com/download", UriKind.Absolute)
+                Uri = new Uri("http://emby.media/download", UriKind.Absolute)
             }.Show();
         }
     }

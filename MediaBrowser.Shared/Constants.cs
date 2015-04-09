@@ -1,4 +1,4 @@
-﻿namespace MediaBrowser.WindowsPhone
+﻿namespace Emby.WindowsPhone
 {
     public class Constants
     {
@@ -8,7 +8,7 @@
 
         public const int ImageQuality = 80;
 
-        public const string PhotoUploadBackgroundTaskName = "MediaBrowser.WindowsPhone.PhotoUploadTask";
+        public const string PhotoUploadBackgroundTaskName = "Emby.WindowsPhone.PhotoUploadTask";
         
         public class Settings
         {

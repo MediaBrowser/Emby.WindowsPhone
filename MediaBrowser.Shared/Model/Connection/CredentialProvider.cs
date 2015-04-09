@@ -8,7 +8,7 @@ using MediaBrowser.ApiInteraction;
 using MediaBrowser.Model.ApiClient;
 using Newtonsoft.Json;
 
-namespace MediaBrowser.WindowsPhone.Model.Connection
+namespace Emby.WindowsPhone.Model.Connection
 {
     public class CredentialProvider : ICredentialProvider
     {

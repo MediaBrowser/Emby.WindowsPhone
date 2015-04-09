@@ -5,10 +5,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Cimbalino.Toolkit.Services;
 using MediaBrowser.Model;
-using MediaBrowser.WindowsPhone.Model;
+using Emby.WindowsPhone.Model;
 using Newtonsoft.Json;
 
-namespace MediaBrowser.WindowsPhone.AudioAgent
+namespace Emby.WindowsPhone.AudioAgent
 {
     public class PlaylistHelper
     {

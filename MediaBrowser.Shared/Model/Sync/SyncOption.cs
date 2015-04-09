@@ -1,6 +1,6 @@
 ﻿using MediaBrowser.Model.Sync;
 
-namespace MediaBrowser.WindowsPhone.Model.Sync
+namespace Emby.WindowsPhone.Model.Sync
 {
     public class SyncOption
     {

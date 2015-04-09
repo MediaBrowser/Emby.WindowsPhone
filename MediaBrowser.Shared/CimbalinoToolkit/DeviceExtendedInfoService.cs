@@ -15,7 +15,7 @@
 
 using Microsoft.Phone.Info;
 
-namespace MediaBrowser.WindowsPhone.CimbalinoToolkit
+namespace Emby.WindowsPhone.CimbalinoToolkit
 {
     /// <summary>
     /// Represents an implementation of the <see cref="IDeviceExtendedPropertiesService"/>.

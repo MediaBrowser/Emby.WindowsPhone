@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace MediaBrowser.WindowsPhone.Model
+namespace Emby.WindowsPhone.Model
 {
     public enum GroupBy
     {

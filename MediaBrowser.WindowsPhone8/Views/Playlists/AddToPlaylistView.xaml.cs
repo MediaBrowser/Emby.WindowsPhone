@@ -1,7 +1,7 @@
 ﻿using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 
-namespace MediaBrowser.WindowsPhone.Views.Playlists
+namespace Emby.WindowsPhone.Views.Playlists
 {
     public partial class AddToPlaylistView
     {

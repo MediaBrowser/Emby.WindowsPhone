@@ -5,7 +5,7 @@ using System.Windows.Interactivity;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
-namespace MediaBrowser.WindowsPhone.Behaviours
+namespace Emby.WindowsPhone.Behaviours
 {
     public class ControlBackgroundBehaviour : Behavior<Control>
     {

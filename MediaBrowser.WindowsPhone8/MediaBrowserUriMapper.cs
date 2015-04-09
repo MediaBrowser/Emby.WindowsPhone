@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Navigation;
 
-namespace MediaBrowser.WindowsPhone
+namespace Emby.WindowsPhone
 {
     public class MediaBrowserUriMapper : UriMapperBase
     {

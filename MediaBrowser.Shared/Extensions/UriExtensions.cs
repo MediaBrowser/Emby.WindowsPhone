@@ -4,7 +4,7 @@ using System.Linq;
 using System.Net;
 using Cimbalino.Toolkit.Extensions;
 
-namespace MediaBrowser.WindowsPhone.Extensions
+namespace Emby.WindowsPhone.Extensions
 {
     public static class UriExtensions
     {

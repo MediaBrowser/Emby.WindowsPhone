@@ -5,7 +5,7 @@ using System.Windows;
 using System.Windows.Data;
 using MediaBrowser.Model.Dto;
 
-namespace MediaBrowser.WindowsPhone.Converters
+namespace Emby.WindowsPhone.Converters
 {
     public class RoleConverter : DependencyObject, IValueConverter
     {

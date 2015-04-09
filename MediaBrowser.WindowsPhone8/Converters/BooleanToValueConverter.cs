@@ -18,7 +18,7 @@ using System.Windows;
 using System.Windows.Data;
 using Microsoft.Phone.Shell;
 
-namespace MediaBrowser.WindowsPhone.Converters
+namespace Emby.WindowsPhone.Converters
 {
     /// <summary>
     /// An <see cref="IValueConverter"/> abstract implementation which converts a <see cref="bool"/> value to a value of the specified type.

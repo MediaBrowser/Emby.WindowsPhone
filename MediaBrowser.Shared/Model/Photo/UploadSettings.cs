@@ -1,7 +1,7 @@
 ﻿using System;
 using PropertyChanged;
 
-namespace MediaBrowser.WindowsPhone.Model.Photo
+namespace Emby.WindowsPhone.Model.Photo
 {
     [ImplementPropertyChanged]
     public class UploadSettings

@@ -1,4 +1,4 @@
-﻿namespace MediaBrowser.WindowsPhone.Views.Sync
+﻿namespace Emby.WindowsPhone.Views.Sync
 {
     /// <summary>
     /// Description for CurrentDownloadsView.

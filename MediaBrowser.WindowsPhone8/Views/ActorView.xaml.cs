@@ -1,8 +1,9 @@
 ﻿using System.Windows.Navigation;
+using MediaBrowser;
 using MediaBrowser.Model.Dto;
-using MediaBrowser.WindowsPhone.ViewModel;
+using Emby.WindowsPhone.ViewModel;
 
-namespace MediaBrowser.WindowsPhone.Views
+namespace Emby.WindowsPhone.Views
 {
     public partial class ActorView
     {

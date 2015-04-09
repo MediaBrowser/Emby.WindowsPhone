@@ -1,10 +1,10 @@
 ﻿using System.Windows.Navigation;
 using MediaBrowser.Model.Dto;
-using MediaBrowser.WindowsPhone.ViewModel;
+using Emby.WindowsPhone.ViewModel;
 using Microsoft.Phone.Controls;
 
 
-namespace MediaBrowser.WindowsPhone.Views
+namespace Emby.WindowsPhone.Views
 {
     /// <summary>
     /// Description for SeasonView.

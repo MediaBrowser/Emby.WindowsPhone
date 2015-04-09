@@ -2,7 +2,7 @@
 using System.Globalization;
 using Cimbalino.Toolkit.Converters;
 
-namespace MediaBrowser.WindowsPhone.Converters
+namespace Emby.WindowsPhone.Converters
 {
     public class RemoteClientMultiConverter : MultiValueConverterBase
     {

@@ -1,4 +1,4 @@
-﻿namespace MediaBrowser.WindowsPhone.Interfaces
+﻿namespace Emby.WindowsPhone.Interfaces
 {
     public interface IMessengerService
     {

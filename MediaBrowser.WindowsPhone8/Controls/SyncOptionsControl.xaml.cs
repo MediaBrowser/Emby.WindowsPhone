@@ -7,14 +7,14 @@ using GalaSoft.MvvmLight.Ioc;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Sync;
-using MediaBrowser.WindowsPhone.Model;
-using MediaBrowser.WindowsPhone.Model.Interfaces;
-using MediaBrowser.WindowsPhone.Model.Sync;
+using Emby.WindowsPhone.Model;
+using Emby.WindowsPhone.Model.Interfaces;
+using Emby.WindowsPhone.Model.Sync;
 using Emby.WindowsPhone.Localisation;
 using ScottIsAFool.WindowsPhone.Logging;
 using GestureEventArgs = System.Windows.Input.GestureEventArgs;
 
-namespace MediaBrowser.WindowsPhone.Controls
+namespace Emby.WindowsPhone.Controls
 {
     public partial class SyncOptionsControl
     {

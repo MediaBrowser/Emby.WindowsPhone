@@ -1,7 +1,7 @@
 ﻿using System.Windows.Controls;
-using MediaBrowser.WindowsPhone.ViewModel.Predefined;
+using Emby.WindowsPhone.ViewModel.Predefined;
 
-namespace MediaBrowser.WindowsPhone.Views.Predefined
+namespace Emby.WindowsPhone.Views.Predefined
 {
     /// <summary>
     /// Description for MusicCollectionView.

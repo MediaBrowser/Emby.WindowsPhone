@@ -1,6 +1,6 @@
 ﻿using System.Windows.Input;
 
-namespace MediaBrowser.WindowsPhone.Views
+namespace Emby.WindowsPhone.Views
 {
     /// <summary>
     /// Description for SearchView.

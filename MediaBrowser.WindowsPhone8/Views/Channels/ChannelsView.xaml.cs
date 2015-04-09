@@ -1,4 +1,4 @@
-﻿namespace MediaBrowser.WindowsPhone.Views.Channels
+﻿namespace Emby.WindowsPhone.Views.Channels
 {
     public partial class ChannelsView 
     {

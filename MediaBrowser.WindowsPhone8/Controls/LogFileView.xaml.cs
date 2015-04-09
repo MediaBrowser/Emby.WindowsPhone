@@ -4,7 +4,7 @@ using Cimbalino.Toolkit.Helpers;
 using Microsoft.Phone.Tasks;
 using ScottIsAFool.WindowsPhone.Logging;
 
-namespace MediaBrowser.WindowsPhone.Controls
+namespace Emby.WindowsPhone.Controls
 {
     public partial class LogFileView
     {

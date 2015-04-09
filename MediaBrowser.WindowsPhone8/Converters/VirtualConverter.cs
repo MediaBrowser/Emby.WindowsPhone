@@ -5,7 +5,7 @@ using System.Windows.Data;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
 
-namespace MediaBrowser.WindowsPhone.Converters
+namespace Emby.WindowsPhone.Converters
 {
     public class VirtualConverter : IValueConverter
     {

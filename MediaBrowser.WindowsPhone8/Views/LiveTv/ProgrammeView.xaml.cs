@@ -1,4 +1,4 @@
-﻿namespace MediaBrowser.WindowsPhone.Views.LiveTv
+﻿namespace Emby.WindowsPhone.Views.LiveTv
 {
     public partial class ProgrammeView
     {

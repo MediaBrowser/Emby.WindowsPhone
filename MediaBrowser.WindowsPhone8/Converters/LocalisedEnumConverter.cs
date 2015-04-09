@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Globalization;
 using System.Windows.Data;
-using MediaBrowser.WindowsPhone.Extensions;
-using MediaBrowser.WindowsPhone.Model;
-using MediaBrowser.WindowsPhone.Model.Streaming;
+using Emby.WindowsPhone.Extensions;
+using Emby.WindowsPhone.Model;
+using Emby.WindowsPhone.Model.Streaming;
 
-namespace MediaBrowser.WindowsPhone.Converters
+namespace Emby.WindowsPhone.Converters
 {
     public class LocalisedEnumConverter : IValueConverter
     {

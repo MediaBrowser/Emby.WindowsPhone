@@ -1,4 +1,4 @@
-﻿namespace MediaBrowser.WindowsPhone.Views
+﻿namespace Emby.WindowsPhone.Views
 {
     public partial class GenericItemView
     {

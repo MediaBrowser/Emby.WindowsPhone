@@ -3,9 +3,9 @@ using System.Threading.Tasks;
 using Cimbalino.Toolkit.Extensions;
 using Cimbalino.Toolkit.Services;
 using MediaBrowser.ApiInteraction.Data;
-using MediaBrowser.WindowsPhone.Extensions;
+using Emby.WindowsPhone.Extensions;
 
-namespace MediaBrowser.WindowsPhone.Model.Sync
+namespace Emby.WindowsPhone.Model.Sync
 {
     public class ImageRepository : IImageRepository
     {

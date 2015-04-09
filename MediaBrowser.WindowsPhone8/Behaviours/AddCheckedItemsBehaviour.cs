@@ -5,7 +5,7 @@ using System.Windows.Interactivity;
 using MediaBrowser.Model.Dto;
 using Telerik.Windows.Controls;
 
-namespace MediaBrowser.WindowsPhone.Behaviours
+namespace Emby.WindowsPhone.Behaviours
 {
     public class AddToCheckedItemBehaviorBase<T> : Behavior<RadDataBoundListBox> where T : class
     {

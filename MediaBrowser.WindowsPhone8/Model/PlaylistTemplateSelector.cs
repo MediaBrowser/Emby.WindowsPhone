@@ -2,7 +2,7 @@
 using MediaBrowser.Model.Dto;
 using Telerik.Windows.Controls;
 
-namespace MediaBrowser.WindowsPhone.Model
+namespace Emby.WindowsPhone.Model
 {
     public class PlaylistTemplateSelector : DataTemplateSelector
     {

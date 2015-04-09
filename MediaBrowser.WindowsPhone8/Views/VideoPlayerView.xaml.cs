@@ -3,10 +3,10 @@ using System.Windows.Media;
 using System.Windows.Navigation;
 using GalaSoft.MvvmLight.Messaging;
 using Microsoft.PlayerFramework;
-using MediaBrowser.WindowsPhone.ViewModel;
+using Emby.WindowsPhone.ViewModel;
 using System;
 
-namespace MediaBrowser.WindowsPhone.Views
+namespace Emby.WindowsPhone.Views
 {
     public partial class VideoPlayerView
     {

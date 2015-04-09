@@ -1,4 +1,4 @@
-﻿namespace MediaBrowser.WindowsPhone.Model
+﻿namespace Emby.WindowsPhone.Model
 {
     public enum PlayerSourceType
     {

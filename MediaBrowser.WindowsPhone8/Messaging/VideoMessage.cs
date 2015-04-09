@@ -2,9 +2,9 @@
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.LiveTv;
-using MediaBrowser.WindowsPhone.Model;
+using Emby.WindowsPhone.Model;
 
-namespace MediaBrowser.WindowsPhone.Messaging
+namespace Emby.WindowsPhone.Messaging
 {
     public class VideoMessage : MessageBase
     {

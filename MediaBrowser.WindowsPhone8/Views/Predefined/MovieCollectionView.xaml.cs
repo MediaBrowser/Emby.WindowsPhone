@@ -1,4 +1,4 @@
-﻿namespace MediaBrowser.WindowsPhone.Views.Predefined
+﻿namespace Emby.WindowsPhone.Views.Predefined
 {
     public partial class MovieCollectionView
     {

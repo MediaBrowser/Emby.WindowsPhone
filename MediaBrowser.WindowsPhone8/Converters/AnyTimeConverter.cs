@@ -4,7 +4,7 @@ using System.Windows.Data;
 using MediaBrowser.Model.LiveTv;
 using Emby.WindowsPhone.Localisation;
 
-namespace MediaBrowser.WindowsPhone.Converters
+namespace Emby.WindowsPhone.Converters
 {
     public class AnyTimeConverter : IValueConverter
     {

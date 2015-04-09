@@ -24,7 +24,7 @@ using Cimbalino.Toolkit.Behaviors;
 using Cimbalino.Toolkit.Extensions;
 using Telerik.Windows.Controls;
 
-namespace MediaBrowser.WindowsPhone.Behaviours
+namespace Emby.WindowsPhone.Behaviours
 {
     /// <summary>
     /// The behavior that enables automatic control focus.

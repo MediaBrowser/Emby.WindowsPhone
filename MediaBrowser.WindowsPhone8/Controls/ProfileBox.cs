@@ -8,7 +8,7 @@ using MediaBrowser.Model.Dto;
 using Telerik.Windows.Controls;
 using GestureEventArgs = System.Windows.Input.GestureEventArgs;
 
-namespace MediaBrowser.WindowsPhone.Controls
+namespace Emby.WindowsPhone.Controls
 {
     [TemplateVisualState(Name = "PasswordHidden", GroupName = "PasswordVisibility")]
     [TemplateVisualState(Name = "PasswordShowing", GroupName = "PasswordVisibility")]

@@ -8,14 +8,14 @@ using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.LiveTv;
 using MediaBrowser.Model.Net;
-using MediaBrowser.WindowsPhone.CimbalinoToolkit.Tiles;
-using MediaBrowser.WindowsPhone.Helpers;
+using Emby.WindowsPhone.CimbalinoToolkit.Tiles;
+using Emby.WindowsPhone.Helpers;
 using Emby.WindowsPhone.Localisation;
-using MediaBrowser.WindowsPhone.Services;
+using Emby.WindowsPhone.Services;
 
-using INavigationService = MediaBrowser.WindowsPhone.Model.Interfaces.INavigationService;
+using INavigationService = Emby.WindowsPhone.Model.Interfaces.INavigationService;
 
-namespace MediaBrowser.WindowsPhone.ViewModel.LiveTv
+namespace Emby.WindowsPhone.ViewModel.LiveTv
 {
     /// <summary>
     /// This class contains properties that a View can data bind to.

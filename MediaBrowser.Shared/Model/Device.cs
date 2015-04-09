@@ -10,7 +10,7 @@ using MediaBrowser.Model.Net;
 using Microsoft.Xna.Framework.Media;
 using ScottIsAFool.WindowsPhone.Logging;
 
-namespace MediaBrowser.WindowsPhone.Model
+namespace Emby.WindowsPhone.Model
 {
     public class Device : IDevice
     {

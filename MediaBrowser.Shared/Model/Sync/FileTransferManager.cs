@@ -8,13 +8,13 @@ using MediaBrowser.ApiInteraction.Data;
 using MediaBrowser.ApiInteraction.Sync;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Sync;
-using MediaBrowser.WindowsPhone.Extensions;
-using MediaBrowser.WindowsPhone.Services;
+using Emby.WindowsPhone.Extensions;
+using Emby.WindowsPhone.Services;
 using Microsoft.Phone.BackgroundTransfer;
 using Newtonsoft.Json;
 using ScottIsAFool.WindowsPhone.Extensions;
 
-namespace MediaBrowser.WindowsPhone.Model.Sync
+namespace Emby.WindowsPhone.Model.Sync
 {
     public class FileTransferManager : IFileTransferManager
     {
