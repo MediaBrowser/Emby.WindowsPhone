@@ -10,13 +10,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{47317A
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emby.WindowsPhone", "MediaBrowser.WindowsPhone8\Emby.WindowsPhone.csproj", "{38B51256-1BAA-42E6-A043-47DD5A334513}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emby.WindowsPhone", "Emby.WindowsPhone\Emby.WindowsPhone.csproj", "{38B51256-1BAA-42E6-A043-47DD5A334513}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emby.WindowsPhone.AudioAgent", "MediaBrowser.WindowsPhone8.AudioAgent\Emby.WindowsPhone.AudioAgent.csproj", "{62509334-83BD-4D52-9387-498D59630832}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emby.Shared8", "MediaBrowser.Shared\Emby.Shared8.csproj", "{0663D56B-A326-4E58-939B-B20ADEE2C7E7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emby.Shared", "Emby.Shared\Emby.Shared.csproj", "{0663D56B-A326-4E58-939B-B20ADEE2C7E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emby.WindowsPhone.Background", "MediaBrowser.WindowsPhone.Background\Emby.WindowsPhone.Background.csproj", "{0EE0D99C-5AD8-4C43-8C70-E3BB77226340}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emby.WindowsPhone.Background", "Emby.WindowsPhone.Background\Emby.WindowsPhone.Background.csproj", "{0EE0D99C-5AD8-4C43-8C70-E3BB77226340}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emby.WindowsPhone.Localisation", "Emby.Localisation\Emby.WindowsPhone.Localisation.csproj", "{2D79C354-8B14-40A9-AE35-D4DF051CC374}"
 EndProject
