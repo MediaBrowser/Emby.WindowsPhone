@@ -123,7 +123,7 @@ namespace Emby.WindowsPhone.Services
                 request.ItemLimit = qualityOptions.ItemLimit;
                 request.SyncNewContent = qualityOptions.AutoSyncNewItems;
                 request.UnwatchedOnly = qualityOptions.UnwatchedItems;
-                request.Profile = qualityOptions.Profile.Id;
+                request.Profile = qualityOptions.Profile != null ? qualityOptions.Profile.Id : string.Empty;
 
                 _logger.Info("Create sync job");
                 var job = await apiClient.CreateSyncJob(request);
