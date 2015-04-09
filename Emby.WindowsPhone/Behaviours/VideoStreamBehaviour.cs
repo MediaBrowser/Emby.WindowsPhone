@@ -28,7 +28,7 @@ namespace Emby.WindowsPhone.Behaviours
 
         private void SetStream()
         {
-            if (VideoStream != null)
+            if (VideoStream != null && VideoStream.CanRead)
             {
                 AssociatedObject.SetSource(VideoStream);
             }
