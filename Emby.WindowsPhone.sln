@@ -12,7 +12,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{47317A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emby.WindowsPhone", "Emby.WindowsPhone\Emby.WindowsPhone.csproj", "{38B51256-1BAA-42E6-A043-47DD5A334513}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emby.WindowsPhone.AudioAgent", "MediaBrowser.WindowsPhone8.AudioAgent\Emby.WindowsPhone.AudioAgent.csproj", "{62509334-83BD-4D52-9387-498D59630832}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emby.WindowsPhone.AudioAgent", "Emby.WindowsPhone.AudioAgent\Emby.WindowsPhone.AudioAgent.csproj", "{62509334-83BD-4D52-9387-498D59630832}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emby.Shared", "Emby.Shared\Emby.Shared.csproj", "{0663D56B-A326-4E58-939B-B20ADEE2C7E7}"
 EndProject
