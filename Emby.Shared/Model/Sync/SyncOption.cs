@@ -8,5 +8,6 @@ namespace Emby.WindowsPhone.Model.Sync
         public bool UnwatchedItems { get; set; }
         public int? ItemLimit { get; set; }
         public SyncQualityOption Quality { get; set; }
+        public SyncProfileOption Profile { get; set; }
     }
 }

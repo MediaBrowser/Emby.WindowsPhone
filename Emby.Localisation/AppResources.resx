@@ -1232,4 +1232,22 @@
   <data name="MessageSyncJobCreated" xml:space="preserve">
     <value>Sync job created</value>
   </data>
+  <data name="ProfileBaselineDescription" xml:space="preserve">
+    <value>Designed for compatibility with all devices, including web browsers. Targets H264/AAC video and MP3 audio.</value>
+  </data>
+  <data name="ProfileGeneral" xml:space="preserve">
+    <value>General</value>
+  </data>
+  <data name="ProfileGeneralDescription" xml:space="preserve">
+    <value>Designed for compatibility with Chromecast, Roku, Smart TV's, and other similar devices. Targets H264/AAC/AC3 video and MP3 audio.</value>
+  </data>
+  <data name="ProfileOriginal" xml:space="preserve">
+    <value>Original</value>
+  </data>
+  <data name="ProfileOriginalDescription" xml:space="preserve">
+    <value>Syncs original files as-is.</value>
+  </data>
+  <data name="HeaderProfile" xml:space="preserve">
+    <value>Profile:</value>
+  </data>
 </root>

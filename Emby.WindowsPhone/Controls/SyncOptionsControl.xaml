@@ -39,7 +39,8 @@
                                         DisplayMemberPath="Name"
                                         Header="{Binding LocalisedResources.HeaderSyncToDevice, Source={StaticResource LocalisedStrings}}"
                                         HeaderStyle="{StaticResource HeaderStyle}"
-                                        SelectionChanged="TargetDevices_OnSelectionChanged"/>
+                                        SelectionChanged="TargetDevices_OnSelectionChanged"
+                                        InlineModeThreshold="10"/>
             <telerikPrimitives:RadTextBox InputScope="Number"
                                           BorderBrush="Black"
                                           Header="{Binding LocalisedResources.HeaderItemLimit, Source={StaticResource LocalisedStrings}}"
@@ -62,7 +63,20 @@
                                                ButtonStyle="{StaticResource ToggleButton}"
                                                IsChecked="{Binding SyncNewContent, Mode=TwoWay}"
                                                Visibility="Collapsed"/>
-            <telerikInput:RadListPicker x:Name="OptionsPicker"
+            <telerikInput:RadListPicker x:Name="ProfilePicker"
+                                        DisplayMemberPath="Name"
+                                        BorderBrush="Black"
+                                        Foreground="Black"
+                                        Header="{Binding LocalisedResources.HeaderProfile, Source={StaticResource LocalisedStrings}}"
+                                        HeaderStyle="{StaticResource HeaderStyle}"
+                                        SelectionChanged="ProfilePicker_OnSelectionChanged"
+                                        Visibility="Collapsed"/>
+            <TextBlock x:Name="ProfileDescription"
+                       Style="{StaticResource PhoneTextSmallStyle}"
+                       Foreground="Black"
+                       TextWrapping="Wrap"
+                       Visibility="Collapsed"/>
+            <telerikInput:RadListPicker x:Name="QualityPicker"
                                         DisplayMemberPath="Name"
                                         BorderBrush="Black"
                                         Foreground="Black"

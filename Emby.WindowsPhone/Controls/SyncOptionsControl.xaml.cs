@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using Coding4Fun.Toolkit.Controls;
+using Emby.WindowsPhone.Extensions;
 using GalaSoft.MvvmLight.Ioc;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Net;
@@ -22,38 +23,38 @@ namespace Emby.WindowsPhone.Controls
         private readonly ILog _logger;
 
         public static readonly DependencyProperty SyncUnwatchedProperty = DependencyProperty.Register(
-            "SyncUnwatched", typeof (bool), typeof (SyncOptionsControl), new PropertyMetadata(default(bool)));
+            "SyncUnwatched", typeof(bool), typeof(SyncOptionsControl), new PropertyMetadata(default(bool)));
 
         public bool SyncUnwatched
         {
-            get { return (bool) GetValue(SyncUnwatchedProperty); }
+            get { return (bool)GetValue(SyncUnwatchedProperty); }
             set { SetValue(SyncUnwatchedProperty, value); }
         }
 
         public static readonly DependencyProperty SyncNewContentProperty = DependencyProperty.Register(
-            "SyncNewContent", typeof (bool), typeof (SyncOptionsControl), new PropertyMetadata(default(bool)));
+            "SyncNewContent", typeof(bool), typeof(SyncOptionsControl), new PropertyMetadata(default(bool)));
 
         public bool SyncNewContent
         {
-            get { return (bool) GetValue(SyncNewContentProperty); }
+            get { return (bool)GetValue(SyncNewContentProperty); }
             set { SetValue(SyncNewContentProperty, value); }
         }
 
         public static readonly DependencyProperty ItemLimitProperty = DependencyProperty.Register(
-            "ItemLimit", typeof (string), typeof (SyncOptionsControl), new PropertyMetadata(default(string)));
+            "ItemLimit", typeof(string), typeof(SyncOptionsControl), new PropertyMetadata(default(string)));
 
         public string ItemLimit
         {
-            get { return (string) GetValue(ItemLimitProperty); }
+            get { return (string)GetValue(ItemLimitProperty); }
             set { SetValue(ItemLimitProperty, value); }
         }
 
         public static readonly DependencyProperty IsLoadingProperty = DependencyProperty.Register(
-            "IsLoading", typeof (bool), typeof (SyncOptionsControl), new PropertyMetadata(default(bool)));
+            "IsLoading", typeof(bool), typeof(SyncOptionsControl), new PropertyMetadata(default(bool)));
 
         public bool IsLoading
         {
-            get { return (bool) GetValue(IsLoadingProperty); }
+            get { return (bool)GetValue(IsLoadingProperty); }
             set { SetValue(IsLoadingProperty, value); }
         }
 
@@ -74,14 +75,14 @@ namespace Emby.WindowsPhone.Controls
         {
             if (MessagePrompt != null)
             {
-                MessagePrompt.OnCompleted(new PopUpEventArgs<string, PopUpResult> {PopUpResult = PopUpResult.Ok});
+                MessagePrompt.OnCompleted(new PopUpEventArgs<string, PopUpResult> { PopUpResult = PopUpResult.Ok });
             }
         }
 
         public MessagePrompt MessagePrompt { get; set; }
 
         private SyncDialogOptions _options;
-        private bool _unwatched, _itemLimit, _autoSync;
+        private bool _unwatched, _itemLimit, _autoSync, _profileNeeded, _qualityNeeded;
         private SyncJobRequest _request;
         public async Task SetOptions(SyncJobRequest request)
         {
@@ -106,7 +107,7 @@ namespace Emby.WindowsPhone.Controls
                         thisDevice.Name = string.Format(AppResources.LabelThisDevice, thisDevice.Name);
                         _options.Targets.Remove(thisDevice);
                         _options.Targets.Insert(0, thisDevice);
-                        
+
                         TargetDevices.ItemsSource = _options.Targets;
                         TargetDevices.SelectedItem = thisDevice;
                         //GetOptionsForDevice(thisDevice.Id).ConfigureAwait(false);
@@ -141,9 +142,24 @@ namespace Emby.WindowsPhone.Controls
                     _unwatched = _options.Options.Contains(SyncJobOption.UnwatchedOnly);
                     _itemLimit = _options.Options.Contains(SyncJobOption.ItemLimit);
                     _autoSync = _options.Options.Contains(SyncJobOption.SyncNewContent);
+                    _profileNeeded = _options.Options.Contains(SyncJobOption.Profile);
+                    _qualityNeeded = _options.Options.Contains(SyncJobOption.Quality);
 
-                    OptionsPicker.ItemsSource = _options.QualityOptions;
-                    OptionsPicker.SelectedItem = OptionsPicker.Items.FirstOrDefault(x => (x as SyncQualityOption).IsDefault);
+                    if (_qualityNeeded)
+                    {
+                        QualityPicker.ItemsSource = _options.QualityOptions;
+                        QualityPicker.SelectedItem = QualityPicker.Items.FirstOrDefault(x => (x as SyncQualityOption).IsDefault);
+                    }
+
+                    if (_profileNeeded)
+                    {
+                        var profiles = _options.ProfileOptions.Select(x => new SyncProfileOption {Name = x.GetName(), Description = x.GetDescription(), Id = x.Id, IsDefault = x.IsDefault}).ToList();
+                        ProfilePicker.ItemsSource = profiles;
+                        ProfilePicker.SelectedItem = ProfilePicker.Items.FirstOrDefault(x => (x as SyncProfileOption).IsDefault);
+                    }
+
+                    ProfilePicker.Visibility = _profileNeeded ? Visibility.Visible : Visibility.Collapsed;
+                    QualityPicker.Visibility = _qualityNeeded ? Visibility.Visible : Visibility.Collapsed;
                     ItemLimitBox.Visibility = _itemLimit ? Visibility.Visible : Visibility.Collapsed;
                     AutoSyncVideos.Visibility = _autoSync ? Visibility.Visible : Visibility.Collapsed;
                     UnwatchedVideos.Visibility = _unwatched ? Visibility.Visible : Visibility.Collapsed;
@@ -164,7 +180,7 @@ namespace Emby.WindowsPhone.Controls
 
         public SyncOption GetSelectedOption()
         {
-            var item = OptionsPicker.SelectedItem as SyncQualityOption;
+            var item = QualityPicker.SelectedItem as SyncQualityOption;
             
             var option = new SyncOption
             {
@@ -176,6 +192,12 @@ namespace Emby.WindowsPhone.Controls
             if (_itemLimit && !string.IsNullOrEmpty(ItemLimit))
             {
                 option.ItemLimit = int.Parse(ItemLimit);
+            }
+
+            if (_profileNeeded)
+            {
+                var profile = ProfilePicker.SelectedItem as SyncProfileOption;
+                option.Profile = profile;
             }
 
             return option;
@@ -190,6 +212,18 @@ namespace Emby.WindowsPhone.Controls
                 {
                     GetOptionsForDevice(device.Id).ConfigureAwait(false);
                 }
+            }
+        }
+
+        private void ProfilePicker_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var profileOption = ProfilePicker.SelectedItem as SyncProfileOption;
+            if (profileOption != null)
+            {
+                QualityPicker.Visibility = profileOption.EnableQualityOptions ? Visibility.Visible : Visibility.Collapsed;
+
+                ProfileDescription.Text = profileOption.Description;
+                ProfileDescription.Visibility = string.IsNullOrEmpty(profileOption.Description) ? Visibility.Visible : Visibility.Collapsed;
             }
         }
     }

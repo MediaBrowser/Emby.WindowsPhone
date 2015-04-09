@@ -817,6 +817,15 @@ namespace Emby.WindowsPhone.Localisation {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Profile:.
+        /// </summary>
+        public static string HeaderProfile {
+            get {
+                return ResourceManager.GetString("HeaderProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Quality:.
         /// </summary>
         public static string HeaderQuality {
@@ -2676,6 +2685,51 @@ namespace Emby.WindowsPhone.Localisation {
         public static string ProductionYear {
             get {
                 return ResourceManager.GetString("ProductionYear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Designed for compatibility with all devices, including web browsers. Targets H264/AAC video and MP3 audio..
+        /// </summary>
+        public static string ProfileBaselineDescription {
+            get {
+                return ResourceManager.GetString("ProfileBaselineDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to General.
+        /// </summary>
+        public static string ProfileGeneral {
+            get {
+                return ResourceManager.GetString("ProfileGeneral", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Designed for compatibility with Chromecast, Roku, Smart TV&apos;s, and other similar devices. Targets H264/AAC/AC3 video and MP3 audio..
+        /// </summary>
+        public static string ProfileGeneralDescription {
+            get {
+                return ResourceManager.GetString("ProfileGeneralDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Original.
+        /// </summary>
+        public static string ProfileOriginal {
+            get {
+                return ResourceManager.GetString("ProfileOriginal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Syncs original files as-is..
+        /// </summary>
+        public static string ProfileOriginalDescription {
+            get {
+                return ResourceManager.GetString("ProfileOriginalDescription", resourceCulture);
             }
         }
         
