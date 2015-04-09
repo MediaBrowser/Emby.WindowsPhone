@@ -142,7 +142,7 @@ namespace Emby.WindowsPhone.Controls
                     _unwatched = _options.Options.Contains(SyncJobOption.UnwatchedOnly);
                     _itemLimit = _options.Options.Contains(SyncJobOption.ItemLimit);
                     _autoSync = _options.Options.Contains(SyncJobOption.SyncNewContent);
-                    _profileNeeded = _options.Options.Contains(SyncJobOption.Profile);
+                    _profileNeeded = _options.Options.Contains(SyncJobOption.Profile) && _options.ProfileOptions.Any();
                     _qualityNeeded = _options.Options.Contains(SyncJobOption.Quality);
 
                     if (_qualityNeeded)
@@ -153,7 +153,7 @@ namespace Emby.WindowsPhone.Controls
 
                     if (_profileNeeded)
                     {
-                        var profiles = _options.ProfileOptions.Select(x => new SyncProfileOption {Name = x.GetName(), Description = x.GetDescription(), Id = x.Id, IsDefault = x.IsDefault}).ToList();
+                        var profiles = _options.ProfileOptions.Select(x => x.Localise()).ToList();
                         ProfilePicker.ItemsSource = profiles;
                         ProfilePicker.SelectedItem = ProfilePicker.Items.FirstOrDefault(x => (x as SyncProfileOption).IsDefault);
                     }
@@ -223,7 +223,7 @@ namespace Emby.WindowsPhone.Controls
                 QualityPicker.Visibility = profileOption.EnableQualityOptions ? Visibility.Visible : Visibility.Collapsed;
 
                 ProfileDescription.Text = profileOption.Description;
-                ProfileDescription.Visibility = string.IsNullOrEmpty(profileOption.Description) ? Visibility.Visible : Visibility.Collapsed;
+                ProfileDescription.Visibility = !string.IsNullOrEmpty(profileOption.Description) ? Visibility.Visible : Visibility.Collapsed;
             }
         }
     }

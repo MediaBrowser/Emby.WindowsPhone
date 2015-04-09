@@ -1,6 +1,5 @@
 ﻿using MediaBrowser.Model.Dto;
 using Emby.WindowsPhone.Localisation;
-using MediaBrowser.Model.Sync;
 
 namespace Emby.WindowsPhone.Extensions
 {
@@ -38,23 +37,6 @@ namespace Emby.WindowsPhone.Extensions
                 default:
                     return item.Name;
             }
-        }
-    }
-
-    public static class SyncProfileOptionExtensions
-    {
-        public static string GetName(this SyncProfileOption option)
-        {
-            var id = string.Format("Profile{0}", option.Name);
-            var name = AppResources.ResourceManager.GetString(id);
-            return string.IsNullOrEmpty(name) ? option.Name : name;
-        }
-
-        public static string GetDescription(this SyncProfileOption option)
-        {
-            var id = string.Format("Profile{0}Description", option.Name);
-            var description = AppResources.ResourceManager.GetString(id);
-            return string.IsNullOrEmpty(description) ? option.Name : description;
         }
     }
 }
