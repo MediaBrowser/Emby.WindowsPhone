@@ -228,7 +228,7 @@
     <Compile Include="Extensions\WriteableBitmapExt.cs" />
     <Compile Include="Helpers\ResolutionHelper.cs" />
     <Compile Include="Helpers\LiveTvHelper.cs" />
-    <Compile Include="MediaBrowserUriMapper.cs" />
+    <Compile Include="EmbyUriMapper.cs" />
     <Compile Include="Messaging\NowPlayingMessage.cs" />
     <Compile Include="Messaging\RemoteMessage.cs" />
     <Compile Include="Messaging\VideoMessage.cs" />
@@ -484,9 +484,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
-    <Content Include="Assets\BrowserText.png" />
-    <Content Include="Assets\MediaTextBlack.png" />
-    <Content Include="Assets\MediaTextWhite.png" />
     <Content Include="Assets\Tiles\FlipCycleTileLargeTransparent.png" />
     <Content Include="Assets\Tiles\FlipCycleTileMediumTransparent.png" />
     <Content Include="Assets\Tiles\FlipCycleTileSmallTransparent.png" />
@@ -1063,15 +1060,15 @@
       <Project>{2d79c354-8b14-40a9-ae35-d4df051cc374}</Project>
       <Name>Emby.WindowsPhone.Localisation</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MediaBrowser.Shared\Emby.Shared8.csproj">
+    <ProjectReference Include="..\Emby.Shared\Emby.Shared.csproj">
       <Project>{0663D56B-A326-4E58-939B-B20ADEE2C7E7}</Project>
       <Name>Emby.Shared8</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MediaBrowser.WindowsPhone.Background\Emby.WindowsPhone.Background.csproj">
+    <ProjectReference Include="..\Emby.WindowsPhone.Background\Emby.WindowsPhone.Background.csproj">
       <Project>{0ee0d99c-5ad8-4c43-8c70-e3bb77226340}</Project>
       <Name>Emby.WindowsPhone.Background</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MediaBrowser.WindowsPhone8.AudioAgent\Emby.WindowsPhone.AudioAgent.csproj">
+    <ProjectReference Include="..\Emby.WindowsPhone.AudioAgent\Emby.WindowsPhone.AudioAgent.csproj">
       <Project>{62509334-83BD-4D52-9387-498D59630832}</Project>
       <Name>Emby.WindowsPhone.AudioAgent</Name>
     </ProjectReference>

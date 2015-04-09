@@ -16,7 +16,7 @@
     <Language code="kk" />
     <Language code="nb" />
   </Languages>
-  <App xmlns="" ProductID="{38b51256-1baa-42e6-a043-47dd5a334513}" Title="Media Browser Beta" RuntimeType="Silverlight" Version="0.8.65.13" Genre="apps.normal" Author="ScottIsAFool" Description="Windows phone 8 app for MediaBrowser3" Publisher="ScottLovegrove" PublisherID="{7927cbc0-8641-4c30-a5d5-ef3da2dda868}">
+  <App xmlns="" ProductID="{38b51256-1baa-42e6-a043-47dd5a334513}" Title="Emby Beta" RuntimeType="Silverlight" Version="0.8.65.13" Genre="apps.normal" Author="ScottIsAFool" Description="Windows phone 8 app for Emby" Publisher="ScottLovegrove" PublisherID="{7927cbc0-8641-4c30-a5d5-ef3da2dda868}">
     <IconPath IsRelative="true" IsResource="false">Assets\ApplicationIcon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_NETWORKING" />
@@ -38,7 +38,7 @@
           <SmallImageURI IsRelative="true" IsResource="false">Assets\Tiles\FlipCycleTileSmall.png</SmallImageURI>
           <Count>0</Count>
           <BackgroundImageURI IsRelative="true" IsResource="false">Assets\Tiles\FlipCycleTileMedium.png</BackgroundImageURI>
-          <Title>Media Browser Beta</Title>
+          <Title>Emby Beta</Title>
           <BackContent>
           </BackContent>
           <BackBackgroundImageURI IsRelative="true" IsResource="false">
@@ -59,6 +59,7 @@
       <Extension ExtensionName="LockScreen_Background" ConsumerID="{111DFF24-AA15-4A96-8006-2BFF8122084F}" TaskID="_default" />
       <Extension ExtensionName="Photos_Auto_Upload" ConsumerID="{5B04B775-356B-4AA0-AAF8-6491FFEA5632}" TaskID="_default" />
       <Protocol Name="mediabrowser" NavUriFragment="encodedLaunchUri=%s" TaskID="_default" />
+      <Protocol Name="emby" NavUriFragment="encodedLaunchUri=%s" TaskID="_default" />
     </Extensions>
     <ScreenResolutions>
       <ScreenResolution Name="ID_RESOLUTION_WVGA" />

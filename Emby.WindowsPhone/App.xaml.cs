@@ -251,7 +251,7 @@ namespace Emby.WindowsPhone
             // Handle reset requests for clearing the backstack
             RootFrame.Navigated += CheckForResetNavigation;
 
-            RootFrame.UriMapper = new MediaBrowserUriMapper();
+            RootFrame.UriMapper = new EmbyUriMapper();
 
             // Ensure we don't initialize again
             _phoneApplicationInitialized = true;

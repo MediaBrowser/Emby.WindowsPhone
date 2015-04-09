@@ -107,9 +107,9 @@
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal"
                                 Margin="-12,-41,0,18">
-                        <TextBlock Text="media"
+                        <TextBlock Text="em"
                                    Foreground="{StaticResource PhoneForegroundBrush}" />
-                        <TextBlock Text="browser"
+                        <TextBlock Text="by"
                                    Foreground="Green" />
                     </StackPanel>
                 </DataTemplate>

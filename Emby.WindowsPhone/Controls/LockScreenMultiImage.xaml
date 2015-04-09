@@ -104,8 +104,8 @@
                    HorizontalAlignment="Center"
                    Margin="0,0,0,0"
                    Style="{StaticResource PhoneTextLargeStyle}">
-				<Run Text="media" />
-				<Run Text="browser"
+				<Run Text="em" />
+				<Run Text="by"
                      Foreground="Green" />
         </TextBlock>
     </Grid>

@@ -118,7 +118,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MediaBrowser.Shared\Emby.Shared8.csproj">
+    <ProjectReference Include="..\Emby.Shared\Emby.Shared.csproj">
       <Project>{0663d56b-a326-4e58-939b-b20adee2c7e7}</Project>
       <Name>Emby.Shared8</Name>
     </ProjectReference>

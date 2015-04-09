@@ -39,13 +39,13 @@
         <!-- By using different protocols like http or mailto you can invoke the respective applications -->
         <!-- The Label attribute defines an additional label placed in front of the hyperlink -->
         <!-- Use this to provide contact/support details for your app -->
-        <Link NavigateUri="http://www.mediabrowser.tv"
-              Content="http://www.mediabrowser.tv"
+        <Link NavigateUri="http://www.emby.media"
+              Content="http://www.emby.media"
               Label="Web:" />
         <Link NavigateUri="mailto:wpmb3@outlook.com"
               Content="wpmb3@outlook.com"
               Label="Support:" />
-        <Link NavigateUri="http://mediabrowser.tv/community"
+        <Link NavigateUri="http://emby.media/community"
               Content="http://mediabrowser3.tv/community"
               Label="Forums:"/>
         <Link NavigateUri="https://github.com/MediaBrowser/Emby.WindowsPhone/issues/new"

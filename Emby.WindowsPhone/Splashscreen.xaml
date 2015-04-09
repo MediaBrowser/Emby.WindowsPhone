@@ -64,11 +64,20 @@
                     Grid.Row="1"
                     VerticalAlignment="Top"
                     x:Name="Text">
-            <Image Source="/Assets/MediaTextWhite.png"
-                   Height="45" />
-            <Image Source="/Assets/BrowserText.png"
-                   Height="45" />
+            <TextBlock Text="EM"
+                       Style="{StaticResource PhoneTextExtraLargeStyle}"
+                       Foreground="White"
+                       Margin="0"
+                       FontWeight="ExtraLight"
+                       FontSize="60" />
+            <TextBlock Text="BY"
+                       Style="{StaticResource PhoneTextExtraLargeStyle}"
+                       Foreground="Green"
+                       FontSize="60"
+                       Margin="0"/>
         </StackPanel>
+        
+        
 
         <StackPanel Orientation="Vertical"
                     Grid.Row="2"

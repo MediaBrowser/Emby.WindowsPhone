@@ -147,8 +147,8 @@
                    HorizontalAlignment="Center"
                    Style="{StaticResource PhoneTextLargeStyle}"
                    Grid.Row="0">
-				<Run Text="media" />
-				<Run Text="browser"
+				<Run Text="em" />
+				<Run Text="by"
                      Foreground="Green" />
         </TextBlock>
     </Grid>

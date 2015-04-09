@@ -164,7 +164,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MediaBrowser.Shared\Emby.Shared8.csproj">
+    <ProjectReference Include="..\Emby.Shared\Emby.Shared.csproj">
       <Project>{0663D56B-A326-4E58-939B-B20ADEE2C7E7}</Project>
       <Name>Emby.Shared8</Name>
     </ProjectReference>

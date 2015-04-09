@@ -3,19 +3,21 @@ using System.Windows.Navigation;
 
 namespace Emby.WindowsPhone
 {
-    public class MediaBrowserUriMapper : UriMapperBase
+    public class EmbyUriMapper : UriMapperBase
     {
-        private const string Protocol = "mediabrowser";
+        private const string OldProtocol = "mediabrowser";
+        private const string Protocol = "emby";
         private const string PhotoUploadProtocol = "ConfigurePhotosUploadSettings";
 
         public override Uri MapUri(Uri uri)
         {
-            if (uri.ToString().ToLower().Contains(Protocol))
+            var url = uri.ToString().ToLower();
+            if (url.Contains(Protocol) || url.Contains(OldProtocol))
             {
                 return new Uri(Constants.Pages.SplashScreen, UriKind.Relative);
             }
 
-            if (uri.ToString().Contains(PhotoUploadProtocol))
+            if (url.Contains(PhotoUploadProtocol))
             {
                 return new Uri(string.Format(Constants.PhoneTileUrlFormat, "photouploadsettings", string.Empty, string.Empty), UriKind.Relative);
             }

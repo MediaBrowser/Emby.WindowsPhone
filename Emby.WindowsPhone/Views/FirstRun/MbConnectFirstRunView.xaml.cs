@@ -30,7 +30,7 @@ namespace Emby.WindowsPhone.Views.FirstRun
 
         private void SignUpButton_OnTap(object sender, GestureEventArgs e)
         {
-            new LauncherService().LaunchUriAsync("http://mediabrowser.tv/community/index.php?app=core&module=global&section=register");
+            new LauncherService().LaunchUriAsync("http://emby.media/community/index.php?app=core&module=global&section=register");
         }
 
         private void SkipButton_OnTap(object sender, GestureEventArgs e)
