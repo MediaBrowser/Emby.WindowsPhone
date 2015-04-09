@@ -12,7 +12,6 @@
                         xmlns:behaviours="clr-namespace:ScottIsAFool.WindowsPhone.Behaviours"
                         xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
                         xmlns:behaviours1="clr-namespace:Emby.WindowsPhone.Behaviours"
-                        xmlns:converters="clr-namespace:Emby.WindowsPhone.Converters"
                         xmlns:controls1="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
                         xmlns:behaviors="clr-namespace:Cimbalino.Toolkit.Behaviors;assembly=Cimbalino.Toolkit"
                         mc:Ignorable="d ignore"
@@ -62,7 +61,7 @@
             <StackPanel x:Name="TitlePanel"
                         Grid.Row="0"
                         Margin="12,17,0,28">
-                <controls:MediaBrowserLogo />
+                <controls:EmbyLogo />
                 <TextBlock Text="{Binding LocalisedResources.LabelMbConnect, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                            Margin="9,-7,0,0"
                            Style="{StaticResource PhoneTextTitle1Style}" />

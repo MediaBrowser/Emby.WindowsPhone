@@ -76,7 +76,7 @@
             <StackPanel x:Name="TitlePanel"
                         Grid.Row="0"
                         Margin="12,17,0,28">
-                <controls:MediaBrowserLogo AltText="{Binding LocalisedResources.TitleChannels, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToUppercaseConverter}}" />
+                <controls:EmbyLogo AltText="{Binding LocalisedResources.TitleChannels, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToUppercaseConverter}}" />
             </StackPanel>
 
             <!--ContentPanel - place additional content here-->

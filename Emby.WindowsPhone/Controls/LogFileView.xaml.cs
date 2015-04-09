@@ -22,7 +22,7 @@ namespace Emby.WindowsPhone.Controls
             new EmailComposeTask
             {
                 To = "wpmb3@outlook.com",
-                Subject = string.Format("Media Browser log file"),
+                Subject = string.Format("Emby log file"),
                 Body = sb.ToString()
             }.Show();
 

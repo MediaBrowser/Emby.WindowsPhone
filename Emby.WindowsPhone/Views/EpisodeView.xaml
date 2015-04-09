@@ -110,7 +110,7 @@
             <StackPanel x:Name="TitlePanel"
                         Grid.Row="0"
                         Margin="12,17,0,28">
-                <controls:MediaBrowserLogo />
+                <controls:EmbyLogo />
             </StackPanel>
 
             <telerikPrimitives:RadSlideView ItemsSource="{Binding Episodes}"

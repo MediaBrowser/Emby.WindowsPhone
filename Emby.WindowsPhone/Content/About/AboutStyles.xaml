@@ -65,7 +65,7 @@
         <Setter Property="TitleTemplate">
             <Setter.Value>
                 <DataTemplate>
-                    <mb:MediaBrowserLogo Margin="-12,0,0,0"/>
+                    <mb:EmbyLogo Margin="-12,0,0,0"/>
                 </DataTemplate>
             </Setter.Value>
         </Setter>

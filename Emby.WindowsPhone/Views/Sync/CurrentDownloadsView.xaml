@@ -61,7 +61,7 @@
             <StackPanel x:Name="TitlePanel"
                         Grid.Row="0"
                         Margin="12,17,0,28">
-                <controls1:MediaBrowserLogo />
+                <controls1:EmbyLogo />
                 <TextBlock Text="current downloads"
                            Margin="9,-7,0,0"
                            Style="{StaticResource PhoneTextTitle1Style}" />

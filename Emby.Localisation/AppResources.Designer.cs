@@ -889,7 +889,7 @@ namespace Emby.WindowsPhone.Localisation {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to What is MB Connect?.
+        ///   Looks up a localized string similar to What is Emby Connect?.
         /// </summary>
         public static string HeaderWhatIsMbConnect {
             get {
@@ -979,7 +979,7 @@ namespace Emby.WindowsPhone.Localisation {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Auto-upload your pictures straight from your phone right into Media Browser Server..
+        ///   Looks up a localized string similar to Auto-upload your pictures straight from your phone right into Emby Server..
         /// </summary>
         public static string LabelAutoUploadDescription {
             get {
@@ -1078,7 +1078,7 @@ namespace Emby.WindowsPhone.Localisation {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Put the connection details in to point to the computer running Media Browser. Then simply test them to confirm..
+        ///   Looks up a localized string similar to Put the connection details in to point to the computer running Emby. Then simply test them to confirm..
         /// </summary>
         public static string LabelConnectionDetails {
             get {
@@ -1186,7 +1186,7 @@ namespace Emby.WindowsPhone.Localisation {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Once the Media Browser server is configured, make sure it&apos;s accessible from where you are, whether that&apos;s being on your local wireless network, or an external static address..
+        ///   Looks up a localized string similar to Once the Emby server is configured, make sure it&apos;s accessible from where you are, whether that&apos;s being on your local wireless network, or an external static address..
         /// </summary>
         public static string LabelFirstRunAccessible {
             get {
@@ -1204,7 +1204,7 @@ namespace Emby.WindowsPhone.Localisation {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Before we can get started though, you need to make sure you&apos;re running the Media Browser server..
+        ///   Looks up a localized string similar to Before we can get started though, you need to make sure you&apos;re running the Emby server..
         /// </summary>
         public static string LabelFirstRunServerInfo {
             get {
@@ -1285,7 +1285,7 @@ namespace Emby.WindowsPhone.Localisation {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Media Browser is the current lock screen provider.
+        ///   Looks up a localized string similar to Emby is the current lock screen provider.
         /// </summary>
         public static string LabelIsLockScreenProvider {
             get {
@@ -1294,7 +1294,7 @@ namespace Emby.WindowsPhone.Localisation {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Media Browser is not the lock screen provider.
+        ///   Looks up a localized string similar to Emby is not the lock screen provider.
         /// </summary>
         public static string LabelIsNotLockScreenProvider {
             get {
@@ -1420,7 +1420,7 @@ namespace Emby.WindowsPhone.Localisation {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to MB Connect.
+        ///   Looks up a localized string similar to Emby Connect.
         /// </summary>
         public static string LabelMbConnect {
             get {
@@ -1429,7 +1429,7 @@ namespace Emby.WindowsPhone.Localisation {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to If you have a Media Browser account, you can login now..
+        ///   Looks up a localized string similar to If you have a Emby account, you can login now..
         /// </summary>
         public static string LabelMbConnectAlreadyGotAccount {
             get {
@@ -1438,7 +1438,7 @@ namespace Emby.WindowsPhone.Localisation {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to With MB Connect, you can easily access your Media Browser server wherever you are and share with your family and friends.
+        ///   Looks up a localized string similar to With Emby Connect, you can easily access your Emby server wherever you are and share with your family and friends.
         /// </summary>
         public static string LabelMbConnectDescriptionPara1 {
             get {
@@ -1447,7 +1447,7 @@ namespace Emby.WindowsPhone.Localisation {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to If you don&apos;t already have a Media Browser account, you can sign up now, it&apos;s FREE!.
+        ///   Looks up a localized string similar to If you don&apos;t already have a Emby account, you can sign up now, it&apos;s FREE!.
         /// </summary>
         public static string LabelMbConnectFreeAccount {
             get {
@@ -2176,7 +2176,7 @@ namespace Emby.WindowsPhone.Localisation {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sign in with Media Browser Connect.
+        ///   Looks up a localized string similar to Sign in with Emby Connect.
         /// </summary>
         public static string LabelSignInWithConnect {
             get {
@@ -2392,7 +2392,7 @@ namespace Emby.WindowsPhone.Localisation {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Welcome to Media Browser for Windows Phone. This app will allow you to browse your media collection, stream it to your phone and remotely control any of the controllable Media Browser clients..
+        ///   Looks up a localized string similar to Welcome to Emby for Windows Phone. This app will allow you to browse your media collection, stream it to your phone and remotely control any of the controllable Emby clients..
         /// </summary>
         public static string LabelWelcomeText {
             get {
@@ -2401,7 +2401,7 @@ namespace Emby.WindowsPhone.Localisation {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Welcome to Media Browser for Windows Phone. This app will allow you to browse your media collection and remotely control any of the controllable Media Browser clients..
+        ///   Looks up a localized string similar to Welcome to Emby for Windows Phone. This app will allow you to browse your media collection and remotely control any of the controllable Emby clients..
         /// </summary>
         public static string LabelWelcomeTextPhone7 {
             get {

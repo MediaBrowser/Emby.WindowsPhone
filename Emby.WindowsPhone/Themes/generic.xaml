@@ -14,12 +14,12 @@
     <converters:NullVisibilityConverter Inverted="True"
                                         x:Key="InvertedNullVisibilityConverter" />
 
-    <Style TargetType="local:MediaBrowserLogo">
+    <Style TargetType="local:EmbyLogo">
         <Setter Property="HorizontalAlignment"
                 Value="Stretch" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="local:MediaBrowserLogo">
+                <ControlTemplate TargetType="local:EmbyLogo">
                     <StackPanel Orientation="Horizontal"
                                 VerticalAlignment="Top"
                                 Height="24"
@@ -32,13 +32,13 @@
                                     Tag="{TemplateBinding AltText}"
                                     Visibility="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource InvertedNullVisibilityConverter}}"
                                     Margin="0,5,0,0">
-                            <TextBlock Text="MEDIA"
+                            <TextBlock Text="EM"
                                        Foreground="{StaticResource PhoneForegroundBrush}"
                                        Style="{StaticResource PhoneTextNormalStyle}"
                                        VerticalAlignment="Center"
                                        Margin="6,0,0,0"
                                        FontFamily="Arial Narrow" />
-                            <TextBlock Text="BROWSER"
+                            <TextBlock Text="BY"
                                        Foreground="Green"
                                        Style="{StaticResource PhoneTextNormalStyle}"
                                        Margin="0"
@@ -51,6 +51,7 @@
                                    Margin="6,0,0,0"
                                    VerticalAlignment="Center"
                                    FontSize="21.333"
+                                   FontFamily="Arial Narrow"
                                    Visibility="{Binding Text, RelativeSource={RelativeSource Self}, Converter={StaticResource NullVisibilityConverter}}" />
                     </StackPanel>
                 </ControlTemplate>

@@ -3,10 +3,10 @@ using System.Windows.Controls;
 
 namespace Emby.WindowsPhone.Controls
 {
-    public class MediaBrowserLogo : Control
+    public class EmbyLogo : Control
     {
         public static readonly DependencyProperty AltTextProperty =
-            DependencyProperty.Register("AltText", typeof (string), typeof (MediaBrowserLogo), new PropertyMetadata(default(string)));
+            DependencyProperty.Register("AltText", typeof (string), typeof (EmbyLogo), new PropertyMetadata(default(string)));
 
         public string AltText
         {
@@ -14,9 +14,9 @@ namespace Emby.WindowsPhone.Controls
             set { SetValue(AltTextProperty, value); }
         }
 
-        public MediaBrowserLogo()
+        public EmbyLogo()
         {
-            DefaultStyleKey = typeof(MediaBrowserLogo);
+            DefaultStyleKey = typeof(EmbyLogo);
         }
     }
 }

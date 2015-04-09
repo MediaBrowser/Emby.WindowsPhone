@@ -78,7 +78,7 @@
             <StackPanel x:Name="TitlePanel"
                         Grid.Row="0"
                         Margin="12,17,0,28">
-                <controls:MediaBrowserLogo AltText="{Binding SelectedChannel.Name}" />
+                <controls:EmbyLogo AltText="{Binding SelectedChannel.Name}" />
             </StackPanel>
 
             <!--ContentPanel - place additional content here-->

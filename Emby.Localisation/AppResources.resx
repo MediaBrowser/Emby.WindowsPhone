@@ -328,7 +328,7 @@
     <value>connection</value>
   </data>
   <data name="LabelConnectionDetails" xml:space="preserve">
-    <value>Put the connection details in to point to the computer running Media Browser. Then simply test them to confirm.</value>
+    <value>Put the connection details in to point to the computer running Emby. Then simply test them to confirm.</value>
   </data>
   <data name="LabelConnectionWarning" xml:space="preserve">
     <value>WARNING: Changing the hostname will remove any saved profiles.</value>
@@ -358,13 +358,13 @@
     <value>choose server</value>
   </data>
   <data name="LabelFirstRunAccessible" xml:space="preserve">
-    <value>Once the Media Browser server is configured, make sure it's accessible from where you are, whether that's being on your local wireless network, or an external static address.</value>
+    <value>Once the Emby server is configured, make sure it's accessible from where you are, whether that's being on your local wireless network, or an external static address.</value>
   </data>
   <data name="LabelFirstRunHappyConfiguration" xml:space="preserve">
     <value>If you're happy with what you've configured, click the settings button and enter your server's details, else you can just quit the app from here.</value>
   </data>
   <data name="LabelFirstRunServerInfo" xml:space="preserve">
-    <value>Before we can get started though, you need to make sure you're running the Media Browser server.</value>
+    <value>Before we can get started though, you need to make sure you're running the Emby server.</value>
   </data>
   <data name="LabelGeneral" xml:space="preserve">
     <value>general</value>
@@ -385,10 +385,10 @@
     <value>See film on imdb</value>
   </data>
   <data name="LabelIsLockScreenProvider" xml:space="preserve">
-    <value>Media Browser is the current lock screen provider</value>
+    <value>Emby is the current lock screen provider</value>
   </data>
   <data name="LabelIsNotLockScreenProvider" xml:space="preserve">
-    <value>Media Browser is not the lock screen provider</value>
+    <value>Emby is not the lock screen provider</value>
   </data>
   <data name="LabelJustShowList" xml:space="preserve">
     <value>Just show the list of items, not a media folder view</value>
@@ -559,7 +559,7 @@
     <value>Views</value>
   </data>
   <data name="LabelWelcomeText" xml:space="preserve">
-    <value>Welcome to Media Browser for Windows Phone. This app will allow you to browse your media collection, stream it to your phone and remotely control any of the controllable Media Browser clients.</value>
+    <value>Welcome to Emby for Windows Phone. This app will allow you to browse your media collection, stream it to your phone and remotely control any of the controllable Emby clients.</value>
   </data>
   <data name="LabelWriter" xml:space="preserve">
     <value>Writer</value>
@@ -765,7 +765,7 @@
     <comment>eg, Released in 1993</comment>
   </data>
   <data name="LabelWelcomeTextPhone7" xml:space="preserve">
-    <value>Welcome to Media Browser for Windows Phone. This app will allow you to browse your media collection and remotely control any of the controllable Media Browser clients.</value>
+    <value>Welcome to Emby for Windows Phone. This app will allow you to browse your media collection and remotely control any of the controllable Emby clients.</value>
   </data>
   <data name="LabelChannels" xml:space="preserve">
     <value>Channels</value>
@@ -1076,7 +1076,7 @@
     <value>Please note that the uploads will only take place when your device is on charge, wifi and charge is over 90%.</value>
   </data>
   <data name="LabelAutoUploadDescription" xml:space="preserve">
-    <value>Auto-upload your pictures straight from your phone right into Media Browser Server.</value>
+    <value>Auto-upload your pictures straight from your phone right into Emby Server.</value>
   </data>
   <data name="LabelTurnPhotoUploadOnServer" xml:space="preserve">
     <value>In order for this to work, you must go to the  server dashboard, click on Devices, then Camera Upload, then enable your device. If you don't have access to this, please speak to your server administator.</value>
@@ -1085,22 +1085,22 @@
     <value>Manual Connection</value>
   </data>
   <data name="HeaderWhatIsMbConnect" xml:space="preserve">
-    <value>What is MB Connect?</value>
+    <value>What is Emby Connect?</value>
   </data>
   <data name="LabelManualServerEntry" xml:space="preserve">
     <value>Enter server details manually</value>
   </data>
   <data name="LabelMbConnect" xml:space="preserve">
-    <value>MB Connect</value>
+    <value>Emby Connect</value>
   </data>
   <data name="LabelMbConnectAlreadyGotAccount" xml:space="preserve">
-    <value>If you have a Media Browser account, you can login now.</value>
+    <value>If you have a Emby account, you can login now.</value>
   </data>
   <data name="LabelMbConnectDescriptionPara1" xml:space="preserve">
-    <value>With MB Connect, you can easily access your Media Browser server wherever you are and share with your family and friends</value>
+    <value>With Emby Connect, you can easily access your Emby server wherever you are and share with your family and friends</value>
   </data>
   <data name="LabelMbConnectFreeAccount" xml:space="preserve">
-    <value>If you don't already have a Media Browser account, you can sign up now, it's FREE!</value>
+    <value>If you don't already have a Emby account, you can sign up now, it's FREE!</value>
   </data>
   <data name="LabelSignUp" xml:space="preserve">
     <value>Sign Up</value>
@@ -1121,7 +1121,7 @@
     <value>Change server</value>
   </data>
   <data name="LabelSignInWithConnect" xml:space="preserve">
-    <value>Sign in with Media Browser Connect</value>
+    <value>Sign in with Emby Connect</value>
   </data>
   <data name="ErrorPlayUnderLock" xml:space="preserve">
     <value>In order to change this setting again, you must restart the application.</value>

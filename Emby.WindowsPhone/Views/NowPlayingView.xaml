@@ -88,7 +88,7 @@
             <StackPanel x:Name="TitlePanel"
                         Grid.Row="0"
                         Margin="12,49,0,28">
-                <mb:MediaBrowserLogo />
+                <mb:EmbyLogo />
                 <TextBlock x:Name="PageTitle"
                            Text="{Binding LocalisedResources.LabelNowPlaying, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                            Margin="9,-7,0,0"

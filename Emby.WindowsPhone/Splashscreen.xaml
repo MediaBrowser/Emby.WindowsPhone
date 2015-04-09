@@ -68,11 +68,12 @@
                        Style="{StaticResource PhoneTextExtraLargeStyle}"
                        Foreground="White"
                        Margin="0"
-                       FontWeight="ExtraLight"
+                       FontFamily="Arial Narrow"
                        FontSize="60" />
             <TextBlock Text="BY"
                        Style="{StaticResource PhoneTextExtraLargeStyle}"
                        Foreground="Green"
+                       FontFamily="Arial Narrow"
                        FontSize="60"
                        Margin="0"/>
         </StackPanel>

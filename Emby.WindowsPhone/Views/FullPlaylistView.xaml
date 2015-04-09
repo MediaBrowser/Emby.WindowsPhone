@@ -80,7 +80,7 @@
             <StackPanel x:Name="TitlePanel"
                         Grid.Row="0"
                         Margin="12,17,0,28">
-                <mb:MediaBrowserLogo />
+                <mb:EmbyLogo />
             </StackPanel>
 
             <!--ContentPanel - place additional content here-->

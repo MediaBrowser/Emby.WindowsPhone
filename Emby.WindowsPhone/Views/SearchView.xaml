@@ -76,7 +76,7 @@
             <StackPanel x:Name="TitlePanel"
                         Grid.Row="0"
                         Margin="12,17,0,28">
-                <mb:MediaBrowserLogo />
+                <mb:EmbyLogo />
                 <TextBlock x:Name="PageTitle"
                            Text="{Binding LocalisedResources.LabelSearch, Source={StaticResource LocalisedStrings}}"
                            Margin="9,-7,0,0"

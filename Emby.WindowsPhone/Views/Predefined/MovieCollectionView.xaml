@@ -70,7 +70,7 @@
                 <phone:Pivot.Title>
                     <StackPanel Orientation="Horizontal"
                                 Margin="-12,0,0,0">
-                        <mb:MediaBrowserLogo AltText="{Binding LocalisedResources.LabelMovies, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToUppercaseConverter}}" />
+                        <mb:EmbyLogo AltText="{Binding LocalisedResources.LabelMovies, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToUppercaseConverter}}" />
                     </StackPanel>
                 </phone:Pivot.Title>
 

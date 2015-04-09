@@ -157,7 +157,7 @@
                         Grid.Row="0"
                         Orientation="Horizontal"
                         Margin="12,17,0,28">
-                <mb:MediaBrowserLogo AltText="{Binding LocalisedResources.LabelRemote, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToUppercaseConverter}}" />
+                <mb:EmbyLogo AltText="{Binding LocalisedResources.LabelRemote, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToUppercaseConverter}}" />
             </StackPanel>
 
             <toolkit:ListPicker ItemsSource="{Binding Clients}"
