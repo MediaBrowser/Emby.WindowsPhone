@@ -6,3 +6,7 @@
 	path = Other/PlayerFramework
 	url = g:/Documents/Visual Studio 2013/Projects/PlayerFramework
 	branch = master
+[submodule "Other/PhoneSM"]
+	path = Other/PhoneSM
+	url = g:/Documents/Visual Studio 2013/Projects/PhoneSM/phonesm
+	branch = master
