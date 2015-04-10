@@ -5,11 +5,9 @@
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:ignore="http://www.ignore.com"
                 xmlns:playerFramework="clr-namespace:Microsoft.PlayerFramework;assembly=Microsoft.PlayerFramework"
-                xmlns:converters="clr-namespace:Emby.WindowsPhone.Converters"
                 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-                
                 xmlns:scott="clr-namespace:ScottIsAFool.WindowsPhone.Controls;assembly=ScottIsAFool.WindowsPhone"
-                xmlns:System="clr-namespace:System;assembly=mscorlib"
+                xmlns:system="clr-namespace:System;assembly=mscorlib"
                 xmlns:mediaPlayer="clr-namespace:SM.Media.MediaPlayer;assembly=SM.Media.MediaPlayer.WP8"
                 xmlns:tt="clr-namespace:Microsoft.PlayerFramework.WebVTT;assembly=Microsoft.PlayerFramework.WebVTT"
                 xmlns:behaviours="clr-namespace:Emby.WindowsPhone.Behaviours"
@@ -19,7 +17,7 @@
                 Orientation="Landscape"
                 shell:SystemTray.IsVisible="False">
     <scott:BasePage.Resources>
-        <System:Double x:Key="SliderTrackThemeHeight">12</System:Double>
+        <system:Double x:Key="SliderTrackThemeHeight">12</system:Double>
         <Style x:Key="VisualMarkerStyle"
                TargetType="Button">
             <Setter Property="Width"
@@ -512,7 +510,7 @@
                                                                            Storyboard.TargetName="AdvertisementLoadingProgressBar">
                                                 <DiscreteObjectKeyFrame KeyTime="0">
                                                     <DiscreteObjectKeyFrame.Value>
-                                                        <System:Boolean>True</System:Boolean>
+                                                        <system:Boolean>True</system:Boolean>
                                                     </DiscreteObjectKeyFrame.Value>
                                                 </DiscreteObjectKeyFrame>
                                             </ObjectAnimationUsingKeyFrames>

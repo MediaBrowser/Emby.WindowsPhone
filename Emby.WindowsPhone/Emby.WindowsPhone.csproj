@@ -935,32 +935,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\WPtoolkit.4.2013.08.16\lib\wp8\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.PlayerFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c9240785c8c0b56a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\other-packages\PlayerFramework\Microsoft.PlayerFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.PlayerFramework.TimedText, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c9240785c8c0b56a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\other-packages\PlayerFramework\Microsoft.PlayerFramework.TimedText.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.PlayerFramework.TTML.CaptionSettings">
-      <HintPath>..\other-packages\PlayerFramework\Microsoft.PlayerFramework.TTML.CaptionSettings.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.PlayerFramework.TTML.Settings, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\other-packages\PlayerFramework\Microsoft.PlayerFramework.TTML.Settings.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.PlayerFramework.WebVTT, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c9240785c8c0b56a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\other-packages\PlayerFramework\Microsoft.PlayerFramework.WebVTT.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.PlayerFramework.WebVTT.CaptionSettings">
-      <HintPath>..\other-packages\PlayerFramework\Microsoft.PlayerFramework.WebVTT.CaptionSettings.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.PlayerFramework.WebVTT.Settings, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\other-packages\PlayerFramework\Microsoft.PlayerFramework.WebVTT.Settings.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
@@ -1058,7 +1032,7 @@
     </ProjectReference>
     <ProjectReference Include="..\Emby.Shared\Emby.Shared.csproj">
       <Project>{0663D56B-A326-4E58-939B-B20ADEE2C7E7}</Project>
-      <Name>Emby.Shared8</Name>
+      <Name>Emby.Shared</Name>
     </ProjectReference>
     <ProjectReference Include="..\Emby.WindowsPhone.Background\Emby.WindowsPhone.Background.csproj">
       <Project>{0ee0d99c-5ad8-4c43-8c70-e3bb77226340}</Project>
@@ -1071,6 +1045,26 @@
     <ProjectReference Include="..\Other\ApiClient\MediaBrowser.ApiInteraction.Portable\MediaBrowser.ApiInteraction.Portable.csproj">
       <Project>{52e0c440-85c0-4a99-acfe-07c87b2600be}</Project>
       <Name>MediaBrowser.ApiInteraction.Portable</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Other\PlayerFramework\Phone.SL.TimedText\Microsoft.WP8.PlayerFramework.SL.TimedText.csproj">
+      <Project>{a3416419-9fab-4539-8e64-79266669899f}</Project>
+      <Name>Microsoft.WP8.PlayerFramework.SL.TimedText</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Other\PlayerFramework\Phone.SL.TTML.Settings\Microsoft.WP8.PlayerFramework.TTML.Settings.csproj">
+      <Project>{c6e13339-51e8-4158-9e1a-b12d24841ecd}</Project>
+      <Name>Microsoft.WP8.PlayerFramework.TTML.Settings</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Other\PlayerFramework\Phone.SL.WebVTT.Settings\Microsoft.WP8.PlayerFramework.WebVTT.Settings.csproj">
+      <Project>{ddf64c55-6d24-4f23-8740-1dcd346a388a}</Project>
+      <Name>Microsoft.WP8.PlayerFramework.WebVTT.Settings</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Other\PlayerFramework\Phone.SL.WebVTT\Microsoft.WP8.PlayerFramework.SL.WebVTT.csproj">
+      <Project>{ef5e25ba-9fe6-4a8d-9241-d2e2b1934089}</Project>
+      <Name>Microsoft.WP8.PlayerFramework.SL.WebVTT</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Other\PlayerFramework\Phone.SL\Microsoft.WP8.PlayerFramework.SL.csproj">
+      <Project>{7d44be21-5e5d-4ca0-8df1-59b16122131c}</Project>
+      <Name>Microsoft.WP8.PlayerFramework.SL</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

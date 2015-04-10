@@ -162,7 +162,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Emby.Shared\Emby.Shared.csproj">
       <Project>{0663D56B-A326-4E58-939B-B20ADEE2C7E7}</Project>
-      <Name>Emby.Shared8</Name>
+      <Name>Emby.Shared</Name>
     </ProjectReference>
     <ProjectReference Include="..\Other\ApiClient\MediaBrowser.ApiInteraction.Portable\MediaBrowser.ApiInteraction.Portable.csproj">
       <Project>{52e0c440-85c0-4a99-acfe-07c87b2600be}</Project>
