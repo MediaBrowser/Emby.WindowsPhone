@@ -1046,28 +1046,27 @@
       <Project>{52e0c440-85c0-4a99-acfe-07c87b2600be}</Project>
       <Name>MediaBrowser.ApiInteraction.Portable</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Other\PlayerFramework\Phone.SL.TimedText\Microsoft.WP8.PlayerFramework.SL.TimedText.csproj">
-      <Project>{a3416419-9fab-4539-8e64-79266669899f}</Project>
-      <Name>Microsoft.WP8.PlayerFramework.SL.TimedText</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Other\PlayerFramework\Phone.SL.TTML.Settings\Microsoft.WP8.PlayerFramework.TTML.Settings.csproj">
-      <Project>{c6e13339-51e8-4158-9e1a-b12d24841ecd}</Project>
-      <Name>Microsoft.WP8.PlayerFramework.TTML.Settings</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Other\PlayerFramework\Phone.SL.WebVTT.Settings\Microsoft.WP8.PlayerFramework.WebVTT.Settings.csproj">
-      <Project>{ddf64c55-6d24-4f23-8740-1dcd346a388a}</Project>
-      <Name>Microsoft.WP8.PlayerFramework.WebVTT.Settings</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Other\PlayerFramework\Phone.SL.WebVTT\Microsoft.WP8.PlayerFramework.SL.WebVTT.csproj">
-      <Project>{ef5e25ba-9fe6-4a8d-9241-d2e2b1934089}</Project>
-      <Name>Microsoft.WP8.PlayerFramework.SL.WebVTT</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Other\PlayerFramework\Phone.SL\Microsoft.WP8.PlayerFramework.SL.csproj">
-      <Project>{7d44be21-5e5d-4ca0-8df1-59b16122131c}</Project>
-      <Name>Microsoft.WP8.PlayerFramework.SL</Name>
-    </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <SDKReference Include="Microsoft.PlayerFramework.WP8.CaptionSettings, Version=2.0.0.0">
+      <Name>Microsoft Player Framework Caption Settings Plugin</Name>
+    </SDKReference>
+    <SDKReference Include="Microsoft.PlayerFramework.WP8.Core, Version=2.0.0.0">
+      <Name>Microsoft Player Framework</Name>
+    </SDKReference>
+    <SDKReference Include="Microsoft.PlayerFramework.WP8.TimedText, Version=2.0.0.0">
+      <Name>Microsoft Player Framework TimedText Plugin</Name>
+    </SDKReference>
+    <SDKReference Include="Microsoft.PlayerFramework.WP8.TTML.Settings, Version=2.0.0.0">
+      <Name>Microsoft Player Framework TTML Caption Settings Plugin</Name>
+    </SDKReference>
+    <SDKReference Include="Microsoft.PlayerFramework.WP8.WebVTT, Version=2.0.0.0">
+      <Name>Microsoft Player Framework WebVTT Plugin</Name>
+    </SDKReference>
+    <SDKReference Include="Microsoft.PlayerFramework.WP8.WebVTT.Settings, Version=2.0.0.0">
+      <Name>Microsoft Player Framework WebVTT Caption Settings Plugin</Name>
+    </SDKReference>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
