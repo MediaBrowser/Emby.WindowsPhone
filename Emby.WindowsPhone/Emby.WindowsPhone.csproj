@@ -592,6 +592,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Themes\PlayerResources.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Themes\LiveTvResources.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -966,21 +970,28 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\ScottIsAFool.WindowsPhone.Background.1.0.18.11\lib\wp8\ScottIsAFool.WindowsPhone.Background.dll</HintPath>
     </Reference>
-    <Reference Include="SM.Media">
-      <HintPath>..\other-packages\HLS\SM.Media.dll</HintPath>
-    </Reference>
-    <Reference Include="SM.Media.Builder">
-      <HintPath>..\other-packages\HLS\SM.Media.Builder.dll</HintPath>
-    </Reference>
-    <Reference Include="SM.Media.MediaPlayer.WP8">
+    <Reference Include="SM.Media, Version=1.4.8.0, Culture=neutral, PublicKeyToken=a8a96d0f02112ebc, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\other-packages\HLS\SM.Media.MediaPlayer.WP8.dll</HintPath>
+      <HintPath>..\other-packages\PhoneSM\SM.Media.dll</HintPath>
     </Reference>
-    <Reference Include="SM.Media.Platform.WP8">
-      <HintPath>..\other-packages\HLS\SM.Media.Platform.WP8.dll</HintPath>
+    <Reference Include="SM.Media.Builder, Version=1.4.8.0, Culture=neutral, PublicKeyToken=a8a96d0f02112ebc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\other-packages\PhoneSM\SM.Media.Builder.dll</HintPath>
     </Reference>
-    <Reference Include="SM.TsParser">
-      <HintPath>..\other-packages\HLS\SM.TsParser.dll</HintPath>
+    <Reference Include="SM.Media.MediaPlayer.WP8, Version=1.4.8.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\other-packages\PhoneSM\SM.Media.MediaPlayer.WP8.dll</HintPath>
+    </Reference>
+    <Reference Include="SM.Media.Platform.WP8, Version=1.4.8.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\other-packages\PhoneSM\SM.Media.Platform.WP8.dll</HintPath>
+    </Reference>
+    <Reference Include="SM.Media.Web.HttpClientReader">
+      <HintPath>..\other-packages\PhoneSM\SM.Media.Web.HttpClientReader.dll</HintPath>
+    </Reference>
+    <Reference Include="SM.TsParser, Version=1.4.8.0, Culture=neutral, PublicKeyToken=a8a96d0f02112ebc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\other-packages\PhoneSM\SM.TsParser.dll</HintPath>
     </Reference>
     <Reference Include="System.IO.Compression">
       <HintPath>..\packages\Microsoft.Bcl.Compression.3.9.83\lib\wp8\System.IO.Compression.dll</HintPath>
