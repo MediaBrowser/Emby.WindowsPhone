@@ -11,7 +11,7 @@ namespace Emby.WindowsPhone.Model
 
         public string DisplayUrl
         {
-            get { return string.Format("http://{0}:{1}/mediabrowser", HostName, PortNo); }
+            get { return string.Format("http://{0}:{1}/emby", HostName, PortNo); }
         }
 
         public string ServerAddress
