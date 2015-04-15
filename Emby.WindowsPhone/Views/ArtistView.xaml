@@ -35,12 +35,12 @@
                                              CommandParameter="{Binding SelectedArtist}"
                                              IsEnabled="{Binding SelectedArtist.SupportsSync}"
                                              SyncPolicy="{Binding Auth.LoggedInUser.Policy.EnableSync, Source={StaticResource Locator}}"
-                                             HasSyncJob="{Binding SelectedArtist.HasSyncJob}"/>
+                                             SyncStatus="{Binding SelectedArtist.SyncStatus}"/>
                 <behaviours:SyncAppBarButton Text="{Binding LocalisedResources.AppBarUnsync, Source={StaticResource LocalisedStrings}}"
                                              IconUri="/Icons/appbar.cloud.delete.png"
                                              IsEnabled="{Binding SelectedArtist.SupportsSync}"
                                              SyncPolicy="{Binding Auth.LoggedInUser.Policy.EnableSync, Source={StaticResource Locator}}"
-                                             IsSynced="{Binding SelectedArtist.IsSynced}"
+                                             SyncStatus="{Binding SelectedArtist.SyncStatus}"
                                              IsRemove="True"/>
             </cimbalino:ApplicationBarBehavior.Buttons>
             <cimbalino:ApplicationBarBehavior.MenuItems>

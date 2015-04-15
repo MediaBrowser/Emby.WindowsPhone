@@ -43,12 +43,12 @@
                                              CommandParameter="{Binding SelectedAlbum}"
                                              IsEnabled="{Binding SelectedAlbum.SupportsSync}"
                                              SyncPolicy="{Binding Auth.LoggedInUser.Policy.EnableSync, Source={StaticResource Locator}}"
-                                             HasSyncJob="{Binding SelectedAlbum.HasSyncJob}" />
+                                             SyncStatus="{Binding SelectedAlbum.SyncStatus}" />
                 <behaviours:SyncAppBarButton Text="{Binding LocalisedResources.AppBarUnsync, Source={StaticResource LocalisedStrings}}"
                                              IconUri="/Icons/appbar.cloud.delete.png"
                                              IsEnabled="{Binding SelectedAlbum.SupportsSync}"
                                              SyncPolicy="{Binding Auth.LoggedInUser.Policy.EnableSync, Source={StaticResource Locator}}"
-                                             IsSynced="{Binding SelectedAlbum.IsSynced}"
+                                             SyncStatus="{Binding SelectedAlbum.SyncStatus}"
                                              Command="{Binding UnsyncCommand}"
                                              CommandParameter="{Binding SelectedAlbum}"
                                              IsRemove="True" />

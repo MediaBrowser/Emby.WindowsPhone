@@ -42,12 +42,12 @@
                                          Command="{Binding EpisodeOfflineCommand}"
                                          IsEnabled="{Binding SelectedEpisode.SupportsSync}"
                                          SyncPolicy="{Binding Auth.LoggedInUser.Policy.EnableSync, Source={StaticResource Locator}}"
-                                         HasSyncJob="{Binding SelectedEpisode.HasSyncJob}" />
+                                         SyncStatus="{Binding SelectedEpisode.SyncStatus}" />
             <behaviours:SyncAppBarButton Text="{Binding LocalisedResources.AppBarUnsync, Source={StaticResource LocalisedStrings}}"
                                          IconUri="/Icons/appbar.cloud.delete.png"
                                          IsEnabled="{Binding SelectedEpisode.SupportsSync}"
                                          SyncPolicy="{Binding Auth.LoggedInUser.Policy.EnableSync, Source={StaticResource Locator}}"
-                                         IsSynced="{Binding SelectedEpisode.IsSynced}"
+                                         SyncStatus="{Binding SelectedEpisode.SyncStatus}"
                                          Command="{Binding UnsyncItemCommand}"
                                          CommandParameter="{Binding SelectedEpisode}"
                                          IsRemove="True" />

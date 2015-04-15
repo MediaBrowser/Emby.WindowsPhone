@@ -36,12 +36,12 @@
                                              Command="{Binding ShowOfflineCommand}"
                                              IsEnabled="{Binding SelectedTvSeries.SupportsSync}"
                                              SyncPolicy="{Binding Auth.LoggedInUser.Policy.EnableSync, Source={StaticResource Locator}}"
-                                             HasSyncJob="{Binding SelectedTvSeries.HasSyncJob}" />
+                                             SyncStatus="{Binding SelectedTvSeries.SyncStatus}" />
                 <behaviours:SyncAppBarButton Text="{Binding LocalisedResources.AppBarUnsync, Source={StaticResource LocalisedStrings}}"
                                              IconUri="/Icons/appbar.cloud.delete.png"
                                              IsEnabled="{Binding SelectedTvSeries.SupportsSync}"
                                              SyncPolicy="{Binding Auth.LoggedInUser.Policy.EnableSync, Source={StaticResource Locator}}"
-                                             IsSynced="{Binding SelectedTvSeries.IsSynced}"
+                                             SyncStatus="{Binding SelectedTvSeries.SyncStatus}"
                                              Command="{Binding UnsyncItemCommand}"
                                              CommandParameter="{Binding SelectedTvSeries}"
                                              IsRemove="True" />
