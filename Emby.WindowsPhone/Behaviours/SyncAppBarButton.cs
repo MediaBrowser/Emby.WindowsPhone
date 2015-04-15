@@ -33,7 +33,7 @@ namespace Emby.WindowsPhone.Behaviours
         }
 
         public static readonly DependencyProperty IsSyncedProperty = DependencyProperty.Register(
-            "IsSynced", typeof (bool), typeof (SyncAppBarButton), new PropertyMetadata(default(bool)));
+            "IsSynced", typeof (bool), typeof (SyncAppBarButton), new PropertyMetadata(default(bool), OnChanged));
 
         public bool IsSynced
         {
@@ -59,7 +59,7 @@ namespace Emby.WindowsPhone.Behaviours
             }
             else
             {
-                isVisible = !HasSyncJob && SyncPolicy;
+                isVisible = !HasSyncJob && SyncPolicy && !IsSynced;
             }
 
             IsVisible = isVisible;

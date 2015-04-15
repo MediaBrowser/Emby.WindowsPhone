@@ -168,6 +168,8 @@ namespace Emby.WindowsPhone.Services
         {
             var apiClient = _connectionManager.GetApiClient(_serverInfo.ServerInfo.Id);
             await apiClient.CancelSyncLibraryItems(apiClient.DeviceId, itemIds);
+
+            Sync().ConfigureAwait(false);
         }
 
         public Task CheckAndMoveFinishedFiles()

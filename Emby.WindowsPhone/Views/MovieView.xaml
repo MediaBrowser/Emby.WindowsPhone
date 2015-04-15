@@ -44,6 +44,7 @@
                                          Command="{Binding SyncItemCommand}"
                                          IsEnabled="{Binding SelectedMovie.SupportsSync}"
                                          SyncPolicy="{Binding Auth.LoggedInUser.Policy.EnableSync, Source={StaticResource Locator}}"
+                                         IsSynced="{Binding SelectedMovie.IsSynced}"
                                          HasSyncJob="{Binding SelectedMovie.HasSyncJob}" />
             <behaviours:SyncAppBarButton Text="{Binding LocalisedResources.AppBarUnsync, Source={StaticResource LocalisedStrings}}"
                                          IconUri="/Icons/appbar.cloud.delete.png"
