@@ -9,6 +9,7 @@ using MediaBrowser.ApiInteraction.Sync;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Sync;
 using Emby.WindowsPhone.Extensions;
+using Emby.WindowsPhone.Interfaces;
 using Emby.WindowsPhone.Services;
 using Microsoft.Phone.BackgroundTransfer;
 using Newtonsoft.Json;
@@ -19,11 +20,13 @@ namespace Emby.WindowsPhone.Model.Sync
     public class FileTransferManager : IFileTransferManager
     {
         private readonly ILocalAssetManager _localAssetManager;
+        private readonly ITransferService _transferService;
         private readonly IStorageServiceHandler _storageService;
 
-        public FileTransferManager(ILocalAssetManager localAssetManager, IStorageService storageService)
+        public FileTransferManager(ILocalAssetManager localAssetManager, IStorageService storageService, ITransferService transferService)
         {
             _localAssetManager = localAssetManager;
+            _transferService = transferService;
             _storageService = storageService.Local;
         }
 
@@ -79,7 +82,7 @@ namespace Emby.WindowsPhone.Model.Sync
                 }
             }
 
-            BackgroundTransferService.Add(downloader);
+            _transferService.Add(downloader);
         }
 
         private async void DownloaderOnTransferStatusChanged(object sender, BackgroundTransferEventArgs e)

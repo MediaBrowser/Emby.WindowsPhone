@@ -261,6 +261,7 @@
     <Compile Include="Services\ReviewReminderService.cs" />
     <Compile Include="Services\ServerInfoService.cs" />
     <Compile Include="Services\TileService.cs" />
+    <Compile Include="Services\TransferService.cs" />
     <Compile Include="Services\TrialHelper.cs" />
     <Compile Include="Model\SpecificSettings.cs" />
     <Compile Include="Splashscreen.xaml.cs">

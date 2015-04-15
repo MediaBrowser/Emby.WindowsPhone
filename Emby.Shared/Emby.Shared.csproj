@@ -193,6 +193,7 @@
     <Compile Include="Interfaces\IMessengerService.cs" />
     <Compile Include="Interfaces\IServerInfoService.cs" />
     <Compile Include="Interfaces\ISettingsService.cs" />
+    <Compile Include="Interfaces\ITransferService.cs" />
     <Compile Include="Logging\MBLogger.cs" />
     <Compile Include="Model\ConnectionDetails.cs" />
     <Compile Include="Model\Connection\CredentialProvider.cs" />
