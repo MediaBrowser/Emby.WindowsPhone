@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using Cimbalino.Toolkit.Behaviors;
+using MediaBrowser.Model.Sync;
 
 namespace Emby.WindowsPhone.Behaviours
 {
@@ -39,6 +40,15 @@ namespace Emby.WindowsPhone.Behaviours
         {
             get { return (bool) GetValue(IsSyncedProperty); }
             set { SetValue(IsSyncedProperty, value); }
+        }
+
+        public static readonly DependencyProperty SyncStatusProperty = DependencyProperty.Register(
+            "SyncStatus", typeof (SyncJobStatus), typeof (SyncAppBarButton), new PropertyMetadata(default(SyncJobStatus)));
+
+        public SyncJobStatus SyncStatus
+        {
+            get { return (SyncJobStatus) GetValue(SyncStatusProperty); }
+            set { SetValue(SyncStatusProperty, value); }
         }
 
         private static void OnChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
