@@ -1,4 +1,4 @@
 [submodule "Other/ApiClient"]
 	path = Other/ApiClient
-	url = g:/Documents/Visual Studio 2012/Projects/MediaBrowserServer/MediaBrowser.ApiClient
+	url = https://github.com/MediaBrowser/MediaBrowser.ApiClient.git
 	branch = master
