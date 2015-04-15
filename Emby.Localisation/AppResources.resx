@@ -1250,4 +1250,7 @@
   <data name="HeaderProfile" xml:space="preserve">
     <value>Profile:</value>
   </data>
+  <data name="LabelGoOffline" xml:space="preserve">
+    <value>Go offline</value>
+  </data>
 </root>

@@ -1240,6 +1240,15 @@ namespace Emby.WindowsPhone.Localisation {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Go offline.
+        /// </summary>
+        public static string LabelGoOffline {
+            get {
+                return ResourceManager.GetString("LabelGoOffline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hostname:.
         /// </summary>
         public static string LabelHostname {

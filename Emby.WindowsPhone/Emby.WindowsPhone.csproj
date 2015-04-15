@@ -292,6 +292,7 @@
     <Compile Include="ViewModel\MovieViewModel.cs" />
     <Compile Include="ViewModel\MusicViewModel.cs" />
     <Compile Include="ViewModel\NotificationsViewModel.cs" />
+    <Compile Include="ViewModel\Offline\OfflineUsersViewModel.cs" />
     <Compile Include="ViewModel\Playlists\AddToPlaylistViewModel.cs" />
     <Compile Include="ViewModel\Playlists\ServerPlaylistsViewModel.cs" />
     <Compile Include="ViewModel\PlaylistViewModel.cs" />
@@ -338,6 +339,9 @@
     </Compile>
     <Compile Include="Views\FirstRun\MbConnectFirstRunView.xaml.cs">
       <DependentUpon>MbConnectFirstRunView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Offline\OfflineUsersView.xaml.cs">
+      <DependentUpon>OfflineUsersView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Settings\FindServerView.xaml.cs">
       <DependentUpon>FindServerView.xaml</DependentUpon>
@@ -638,6 +642,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\FirstRun\MbConnectFirstRunView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Offline\OfflineUsersView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1079,9 +1087,7 @@
       <Name>Microsoft Player Framework WebVTT Caption Settings Plugin</Name>
     </SDKReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\Offline\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

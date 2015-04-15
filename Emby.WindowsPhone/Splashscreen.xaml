@@ -91,7 +91,7 @@
                        HorizontalAlignment="Center"
                        Style="{StaticResource PhoneTextTitle3Style}" />
             <localControls:CustomHyperlinkButton Margin="0,24"
-                                                 Content="Go offline"
+                                                 Content="{Binding LocalisedResources.LabelGoOffline, Source={StaticResource LocalisedStrings}}"
                                                  VerticalAlignment="Top"
                                                  Foreground="{StaticResource PhoneAccentBrush}"
                                                  TapCommand="{Binding GoOfflineCommand}" />
@@ -110,7 +110,7 @@
                                                  Foreground="{StaticResource PhoneAccentBrush}"
                                                  TapCommand="{Binding ChangeServerCommand}" />
             <localControls:CustomHyperlinkButton Margin="0,24"
-                                                 Content="Go offline"
+                                                 Content="{Binding LocalisedResources.LabelGoOffline, Source={StaticResource LocalisedStrings}}"
                                                  VerticalAlignment="Top"
                                                  Foreground="{StaticResource PhoneAccentBrush}"
                                                  TapCommand="{Binding GoOfflineCommand}" />

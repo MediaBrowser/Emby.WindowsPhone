@@ -1,4 +1,5 @@
 ﻿using Cimbalino.Toolkit.Services;
+using Emby.WindowsPhone.ViewModel.Offline;
 using GalaSoft.MvvmLight.Ioc;
 using MediaBrowser.ApiInteraction;
 using MediaBrowser.ApiInteraction.Cryptography;
@@ -127,6 +128,7 @@ namespace Emby.WindowsPhone.ViewModel
             SimpleIoc.Default.Register<SyncViewModel>();
             SimpleIoc.Default.Register<CurrentDownloadsViewModel>();
             SimpleIoc.Default.Register<SyncJobDetailViewModel>();
+            SimpleIoc.Default.Register<OfflineUsersViewModel>();
         }
 
         private static void AddSyncInterfaces()
@@ -421,6 +423,11 @@ namespace Emby.WindowsPhone.ViewModel
         public SyncJobDetailViewModel SyncJobDetail
         {
             get { return ServiceLocator.Current.GetInstance<SyncJobDetailViewModel>(); }
+        }
+
+        public OfflineUsersViewModel OfflineUsers
+        {
+            get { return ServiceLocator.Current.GetInstance<OfflineUsersViewModel>(); }
         }
 
         public static TvViewModel GetTvViewModel(string itemId)

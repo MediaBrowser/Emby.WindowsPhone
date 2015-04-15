@@ -209,6 +209,12 @@
                 public const string CurrentDownloadsView = SyncPath + "CurrentDownloadsView.xaml";
                 public const string SyncJobDetailView = SyncPath + "SyncJobDetailView.xaml";
             }
+
+            public class Offline
+            {
+                private const string OfflinePath = ViewsPath + "Offline/";
+                public const string OfflineUsersView = OfflinePath + "OfflineUsersView.xaml";
+            }
         }
 
         public class AnyTime
