@@ -11,6 +11,7 @@ using Emby.WindowsPhone.Interfaces;
 using Emby.WindowsPhone.Model;
 using Emby.WindowsPhone.Model.Photo;
 using Emby.WindowsPhone.Localisation;
+using MediaBrowser.Model.Net;
 using INavigationService = Emby.WindowsPhone.Model.Interfaces.INavigationService;
 
 namespace Emby.WindowsPhone.ViewModel
@@ -92,19 +93,30 @@ namespace Emby.WindowsPhone.ViewModel
 #endif
             // Get and set the app specific settings 
             _specificSettings = _applicationSettings.Get<SpecificSettings>(Constants.Settings.SpecificSettings);
-            if (_specificSettings != null) SharedUtils.CopyItem(_specificSettings, App.SpecificSettings);
+            if (_specificSettings != null) _specificSettings.CopyItem(App.SpecificSettings);
 
             SetRunUnderLock();
 
             _uploadSettings = _applicationSettings.Get<UploadSettings>(Constants.Settings.PhotoUploadSettings);
-            if (_uploadSettings != null) SharedUtils.CopyItem(_uploadSettings, App.UploadSettings);
+            if (_uploadSettings != null) _uploadSettings.CopyItem(App.UploadSettings);
 
             _connectionDetails = _applicationSettings.Get<ConnectionDetails>(Constants.Settings.ConnectionSettings);
             _savedServer = _applicationSettings.Get<ServerInfo>(Constants.Settings.DefaultServerConnection);
 
             _serverInfo.SetServerInfo(_savedServer);
 
-            await ConnectToServer();
+            try
+            {
+                await ConnectToServer();
+            }
+            catch (HttpException ex)
+            {
+                Utils.HandleHttpException("ConnectToServer", ex, NavigationService, Log);
+            }
+            catch (OperationCanceledException exc)
+            {
+                var i = 1;
+            }
         }
 
         private static void SetRunUnderLock()
@@ -113,16 +125,19 @@ namespace Emby.WindowsPhone.ViewModel
             //PhoneApplicationService.Current.ApplicationIdleDetectionMode = runUnderLock ? IdleDetectionMode.Disabled : IdleDetectionMode.Enabled;
         }
 
+        private CancellationTokenSource _connectCancellationToken;
+
         private async Task ConnectToServer()
         {
             RetryButtonIsVisible = false;
             ConnectionResult result = null;
 
             SetProgressBar(AppResources.SysTrayGettingServerDetails);
+            _connectCancellationToken = new CancellationTokenSource();
 
             if (_connectionDetails != null && !string.IsNullOrEmpty(_connectionDetails.ServerId))
             {
-                result = await ConnectionManager.Connect(_connectionDetails.ServerAddress);
+                result = await ConnectionManager.Connect(_connectionDetails.ServerAddress, _connectCancellationToken.Token);
                 var server = result.Servers.FirstOrDefault(x =>
                         string.Equals(x.Id, _connectionDetails.ServerId, StringComparison.CurrentCultureIgnoreCase));
 
@@ -140,7 +155,7 @@ namespace Emby.WindowsPhone.ViewModel
 
             if (_savedServer != null)
             {
-                result = await ConnectionManager.Connect(_savedServer);
+                result = await ConnectionManager.Connect(_savedServer, _connectCancellationToken.Token);
             }
 
             if (result != null && result.State == ConnectionState.Unavailable && _savedServer != null)
@@ -153,7 +168,7 @@ namespace Emby.WindowsPhone.ViewModel
 
             if (result == null || result.State == ConnectionState.Unavailable)
             {
-                result = await ConnectionManager.Connect();
+                result = await ConnectionManager.Connect(_connectCancellationToken.Token);
             }
 
             Deployment.Current.Dispatcher.BeginInvoke(async () =>
@@ -182,6 +197,20 @@ namespace Emby.WindowsPhone.ViewModel
             get
             {
                 return new RelayCommand(() => NavigationService.NavigateTo(Constants.Pages.SettingsViews.FindServerView));
+            }
+        }
+
+        public RelayCommand GoOfflineCommand
+        {
+            get
+            {
+                return new RelayCommand(() =>
+                {
+                    if (_connectCancellationToken != null)
+                    {
+                        _connectCancellationToken.Cancel();
+                    }
+                });
             }
         }
     }

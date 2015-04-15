@@ -75,10 +75,10 @@
                        Foreground="Green"
                        FontFamily="Arial Narrow"
                        FontSize="60"
-                       Margin="0"/>
+                       Margin="0" />
         </StackPanel>
-        
-        
+
+
 
         <StackPanel Orientation="Vertical"
                     Grid.Row="2"
@@ -90,6 +90,11 @@
             <TextBlock Text="{Binding ProgressText}"
                        HorizontalAlignment="Center"
                        Style="{StaticResource PhoneTextTitle3Style}" />
+            <localControls:CustomHyperlinkButton Margin="0,24"
+                                                 Content="Go offline"
+                                                 VerticalAlignment="Top"
+                                                 Foreground="{StaticResource PhoneAccentBrush}"
+                                                 TapCommand="{Binding GoOfflineCommand}" />
         </StackPanel>
 
         <StackPanel Orientation="Vertical"
@@ -104,7 +109,13 @@
                                                  VerticalAlignment="Top"
                                                  Foreground="{StaticResource PhoneAccentBrush}"
                                                  TapCommand="{Binding ChangeServerCommand}" />
+            <localControls:CustomHyperlinkButton Margin="0,24"
+                                                 Content="Go offline"
+                                                 VerticalAlignment="Top"
+                                                 Foreground="{StaticResource PhoneAccentBrush}"
+                                                 TapCommand="{Binding GoOfflineCommand}" />
         </StackPanel>
+
 
     </Grid>
 
