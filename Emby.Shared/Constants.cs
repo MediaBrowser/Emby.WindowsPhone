@@ -106,6 +106,7 @@
             public const string ShowHideInProgressMsg = "ShowHideInProgressMsg";
             public const string RefreshSyncJobsMsg = "RefreshSyncJobsMsg";
             public const string SyncJobFinishedMsg = "SyncJobFinishedMsg";
+            public const string UseLibraryFoldersMsg = "UseLibraryFoldersMsg";
         }
 
         public class Pages

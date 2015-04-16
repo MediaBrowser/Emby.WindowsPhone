@@ -71,6 +71,7 @@ namespace Emby.WindowsPhone.Services
                 case "genre":
                 case "trailercollectionfolder":
                 case "playlistsfolder":
+                case "userview":
                     if (App.SpecificSettings.JustShowFolderView)
                     {
                         NavigateTo(Constants.Pages.FolderView + item.Id);

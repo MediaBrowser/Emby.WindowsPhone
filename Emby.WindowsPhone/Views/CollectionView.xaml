@@ -104,7 +104,6 @@
                                                        Style="{StaticResource PhoneTextLargeStyle}"
                                                        HorizontalAlignment="Left" />
                                         </Grid>
-
                                     </Border>
                                 </Grid>
                             </local:CustomHyperlinkButton>

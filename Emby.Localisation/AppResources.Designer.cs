@@ -2374,6 +2374,15 @@ namespace Emby.WindowsPhone.Localisation {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Use library folders, not user configured views.
+        /// </summary>
+        public static string LabelUseLibraryFolders {
+            get {
+                return ResourceManager.GetString("LabelUseLibraryFolders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Username:.
         /// </summary>
         public static string LabelUsername {

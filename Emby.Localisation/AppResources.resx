@@ -1250,4 +1250,7 @@
   <data name="HeaderProfile" xml:space="preserve">
     <value>Profile:</value>
   </data>
+  <data name="LabelUseLibraryFolders" xml:space="preserve">
+    <value>Use library folders, not user configured views</value>
+  </data>
 </root>

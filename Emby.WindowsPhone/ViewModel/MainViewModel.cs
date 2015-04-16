@@ -51,6 +51,7 @@ namespace Emby.WindowsPhone.ViewModel
             RecentItems = new ObservableCollection<BaseItemDto>();
             FavouriteItems = new ObservableCollection<BaseItemDto>();
             InProgressItems = new ObservableCollection<BaseItemDto>();
+            UserViews = new ObservableCollection<BaseItemDto>();
 
             if (IsInDesignMode)
             {
@@ -75,6 +76,16 @@ namespace Emby.WindowsPhone.ViewModel
                 if (m.PropertyName.Equals("IncludeTrailersInRecent"))
                 {
                     await SortRecent(_recentItems);
+                }
+            });
+
+            Messenger.Default.Register<NotificationMessage>(this, m =>
+            {
+                if (m.Notification.Equals(Constants.Messages.UseLibraryFoldersMsg))
+                {
+                    Folders.Clear();
+                    UserViews.Clear();
+                    GetEverything(true);
                 }
             });
         }
@@ -213,24 +224,31 @@ namespace Emby.WindowsPhone.ViewModel
             if (NavigationService.IsNetworkAvailable
                 && (!_hasLoaded || isRefresh))
             {
-
+                bool folderLoaded = false, recentLoaded, favouritesLoaded, inProgressLoaded, userViewsLoaded = false;
                 SetProgressBar(AppResources.SysTrayLoadingCollections);
 
-                var folderLoaded = await GetFolders();
+                if (App.SpecificSettings.UseLibraryFolders)
+                {
+                    folderLoaded = await GetFolders();
+                }
+                else
+                {
+                    userViewsLoaded = await GetUserViews();
+                }
 
                 SetProgressBar(AppResources.SysTrayGettingRecentItems);
 
-                var recentLoaded = await GetRecent();
+                recentLoaded = await GetRecent();
 
                 SetProgressBar(AppResources.SysTrayGettingFavourites);
 
-                var favouritesLoaded = await GetFavouriteItems();
+                favouritesLoaded = await GetFavouriteItems();
 
                 SetProgressBar(AppResources.SysTrayCheckingInProgress);
 
-                var inProgressLoaded = await GetInProgressItems();
+                inProgressLoaded = await GetInProgressItems();
 
-                _hasLoaded = (folderLoaded && recentLoaded && favouritesLoaded && inProgressLoaded);
+                _hasLoaded = ((folderLoaded || userViewsLoaded) && recentLoaded && favouritesLoaded && inProgressLoaded);
 
                 //SetProgressBar("Checking notifications...");
 
@@ -238,6 +256,26 @@ namespace Emby.WindowsPhone.ViewModel
 
                 SetProgressBar();
             }
+        }
+
+        private async Task<bool> GetUserViews()
+        {
+            try
+            {
+                var item = await ApiClient.GetUserViews(AuthenticationService.Current.LoggedInUserId);
+                if (item != null && !item.Items.IsNullOrEmpty())
+                {
+                    UserViews.Clear();
+                    item.Items.Foreach(UserViews.Add);
+                    return true;
+                }
+            }
+            catch (HttpException ex)
+            {
+                Utils.HandleHttpException("GetUserViews()", ex, NavigationService, Log);
+            }
+
+            return false;
         }
 
         private async Task GetNotificaitonsCount()
@@ -410,6 +448,7 @@ namespace Emby.WindowsPhone.ViewModel
         public RelayCommand<BaseItemDto> ResumeMovieCommand { get; set; }
         public RelayCommand<BaseItemDto> ItemOfflineCommand { get; set; }
         public ObservableCollection<BaseItemDto> Folders { get; set; }
+        public ObservableCollection<BaseItemDto> UserViews { get; set; }
         public ObservableCollection<BaseItemDto> RecentItems { get; set; }
         public ObservableCollection<BaseItemDto> FavouriteItems { get; set; }
         public ObservableCollection<BaseItemDto> InProgressItems { get; set; }
