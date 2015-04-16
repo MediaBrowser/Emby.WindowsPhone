@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Windows;
+using System.Windows.Documents;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model.Dto;
@@ -7,6 +8,7 @@ using MediaBrowser.Model.Entities;
 using Emby.WindowsPhone.Model.Interfaces;
 using Emby.WindowsPhone.ViewModel;
 using Emby.WindowsPhone.ViewModel.Playlists;
+using Emby.WindowsPhone.ViewModel.Predefined;
 using Microsoft.Phone.Net.NetworkInformation;
 
 namespace Emby.WindowsPhone.Services
@@ -71,7 +73,6 @@ namespace Emby.WindowsPhone.Services
                 case "genre":
                 case "trailercollectionfolder":
                 case "playlistsfolder":
-                case "userview":
                     if (App.SpecificSettings.JustShowFolderView)
                     {
                         NavigateTo(Constants.Pages.FolderView + item.Id);
@@ -79,6 +80,39 @@ namespace Emby.WindowsPhone.Services
                     else
                     {
                         NavigateTo(Constants.Pages.CollectionView);
+                    }
+                    break;
+                case "userview":
+                    var viewType = item.CollectionType.ToLower();
+                    switch (viewType)
+                    {
+                        case "movies":
+                            var moviesVm = SimpleIoc.Default.GetInstance<MovieCollectionViewModel>();
+                            moviesVm.SetParentId(item.Id);
+
+                            NavigateTo(Constants.Pages.Predefined.MovieCollectionView);
+                            break;
+                        case "tvshows":
+                            var tvVm = SimpleIoc.Default.GetInstance<TvCollectionViewModel>();
+                            tvVm.SetParentId(item.Id);
+
+                            NavigateTo(Constants.Pages.Predefined.TvCollectionView);
+                            break;
+                        case "music":
+                            var musicVm = SimpleIoc.Default.GetInstance<MusicCollectionViewModel>();
+                            musicVm.SetParentId(item.Id);
+
+                            NavigateTo(Constants.Pages.Predefined.MusicCollectionView);
+                            break;
+                        case "channels":
+                            NavigateTo(Constants.Pages.Channels.ChannelsView);
+                            break;
+                        case "livetv":
+                            NavigateTo(Constants.Pages.LiveTv.LiveTvView);
+                            break;
+                        default:
+                            NavigateTo(Constants.Pages.FolderView + item.Id);
+                            break;
                     }
                     break;
                 case "photoalbum":

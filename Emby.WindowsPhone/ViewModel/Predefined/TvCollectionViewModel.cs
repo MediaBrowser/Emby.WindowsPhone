@@ -29,6 +29,8 @@ namespace Emby.WindowsPhone.ViewModel.Predefined
     /// </summary>
     public class TvCollectionViewModel : ViewModelBase
     {
+        private string _parentId;
+
         private bool _nextUpLoaded;
         private bool _latestUnwatchedLoaded;
         private bool _upcomingLoaded;
@@ -135,6 +137,22 @@ namespace Emby.WindowsPhone.ViewModel.Predefined
             }
         }
 
+        public void SetParentId(string parentId)
+        {
+            if (parentId != _parentId)
+            {
+                NextUpList.Clear();
+                LatestUnwatched.Clear();
+                Upcoming.Clear();
+                Shows.Clear();
+                Genres.Clear();
+
+                _nextUpLoaded = _latestUnwatchedLoaded = _upcomingLoaded = _showsLoaded = _genresLoaded = false;
+
+                _parentId = parentId;
+            }
+        }
+
         private async Task<bool> GetNextUp()
         {
             try
@@ -143,6 +161,7 @@ namespace Emby.WindowsPhone.ViewModel.Predefined
 
                 var query = new NextUpQuery
                 {
+                    ParentId = _parentId,
                     UserId = AuthenticationService.Current.LoggedInUserId,
                     Fields = new[] { ItemFields.PrimaryImageAspectRatio, ItemFields.ParentId, ItemFields.MediaSources, ItemFields.SyncInfo },
                     ImageTypeLimit = 1,
@@ -173,6 +192,7 @@ namespace Emby.WindowsPhone.ViewModel.Predefined
 
                 var query = new UpcomingEpisodesQuery
                 {
+                    ParentId = _parentId,
                     UserId = AuthenticationService.Current.LoggedInUserId,
                     Fields = new[] { ItemFields.ParentId },
                     Limit = 30,
@@ -204,6 +224,7 @@ namespace Emby.WindowsPhone.ViewModel.Predefined
 
                 var query = new ItemQuery
                 {
+                    ParentId = _parentId,
                     UserId = AuthenticationService.Current.LoggedInUserId,
                     SortBy = new[] { "DateCreated" },
                     SortOrder = SortOrder.Descending,
@@ -242,6 +263,7 @@ namespace Emby.WindowsPhone.ViewModel.Predefined
 
                 var query = new ItemQuery
                 {
+                    ParentId = _parentId,
                     UserId = AuthenticationService.Current.LoggedInUserId,
                     SortBy = new[] { "SortName" },
                     SortOrder = SortOrder.Ascending,
@@ -276,6 +298,7 @@ namespace Emby.WindowsPhone.ViewModel.Predefined
 
                 var query = new ItemsByNameQuery
                 {
+                    ParentId = _parentId,
                     SortBy = new[] { "SortName" },
                     SortOrder = SortOrder.Ascending,
                     IncludeItemTypes = new[] { "Series" },

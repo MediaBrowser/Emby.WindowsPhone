@@ -29,6 +29,7 @@ namespace Emby.WindowsPhone.ViewModel.Predefined
     /// </summary>
     public class MovieCollectionViewModel : ViewModelBase
     {
+        private string _parentId;
         private bool _moviesLoaded;
         private bool _boxsetsLoaded;
         private bool _latestUnwatchedLoaded;
@@ -171,6 +172,22 @@ namespace Emby.WindowsPhone.ViewModel.Predefined
             }
         }
 
+        public void SetParentId(string parentId)
+        {
+            if (parentId != _parentId)
+            {
+                Movies.Clear();
+                Boxsets.Clear();
+                LatestUnwatched.Clear();
+                Genres.Clear();
+                UnseenHeader = null;
+
+                _moviesLoaded = _boxsetsLoaded = _latestUnwatchedLoaded = _genresLoaded = false;
+
+                _parentId = parentId;
+            }
+        }
+
         [UsedImplicitly]
         private async void OnPivotSelectedIndexChanged()
         {
@@ -231,6 +248,7 @@ namespace Emby.WindowsPhone.ViewModel.Predefined
 
                 var query = new ItemQuery
                 {
+                    ParentId = _parentId,
                     UserId = AuthenticationService.Current.LoggedInUserId,
                     SortBy = new[] { "SortName" },
                     SortOrder = SortOrder.Ascending,
@@ -275,6 +293,7 @@ namespace Emby.WindowsPhone.ViewModel.Predefined
 
                 var query = new ItemQuery
                 {
+                    ParentId = _parentId,
                     UserId = AuthenticationService.Current.LoggedInUserId,
                     SortBy = new[] { "SortName" },
                     SortOrder = SortOrder.Ascending,
@@ -319,6 +338,7 @@ namespace Emby.WindowsPhone.ViewModel.Predefined
 
                 var query = new ItemQuery
                 {
+                    ParentId = _parentId,
                     UserId = AuthenticationService.Current.LoggedInUserId,
                     SortBy = new[] { "DateCreated" },
                     SortOrder = SortOrder.Descending,
@@ -355,6 +375,7 @@ namespace Emby.WindowsPhone.ViewModel.Predefined
 
                 var query = new ItemsByNameQuery
                 {
+                    ParentId = _parentId,
                     SortBy = new[] { "SortName" },
                     SortOrder = SortOrder.Ascending,
                     IncludeItemTypes = new[] { "Movie", "Trailer" },

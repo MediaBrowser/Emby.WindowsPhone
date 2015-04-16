@@ -34,6 +34,9 @@ namespace Emby.WindowsPhone.ViewModel.Predefined
     public class MusicCollectionViewModel : ViewModelBase
     {
         private readonly IPlaybackManager _playbackManager;
+
+        private string _parentId;
+
         private bool _artistsLoaded;
         private bool _albumsLoaded;
         private bool _songsLoaded;
@@ -84,6 +87,21 @@ namespace Emby.WindowsPhone.ViewModel.Predefined
             get
             {
                 return IsSelectionEnabled ? new Thickness(0, 6, 0, 6) : new Thickness(-24, 6, 0, 6);
+            }
+        }
+
+        public void SetParentId(string parentId)
+        {
+            if (parentId != _parentId)
+            {
+                Genres.Clear();
+                Songs.Clear();
+                Artists.Clear();
+                Albums.Clear();
+
+                _artistsLoaded = _albumsLoaded = _songsLoaded = _genresLoaded = false;
+
+                _parentId = parentId;
             }
         }
 
@@ -355,6 +373,7 @@ namespace Emby.WindowsPhone.ViewModel.Predefined
             {
                 var query = new ItemQuery
                 {
+                    ParentId = _parentId,
                     UserId = AuthenticationService.Current.LoggedInUserId,
                     ArtistIds = new[] { artistId },
                     Recursive = true,
@@ -391,6 +410,7 @@ namespace Emby.WindowsPhone.ViewModel.Predefined
             {
                 var query = new ItemQuery
                 {
+                    ParentId = _parentId,
                     UserId = AuthenticationService.Current.LoggedInUserId,
                     Genres = new[] { genreName },
                     Recursive = true,
@@ -501,6 +521,7 @@ namespace Emby.WindowsPhone.ViewModel.Predefined
         {
             var query = new ArtistsQuery
             {
+                ParentId = _parentId,
                 SortBy = new[] { "SortName" },
                 Fields = new[] { ItemFields.SortName, ItemFields.MediaSources, ItemFields.SyncInfo, },
                 SortOrder = SortOrder.Ascending,
@@ -537,6 +558,7 @@ namespace Emby.WindowsPhone.ViewModel.Predefined
         {
             var query = new ItemsByNameQuery
             {
+                ParentId = _parentId,
                 SortBy = new[] { "SortName" },
                 SortOrder = SortOrder.Ascending,
                 IncludeItemTypes = new[] { "Audio", "MusicVideo" },
@@ -572,6 +594,7 @@ namespace Emby.WindowsPhone.ViewModel.Predefined
         {
             var query = new ItemQuery
             {
+                ParentId = _parentId,
                 Recursive = true,
                 Fields = new[] { ItemFields.ParentId, ItemFields.MediaSources, ItemFields.SyncInfo, },
                 IncludeItemTypes = new[] { "Audio" },
@@ -607,6 +630,7 @@ namespace Emby.WindowsPhone.ViewModel.Predefined
         {
             var query = new ItemQuery
             {
+                ParentId = _parentId,
                 Recursive = true,
                 Fields = new[] { ItemFields.ParentId, ItemFields.SortName, ItemFields.MediaSources, ItemFields.SyncInfo, },
                 IncludeItemTypes = new[] { "MusicAlbum" },
