@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using Cimbalino.Toolkit.Helpers;
 using MediaBrowser.ApiInteraction;
+using MediaBrowser.ApiInteraction.Data;
 using MediaBrowser.Model;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Dto;
@@ -460,7 +461,7 @@ namespace Emby.WindowsPhone
             return query;
         }
 
-        public static IConnectionManager CreateConnectionManager(IDevice device, ILogger logger, INetworkConnection networkConnection)
+        public static IConnectionManager CreateConnectionManager(IDevice device, ILogger logger, INetworkConnection networkConnection, ILocalAssetManager assetManager)
         {
             var manager = new ConnectionManager(
                 logger,
@@ -472,7 +473,8 @@ namespace Emby.WindowsPhone
                 device,
                 WindowsPhoneCapabilities.App(VideoProfileHelper.GetWindowsPhoneProfile()),
                 new CryptographyProvider(),
-                () => new WebSocketClient());
+                () => new WebSocketClient(),
+                assetManager);
 
             return manager;
         }

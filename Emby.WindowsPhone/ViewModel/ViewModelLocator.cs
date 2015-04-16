@@ -72,11 +72,20 @@ namespace Emby.WindowsPhone.ViewModel
                 SimpleIoc.Default.RegisterIf<ILocalAssetManager, NullAssetManager>();
             }
             else
-            { 
+            {
+                SimpleIoc.Default.RegisterIf<IUserActionRepository, UserActionRepository>();
+                SimpleIoc.Default.RegisterIf<IItemRepository, ItemRepository>();
+                SimpleIoc.Default.RegisterIf<IFileRepository, FileRepository>();
+                SimpleIoc.Default.RegisterIf<IFileTransferManager, FileTransferManager>();
+                SimpleIoc.Default.RegisterIf<ICryptographyProvider, CryptographyProvider>();
+                SimpleIoc.Default.RegisterIf<IUserRepository, UserRepository>();
+                SimpleIoc.Default.RegisterIf<IImageRepository, ImageRepository>();
+                SimpleIoc.Default.RegisterIf<ILocalAssetManager, LocalAssetManager>();
+                
                 SimpleIoc.Default.RegisterIf<INavigationService, NavigationService>();
                 SimpleIoc.Default.RegisterIf<ISettingsService, SettingsService>();
                 SimpleIoc.Default.RegisterIf<IMessengerService, MessengerService>();
-                SimpleIoc.Default.RegisterIf(() => Utils.CreateConnectionManager(device, logger, network));
+                SimpleIoc.Default.RegisterIf(() => Utils.CreateConnectionManager(device, logger, network, AssetManager));
                 SimpleIoc.Default.RegisterIf<IApplicationSettingsService, ApplicationSettingsService>();
                 SimpleIoc.Default.RegisterIf<IStorageService, StorageService>();
                 SimpleIoc.Default.RegisterIf<IServerInfoService, ServerInfoService>();
@@ -85,8 +94,9 @@ namespace Emby.WindowsPhone.ViewModel
                 SimpleIoc.Default.RegisterIf<TileService>(true);
                 SimpleIoc.Default.RegisterIf<IMessagePromptService, MessagePromptService>();
                 SimpleIoc.Default.RegisterIf<ITransferService, TransferService>();
+                SimpleIoc.Default.RegisterIf<IMultiServerSync, MultiServerSync>();
 
-                AddSyncInterfaces();
+                SimpleIoc.Default.RegisterIf<SyncService>(true);
 
                 SimpleIoc.Default.RegisterIf<IPlaybackManager>(() => new PlaybackManager(AssetManager, device, logger, network));
             }
@@ -133,18 +143,7 @@ namespace Emby.WindowsPhone.ViewModel
 
         private static void AddSyncInterfaces()
         {
-            SimpleIoc.Default.RegisterIf<SyncRequestHelper>(true);
-            SimpleIoc.Default.RegisterIf<IUserActionRepository, UserActionRepository>();
-            SimpleIoc.Default.RegisterIf<IItemRepository, ItemRepository>();
-            SimpleIoc.Default.RegisterIf<IFileRepository, FileRepository>();
-            SimpleIoc.Default.RegisterIf<IFileTransferManager, FileTransferManager>();
-            SimpleIoc.Default.RegisterIf<ICryptographyProvider, CryptographyProvider>();
-            SimpleIoc.Default.RegisterIf<IUserRepository, UserRepository>();
-            SimpleIoc.Default.RegisterIf<IImageRepository, ImageRepository>();
-            SimpleIoc.Default.RegisterIf<ILocalAssetManager, LocalAssetManager>();
-            SimpleIoc.Default.RegisterIf<IMultiServerSync, MultiServerSync>();
-
-            SimpleIoc.Default.RegisterIf<SyncService>(true);
+            
         }
 
         /// <summary>

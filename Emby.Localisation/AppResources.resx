@@ -1253,4 +1253,7 @@
   <data name="LabelGoOffline" xml:space="preserve">
     <value>Go offline</value>
   </data>
+  <data name="LabelOfflineUsers" xml:space="preserve">
+    <value>Offline users</value>
+  </data>
 </root>

@@ -1654,6 +1654,15 @@ namespace Emby.WindowsPhone.Localisation {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Offline users.
+        /// </summary>
+        public static string LabelOfflineUsers {
+            get {
+                return ResourceManager.GetString("LabelOfflineUsers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 1 item.
         /// </summary>
         public static string LabelOneItem {

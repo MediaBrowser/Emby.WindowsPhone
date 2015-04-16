@@ -210,6 +210,8 @@ namespace Emby.WindowsPhone.ViewModel
                     {
                         _connectCancellationToken.Cancel();
                     }
+
+                    NavigationService.NavigateTo(Constants.Pages.Offline.OfflineUsersView, true);
                 });
             }
         }
