@@ -201,7 +201,7 @@
                                 <Image Source="/Images/MBConnectLogo.png"
                                        Height="100"
                                        Width="100"/>
-                                <TextBlock Text="mb connect"
+                                <TextBlock Text="emby connect"
                                            Style="{StaticResource PhoneTextNormalStyle}"
                                            VerticalAlignment="Bottom"
                                            Margin="12,0,12,6" />
@@ -234,7 +234,7 @@
                                         Width="{StaticResource TileImageSize}">
                                     <Grid>
                                         <Image Source="/Assets/Tiles/FlipCycleTileSmallTransparent.png" />
-                                        <TextBlock Text="Media Browser"
+                                        <TextBlock Text="Emby"
                                                    VerticalAlignment="Bottom"
                                                    FontSize="8"
                                                    Margin="3" />
