@@ -211,6 +211,7 @@ Global
 		{52E0C440-85C0-4A99-ACFE-07C87B2600BE}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{52E0C440-85C0-4A99-ACFE-07C87B2600BE}.Release|x64.ActiveCfg = Release|Any CPU
 		{52E0C440-85C0-4A99-ACFE-07C87B2600BE}.Release|x86.ActiveCfg = Release|Any CPU
+		{52E0C440-85C0-4A99-ACFE-07C87B2600BE}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

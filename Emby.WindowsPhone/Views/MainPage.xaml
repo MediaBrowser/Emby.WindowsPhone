@@ -116,19 +116,21 @@
             </phone:Panorama.TitleTemplate>
             <phone:PanoramaItem Header="{Binding LocalisedResources.LabelViews, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                 x:Name="UserViews">
-                <phone:LongListSelector ItemsSource="{Binding UserViews}">
+                <phone:LongListSelector ItemsSource="{Binding UserViews}"
+                                        LayoutMode="Grid"
+                                        GridCellSize="200,173">
                     <phone:LongListSelector.ItemTemplate>
                         <DataTemplate>
                             <local:CustomButton Style="{StaticResource EmptyButtonStyle}"
                                                 TapCommand="{Binding Main.NavigateToPage, Source={StaticResource Locator}}"
                                                 CommandParameter="{Binding}"
                                                 Margin="12,0,0,12">
-                                <Grid Height="173">
+                                <Grid MaxHeight="173">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
 
-                                    <controls:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}, ConverterParameter=backdropsmall}"
+                                    <controls:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
                                                     Stretch="UniformToFill"
                                                     PlaceholderImageSource="/Images/MBBackground.jpg"
                                                     PlaceholderImageStretch="Uniform" />
@@ -138,8 +140,7 @@
                                         <Grid>
                                             <Rectangle Fill="Transparent"
                                                        HorizontalAlignment="Stretch"
-                                                       Height="1"
-                                                       Width="308" />
+                                                       Height="1" />
                                             <TextBlock Text="{Binding Name}"
                                                        Style="{StaticResource PhoneTextLargeStyle}"
                                                        HorizontalAlignment="Left" />
