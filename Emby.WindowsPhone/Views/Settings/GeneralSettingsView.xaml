@@ -88,7 +88,7 @@
                   Margin="12,0,12,0">
                 <ScrollViewer>
                     <StackPanel>
-                        <CheckBox >
+                        <CheckBox IsChecked="{Binding UseLibraryFolders, Source={StaticResource SpecificSettings}, Mode=TwoWay}">
                             <TextBlock Text="{Binding LocalisedResources.LabelUseLibraryFolders, Source={StaticResource LocalisedStrings}}"
                                        TextWrapping="Wrap"
                                        VerticalAlignment="Top"/>
