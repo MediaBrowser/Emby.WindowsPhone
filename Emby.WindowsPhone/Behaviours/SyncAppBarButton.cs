@@ -25,7 +25,7 @@ namespace Emby.WindowsPhone.Behaviours
         }
         
         public static readonly DependencyProperty SyncStatusProperty = DependencyProperty.Register(
-            "SyncStatus", typeof(SyncJobItemStatus), typeof(SyncAppBarButton), new PropertyMetadata(default(SyncJobStatus)));
+            "SyncStatus", typeof(SyncJobItemStatus), typeof(SyncAppBarButton), new PropertyMetadata(default(SyncJobItemStatus), OnChanged));
 
         public SyncJobItemStatus SyncStatus
         {
