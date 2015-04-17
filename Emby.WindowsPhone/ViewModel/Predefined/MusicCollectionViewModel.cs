@@ -50,6 +50,7 @@ namespace Emby.WindowsPhone.ViewModel.Predefined
         {
             _playbackManager = playbackManager;
             SelectedTracks = new List<BaseItemDto>();
+            CreateCollections();
 
             if (IsInDesignMode)
             {
@@ -58,6 +59,14 @@ namespace Emby.WindowsPhone.ViewModel.Predefined
             }
 
             CanPlayAll = true;
+        }
+
+        private void CreateCollections()
+        {
+            Genres = new List<BaseItemDto>();
+            Songs = new List<Group<BaseItemDto>>();
+            Artists= new List<Group<BaseItemDto>>();
+            Albums = new List<Group<BaseItemDto>>();
         }
 
         public List<BaseItemDto> Genres { get; set; }

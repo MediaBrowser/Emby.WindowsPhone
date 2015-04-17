@@ -46,6 +46,7 @@ namespace Emby.WindowsPhone.ViewModel.Predefined
         public MovieCollectionViewModel(INavigationService navigationService, IConnectionManager connectionManager)
             : base(navigationService, connectionManager)
         {
+            CreateCollections()
             if (IsInDesignMode)
             {
                 UnseenHeader = new BaseItemDto
@@ -97,6 +98,14 @@ namespace Emby.WindowsPhone.ViewModel.Predefined
 
                 Movies = Utils.GroupItemsByName(LatestUnwatched).Result;
             }
+        }
+
+        private void CreateCollections()
+        {
+            Movies = new List<Group<BaseItemDto>>();
+            Boxsets = new List<Group<BaseItemDto>>();
+            LatestUnwatched = new List<BaseItemDto>();
+            Genres = new List<BaseItemDto>();
         }
 
         public List<Group<BaseItemDto>> Movies { get; set; }

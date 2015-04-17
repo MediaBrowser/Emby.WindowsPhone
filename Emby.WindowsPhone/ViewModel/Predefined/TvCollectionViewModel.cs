@@ -49,6 +49,7 @@ namespace Emby.WindowsPhone.ViewModel.Predefined
         public TvCollectionViewModel(INavigationService navigationService, IConnectionManager connectionManager)
             : base(navigationService, connectionManager)
         {
+            CreateCollections();
             if (IsInDesignMode)
             {
                 NextUpList = new List<BaseItemDto>
@@ -63,6 +64,15 @@ namespace Emby.WindowsPhone.ViewModel.Predefined
                     }
                 };
             }
+        }
+
+        private void CreateCollections()
+        {
+            NextUpList = new List<BaseItemDto>();
+            LatestUnwatched = new List<BaseItemDto>();
+            Upcoming = new List<Group<BaseItemDto>>();
+            Shows = new List<Group<BaseItemDto>>();
+            Genres = new List<BaseItemDto>();
         }
 
         public List<BaseItemDto> NextUpList { get; set; }
