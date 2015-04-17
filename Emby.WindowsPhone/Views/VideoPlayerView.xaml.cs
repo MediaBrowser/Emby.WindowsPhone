@@ -63,6 +63,7 @@ namespace Emby.WindowsPhone.Views
 
         private void ThePlayerMediaFailed(object sender, ExceptionRoutedEventArgs e)
         {
+            if (e == null) return;
             Log.ErrorException("Error playing media: " + e.ErrorException.Message, e.ErrorException);
         }
 

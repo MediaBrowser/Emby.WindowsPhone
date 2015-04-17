@@ -46,7 +46,7 @@ namespace Emby.WindowsPhone.ViewModel.Predefined
         public MovieCollectionViewModel(INavigationService navigationService, IConnectionManager connectionManager)
             : base(navigationService, connectionManager)
         {
-            CreateCollections()
+            CreateCollections();
             if (IsInDesignMode)
             {
                 UnseenHeader = new BaseItemDto
