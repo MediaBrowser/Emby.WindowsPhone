@@ -1253,4 +1253,7 @@
   <data name="LabelUseLibraryFolders" xml:space="preserve">
     <value>Use library folders, not user configured views</value>
   </data>
+  <data name="LabelUseHttps" xml:space="preserve">
+    <value>Use HTTPS</value>
+  </data>
 </root>

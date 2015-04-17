@@ -2374,6 +2374,15 @@ namespace Emby.WindowsPhone.Localisation {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Use HTTPS.
+        /// </summary>
+        public static string LabelUseHttps {
+            get {
+                return ResourceManager.GetString("LabelUseHttps", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Use library folders, not user configured views.
         /// </summary>
         public static string LabelUseLibraryFolders {

@@ -82,42 +82,46 @@
             <Grid x:Name="ContentPanel"
                   Grid.Row="1"
                   Margin="12,0,12,0">
-                <StackPanel Orientation="Vertical">
-                    <TextBlock Text="{Binding LocalisedResources.LabelConnectionDetails, Source={StaticResource LocalisedStrings}}"
-                               TextWrapping="Wrap"
-                               Style="{StaticResource PhoneTextNormalStyle}" />
-                    <controls:CustomHyperlinkButton HorizontalContentAlignment="Left"
-                                                    Content="{Binding ConnectionDetails.DisplayUrl, Source={StaticResource AppSettings}}"
-                                                    x:Name="DisplayUrlButton"
-                                                    Tap="DisplayUrlButton_OnTap" />
-                    <TextBlock Text="{Binding LocalisedResources.LabelHostname, Source={StaticResource LocalisedStrings}}"
-                               Margin="12,12,0,0"
-                               Style="{StaticResource PhoneTextNormalStyle}" />
-                    <TextBox Text="{Binding ConnectionDetails.HostName, Source={StaticResource AppSettings}, Mode=TwoWay}"
-                             InputScope="Url">
-                        <i:Interaction.Behaviors>
-                            <behaviours1:UpdateTextBindingOnPropertyChanged EnterHitCommand="{Binding Settings.TestConnectionCommand, Source={StaticResource Locator}}" />
-                        </i:Interaction.Behaviors>
-                    </TextBox>
-                    <TextBlock Text="{Binding LocalisedResources.LabelPort, Source={StaticResource LocalisedStrings}}"
-                               Margin="12,12,0,0"
-                               Style="{StaticResource PhoneTextNormalStyle}" />
-                    <TextBox Text="{Binding ConnectionDetails.PortNo, Source={StaticResource AppSettings}, Mode=TwoWay}"
-                             InputScope="Number" />
-                    <TextBlock Text="{Binding LocalisedResources.LabelConnectionWarning, Source={StaticResource LocalisedStrings}}"
-                               TextWrapping="Wrap"
-                               FontWeight="ExtraBold"
-                               Style="{StaticResource PhoneTextNormalStyle}"
-                               Margin="12,12,0,0" />
-                    <controls:CustomButton Margin="0,12,0,0"
-                                           Content="{Binding LocalisedResources.LabelConnect, Source={StaticResource LocalisedStrings}}"
-                                           TapCommand="{Binding Settings.TestConnectionCommand, Source={StaticResource Locator}}"
-                                           Style="{StaticResource HeroButtonStyle}" />
+                <ScrollViewer>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="{Binding LocalisedResources.LabelConnectionDetails, Source={StaticResource LocalisedStrings}}"
+                                   TextWrapping="Wrap"
+                                   Style="{StaticResource PhoneTextNormalStyle}" />
+                        <controls:CustomHyperlinkButton HorizontalContentAlignment="Left"
+                                                        Content="{Binding ConnectionDetails.DisplayUrl, Source={StaticResource AppSettings}}"
+                                                        x:Name="DisplayUrlButton"
+                                                        Tap="DisplayUrlButton_OnTap" />
+                        <TextBlock Text="{Binding LocalisedResources.LabelHostname, Source={StaticResource LocalisedStrings}}"
+                                   Margin="12,12,0,0"
+                                   Style="{StaticResource PhoneTextNormalStyle}" />
+                        <TextBox Text="{Binding ConnectionDetails.HostName, Source={StaticResource AppSettings}, Mode=TwoWay}"
+                                 InputScope="Url">
+                            <i:Interaction.Behaviors>
+                                <behaviours1:UpdateTextBindingOnPropertyChanged EnterHitCommand="{Binding Settings.TestConnectionCommand, Source={StaticResource Locator}}" />
+                            </i:Interaction.Behaviors>
+                        </TextBox>
+                        <TextBlock Text="{Binding LocalisedResources.LabelPort, Source={StaticResource LocalisedStrings}}"
+                                   Margin="12,12,0,0"
+                                   Style="{StaticResource PhoneTextNormalStyle}" />
+                        <TextBox Text="{Binding ConnectionDetails.PortNo, Source={StaticResource AppSettings}, Mode=TwoWay}"
+                                 InputScope="Number" />
+                        <CheckBox Content="{Binding LocalisedResources.LabelUseHttps, Source={StaticResource LocalisedStrings}}"
+                                  IsChecked="{Binding ConnectionDetails.IsHttps, Source={StaticResource AppSettings}, Mode=TwoWay}" />
+                        <TextBlock Text="{Binding LocalisedResources.LabelConnectionWarning, Source={StaticResource LocalisedStrings}}"
+                                   TextWrapping="Wrap"
+                                   FontWeight="ExtraBold"
+                                   Style="{StaticResource PhoneTextNormalStyle}"
+                                   Margin="12,12,0,0" />
+                        <controls:CustomButton Margin="0,12,0,0"
+                                               Content="{Binding LocalisedResources.LabelConnect, Source={StaticResource LocalisedStrings}}"
+                                               TapCommand="{Binding Settings.TestConnectionCommand, Source={StaticResource Locator}}"
+                                               Style="{StaticResource HeroButtonStyle}" />
 
-                    <controls:CustomButton Content="{Binding LocalisedResources.LabelFindServer, Source={StaticResource LocalisedStrings}}"
-                                           TapCommand="{Binding Main.NavigateToAPage, Source={StaticResource Locator}}"
-                                           CommandParameter="/Views/Settings/FindServerView.xaml" />
-                </StackPanel>
+                        <controls:CustomButton Content="{Binding LocalisedResources.LabelFindServer, Source={StaticResource LocalisedStrings}}"
+                                               TapCommand="{Binding Main.NavigateToAPage, Source={StaticResource Locator}}"
+                                               CommandParameter="/Views/Settings/FindServerView.xaml" />
+                    </StackPanel>
+                </ScrollViewer>
             </Grid>
         </Grid>
         <!--Uncomment to see an alignment grid to help ensure your controls are
