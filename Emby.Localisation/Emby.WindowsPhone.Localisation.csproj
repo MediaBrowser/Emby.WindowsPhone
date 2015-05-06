@@ -16,6 +16,7 @@
     <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
     <SilverlightApplication>false</SilverlightApplication>
     <ValidateXaml>true</ValidateXaml>
+    <SupportedCultures>de-de;en-US;fr-fr;it-it;nl-nl;pt;qps-ploc;sv-se;ru-ru;es-mx;nb-no;kk</SupportedCultures>
     <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
     <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
   </PropertyGroup>
