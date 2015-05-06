@@ -29,8 +29,8 @@ namespace Emby.WindowsPhone.Model.Connection
                 SupportsSync = supportsSync,
                 SupportsOfflineAccess = supportsSync,
                 DeviceProfile = supportsSync && profile != null ? profile : null,
-                Url = "https://www.windowsphone.com/s?appid=f4971ed9-f651-4bf6-84bb-94fd98613b86",
-                ImageUrl = "https://raw.githubusercontent.com/MediaBrowser/MediaBrowser.WindowsPhone/BETA/MarketPlace/WP8/StoreLogo.png"
+                AppStoreUrl = "https://www.windowsphone.com/s?appid=f4971ed9-f651-4bf6-84bb-94fd98613b86",
+                IconUrl = "https://raw.githubusercontent.com/MediaBrowser/MediaBrowser.WindowsPhone/BETA/MarketPlace/WP8/StoreLogo.png"
             };
         }
     }
