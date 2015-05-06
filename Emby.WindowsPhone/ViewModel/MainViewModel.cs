@@ -55,8 +55,8 @@ namespace Emby.WindowsPhone.ViewModel
 
             if (IsInDesignMode)
             {
-                Folders.Add(new BaseItemDto {Id = "78dbff5aa1c2101b98ebaf42b72a988d", Name = "Movies", UserData = new UserItemDataDto {UnplayedItemCount = 6}});
-                RecentItems.Add(new BaseItemDto {Id = "2fc6f321b5f8bbe842fcd0eed089561d", Name = "A Night To Remember"});
+                Folders.Add(new BaseItemDto { Id = "78dbff5aa1c2101b98ebaf42b72a988d", Name = "Movies", UserData = new UserItemDataDto { UnplayedItemCount = 6 } });
+                RecentItems.Add(new BaseItemDto { Id = "2fc6f321b5f8bbe842fcd0eed089561d", Name = "A Night To Remember" });
             }
             else
             {
@@ -300,7 +300,8 @@ namespace Emby.WindowsPhone.ViewModel
                 {
                     UserId = AuthenticationService.Current.LoggedInUserId,
                     Recursive = true,
-                    Filters = new[] {ItemFilter.IsResumable,}
+                    Filters = new[] { ItemFilter.IsResumable, },
+                    SortBy = new[] { ItemSortBy.DatePlayed }
                 };
 
                 var items = await ApiClient.GetItemsAsync(query);
@@ -332,8 +333,8 @@ namespace Emby.WindowsPhone.ViewModel
                 var query = new ItemQuery
                 {
                     UserId = AuthenticationService.Current.LoggedInUserId,
-                    Filters = new[] {ItemFilter.IsFavorite},
-                    Fields = new []{ ItemFields.MediaSources, ItemFields.SyncInfo },
+                    Filters = new[] { ItemFilter.IsFavorite },
+                    Fields = new[] { ItemFields.MediaSources, ItemFields.SyncInfo },
                     Recursive = true
                 };
                 var items = await ApiClient.GetItemsAsync(query);
@@ -360,7 +361,7 @@ namespace Emby.WindowsPhone.ViewModel
                 Log.Info("Getting most recent items");
 
                 var query = Utils.GetRecentItemsQuery(excludedItemTypes: new[] { "Photo" });
-                
+
                 var items = await ApiClient.GetItemsAsync(query);
                 _recentItems = items.Items;
                 await SortRecent(_recentItems);
@@ -391,7 +392,7 @@ namespace Emby.WindowsPhone.ViewModel
                 {
                     UserId = AuthenticationService.Current.LoggedInUserId,
                     SortOrder = SortOrder.Ascending,
-                    SortBy = new[] {ItemSortBy.SortName}
+                    SortBy = new[] { ItemSortBy.SortName }
                 };
 
                 var item = await ApiClient.GetItemsAsync(query);
