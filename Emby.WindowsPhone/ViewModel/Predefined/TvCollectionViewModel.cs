@@ -399,7 +399,7 @@ namespace Emby.WindowsPhone.ViewModel.Predefined
                                 group u by u.PremiereDate.HasValue ? u.PremiereDate.Value.ToLocalTime().Date : DateTime.MinValue
                                     into grp
                                     orderby grp.Key
-                                    select new Group<BaseItemDto>(Utils.CoolDateName(grp.Key), grp)).ToList();
+                                    select new Group<BaseItemDto>(Utils.CoolDateName(grp.Key.ToLocalTime().Date), grp)).ToList();
 
             Upcoming = groupedItems;
 
