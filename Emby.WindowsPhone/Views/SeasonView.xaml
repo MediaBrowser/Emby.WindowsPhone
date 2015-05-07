@@ -29,11 +29,6 @@
         <behaviors:ApplicationBarBehavior Mode="{Binding Auth.LoggedInUser.Policy.EnableSync, Source={StaticResource Locator}, Converter={StaticResource BoolAppBarModeConverter}}"
                                           IsMenuEnabled="True">
             <behaviors:ApplicationBarBehavior.Buttons>
-                <behaviors:ApplicationBarIconButton Text="{Binding LocalisedResources.AppBarOffline, Source={StaticResource LocalisedStrings}}"
-                                                    Command="{Binding SeasonOfflineCommand}"
-                                                    IconUri="/Icons/appbar.cloud.png"
-                                                    IsEnabled="{Binding SelectedSeason.SupportsSync}" 
-                                                    IsVisible="{Binding Auth.LoggedInUser.Policy.EnableSync, Source={StaticResource Locator}}"/>
                 <behaviours:SyncAppBarButton Text="{Binding LocalisedResources.AppBarOffline, Source={StaticResource LocalisedStrings}}"
                                              IconUri="/Icons/appbar.cloud.png"
                                              Command="{Binding SeasonOfflineCommand}"
