@@ -219,13 +219,25 @@ namespace Emby.WindowsPhone.ViewModel
 
             NextEpisodeCommand = new RelayCommand(() =>
             {
-                SelectedEpisode = SelectedEpisode.IndexNumber + 1 > Episodes.Count ? Episodes[0] : Episodes[SelectedEpisode.IndexNumber.Value];
+                if (Episodes.IsNullOrEmpty())
+                {
+                    return;
+                }
+
+                var episodeIndex = Episodes.IndexOf(SelectedEpisode);
+                SelectedEpisode = episodeIndex + 1 >= Episodes.Count ? Episodes[0] : Episodes[episodeIndex + 1];
                 CanResume = SelectedEpisode != null && SelectedEpisode.CanResume;
             });
 
             PreviousEpisodeCommand = new RelayCommand(() =>
             {
-                SelectedEpisode = SelectedEpisode.IndexNumber - 1 == 0 ? Episodes[Episodes.Count - 1] : Episodes[SelectedEpisode.IndexNumber.Value - 2];
+                if (Episodes.IsNullOrEmpty())
+                {
+                    return;
+                }
+
+                var episodeIndex = Episodes.IndexOf(SelectedEpisode);
+                SelectedEpisode = episodeIndex == 0 ? Episodes[Episodes.Count - 1] : Episodes[episodeIndex - 1];
                 CanResume = SelectedEpisode != null && SelectedEpisode.CanResume;
             });
 
