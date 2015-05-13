@@ -476,5 +476,25 @@ namespace Emby.WindowsPhone
 
             return manager;
         }
+
+        public static async Task MarkAsWatched(BaseItemDto item, ILog log, IApiClient apiClient, INavigationService navigationService)
+        {
+            if (!navigationService.IsNetworkAvailable)
+            {
+                return;
+            }
+
+            try
+            {
+                item.UserData = item.UserData.Played
+                    ? await apiClient.MarkUnplayedAsync(item.Id, AuthenticationService.Current.LoggedInUserId)
+                    : await apiClient.MarkPlayedAsync(item.Id, AuthenticationService.Current.LoggedInUserId, DateTime.Now);
+            }
+            catch (HttpException ex)
+            {
+                MessageBox.Show(AppResources.ErrorProblemUpdatingItem, AppResources.ErrorTitle, MessageBoxButton.OK);
+                Utils.HandleHttpException("MarkAsWatchedCommand", ex, navigationService, log);
+            }
+        }
     }
 }

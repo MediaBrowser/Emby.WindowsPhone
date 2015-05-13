@@ -172,6 +172,18 @@ namespace Emby.WindowsPhone.ViewModel
             });
         }
 
+        public RelayCommand MarkAsWatchedCommand
+        {
+            get
+            {
+                return new RelayCommand(async () =>
+                {
+                    await Utils.MarkAsWatched(SelectedMovie, Log, ApiClient, NavigationService);
+                    RaisePropertyChanged(() => SelectedMovie.UserData);
+                });
+            }
+        }
+
         private async Task<bool> GetMovieDetails()
         {
             bool result;

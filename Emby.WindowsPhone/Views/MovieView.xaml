@@ -62,6 +62,8 @@
                 <cimbalino:ApplicationBarMenuItem Text="{Binding LocalisedResources.LabelAddToPlaylist, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                   Command="{Binding AddToPlaylist.AddToPlaylistCommand, Source={StaticResource Locator}}"
                                                   CommandParameter="{Binding SelectedMovie}" />
+                <cimbalino:ApplicationBarMenuItem Text="{Binding SelectedMovie.UserData.Played, Converter={StaticResource MarkAsWatchedConverter}}"
+                                                  Command="{Binding MarkAsWatchedCommand}"/>
             </cimbalino:ApplicationBarBehavior.MenuItems>
         </cimbalino:ApplicationBarBehavior>
     </i:Interaction.Behaviors>

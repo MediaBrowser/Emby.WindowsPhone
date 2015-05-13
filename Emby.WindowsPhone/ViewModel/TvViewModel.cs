@@ -510,29 +510,9 @@ namespace Emby.WindowsPhone.ViewModel
             {
                 return new RelayCommand<BaseItemDto>(async item =>
                 {
-                    await MarkAsWatched(item);
+                    await Utils.MarkAsWatched(item, Log, ApiClient, NavigationService);
                     RaisePropertyChanged(() => SelectedEpisode.UserData);
                 });
-            }
-        }
-
-        private async Task MarkAsWatched(BaseItemDto item)
-        {
-            if (!NavigationService.IsNetworkAvailable)
-            {
-                return;
-            }
-
-            try
-            {
-                item.UserData = item.UserData.Played 
-                    ? await ApiClient.MarkUnplayedAsync(item.Id, AuthenticationService.Current.LoggedInUserId) 
-                    : await ApiClient.MarkPlayedAsync(item.Id, AuthenticationService.Current.LoggedInUserId, DateTime.Now);
-            }
-            catch (HttpException ex)
-            {
-                MessageBox.Show(AppResources.ErrorProblemUpdatingItem, AppResources.ErrorTitle, MessageBoxButton.OK);
-                Utils.HandleHttpException("MarkAsWatchedCommand", ex, NavigationService, Log);
             }
         }
 
