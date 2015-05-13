@@ -142,20 +142,7 @@ namespace Emby.WindowsPhone.ViewModel.Predefined
             {
                 return new RelayCommand<BaseItemDto>(async item =>
                 {
-                    if (!NavigationService.IsNetworkAvailable)
-                    {
-                        return;
-                    }
-
-                    try
-                    {
-                        item.UserData = await ApiClient.MarkPlayedAsync(item.Id, AuthenticationService.Current.LoggedInUserId, DateTime.Now);
-                    }
-                    catch (HttpException ex)
-                    {
-                        MessageBox.Show(AppResources.ErrorProblemUpdatingItem, AppResources.ErrorTitle, MessageBoxButton.OK);
-                        Utils.HandleHttpException("MarkAsWatchedCommand", ex, NavigationService, Log);
-                    }
+                    await Utils.MarkAsWatched(item, Log, ApiClient, NavigationService);
                 });
             }
         }

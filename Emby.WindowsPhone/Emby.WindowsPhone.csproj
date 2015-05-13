@@ -167,6 +167,7 @@
     <Compile Include="Converters\BooleanToValueConverter.cs" />
     <Compile Include="Converters\AnyChannelConverter.cs" />
     <Compile Include="Converters\AnyTimeConverter.cs" />
+    <Compile Include="Converters\CanMarkAsWatchedConverter.cs" />
     <Compile Include="Converters\CanStreamConverter.cs" />
     <Compile Include="Converters\ClientTypeIconConverter.cs" />
     <Compile Include="Converters\CollectionVisibilityConverter.cs" />

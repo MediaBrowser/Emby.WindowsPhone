@@ -438,6 +438,17 @@ namespace Emby.WindowsPhone.ViewModel
             }
         }
 
+        public RelayCommand<BaseItemDto> MarkAsWatchedCommand
+        {
+            get
+            {
+                return new RelayCommand<BaseItemDto>(async item =>
+                {
+                    await Utils.MarkAsWatched(item, Log, ApiClient, NavigationService);
+                });
+            }
+        }
+
         public RelayCommand PageLoaded { get; set; }
         public RelayCommand ChangeProfileCommand { get; set; }
         public RelayCommand RefreshDataCommand { get; set; }
