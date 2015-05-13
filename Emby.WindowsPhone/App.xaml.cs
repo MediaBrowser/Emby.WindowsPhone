@@ -9,7 +9,6 @@ using Cimbalino.Toolkit.Services;
 using Coding4Fun.Toolkit.Controls;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Threading;
-using MediaBrowser.Model;
 using MediaBrowser.Model.ApiClient;
 using Emby.WindowsPhone.Model;
 using Emby.WindowsPhone.Model.Photo;
@@ -106,6 +105,10 @@ namespace Emby.WindowsPhone
         /// </summary>
         public App()
         {
+            WPLogger.AppVersion = ApplicationManifest.Current.App.Version;
+            WPLogger.LogConfiguration.LogType = LogType.WriteToFile;
+            WPLogger.LogConfiguration.LoggingIsEnabled = true;
+
             _logger = new WPLogger(typeof(App));
 
             // Global handler for uncaught exceptions.
@@ -120,10 +123,7 @@ namespace Emby.WindowsPhone
             ThemeManager.OverrideOptions = ThemeManagerOverrideOptions.SystemTrayAndApplicationBars;
             ThemeManager.OverrideTheme(Theme.Dark);
             ThemeManager.SetAccentColor(Colors.Green);
-            WPLogger.AppVersion = ApplicationManifest.Current.App.Version;
-            WPLogger.LogConfiguration.LogType = LogType.WriteToFile;
-            WPLogger.LogConfiguration.LoggingIsEnabled = true;
-
+            
             // Language display initialization
             InitializeLanguage();
 

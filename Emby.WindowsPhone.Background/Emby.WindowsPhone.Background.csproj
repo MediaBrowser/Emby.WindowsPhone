@@ -90,9 +90,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Cimbalino.Toolkit.Core, Version=1.2.6.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Cimbalino.Toolkit.Core, Version=1.2.7.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\other-packages\Cimbalino.Core\Cimbalino.Toolkit.Core.dll</HintPath>
+      <HintPath>..\packages\Cimbalino.Toolkit.Core.1.2.7\lib\wp8\Cimbalino.Toolkit.Core.dll</HintPath>
     </Reference>
     <Reference Include="MediaBrowser.ApiInteraction.Portable">
       <HintPath>..\packages\MediaBrowser.ApiClient.3.0.0.616\lib\portable-net45+sl4+wp71+win8+wpa81\MediaBrowser.ApiInteraction.Portable.dll</HintPath>
@@ -106,7 +106,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="ScottIsAFool.WindowsPhone.Background">
-      <HintPath>..\packages\ScottIsAFool.WindowsPhone.Background.1.0.18.11\lib\wp8\ScottIsAFool.WindowsPhone.Background.dll</HintPath>
+      <HintPath>..\packages\ScottIsAFool.WindowsPhone.Background.1.0.18.12\lib\wp8\ScottIsAFool.WindowsPhone.Background.dll</HintPath>
     </Reference>
     <Reference Include="System.IO.Compression">
       <HintPath>..\packages\Microsoft.Bcl.Compression.3.9.83\lib\wp8\System.IO.Compression.dll</HintPath>

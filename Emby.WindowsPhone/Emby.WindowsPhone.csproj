@@ -885,13 +885,13 @@
     <Reference Include="Autofac">
       <HintPath>..\other-packages\HLS\Autofac.dll</HintPath>
     </Reference>
-    <Reference Include="Cimbalino.Toolkit, Version=1.2.6.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Cimbalino.Toolkit, Version=1.2.7.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\other-packages\Cimbalino\Cimbalino.Toolkit.dll</HintPath>
+      <HintPath>..\packages\Cimbalino.Toolkit.1.2.7\lib\wp8\Cimbalino.Toolkit.dll</HintPath>
     </Reference>
-    <Reference Include="Cimbalino.Toolkit.Core, Version=1.2.6.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Cimbalino.Toolkit.Core, Version=1.2.7.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\other-packages\Cimbalino.Core\Cimbalino.Toolkit.Core.dll</HintPath>
+      <HintPath>..\packages\Cimbalino.Toolkit.Core.1.2.7\lib\wp8\Cimbalino.Toolkit.Core.dll</HintPath>
     </Reference>
     <Reference Include="Coding4Fun.Toolkit.Controls, Version=2.0.9.0, Culture=neutral, PublicKeyToken=c5fd7b72b1a17ce4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -971,9 +971,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\ScottIsAFool.WindowsPhone.1.0.18.12\lib\wp8\ScottIsAFool.WindowsPhone.dll</HintPath>
     </Reference>
-    <Reference Include="ScottIsAFool.WindowsPhone.Background, Version=1.0.18.11, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="ScottIsAFool.WindowsPhone.Background, Version=1.0.18.12, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\ScottIsAFool.WindowsPhone.Background.1.0.18.11\lib\wp8\ScottIsAFool.WindowsPhone.Background.dll</HintPath>
+      <HintPath>..\packages\ScottIsAFool.WindowsPhone.Background.1.0.18.12\lib\wp8\ScottIsAFool.WindowsPhone.Background.dll</HintPath>
     </Reference>
     <Reference Include="SM.Media, Version=1.4.8.0, Culture=neutral, PublicKeyToken=a8a96d0f02112ebc, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
