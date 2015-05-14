@@ -489,6 +489,14 @@ namespace Emby.WindowsPhone
                 item.UserData = item.UserData.Played
                     ? await apiClient.MarkUnplayedAsync(item.Id, AuthenticationService.Current.LoggedInUserId)
                     : await apiClient.MarkPlayedAsync(item.Id, AuthenticationService.Current.LoggedInUserId, DateTime.Now);
+
+                item.UserData.Played = !item.UserData.Played;
+
+                if (item.UserData.Played)
+                {
+                    item.UserData.PlayedPercentage = 0;
+                    item.UserData.PlaybackPositionTicks = 0;
+                }
             }
             catch (HttpException ex)
             {
