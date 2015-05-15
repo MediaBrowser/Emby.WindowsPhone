@@ -167,12 +167,13 @@ namespace Emby.WindowsPhone.ViewModel.Remote
             }
         }
 
-        public RelayCommand<int> SeekCommand
+        public RelayCommand<string> SeekCommand
         {
             get
             {
-                return new RelayCommand<int>(async seconds =>
+                return new RelayCommand<string>(async secondsString =>
                 {
+                    var seconds = int.Parse(secondsString);
                     var ticks = TimeSpan.FromSeconds(seconds).Ticks;
 
                     if (SelectedClient != null && SelectedClient.PlayState.PositionTicks.HasValue)
