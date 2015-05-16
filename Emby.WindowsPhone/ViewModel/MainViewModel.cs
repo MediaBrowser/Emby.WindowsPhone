@@ -191,6 +191,11 @@ namespace Emby.WindowsPhone.ViewModel
             }
             else
             {
+                if (item.IsPlaceHolder.HasValue && item.IsPlaceHolder.Value)
+                {
+                    MessageBox.Show(AppResources.MessagePlaceholder, string.Empty, MessageBoxButton.OK);
+                    return;
+                }
                 if (SimpleIoc.Default.GetInstance<VideoPlayerViewModel>() != null && item.LocationType != LocationType.Virtual)
                 {
                     if (item.UserData != null)

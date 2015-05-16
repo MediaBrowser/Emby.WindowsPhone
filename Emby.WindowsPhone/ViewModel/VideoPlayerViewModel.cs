@@ -109,17 +109,29 @@ namespace Emby.WindowsPhone.ViewModel
                         return;
                     }
 
-                    var currentIndex = PlaylistItems.IndexOf(SelectedItem);
-                    if (currentIndex < 0 || currentIndex == PlaylistItems.Count - 1)
-                    {
-                        return;
-                    }
-
-                    SelectedItem = PlaylistItems[currentIndex + 1];
-
-                    InitiatePlayback(false).ConfigureAwait(false);
+                    StartNextItem();
                 });
             }
+        }
+
+        private void StartNextItem()
+        {
+            var currentIndex = PlaylistItems.IndexOf(SelectedItem);
+            if (currentIndex < 0 || currentIndex == PlaylistItems.Count - 1)
+            {
+                return;
+            }
+
+            SelectedItem = PlaylistItems[currentIndex + 1];
+
+            if (SelectedItem.IsPlaceHolder.HasValue && SelectedItem.IsPlaceHolder.Value)
+            {
+                MessageBox.Show(AppResources.MessagePlaceholder, string.Empty, MessageBoxButton.OK);
+                StartNextItem();
+                return;
+            }
+
+            InitiatePlayback(false).ConfigureAwait(false);
         }
 
         public RelayCommand SkipPreviousCommand
@@ -133,16 +145,29 @@ namespace Emby.WindowsPhone.ViewModel
                         return;
                     }
 
-                    var currentIndex = PlaylistItems.IndexOf(SelectedItem);
-                    if (currentIndex <= 0)
-                    {
-                        return;
-                    }
-
-                    SelectedItem = PlaylistItems[currentIndex - 1];
-                    InitiatePlayback(false).ConfigureAwait(false);
+                    StartPreviousItem();
                 });
             }
+        }
+
+        private void StartPreviousItem()
+        {
+            var currentIndex = PlaylistItems.IndexOf(SelectedItem);
+            if (currentIndex <= 0)
+            {
+                return;
+            }
+
+            SelectedItem = PlaylistItems[currentIndex - 1];
+
+            if (SelectedItem.IsPlaceHolder.HasValue && SelectedItem.IsPlaceHolder.Value)
+            {
+                MessageBox.Show(AppResources.MessagePlaceholder, string.Empty, MessageBoxButton.OK);
+                StartPreviousItem();
+                return;
+            }
+
+            InitiatePlayback(false).ConfigureAwait(false);
         }
 
         public bool IsHls
@@ -202,7 +227,7 @@ namespace Emby.WindowsPhone.ViewModel
 
                 PlayerSourceType = m.PlayerSourceType;
                 _isResume = m.IsResume;
-                _startPositionTicks = m.ResumeTicks.HasValue ? m.ResumeTicks.Value : 0;
+                _startPositionTicks = m.ResumeTicks ?? 0;
             });
 
             Messenger.Default.Register<NotificationMessage>(this, async m =>

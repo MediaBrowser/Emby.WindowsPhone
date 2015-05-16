@@ -1259,4 +1259,7 @@
   <data name="AppBarResumeOn" xml:space="preserve">
     <value>resume on</value>
   </data>
+  <data name="MessagePlaceholder" xml:space="preserve">
+    <value>This item is just a placeholder item in the library and cannot be played.</value>
+  </data>
 </root>

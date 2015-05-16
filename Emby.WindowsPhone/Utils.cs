@@ -377,8 +377,7 @@ namespace Emby.WindowsPhone
             {
                 if (item.LocationType == LocationType.Virtual
                     || (!item.IsVideo && !item.IsAudio)
-                    || item.PlayAccess != PlayAccess.Full
-                    || (item.IsPlaceHolder.HasValue && item.IsPlaceHolder.Value))
+                    || item.PlayAccess != PlayAccess.Full)
                 {
                     return false;
                 }

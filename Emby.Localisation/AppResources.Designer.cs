@@ -2653,6 +2653,15 @@ namespace Emby.WindowsPhone.Localisation {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This item is just a placeholder item in the library and cannot be played..
+        /// </summary>
+        public static string MessagePlaceholder {
+            get {
+                return ResourceManager.GetString("MessagePlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sync job created.
         /// </summary>
         public static string MessageSyncJobCreated {
