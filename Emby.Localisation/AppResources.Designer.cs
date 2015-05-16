@@ -340,6 +340,15 @@ namespace Emby.WindowsPhone.Localisation {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to resume on.
+        /// </summary>
+        public static string AppBarResumeOn {
+            get {
+                return ResourceManager.GetString("AppBarResumeOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to save.
         /// </summary>
         public static string AppBarSave {

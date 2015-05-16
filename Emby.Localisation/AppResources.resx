@@ -1256,4 +1256,7 @@
   <data name="LabelUseHttps" xml:space="preserve">
     <value>Use HTTPS</value>
   </data>
+  <data name="AppBarResumeOn" xml:space="preserve">
+    <value>resume on</value>
+  </data>
 </root>

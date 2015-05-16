@@ -16,7 +16,8 @@ using Emby.WindowsPhone.CimbalinoToolkit.Tiles;
 using Emby.WindowsPhone.Messaging;
 using Emby.WindowsPhone.Localisation;
 using Emby.WindowsPhone.Services;
-
+using GalaSoft.MvvmLight.Ioc;
+using MediaBrowser.Model.Dto;
 using INavigationService = Emby.WindowsPhone.Model.Interfaces.INavigationService;
 
 namespace Emby.WindowsPhone.ViewModel.Remote
@@ -317,6 +318,24 @@ namespace Emby.WindowsPhone.ViewModel.Remote
 
                     _videoId = id;
                     _startPositionTicks = null;
+                    NavigationService.NavigateTo(Constants.Pages.Remote.ChooseClientView);
+                });
+            }
+        }
+
+        public RelayCommand<BaseItemDto> SendResumeCommand
+        {
+            get
+            {
+                return new RelayCommand<BaseItemDto>(item =>
+                {
+                    if (item == null)
+                    {
+                        return;
+                    }
+
+                    _videoId = item.Id;
+                    _startPositionTicks = item.UserData.PlaybackPositionTicks;
                     NavigationService.NavigateTo(Constants.Pages.Remote.ChooseClientView);
                 });
             }
