@@ -91,6 +91,9 @@
                                             <toolkit:MenuItem Header="{Binding LocalisedResources.LabelAddToPlaylist, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                               Command="{Binding AddToPlaylist.AddToPlaylistCommand, Source={StaticResource Locator}}"
                                                               CommandParameter="{Binding}" />
+                                            <toolkit:MenuItem Header="{Binding LocalisedResources.AppBarPlayOn, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                              Command="{Binding Remote.SendPlayCommand, Source={StaticResource Locator}}"
+                                                              CommandParameter="{Binding Id}" />
                                             <toolkit:MenuItem Header="{Binding LocalisedResources.AppBarOffline, Source={StaticResource LocalisedStrings}}"
                                                               Command="{Binding MovieCollection.ItemOfflineCommand, Source={StaticResource Locator}}"
                                                               CommandParameter="{Binding}"
@@ -128,6 +131,9 @@
                                             <toolkit:MenuItem Header="{Binding LocalisedResources.LabelAddToPlaylist, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                               Command="{Binding AddToPlaylist.AddToPlaylistCommand, Source={StaticResource Locator}}"
                                                               CommandParameter="{Binding}" />
+                                            <toolkit:MenuItem Header="{Binding LocalisedResources.AppBarPlayOn, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                              Command="{Binding Remote.SendPlayCommand, Source={StaticResource Locator}}"
+                                                              CommandParameter="{Binding Id}" />
                                             <toolkit:MenuItem Header="{Binding LocalisedResources.AppBarOffline, Source={StaticResource LocalisedStrings}}"
                                                               Command="{Binding MovieCollection.ItemOfflineCommand, Source={StaticResource Locator}}"
                                                               CommandParameter="{Binding}"
@@ -176,6 +182,9 @@
                                             <toolkit:MenuItem Header="{Binding LocalisedResources.LabelAddToPlaylist, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                               Command="{Binding AddToPlaylist.AddToPlaylistCommand, Source={StaticResource Locator}}"
                                                               CommandParameter="{Binding}" />
+                                            <toolkit:MenuItem Header="{Binding LocalisedResources.AppBarPlayOn, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                              Command="{Binding Remote.SendPlayCommand, Source={StaticResource Locator}}"
+                                                              CommandParameter="{Binding Id}" />
                                             <toolkit:MenuItem Header="{Binding LocalisedResources.AppBarOffline, Source={StaticResource LocalisedStrings}}"
                                                               Command="{Binding MovieCollection.ItemOfflineCommand, Source={StaticResource Locator}}"
                                                               CommandParameter="{Binding}"
@@ -274,6 +283,9 @@
                                             <toolkit:MenuItem Header="{Binding LocalisedResources.AppBarMarkAsWatched, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                               Command="{Binding MovieCollection.MarkAsWatchedCommand, Source={StaticResource Locator}}"
                                                               CommandParameter="{Binding}" />
+                                            <toolkit:MenuItem Header="{Binding LocalisedResources.AppBarPlayOn, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                              Command="{Binding Remote.SendPlayCommand, Source={StaticResource Locator}}"
+                                                              CommandParameter="{Binding Id}" />
                                             <toolkit:MenuItem Header="{Binding LocalisedResources.LabelAddToPlaylist, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                               Command="{Binding AddToPlaylist.AddToPlaylistCommand, Source={StaticResource Locator}}"
                                                               CommandParameter="{Binding}" />
@@ -322,6 +334,9 @@
                                             <toolkit:MenuItem Header="{Binding LocalisedResources.LabelAddToPlaylist, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                               Command="{Binding AddToPlaylist.AddToPlaylistCommand, Source={StaticResource Locator}}"
                                                               CommandParameter="{Binding}" />
+                                            <toolkit:MenuItem Header="{Binding LocalisedResources.AppBarPlayOn, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                              Command="{Binding Remote.SendPlayCommand, Source={StaticResource Locator}}"
+                                                              CommandParameter="{Binding Id}" />
                                         </toolkit:ContextMenu>
                                     </toolkit:ContextMenuService.ContextMenu>
                                     <Grid Height="173"

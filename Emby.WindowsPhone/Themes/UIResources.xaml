@@ -235,6 +235,9 @@
                     <toolkit:MenuItem Header="{Binding LocalisedResources.LabelAddToPlaylist, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                       Command="{Binding AddToPlaylist.AddToPlaylistCommand, Source={StaticResource Locator}}"
                                       CommandParameter="{Binding}" />
+                    <toolkit:MenuItem Header="{Binding LocalisedResources.AppBarPlayOn, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                      Command="{Binding Remote.SendPlayCommand, Source={StaticResource Locator}}"
+                                      CommandParameter="{Binding Id}" />
                     <toolkit:MenuItem Header="{Binding LocalisedResources.AppBarOffline, Source={StaticResource LocalisedStrings}}"
                                       Command="{Binding Main.ItemOfflineCommand, Source={StaticResource Locator}}"
                                       CommandParameter="{Binding}"
@@ -290,6 +293,9 @@
                     <toolkit:MenuItem Header="{Binding LocalisedResources.LabelAddToPlaylist, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                       Command="{Binding AddToPlaylist.AddToPlaylistCommand, Source={StaticResource Locator}}"
                                       CommandParameter="{Binding}" />
+                    <toolkit:MenuItem Header="{Binding LocalisedResources.AppBarPlayOn, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                      Command="{Binding Remote.SendPlayCommand, Source={StaticResource Locator}}"
+                                      CommandParameter="{Binding Id}" />
                     <toolkit:MenuItem Header="{Binding LocalisedResources.AppBarOffline, Source={StaticResource LocalisedStrings}}"
                                       Command="{Binding Main.ItemOfflineCommand, Source={StaticResource Locator}}"
                                       CommandParameter="{Binding}"
@@ -558,8 +564,6 @@
            TargetType="ToggleButton">
         <Setter Property="Background"
                 Value="{StaticResource PhoneRadioCheckBoxBrush}" />
-        <Setter Property="FontSize"
-                Value="{StaticResource PhoneFontSizeMedium}" />
         <Setter Property="FontFamily"
                 Value="{StaticResource PhoneFontFamilyNormal}" />
         <Setter Property="HorizontalContentAlignment"
