@@ -21,6 +21,10 @@
     <ImageBrush ImageSource="/Images/PanoBackground.jpg"
                 x:Key="MediaBrowserPanoBackground" />
 
+    <Color x:Key="EmbyGreenColor">#52B54B</Color>
+    <SolidColorBrush x:Key="EmbyGreenBrush"
+                     Color="{StaticResource EmbyGreenColor}"/>
+
     <Color x:Key="SecondaryAccentColor">#224568</Color>
     <SolidColorBrush x:Key="SecondaryAccentColorBrush"
                      Color="{StaticResource SecondaryAccentColor}"/>

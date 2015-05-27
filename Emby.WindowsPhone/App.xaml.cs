@@ -122,7 +122,12 @@ namespace Emby.WindowsPhone
 
             ThemeManager.OverrideOptions = ThemeManagerOverrideOptions.SystemTrayAndApplicationBars;
             ThemeManager.OverrideTheme(Theme.Dark);
-            ThemeManager.SetAccentColor(Colors.Green);
+
+            var embyBrush = Resources["EmbyGreenBrush"] as SolidColorBrush;
+            if (embyBrush != null)
+            {
+                ThemeManager.SetAccentColor(embyBrush.Color);
+            }
             
             // Language display initialization
             InitializeLanguage();
