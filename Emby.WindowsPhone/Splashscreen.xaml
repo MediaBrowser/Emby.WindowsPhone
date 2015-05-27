@@ -64,18 +64,12 @@
                     Grid.Row="1"
                     VerticalAlignment="Top"
                     x:Name="Text">
-            <TextBlock Text="EM"
+            <TextBlock Text="emby"
                        Style="{StaticResource PhoneTextExtraLargeStyle}"
                        Foreground="White"
                        Margin="0"
                        FontFamily="Arial Narrow"
                        FontSize="60" />
-            <TextBlock Text="BY"
-                       Style="{StaticResource PhoneTextExtraLargeStyle}"
-                       Foreground="Green"
-                       FontFamily="Arial Narrow"
-                       FontSize="60"
-                       Margin="0"/>
         </StackPanel>
         
         

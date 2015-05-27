@@ -32,21 +32,15 @@
                                     Tag="{TemplateBinding AltText}"
                                     Visibility="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource InvertedNullVisibilityConverter}}"
                                     Margin="0,5,0,0">
-                            <TextBlock Text="EM"
+                            <TextBlock Text="emby"
                                        Foreground="{StaticResource PhoneForegroundBrush}"
                                        Style="{StaticResource PhoneTextNormalStyle}"
                                        VerticalAlignment="Center"
                                        Margin="6,0,0,0"
                                        FontFamily="Arial Narrow" />
-                            <TextBlock Text="BY"
-                                       Foreground="Green"
-                                       Style="{StaticResource PhoneTextNormalStyle}"
-                                       Margin="0"
-                                       VerticalAlignment="Center"
-                                       FontFamily="Arial Narrow" />
                         </StackPanel>
                         <TextBlock Text="{TemplateBinding AltText}"
-                                   Foreground="Green"
+                                   Foreground="{StaticResource EmbyGreenBrush}"
                                    Style="{StaticResource PhoneTextNormalStyle}"
                                    Margin="6,0,0,0"
                                    VerticalAlignment="Center"

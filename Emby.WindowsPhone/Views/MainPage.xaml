@@ -107,10 +107,8 @@
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal"
                                 Margin="-12,-41,0,18">
-                        <TextBlock Text="em"
+                        <TextBlock Text="emby"
                                    Foreground="{StaticResource PhoneForegroundBrush}" />
-                        <TextBlock Text="by"
-                                   Foreground="Green" />
                     </StackPanel>
                 </DataTemplate>
             </phone:Panorama.TitleTemplate>
