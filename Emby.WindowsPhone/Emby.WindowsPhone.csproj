@@ -508,6 +508,7 @@
     <Content Include="Icons\appbar.serieslink.png" />
     <Content Include="Icons\searchbutton.png" />
     <Content Include="Images\3d.png" />
+    <Content Include="Images\ColourLogoTransparent.png" />
     <Content Include="Images\DefaultChannel.png" />
     <Content Include="Images\FirstRun\WelcomeBackground.jpg" />
     <Content Include="Images\LogoNoPadding.png" />
