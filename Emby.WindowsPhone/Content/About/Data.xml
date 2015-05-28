@@ -46,7 +46,7 @@
               Content="wpmb3@outlook.com"
               Label="Support:" />
         <Link NavigateUri="http://emby.media/community"
-              Content="http://mediabrowser3.tv/community"
+              Content="http://emby.media/community"
               Label="Forums:"/>
         <Link NavigateUri="https://github.com/MediaBrowser/Emby.WindowsPhone/issues/new"
               Content="Raise an issue"
