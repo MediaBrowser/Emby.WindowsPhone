@@ -885,7 +885,7 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Autofac">
-      <HintPath>..\other-packages\HLS\Autofac.dll</HintPath>
+      <HintPath>..\packages\Autofac.3.5.0\lib\portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1\Autofac.dll</HintPath>
     </Reference>
     <Reference Include="Cimbalino.Toolkit, Version=1.2.7.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

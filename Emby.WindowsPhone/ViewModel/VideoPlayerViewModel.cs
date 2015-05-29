@@ -325,6 +325,7 @@ namespace Emby.WindowsPhone.ViewModel
         }
 
         public string VideoUrl { get; set; }
+        public string HlsUrl { get; set; }
         public IsolatedStorageFileStream VideoStream { get; set; }
         public TimeSpan StartTime
         {
@@ -514,7 +515,7 @@ namespace Emby.WindowsPhone.ViewModel
             
             if (isSyncedVideo)
             {
-                VideoUrl = string.Empty;
+                SetVideoUrl(string.Empty);
                 if (VideoStream == null || _storageUrl != url)
                 {           
                     _storageUrl = url;
@@ -528,7 +529,7 @@ namespace Emby.WindowsPhone.ViewModel
             else
             {
                 VideoStream = null;
-                VideoUrl = url;
+                SetVideoUrl(url);
                 _storageUrl = string.Empty;
             }
             
@@ -553,6 +554,20 @@ namespace Emby.WindowsPhone.ViewModel
             catch (HttpException ex)
             {
                 Utils.HandleHttpException("VideoPageLoaded", ex, NavigationService, Log);
+            }
+        }
+
+        private void SetVideoUrl(string url)
+        {
+            if (IsHls)
+            {
+                HlsUrl = url;
+                VideoUrl = null;
+            }
+            else
+            {
+                HlsUrl = null;
+                VideoUrl = url;
             }
         }
 
