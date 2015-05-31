@@ -51,6 +51,10 @@ namespace Emby.WindowsPhone.Services
                 var isBought = _settings.Get(Constants.Settings.AppIsBought, false);
                 var licenceId = isBought ? Constants.RemoveAdsProductFree : Constants.RemoveAdsProduct;
 
+#if BETA
+                licenceId += "Beta";
+#endif
+
                 await CurrentApp.RequestProductPurchaseAsync(licenceId, false);
 
                 IsTrial = false;
