@@ -82,6 +82,7 @@ namespace Emby.WindowsPhone.ViewModel
                 SimpleIoc.Default.RegisterIf<AuthenticationService>(true);
                 SimpleIoc.Default.RegisterIf<LockScreenService>(true);
                 SimpleIoc.Default.RegisterIf<TileService>(true);
+                SimpleIoc.Default.RegisterIf<TrialHelper>(true);
                 SimpleIoc.Default.RegisterIf<IMessagePromptService, MessagePromptService>();
                 SimpleIoc.Default.RegisterIf<ITransferService, TransferService>();
 
@@ -127,6 +128,7 @@ namespace Emby.WindowsPhone.ViewModel
             SimpleIoc.Default.Register<SyncViewModel>();
             SimpleIoc.Default.Register<CurrentDownloadsViewModel>();
             SimpleIoc.Default.Register<SyncJobDetailViewModel>();
+            SimpleIoc.Default.Register<UnlockFeaturesViewModel>();
         }
 
         private static void AddSyncInterfaces()
@@ -421,6 +423,16 @@ namespace Emby.WindowsPhone.ViewModel
         public SyncJobDetailViewModel SyncJobDetail
         {
             get { return ServiceLocator.Current.GetInstance<SyncJobDetailViewModel>(); }
+        }
+
+        public UnlockFeaturesViewModel UnlockFeatures
+        {
+            get { return ServiceLocator.Current.GetInstance<UnlockFeaturesViewModel>(); }
+        }
+
+        public TrialHelper Trial
+        {
+            get { return TrialHelper.Current; }
         }
 
         public static TvViewModel GetTvViewModel(string itemId)

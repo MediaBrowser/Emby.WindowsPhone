@@ -37,6 +37,10 @@
                                                 Command="{Binding NavigateToAPage}"
                                                 CommandParameter="/Views/SearchView.xaml" />
             <cimbalino:ApplicationBarBehavior.MenuItems>
+                <cimbalino:ApplicationBarMenuItem Text="{Binding LocalisedResources.AppBarUnlockFeatures, Source={StaticResource LocalisedStrings}}"
+                                                  Command="{Binding NavigateToAPage}"
+                                                  CommandParameter="/Views/UnlockFeaturesView.xaml"
+                                                  IsVisible="{Binding Trial.IsTrial, Source={StaticResource Locator}}"/>
                 <cimbalino:ApplicationBarMenuItem Text="sync"
                                                   Command="{Binding NavigateToAPage}"
                                                   CommandParameter="/Views/Sync/SyncView.xaml"

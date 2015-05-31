@@ -310,6 +310,7 @@
     <Compile Include="ViewModel\Sync\SyncViewModel.cs" />
     <Compile Include="ViewModel\TrailerViewModel.cs" />
     <Compile Include="ViewModel\TvViewModel.cs" />
+    <Compile Include="ViewModel\UnlockFeaturesViewModel.cs" />
     <Compile Include="ViewModel\VideoPlayerViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
@@ -475,6 +476,9 @@
     </Compile>
     <Compile Include="Views\TvShowView.xaml.cs">
       <DependentUpon>TvShowView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UnlockFeaturesView.xaml.cs">
+      <DependentUpon>UnlockFeaturesView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\VideoPlayerView.xaml.cs">
       <DependentUpon>VideoPlayerView.xaml</DependentUpon>
@@ -830,6 +834,10 @@
     <Page Include="Views\TvShowView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UnlockFeaturesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\VideoPlayerView.xaml">
       <SubType>Designer</SubType>

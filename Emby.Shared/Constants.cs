@@ -9,6 +9,9 @@
         public const int ImageQuality = 80;
 
         public const string PhotoUploadBackgroundTaskName = "Emby.WindowsPhone.PhotoUploadTask";
+
+        public const string RemoveAdsProductFree = "ProFree";
+        public const string RemoveAdsProduct = "EmbyPro";
         
         public class Settings
         {

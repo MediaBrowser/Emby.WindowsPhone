@@ -1262,4 +1262,23 @@
   <data name="MessagePlaceholder" xml:space="preserve">
     <value>This item is just a placeholder item in the library and cannot be played.</value>
   </data>
+  <data name="AppBarUnlockFeatures" xml:space="preserve">
+    <value>unlock features</value>
+  </data>
+  <data name="LabelPurchase" xml:space="preserve">
+    <value>Purchase</value>
+  </data>
+  <data name="MessageUpgradeSuccessful" xml:space="preserve">
+    <value>Upgrade successful</value>
+  </data>
+  <data name="UnlockFeaturesText1" xml:space="preserve">
+    <value>In order to fully use the app, you'll need to unlock some of the features the app supports, these include the following:</value>
+  </data>
+  <data name="UnlockFeaturesText2" xml:space="preserve">
+    <value>- Playing more than one video in a single day
+- Being able to remote control another Emby client that isn't just the web dashboard</value>
+  </data>
+  <data name="UnlockFeaturesText3" xml:space="preserve">
+    <value>If you have already purchased this app before, tapping the "Purchase" button will prompt you to purchase the free upgrade which will restore your app to how it was when your purchased it. If you hadn't already paid for the app, you will be prompted to purchase this one time upgrade option.</value>
+  </data>
 </root>
