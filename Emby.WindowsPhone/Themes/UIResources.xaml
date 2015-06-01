@@ -362,9 +362,9 @@
     <Style x:Key="HeroButtonStyle"
            TargetType="Button">
         <Setter Property="Background"
-                Value="Green" />
+                Value="{StaticResource PhoneAccentBrush}" />
         <Setter Property="BorderBrush"
-                Value="Green" />
+                Value="{StaticResource PhoneAccentBrush}" />
         <Setter Property="Foreground"
                 Value="{StaticResource PhoneForegroundBrush}" />
         <Setter Property="BorderThickness"
