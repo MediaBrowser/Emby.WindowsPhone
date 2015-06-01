@@ -63,8 +63,7 @@
                                      ScrubbingCompleted="ThePlayerScrubbingCompleted"
                                      Seeked="ThePlayerSeeked">
             <i:Interaction.Behaviors>
-                <behaviours:VideoStreamBehaviour VideoStream="{Binding VideoStream}"
-                                                 HlsUrl="{Binding HlsUrl}"/>
+                <behaviours:VideoStreamBehaviour VideoStream="{Binding VideoStream}"/>
             </i:Interaction.Behaviors>
             <playerFramework:MediaPlayer.Plugins>
                 <tt:WebVTTPlugin/>
@@ -77,7 +76,7 @@
 
         <playerFramework:MediaPlayer x:Name="HlsPlayer"
                                      Visibility="{Binding IsHls, Converter={StaticResource VisibilityConverter}, FallbackValue=Collapsed}"
-                                     Source="{Binding HlsUrl}"
+                                     
                                      AutoPlay="True"
                                      MediaEnded="ThePlayerMediaEnded"
                                      MediaFailed="ThePlayerMediaFailed"
@@ -93,6 +92,9 @@
                                      EndTime="{Binding EndTime}"
                                      ScrubbingCompleted="ThePlayerScrubbingCompleted"
                                      Seeked="ThePlayerSeeked">
+            <i:Interaction.Behaviors>
+                <behaviours:VideoStreamBehaviour HlsUrl="{Binding HlsUrl}" />
+            </i:Interaction.Behaviors>
             <playerFramework:MediaPlayer.Plugins>
                 <mediaPlayer:StreamingMediaPlugin />
             </playerFramework:MediaPlayer.Plugins>

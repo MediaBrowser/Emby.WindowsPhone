@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Interactivity;
 using Microsoft.PlayerFramework;
+using ScottIsAFool.WindowsPhone.Logging;
 using SM.Media;
 
 namespace Emby.WindowsPhone.Behaviours
@@ -14,6 +15,12 @@ namespace Emby.WindowsPhone.Behaviours
     public class VideoStreamBehaviour : Behavior<MediaPlayer>
     {
         private static IMediaStreamFacade _mediaStreamFacade;
+        private static ILog _logger;
+
+        public VideoStreamBehaviour()
+        {
+            _logger = new WPLogger(GetType());
+        }
 
         public static readonly DependencyProperty VideoStreamProperty = DependencyProperty.Register(
             "VideoStream", typeof(IsolatedStorageFileStream), typeof(VideoStreamBehaviour), new PropertyMetadata(default(Stream), OnVideoStreamChanged));
@@ -48,13 +55,18 @@ namespace Emby.WindowsPhone.Behaviours
             {
                 InitialiseMediaStream();
 
+                _logger.Info("Creating MediaStreamSource");
                 var mss = await _mediaStreamFacade.CreateMediaStreamSourceAsync(new Uri(HlsUrl), CancellationToken.None);
                 if (mss == null)
                 {
-                    Debug.WriteLine("MainPage.PlayCurrentTrackAsync() Unable to create media stream source");
+                    _logger.Info("Unable to create media stream source");
                     return;
                 }
 
+                _logger.Info("Delaying...");
+                await Task.Delay(5);
+
+                _logger.Info("Setting stream source to video");
                 AssociatedObject.SetSource(mss);
             }
             else
@@ -69,8 +81,12 @@ namespace Emby.WindowsPhone.Behaviours
         private static void InitialiseMediaStream()
         {
             if (_mediaStreamFacade != null)
+            {
+                _logger.Info("Stream Facade already exists");
                 return;
+            }
 
+            _logger.Info("Creating stream facade");
             _mediaStreamFacade = MediaStreamFacadeSettings.Parameters.Create();
         }
     }
