@@ -7,6 +7,7 @@ using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
 using Emby.WindowsPhone.Messaging;
 using Emby.WindowsPhone.Localisation;
+using Emby.WindowsPhone.Model;
 using Emby.WindowsPhone.ViewModel;
 using Emby.WindowsPhone.ViewModel.Remote;
 using Microsoft.Phone.Controls;
@@ -83,7 +84,7 @@ namespace Emby.WindowsPhone.Views
                 {
                     if (SimpleIoc.Default.GetInstance<VideoPlayerViewModel>() != null && vm.SelectedMovie.LocationType != LocationType.Virtual)
                     {
-                        Messenger.Default.Send(new VideoMessage(vm.SelectedMovie, true, chapterInfo.StartPositionTicks));
+                        Messenger.Default.Send(new VideoMessage(vm.SelectedMovie, true, PlayerSourceType.Video, chapterInfo.StartPositionTicks));
                         NavigationService.Navigate(new Uri(string.Format(Constants.Pages.VideoPlayerView, vm.SelectedMovie.Id, vm.SelectedMovie.Type), UriKind.Relative));
                     }
                 }

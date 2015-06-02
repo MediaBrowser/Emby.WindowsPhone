@@ -1,9 +1,7 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Shapes;
 using MediaBrowser.Model.Dto;
-using MediaBrowser.Model.LiveTv;
 
 namespace Emby.WindowsPhone.Controls
 {
@@ -96,12 +94,6 @@ namespace Emby.WindowsPhone.Controls
 
                     return;
                 }
-                userData = item.UserData;
-            }
-
-            if (played.Data is RecordingInfoDto)
-            {
-                var item = played.Data as RecordingInfoDto;
                 userData = item.UserData;
             }
 

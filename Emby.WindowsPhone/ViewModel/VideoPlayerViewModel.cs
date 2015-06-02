@@ -5,8 +5,17 @@ using System.Globalization;
 using System.IO;
 using System.IO.IsolatedStorage;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
+using Emby.WindowsPhone.Extensions;
+using Emby.WindowsPhone.Helpers;
+using Emby.WindowsPhone.Localisation;
+using Emby.WindowsPhone.Messaging;
+using Emby.WindowsPhone.Model;
+using Emby.WindowsPhone.Model.Interfaces;
+using Emby.WindowsPhone.Services;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.ApiInteraction.Playback;
@@ -14,20 +23,10 @@ using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Dlna;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
-using MediaBrowser.Model.LiveTv;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Session;
-using Emby.WindowsPhone.Extensions;
-using Emby.WindowsPhone.Helpers;
-using Emby.WindowsPhone.Messaging;
-using Emby.WindowsPhone.Model;
-using Emby.WindowsPhone.Model.Interfaces;
-using Emby.WindowsPhone.Localisation;
-using Emby.WindowsPhone.Services;
 using Microsoft.Phone.BackgroundAudio;
 using Microsoft.PlayerFramework;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Emby.WindowsPhone.ViewModel
 {
@@ -206,16 +205,16 @@ namespace Emby.WindowsPhone.ViewModel
                         }
                         break;
                     case PlayerSourceType.Recording:
-                        if (m.RecordingItem != null)
+                        if (m.VideoItem != null)
                         {
-                            RecordingItem = m.RecordingItem;
+                            RecordingItem = m.VideoItem;
                             PlaylistItems = null;
                         }
                         break;
                     case PlayerSourceType.Programme:
-                        if (m.ProgrammeItem != null)
+                        if (m.VideoItem != null)
                         {
-                            ProgrammeItem = m.ProgrammeItem;
+                            ProgrammeItem = m.VideoItem;
                             PlaylistItems = null;
                         }
                         break;
@@ -354,8 +353,8 @@ namespace Emby.WindowsPhone.ViewModel
 
         public TimeSpan PlayedVideoDuration { get; set; }
         public BaseItemDto SelectedItem { get; set; }
-        public RecordingInfoDto RecordingItem { get; set; }
-        public ProgramInfoDto ProgrammeItem { get; set; }
+        public BaseItemDto RecordingItem { get; set; }
+        public BaseItemDto ProgrammeItem { get; set; }
 
         //Recover from tombestone
         public string ItemId { get; set; }

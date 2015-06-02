@@ -12,7 +12,7 @@ using Emby.WindowsPhone.CimbalinoToolkit.Tiles;
 using Emby.WindowsPhone.Helpers;
 using Emby.WindowsPhone.Localisation;
 using Emby.WindowsPhone.Services;
-
+using MediaBrowser.Model.Dto;
 using INavigationService = Emby.WindowsPhone.Model.Interfaces.INavigationService;
 
 namespace Emby.WindowsPhone.ViewModel.LiveTv
@@ -43,9 +43,9 @@ namespace Emby.WindowsPhone.ViewModel.LiveTv
         {
         }
 
-        public List<ProgramInfoDto> WhatsOn { get; set; }
-        public List<ProgramInfoDto> Upcoming { get; set; }
-        public List<RecordingInfoDto> CurrentlyRecording { get; set; }
+        public List<BaseItemDto> WhatsOn { get; set; }
+        public List<BaseItemDto> Upcoming { get; set; }
+        public List<BaseItemDto> CurrentlyRecording { get; set; }
 
         public bool ShowMoreWhatsOn { get; set; }
         public bool ShowMoreUpcoming { get; set; }
@@ -113,11 +113,11 @@ namespace Emby.WindowsPhone.ViewModel.LiveTv
             }
         }
 
-        public RelayCommand<ProgramInfoDto> GuideItemTappedCommand
+        public RelayCommand<BaseItemDto> GuideItemTappedCommand
         {
             get
             {
-                return new RelayCommand<ProgramInfoDto>(item =>
+                return new RelayCommand<BaseItemDto>(item =>
                 {
                     if (item == null)
                     {
@@ -133,11 +133,11 @@ namespace Emby.WindowsPhone.ViewModel.LiveTv
             }
         }
 
-        public RelayCommand<RecordingInfoDto> RecordingItemTappedCommand
+        public RelayCommand<BaseItemDto> RecordingItemTappedCommand
         {
             get
             {
-                return new RelayCommand<RecordingInfoDto>(item =>
+                return new RelayCommand<BaseItemDto>(item =>
                 {
                     if (item == null)
                     {

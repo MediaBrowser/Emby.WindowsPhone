@@ -377,7 +377,8 @@ namespace Emby.WindowsPhone
             {
                 if (item.LocationType == LocationType.Virtual
                     || (!item.IsVideo && !item.IsAudio)
-                    || item.PlayAccess != PlayAccess.Full)
+                    || item.PlayAccess != PlayAccess.Full
+                    || !IsValidProgram(item))
                 {
                     return false;
                 }
@@ -385,20 +386,27 @@ namespace Emby.WindowsPhone
                 return true;
             }
 
-            var programme = value as ProgramInfoDto;
-            if (programme != null)
+            return true;
+        }
+
+        private static bool IsValidProgram(BaseItemDto programme)
+        {
+            if (programme.Type != "Program")
             {
-                var now = DateTime.Now;
-                return programme.StartDate.ToLocalTime() < now && programme.EndDate.ToLocalTime() > now;
+                return true;
             }
 
-            return true;
+            var now = DateTime.Now;
+            return programme.StartDate.HasValue && programme.EndDate.HasValue && programme.StartDate.Value.ToLocalTime() < now && programme.EndDate.Value.ToLocalTime() > now;
         }
 
         public static async Task<TReturnType> Clone<TReturnType>(this TReturnType item)
         {
-            var json = JsonConvert.SerializeObject(item);
-            return JsonConvert.DeserializeObject<TReturnType>(json);
+            return await Task.Run(() =>
+            {
+                var json = JsonConvert.SerializeObject(item);
+                return JsonConvert.DeserializeObject<TReturnType>(json);
+            });
         }
 
         internal static string CoolDateName(DateTime? dateTime)

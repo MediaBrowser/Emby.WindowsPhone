@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.Windows.Data;
-using MediaBrowser.Model.LiveTv;
+using MediaBrowser.Model.Dto;
 
 namespace Emby.WindowsPhone.Converters
 {
@@ -9,19 +9,14 @@ namespace Emby.WindowsPhone.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value == null)
-            {
-                return false;
-            }
-
-            var item = value as ProgramInfoDto;
+            var item = value as BaseItemDto;
             if (item == null)
             {
                 return false;
             }
 
             var now = DateTime.Now;
-            return now < item.EndDate.ToLocalTime() && now > item.StartDate.ToLocalTime();
+            return item.EndDate.HasValue && item.StartDate.HasValue && now < item.EndDate.Value.ToLocalTime() && now > item.StartDate.Value.ToLocalTime();
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

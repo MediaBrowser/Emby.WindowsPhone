@@ -1,16 +1,15 @@
 ﻿using System;
-using System.Threading;
+using Emby.WindowsPhone.Helpers;
+using Emby.WindowsPhone.Localisation;
+using Emby.WindowsPhone.Messaging;
+using Emby.WindowsPhone.Model;
+using Emby.WindowsPhone.Model.Interfaces;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model.ApiClient;
-using MediaBrowser.Model.LiveTv;
+using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Net;
-using Emby.WindowsPhone.Helpers;
-using Emby.WindowsPhone.Messaging;
-using Emby.WindowsPhone.Model.Interfaces;
-using Emby.WindowsPhone.Localisation;
-
 
 namespace Emby.WindowsPhone.ViewModel.LiveTv
 {
@@ -27,9 +26,9 @@ namespace Emby.WindowsPhone.ViewModel.LiveTv
         {
         }
 
-        public ProgramInfoDto SelectedProgramme { get; set; }
+        public BaseItemDto SelectedProgramme { get; set; }
 
-        public RecordingInfoDto SelectedRecording { get; set; }
+        public BaseItemDto SelectedRecording { get; set; }
 
         public bool IsRecordNotCancel
         {
@@ -38,7 +37,7 @@ namespace Emby.WindowsPhone.ViewModel.LiveTv
 
         public bool RecordIsEnabled
         {
-            get { return SelectedProgramme != null && SelectedProgramme.EndDate.ToLocalTime() > DateTime.Now && !ProgressIsVisible; }
+            get { return SelectedProgramme != null && SelectedProgramme.EndDate.HasValue && SelectedProgramme.EndDate.Value.ToLocalTime() > DateTime.Now && !ProgressIsVisible; }
         }
 
         public bool IsRecordSeriesNotCancel
@@ -50,7 +49,7 @@ namespace Emby.WindowsPhone.ViewModel.LiveTv
         {
             get
             {
-                return SelectedProgramme != null && SelectedProgramme.IsSeries && !ProgressIsVisible;
+                return SelectedProgramme != null && SelectedProgramme.IsSeries.HasValue && SelectedProgramme.IsSeries.Value && !ProgressIsVisible;
             }
         }
 
@@ -186,7 +185,7 @@ namespace Emby.WindowsPhone.ViewModel.LiveTv
                 {
                     if (SimpleIoc.Default.GetInstance<VideoPlayerViewModel>() != null)
                     {
-                        Messenger.Default.Send(new VideoMessage(SelectedRecording, false));
+                        Messenger.Default.Send(new VideoMessage(SelectedRecording, false, PlayerSourceType.Recording));
                         NavigationService.NavigateTo(string.Format(Constants.Pages.VideoPlayerView, SelectedRecording.Id, SelectedRecording.Type));
                     }
                 });
@@ -201,7 +200,7 @@ namespace Emby.WindowsPhone.ViewModel.LiveTv
                 {
                     if (SimpleIoc.Default.GetInstance<VideoPlayerViewModel>() != null)
                     {
-                        Messenger.Default.Send(new VideoMessage(SelectedProgramme, false));
+                        Messenger.Default.Send(new VideoMessage(SelectedProgramme, false, PlayerSourceType.Programme));
                         NavigationService.NavigateTo(string.Format(Constants.Pages.VideoPlayerView,  SelectedProgramme.Id, SelectedProgramme.Type));
                     }
                 });
@@ -214,14 +213,17 @@ namespace Emby.WindowsPhone.ViewModel.LiveTv
             {
                 if (m.Notification.Equals(Constants.Messages.ProgrammeItemChangedMsg))
                 {
-                    if (m.Sender is ProgramInfoDto)
+                    var item = m.Sender as BaseItemDto;
+                    if (item == null) return;
+
+                    if (item.Type == "Program")
                     {
-                        SelectedProgramme = (ProgramInfoDto)m.Sender;
+                        SelectedProgramme = item;
                         //ServerIdItem = SelectedProgramme;
                     }
-                    else if (m.Sender is RecordingInfoDto)
+                    else if (item.Type == "Recording")
                     {
-                        SelectedRecording = (RecordingInfoDto) m.Sender;
+                        SelectedRecording = item;
                         //ServerIdItem = SelectedRecording;
                     }
                 }

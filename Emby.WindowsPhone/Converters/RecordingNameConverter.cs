@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.Windows.Data;
-using MediaBrowser.Model.LiveTv;
+using MediaBrowser.Model.Dto;
 
 namespace Emby.WindowsPhone.Converters
 {
@@ -9,12 +9,7 @@ namespace Emby.WindowsPhone.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value == null)
-            {
-                return string.Empty;
-            }
-
-            var item = value as RecordingInfoDto;
+            var item = value as BaseItemDto;
             if (item == null)
             {
                 return string.Empty;

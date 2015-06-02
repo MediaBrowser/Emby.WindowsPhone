@@ -200,11 +200,11 @@ namespace Emby.WindowsPhone.ViewModel
                 {
                     if (item.UserData != null)
                     {
-                        Messenger.Default.Send(new VideoMessage(item, isResume, item.UserData.PlaybackPositionTicks));
+                        Messenger.Default.Send(new VideoMessage(item, isResume, PlayerSourceType.Video, item.UserData.PlaybackPositionTicks));
                     }
                     else
                     {
-                        Messenger.Default.Send(new VideoMessage(item, isResume));
+                        Messenger.Default.Send(new VideoMessage(item, isResume, PlayerSourceType.Video));
                     }
 
                     TrialHelper.Current.SetNewVideoItem(item.Id);
