@@ -17,7 +17,7 @@ namespace Emby.WindowsPhone.Model.Connection
 
         public static ClientCapabilities App(DeviceProfile profile = null)
         {
-            return CreateCapabilities(false, true, true, profile); 
+            return CreateCapabilities(false, true, false, profile); 
         }
 
         public static ClientCapabilities CreateCapabilities(bool supportsPlayback, bool supportsContentUpload, bool supportsSync, DeviceProfile profile = null)
