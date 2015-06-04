@@ -97,6 +97,9 @@ namespace Emby.WindowsPhone.Views
             {
                 vm.VideoStream = null;
             }
+
+            ThePlayer.Dispose();
+            HlsPlayer.Dispose();
         }
 
         private void ThePlayer_OnMediaStarted(object sender, RoutedEventArgs e)
