@@ -7,13 +7,14 @@ using MediaBrowser.Model.LiveTv;
 using MediaBrowser.Model.Net;
 using Emby.WindowsPhone.Model.Interfaces;
 using Emby.WindowsPhone.Localisation;
+using MediaBrowser.Model.Dto;
 using ScottIsAFool.WindowsPhone.Logging;
 
 namespace Emby.WindowsPhone.Helpers
 {
     public static class LiveTvHelper
     {
-        public static async Task<string> CreateSeriesLink(ProgramInfoDto item, IApiClient apiClient, INavigationService navigationService, ILog log)
+        public static async Task<string> CreateSeriesLink(BaseItemDto item, IApiClient apiClient, INavigationService navigationService, ILog log)
         {
             try
             {
@@ -36,7 +37,7 @@ namespace Emby.WindowsPhone.Helpers
             return null;
         }
 
-        public static async Task<string> RecordProgramme(ProgramInfoDto item, IApiClient apiClient, INavigationService navigationService, ILog log)
+        public static async Task<string> RecordProgramme(BaseItemDto item, IApiClient apiClient, INavigationService navigationService, ILog log)
         {
             try
             {

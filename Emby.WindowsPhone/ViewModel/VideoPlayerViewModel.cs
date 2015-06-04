@@ -5,8 +5,17 @@ using System.Globalization;
 using System.IO;
 using System.IO.IsolatedStorage;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
+using Emby.WindowsPhone.Extensions;
+using Emby.WindowsPhone.Helpers;
+using Emby.WindowsPhone.Localisation;
+using Emby.WindowsPhone.Messaging;
+using Emby.WindowsPhone.Model;
+using Emby.WindowsPhone.Model.Interfaces;
+using Emby.WindowsPhone.Services;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.ApiInteraction.Playback;
@@ -14,20 +23,10 @@ using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Dlna;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
-using MediaBrowser.Model.LiveTv;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Session;
-using Emby.WindowsPhone.Extensions;
-using Emby.WindowsPhone.Helpers;
-using Emby.WindowsPhone.Messaging;
-using Emby.WindowsPhone.Model;
-using Emby.WindowsPhone.Model.Interfaces;
-using Emby.WindowsPhone.Localisation;
-using Emby.WindowsPhone.Services;
 using Microsoft.Phone.BackgroundAudio;
 using Microsoft.PlayerFramework;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Emby.WindowsPhone.ViewModel
 {
@@ -46,6 +45,8 @@ namespace Emby.WindowsPhone.ViewModel
         private long _startPositionTicks;
         private string _itemId;
         private StreamInfo _streamInfo;
+
+        private const bool ForceHls = false;
 
         public TimeSpan StartFrom;
 
@@ -109,17 +110,29 @@ namespace Emby.WindowsPhone.ViewModel
                         return;
                     }
 
-                    var currentIndex = PlaylistItems.IndexOf(SelectedItem);
-                    if (currentIndex < 0 || currentIndex == PlaylistItems.Count - 1)
-                    {
-                        return;
-                    }
-
-                    SelectedItem = PlaylistItems[currentIndex + 1];
-
-                    InitiatePlayback(false).ConfigureAwait(false);
+                    StartNextItem();
                 });
             }
+        }
+
+        private void StartNextItem()
+        {
+            var currentIndex = PlaylistItems.IndexOf(SelectedItem);
+            if (currentIndex < 0 || currentIndex == PlaylistItems.Count - 1)
+            {
+                return;
+            }
+
+            SelectedItem = PlaylistItems[currentIndex + 1];
+
+            if (SelectedItem.IsPlaceHolder.HasValue && SelectedItem.IsPlaceHolder.Value)
+            {
+                MessageBox.Show(AppResources.MessagePlaceholder, string.Empty, MessageBoxButton.OK);
+                StartNextItem();
+                return;
+            }
+
+            InitiatePlayback(false).ConfigureAwait(false);
         }
 
         public RelayCommand SkipPreviousCommand
@@ -133,21 +146,34 @@ namespace Emby.WindowsPhone.ViewModel
                         return;
                     }
 
-                    var currentIndex = PlaylistItems.IndexOf(SelectedItem);
-                    if (currentIndex <= 0)
-                    {
-                        return;
-                    }
-
-                    SelectedItem = PlaylistItems[currentIndex - 1];
-                    InitiatePlayback(false).ConfigureAwait(false);
+                    StartPreviousItem();
                 });
             }
         }
 
+        private void StartPreviousItem()
+        {
+            var currentIndex = PlaylistItems.IndexOf(SelectedItem);
+            if (currentIndex <= 0)
+            {
+                return;
+            }
+
+            SelectedItem = PlaylistItems[currentIndex - 1];
+
+            if (SelectedItem.IsPlaceHolder.HasValue && SelectedItem.IsPlaceHolder.Value)
+            {
+                MessageBox.Show(AppResources.MessagePlaceholder, string.Empty, MessageBoxButton.OK);
+                StartPreviousItem();
+                return;
+            }
+
+            InitiatePlayback(false).ConfigureAwait(false);
+        }
+
         public bool IsHls
         {
-            get { return PlayerSourceType == PlayerSourceType.Programme || (SelectedItem != null && SelectedItem.Type.ToLower().Equals("channelvideoitem")); }
+            get { return ForceHls || PlayerSourceType == PlayerSourceType.Programme || (SelectedItem != null && SelectedItem.Type.ToLower().Equals("channelvideoitem")); }
         }
 
         private void SetPlaybackTicks(long totalTicks)
@@ -181,16 +207,16 @@ namespace Emby.WindowsPhone.ViewModel
                         }
                         break;
                     case PlayerSourceType.Recording:
-                        if (m.RecordingItem != null)
+                        if (m.VideoItem != null)
                         {
-                            RecordingItem = m.RecordingItem;
+                            RecordingItem = m.VideoItem;
                             PlaylistItems = null;
                         }
                         break;
                     case PlayerSourceType.Programme:
-                        if (m.ProgrammeItem != null)
+                        if (m.VideoItem != null)
                         {
-                            ProgrammeItem = m.ProgrammeItem;
+                            ProgrammeItem = m.VideoItem;
                             PlaylistItems = null;
                         }
                         break;
@@ -202,7 +228,7 @@ namespace Emby.WindowsPhone.ViewModel
 
                 PlayerSourceType = m.PlayerSourceType;
                 _isResume = m.IsResume;
-                _startPositionTicks = m.ResumeTicks.HasValue ? m.ResumeTicks.Value : 0;
+                _startPositionTicks = m.ResumeTicks ?? 0;
             });
 
             Messenger.Default.Register<NotificationMessage>(this, async m =>
@@ -300,6 +326,7 @@ namespace Emby.WindowsPhone.ViewModel
         }
 
         public string VideoUrl { get; set; }
+        public string HlsUrl { get; set; }
         public IsolatedStorageFileStream VideoStream { get; set; }
         public TimeSpan StartTime
         {
@@ -328,8 +355,8 @@ namespace Emby.WindowsPhone.ViewModel
 
         public TimeSpan PlayedVideoDuration { get; set; }
         public BaseItemDto SelectedItem { get; set; }
-        public RecordingInfoDto RecordingItem { get; set; }
-        public ProgramInfoDto ProgrammeItem { get; set; }
+        public BaseItemDto RecordingItem { get; set; }
+        public BaseItemDto ProgrammeItem { get; set; }
 
         //Recover from tombestone
         public string ItemId { get; set; }
@@ -489,7 +516,7 @@ namespace Emby.WindowsPhone.ViewModel
             
             if (isSyncedVideo)
             {
-                VideoUrl = string.Empty;
+                SetVideoUrl(string.Empty);
                 if (VideoStream == null || _storageUrl != url)
                 {           
                     _storageUrl = url;
@@ -503,7 +530,7 @@ namespace Emby.WindowsPhone.ViewModel
             else
             {
                 VideoStream = null;
-                VideoUrl = url;
+                SetVideoUrl(url);
                 _storageUrl = string.Empty;
             }
             
@@ -528,6 +555,20 @@ namespace Emby.WindowsPhone.ViewModel
             catch (HttpException ex)
             {
                 Utils.HandleHttpException("VideoPageLoaded", ex, NavigationService, Log);
+            }
+        }
+
+        private void SetVideoUrl(string url)
+        {
+            if (IsHls)
+            {
+                HlsUrl = url;
+                VideoUrl = null;
+            }
+            else
+            {
+                HlsUrl = null;
+                VideoUrl = url;
             }
         }
 
@@ -560,6 +601,11 @@ namespace Emby.WindowsPhone.ViewModel
 
         private async Task<StreamInfo> CreateVideoStream(string itemId, long startTimeTicks, List<MediaSourceInfo> mediaSources = null, bool useHls = false)
         {
+            if (ForceHls)
+            {
+                useHls = true;
+            }
+
             var profile = VideoProfileHelper.GetWindowsPhoneProfile(isHls: useHls);
 
             var streamingSettings = NavigationService.IsOnWifi

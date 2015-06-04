@@ -46,10 +46,17 @@
                         <toolkit:MenuItem Header="{Binding LocalisedResources.LabelAddToPlaylist, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                           Command="{Binding AddToPlaylist.AddToPlaylistCommand, Source={StaticResource Locator}}"
                                           CommandParameter="{Binding}" />
+                        <toolkit:MenuItem Header="{Binding LocalisedResources.AppBarPlayOn, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                          Command="{Binding Remote.SendPlayCommand, Source={StaticResource Locator}}"
+                                          CommandParameter="{Binding Id}" />
                         <toolkit:MenuItem Header="{Binding LocalisedResources.AppBarOffline, Source={StaticResource LocalisedStrings}}"
                                           Command="{Binding TvCollection.ItemOfflineCommand, Source={StaticResource Locator}}"
                                           CommandParameter="{Binding}"
                                           Visibility="{Binding Auth.LoggedInUser.Policy.EnableSync, Source={StaticResource Locator}, Converter={StaticResource VisibilityConverter}}" />
+                        <toolkit:MenuItem Header="{Binding UserData.Played, Converter={StaticResource MarkAsWatchedConverter}}"
+                                          Command="{Binding Main.MarkAsWatchedCommand, Source={StaticResource Locator}}"
+                                          CommandParameter="{Binding}"
+                                          Visibility="{Binding Converter={StaticResource CanMarkAsWatchedConverter}}" />
                     </toolkit:ContextMenu>
                 </toolkit:ContextMenuService.ContextMenu>
                 <StackPanel Orientation="Horizontal">
@@ -138,10 +145,17 @@
                                             <toolkit:MenuItem Header="{Binding LocalisedResources.LabelAddToPlaylist, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                               Command="{Binding AddToPlaylist.AddToPlaylistCommand, Source={StaticResource Locator}}"
                                                               CommandParameter="{Binding}" />
+                                            <toolkit:MenuItem Header="{Binding LocalisedResources.AppBarPlayOn, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                              Command="{Binding Remote.SendPlayCommand, Source={StaticResource Locator}}"
+                                                              CommandParameter="{Binding Id}" />
                                             <toolkit:MenuItem Header="{Binding LocalisedResources.AppBarOffline, Source={StaticResource LocalisedStrings}}"
                                                               Command="{Binding TvCollection.ItemOfflineCommand, Source={StaticResource Locator}}"
                                                               CommandParameter="{Binding}"
                                                               Visibility="{Binding Auth.LoggedInUser.Policy.EnableSync, Source={StaticResource Locator}, Converter={StaticResource VisibilityConverter}}" />
+                                            <toolkit:MenuItem Header="{Binding UserData.Played, Converter={StaticResource MarkAsWatchedConverter}}"
+                                                              Command="{Binding Main.MarkAsWatchedCommand, Source={StaticResource Locator}}"
+                                                              CommandParameter="{Binding}"
+                                                              Visibility="{Binding Converter={StaticResource CanMarkAsWatchedConverter}}" />
                                         </toolkit:ContextMenu>
                                     </toolkit:ContextMenuService.ContextMenu>
                                     <StackPanel Orientation="Horizontal"
@@ -188,6 +202,9 @@
                                             <toolkit:MenuItem Header="{Binding LocalisedResources.LabelAddToPlaylist, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                               Command="{Binding AddToPlaylist.AddToPlaylistCommand, Source={StaticResource Locator}}"
                                                               CommandParameter="{Binding}" />
+                                            <toolkit:MenuItem Header="{Binding LocalisedResources.AppBarPlayOn, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                              Command="{Binding Remote.SendPlayCommand, Source={StaticResource Locator}}"
+                                                              CommandParameter="{Binding Id}" />
                                         </toolkit:ContextMenu>
                                     </toolkit:ContextMenuService.ContextMenu>
                                     <Grid Height="173">

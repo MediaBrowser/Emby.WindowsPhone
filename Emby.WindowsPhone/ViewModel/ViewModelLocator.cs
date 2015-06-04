@@ -92,6 +92,7 @@ namespace Emby.WindowsPhone.ViewModel
                 SimpleIoc.Default.RegisterIf<AuthenticationService>(true);
                 SimpleIoc.Default.RegisterIf<LockScreenService>(true);
                 SimpleIoc.Default.RegisterIf<TileService>(true);
+                SimpleIoc.Default.RegisterIf<TrialHelper>(true);
                 SimpleIoc.Default.RegisterIf<IMessagePromptService, MessagePromptService>();
                 SimpleIoc.Default.RegisterIf<ITransferService, TransferService>();
                 SimpleIoc.Default.RegisterIf<IMultiServerSync, MultiServerSync>();
@@ -139,11 +140,24 @@ namespace Emby.WindowsPhone.ViewModel
             SimpleIoc.Default.Register<CurrentDownloadsViewModel>();
             SimpleIoc.Default.Register<SyncJobDetailViewModel>();
             SimpleIoc.Default.Register<OfflineUsersViewModel>();
+            SimpleIoc.Default.Register<UnlockFeaturesViewModel>();
         }
 
         private static void AddSyncInterfaces()
         {
             
+            SimpleIoc.Default.RegisterIf<SyncRequestHelper>(true);
+            SimpleIoc.Default.RegisterIf<IUserActionRepository, UserActionRepository>();
+            SimpleIoc.Default.RegisterIf<IItemRepository, ItemRepository>();
+            SimpleIoc.Default.RegisterIf<IFileRepository, FileRepository>();
+            SimpleIoc.Default.RegisterIf<IFileTransferManager, FileTransferManager>();
+            SimpleIoc.Default.RegisterIf<ICryptographyProvider, CryptographyProvider>();
+            SimpleIoc.Default.RegisterIf<IUserRepository, UserRepository>();
+            SimpleIoc.Default.RegisterIf<IImageRepository, ImageRepository>();
+            SimpleIoc.Default.RegisterIf<ILocalAssetManager, LocalAssetManager>();
+            SimpleIoc.Default.RegisterIf<IMultiServerSync, MultiServerSync>();
+
+            SimpleIoc.Default.RegisterIf<SyncService>(true);
         }
 
         /// <summary>
@@ -423,10 +437,22 @@ namespace Emby.WindowsPhone.ViewModel
         {
             get { return ServiceLocator.Current.GetInstance<SyncJobDetailViewModel>(); }
         }
+        
+        
+        public UnlockFeaturesViewModel UnlockFeatures
+        {
+            get { return ServiceLocator.Current.GetInstance<UnlockFeaturesViewModel>(); }
+        }
+
 
         public OfflineUsersViewModel OfflineUsers
         {
             get { return ServiceLocator.Current.GetInstance<OfflineUsersViewModel>(); }
+        }
+
+        public TrialHelper Trial
+        {
+            get { return TrialHelper.Current; }
         }
 
         public static TvViewModel GetTvViewModel(string itemId)

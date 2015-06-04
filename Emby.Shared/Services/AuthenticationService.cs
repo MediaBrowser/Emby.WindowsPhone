@@ -230,6 +230,7 @@ namespace Emby.WindowsPhone.Services
 
         public void SetUser(UserDto user)
         {
+            //user.Policy.EnableSync = false;
             LoggedInUser = user;
 
             _settingsService.Set(Constants.Settings.SelectedUserSetting, LoggedInUser);

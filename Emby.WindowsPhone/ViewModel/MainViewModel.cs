@@ -51,11 +51,12 @@ namespace Emby.WindowsPhone.ViewModel
             RecentItems = new ObservableCollection<BaseItemDto>();
             FavouriteItems = new ObservableCollection<BaseItemDto>();
             InProgressItems = new ObservableCollection<BaseItemDto>();
+            UserViews = new ObservableCollection<BaseItemDto>();
 
             if (IsInDesignMode)
             {
-                Folders.Add(new BaseItemDto {Id = "78dbff5aa1c2101b98ebaf42b72a988d", Name = "Movies", UserData = new UserItemDataDto {UnplayedItemCount = 6}});
-                RecentItems.Add(new BaseItemDto {Id = "2fc6f321b5f8bbe842fcd0eed089561d", Name = "A Night To Remember"});
+                Folders.Add(new BaseItemDto { Id = "78dbff5aa1c2101b98ebaf42b72a988d", Name = "Movies", UserData = new UserItemDataDto { UnplayedItemCount = 6 } });
+                RecentItems.Add(new BaseItemDto { Id = "2fc6f321b5f8bbe842fcd0eed089561d", Name = "A Night To Remember" });
             }
             else
             {
@@ -75,6 +76,16 @@ namespace Emby.WindowsPhone.ViewModel
                 if (m.PropertyName.Equals("IncludeTrailersInRecent"))
                 {
                     await SortRecent(_recentItems);
+                }
+            });
+
+            Messenger.Default.Register<NotificationMessage>(this, m =>
+            {
+                if (m.Notification.Equals(Constants.Messages.UseLibraryFoldersMsg))
+                {
+                    Folders.Clear();
+                    UserViews.Clear();
+                    GetEverything(true);
                 }
             });
         }
@@ -180,15 +191,20 @@ namespace Emby.WindowsPhone.ViewModel
             }
             else
             {
+                if (item.IsPlaceHolder.HasValue && item.IsPlaceHolder.Value)
+                {
+                    MessageBox.Show(AppResources.MessagePlaceholder, string.Empty, MessageBoxButton.OK);
+                    return;
+                }
                 if (SimpleIoc.Default.GetInstance<VideoPlayerViewModel>() != null && item.LocationType != LocationType.Virtual)
                 {
                     if (item.UserData != null)
                     {
-                        Messenger.Default.Send(new VideoMessage(item, isResume, item.UserData.PlaybackPositionTicks));
+                        Messenger.Default.Send(new VideoMessage(item, isResume, PlayerSourceType.Video, item.UserData.PlaybackPositionTicks));
                     }
                     else
                     {
-                        Messenger.Default.Send(new VideoMessage(item, isResume));
+                        Messenger.Default.Send(new VideoMessage(item, isResume, PlayerSourceType.Video));
                     }
 
                     TrialHelper.Current.SetNewVideoItem(item.Id);
@@ -213,24 +229,31 @@ namespace Emby.WindowsPhone.ViewModel
             if (NavigationService.IsNetworkAvailable
                 && (!_hasLoaded || isRefresh))
             {
-
+                bool folderLoaded = false, recentLoaded, favouritesLoaded, inProgressLoaded, userViewsLoaded = false;
                 SetProgressBar(AppResources.SysTrayLoadingCollections);
 
-                var folderLoaded = await GetFolders();
+                if (App.SpecificSettings.UseLibraryFolders)
+                {
+                    folderLoaded = await GetFolders();
+                }
+                else
+                {
+                    userViewsLoaded = await GetUserViews();
+                }
 
                 SetProgressBar(AppResources.SysTrayGettingRecentItems);
 
-                var recentLoaded = await GetRecent();
+                recentLoaded = await GetRecent();
 
                 SetProgressBar(AppResources.SysTrayGettingFavourites);
 
-                var favouritesLoaded = await GetFavouriteItems();
+                favouritesLoaded = await GetFavouriteItems();
 
                 SetProgressBar(AppResources.SysTrayCheckingInProgress);
 
-                var inProgressLoaded = await GetInProgressItems();
+                inProgressLoaded = await GetInProgressItems();
 
-                _hasLoaded = (folderLoaded && recentLoaded && favouritesLoaded && inProgressLoaded);
+                _hasLoaded = ((folderLoaded || userViewsLoaded) && recentLoaded && favouritesLoaded && inProgressLoaded);
 
                 //SetProgressBar("Checking notifications...");
 
@@ -238,6 +261,26 @@ namespace Emby.WindowsPhone.ViewModel
 
                 SetProgressBar();
             }
+        }
+
+        private async Task<bool> GetUserViews()
+        {
+            try
+            {
+                var item = await ApiClient.GetUserViews(AuthenticationService.Current.LoggedInUserId);
+                if (item != null && !item.Items.IsNullOrEmpty())
+                {
+                    UserViews.Clear();
+                    item.Items.Foreach(UserViews.Add);
+                    return true;
+                }
+            }
+            catch (HttpException ex)
+            {
+                Utils.HandleHttpException("GetUserViews()", ex, NavigationService, Log);
+            }
+
+            return false;
         }
 
         private async Task GetNotificaitonsCount()
@@ -262,7 +305,8 @@ namespace Emby.WindowsPhone.ViewModel
                 {
                     UserId = AuthenticationService.Current.LoggedInUserId,
                     Recursive = true,
-                    Filters = new[] {ItemFilter.IsResumable,}
+                    Filters = new[] { ItemFilter.IsResumable, },
+                    SortBy = new[] { ItemSortBy.DatePlayed }
                 };
 
                 var items = await ApiClient.GetItemsAsync(query);
@@ -294,8 +338,8 @@ namespace Emby.WindowsPhone.ViewModel
                 var query = new ItemQuery
                 {
                     UserId = AuthenticationService.Current.LoggedInUserId,
-                    Filters = new[] {ItemFilter.IsFavorite},
-                    Fields = new []{ ItemFields.MediaSources, ItemFields.SyncInfo },
+                    Filters = new[] { ItemFilter.IsFavorite },
+                    Fields = new[] { ItemFields.MediaSources, ItemFields.SyncInfo },
                     Recursive = true
                 };
                 var items = await ApiClient.GetItemsAsync(query);
@@ -322,7 +366,7 @@ namespace Emby.WindowsPhone.ViewModel
                 Log.Info("Getting most recent items");
 
                 var query = Utils.GetRecentItemsQuery(excludedItemTypes: new[] { "Photo" });
-                
+
                 var items = await ApiClient.GetItemsAsync(query);
                 _recentItems = items.Items;
                 await SortRecent(_recentItems);
@@ -353,7 +397,7 @@ namespace Emby.WindowsPhone.ViewModel
                 {
                     UserId = AuthenticationService.Current.LoggedInUserId,
                     SortOrder = SortOrder.Ascending,
-                    SortBy = new[] {ItemSortBy.SortName}
+                    SortBy = new[] { ItemSortBy.SortName }
                 };
 
                 var item = await ApiClient.GetItemsAsync(query);
@@ -399,6 +443,17 @@ namespace Emby.WindowsPhone.ViewModel
             }
         }
 
+        public RelayCommand<BaseItemDto> MarkAsWatchedCommand
+        {
+            get
+            {
+                return new RelayCommand<BaseItemDto>(async item =>
+                {
+                    await Utils.MarkAsWatched(item, Log, ApiClient, NavigationService);
+                });
+            }
+        }
+
         public RelayCommand PageLoaded { get; set; }
         public RelayCommand ChangeProfileCommand { get; set; }
         public RelayCommand RefreshDataCommand { get; set; }
@@ -410,6 +465,7 @@ namespace Emby.WindowsPhone.ViewModel
         public RelayCommand<BaseItemDto> ResumeMovieCommand { get; set; }
         public RelayCommand<BaseItemDto> ItemOfflineCommand { get; set; }
         public ObservableCollection<BaseItemDto> Folders { get; set; }
+        public ObservableCollection<BaseItemDto> UserViews { get; set; }
         public ObservableCollection<BaseItemDto> RecentItems { get; set; }
         public ObservableCollection<BaseItemDto> FavouriteItems { get; set; }
         public ObservableCollection<BaseItemDto> InProgressItems { get; set; }

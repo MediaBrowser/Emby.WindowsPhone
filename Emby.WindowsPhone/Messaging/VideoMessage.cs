@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
+using Emby.WindowsPhone.Model;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model.Dto;
-using MediaBrowser.Model.LiveTv;
-using Emby.WindowsPhone.Model;
 
 namespace Emby.WindowsPhone.Messaging
 {
@@ -16,11 +15,11 @@ namespace Emby.WindowsPhone.Messaging
             PlayerSourceType = PlayerSourceType.Playlist;
         }
 
-        public VideoMessage(BaseItemDto item, bool isResume, long? resumeTicks = null)
+        public VideoMessage(BaseItemDto item, bool isResume, PlayerSourceType playerSourceType, long? resumeTicks = null)
         {
             VideoItem = item;
             IsResume = isResume;
-            PlayerSourceType = PlayerSourceType.Video;
+            PlayerSourceType = playerSourceType;
             
             if (VideoItem != null && resumeTicks.HasValue)
             {
@@ -32,47 +31,10 @@ namespace Emby.WindowsPhone.Messaging
                 VideoItem.UserData.PlaybackPositionTicks = resumeTicks.Value;
             }
         }
-
-        public VideoMessage(RecordingInfoDto item, bool isResume, long? resumeTicks = null)
-        {
-            RecordingItem = item;
-            IsResume = isResume;
-            PlayerSourceType = PlayerSourceType.Recording;
-
-            if (RecordingItem != null && resumeTicks.HasValue)
-            {
-                if (RecordingItem.UserData == null)
-                {
-                    RecordingItem.UserData = new UserItemDataDto();
-                }
-
-                RecordingItem.UserData.PlaybackPositionTicks = resumeTicks.Value;
-            }
-        }
-
-        public VideoMessage(ProgramInfoDto item, bool isResume, long? resumeTicks = null)
-        {
-            ProgrammeItem = item;
-            IsResume = isResume;
-            PlayerSourceType = PlayerSourceType.Programme;
-
-            if (ProgrammeItem != null && resumeTicks.HasValue)
-            {
-                if (ProgrammeItem.UserData == null)
-                {
-                    ProgrammeItem.UserData = new UserItemDataDto();
-                }
-
-                ProgrammeItem.UserData.PlaybackPositionTicks = resumeTicks.Value;
-            }
-        }
-
-
+        
         public PlayerSourceType PlayerSourceType { get; set; }
         public BaseItemDto VideoItem { get; set; }
         public IList<BaseItemDto> VideoPlaylists { get; set; }
-        public RecordingInfoDto RecordingItem { get; set; }
-        public ProgramInfoDto ProgrammeItem { get; set; }
         public bool IsResume { get; set; }
         public long? ResumeTicks { get; set; }
     }

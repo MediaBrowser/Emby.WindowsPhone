@@ -59,6 +59,10 @@
                                                   IsEnabled="{Binding CanResume}"
                                                   Command="{Binding Main.ResumeMovieCommand, Source={StaticResource Locator}}"
                                                   CommandParameter="{Binding SelectedEpisode}" />
+                <cimbalino:ApplicationBarMenuItem Text="{Binding LocalisedResources.AppBarResumeOn, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                  IsEnabled="{Binding CanResume}"
+                                                  Command="{Binding Remote.SendResumeCommand, Source={StaticResource Locator}}"
+                                                  CommandParameter="{Binding SelectedEpisode}" />
                 <cimbalino:ApplicationBarMenuItem Text="{Binding SelectedEpisode.UserData.IsFavorite, Converter={StaticResource FavouritesConverter}, ConverterParameter=fulltext}"
                                                   Command="{Binding AddRemoveFavouriteCommand}"
                                                   CommandParameter="{Binding SelectedEpisode}"

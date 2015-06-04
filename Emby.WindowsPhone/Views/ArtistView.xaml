@@ -29,6 +29,10 @@
                               IsIndeterminate="{Binding ProgressIsVisible}" />
         <cimbalino:ApplicationBarBehavior IsMenuEnabled="True">
             <cimbalino:ApplicationBarBehavior.Buttons>
+                <cimbalino:ApplicationBarIconButton Text="{Binding LocalisedResources.AppBarPlayOn, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                    IconUri="/Icons/appbar.connection.playon.png"
+                                                    Command="{Binding Remote.SendPlayCommand, Source={StaticResource Locator}}"
+                                                    CommandParameter="{Binding SelectedArtist.Id}" />
                 <behaviours:SyncAppBarButton Text="{Binding LocalisedResources.AppBarOffline, Source={StaticResource LocalisedStrings}}"
                                              IconUri="/Icons/appbar.cloud.png"
                                              Command="{Binding TakeOfflineCommand}"
@@ -115,6 +119,9 @@
                                                 <toolkit:MenuItem Header="{Binding LocalisedResources.LabelInstantMix, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                                   Command="{Binding Music.StartInstantMixCommand, Source={StaticResource Locator}}"
                                                                   CommandParameter="{Binding}" />
+                                                <toolkit:MenuItem Header="{Binding LocalisedResources.AppBarPlayOn, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                                  Command="{Binding Remote.SendPlayCommand, Source={StaticResource Locator}}"
+                                                                  CommandParameter="{Binding Id}" />
                                                 <toolkit:MenuItem Header="{Binding LocalisedResources.AppBarOffline, Source={StaticResource LocalisedStrings}}"
                                                                   Command="{Binding Music.TakeOfflineCommand, Source={StaticResource Locator}}"
                                                                   CommandParameter="{Binding}"
@@ -174,6 +181,9 @@
                                                 <toolkit:MenuItem Header="{Binding LocalisedResources.LabelInstantMix, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                                   Command="{Binding Music.StartInstantMixCommand, Source={StaticResource Locator}}"
                                                                   CommandParameter="{Binding}" />
+                                                <toolkit:MenuItem Header="{Binding LocalisedResources.AppBarPlayOn, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                                  Command="{Binding Remote.SendPlayCommand, Source={StaticResource Locator}}"
+                                                                  CommandParameter="{Binding Id}" />
                                                 <toolkit:MenuItem Header="{Binding LocalisedResources.AppBarOffline, Source={StaticResource LocalisedStrings}}"
                                                                   Command="{Binding Music.TakeOfflineCommand, Source={StaticResource Locator}}"
                                                                   CommandParameter="{Binding}"

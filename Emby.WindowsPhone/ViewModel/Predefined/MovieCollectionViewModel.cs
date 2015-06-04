@@ -29,6 +29,7 @@ namespace Emby.WindowsPhone.ViewModel.Predefined
     /// </summary>
     public class MovieCollectionViewModel : ViewModelBase
     {
+        private string _parentId;
         private bool _moviesLoaded;
         private bool _boxsetsLoaded;
         private bool _latestUnwatchedLoaded;
@@ -45,6 +46,7 @@ namespace Emby.WindowsPhone.ViewModel.Predefined
         public MovieCollectionViewModel(INavigationService navigationService, IConnectionManager connectionManager)
             : base(navigationService, connectionManager)
         {
+            CreateCollections();
             if (IsInDesignMode)
             {
                 UnseenHeader = new BaseItemDto
@@ -98,6 +100,14 @@ namespace Emby.WindowsPhone.ViewModel.Predefined
             }
         }
 
+        private void CreateCollections()
+        {
+            Movies = new List<Group<BaseItemDto>>();
+            Boxsets = new List<Group<BaseItemDto>>();
+            LatestUnwatched = new List<BaseItemDto>();
+            Genres = new List<BaseItemDto>();
+        }
+
         public List<Group<BaseItemDto>> Movies { get; set; }
         public List<Group<BaseItemDto>> Boxsets { get; set; }
         public List<BaseItemDto> LatestUnwatched { get; set; }
@@ -132,20 +142,7 @@ namespace Emby.WindowsPhone.ViewModel.Predefined
             {
                 return new RelayCommand<BaseItemDto>(async item =>
                 {
-                    if (!NavigationService.IsNetworkAvailable)
-                    {
-                        return;
-                    }
-
-                    try
-                    {
-                        item.UserData = await ApiClient.MarkPlayedAsync(item.Id, AuthenticationService.Current.LoggedInUserId, DateTime.Now);
-                    }
-                    catch (HttpException ex)
-                    {
-                        MessageBox.Show(AppResources.ErrorProblemUpdatingItem, AppResources.ErrorTitle, MessageBoxButton.OK);
-                        Utils.HandleHttpException("MarkAsWatchedCommand", ex, NavigationService, Log);
-                    }
+                    await Utils.MarkAsWatched(item, Log, ApiClient, NavigationService);
                 });
             }
         }
@@ -168,6 +165,22 @@ namespace Emby.WindowsPhone.ViewModel.Predefined
                         Utils.HandleHttpException("ItemOfflineCommand", ex, NavigationService, Log);
                     }
                 });
+            }
+        }
+
+        public void SetParentId(string parentId)
+        {
+            if (parentId != _parentId)
+            {
+                Movies.Clear();
+                Boxsets.Clear();
+                LatestUnwatched.Clear();
+                Genres.Clear();
+                UnseenHeader = null;
+
+                _moviesLoaded = _boxsetsLoaded = _latestUnwatchedLoaded = _genresLoaded = false;
+
+                _parentId = parentId;
             }
         }
 
@@ -231,6 +244,7 @@ namespace Emby.WindowsPhone.ViewModel.Predefined
 
                 var query = new ItemQuery
                 {
+                    ParentId = _parentId,
                     UserId = AuthenticationService.Current.LoggedInUserId,
                     SortBy = new[] { "SortName" },
                     SortOrder = SortOrder.Ascending,
@@ -275,6 +289,7 @@ namespace Emby.WindowsPhone.ViewModel.Predefined
 
                 var query = new ItemQuery
                 {
+                    ParentId = _parentId,
                     UserId = AuthenticationService.Current.LoggedInUserId,
                     SortBy = new[] { "SortName" },
                     SortOrder = SortOrder.Ascending,
@@ -319,6 +334,7 @@ namespace Emby.WindowsPhone.ViewModel.Predefined
 
                 var query = new ItemQuery
                 {
+                    ParentId = _parentId,
                     UserId = AuthenticationService.Current.LoggedInUserId,
                     SortBy = new[] { "DateCreated" },
                     SortOrder = SortOrder.Descending,
@@ -355,6 +371,7 @@ namespace Emby.WindowsPhone.ViewModel.Predefined
 
                 var query = new ItemsByNameQuery
                 {
+                    ParentId = _parentId,
                     SortBy = new[] { "SortName" },
                     SortOrder = SortOrder.Ascending,
                     IncludeItemTypes = new[] { "Movie", "Trailer" },

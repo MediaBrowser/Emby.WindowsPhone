@@ -1,25 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
+using Emby.WindowsPhone.Extensions;
+using Emby.WindowsPhone.Helpers;
+using Emby.WindowsPhone.Localisation;
+using Emby.WindowsPhone.Model.Interfaces;
+using Emby.WindowsPhone.Services;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
 using JetBrains.Annotations;
 using MediaBrowser.Model;
 using MediaBrowser.Model.ApiClient;
+using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.LiveTv;
 using MediaBrowser.Model.Net;
-using Emby.WindowsPhone.Extensions;
-using Emby.WindowsPhone.Helpers;
-using Emby.WindowsPhone.Model;
-using Emby.WindowsPhone.Model.Interfaces;
-using Emby.WindowsPhone.Localisation;
-using Emby.WindowsPhone.Services;
 using Microsoft.Phone.Controls;
 using ScottIsAFool.WindowsPhone;
-
 using CustomMessageBox = Emby.WindowsPhone.Controls.CustomMessageBox;
 
 namespace Emby.WindowsPhone.ViewModel.LiveTv
@@ -57,7 +55,7 @@ namespace Emby.WindowsPhone.ViewModel.LiveTv
         public List<Day> DaysOfWeekList { get; set; }
         public int SelectedPivotIndex { get; set; }
         public List<Group<TimerInfoDto>> ScheduledRecordings { get; set; }
-        public List<RecordingInfoDto> Recordings { get; set; }
+        public List<BaseItemDto> Recordings { get; set; }
         public bool IsAdd { get; set; }
 
         public int AppBarIndex

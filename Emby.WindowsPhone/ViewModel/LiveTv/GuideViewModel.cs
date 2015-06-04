@@ -12,6 +12,7 @@ using Emby.WindowsPhone.Helpers;
 using Emby.WindowsPhone.Model.Interfaces;
 using Emby.WindowsPhone.Localisation;
 using Emby.WindowsPhone.Services;
+using MediaBrowser.Model.Dto;
 
 
 namespace Emby.WindowsPhone.ViewModel.LiveTv
@@ -40,16 +41,16 @@ namespace Emby.WindowsPhone.ViewModel.LiveTv
                     Number = "1"
                 };
 
-                Programmes = new ObservableCollection<ProgramInfoDto>
+                Programmes = new ObservableCollection<BaseItemDto>
                 {
-                    new ProgramInfoDto
+                    new BaseItemDto
                     {
                         StartDate = new DateTime(2014, 1, 16, 6, 0, 0),
                         Name = "Breakfast News",
                         EpisodeTitle = "16/01/2013",
                         Overview = "The latest news, sport, business and weather from the BBC's Breakfast Team"
                     },
-                    new ProgramInfoDto
+                    new BaseItemDto
                     {
                         StartDate = new DateTime(2014, 1, 16, 9, 15, 0),
                         Name = "Wanted Down Under",
@@ -61,9 +62,9 @@ namespace Emby.WindowsPhone.ViewModel.LiveTv
         }
 
         public ChannelInfoDto SelectedChannel { get; set; }
-        public ObservableCollection<ProgramInfoDto> Programmes { get; set; }
+        public ObservableCollection<BaseItemDto> Programmes { get; set; }
 
-        public ProgramInfoDto SelectedProgramme { get; set; }
+        public BaseItemDto SelectedProgramme { get; set; }
 
         public RelayCommand<string> NavigateToPage
         {
@@ -95,11 +96,11 @@ namespace Emby.WindowsPhone.ViewModel.LiveTv
             }
         }
 
-        public RelayCommand<ProgramInfoDto> GuideItemTappedCommand
+        public RelayCommand<BaseItemDto> GuideItemTappedCommand
         {
             get
             {
-                return new RelayCommand<ProgramInfoDto>(item =>
+                return new RelayCommand<BaseItemDto>(item =>
                 {
                     if (item == null)
                     {
@@ -115,11 +116,11 @@ namespace Emby.WindowsPhone.ViewModel.LiveTv
             }
         }
 
-        public RelayCommand<ProgramInfoDto> RecordProgrammeCommand
+        public RelayCommand<BaseItemDto> RecordProgrammeCommand
         {
             get
             {
-                return new RelayCommand<ProgramInfoDto>(async item =>
+                return new RelayCommand<BaseItemDto>(async item =>
                 {
                     SetProgressBar(AppResources.SysTraySettingProgrammeToRecord);
 
@@ -135,11 +136,11 @@ namespace Emby.WindowsPhone.ViewModel.LiveTv
             }
         }
 
-        public RelayCommand<ProgramInfoDto> CreateSeriesLinkCommand
+        public RelayCommand<BaseItemDto> CreateSeriesLinkCommand
         {
             get
             {
-                return new RelayCommand<ProgramInfoDto>(async item =>
+                return new RelayCommand<BaseItemDto>(async item =>
                 {
                     if (!string.IsNullOrEmpty(item.Id))
                     {

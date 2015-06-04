@@ -120,6 +120,7 @@
                                                       TrueValue="{Binding LocalisedResources.AppBarPause, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
                                                       FalseValue="{Binding LocalisedResources.AppBarPlay, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}" />
             <converters:PlaylistCountConverter x:Key="PlaylistCountConverter" />
+            <converters:CanMarkAsWatchedConverter x:Key="CanMarkAsWatchedConverter"/>
         </ResourceDictionary>
     </Application.Resources>
     <Application.ApplicationLifetimeObjects>

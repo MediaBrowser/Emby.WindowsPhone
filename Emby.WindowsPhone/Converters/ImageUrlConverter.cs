@@ -109,24 +109,9 @@ namespace Emby.WindowsPhone.Converters
 
                     return item.HasPrimaryImage ? apiClient.GetImageUrl(item, imageOptions) : string.Empty;
                 }
-
-                if (type == typeof (RecordingInfoDto))
+                if (type == typeof(TimerInfoDto))
                 {
-                    var item = (RecordingInfoDto) value;
-
-                    var imageOptions = new ImageOptions
-                    {
-                        ImageType = ImageType.Primary,
-                        MaxHeight = 250,
-                        Quality = Constants.ImageQuality
-                    };
-
-                    return item.HasPrimaryImage ? apiClient.GetImageUrl(item, imageOptions) : string.Empty;
-                }
-
-                if (type == typeof (TimerInfoDto))
-                {
-                    var item = (TimerInfoDto) value;
+                    var item = (TimerInfoDto)value;
                     var imageOptions = new ImageOptions
                     {
                         ImageType = ImageType.Primary,
@@ -136,18 +121,7 @@ namespace Emby.WindowsPhone.Converters
 
                     return item.ProgramInfo.HasPrimaryImage ? apiClient.GetImageUrl(item.ProgramInfo, imageOptions) : string.Empty;
                 }
-                if (type == typeof (ProgramInfoDto))
-                {
-                    var item = (ProgramInfoDto) value;
-                    var imageOptions = new ImageOptions
-                    {
-                        ImageType = ImageType.Primary,
-                        Quality = Constants.ImageQuality,
-                        MaxHeight = 250
-                    };
-
-                    return item.HasPrimaryImage ? apiClient.GetImageUrl(item, imageOptions) : string.Empty;
-                }
+                
                 if (type == typeof (SyncJob))
                 {
                     var item = (SyncJob) value;
@@ -194,7 +168,16 @@ namespace Emby.WindowsPhone.Converters
                 MaxHeight = 336,
                 ImageType = ImageType.Primary
             };
-            if (imageType.Equals("logo", StringComparison.OrdinalIgnoreCase))
+
+            if (item.Type == "Recording")
+            {
+                imageOptions.MaxHeight = 250;
+            }
+            else if (item.Type == "Program")
+            {
+                imageOptions.MaxHeight = 250;
+            }
+            else if (imageType.Equals("logo", StringComparison.OrdinalIgnoreCase))
             {
                 imageOptions.ImageType = ImageType.Logo;
             }

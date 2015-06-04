@@ -33,6 +33,7 @@ namespace Emby.WindowsPhone.Model
         public bool ShowUnairedEpisodes { get; set; }
         public bool EnableImageEnhancers { get; set; }
         public bool PlayVideosUnderLock { get; set; }
+        public bool UseLibraryFolders { get; set; }
 
         public LockScreenType LockScreenType { get; set; }
         public string LockScreenCollectionId { get; set; }
@@ -44,7 +45,11 @@ namespace Emby.WindowsPhone.Model
         public StreamingQuality WifiStreamingQuality { get; set; }
         public bool OnlyStreamOnWifi { get; set; }
 
-        
+        [UsedImplicitly]
+        private void OnUseLibraryFoldersChanged()
+        {
+            Messenger.Default.Send(new NotificationMessage(Constants.Messages.UseLibraryFoldersMsg));
+        }
         
         [UsedImplicitly]
         private void OnLockScreenCollectionIdChanged()

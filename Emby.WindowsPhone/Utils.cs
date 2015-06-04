@@ -379,7 +379,7 @@ namespace Emby.WindowsPhone
                 if (item.LocationType == LocationType.Virtual
                     || (!item.IsVideo && !item.IsAudio)
                     || item.PlayAccess != PlayAccess.Full
-                    || (item.IsPlaceHolder.HasValue && item.IsPlaceHolder.Value))
+                    || !IsValidProgram(item))
                 {
                     return false;
                 }
@@ -387,20 +387,27 @@ namespace Emby.WindowsPhone
                 return true;
             }
 
-            var programme = value as ProgramInfoDto;
-            if (programme != null)
+            return true;
+        }
+
+        private static bool IsValidProgram(BaseItemDto programme)
+        {
+            if (programme.Type != "Program")
             {
-                var now = DateTime.Now;
-                return programme.StartDate.ToLocalTime() < now && programme.EndDate.ToLocalTime() > now;
+                return true;
             }
 
-            return true;
+            var now = DateTime.Now;
+            return programme.StartDate.HasValue && programme.EndDate.HasValue && programme.StartDate.Value.ToLocalTime() < now && programme.EndDate.Value.ToLocalTime() > now;
         }
 
         public static async Task<TReturnType> Clone<TReturnType>(this TReturnType item)
         {
-            var json = JsonConvert.SerializeObject(item);
-            return JsonConvert.DeserializeObject<TReturnType>(json);
+            return await Task.Run(() =>
+            {
+                var json = JsonConvert.SerializeObject(item);
+                return JsonConvert.DeserializeObject<TReturnType>(json);
+            });
         }
 
         internal static string CoolDateName(DateTime? dateTime)
@@ -477,6 +484,34 @@ namespace Emby.WindowsPhone
                 assetManager);
 
             return manager;
+        }
+
+        public static async Task MarkAsWatched(BaseItemDto item, ILog log, IApiClient apiClient, INavigationService navigationService)
+        {
+            if (!navigationService.IsNetworkAvailable)
+            {
+                return;
+            }
+
+            try
+            {
+                item.UserData = item.UserData.Played
+                    ? await apiClient.MarkUnplayedAsync(item.Id, AuthenticationService.Current.LoggedInUserId)
+                    : await apiClient.MarkPlayedAsync(item.Id, AuthenticationService.Current.LoggedInUserId, DateTime.Now);
+
+                item.UserData.Played = !item.UserData.Played;
+
+                if (item.UserData.Played)
+                {
+                    item.UserData.PlayedPercentage = 0;
+                    item.UserData.PlaybackPositionTicks = 0;
+                }
+            }
+            catch (HttpException ex)
+            {
+                MessageBox.Show(AppResources.ErrorProblemUpdatingItem, AppResources.ErrorTitle, MessageBoxButton.OK);
+                Utils.HandleHttpException("MarkAsWatchedCommand", ex, navigationService, log);
+            }
         }
     }
 }

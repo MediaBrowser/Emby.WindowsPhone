@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Media;
-using MediaBrowser.Model.LiveTv;
+using MediaBrowser.Model.Dto;
 
 namespace Emby.WindowsPhone.Converters
 {
@@ -16,28 +16,28 @@ namespace Emby.WindowsPhone.Converters
                 return new SolidColorBrush(Colors.Transparent);
             }
 
-            var programme = value as ProgramInfoDto;
+            var programme = value as BaseItemDto;
             if (programme == null)
             {
                 return new SolidColorBrush(Colors.Transparent);
             }
 
-            if (programme.IsKids)
+            if (programme.IsKids ?? false)
             {
                 return Application.Current.Resources["ChildProgrammeBrush"];
             }
 
-            if (programme.IsSports)
+            if (programme.IsSports ?? false)
             {
                 return Application.Current.Resources["SportsProgrammeBrush"];
             }
 
-            if (programme.IsNews)
+            if (programme.IsNews ?? false)
             {
                 return Application.Current.Resources["NewsProgrammeBrush"];
             }
 
-            if (programme.IsMovie)
+            if (programme.IsMovie ?? false)
             {
                 return Application.Current.Resources["MovieProgrammeBrush"];
             }

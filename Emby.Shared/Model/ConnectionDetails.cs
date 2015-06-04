@@ -8,17 +8,23 @@ namespace Emby.WindowsPhone.Model
         public string HostName { get; set; }
         public int PortNo { get; set; }
         public string ServerId { get; set; }
+        public bool IsHttps { get; set; }
 
         public string DisplayUrl
         {
-            get { return string.Format("http://{0}:{1}/emby", HostName, PortNo); }
+            get
+            {
+                var protocol = IsHttps ? "https" : "http";
+                return string.Format("{0}://{1}:{2}/emby", protocol, HostName, PortNo);
+            }
         }
 
         public string ServerAddress
         {
             get
             {
-                return string.Format("http://{0}:{1}", HostName, PortNo);
+                var protocol = IsHttps ? "https" : "http";
+                return string.Format("{0}://{1}:{2}", protocol, HostName, PortNo);
             }
         }
     }

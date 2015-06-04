@@ -88,6 +88,11 @@
                   Margin="12,0,12,0">
                 <ScrollViewer>
                     <StackPanel>
+                        <CheckBox IsChecked="{Binding UseLibraryFolders, Source={StaticResource SpecificSettings}, Mode=TwoWay}">
+                            <TextBlock Text="{Binding LocalisedResources.LabelUseLibraryFolders, Source={StaticResource LocalisedStrings}}"
+                                       TextWrapping="Wrap"
+                                       VerticalAlignment="Top"/>
+                        </CheckBox>
                         <CheckBox Content="{Binding LocalisedResources.LabelShowTrailers, Source={StaticResource LocalisedStrings}}"
                                   IsChecked="{Binding IncludeTrailersInRecent, Source={StaticResource SpecificSettings}, Mode=TwoWay}" />
                         <toolkit:ListPicker ItemsSource="{Binding GroupByItems, Source={StaticResource SpecificSettings}}"

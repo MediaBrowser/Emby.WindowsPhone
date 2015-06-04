@@ -31,12 +31,10 @@
                                                     IconUri="/Icons/appbar.list.check.png"
                                                     Click="ApplicationBarIconButton_OnClick"
                                                     IsEnabled="{Binding AlbumTracks.Count, Converter={StaticResource CountToEnabled}, ConverterParameter=delete}" />
-                <cimbalino:ApplicationBarIconButton Text="{Binding LocalisedResources.AppBarOffline, Source={StaticResource LocalisedStrings}}"
-                                                    IconUri="/Icons/appbar.cloud.png"
-                                                    Command="{Binding TakeOfflineCommand}"
-                                                    CommandParameter="{Binding SelectedAlbum}"
-                                                    IsEnabled="{Binding SelectedAlbum.SupportsSync}"
-                                                    IsVisible="{Binding Auth.LoggedInUser.Policy.EnableSync, Source={StaticResource Locator}}" />
+                <cimbalino:ApplicationBarIconButton Text="{Binding LocalisedResources.AppBarPlayOn, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                    IconUri="/Icons/appbar.connection.playon.png"
+                                                    Command="{Binding Remote.SendPlayCommand, Source={StaticResource Locator}}"
+                                                    CommandParameter="{Binding SelectedAlbum.Id}" />
                 <behaviours:SyncAppBarButton Text="{Binding LocalisedResources.AppBarOffline, Source={StaticResource LocalisedStrings}}"
                                              IconUri="/Icons/appbar.cloud.png"
                                              Command="{Binding TakeOfflineCommand}"
@@ -166,7 +164,7 @@
                                         <toolkit:MenuItem Header="{Binding LocalisedResources.AppBarOffline, Source={StaticResource LocalisedStrings}}"
                                                           Command="{Binding Music.TakeOfflineCommand, Source={StaticResource Locator}}"
                                                           CommandParameter="{Binding}"
-                                                          Visibility="{Binding SupportsSync, Converter={StaticResource VisibilityConverter}}"/>
+                                                          Visibility="{Binding SupportsSync, Converter={StaticResource VisibilityConverter}}" />
                                     </toolkit:ContextMenu>
                                 </toolkit:ContextMenuService.ContextMenu>
                                 <c4F:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
@@ -208,13 +206,16 @@
                                                           Command="{Binding Music.TakeOfflineCommand, Source={StaticResource Locator}}"
                                                           CommandParameter="{Binding}"
                                                           Visibility="{Binding SupportsSync, Converter={StaticResource VisibilityConverter}}" />
+                                        <toolkit:MenuItem Header="{Binding LocalisedResources.AppBarPlayOn, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                          Command="{Binding Remote.SendPlayCommand, Source={StaticResource Locator}}"
+                                                          CommandParameter="{Binding Id}" />
                                     </toolkit:ContextMenu>
                                 </toolkit:ContextMenuService.ContextMenu>
                                 <c4F:RoundButton ImageSource="/Icons/appbar.transport.play.rest.png"
                                                  Margin="-6,0,0,0"
                                                  Command="{Binding Music.PlaySongCommand, Source={StaticResource Locator}}"
                                                  CommandParameter="{Binding}"
-                                                 Style="{StaticResource WhiteRoundButtonStyle}"/>
+                                                 Style="{StaticResource WhiteRoundButtonStyle}" />
                                 <StackPanel Orientation="Vertical"
                                             Margin="0,-12,0,0">
                                     <TextBlock Text="{Binding Name}"

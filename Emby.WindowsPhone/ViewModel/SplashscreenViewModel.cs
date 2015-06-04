@@ -103,7 +103,10 @@ namespace Emby.WindowsPhone.ViewModel
             _connectionDetails = _applicationSettings.Get<ConnectionDetails>(Constants.Settings.ConnectionSettings);
             _savedServer = _applicationSettings.Get<ServerInfo>(Constants.Settings.DefaultServerConnection);
 
-            _serverInfo.SetServerInfo(_savedServer);
+            if (_savedServer != null)
+            {
+                _serverInfo.SetServerInfo(_savedServer);
+            }
 
             try
             {

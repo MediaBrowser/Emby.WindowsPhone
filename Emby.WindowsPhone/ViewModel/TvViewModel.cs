@@ -219,13 +219,25 @@ namespace Emby.WindowsPhone.ViewModel
 
             NextEpisodeCommand = new RelayCommand(() =>
             {
-                SelectedEpisode = SelectedEpisode.IndexNumber + 1 > Episodes.Count ? Episodes[0] : Episodes[SelectedEpisode.IndexNumber.Value];
+                if (Episodes.IsNullOrEmpty())
+                {
+                    return;
+                }
+
+                var episodeIndex = Episodes.IndexOf(SelectedEpisode);
+                SelectedEpisode = episodeIndex + 1 >= Episodes.Count ? Episodes[0] : Episodes[episodeIndex + 1];
                 CanResume = SelectedEpisode != null && SelectedEpisode.CanResume;
             });
 
             PreviousEpisodeCommand = new RelayCommand(() =>
             {
-                SelectedEpisode = SelectedEpisode.IndexNumber - 1 == 0 ? Episodes[Episodes.Count - 1] : Episodes[SelectedEpisode.IndexNumber.Value - 2];
+                if (Episodes.IsNullOrEmpty())
+                {
+                    return;
+                }
+
+                var episodeIndex = Episodes.IndexOf(SelectedEpisode);
+                SelectedEpisode = episodeIndex == 0 ? Episodes[Episodes.Count - 1] : Episodes[episodeIndex - 1];
                 CanResume = SelectedEpisode != null && SelectedEpisode.CanResume;
             });
 
@@ -498,29 +510,9 @@ namespace Emby.WindowsPhone.ViewModel
             {
                 return new RelayCommand<BaseItemDto>(async item =>
                 {
-                    await MarkAsWatched(item);
+                    await Utils.MarkAsWatched(item, Log, ApiClient, NavigationService);
                     RaisePropertyChanged(() => SelectedEpisode.UserData);
                 });
-            }
-        }
-
-        private async Task MarkAsWatched(BaseItemDto item)
-        {
-            if (!NavigationService.IsNetworkAvailable)
-            {
-                return;
-            }
-
-            try
-            {
-                item.UserData = item.UserData.Played 
-                    ? await ApiClient.MarkUnplayedAsync(item.Id, AuthenticationService.Current.LoggedInUserId) 
-                    : await ApiClient.MarkPlayedAsync(item.Id, AuthenticationService.Current.LoggedInUserId, DateTime.Now);
-            }
-            catch (HttpException ex)
-            {
-                MessageBox.Show(AppResources.ErrorProblemUpdatingItem, AppResources.ErrorTitle, MessageBoxButton.OK);
-                Utils.HandleHttpException("MarkAsWatchedCommand", ex, NavigationService, Log);
             }
         }
 

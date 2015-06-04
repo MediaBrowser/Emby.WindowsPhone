@@ -76,7 +76,7 @@
 
         <playerFramework:MediaPlayer x:Name="HlsPlayer"
                                      Visibility="{Binding IsHls, Converter={StaticResource VisibilityConverter}, FallbackValue=Collapsed}"
-                                     Source="{Binding VideoUrl}"
+                                     
                                      AutoPlay="True"
                                      MediaEnded="ThePlayerMediaEnded"
                                      MediaFailed="ThePlayerMediaFailed"
@@ -92,6 +92,9 @@
                                      EndTime="{Binding EndTime}"
                                      ScrubbingCompleted="ThePlayerScrubbingCompleted"
                                      Seeked="ThePlayerSeeked">
+            <i:Interaction.Behaviors>
+                <behaviours:VideoStreamBehaviour HlsUrl="{Binding HlsUrl}" />
+            </i:Interaction.Behaviors>
             <playerFramework:MediaPlayer.Plugins>
                 <mediaPlayer:StreamingMediaPlugin />
             </playerFramework:MediaPlayer.Plugins>

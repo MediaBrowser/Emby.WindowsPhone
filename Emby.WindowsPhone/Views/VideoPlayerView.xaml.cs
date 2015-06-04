@@ -63,6 +63,7 @@ namespace Emby.WindowsPhone.Views
 
         private void ThePlayerMediaFailed(object sender, ExceptionRoutedEventArgs e)
         {
+            if (e == null) return;
             Log.ErrorException("Error playing media: " + e.ErrorException.Message, e.ErrorException);
         }
 
@@ -96,6 +97,9 @@ namespace Emby.WindowsPhone.Views
             {
                 vm.VideoStream = null;
             }
+
+            ThePlayer.Dispose();
+            HlsPlayer.Dispose();
         }
 
         private void ThePlayer_OnMediaStarted(object sender, RoutedEventArgs e)

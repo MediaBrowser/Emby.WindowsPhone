@@ -1,16 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
+using Emby.WindowsPhone.Localisation;
+using Emby.WindowsPhone.Model.Interfaces;
+using Emby.WindowsPhone.Services;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
-using MediaBrowser.Model;
 using MediaBrowser.Model.ApiClient;
+using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.LiveTv;
 using MediaBrowser.Model.Net;
-using Emby.WindowsPhone.Localisation;
-using Emby.WindowsPhone.Services;
-using INavigationService = Emby.WindowsPhone.Model.Interfaces.INavigationService;
 
 namespace Emby.WindowsPhone.ViewModel.LiveTv
 {
@@ -33,7 +32,7 @@ namespace Emby.WindowsPhone.ViewModel.LiveTv
         {
         }
 
-        public List<ProgramInfoDto> Programmes { get; set; }
+        public List<BaseItemDto> Programmes { get; set; }
         public string PageTitle { get; set; }
 
         public RelayCommand AllProgrammesViewLoaded

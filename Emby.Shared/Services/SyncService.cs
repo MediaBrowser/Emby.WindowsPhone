@@ -196,6 +196,12 @@ namespace Emby.WindowsPhone.Services
 
         public Task Sync()
         {
+            if (!AuthenticationService.Current.IsLoggedIn
+                || !AuthenticationService.Current.LoggedInUser.Policy.EnableSync)
+            {
+                return Task.FromResult(0);
+            }
+
             try
             {
                 return _mediaSync.Sync(new Progress<double>());

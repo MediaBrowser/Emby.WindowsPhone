@@ -53,7 +53,7 @@
             <RowDefinition Height="1.5*" />
         </Grid.RowDefinitions>
 
-        <Image Source="/Images/Logo.png"
+        <Image Source="/Images/ColourLogoTransparent.png"
                Width="173"
                Height="173"
                VerticalAlignment="Bottom"
@@ -64,18 +64,12 @@
                     Grid.Row="1"
                     VerticalAlignment="Top"
                     x:Name="Text">
-            <TextBlock Text="EM"
+            <TextBlock Text="emby"
                        Style="{StaticResource PhoneTextExtraLargeStyle}"
                        Foreground="White"
                        Margin="0"
                        FontFamily="Arial Narrow"
                        FontSize="60" />
-            <TextBlock Text="BY"
-                       Style="{StaticResource PhoneTextExtraLargeStyle}"
-                       Foreground="Green"
-                       FontFamily="Arial Narrow"
-                       FontSize="60"
-                       Margin="0" />
         </StackPanel>
 
 

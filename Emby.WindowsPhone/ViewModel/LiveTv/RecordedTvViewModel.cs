@@ -1,20 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using Emby.WindowsPhone.Helpers;
+using Emby.WindowsPhone.Localisation;
+using Emby.WindowsPhone.Model;
+using Emby.WindowsPhone.Model.Interfaces;
+using Emby.WindowsPhone.Services;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model.ApiClient;
+using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.LiveTv;
 using MediaBrowser.Model.Net;
-using Emby.WindowsPhone.Helpers;
-using Emby.WindowsPhone.Model;
-using Emby.WindowsPhone.Model.Interfaces;
-using Emby.WindowsPhone.Localisation;
-using Emby.WindowsPhone.Services;
 using ScottIsAFool.WindowsPhone;
 
 namespace Emby.WindowsPhone.ViewModel.LiveTv
@@ -41,8 +41,8 @@ namespace Emby.WindowsPhone.ViewModel.LiveTv
             GroupBy = RecordedGroupBy.RecordedDate;
         }
 
-        public List<RecordingInfoDto> RecordedProgrammes { get; set; }
-        public List<Group<RecordingInfoDto>> GroupedRecordedProgrammes { get; set; }
+        public List<BaseItemDto> RecordedProgrammes { get; set; }
+        public List<Group<BaseItemDto>> GroupedRecordedProgrammes { get; set; }
 
         public bool HasRecordedItems
         {
@@ -74,11 +74,11 @@ namespace Emby.WindowsPhone.ViewModel.LiveTv
             }
         }
 
-        public RelayCommand<RecordingInfoDto> ItemTappedCommand
+        public RelayCommand<BaseItemDto> ItemTappedCommand
         {
             get
             {
-                return new RelayCommand<RecordingInfoDto>(item =>
+                return new RelayCommand<BaseItemDto>(item =>
                 {
                     if (SimpleIoc.Default.GetInstance<ProgrammeViewModel>() != null)
                     {
@@ -140,15 +140,16 @@ namespace Emby.WindowsPhone.ViewModel.LiveTv
 
             await Task.Run(() =>
             {
-                var groupedItems = new List<Group<RecordingInfoDto>>();
+                var groupedItems = new List<Group<BaseItemDto>>();
                 switch (GroupBy)
                 {
                     case RecordedGroupBy.RecordedDate:
                         groupedItems = (from p in RecordedProgrammes
-                                        group p by p.StartDate.ToLocalTime().Date
+                                        where p.StartDate.HasValue
+                                        group p by p.StartDate.Value.ToLocalTime().Date
                                             into grp
                                             orderby grp.Key descending 
-                                            select new Group<RecordingInfoDto>(Utils.CoolDateName(grp.Key), grp)).ToList();
+                                            select new Group<BaseItemDto>(Utils.CoolDateName(grp.Key), grp)).ToList();
 
                         break;
                     case RecordedGroupBy.ShowName:
@@ -156,14 +157,14 @@ namespace Emby.WindowsPhone.ViewModel.LiveTv
                                         group p by p.Name
                                             into grp
                                             orderby grp.Key
-                                            select new Group<RecordingInfoDto>(grp.Key, grp)).ToList();
+                                            select new Group<BaseItemDto>(grp.Key, grp)).ToList();
                         break;
                     case RecordedGroupBy.Channel:
                         groupedItems = (from p in RecordedProgrammes
                                         group p by p.ChannelName
                                             into grp
                                             orderby grp.Key
-                                            select new Group<RecordingInfoDto>(grp.Key, grp)).ToList();
+                                            select new Group<BaseItemDto>(grp.Key, grp)).ToList();
                         break;
                 }
 

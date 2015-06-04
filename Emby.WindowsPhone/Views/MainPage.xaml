@@ -37,6 +37,10 @@
                                                 Command="{Binding NavigateToAPage}"
                                                 CommandParameter="/Views/SearchView.xaml" />
             <cimbalino:ApplicationBarBehavior.MenuItems>
+                <cimbalino:ApplicationBarMenuItem Text="{Binding LocalisedResources.AppBarUnlockFeatures, Source={StaticResource LocalisedStrings}}"
+                                                  Command="{Binding NavigateToAPage}"
+                                                  CommandParameter="/Views/UnlockFeaturesView.xaml"
+                                                  IsVisible="{Binding Trial.IsTrial, Source={StaticResource Locator}}"/>
                 <cimbalino:ApplicationBarMenuItem Text="sync"
                                                   Command="{Binding NavigateToAPage}"
                                                   CommandParameter="/Views/Sync/SyncView.xaml"
@@ -107,14 +111,51 @@
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal"
                                 Margin="-12,-41,0,18">
-                        <TextBlock Text="em"
+                        <TextBlock Text="emby"
                                    Foreground="{StaticResource PhoneForegroundBrush}" />
-                        <TextBlock Text="by"
-                                   Foreground="Green" />
                     </StackPanel>
                 </DataTemplate>
             </phone:Panorama.TitleTemplate>
-            <phone:PanoramaItem Header="{Binding LocalisedResources.LabelViews, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
+            <phone:PanoramaItem Header="{Binding LocalisedResources.LabelViews, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                x:Name="UserViews">
+                <phone:LongListSelector ItemsSource="{Binding UserViews}"
+                                        LayoutMode="Grid"
+                                        GridCellSize="200,173">
+                    <phone:LongListSelector.ItemTemplate>
+                        <DataTemplate>
+                            <local:CustomButton Style="{StaticResource EmptyButtonStyle}"
+                                                TapCommand="{Binding Main.NavigateToPage, Source={StaticResource Locator}}"
+                                                CommandParameter="{Binding}"
+                                                Margin="12,0,0,12">
+                                <Grid MaxHeight="173">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <controls:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
+                                                    Stretch="UniformToFill"
+                                                    PlaceholderImageSource="/Images/MBBackground.jpg"
+                                                    PlaceholderImageStretch="Uniform" />
+                                    <Border VerticalAlignment="Bottom"
+                                            Background="#C4000000"
+                                            HorizontalAlignment="Stretch">
+                                        <Grid>
+                                            <Rectangle Fill="Transparent"
+                                                       HorizontalAlignment="Stretch"
+                                                       Height="1" />
+                                            <TextBlock Text="{Binding Name}"
+                                                       Style="{StaticResource PhoneTextLargeStyle}"
+                                                       HorizontalAlignment="Left" />
+                                        </Grid>
+                                    </Border>
+                                </Grid>
+                            </local:CustomButton>
+                        </DataTemplate>
+                    </phone:LongListSelector.ItemTemplate>
+                </phone:LongListSelector>
+            </phone:PanoramaItem>
+            <phone:PanoramaItem Header="{Binding LocalisedResources.LabelViews, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                x:Name="LibraryViews">
                 <ScrollViewer>
                     <toolkit:WrapPanel Orientation="Horizontal"
                                        ItemWidth="190"
@@ -239,7 +280,8 @@
                     </toolkit:WrapPanel>
                 </ScrollViewer>
             </phone:PanoramaItem>
-            <phone:PanoramaItem Header="{Binding LocalisedResources.Collections, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
+            <phone:PanoramaItem Header="{Binding LocalisedResources.Collections, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                x:Name="LibraryFolders">
                 <phone:LongListSelector ItemsSource="{Binding Folders}">
                     <phone:LongListSelector.ItemTemplate>
                         <DataTemplate>
@@ -264,11 +306,11 @@
                                                          Width="62"
                                                          VerticalAlignment="Top" />
                                     <StackPanel Orientation="Vertical"
-                                                VerticalAlignment="Center"
-                                                Visibility="{Binding UserData.UnplayedItemCount, Converter={StaticResource NullVisibilityConverter}}">
+                                                VerticalAlignment="Center">
                                         <TextBlock Text="{Binding Name}"
                                                    Style="{StaticResource PhoneTextLargeStyle}" />
-                                        <TextBlock Style="{StaticResource PhoneTextSubtleStyle}">
+                                        <TextBlock Style="{StaticResource PhoneTextSubtleStyle}"
+                                                   Visibility="{Binding UserData.UnplayedItemCount, Converter={StaticResource NullVisibilityConverter}}">
                                             <Run Text="{Binding LocalisedResources.LabelUnplayedItems, Source={StaticResource LocalisedStrings}}" />
                                             <Run Text="{Binding UserData.UnplayedItemCount}" />
                                         </TextBlock>

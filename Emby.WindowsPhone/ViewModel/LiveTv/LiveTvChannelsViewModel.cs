@@ -1,16 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
+using Emby.WindowsPhone.Localisation;
+using Emby.WindowsPhone.Model.Interfaces;
+using Emby.WindowsPhone.Services;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
 using MediaBrowser.Model.ApiClient;
+using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.LiveTv;
 using MediaBrowser.Model.Net;
-using Emby.WindowsPhone.Model.Interfaces;
-using Emby.WindowsPhone.Localisation;
-using Emby.WindowsPhone.Services;
 using ScottIsAFool.WindowsPhone;
 
 namespace Emby.WindowsPhone.ViewModel.LiveTv
@@ -39,7 +39,7 @@ namespace Emby.WindowsPhone.ViewModel.LiveTv
                     {
                         Name = "BBC One",
                         Number = "1",
-                        CurrentProgram = new ProgramInfoDto
+                        CurrentProgram = new BaseItemDto
                         {
                             Name = "Sherlock"
                         }
@@ -48,7 +48,7 @@ namespace Emby.WindowsPhone.ViewModel.LiveTv
                     {
                         Name = "BBC Two",
                         Number = "2",
-                        CurrentProgram = new ProgramInfoDto
+                        CurrentProgram = new BaseItemDto
                         {
                             Name = "Top Gear"
                         }
