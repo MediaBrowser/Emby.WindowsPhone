@@ -46,6 +46,8 @@ namespace Emby.WindowsPhone.ViewModel
         private string _itemId;
         private StreamInfo _streamInfo;
 
+        private const bool ForceHls = false;
+
         public TimeSpan StartFrom;
 
         /// <summary>
@@ -171,7 +173,7 @@ namespace Emby.WindowsPhone.ViewModel
 
         public bool IsHls
         {
-            get { return PlayerSourceType == PlayerSourceType.Programme || (SelectedItem != null && SelectedItem.Type.ToLower().Equals("channelvideoitem")); }
+            get { return ForceHls || PlayerSourceType == PlayerSourceType.Programme || (SelectedItem != null && SelectedItem.Type.ToLower().Equals("channelvideoitem")); }
         }
 
         private void SetPlaybackTicks(long totalTicks)
@@ -599,6 +601,11 @@ namespace Emby.WindowsPhone.ViewModel
 
         private async Task<StreamInfo> CreateVideoStream(string itemId, long startTimeTicks, List<MediaSourceInfo> mediaSources = null, bool useHls = false)
         {
+            if (ForceHls)
+            {
+                useHls = true;
+            }
+
             var profile = VideoProfileHelper.GetWindowsPhoneProfile(isHls: useHls);
 
             var streamingSettings = NavigationService.IsOnWifi
