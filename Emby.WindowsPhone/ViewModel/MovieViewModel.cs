@@ -282,6 +282,8 @@ namespace Emby.WindowsPhone.ViewModel
 
                         SelectedMovie.UserData.PlaybackPositionTicks = ticks;
 
+                        SelectedMovie.HasPlayed();
+
                         CanResume = SelectedMovie.CanResume;
                     }
                 }

@@ -99,6 +99,8 @@ namespace Emby.WindowsPhone.ViewModel
 
                         SelectedEpisode.UserData.PlaybackPositionTicks = ticks;
 
+                        SelectedEpisode.HasPlayed();
+
                         CanResume = SelectedEpisode.CanResume;
                     }
                 }

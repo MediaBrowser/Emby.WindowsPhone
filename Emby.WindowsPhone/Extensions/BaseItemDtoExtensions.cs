@@ -38,5 +38,23 @@ namespace Emby.WindowsPhone.Extensions
                     return item.Name;
             }
         }
+
+        public static void HasPlayed(this BaseItemDto item)
+        {
+            if (item == null || !item.RunTimeTicks.HasValue)
+            {
+                return;
+            }
+
+            var runtime = item.RunTimeTicks.Value;
+            var watched = item.UserData.PlaybackPositionTicks;
+
+            var pct = ((double)watched/(double)runtime)*100;
+
+            if (watched == 0 || pct >= 90)
+            {
+                item.UserData.Played = true;
+            }
+        }
     }
 }
