@@ -419,30 +419,36 @@ namespace Emby.WindowsPhone.ViewModel
 
                     if (_startPositionTicks == 0)
                     {
-                        try
+                        // Although the API will return 0 items if the user doesn't have cinema mode enabled,
+                        // that's still precious time on a slow connection needlessly wasted. So let's make sure
+                        // the user actually has it enabled first.
+                        if (AuthenticationService.Current.LoggedInUser.Configuration.EnableCinemaMode)
                         {
-                            var items = await ApiClient.GetIntrosAsync(SelectedItem.Id, AuthenticationService.Current.LoggedInUserId);
-                            if (items != null && !items.Items.IsNullOrEmpty())
+                            try
                             {
-                                if (PlaylistItems == null)
+                                var items = await ApiClient.GetIntrosAsync(SelectedItem.Id, AuthenticationService.Current.LoggedInUserId);
+                                if (items != null && !items.Items.IsNullOrEmpty())
                                 {
-                                    PlaylistItems = new List<BaseItemDto>(items.Items) { SelectedItem };
-                                }
-                                else
-                                {
-                                    var list = items.Items.ToList();
-                                    list.AddRange(PlaylistItems);
+                                    if (PlaylistItems == null)
+                                    {
+                                        PlaylistItems = new List<BaseItemDto>(items.Items) {SelectedItem};
+                                    }
+                                    else
+                                    {
+                                        var list = items.Items.ToList();
+                                        list.AddRange(PlaylistItems);
 
-                                    PlaylistItems = list;
-                                }
+                                        PlaylistItems = list;
+                                    }
 
-                                var firstItem = PlaylistItems.FirstOrDefault();
-                                if (firstItem != null) SelectedItem = firstItem;
+                                    var firstItem = PlaylistItems.FirstOrDefault();
+                                    if (firstItem != null) SelectedItem = firstItem;
+                                }
                             }
-                        }
-                        catch (HttpException ex)
-                        {
-                            Log.ErrorException("GetIntros (Cinema Mode)", ex);
+                            catch (HttpException ex)
+                            {
+                                Log.ErrorException("GetIntros (Cinema Mode)", ex);
+                            }
                         }
                     }
 
