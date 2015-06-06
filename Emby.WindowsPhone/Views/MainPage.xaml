@@ -120,22 +120,26 @@
                                 x:Name="UserViews">
                 <phone:LongListSelector ItemsSource="{Binding UserViews}"
                                         LayoutMode="Grid"
-                                        GridCellSize="200,173">
+                                        GridCellSize="200,150">
                     <phone:LongListSelector.ItemTemplate>
                         <DataTemplate>
                             <local:CustomButton Style="{StaticResource EmptyButtonStyle}"
                                                 TapCommand="{Binding Main.NavigateToPage, Source={StaticResource Locator}}"
                                                 CommandParameter="{Binding}"
-                                                Margin="12,0,0,12">
-                                <Grid MaxHeight="173">
+                                                Margin="12,0,0,12"
+                                                VerticalAlignment="Top"
+                                                VerticalContentAlignment="Top">
+                                <Grid MaxHeight="150">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
 
-                                    <controls:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
+                                    <!--<controls:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
                                                     Stretch="UniformToFill"
                                                     PlaceholderImageSource="/Images/MBBackground.jpg"
-                                                    PlaceholderImageStretch="Uniform" />
+                                                    PlaceholderImageStretch="Uniform" />-->
+                                    <Image Source="{Binding Converter={StaticResource ImageUrlConverter}}"
+                                           Stretch="Uniform"/>
                                     <Border VerticalAlignment="Bottom"
                                             Background="#C4000000"
                                             HorizontalAlignment="Stretch">
