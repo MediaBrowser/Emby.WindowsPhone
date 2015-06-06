@@ -55,19 +55,26 @@ namespace Emby.WindowsPhone.Behaviours
             {
                 InitialiseMediaStream();
 
-                _logger.Info("Creating MediaStreamSource");
-                var mss = await _mediaStreamFacade.CreateMediaStreamSourceAsync(new Uri(HlsUrl), CancellationToken.None);
-                if (mss == null)
+                try
                 {
-                    _logger.Info("Unable to create media stream source");
-                    return;
+                    _logger.Info("Creating MediaStreamSource");
+                    var mss = await _mediaStreamFacade.CreateMediaStreamSourceAsync(new Uri(HlsUrl), CancellationToken.None);
+                    if (mss == null)
+                    {
+                        _logger.Info("Unable to create media stream source");
+                        return;
+                    }
+
+                    _logger.Info("Delaying...");
+                    await Task.Delay(5);
+
+                    _logger.Info("Setting stream source to video");
+                    AssociatedObject.SetSource(mss);
                 }
-
-                _logger.Info("Delaying...");
-                await Task.Delay(5);
-
-                _logger.Info("Setting stream source to video");
-                AssociatedObject.SetSource(mss);
+                catch (TaskCanceledException tEx)
+                {
+                    _logger.ErrorException("SetStream()", tEx);
+                }
             }
             else
             {
@@ -80,14 +87,9 @@ namespace Emby.WindowsPhone.Behaviours
 
         private static void InitialiseMediaStream()
         {
-            if (_mediaStreamFacade != null)
-            {
-                _logger.Info("Stream Facade already exists");
-                return;
-            }
-
             _logger.Info("Creating stream facade");
             _mediaStreamFacade = MediaStreamFacadeSettings.Parameters.Create();
+            
         }
     }
 }
