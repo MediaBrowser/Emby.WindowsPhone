@@ -1,4 +1,5 @@
-﻿using MediaBrowser.Model.Dlna;
+﻿using Emby.WindowsPhone.Services;
+using MediaBrowser.Model.Dlna;
 using MediaBrowser.Model.Session;
 
 namespace Emby.WindowsPhone.Model.Connection
@@ -17,7 +18,7 @@ namespace Emby.WindowsPhone.Model.Connection
 
         public static ClientCapabilities App(DeviceProfile profile = null)
         {
-            return CreateCapabilities(false, true, true, profile); 
+            return CreateCapabilities(false, true, SyncService.SyncEnabled, profile); 
         }
 
         public static ClientCapabilities CreateCapabilities(bool supportsPlayback, bool supportsContentUpload, bool supportsSync, DeviceProfile profile = null)
