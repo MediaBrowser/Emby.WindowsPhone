@@ -73,17 +73,8 @@ namespace Emby.WindowsPhone.Services
                 case "genre":
                 case "trailercollectionfolder":
                 case "playlistsfolder":
-                    if (App.SpecificSettings.JustShowFolderView)
-                    {
-                        NavigateTo(Constants.Pages.FolderView + item.Id);
-                    }
-                    else
-                    {
-                        NavigateTo(Constants.Pages.CollectionView);
-                    }
-                    break;
                 case "userview":
-                    var viewType = item.CollectionType.ToLower();
+                    var viewType = string.IsNullOrEmpty(item.CollectionType) ? string.Empty : item.CollectionType.ToLower();
                     switch (viewType)
                     {
                         case "movies":
@@ -111,7 +102,14 @@ namespace Emby.WindowsPhone.Services
                             NavigateTo(Constants.Pages.LiveTv.LiveTvView);
                             break;
                         default:
-                            NavigateTo(Constants.Pages.FolderView + item.Id);
+                            if (App.SpecificSettings.JustShowFolderView)
+                            {
+                                NavigateTo(Constants.Pages.FolderView + item.Id);
+                            }
+                            else
+                            {
+                                NavigateTo(Constants.Pages.CollectionView);
+                            }
                             break;
                     }
                     break;
