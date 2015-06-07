@@ -134,12 +134,11 @@
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
 
-                                    <!--<controls:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
-                                                    Stretch="UniformToFill"
+                                    <controls:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
+                                                    Stretch="Uniform"
                                                     PlaceholderImageSource="/Images/MBBackground.jpg"
-                                                    PlaceholderImageStretch="Uniform" />-->
-                                    <Image Source="{Binding Converter={StaticResource ImageUrlConverter}}"
-                                           Stretch="Uniform"/>
+                                                    PlaceholderImageStretch="Uniform" />
+                                    
                                     <Border VerticalAlignment="Bottom"
                                             Background="#C4000000"
                                             HorizontalAlignment="Stretch">
