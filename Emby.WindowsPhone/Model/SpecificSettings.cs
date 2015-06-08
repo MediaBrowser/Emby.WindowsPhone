@@ -34,6 +34,7 @@ namespace Emby.WindowsPhone.Model
         public bool EnableImageEnhancers { get; set; }
         public bool PlayVideosUnderLock { get; set; }
         public bool UseLibraryFolders { get; set; }
+        public bool HideTitles { get; set; }
 
         public LockScreenType LockScreenType { get; set; }
         public string LockScreenCollectionId { get; set; }

@@ -1258,6 +1258,15 @@ namespace Emby.WindowsPhone.Localisation {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hide titles for items in tiled lists.
+        /// </summary>
+        public static string LabelHideItemTitles {
+            get {
+                return ResourceManager.GetString("LabelHideItemTitles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hostname:.
         /// </summary>
         public static string LabelHostname {

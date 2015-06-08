@@ -1281,4 +1281,7 @@
   <data name="UnlockFeaturesText3" xml:space="preserve">
     <value>If you have already purchased this app before, tapping the "Purchase" button will prompt you to purchase the free upgrade which will restore your app to how it was when your purchased it. If you hadn't already paid for the app, you will be prompted to purchase this one time upgrade option.</value>
   </data>
+  <data name="LabelHideItemTitles" xml:space="preserve">
+    <value>Hide titles for items in tiled lists</value>
+  </data>
 </root>

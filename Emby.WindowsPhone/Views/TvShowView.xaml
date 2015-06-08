@@ -133,7 +133,8 @@
                                                              PlaceholderImageStretch="Uniform"
                                                              MaxHeight="300" />
                                         <Border Background="#C4000000"
-                                                VerticalAlignment="Bottom">
+                                                VerticalAlignment="Bottom"
+                                                Visibility="{Binding HideTitles, Source={StaticResource SpecificSettings}, Converter={StaticResource InvertedVisibilityConverter}}">
                                             <TextBlock Text="{Binding Name}"
                                                        Style="{StaticResource PhoneTextNormalStyle}"
                                                        FontWeight="Bold"

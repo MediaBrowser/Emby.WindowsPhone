@@ -8,7 +8,9 @@
                     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
                     xmlns:system="clr-namespace:System;assembly=mscorlib"
                     xmlns:cimbalinoConverters="clr-namespace:Cimbalino.Toolkit.Converters;assembly=Cimbalino.Toolkit"
-                    xmlns:localisation="clr-namespace:Emby.WindowsPhone.Localisation;assembly=Emby.WindowsPhone.Localisation">
+                    xmlns:localisation="clr-namespace:Emby.WindowsPhone.Localisation;assembly=Emby.WindowsPhone.Localisation"
+                    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+                    xmlns:behaviors="clr-namespace:Cimbalino.Toolkit.Behaviors;assembly=Cimbalino.Toolkit">
     <!-- Resource dictionary entries should be defined here. -->
 
     <Color x:Key="MediaBrowserBackgroundColor">#2F2F2F</Color>
@@ -88,6 +90,7 @@
     <converters:BooleanToAppBarModeConverter x:Key="BoolAppBarModeConverter"
                                              TrueValue="Default"
                                              FalseValue="Minimized"/>
+    <converters:TitleVisibilityConverter x:Key="TitleVisibilityConverter"/>
 
     <localisation:LocalisedStrings x:Key="LocalisedStrings" />
 
@@ -269,6 +272,13 @@
                                        Foreground="White"
                                        TextTrimming="WordEllipsis"
                                        MaxHeight="86">
+                                <i:Interaction.Behaviors>
+                                    <behaviors:MultiBindingBehavior PropertyName="Visibility"
+                                                                    Converter="{StaticResource TitleVisibilityConverter}">
+                                        <behaviors:MultiBindingItem Value="{Binding HideTitles, Source={StaticResource SpecificSettings}}"/>
+                                        <behaviors:MultiBindingItem Value="{Binding}"/>
+                                    </behaviors:MultiBindingBehavior>
+                                </i:Interaction.Behaviors>
                                 <Run Text="{Binding Converter={StaticResource EpisodeNumberConverter}}" />
                                 <Run Text="{Binding Name}" />
                             </TextBlock>
@@ -324,7 +334,8 @@
                                        Style="{StaticResource PhoneTextNormalStyle}"
                                        FontWeight="Bold"
                                        TextWrapping="Wrap"
-                                       Foreground="White" />
+                                       Foreground="White"
+                                       Visibility="{Binding HideTitles, Source={StaticResource SpecificSettings}, Converter={StaticResource InvertedVisibilityConverter}}"/>
                             <ProgressBar Value="{Binding Converter={StaticResource AlreadyPlayedConverter}}"
                                          HorizontalAlignment="Stretch"
                                          Margin="0"

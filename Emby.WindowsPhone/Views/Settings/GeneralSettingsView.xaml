@@ -119,6 +119,8 @@
                                        TextWrapping="Wrap"
                                        VerticalAlignment="Top" />
                         </CheckBox>
+                        <CheckBox IsChecked="{Binding HideTitles, Source={StaticResource SpecificSettings}, Mode=TwoWay}"
+                                  Content="{Binding LocalisedResources.LabelHideItemTitles, Source={StaticResource LocalisedStrings}}"/>
                         <StackPanel Orientation="Vertical"
                                     Visibility="Collapsed">
                             <CheckBox IsChecked="{Binding RunUnderLock, Mode=TwoWay}"

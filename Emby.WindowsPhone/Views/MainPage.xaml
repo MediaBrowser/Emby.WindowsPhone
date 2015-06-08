@@ -141,7 +141,8 @@
                                     
                                     <Border VerticalAlignment="Bottom"
                                             Background="#C4000000"
-                                            HorizontalAlignment="Stretch">
+                                            HorizontalAlignment="Stretch"
+                                            Visibility="{Binding HideTitles, Source={StaticResource SpecificSettings}, Converter={StaticResource InvertedVisibilityConverter}}">
                                         <Grid>
                                             <Rectangle Fill="Transparent"
                                                        HorizontalAlignment="Stretch"
