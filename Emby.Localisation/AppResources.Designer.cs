@@ -1753,6 +1753,15 @@ namespace Emby.WindowsPhone.Localisation {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Shuffle Play.
+        /// </summary>
+        public static string LabelPlayShuffle {
+            get {
+                return ResourceManager.GetString("LabelPlayShuffle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Play videos when screen is locked.
         /// </summary>
         public static string LabelPlayUnderLock {

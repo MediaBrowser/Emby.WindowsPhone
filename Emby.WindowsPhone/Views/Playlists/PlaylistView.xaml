@@ -340,7 +340,7 @@
                                 </Grid.ColumnDefinitions>
 
                                 <controls:CustomButton Style="{StaticResource EmptyButtonStyle}"
-                                                       TapCommand="{Binding ServerPlaylists.StartPlaylist, Source={StaticResource Locator}}">
+                                                       TapCommand="{Binding ServerPlaylists.StartPlaylistCommand, Source={StaticResource Locator}}">
                                     <Grid>
                                         <coding4Fun:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
                                                                Stretch="Uniform"
@@ -355,13 +355,19 @@
                                 </controls:CustomButton>
 
                                 <StackPanel Orientation="Vertical"
-                                            Grid.Column="1">
+                                            Grid.Column="1"
+                                            VerticalAlignment="Top">
                                     <TextBlock Text="{Binding ServerPlaylists.NumberOfItems, Source={StaticResource Locator}}"
                                                Style="{StaticResource PhoneTextTitle3Style}" />
                                     <TextBlock Text="{Binding CumulativeRunTimeTicks, Converter={StaticResource RuntimeConverter}}"
                                                Style="{StaticResource PhoneTextTitle3Style}"
                                                Foreground="{StaticResource PhoneSubtleBrush}" />
                                 </StackPanel>
+                                
+                                <controls:CustomButton VerticalAlignment="Bottom"
+                                                       Grid.Column="1"
+                                                       Style="{StaticResource HeroButtonStyle}"
+                                                       Content="{Binding LocalisedResources.LabelPlayShuffle, Source={StaticResource LocalisedStrings}}"/>
                             </Grid>
                         </DataTemplate>
                     </telerikPrimitives:RadDataBoundListBox.ListHeaderTemplate>

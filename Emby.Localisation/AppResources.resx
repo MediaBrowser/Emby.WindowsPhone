@@ -1284,4 +1284,7 @@
   <data name="LabelHideItemTitles" xml:space="preserve">
     <value>Hide titles for items in tiled lists</value>
   </data>
+  <data name="LabelPlayShuffle" xml:space="preserve">
+    <value>Shuffle Play</value>
+  </data>
 </root>

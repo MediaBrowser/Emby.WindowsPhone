@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Cimbalino.Toolkit.Extensions;
+using Emby.WindowsPhone.AudioAgent;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
@@ -72,10 +73,11 @@ namespace Emby.WindowsPhone.ViewModel.Playlists
         {
             get
             {
-                if (PlaylistItems == null || PlaylistItems.Count == 0)
+                if (PlaylistItems.IsNullOrEmpty())
                 {
                     return AppResources.LabelNoItems;
                 }
+
                 if (PlaylistItems.Count == 1)
                 {
                     return AppResources.LabelOneItem;
@@ -167,7 +169,7 @@ namespace Emby.WindowsPhone.ViewModel.Playlists
             }
         }
 
-        public RelayCommand StartPlaylist
+        public RelayCommand StartPlaylistCommand
         {
             get
             {
@@ -178,21 +180,26 @@ namespace Emby.WindowsPhone.ViewModel.Playlists
                         return;
                     }
 
-                    if (SelectedPlaylist.MediaType.Equals("Video"))
-                    {
-                        var message = new VideoMessage(PlaylistItems, PlaylistItems.First(), false);
-                        if (SimpleIoc.Default.GetInstance<VideoPlayerViewModel>() != null)
-                        {
-                            Messenger.Default.Send(message);
-                            NavigationService.NavigateTo(Constants.Pages.VideoPlayerView);
-                        }
-                    }
-                    else if (SelectedPlaylist.MediaType.Equals("Audio"))
-                    {
-                        var tracks = await PlaylistItems.ToList().ToPlayListItems(ApiClient, _playbackManager);
+                    var items = PlaylistItems;
+                    await StartPlaylist(items);
+                });
+            }
+        }
 
-                        Messenger.Default.Send(new NotificationMessage<List<PlaylistItem>>(tracks, Constants.Messages.SetPlaylistAsMsg));
+        public RelayCommand StartShufflePlayCommand
+        {
+            get
+            {
+                return new RelayCommand(async () =>
+                {
+                    if (PlaylistItems.IsNullOrEmpty())
+                    {
+                        return;
                     }
+
+                    var randomisedList = PlaylistItems.Randomise();
+
+                    await StartPlaylist(randomisedList);
                 });
             }
         }
@@ -223,7 +230,7 @@ namespace Emby.WindowsPhone.ViewModel.Playlists
                     }
 
                     var itemIds = SelectedItems.Select(x => x.PlaylistItemId);
-                    var cumulativeRuntime = SelectedItems.Sum(x => x.RunTimeTicks.HasValue ? x.RunTimeTicks.Value : 0);
+                    var cumulativeRuntime = SelectedItems.Sum(x => x.RunTimeTicks ?? 0);
                     try
                     {
                         SetProgressBar(AppResources.SysTrayRemoving);
@@ -308,7 +315,26 @@ namespace Emby.WindowsPhone.ViewModel.Playlists
                 });
             }
         }
-        
+
+        private async Task StartPlaylist(IList<BaseItemDto> items)
+        {
+            if (SelectedPlaylist.MediaType.Equals("Video"))
+            {
+                var message = new VideoMessage(items, items.First(), false);
+                if (SimpleIoc.Default.GetInstance<VideoPlayerViewModel>() != null)
+                {
+                    Messenger.Default.Send(message);
+                    NavigationService.NavigateTo(Constants.Pages.VideoPlayerView);
+                }
+            }
+            else if (SelectedPlaylist.MediaType.Equals("Audio"))
+            {
+                var tracks = await items.ToList().ToPlayListItems(ApiClient, _playbackManager);
+
+                Messenger.Default.Send(new NotificationMessage<List<PlaylistItem>>(tracks, Constants.Messages.SetPlaylistAsMsg));
+            }
+        }
+
         public override void WireMessages()
         {
             Messenger.Default.Register<NotificationMessage>(this, m =>
