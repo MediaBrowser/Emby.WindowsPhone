@@ -403,6 +403,15 @@ namespace Emby.WindowsPhone.Localisation {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to sign up.
+        /// </summary>
+        public static string AppBarSignUp {
+            get {
+                return ResourceManager.GetString("AppBarSignUp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to unlock features.
         /// </summary>
         public static string AppBarUnlockFeatures {
@@ -534,6 +543,15 @@ namespace Emby.WindowsPhone.Localisation {
         public static string ErrorDisabledUserTitle {
             get {
                 return ResourceManager.GetString("ErrorDisabledUserTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email address already in use.
+        /// </summary>
+        public static string ErrorEmailInUse {
+            get {
+                return ResourceManager.GetString("ErrorEmailInUse", resourceCulture);
             }
         }
         
@@ -727,6 +745,15 @@ namespace Emby.WindowsPhone.Localisation {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Username already in use.
+        /// </summary>
+        public static string ErrorUsernameInUse {
+            get {
+                return ResourceManager.GetString("ErrorUsernameInUse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Favourites.
         /// </summary>
         public static string Favourites {
@@ -876,6 +903,15 @@ namespace Emby.WindowsPhone.Localisation {
         public static string HeaderSettings {
             get {
                 return ResourceManager.GetString("HeaderSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sign up.
+        /// </summary>
+        public static string HeaderSignUpForEmbyConnect {
+            get {
+                return ResourceManager.GetString("HeaderSignUpForEmbyConnect", resourceCulture);
             }
         }
         
@@ -1191,6 +1227,15 @@ namespace Emby.WindowsPhone.Localisation {
         public static string LabelDisplayRandomImages {
             get {
                 return ResourceManager.GetString("LabelDisplayRandomImages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email address:.
+        /// </summary>
+        public static string LabelEmailAddress {
+            get {
+                return ResourceManager.GetString("LabelEmailAddress", resourceCulture);
             }
         }
         
@@ -1843,6 +1888,15 @@ namespace Emby.WindowsPhone.Localisation {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Privacy statement.
+        /// </summary>
+        public static string LabelPrivacyStatement {
+            get {
+                return ResourceManager.GetString("LabelPrivacyStatement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Producer.
         /// </summary>
         public static string LabelProducer {
@@ -2244,6 +2298,15 @@ namespace Emby.WindowsPhone.Localisation {
         public static string LabelSignUp {
             get {
                 return ResourceManager.GetString("LabelSignUp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to By signing up to Emby Connect, you can sign into any of the Emby apps as well as the support forum..
+        /// </summary>
+        public static string LabelSignUpForEmbyConnectDescription {
+            get {
+                return ResourceManager.GetString("LabelSignUpForEmbyConnectDescription", resourceCulture);
             }
         }
         
@@ -3454,6 +3517,15 @@ namespace Emby.WindowsPhone.Localisation {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Signing up....
+        /// </summary>
+        public static string SysTraySigningUp {
+            get {
+                return ResourceManager.GetString("SysTraySigningUp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unregistering device....
         /// </summary>
         public static string SysTrayUnregisteringDevice {
@@ -3523,6 +3595,15 @@ namespace Emby.WindowsPhone.Localisation {
         public static string Unpin {
             get {
                 return ResourceManager.GetString("Unpin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to enter an email address.
+        /// </summary>
+        public static string WatermarkEnterEmailAddress {
+            get {
+                return ResourceManager.GetString("WatermarkEnterEmailAddress", resourceCulture);
             }
         }
         

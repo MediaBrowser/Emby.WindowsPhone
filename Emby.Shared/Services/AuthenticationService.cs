@@ -228,6 +228,13 @@ namespace Emby.WindowsPhone.Services
             }
         }
 
+        public async Task<ConnectSignupResponse> SignUpForConnect(string email, string username, string password)
+        {
+            var response = await _connectionManager.SignupForConnect(email, username, password);
+            
+            return response;
+        }
+
         public void SetUser(UserDto user)
         {
             if (!SyncService.SyncEnabled)

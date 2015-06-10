@@ -1,0 +1,125 @@
+﻿<views:SettingsBasePage x:Class="Emby.WindowsPhone.Views.Settings.ConnectSignUpView"
+                        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                        xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+                        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                        xmlns:ignore="http://www.ignore.com"
+                        xmlns:controls="clr-namespace:Emby.WindowsPhone.Controls"
+                        xmlns:views="clr-namespace:Emby.WindowsPhone.Views"
+                        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+                        xmlns:behaviors="clr-namespace:Cimbalino.Toolkit.Behaviors;assembly=Cimbalino.Toolkit"
+                        xmlns:behaviours="clr-namespace:Emby.WindowsPhone.Behaviours"
+                        xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
+                        xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+                        xmlns:behaviours1="clr-namespace:ScottIsAFool.WindowsPhone.Behaviours"
+                        mc:Ignorable="d ignore"
+                        FontFamily="{StaticResource PhoneFontFamilyNormal}"
+                        FontSize="{StaticResource PhoneFontSizeNormal}"
+                        Foreground="{StaticResource PhoneForegroundBrush}"
+                        SupportedOrientations="Portrait"
+                        Orientation="Portrait"
+                        shell:SystemTray.IsVisible="True"
+                        shell:SystemTray.Opacity="0"
+                        DataContext="{Binding SignUp, Source={StaticResource Locator}}">
+    <i:Interaction.Behaviors>
+        <behaviors:ApplicationBarBehavior IsMenuEnabled="True"
+                                          Mode="{Binding Auth.LoggedInConnectUser, Source={StaticResource Locator}, Converter={StaticResource AppBarModeConverter}}">
+            <behaviors:ApplicationBarBehavior.Buttons>
+                <behaviors:ApplicationBarIconButton IconUri="/Icons/appbar.check.rest.png"
+                                                    Text="{Binding LocalisedResources.AppBarLogin, Source={StaticResource LocalisedStrings}}"
+                                                    IsEnabled="{Binding CanSignUp}"
+                                                    Command="{Binding SignUpCommand}" />
+            </behaviors:ApplicationBarBehavior.Buttons>
+            <behaviors:ApplicationBarBehavior.MenuItems>
+                <behaviors:ApplicationBarMenuItem Text="{Binding LocalisedResources.AppBarSendLogs, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                  x:Name="EmailLogs"
+                                                  Click="EmailLogs_OnClick" />
+                <behaviors:ApplicationBarMenuItem Text="{Binding LocalisedResources.AppBarAbout, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                  x:Name="AboutItem"
+                                                  Click="AboutItem_OnClick" />
+            </behaviors:ApplicationBarBehavior.MenuItems>
+        </behaviors:ApplicationBarBehavior>
+        <behaviours:MBSysTray Text="{Binding ProgressText}"
+                              IsVisible="{Binding ProgressIsVisible}"
+                              IsIndeterminate="{Binding ProgressIsVisible}" />
+        <behaviors:AutoFocusBehavior />
+    </i:Interaction.Behaviors>
+
+    <toolkit:TransitionService.NavigationInTransition>
+        <toolkit:NavigationInTransition>
+            <toolkit:NavigationInTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardIn" />
+            </toolkit:NavigationInTransition.Backward>
+            <toolkit:NavigationInTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardIn" />
+            </toolkit:NavigationInTransition.Forward>
+        </toolkit:NavigationInTransition>
+    </toolkit:TransitionService.NavigationInTransition>
+    <toolkit:TransitionService.NavigationOutTransition>
+        <toolkit:NavigationOutTransition>
+            <toolkit:NavigationOutTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardOut" />
+            </toolkit:NavigationOutTransition.Backward>
+            <toolkit:NavigationOutTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardOut" />
+            </toolkit:NavigationOutTransition.Forward>
+        </toolkit:NavigationOutTransition>
+    </toolkit:TransitionService.NavigationOutTransition>
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot"
+          Background="{StaticResource MediaBrowserBackground}">
+        <Grid Margin="0,32,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!--TitlePanel contains the name of the application and page title-->
+            <StackPanel x:Name="TitlePanel"
+                        Grid.Row="0"
+                        Margin="12,17,0,28">
+                <controls:EmbyLogo AltText="{Binding LocalisedResources.HeaderSignUpForEmbyConnect, Source={StaticResource LocalisedStrings}}" />
+
+            </StackPanel>
+
+            <!--ContentPanel - place additional content here-->
+            <Grid x:Name="ContentPanel"
+                  Grid.Row="1"
+                  Margin="12,0,12,0">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="{Binding LocalisedResources.LabelSignUpForEmbyConnectDescription, Source={StaticResource LocalisedStrings}}"
+                               Style="{StaticResource PhoneTextNormalStyle}"
+                               TextWrapping="Wrap" />
+                    <telerikPrimitives:RadTextBox Header="{Binding LocalisedResources.LabelUsername, Source={StaticResource LocalisedStrings}}"
+                                                  Text="{Binding Username, Mode=TwoWay}"
+                                                  Watermark="{Binding LocalisedResources.WatermarkEnterUsername, Source={StaticResource LocalisedStrings}}"
+                                                  InputScope="EmailUserName">
+                        <i:Interaction.Behaviors>
+                            <behaviours1:UpdateTextBindingOnPropertyChanged />
+                        </i:Interaction.Behaviors>
+                    </telerikPrimitives:RadTextBox>
+                    <telerikPrimitives:RadPasswordBox Header="{Binding LocalisedResources.LabelPassword, Source={StaticResource LocalisedStrings}}"
+                                                      Password="{Binding Password, Mode=TwoWay}"
+                                                      Watermark="{Binding LocalisedResources.WatermarkPassword, Source={StaticResource LocalisedStrings}}" />
+                    <telerikPrimitives:RadTextBox Header="{Binding LocalisedResources.LabelEmailAddress, Source={StaticResource LocalisedStrings}}"
+                                                  Text="{Binding EmailAddress, Mode=TwoWay}"
+                                                  Watermark="{Binding LocalisedResources.WatermarkEnterEmailAddress, Source={StaticResource LocalisedStrings}}"
+                                                  InputScope="EmailUserName">
+                        <i:Interaction.Behaviors>
+                            <behaviours1:UpdateTextBindingOnPropertyChanged />
+                            <behaviours:EnterKeyHandler EnterKeyAction="ExecuteCommand"
+                                                         CommandString="SignUpCommand" />
+                        </i:Interaction.Behaviors>
+                    </telerikPrimitives:RadTextBox>
+                    
+                    <TextBlock Text="{Binding ErrorMessage}"
+                               Style="{StaticResource PhoneTextNormalStyle}"
+                               Foreground="Red"
+                               Visibility="{Binding DisplayErrorMessage, Converter={StaticResource VisibilityConverter}}"/>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Grid>
+</views:SettingsBasePage>
