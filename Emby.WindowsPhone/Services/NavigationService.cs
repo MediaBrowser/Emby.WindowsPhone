@@ -101,6 +101,9 @@ namespace Emby.WindowsPhone.Services
                         case "livetv":
                             NavigateTo(Constants.Pages.LiveTv.LiveTvView);
                             break;
+                        case "playlists":
+                            NavigateTo(Constants.Pages.FolderView + item.Id);
+                            break;
                         default:
                             if (App.SpecificSettings.JustShowFolderView)
                             {

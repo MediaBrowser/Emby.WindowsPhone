@@ -312,10 +312,7 @@
             <StackPanel x:Name="TitlePanel"
                         Grid.Row="0"
                         Margin="12,17,0,28">
-                <controls:EmbyLogo />
-                <TextBlock Text="{Binding SelectedPlaylist.Name, Converter={StaticResource StringToLowercaseConverter}}"
-                           Margin="9,-7,0,0"
-                           Style="{StaticResource PhoneTextTitle1Style}" />
+                <controls:EmbyLogo AltText="{Binding SelectedPlaylist.Name, Converter={StaticResource StringToUppercaseConverter}}"/>
             </StackPanel>
 
             <!--ContentPanel - place additional content here-->
@@ -338,6 +335,10 @@
                                     <ColumnDefinition Width="180" />
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
 
                                 <controls:CustomButton Style="{StaticResource EmptyButtonStyle}"
                                                        TapCommand="{Binding ServerPlaylists.StartPlaylistCommand, Source={StaticResource Locator}}">
@@ -356,6 +357,7 @@
 
                                 <StackPanel Orientation="Vertical"
                                             Grid.Column="1"
+                                            Grid.Row="0"
                                             VerticalAlignment="Top">
                                     <TextBlock Text="{Binding ServerPlaylists.NumberOfItems, Source={StaticResource Locator}}"
                                                Style="{StaticResource PhoneTextTitle3Style}" />
@@ -365,9 +367,11 @@
                                 </StackPanel>
                                 
                                 <controls:CustomButton VerticalAlignment="Bottom"
-                                                       Grid.Column="1"
+                                                       Grid.Column="0"
+                                                       Grid.ColumnSpan="2"
                                                        Style="{StaticResource HeroButtonStyle}"
-                                                       Content="{Binding LocalisedResources.LabelPlayShuffle, Source={StaticResource LocalisedStrings}}"/>
+                                                       Content="{Binding LocalisedResources.LabelPlayShuffle, Source={StaticResource LocalisedStrings}}"
+                                                       Grid.Row="1"/>
                             </Grid>
                         </DataTemplate>
                     </telerikPrimitives:RadDataBoundListBox.ListHeaderTemplate>
