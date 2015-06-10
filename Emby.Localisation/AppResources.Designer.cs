@@ -718,6 +718,15 @@ namespace Emby.WindowsPhone.Localisation {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There was an error signing up.
+        /// </summary>
+        public static string ErrorSigningUp {
+            get {
+                return ResourceManager.GetString("ErrorSigningUp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error.
         /// </summary>
         public static string ErrorTitle {
@@ -2761,11 +2770,29 @@ namespace Emby.WindowsPhone.Localisation {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You have successfully signed up, please check your email for a validation email..
+        /// </summary>
+        public static string MessageSignUpSuccessful {
+            get {
+                return ResourceManager.GetString("MessageSignUpSuccessful", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sync job created.
         /// </summary>
         public static string MessageSyncJobCreated {
             get {
                 return ResourceManager.GetString("MessageSyncJobCreated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Success.
+        /// </summary>
+        public static string MessageTitleSuccess {
+            get {
+                return ResourceManager.GetString("MessageTitleSuccess", resourceCulture);
             }
         }
         

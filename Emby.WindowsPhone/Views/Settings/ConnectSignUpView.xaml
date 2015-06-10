@@ -95,18 +95,21 @@
                     <telerikPrimitives:RadTextBox Header="{Binding LocalisedResources.LabelUsername, Source={StaticResource LocalisedStrings}}"
                                                   Text="{Binding Username, Mode=TwoWay}"
                                                   Watermark="{Binding LocalisedResources.WatermarkEnterUsername, Source={StaticResource LocalisedStrings}}"
-                                                  InputScope="EmailUserName">
+                                                  InputScope="EmailUserName"
+                                                  IsEnabled="{Binding ProgressIsVisible, Converter={StaticResource NegativeBooleanConverter}}">
                         <i:Interaction.Behaviors>
                             <behaviours1:UpdateTextBindingOnPropertyChanged />
                         </i:Interaction.Behaviors>
                     </telerikPrimitives:RadTextBox>
                     <telerikPrimitives:RadPasswordBox Header="{Binding LocalisedResources.LabelPassword, Source={StaticResource LocalisedStrings}}"
                                                       Password="{Binding Password, Mode=TwoWay}"
-                                                      Watermark="{Binding LocalisedResources.WatermarkPassword, Source={StaticResource LocalisedStrings}}" />
+                                                      Watermark="{Binding LocalisedResources.WatermarkPassword, Source={StaticResource LocalisedStrings}}"
+                                                      IsEnabled="{Binding ProgressIsVisible, Converter={StaticResource NegativeBooleanConverter}}"/>
                     <telerikPrimitives:RadTextBox Header="{Binding LocalisedResources.LabelEmailAddress, Source={StaticResource LocalisedStrings}}"
                                                   Text="{Binding EmailAddress, Mode=TwoWay}"
                                                   Watermark="{Binding LocalisedResources.WatermarkEnterEmailAddress, Source={StaticResource LocalisedStrings}}"
-                                                  InputScope="EmailUserName">
+                                                  InputScope="EmailUserName"
+                                                  IsEnabled="{Binding ProgressIsVisible, Converter={StaticResource NegativeBooleanConverter}}">
                         <i:Interaction.Behaviors>
                             <behaviours1:UpdateTextBindingOnPropertyChanged />
                             <behaviours:EnterKeyHandler EnterKeyAction="ExecuteCommand"
