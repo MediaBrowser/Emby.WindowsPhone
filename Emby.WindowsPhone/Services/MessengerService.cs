@@ -15,5 +15,10 @@ namespace Emby.WindowsPhone.Services
         {
             Messenger.Default.Send(new SyncNotificationMessage(sender, target, notification, itemId, itemType));
         }
+
+        public void SendAppResetNotification()
+        {
+            Messenger.Default.Send(new ResetAppMessage());
+        }
     }
 }

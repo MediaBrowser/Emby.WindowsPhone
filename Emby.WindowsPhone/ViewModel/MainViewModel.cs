@@ -111,8 +111,6 @@ namespace Emby.WindowsPhone.ViewModel
             {
                 Log.Info("Signing out");
 
-                Reset();
-
                 AuthenticationService.Current.SignOut().ConfigureAwait(false);
 
                 NavigationService.NavigateTo(Constants.Pages.ChooseProfileView);
@@ -216,12 +214,13 @@ namespace Emby.WindowsPhone.ViewModel
 
         private void Reset()
         {
-            AuthenticationService.Current.Logout();
             TileService.Current.ResetWideTile(App.SpecificSettings.UseTransparentTile);
             _hasLoaded = false;
             Folders.Clear();
+            UserViews.Clear();
             RecentItems.Clear();
-            Messenger.Default.Send(new NotificationMessage(Constants.Messages.ResetAppMsg));
+            FavouriteItems.Clear();
+            InProgressItems.Clear();
         }
 
         private async Task GetEverything(bool isRefresh)
@@ -471,5 +470,11 @@ namespace Emby.WindowsPhone.ViewModel
         public ObservableCollection<BaseItemDto> InProgressItems { get; set; }
         public BaseItemDto DummyFolder { get; set; }
         public bool ShowInProgress { get; set; }
+
+        public override void Cleanup()
+        {
+            Reset();
+            base.Cleanup();
+        }
     }
 }

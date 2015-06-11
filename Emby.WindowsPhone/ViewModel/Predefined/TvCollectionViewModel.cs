@@ -151,13 +151,7 @@ namespace Emby.WindowsPhone.ViewModel.Predefined
         {
             if (parentId != _parentId)
             {
-                NextUpList.Clear();
-                LatestUnwatched.Clear();
-                Upcoming.Clear();
-                Shows.Clear();
-                Genres.Clear();
-
-                _nextUpLoaded = _latestUnwatchedLoaded = _upcomingLoaded = _showsLoaded = _genresLoaded = false;
+                Cleanup();
 
                 _parentId = parentId;
             }
@@ -469,8 +463,8 @@ namespace Emby.WindowsPhone.ViewModel.Predefined
                     switch (type)
                     {
                         case "episode":
-                            SetEpisodeAsWatched(NextUpList, m.ItemId);
-                            SetEpisodeAsWatched(LatestUnwatched, m.ItemId);
+                            SetEpisodeAsSynced(NextUpList, m.ItemId);
+                            SetEpisodeAsSynced(LatestUnwatched, m.ItemId);
                             break;
                         case "series":
                             foreach (var group in Shows)
@@ -488,7 +482,7 @@ namespace Emby.WindowsPhone.ViewModel.Predefined
             });
         }
 
-        private static void SetEpisodeAsWatched(List<BaseItemDto> list, string itemId)
+        private static void SetEpisodeAsSynced(List<BaseItemDto> list, string itemId)
         {
             if (!list.IsNullOrEmpty())
             {
@@ -498,6 +492,20 @@ namespace Emby.WindowsPhone.ViewModel.Predefined
                     episode.IsSynced = true;
                 }
             }
+        }
+
+        public override void Cleanup()
+        {
+            _nextUpLoaded = _latestUnwatchedLoaded = _upcomingLoaded = _showsLoaded = _genresLoaded = false;
+            _parentId = null;
+
+            NextUpList.Clear();
+            LatestUnwatched.Clear();
+            Upcoming.Clear();
+            Shows.Clear();
+            Genres.Clear();
+
+            base.Cleanup();
         }
     }
 }

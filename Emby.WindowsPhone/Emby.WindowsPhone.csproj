@@ -218,6 +218,7 @@
     <Compile Include="Extensions\BaseItemDtoExtensions.cs" />
     <Compile Include="Extensions\ContainerExtensions.cs" />
     <Compile Include="Extensions\SyncProfileOptionExtensions.cs" />
+    <Compile Include="Messaging\ResetAppMessage.cs" />
     <Compile Include="Messaging\SyncJobMessage.cs" />
     <Compile Include="Services\MessagePromptService.cs" />
     <Compile Include="Model\Enum{T}.cs" />

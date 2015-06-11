@@ -21,6 +21,7 @@ using Emby.WindowsPhone.Model;
 using Emby.WindowsPhone.Model.Connection;
 using Emby.WindowsPhone.Model.Streaming;
 using Emby.WindowsPhone.Localisation;
+using Emby.WindowsPhone.Messaging;
 using Emby.WindowsPhone.Services;
 using INavigationService = Emby.WindowsPhone.Model.Interfaces.INavigationService;
 using LockScreenService = Emby.WindowsPhone.Services.LockScreenService;
@@ -381,6 +382,7 @@ namespace Emby.WindowsPhone.ViewModel.Settings
                     }
                     else
                     {
+                        Messenger.Default.Send(new ResetAppMessage());
                         AuthenticationService.Current.ClearLoggedInUser();
                         await Utils.HandleConnectedState(result, ApiClient, NavigationService, Log);
                         SaveServer(server);

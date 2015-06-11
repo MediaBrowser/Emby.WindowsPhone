@@ -1,22 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Windows;
+using Emby.WindowsPhone.Extensions;
+using Emby.WindowsPhone.Helpers;
+using Emby.WindowsPhone.Localisation;
+using Emby.WindowsPhone.Messaging;
+using Emby.WindowsPhone.Model.Interfaces;
+using Emby.WindowsPhone.Services;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 using JetBrains.Annotations;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Net;
 using MediaBrowser.Model.Querying;
-using Emby.WindowsPhone.Extensions;
-using Emby.WindowsPhone.Helpers;
-using Emby.WindowsPhone.Model.Interfaces;
-using Emby.WindowsPhone.Localisation;
-using GalaSoft.MvvmLight.Messaging;
-using Emby.WindowsPhone.Messaging;
-using Emby.WindowsPhone.Services;
 using ScottIsAFool.WindowsPhone;
 
 namespace Emby.WindowsPhone.ViewModel.Predefined
@@ -172,13 +170,7 @@ namespace Emby.WindowsPhone.ViewModel.Predefined
         {
             if (parentId != _parentId)
             {
-                Movies.Clear();
-                Boxsets.Clear();
-                LatestUnwatched.Clear();
-                Genres.Clear();
-                UnseenHeader = null;
-
-                _moviesLoaded = _boxsetsLoaded = _latestUnwatchedLoaded = _genresLoaded = false;
+                Cleanup();
 
                 _parentId = parentId;
             }
@@ -461,6 +453,21 @@ namespace Emby.WindowsPhone.ViewModel.Predefined
                     }
                 }
             });
+        }
+
+        public override void Cleanup()
+        {
+            _moviesLoaded = _boxsetsLoaded = _latestUnwatchedLoaded = _genresLoaded = false;
+            _parentId = null;
+
+            Movies.Clear();
+            Boxsets.Clear();
+            LatestUnwatched.Clear();
+            Genres.Clear();
+
+            UnseenHeader = null;
+
+            base.Cleanup();
         }
     }
 }

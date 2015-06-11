@@ -12,6 +12,7 @@ using Emby.WindowsPhone.Extensions;
 using Emby.WindowsPhone.Helpers;
 using Emby.WindowsPhone.Interfaces;
 using Emby.WindowsPhone.Logging;
+using Emby.WindowsPhone.Messaging;
 using Emby.WindowsPhone.Model.Connection;
 using Emby.WindowsPhone.Model.Security;
 using Emby.WindowsPhone.Model.Sync;
@@ -28,6 +29,7 @@ using MediaBrowser.Model;
 using INavigationService = Emby.WindowsPhone.Model.Interfaces.INavigationService;
 using NavigationService = Emby.WindowsPhone.Services.NavigationService;
 using Emby.WindowsPhone.ViewModel.LiveTv;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace Emby.WindowsPhone.ViewModel
 {
@@ -475,9 +477,18 @@ namespace Emby.WindowsPhone.ViewModel
         /// </summary>
         public static void Cleanup()
         {
-            foreach (var vm in ServiceLocator.Current.GetAllInstances<ScottIsAFool.WindowsPhone.ViewModel.ViewModelBase>())
+            CleanupInternal<MainViewModel>();
+            CleanupInternal<MovieCollectionViewModel>();
+            CleanupInternal<TvCollectionViewModel>();
+            CleanupInternal<MusicCollectionViewModel>();
+        }
+
+        private static void CleanupInternal<T>() where T : ScottIsAFool.WindowsPhone.ViewModel.ViewModelBase
+        {
+            var item = ServiceLocator.Current.GetInstance<T>();
+            if (item != null)
             {
-                vm.Cleanup();
+                item.Cleanup();
             }
         }
     }

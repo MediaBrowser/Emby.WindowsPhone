@@ -172,6 +172,8 @@ namespace Emby.WindowsPhone.Services
             try
             {
                 await _connectionManager.Logout();
+                Logout();
+                _messengerService.SendAppResetNotification();
             }
             catch (HttpException ex)
             {

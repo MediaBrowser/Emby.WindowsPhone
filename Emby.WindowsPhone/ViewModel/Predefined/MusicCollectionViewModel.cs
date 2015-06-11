@@ -103,12 +103,7 @@ namespace Emby.WindowsPhone.ViewModel.Predefined
         {
             if (parentId != _parentId)
             {
-                Genres.Clear();
-                Songs.Clear();
-                Artists.Clear();
-                Albums.Clear();
-
-                _artistsLoaded = _albumsLoaded = _songsLoaded = _genresLoaded = false;
+                Cleanup();
 
                 _parentId = parentId;
             }
@@ -668,6 +663,20 @@ namespace Emby.WindowsPhone.ViewModel.Predefined
             }
 
             return false;
+        }
+
+        public override void Cleanup()
+        {
+            _artistsLoaded = _albumsLoaded = _songsLoaded = _genresLoaded = false;
+            _parentId = null;
+
+            Genres.Clear();
+            Songs.Clear();
+            Artists.Clear();
+            Albums.Clear();
+            SelectedTracks.Clear();
+
+            base.Cleanup();
         }
     }
 }

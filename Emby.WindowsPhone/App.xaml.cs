@@ -18,6 +18,8 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Emby.WindowsPhone.Localisation;
 using Windows.Phone.ApplicationModel;
+using Emby.WindowsPhone.Messaging;
+using GalaSoft.MvvmLight.Messaging;
 using ScottIsAFool.WindowsPhone.Logging;
 using Telerik.Windows.Controls;
 
@@ -152,6 +154,10 @@ namespace Emby.WindowsPhone
                 PhoneApplicationService.Current.UserIdleDetectionMode = IdleDetectionMode.Disabled;
             }
 
+            Messenger.Default.Register<ResetAppMessage>(this, m =>
+            {
+                ViewModelLocator.Cleanup();
+            });
         }
 
         // Code to execute when the application is launching (eg, from Start)
