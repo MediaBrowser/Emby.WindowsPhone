@@ -39,7 +39,8 @@ namespace Emby.WindowsPhone.Services
             var freeLicence = CurrentApp.LicenseInformation.ProductLicenses[Constants.RemoveAdsProductFree];
             var paidLicence = CurrentApp.LicenseInformation.ProductLicenses[Constants.RemoveAdsProduct];
 #endif
-            IsTrial = !(freeLicence.IsActive || paidLicence.IsActive);
+            var iapPurchased = _settings.Get(Constants.Settings.IAPPurchased, false);
+            IsTrial = !(freeLicence.IsActive || paidLicence.IsActive || iapPurchased);
             //_settings.Set(Constants.Settings.AppIsBought, !IsTrial);
 
             return Task.FromResult(0);
@@ -63,7 +64,7 @@ namespace Emby.WindowsPhone.Services
                 await CurrentApp.RequestProductPurchaseAsync(licenceId, false);
 
                 IsTrial = false;
-                _settings.Set(Constants.Settings.AppIsBought, !IsTrial);
+                _settings.Set(Constants.Settings.IAPPurchased, !IsTrial);
 
                 return true;
             }

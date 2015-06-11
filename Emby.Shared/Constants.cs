@@ -28,6 +28,7 @@
             public const string DefaultServerConnection = "DefaultServerConnection";
             public const string AuthUserSetting = "SelectedUserSetting";
             public const string AppIsBought = "AppIsBoughtSetting";
+            public const string IAPPurchased = "IAPPurchased";
         }
 
         public class Messages
