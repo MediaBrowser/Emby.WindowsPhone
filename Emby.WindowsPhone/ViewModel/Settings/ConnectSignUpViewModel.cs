@@ -1,4 +1,5 @@
 ﻿using Cimbalino.Toolkit.Services;
+using Emby.WindowsPhone.Extensions;
 using Emby.WindowsPhone.Localisation;
 using Emby.WindowsPhone.Services;
 using GalaSoft.MvvmLight.Command;
@@ -22,6 +23,35 @@ namespace Emby.WindowsPhone.ViewModel.Settings
         public string Password { get; set; }
         public string EmailAddress { get; set; }
 
+        public PasswordScore PasswordScore
+        {
+            get { return Password.CheckStrength(); }
+        }
+
+        public bool IsValidUsername
+        {
+            get { return !string.IsNullOrEmpty(Username)
+                       && !Username.Contains(" "); }
+        }
+
+        public bool IsValidPassword
+        {
+            get
+            {
+                return !string.IsNullOrEmpty(Password)
+                       && Password.Length >= 8;
+            }
+        }
+
+        public bool IsValidEmailAddress
+        {
+            get
+            {
+                return !string.IsNullOrEmpty(EmailAddress)
+                       && EmailAddress.IsValidEmail();
+            }
+        }
+
         public string ErrorMessage { get; set; }
 
         public bool DisplayErrorMessage
@@ -34,9 +64,9 @@ namespace Emby.WindowsPhone.ViewModel.Settings
             get
             {
                 return !ProgressIsVisible
-                       && !string.IsNullOrEmpty(Username)
-                       && !string.IsNullOrEmpty(Password)
-                       && !string.IsNullOrEmpty(EmailAddress);
+                       && IsValidUsername
+                       && IsValidPassword
+                       && IsValidEmailAddress;
             }
         }
 
