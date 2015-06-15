@@ -375,7 +375,7 @@ namespace Emby.WindowsPhone
             var item = value as BaseItemDto;
             if (item != null)
             {
-                if (item.LocationType == LocationType.Virtual
+                if ((item.LocationType == LocationType.Virtual && item.Type != "Program")
                     || (!item.IsVideo && !item.IsAudio)
                     || item.PlayAccess != PlayAccess.Full
                     || !IsValidProgram(item))
