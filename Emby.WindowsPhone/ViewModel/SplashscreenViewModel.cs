@@ -106,6 +106,11 @@ namespace Emby.WindowsPhone.ViewModel
             {
                 _serverInfo.SetServerInfo(_savedServer);
             }
+            else
+            {
+                NavigationService.NavigateTo(Constants.Pages.FirstRun.WelcomeView);
+                return;
+            }
 
             await ConnectToServer();
         }
