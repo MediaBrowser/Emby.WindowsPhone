@@ -11,6 +11,7 @@
                 xmlns:behaviors="clr-namespace:Cimbalino.Toolkit.Behaviors;assembly=Cimbalino.Toolkit"
                 xmlns:behaviours="clr-namespace:Emby.WindowsPhone.Behaviours"
                 xmlns:scottBehaviours="clr-namespace:ScottIsAFool.WindowsPhone.Behaviours;assembly=ScottIsAFool.WindowsPhone"
+                xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
                 FontFamily="{StaticResource PhoneFontFamilyNormal}"
                 FontSize="{StaticResource PhoneFontSizeNormal}"
                 Foreground="{StaticResource PhoneForegroundBrush}"
@@ -93,13 +94,12 @@
                     </toolkit:PhoneTextBox>
                     <TextBlock Text="{Binding LocalisedResources.LabelPassword, Source={StaticResource LocalisedStrings}}"
                                Style="{StaticResource PhoneTextSubtleStyle}" />
-                    <PasswordBox Password="{Binding Password, Mode=TwoWay}">
+                    <telerikPrimitives:RadPasswordBox Password="{Binding Password, Mode=TwoWay}">
                         <i:Interaction.Behaviors>
-                            <scottBehaviours:UpdatePasswordBindingOnPropertyChanged />
                             <behaviours:EnterKeyHandler EnterKeyAction="ExecuteCommand"
                                                         CommandString="ManualLoginCommand" />
                         </i:Interaction.Behaviors>
-                    </PasswordBox>
+                    </telerikPrimitives:RadPasswordBox>
                 </StackPanel>
             </Grid>
         </Grid>

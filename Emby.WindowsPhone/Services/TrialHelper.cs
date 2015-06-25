@@ -32,16 +32,20 @@ namespace Emby.WindowsPhone.Services
 
         private Task CheckLicences()
         {
+            try
+            {
 #if BETA
-            var freeLicence = CurrentApp.LicenseInformation.ProductLicenses[Constants.RemoveAdsProductFree + "Beta"];
-            var paidLicence = CurrentApp.LicenseInformation.ProductLicenses[Constants.RemoveAdsProduct + "Beta"];
+                var freeLicence = CurrentApp.LicenseInformation.ProductLicenses[Constants.RemoveAdsProductFree + "Beta"];
+                var paidLicence = CurrentApp.LicenseInformation.ProductLicenses[Constants.RemoveAdsProduct + "Beta"];
 #else
             var freeLicence = CurrentApp.LicenseInformation.ProductLicenses[Constants.RemoveAdsProductFree];
             var paidLicence = CurrentApp.LicenseInformation.ProductLicenses[Constants.RemoveAdsProduct];
 #endif
-            var iapPurchased = _settings.Get(Constants.Settings.IAPPurchased, false);
-            IsTrial = !(freeLicence.IsActive || paidLicence.IsActive || iapPurchased);
-            //_settings.Set(Constants.Settings.AppIsBought, !IsTrial);
+                var iapPurchased = _settings.Get(Constants.Settings.IAPPurchased, false);
+                IsTrial = !(freeLicence.IsActive || paidLicence.IsActive || iapPurchased);
+                //_settings.Set(Constants.Settings.AppIsBought, !IsTrial);
+            }
+            catch { }
 
             return Task.FromResult(0);
         }
