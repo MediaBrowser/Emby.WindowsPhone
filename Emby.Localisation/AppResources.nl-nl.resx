@@ -355,7 +355,7 @@
     <value>Aflevering</value>
   </data>
   <data name="LabelFindServer" xml:space="preserve">
-    <value>Vind server</value>
+    <value>kies server</value>
   </data>
   <data name="LabelFirstRunAccessible" xml:space="preserve">
     <value>Zodra de Media Browser server is geconfigureerd , zorg ervoor dat het toegankelijk is van waar je bent , of dat nu uw lokale draadloze netwerk is , of een extern statisch adres .</value>
@@ -364,7 +364,7 @@
     <value>Wanneer u tevreden bent met uw instellingen, klik dan op de instellingen knop en voer de gegevens van uw server in, anders kunt u de app gewoon sluiten vanaf hier.</value>
   </data>
   <data name="LabelFirstRunServerInfo" xml:space="preserve">
-    <value>Voordat we echter aan de slag kunnen, moet u ervoor zorgen dat u gebruik maakt van een werkende Media Browser server.</value>
+    <value>Voor we aan de slag kunnen, moet u ervoor zorgen dat u gebruik maakt van een werkende Emby server.</value>
   </data>
   <data name="LabelGeneral" xml:space="preserve">
     <value>algemeen</value>
@@ -385,10 +385,10 @@
     <value>Zie film op IMDB</value>
   </data>
   <data name="LabelIsLockScreenProvider" xml:space="preserve">
-    <value>Media Browser is de huidige lock screen provider</value>
+    <value>Emby is de huidige vergrendelingsscherm provider</value>
   </data>
   <data name="LabelIsNotLockScreenProvider" xml:space="preserve">
-    <value>Media Browser is niet de lock screen provider</value>
+    <value>Emby is momenteel niet de vergrendelingsscherm provider</value>
   </data>
   <data name="LabelJustShowList" xml:space="preserve">
     <value>Vertoon een lijst met items, geen media mapweergave</value>
@@ -559,7 +559,7 @@
     <value>Bekeken</value>
   </data>
   <data name="LabelWelcomeText" xml:space="preserve">
-    <value>Welkom bij Media Browser voor Windows Phone. Deze app stelt u in staat om door uw mediacollectie te bladeren, naar uw telefoon te streamen en Media Browser clients op afstand te bedienen.</value>
+    <value>Welkom bij Emby voor Windows Phone. Deze app stelt u in staat om door uw mediacollectie te bladeren, naar uw telefoon te streamen en Emby clients op afstand te bedienen.</value>
   </data>
   <data name="LabelWriter" xml:space="preserve">
     <value>Schrijver</value>
@@ -765,7 +765,7 @@
     <comment>eg, Released in 1993</comment>
   </data>
   <data name="LabelWelcomeTextPhone7" xml:space="preserve">
-    <value>Welkom bij Media Browser voor Windows Phone. Deze app stelt u in staat om door uw mediacollectie te bladeren en Media Browser clients op afstand te bedienen.</value>
+    <value>Welkom bij Emby voor Windows Phone. Deze app stelt u in staat om door uw mediacollectie te bladeren en Emby clients op afstand te bedienen.</value>
   </data>
   <data name="LabelChannels" xml:space="preserve">
     <value>Kanalen</value>
@@ -1076,7 +1076,7 @@
     <value>Let op, uploaden vindt alleen plaats als het toestel geladen wordt, er wifi verbinding is en de accu voor 90% geladen is.</value>
   </data>
   <data name="LabelAutoUploadDescription" xml:space="preserve">
-    <value>Upload uw foto's automatisch van uw telefoon naar uw Media Browser server.</value>
+    <value>Upload uw foto's automatisch van uw telefoon naar uw Emby server.</value>
   </data>
   <data name="LabelTurnPhotoUploadOnServer" xml:space="preserve">
     <value>Ga om dit in te schakelen in het server dashboard naar apparaten, Camera Upload en schakel uw apparaat in. Als u hier geen toegang toe hebt, neem dan contact op met de beheerder van de server.</value>
@@ -1085,22 +1085,22 @@
     <value>Handmatige verbinding</value>
   </data>
   <data name="HeaderWhatIsMbConnect" xml:space="preserve">
-    <value>Wat is MB Connect?</value>
+    <value>Wat is Emby Connect?</value>
   </data>
   <data name="LabelManualServerEntry" xml:space="preserve">
     <value>Vul de server gegevens handmatig in</value>
   </data>
   <data name="LabelMbConnect" xml:space="preserve">
-    <value>MB Connect</value>
+    <value>Emby Connect</value>
   </data>
   <data name="LabelMbConnectAlreadyGotAccount" xml:space="preserve">
-    <value>Als u een Media Browser account hebt kunt u zich nu aanmelden.</value>
+    <value>Als u een Emby account heeft, kunt u zich nu aanmelden.</value>
   </data>
   <data name="LabelMbConnectDescriptionPara1" xml:space="preserve">
-    <value>Met MB Connect kunt u eenvoudig verbinding maken met uw server waar u ook bent en deze eenvoudig delen met familie en vrienden</value>
+    <value>Met Emby Connect kunt u eenvoudig verbinding maken met uw Emby server waar u ook bent en deze eenvoudig delen met uw familie en vrienden</value>
   </data>
   <data name="LabelMbConnectFreeAccount" xml:space="preserve">
-    <value>Als u nog geen Media Browser account hebt kunt u deze nu GRATIS aanmaken.</value>
+    <value>Als u nog geen Emby account hebt kunt u deze nu GRATIS aanmaken.</value>
   </data>
   <data name="LabelSignUp" xml:space="preserve">
     <value>Aanmaken</value>
@@ -1121,7 +1121,7 @@
     <value>Wijzig server</value>
   </data>
   <data name="LabelSignInWithConnect" xml:space="preserve">
-    <value>Meld aan met Media Browser Connect</value>
+    <value>Meld aan met Emby Connect</value>
   </data>
   <data name="ErrorPlayUnderLock" xml:space="preserve">
     <value>Om deze instelling opnieuw aan te passen moet de applicatie opnieuw opgestart worden.</value>
@@ -1141,5 +1141,223 @@
   <data name="LabelRestartNow" xml:space="preserve">
     <value>Opnieuw opstarten?</value>
   </data>
+  <data name="LabelInProgress" xml:space="preserve">
+    <value>bezig</value>
+  </data>
+  <data name="SysTrayCheckingInProgress" xml:space="preserve">
+    <value>Controleren op begonnen items</value>
+  </data>
+  <data name="AppBarOffline" xml:space="preserve">
+    <value>synchroniseer</value>
+  </data>
+  <data name="HeaderAutoSync" xml:space="preserve">
+    <value>Synchroniseer nieuwe items automatisch</value>
+  </data>
+  <data name="HeaderItemLimit" xml:space="preserve">
+    <value>Item limiet:</value>
+  </data>
+  <data name="HeaderQuality" xml:space="preserve">
+    <value>Kwaliteit:</value>
+  </data>
+  <data name="HeaderUnwatchedItems" xml:space="preserve">
+    <value>Synchroniseer alleen onbekeken videos</value>
+  </data>
+  <data name="LabelOptional" xml:space="preserve">
+    <value>optioneel</value>
+  </data>
+  <data name="ErrorNoSyncSupport" xml:space="preserve">
+    <value>Sorry, dit item wordt niet ondersteund voor sync</value>
+  </data>
+  <data name="LabelLoading" xml:space="preserve">
+    <value>Laden...</value>
+  </data>
+  <data name="HeaderSyncJobs" xml:space="preserve">
+    <value>synchroniseer taken</value>
+  </data>
+  <data name="LabelUntitled" xml:space="preserve">
+    <value>Naamloos</value>
+  </data>
+  <data name="SyncJobStatusCancelled" xml:space="preserve">
+    <value>Geannuleerd</value>
+  </data>
+  <data name="SyncJobStatusCompleted" xml:space="preserve">
+    <value>Voltooid</value>
+  </data>
+  <data name="SyncJobStatusCompletedWithError" xml:space="preserve">
+    <value>Voltooid met fouten</value>
+  </data>
+  <data name="SyncJobStatusConverting" xml:space="preserve">
+    <value>Bezig met converteren</value>
+  </data>
+  <data name="SyncJobStatusFailed" xml:space="preserve">
+    <value>Mislukt</value>
+  </data>
+  <data name="SyncJobStatusQueued" xml:space="preserve">
+    <value>In wachtrij geplaatst</value>
+  </data>
+  <data name="SyncJobStatusReadyToTransfer" xml:space="preserve">
+    <value>Klaar voor kopiëren</value>
+  </data>
+  <data name="SyncJobStatusTransferring" xml:space="preserve">
+    <value>Kopiëren</value>
+  </data>
+  <data name="SyncJobStatusRemovedFromDevice" xml:space="preserve">
+    <value>Verwijderd van toestel</value>
+  </data>
+  <data name="SyncJobStatusSynced" xml:space="preserve">
+    <value>Gesynchroniseerd</value>
+  </data>
+  <data name="MenuCancel" xml:space="preserve">
+    <value>annuleren</value>
+  </data>
+  <data name="MenuMarkForRemoval" xml:space="preserve">
+    <value>markeer voor verwijderen</value>
+  </data>
+  <data name="MenuRetry" xml:space="preserve">
+    <value>probeer opnieuw</value>
+  </data>
+  <data name="MenuUnmarkForRemoval" xml:space="preserve">
+    <value>verwijder markering voor verwijderen</value>
+  </data>
+  <data name="AppBarUnsync" xml:space="preserve">
+    <value>desynchroniseer</value>
+  </data>
+  <data name="HeaderSyncToDevice" xml:space="preserve">
+    <value>Synchroniseer naar toestel:</value>
+  </data>
+  <data name="LabelThisDevice" xml:space="preserve">
+    <value>dit toestel ({0})</value>
+    <comment>{0} = the name of the device</comment>
+  </data>
+  <data name="MessageSyncJobCreated" xml:space="preserve">
+    <value>Sync taak aangemaakt</value>
+  </data>
+  <data name="ProfileBaselineDescription" xml:space="preserve">
+    <value>Ontworpen voor compatibiliteit met alle toestellen, web browsers inbegrepen. Richt zich op H264/AAC video en MP3 audio.</value>
+  </data>
+  <data name="ProfileGeneral" xml:space="preserve">
+    <value>Algemeen</value>
+  </data>
+  <data name="ProfileGeneralDescription" xml:space="preserve">
+    <value>Ontworpen voor compatibiliteit met Chromecast, Roku, Smart TV's en gelijkaardige toestellen. Richt zich op H264/AAC video en MP3 audio.</value>
+  </data>
+  <data name="ProfileOriginal" xml:space="preserve">
+    <value>Origineel</value>
+  </data>
+  <data name="ProfileOriginalDescription" xml:space="preserve">
+    <value>Synchroniseert originele bestanden ongewijzigd</value>
+  </data>
+  <data name="HeaderProfile" xml:space="preserve">
+    <value>Profiel:</value>
+  </data>
+  <data name="LabelUseLibraryFolders" xml:space="preserve">
+    <value>Gebruik bibliotheek folder, niet de door de gebruiker geconfigureerde views</value>
+  </data>
+  <data name="LabelUseHttps" xml:space="preserve">
+    <value>Gebruik HTTPS</value>
+  </data>
+  <data name="AppBarResumeOn" xml:space="preserve">
+    <value>hervat op</value>
+  </data>
+  <data name="MessagePlaceholder" xml:space="preserve">
+    <value>Dit item is gewoon een placeholder item in de bibliotheek en kan niet afgespeeld worden.</value>
+  </data>
+  <data name="AppBarUnlockFeatures" xml:space="preserve">
+    <value>ontgrendel functionaliteiten</value>
+  </data>
+  <data name="LabelPurchase" xml:space="preserve">
+    <value>Koop</value>
+  </data>
+  <data name="MessageUpgradeSuccessful" xml:space="preserve">
+    <value>Upgrade geslaagd</value>
+  </data>
+  <data name="UnlockFeaturesText1" xml:space="preserve">
+    <value>Om deze app volledig te kunnen gebruiken moet je een aantal functionaliteiten die de app ondersteunt ontgrendelen, waaronder de volgende:</value>
+  </data>
+  <data name="UnlockFeaturesText2" xml:space="preserve">
+    <value>- Meer dan één video per dag afspelen
+- Een andere Emby client, behalve het web dashboard, vanop afstand kunnen besturen</value>
+  </data>
+  <data name="UnlockFeaturesText3" xml:space="preserve">
+    <value>Als je deze app al eens hebt gekocht zal je na het klikken op de "Kopen" knop gevraagd worden om de gratis upgrade te kopen wat je app zal herstellen naar de status waarin deze was toen je ze kocht. Als je nog niet betaald hebt voor de app zal je gevraagd worden om deze éénmalige upgrade optie te kopen.</value>
+  </data>
+  <data name="LabelHideItemTitles" xml:space="preserve">
+    <value>Verberg titels voor items in tegellijsten</value>
+  </data>
+  <data name="LabelPlayShuffle" xml:space="preserve">
+    <value>Willekeurig Afspelen</value>
+  </data>
+  
+<!--
+<data name="AppBarSignUp" xml:space="preserve">
+    <value>sign up</value>
+  </data>
+-->
+  
+<!--
+<data name="ErrorEmailInUse" xml:space="preserve">
+    <value>Email address already in use</value>
+  </data>
+-->
+  
+<!--
+<data name="ErrorSigningUp" xml:space="preserve">
+    <value>There was an error signing up</value>
+  </data>
+-->
+  
+<!--
+<data name="ErrorUsernameInUse" xml:space="preserve">
+    <value>Username already in use</value>
+  </data>
+-->
+  
+<!--
+<data name="HeaderSignUpForEmbyConnect" xml:space="preserve">
+    <value>Sign up</value>
+  </data>
+-->
+  
+<!--
+<data name="LabelEmailAddress" xml:space="preserve">
+    <value>Email address:</value>
+  </data>
+-->
+  
+<!--
+<data name="LabelPrivacyStatement" xml:space="preserve">
+    <value>Privacy statement</value>
+  </data>
+-->
+  
+<!--
+<data name="LabelSignUpForEmbyConnectDescription" xml:space="preserve">
+    <value>By signing up to Emby Connect, you can sign into any of the Emby apps as well as the support forum.</value>
+  </data>
+-->
+  
+<!--
+<data name="MessageSignUpSuccessful" xml:space="preserve">
+    <value>You have successfully signed up, please check your email for a validation email.</value>
+  </data>
+-->
+  
+<!--
+<data name="MessageTitleSuccess" xml:space="preserve">
+    <value>Success</value>
+  </data>
+-->
+  
+<!--
+<data name="SysTraySigningUp" xml:space="preserve">
+    <value>Signing up...</value>
+  </data>
+-->
+  
+<!--
+<data name="WatermarkEnterEmailAddress" xml:space="preserve">
+    <value>enter an email address</value>
+  </data>
+-->
 
 </root>

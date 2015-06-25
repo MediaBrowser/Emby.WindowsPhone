@@ -328,7 +328,7 @@
     <value>anslutning</value>
   </data>
   <data name="LabelConnectionDetails" xml:space="preserve">
-    <value>Fyll i anslutningsinformation till datorn som kör Media Browser. Tryck sedan för att testa och godkänna.</value>
+    <value>Fyll i anslutningsinformation till datorn som kör Emby Server. Tryck sedan för att testa och godkänna.</value>
   </data>
   <data name="LabelConnectionWarning" xml:space="preserve">
     <value>VARNING: Ändring av servernamnet medför radering av alla sparade profiler.</value>
@@ -355,16 +355,16 @@
     <value>Avsnitt</value>
   </data>
   <data name="LabelFindServer" xml:space="preserve">
-    <value>sök efter server</value>
+    <value>välj server</value>
   </data>
   <data name="LabelFirstRunAccessible" xml:space="preserve">
-    <value>När väl Media Browser-servern är konfigurerad, var god kontrollera att den är åtkomlig från där du befinner dig, oavsett om du befinner dig på det trådlösa lokala nätverket eller på en statisk extern adress.</value>
+    <value>När väl Emby-servern är konfigurerad, var god kontrollera att den är åtkomlig från där du befinner dig, oavsett om du befinner dig på det trådlösa lokala nätverket eller på en statisk extern adress.</value>
   </data>
   <data name="LabelFirstRunHappyConfiguration" xml:space="preserve">
     <value>Om du är nöjd med dina inställningar, klicka på inställningar-knappen och ange anslutningsinställningarna för din server, annars kan du avsluta appen här.</value>
   </data>
   <data name="LabelFirstRunServerInfo" xml:space="preserve">
-    <value>Innan vi kan köra igång, var god kontrollera att Media Browser-servern är igång.</value>
+    <value>Innan vi kan köra igång, var god kontrollera att Emby-servern är igång.</value>
   </data>
   <data name="LabelGeneral" xml:space="preserve">
     <value>allmän</value>
@@ -385,10 +385,10 @@
     <value>Se information om filmen på imdb</value>
   </data>
   <data name="LabelIsLockScreenProvider" xml:space="preserve">
-    <value>Media Browser är aktuell låsskärmsleverantör</value>
+    <value>Emby är aktuell låsskärmsleverantör</value>
   </data>
   <data name="LabelIsNotLockScreenProvider" xml:space="preserve">
-    <value>Media Browser är ej aktuell låsskärmsleverantör</value>
+    <value>Emby är ej aktuell låsskärmsleverantör</value>
   </data>
   <data name="LabelJustShowList" xml:space="preserve">
     <value>Visa enbart en lista över objekten, inte en mappvy</value>
@@ -559,7 +559,7 @@
     <value>Visningar</value>
   </data>
   <data name="LabelWelcomeText" xml:space="preserve">
-    <value>Välkommen till Media Browser för Windows Phone. Den här appen låter dig bläddra i din mediasamling, strömma den till din telefon och fjärrstyra vilken som helst av Media Browser-klienterna.</value>
+    <value>Välkommen till Emby för Windows Phone. Den här appen låter dig bläddra i din mediasamling, strömma den till din telefon och fjärrstyra vilken som helst av Emby-klienterna.</value>
   </data>
   <data name="LabelWriter" xml:space="preserve">
     <value>Manus</value>
@@ -765,7 +765,7 @@
     <comment>eg, Released in 1993</comment>
   </data>
   <data name="LabelWelcomeTextPhone7" xml:space="preserve">
-    <value>Välkommen till Media Browser för Windows Phone. Den här appen låter dig bläddra i din mediasamling, strömma den till din telefon och fjärrstyra vilken som helst av Media Browser-klienterna.</value>
+    <value>Välkommen till Emby för Windows Phone. Den här appen låter dig bläddra i din mediasamling, strömma den till din telefon och fjärrstyra vilken som helst av Emby-klienterna.</value>
   </data>
   <data name="LabelChannels" xml:space="preserve">
     <value>Kanaler</value>
@@ -1076,7 +1076,7 @@
     <value>Var vänlig notera att uppladdningar kommer endast utföras när din enhet laddas, är ansluten till wifi och batteriet är över 90%.</value>
   </data>
   <data name="LabelAutoUploadDescription" xml:space="preserve">
-    <value>Auto-uppladda dina bilder direkt ifrån din telefon till Media Browser Server.</value>
+    <value>Auto-uppladda dina bilder direkt ifrån din telefon till Emby Server.</value>
   </data>
   <data name="LabelTurnPhotoUploadOnServer" xml:space="preserve">
     <value>För att detta ska fungera måste du gå till din Server överblick, klicka på Enheter, sedan Kamera Uppladdning, och tillåt sedan denna enhet. Om du inte har tillgång till detta var vänlig prata med din server administratör.</value>
@@ -1085,22 +1085,22 @@
     <value>Manuell anslutning</value>
   </data>
   <data name="HeaderWhatIsMbConnect" xml:space="preserve">
-    <value>Vad är MB Connect?</value>
+    <value>Vad är Emby Connect?</value>
   </data>
   <data name="LabelManualServerEntry" xml:space="preserve">
     <value>Skriv in server detaljerna manuellt</value>
   </data>
   <data name="LabelMbConnect" xml:space="preserve">
-    <value>MB Connect</value>
+    <value>Emby Connect</value>
   </data>
   <data name="LabelMbConnectAlreadyGotAccount" xml:space="preserve">
-    <value>Om du har ett Media Browser konto så kan du logga in nu.</value>
+    <value>Om du har ett Emby konto så kan du logga in nu.</value>
   </data>
   <data name="LabelMbConnectDescriptionPara1" xml:space="preserve">
-    <value>Med MB Connect, kan du enkelt komma åt din Media Browser server oavsett vart du är, och samtidigt dela med din familj och vänner</value>
+    <value>Med Emby Connect, kan du enkelt komma åt din Emby server oavsett vart du är, och samtidigt dela med din familj och vänner</value>
   </data>
   <data name="LabelMbConnectFreeAccount" xml:space="preserve">
-    <value>Om du inte redan har ett Meda Browser konto, kan du registrera dig nu, det är GRATIS!</value>
+    <value>Om du inte redan har ett Emby konto, kan du registrera dig nu, det är GRATIS!</value>
   </data>
   <data name="LabelSignUp" xml:space="preserve">
     <value>Registrera</value>
@@ -1121,7 +1121,7 @@
     <value>Byt server</value>
   </data>
   <data name="LabelSignInWithConnect" xml:space="preserve">
-    <value>Logga in med Media Browser Connect</value>
+    <value>Logga in med Emby Connect</value>
   </data>
   <data name="ErrorPlayUnderLock" xml:space="preserve">
     <value>För att ändra denna inställning måste du starta om programmet.</value>
@@ -1140,6 +1140,188 @@
   </data>
   <data name="LabelRestartNow" xml:space="preserve">
     <value>Start om nu?</value>
+  </data>
+  <data name="LabelInProgress" xml:space="preserve">
+    <value>påbörjade</value>
+  </data>
+  <data name="SysTrayCheckingInProgress" xml:space="preserve">
+    <value>Kollar efter påbörjade saker</value>
+  </data>
+  <data name="AppBarOffline" xml:space="preserve">
+    <value>synk</value>
+  </data>
+  <data name="HeaderAutoSync" xml:space="preserve">
+    <value>Synka nya objekt automatiskt</value>
+  </data>
+  <data name="HeaderItemLimit" xml:space="preserve">
+    <value>Max antal:</value>
+  </data>
+  <data name="HeaderQuality" xml:space="preserve">
+    <value>Kvalitet:</value>
+  </data>
+  <data name="HeaderUnwatchedItems" xml:space="preserve">
+    <value>Synka endast osedda videos</value>
+  </data>
+  <data name="LabelOptional" xml:space="preserve">
+    <value>valfritt</value>
+  </data>
+  <data name="ErrorNoSyncSupport" xml:space="preserve">
+    <value>Tyvärr, det här objektet kan inte synkas</value>
+  </data>
+  <data name="LabelLoading" xml:space="preserve">
+    <value>Laddar...</value>
+  </data>
+  <data name="HeaderSyncJobs" xml:space="preserve">
+    <value>Synkroniserings jobb</value>
+  </data>
+  <data name="LabelUntitled" xml:space="preserve">
+    <value>Namnlös</value>
+  </data>
+  <data name="SyncJobStatusCancelled" xml:space="preserve">
+    <value>Avbruten</value>
+  </data>
+  <data name="SyncJobStatusCompleted" xml:space="preserve">
+    <value>Klar</value>
+  </data>
+  <data name="SyncJobStatusCompletedWithError" xml:space="preserve">
+    <value>Klar med fel</value>
+  </data>
+  <data name="SyncJobStatusConverting" xml:space="preserve">
+    <value>Konverterar</value>
+  </data>
+  <data name="SyncJobStatusFailed" xml:space="preserve">
+    <value>Misslyckades</value>
+  </data>
+  <data name="SyncJobStatusQueued" xml:space="preserve">
+    <value>Köad</value>
+  </data>
+  <data name="SyncJobStatusReadyToTransfer" xml:space="preserve">
+    <value>Redo att överföras</value>
+  </data>
+  <data name="SyncJobStatusTransferring" xml:space="preserve">
+    <value>Överför</value>
+  </data>
+  <data name="SyncJobStatusRemovedFromDevice" xml:space="preserve">
+    <value>Borttagen från enhet</value>
+  </data>
+  <data name="SyncJobStatusSynced" xml:space="preserve">
+    <value>Synkad</value>
+  </data>
+  <data name="MenuCancel" xml:space="preserve">
+    <value>avbryt</value>
+  </data>
+  <data name="MenuMarkForRemoval" xml:space="preserve">
+    <value>markera för borttagning</value>
+  </data>
+  <data name="MenuRetry" xml:space="preserve">
+    <value>nytt försök</value>
+  </data>
+  <data name="MenuUnmarkForRemoval" xml:space="preserve">
+    <value>ångra markering för borttagning</value>
+  </data>
+  <data name="AppBarUnsync" xml:space="preserve">
+    <value>Sluta synka</value>
+  </data>
+  <data name="HeaderSyncToDevice" xml:space="preserve">
+    <value>Synkronisera till enhet:</value>
+  </data>
+  <data name="LabelThisDevice" xml:space="preserve">
+    <value>denna enhet {0}</value>
+    <comment>{0} = the name of the device</comment>
+  </data>
+  <data name="MessageSyncJobCreated" xml:space="preserve">
+    <value>Synk-jobb skapat</value>
+  </data>
+  <data name="ProfileBaselineDescription" xml:space="preserve">
+    <value>För kompatibilitet med alla enheter, inklusive webbläsare. H264/AAC video och MP3-ljud</value>
+  </data>
+  <data name="ProfileGeneral" xml:space="preserve">
+    <value>Generellt</value>
+  </data>
+  <data name="ProfileGeneralDescription" xml:space="preserve">
+    <value>För kompatibilitet med Chromecast, Roku, Smart TV: s och andra liknande enheter. H264/AAC/AC3 video och MP3-ljud.</value>
+  </data>
+  <data name="ProfileOriginal" xml:space="preserve">
+    <value>Orginal</value>
+  </data>
+  <data name="ProfileOriginalDescription" xml:space="preserve">
+    <value>Synkar orignalfilen som den är</value>
+  </data>
+  <data name="HeaderProfile" xml:space="preserve">
+    <value>Profil:</value>
+  </data>
+  <data name="LabelUseLibraryFolders" xml:space="preserve">
+    <value>Använd kataloger, inte användarkonfigurerade vyer</value>
+  </data>
+  <data name="LabelUseHttps" xml:space="preserve">
+    <value>Använd HTTPS</value>
+  </data>
+  <data name="AppBarResumeOn" xml:space="preserve">
+    <value>fortsätt på</value>
+  </data>
+  <data name="MessagePlaceholder" xml:space="preserve">
+    <value>Det här är bara en platshållare i biblioteket och kan inte spelas.</value>
+  </data>
+  <data name="AppBarUnlockFeatures" xml:space="preserve">
+    <value>Lås upp funktioner</value>
+  </data>
+  <data name="LabelPurchase" xml:space="preserve">
+    <value>Köp</value>
+  </data>
+  <data name="MessageUpgradeSuccessful" xml:space="preserve">
+    <value>Uppgradering lyckades</value>
+  </data>
+  <data name="UnlockFeaturesText1" xml:space="preserve">
+    <value>För att fullt ut kunna använda appen behöver du låsa upp några av funktionerna appen stöder, dessa innefattar följande:</value>
+  </data>
+  <data name="UnlockFeaturesText2" xml:space="preserve">
+    <value>- Spela mer än en video per dag
+Möjlighet att fjärrstyra andra Emby klienter än web-klienten</value>
+  </data>
+  <data name="UnlockFeaturesText3" xml:space="preserve">
+    <value>Om du redan har köpt denna app innan, ett klick på "Köp" knappen kommer att uppmana dig att köpa en gratis uppgraderingen som återställer din app till hur det var när du köpte den. Om du inte redan betalat för appen, uppmanas du att köpa den här gången..</value>
+  </data>
+  <data name="LabelHideItemTitles" xml:space="preserve">
+    <value>Dölj rubrikerna för objekt i listor med tiles</value>
+  </data>
+  <data name="LabelPlayShuffle" xml:space="preserve">
+    <value>Blanda och Spela</value>
+  </data>
+  <data name="AppBarSignUp" xml:space="preserve">
+    <value>registrera</value>
+  </data>
+  <data name="ErrorEmailInUse" xml:space="preserve">
+    <value>Email adressen används redan</value>
+  </data>
+  <data name="ErrorSigningUp" xml:space="preserve">
+    <value>Det gick inte att registrera dig</value>
+  </data>
+  <data name="ErrorUsernameInUse" xml:space="preserve">
+    <value>Användarnamnet används redan</value>
+  </data>
+  <data name="HeaderSignUpForEmbyConnect" xml:space="preserve">
+    <value>Registrera</value>
+  </data>
+  <data name="LabelEmailAddress" xml:space="preserve">
+    <value>Email adress:</value>
+  </data>
+  <data name="LabelPrivacyStatement" xml:space="preserve">
+    <value>Sekretesspolicy</value>
+  </data>
+  <data name="LabelSignUpForEmbyConnectDescription" xml:space="preserve">
+    <value>Genom att registrera dig för Emby Connect, så kan du logga in i alla de Emby klienter som finns tillgängliga samt Supportforum.</value>
+  </data>
+  <data name="MessageSignUpSuccessful" xml:space="preserve">
+    <value>Du har registrerats, vänligen kontrollera din e-post för en e-validering.</value>
+  </data>
+  <data name="MessageTitleSuccess" xml:space="preserve">
+    <value>Lyckades</value>
+  </data>
+  <data name="SysTraySigningUp" xml:space="preserve">
+    <value>Registrerar dig...</value>
+  </data>
+  <data name="WatermarkEnterEmailAddress" xml:space="preserve">
+    <value>skriv in en email adress</value>
   </data>
 
 </root>

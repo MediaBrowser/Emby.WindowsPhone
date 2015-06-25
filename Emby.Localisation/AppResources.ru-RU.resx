@@ -1141,5 +1141,187 @@
   <data name="LabelRestartNow" xml:space="preserve">
     <value>перезапустить сейчас?</value>
   </data>
+  <data name="LabelInProgress" xml:space="preserve">
+    <value>выполняется</value>
+  </data>
+  <data name="SysTrayCheckingInProgress" xml:space="preserve">
+    <value>Проверка выполняемых элементов</value>
+  </data>
+  <data name="AppBarOffline" xml:space="preserve">
+    <value>синхронизация</value>
+  </data>
+  <data name="HeaderAutoSync" xml:space="preserve">
+    <value>Автоматически синхронизировать новые элементы</value>
+  </data>
+  <data name="HeaderItemLimit" xml:space="preserve">
+    <value>Ограничение элементов:</value>
+  </data>
+  <data name="HeaderQuality" xml:space="preserve">
+    <value>Качество:</value>
+  </data>
+  <data name="HeaderUnwatchedItems" xml:space="preserve">
+    <value>Синхронизировать только непросмотренные видео</value>
+  </data>
+  <data name="LabelOptional" xml:space="preserve">
+    <value>необязательно</value>
+  </data>
+  <data name="ErrorNoSyncSupport" xml:space="preserve">
+    <value>Для данного элемента не поддерживается синхронизация</value>
+  </data>
+  <data name="LabelLoading" xml:space="preserve">
+    <value>Загрузается...</value>
+  </data>
+  <data name="HeaderSyncJobs" xml:space="preserve">
+    <value>задания синхронизации</value>
+  </data>
+  <data name="LabelUntitled" xml:space="preserve">
+    <value>Без названия</value>
+  </data>
+  <data name="SyncJobStatusCancelled" xml:space="preserve">
+    <value>Отменено</value>
+  </data>
+  <data name="SyncJobStatusCompleted" xml:space="preserve">
+    <value>Завершено</value>
+  </data>
+  <data name="SyncJobStatusCompletedWithError" xml:space="preserve">
+    <value>Завершено с ошибками</value>
+  </data>
+  <data name="SyncJobStatusConverting" xml:space="preserve">
+    <value>Преобразуется</value>
+  </data>
+  <data name="SyncJobStatusFailed" xml:space="preserve">
+    <value>Неудачно</value>
+  </data>
+  <data name="SyncJobStatusQueued" xml:space="preserve">
+    <value>В очереди</value>
+  </data>
+  <data name="SyncJobStatusReadyToTransfer" xml:space="preserve">
+    <value>Готов к переводу</value>
+  </data>
+  <data name="SyncJobStatusTransferring" xml:space="preserve">
+    <value>Переводится</value>
+  </data>
+  <data name="SyncJobStatusRemovedFromDevice" xml:space="preserve">
+    <value>Изъято с устройства</value>
+  </data>
+  <data name="SyncJobStatusSynced" xml:space="preserve">
+    <value>Синхронизирован</value>
+  </data>
+  <data name="MenuCancel" xml:space="preserve">
+    <value>отменить</value>
+  </data>
+  <data name="MenuMarkForRemoval" xml:space="preserve">
+    <value>поставить пометку об изъятии</value>
+  </data>
+  <data name="MenuRetry" xml:space="preserve">
+    <value>повторить</value>
+  </data>
+  <data name="MenuUnmarkForRemoval" xml:space="preserve">
+    <value>снять пометку об изъятии</value>
+  </data>
+  <data name="AppBarUnsync" xml:space="preserve">
+    <value>рассинхронизировать</value>
+  </data>
+  <data name="HeaderSyncToDevice" xml:space="preserve">
+    <value>Синхронизировать с устройством:</value>
+  </data>
+  <data name="LabelThisDevice" xml:space="preserve">
+    <value>данное устройство ({0})</value>
+    <comment>{0} = the name of the device</comment>
+  </data>
+  <data name="MessageSyncJobCreated" xml:space="preserve">
+    <value>Задание синхронизации создано</value>
+  </data>
+  <data name="ProfileBaselineDescription" xml:space="preserve">
+    <value>Разработан с целью совместимости со всеми устройствами, включая веб-браузеры. Предназначен для H264/AAC видео и MP3 аудио.</value>
+  </data>
+  <data name="ProfileGeneral" xml:space="preserve">
+    <value>Общий</value>
+  </data>
+  <data name="ProfileGeneralDescription" xml:space="preserve">
+    <value>Разработан с целью совместимости со Chromecast, Roku, Smart TV и другими подобными устройствами. Предназначен для H264/AAC/AC3 видео и MP3 аудио.</value>
+  </data>
+  <data name="ProfileOriginal" xml:space="preserve">
+    <value>Оригинальный</value>
+  </data>
+  <data name="ProfileOriginalDescription" xml:space="preserve">
+    <value>Синхронизирует оригинальные файлы "как есть".</value>
+  </data>
+  <data name="HeaderProfile" xml:space="preserve">
+    <value>Профиль:</value>
+  </data>
+  <data name="LabelUseLibraryFolders" xml:space="preserve">
+    <value>Использовать медиапапки, а не сконфигурированные пользователем представления</value>
+  </data>
+  <data name="LabelUseHttps" xml:space="preserve">
+    <value>Использовать HTTPS</value>
+  </data>
+  <data name="AppBarResumeOn" xml:space="preserve">
+    <value>возобновить с</value>
+  </data>
+  <data name="MessagePlaceholder" xml:space="preserve">
+    <value>Данный элемент является только элементом-заглушкой в медиатеке и не может быть воспроизведён.</value>
+  </data>
+  <data name="AppBarUnlockFeatures" xml:space="preserve">
+    <value>разблокировать возможности</value>
+  </data>
+  <data name="LabelPurchase" xml:space="preserve">
+    <value>Оплата</value>
+  </data>
+  <data name="MessageUpgradeSuccessful" xml:space="preserve">
+    <value>Модернизация успешна</value>
+  </data>
+  <data name="UnlockFeaturesText1" xml:space="preserve">
+    <value>Для того, чтобы полностью задействовать приложение, вам необходимо разблокировать некоторые возможности поддерживаемые приложением. Это включает следующее:</value>
+  </data>
+  <data name="UnlockFeaturesText2" xml:space="preserve">
+    <value>- Воспроизведение более чем одного видео за каждый день
+- Получить возможность удалённого управления другим Emby-клиентом, который является не только веб-инфопанелью</value>
+  </data>
+  <data name="UnlockFeaturesText3" xml:space="preserve">
+    <value>Если вы уже оплатили это приложение ранее, при касании кнопки "Оплатить" вам будет предложено приобрести бесплатную модернизацию, которая позволит восстановить ваше приложение к тому состоянию, которое было, когда вы приобрели его. Если вы ещё не заплатили за приложение, вам будет предложено приобрести эту одноразовую модернизацию.</value>
+  </data>
+  <data name="LabelHideItemTitles" xml:space="preserve">
+    <value>Скрывать названия элементов в списках на плитках</value>
+  </data>
+  <data name="LabelPlayShuffle" xml:space="preserve">
+    <value>Перемешать</value>
+  </data>
+  <data name="AppBarSignUp" xml:space="preserve">
+    <value>зарегистрироваться</value>
+  </data>
+  <data name="ErrorEmailInUse" xml:space="preserve">
+    <value>Адрес Э-почты уже используется</value>
+  </data>
+  <data name="ErrorSigningUp" xml:space="preserve">
+    <value>Произошла ошибка при регистрации</value>
+  </data>
+  <data name="ErrorUsernameInUse" xml:space="preserve">
+    <value>Имя пользователя уже используется</value>
+  </data>
+  <data name="HeaderSignUpForEmbyConnect" xml:space="preserve">
+    <value>Регистрация</value>
+  </data>
+  <data name="LabelEmailAddress" xml:space="preserve">
+    <value>Адрес Э-почты</value>
+  </data>
+  <data name="LabelPrivacyStatement" xml:space="preserve">
+    <value>Заявление о конфиденциальности</value>
+  </data>
+  <data name="LabelSignUpForEmbyConnectDescription" xml:space="preserve">
+    <value>Посредством регистрации на Emby Connect, вы можете войти в любое Emby-приложение, так же как на форум поддержки.</value>
+  </data>
+  <data name="MessageSignUpSuccessful" xml:space="preserve">
+    <value>Вы зарегистрировались успешно, проверьте свою э-почту для сообщения о подтверждении.</value>
+  </data>
+  <data name="MessageTitleSuccess" xml:space="preserve">
+    <value>Успешно</value>
+  </data>
+  <data name="SysTraySigningUp" xml:space="preserve">
+    <value>Регистрируется...</value>
+  </data>
+  <data name="WatermarkEnterEmailAddress" xml:space="preserve">
+    <value>введите адрес э-почты</value>
+  </data>
 
 </root>

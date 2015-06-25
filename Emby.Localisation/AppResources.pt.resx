@@ -328,7 +328,7 @@
     <value>conexão</value>
   </data>
   <data name="LabelConnectionDetails" xml:space="preserve">
-    <value>Coloque os detalhes da conexão para apontar para o computador executando o Media Browser. Depois, teste para confirmar.</value>
+    <value>Coloque os detalhes da conexão para apontar para o computador executando o Emby. Depois, teste para confirmar.</value>
   </data>
   <data name="LabelConnectionWarning" xml:space="preserve">
     <value>AVISO: Ao alterar o nome do host os perfis salvos serão removidos.</value>
@@ -355,16 +355,16 @@
     <value>Episódio</value>
   </data>
   <data name="LabelFindServer" xml:space="preserve">
-    <value>encontrar servidor</value>
+    <value>escolher servidor</value>
   </data>
   <data name="LabelFirstRunAccessible" xml:space="preserve">
-    <value>Depois de configurar o servidor Media Browser, certifique-se que ele está acessível, independente de estar na sua rede local ou em um endereço estático externo.</value>
+    <value>Depois de configurar o servidor Emby, certifique-se que ele está acessível, independente de estar na sua rede local ou em um endereço estático externo.</value>
   </data>
   <data name="LabelFirstRunHappyConfiguration" xml:space="preserve">
     <value>Se está satisfeito com o que definiu, clique no botão de ajustes e digite os detalhes do servidor, ou simplesmente saia da aplicação.</value>
   </data>
   <data name="LabelFirstRunServerInfo" xml:space="preserve">
-    <value>Antes de iniciar, você precisa se certificar que o servidor Media Browser está sendo executado</value>
+    <value>Antes de iniciar, você precisa se certificar que o servidor Emby está sendo executado</value>
   </data>
   <data name="LabelGeneral" xml:space="preserve">
     <value>geral</value>
@@ -385,10 +385,10 @@
     <value>Veja o filme no imdb</value>
   </data>
   <data name="LabelIsLockScreenProvider" xml:space="preserve">
-    <value>Media Browser é o provedor da tela de bloqueio atual</value>
+    <value>Emby é o provedor da tela de bloqueio atual</value>
   </data>
   <data name="LabelIsNotLockScreenProvider" xml:space="preserve">
-    <value>Media Browser não é o provedor da tela de bloqueio</value>
+    <value>Emby não é o provedor da tela de bloqueio</value>
   </data>
   <data name="LabelJustShowList" xml:space="preserve">
     <value>Mostre apenas a lista de itens, não a visualização da pasta de mídias</value>
@@ -559,7 +559,7 @@
     <value>Visualizações</value>
   </data>
   <data name="LabelWelcomeText" xml:space="preserve">
-    <value>Bem vindo ao Media Browser para Windows Phone. Esta app permitirá navegar pela sua coleção de mídia, transmitir para seu telefone e controlar remotamente qualquer cliente controlável do Media Browser.</value>
+    <value>Bem vindo ao Emby para Windows Phone. Esta app permitirá explorar sua coleção de mídia, transmitir para seu telefone e controlar remotamente qualquer cliente do Emby.</value>
   </data>
   <data name="LabelWriter" xml:space="preserve">
     <value>Escritor</value>
@@ -765,7 +765,7 @@
     <comment>eg, Released in 1993</comment>
   </data>
   <data name="LabelWelcomeTextPhone7" xml:space="preserve">
-    <value>Bem vindo ao Media Browser para Windows Phone. Esta app permitirá navegar pela sua coleção de mídia e controlar remotamente qualquer cliente controlável do Media Browser.</value>
+    <value>Bem vindo ao Emby para Windows Phone. Esta app permitirá explorar sua coleção de mídia e controlar remotamente qualquer cliente controlável do Emby.</value>
   </data>
   <data name="LabelChannels" xml:space="preserve">
     <value>Canais</value>
@@ -1076,7 +1076,7 @@
     <value>Por favor, saiba que os uploads só ocorrerão quando seu dispositivo estiver conectado à tomada, quando estiver no wifi e quando a bateria estiver com mais de 90%.</value>
   </data>
   <data name="LabelAutoUploadDescription" xml:space="preserve">
-    <value>Faça o upload automaticamente de suas fotos em seu telefone diretamente para o Media Browser Server.</value>
+    <value>Faça o upload automaticamente de suas fotos em seu telefone diretamente para o Servidor Emby.</value>
   </data>
   <data name="LabelTurnPhotoUploadOnServer" xml:space="preserve">
     <value>Para que funcione, você deverá acessar o painel no servidor, clicar em Dispositivos e então em Upload da Câmera, depois ativar o dispositivo. Se não tem acesso a esta função, por favor converse com o administrador do servidor.</value>
@@ -1085,22 +1085,22 @@
     <value>Conexão Manual</value>
   </data>
   <data name="HeaderWhatIsMbConnect" xml:space="preserve">
-    <value>O que é o MB Connect?</value>
+    <value>O que é o Emby Connect?</value>
   </data>
   <data name="LabelManualServerEntry" xml:space="preserve">
     <value>Digite os detalhes do servidor manualmente</value>
   </data>
   <data name="LabelMbConnect" xml:space="preserve">
-    <value>MB Connect</value>
+    <value>Emby Connect</value>
   </data>
   <data name="LabelMbConnectAlreadyGotAccount" xml:space="preserve">
-    <value>Se tiver uma conta Média Browser, pode fazer login agora.</value>
+    <value>Se tiver uma conta Emby, pode fazer login agora.</value>
   </data>
   <data name="LabelMbConnectDescriptionPara1" xml:space="preserve">
-    <value>Com o MB Connect, você pode acessar facilmente seu servidor Media Browser, independente de onde esteja e compartilhar com sua família e amigos.</value>
+    <value>Com o Emby Connect, você pode acessar facilmente seu servidor Emby, independente de onde esteja e compartilhar com sua família e amigos.</value>
   </data>
   <data name="LabelMbConnectFreeAccount" xml:space="preserve">
-    <value>Se ainda não tiver uma conta Media Browser, você pode se inscrever agora, é GRÁTIS!</value>
+    <value>Se ainda não tiver uma conta Emby, você pode se inscrever agora, é GRÁTIS!</value>
   </data>
   <data name="LabelSignUp" xml:space="preserve">
     <value>Inscrever-se</value>
@@ -1118,10 +1118,10 @@
     <value>Sair</value>
   </data>
   <data name="AppBarChangeServer" xml:space="preserve">
-    <value>alterar servidor</value>
+    <value>Alterar servidor</value>
   </data>
   <data name="LabelSignInWithConnect" xml:space="preserve">
-    <value>Entrar no Media Browser Connect</value>
+    <value>Entrar no Emby Connect</value>
   </data>
   <data name="ErrorPlayUnderLock" xml:space="preserve">
     <value>Para alterar este ajuste novamente, você precisa reiniciar a aplicação.</value>
@@ -1140,6 +1140,188 @@
   </data>
   <data name="LabelRestartNow" xml:space="preserve">
     <value>reiniciar agora?</value>
+  </data>
+  <data name="LabelInProgress" xml:space="preserve">
+    <value>em andamento</value>
+  </data>
+  <data name="SysTrayCheckingInProgress" xml:space="preserve">
+    <value>Verificando itens em andamento</value>
+  </data>
+  <data name="AppBarOffline" xml:space="preserve">
+    <value>sincronização</value>
+  </data>
+  <data name="HeaderAutoSync" xml:space="preserve">
+    <value>Sincronizar novos itens automaticamente</value>
+  </data>
+  <data name="HeaderItemLimit" xml:space="preserve">
+    <value>Limite de itens:</value>
+  </data>
+  <data name="HeaderQuality" xml:space="preserve">
+    <value>Qualidade:</value>
+  </data>
+  <data name="HeaderUnwatchedItems" xml:space="preserve">
+    <value>Sincronizar apenas vídeos não assistidos</value>
+  </data>
+  <data name="LabelOptional" xml:space="preserve">
+    <value>opcional</value>
+  </data>
+  <data name="ErrorNoSyncSupport" xml:space="preserve">
+    <value>Desculpe, este item não é suportado pela sincronização</value>
+  </data>
+  <data name="LabelLoading" xml:space="preserve">
+    <value>Carregando...</value>
+  </data>
+  <data name="HeaderSyncJobs" xml:space="preserve">
+    <value>tarefas de sincronização</value>
+  </data>
+  <data name="LabelUntitled" xml:space="preserve">
+    <value>Sem título</value>
+  </data>
+  <data name="SyncJobStatusCancelled" xml:space="preserve">
+    <value>Cancelado</value>
+  </data>
+  <data name="SyncJobStatusCompleted" xml:space="preserve">
+    <value>Concluído</value>
+  </data>
+  <data name="SyncJobStatusCompletedWithError" xml:space="preserve">
+    <value>Concluído com erros</value>
+  </data>
+  <data name="SyncJobStatusConverting" xml:space="preserve">
+    <value>Convertendo</value>
+  </data>
+  <data name="SyncJobStatusFailed" xml:space="preserve">
+    <value>Falhou</value>
+  </data>
+  <data name="SyncJobStatusQueued" xml:space="preserve">
+    <value>Enfileirado</value>
+  </data>
+  <data name="SyncJobStatusReadyToTransfer" xml:space="preserve">
+    <value>Pronto para transferir</value>
+  </data>
+  <data name="SyncJobStatusTransferring" xml:space="preserve">
+    <value>Transferindo</value>
+  </data>
+  <data name="SyncJobStatusRemovedFromDevice" xml:space="preserve">
+    <value>Removido do dispositivo</value>
+  </data>
+  <data name="SyncJobStatusSynced" xml:space="preserve">
+    <value>Sincronizado</value>
+  </data>
+  <data name="MenuCancel" xml:space="preserve">
+    <value>cancelar</value>
+  </data>
+  <data name="MenuMarkForRemoval" xml:space="preserve">
+    <value>marcar para remover</value>
+  </data>
+  <data name="MenuRetry" xml:space="preserve">
+    <value>tentar novamente</value>
+  </data>
+  <data name="MenuUnmarkForRemoval" xml:space="preserve">
+    <value>desmarcar para remover</value>
+  </data>
+  <data name="AppBarUnsync" xml:space="preserve">
+    <value>de-sincronizar</value>
+  </data>
+  <data name="HeaderSyncToDevice" xml:space="preserve">
+    <value>Sincronizar para o dispositivo:</value>
+  </data>
+  <data name="LabelThisDevice" xml:space="preserve">
+    <value>este dispositivo ({0})</value>
+    <comment>{0} = the name of the device</comment>
+  </data>
+  <data name="MessageSyncJobCreated" xml:space="preserve">
+    <value>Criada tarefa de sincronização</value>
+  </data>
+  <data name="ProfileBaselineDescription" xml:space="preserve">
+    <value>Desenvolvido para ser compatível com todos os dispositivos, incluindo navegadores web. Suporta vídeo H264/AAC e áudio MP3.</value>
+  </data>
+  <data name="ProfileGeneral" xml:space="preserve">
+    <value>Geral</value>
+  </data>
+  <data name="ProfileGeneralDescription" xml:space="preserve">
+    <value>Desenvolvido para ser compatível com Chromecast, Roku, Smart TV's, e outros dispositivos similares. Suporta vídeo H264/AAC/AC3 e áudio MP3.</value>
+  </data>
+  <data name="ProfileOriginal" xml:space="preserve">
+    <value>Original</value>
+  </data>
+  <data name="ProfileOriginalDescription" xml:space="preserve">
+    <value>Sincroniza os arquivos originais como são.</value>
+  </data>
+  <data name="HeaderProfile" xml:space="preserve">
+    <value>Perfil:</value>
+  </data>
+  <data name="LabelUseLibraryFolders" xml:space="preserve">
+    <value>Usar pastas da biblioteca, não visualizações definidas pelo usuário</value>
+  </data>
+  <data name="LabelUseHttps" xml:space="preserve">
+    <value>Usar HTTPS</value>
+  </data>
+  <data name="AppBarResumeOn" xml:space="preserve">
+    <value>Retomar em</value>
+  </data>
+  <data name="MessagePlaceholder" xml:space="preserve">
+    <value>Este item é apenas um elemento da biblioteca e não pode ser reproduzido.</value>
+  </data>
+  <data name="AppBarUnlockFeatures" xml:space="preserve">
+    <value>desbloquear características</value>
+  </data>
+  <data name="LabelPurchase" xml:space="preserve">
+    <value>Comprar</value>
+  </data>
+  <data name="MessageUpgradeSuccessful" xml:space="preserve">
+    <value>Atualização feita com sucesso</value>
+  </data>
+  <data name="UnlockFeaturesText1" xml:space="preserve">
+    <value>Para usar a app plenamente, você precisará desbloquear algumas das características suportadas pela app, que inclui:</value>
+  </data>
+  <data name="UnlockFeaturesText2" xml:space="preserve">
+    <value>- Reproduzir mais de um vídeo por dia
+- Possibilitar controlar remotamente outro cliente Emby que não é somente o painel da web.</value>
+  </data>
+  <data name="UnlockFeaturesText3" xml:space="preserve">
+    <value>Se você já comprou esta app antes, ao pressionar o botão "Comprar" você será guiado a comprar a atualização grátis que irá restaurar sua app para o estado de como ela era quando você a comprou. Se ainda não pagou pela app, será direcionado para comprar uma única vez esta opção de atualização.</value>
+  </data>
+  <data name="LabelHideItemTitles" xml:space="preserve">
+    <value>Ocultar títulos dos itens nas listas mosaico</value>
+  </data>
+  <data name="LabelPlayShuffle" xml:space="preserve">
+    <value>Reprodução Aleatória</value>
+  </data>
+  <data name="AppBarSignUp" xml:space="preserve">
+    <value>inscrever-se</value>
+  </data>
+  <data name="ErrorEmailInUse" xml:space="preserve">
+    <value>Endereço de email já está em uso</value>
+  </data>
+  <data name="ErrorSigningUp" xml:space="preserve">
+    <value>Ocorreu um erro na inscrição</value>
+  </data>
+  <data name="ErrorUsernameInUse" xml:space="preserve">
+    <value>Nome de usuário já está em uso</value>
+  </data>
+  <data name="HeaderSignUpForEmbyConnect" xml:space="preserve">
+    <value>Inscrever-se</value>
+  </data>
+  <data name="LabelEmailAddress" xml:space="preserve">
+    <value>Endereço de email:</value>
+  </data>
+  <data name="LabelPrivacyStatement" xml:space="preserve">
+    <value>Declaração de privacidade</value>
+  </data>
+  <data name="LabelSignUpForEmbyConnectDescription" xml:space="preserve">
+    <value>Ao inscrever-se no Emby Connect, você poderá acessar qualquer app do Emby, assim como o fórum de suporte.</value>
+  </data>
+  <data name="MessageSignUpSuccessful" xml:space="preserve">
+    <value>Inscrição realizada com sucesso. Por favor, verifique seus emails para buscar o email de validação.</value>
+  </data>
+  <data name="MessageTitleSuccess" xml:space="preserve">
+    <value>Sucesso</value>
+  </data>
+  <data name="SysTraySigningUp" xml:space="preserve">
+    <value>Inscrevendo...</value>
+  </data>
+  <data name="WatermarkEnterEmailAddress" xml:space="preserve">
+    <value>digite um endereço de email</value>
   </data>
 
 </root>

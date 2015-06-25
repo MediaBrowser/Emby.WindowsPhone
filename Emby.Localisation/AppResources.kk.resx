@@ -1141,5 +1141,187 @@
   <data name="LabelRestartNow" xml:space="preserve">
     <value>қайта іске қосамыз ба?</value>
   </data>
+  <data name="LabelInProgress" xml:space="preserve">
+    <value>орындалуда</value>
+  </data>
+  <data name="SysTrayCheckingInProgress" xml:space="preserve">
+    <value>Орындалудаға тармақтар үшін тексеру</value>
+  </data>
+  <data name="AppBarOffline" xml:space="preserve">
+    <value>үндестіру</value>
+  </data>
+  <data name="HeaderAutoSync" xml:space="preserve">
+    <value>Жаңа тармақтарды автоматты түрде үндестіру</value>
+  </data>
+  <data name="HeaderItemLimit" xml:space="preserve">
+    <value>Тармақтар шегі</value>
+  </data>
+  <data name="HeaderQuality" xml:space="preserve">
+    <value>Сапасы:</value>
+  </data>
+  <data name="HeaderUnwatchedItems" xml:space="preserve">
+    <value>Тек қана қаралмаған бейнелерді үндестіру</value>
+  </data>
+  <data name="LabelOptional" xml:space="preserve">
+    <value>міндетті емес</value>
+  </data>
+  <data name="ErrorNoSyncSupport" xml:space="preserve">
+    <value>Бұл тармақты үндестіру үшін қолдау көрсетілмейді</value>
+  </data>
+  <data name="LabelLoading" xml:space="preserve">
+    <value>Жүктелуде...</value>
+  </data>
+  <data name="HeaderSyncJobs" xml:space="preserve">
+    <value>үндестіру жұмыстары</value>
+  </data>
+  <data name="LabelUntitled" xml:space="preserve">
+    <value>Аталмаған</value>
+  </data>
+  <data name="SyncJobStatusCancelled" xml:space="preserve">
+    <value>болдырылмаған</value>
+  </data>
+  <data name="SyncJobStatusCompleted" xml:space="preserve">
+    <value>Аяқталған</value>
+  </data>
+  <data name="SyncJobStatusCompletedWithError" xml:space="preserve">
+    <value>Қателермен аяқталған</value>
+  </data>
+  <data name="SyncJobStatusConverting" xml:space="preserve">
+    <value>Түрлендірілуде</value>
+  </data>
+  <data name="SyncJobStatusFailed" xml:space="preserve">
+    <value>Сәтсіз</value>
+  </data>
+  <data name="SyncJobStatusQueued" xml:space="preserve">
+    <value>Кезекте</value>
+  </data>
+  <data name="SyncJobStatusReadyToTransfer" xml:space="preserve">
+    <value>Тасымалдауға дайын</value>
+  </data>
+  <data name="SyncJobStatusTransferring" xml:space="preserve">
+    <value>Тасымалдауда</value>
+  </data>
+  <data name="SyncJobStatusRemovedFromDevice" xml:space="preserve">
+    <value>Қүрылғыдан аласталған</value>
+  </data>
+  <data name="SyncJobStatusSynced" xml:space="preserve">
+    <value>Үндестірілген</value>
+  </data>
+  <data name="MenuCancel" xml:space="preserve">
+    <value>болдырмау</value>
+  </data>
+  <data name="MenuMarkForRemoval" xml:space="preserve">
+    <value>аластау үшін белгілеу</value>
+  </data>
+  <data name="MenuRetry" xml:space="preserve">
+    <value>қайталау</value>
+  </data>
+  <data name="MenuUnmarkForRemoval" xml:space="preserve">
+    <value>аластау үшін белгілемеу</value>
+  </data>
+  <data name="AppBarUnsync" xml:space="preserve">
+    <value>үндестірмеу</value>
+  </data>
+  <data name="HeaderSyncToDevice" xml:space="preserve">
+    <value>Құрылғымен үндестіру</value>
+  </data>
+  <data name="LabelThisDevice" xml:space="preserve">
+    <value>осы құрылғы ({0})</value>
+    <comment>{0} = the name of the device</comment>
+  </data>
+  <data name="MessageSyncJobCreated" xml:space="preserve">
+    <value>Үндестіру жумысы жасалды</value>
+  </data>
+  <data name="ProfileBaselineDescription" xml:space="preserve">
+    <value>Барлық құрылғылармен, соның ішінде веб-браузерлерді қоса алғанда, сыйысымды болу үшін арналған. Мақсаты H264/AAC бейнесі және MP3 дыбысы үшін.</value>
+  </data>
+  <data name="ProfileGeneral" xml:space="preserve">
+    <value>Жалпы</value>
+  </data>
+  <data name="ProfileGeneralDescription" xml:space="preserve">
+    <value>Chromecast, Roku, Smart TV және т.б. ұқсас құрылғылармен сыйысымды болу үшін арналған. Мақсаты H264/AAC/AC3 бейнесі және MP3 дыбысы үшін.</value>
+  </data>
+  <data name="ProfileOriginal" xml:space="preserve">
+    <value>Түпнұсқалы</value>
+  </data>
+  <data name="ProfileOriginalDescription" xml:space="preserve">
+    <value>Түпнұсқалы файлдарды бар түрінде үндестіру.</value>
+  </data>
+  <data name="HeaderProfile" xml:space="preserve">
+    <value>Профайл:</value>
+  </data>
+  <data name="LabelUseLibraryFolders" xml:space="preserve">
+    <value>Пайдаланушы теңшеген көріністер емес, тасығыш қалталарды пайдалану</value>
+  </data>
+  <data name="LabelUseHttps" xml:space="preserve">
+    <value>HTTPS пайдалану</value>
+  </data>
+  <data name="AppBarResumeOn" xml:space="preserve">
+    <value>мынадан жалғастыру</value>
+  </data>
+  <data name="MessagePlaceholder" xml:space="preserve">
+    <value>Бұл тармақ тасығышханада тек қана толтырғыш тармақ болып табылады және ойнатылуы мүмкін емес.</value>
+  </data>
+  <data name="AppBarUnlockFeatures" xml:space="preserve">
+    <value>мүмкіндіктердің құрсауын босату</value>
+  </data>
+  <data name="LabelPurchase" xml:space="preserve">
+    <value>Сатып алу</value>
+  </data>
+  <data name="MessageUpgradeSuccessful" xml:space="preserve">
+    <value>Жаңғырту сәтті</value>
+  </data>
+  <data name="UnlockFeaturesText1" xml:space="preserve">
+    <value>Осы қолданбаны толық пайдалану үшін, қолданба тірек  ететін кейбір ерекшеліктердін құрсауын босату қажет. Бұған осы мыналар жатады:</value>
+  </data>
+  <data name="UnlockFeaturesText2" xml:space="preserve">
+    <value>- Әр күн сайын бірден астам бейнені ойнату
+- Тек қана веб бақылау тақтасы емес, басқа Emby тұтынғышты қашықтан басқару қабілетіне ие болу</value>
+  </data>
+  <data name="UnlockFeaturesText3" xml:space="preserve">
+    <value>Егер осы қолданбаны әлдеқашан сатып алсаңыз, «Сатып алу» түймешігін түрткенде, тегін жаңғыртуды иеленуге шақырыласыз, бұл қолданбаңызды сатып алғандағы қалпына келтіреді. Егер қолданба үшін әлі төлемесеңіз, сіз осы біржолғы жаңғыртуды иеленуге шақырыласыз.</value>
+  </data>
+  <data name="LabelHideItemTitles" xml:space="preserve">
+    <value>Қатарлы тізімдердегі тармақ тақырыптарын жасыру</value>
+  </data>
+  <data name="LabelPlayShuffle" xml:space="preserve">
+    <value>Араластырып ойнату</value>
+  </data>
+  <data name="AppBarSignUp" xml:space="preserve">
+    <value>тіркелу</value>
+  </data>
+  <data name="ErrorEmailInUse" xml:space="preserve">
+    <value>Э-пошта мекенжайы әлдеқашан пайдаланыста</value>
+  </data>
+  <data name="ErrorSigningUp" xml:space="preserve">
+    <value>Тіркелгенде қате орын алды</value>
+  </data>
+  <data name="ErrorUsernameInUse" xml:space="preserve">
+    <value>Пайдаланушы аты әлдеқашан пайдаланыста</value>
+  </data>
+  <data name="HeaderSignUpForEmbyConnect" xml:space="preserve">
+    <value>Тіркелу</value>
+  </data>
+  <data name="LabelEmailAddress" xml:space="preserve">
+    <value>Э-пошта мекенжайы:</value>
+  </data>
+  <data name="LabelPrivacyStatement" xml:space="preserve">
+    <value>Құпиялылық мәлімдемесі</value>
+  </data>
+  <data name="LabelSignUpForEmbyConnectDescription" xml:space="preserve">
+    <value>Emby Connect үшін тіркеліп сіз әртұрлі Emby қолданбаларына, сонымен қатар қолдау форумына, кіруіңіз мұмкін</value>
+  </data>
+  <data name="MessageSignUpSuccessful" xml:space="preserve">
+    <value>Сіз сәтті тіркелдіңіз, енді құптау хабары үшін Э-поштаңызды тексеріңіз.</value>
+  </data>
+  <data name="MessageTitleSuccess" xml:space="preserve">
+    <value>Сәтті</value>
+  </data>
+  <data name="SysTraySigningUp" xml:space="preserve">
+    <value>Тіркелуде...</value>
+  </data>
+  <data name="WatermarkEnterEmailAddress" xml:space="preserve">
+    <value>Э-пошта мекенжайын енгізіңіз</value>
+  </data>
 
 </root>
