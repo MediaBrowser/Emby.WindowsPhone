@@ -534,7 +534,7 @@
   
 <!--
 <data name="LabelConnectionDetails" xml:space="preserve">
-    <value>Put the connection details in to point to the computer running Media Browser. Then simply test them to confirm.</value>
+    <value>Put the connection details in to point to the computer running Emby. Then simply test them to confirm.</value>
   </data>
 -->
   
@@ -594,7 +594,7 @@
   
 <!--
 <data name="LabelFirstRunAccessible" xml:space="preserve">
-    <value>Once the Media Browser server is configured, make sure it's accessible from where you are, whether that's being on your local wireless network, or an external static address.</value>
+    <value>Once the Emby server is configured, make sure it's accessible from where you are, whether that's being on your local wireless network, or an external static address.</value>
   </data>
 -->
   
@@ -606,7 +606,7 @@
   
 <!--
 <data name="LabelFirstRunServerInfo" xml:space="preserve">
-    <value>Before we can get started though, you need to make sure you're running the Media Browser server.</value>
+    <value>Before we can get started though, you need to make sure you're running the Emby server.</value>
   </data>
 -->
   
@@ -648,13 +648,13 @@
   
 <!--
 <data name="LabelIsLockScreenProvider" xml:space="preserve">
-    <value>Media Browser is the current lock screen provider</value>
+    <value>Emby is the current lock screen provider</value>
   </data>
 -->
   
 <!--
 <data name="LabelIsNotLockScreenProvider" xml:space="preserve">
-    <value>Media Browser is not the lock screen provider</value>
+    <value>Emby is not the lock screen provider</value>
   </data>
 -->
   
@@ -996,7 +996,7 @@
   
 <!--
 <data name="LabelWelcomeText" xml:space="preserve">
-    <value>Welcome to Media Browser for Windows Phone. This app will allow you to browse your media collection, stream it to your phone and remotely control any of the controllable Media Browser clients.</value>
+    <value>Welcome to Emby for Windows Phone. This app will allow you to browse your media collection, stream it to your phone and remotely control any of the controllable Emby clients.</value>
   </data>
 -->
   
@@ -1394,7 +1394,7 @@
   
 <!--
 <data name="LabelWelcomeTextPhone7" xml:space="preserve">
-    <value>Welcome to Media Browser for Windows Phone. This app will allow you to browse your media collection and remotely control any of the controllable Media Browser clients.</value>
+    <value>Welcome to Emby for Windows Phone. This app will allow you to browse your media collection and remotely control any of the controllable Emby clients.</value>
   </data>
 -->
   

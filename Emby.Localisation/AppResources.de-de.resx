@@ -329,7 +329,7 @@
     <value>Verbindung</value>
   </data>
   <data name="LabelConnectionDetails" xml:space="preserve">
-    <value>Tragen Sie die Verbindungsdetails zu dem Rechner ein, auf dem Media Browser läuft. Führen Sie 
+    <value>Tragen Sie die Verbindungsdetails zu dem Rechner ein, auf dem Emby läuft. Führen Sie 
 anschließend zur Bestätigung dieser den Test aus.</value>
   </data>
   <data name="LabelConnectionWarning" xml:space="preserve">
@@ -360,7 +360,7 @@ anschließend zur Bestätigung dieser den Test aus.</value>
     <value>Server finden</value>
   </data>
   <data name="LabelFirstRunAccessible" xml:space="preserve">
-    <value>Stellen Sie sicher, dass der Media Browser Server erreichbar ist, sobald er konfiguriert wurde. Sei dies im lokalen
+    <value>Stellen Sie sicher, dass der Emby Server erreichbar ist, sobald er konfiguriert wurde. Sei dies im lokalen
 Netzwerk, oder extern über eine statische IP-Adresse.</value>
   </data>
   <data name="LabelFirstRunHappyConfiguration" xml:space="preserve">
@@ -368,7 +368,7 @@ Netzwerk, oder extern über eine statische IP-Adresse.</value>
 und geben Sie die Server-Details ein. Ansonsten können Sie die App von hier aus beenden.</value>
   </data>
   <data name="LabelFirstRunServerInfo" xml:space="preserve">
-    <value>Bevor wir loslegen können, müssen Sie sicherstellen, dass Sie den Media Browser Server in Verwendung haben.</value>
+    <value>Bevor wir loslegen können, müssen Sie sicherstellen, dass Sie den Emby Server in Verwendung haben.</value>
   </data>
   <data name="LabelGeneral" xml:space="preserve">
     <value>Allgemein</value>
@@ -389,10 +389,10 @@ und geben Sie die Server-Details ein. Ansonsten können Sie die App von hier aus
     <value>Film auf imdb nachschlagen</value>
   </data>
   <data name="LabelIsLockScreenProvider" xml:space="preserve">
-    <value>Media Browser ist derzeit für Ihren Sperrbildschirm eingestellt</value>
+    <value>Emby ist derzeit für Ihren Sperrbildschirm eingestellt</value>
   </data>
   <data name="LabelIsNotLockScreenProvider" xml:space="preserve">
-    <value>Media Browser ist derzeit nicht für Ihren Sperrbildschirm eingestellt</value>
+    <value>Emby ist derzeit nicht für Ihren Sperrbildschirm eingestellt</value>
   </data>
   <data name="LabelJustShowList" xml:space="preserve">
     <value>Zeige nur die Liste von Elementen, keine Medianordner-Ansicht</value>
@@ -564,8 +564,8 @@ können Sie einstellen, wie es aussehen soll.</value>
     <value>Ansichten</value>
   </data>
   <data name="LabelWelcomeText" xml:space="preserve">
-    <value>Willkommen beim Media Browser für Windows Phone. Mit dieser App können Sie Ihre Mediensammlung
-durchstöbern, sie auf Ihr Smartphone streamen und jeden verfügbaren Media Browser Client fernbedienen.</value>
+    <value>Willkommen beim Emby für Windows Phone. Mit dieser App können Sie Ihre Mediensammlung
+durchstöbern, sie auf Ihr Smartphone streamen und jeden verfügbaren Emby Client fernbedienen.</value>
   </data>
   <data name="LabelWriter" xml:space="preserve">
     <value>Schreiber</value>
@@ -772,8 +772,8 @@ erwerben Sie die Vollversion.</value>
     <comment>eg, Released in 1993</comment>
   </data>
   <data name="LabelWelcomeTextPhone7" xml:space="preserve">
-    <value>Willkommen beim Media Browser für Windows Phone. Mit dieser App können Sie Ihre Mediensammlung
-durchstöbern und jeden verfügbaren Media Browser Client fernbedienen.</value>
+    <value>Willkommen beim Emby für Windows Phone. Mit dieser App können Sie Ihre Mediensammlung
+durchstöbern und jeden verfügbaren Emby Client fernbedienen.</value>
   </data>
   <data name="LabelChannels" xml:space="preserve">
     <value>Kanäle</value>
@@ -1084,7 +1084,7 @@ durchstöbern und jeden verfügbaren Media Browser Client fernbedienen.</value>
     <value>Bitte beachte, dass die Uploads nur durchggeführt werden, während dein Telefon lädt oder es über Wifi und über 90% Akkuleistung verfügt</value>
   </data>
   <data name="LabelAutoUploadDescription" xml:space="preserve">
-    <value>Lade deine Bilder automatisch direkt von deinem Telefon in den Media Browser Server</value>
+    <value>Lade deine Bilder automatisch direkt von deinem Telefon in den Emby Server</value>
   </data>
   <data name="LabelTurnPhotoUploadOnServer" xml:space="preserve">
     <value>Um diese Funktion zu aktivieren, musst du auf deine Server Übersicht gehen und dort unter Geräte den Kamera-Upload für dein Geräte aktivieren. Fall du darauf keinen Zugriff hast, kontaktiere bitte deinen Server Administrator.</value>
@@ -1102,13 +1102,13 @@ durchstöbern und jeden verfügbaren Media Browser Client fernbedienen.</value>
     <value>MB Connect</value>
   </data>
   <data name="LabelMbConnectAlreadyGotAccount" xml:space="preserve">
-    <value>Fall du einen Media Browser Account hast, kannst du dich jetzt anmelden</value>
+    <value>Fall du einen Emby Account hast, kannst du dich jetzt anmelden</value>
   </data>
   <data name="LabelMbConnectDescriptionPara1" xml:space="preserve">
     <value>Mit MB Connect hast du einen einfachen Zugriff auf deinen Server, wo auch immer du dich gerade befindest, und kannst diesen mit deiner Familie und Freunden teilen.</value>
   </data>
   <data name="LabelMbConnectFreeAccount" xml:space="preserve">
-    <value>Falls du noch keinen Media Browser Account hast, kannst du dich jetzt registrieren. Es ist KOSTENLOS!</value>
+    <value>Falls du noch keinen Emby Account hast, kannst du dich jetzt registrieren. Es ist KOSTENLOS!</value>
   </data>
   <data name="LabelSignUp" xml:space="preserve">
     <value>Registrierung</value>
@@ -1129,7 +1129,7 @@ durchstöbern und jeden verfügbaren Media Browser Client fernbedienen.</value>
     <value>Server wechseln</value>
   </data>
   <data name="LabelSignInWithConnect" xml:space="preserve">
-    <value>Melde dich mit Media Browser Connect an</value>
+    <value>Melde dich mit Emby Connect an</value>
   </data>
   <data name="ErrorPlayUnderLock" xml:space="preserve">
     <value>Um diese Einstellung wieder ändern zu können, musst du die Anwendung neu starten.</value>

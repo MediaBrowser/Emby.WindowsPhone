@@ -328,7 +328,7 @@
     <value>қосылым</value>
   </data>
   <data name="LabelConnectionDetails" xml:space="preserve">
-    <value>Media Browser орындаудағы компьютерге бағыттайтын қосылым мәліметтерін орналастырыңыз. Сосын растау үшін мұны жай сынақтаңыз.</value>
+    <value>Emby орындаудағы компьютерге бағыттайтын қосылым мәліметтерін орналастырыңыз. Сосын растау үшін мұны жай сынақтаңыз.</value>
   </data>
   <data name="LabelConnectionWarning" xml:space="preserve">
     <value>ЕСКЕРТУ: Хост атын өзгерткенде барлық сақталған профильдер аластатылады.</value>
@@ -358,13 +358,13 @@
     <value>серверді табу</value>
   </data>
   <data name="LabelFirstRunAccessible" xml:space="preserve">
-    <value>Media Browser server теңшелгенісімен болған жеріңізден қатынасты нақтылаңыз, жергілікті сымсыз желіден бе, не сыртқы тұрақты мекенжайдан ба.</value>
+    <value>Emby server теңшелгенісімен болған жеріңізден қатынасты нақтылаңыз, жергілікті сымсыз желіден бе, не сыртқы тұрақты мекенжайдан ба.</value>
   </data>
   <data name="LabelFirstRunHappyConfiguration" xml:space="preserve">
     <value>Егер қалай теңшегеніңізге риза болсаңыз, Параметрлер түймешігін басыңыз және сервер мәліметтерін енгізіңіз, әйтпесе қолданба мына жерден жай жабылуы мүмкін.</value>
   </data>
   <data name="LabelFirstRunServerInfo" xml:space="preserve">
-    <value>Дегенмен іске қосыла алуымыз алдынан, Media Browser server орындалып тұрғанын нақтылаңыз.</value>
+    <value>Дегенмен іске қосыла алуымыз алдынан, Emby server орындалып тұрғанын нақтылаңыз.</value>
   </data>
   <data name="LabelGeneral" xml:space="preserve">
     <value>жалпы</value>
@@ -385,10 +385,10 @@
     <value>Фильмді IMDb сайтынан іздеіңіз</value>
   </data>
   <data name="LabelIsLockScreenProvider" xml:space="preserve">
-    <value>Media Browser құлыптау экрандың ағымдағы жеткізушісі</value>
+    <value>Emby құлыптау экрандың ағымдағы жеткізушісі</value>
   </data>
   <data name="LabelIsNotLockScreenProvider" xml:space="preserve">
-    <value>Media Browser құлыптау экрандың жеткізушісі емес</value>
+    <value>Emby құлыптау экрандың жеткізушісі емес</value>
   </data>
   <data name="LabelJustShowList" xml:space="preserve">
     <value>Жай тармақтар тізімн бейнелеу, тасығыш қалта аспектін емес</value>
@@ -559,7 +559,7 @@
     <value>Аспекттер</value>
   </data>
   <data name="LabelWelcomeText" xml:space="preserve">
-    <value>Windows Phone өніміне арналған Media Browser қолданбасына қош келдіңіз! Бұл қолданба тасығышхананы шолу, телефонға ағынмен тасымалдау және басқа басқарылатын Media Browser клиенттерінің қайсыбіріне алыстан басқару үшін рұқсат етеді.</value>
+    <value>Windows Phone өніміне арналған Emby қолданбасына қош келдіңіз! Бұл қолданба тасығышхананы шолу, телефонға ағынмен тасымалдау және басқа басқарылатын Emby клиенттерінің қайсыбіріне алыстан басқару үшін рұқсат етеді.</value>
   </data>
   <data name="LabelWriter" xml:space="preserve">
     <value>Жазушы</value>
@@ -765,7 +765,7 @@
     <comment>eg, Released in 1993</comment>
   </data>
   <data name="LabelWelcomeTextPhone7" xml:space="preserve">
-    <value>Windows Phone өніміне арналған Media Browser қолданбасына қош келдіңіз! Бұл қолданба тасығышхананы шолу және басқа басқарылатын Media Browser клиенттерінің қайсыбіріне алыстан басқару үшін рұқсат етеді.</value>
+    <value>Windows Phone өніміне арналған Emby қолданбасына қош келдіңіз! Бұл қолданба тасығышхананы шолу және басқа басқарылатын Emby клиенттерінің қайсыбіріне алыстан басқару үшін рұқсат етеді.</value>
   </data>
   <data name="LabelChannels" xml:space="preserve">
     <value>Телеканалдар</value>
@@ -1076,7 +1076,7 @@
     <value>Ескеріңіз, жүктеп беру тек қана құрылғығыңыз зарядталу кезінде, wifi болғанда және заряды 90 % астам болғанда орын алады.</value>
   </data>
   <data name="LabelAutoUploadDescription" xml:space="preserve">
-    <value>Телефондағы суреттеріңізді автоматты түрде тікелей Media Browser серверіне жүктеп беру.</value>
+    <value>Телефондағы суреттеріңізді автоматты түрде тікелей Emby серверіне жүктеп беру.</value>
   </data>
   <data name="LabelTurnPhotoUploadOnServer" xml:space="preserve">
     <value>Бұл жұмысын істеуі үшін сервердің бақылау тақтасына барып Құрылғыларды нұқыңыз, кейін Камерадан жүктеп беруді, сонда құрылғыңызды іске қосыңыз. Егер бұған қатынас болмаса, жүйе әкімшісімен хабарласыңыз.</value>
@@ -1094,13 +1094,13 @@
     <value>MB Connect</value>
   </data>
   <data name="LabelMbConnectAlreadyGotAccount" xml:space="preserve">
-    <value>Егер Media Browser тіркелгіңіз болса, қазір кіруіңіз мүмкін.</value>
+    <value>Егер Emby тіркелгіңіз болса, қазір кіруіңіз мүмкін.</value>
   </data>
   <data name="LabelMbConnectDescriptionPara1" xml:space="preserve">
-    <value>MB Connect арқылы қайда болсаңыз Media Browser серверіңізге жеңіл қатынасуыңыз, сонымен қатар отасыңызбен және достарыңызбен ортақтасуыңыз мүмкін.</value>
+    <value>MB Connect арқылы қайда болсаңыз Emby серверіңізге жеңіл қатынасуыңыз, сонымен қатар отасыңызбен және достарыңызбен ортақтасуыңыз мүмкін.</value>
   </data>
   <data name="LabelMbConnectFreeAccount" xml:space="preserve">
-    <value>Егер сізде әлі Media Browser тіркелгісі болмаса, дәл қазір тіркелуіңіз мүмкін, бұл АҚЫСЫЗ!</value>
+    <value>Егер сізде әлі Emby тіркелгісі болмаса, дәл қазір тіркелуіңіз мүмкін, бұл АҚЫСЫЗ!</value>
   </data>
   <data name="LabelSignUp" xml:space="preserve">
     <value>Тіркелу</value>
@@ -1121,7 +1121,7 @@
     <value>серверді ауыстыру</value>
   </data>
   <data name="LabelSignInWithConnect" xml:space="preserve">
-    <value>Media Browser Connect арқылы кіру</value>
+    <value>Emby Connect арқылы кіру</value>
   </data>
   <data name="ErrorPlayUnderLock" xml:space="preserve">
     <value>Осы параметрді қайта өзгерту үшін қолданбаны қайта іске қосу керек.</value>

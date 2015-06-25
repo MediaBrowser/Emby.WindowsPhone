@@ -328,7 +328,7 @@
     <value>соединение</value>
   </data>
   <data name="LabelConnectionDetails" xml:space="preserve">
-    <value>Введите детали для подключения к компьютеру, где работает Media Browser. Затем просто проверьте для подтверждения.</value>
+    <value>Введите детали для подключения к компьютеру, где работает Emby. Затем просто проверьте для подтверждения.</value>
   </data>
   <data name="LabelConnectionWarning" xml:space="preserve">
     <value>ПРЕДУПРЕЖДЕНИЕ: При изменении имени хоста уберутся все сохранённые профили.</value>
@@ -358,13 +358,13 @@
     <value>найти сервер</value>
   </data>
   <data name="LabelFirstRunAccessible" xml:space="preserve">
-    <value>После того, как Media Browser сервер был сконфигурирован, убедитесь, что он доступен из места вашего нахождения, будь то ваша локальная беспроводная сеть или внешний статический адрес.</value>
+    <value>После того, как Emby сервер был сконфигурирован, убедитесь, что он доступен из места вашего нахождения, будь то ваша локальная беспроводная сеть или внешний статический адрес.</value>
   </data>
   <data name="LabelFirstRunHappyConfiguration" xml:space="preserve">
     <value>Если вы удовлетворены тем, как сконфигурировали, нажмите на кнопку Параметры и введите детали сервера, иначе вы можете просто закрыть приложение отсюда.</value>
   </data>
   <data name="LabelFirstRunServerInfo" xml:space="preserve">
-    <value>Однако, прежде чем мы сможем начать, вы должны убедиться, что у вас работает Media Browser сервер.</value>
+    <value>Однако, прежде чем мы сможем начать, вы должны убедиться, что у вас работает Emby сервер.</value>
   </data>
   <data name="LabelGeneral" xml:space="preserve">
     <value>общие</value>
@@ -385,10 +385,10 @@
     <value>Сведения о фильме см. на IMDb</value>
   </data>
   <data name="LabelIsLockScreenProvider" xml:space="preserve">
-    <value>Media Browser является текущим поставщиком экрана блокировки</value>
+    <value>Emby является текущим поставщиком экрана блокировки</value>
   </data>
   <data name="LabelIsNotLockScreenProvider" xml:space="preserve">
-    <value>Media Browser не является поставщиком экрана блокировки</value>
+    <value>Emby не является поставщиком экрана блокировки</value>
   </data>
   <data name="LabelJustShowList" xml:space="preserve">
     <value>Просто показывать список элементов, а не аспект медиапапки</value>
@@ -559,7 +559,7 @@
     <value>Аспекты</value>
   </data>
   <data name="LabelWelcomeText" xml:space="preserve">
-    <value>Вас приветствует Media Browser для Windows Phone! Это приложение предоставит вам возможность просмотра медиатеки, потокового воспроизведения на вашем телефоне и удалённого управления любым из контролируемых клиентов  Media Browser.</value>
+    <value>Вас приветствует Emby для Windows Phone! Это приложение предоставит вам возможность просмотра медиатеки, потокового воспроизведения на вашем телефоне и удалённого управления любым из контролируемых клиентов  Emby.</value>
   </data>
   <data name="LabelWriter" xml:space="preserve">
     <value>Сценарист</value>
@@ -765,7 +765,7 @@
     <comment>eg, Released in 1993</comment>
   </data>
   <data name="LabelWelcomeTextPhone7" xml:space="preserve">
-    <value>Вас приветствует Media Browser для Windows Phone! Это приложение предоставит вам возможность просмотра вашей медиатеки и удалённого управления любым из контролируемых клиентов Media Browser.</value>
+    <value>Вас приветствует Emby для Windows Phone! Это приложение предоставит вам возможность просмотра вашей медиатеки и удалённого управления любым из контролируемых клиентов Emby.</value>
   </data>
   <data name="LabelChannels" xml:space="preserve">
     <value>Телеканалы</value>
@@ -1076,7 +1076,7 @@
     <value>Обратите внимание, что отправки возможны только, когда ваше устройство находится на зарядке, при wifi и зарядке свыше 90 %.</value>
   </data>
   <data name="LabelAutoUploadDescription" xml:space="preserve">
-    <value>Автоотправка ваших рисунков сразу с вашего телефона напрямую в Media Browser Server.</value>
+    <value>Автоотправка ваших рисунков сразу с вашего телефона напрямую в Emby Server.</value>
   </data>
   <data name="LabelTurnPhotoUploadOnServer" xml:space="preserve">
     <value>Для того, чтобы это работало, вам нужно перейти в инфопанель сервера, щёлкнуть на Устройства, затем на Отправка с камеры, потом подключить ваше устройство. Если вы не смогли получить доступ к этому, свяжитесь с администратором вашего сервера.</value>
@@ -1094,13 +1094,13 @@
     <value>MB Connect</value>
   </data>
   <data name="LabelMbConnectAlreadyGotAccount" xml:space="preserve">
-    <value>Если имеется учётная запись Media Browser, вы сможете войти немедленно.</value>
+    <value>Если имеется учётная запись Emby, вы сможете войти немедленно.</value>
   </data>
   <data name="LabelMbConnectDescriptionPara1" xml:space="preserve">
-    <value>С помощью MB Connect вы сможете получить лёгкий доступ к вашему серверу Media Browser, где бы вы не были, и предоставить  общий доступ вашей семье и друзьям.</value>
+    <value>С помощью MB Connect вы сможете получить лёгкий доступ к вашему серверу Emby, где бы вы не были, и предоставить  общий доступ вашей семье и друзьям.</value>
   </data>
   <data name="LabelMbConnectFreeAccount" xml:space="preserve">
-    <value>Если у вас ещё нет учётной записи Media Browser, то вы можете зарегистрироваться прямо сейчас, это - БЕСПЛАТНО!</value>
+    <value>Если у вас ещё нет учётной записи Emby, то вы можете зарегистрироваться прямо сейчас, это - БЕСПЛАТНО!</value>
   </data>
   <data name="LabelSignUp" xml:space="preserve">
     <value>Зарегистрироваться</value>
@@ -1121,7 +1121,7 @@
     <value>сменить сервер</value>
   </data>
   <data name="LabelSignInWithConnect" xml:space="preserve">
-    <value>Войти с помощью Media Browser Connect</value>
+    <value>Войти с помощью Emby Connect</value>
   </data>
   <data name="ErrorPlayUnderLock" xml:space="preserve">
     <value>Для того, чтобы изменить данный параметр снова, необходимо перезапустить приложение.</value>

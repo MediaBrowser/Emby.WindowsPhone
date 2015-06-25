@@ -328,7 +328,7 @@
     <value>tilkobling</value>
   </data>
   <data name="LabelConnectionDetails" xml:space="preserve">
-    <value>Fyll ut tilkoblingsinfo som viser hvor Media Browser kjører. Test deretter for å bekrefte dette.</value>
+    <value>Fyll ut tilkoblingsinfo som viser hvor Emby kjører. Test deretter for å bekrefte dette.</value>
   </data>
   <data name="LabelConnectionWarning" xml:space="preserve">
     <value>ADVARSEL: Endring av vertsnavn vil slette alle lagrede profiler.</value>
@@ -358,13 +358,13 @@
     <value>finn server</value>
   </data>
   <data name="LabelFirstRunAccessible" xml:space="preserve">
-    <value>Så snart Media Browser er konfigurert, sjekk tilgang fra der du er enten det er på trådløst nett eller en ekstern statisk adresse.</value>
+    <value>Så snart Emby er konfigurert, sjekk tilgang fra der du er enten det er på trådløst nett eller en ekstern statisk adresse.</value>
   </data>
   <data name="LabelFirstRunHappyConfiguration" xml:space="preserve">
     <value>Hvis du er fornøyd med hva du har konfigurert, klikk innstliings knappen og fyll ut server detaljer. Ellers kan du bare avslutte herfra.</value>
   </data>
   <data name="LabelFirstRunServerInfo" xml:space="preserve">
-    <value>Før vi kan starte må du forsikre deg om at Media Browser server kjører.</value>
+    <value>Før vi kan starte må du forsikre deg om at Emby server kjører.</value>
   </data>
   <data name="LabelGeneral" xml:space="preserve">
     <value>generelt</value>
@@ -385,10 +385,10 @@
     <value>se film på imdb</value>
   </data>
   <data name="LabelIsLockScreenProvider" xml:space="preserve">
-    <value>Media Browser er den nåværende lås skjerm tilbyder</value>
+    <value>Emby er den nåværende lås skjerm tilbyder</value>
   </data>
   <data name="LabelIsNotLockScreenProvider" xml:space="preserve">
-    <value>Media Browser er ikke lås skjerm tilbyder</value>
+    <value>Emby er ikke lås skjerm tilbyder</value>
   </data>
   <data name="LabelJustShowList" xml:space="preserve">
     <value>Bare vis element listen, ikke media mappe visning</value>
@@ -559,7 +559,7 @@
     <value>Visninger</value>
   </data>
   <data name="LabelWelcomeText" xml:space="preserve">
-    <value>Velkommen til Media Browser for Windows Phone. Denne app'en vil la deg bla i din media samling, sende det til din telefon og fjernstyre andre kontrollerbare Media Browser klienter.</value>
+    <value>Velkommen til Emby for Windows Phone. Denne app'en vil la deg bla i din media samling, sende det til din telefon og fjernstyre andre kontrollerbare Emby klienter.</value>
   </data>
   <data name="LabelWriter" xml:space="preserve">
     <value>Skribent</value>
@@ -765,7 +765,7 @@
     <comment>eg, Released in 1993</comment>
   </data>
   <data name="LabelWelcomeTextPhone7" xml:space="preserve">
-    <value>Velkommen til Media browser for Windows Phone. Denne app'en lar deg bla i dine egne media samlinger og fjernstyre alle kompatible Media Browser klienter.</value>
+    <value>Velkommen til Emby for Windows Phone. Denne app'en lar deg bla i dine egne media samlinger og fjernstyre alle kompatible Emby klienter.</value>
   </data>
   <data name="LabelChannels" xml:space="preserve">
     <value>Kanaler</value>
@@ -1076,7 +1076,7 @@
     <value>Merk at opplastingene kun skjer når enheten lader, er tilkoblet wifi or har mer enn 90% batterikapasitet.</value>
   </data>
   <data name="LabelAutoUploadDescription" xml:space="preserve">
-    <value>Automatisk opplasting av bilder direkte fra telefonen din til Media Browser Server.</value>
+    <value>Automatisk opplasting av bilder direkte fra telefonen din til Emby Server.</value>
   </data>
   <data name="LabelTurnPhotoUploadOnServer" xml:space="preserve">
     <value>For at dette skal fungere må du gå til serveren, klikke på Enheter og så Kameraopplasting. Deretter aktiverer du enheten din. Hvis du ikke har tilgang til dette, kontakt serveradministratoren din.</value>
@@ -1094,13 +1094,13 @@
     <value>MB Connect</value>
   </data>
   <data name="LabelMbConnectAlreadyGotAccount" xml:space="preserve">
-    <value>Hvis du har en Media Browser konto kan du logge inn nå.</value>
+    <value>Hvis du har en Emby konto kan du logge inn nå.</value>
   </data>
   <data name="LabelMbConnectDescriptionPara1" xml:space="preserve">
-    <value>Med MB COnnect kan du lett få tilgang til din Media Browser server uansett hvor du er, og dele med familie og venner.</value>
+    <value>Med MB COnnect kan du lett få tilgang til din Emby server uansett hvor du er, og dele med familie og venner.</value>
   </data>
   <data name="LabelMbConnectFreeAccount" xml:space="preserve">
-    <value>Hvis du ikke har en Media Browser konto kan du få en nå. Det er gratis!</value>
+    <value>Hvis du ikke har en Emby konto kan du få en nå. Det er gratis!</value>
   </data>
   <data name="LabelSignUp" xml:space="preserve">
     <value>Registrering</value>
@@ -1121,7 +1121,7 @@
     <value>bytt server</value>
   </data>
   <data name="LabelSignInWithConnect" xml:space="preserve">
-    <value>Logg inn med Media Browser Connect</value>
+    <value>Logg inn med Emby Connect</value>
   </data>
   <data name="ErrorPlayUnderLock" xml:space="preserve">
     <value>For å endre på denne innstillingen igjen må du omstarte programmet.</value>

@@ -328,7 +328,7 @@
     <value>verbinding</value>
   </data>
   <data name="LabelConnectionDetails" xml:space="preserve">
-    <value>Stel de verbinding gegevens in naar de computer waarop Media Browser 3 draait . Dan gewoon testen om te bevestigen .</value>
+    <value>Stel de verbinding gegevens in naar de computer waarop Emby 3 draait . Dan gewoon testen om te bevestigen .</value>
   </data>
   <data name="LabelConnectionWarning" xml:space="preserve">
     <value>WAARSCHUWING: Wijziging van de hostnaam zal alle opgeslagen profielen verwijderen.</value>
@@ -358,7 +358,7 @@
     <value>kies server</value>
   </data>
   <data name="LabelFirstRunAccessible" xml:space="preserve">
-    <value>Zodra de Media Browser server is geconfigureerd , zorg ervoor dat het toegankelijk is van waar je bent , of dat nu uw lokale draadloze netwerk is , of een extern statisch adres .</value>
+    <value>Zodra de Emby server is geconfigureerd , zorg ervoor dat het toegankelijk is van waar je bent , of dat nu uw lokale draadloze netwerk is , of een extern statisch adres .</value>
   </data>
   <data name="LabelFirstRunHappyConfiguration" xml:space="preserve">
     <value>Wanneer u tevreden bent met uw instellingen, klik dan op de instellingen knop en voer de gegevens van uw server in, anders kunt u de app gewoon sluiten vanaf hier.</value>

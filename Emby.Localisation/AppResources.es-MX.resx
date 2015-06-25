@@ -328,7 +328,7 @@
     <value>conexión</value>
   </data>
   <data name="LabelConnectionDetails" xml:space="preserve">
-    <value>Capture los detalles de la conexión para apuntar a la computadora que ejecuta Media Browser. Después simplemente pruebe para confirmar.</value>
+    <value>Capture los detalles de la conexión para apuntar a la computadora que ejecuta Emby. Después simplemente pruebe para confirmar.</value>
   </data>
   <data name="LabelConnectionWarning" xml:space="preserve">
     <value>ADVERTENCIA: Cambiar el nombre del equipo removerá todos los perfiles guardados.</value>
@@ -358,13 +358,13 @@
     <value>buscar servidor</value>
   </data>
   <data name="LabelFirstRunAccessible" xml:space="preserve">
-    <value>Una vez que el servidor Media Browser ha sido configurado, asegúrese de que es accesible desde donde se encuentra, ya sea desde su red de área local, o una dirección externa estática.</value>
+    <value>Una vez que el servidor Emby ha sido configurado, asegúrese de que es accesible desde donde se encuentra, ya sea desde su red de área local, o una dirección externa estática.</value>
   </data>
   <data name="LabelFirstRunHappyConfiguration" xml:space="preserve">
     <value>Si está conforme con lo que ha configurado, haga click en el botón de propiedades y capture los detalles de su servidor, de lo contrario usted puede abandonar la aplicación desde aqui.</value>
   </data>
   <data name="LabelFirstRunServerInfo" xml:space="preserve">
-    <value>Antes de poder iniciar, debe asegurarse de estar ejecutando el servidor Media Browser.</value>
+    <value>Antes de poder iniciar, debe asegurarse de estar ejecutando el servidor Emby.</value>
   </data>
   <data name="LabelGeneral" xml:space="preserve">
     <value>general</value>
@@ -385,10 +385,10 @@
     <value>Ver película en imdb</value>
   </data>
   <data name="LabelIsLockScreenProvider" xml:space="preserve">
-    <value>Media Browser es el proveedor de bloqueo de pantalla actual</value>
+    <value>Emby es el proveedor de bloqueo de pantalla actual</value>
   </data>
   <data name="LabelIsNotLockScreenProvider" xml:space="preserve">
-    <value>Media Browser no es el provedor de bloqueo de pantalla</value>
+    <value>Emby no es el provedor de bloqueo de pantalla</value>
   </data>
   <data name="LabelJustShowList" xml:space="preserve">
     <value>Solo muestre la lista de elementos, no una vista de carpetas de medios.</value>
@@ -559,7 +559,7 @@
     <value>Vistas</value>
   </data>
   <data name="LabelWelcomeText" xml:space="preserve">
-    <value>Bienvenido a Media Browser para Teléfonos Windows. Esta app le permite navegar su colección de medios, transmitirlos a su teléfono y controlar remotamente cualquier cliente controlable de Media Browser,</value>
+    <value>Bienvenido a Emby para Teléfonos Windows. Esta app le permite navegar su colección de medios, transmitirlos a su teléfono y controlar remotamente cualquier cliente controlable de Emby,</value>
   </data>
   <data name="LabelWriter" xml:space="preserve">
     <value>Escritor</value>
@@ -765,7 +765,7 @@
     <comment>eg, Released in 1993</comment>
   </data>
   <data name="LabelWelcomeTextPhone7" xml:space="preserve">
-    <value>Bienvenido a Media Browser para Teléfonos Windows. Esta app le permite navegar su colección de medios y controlar cualquier cliente Media Browser controlable.</value>
+    <value>Bienvenido a Emby para Teléfonos Windows. Esta app le permite navegar su colección de medios y controlar cualquier cliente Emby controlable.</value>
   </data>
   <data name="LabelChannels" xml:space="preserve">
     <value>Canales</value>
@@ -1076,7 +1076,7 @@
     <value>Por favor ten en cuenta que las cargas solo se harán cuando estés cargando el dispositivo.</value>
   </data>
   <data name="LabelAutoUploadDescription" xml:space="preserve">
-    <value>Automáticamente cargar tus fotos del celular a el servidor de Media Browser</value>
+    <value>Automáticamente cargar tus fotos del celular a el servidor de Emby</value>
   </data>
   <data name="LabelTurnPhotoUploadOnServer" xml:space="preserve">
     <value>Para que esto funcione, debes ir, en el servidor, al tablero, clic en Dispositivos, después Cargas de Cámara y activarlo en tu dispositivo. si no tienes acceso a esto, habla con el administrador del servidor</value>
@@ -1094,13 +1094,13 @@
     <value>Conexión MB</value>
   </data>
   <data name="LabelMbConnectAlreadyGotAccount" xml:space="preserve">
-    <value>Si tienes una cuenta de Media Browser, puedes hacer login ahora.</value>
+    <value>Si tienes una cuenta de Emby, puedes hacer login ahora.</value>
   </data>
   <data name="LabelMbConnectDescriptionPara1" xml:space="preserve">
-    <value>Con Conexión MB tu puedes accesar a tu servidor de Media Browser fácilmente desde donde quiera que estés y compartir con tu familia y amigos</value>
+    <value>Con Conexión MB tu puedes accesar a tu servidor de Emby fácilmente desde donde quiera que estés y compartir con tu familia y amigos</value>
   </data>
   <data name="LabelMbConnectFreeAccount" xml:space="preserve">
-    <value>Si no tienes una cuenta de Media Browser, puedes registrarte ahora, es ¡GRATIS!</value>
+    <value>Si no tienes una cuenta de Emby, puedes registrarte ahora, es ¡GRATIS!</value>
   </data>
   <data name="LabelSignUp" xml:space="preserve">
     <value>Registrarse</value>
@@ -1121,7 +1121,7 @@
     <value>cambiar servidor</value>
   </data>
   <data name="LabelSignInWithConnect" xml:space="preserve">
-    <value>Entrar con Conexión Media Browser</value>
+    <value>Entrar con Conexión Emby</value>
   </data>
   <data name="ErrorPlayUnderLock" xml:space="preserve">
     <value>Para que el cambio de aplique, debes reiniciar la app.</value>

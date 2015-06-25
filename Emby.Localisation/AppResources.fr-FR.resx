@@ -328,7 +328,7 @@
     <value>Connexion</value>
   </data>
   <data name="LabelConnectionDetails" xml:space="preserve">
-    <value>Entrez les détails de connexion afin de pointer vers le PC avec le serveur Media Browser. Ensuite, testez pour confirmer.</value>
+    <value>Entrez les détails de connexion afin de pointer vers le PC avec le serveur Emby. Ensuite, testez pour confirmer.</value>
   </data>
   <data name="LabelConnectionWarning" xml:space="preserve">
     <value>ATTENTION: Changer le nom d'hôte supprimera les profils enregistrés.</value>
@@ -358,13 +358,13 @@
     <value>Trouver le serveur</value>
   </data>
   <data name="LabelFirstRunAccessible" xml:space="preserve">
-    <value>Une fois le serveur de Media Browser configuré, veuillez vous assurer qu'il est accessible depuis là où vous vous trouvez, que ce soit depuis votre réseau sans-fil local, ou une adresse statique externe.</value>
+    <value>Une fois le serveur de Emby configuré, veuillez vous assurer qu'il est accessible depuis là où vous vous trouvez, que ce soit depuis votre réseau sans-fil local, ou une adresse statique externe.</value>
   </data>
   <data name="LabelFirstRunHappyConfiguration" xml:space="preserve">
     <value>Si vous êtes satisfaits de la configuration, cliquez sur le bouton "paramètres" et entrez les informations du serveur, ou quittez l'application..</value>
   </data>
   <data name="LabelFirstRunServerInfo" xml:space="preserve">
-    <value>Avant de commencer, assurez-vous que le serveur Media Browser est démarré.</value>
+    <value>Avant de commencer, assurez-vous que le serveur Emby est démarré.</value>
   </data>
   <data name="LabelGeneral" xml:space="preserve">
     <value>Général</value>
@@ -385,10 +385,10 @@
     <value>Voir le film sur IMDB</value>
   </data>
   <data name="LabelIsLockScreenProvider" xml:space="preserve">
-    <value>Media Browser est la source d'écran de verrouillage</value>
+    <value>Emby est la source d'écran de verrouillage</value>
   </data>
   <data name="LabelIsNotLockScreenProvider" xml:space="preserve">
-    <value>Media Browser n'est pas la source d'écran de verrouillage</value>
+    <value>Emby n'est pas la source d'écran de verrouillage</value>
   </data>
   <data name="LabelJustShowList" xml:space="preserve">
     <value>Montrer uniquement une liste des items, et non pas une vue des dossiers médias</value>
@@ -559,7 +559,7 @@
     <value>Vues</value>
   </data>
   <data name="LabelWelcomeText" xml:space="preserve">
-    <value>Bienvenue sur Media Browser pour Windows Phone. Cette application vous permettra de parcourir votre collection de médias, la regarder en diffusion sur votre téléphone, et de controler à distance d'autres clients Media Browser</value>
+    <value>Bienvenue sur Emby pour Windows Phone. Cette application vous permettra de parcourir votre collection de médias, la regarder en diffusion sur votre téléphone, et de controler à distance d'autres clients Emby</value>
   </data>
   <data name="LabelWriter" xml:space="preserve">
     <value>Auteur</value>
@@ -1076,7 +1076,7 @@
     <value>S.v.p. noter que les uploads vont seulement s'effectuer  quand votre appareil est en charge, wifi et chargé à plus de 90%.</value>
   </data>
   <data name="LabelAutoUploadDescription" xml:space="preserve">
-    <value>Auto-upload vos photos directement de votre téléphone sur le le serveur Media Browser.</value>
+    <value>Auto-upload vos photos directement de votre téléphone sur le le serveur Emby.</value>
   </data>
   <data name="LabelTurnPhotoUploadOnServer" xml:space="preserve">
     <value>Pour que ça fonctionne, vous devez aller sur le tableau de bord du serveur, cliquez sur périphériques, et sur upload de la caméra, et activer votre périphérique. Si vous n'avez pas access à ces fonctions, s.v.p. communiquer avec votre administrateur de système.</value>
@@ -1094,13 +1094,13 @@
     <value>MB connect</value>
   </data>
   <data name="LabelMbConnectAlreadyGotAccount" xml:space="preserve">
-    <value>Si vous avez un compte Media Browser, vous pouvez vous connecter maintenant.</value>
+    <value>Si vous avez un compte Emby, vous pouvez vous connecter maintenant.</value>
   </data>
   <data name="LabelMbConnectDescriptionPara1" xml:space="preserve">
-    <value>Avec MB Connect, vous pouvez facilement accéder votre serveur Media Browser peut-importe où vous êtes et partager avec votre famille et amis.</value>
+    <value>Avec MB Connect, vous pouvez facilement accéder votre serveur Emby peut-importe où vous êtes et partager avec votre famille et amis.</value>
   </data>
   <data name="LabelMbConnectFreeAccount" xml:space="preserve">
-    <value>Si vous n'avez pas de compte Media Browser, vous pouvez vous s'inscrire maintenant, c'est GRATUIT!</value>
+    <value>Si vous n'avez pas de compte Emby, vous pouvez vous s'inscrire maintenant, c'est GRATUIT!</value>
   </data>
   <data name="LabelSignUp" xml:space="preserve">
     <value>Inscrivez-vous</value>
@@ -1121,7 +1121,7 @@
     <value>Changez de serveur</value>
   </data>
   <data name="LabelSignInWithConnect" xml:space="preserve">
-    <value>Connectez vous avec Media Browser Connect</value>
+    <value>Connectez vous avec Emby Connect</value>
   </data>
   <data name="ErrorPlayUnderLock" xml:space="preserve">
     <value>Pour changer les paramètres encore, vous devez redémarrez l'application.</value>

@@ -328,7 +328,7 @@
     <value>connessione</value>
   </data>
   <data name="LabelConnectionDetails" xml:space="preserve">
-    <value>Immetti le informazioni per la connessione al computer dove è installato Media Browser. il test verrà avviato alla conferma</value>
+    <value>Immetti le informazioni per la connessione al computer dove è installato Emby. il test verrà avviato alla conferma</value>
   </data>
   <data name="LabelConnectionWarning" xml:space="preserve">
     <value>ATTENZIONE: Cambiare il nome host rimuoverà eventuali profili salvati.</value>
@@ -358,13 +358,13 @@
     <value>trova il server</value>
   </data>
   <data name="LabelFirstRunAccessible" xml:space="preserve">
-    <value>Una volta che il server di Media Browser è configurato, assicurarsi che sia accessibile da dove ti trovi, se questo è essere sulla vostra rete wireless locale, o un indirizzo statico esterno.</value>
+    <value>Una volta che il server di Emby è configurato, assicurarsi che sia accessibile da dove ti trovi, se questo è essere sulla vostra rete wireless locale, o un indirizzo statico esterno.</value>
   </data>
   <data name="LabelFirstRunHappyConfiguration" xml:space="preserve">
     <value>Se sei felice con quello che hai configurato, fare clic sul pulsante Impostazioni e inserire i dettagli del server, altrimenti si può semplicemente chiudere l'applicazione da qui.</value>
   </data>
   <data name="LabelFirstRunServerInfo" xml:space="preserve">
-    <value>Prima di poter iniziare però, è necessario assicurarsi che si sta eseguendo il server Media Browser.</value>
+    <value>Prima di poter iniziare però, è necessario assicurarsi che si sta eseguendo il server Emby.</value>
   </data>
   <data name="LabelGeneral" xml:space="preserve">
     <value>generale</value>
@@ -385,10 +385,10 @@
     <value>Guarda il film su imdb</value>
   </data>
   <data name="LabelIsLockScreenProvider" xml:space="preserve">
-    <value>la schermata di blocco viene impostata da Media Browser</value>
+    <value>la schermata di blocco viene impostata da Emby</value>
   </data>
   <data name="LabelIsNotLockScreenProvider" xml:space="preserve">
-    <value>la schermata di blocco non deve essere impostata da Media Browser</value>
+    <value>la schermata di blocco non deve essere impostata da Emby</value>
   </data>
   <data name="LabelJustShowList" xml:space="preserve">
     <value>Mostra l'elenco delle voci, non una vista cartella multimediale</value>
@@ -559,7 +559,7 @@
     <value>Viste</value>
   </data>
   <data name="LabelWelcomeText" xml:space="preserve">
-    <value>Benvenuti nel Media Browser per Windows Phone. Questa applicazione vi permetterà di sfogliare la tua raccolta multimediale, streaming sul tuo telefono e controllare a distanza qualsiasi client controllabili Media Browser.</value>
+    <value>Benvenuti nel Emby per Windows Phone. Questa applicazione vi permetterà di sfogliare la tua raccolta multimediale, streaming sul tuo telefono e controllare a distanza qualsiasi client controllabili Emby.</value>
   </data>
   <data name="LabelWriter" xml:space="preserve">
     <value>autore</value>
@@ -765,7 +765,7 @@
     <comment>eg, Released in 1993</comment>
   </data>
   <data name="LabelWelcomeTextPhone7" xml:space="preserve">
-    <value>Benvenuti nel Media Browser per Windows Phone. Questa applicazione vi permetterà di sfogliare la tua raccolta multimediale e controllare a distanza qualsiasi client controllabili Media Browser.</value>
+    <value>Benvenuti nel Emby per Windows Phone. Questa applicazione vi permetterà di sfogliare la tua raccolta multimediale e controllare a distanza qualsiasi client controllabili Emby.</value>
   </data>
   <data name="LabelChannels" xml:space="preserve">
     <value>Canali</value>
@@ -1085,7 +1085,7 @@
     <value>Connessione manuale</value>
   </data>
   <data name="HeaderWhatIsMbConnect" xml:space="preserve">
-    <value>cosa e' Media Browser Connect?</value>
+    <value>cosa e' Emby Connect?</value>
   </data>
   <data name="LabelManualServerEntry" xml:space="preserve">
     <value>Immettere dettagli del server manualmente</value>
@@ -1097,7 +1097,7 @@
     <value>Se si dispone di un account Browser Media, è possibile effettuare il login ora.</value>
   </data>
   <data name="LabelMbConnectDescriptionPara1" xml:space="preserve">
-    <value>Con MB Connect, si può facilmente accedere al vostro server di Media Browser ovunque tu sia e condividere con la famiglia e gli amici</value>
+    <value>Con MB Connect, si può facilmente accedere al vostro server di Emby ovunque tu sia e condividere con la famiglia e gli amici</value>
   </data>
   <data name="LabelMbConnectFreeAccount" xml:space="preserve">
     <value>Se non si dispone già di un account browser media, puoi registrarti ora, è GRATIS!</value>
