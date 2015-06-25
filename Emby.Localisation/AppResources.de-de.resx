@@ -314,7 +314,7 @@
     <value>Boxset</value>
   </data>
   <data name="LabelCastCrew" xml:space="preserve">
-    <value>Cast &amp; Crew</value>
+    <value>Cast &amp;amp; Crew</value>
   </data>
   <data name="LabelChapters" xml:space="preserve">
     <value>Kapitel</value>
@@ -1148,6 +1148,188 @@ durchstöbern und jeden verfügbaren Emby Client fernbedienen.</value>
   </data>
   <data name="LabelRestartNow" xml:space="preserve">
     <value>Jetzt Neustarten?</value>
+  </data>
+  <data name="LabelInProgress" xml:space="preserve">
+    <value>Ausstehend</value>
+  </data>
+  <data name="SysTrayCheckingInProgress" xml:space="preserve">
+    <value>Prüfe nach ausstehenden Elementen</value>
+  </data>
+  <data name="AppBarOffline" xml:space="preserve">
+    <value>synchronisieren</value>
+  </data>
+  <data name="HeaderAutoSync" xml:space="preserve">
+    <value>Neue Elemente automatisch synchronisieren</value>
+  </data>
+  <data name="HeaderItemLimit" xml:space="preserve">
+    <value>Elemente Limitierung:</value>
+  </data>
+  <data name="HeaderQuality" xml:space="preserve">
+    <value>Qualität:</value>
+  </data>
+  <data name="HeaderUnwatchedItems" xml:space="preserve">
+    <value>Nur ungesehene Videos synchronisieren</value>
+  </data>
+  <data name="LabelOptional" xml:space="preserve">
+    <value>optional</value>
+  </data>
+  <data name="ErrorNoSyncSupport" xml:space="preserve">
+    <value>Dieses Element wird leider nicht zum synchronisieren unterstützt</value>
+  </data>
+  <data name="LabelLoading" xml:space="preserve">
+    <value>Laden ...</value>
+  </data>
+  <data name="HeaderSyncJobs" xml:space="preserve">
+    <value>Synchronisations-Aufgaben</value>
+  </data>
+  <data name="LabelUntitled" xml:space="preserve">
+    <value>Unbenannt</value>
+  </data>
+  <data name="SyncJobStatusCancelled" xml:space="preserve">
+    <value>Abgebrochen</value>
+  </data>
+  <data name="SyncJobStatusCompleted" xml:space="preserve">
+    <value>Abgeschlossen</value>
+  </data>
+  <data name="SyncJobStatusCompletedWithError" xml:space="preserve">
+    <value>Abgeschlossen mit Fehlern</value>
+  </data>
+  <data name="SyncJobStatusConverting" xml:space="preserve">
+    <value>Konvertieren</value>
+  </data>
+  <data name="SyncJobStatusFailed" xml:space="preserve">
+    <value>Fehlgeschlagen</value>
+  </data>
+  <data name="SyncJobStatusQueued" xml:space="preserve">
+    <value>In die Warteschlange aufgenommen</value>
+  </data>
+  <data name="SyncJobStatusReadyToTransfer" xml:space="preserve">
+    <value>Bereit zum Übertragen</value>
+  </data>
+  <data name="SyncJobStatusTransferring" xml:space="preserve">
+    <value>Wird übertragen</value>
+  </data>
+  <data name="SyncJobStatusRemovedFromDevice" xml:space="preserve">
+    <value>Vom Gerät entfernt</value>
+  </data>
+  <data name="SyncJobStatusSynced" xml:space="preserve">
+    <value>Synchronisiert</value>
+  </data>
+  <data name="MenuCancel" xml:space="preserve">
+    <value>abbrechen</value>
+  </data>
+  <data name="MenuMarkForRemoval" xml:space="preserve">
+    <value>als gelöscht markieren</value>
+  </data>
+  <data name="MenuRetry" xml:space="preserve">
+    <value>wiederholen</value>
+  </data>
+  <data name="MenuUnmarkForRemoval" xml:space="preserve">
+    <value>als ungelöscht markieren</value>
+  </data>
+  <data name="AppBarUnsync" xml:space="preserve">
+    <value>Von der Synchronisation entfernen</value>
+  </data>
+  <data name="HeaderSyncToDevice" xml:space="preserve">
+    <value>Auf das Gerät synchronisieren:</value>
+  </data>
+  <data name="LabelThisDevice" xml:space="preserve">
+    <value>dieses Gerät ({0})</value>
+    <comment>{0} = the name of the device</comment>
+  </data>
+  <data name="MessageSyncJobCreated" xml:space="preserve">
+    <value>Synchronisations-Auftrag erstellt</value>
+  </data>
+  <data name="ProfileBaselineDescription" xml:space="preserve">
+    <value>Entwickelt für die Kompatibilität mit allen Geräten und Browsern. Für H264/AAC Video und MP3 Audio.</value>
+  </data>
+  <data name="ProfileGeneral" xml:space="preserve">
+    <value>Allgemein</value>
+  </data>
+  <data name="ProfileGeneralDescription" xml:space="preserve">
+    <value>Entwickelt für die Kompatibilität mit Chromecast, Roku, Smart TVs und anderen ähnlichen Geräten. Für H264/AAC/AC3 Video und MP3 Audio.</value>
+  </data>
+  <data name="ProfileOriginal" xml:space="preserve">
+    <value>Original</value>
+  </data>
+  <data name="ProfileOriginalDescription" xml:space="preserve">
+    <value>Synchronisiere die unbearbeiteten Original-Dateien.</value>
+  </data>
+  <data name="HeaderProfile" xml:space="preserve">
+    <value>Profil:</value>
+  </data>
+  <data name="LabelUseLibraryFolders" xml:space="preserve">
+    <value>Benütze Bibliotheken-Ordner, nicht Benutzer-konfigurierte Ansichten</value>
+  </data>
+  <data name="LabelUseHttps" xml:space="preserve">
+    <value>Verwende HTTPS</value>
+  </data>
+  <data name="AppBarResumeOn" xml:space="preserve">
+    <value>weiter abspielen auf</value>
+  </data>
+  <data name="MessagePlaceholder" xml:space="preserve">
+    <value>Dieses Element ist nur ein Platzhalter und kann nicht abgespielt werden.</value>
+  </data>
+  <data name="AppBarUnlockFeatures" xml:space="preserve">
+    <value>Features freischalten</value>
+  </data>
+  <data name="LabelPurchase" xml:space="preserve">
+    <value>Kaufen</value>
+  </data>
+  <data name="MessageUpgradeSuccessful" xml:space="preserve">
+    <value>Upgrade erfolgreich</value>
+  </data>
+  <data name="UnlockFeaturesText1" xml:space="preserve">
+    <value>Um die App vollständig nutzen zu können, müssen einige Features aktiviert werden. Das sind:</value>
+  </data>
+  <data name="UnlockFeaturesText2" xml:space="preserve">
+    <value>- Abspielen von mehr als einem Video pro Tag
+- Möglichkeit, einen weiteren Emby Client zu verwenden (ausgenommen Web Dashboard)</value>
+  </data>
+  <data name="UnlockFeaturesText3" xml:space="preserve">
+    <value>Wenn du die App bereits zuvor gekauft hast und jetzt den "Kaufen" Button klickst, kannst du einen gratis Upgrade freischalten, dass die App wieder vollständig aktiviert. Solltest die noch nicht für die App bezahlt haben, wirst du danach gefragt, das Upgrade mit einem einmaligen Kauf freizuschalten.</value>
+  </data>
+  <data name="LabelHideItemTitles" xml:space="preserve">
+    <value>Verstecke Titel für Elemente in Kachelansicht</value>
+  </data>
+  <data name="LabelPlayShuffle" xml:space="preserve">
+    <value>Zufallswiedergabe</value>
+  </data>
+  <data name="AppBarSignUp" xml:space="preserve">
+    <value>Registrieren</value>
+  </data>
+  <data name="ErrorEmailInUse" xml:space="preserve">
+    <value>Diese E-Mail Adresse wird bereits verwendet</value>
+  </data>
+  <data name="ErrorSigningUp" xml:space="preserve">
+    <value>Beim Registrieren ist ein Fehler aufgetreten</value>
+  </data>
+  <data name="ErrorUsernameInUse" xml:space="preserve">
+    <value>Benutzername vergeben</value>
+  </data>
+  <data name="HeaderSignUpForEmbyConnect" xml:space="preserve">
+    <value>Registrieren</value>
+  </data>
+  <data name="LabelEmailAddress" xml:space="preserve">
+    <value>E-Mail Adresse:</value>
+  </data>
+  <data name="LabelPrivacyStatement" xml:space="preserve">
+    <value>Datenschutzerklärung</value>
+  </data>
+  <data name="LabelSignUpForEmbyConnectDescription" xml:space="preserve">
+    <value>Wenn du dich für Emby Connect anmeldest, hast du Zugriff auf alle Emby apps sowie das Support Forum.</value>
+  </data>
+  <data name="MessageSignUpSuccessful" xml:space="preserve">
+    <value>Du hast dich erfolgreich registriert und wirst in Kürze eine E-Mail mit dem Bestätigungslink enthält.</value>
+  </data>
+  <data name="MessageTitleSuccess" xml:space="preserve">
+    <value>Erfolgreich</value>
+  </data>
+  <data name="SysTraySigningUp" xml:space="preserve">
+    <value>Registrieren...</value>
+  </data>
+  <data name="WatermarkEnterEmailAddress" xml:space="preserve">
+    <value>E-Mail Adresse eingeben</value>
   </data>
 
 </root>
