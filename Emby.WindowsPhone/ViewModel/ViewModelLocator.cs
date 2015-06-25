@@ -131,6 +131,7 @@ namespace Emby.WindowsPhone.ViewModel
             SimpleIoc.Default.Register<CurrentDownloadsViewModel>();
             SimpleIoc.Default.Register<SyncJobDetailViewModel>();
             SimpleIoc.Default.Register<UnlockFeaturesViewModel>();
+            SimpleIoc.Default.Register<ConnectSignUpViewModel>();
         }
 
         private static void AddSyncInterfaces()
@@ -430,6 +431,11 @@ namespace Emby.WindowsPhone.ViewModel
         public UnlockFeaturesViewModel UnlockFeatures
         {
             get { return ServiceLocator.Current.GetInstance<UnlockFeaturesViewModel>(); }
+        }
+
+        public ConnectSignUpViewModel SignUp
+        {
+            get { return ServiceLocator.Current.GetInstance<ConnectSignUpViewModel>(); }
         }
 
         public TrialHelper Trial

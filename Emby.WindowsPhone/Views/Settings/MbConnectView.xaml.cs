@@ -1,4 +1,6 @@
 ﻿using System;
+using Emby.WindowsPhone.Model.Interfaces;
+using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Phone.Shell;
 
 namespace Emby.WindowsPhone.Views.Settings
@@ -26,6 +28,11 @@ namespace Emby.WindowsPhone.Views.Settings
         private void AboutItem_OnClick(object sender, EventArgs e)
         {
             AboutItem();
+        }
+
+        private void SignUpButton_OnTap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            SimpleIoc.Default.GetInstance<INavigationService>().Navigate(Constants.Pages.SettingsViews.ConnectSignUpView);
         }
     }
 }

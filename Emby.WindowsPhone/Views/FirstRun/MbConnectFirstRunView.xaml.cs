@@ -3,6 +3,7 @@ using System.Windows.Input;
 using System.Windows.Navigation;
 using Cimbalino.Toolkit.Services;
 using GalaSoft.MvvmLight.Ioc;
+using INavigationService = Emby.WindowsPhone.Model.Interfaces.INavigationService;
 
 namespace Emby.WindowsPhone.Views.FirstRun
 {
@@ -30,7 +31,7 @@ namespace Emby.WindowsPhone.Views.FirstRun
 
         private void SignUpButton_OnTap(object sender, GestureEventArgs e)
         {
-            new LauncherService().LaunchUriAsync("http://emby.media/community/index.php?app=core&module=global&section=register");
+            SimpleIoc.Default.GetInstance<INavigationService>().Navigate(Constants.Pages.SettingsViews.ConnectSignUpView);
         }
 
         private void SkipButton_OnTap(object sender, GestureEventArgs e)

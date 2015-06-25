@@ -1287,4 +1287,40 @@
   <data name="LabelPlayShuffle" xml:space="preserve">
     <value>Shuffle Play</value>
   </data>
+  <data name="AppBarSignUp" xml:space="preserve">
+    <value>sign up</value>
+  </data>
+  <data name="ErrorEmailInUse" xml:space="preserve">
+    <value>Email address already in use</value>
+  </data>
+  <data name="ErrorSigningUp" xml:space="preserve">
+    <value>There was an error signing up</value>
+  </data>
+  <data name="ErrorUsernameInUse" xml:space="preserve">
+    <value>Username already in use</value>
+  </data>
+  <data name="HeaderSignUpForEmbyConnect" xml:space="preserve">
+    <value>Sign up</value>
+  </data>
+  <data name="LabelEmailAddress" xml:space="preserve">
+    <value>Email address:</value>
+  </data>
+  <data name="LabelPrivacyStatement" xml:space="preserve">
+    <value>Privacy statement</value>
+  </data>
+  <data name="LabelSignUpForEmbyConnectDescription" xml:space="preserve">
+    <value>By signing up to Emby Connect, you can sign into any of the Emby apps as well as the support forum.</value>
+  </data>
+  <data name="MessageSignUpSuccessful" xml:space="preserve">
+    <value>You have successfully signed up, please check your email for a validation email.</value>
+  </data>
+  <data name="MessageTitleSuccess" xml:space="preserve">
+    <value>Success</value>
+  </data>
+  <data name="SysTraySigningUp" xml:space="preserve">
+    <value>Signing up...</value>
+  </data>
+  <data name="WatermarkEnterEmailAddress" xml:space="preserve">
+    <value>enter an email address</value>
+  </data>
 </root>

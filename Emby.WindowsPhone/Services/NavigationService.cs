@@ -1,15 +1,15 @@
 ﻿using System.Linq;
 using System.Windows;
-using System.Windows.Documents;
-using GalaSoft.MvvmLight.Ioc;
-using GalaSoft.MvvmLight.Messaging;
-using MediaBrowser.Model.Dto;
-using MediaBrowser.Model.Entities;
 using Emby.WindowsPhone.Model.Interfaces;
 using Emby.WindowsPhone.ViewModel;
 using Emby.WindowsPhone.ViewModel.Playlists;
 using Emby.WindowsPhone.ViewModel.Predefined;
+using GalaSoft.MvvmLight.Ioc;
+using GalaSoft.MvvmLight.Messaging;
+using MediaBrowser.Model.Dto;
+using MediaBrowser.Model.Entities;
 using Microsoft.Phone.Net.NetworkInformation;
+using NetworkInterface = System.Net.NetworkInformation.NetworkInterface;
 
 namespace Emby.WindowsPhone.Services
 {
@@ -19,8 +19,8 @@ namespace Emby.WindowsPhone.Services
         {
             get
             {
-                var result = System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable();
-                if (!result || NetworkInterface.NetworkInterfaceType == NetworkInterfaceType.None)
+                var result = NetworkInterface.GetIsNetworkAvailable();
+                if (!result || Microsoft.Phone.Net.NetworkInformation.NetworkInterface.NetworkInterfaceType == NetworkInterfaceType.None)
                 {
                     Deployment.Current.Dispatcher.BeginInvoke(() => App.ShowMessage("No network connection available"));
                 }
@@ -32,7 +32,7 @@ namespace Emby.WindowsPhone.Services
         {
             get
             {
-                var networkType = NetworkInterface.NetworkInterfaceType;
+                var networkType = Microsoft.Phone.Net.NetworkInformation.NetworkInterface.NetworkInterfaceType;
                 return networkType.ToString().Contains("Ethernet")
                        || networkType == NetworkInterfaceType.Wireless80211;
             }

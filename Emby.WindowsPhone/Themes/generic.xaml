@@ -8,10 +8,6 @@
                     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
     
-    <!--<ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="UIResources.xaml"/>
-    </ResourceDictionary.MergedDictionaries>-->
-
     <!-- Converters -->
     <converter:LoggedInDateConverter x:Key="LoggedInDateConverter" />
     <converters:NullVisibilityConverter x:Key="NullVisibilityConverter" />

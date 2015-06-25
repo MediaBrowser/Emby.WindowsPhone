@@ -153,6 +153,7 @@
                 public const string TileSettingsView = SettingsViewPath + "TileSettingsView.xaml";
                 public const string FindServerView = SettingsViewPath + "FindServerView.xaml";
                 public const string MbConnectView = SettingsViewPath + "MbConnectView.xaml";
+                public const string ConnectSignUpView = SettingsViewPath + "ConnectSignUpView.xaml";
             }
 
             public class LiveTv
