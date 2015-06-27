@@ -1,0 +1,104 @@
+﻿<scott:BasePage xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                xmlns:ignore="http://www.ignore.com"
+                xmlns:playerFramework="clr-namespace:Microsoft.PlayerFramework;assembly=Microsoft.PlayerFramework"
+                xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+                xmlns:scott="clr-namespace:ScottIsAFool.WindowsPhone.Controls;assembly=ScottIsAFool.WindowsPhone"
+                xmlns:system="clr-namespace:System;assembly=mscorlib"
+                xmlns:mediaPlayer="clr-namespace:SM.Media.MediaPlayer;assembly=SM.Media.MediaPlayer.WP8"
+                xmlns:tt="clr-namespace:Microsoft.PlayerFramework.WebVTT;assembly=Microsoft.PlayerFramework.WebVTT"
+                xmlns:behaviours="clr-namespace:Emby.WindowsPhone.Behaviours"
+                x:Class="Emby.WindowsPhone.Views.VideoPlayerView"
+                mc:Ignorable="d ignore"
+                SupportedOrientations="PortraitOrLandscape"
+                Orientation="Landscape"
+                shell:SystemTray.IsVisible="False">
+    <scott:BasePage.Resources>
+        
+    </scott:BasePage.Resources>
+    <scott:BasePage.FontFamily>
+        <StaticResource ResourceKey="PhoneFontFamilyNormal" />
+    </scott:BasePage.FontFamily>
+    <scott:BasePage.FontSize>
+        <StaticResource ResourceKey="PhoneFontSizeNormal" />
+    </scott:BasePage.FontSize>
+    <scott:BasePage.Foreground>
+        <StaticResource ResourceKey="PhoneForegroundBrush" />
+    </scott:BasePage.Foreground>
+    <scott:BasePage.DataContext>
+        <Binding Path="Player"
+                 Source="{StaticResource Locator}" />
+    </scott:BasePage.DataContext>
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding VideoPageLoaded}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot"
+          Background="Transparent">
+
+        <playerFramework:MediaPlayer x:Name="ThePlayer"
+                                     Visibility="{Binding IsHls, Converter={StaticResource InvertedVisibilityConverter}, FallbackValue=Visible}"
+                                     Source="{Binding VideoUrl}"
+                                     AutoPlay="{Binding IsDirectStream, Converter={StaticResource NegativeBooleanConverter}}"
+                                     MediaEnded="ThePlayerMediaEnded"
+                                     MediaFailed="ThePlayerMediaFailed"
+                                     MediaOpened="ThePlayer_OnMediaOpened"
+                                     MediaStarting="ThePlayer_OnMediaStarting"
+                                     MediaStarted="ThePlayer_OnMediaStarted"
+                                     IsTimeElapsedVisible="True"
+                                     IsScrubbingEnabled="True"
+                                     IsSeekEnabled="True"
+                                     IsSkipNextVisible="{Binding IsPlaylist}"
+                                     IsSkipPreviousVisible="{Binding IsPlaylist}"
+                                     CurrentStateChanged="ThePlayer_OnCurrentStateChanged"
+                                     StartTime="{Binding StartTime}"
+                                     Position="{Binding PlayedVideoDuration, Mode=TwoWay}"
+                                     EndTime="{Binding EndTime}"
+                                     ScrubbingCompleted="ThePlayerScrubbingCompleted"
+                                     Seeked="ThePlayerSeeked">
+            <i:Interaction.Behaviors>
+                <behaviours:VideoStreamBehaviour VideoStream="{Binding VideoStream}"/>
+            </i:Interaction.Behaviors>
+            <playerFramework:MediaPlayer.Plugins>
+                <tt:WebVTTPlugin/>
+            </playerFramework:MediaPlayer.Plugins>
+        </playerFramework:MediaPlayer>
+        <!--IsCaptionSelectionEnabled="True"
+                                     IsCaptionSelectionVisible="True"
+                                     SelectedCaptionChanged="ThePlayer_OnSelectedCaptionChanged"
+                                     IsCaptionsActive="True"-->
+
+        <playerFramework:MediaPlayer x:Name="HlsPlayer"
+                                     Visibility="{Binding IsHls, Converter={StaticResource VisibilityConverter}, FallbackValue=Collapsed}"
+                                     
+                                     AutoPlay="True"
+                                     MediaEnded="ThePlayerMediaEnded"
+                                     MediaFailed="ThePlayerMediaFailed"
+                                     MediaOpened="ThePlayer_OnMediaOpened"
+                                     MediaStarting="ThePlayer_OnMediaStarting"
+                                     MediaStarted="ThePlayer_OnMediaStarted"
+                                     IsTimeElapsedVisible="True"
+                                     IsScrubbingEnabled="True"
+                                     IsSeekEnabled="True"
+                                     CurrentStateChanged="ThePlayer_OnCurrentStateChanged"
+                                     StartTime="{Binding StartTime}"
+                                     Position="{Binding PlayedVideoDuration, Mode=TwoWay}"
+                                     EndTime="{Binding EndTime}"
+                                     ScrubbingCompleted="ThePlayerScrubbingCompleted"
+                                     Seeked="ThePlayerSeeked">
+            <i:Interaction.Behaviors>
+                <behaviours:VideoStreamBehaviour HlsUrl="{Binding HlsUrl}" />
+            </i:Interaction.Behaviors>
+            <playerFramework:MediaPlayer.Plugins>
+                <mediaPlayer:StreamingMediaPlugin />
+            </playerFramework:MediaPlayer.Plugins>
+        </playerFramework:MediaPlayer>
+    </Grid>
+
+</scott:BasePage>

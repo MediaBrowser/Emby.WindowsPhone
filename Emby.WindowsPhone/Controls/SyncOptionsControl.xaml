@@ -1,0 +1,101 @@
+﻿<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
+             xmlns:telerikInput="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Input"
+             xmlns:toggleSwitch="clr-namespace:Telerik.Windows.Controls.ToggleSwitch;assembly=Telerik.Windows.Controls.Primitives"
+             xmlns:controls="clr-namespace:InTheHand.UI.Xaml.Controls;assembly=InTheHand.UI.Xaml.Controls.ProgressRing"
+             x:Class="Emby.WindowsPhone.Controls.SyncOptionsControl"
+             mc:Ignorable="d"
+             d:DesignHeight="600"
+             d:DesignWidth="480"
+             MinHeight="100">
+
+    <UserControl.Resources>
+        <Style TargetType="ContentControl"
+               x:Key="HeaderStyle">
+            <Setter Property="HorizontalAlignment"
+                    Value="Left" />
+            <Setter Property="Foreground"
+                    Value="{StaticResource PhoneBackgroundBrush}" />
+        </Style>
+
+        <Style TargetType="toggleSwitch:ToggleSwitchButton"
+               x:Key="ToggleButton">
+            <Setter Property="BorderBrush"
+                    Value="Black" />
+        </Style>
+    </UserControl.Resources>
+
+    <Grid x:Name="LayoutRoot"
+          Background="White">
+        <StackPanel Orientation="Vertical"
+                    VerticalAlignment="Bottom"
+                    Visibility="{Binding IsLoading, Converter={StaticResource InvertedVisibilityConverter}}">
+            <telerikInput:RadListPicker x:Name="TargetDevices"
+                                        BorderBrush="Black"
+                                        Foreground="Black"
+                                        DisplayMemberPath="Name"
+                                        Header="{Binding LocalisedResources.HeaderSyncToDevice, Source={StaticResource LocalisedStrings}}"
+                                        HeaderStyle="{StaticResource HeaderStyle}"
+                                        SelectionChanged="TargetDevices_OnSelectionChanged"
+                                        InlineModeThreshold="10"/>
+            <telerikPrimitives:RadTextBox InputScope="Number"
+                                          BorderBrush="Black"
+                                          Header="{Binding LocalisedResources.HeaderItemLimit, Source={StaticResource LocalisedStrings}}"
+                                          Watermark="{Binding LocalisedResources.LabelOptional, Source={StaticResource LocalisedStrings}}"
+                                          HeaderStyle="{StaticResource HeaderStyle}"
+                                          x:Name="ItemLimitBox" 
+                                          Text="{Binding ItemLimit, Mode=TwoWay}"
+                                          Visibility="Collapsed"/>
+            <telerikPrimitives:RadToggleSwitch Foreground="Black"
+                                               Header="{Binding LocalisedResources.HeaderUnwatchedItems, Source={StaticResource LocalisedStrings}}"
+                                               HeaderStyle="{StaticResource HeaderStyle}"
+                                               x:Name="UnwatchedVideos"
+                                               ButtonStyle="{StaticResource ToggleButton}"
+                                               IsChecked="{Binding SyncUnwatched, Mode=TwoWay}"
+                                               Visibility="Collapsed"/>
+            <telerikPrimitives:RadToggleSwitch Foreground="Black"
+                                               Header="{Binding LocalisedResources.HeaderAutoSync, Source={StaticResource LocalisedStrings}}"
+                                               HeaderStyle="{StaticResource HeaderStyle}"
+                                               x:Name="AutoSyncVideos"
+                                               ButtonStyle="{StaticResource ToggleButton}"
+                                               IsChecked="{Binding SyncNewContent, Mode=TwoWay}"
+                                               Visibility="Collapsed"/>
+            <telerikInput:RadListPicker x:Name="ProfilePicker"
+                                        DisplayMemberPath="Name"
+                                        BorderBrush="Black"
+                                        Foreground="Black"
+                                        Header="{Binding LocalisedResources.HeaderProfile, Source={StaticResource LocalisedStrings}}"
+                                        HeaderStyle="{StaticResource HeaderStyle}"
+                                        SelectionChanged="ProfilePicker_OnSelectionChanged"
+                                        Visibility="Collapsed"/>
+            <TextBlock x:Name="ProfileDescription"
+                       Style="{StaticResource PhoneTextSmallStyle}"
+                       Foreground="Black"
+                       TextWrapping="Wrap"
+                       Visibility="Collapsed"/>
+            <telerikInput:RadListPicker x:Name="QualityPicker"
+                                        DisplayMemberPath="Name"
+                                        BorderBrush="Black"
+                                        Foreground="Black"
+                                        Header="{Binding LocalisedResources.HeaderQuality, Source={StaticResource LocalisedStrings}}"
+                                        HeaderStyle="{StaticResource HeaderStyle}" />
+            <Button Style="{StaticResource HeroButtonStyle}"
+                    Content="sync"
+                    Tap="SyncButton_OnTap"
+                    x:Name="SyncButton" />
+        </StackPanel>
+        <StackPanel Orientation="Vertical"
+                    HorizontalAlignment="Center"
+                    Visibility="{Binding IsLoading, Converter={StaticResource VisibilityConverter}}">
+            <controls:ProgressRing IsActive="{Binding IsLoading}"
+                                   Margin="0,0,0,12"
+                                   Foreground="{StaticResource PhoneAccentBrush}" />
+            <TextBlock Text="{Binding LocalisedResources.LabelLoading, Source={StaticResource LocalisedStrings}}"
+                       Style="{StaticResource PhoneTextNormalStyle}"
+                       Foreground="Black"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

@@ -1,0 +1,107 @@
+﻿<scott:BasePage x:Class="Emby.WindowsPhone.Views.FirstRun.ConfigureView"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                xmlns:scott="clr-namespace:ScottIsAFool.WindowsPhone.Controls;assembly=ScottIsAFool.WindowsPhone"
+                xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+                FontFamily="{StaticResource PhoneFontFamilyNormal}"
+                FontSize="{StaticResource PhoneFontSizeNormal}"
+                Foreground="{StaticResource PhoneForegroundBrush}"
+                SupportedOrientations="Portrait"
+                Orientation="Portrait"
+                mc:Ignorable="d"
+                shell:SystemTray.IsVisible="True"
+                shell:SystemTray.Opacity="0">
+
+    <scott:BasePage.Resources>
+        <Color x:Key="AppBarColour">Black</Color>
+        <SolidColorBrush x:Key="AppBarBrush"
+                         Color="{StaticResource AppBarColour}"
+                         Opacity="0.6" />
+    </scott:BasePage.Resources>
+
+    <toolkit:TransitionService.NavigationInTransition>
+        <toolkit:NavigationInTransition>
+            <toolkit:NavigationInTransition.Backward>
+                <toolkit:SlideTransition Mode="SlideRightFadeIn" />
+            </toolkit:NavigationInTransition.Backward>
+            <toolkit:NavigationInTransition.Forward>
+                <toolkit:SlideTransition Mode="SlideLeftFadeIn" />
+            </toolkit:NavigationInTransition.Forward>
+        </toolkit:NavigationInTransition>
+    </toolkit:TransitionService.NavigationInTransition>
+    <toolkit:TransitionService.NavigationOutTransition>
+        <toolkit:NavigationOutTransition>
+            <toolkit:NavigationOutTransition.Backward>
+                <toolkit:SlideTransition Mode="SlideRightFadeOut" />
+            </toolkit:NavigationOutTransition.Backward>
+            <toolkit:NavigationOutTransition.Forward>
+                <toolkit:SlideTransition Mode="SlideLeftFadeOut" />
+            </toolkit:NavigationOutTransition.Forward>
+        </toolkit:NavigationOutTransition>
+    </toolkit:TransitionService.NavigationOutTransition>
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot"
+          Background="{StaticResource MediaBrowserBackground}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Image Source="/Images/FirstRun/WelcomeBackground.jpg"
+               Grid.RowSpan="2"
+               Grid.ColumnSpan="2"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top"
+               Stretch="Fill"/>
+
+        <!--ContentPanel - place additional content here-->
+        <Grid x:Name="ContentPanel"
+              Margin="12,68,12,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="{Binding LocalisedResources.LabelFirstRunServerInfo, Source={StaticResource LocalisedStrings}}"
+                           Style="{StaticResource PhoneTextTitle3Style}"
+                           TextWrapping="Wrap" />
+                <HyperlinkButton Content="http://emby.media/download"
+                                 HorizontalContentAlignment="Left"
+                                 x:Name="DownloadButton"
+                                 Click="DownloadButton_OnClick" />
+            </StackPanel>
+
+            <TextBlock Text="{Binding LocalisedResources.LabelFirstRunAccessible, Source={StaticResource LocalisedStrings}}"
+                       Style="{StaticResource PhoneTextTitle3Style}"
+                       TextWrapping="Wrap"
+                       Grid.Row="1"
+                       Margin="12,24" />
+
+            <TextBlock Grid.Row="2"
+                       Style="{StaticResource PhoneTextTitle3Style}"
+                       Text="{Binding LocalisedResources.LabelFirstRunHappyConfiguration, Source={StaticResource LocalisedStrings}}"
+                       TextWrapping="Wrap" />
+        </Grid>
+
+        <Grid VerticalAlignment="Bottom"
+              HorizontalAlignment="Stretch"
+              Background="{StaticResource AppBarBrush}"
+              Grid.RowSpan="2">
+            <Button Content="{Binding LocalisedResources.LabelQuit, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                    HorizontalAlignment="Left"
+                    Width="240"
+                    x:Name="QuitButton"
+                    Click="QuitButton_OnClick" />
+            <Button Content="{Binding LocalisedResources.AppBarNext, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                    Width="240"
+                    HorizontalAlignment="Right"
+                    x:Name="SettingsButton"
+                    Click="SettingsButton_OnClick" />
+        </Grid>
+    </Grid>
+
+</scott:BasePage>

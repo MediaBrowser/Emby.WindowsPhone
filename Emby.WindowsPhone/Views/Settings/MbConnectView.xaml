@@ -1,0 +1,174 @@
+﻿<views:SettingsBasePage x:Class="Emby.WindowsPhone.Views.Settings.MbConnectView"
+                        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                        xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+                        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                        xmlns:ignore="http://www.ignore.com"
+                        xmlns:views="clr-namespace:Emby.WindowsPhone.Views"
+                        xmlns:controls="clr-namespace:Emby.WindowsPhone.Controls"
+                        xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+                        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+                        xmlns:behaviours="clr-namespace:ScottIsAFool.WindowsPhone.Behaviours"
+                        xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
+                        xmlns:behaviours1="clr-namespace:Emby.WindowsPhone.Behaviours"
+                        xmlns:controls1="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
+                        xmlns:behaviors="clr-namespace:Cimbalino.Toolkit.Behaviors;assembly=Cimbalino.Toolkit"
+                        mc:Ignorable="d ignore"
+                        FontFamily="{StaticResource PhoneFontFamilyNormal}"
+                        FontSize="{StaticResource PhoneFontSizeNormal}"
+                        Foreground="{StaticResource PhoneForegroundBrush}"
+                        SupportedOrientations="Portrait"
+                        Orientation="Portrait"
+                        shell:SystemTray.IsVisible="True"
+                        shell:SystemTray.Opacity="0"
+                        DataContext="{Binding MbConnect, Source={StaticResource Locator}}">
+    <i:Interaction.Behaviors>
+        <behaviors:ApplicationBarBehavior IsMenuEnabled="True"
+                                          Mode="{Binding Auth.LoggedInConnectUser, Source={StaticResource Locator}, Converter={StaticResource AppBarModeConverter}}">
+            <behaviors:ApplicationBarBehavior.Buttons>
+                <behaviors:ApplicationBarIconButton IconUri="/Icons/appbar.check.rest.png"
+                                                    Text="{Binding LocalisedResources.AppBarLogin, Source={StaticResource LocalisedStrings}}"
+                                                    IsEnabled="{Binding CanSignIn}"
+                                                    IsVisible="{Binding Auth.SignedInUsingConnect, Source={StaticResource Locator}, Converter={StaticResource NegativeBooleanConverter}}"
+                                                    Command="{Binding SignInCommand}" />
+            </behaviors:ApplicationBarBehavior.Buttons>
+            <behaviors:ApplicationBarBehavior.MenuItems>
+                <behaviors:ApplicationBarMenuItem Text="{Binding LocalisedResources.AppBarSendLogs, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                  x:Name="EmailLogs"
+                                                  Click="EmailLogs_OnClick" />
+                <behaviors:ApplicationBarMenuItem Text="{Binding LocalisedResources.AppBarAbout, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                  x:Name="AboutItem"
+                                                  Click="AboutItem_OnClick" />
+            </behaviors:ApplicationBarBehavior.MenuItems>
+        </behaviors:ApplicationBarBehavior>
+        <behaviours1:MBSysTray Text="{Binding ProgressText}"
+                               IsVisible="{Binding ProgressIsVisible}"
+                               IsIndeterminate="{Binding ProgressIsVisible}" />
+        <behaviors:AutoFocusBehavior/>
+    </i:Interaction.Behaviors>
+
+    <toolkit:TransitionService.NavigationInTransition>
+        <toolkit:NavigationInTransition>
+            <toolkit:NavigationInTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardIn" />
+            </toolkit:NavigationInTransition.Backward>
+            <toolkit:NavigationInTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardIn" />
+            </toolkit:NavigationInTransition.Forward>
+        </toolkit:NavigationInTransition>
+    </toolkit:TransitionService.NavigationInTransition>
+    <toolkit:TransitionService.NavigationOutTransition>
+        <toolkit:NavigationOutTransition>
+            <toolkit:NavigationOutTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardOut" />
+            </toolkit:NavigationOutTransition.Backward>
+            <toolkit:NavigationOutTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardOut" />
+            </toolkit:NavigationOutTransition.Forward>
+        </toolkit:NavigationOutTransition>
+    </toolkit:TransitionService.NavigationOutTransition>
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot"
+          Background="{StaticResource MediaBrowserBackground}">
+        <Grid Margin="0,32,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!--TitlePanel contains the name of the application and page title-->
+            <StackPanel x:Name="TitlePanel"
+                        Grid.Row="0"
+                        Margin="12,17,0,28">
+                <controls:EmbyLogo />
+                <TextBlock Text="{Binding LocalisedResources.LabelMbConnect, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                           Margin="9,-7,0,0"
+                           Style="{StaticResource PhoneTextTitle1Style}" />
+            </StackPanel>
+
+            <!--ContentPanel - place additional content here-->
+            <Grid x:Name="ContentPanel"
+                  Grid.Row="1"
+                  Margin="12,0,12,0">
+                <Grid x:Name="IsLoggedInGrid"
+                      Visibility="{Binding Auth.LoggedInConnectUser, Source={StaticResource Locator}, Converter={StaticResource NullVisibilityConverter}, FallbackValue=Visible}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    
+                    <Grid Margin="12,0"
+                          DataContext="{Binding Auth.LoggedInConnectUser, Source={StaticResource Locator}}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <controls1:SuperImage Source="{Binding ImageUrl}"
+                                              Stretch="UniformToFill"
+                                              PlaceholderImageSource="/Images/default_avatar.png"/>
+                        
+                        <StackPanel Orientation="Vertical"
+                                    Grid.Column="1">
+                            <TextBlock Text="{Binding Name}"
+                                       Style="{StaticResource PhoneTextTitle2Style}"/>
+                        </StackPanel>
+                    </Grid>
+                    
+                    <controls:CustomHyperlinkButton Content="{Binding LocalisedResources.LabelLogout, Source={StaticResource LocalisedStrings}}"
+                                                    Grid.Row="1"
+                                                    VerticalAlignment="Top"
+                                                    HorizontalContentAlignment="Left"
+                                                    Margin="0,24,0,0"
+                                                    TapCommand="{Binding LogOutCommand}"/>
+                </Grid>
+
+                <Grid x:Name="IsNotLoggedInGrid"
+                      Visibility="{Binding Auth.LoggedInConnectUser, Source={StaticResource Locator}, Converter={StaticResource InvertedNullVisibilityConverter}, FallbackValue=Collapsed}">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="{Binding LocalisedResources.LabelUsername, Source={StaticResource LocalisedStrings}}"
+                                   Style="{StaticResource PhoneTextSubtleStyle}" />
+                        <toolkit:PhoneTextBox Text="{Binding Username, Mode=TwoWay}"
+                                              IsEnabled="{Binding ProgressIsVisible, Converter={StaticResource NegativeBooleanConverter}}"
+                                              InputScope="EmailUserName"
+                                              x:Name="UsernameBox">
+                            <i:Interaction.Behaviors>
+                                <behaviours:UpdateTextBindingOnPropertyChanged />
+                            </i:Interaction.Behaviors>
+                        </toolkit:PhoneTextBox>
+
+                        <telerikPrimitives:RadPasswordBox Password="{Binding Password, Mode=TwoWay}"
+                                                          Header="{Binding LocalisedResources.LabelPassword, Source={StaticResource LocalisedStrings}}"
+                                                          IsEnabled="{Binding ProgressIsVisible, Converter={StaticResource NegativeBooleanConverter}}">
+                            <i:Interaction.Behaviors>
+                                <behaviours1:EnterKeyHandler EnterKeyAction="ExecuteCommand"
+                                                             CommandString="SignInCommand"/>
+                            </i:Interaction.Behaviors>
+                        </telerikPrimitives:RadPasswordBox>
+
+                        <TextBlock Text="{Binding LocalisedResources.LabelMbConnectFreeAccount, Source={StaticResource LocalisedStrings}}"
+                                   Style="{StaticResource PhoneTextNormalStyle}"
+                                   TextWrapping="Wrap"
+                                   Margin="12"
+                                   Foreground="{StaticResource PhoneSubtleBrush}" />
+                        <controls:CustomHyperlinkButton Content="{Binding LocalisedResources.LabelSignUp, Source={StaticResource LocalisedStrings}}"
+                                                        HorizontalContentAlignment="Left"
+                                                        Foreground="{StaticResource PhoneAccentBrush}"
+                                                        x:Name="SignUpButton"
+                                                        Tap="SignUpButton_OnTap" />
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </Grid>
+        <!--Uncomment to see an alignment grid to help ensure your controls are
+            aligned on common boundaries.  The image has a top margin of -32px to
+            account for the System Tray. Set this to 0 (or remove the margin altogether)
+            if the System Tray is hidden.
+
+            Before shipping remove this XAML and the image itself.-->
+        <!--<Image Source="/Assets/AlignmentGrid.png" VerticalAlignment="Top" Height="800" Width="480" Margin="0,-32,0,0" Grid.Row="0" Grid.RowSpan="2" IsHitTestVisible="False" />-->
+    </Grid>
+
+</views:SettingsBasePage>

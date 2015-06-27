@@ -1,0 +1,1369 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AppBarAbout" xml:space="preserve">
+    <value>acerca de</value>
+  </data>
+  <data name="AppBarAddToNowPlaying" xml:space="preserve">
+    <value>añadir a tocando ahora</value>
+  </data>
+  <data name="AppBarChangeProfile" xml:space="preserve">
+    <value>cambiar perfil</value>
+  </data>
+  <data name="AppBarClearNowPlaying" xml:space="preserve">
+    <value>eliminar tocando ahora</value>
+  </data>
+  <data name="AppBarDeleteItems" xml:space="preserve">
+    <value>eliminar elementos</value>
+  </data>
+  <data name="AppBarGroupBy" xml:space="preserve">
+    <value>agrupar por</value>
+  </data>
+  <data name="AppBarLogin" xml:space="preserve">
+    <value>inicio de sesión</value>
+  </data>
+  <data name="AppBarMarkAsUnwatched" xml:space="preserve">
+    <value>marcar como no visto</value>
+  </data>
+  <data name="AppBarMarkAsWatched" xml:space="preserve">
+    <value>marcar como visto</value>
+  </data>
+  <data name="AppBarNext" xml:space="preserve">
+    <value>siguiente</value>
+  </data>
+  <data name="AppBarNotifications" xml:space="preserve">
+    <value>notificaciones</value>
+  </data>
+  <data name="AppBarNowPlaying" xml:space="preserve">
+    <value>tocando ahora</value>
+  </data>
+  <data name="AppBarPause" xml:space="preserve">
+    <value>pausa</value>
+  </data>
+  <data name="AppBarPlay" xml:space="preserve">
+    <value>tocar</value>
+  </data>
+  <data name="AppBarPlayAll" xml:space="preserve">
+    <value>tocar todo</value>
+  </data>
+  <data name="AppBarPlayAllTracks" xml:space="preserve">
+    <value>tocar todas las pistas</value>
+  </data>
+  <data name="AppBarPlayItems" xml:space="preserve">
+    <value>tocar los elementos</value>
+  </data>
+  <data name="AppBarPlayOn" xml:space="preserve">
+    <value>tocar en...</value>
+  </data>
+  <data name="AppBarPosterLockscreen" xml:space="preserve">
+    <value>establecer póster como la pantalla de bloqueo</value>
+  </data>
+  <data name="AppBarPrevious" xml:space="preserve">
+    <value>anterior</value>
+  </data>
+  <data name="AppBarRefresh" xml:space="preserve">
+    <value>refrescar</value>
+  </data>
+  <data name="AppBarRefreshInformation" xml:space="preserve">
+    <value>refrescar informacion</value>
+  </data>
+  <data name="AppBarRemote" xml:space="preserve">
+    <value>remoto</value>
+  </data>
+  <data name="AppBarResume" xml:space="preserve">
+    <value>resumir</value>
+  </data>
+  <data name="AppBarSearch" xml:space="preserve">
+    <value>buscar</value>
+  </data>
+  <data name="AppBarSelectItems" xml:space="preserve">
+    <value>seleccionar elementos</value>
+  </data>
+  <data name="AppBarSendLogs" xml:space="preserve">
+    <value>enviar registros</value>
+  </data>
+  <data name="AppBarSettings" xml:space="preserve">
+    <value>configuración</value>
+  </data>
+  <data name="Collections" xml:space="preserve">
+    <value>Carpetas</value>
+  </data>
+  <data name="DeviceNotRegistered" xml:space="preserve">
+    <value>Dispositivo no registrado</value>
+  </data>
+  <data name="DeviceRegistered" xml:space="preserve">
+    <value>Dispositivo registrado</value>
+  </data>
+  <data name="ErrorConnectionDetailsInvalid" xml:space="preserve">
+    <value>Los detalles de la conexion</value>
+  </data>
+  <data name="ErrorConnectionDetailsMessage" xml:space="preserve">
+    <value>Detalles de la conexión no son válidos, por favor intente de nuevo.</value>
+  </data>
+  <data name="ErrorConnectionDetailsTitle" xml:space="preserve">
+    <value>Sin detalles de de la conexión</value>
+  </data>
+  <data name="ErrorCouldNotFindServer" xml:space="preserve">
+    <value>No se puede localizar su servidor</value>
+  </data>
+  <data name="ErrorDisabledUser" xml:space="preserve">
+    <value>Lo sentimos, parece que esta cuenta ha sido inhabilitada. Ahora pasaremos nuevamente a la pantalla de inicio de sesión.</value>
+  </data>
+  <data name="ErrorDisabledUserTitle" xml:space="preserve">
+    <value>No se puede registrar</value>
+  </data>
+  <data name="ErrorEpisodeDetails" xml:space="preserve">
+    <value>Error en descargar los detalles del episodio</value>
+  </data>
+  <data name="ErrorEpisodes" xml:space="preserve">
+    <value>Error en recibir los episodios</value>
+  </data>
+  <data name="ErrorFailedToSearch" xml:space="preserve">
+    <value>Error al iniciar la busqueda</value>
+  </data>
+  <data name="ErrorGettingData" xml:space="preserve">
+    <value>Error en obtener datos</value>
+  </data>
+  <data name="ErrorGettingExtraInfo" xml:space="preserve">
+    <value>Error en obtener informacion adicional</value>
+  </data>
+  <data name="ErrorGettingTrailerDetails" xml:space="preserve">
+    <value>No se puede obtener la información del corto</value>
+  </data>
+  <data name="ErrorInvalidHostname" xml:space="preserve">
+    <value>Lo sentimos, su nombre de máquina no es válido, por favor asegúrese de que usted no tiene ningún espacio (por ejemplo) en el mismo.</value>
+  </data>
+  <data name="ErrorMakingChanges" xml:space="preserve">
+    <value>Error al realizar sus cambios</value>
+  </data>
+  <data name="ErrorNoConnectionSettings" xml:space="preserve">
+    <value>Sin ajustes de conexión, toque para guardar</value>
+  </data>
+  <data name="ErrorProblemUpdatingItem" xml:space="preserve">
+    <value>hay un problema actualizando este artículo, por favor intentar mas tarde</value>
+  </data>
+  <data name="ErrorRecentItems" xml:space="preserve">
+    <value>Error en obtener artículos recientes</value>
+  </data>
+  <data name="ErrorSeasons" xml:space="preserve">
+    <value>Error obteniendo temporadas</value>
+  </data>
+  <data name="ErrorTitle" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="ErrorUnableToSignIn" xml:space="preserve">
+    <value>No ha sido posible iniciar sesión en este momento, esto puede deberse a un usuario/contraseña incorrectos, o a que su cuenta ha sido deshabilitada.</value>
+  </data>
+  <data name="ErrorUnableToSignInTitle" xml:space="preserve">
+    <value>Inicio de sesión fallido</value>
+  </data>
+  <data name="Favourites" xml:space="preserve">
+    <value>Favoritos</value>
+  </data>
+  <data name="Genre" xml:space="preserve">
+    <value>Género</value>
+  </data>
+  <data name="HeaderChooseClient" xml:space="preserve">
+    <value>Seleccione un cliente</value>
+  </data>
+  <data name="HeaderDefaultGrouping" xml:space="preserve">
+    <value>Agrupamiento por omisión</value>
+  </data>
+  <data name="HeaderFromCollection" xml:space="preserve">
+    <value>Desde la colección (cuando aplique):</value>
+  </data>
+  <data name="LabelActor" xml:space="preserve">
+    <value>Actor</value>
+  </data>
+  <data name="LabelAdd" xml:space="preserve">
+    <value>añadir</value>
+  </data>
+  <data name="LabelAddToFavourites" xml:space="preserve">
+    <value>Añadir a favoritos</value>
+  </data>
+  <data name="LabelAlbums" xml:space="preserve">
+    <value>albums</value>
+  </data>
+  <data name="LabelAnHourAgo" xml:space="preserve">
+    <value>hace una hora</value>
+  </data>
+  <data name="LabelArtists" xml:space="preserve">
+    <value>artistas</value>
+  </data>
+  <data name="LabelBio" xml:space="preserve">
+    <value>bio</value>
+  </data>
+  <data name="LabelBoxsets" xml:space="preserve">
+    <value>colecciones</value>
+  </data>
+  <data name="LabelCastCrew" xml:space="preserve">
+    <value>reparto + equipo</value>
+  </data>
+  <data name="LabelChapters" xml:space="preserve">
+    <value>capítulos</value>
+  </data>
+  <data name="LabelCollage" xml:space="preserve">
+    <value>Collage a pantalla completa</value>
+  </data>
+  <data name="LabelConnect" xml:space="preserve">
+    <value>Conectar</value>
+  </data>
+  <data name="LabelConnection" xml:space="preserve">
+    <value>conexión</value>
+  </data>
+  <data name="LabelConnectionDetails" xml:space="preserve">
+    <value>Capture los detalles de la conexión para apuntar a la computadora que ejecuta Emby. Después simplemente pruebe para confirmar.</value>
+  </data>
+  <data name="LabelConnectionWarning" xml:space="preserve">
+    <value>ADVERTENCIA: Cambiar el nombre del equipo removerá todos los perfiles guardados.</value>
+  </data>
+  <data name="LabelDate" xml:space="preserve">
+    <value>fecha</value>
+  </data>
+  <data name="LabelDaysAgo" xml:space="preserve">
+    <value>hace {0} días</value>
+  </data>
+  <data name="LabelDefaultLockScreen" xml:space="preserve">
+    <value>Pantalla de bloqueo por omisión</value>
+  </data>
+  <data name="LabelDetails" xml:space="preserve">
+    <value>detalles</value>
+  </data>
+  <data name="LabelDirector" xml:space="preserve">
+    <value>Director</value>
+  </data>
+  <data name="LabelDisplayRandomImages" xml:space="preserve">
+    <value>Desplegar imágenes de fondo aleatorias em el fondo del icono</value>
+  </data>
+  <data name="LabelEpisode" xml:space="preserve">
+    <value>Episodio</value>
+  </data>
+  <data name="LabelFindServer" xml:space="preserve">
+    <value>buscar servidor</value>
+  </data>
+  <data name="LabelFirstRunAccessible" xml:space="preserve">
+    <value>Una vez que el servidor Emby ha sido configurado, asegúrese de que es accesible desde donde se encuentra, ya sea desde su red de área local, o una dirección externa estática.</value>
+  </data>
+  <data name="LabelFirstRunHappyConfiguration" xml:space="preserve">
+    <value>Si está conforme con lo que ha configurado, haga click en el botón de propiedades y capture los detalles de su servidor, de lo contrario usted puede abandonar la aplicación desde aqui.</value>
+  </data>
+  <data name="LabelFirstRunServerInfo" xml:space="preserve">
+    <value>Antes de poder iniciar, debe asegurarse de estar ejecutando el servidor Emby.</value>
+  </data>
+  <data name="LabelGeneral" xml:space="preserve">
+    <value>general</value>
+  </data>
+  <data name="LabelGenres" xml:space="preserve">
+    <value>géneros</value>
+  </data>
+  <data name="LabelHostname" xml:space="preserve">
+    <value>Nombre de host:</value>
+  </data>
+  <data name="LabelHoursAgo" xml:space="preserve">
+    <value>hace {0} horas</value>
+  </data>
+  <data name="LabelImageEnhancers" xml:space="preserve">
+    <value>Habilitar imágenes mejoradas (si están instaladas en el servidor)</value>
+  </data>
+  <data name="LabelImdb" xml:space="preserve">
+    <value>Ver película en imdb</value>
+  </data>
+  <data name="LabelIsLockScreenProvider" xml:space="preserve">
+    <value>Emby es el proveedor de bloqueo de pantalla actual</value>
+  </data>
+  <data name="LabelIsNotLockScreenProvider" xml:space="preserve">
+    <value>Emby no es el provedor de bloqueo de pantalla</value>
+  </data>
+  <data name="LabelJustShowList" xml:space="preserve">
+    <value>Solo muestre la lista de elementos, no una vista de carpetas de medios.</value>
+  </data>
+  <data name="LabelLatestUnseen" xml:space="preserve">
+    <value>Recientes no vistos</value>
+  </data>
+  <data name="LabelLiveTv" xml:space="preserve">
+    <value>TV en vivo</value>
+  </data>
+  <data name="LabelLockScreen" xml:space="preserve">
+    <value>bloquear pantalla</value>
+  </data>
+  <data name="LabelLockScreenSettinsg" xml:space="preserve">
+    <value>bloiquear configuración de pantalla</value>
+  </data>
+  <data name="LabelMakeLockScreenProvider" xml:space="preserve">
+    <value>Convertirnos en el proveedor de bloqueo de pantalla</value>
+  </data>
+  <data name="LabelManuallyLogin" xml:space="preserve">
+    <value>Inicio de sesión manual</value>
+  </data>
+  <data name="LabelMinutesAgo" xml:space="preserve">
+    <value>hace {0} minutos</value>
+  </data>
+  <data name="LabelMissingEpisodes" xml:space="preserve">
+    <value>Mostrar episodios faltantes</value>
+  </data>
+  <data name="LabelMonthsAgo" xml:space="preserve">
+    <value>Hace {0} meses</value>
+  </data>
+  <data name="LabelMovies" xml:space="preserve">
+    <value>Películas</value>
+  </data>
+  <data name="LabelMusic" xml:space="preserve">
+    <value>Música</value>
+  </data>
+  <data name="LabelNextUp" xml:space="preserve">
+    <value>siguiente</value>
+  </data>
+  <data name="LabelNo" xml:space="preserve">
+    <value>no</value>
+  </data>
+  <data name="LabelNoEpisodes" xml:space="preserve">
+    <value>No hay episodios que mostrar</value>
+  </data>
+  <data name="LabelNone" xml:space="preserve">
+    <value>ninguno</value>
+  </data>
+  <data name="LabelNoSeasonsFound" xml:space="preserve">
+    <value>No se encontraron temporadas</value>
+  </data>
+  <data name="LabelNotifications" xml:space="preserve">
+    <value>notificaciones</value>
+  </data>
+  <data name="LabelNowPlaying" xml:space="preserve">
+    <value>reproduciendo ahora</value>
+  </data>
+  <data name="LabelOneMinuteAgo" xml:space="preserve">
+    <value>hace un minuto</value>
+  </data>
+  <data name="LabelOneMonthAgo" xml:space="preserve">
+    <value>hace un mes</value>
+  </data>
+  <data name="LabelOneSecondAgo" xml:space="preserve">
+    <value>hace un segundo</value>
+  </data>
+  <data name="LabelOther" xml:space="preserve">
+    <value>Otro</value>
+  </data>
+  <data name="LabelOverview" xml:space="preserve">
+    <value>Argumento</value>
+  </data>
+  <data name="LabelPassword" xml:space="preserve">
+    <value>Contraseña:</value>
+  </data>
+  <data name="LabelPort" xml:space="preserve">
+    <value>Puerto:</value>
+  </data>
+  <data name="LabelPoster" xml:space="preserve">
+    <value>poster</value>
+  </data>
+  <data name="LabelProducer" xml:space="preserve">
+    <value>Productor</value>
+  </data>
+  <data name="LabelProfile" xml:space="preserve">
+    <value>perfíl</value>
+  </data>
+  <data name="LabelProfileNotListed" xml:space="preserve">
+    <value>¿Perfíl no listado?</value>
+  </data>
+  <data name="LabelProfiles" xml:space="preserve">
+    <value>perfiles</value>
+  </data>
+  <data name="LabelQuit" xml:space="preserve">
+    <value>salir</value>
+  </data>
+  <data name="LabelRandomItems" xml:space="preserve">
+    <value>Ítems aleatorios</value>
+  </data>
+  <data name="LabelRandomPictures" xml:space="preserve">
+    <value>Imágenes aleatorias de la colección</value>
+  </data>
+  <data name="LabelRating" xml:space="preserve">
+    <value>Calificación:</value>
+  </data>
+  <data name="LabelRecent" xml:space="preserve">
+    <value>Reciente</value>
+  </data>
+  <data name="LabelRemote" xml:space="preserve">
+    <value>Remoto</value>
+  </data>
+  <data name="LabelRemove" xml:space="preserve">
+    <value>remover</value>
+  </data>
+  <data name="LabelRunningTime" xml:space="preserve">
+    <value>Duración:</value>
+  </data>
+  <data name="LabelSearch" xml:space="preserve">
+    <value>buscar</value>
+  </data>
+  <data name="LabelSeasons" xml:space="preserve">
+    <value>temporadas</value>
+  </data>
+  <data name="LabelSecondsAgo" xml:space="preserve">
+    <value>Hace {0} segundos</value>
+  </data>
+  <data name="LabelSeries" xml:space="preserve">
+    <value>Series</value>
+  </data>
+  <data name="LabelShowAllItems" xml:space="preserve">
+    <value>mostrar todos los ítems...</value>
+  </data>
+  <data name="LabelShows" xml:space="preserve">
+    <value>programas</value>
+  </data>
+  <data name="LabelShowTrailers" xml:space="preserve">
+    <value>Mostrar avances en ítems recientes</value>
+  </data>
+  <data name="LabelSinglePoster" xml:space="preserve">
+    <value>poster individual</value>
+  </data>
+  <data name="LabelSongs" xml:space="preserve">
+    <value>canciones</value>
+  </data>
+  <data name="LabelTile" xml:space="preserve">
+    <value>título</value>
+  </data>
+  <data name="LabelTileBackInformation" xml:space="preserve">
+    <value>Para lucir algunas de imágenes disponibles para los medios con que usted cuenta, el icono mostrará algunas de estas imágenes, aqui puede seleccionar como se verá el ícono</value>
+  </data>
+  <data name="LabelTrailers" xml:space="preserve">
+    <value>avances</value>
+  </data>
+  <data name="LabelTv" xml:space="preserve">
+    <value>TV</value>
+  </data>
+  <data name="LabelUnairedEpisodes" xml:space="preserve">
+    <value>Mostrar episodios aún no emitidos</value>
+  </data>
+  <data name="LabelUnwatched" xml:space="preserve">
+    <value>No visto:</value>
+  </data>
+  <data name="LabelUsername" xml:space="preserve">
+    <value>Nombre de usuario:</value>
+  </data>
+  <data name="LabelViews" xml:space="preserve">
+    <value>Vistas</value>
+  </data>
+  <data name="LabelWelcomeText" xml:space="preserve">
+    <value>Bienvenido a Emby para Teléfonos Windows. Esta app le permite navegar su colección de medios, transmitirlos a su teléfono y controlar remotamente cualquier cliente controlable de Emby,</value>
+  </data>
+  <data name="LabelWriter" xml:space="preserve">
+    <value>Escritor</value>
+  </data>
+  <data name="LabelYes" xml:space="preserve">
+    <value>si</value>
+  </data>
+  <data name="LabelYesterday" xml:space="preserve">
+    <value>ayer</value>
+  </data>
+  <data name="MenuPlayFrom" xml:space="preserve">
+    <value>Reproducir desde</value>
+  </data>
+  <data name="MenuPlayFromOn" xml:space="preserve">
+    <value>Reproducir desde en</value>
+  </data>
+  <data name="MessageAreYouSureTitle" xml:space="preserve">
+    <value>¿Esta seguro?</value>
+  </data>
+  <data name="MessageBoxUnpinText" xml:space="preserve">
+    <value>¿Está seguro de querer desanclar este icono?</value>
+  </data>
+  <data name="MessageClearPlayList" xml:space="preserve">
+    <value>¿Esta seguro de querer limpiar su lista de reproducción?</value>
+  </data>
+  <data name="MessageDeletePlaylistItems" xml:space="preserve">
+    <value>¿Esta seguro de querer eliminar estos elementos? Esto no se puede revertir.</value>
+  </data>
+  <data name="MessageExperimentalTitle" xml:space="preserve">
+    <value>Experimental</value>
+  </data>
+  <data name="MessageExperimentalVideo" xml:space="preserve">
+    <value>La reproducción de este tipo de video es actualmente experimental, los resultados pueden variar. ¿Desea continuar?</value>
+  </data>
+  <data name="MessageTracksAddedSuccessfully" xml:space="preserve">
+    <value>{0} pistas añadidas con éxito.</value>
+  </data>
+  <data name="More" xml:space="preserve">
+    <value>más...</value>
+  </data>
+  <data name="NameLabel" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="NoItemsFound" xml:space="preserve">
+    <value>No se encontraron elementos</value>
+  </data>
+  <data name="PinToStart" xml:space="preserve">
+    <value>Anclar al menú inicio</value>
+  </data>
+  <data name="ProductionYear" xml:space="preserve">
+    <value>Año de Producción</value>
+  </data>
+  <data name="RemoveFromFavouritesFull" xml:space="preserve">
+    <value>Remover de favoritos</value>
+  </data>
+  <data name="ResourceLanguage" xml:space="preserve">
+    <value>en-GB</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Configuración</value>
+  </data>
+  <data name="SysTrayAddingToFavourites" xml:space="preserve">
+    <value>Añadiendo a favoritos</value>
+  </data>
+  <data name="SysTrayAuthenticating" xml:space="preserve">
+    <value>Autenticando...</value>
+  </data>
+  <data name="SysTrayCheckingCollection" xml:space="preserve">
+    <value>Revisando colección...</value>
+  </data>
+  <data name="SysTrayCheckingConnection" xml:space="preserve">
+    <value>Revisando conexión...</value>
+  </data>
+  <data name="SysTrayFindingServer" xml:space="preserve">
+    <value>Intentando encontrar su servidor...</value>
+  </data>
+  <data name="SysTrayGettingAlbums" xml:space="preserve">
+    <value>Obteniendo albums...</value>
+  </data>
+  <data name="SysTrayGettingAlbumTracks" xml:space="preserve">
+    <value>Obteniendo pistas de albums...</value>
+  </data>
+  <data name="SysTrayGettingAllTracks" xml:space="preserve">
+    <value>Obteniendo todas las pistas...</value>
+  </data>
+  <data name="SysTrayGettingArtists" xml:space="preserve">
+    <value>Obteniendo artistas...</value>
+  </data>
+  <data name="SysTrayGettingArtistTracks" xml:space="preserve">
+    <value>Obteniendo pistas de artistas...</value>
+  </data>
+  <data name="SysTrayGettingBoxsets" xml:space="preserve">
+    <value>Obteniendo colecciones...</value>
+  </data>
+  <data name="SysTrayGettingDetails" xml:space="preserve">
+    <value>Obteniendo detalles...</value>
+  </data>
+  <data name="SysTrayGettingEpisodeDetails" xml:space="preserve">
+    <value>Obteniendo detalles de episodios...</value>
+  </data>
+  <data name="SysTrayGettingEpisodes" xml:space="preserve">
+    <value>Obteniendo episodios...</value>
+  </data>
+  <data name="SysTrayGettingFavourites" xml:space="preserve">
+    <value>Obteniendo favoritos...</value>
+  </data>
+  <data name="SysTrayGettingGenres" xml:space="preserve">
+    <value>Obteniendo géneros...</value>
+  </data>
+  <data name="SysTrayGettingGenreTracks" xml:space="preserve">
+    <value>Obteniendo pistas de géneros...</value>
+  </data>
+  <data name="SysTrayGettingItems" xml:space="preserve">
+    <value>Obteniendo elementos...</value>
+  </data>
+  <data name="SysTrayGettingMovieInfo" xml:space="preserve">
+    <value>Obteniendo información de peliculas...</value>
+  </data>
+  <data name="SysTrayGettingMovies" xml:space="preserve">
+    <value>Obteniendo películas...</value>
+  </data>
+  <data name="SysTrayGettingNextUp" xml:space="preserve">
+    <value>Obteniendo siguientes elementos...</value>
+  </data>
+  <data name="SysTrayGettingNotifications" xml:space="preserve">
+    <value>Obteniendo notificaciones...</value>
+  </data>
+  <data name="SysTrayGettingProfiles" xml:space="preserve">
+    <value>Obteniendo perfiles...</value>
+  </data>
+  <data name="SysTrayGettingRecentItems" xml:space="preserve">
+    <value>Obteniendo elementos recientes...</value>
+  </data>
+  <data name="SysTrayGettingServerDetails" xml:space="preserve">
+    <value>Obteniendo detalles del servidor...</value>
+  </data>
+  <data name="SysTrayGettingShowInformation" xml:space="preserve">
+    <value>Obteniendo informaciòn de shows...</value>
+  </data>
+  <data name="SysTrayGettingShows" xml:space="preserve">
+    <value>Obteniendo shows de TV...</value>
+  </data>
+  <data name="SysTrayGettingSongs" xml:space="preserve">
+    <value>Obteniendo canciones...</value>
+  </data>
+  <data name="SysTrayGettingTracks" xml:space="preserve">
+    <value>Obteniendo pistas...</value>
+  </data>
+  <data name="SysTrayGettingTrailerDetails" xml:space="preserve">
+    <value>Obteniendo detalles de avances...</value>
+  </data>
+  <data name="SysTrayGettingUnwatchedItems" xml:space="preserve">
+    <value>Obteniendo elementos recientes no vistos...</value>
+  </data>
+  <data name="SysTrayLoadingCollections" xml:space="preserve">
+    <value>Cargando colecciones...</value>
+  </data>
+  <data name="SysTrayLoadingSettings" xml:space="preserve">
+    <value>Cargando configuración...</value>
+  </data>
+  <data name="SysTrayRegisteringDevice" xml:space="preserve">
+    <value>Registrando dispositivo...</value>
+  </data>
+  <data name="SysTrayRegrouping" xml:space="preserve">
+    <value>Re-agrupando...</value>
+  </data>
+  <data name="SysTraySearching" xml:space="preserve">
+    <value>Buscando...</value>
+  </data>
+  <data name="SysTrayUnregisteringDevice" xml:space="preserve">
+    <value>De-registrando dispositivo...</value>
+  </data>
+  <data name="TrialVideoMessage" xml:space="preserve">
+    <value>En modo de prueba solo puede reproducir un video por día. Por favor inténtelo mañana o comple la versión completa.</value>
+  </data>
+  <data name="TvShowRecentItemsTitle" xml:space="preserve">
+    <value>{0} elementos recientes</value>
+    <comment>{0} is the name of the tv show</comment>
+  </data>
+  <data name="Unpin" xml:space="preserve">
+    <value>Desanclar</value>
+  </data>
+  <data name="WatermarkEnterUsername" xml:space="preserve">
+    <value>capture un nombre de usuario</value>
+  </data>
+  <data name="LabelLogIn" xml:space="preserve">
+    <value>Accesar</value>
+  </data>
+  <data name="LabelNoFoldersFound" xml:space="preserve">
+    <value>No se encontraron carpetas</value>
+  </data>
+  <data name="LabelNothingInPlaylist" xml:space="preserve">
+    <value>Lista de reproducción vacía</value>
+  </data>
+  <data name="LabelUnplayedItems" xml:space="preserve">
+    <value>Sin reproducir:</value>
+  </data>
+  <data name="WatermarkPassword" xml:space="preserve">
+    <value>capture una contraseña</value>
+  </data>
+  <data name="LabelReleasedIn" xml:space="preserve">
+    <value>Estrenado en</value>
+    <comment>eg, Released in 1993</comment>
+  </data>
+  <data name="LabelWelcomeTextPhone7" xml:space="preserve">
+    <value>Bienvenido a Emby para Teléfonos Windows. Esta app le permite navegar su colección de medios y controlar cualquier cliente Emby controlable.</value>
+  </data>
+  <data name="LabelChannels" xml:space="preserve">
+    <value>Canales</value>
+  </data>
+  <data name="LabelRecordedTv" xml:space="preserve">
+    <value>Televisión grabada</value>
+  </data>
+  <data name="LabelScheduledRecording" xml:space="preserve">
+    <value>grabaciones programadas</value>
+  </data>
+  <data name="LabelUpcoming" xml:space="preserve">
+    <value>Próximo</value>
+  </data>
+  <data name="LabelWhatsOn" xml:space="preserve">
+    <value>¿Qué se Vé?</value>
+  </data>
+  <data name="SysTrayGettingChannels" xml:space="preserve">
+    <value>Obteniendo canales...</value>
+  </data>
+  <data name="SysTrayGettingProgrammes" xml:space="preserve">
+    <value>Obteniendo programas...</value>
+  </data>
+  <data name="SysTrayGettingSeriesRecordings" xml:space="preserve">
+    <value>Obteniendo grabaciones de series...</value>
+  </data>
+  <data name="SysTrayGettingUpcomingRecordings" xml:space="preserve">
+    <value>Obteniendo grabaciones próximas...</value>
+  </data>
+  <data name="ContextCancelSeries" xml:space="preserve">
+    <value>cacelar series</value>
+  </data>
+  <data name="LabelScheduleAnyChannel" xml:space="preserve">
+    <value>Cualquier canal</value>
+  </data>
+  <data name="LabelScheduleAnyTime" xml:space="preserve">
+    <value>Cualquier hora</value>
+  </data>
+  <data name="LabelScheduleDaily" xml:space="preserve">
+    <value>Diario</value>
+  </data>
+  <data name="LabelScheduleToday" xml:space="preserve">
+    <value>Hoy</value>
+  </data>
+  <data name="LabelScheduleTomorrow" xml:space="preserve">
+    <value>Mañana</value>
+  </data>
+  <data name="LabelScheduleWeekdays" xml:space="preserve">
+    <value>Dia de semana</value>
+  </data>
+  <data name="LabelScheduleWeekends" xml:space="preserve">
+    <value>Fin de semana</value>
+  </data>
+  <data name="HeaderRecordings" xml:space="preserve">
+    <value>grabaciones</value>
+  </data>
+  <data name="HeaderScheduled" xml:space="preserve">
+    <value>programada</value>
+  </data>
+  <data name="HeaderSettings" xml:space="preserve">
+    <value>configuración</value>
+  </data>
+  <data name="AppBarSave" xml:space="preserve">
+    <value>guardar</value>
+  </data>
+  <data name="LabelDays" xml:space="preserve">
+    <value>Días:</value>
+  </data>
+  <data name="LabelRecordOnlyNewEpisodes" xml:space="preserve">
+    <value>Grabar solo nuevos episodios</value>
+  </data>
+  <data name="LabelRecordProgrammeAtAnyTime" xml:space="preserve">
+    <value>Grabar programa a cualquier hora</value>
+  </data>
+  <data name="LabelRecordProgrammeOnAllChannels" xml:space="preserve">
+    <value>Grabar programa en todos los canales</value>
+  </data>
+  <data name="AppBarCancel" xml:space="preserve">
+    <value>cancelar</value>
+  </data>
+  <data name="LabelPostPaddingMinutes" xml:space="preserve">
+    <value>Minutos de protección posterior:</value>
+  </data>
+  <data name="LabelPostPaddingRequired" xml:space="preserve">
+    <value>Protección posterior es requerida para grabar.</value>
+  </data>
+  <data name="LabelPrePaddingMinutes" xml:space="preserve">
+    <value>Minutos de protección previa:</value>
+    <comment>Pre-padding = how long before programme's scheduled start time to record</comment>
+  </data>
+  <data name="LabelPrePaddingRequired" xml:space="preserve">
+    <value>Protección previa es requerida para grabar.</value>
+  </data>
+  <data name="SysTrayCancellingSeriesRecording" xml:space="preserve">
+    <value>Liga para cancelación de series...</value>
+  </data>
+  <data name="SysTrayGettingRecordedItems" xml:space="preserve">
+    <value>Obteniendo elementos grabados...</value>
+  </data>
+  <data name="AppBarDelete" xml:space="preserve">
+    <value>eliminar</value>
+  </data>
+  <data name="ErrorDeletingSeriesRecording" xml:space="preserve">
+    <value>Lo sentimos, ha ocurrido un error al cancelar esta serie en este momento,</value>
+  </data>
+  <data name="LabelChannel" xml:space="preserve">
+    <value>Canal:</value>
+  </data>
+  <data name="LabelNew" xml:space="preserve">
+    <value>Nuevo</value>
+  </data>
+  <data name="LabelPrePostPadding" xml:space="preserve">
+    <value>Pre/Post Protección</value>
+  </data>
+  <data name="LabelTime" xml:space="preserve">
+    <value>Tiempo:</value>
+  </data>
+  <data name="MenuCancelRecording" xml:space="preserve">
+    <value>Cancelar grabación</value>
+  </data>
+  <data name="MessageDeleteSeriesRecording" xml:space="preserve">
+    <value>¿Esta seguro de querer cancelar esta liga de serie? Esto no se puede revertir.</value>
+  </data>
+  <data name="SysTrayGettingUpcoming" xml:space="preserve">
+    <value>Obteniendo episodios próximos...</value>
+  </data>
+  <data name="MessageCancelRecording" xml:space="preserve">
+    <value>¿Esta seguro de querer cancelar esta grabación? Esto no se puede revertir.</value>
+  </data>
+  <data name="SysTraySaving" xml:space="preserve">
+    <value>Guardando...</value>
+  </data>
+  <data name="MenuRecord" xml:space="preserve">
+    <value>grabar</value>
+  </data>
+  <data name="MenuRecordSeries" xml:space="preserve">
+    <value>grabar serie</value>
+  </data>
+  <data name="LabelReallyShortHours" xml:space="preserve">
+    <value>h</value>
+  </data>
+  <data name="LabelReallyShortMinutes" xml:space="preserve">
+    <value>m</value>
+  </data>
+  <data name="LabelLive" xml:space="preserve">
+    <value>En vivo</value>
+  </data>
+  <data name="SystemTrayGettingWhatsOn" xml:space="preserve">
+    <value>Onbeniemdo qué se ve ahora...</value>
+  </data>
+  <data name="SysTrayLoadingProgrammes" xml:space="preserve">
+    <value>Cargando Programas...</value>
+  </data>
+  <data name="SysTraySettingProgrammeToRecord" xml:space="preserve">
+    <value>Obteniendo programa a grabar...</value>
+  </data>
+  <data name="SysTraySettingSeriesToRecord" xml:space="preserve">
+    <value>Obteniendo serie a grabar...</value>
+  </data>
+  <data name="AppBarCreateAndEditSeries" xml:space="preserve">
+    <value>crear y editar grabaciones de series</value>
+  </data>
+  <data name="SysTrayCancellingProgramme" xml:space="preserve">
+    <value>Cancelando programa...</value>
+  </data>
+  <data name="SysTrayPreparing" xml:space="preserve">
+    <value>Preparando...</value>
+  </data>
+  <data name="SysTrayGettingRecordingDetails" xml:space="preserve">
+    <value>Obteniendo detalles de la grabación...</value>
+  </data>
+  <data name="LabelDefaultRecordedTvGrouping" xml:space="preserve">
+    <value>Agrupación por omisión de grabaciones de TV</value>
+  </data>
+  <data name="AppBarChannel" xml:space="preserve">
+    <value>canal</value>
+  </data>
+  <data name="AppBarRecordedDate" xml:space="preserve">
+    <value>fecha de grabación</value>
+  </data>
+  <data name="AppBarShowName" xml:space="preserve">
+    <value>mostrar nombre</value>
+  </data>
+  <data name="HeaderActiveRecordings" xml:space="preserve">
+    <value>Activo</value>
+  </data>
+  <data name="LabelNoRecordedItems" xml:space="preserve">
+    <value>No paece tener elementos grabados</value>
+  </data>
+  <data name="LabelRecordedDate" xml:space="preserve">
+    <value>Fecha de grabación</value>
+  </data>
+  <data name="LabelShowName" xml:space="preserve">
+    <value>Mostrar nombre</value>
+  </data>
+  <data name="SysTrayGettingCurrentlyRecording" xml:space="preserve">
+    <value>Obteniendo grabaciones activas...</value>
+  </data>
+  <data name="HeaderLive" xml:space="preserve">
+    <value>En vivo</value>
+    <comment>As in "live tv"</comment>
+  </data>
+  <data name="HeaderTV" xml:space="preserve">
+    <value>TV</value>
+  </data>
+  <data name="LabelUseTransparentTile" xml:space="preserve">
+    <value>Usar iconos transparentes</value>
+  </data>
+  <data name="TitleChannels" xml:space="preserve">
+    <value>Canales</value>
+  </data>
+  <data name="LabelMultipleItems" xml:space="preserve">
+    <value>{0} elementos</value>
+    <comment>{0} is the number of items</comment>
+  </data>
+  <data name="LabelNoItems" xml:space="preserve">
+    <value>No hay elementos</value>
+  </data>
+  <data name="LabelOneItem" xml:space="preserve">
+    <value>1 elemento</value>
+  </data>
+  <data name="ErrorAddingToPlaylist" xml:space="preserve">
+    <value>Error al agregar a la lista de reproducción</value>
+  </data>
+  <data name="HeaderPlaylistName" xml:space="preserve">
+    <value>Nombre de lista:</value>
+  </data>
+  <data name="HeaderPlaylists" xml:space="preserve">
+    <value>Lista:</value>
+  </data>
+  <data name="LabelAddToPlaylist" xml:space="preserve">
+    <value>Añadir a lista de reproducción</value>
+  </data>
+  <data name="LabelNewPlaylist" xml:space="preserve">
+    <value>Nueva lista</value>
+  </data>
+  <data name="LabelSave" xml:space="preserve">
+    <value>Guardar</value>
+  </data>
+  <data name="SysTrayAddingToPlaylist" xml:space="preserve">
+    <value>Agregando a lista de reproducción...</value>
+  </data>
+  <data name="SysTrayLoadingPlaylists" xml:space="preserve">
+    <value>Cargando listas de reproducción...</value>
+  </data>
+  <data name="LabelAddingXToPlaylist" xml:space="preserve">
+    <value>Agregando {0}</value>
+    <comment>{0} could be anything from "TV show" to "3 items"</comment>
+  </data>
+  <data name="LabelSeasonX" xml:space="preserve">
+    <value>Temporada {0}</value>
+    <comment>{0} is the season number</comment>
+  </data>
+  <data name="MenuRemoveFromPlaylist" xml:space="preserve">
+    <value>quitar de lista de reproducción</value>
+  </data>
+  <data name="SysTrayDeleting" xml:space="preserve">
+    <value>Eliminando...</value>
+  </data>
+  <data name="SysTrayRemoving" xml:space="preserve">
+    <value>Eliminando...</value>
+  </data>
+  <data name="LabelStreaming" xml:space="preserve">
+    <value>Streaming</value>
+  </data>
+  <data name="LabelQuality" xml:space="preserve">
+    <value>Calidad:</value>
+  </data>
+  <data name="LabelResolution" xml:space="preserve">
+    <value>Resolución:</value>
+  </data>
+  <data name="ErrorNoWifi" xml:space="preserve">
+    <value>Lo sentimos, no se detecta conexión wifi, por favor verifique su conexión.</value>
+  </data>
+  <data name="ErrorNoWifiTitle" xml:space="preserve">
+    <value>No hay wifi</value>
+  </data>
+  <data name="LabelChooseQuality" xml:space="preserve">
+    <value>Elige la calidad del video. Por favor toma nota, si utilizas tu plan de datos, entre mas calidad pongas, mas consumirás:</value>
+  </data>
+  <data name="LabelMobile" xml:space="preserve">
+    <value>móvil</value>
+  </data>
+  <data name="LabelStreamWifi" xml:space="preserve">
+    <value>Solo mostrar videos por wifi</value>
+  </data>
+  <data name="LabelWifi" xml:space="preserve">
+    <value>wifi</value>
+  </data>
+  <data name="LabelInstantMix" xml:space="preserve">
+    <value>Mezcla instantánea</value>
+  </data>
+  <data name="SysTrayGettingInstantMix" xml:space="preserve">
+    <value>Obteniendo mezcla...</value>
+  </data>
+  <data name="LabelPhotoUpload" xml:space="preserve">
+    <value>Cargar foto</value>
+  </data>
+  <data name="BackgroundTaskDescription" xml:space="preserve">
+    <value>Esta tarea de fondo es utilizada para cargar automáticamente tus fotos del celular y puede ser activada dentro de la app</value>
+  </data>
+  <data name="LabelUploadAll" xml:space="preserve">
+    <value>Cargar todas las fotos</value>
+  </data>
+  <data name="LabelUploadPhotosTakenAfter" xml:space="preserve">
+    <value>Cargar las fotos tomadas/guardadas después de esta fecha</value>
+  </data>
+  <data name="LabelAutoUploadConstraints" xml:space="preserve">
+    <value>Por favor ten en cuenta que las cargas solo se harán cuando estés cargando el dispositivo.</value>
+  </data>
+  <data name="LabelAutoUploadDescription" xml:space="preserve">
+    <value>Automáticamente cargar tus fotos del celular a el servidor de Emby</value>
+  </data>
+  <data name="LabelTurnPhotoUploadOnServer" xml:space="preserve">
+    <value>Para que esto funcione, debes ir, en el servidor, al tablero, clic en Dispositivos, después Cargas de Cámara y activarlo en tu dispositivo. si no tienes acceso a esto, habla con el administrador del servidor</value>
+  </data>
+  <data name="HeaderManualConnection" xml:space="preserve">
+    <value>Conexión manual</value>
+  </data>
+  <data name="HeaderWhatIsMbConnect" xml:space="preserve">
+    <value>¿Qué es Conexión MB?</value>
+  </data>
+  <data name="LabelManualServerEntry" xml:space="preserve">
+    <value>Escribir los detalles del servidor manualmente</value>
+  </data>
+  <data name="LabelMbConnect" xml:space="preserve">
+    <value>Conexión MB</value>
+  </data>
+  <data name="LabelMbConnectAlreadyGotAccount" xml:space="preserve">
+    <value>Si tienes una cuenta de Emby, puedes hacer login ahora.</value>
+  </data>
+  <data name="LabelMbConnectDescriptionPara1" xml:space="preserve">
+    <value>Con Conexión MB tu puedes accesar a tu servidor de Emby fácilmente desde donde quiera que estés y compartir con tu familia y amigos</value>
+  </data>
+  <data name="LabelMbConnectFreeAccount" xml:space="preserve">
+    <value>Si no tienes una cuenta de Emby, puedes registrarte ahora, es ¡GRATIS!</value>
+  </data>
+  <data name="LabelSignUp" xml:space="preserve">
+    <value>Registrarse</value>
+  </data>
+  <data name="LabelSkip" xml:space="preserve">
+    <value>Omitir</value>
+  </data>
+  <data name="ErrorSigningIn" xml:space="preserve">
+    <value>Error al intentar registrarte</value>
+  </data>
+  <data name="LabelRetry" xml:space="preserve">
+    <value>Reintentar</value>
+  </data>
+  <data name="LabelLogout" xml:space="preserve">
+    <value>Salir</value>
+  </data>
+  <data name="AppBarChangeServer" xml:space="preserve">
+    <value>cambiar servidor</value>
+  </data>
+  <data name="LabelSignInWithConnect" xml:space="preserve">
+    <value>Entrar con Conexión Emby</value>
+  </data>
+  <data name="ErrorPlayUnderLock" xml:space="preserve">
+    <value>Para que el cambio de aplique, debes reiniciar la app.</value>
+  </data>
+  <data name="ErrorPleaseRestart" xml:space="preserve">
+    <value>Por favor reinicia</value>
+  </data>
+  <data name="LabelLater" xml:space="preserve">
+    <value>después</value>
+  </data>
+  <data name="LabelPlayUnderLock" xml:space="preserve">
+    <value>Mostrar videos cuando la pantalla está bloqueada</value>
+  </data>
+  <data name="LabelPlayUnderLockWarning" xml:space="preserve">
+    <value>Esto afectará la batería</value>
+  </data>
+  <data name="LabelRestartNow" xml:space="preserve">
+    <value>¿reiniciar ahora?</value>
+  </data>
+  <data name="LabelInProgress" xml:space="preserve">
+    <value>en progreso</value>
+  </data>
+  <data name="SysTrayCheckingInProgress" xml:space="preserve">
+    <value>Revisando elementos en progreso</value>
+  </data>
+  <data name="AppBarOffline" xml:space="preserve">
+    <value>sincronizar</value>
+  </data>
+  <data name="HeaderAutoSync" xml:space="preserve">
+    <value>Sincronizar automáticamente nuevos elementos</value>
+  </data>
+  <data name="HeaderItemLimit" xml:space="preserve">
+    <value>Límite de elemento:</value>
+  </data>
+  <data name="HeaderQuality" xml:space="preserve">
+    <value>Calidad:</value>
+  </data>
+  <data name="HeaderUnwatchedItems" xml:space="preserve">
+    <value>Sincronizar solamente videos no vistos</value>
+  </data>
+  <data name="LabelOptional" xml:space="preserve">
+    <value>opcional</value>
+  </data>
+  <data name="ErrorNoSyncSupport" xml:space="preserve">
+    <value>Lo sentimos, este elemento no está soportado para sincronizar</value>
+  </data>
+  <data name="LabelLoading" xml:space="preserve">
+    <value>Cargando...</value>
+  </data>
+  <data name="HeaderSyncJobs" xml:space="preserve">
+    <value>sincronizar trabajos</value>
+  </data>
+  <data name="LabelUntitled" xml:space="preserve">
+    <value>Sin título</value>
+  </data>
+  <data name="SyncJobStatusCancelled" xml:space="preserve">
+    <value>Cancelado</value>
+  </data>
+  <data name="SyncJobStatusCompleted" xml:space="preserve">
+    <value>Completado</value>
+  </data>
+  <data name="SyncJobStatusCompletedWithError" xml:space="preserve">
+    <value>Completado con errores</value>
+  </data>
+  <data name="SyncJobStatusConverting" xml:space="preserve">
+    <value>Convirtiendo</value>
+  </data>
+  <data name="SyncJobStatusFailed" xml:space="preserve">
+    <value>Fallido</value>
+  </data>
+  <data name="SyncJobStatusQueued" xml:space="preserve">
+    <value>En fila</value>
+  </data>
+  <data name="SyncJobStatusReadyToTransfer" xml:space="preserve">
+    <value>Listo para transferir</value>
+  </data>
+  <data name="SyncJobStatusTransferring" xml:space="preserve">
+    <value>Transfiriendo</value>
+  </data>
+  <data name="SyncJobStatusRemovedFromDevice" xml:space="preserve">
+    <value>Removido de dispositivo</value>
+  </data>
+  <data name="SyncJobStatusSynced" xml:space="preserve">
+    <value>Sincronizado</value>
+  </data>
+  <data name="MenuCancel" xml:space="preserve">
+    <value>cancelar</value>
+  </data>
+  <data name="MenuMarkForRemoval" xml:space="preserve">
+    <value>marcar para remover</value>
+  </data>
+  <data name="MenuRetry" xml:space="preserve">
+    <value>reintentar</value>
+  </data>
+  <data name="MenuUnmarkForRemoval" xml:space="preserve">
+    <value>desmarcar para remover</value>
+  </data>
+  <data name="AppBarUnsync" xml:space="preserve">
+    <value>desicronizar</value>
+  </data>
+  <data name="HeaderSyncToDevice" xml:space="preserve">
+    <value>Sincronizar a dispositivo:</value>
+  </data>
+  <data name="LabelThisDevice" xml:space="preserve">
+    <value>este dispositivo ({0})</value>
+    <comment>{0} = the name of the device</comment>
+  </data>
+  <data name="MessageSyncJobCreated" xml:space="preserve">
+    <value>Trabajo para sincronizar creado</value>
+  </data>
+  <data name="ProfileBaselineDescription" xml:space="preserve">
+    <value>Diseñado para ser compatible con todos los dispositivos, incluido el navegador. Dirigido a video H264/AAC y archivos mp3.</value>
+  </data>
+  <data name="ProfileGeneral" xml:space="preserve">
+    <value>General</value>
+  </data>
+  <data name="ProfileGeneralDescription" xml:space="preserve">
+    <value>Diseñado para ser compatible con Chromecast, Roku, TV's inteligentes y otros similares. Dirigido a video H264/AAC y archivos mp3.</value>
+  </data>
+  <data name="ProfileOriginal" xml:space="preserve">
+    <value>Original</value>
+  </data>
+  <data name="ProfileOriginalDescription" xml:space="preserve">
+    <value>Sincronizar archivos originales tal cual</value>
+  </data>
+  <data name="HeaderProfile" xml:space="preserve">
+    <value>Perfil:</value>
+  </data>
+  <data name="LabelUseLibraryFolders" xml:space="preserve">
+    <value>Utilizar carpetas de librería y no vistas configuradas del usuario</value>
+  </data>
+  <data name="LabelUseHttps" xml:space="preserve">
+    <value>Usar HTTPS</value>
+  </data>
+  <data name="AppBarResumeOn" xml:space="preserve">
+    <value>reanudar</value>
+  </data>
+  <data name="MessagePlaceholder" xml:space="preserve">
+    <value>Este elemento solo es ficticio y no se puede mostrar.</value>
+  </data>
+  <data name="AppBarUnlockFeatures" xml:space="preserve">
+    <value>desbloquear características</value>
+  </data>
+  <data name="LabelPurchase" xml:space="preserve">
+    <value>Comprar</value>
+  </data>
+  <data name="MessageUpgradeSuccessful" xml:space="preserve">
+    <value>Actualizado correctamente</value>
+  </data>
+  <data name="UnlockFeaturesText1" xml:space="preserve">
+    <value>Para utilizar la app completa, necesitas desbloquear algunas características, lo cual incluye:</value>
+  </data>
+  <data name="UnlockFeaturesText2" xml:space="preserve">
+    <value>- Mostrar mas de un video en un dia
+- Ser capaz de controlar remotamente otro cliente Emby y no solo por el tablero web</value>
+  </data>
+  <data name="UnlockFeaturesText3" xml:space="preserve">
+    <value>Si ya compraste esta app anteriormente, al dar en "Comprar" te preguntará para que compres la actualización gratuita, lo que va a restaurar la app a cuando fue comprada. Si no la compraste aún, se te preguntará sol oesta vez.</value>
+  </data>
+  
+<!--
+<data name="LabelHideItemTitles" xml:space="preserve">
+    <value>Hide titles for items in tiled lists</value>
+  </data>
+-->
+  
+<!--
+<data name="LabelPlayShuffle" xml:space="preserve">
+    <value>Shuffle Play</value>
+  </data>
+-->
+  
+<!--
+<data name="AppBarSignUp" xml:space="preserve">
+    <value>sign up</value>
+  </data>
+-->
+  
+<!--
+<data name="ErrorEmailInUse" xml:space="preserve">
+    <value>Email address already in use</value>
+  </data>
+-->
+  
+<!--
+<data name="ErrorSigningUp" xml:space="preserve">
+    <value>There was an error signing up</value>
+  </data>
+-->
+  
+<!--
+<data name="ErrorUsernameInUse" xml:space="preserve">
+    <value>Username already in use</value>
+  </data>
+-->
+  
+<!--
+<data name="HeaderSignUpForEmbyConnect" xml:space="preserve">
+    <value>Sign up</value>
+  </data>
+-->
+  
+<!--
+<data name="LabelEmailAddress" xml:space="preserve">
+    <value>Email address:</value>
+  </data>
+-->
+  
+<!--
+<data name="LabelPrivacyStatement" xml:space="preserve">
+    <value>Privacy statement</value>
+  </data>
+-->
+  
+<!--
+<data name="LabelSignUpForEmbyConnectDescription" xml:space="preserve">
+    <value>By signing up to Emby Connect, you can sign into any of the Emby apps as well as the support forum.</value>
+  </data>
+-->
+  
+<!--
+<data name="MessageSignUpSuccessful" xml:space="preserve">
+    <value>You have successfully signed up, please check your email for a validation email.</value>
+  </data>
+-->
+  
+<!--
+<data name="MessageTitleSuccess" xml:space="preserve">
+    <value>Success</value>
+  </data>
+-->
+  
+<!--
+<data name="SysTraySigningUp" xml:space="preserve">
+    <value>Signing up...</value>
+  </data>
+-->
+  
+<!--
+<data name="WatermarkEnterEmailAddress" xml:space="preserve">
+    <value>enter an email address</value>
+  </data>
+-->
+
+</root>

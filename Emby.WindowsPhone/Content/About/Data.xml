@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<!-- To use YLAD, do the following: 
+     * Adjust this configuration file to your personal needs: change entries and labels, add more items etc.
+     * Anywhere in your application, for example in an application bar button click event handler, put the
+       required code that initiates navigation to the about screen:
+
+       NavigationService.Navigate(new Uri("/YourLastAboutDialog;component/AboutPage.xaml", UriKind.Relative));
+
+    For more information on the powerful additional options and features of YLAD, like localization, support
+    of trial mode, remote and local rich XAML and text content etc., please refer to the documentation that 
+    is available at:
+
+    http://ylad.codeplex.com/documentation
+-->
+
+<About>
+  <!-- The App element allows you to override the values that are extracted from the WMAppManifest.xml file automatically -->
+  <!-- The AdditionalNotes attribute has no equivalent in the WMAppManifest.xml; you can only define its content here -->
+  <!-- Explicitly set any of the attributes to an empty string to remove it (including its label) from the dialog -->
+  <App Author="ScottIsAFool"
+       Publisher="ScottLovegrove" />
+  <Items>
+    <!-- Create a MainItem entry to configure the front page -->
+    <!-- The Titel attribute defines the title of the pivot item -->
+    <!-- The Label (and review buttong content) attributes can override the default values to what you like, and also help with localization -->
+    <!-- By default, the "Buy this app!" button is only shown when the app runs in trial mode (more on trial mode and how to configure YLAD accordingly here:
+          http://ylad.codeplex.com/documentation). Explicitly set any of the button contents to an empty string to override the default behavior, and remove the button from the page. -->
+    <MainItem Title="about"
+              AppAuthorLabel="by"
+              AppDescriptionLabel="Description:"
+              AppPublisherLabel="Publisher:"
+              AppVersionLabel="Version:"
+              AppAdditionalNotesLabel="Additional Notes:"
+              AppReviewButtonContent="Review this app!"
+              AppBuyButtonContent="Buy this app!">
+      <Links>
+        <!-- A collection of links presented on the front page. -->
+        <!-- By using different protocols like http or mailto you can invoke the respective applications -->
+        <!-- The Label attribute defines an additional label placed in front of the hyperlink -->
+        <!-- Use this to provide contact/support details for your app -->
+        <Link NavigateUri="http://www.emby.media"
+              Content="http://www.emby.media"
+              Label="Web:" />
+        <Link NavigateUri="mailto:wpmb3@outlook.com"
+              Content="wpmb3@outlook.com"
+              Label="Support:" />
+        <Link NavigateUri="http://emby.media/community"
+              Content="http://emby.media/community"
+              Label="Forums:"/>
+        <Link NavigateUri="https://github.com/MediaBrowser/Emby.WindowsPhone/issues/new"
+              Content="Raise an issue"
+              Label="Issues:" />
+      </Links>
+    </MainItem>
+    <!-- For each additional pivot item, add a separate Item entry. Ideas for items are: license, tutorial or help, version history, show room for other apps from you etc. -->
+    <!-- The Title attribute defines the title of the pivot item -->
+    <!-- Each Item can be a remote item (fetched from a Uri) or a local item (using its content), or both (local content is the fallback value if fetching the network content fails) -->
+    <!-- Supported types are "text" and "xaml", where text is nicely formatted automatically, and XAML is handled by the built-in XamlReader -->
+    <Item Title="history"
+          Type="text">
+      8.0.66.1
+      Fixes:
+      - Updated localisation files with updated translations.
+      - Added a setting that will be required for the next major version
+      - Fixed a problem with the lock screen not being updated
+      
+      8.0.66.0
+      Enhancements:
+      - Massively improved video streaming. Now supports direct streaming from the server (ie, no transcoding if video is supported by the phone)
+      Fixes:
+      - Video now correctly reports playback progress
+      - Resume option now enabled when going back into an item after watching part of it
+      - Recent items from main page was pulling in entire library, not any more.
+      - Lockscreen had stopped updating, does now.
+      - App was unable to play a single track on its own, now can.
+      
+      8.0.65.0
+      Enhancements: 
+      - Enabled Portuguese localisation
+      Fixes: 
+      - Big improvements for video streaming, better for the app and the server
+      - Allow old servers to be deleted from the list of servers
+      - Added default image to search results
+      
+      8.0.64.0
+      Fixes:
+      - Live TV, tapping "More" did nothing
+      - Updated to use newer profile based audio streams
+      - Wifi streaming setting could get reset when going into any settings page
+      - Unable to navigate to a Person from search
+      - Query optimisations (speed up responses from server)
+      - Watched/Unwatched menu items displayed wrong way round
+      
+      8.0.63.0
+      Enhancements:
+      - Support for Media Browser Connect
+      - Support for Channels
+      - Support for server playlists
+      - Support for Automatic picture uploading
+      - Support for Instant Mix from the server
+      - Support for Cinema Mode (requires trailers plugin on server)
+      - Shows the progress bar in the now playing for audio
+      - Option to stream video only when on Wifi
+      - Option to change the video streaming quality for wifi/mobile data
+      Fixes:
+      - Track ordering for music
+      - Remote not working when coming back into the app or from Fast App Resume
+      
+      8.0.0.43
+      Fixes:
+      - Play button on TV episodes now working again.
+      - TV episodes in TV view no longer taking user to list of collections
+      - Added additional logging to try and get to the bottom of audio playback issues
+
+      8.0.0.40
+      Fixes:
+      - Fixed link for MB3 server link on welcome screen
+      - Added checks for hostname
+      - Album page showing items that weren't tracks
+      - Artit name not appearing on album page
+      - TV show page was showing seasons in recent items
+      - Season episodes not refreshing when changing season
+      - Tracks not refreshing when changing album in the UI
+      Enhancements:
+      - Handle missing/future episodes
+      - Added genres to Movies and TV views
+
+      8.0.0.39
+      Fixes:
+      - Don't allow recent items to be scrollable on front page
+      - Play icon missing on episodes
+      - Episode name doesn't swipe nicely
+      - Back press on video always navigating back
+      - Add experimental message for folder streaming
+      - Collection View -> TV -> Show all items... EMPTY
+      - Profile list doesn't clear before population
+      - Music View - Artist list scrolls back to beginning on back
+      - Settings backstack when searching for server
+      Enhancements:
+      - Collection image not following hierarchy (only uses primary)
+      - Change Favourites to Favorites depending on client region
+      - Search Button more prominent on home page
+      - Play all on artist's page
+      - Option to mark items as Favourite (Favorite)
+
+      8.0.0.35
+      This is the initial public version.
+    </Item>
+
+    <Item Title="log file"
+          Type="xaml">
+      <logView:LogFileView xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                           xmlns:logView="clr-namespace:Emby.WindowsPhone.Controls;assembly=Emby.WindowsPhone"
+                           HorizontalAlignment="Stretch"
+                           VerticalAlignment="Top"
+                           Background="Transparent"/>
+    </Item>
+  </Items>
+</About>

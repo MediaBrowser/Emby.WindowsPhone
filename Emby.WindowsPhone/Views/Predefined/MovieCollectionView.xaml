@@ -1,0 +1,378 @@
+﻿<scott:BasePage x:Class="Emby.WindowsPhone.Views.Predefined.MovieCollectionView"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:scott="clr-namespace:ScottIsAFool.WindowsPhone.Controls;assembly=ScottIsAFool.WindowsPhone"
+                xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+                xmlns:mb="clr-namespace:Emby.WindowsPhone.Controls"
+                xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+                xmlns:controls="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
+                xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+                xmlns:telerikInput="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Input"
+                xmlns:behaviours="clr-namespace:Emby.WindowsPhone.Behaviours"
+                FontFamily="{StaticResource PhoneFontFamilyNormal}"
+                FontSize="{StaticResource PhoneFontSizeNormal}"
+                Foreground="{StaticResource PhoneForegroundBrush}"
+                SupportedOrientations="Portrait"
+                Orientation="Portrait"
+                mc:Ignorable="d"
+                shell:SystemTray.IsVisible="True"
+                shell:SystemTray.Opacity="0"
+                toolkit:TiltEffect.IsTiltEnabled="True"
+                DataContext="{Binding MovieCollection, Source={StaticResource Locator}}">
+    <i:Interaction.Behaviors>
+        <behaviours:MBSysTray Text="{Binding ProgressText}"
+                              IsVisible="{Binding ProgressIsVisible}"
+                              IsIndeterminate="{Binding ProgressIsVisible}" />
+    </i:Interaction.Behaviors>
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding PageLoadedCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <toolkit:TransitionService.NavigationInTransition>
+        <toolkit:NavigationInTransition>
+            <toolkit:NavigationInTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardIn" />
+            </toolkit:NavigationInTransition.Backward>
+            <toolkit:NavigationInTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardIn" />
+            </toolkit:NavigationInTransition.Forward>
+        </toolkit:NavigationInTransition>
+    </toolkit:TransitionService.NavigationInTransition>
+    <toolkit:TransitionService.NavigationOutTransition>
+        <toolkit:NavigationOutTransition>
+            <toolkit:NavigationOutTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardOut" />
+            </toolkit:NavigationOutTransition.Backward>
+            <toolkit:NavigationOutTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardOut" />
+            </toolkit:NavigationOutTransition.Forward>
+        </toolkit:NavigationOutTransition>
+    </toolkit:TransitionService.NavigationOutTransition>
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot"
+          Background="{StaticResource MediaBrowserBackground}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!--ContentPanel - place additional content here-->
+        <Grid x:Name="ContentPanel"
+              Grid.Row="1"
+              Margin="0,32,12,0">
+            <phone:Pivot SelectedIndex="{Binding PivotSelectedIndex, Mode=TwoWay}">
+                <phone:Pivot.Title>
+                    <StackPanel Orientation="Horizontal"
+                                Margin="-12,0,0,0">
+                        <mb:EmbyLogo AltText="{Binding LocalisedResources.LabelMovies, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToUppercaseConverter}}" />
+                    </StackPanel>
+                </phone:Pivot.Title>
+
+                <phone:PivotItem Header="{Binding LocalisedResources.LabelLatestUnseen, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
+                    <phone:LongListSelector ItemsSource="{Binding LatestUnwatched}"
+                                            ListHeader="{Binding UnseenHeader}"
+                                            LayoutMode="Grid"
+                                            GridCellSize="205,286"
+                                            Margin="12,0,0,0">
+                        <phone:LongListSelector.ListHeaderTemplate>
+                            <DataTemplate>
+                                <mb:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                                          TapCommand="{Binding MovieCollection.NavigateToCommand, Source={StaticResource Locator}}"
+                                                          CommandParameter="{Binding}"
+                                                          Margin="0,0,12,12">
+                                    <toolkit:ContextMenuService.ContextMenu>
+                                        <toolkit:ContextMenu>
+                                            <toolkit:MenuItem Header="{Binding LocalisedResources.LabelAddToPlaylist, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                              Command="{Binding AddToPlaylist.AddToPlaylistCommand, Source={StaticResource Locator}}"
+                                                              CommandParameter="{Binding}" />
+                                            <toolkit:MenuItem Header="{Binding LocalisedResources.AppBarPlayOn, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                              Command="{Binding Remote.SendPlayCommand, Source={StaticResource Locator}}"
+                                                              CommandParameter="{Binding Id}" />
+                                            <toolkit:MenuItem Header="{Binding LocalisedResources.AppBarOffline, Source={StaticResource LocalisedStrings}}"
+                                                              Command="{Binding MovieCollection.ItemOfflineCommand, Source={StaticResource Locator}}"
+                                                              CommandParameter="{Binding}"
+                                                              Visibility="{Binding Auth.LoggedInUser.Policy.EnableSync, Source={StaticResource Locator}, Converter={StaticResource VisibilityConverter}}" />
+                                            <toolkit:MenuItem Header="{Binding UserData.Played, Converter={StaticResource MarkAsWatchedConverter}}"
+                                                              Command="{Binding Main.MarkAsWatchedCommand, Source={StaticResource Locator}}"
+                                                              CommandParameter="{Binding}"
+                                                              Visibility="{Binding Converter={StaticResource CanMarkAsWatchedConverter}}" />
+                                        </toolkit:ContextMenu>
+                                    </toolkit:ContextMenuService.ContextMenu>
+                                    <Grid Height="173"
+                                          d:DataContext="{Binding MovieCollection.LatestUnwatched[0], Source={StaticResource Locator}}">
+                                        <controls:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}, ConverterParameter=backdropsmall}"
+                                                             Stretch="UniformToFill"
+                                                             PlaceholderImageSource="/Images/MBBackground.jpg"
+                                                             PlaceholderImageStretch="Uniform" />
+                                        <Border VerticalAlignment="Bottom"
+                                                Background="#C4000000"
+                                                Visibility="{Binding HideTitles, Source={StaticResource SpecificSettings}, Converter={StaticResource InvertedVisibilityConverter}}">
+                                            <TextBlock Text="{Binding Name, Converter={StaticResource StringToUppercaseConverter}}"
+                                                       Style="{StaticResource PhoneTextLargeStyle}"
+                                                       HorizontalAlignment="Left" />
+                                        </Border>
+                                    </Grid>
+                                </mb:CustomHyperlinkButton>
+                            </DataTemplate>
+                        </phone:LongListSelector.ListHeaderTemplate>
+                        <phone:LongListSelector.ItemTemplate>
+                            <DataTemplate>
+                                <mb:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                                          TapCommand="{Binding MovieCollection.NavigateToCommand, Source={StaticResource Locator}}"
+                                                          CommandParameter="{Binding}"
+                                                          Margin="0,0,12,12">
+                                    <toolkit:ContextMenuService.ContextMenu>
+                                        <toolkit:ContextMenu>
+                                            <toolkit:MenuItem Header="{Binding LocalisedResources.LabelAddToPlaylist, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                              Command="{Binding AddToPlaylist.AddToPlaylistCommand, Source={StaticResource Locator}}"
+                                                              CommandParameter="{Binding}" />
+                                            <toolkit:MenuItem Header="{Binding LocalisedResources.AppBarPlayOn, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                              Command="{Binding Remote.SendPlayCommand, Source={StaticResource Locator}}"
+                                                              CommandParameter="{Binding Id}" />
+                                            <toolkit:MenuItem Header="{Binding LocalisedResources.AppBarOffline, Source={StaticResource LocalisedStrings}}"
+                                                              Command="{Binding MovieCollection.ItemOfflineCommand, Source={StaticResource Locator}}"
+                                                              CommandParameter="{Binding}"
+                                                              Visibility="{Binding Auth.LoggedInUser.Policy.EnableSync, Source={StaticResource Locator}, Converter={StaticResource VisibilityConverter}}"/>
+                                            <toolkit:MenuItem Header="{Binding UserData.Played, Converter={StaticResource MarkAsWatchedConverter}}"
+                                                              Command="{Binding Main.MarkAsWatchedCommand, Source={StaticResource Locator}}"
+                                                              CommandParameter="{Binding}"
+                                                              Visibility="{Binding Converter={StaticResource CanMarkAsWatchedConverter}}" />
+                                        </toolkit:ContextMenu>
+                                    </toolkit:ContextMenuService.ContextMenu>
+                                    <Grid d:DataContext="{Binding MovieCollection.LatestUnwatched[0], Source={StaticResource Locator}}">
+                                        <controls:SuperImage PlaceholderImageSource="/Images/Logo.png"
+                                                             Source="{Binding Converter={StaticResource ImageUrlConverter}}"
+                                                             PlaceholderImageStretch="Uniform"
+                                                             MaxWidth="210"
+                                                             Stretch="Uniform" />
+                                        <Border Background="#C4000000"
+                                                VerticalAlignment="Bottom"
+                                                Visibility="{Binding HideTitles, Source={StaticResource SpecificSettings}, Converter={StaticResource InvertedVisibilityConverter}}">
+                                            <TextBlock Text="{Binding Name}"
+                                                       Style="{StaticResource PhoneTextNormalStyle}"
+                                                       FontWeight="Bold"
+                                                       TextWrapping="Wrap"
+                                                       Foreground="White" />
+                                        </Border>
+                                    </Grid>
+                                </mb:CustomHyperlinkButton>
+                            </DataTemplate>
+                        </phone:LongListSelector.ItemTemplate>
+                    </phone:LongListSelector>
+                </phone:PivotItem>
+
+                <phone:PivotItem Header="{Binding LocalisedResources.LabelMovies, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
+                    <phone:LongListSelector ItemsSource="{Binding Movies}"
+                                            IsGroupingEnabled="True"
+                                            HideEmptyGroups="False"
+                                            GroupHeaderTemplate="{StaticResource LLSGroupHeaderTemplateName}"
+                                            JumpListStyle="{StaticResource LLSGroupItemStyle}">
+                        <phone:LongListSelector.ItemTemplate>
+                            <DataTemplate>
+                                <mb:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                                          Margin="12,6,0,6"
+                                                          TapCommand="{Binding TvCollection.NavigateToCommand, Source={StaticResource Locator}}"
+                                                          CommandParameter="{Binding}">
+                                    <toolkit:ContextMenuService.ContextMenu>
+                                        <toolkit:ContextMenu>
+                                            <toolkit:MenuItem Header="{Binding LocalisedResources.LabelAddToPlaylist, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                              Command="{Binding AddToPlaylist.AddToPlaylistCommand, Source={StaticResource Locator}}"
+                                                              CommandParameter="{Binding}" />
+                                            <toolkit:MenuItem Header="{Binding LocalisedResources.AppBarPlayOn, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                              Command="{Binding Remote.SendPlayCommand, Source={StaticResource Locator}}"
+                                                              CommandParameter="{Binding Id}" />
+                                            <toolkit:MenuItem Header="{Binding LocalisedResources.AppBarOffline, Source={StaticResource LocalisedStrings}}"
+                                                              Command="{Binding MovieCollection.ItemOfflineCommand, Source={StaticResource Locator}}"
+                                                              CommandParameter="{Binding}"
+                                                              Visibility="{Binding Auth.LoggedInUser.Policy.EnableSync, Source={StaticResource Locator}, Converter={StaticResource VisibilityConverter}}" />
+                                            <toolkit:MenuItem Header="{Binding UserData.Played, Converter={StaticResource MarkAsWatchedConverter}}"
+                                                              Command="{Binding Main.MarkAsWatchedCommand, Source={StaticResource Locator}}"
+                                                              CommandParameter="{Binding}"
+                                                              Visibility="{Binding Converter={StaticResource CanMarkAsWatchedConverter}}" />
+                                        </toolkit:ContextMenu>
+                                    </toolkit:ContextMenuService.ContextMenu>
+                                    <Grid HorizontalAlignment="Stretch"
+                                          d:DataContext="{Binding MovieCollection.Movies[0], Source={StaticResource Locator}}">
+                                        <StackPanel Orientation="Horizontal"
+                                                    HorizontalAlignment="Stretch">
+                                            <controls:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
+                                                                 Height="95"
+                                                                 Width="75"
+                                                                 Stretch="Uniform"
+                                                                 PlaceholderImageSource="/Images/DefaultVideo.png"
+                                                                 PlaceholderImageStretch="Uniform"
+                                                                 VerticalAlignment="Top" />
+                                            <StackPanel Orientation="Vertical"
+                                                        Height="95">
+                                                <TextBlock Text="{Binding Name}"
+                                                           Style="{StaticResource HeaderTextStyle}"
+                                                           FontSize="{StaticResource PhoneFontSizeMediumLarge}" />
+                                                <StackPanel Orientation="Horizontal"
+                                                            Margin="0,-6,0,0">
+                                                    <telerikInput:RadRating Value="{Binding CommunityRating, Converter={StaticResource RatingConverter}}"
+                                                                            IsReadOnly="True"
+                                                                            ItemShapeHeight="20"
+                                                                            Margin="12"
+                                                                            ItemShapeWidth="20" />
+                                                    <StackPanel Orientation="Horizontal"
+                                                                Visibility="{Binding CriticRating, Converter={StaticResource NullVisibilityConverter}}">
+                                                        <Image Source="{Binding CriticRating, Converter={StaticResource CriticRatingConverter}}"
+                                                               Height="25"
+                                                               Width="25"
+                                                               Stretch="UniformToFill" />
+                                                        <TextBlock Text="{Binding CriticRating, StringFormat='\{0\}%'}"
+                                                                   Style="{StaticResource PhoneTextSubtleStyle}"
+                                                                   VerticalAlignment="Center"
+                                                                   Margin="6,0" />
+                                                    </StackPanel>
+                                                </StackPanel>
+                                                <StackPanel Orientation="Horizontal"
+                                                            Margin="12,-6,0,0">
+                                                    <TextBlock Text="{Binding ProductionYear}"
+                                                               Style="{StaticResource PhoneTextSubtleStyle}"
+                                                               Margin="0,0,12,0" />
+                                                    <TextBlock Text="{Binding RunTimeTicks, Converter={StaticResource RuntimeConverter}}"
+                                                               Style="{StaticResource PhoneTextSubtleStyle}"
+                                                               Visibility="{Binding RunTimeTicks, Converter={StaticResource NullVisibilityConverter}}"
+                                                               Margin="0,0,12,0" />
+                                                    <TextBlock Text="{Binding OfficialRating}"
+                                                               Style="{StaticResource PhoneTextSubtleStyle}"
+                                                               Visibility="{Binding OfficialRating, Converter={StaticResource NullVisibilityConverter}}"
+                                                               Margin="0,0,12,0" />
+                                                    <Image Source="/Images/3d.png"
+                                                           Height="35"
+                                                           Width="35"
+                                                           Visibility="{Binding Video3DFormat, Converter={StaticResource NullVisibilityConverter}}" />
+                                                </StackPanel>
+                                            </StackPanel>
+
+                                        </StackPanel>
+                                        <ProgressBar Value="{Binding Converter={StaticResource AlreadyPlayedConverter}}"
+                                                     Style="{StaticResource CircularProgressBarStyle}"
+                                                     VerticalAlignment="Bottom"
+                                                     Height="60"
+                                                     Width="60"
+                                                     Tag="20"
+                                                     HorizontalAlignment="Right"
+                                                     Visibility="{Binding Value, RelativeSource={RelativeSource Self}, Converter={StaticResource GreaterThanVisibilityConverter}, ConverterParameter=0}" />
+                                    </Grid>
+                                </mb:CustomHyperlinkButton>
+                            </DataTemplate>
+                        </phone:LongListSelector.ItemTemplate>
+                    </phone:LongListSelector>
+                </phone:PivotItem>
+
+                <phone:PivotItem Header="{Binding LocalisedResources.LabelBoxsets, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
+                    <phone:LongListSelector ItemsSource="{Binding Boxsets}"
+                                            IsGroupingEnabled="True"
+                                            HideEmptyGroups="False"
+                                            GroupHeaderTemplate="{StaticResource LLSGroupHeaderTemplateName}"
+                                            JumpListStyle="{StaticResource LLSGroupItemStyle}">
+                        <phone:LongListSelector.ItemTemplate>
+                            <DataTemplate>
+                                <mb:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                                          Margin="12,6,0,6"
+                                                          TapCommand="{Binding MovieCollection.NavigateToCommand, Source={StaticResource Locator}}"
+                                                          CommandParameter="{Binding}">
+                                    <toolkit:ContextMenuService.ContextMenu>
+                                        <toolkit:ContextMenu>
+                                            <toolkit:MenuItem Header="{Binding LocalisedResources.AppBarMarkAsWatched, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                              Command="{Binding MovieCollection.MarkAsWatchedCommand, Source={StaticResource Locator}}"
+                                                              CommandParameter="{Binding}" />
+                                            <toolkit:MenuItem Header="{Binding LocalisedResources.AppBarPlayOn, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                              Command="{Binding Remote.SendPlayCommand, Source={StaticResource Locator}}"
+                                                              CommandParameter="{Binding Id}" />
+                                            <toolkit:MenuItem Header="{Binding LocalisedResources.LabelAddToPlaylist, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                              Command="{Binding AddToPlaylist.AddToPlaylistCommand, Source={StaticResource Locator}}"
+                                                              CommandParameter="{Binding}" />
+                                            <toolkit:MenuItem Header="{Binding LocalisedResources.AppBarOffline, Source={StaticResource LocalisedStrings}}"
+                                                              Command="{Binding MovieCollection.ItemOfflineCommand, Source={StaticResource Locator}}"
+                                                              CommandParameter="{Binding}"
+                                                              Visibility="{Binding Auth.LoggedInUser.Policy.EnableSync, Source={StaticResource Locator}, Converter={StaticResource VisibilityConverter}}" />
+                                        </toolkit:ContextMenu>
+                                    </toolkit:ContextMenuService.ContextMenu>
+                                    <StackPanel Orientation="Horizontal"
+                                                d:DataContext="{Binding MovieCollection.Boxsets[0], Source={StaticResource Locator}}">
+                                        <controls:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
+                                                             Height="95"
+                                                             Width="75"
+                                                             Stretch="Uniform"
+                                                             PlaceholderImageSource="/Images/DefaultVideo.png"
+                                                             PlaceholderImageStretch="Uniform"
+                                                             VerticalAlignment="Top" />
+                                        <StackPanel Orientation="Vertical">
+                                            <TextBlock Text="{Binding Name, Converter={StaticResource StringToUppercaseConverter}}"
+                                                       Style="{StaticResource HeaderTextStyle}"
+                                                       FontSize="{StaticResource PhoneFontSizeMediumLarge}" />
+                                            <TextBlock Style="{StaticResource PhoneTextSubtleStyle}"
+                                                       Foreground="{Binding UserData.UnplayedItemCount, Converter={StaticResource ZeroCountBrushConverter}}">
+                                                <Run Text="{Binding LocalisedResources.LabelUnwatched, Source={StaticResource LocalisedStrings}}" />
+                                                <Run Text="{Binding UserData.UnplayedItemCount, FallbackValue=0}" />
+                                            </TextBlock>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </mb:CustomHyperlinkButton>
+                            </DataTemplate>
+                        </phone:LongListSelector.ItemTemplate>
+                    </phone:LongListSelector>
+                </phone:PivotItem>
+                
+                <phone:PivotItem Header="{Binding LocalisedResources.LabelGenres, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
+                    <phone:LongListSelector ItemsSource="{Binding Genres}">
+                        <phone:LongListSelector.ItemTemplate>
+                            <DataTemplate>
+                                <mb:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                                          TapCommand="{Binding Main.NavigateToPage, Source={StaticResource Locator}}"
+                                                          CommandParameter="{Binding}"
+                                                          Margin="12,0,0,12">
+                                    <toolkit:ContextMenuService.ContextMenu>
+                                        <toolkit:ContextMenu>
+                                            <toolkit:MenuItem Header="{Binding LocalisedResources.LabelAddToPlaylist, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                              Command="{Binding AddToPlaylist.AddToPlaylistCommand, Source={StaticResource Locator}}"
+                                                              CommandParameter="{Binding}" />
+                                            <toolkit:MenuItem Header="{Binding LocalisedResources.AppBarPlayOn, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                              Command="{Binding Remote.SendPlayCommand, Source={StaticResource Locator}}"
+                                                              CommandParameter="{Binding Id}" />
+                                        </toolkit:ContextMenu>
+                                    </toolkit:ContextMenuService.ContextMenu>
+                                    <Grid Height="173"
+                                          d:DataContext="{Binding MovieCollection.Genres[0], Source={StaticResource Locator}}">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <controls:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}, ConverterParameter=backdropsmall}"
+                                                             Stretch="UniformToFill"
+                                                             PlaceholderImageSource="/Images/MBBackground.jpg"
+                                                             PlaceholderImageStretch="Uniform" />
+                                        <Border VerticalAlignment="Bottom"
+                                                Background="#C4000000"
+                                                HorizontalAlignment="Stretch">
+                                            <Grid>
+                                                <Rectangle Fill="Transparent"
+                                                           HorizontalAlignment="Stretch"
+                                                           Height="1"
+                                                           Width="308" />
+                                                <TextBlock Text="{Binding Name}"
+                                                           Style="{StaticResource PhoneTextLargeStyle}"
+                                                           HorizontalAlignment="Left" />
+                                            </Grid>
+
+                                        </Border>
+                                    </Grid>
+                                </mb:CustomHyperlinkButton>
+                            </DataTemplate>
+                        </phone:LongListSelector.ItemTemplate>
+                    </phone:LongListSelector>
+                </phone:PivotItem>
+            </phone:Pivot>
+        </Grid>
+    </Grid>
+
+</scott:BasePage>

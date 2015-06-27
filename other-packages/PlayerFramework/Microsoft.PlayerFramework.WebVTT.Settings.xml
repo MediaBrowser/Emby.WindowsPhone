@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.PlayerFramework.WebVTT.Settings</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.PlayerFramework.WebVTT.CaptionSettings.WebVTTCaptionSettingsPlugin">
+            <summary>
+            WebVTT caption settings plug-in for MediaPlayer
+            </summary>
+            <remarks>Do not call MediaPlayer.Dispose() when navigating away from 
+            the page hosting the player.
+            </remarks>
+        </member>
+        <member name="F:Microsoft.PlayerFramework.WebVTT.CaptionSettings.WebVTTCaptionSettingsPlugin.DefaultFontSizePercent">
+            <summary>
+            default font size percent
+            </summary>
+        </member>
+        <member name="F:Microsoft.PlayerFramework.WebVTT.CaptionSettings.WebVTTCaptionSettingsPlugin.fontMap">
+            <summary>
+            the font map
+            </summary>
+        </member>
+        <member name="M:Microsoft.PlayerFramework.WebVTT.CaptionSettings.WebVTTCaptionSettingsPlugin.#ctor">
+            <summary>
+            Initializes a new instance of the WebVTTCaptionSettingsPlugin class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.PlayerFramework.WebVTT.CaptionSettings.WebVTTCaptionSettingsPlugin.OnApplyCaptionSettings(Microsoft.PlayerFramework.CaptionSettings.Model.CustomCaptionSettings)">
+            <summary>
+            Apply caption settings
+            </summary>
+            <param name="settings">the new caption settings</param>
+        </member>
+        <member name="M:Microsoft.PlayerFramework.WebVTT.CaptionSettings.WebVTTCaptionSettingsPlugin.OnActivate">
+            <summary>
+            hook up the NodeRendering event handler
+            </summary>
+            <returns>true if the WebVTTPlugin is in the MediaPlayer</returns>
+        </member>
+        <member name="M:Microsoft.PlayerFramework.WebVTT.CaptionSettings.WebVTTCaptionSettingsPlugin.OnDeactivate">
+            <summary>
+            Detach the NodeRendering event handler
+            </summary>
+        </member>
+        <member name="M:Microsoft.PlayerFramework.WebVTT.CaptionSettings.WebVTTCaptionSettingsPlugin.OnTextRendering(System.Object,Microsoft.WebVTT.CaptionTextEventArgs)">
+            <summary>
+            Text is about to be rendered so apply any styles
+            </summary>
+            <param name="sender">the sender</param>
+            <param name="e">the caption text event arguments</param>
+        </member>
+        <member name="M:Microsoft.PlayerFramework.WebVTT.CaptionSettings.WebVTTCaptionSettingsPlugin.ApplyFontFamily(Microsoft.WebVTT.CaptionTextEventArgs)">
+            <summary>
+            Apply the font family
+            </summary>
+            <param name="e">the caption text event arguments</param>
+        </member>
+        <member name="M:Microsoft.PlayerFramework.WebVTT.CaptionSettings.WebVTTCaptionSettingsPlugin.ApplyTextColor(Microsoft.WebVTT.CaptionTextEventArgs)">
+            <summary>
+            Apply the text color
+            </summary>
+            <param name="e">the caption text event arguments</param>
+        </member>
+        <member name="M:Microsoft.PlayerFramework.WebVTT.CaptionSettings.WebVTTCaptionSettingsPlugin.ApplyFontStyle(Microsoft.WebVTT.CaptionTextEventArgs)">
+            <summary>
+            Apply the font style
+            </summary>
+            <param name="e">the caption text event arguments</param>
+        </member>
+        <member name="M:Microsoft.PlayerFramework.WebVTT.CaptionSettings.WebVTTCaptionSettingsPlugin.ApplyRaisedEdge(Microsoft.WebVTT.CaptionTextEventArgs)">
+            <summary>
+            Apply a raised edge text style
+            </summary>
+            <param name="e">the caption text event arguments</param>
+        </member>
+        <member name="M:Microsoft.PlayerFramework.WebVTT.CaptionSettings.WebVTTCaptionSettingsPlugin.ApplyDepressedEdge(Microsoft.WebVTT.CaptionTextEventArgs)">
+            <summary>
+            Apply dark overlay to the upper left text blocks
+            </summary>
+            <param name="e">the caption text event arguments</param>
+        </member>
+        <member name="M:Microsoft.PlayerFramework.WebVTT.CaptionSettings.WebVTTCaptionSettingsPlugin.ApplyDropShadow(Microsoft.WebVTT.CaptionTextEventArgs)">
+            <summary>
+            Apply a drop shadow text effect
+            </summary>
+            <param name="e">the caption text event arguments</param>
+        </member>
+        <member name="M:Microsoft.PlayerFramework.WebVTT.CaptionSettings.WebVTTCaptionSettingsPlugin.GetFont">
+            <summary>
+            Gets the mapped font
+            </summary>
+            <returns>a native font family</returns>
+        </member>
+        <member name="P:Microsoft.PlayerFramework.WebVTT.CaptionSettings.WebVTTCaptionSettingsPlugin.DropShadowOffset">
+            <summary>
+            Gets or sets the pixel offset at 100% to offset the drop shadow 
+            </summary>
+            <remarks>default is 1.5 pixels</remarks>
+        </member>
+        <member name="P:Microsoft.PlayerFramework.WebVTT.CaptionSettings.WebVTTCaptionSettingsPlugin.EdgeOffset">
+            <summary>
+            Gets or sets the edge offset for DepressedEdge and RaisedEdge font styles
+            </summary>
+        </member>
+        <member name="P:Microsoft.PlayerFramework.WebVTT.CaptionSettings.WebVTTCaptionSettingsPlugin.DropShadowBrush">
+            <summary>
+            Gets or sets the drop shadow brush
+            </summary>
+            <remarks>Default is a black brush with 50% opacity</remarks>
+        </member>
+    </members>
+</doc>

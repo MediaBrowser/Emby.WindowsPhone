@@ -1,14 +1,12 @@
-60a59c61186d8bb22a84335d8303909c=WP8:
-
-Media Browser est un moyen de consulter votre collection de médias, que ce soit des films, séries TV ou de la musique, Media Browser permettra la lecture de ces médias sur votre téléphone Windows ou sur d'autres clients compatibles Media Browser.
+Emby est un moyen de consulter votre collection de médias, que ce soit des films, séries TV ou de la musique, Emby permettra la lecture de ces médias sur votre téléphone Windows ou sur d'autres clients compatibles Emby.
 
 ****INFORMATION IMPORTANTE****
-Pour pouvoir utiliser Media Browser, il est nécessaire d'installer le serveur Media Browser à partir de http://www.mediabrowser.tv/download et de le configurer.
+Pour pouvoir utiliser Emby, il est nécessaire d'installer le serveur Emby à partir de http://www.emby.media/download et de le configurer.
 
 Fonctionnalités:
 -Consultation de votre collection de médias
 -Lecture des vidéos sur votre téléphone
--Contrôle à distance d'autres lecteurs Media Browser (comme Media Browser Classic)
+-Contrôle à distance d'autres lecteurs Emby (comme Emby Classic)
 -Définir l'écran de verrouillage basé sur votre propre collection
 -Épingler vos collections préférées au menu de démarrage
 
@@ -17,7 +15,7 @@ Limites de période d'essai:
 -Contrôle à distance seulement de l'interface Web
 
 Soutien:
-Du soutien est offert sur Twitter (@mediabrowser), Facebook (http://facebook.com/mediabrowser.tv) ou par courriel (wpmb3@outlook.com).
+Du soutien est offert sur Twitter (@embyapp), Facebook (http://facebook.com/embyapp) ou par courriel (wpmb3@outlook.com).
 
 Évaluation:
 Nous adorons les évaluations, ça nous aide à améliorer l'application, par contre, si vous éprouvez des problèmes, SVP nous contacter avant de soumettre une mauvaise évaluation, nous sommes sûrement en mesure de vous assister.

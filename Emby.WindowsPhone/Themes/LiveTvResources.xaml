@@ -1,0 +1,51 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:converters="clr-namespace:Emby.WindowsPhone.Converters">
+    <!-- Resource dictionary entries should be defined here. -->
+
+    <converters:DayPatternConverter x:Key="DayPatternConverter" />
+    <converters:AnyTimeConverter x:Key="AnyTimeConverter" />
+    <converters:AnyChannelConverter x:Key="AnyChannelConverter" />
+    <converters:ScheduledRecordingTimeConverter x:Key="RecordingTimeConverter" />
+    <converters:DateTimeConverter ShowTime="True"
+                                  ForLiveTv="True"
+                                  x:Key="TimeConverter" />
+    <converters:HasAiredConverter x:Key="HasAiredConverter" />
+    <converters:ProgrammeTypeToColourConverter x:Key="TypeToColourConverter"/>
+    <converters:DateTimeConverter x:Key="DateTimeConverter"
+                                  ForLiveTv="True"/>
+    <converters:DateTimeConverter x:Key="FullDateTimeConverter"
+                                  ForLiveTv="True"
+                                  ShowFullDateTime="True"/>
+    <converters:RecordingNameConverter x:Key="RecordingNameConverter" />
+    <converters:SecondsToMinuteConverter x:Key="SecondsToMinuteConverter"/>
+
+    <Color x:Key="NewTvProgrammeColor">#E88606</Color>
+    <SolidColorBrush x:Key="NewTvProgrammeBrush"
+                     Color="{StaticResource NewTvProgrammeColor}"/>
+
+    <Color x:Key="LiveTvProgrammeColor">#64A239</Color>
+    <SolidColorBrush x:Key="LiveTvProgrammeBrush"
+                     Color="{StaticResource LiveTvProgrammeColor}"/>
+    
+    <Color x:Key="PremiereTvProgrammeColor">Yellow</Color>
+    <SolidColorBrush x:Key="PremiereTvProgrammeBrush"
+                     Color="{StaticResource PremiereTvProgrammeColor}"/>
+
+    <Color x:Key="SportsProgrammeColour">#0A7C33</Color>
+    <SolidColorBrush x:Key="SportsProgrammeBrush"
+                     Color="{StaticResource SportsProgrammeColour}"/>
+
+    <Color x:Key="NewsProgrammeColour">#523378</Color>
+    <SolidColorBrush x:Key="NewsProgrammeBrush"
+                     Color="{StaticResource NewsProgrammeColour}"/>
+
+    <Color x:Key="MovieProgrammeColour">#A43913</Color>
+    <SolidColorBrush x:Key="MovieProgrammeBrush"
+                     Color="{StaticResource MovieProgrammeColour}"/>
+
+    <Color x:Key="ChildProgrammeColor">#0B487D</Color>
+    <SolidColorBrush x:Key="ChildProgrammeBrush"
+                     Color="{StaticResource ChildProgrammeColor}"/>
+    
+</ResourceDictionary>

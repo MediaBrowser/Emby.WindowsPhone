@@ -1,0 +1,21 @@
+Emby is a way of browsing your own media collection, whether it be movies, tv or music, Emby will allow you to watch or listen to them on your Windows Phone or play them on another compatible Emby client.
+
+****IMPORTANT INFORMATION****
+In order to use Emby, you need to have installed the Emby server from http://www.emby.media/download and have it configured.
+
+Features:
+- Browse your own media collection
+- Stream videos to your phone
+- Remote control other Emby players (like Emby Classic)
+- Set your lock screen based on one of your own collections
+- Pin your favourite collections to the start menu
+
+Trial limitations:
+- Watch one video per day (as many times or as much as you like, but just the one)
+- Only able to remote control the Web Interface
+
+Support:
+Support can be found on twitter (@embyapp), facebook (http://facebook.com/embyapp) or email (wpmb3@outlook.com).
+
+Reviews:
+We love the reviews, it helps us to make the app better, however if you have any problems, please contact us prior to negative reviews, we might be able to help. 

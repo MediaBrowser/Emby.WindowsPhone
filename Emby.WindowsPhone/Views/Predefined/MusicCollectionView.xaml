@@ -1,0 +1,312 @@
+﻿<scott:BasePage x:Class="Emby.WindowsPhone.Views.Predefined.MusicCollectionView"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                xmlns:scott="clr-namespace:ScottIsAFool.WindowsPhone.Controls;assembly=ScottIsAFool.WindowsPhone"
+                xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+                xmlns:mb="clr-namespace:Emby.WindowsPhone.Controls"
+                xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+                xmlns:c4F="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
+                xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+                xmlns:behaviors="clr-namespace:Cimbalino.Toolkit.Behaviors;assembly=Cimbalino.Toolkit"
+                xmlns:converters="clr-namespace:ScottIsAFool.WindowsPhone.Converters;assembly=ScottIsAFool.WindowsPhone"
+                xmlns:behaviours="clr-namespace:Emby.WindowsPhone.Behaviours"
+                FontFamily="{StaticResource PhoneFontFamilyNormal}"
+                FontSize="{StaticResource PhoneFontSizeNormal}"
+                Foreground="{StaticResource PhoneForegroundBrush}"
+                SupportedOrientations="Portrait"
+                Orientation="Portrait"
+                mc:Ignorable="d"
+                shell:SystemTray.IsVisible="True"
+                shell:SystemTray.Opacity="0"
+                toolkit:TiltEffect.IsTiltEnabled="True"
+                DataContext="{Binding MusicCollection, Source={StaticResource Locator}}">
+    <scott:BasePage.Resources>
+        <converters:InvertBoolean x:Key="InvertBoolean" />
+    </scott:BasePage.Resources>
+    <i:Interaction.Behaviors>
+        <behaviours:MBSysTray Text="{Binding ProgressText}"
+                              IsVisible="{Binding ProgressIsVisible}"
+                              IsIndeterminate="{Binding ProgressIsVisible}" />
+        <behaviors:MultiApplicationBarBehavior SelectedIndex="{Binding AppBarIndex}">
+            <behaviors:ApplicationBar>
+                <behaviors:ApplicationBarIconButton Text="{Binding LocalisedResources.AppBarPlayAll, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                    IconUri="/Icons/appbar.transport.play.png"
+                                                    Command="{Binding PlayAllCommand}" />
+            </behaviors:ApplicationBar>
+            <behaviors:ApplicationBar IsVisible="True"
+                                      IsMenuEnabled="{Binding IsSelectionEnabled}"
+                                      Mode="{Binding AppBarMode}">
+                <behaviors:ApplicationBarIconButton Text="{Binding LocalisedResources.AppBarSelectItems, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                    IconUri="/Icons/appbar.list.check.png"
+                                                    IsEnabled="{Binding Songs.Count, Converter={StaticResource CountToEnabled}, ConverterParameter=delete}"
+                                                    IsVisible="{Binding IsSelectionEnabled, Converter={StaticResource InvertBoolean}}"
+                                                    Command="{Binding SelectItemsCommand}" />
+                <behaviors:ApplicationBarIconButton Text="{Binding LocalisedResources.AppBarPlayAll, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                    IconUri="/Icons/appbar.transport.play.png"
+                                                    Command="{Binding PlayAllCommand}" />
+                <behaviors:ApplicationBar.MenuItems>
+                    <behaviors:ApplicationBarMenuItem Text="{Binding LocalisedResources.AppBarAddToNowPlaying, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                      IsVisible="{Binding IsSelectionEnabled}"
+                                                      IsEnabled="{Binding SelectedTracks.Count, Converter={StaticResource CountToEnabled}, ConverterParameter=delete}"
+                                                      Command="{Binding AddToNowPlayingCommand}" />
+                    <behaviors:ApplicationBarMenuItem Text="{Binding LocalisedResources.LabelAddToPlaylist, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                      IsVisible="{Binding IsSelectionEnabled}"
+                                                      IsEnabled="{Binding SelectedTracks.Count, Converter={StaticResource CountToEnabled}, ConverterParameter=delete}"
+                                                      Command="{Binding AddToPlaylistCommand}" />
+                </behaviors:ApplicationBar.MenuItems>
+            </behaviors:ApplicationBar>
+        </behaviors:MultiApplicationBarBehavior>
+    </i:Interaction.Behaviors>
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding PageLoadedCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <toolkit:TransitionService.NavigationInTransition>
+        <toolkit:NavigationInTransition>
+            <toolkit:NavigationInTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardIn" />
+            </toolkit:NavigationInTransition.Backward>
+            <toolkit:NavigationInTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardIn" />
+            </toolkit:NavigationInTransition.Forward>
+        </toolkit:NavigationInTransition>
+    </toolkit:TransitionService.NavigationInTransition>
+    <toolkit:TransitionService.NavigationOutTransition>
+        <toolkit:NavigationOutTransition>
+            <toolkit:NavigationOutTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardOut" />
+            </toolkit:NavigationOutTransition.Backward>
+            <toolkit:NavigationOutTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardOut" />
+            </toolkit:NavigationOutTransition.Forward>
+        </toolkit:NavigationOutTransition>
+    </toolkit:TransitionService.NavigationOutTransition>
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot"
+          Background="{StaticResource MediaBrowserBackground}">
+        
+        <!--ContentPanel - place additional content here-->
+        <Grid x:Name="ContentPanel"
+              Margin="0,32,12,0">
+            <phone:Pivot SelectedIndex="{Binding PivotSelectedIndex, Mode=TwoWay}">
+                <phone:Pivot.Title>
+                    <StackPanel Orientation="Horizontal"
+                                Margin="-12,0,0,0">
+                        <mb:EmbyLogo AltText="{Binding LocalisedResources.LabelMusic, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToUppercaseConverter}}" />
+                    </StackPanel>
+                </phone:Pivot.Title>
+
+                <phone:PivotItem Header="{Binding LocalisedResources.LabelArtists, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
+                    <phone:LongListSelector ItemsSource="{Binding Artists}"
+                                            IsGroupingEnabled="True"
+                                            HideEmptyGroups="False"
+                                            GroupHeaderTemplate="{StaticResource LLSGroupHeaderTemplateName}"
+                                            JumpListStyle="{StaticResource LLSGroupItemStyle}">
+                        <phone:LongListSelector.ItemTemplate>
+                            <DataTemplate>
+                                <mb:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                                          TapCommand="{Binding MusicCollection.NavigateToCommand, Source={StaticResource Locator}}"
+                                                          CommandParameter="{Binding}">
+                                    <toolkit:ContextMenuService.ContextMenu>
+                                        <toolkit:ContextMenu>
+                                            <toolkit:MenuItem Header="{Binding LocalisedResources.LabelAddToPlaylist, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                              Command="{Binding AddToPlaylist.AddToPlaylistCommand, Source={StaticResource Locator}}"
+                                                              CommandParameter="{Binding}" />
+                                            <toolkit:MenuItem Header="{Binding LocalisedResources.LabelInstantMix, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                              Command="{Binding MusicCollection.StartInstantMixCommand, Source={StaticResource Locator}}"
+                                                              CommandParameter="{Binding}" />
+                                            <toolkit:MenuItem Header="{Binding LocalisedResources.AppBarPlayOn, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                              Command="{Binding Remote.SendPlayCommand, Source={StaticResource Locator}}"
+                                                              CommandParameter="{Binding Id}" />
+                                            <toolkit:MenuItem Header="{Binding LocalisedResources.AppBarOffline, Source={StaticResource LocalisedStrings}}"
+                                                              Command="{Binding MusicCollection.ItemOfflineCommand, Source={StaticResource Locator}}"
+                                                              CommandParameter="{Binding}"
+                                                              Visibility="{Binding Auth.LoggedInUser.Policy.EnableSync, Source={StaticResource Locator}, Converter={StaticResource VisibilityConverter}}" />
+                                        </toolkit:ContextMenu>
+                                    </toolkit:ContextMenuService.ContextMenu>
+                                    <StackPanel Orientation="Horizontal"
+                                                Margin="0,0,0,12">
+                                        <c4F:RoundButton ImageSource="/Icons/appbar.transport.play.rest.png"
+                                                         HorizontalAlignment="Center"
+                                                         VerticalAlignment="Center"
+                                                         Margin="6"
+                                                         Command="{Binding MusicCollection.PlayItemCommand, Source={StaticResource Locator}}"
+                                                         CommandParameter="{Binding}"
+                                                         Style="{StaticResource WhiteRoundButtonStyle}"/>
+                                        <TextBlock Text="{Binding Name}"
+                                                   Style="{StaticResource PhoneTextTitle2Style}" />
+                                    </StackPanel>
+                                </mb:CustomHyperlinkButton>
+                            </DataTemplate>
+                        </phone:LongListSelector.ItemTemplate>
+                    </phone:LongListSelector>
+                </phone:PivotItem>
+
+                <phone:PivotItem Header="{Binding LocalisedResources.LabelAlbums, Source={StaticResource LocalisedStrings}}">
+                    <phone:LongListSelector ItemsSource="{Binding Albums}"
+                                            IsGroupingEnabled="True"
+                                            GroupHeaderTemplate="{StaticResource LLSGroupHeaderTemplateName}"
+                                            JumpListStyle="{StaticResource LLSGroupItemStyle}">
+                        <phone:LongListSelector.ItemTemplate>
+                            <DataTemplate>
+                                <mb:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                                          VerticalContentAlignment="Top"
+                                                          TapCommand="{Binding MusicCollection.NavigateToCommand, Source={StaticResource Locator}}"
+                                                          CommandParameter="{Binding}">
+                                    <toolkit:ContextMenuService.ContextMenu>
+                                        <toolkit:ContextMenu>
+                                            <toolkit:MenuItem Header="{Binding LocalisedResources.LabelAddToPlaylist, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                              Command="{Binding AddToPlaylist.AddToPlaylistCommand, Source={StaticResource Locator}}"
+                                                              CommandParameter="{Binding}" />
+                                            <toolkit:MenuItem Header="{Binding LocalisedResources.LabelInstantMix, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                              Command="{Binding MusicCollection.StartInstantMixCommand, Source={StaticResource Locator}}"
+                                                              CommandParameter="{Binding}" />
+                                            <toolkit:MenuItem Header="{Binding LocalisedResources.AppBarPlayOn, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                              Command="{Binding Remote.SendPlayCommand, Source={StaticResource Locator}}"
+                                                              CommandParameter="{Binding Id}" />
+                                            <toolkit:MenuItem Header="{Binding LocalisedResources.AppBarOffline, Source={StaticResource LocalisedStrings}}"
+                                                              Command="{Binding MusicCollection.ItemOfflineCommand, Source={StaticResource Locator}}"
+                                                              CommandParameter="{Binding}"
+                                                              Visibility="{Binding Auth.LoggedInUser.Policy.EnableSync, Source={StaticResource Locator}, Converter={StaticResource VisibilityConverter}}" />
+                                        </toolkit:ContextMenu>
+                                    </toolkit:ContextMenuService.ContextMenu>
+                                    <StackPanel Orientation="Horizontal"
+                                                Margin="12,0,0,12"
+                                                d:DataContext="{Binding MusicCollection.Albums[0], Source={StaticResource Locator}}">
+                                        <Grid Width="150"
+                                              Height="150"
+                                              VerticalAlignment="Top">
+                                            <c4F:SuperImage Source="{Binding Converter={StaticResource ImageUrlConverter}}"
+                                                            MaxHeight="150"
+                                                            MaxWidth="150"
+                                                            Stretch="Uniform"
+                                                            PlaceholderImageStretch="Uniform"
+                                                            PlaceholderImageSource="/Images/DefaultAlbumCase.png" />
+                                            <c4F:RoundButton ImageSource="/Icons/appbar.transport.play.rest.png"
+                                                             HorizontalAlignment="Center"
+                                                             VerticalAlignment="Center"
+                                                             Margin="6"
+                                                             Command="{Binding MusicCollection.PlayItemCommand, Source={StaticResource Locator}}"
+                                                             CommandParameter="{Binding}"
+                                                             Style="{StaticResource WhiteRoundButtonStyle}" />
+                                        </Grid>
+                                        <StackPanel Orientation="Vertical"
+                                                    VerticalAlignment="Top">
+                                            <TextBlock Text="{Binding Name}"
+                                                       Style="{StaticResource PhoneTextTitle2Style}"
+                                                       FontWeight="Bold"
+                                                       TextWrapping="Wrap"
+                                                       Margin="12,-6,0,0"
+                                                       MaxWidth="240"
+                                                       MaxHeight="130"
+                                                       LineHeight="2"
+                                                       TextTrimming="WordEllipsis" />
+                                            <TextBlock Text="{Binding AlbumArtist}"
+                                                       Style="{StaticResource PhoneTextSubtleStyle}" />
+                                        </StackPanel>
+                                    </StackPanel>
+                                </mb:CustomHyperlinkButton>
+                            </DataTemplate>
+                        </phone:LongListSelector.ItemTemplate>
+                    </phone:LongListSelector>
+                </phone:PivotItem>
+
+                <phone:PivotItem Header="{Binding LocalisedResources.LabelSongs, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
+                    <toolkit:LongListMultiSelector ItemsSource="{Binding Songs}"
+                                                   IsGroupingEnabled="True"
+                                                   GroupHeaderTemplate="{StaticResource LLSGroupHeaderTemplateName}"
+                                                   JumpListStyle="{StaticResource LLSGroupItemStyle}"
+                                                   x:Name="SongSelector"
+                                                   SelectionChanged="SongSelector_OnSelectionChanged"
+                                                   IsSelectionEnabled="{Binding IsSelectionEnabled, Mode=TwoWay}">
+                        <toolkit:LongListMultiSelector.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal"
+                                            d:DataContext="{Binding MusicCollection.Songs[0], Source={StaticResource Locator}}">
+                                    <toolkit:ContextMenuService.ContextMenu>
+                                        <toolkit:ContextMenu>
+                                            <toolkit:MenuItem Header="{Binding LocalisedResources.LabelAddToPlaylist, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                              Command="{Binding AddToPlaylist.AddToPlaylistCommand, Source={StaticResource Locator}}"
+                                                              CommandParameter="{Binding}" />
+                                            <toolkit:MenuItem Header="{Binding LocalisedResources.LabelInstantMix, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                              Command="{Binding MusicCollection.StartInstantMixCommand, Source={StaticResource Locator}}"
+                                                              CommandParameter="{Binding}" />
+                                            <toolkit:MenuItem Header="{Binding LocalisedResources.AppBarPlayOn, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                              Command="{Binding Remote.SendPlayCommand, Source={StaticResource Locator}}"
+                                                              CommandParameter="{Binding Id}" />
+                                            <toolkit:MenuItem Header="{Binding LocalisedResources.AppBarOffline, Source={StaticResource LocalisedStrings}}"
+                                                              Command="{Binding MusicCollection.ItemOfflineCommand, Source={StaticResource Locator}}"
+                                                              CommandParameter="{Binding}"
+                                                              Visibility="{Binding Auth.LoggedInUser.Policy.EnableSync, Source={StaticResource Locator}, Converter={StaticResource VisibilityConverter}}" />
+                                        </toolkit:ContextMenu>
+                                    </toolkit:ContextMenuService.ContextMenu>
+                                    <c4F:RoundButton ImageSource="/Icons/appbar.transport.play.rest.png"
+                                                     HorizontalAlignment="Center"
+                                                     VerticalAlignment="Center"
+                                                     Margin="6"
+                                                     Command="{Binding MusicCollection.PlayItemCommand, Source={StaticResource Locator}}"
+                                                     CommandParameter="{Binding}"
+                                                     Style="{StaticResource WhiteRoundButtonStyle}" />
+                                    <StackPanel Orientation="Vertical"
+                                                Margin="{Binding MusicCollection.SongsMargin, Source={StaticResource Locator}}">
+                                        <TextBlock Text="{Binding Name}"
+                                                   Style="{StaticResource PhoneTextTitle2Style}" />
+                                        <TextBlock Text="{Binding AlbumArtist}"
+                                                   Style="{StaticResource PhoneTextSubtleStyle}" />
+                                    </StackPanel>
+                                </StackPanel>
+
+                            </DataTemplate>
+                        </toolkit:LongListMultiSelector.ItemTemplate>
+                    </toolkit:LongListMultiSelector>
+                </phone:PivotItem>
+
+                <phone:PivotItem Header="{Binding LocalisedResources.LabelGenres, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
+                    <phone:LongListSelector ItemsSource="{Binding Genres}">
+                        <phone:LongListSelector.ItemTemplate>
+                            <DataTemplate>
+                                <mb:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                                          VerticalContentAlignment="Top"
+                                                          TapCommand="{Binding MusicCollection.NavigateToCommand, Source={StaticResource Locator}}"
+                                                          CommandParameter="{Binding}">
+                                    <toolkit:ContextMenuService.ContextMenu>
+                                        <toolkit:ContextMenu>
+                                            <toolkit:MenuItem Header="{Binding LocalisedResources.LabelAddToPlaylist, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                              Command="{Binding AddToPlaylist.AddToPlaylistCommand, Source={StaticResource Locator}}"
+                                                              CommandParameter="{Binding}" />
+                                            <toolkit:MenuItem Header="{Binding LocalisedResources.AppBarPlayOn, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                              Command="{Binding Remote.SendPlayCommand, Source={StaticResource Locator}}"
+                                                              CommandParameter="{Binding Id}" />
+                                            <toolkit:MenuItem Header="{Binding LocalisedResources.LabelInstantMix, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                              Command="{Binding MusicCollection.StartInstantMixCommand, Source={StaticResource Locator}}"
+                                                              CommandParameter="{Binding}" />
+                                        </toolkit:ContextMenu>
+                                    </toolkit:ContextMenuService.ContextMenu>
+                                    <StackPanel Orientation="Horizontal"
+                                                Margin="0,0,0,12">
+                                        <c4F:RoundButton ImageSource="/Icons/appbar.transport.play.rest.png"
+                                                         HorizontalAlignment="Center"
+                                                         VerticalAlignment="Center"
+                                                         Margin="6"
+                                                         Command="{Binding MusicCollection.PlayItemCommand, Source={StaticResource Locator}}"
+                                                         CommandParameter="{Binding}"
+                                                         Style="{StaticResource WhiteRoundButtonStyle}"/>
+                                        <TextBlock Text="{Binding Name}"
+                                                   Style="{StaticResource PhoneTextTitle2Style}" />
+                                    </StackPanel>
+                                </mb:CustomHyperlinkButton>
+                            </DataTemplate>
+                        </phone:LongListSelector.ItemTemplate>
+                    </phone:LongListSelector>
+                </phone:PivotItem>
+            </phone:Pivot>
+        </Grid>
+    </Grid>
+
+</scott:BasePage>

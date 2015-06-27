@@ -1,14 +1,12 @@
-WP8:
-
-Media Browser is een manier om door uw eigen media collectie te bladeren, of het nu gaat om films, tv-programma's of muziek, met Media Browser kunt u met uw Windows 8 Telefoon, kijken of luisteren naar uw media of ze afspelen op een andere compatibel Media Browser cliënt.
+Emby is een manier om door uw eigen media collectie te bladeren, of het nu gaat om films, tv-programma's of muziek, met Emby kunt u met uw Windows 8 Telefoon, kijken of luisteren naar uw media of ze afspelen op een andere compatibel Emby cliënt.
 
 **** BELANGRIJKE INFORMATIE ****
-Om Media Browser gebruiken, moet u de Media Browser server op een remote computer hebben geinstalleerd van http://www.mediabrowser.tv/download en hebben geconfigureerd.
+Om Emby gebruiken, moet u de Emby server op een remote computer hebben geinstalleerd van http://www.emby.media/download en hebben geconfigureerd.
 
 Kenmerken:
 - Blader door uw eigen media collectie
 - Stream video's naar uw telefoon
-- Op afstand bedienen van andere Media Browser spelers (zoals Media Browser Classic)
+- Op afstand bedienen van andere Emby spelers (zoals Emby Classic)
 - Stel uw lock-screen in gebaseerd op een van uw eigen collecties
 - Pin uw favoriete collecties naar het startmenu
 
@@ -17,7 +15,7 @@ Beperkingen in de testversie:
 - Alleen mogelijk om de webinterface op afstand te bedienen
 
 Ondersteuning:
-Ondersteuning is te vinden op twitter ( @MediaBrowser), facebook (http://facebook.com/mediabrowser.tv) of email (wpmb3@outlook.com).
+Ondersteuning is te vinden op twitter ( @embyapp), facebook (http://facebook.com/embyapp) of email (wpmb3@outlook.com).
 
 Recensies:
 We houden van de beoordelingen, het helpt ons om de app beter te maken, maar als je problemen hebt, dan kunt u voorafgaand aan de negatieve beoordelingen contact met ons opnemen, misschien kunnen we U helpen. 

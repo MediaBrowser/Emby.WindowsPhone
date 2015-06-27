@@ -1,0 +1,114 @@
+﻿<scott:BasePage x:Class="Emby.WindowsPhone.Views.TrailerView"
+                xmlns:scott="clr-namespace:ScottIsAFool.WindowsPhone.Controls;assembly=ScottIsAFool.WindowsPhone"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+                xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+                xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+                xmlns:controls="clr-namespace:Emby.WindowsPhone.Controls"
+                xmlns:behaviours="clr-namespace:Emby.WindowsPhone.Behaviours"
+                xmlns:behaviors="clr-namespace:Cimbalino.Toolkit.Behaviors;assembly=Cimbalino.Toolkit"
+                FontFamily="{StaticResource PhoneFontFamilyNormal}"
+                FontSize="{StaticResource PhoneFontSizeNormal}"
+                Foreground="{StaticResource PhoneForegroundBrush}"
+                SupportedOrientations="Portrait"
+                Orientation="Portrait"
+                mc:Ignorable="d"
+                DataContext="{Binding Trailer, Source={StaticResource Locator}}"
+                shell:SystemTray.IsVisible="True"
+                shell:SystemTray.Opacity="0"
+                toolkit:TiltEffect.IsTiltEnabled="True">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding TrailerPageLoaded}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <i:Interaction.Behaviors>
+        <behaviours:MBSysTray Text="{Binding ProgressText}"
+                              IsVisible="{Binding ProgressIsVisible}"
+                              IsIndeterminate="{Binding ProgressIsVisible}" />
+        <behaviors:ApplicationBarBehavior IsMenuEnabled="True">
+            <behaviors:ApplicationBarBehavior.Buttons>
+                <behaviors:ApplicationBarIconButton Text="{Binding LocalisedResources.AppBarPlayOn, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                    IconUri="/Icons/appbar.connection.playon.png"
+                                                    Command="{Binding Remote.SendPlayCommand, Source={StaticResource Locator}}"
+                                                    CommandParameter="{Binding SelectedTrailer.Id}" />
+            </behaviors:ApplicationBarBehavior.Buttons>
+            <behaviors:ApplicationBarBehavior.MenuItems>
+                <behaviors:ApplicationBarMenuItem Text="{Binding LocalisedResources.LabelAddToPlaylist, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                  Command="{Binding AddToPlaylist.AddToPlaylistCommand, Source={StaticResource Locator}}"
+                                                  CommandParameter="{Binding SelectedTrailer}" />
+            </behaviors:ApplicationBarBehavior.MenuItems>
+        </behaviors:ApplicationBarBehavior>
+    </i:Interaction.Behaviors>
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot"
+          Background="{StaticResource MediaBrowserBackground}">
+        <Grid Margin="0,32,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!--TitlePanel contains the name of the application and page title-->
+            <StackPanel Grid.Row="0"
+                        Margin="12,17,0,28">
+                <controls:EmbyLogo />
+                <TextBlock Text="{Binding SelectedTrailer.Name, Converter={StaticResource StringCaseConverter}}"
+                           Margin="9,-7,0,0"
+                           Style="{StaticResource PhoneTextTitle1Style}" />
+            </StackPanel>
+
+            <!--ContentPanel - place additional content here-->
+            <Grid x:Name="ContentPanel"
+                  Grid.Row="1"
+                  Margin="12,0,12,0">
+                <ScrollViewer>
+                    <StackPanel Orientation="Vertical">
+                        <Grid Margin="12,0,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="3*" />
+                                <ColumnDefinition Width="5*" />
+                            </Grid.ColumnDefinitions>
+                            <controls:CustomButton Style="{StaticResource EmptyButtonStyle}"
+                                                   Grid.Column="0"
+                                                   TapCommand="{Binding Main.PlayMovieCommand, Source={StaticResource Locator}}"
+                                                   CommandParameter="{Binding SelectedTrailer}"
+                                                   VerticalAlignment="Top">
+                                <Grid VerticalAlignment="Top">
+                                    <Image Source="{Binding SelectedTrailer, Converter={StaticResource ImageUrlConverter}}"
+                                           Stretch="UniformToFill"
+                                           HorizontalAlignment="Center" />
+                                    <controls:PlayButton Height="63"
+                                                         HorizontalAlignment="Center"
+                                                         VerticalAlignment="Center" />
+                                </Grid>
+                            </controls:CustomButton>
+                            <phone:LongListSelector Grid.Column="1"
+                                                    Background="Transparent"
+                                                    IsHitTestVisible="False"
+                                                    ItemsSource="{Binding CastAndCrew}"
+                                                    IsGroupingEnabled="True"
+                                                    MaxHeight="173">
+                                <phone:LongListSelector.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Name}"
+                                                   Style="{StaticResource PhoneTextNormalStyle}" />
+                                    </DataTemplate>
+                                </phone:LongListSelector.ItemTemplate>
+
+                            </phone:LongListSelector>
+                        </Grid>
+                        <TextBlock Text="{Binding SelectedTrailer.Overview}"
+                                   Style="{StaticResource PhoneTextNormalStyle}"
+                                   TextWrapping="Wrap" />
+                    </StackPanel>
+                </ScrollViewer>
+            </Grid>
+        </Grid>
+    </Grid>
+</scott:BasePage>

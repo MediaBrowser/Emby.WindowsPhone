@@ -1,0 +1,199 @@
+﻿<scott:BasePage x:Class="Emby.WindowsPhone.Views.LiveTv.ScheduleView"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+                xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                xmlns:ignore="http://www.ignore.com"
+                xmlns:scott="clr-namespace:ScottIsAFool.WindowsPhone.Controls;assembly=ScottIsAFool.WindowsPhone"
+                xmlns:controls="clr-namespace:Emby.WindowsPhone.Controls"
+                xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+                
+                xmlns:behaviours="clr-namespace:Emby.WindowsPhone.Behaviours"
+                xmlns:behaviors="clr-namespace:Cimbalino.Toolkit.Behaviors;assembly=Cimbalino.Toolkit"
+                xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+                xmlns:converters="clr-namespace:Emby.WindowsPhone.Converters"
+                mc:Ignorable="d ignore"
+                FontFamily="{StaticResource PhoneFontFamilyNormal}"
+                FontSize="{StaticResource PhoneFontSizeNormal}"
+                Foreground="{StaticResource PhoneForegroundBrush}"
+                SupportedOrientations="Portrait"
+                Orientation="Portrait"
+                toolkit:TiltEffect.IsTiltEnabled="True"
+                shell:SystemTray.IsVisible="True"
+                shell:SystemTray.Opacity="0"
+                DataContext="{Binding Schedule, Source={StaticResource Locator}}">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding SchedulePageLoaded}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <i:Interaction.Behaviors>
+        <behaviours:MBSysTray IsIndeterminate="{Binding ProgressIsVisible}"
+                              IsVisible="{Binding ProgressIsVisible}"
+                              Text="{Binding ProgressText}" />
+        <behaviors:ApplicationBarBehavior>
+            <behaviors:ApplicationBarBehavior.Buttons>
+                <behaviors:ApplicationBarIconButton IconUri="/Icons/appbar.refresh.rest.png"
+                                                    Text="{Binding LocalisedResources.AppBarRefresh, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
+                                                    Command="{Binding RefreshCommand}" />
+            </behaviors:ApplicationBarBehavior.Buttons>
+        </behaviors:ApplicationBarBehavior>
+    </i:Interaction.Behaviors>
+
+    <scott:BasePage.Resources>
+
+    </scott:BasePage.Resources>
+
+    <toolkit:TransitionService.NavigationInTransition>
+        <toolkit:NavigationInTransition>
+            <toolkit:NavigationInTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardIn" />
+            </toolkit:NavigationInTransition.Backward>
+            <toolkit:NavigationInTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardIn" />
+            </toolkit:NavigationInTransition.Forward>
+        </toolkit:NavigationInTransition>
+    </toolkit:TransitionService.NavigationInTransition>
+    <toolkit:TransitionService.NavigationOutTransition>
+        <toolkit:NavigationOutTransition>
+            <toolkit:NavigationOutTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardOut" />
+            </toolkit:NavigationOutTransition.Backward>
+            <toolkit:NavigationOutTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardOut" />
+            </toolkit:NavigationOutTransition.Forward>
+        </toolkit:NavigationOutTransition>
+    </toolkit:TransitionService.NavigationOutTransition>
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot"
+          Background="{StaticResource MediaBrowserBackground}">
+        <Grid Margin="0,32,0,0">
+            <phone:Pivot SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}">
+                <phone:Pivot.Title>
+                    <controls:EmbyLogo AltText="{Binding LocalisedResources.LabelScheduledRecording, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToUppercaseConverter}}"
+                                               Margin="-12,0,0,0" />
+                </phone:Pivot.Title>
+                <phone:PivotItem Header="{Binding LocalisedResources.LabelUpcoming, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
+                    <Grid>
+                        <phone:LongListSelector ItemsSource="{Binding Upcoming}"
+                                                IsGroupingEnabled="True"
+                                                JumpListStyle="{StaticResource LLSGroupItemLongStyle}"
+                                                HideEmptyGroups="False"
+                                                GroupHeaderTemplate="{StaticResource LLSGroupHeaderTemplateLong}">
+                            <phone:LongListSelector.ItemTemplate>
+                                <DataTemplate>
+                                    <controls:CustomButton Style="{StaticResource EmptyButtonStyle}"
+                                                           Margin="0,6"
+                                                           TapCommand="{Binding Schedule.RecordingTappedCommand, Source={StaticResource Locator}}"
+                                                           CommandParameter="{Binding}">
+                                        <Grid HorizontalAlignment="Stretch"
+                                              VerticalAlignment="Top"
+                                              d:DataContext="{Binding Schedule.Upcoming[0], Source={StaticResource Locator}}">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*" />
+                                                <RowDefinition Height="*" />
+                                            </Grid.RowDefinitions>
+
+                                            <toolkit:ContextMenuService.ContextMenu>
+                                                <toolkit:ContextMenu>
+                                                    <toolkit:MenuItem Header="{Binding LocalisedResources.MenuCancelRecording, Source={StaticResource LocalisedStrings}}"
+                                                                      Command="{Binding Schedule.CancelRecordingCommand, Source={StaticResource Locator}}"
+                                                                      CommandParameter="{Binding}" />
+                                                </toolkit:ContextMenu>
+                                            </toolkit:ContextMenuService.ContextMenu>
+
+                                            <StackPanel Orientation="Vertical"
+                                                        Grid.Row="0">
+                                                <TextBlock Text="{Binding Name}"
+                                                           TextTrimming="WordEllipsis"
+                                                           HorizontalAlignment="Stretch"
+                                                           Style="{StaticResource HeaderTextStyle}" />
+
+                                                <TextBlock Text="{Binding ProgramInfo.EpisodeTitle}"
+                                                           TextTrimming="WordEllipsis"
+                                                           HorizontalAlignment="Stretch"
+                                                           Style="{StaticResource PhoneTextSubtleStyle}"
+                                                           Visibility="{Binding ProgramInfo.EpisodeTitle, Converter={StaticResource NullVisibilityConverter}}" />
+                                            </StackPanel>
+
+                                            <StackPanel Orientation="Horizontal"
+                                                        Grid.Row="1"
+                                                        HorizontalAlignment="Left">
+                                                <TextBlock Text="{Binding LocalisedResources.LabelNew, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToUppercaseConverter}}"
+                                                           Style="{StaticResource PhoneTextNormalStyle}"
+                                                           Foreground="{StaticResource PhoneAccentBrush}"
+                                                           Visibility="{Binding IsNew, Converter={StaticResource VisibilityConverter}}" />
+                                                <TextBlock Text="{Binding Converter={StaticResource RecordingTimeConverter}}"
+                                                           Style="{StaticResource PhoneTextSubtleStyle}" />
+                                            </StackPanel>
+                                            <controls:ScheduledRecording HorizontalAlignment="Right"
+                                                                         VerticalAlignment="Top"
+                                                                         Height="30"
+                                                                         Width="30"
+                                                                         Grid.Row="1"
+                                                                         Visibility="{Binding SeriesTimerId, Converter={StaticResource NullVisibilityConverter}}" />
+                                        </Grid>
+                                    </controls:CustomButton>
+                                </DataTemplate>
+                            </phone:LongListSelector.ItemTemplate>
+                        </phone:LongListSelector>
+                    </Grid>
+                </phone:PivotItem>
+                <phone:PivotItem Header="{Binding LocalisedResources.LabelSeries, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}">
+                    <Grid>
+                        <phone:LongListSelector ItemsSource="{Binding Series}">
+                            <phone:LongListSelector.ListHeader>
+                                <TextBlock Text="{Binding LocalisedResources.NoItemsFound, Source={StaticResource LocalisedStrings}}"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Top"
+                                           Style="{StaticResource PhoneTextLargeStyle}"
+                                           Visibility="{Binding Series, Converter={StaticResource CollectionVisibilityConverter}, ConverterParameter=1}" />
+                            </phone:LongListSelector.ListHeader>
+                            <phone:LongListSelector.ItemTemplate>
+                                <DataTemplate>
+                                    <controls:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
+                                                                    Margin="0,0,0,12"
+                                                                    TapCommand="{Binding Schedule.ShowSeriesCommand, Source={StaticResource Locator}}"
+                                                                    CommandParameter="{Binding}">
+                                        <toolkit:ContextMenuService.ContextMenu>
+                                            <toolkit:ContextMenu>
+                                                <toolkit:MenuItem Header="{Binding LocalisedResources.ContextCancelSeries, Source={StaticResource LocalisedStrings}}"
+                                                                  Command="{Binding Schedule.CancelSeriesCommand, Source={StaticResource Locator}}"
+                                                                  CommandParameter="{Binding}" />
+                                            </toolkit:ContextMenu>
+                                        </toolkit:ContextMenuService.ContextMenu>
+                                        <StackPanel Orientation="Vertical"
+                                                    d:DataContext="{Binding Schedule.Series[0], Source={StaticResource Locator}}">
+                                            <TextBlock Text="{Binding Name}"
+                                                       TextTrimming="WordEllipsis"
+                                                       HorizontalAlignment="Stretch"
+                                                       Style="{StaticResource HeaderTextStyle}" />
+                                            <TextBlock Style="{StaticResource PhoneTextNormalStyle}">
+                                                <Run Text="{Binding Converter={StaticResource DayPatternConverter}}" />
+                                                <Run Text="-" />
+                                                <Run Text="{Binding Converter={StaticResource AnyTimeConverter}}" />
+                                            </TextBlock>
+                                            <TextBlock Text="{Binding Converter={StaticResource AnyChannelConverter}}"
+                                                       Style="{StaticResource PhoneTextSubtleStyle}" />
+                                        </StackPanel>
+                                    </controls:CustomHyperlinkButton>
+                                </DataTemplate>
+                            </phone:LongListSelector.ItemTemplate>
+                        </phone:LongListSelector>
+                    </Grid>
+                </phone:PivotItem>
+            </phone:Pivot>
+        </Grid>
+        <!--Uncomment to see an alignment grid to help ensure your controls are
+            aligned on common boundaries.  The image has a top margin of -32px to
+            account for the System Tray. Set this to 0 (or remove the margin altogether)
+            if the System Tray is hidden.
+
+            Before shipping remove this XAML and the image itself.-->
+        <!--<Image Source="/Assets/AlignmentGrid.png" VerticalAlignment="Top" Height="800" Width="480" Margin="0,-32,0,0" Grid.Row="0" Grid.RowSpan="2" IsHitTestVisible="False" />-->
+    </Grid>
+
+</scott:BasePage>
