@@ -1,14 +1,14 @@
 WP8:
 
-Media Browser ti permette di  avere la propria raccolta multimediale, che si tratti di film, tv o musica, Media Browser vi permetterà di guardare o ascoltare sul vostro Windows Phone o giocare su un altro client compatibile con Media Browser.
+Emby ti permette di  avere la propria raccolta multimediale, che si tratti di film, tv o musica, Emby vi permetterà di guardare o ascoltare sul vostro Windows Phone o giocare su un altro client compatibile con Emby.
 
 **** INFORMAZIONI IMPORTANTI ****
-Per poter utilizzare Media Browser, è necessario aver installato il server di Media Browser da http://www.mediabrowser.tv/download e lo hanno configurato.
+Per poter utilizzare Emby, è necessario aver installato il server di Emby da http://www.emby.media/download e lo hanno configurato.
 
 Caratteristiche:
 Sfoglia la tua raccolta multimediale
 - Video stream per il tuo cellulare
-- Telecomando altri giocatori Browser multimediale (come il Media Browser Classic)
+- Telecomando altri giocatori Browser multimediale (come il Emby Classic)
 - Impostare la schermata di blocco in base a una delle tue collezioni
 - Pin tue collezioni preferite al menu di avvio
 
@@ -17,7 +17,7 @@ Limitazioi  versione di prova:
 - Solo in grado di controllare a distanza l'interfaccia Web
 
 Supporto:
-Il supporto può essere trovato su twitter (@ MediaBrowser), facebook (http://facebook.com/mediabrowser.tv) o via email (wpmb3@outlook.com).
+Il supporto può essere trovato su twitter (@ MediaBrowser), facebook (http://facebook.com/embyapp) o via email (wpmb3@outlook.com).
 
 Recensioni:
 We love the reviews, it helps us to make the app better, however if you have any problems, please contact us prior to negative reviews, we might be able to help. 
