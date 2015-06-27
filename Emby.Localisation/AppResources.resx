@@ -1323,4 +1323,7 @@
   <data name="WatermarkEnterEmailAddress" xml:space="preserve">
     <value>enter an email address</value>
   </data>
+  <data name="SysTrayGettingClients" xml:space="preserve">
+    <value>Getting clients...</value>
+  </data>
 </root>
