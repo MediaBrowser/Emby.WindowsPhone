@@ -59,6 +59,27 @@
     <!-- Supported types are "text" and "xaml", where text is nicely formatted automatically, and XAML is handled by the built-in XamlReader -->
     <Item Title="history"
           Type="text">
+      8.0.67.0
+      Enhancements:
+      - Emby branding
+      - Now supports showing the user views (rather than fixed list). Can revert back in app settings.
+      - Implemented "Play on" functionality for music
+      - Support HTTPS connections
+      - Implemented "Play on" functionality for generic videos and trailers
+      - Mark movies as watched/unwatched
+      - Add "Resume On" option
+      - Implemented "Play on" functionality for playlists
+      - Added "Random play" button for playlists
+      - Added option to hide item titles in tile based lists
+      - Now has native support for signing up to Emby Connect
+      Fixes:
+      - Logging out of Connect doesn't clear main page details
+      - Skip forward/backward buttons in remote not working
+      - Scrolling through partial seasons doesn't work
+      - When something gets marked as watched, clear progress data
+      - Upcoming TV needs to set airtime to local time
+      - Update watched status after a video finishes
+      
       8.0.66.1
       Fixes:
       - Updated localisation files with updated translations.
