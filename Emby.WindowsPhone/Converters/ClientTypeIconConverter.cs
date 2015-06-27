@@ -22,7 +22,7 @@ namespace Emby.WindowsPhone.Converters
 
             switch (clientInfo.Client.ToLower())
             {
-                case "dashboard":
+                case "emby web client":
                     var device = clientInfo.DeviceName.ToLower();
 
                     string imageUrl;
