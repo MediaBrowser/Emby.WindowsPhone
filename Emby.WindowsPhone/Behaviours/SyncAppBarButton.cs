@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using Cimbalino.Toolkit.Behaviors;
+using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Sync;
 
 namespace Emby.WindowsPhone.Behaviours
@@ -23,14 +24,19 @@ namespace Emby.WindowsPhone.Behaviours
             get { return (bool) GetValue(SyncPolicyProperty); }
             set { SetValue(SyncPolicyProperty, value); }
         }
-        
-        public static readonly DependencyProperty SyncStatusProperty = DependencyProperty.Register(
-            "SyncStatus", typeof(SyncJobItemStatus), typeof(SyncAppBarButton), new PropertyMetadata(default(SyncJobItemStatus), OnChanged));
 
-        public SyncJobItemStatus SyncStatus
+        public static readonly DependencyProperty ItemProperty = DependencyProperty.Register(
+            "Item", typeof (BaseItemDto), typeof (SyncAppBarButton), new PropertyMetadata(default(BaseItemDto)));
+
+        public BaseItemDto Item
         {
-            get { return (SyncJobItemStatus)GetValue(SyncStatusProperty); }
-            set { SetValue(SyncStatusProperty, value); }
+            get { return (BaseItemDto) GetValue(ItemProperty); }
+            set { SetValue(ItemProperty, value); }
+        }
+
+        public SyncAppBarButton()
+        {
+            SetIsVisible();
         }
 
         private static void OnChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
@@ -45,13 +51,20 @@ namespace Emby.WindowsPhone.Behaviours
         private void SetIsVisible()
         {
             bool isVisible;
-            if (IsRemove)
+            if (Item == null || !Item.SyncStatus.HasValue || !SyncPolicy)
             {
-                isVisible = SyncStatus == SyncJobItemStatus.Synced && SyncPolicy;
+                isVisible = false;
             }
             else
             {
-                isVisible = SyncStatus != SyncJobItemStatus.Synced && SyncPolicy;
+                if (IsRemove)
+                {
+                    isVisible = Item.SyncStatus.Value == SyncJobItemStatus.Synced;
+                }
+                else
+                {
+                    isVisible = Item.SyncStatus.Value != SyncJobItemStatus.Synced;
+                }
             }
 
             IsVisible = isVisible;

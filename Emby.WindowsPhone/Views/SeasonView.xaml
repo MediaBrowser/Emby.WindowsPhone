@@ -38,12 +38,12 @@
                                              Command="{Binding SeasonOfflineCommand}"
                                              IsEnabled="{Binding SelectedSeason.SupportsSync}"
                                              SyncPolicy="{Binding Auth.LoggedInUser.Policy.EnableSync, Source={StaticResource Locator}}"
-                                             SyncStatus="{Binding SelectedSeason.SyncStatus}" />
+                                             Item="{Binding SelectedSeason}" />
                 <behaviours:SyncAppBarButton Text="{Binding LocalisedResources.AppBarUnsync, Source={StaticResource LocalisedStrings}}"
                                              IconUri="/Icons/appbar.cloud.delete.png"
                                              IsEnabled="{Binding SelectedSeason.SupportsSync}"
                                              SyncPolicy="{Binding Auth.LoggedInUser.Policy.EnableSync, Source={StaticResource Locator}}"
-                                             SyncStatus="{Binding SelectedSeason.SyncStatus}"
+                                             Item="{Binding SelectedSeason}"
                                              Command="{Binding UnsyncItemCommand}"
                                              CommandParameter="{Binding SelectedSeason}"
                                              IsRemove="True" />
