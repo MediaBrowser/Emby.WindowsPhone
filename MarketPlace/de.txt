@@ -1,5 +1,3 @@
-WP8:
-
 Emby ist eine Möglichkeit deine Mediensammlung zu durchstöbern. Seien es Filme, TV oder Musik, Emby erlaubt dir die Wiedergabe auf deinem Windows Phone oder jedem anderen Emby komptatiblen Endgerät.
 
 **** WICHTIGE INFORMATION ****

@@ -1,5 +1,3 @@
-60a59c61186d8bb22a84335d8303909c=WP8:
-
 Emby est un moyen de consulter votre collection de médias, que ce soit des films, séries TV ou de la musique, Emby permettra la lecture de ces médias sur votre téléphone Windows ou sur d'autres clients compatibles Emby.
 
 ****INFORMATION IMPORTANTE****

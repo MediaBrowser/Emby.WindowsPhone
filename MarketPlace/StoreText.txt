@@ -1,5 +1,3 @@
-WP8:
-
 Emby is a way of browsing your own media collection, whether it be movies, tv or music, Emby will allow you to watch or listen to them on your Windows Phone or play them on another compatible Emby client.
 
 ****IMPORTANT INFORMATION****

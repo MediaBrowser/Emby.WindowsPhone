@@ -1,5 +1,3 @@
-WP8:
-
 Emby es un metodo para navegar su colección de medios personal, ya sean películas, TV o música. Emby le permitirá verlos o escucharlos en su teléfono Windows o reproducirlos en otro cliente compatible con Emby.
 
 ****INFORMACIÓN IMPORTANTE****

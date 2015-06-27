@@ -1,5 +1,3 @@
-WP8:
-
 Emby ti permette di  avere la propria raccolta multimediale, che si tratti di film, tv o musica, Emby vi permetterà di guardare o ascoltare sul vostro Windows Phone o giocare su un altro client compatibile con Emby.
 
 **** INFORMAZIONI IMPORTANTI ****

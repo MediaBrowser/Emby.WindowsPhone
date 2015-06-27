@@ -1,5 +1,3 @@
-WP8:
-
 Emby is een manier om door uw eigen media collectie te bladeren, of het nu gaat om films, tv-programma's of muziek, met Emby kunt u met uw Windows 8 Telefoon, kijken of luisteren naar uw media of ze afspelen op een andere compatibel Emby cliënt.
 
 **** BELANGRIJKE INFORMATIE ****

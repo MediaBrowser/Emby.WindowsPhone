@@ -1,6 +1,4 @@
-﻿WP8:
-
-Emby er en måte å bla i dine egne media samlinger, enten det er filmer, tv eller musikk. Emby vil la deg se eller høre på dem på din Windows Phone eller spille dem av på en annen kompatibel Emby klient.
+﻿Emby er en måte å bla i dine egne media samlinger, enten det er filmer, tv eller musikk. Emby vil la deg se eller høre på dem på din Windows Phone eller spille dem av på en annen kompatibel Emby klient.
 
 ****VIKTIG INFORMASJON****
 For å kunne bruke Emby må du ha innstallert Emby server fra http://www.emby.media/download og ha konfigurert den.
