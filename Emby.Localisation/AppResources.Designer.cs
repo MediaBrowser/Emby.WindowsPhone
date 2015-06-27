@@ -3184,6 +3184,15 @@ namespace Emby.WindowsPhone.Localisation {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Getting clients....
+        /// </summary>
+        public static string SysTrayGettingClients {
+            get {
+                return ResourceManager.GetString("SysTrayGettingClients", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Getting active recordings....
         /// </summary>
         public static string SysTrayGettingCurrentlyRecording {

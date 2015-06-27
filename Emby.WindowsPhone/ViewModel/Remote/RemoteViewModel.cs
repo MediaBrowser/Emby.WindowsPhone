@@ -356,7 +356,7 @@ namespace Emby.WindowsPhone.ViewModel.Remote
                 return;
             }
 
-            SetProgressBar("Getting clients...");
+            SetProgressBar(AppResources.SysTrayGettingClients);
 
             try
             {
