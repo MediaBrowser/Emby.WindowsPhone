@@ -1287,77 +1287,41 @@
   <data name="LabelPlayShuffle" xml:space="preserve">
     <value>Willekeurig Afspelen</value>
   </data>
-  
-<!--
-<data name="AppBarSignUp" xml:space="preserve">
-    <value>sign up</value>
+  <data name="AppBarSignUp" xml:space="preserve">
+    <value>aanmaken</value>
   </data>
--->
-  
-<!--
-<data name="ErrorEmailInUse" xml:space="preserve">
-    <value>Email address already in use</value>
+  <data name="ErrorEmailInUse" xml:space="preserve">
+    <value>Emailadres is reeds in gebruik</value>
   </data>
--->
-  
-<!--
-<data name="ErrorSigningUp" xml:space="preserve">
-    <value>There was an error signing up</value>
+  <data name="ErrorSigningUp" xml:space="preserve">
+    <value>Er was een fout bij het registreren</value>
   </data>
--->
-  
-<!--
-<data name="ErrorUsernameInUse" xml:space="preserve">
-    <value>Username already in use</value>
+  <data name="ErrorUsernameInUse" xml:space="preserve">
+    <value>Gebruikersnaam is reeds in gebruik</value>
   </data>
--->
-  
-<!--
-<data name="HeaderSignUpForEmbyConnect" xml:space="preserve">
-    <value>Sign up</value>
+  <data name="HeaderSignUpForEmbyConnect" xml:space="preserve">
+    <value>Aanmaken</value>
   </data>
--->
-  
-<!--
-<data name="LabelEmailAddress" xml:space="preserve">
-    <value>Email address:</value>
+  <data name="LabelEmailAddress" xml:space="preserve">
+    <value>Emailadres:</value>
   </data>
--->
-  
-<!--
-<data name="LabelPrivacyStatement" xml:space="preserve">
-    <value>Privacy statement</value>
+  <data name="LabelPrivacyStatement" xml:space="preserve">
+    <value>Privacybeleid</value>
   </data>
--->
-  
-<!--
-<data name="LabelSignUpForEmbyConnectDescription" xml:space="preserve">
-    <value>By signing up to Emby Connect, you can sign into any of the Emby apps as well as the support forum.</value>
+  <data name="LabelSignUpForEmbyConnectDescription" xml:space="preserve">
+    <value>Dankzij het registreren bij Emby Connect, kan je inloggen op ieder van de Emby apps en op het support forum.</value>
   </data>
--->
-  
-<!--
-<data name="MessageSignUpSuccessful" xml:space="preserve">
-    <value>You have successfully signed up, please check your email for a validation email.</value>
+  <data name="MessageSignUpSuccessful" xml:space="preserve">
+    <value>Uw account is met succes aangemaakt, gelieve je email te controleren voor een bevestigingsmail.</value>
   </data>
--->
-  
-<!--
-<data name="MessageTitleSuccess" xml:space="preserve">
-    <value>Success</value>
+  <data name="MessageTitleSuccess" xml:space="preserve">
+    <value>Geslaagd</value>
   </data>
--->
-  
-<!--
-<data name="SysTraySigningUp" xml:space="preserve">
-    <value>Signing up...</value>
+  <data name="SysTraySigningUp" xml:space="preserve">
+    <value>Aanmaken ...</value>
   </data>
--->
-  
-<!--
-<data name="WatermarkEnterEmailAddress" xml:space="preserve">
-    <value>enter an email address</value>
+  <data name="WatermarkEnterEmailAddress" xml:space="preserve">
+    <value>Emailadres</value>
   </data>
--->
 
 </root>
