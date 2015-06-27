@@ -44,12 +44,12 @@
                                          Command="{Binding SyncItemCommand}"
                                          IsEnabled="{Binding SelectedMovie.SupportsSync}"
                                          SyncPolicy="{Binding Auth.LoggedInUser.Policy.EnableSync, Source={StaticResource Locator}}"
-                                         SyncStatus="{Binding SelectedMovie.SyncStatus}" />
+                                         Item="{Binding SelectedMovie}" />
             <behaviours:SyncAppBarButton Text="{Binding LocalisedResources.AppBarUnsync, Source={StaticResource LocalisedStrings}}"
                                          IconUri="/Icons/appbar.cloud.delete.png"
                                          IsEnabled="{Binding SelectedMovie.SupportsSync}"
                                          SyncPolicy="{Binding Auth.LoggedInUser.Policy.EnableSync, Source={StaticResource Locator}}"
-                                         SyncStatus="{Binding SelectedMovie.SyncStatus}"
+                                         Item="{Binding SelectedMovie}"
                                          Command="{Binding UnsyncItemCommand}"
                                          IsRemove="True" />
             <cimbalino:ApplicationBarBehavior.MenuItems>
