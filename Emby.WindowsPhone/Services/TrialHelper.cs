@@ -43,7 +43,7 @@ namespace Emby.WindowsPhone.Services
 #endif
                 var iapPurchased = _settings.Get(Constants.Settings.IAPPurchased, false);
                 IsTrial = !(freeLicence.IsActive || paidLicence.IsActive || iapPurchased);
-                //_settings.Set(Constants.Settings.AppIsBought, !IsTrial);
+                _settings.Set(Constants.Settings.IAPPurchased, !IsTrial);
             }
             catch { }
 
@@ -130,7 +130,7 @@ namespace Emby.WindowsPhone.Services
 
         public bool CanRemoteControl(string deviceType)
         {
-            return !IsTrial || deviceType.ToLower().Equals("dashboard");
+            return !IsTrial || deviceType.ToLower().Equals("emby web client");
         }
 
         public class TrialVideoItem
