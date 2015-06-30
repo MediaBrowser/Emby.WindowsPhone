@@ -156,9 +156,7 @@
                         <phone:LongListSelector.ItemTemplate>
                             <DataTemplate>
                                 <mb:CustomHyperlinkButton Style="{StaticResource EmptyButtonStyle}"
-                                                          VerticalContentAlignment="Top"
-                                                          TapCommand="{Binding MusicCollection.NavigateToCommand, Source={StaticResource Locator}}"
-                                                          CommandParameter="{Binding}">
+                                                          VerticalContentAlignment="Top">
                                     <toolkit:ContextMenuService.ContextMenu>
                                         <toolkit:ContextMenu>
                                             <toolkit:MenuItem Header="{Binding LocalisedResources.LabelAddToPlaylist, Source={StaticResource LocalisedStrings}, Converter={StaticResource StringToLowercaseConverter}}"
@@ -196,20 +194,25 @@
                                                              CommandParameter="{Binding}"
                                                              Style="{StaticResource WhiteRoundButtonStyle}" />
                                         </Grid>
-                                        <StackPanel Orientation="Vertical"
-                                                    VerticalAlignment="Top">
-                                            <TextBlock Text="{Binding Name}"
-                                                       Style="{StaticResource PhoneTextTitle2Style}"
-                                                       FontWeight="Bold"
-                                                       TextWrapping="Wrap"
-                                                       Margin="12,-6,0,0"
-                                                       MaxWidth="240"
-                                                       MaxHeight="130"
-                                                       LineHeight="2"
-                                                       TextTrimming="WordEllipsis" />
-                                            <TextBlock Text="{Binding AlbumArtist}"
-                                                       Style="{StaticResource PhoneTextSubtleStyle}" />
-                                        </StackPanel>
+                                        <mb:CustomButton Style="{StaticResource EmptyButtonStyle}"
+                                                         TapCommand="{Binding MusicCollection.NavigateToCommand, Source={StaticResource Locator}}"
+                                                         CommandParameter="{Binding}"
+                                                         toolkit:TiltEffect.IsTiltEnabled="False">
+                                            <StackPanel Orientation="Vertical"
+                                                        VerticalAlignment="Top">
+                                                <TextBlock Text="{Binding Name}"
+                                                           Style="{StaticResource PhoneTextTitle2Style}"
+                                                           FontWeight="Bold"
+                                                           TextWrapping="Wrap"
+                                                           Margin="12,-6,0,0"
+                                                           MaxWidth="240"
+                                                           MaxHeight="130"
+                                                           LineHeight="2"
+                                                           TextTrimming="WordEllipsis" />
+                                                <TextBlock Text="{Binding AlbumArtist}"
+                                                           Style="{StaticResource PhoneTextSubtleStyle}" />
+                                            </StackPanel>
+                                        </mb:CustomButton>
                                     </StackPanel>
                                 </mb:CustomHyperlinkButton>
                             </DataTemplate>

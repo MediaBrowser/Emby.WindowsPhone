@@ -449,9 +449,12 @@ namespace Emby.WindowsPhone.ViewModel.Predefined
 
             var newList = await items.ToPlayListItems(ApiClient, _playbackManager);
 
-            Messenger.Default.Send(new NotificationMessage<List<PlaylistItem>>(newList, Constants.Messages.SetPlaylistAsMsg));
+            if (!newList.IsNullOrEmpty())
+            {
+                Messenger.Default.Send(new NotificationMessage<List<PlaylistItem>>(newList, Constants.Messages.SetPlaylistAsMsg));
 
-            Deployment.Current.Dispatcher.BeginInvoke(() => NavigationService.NavigateTo(Constants.Pages.NowPlayingView));
+                Deployment.Current.Dispatcher.BeginInvoke(() => NavigationService.NavigateTo(Constants.Pages.NowPlayingView));
+            }
         }
 
         private async Task GetMusicCollection()

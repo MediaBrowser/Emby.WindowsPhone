@@ -69,11 +69,11 @@ namespace Emby.WindowsPhone.Extensions
         internal static async Task<List<PlaylistItem>> ToPlayListItems(this List<BaseItemDto> list, IApiClient apiClient, IPlaybackManager playbackManager)
         {
             var newList = new List<PlaylistItem>();
-            list.ForEach(async item =>
+            foreach(var item in list)
             {
                 var playlistItem = await item.ToPlaylistItem(apiClient, playbackManager);
                 newList.Add(playlistItem);
-            });
+            }
 
             return newList;
         }
