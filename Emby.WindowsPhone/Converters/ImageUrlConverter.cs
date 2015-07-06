@@ -248,6 +248,11 @@ namespace Emby.WindowsPhone.Converters
             }
             try
             {
+                if (!item.ImageTags.ContainsKey(imageOptions.ImageType))
+                {
+                    return string.Empty;
+                }
+
                 string url = item.Type == "Series" ? apiClient.GetImageUrl(item.Id, imageOptions) : apiClient.GetImageUrl(item, imageOptions);
                 return url;
             }
