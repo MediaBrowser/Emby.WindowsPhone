@@ -132,6 +132,8 @@ namespace Emby.WindowsPhone.AudioAgent
                 }
 
                 var serverAddress = server.LastConnectionMode.HasValue && server.LastConnectionMode.Value == ConnectionMode.Manual ? server.ManualAddress : server.RemoteAddress;
+                _logger.Info("LastConnectionMode used: {0}", server.LastConnectionMode.HasValue && server.LastConnectionMode.Value == ConnectionMode.Manual ? ConnectionMode.Manual : ConnectionMode.Remote);
+
                 var client = new ApiClient(_mbLogger, serverAddress, "Windows Phone 8", device, ApplicationManifest.Current.App.Version, new CryptographyProvider());
                 client.SetAuthenticationInfo(auth.AccessToken, auth.User.Id);
 
