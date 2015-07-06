@@ -24,6 +24,8 @@ namespace Emby.WindowsPhone.Model.Sync
         {
             _storageService = storageService.Local;
             _storageFolder = ApplicationData.Current.LocalFolder;
+
+            LoadItems().ConfigureAwait(false);
         }
 
         public async Task AddOrUpdate(LocalItem item)
@@ -184,6 +186,11 @@ namespace Emby.WindowsPhone.Model.Sync
         private async Task<List<LocalItem>> GetItemsInternal(Func<LocalItem, bool> func)
         {
             await LoadItems();
+
+            if (!_items.Any())
+            {
+                return new List<LocalItem>();
+            }
 
             var items = _items.Where(func);
             return items.ToList();

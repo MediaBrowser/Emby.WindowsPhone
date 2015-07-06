@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using Emby.WindowsPhone.Converters;
 using MediaBrowser.ApiInteraction.Playback;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Dlna;
@@ -34,6 +36,7 @@ namespace Emby.WindowsPhone.Extensions
             }
         }
 
+        private static readonly ImageUrlConverter ImageConverter = new ImageUrlConverter();
         internal static async Task<PlaylistItem> ToPlaylistItem(this BaseItemDto item, IApiClient apiClient, IPlaybackManager playbackManager)
         {
             var profile = VideoProfileHelper.GetWindowsPhoneProfile();
@@ -46,11 +49,12 @@ namespace Emby.WindowsPhone.Extensions
                 MediaSources = item.MediaSources
             };
 
-            var streamInfo = await playbackManager.GetAudioStreamInfo(App.ServerInfo.Id, options, false, apiClient);
+            //var streamInfo = await playbackManager.GetAudioStreamInfo(App.ServerInfo.Id, options, true, apiClient);
+            var streamBuilder = new StreamBuilder(new NullLogger());
+            var streamInfo = streamBuilder.BuildAudioItem(options);
 
             var streamUrl = streamInfo.ToUrl(apiClient.GetApiUrl("/"), apiClient.AccessToken);
 
-            var converter = new Converters.ImageUrlConverter();
             return new PlaylistItem
             {
                 Album = item.Album,
@@ -59,8 +63,8 @@ namespace Emby.WindowsPhone.Extensions
                 TrackUrl = streamUrl.Replace(App.ServerInfo.LocalAddress, !string.IsNullOrEmpty(App.ServerInfo.ManualAddress) ? App.ServerInfo.ManualAddress : App.ServerInfo.RemoteAddress),
                 MediaBrowserId = item.Id,
                 IsJustAdded = true,
-                ImageUrl = (string) converter.Convert(item, typeof (string), null, null),
-                BackgroundImageUrl = (string) converter.Convert(item, typeof (string), "backdrop", null),
+                ImageUrl = (string) ImageConverter.Convert(item, typeof (string), null, null),
+                BackgroundImageUrl = (string) ImageConverter.Convert(item, typeof (string), "backdrop", null),
                 RunTimeTicks = item.RunTimeTicks ?? 0
             };
         }
@@ -69,11 +73,14 @@ namespace Emby.WindowsPhone.Extensions
         internal static async Task<List<PlaylistItem>> ToPlayListItems(this List<BaseItemDto> list, IApiClient apiClient, IPlaybackManager playbackManager)
         {
             var newList = new List<PlaylistItem>();
-            foreach(var item in list)
+            var now = DateTime.Now;
+            list.ForEach(async item =>
             {
                 var playlistItem = await item.ToPlaylistItem(apiClient, playbackManager);
                 newList.Add(playlistItem);
-            }
+            });
+
+            var diff = DateTime.Now - now;
 
             return newList;
         }
