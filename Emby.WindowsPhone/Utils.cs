@@ -244,6 +244,7 @@ namespace Emby.WindowsPhone
                     {
                         var user = await apiClient.GetUserAsync(apiClient.CurrentUserId);
                         AuthenticationService.Current.SetUser(user);
+                        AuthenticationService.Current.SetAccessToken(apiClient.AccessToken);
                     }
 
                     await StartEverything(navigationService, log, apiClient);

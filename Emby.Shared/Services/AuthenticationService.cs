@@ -248,5 +248,17 @@ namespace Emby.WindowsPhone.Services
 
             _settingsService.Set(Constants.Settings.SelectedUserSetting, LoggedInUser);
         }
+
+        public void SetAccessToken(string accessToken)
+        {
+            // This is needed for audioplayer to authenticate itself
+            var authInfo = new AuthenticationResult
+            {
+                AccessToken = accessToken,
+                User = LoggedInUser
+            };
+
+            _settingsService.Set(Constants.Settings.AuthUserSetting, authInfo);
+        }
     }
 }
