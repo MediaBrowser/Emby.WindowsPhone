@@ -64,7 +64,16 @@ namespace Emby.WindowsPhone.Services
 
         private void ApiClientOnUserUpdated(object sender, GenericEventArgs<UserDto> e)
         {
-            Deployment.Current.Dispatcher.BeginInvoke(() => SetUser(e.Argument));
+            Deployment.Current.Dispatcher.BeginInvoke(() =>
+            {
+                SetUser(e.Argument);
+
+                var apiClient = sender as IApiClient;
+                if (apiClient != null)
+                {
+                    SetAccessToken(apiClient.AccessToken);
+                }
+            });
         }
 
         private void ServerInfoServiceOnServerInfoChanged(object sender, ServerInfo serverInfo)
