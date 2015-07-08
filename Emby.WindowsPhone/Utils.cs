@@ -247,6 +247,11 @@ namespace Emby.WindowsPhone
                         AuthenticationService.Current.SetAccessToken(apiClient.AccessToken);
                     }
 
+                    if (AuthenticationService.Current.AuthenticationResult == null)
+                    {
+                        AuthenticationService.Current.SetAccessToken(apiClient.AccessToken);
+                    }
+
                     await StartEverything(navigationService, log, apiClient);
 
                     navigationService.NavigateTo(page, true);

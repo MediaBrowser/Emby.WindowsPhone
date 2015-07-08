@@ -23,7 +23,7 @@ namespace Emby.WindowsPhone.Services
         private readonly IApplicationSettingsServiceHandler _settingsService;
         private static ILog _logger;
 
-        public AuthenticationResult AuthenticationResult { get; set; }
+        public AuthenticationResult AuthenticationResult { get; private set; }
 
         public static AuthenticationService Current { get; private set; }
 
@@ -259,6 +259,8 @@ namespace Emby.WindowsPhone.Services
             };
 
             _settingsService.Set(Constants.Settings.AuthUserSetting, authInfo);
+
+            AuthenticationResult = authInfo;
         }
     }
 }
