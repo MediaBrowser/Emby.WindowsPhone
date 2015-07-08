@@ -15,7 +15,7 @@
         
         public class Settings
         {
-            public const string SelectedUserSetting = "UserSetting";
+            public const string LoggedInUserSetting = "UserSetting";
             public const string SelectedUserPinSetting = "SelectedUserPin";
             public const string ConnectionSettings = "ConnectionSettings";
             public const string SpecificSettings = "SpecificSettings";
