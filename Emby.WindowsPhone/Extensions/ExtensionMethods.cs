@@ -1,7 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Emby.WindowsPhone.Converters;
+using Emby.WindowsPhone.Helpers;
+using Emby.WindowsPhone.Logging;
+using Emby.WindowsPhone.Model;
 using MediaBrowser.ApiInteraction.Playback;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Dlna;
@@ -9,9 +11,7 @@ using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Logging;
 using MediaBrowser.Model.Search;
-using Emby.WindowsPhone.Helpers;
-using Emby.WindowsPhone.Model;
-using ScottIsAFool.WindowsPhone.Logging;
+using LogLevel = ScottIsAFool.WindowsPhone.Logging.LogLevel;
 
 namespace Emby.WindowsPhone.Extensions
 {
@@ -45,12 +45,11 @@ namespace Emby.WindowsPhone.Extensions
                 Profile = profile,
                 ItemId = item.Id,
                 DeviceId = apiClient.DeviceId,
-                MaxBitrate = 128,
                 MediaSources = item.MediaSources
             };
 
             //var streamInfo = await playbackManager.GetAudioStreamInfo(App.ServerInfo.Id, options, true, apiClient);
-            var streamBuilder = new StreamBuilder(new NullLogger());
+            var streamBuilder = new StreamBuilder(new MBLogger());
             var streamInfo = streamBuilder.BuildAudioItem(options);
 
             var streamUrl = streamInfo.ToUrl(apiClient.GetApiUrl("/"), apiClient.AccessToken);
@@ -73,14 +72,11 @@ namespace Emby.WindowsPhone.Extensions
         internal static async Task<List<PlaylistItem>> ToPlayListItems(this List<BaseItemDto> list, IApiClient apiClient, IPlaybackManager playbackManager)
         {
             var newList = new List<PlaylistItem>();
-            var now = DateTime.Now;
             list.ForEach(async item =>
             {
                 var playlistItem = await item.ToPlaylistItem(apiClient, playbackManager);
                 newList.Add(playlistItem);
             });
-
-            var diff = DateTime.Now - now;
 
             return newList;
         }

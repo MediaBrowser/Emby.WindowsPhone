@@ -3,6 +3,11 @@ using System.Text;
 using MediaBrowser.Model.Logging;
 using Emby.WindowsPhone.Model;
 using ScottIsAFool.WindowsPhone.Logging;
+#if DEBUG
+using WPLogger = Emby.WindowsPhone.Logging.DebugLogger;
+#else
+using WPLogger = ScottIsAFool.WindowsPhone.Logging.WPLogger;
+#endif
 
 namespace Emby.WindowsPhone.Logging
 {
