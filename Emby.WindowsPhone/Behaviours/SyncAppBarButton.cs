@@ -26,7 +26,7 @@ namespace Emby.WindowsPhone.Behaviours
         }
 
         public static readonly DependencyProperty ItemProperty = DependencyProperty.Register(
-            "Item", typeof (BaseItemDto), typeof (SyncAppBarButton), new PropertyMetadata(default(BaseItemDto)));
+            "Item", typeof (BaseItemDto), typeof (SyncAppBarButton), new PropertyMetadata(default(BaseItemDto), OnChanged));
 
         public BaseItemDto Item
         {
@@ -51,7 +51,7 @@ namespace Emby.WindowsPhone.Behaviours
         private void SetIsVisible()
         {
             bool isVisible;
-            if (Item == null || !Item.SyncStatus.HasValue || !SyncPolicy)
+            if (Item == null || !SyncPolicy)
             {
                 isVisible = false;
             }
@@ -59,11 +59,11 @@ namespace Emby.WindowsPhone.Behaviours
             {
                 if (IsRemove)
                 {
-                    isVisible = Item.SyncStatus.Value == SyncJobItemStatus.Synced;
+                    isVisible = Item.SyncStatus.HasValue && Item.SyncStatus.Value == SyncJobItemStatus.Synced;
                 }
                 else
                 {
-                    isVisible = Item.SyncStatus.Value != SyncJobItemStatus.Synced;
+                    isVisible = !Item.SyncStatus.HasValue || Item.SyncStatus.Value != SyncJobItemStatus.Synced;
                 }
             }
 

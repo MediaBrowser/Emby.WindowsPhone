@@ -1,8 +1,6 @@
 ﻿using System.Windows.Navigation;
 using MediaBrowser.Model.Dto;
 using Emby.WindowsPhone.ViewModel;
-using Microsoft.Phone.Controls;
-
 
 namespace Emby.WindowsPhone.Views
 {
@@ -30,9 +28,9 @@ namespace Emby.WindowsPhone.Views
             {
                 var item = (BaseItemDto)App.SelectedItem;
                 var vm = ViewModelLocator.GetTvViewModel(item.SeriesId);
+                DataContext = vm;
                 vm.SelectedSeason = item;
                 vm.SeasonDataLoaded = false;
-                DataContext = vm;
             }
         }
 
@@ -44,6 +42,5 @@ namespace Emby.WindowsPhone.Views
                 History.Current.AddHistoryItem(GetType(), DataContext);
             }
         }
-
     }
 }

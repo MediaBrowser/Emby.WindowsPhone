@@ -29,7 +29,7 @@ namespace Emby.WindowsPhone.Services
         private readonly IStorageServiceHandler _storageService;
         private readonly ILog _logger;
 
-        public const bool SyncEnabled = false;
+        public const bool SyncEnabled = true;
 
         public static SyncService Current { get; private set; }
 
