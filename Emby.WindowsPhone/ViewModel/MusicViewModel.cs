@@ -154,6 +154,7 @@ namespace Emby.WindowsPhone.ViewModel
 
             AlbumPageLoaded = new RelayCommand(async () =>
             {
+                await RefreshAlbum();
                 if (_artistTracks.IsNullOrEmpty())
                 {
                     SetProgressBar(AppResources.SysTrayGettingTracks);
@@ -336,6 +337,27 @@ namespace Emby.WindowsPhone.ViewModel
 
                 Messenger.Default.Send(new NotificationMessage<List<PlaylistItem>>(playlist, Constants.Messages.SetPlaylistAsMsg));
             });
+        }
+
+        private async Task RefreshAlbum()
+        {
+            if (SelectedAlbum == null)
+            {
+                return;
+            }
+
+            try
+            {
+                var album = await ApiClient.GetItemAsync(SelectedAlbum.Id, AuthenticationService.Current.LoggedInUserId);
+                if (album != null)
+                {
+                    SelectedAlbum = album;
+                }
+            }
+            catch (HttpException ex)
+            {
+                Utils.HandleHttpException(ex, "RefreshAlbum", NavigationService, Log);
+            }
         }
 
         private async Task GetAlbumTracks()
