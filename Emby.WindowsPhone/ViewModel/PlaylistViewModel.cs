@@ -262,6 +262,8 @@ namespace Emby.WindowsPhone.ViewModel
             {
                 _playlistChecker.Stop();
             }
+
+            NowPlayingItem = null;
         }
 
         #region Private methods
