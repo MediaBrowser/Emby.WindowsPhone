@@ -217,13 +217,14 @@
     <Compile Include="Converters\ZeroCountBrushConverter.cs" />
     <Compile Include="Extensions\BaseItemDtoExtensions.cs" />
     <Compile Include="Extensions\ContainerExtensions.cs" />
+    <Compile Include="Extensions\PlaylistItemExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Extensions\SyncProfileOptionExtensions.cs" />
     <Compile Include="Messaging\ResetAppMessage.cs" />
     <Compile Include="Messaging\SyncJobMessage.cs" />
     <Compile Include="Services\MessagePromptService.cs" />
     <Compile Include="Model\Enum{T}.cs" />
-    <Compile Include="Extensions\ExtensionMethods.cs" />
+    <Compile Include="Extensions\LoggingExtensions.cs" />
     <Compile Include="Extensions\ApiClientExtensions.cs" />
     <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Extensions\LiveTvExtensions.cs" />

@@ -1,5 +1,8 @@
-﻿using MediaBrowser.Model.Dto;
+﻿using System.Collections.Generic;
+using MediaBrowser.Model.Dto;
 using Emby.WindowsPhone.Localisation;
+using MediaBrowser.Model.Entities;
+using MediaBrowser.Model.Search;
 
 namespace Emby.WindowsPhone.Extensions
 {
@@ -55,6 +58,19 @@ namespace Emby.WindowsPhone.Extensions
             {
                 item.UserData.Played = true;
             }
+        }
+
+        public static BaseItemDto ToBaseItemDto(this SearchHint searchHint)
+        {
+            var item = new BaseItemDto
+            {
+                Type = searchHint.Type,
+                Name = searchHint.Name,
+                Id = searchHint.ItemId,
+                ImageTags = string.IsNullOrEmpty(searchHint.PrimaryImageTag) ? null : new Dictionary<ImageType, string> { { ImageType.Primary, searchHint.PrimaryImageTag } }
+            };
+
+            return item;
         }
     }
 }
