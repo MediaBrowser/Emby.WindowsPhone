@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Windows.Storage;
 using Cimbalino.Toolkit.Services;
 using MediaBrowser.ApiInteraction.Data;
 using MediaBrowser.Model.Sync;
@@ -14,12 +16,16 @@ namespace Emby.WindowsPhone.Model.Sync
     {
         private const string ItemsFile = "Cache\\LocalItems.json";
         private readonly IStorageServiceHandler _storageService;
+        private readonly IStorageFolder _storageFolder;
 
         private List<LocalItem> _items;
 
         public ItemRepository(IStorageService storageService)
         {
             _storageService = storageService.Local;
+            _storageFolder = ApplicationData.Current.LocalFolder;
+
+            LoadItems().ConfigureAwait(false);
         }
 
         public async Task AddOrUpdate(LocalItem item)
@@ -140,14 +146,28 @@ namespace Emby.WindowsPhone.Model.Sync
 
         private async Task LoadItems()
         {
-            if (!_items.IsNullOrEmpty())
+            if (_items != null)
             {
                 return;
             }
 
-            var json = await _storageService.ReadStringIfFileExists(ItemsFile);
+            await _storageService.CreateDirectoryIfNotThere("Cache");
+
+            var json = await GetString(ItemsFile);
             var items = await json.DeserialiseAsync<List<LocalItem>>();
             _items = items ?? new List<LocalItem>();
+        }
+
+        private async Task<string> GetString(string path)
+        {
+            try
+            {
+                return await _storageService.ReadAllTextAsync(path);
+            }
+            catch(FileNotFoundException ex)
+            {
+                return string.Empty;
+            }
         }
 
         private async Task SaveItems()
@@ -166,6 +186,11 @@ namespace Emby.WindowsPhone.Model.Sync
         private async Task<List<LocalItem>> GetItemsInternal(Func<LocalItem, bool> func)
         {
             await LoadItems();
+
+            if (!_items.Any())
+            {
+                return new List<LocalItem>();
+            }
 
             var items = _items.Where(func);
             return items.ToList();

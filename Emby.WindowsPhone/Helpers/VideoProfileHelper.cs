@@ -14,6 +14,7 @@ namespace Emby.WindowsPhone.Helpers
         private static DeviceProfile GetWindowsPhoneProfileS4(bool isHls = false)
         {
             var profile = new DeviceProfile();
+            #region Transcoding profiles
             var transcodingProfiles = new List<TranscodingProfile>
             {
                 new TranscodingProfile
@@ -69,7 +70,9 @@ namespace Emby.WindowsPhone.Helpers
             });
 
             profile.TranscodingProfiles = transcodingProfiles.ToArray();
+            #endregion
 
+            #region Direct play Profiles
             profile.DirectPlayProfiles = new[]
             {
                 new DirectPlayProfile
@@ -113,7 +116,14 @@ namespace Emby.WindowsPhone.Helpers
 
                 new DirectPlayProfile
                 {
-                    Container = "mp3,mp4,aac,wma",
+                    Container = "wma",
+                    AudioCodec = "wmav2,wmapro,wmavoice",
+                    Type = DlnaProfileType.Audio
+                },
+
+                new DirectPlayProfile
+                {
+                    Container = "mp3,mp4,aac,wma,wmav2",
                     Type = DlnaProfileType.Audio
                 },
 
@@ -123,11 +133,14 @@ namespace Emby.WindowsPhone.Helpers
                     Type = DlnaProfileType.Photo
                 }
             };
+            #endregion
 
+            #region Codec Profiles
             profile.CodecProfiles = new[]
             {
                 new CodecProfile
                 {
+#region h264 video
                     Type = CodecType.Video,
                     Codec="h264",
                     Conditions = new []
@@ -172,10 +185,12 @@ namespace Emby.WindowsPhone.Helpers
                             Value = "true"
                         }
                     }
+#endregion
                 },
 
                 new CodecProfile
                 {
+#region mpg video
                     Type = CodecType.Video,
                     Codec="mpeg4,msmpeg4,wmv2,wmv3,vc1",
                     Conditions = new []
@@ -213,6 +228,7 @@ namespace Emby.WindowsPhone.Helpers
                             Value = "true"
                         }
                     }
+#endregion
                 },
 
                 new CodecProfile
@@ -238,6 +254,7 @@ namespace Emby.WindowsPhone.Helpers
 
                 new CodecProfile
                 {
+                    Container = "mp3",
                     Type = CodecType.Audio,
                     Conditions = new []
                     {
@@ -248,8 +265,67 @@ namespace Emby.WindowsPhone.Helpers
                             Value = "320000"
                         }
                     }
-                }
+                },
+                new CodecProfile
+                {
+                    Container = "aac",
+                    Type = CodecType.Audio,
+                    Conditions = new []
+                    {
+                        new ProfileCondition
+                        {
+                            Condition = ProfileConditionType.LessThanEqual,
+                            Property = ProfileConditionValue.AudioBitrate,
+                            Value = "320000"
+                        }
+                    }
+                },
+                new CodecProfile
+                {
+                    Container = "wma",
+                    Type = CodecType.Audio,
+                    Conditions = new []
+                    {
+                        new ProfileCondition
+                        {
+                            Condition = ProfileConditionType.LessThanEqual,
+                            Property = ProfileConditionValue.AudioBitrate,
+                            Value = "384000"
+                        }
+                    }
+                },
+                new CodecProfile
+                {
+                    Container = "wma",
+                    Codec = "wmav2",
+                    Type = CodecType.Audio,
+                    Conditions = new []
+                    {
+                        new ProfileCondition
+                        {
+                            Condition = ProfileConditionType.LessThanEqual,
+                            Property = ProfileConditionValue.AudioBitrate,
+                            Value = "384000"
+                        }
+                    }
+                },
+                new CodecProfile
+                {
+                    Container = "wma",
+                    Codec = "wmapro",
+                    Type = CodecType.Audio,
+                    Conditions = new []
+                    {
+                        new ProfileCondition
+                        {
+                            Condition = ProfileConditionType.LessThanEqual,
+                            Property = ProfileConditionValue.AudioBitrate,
+                            Value = "768000"
+                        }
+                    }
+                },
             };
+            #endregion
 
             profile.MaxStreamingBitrate = 20000000;
             profile.MaxStaticBitrate = 20000000;
@@ -260,6 +336,7 @@ namespace Emby.WindowsPhone.Helpers
         private static DeviceProfile GetWindowsPhoneProfileNonS4(bool isHls = false)
         {
             var profile = new DeviceProfile();
+            #region Transcoding Profiles
             var transcodingProfiles = new List<TranscodingProfile>
             {
                 new TranscodingProfile
@@ -315,7 +392,9 @@ namespace Emby.WindowsPhone.Helpers
             });
 
             profile.TranscodingProfiles = transcodingProfiles.ToArray();
+            #endregion
 
+            #region Direct play Profiles
             profile.DirectPlayProfiles = new[]
             {
                 new DirectPlayProfile
@@ -359,6 +438,13 @@ namespace Emby.WindowsPhone.Helpers
 
                 new DirectPlayProfile
                 {
+                    Container = "wma",
+                    AudioCodec = "wmav2,wmapro,wmavoice",
+                    Type = DlnaProfileType.Audio
+                },
+
+                new DirectPlayProfile
+                {
                     Container = "mp3,mp4,aac,wma",
                     Type = DlnaProfileType.Audio
                 },
@@ -369,7 +455,9 @@ namespace Emby.WindowsPhone.Helpers
                     Type = DlnaProfileType.Photo
                 }
             };
+            #endregion
 
+            #region Codec profiles
             profile.CodecProfiles = new[]
             {
                 new CodecProfile
@@ -484,6 +572,7 @@ namespace Emby.WindowsPhone.Helpers
 
                 new CodecProfile
                 {
+                    Container = "mp3",
                     Type = CodecType.Audio,
                     Conditions = new []
                     {
@@ -494,9 +583,68 @@ namespace Emby.WindowsPhone.Helpers
                             Value = "320000"
                         }
                     }
-                }
+                },
+                new CodecProfile
+                {
+                    Container = "aac",
+                    Type = CodecType.Audio,
+                    Conditions = new []
+                    {
+                        new ProfileCondition
+                        {
+                            Condition = ProfileConditionType.LessThanEqual,
+                            Property = ProfileConditionValue.AudioBitrate,
+                            Value = "320000"
+                        }
+                    }
+                },
+                new CodecProfile
+                {
+                    Container = "wma",
+                    Type = CodecType.Audio,
+                    Conditions = new []
+                    {
+                        new ProfileCondition
+                        {
+                            Condition = ProfileConditionType.LessThanEqual,
+                            Property = ProfileConditionValue.AudioBitrate,
+                            Value = "256000"
+                        }
+                    }
+                },
+                new CodecProfile
+                {
+                    Container = "wma",
+                    Codec = "wmav2",
+                    Type = CodecType.Audio,
+                    Conditions = new []
+                    {
+                        new ProfileCondition
+                        {
+                            Condition = ProfileConditionType.LessThanEqual,
+                            Property = ProfileConditionValue.AudioBitrate,
+                            Value = "256000"
+                        }
+                    }
+                },
+                new CodecProfile
+                {
+                    Container = "wma",
+                    Codec = "wmapro",
+                    Type = CodecType.Audio,
+                    Conditions = new []
+                    {
+                        new ProfileCondition
+                        {
+                            Condition = ProfileConditionType.LessThanEqual,
+                            Property = ProfileConditionValue.AudioBitrate,
+                            Value = "256000"
+                        }
+                    }
+                },
             };
-
+            #endregion
+            
             profile.MaxStreamingBitrate = 20000000;
             profile.MaxStaticBitrate = 20000000;
 

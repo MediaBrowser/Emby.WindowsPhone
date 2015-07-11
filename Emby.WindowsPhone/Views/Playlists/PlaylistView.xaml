@@ -10,7 +10,6 @@
                 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
                 xmlns:behaviours="clr-namespace:Emby.WindowsPhone.Behaviours"
                 xmlns:behaviors="clr-namespace:Cimbalino.Toolkit.Behaviors;assembly=Cimbalino.Toolkit"
-                xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
                 xmlns:coding4Fun="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
                 xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
                 xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
@@ -369,6 +368,7 @@
                                 <controls:CustomButton VerticalAlignment="Bottom"
                                                        Grid.Column="0"
                                                        Grid.ColumnSpan="2"
+                                                       TapCommand="{Binding ServerPlaylists.StartShufflePlayCommand, Source={StaticResource Locator}}"
                                                        Style="{StaticResource HeroButtonStyle}"
                                                        Content="{Binding LocalisedResources.LabelPlayShuffle, Source={StaticResource LocalisedStrings}}"
                                                        Grid.Row="1"/>

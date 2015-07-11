@@ -256,6 +256,14 @@ namespace Emby.WindowsPhone.ViewModel
 
         #endregion
 
+        public void KillTimer()
+        {
+            if (_playlistChecker != null && _playlistChecker.IsEnabled)
+            {
+                _playlistChecker.Stop();
+            }
+        }
+
         #region Private methods
 
         private async void PlaylistCheckerOnTick(object sender, EventArgs eventArgs)

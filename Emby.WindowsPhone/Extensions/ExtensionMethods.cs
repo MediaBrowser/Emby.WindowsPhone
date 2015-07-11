@@ -1,5 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Emby.WindowsPhone.Converters;
+using Emby.WindowsPhone.Helpers;
+using Emby.WindowsPhone.Logging;
+using Emby.WindowsPhone.Model;
 using MediaBrowser.ApiInteraction.Playback;
 using MediaBrowser.Model.ApiClient;
 using MediaBrowser.Model.Dlna;
@@ -7,9 +11,7 @@ using MediaBrowser.Model.Dto;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Logging;
 using MediaBrowser.Model.Search;
-using Emby.WindowsPhone.Helpers;
-using Emby.WindowsPhone.Model;
-using ScottIsAFool.WindowsPhone.Logging;
+using LogLevel = ScottIsAFool.WindowsPhone.Logging.LogLevel;
 
 namespace Emby.WindowsPhone.Extensions
 {
@@ -34,6 +36,7 @@ namespace Emby.WindowsPhone.Extensions
             }
         }
 
+        private static readonly ImageUrlConverter ImageConverter = new ImageUrlConverter();
         internal static async Task<PlaylistItem> ToPlaylistItem(this BaseItemDto item, IApiClient apiClient, IPlaybackManager playbackManager)
         {
             var profile = VideoProfileHelper.GetWindowsPhoneProfile();
@@ -42,15 +45,15 @@ namespace Emby.WindowsPhone.Extensions
                 Profile = profile,
                 ItemId = item.Id,
                 DeviceId = apiClient.DeviceId,
-                MaxBitrate = 128,
                 MediaSources = item.MediaSources
             };
 
-            var streamInfo = await playbackManager.GetAudioStreamInfo(App.ServerInfo.Id, options, false, apiClient);
+            //var streamInfo = await playbackManager.GetAudioStreamInfo(App.ServerInfo.Id, options, true, apiClient);
+            var streamBuilder = new StreamBuilder(new MBLogger());
+            var streamInfo = streamBuilder.BuildAudioItem(options);
 
             var streamUrl = streamInfo.ToUrl(apiClient.GetApiUrl("/"), apiClient.AccessToken);
 
-            var converter = new Converters.ImageUrlConverter();
             return new PlaylistItem
             {
                 Album = item.Album,
@@ -59,8 +62,8 @@ namespace Emby.WindowsPhone.Extensions
                 TrackUrl = streamUrl.Replace(App.ServerInfo.LocalAddress, !string.IsNullOrEmpty(App.ServerInfo.ManualAddress) ? App.ServerInfo.ManualAddress : App.ServerInfo.RemoteAddress),
                 MediaBrowserId = item.Id,
                 IsJustAdded = true,
-                ImageUrl = (string) converter.Convert(item, typeof (string), null, null),
-                BackgroundImageUrl = (string) converter.Convert(item, typeof (string), "backdrop", null),
+                ImageUrl = (string) ImageConverter.Convert(item, typeof (string), null, null),
+                BackgroundImageUrl = (string) ImageConverter.Convert(item, typeof (string), "backdrop", null),
                 RunTimeTicks = item.RunTimeTicks ?? 0
             };
         }

@@ -23,7 +23,7 @@ namespace Emby.WindowsPhone.Services
         private readonly IApplicationSettingsServiceHandler _settingsService;
         private static ILog _logger;
 
-        public AuthenticationResult AuthenticationResult { get; set; }
+        public AuthenticationResult AuthenticationResult { get; private set; }
 
         public static AuthenticationService Current { get; private set; }
 
@@ -64,7 +64,16 @@ namespace Emby.WindowsPhone.Services
 
         private void ApiClientOnUserUpdated(object sender, GenericEventArgs<UserDto> e)
         {
-            Deployment.Current.Dispatcher.BeginInvoke(() => SetUser(e.Argument));
+            Deployment.Current.Dispatcher.BeginInvoke(() =>
+            {
+                SetUser(e.Argument);
+
+                var apiClient = sender as IApiClient;
+                if (apiClient != null)
+                {
+                    SetAccessToken(apiClient.AccessToken);
+                }
+            });
         }
 
         private void ServerInfoServiceOnServerInfoChanged(object sender, ServerInfo serverInfo)
@@ -116,12 +125,12 @@ namespace Emby.WindowsPhone.Services
 
         public void CheckIfUserSignedIn()
         {
-            var user = _settingsService.Get<UserDto>(Constants.Settings.SelectedUserSetting);
+            var user = _settingsService.Get<UserDto>(Constants.Settings.LoggedInUserSetting);
             var oldUser = _settingsService.Get<AuthenticationResult>(Constants.Settings.AuthUserSetting);
 
             if (user != null)
             {
-                LoggedInUser = user;
+                SetUser(user);
             }
 
             if (oldUser != null)
@@ -164,7 +173,7 @@ namespace Emby.WindowsPhone.Services
         public void ClearLoggedInUser()
         {
             LoggedInUser = null;
-            _settingsService.Remove(Constants.Settings.SelectedUserSetting);
+            _settingsService.Remove(Constants.Settings.LoggedInUserSetting);
         }
 
         public async Task SignOut()
@@ -188,7 +197,7 @@ namespace Emby.WindowsPhone.Services
             AuthenticationResult = null;
             _messengerService.SendNotification(Constants.Messages.ClearNowPlayingMsg);
 
-            _settingsService.Remove(Constants.Settings.SelectedUserSetting);
+            _settingsService.Remove(Constants.Settings.LoggedInUserSetting);
             _settingsService.Remove(Constants.Settings.AuthUserSetting);
             _settingsService.Remove(Constants.Settings.DefaultServerConnection);
         }
@@ -246,7 +255,21 @@ namespace Emby.WindowsPhone.Services
 
             LoggedInUser = user;
 
-            _settingsService.Set(Constants.Settings.SelectedUserSetting, LoggedInUser);
+            _settingsService.Set(Constants.Settings.LoggedInUserSetting, LoggedInUser);
+        }
+
+        public void SetAccessToken(string accessToken)
+        {
+            // This is needed for audioplayer to authenticate itself
+            var authInfo = new AuthenticationResult
+            {
+                AccessToken = accessToken,
+                User = LoggedInUser
+            };
+
+            _settingsService.Set(Constants.Settings.AuthUserSetting, authInfo);
+
+            AuthenticationResult = authInfo;
         }
     }
 }
