@@ -39,6 +39,7 @@ namespace Emby.WindowsPhone.ViewModel
     public class VideoPlayerViewModel : ViewModelBase
     {
         private readonly IPlaybackManager _playbackManager;
+        private readonly NowPlayingViewModel _nowPlayingViewModel;
         private readonly DispatcherTimer _timer;
 
         private bool _isResume;
@@ -56,10 +57,12 @@ namespace Emby.WindowsPhone.ViewModel
         public VideoPlayerViewModel(
             IConnectionManager connectionManager,
             INavigationService navigationService, 
-            IPlaybackManager playbackManager)
+            IPlaybackManager playbackManager,
+            NowPlayingViewModel nowPlayingViewModel)
             : base(navigationService, connectionManager)
         {
             _playbackManager = playbackManager;
+            _nowPlayingViewModel = nowPlayingViewModel;
             _timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(10) };
             _timer.Tick += TimerOnTick;
         }
@@ -584,6 +587,8 @@ namespace Emby.WindowsPhone.ViewModel
         {
             try
             {
+                _nowPlayingViewModel.KillTimer();
+
                 if (BackgroundAudioPlayer.Instance.PlayerState == PlayState.Playing)
                 {
                     BackgroundAudioPlayer.Instance.Stop();
