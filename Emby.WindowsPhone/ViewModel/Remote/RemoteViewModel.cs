@@ -424,7 +424,7 @@ namespace Emby.WindowsPhone.ViewModel.Remote
             {
                 var tileData = new ShellTileServiceFlipTileData
                 {
-                    Title = "MB " + AppResources.LabelRemote,
+                    Title = "Emby " + AppResources.LabelRemote,
                     BackgroundImage = App.SpecificSettings.UseTransparentTile ? new Uri("/Assets/Tiles/MBRemoteTileTransparent.png", UriKind.Relative) : new Uri("/Assets/Tiles/MBRemoteTile.png", UriKind.Relative)
                 };
 

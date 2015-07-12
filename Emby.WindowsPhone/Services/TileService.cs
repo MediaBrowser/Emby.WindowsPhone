@@ -137,7 +137,7 @@ namespace Emby.WindowsPhone.Services
             {
                 tileData = new ShellTileServiceFlipTileData
                 {
-                    Title = "MB " + AppResources.LabelRemote,
+                    Title = "Emby " + AppResources.LabelRemote,
                     BackgroundImage = App.SpecificSettings.UseTransparentTile ? new Uri("/Assets/Tiles/MBRemoteTileTransparent.png", UriKind.Relative) : new Uri("/Assets/Tiles/MBRemoteTile.png", UriKind.Relative)
                 };
 
@@ -149,7 +149,7 @@ namespace Emby.WindowsPhone.Services
             {
                 tileData = new ShellTileServiceFlipTileData
                 {
-                    Title = "MB " + AppResources.LabelLiveTv,
+                    Title = "Emby " + AppResources.LabelLiveTv,
                     BackgroundImage = App.SpecificSettings.UseTransparentTile ? new Uri("/Assets/Tiles/MBLiveTVTileTransparent.png", UriKind.Relative) : new Uri("/Assets/Tiles/MBLiveTVTile.png", UriKind.Relative)
                 };
 
