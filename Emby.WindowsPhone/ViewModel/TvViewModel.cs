@@ -41,7 +41,7 @@ namespace Emby.WindowsPhone.ViewModel
         /// <summary>
         /// Initializes a new instance of the TvViewModel class.
         /// </summary>
-        public TvViewModel(INavigationService navigationService, IConnectionManager connectionManager, IMessageBoxService messageBox) 
+        public TvViewModel(INavigationService navigationService, IConnectionManager connectionManager, IMessageBoxService messageBox)
             : base(navigationService, connectionManager)
         {
             _messageBox = messageBox;
@@ -106,7 +106,7 @@ namespace Emby.WindowsPhone.ViewModel
                 }
             });
 
-            Messenger.Default.Register<SyncNotificationMessage>(this, m =>
+            Messenger.Default.Register<SyncNotificationMessage>(this, async m =>
             {
                 if (m.Notification.Equals(Constants.Messages.SyncJobFinishedMsg))
                 {
@@ -115,7 +115,11 @@ namespace Emby.WindowsPhone.ViewModel
                         case "episode":
                             if (SelectedEpisode != null && SelectedEpisode.Id == m.ItemId)
                             {
-                                SelectedEpisode.IsSynced = true;
+                                var episode = await RefreshItem(SelectedEpisode.Id);
+                                if (episode != null)
+                                {
+                                    SelectedEpisode = episode;
+                                }
                             }
 
                             if (!Episodes.IsNullOrEmpty())
@@ -123,14 +127,18 @@ namespace Emby.WindowsPhone.ViewModel
                                 var episode = Episodes.FirstOrDefault(x => x.Id == m.ItemId);
                                 if (episode != null)
                                 {
-                                    episode.IsSynced = true;
+                                    SelectedEpisode.CopyItem(episode);
                                 }
                             }
                             break;
                         case "season":
                             if (SelectedSeason != null)
                             {
-                                SelectedSeason.IsSynced = true;
+                                var season = await RefreshItem(SelectedSeason.Id);
+                                if (season != null)
+                                {
+                                    SelectedSeason = season;
+                                }
                             }
 
                             if (!Seasons.IsNullOrEmpty())
@@ -138,19 +146,41 @@ namespace Emby.WindowsPhone.ViewModel
                                 var season = Seasons.FirstOrDefault(x => x.Id == m.ItemId);
                                 if (season != null)
                                 {
-                                    season.IsSynced = true;
+                                    SelectedSeason.CopyItem(season);
                                 }
                             }
                             break;
                         case "series":
                             if (SelectedTvSeries != null)
                             {
-                                SelectedTvSeries.IsSynced = true;
+                                var show = await RefreshItem(SelectedTvSeries.Id);
+                                if (show != null)
+                                {
+                                    SelectedTvSeries = show;
+                                }
                             }
                             break;
                     }
                 }
             });
+        }
+
+        private async Task<BaseItemDto> RefreshItem(string itemId)
+        {
+            try
+            {
+                var item = await ApiClient.GetItemAsync(itemId, AuthenticationService.Current.LoggedInUserId);
+                if (item != null)
+                {
+                    return item;
+                }
+            }
+            catch (HttpException ex)
+            {
+                Log.ErrorException("RefreshEpisode", ex);
+            }
+
+            return null;
         }
 
         private void WireCommands()
@@ -216,7 +246,7 @@ namespace Emby.WindowsPhone.ViewModel
 
             EpisodePageLoaded = new RelayCommand(async () =>
             {
-                
+
             });
 
             NextEpisodeCommand = new RelayCommand(() =>
@@ -247,8 +277,8 @@ namespace Emby.WindowsPhone.ViewModel
             {
                 try
                 {
-                    SetProgressBar(AppResources.SysTrayAddingToFavourites); 
-                    
+                    SetProgressBar(AppResources.SysTrayAddingToFavourites);
+
                     CanUpdateFavourites = false;
 
                     item.UserData = await ApiClient.UpdateFavoriteStatusAsync(item.Id, AuthenticationService.Current.LoggedInUserId, !item.UserData.IsFavorite);
@@ -343,7 +373,7 @@ namespace Emby.WindowsPhone.ViewModel
         {
             try
             {
-                var query = Utils.GetRecentItemsQuery(SelectedTvSeries.Id, new[] {"Season"});
+                var query = Utils.GetRecentItemsQuery(SelectedTvSeries.Id, new[] { "Season" });
 
                 Log.Info("Getting recent items for TV Show [{0}] ({1})", SelectedTvSeries.Name, SelectedTvSeries.Id);
 
@@ -489,7 +519,7 @@ namespace Emby.WindowsPhone.ViewModel
 
                     SetProgressBar();
                 }
-                
+
                 if (SelectedEpisode != null)
                 {
                     SelectedEpisode = Episodes.FirstOrDefault(x => x.IndexNumber == index);

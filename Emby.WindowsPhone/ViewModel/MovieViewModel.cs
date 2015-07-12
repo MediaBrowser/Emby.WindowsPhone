@@ -295,10 +295,29 @@ namespace Emby.WindowsPhone.ViewModel
                 {
                     if (m.ItemType.Equals("Movie") && SelectedMovie != null && SelectedMovie.Id == m.ItemId)
                     {
-                        SelectedMovie.IsSynced = true;
+                        RefreshMovie().ConfigureAwait(false);
                     }
                 }
             });
+        }
+
+        private async Task RefreshMovie()
+        {
+            try
+            {
+                if (SelectedMovie != null)
+                {
+                    var movie = await ApiClient.GetItemAsync(SelectedMovie.Id, AuthenticationService.Current.LoggedInUserId);
+                    if (movie != null)
+                    {
+                        SelectedMovie = movie;
+                    }
+                }
+            }
+            catch (HttpException ex)
+            {
+                Log.ErrorException("RefreshMovie", ex);
+            }
         }
     }
 }

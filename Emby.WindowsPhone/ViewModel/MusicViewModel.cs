@@ -124,18 +124,37 @@ namespace Emby.WindowsPhone.ViewModel
                         case "artist":
                             if (SelectedArtist != null && SelectedArtist.Id == m.ItemId)
                             {
-                                SelectedArtist.IsSynced = true;
+                                RefreshArtist().ConfigureAwait(false);
                             }
                             break;
                         case "album":
                             if (SelectedAlbum != null && SelectedAlbum.Id == m.ItemId)
                             {
-                                SelectedAlbum.IsSynced = true;
+                                RefreshAlbum().ConfigureAwait(false);
                             }
                             break;
                     }
                 }
             });
+        }
+
+        private async Task RefreshArtist()
+        {
+            try
+            {
+                if (SelectedArtist != null)
+                {
+                    var artist = await ApiClient.GetItemAsync(SelectedArtist.Id, AuthenticationService.Current.LoggedInUserId);
+                    if (artist != null)
+                    {
+                        SelectedArtist = artist;
+                    }
+                }
+            }
+            catch (HttpException ex)
+            {
+                Log.ErrorException("RefreshArtist()", ex);
+            }
         }
 
         private void WireCommands()
@@ -356,7 +375,7 @@ namespace Emby.WindowsPhone.ViewModel
             }
             catch (HttpException ex)
             {
-                Utils.HandleHttpException(ex, "RefreshAlbum", NavigationService, Log);
+                Log.ErrorException("RefreshAlbum", ex);
             }
         }
 
