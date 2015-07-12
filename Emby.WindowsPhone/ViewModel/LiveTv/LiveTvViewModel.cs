@@ -168,7 +168,7 @@ namespace Emby.WindowsPhone.ViewModel.LiveTv
             {
                 var tileData = new ShellTileServiceFlipTileData
                 {
-                    Title = "MB " + AppResources.LabelLiveTv,
+                    Title = "Emby " + AppResources.LabelLiveTv,
                     BackgroundImage = App.SpecificSettings.UseTransparentTile? new Uri("/Assets/Tiles/MBLiveTVTileTransparent.png", UriKind.Relative) : new Uri("/Assets/Tiles/MBLiveTVTile.png", UriKind.Relative)
                 };
 
