@@ -133,6 +133,15 @@ namespace Emby.WindowsPhone.Localisation {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to currently downloading.
+        /// </summary>
+        public static string AppBarCurrentlyDownloading {
+            get {
+                return ResourceManager.GetString("AppBarCurrentlyDownloading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to delete.
         /// </summary>
         public static string AppBarDelete {

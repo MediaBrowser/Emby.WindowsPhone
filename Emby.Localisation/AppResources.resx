@@ -1326,4 +1326,7 @@
   <data name="SysTrayGettingClients" xml:space="preserve">
     <value>Getting clients...</value>
   </data>
+  <data name="AppBarCurrentlyDownloading" xml:space="preserve">
+    <value>currently downloading</value>
+  </data>
 </root>

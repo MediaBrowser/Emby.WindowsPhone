@@ -39,6 +39,10 @@
                                                     Command="{Binding RefreshCommand}"
                                                     IsEnabled="{Binding ProgressIsVisible, Converter={StaticResource NegativeBooleanConverter}}"/>
             </behaviors:ApplicationBarBehavior.Buttons>
+            <behaviors:ApplicationBarBehavior.MenuItems>
+                <behaviors:ApplicationBarMenuItem Text="{Binding LocalisedResources.AppBarCurrentlyDownloading, Source={StaticResource LocalisedStrings}}"
+                                                  Command="{Binding NavigateToCurrentDownloadsCommand}"/>
+            </behaviors:ApplicationBarBehavior.MenuItems>
         </behaviors:ApplicationBarBehavior>
     </i:Interaction.Behaviors>
 
