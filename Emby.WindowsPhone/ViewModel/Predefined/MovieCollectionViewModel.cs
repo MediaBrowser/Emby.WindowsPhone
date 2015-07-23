@@ -309,6 +309,8 @@ namespace Emby.WindowsPhone.ViewModel.Predefined
         {
             if (itemResponse == null)
             {
+                SetProgressBar();
+
                 return false;
             }
 
@@ -413,6 +415,9 @@ namespace Emby.WindowsPhone.ViewModel.Predefined
 
                 return true;
             }
+
+            SetProgressBar();
+
             return false;
         }
 
