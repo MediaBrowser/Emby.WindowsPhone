@@ -155,6 +155,9 @@
     <Compile Include="Controls\ScrollableTextBlock.cs" />
     <Compile Include="Controls\Played.cs" />
     <Compile Include="Controls\AsyncMessageBox.cs" />
+    <Compile Include="Controls\SyncedControl.xaml.cs">
+      <DependentUpon>SyncedControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\SyncOptionsControl.xaml.cs">
       <DependentUpon>SyncOptionsControl.xaml</DependentUpon>
     </Compile>
@@ -594,6 +597,10 @@
     <Page Include="Controls\LogFileView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\SyncedControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\SyncOptionsControl.xaml">
       <SubType>Designer</SubType>
