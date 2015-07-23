@@ -51,7 +51,7 @@ namespace Emby.WindowsPhone.Converters
                     return string.Format("/Images/Remote/Clients/{0}.png", imageUrl);
                 case "mb-classic":
                     return "/Images/Remote/Clients/mbc.png";
-                case "media browser theater":
+                case "emby theater":
                     return "/Images/Remote/Clients/mb.png";
                 case "android":
                     return "/Images/Remote/Clients/android.png";
