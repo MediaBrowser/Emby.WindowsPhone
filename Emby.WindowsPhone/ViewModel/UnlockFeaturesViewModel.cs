@@ -20,12 +20,12 @@ namespace Emby.WindowsPhone.ViewModel
             {
                 return new RelayCommand(async () =>
                 {
-                    if (await TrialHelper.Current.Buy())
-                    {
-                        Log.Info("In-App purchase bought");
-                        App.ShowMessage(AppResources.MessageUpgradeSuccessful);
-                        _navigationService.GoBack();
-                    }
+                    //if (await TrialHelper.Current.Buy())
+                    //{
+                    //    Log.Info("In-App purchase bought");
+                    //    App.ShowMessage(AppResources.MessageUpgradeSuccessful);
+                    //    _navigationService.GoBack();
+                    //}
                 });
             }
         }
