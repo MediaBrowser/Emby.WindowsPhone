@@ -1,87 +1,40 @@
-﻿using System;
-using System.Threading.Tasks;
-using Windows.ApplicationModel.Store;
-using Cimbalino.Toolkit.Services;
-using GalaSoft.MvvmLight;
+﻿using Cimbalino.Toolkit.Services;
+#if !TRIAL
+using Microsoft.Phone.Marketplace;
+#endif
+using System;
 using Microsoft.Phone.Controls;
-using ScottIsAFool.WindowsPhone.Logging;
-using INavigationService = Emby.WindowsPhone.Model.Interfaces.INavigationService;
+using Microsoft.Phone.Tasks;
 
 namespace Emby.WindowsPhone.Services
 {
-    public class TrialHelper : ObservableObject
+    public class TrialHelper
     {
-        private readonly INavigationService _navigationService;
         private const string VideoItem = "VideoItem";
+        private static TrialHelper _current;
         private readonly IApplicationSettingsServiceHandler _settings;
-        private readonly ILog _logger;
 
-        public TrialHelper(INavigationService navigationService, IApplicationSettingsService applicationSettings)
+        public TrialHelper()
         {
-            _navigationService = navigationService;
-            _settings = applicationSettings.Legacy;
+            _settings = new ApplicationSettingsService().Legacy;
 #if TRIAL
             IsTrial = true;
 #else
-            CheckLicences().ConfigureAwait(false);
+            IsTrial = new LicenseInformation().IsTrial();
+            _settings.Set(Constants.Settings.AppIsBought, !IsTrial);
 #endif
-            _logger = new WPLogger(GetType());
-
-            Current = this;
         }
 
-        private Task CheckLicences()
+        public static TrialHelper Current
         {
-            try
-            {
-#if BETA
-                var freeLicence = CurrentApp.LicenseInformation.ProductLicenses[Constants.RemoveAdsProductFree + "Beta"];
-                var paidLicence = CurrentApp.LicenseInformation.ProductLicenses[Constants.RemoveAdsProduct + "Beta"];
-#else
-                var freeLicence = CurrentApp.LicenseInformation.ProductLicenses[Constants.RemoveAdsProductFree];
-                var paidLicence = CurrentApp.LicenseInformation.ProductLicenses[Constants.RemoveAdsProduct];
-#endif
-                var iapPurchased = _settings.Get(Constants.Settings.IAPPurchased, false);
-                IsTrial = !(iapPurchased || freeLicence.IsActive || paidLicence.IsActive);
-                _settings.Set(Constants.Settings.IAPPurchased, !IsTrial);
-            }
-            catch
-            {
-                var iapPurchased = _settings.Get(Constants.Settings.IAPPurchased, false);
-                IsTrial = !iapPurchased;
-            }
-
-            return Task.FromResult(0);
+            get { return _current ?? (_current = new TrialHelper()); }
         }
-
-        public static TrialHelper Current { get; private set; }
 
         public bool IsTrial { get; private set; }
 
-        public async Task<bool> Buy()
+        public void Buy()
         {
-            try
-            {
-                var isBought = _settings.Get(Constants.Settings.AppIsBought, false);
-                var licenceId = isBought ? Constants.RemoveAdsProductFree : Constants.RemoveAdsProduct;
-
-#if BETA
-                licenceId += "Beta";
-#endif
-
-                await CurrentApp.RequestProductPurchaseAsync(licenceId, false);
-
-                IsTrial = false;
-                _settings.Set(Constants.Settings.IAPPurchased, !IsTrial);
-
-                return true;
-            }
-            catch
-            {
-                _logger.Info("User most likely cancelled purchased");
-            }
-
-            return false;
+            new MarketplaceDetailTask().Show();
         }
 
         public bool CanPlayVideo(string id)
@@ -125,7 +78,7 @@ namespace Emby.WindowsPhone.Services
             {
                 if (e.Result == CustomMessageBoxResult.LeftButton)
                 {
-                    _navigationService.Navigate("");
+                    Buy();
                 }
             };
 
@@ -134,7 +87,7 @@ namespace Emby.WindowsPhone.Services
 
         public bool CanRemoteControl(string deviceType)
         {
-            return !IsTrial || deviceType.ToLower().Equals("emby web client");
+            return !IsTrial || deviceType.ToLower().Equals("dashboard");
         }
 
         public class TrialVideoItem

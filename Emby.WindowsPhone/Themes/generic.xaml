@@ -1,52 +1,54 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:Emby.WindowsPhone.Controls"
-                    xmlns:converter="clr-namespace:Emby.WindowsPhone.Converters"
                     xmlns:controls="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
-                    xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
+                    xmlns:converter="clr-namespace:Emby.WindowsPhone.Converters"
                     xmlns:converters="clr-namespace:ScottIsAFool.WindowsPhone.Converters;assembly=ScottIsAFool.WindowsPhone"
-                    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
-                    xmlns:system="clr-namespace:System;assembly=mscorlib">
-    
-    <!-- Converters -->
+                    xmlns:local="clr-namespace:Emby.WindowsPhone.Controls"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib"
+                    xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
+                    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit">
+
+    <!--  Converters  -->
     <converter:LoggedInDateConverter x:Key="LoggedInDateConverter" />
     <converters:NullVisibilityConverter x:Key="NullVisibilityConverter" />
-    <converters:NullVisibilityConverter Inverted="True"
-                                        x:Key="InvertedNullVisibilityConverter" />
+    <converters:NullVisibilityConverter x:Key="InvertedNullVisibilityConverter" Inverted="True" />
 
     <Style TargetType="local:EmbyLogo">
-        <Setter Property="HorizontalAlignment"
-                Value="Stretch" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:EmbyLogo">
-                    <StackPanel Orientation="Horizontal"
+                    <StackPanel Height="24"
+                                Margin="12,0"
                                 VerticalAlignment="Top"
-                                Height="24"
-                                Margin="12,0">
-                        <Image Source="/Images/LogoNoPadding.png"
+                                Orientation="Horizontal">
+                        <Image Height="24"
                                VerticalAlignment="Center"
-                               Height="24" />
-                        <StackPanel Orientation="Horizontal"
+                               Source="/Images/LogoNoPadding.png" />
+                        <StackPanel Margin="0,5,0,0"
                                     VerticalAlignment="Center"
+                                    Orientation="Horizontal"
                                     Tag="{TemplateBinding AltText}"
-                                    Visibility="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource InvertedNullVisibilityConverter}}"
-                                    Margin="0,5,0,0">
-                            <TextBlock Text="emby"
+                                    Visibility="{Binding Tag,
+                                                         RelativeSource={RelativeSource Self},
+                                                         Converter={StaticResource InvertedNullVisibilityConverter}}">
+                            <TextBlock Margin="6,0,0,0"
+                                       VerticalAlignment="Center"
+                                       FontFamily="Arial Narrow"
                                        Foreground="{StaticResource PhoneForegroundBrush}"
                                        Style="{StaticResource PhoneTextNormalStyle}"
-                                       VerticalAlignment="Center"
-                                       Margin="6,0,0,0"
-                                       FontFamily="Arial Narrow" />
+                                       Text="emby" />
                         </StackPanel>
-                        <TextBlock Text="{TemplateBinding AltText}"
+                        <TextBlock Margin="6,0,0,0"
+                                   VerticalAlignment="Center"
+                                   FontFamily="Arial Narrow"
+                                   FontSize="21.333"
                                    Foreground="{StaticResource EmbyGreenBrush}"
                                    Style="{StaticResource PhoneTextNormalStyle}"
-                                   Margin="6,0,0,0"
-                                   VerticalAlignment="Center"
-                                   FontSize="21.333"
-                                   FontFamily="Arial Narrow"
-                                   Visibility="{Binding Text, RelativeSource={RelativeSource Self}, Converter={StaticResource NullVisibilityConverter}}" />
+                                   Text="{TemplateBinding AltText}"
+                                   Visibility="{Binding Text,
+                                                        RelativeSource={RelativeSource Self},
+                                                        Converter={StaticResource NullVisibilityConverter}}" />
                     </StackPanel>
                 </ControlTemplate>
             </Setter.Value>
@@ -54,22 +56,18 @@
     </Style>
 
     <Style TargetType="local:ScrollableTextBlock">
-        <Setter Property="Foreground"
-                Value="{StaticResource PhoneForegroundBrush}" />
-        <Setter Property="Background"
-                Value="Transparent" />
-        <Setter Property="FontSize"
-                Value="{StaticResource PhoneFontSizeMedium}" />
-        <Setter Property="Padding"
-                Value="0" />
+        <Setter Property="Foreground" Value="{StaticResource PhoneForegroundBrush}" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeMedium}" />
+        <Setter Property="Padding" Value="0" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:ScrollableTextBlock">
                     <ScrollViewer x:Name="ScrollViewer"
-                                  Foreground="{TemplateBinding Foreground}"
                                   Background="{TemplateBinding Background}"
                                   BorderBrush="{TemplateBinding BorderBrush}"
                                   BorderThickness="{TemplateBinding BorderThickness}"
+                                  Foreground="{TemplateBinding Foreground}"
                                   Padding="{TemplateBinding Padding}">
                         <Grid>
                             <Grid.RowDefinitions>
@@ -77,13 +75,13 @@
                                 <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
 
-                            <ContentControl Content="{TemplateBinding Header}"
+                            <ContentControl HorizontalAlignment="Left"
                                             VerticalAlignment="Top"
-                                            HorizontalAlignment="Left" />
+                                            Content="{TemplateBinding Header}" />
 
-                            <StackPanel Orientation="Vertical"
-                                        x:Name="StackPanel"
-                                        Grid.Row="1" />
+                            <StackPanel x:Name="StackPanel"
+                                        Grid.Row="1"
+                                        Orientation="Vertical" />
                         </Grid>
 
                     </ScrollViewer>
@@ -96,28 +94,24 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:ProfileBox">
-                    <Grid HorizontalAlignment="Left"
-                          Height="140"
-                          DataContext="{TemplateBinding Profile}"
-                          Background="{TemplateBinding Background}">
+                    <Grid Height="140"
+                          HorizontalAlignment="Left"
+                          Background="{TemplateBinding Background}"
+                          DataContext="{TemplateBinding Profile}">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="PasswordVisibility">
                                 <VisualState x:Name="PasswordShowing">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"
-                                                                       Storyboard.TargetName="passwordStack">
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="passwordStack" Storyboard.TargetProperty="(UIElement.Visibility)">
                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                 <DiscreteObjectKeyFrame.Value>
                                                     <Visibility>Visible</Visibility>
                                                 </DiscreteObjectKeyFrame.Value>
                                             </DiscreteObjectKeyFrame>
                                         </ObjectAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
-                                                                       Storyboard.TargetName="passwordStack">
-                                            <EasingDoubleKeyFrame KeyTime="0"
-                                                                  Value="0" />
-                                            <EasingDoubleKeyFrame KeyTime="0:0:0.5"
-                                                                  Value="1" />
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="passwordStack" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <EasingDoubleKeyFrame KeyTime="0" Value="0" />
+                                            <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1" />
                                         </DoubleAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -127,8 +121,7 @@
                                 <VisualState x:Name="ErrorHidden" />
                                 <VisualState x:Name="ErrorShowing">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"
-                                                                       Storyboard.TargetName="textIncorrectPin">
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="textIncorrectPin" Storyboard.TargetProperty="(UIElement.Visibility)">
                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                 <DiscreteObjectKeyFrame.Value>
                                                     <Visibility>Visible</Visibility>
@@ -143,58 +136,58 @@
                             <ColumnDefinition Width="140" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <Border Background="{StaticResource PhoneAccentBrush}"
-                                Grid.Column="0">
-                            <controls:SuperImage PlaceholderImageSource="/Images/UserLoginDefault.png"
+                        <Border Grid.Column="0" Background="{StaticResource PhoneAccentBrush}">
+                            <controls:SuperImage AutomationProperties.Name="{Binding Name}"
+                                                 PlaceholderImageSource="/Images/UserLoginDefault.png"
                                                  PlaceholderImageStretch="UniformToFill"
                                                  Source="{Binding Converter={StaticResource ImageUrlConverter}}"
-                                                 Stretch="UniformToFill"
-                                                 AutomationProperties.Name="{Binding Name}" />
+                                                 Stretch="UniformToFill" />
                         </Border>
-                        <StackPanel VerticalAlignment="Top"
-                                    Grid.Column="1"
-                                    Orientation="Vertical"
-                                    Height="140">
-                            <TextBlock Text="{Binding Name}"
-                                       Style="{StaticResource PhoneTextLargeStyle}"
+                        <StackPanel Grid.Column="1"
+                                    Height="140"
+                                    VerticalAlignment="Top"
+                                    Orientation="Vertical">
+                            <TextBlock Margin="15,-8,15,0"
                                        VerticalAlignment="Center"
-                                       Margin="15,-8,15,0" />
-                            <TextBlock Text="{Binding LastLoginDate, Converter={StaticResource LoggedInDateConverter}}"
+                                       Style="{StaticResource PhoneTextLargeStyle}"
+                                       Text="{Binding Name}" />
+                            <TextBlock Margin="15,0,0,0"
                                        Style="{StaticResource PhoneTextSubtleStyle}"
-                                       TextWrapping="Wrap"
-                                       Margin="15,0,0,0" />
+                                       Text="{Binding LastLoginDate,
+                                                      Converter={StaticResource LoggedInDateConverter}}"
+                                       TextWrapping="Wrap" />
                             <CheckBox x:Name="chbxSaveUser"
-                                      Visibility="Collapsed"
+                                      Margin="4,-19,0,0"
                                       Content="Stay signed in"
-                                      Margin="4,-19,0,0" />
+                                      Visibility="Collapsed" />
                             <Grid x:Name="passwordStack"
-                                  Visibility="Collapsed"
+                                  Margin="4,0,0,15"
                                   HorizontalAlignment="Stretch"
                                   VerticalAlignment="Top"
-                                  Margin="4,0,0,15">
+                                  Visibility="Collapsed">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="5*" />
                                     <ColumnDefinition Width="2*" />
                                 </Grid.ColumnDefinitions>
                                 <PasswordBox x:Name="passwordBox"
-                                             Password="{TemplateBinding Password}"
-                                             VerticalAlignment="Top"
+                                             Grid.Column="0"
                                              HorizontalAlignment="Stretch"
-                                             Grid.Column="0" />
-                                <telerikPrimitives:RadImageButton Grid.Column="1"
-                                                                  ButtonShape="Ellipse"
-                                                                  RestStateImageSource="/Icons/appbar.next.rest.png"
-                                                                  x:Name="loginButton"
-                                                                  BorderThickness="2"
-                                                                  BorderBrush="White"
-                                                                  MinHeight="40"
+                                             VerticalAlignment="Top"
+                                             Password="{TemplateBinding Password}" />
+                                <telerikPrimitives:RadImageButton x:Name="loginButton"
+                                                                  Grid.Column="1"
                                                                   MinWidth="40"
-                                                                  VerticalAlignment="Center" />
+                                                                  MinHeight="40"
+                                                                  VerticalAlignment="Center"
+                                                                  BorderBrush="White"
+                                                                  BorderThickness="2"
+                                                                  ButtonShape="Ellipse"
+                                                                  RestStateImageSource="/Icons/appbar.next.rest.png" />
                             </Grid>
-                            <TextBlock Text="incorrect pin"
-                                       x:Name="textIncorrectPin"
-                                       Foreground="White"
+                            <TextBlock x:Name="textIncorrectPin"
                                        Margin="15,0,0,0"
+                                       Foreground="White"
+                                       Text="incorrect pin"
                                        Visibility="Collapsed" />
                         </StackPanel>
                     </Grid>
@@ -204,42 +197,36 @@
     </Style>
 
     <Style TargetType="local:Played">
-        <Setter Property="Height"
-                Value="40" />
-        <Setter Property="Width"
-                Value="40" />
-        <Setter Property="HorizontalAlignment"
-                Value="Left" />
-        <Setter Property="VerticalAlignment"
-                Value="Top" />
-        <Setter Property="Foreground"
-                Value="{StaticResource PhoneAccentBrush}" />
-        <Setter Property="Margin"
-                Value="5" />
+        <Setter Property="Height" Value="40" />
+        <Setter Property="Width" Value="40" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="Foreground" Value="{StaticResource PhoneAccentBrush}" />
+        <Setter Property="Margin" Value="5" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:Played">
-                    <Grid Height="{TemplateBinding Height}"
-                          Width="{TemplateBinding Width}"
+                    <Grid Width="{TemplateBinding Width}"
+                          Height="{TemplateBinding Height}"
                           HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
                           VerticalAlignment="{TemplateBinding VerticalAlignment}">
-                        <Ellipse Fill="Green"
-                                 Stretch="Fill"
-                                 x:Name="TheEllipse" />
+                        <Ellipse x:Name="TheEllipse"
+                                 Fill="Green"
+                                 Stretch="Fill" />
                         <TextBlock x:Name="WatchedPath"
-                                   Text="&#xE10B;"
-                                   Style="{StaticResource PhoneTextNormalStyle}"
-                                   FontFamily="Segoe UI Symbol"
                                    Margin="0"
                                    HorizontalAlignment="Center"
-                                   VerticalAlignment="Center" />
-                        <TextBlock x:Name="UnwatchedText"
-                                   Text="{Binding UserData.UnplayedItemCount}"
-                                   Foreground="White"
+                                   VerticalAlignment="Center"
+                                   FontFamily="Segoe UI Symbol"
                                    Style="{StaticResource PhoneTextNormalStyle}"
+                                   Text="&#xE10B;" />
+                        <TextBlock x:Name="UnwatchedText"
                                    Margin="0,-3,0,0"
                                    HorizontalAlignment="Center"
-                                   VerticalAlignment="Center" />
+                                   VerticalAlignment="Center"
+                                   Foreground="White"
+                                   Style="{StaticResource PhoneTextNormalStyle}"
+                                   Text="{Binding UserData.UnplayedItemCount}" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
@@ -247,43 +234,38 @@
     </Style>
 
     <Style TargetType="local:PlayButton">
-        <Setter Property="HorizontalAlignment"
-                Value="Center" />
-        <Setter Property="VerticalAlignment"
-                Value="Center" />
-        <Setter Property="Height"
-                Value="130" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Height" Value="130" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:PlayButton">
                     <Viewbox Stretch="Uniform">
-                        <Grid Height="130"
-                              Width="130">
-                            <Ellipse Height="130"
+                        <Grid Width="130" Height="130">
+                            <Ellipse x:Name="Background"
                                      Width="130"
-                                     Fill="#83000000"
+                                     Height="130"
                                      HorizontalAlignment="Center"
                                      VerticalAlignment="Center"
-                                     x:Name="Background" />
-                            <Path Data="F1 M 38,0.791664C 58.5496,0.791664 75.2083,17.4504 75.2083,38C 75.2083,58.5496 58.5496,75.2083 38,75.2083C 17.4504,75.2083 0.791662,58.5496 0.791662,38C 0.791662,17.4504 17.4504,0.791664 38,0.791664 Z M 38,5.54166C 20.0738,5.54166 5.54167,20.0738 5.54167,38C 5.54167,55.9262 20.0738,70.4583 38,70.4583C 55.9262,70.4583 70.4583,55.9262 70.4583,38C 70.4583,20.0738 55.9262,5.54166 38,5.54166 Z "
-                                  Height="130"
+                                     Fill="#83000000" />
+                            <Path x:Name="BaseCircle"
                                   Width="130"
-                                  Fill="White"
-                                  x:Name="BaseCircle"
-                                  HorizontalAlignment="Center"
-                                  VerticalAlignment="Center"
+                                  Height="130"
                                   Margin="0"
-                                  Stretch="Fill"
-                                  UseLayoutRounding="False">
-                            </Path>
-                            <Path Data="F1 M 30.0833,22.1667L 50.6665,37.6043L 50.6665,38.7918L 30.0833,53.8333L 30.0833,22.1667 Z "
-                                  Height="49"
-                                  Width="41.576"
-                                  x:Name="Play"
                                   HorizontalAlignment="Center"
-                                  Fill="White"
                                   VerticalAlignment="Center"
+                                  Data="F1 M 38,0.791664C 58.5496,0.791664 75.2083,17.4504 75.2083,38C 75.2083,58.5496 58.5496,75.2083 38,75.2083C 17.4504,75.2083 0.791662,58.5496 0.791662,38C 0.791662,17.4504 17.4504,0.791664 38,0.791664 Z M 38,5.54166C 20.0738,5.54166 5.54167,20.0738 5.54167,38C 5.54167,55.9262 20.0738,70.4583 38,70.4583C 55.9262,70.4583 70.4583,55.9262 70.4583,38C 70.4583,20.0738 55.9262,5.54166 38,5.54166 Z "
+                                  Fill="White"
+                                  Stretch="Fill"
+                                  UseLayoutRounding="False" />
+                            <Path x:Name="Play"
+                                  Width="41.576"
+                                  Height="49"
                                   Margin="6,0,0,0"
+                                  HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"
+                                  Data="F1 M 30.0833,22.1667L 50.6665,37.6043L 50.6665,38.7918L 30.0833,53.8333L 30.0833,22.1667 Z "
+                                  Fill="White"
                                   Stretch="Fill"
                                   UseLayoutRounding="False" />
                         </Grid>
@@ -294,49 +276,43 @@
     </Style>
 
     <Style TargetType="local:ScheduledRecording">
-        <Setter Property="Background"
-                Value="Transparent" />
-        <Setter Property="Foreground"
-                Value="Red" />
-        <Setter Property="HorizontalContentAlignment"
-                Value="Left" />
-        <Setter Property="ProgrammeVisibility"
-                Value="Collapsed" />
-        <Setter Property="SeriesVisibility"
-                Value="Collapsed" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="Red" />
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="ProgrammeVisibility" Value="Collapsed" />
+        <Setter Property="SeriesVisibility" Value="Collapsed" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:ScheduledRecording">
-                    <Viewbox Stretch="Uniform"
-                             HorizontalAlignment="Left">
+                    <Viewbox HorizontalAlignment="Left" Stretch="Uniform">
                         <Grid>
-                            <Grid Background="{TemplateBinding Background}"
-                                  Margin="0"
+                            <Grid Margin="0"
+                                  Background="{TemplateBinding Background}"
                                   Visibility="{TemplateBinding SeriesVisibility}">
-                                <Ellipse Fill="{TemplateBinding Foreground}"
+                                <Ellipse Width="30"
                                          Height="30"
-                                         Width="30"
-                                         Opacity="0.4"
                                          Margin="20,0,0,0"
-                                         HorizontalAlignment="Left" />
-                                <Ellipse Fill="{TemplateBinding Foreground}"
-                                         Height="30"
-                                         Width="30"
-                                         Opacity="0.7"
                                          HorizontalAlignment="Left"
-                                         Margin="10,0,0,0" />
-                                <Ellipse Fill="{TemplateBinding Foreground}"
+                                         Fill="{TemplateBinding Foreground}"
+                                         Opacity="0.4" />
+                                <Ellipse Width="30"
                                          Height="30"
+                                         Margin="10,0,0,0"
                                          HorizontalAlignment="Left"
-                                         Width="30"
-                                         Margin="0" />
+                                         Fill="{TemplateBinding Foreground}"
+                                         Opacity="0.7" />
+                                <Ellipse Width="30"
+                                         Height="30"
+                                         Margin="0"
+                                         HorizontalAlignment="Left"
+                                         Fill="{TemplateBinding Foreground}" />
                             </Grid>
 
-                            <Ellipse Fill="{TemplateBinding Foreground}"
+                            <Ellipse Width="30"
                                      Height="30"
-                                     Width="30"
                                      HorizontalAlignment="Center"
                                      VerticalAlignment="Center"
+                                     Fill="{TemplateBinding Foreground}"
                                      Visibility="{TemplateBinding ProgrammeVisibility}" />
                         </Grid>
                     </Viewbox>
@@ -346,48 +322,35 @@
     </Style>
 
     <Style TargetType="local:CustomMessageBox">
-        <Setter Property="VerticalAlignment"
-                Value="Top" />
-        <Setter Property="HorizontalContentAlignment"
-                Value="Left" />
-        <Setter Property="VerticalContentAlignment"
-                Value="Top" />
-        <Setter Property="FontFamily"
-                Value="{StaticResource PhoneFontFamilyNormal}" />
-        <Setter Property="FontSize"
-                Value="{StaticResource PhoneFontSizeNormal}" />
-        <Setter Property="Foreground"
-                Value="{StaticResource PhoneForegroundBrush}" />
-        <Setter Property="Background"
-                Value="{StaticResource PhoneChromeBrush}" />
-        <Setter Property="Margin"
-                Value="0" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="VerticalContentAlignment" Value="Top" />
+        <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilyNormal}" />
+        <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeNormal}" />
+        <Setter Property="Foreground" Value="{StaticResource PhoneForegroundBrush}" />
+        <Setter Property="Background" Value="{StaticResource PhoneChromeBrush}" />
+        <Setter Property="Margin" Value="0" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:CustomMessageBox">
-                    <Border BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}">
-                        <Grid Background="{TemplateBinding Background}"
-                              HorizontalAlignment="Stretch"
+                    <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid HorizontalAlignment="Stretch"
+                              Background="{TemplateBinding Background}"
                               toolkit:TiltEffect.IsTiltEnabled="True">
                             <VisualStateManager.VisualStateGroups>
                                 <VisualStateGroup x:Name="OrientationStates">
                                     <VisualState x:Name="PortraitUp" />
                                     <VisualState x:Name="LandscapeLeft">
                                         <Storyboard>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MainGrid"
-                                                                           Storyboard.TargetProperty="Margin">
-                                                <DiscreteObjectKeyFrame KeyTime="0"
-                                                                        Value="72,0,0,0" />
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MainGrid" Storyboard.TargetProperty="Margin">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="72,0,0,0" />
                                             </ObjectAnimationUsingKeyFrames>
                                         </Storyboard>
                                     </VisualState>
                                     <VisualState x:Name="LandscapeRight">
                                         <Storyboard>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MainGrid"
-                                                                           Storyboard.TargetProperty="Margin">
-                                                <DiscreteObjectKeyFrame KeyTime="0"
-                                                                        Value="0,0,72,0" />
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MainGrid" Storyboard.TargetProperty="Margin">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="0,0,72,0" />
                                             </ObjectAnimationUsingKeyFrames>
                                         </Storyboard>
                                     </VisualState>
@@ -404,56 +367,55 @@
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
-                                <StackPanel Grid.ColumnSpan="2"
-                                            Margin="0,32,0,0">
+                                <StackPanel Grid.ColumnSpan="2" Margin="0,32,0,0">
                                     <TextBlock x:Name="TitleTextBlock"
-                                               Text="{TemplateBinding Title}"
-                                               Foreground="{TemplateBinding Foreground}"
-                                               Visibility="Collapsed"
                                                Margin="24,13,24,-10"
                                                FontFamily="{StaticResource PhoneFontFamilySemiBold}"
-                                               FontSize="{StaticResource PhoneFontSizeMedium}" />
-                                    <TextBlock x:Name="CaptionTextBlock"
-                                               Text="{TemplateBinding Caption}"
+                                               FontSize="{StaticResource PhoneFontSizeMedium}"
                                                Foreground="{TemplateBinding Foreground}"
-                                               Visibility="Collapsed"
+                                               Text="{TemplateBinding Title}"
+                                               Visibility="Collapsed" />
+                                    <TextBlock x:Name="CaptionTextBlock"
                                                Margin="24,12,24,12"
-                                               FontSize="{StaticResource PhoneFontSizeLarge}"
+                                               HorizontalAlignment="Left"
                                                FontFamily="{StaticResource PhoneFontFamilySemiBold}"
+                                               FontSize="{StaticResource PhoneFontSizeLarge}"
+                                               Foreground="{TemplateBinding Foreground}"
                                                LineHeight="40"
                                                LineStackingStrategy="BlockLineHeight"
+                                               Text="{TemplateBinding Caption}"
                                                TextWrapping="Wrap"
-                                               HorizontalAlignment="Left" />
+                                               Visibility="Collapsed" />
                                     <TextBlock x:Name="MessageTextBlock"
-                                               Text="{TemplateBinding Message}"
-                                               Foreground="{TemplateBinding Foreground}"
                                                Margin="24,15,24,31"
-                                               Visibility="Collapsed"
-                                               FontSize="{StaticResource PhoneFontSizeMedium}"
+                                               HorizontalAlignment="Left"
                                                FontFamily="{StaticResource PhoneFontFamilyNormal}"
+                                               FontSize="{StaticResource PhoneFontSizeMedium}"
+                                               Foreground="{TemplateBinding Foreground}"
                                                LineHeight="26.667"
                                                LineStackingStrategy="BlockLineHeight"
+                                               Text="{TemplateBinding Message}"
                                                TextWrapping="Wrap"
-                                               HorizontalAlignment="Left" />
+                                               Visibility="Collapsed" />
                                     <ContentPresenter Margin="12,0,0,0" />
                                 </StackPanel>
                                 <Button x:Name="LeftButton"
                                         Grid.Row="1"
                                         Grid.Column="0"
-                                        Content="{TemplateBinding LeftButtonContent}"
-                                        IsEnabled="{TemplateBinding IsLeftButtonEnabled}"
-                                        Foreground="{TemplateBinding Foreground}"
-                                        BorderBrush="{TemplateBinding Foreground}"
                                         Margin="12,0,0,12"
+                                        BorderBrush="{TemplateBinding Foreground}"
+                                        Content="{TemplateBinding LeftButtonContent}"
+                                        Foreground="{TemplateBinding Foreground}"
+                                        IsEnabled="{TemplateBinding IsLeftButtonEnabled}"
                                         Visibility="Collapsed" />
                                 <Button x:Name="RightButton"
                                         Grid.Row="1"
                                         Grid.Column="1"
-                                        Content="{TemplateBinding RightButtonContent}"
-                                        IsEnabled="{TemplateBinding IsRightButtonEnabled}"
-                                        Foreground="{TemplateBinding Foreground}"
-                                        BorderBrush="{TemplateBinding Foreground}"
                                         Margin="0,0,12,12"
+                                        BorderBrush="{TemplateBinding Foreground}"
+                                        Content="{TemplateBinding RightButtonContent}"
+                                        Foreground="{TemplateBinding Foreground}"
+                                        IsEnabled="{TemplateBinding IsRightButtonEnabled}"
                                         Visibility="Collapsed" />
                             </Grid>
                         </Grid>
@@ -464,20 +426,20 @@
     </Style>
 
     <Style TargetType="local:NowPlayingBar">
-        <Setter Property="Height"
-                Value="75" />
+        <Setter Property="Height" Value="75" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:NowPlayingBar">
-                    <Grid HorizontalAlignment="Stretch"
-                          VerticalAlignment="Stretch"
+                    <Grid x:Name="MainGrid"
                           Width="480"
-                          Tag="{TemplateBinding ImageUrl}"
-                          x:Name="MainGrid"
-                          Background="{StaticResource MediaBrowserPlainBackground}">
+                          HorizontalAlignment="Stretch"
+                          VerticalAlignment="Stretch"
+                          Background="{StaticResource MediaBrowserPlainBackground}"
+                          Tag="{TemplateBinding ImageUrl}">
                         <Grid x:Name="GridForBackground">
                             <Grid.Background>
-                                <ImageBrush ImageSource="{Binding Tag, ElementName=MainGrid}"
+                                <ImageBrush ImageSource="{Binding Tag,
+                                                                  ElementName=MainGrid}"
                                             Opacity="0.2"
                                             Stretch="UniformToFill" />
                             </Grid.Background>
@@ -490,65 +452,74 @@
                                 <system:String x:Key="MusicCase">./Images/DefaultAlbumCase.png</system:String>
                             </Grid.Resources>
 
-                            <controls:SuperImage Tag="{TemplateBinding ImageUrl}"
-                                                 Source="{Binding Tag, RelativeSource={RelativeSource Self}}"
-                                                 PlaceholderImageSource="{Binding Source={StaticResource MusicCase}}"
-                                                 Height="75"
+                            <controls:SuperImage Grid.Column="0"
                                                  Width="75"
+                                                 Height="75"
                                                  Margin="0"
-                                                 Stretch="Uniform"
-                                                 PlaceholderImageStretch="UniformToFill"
                                                  HorizontalAlignment="Left"
                                                  VerticalAlignment="Top"
-                                                 Grid.Column="0" />
+                                                 PlaceholderImageSource="{Binding Source={StaticResource MusicCase}}"
+                                                 PlaceholderImageStretch="UniformToFill"
+                                                 Source="{Binding Tag,
+                                                                  RelativeSource={RelativeSource Self}}"
+                                                 Stretch="Uniform"
+                                                 Tag="{TemplateBinding ImageUrl}" />
 
-                            <StackPanel Orientation="Vertical"
-                                        Grid.Column="1">
-                                <TextBlock Tag="{TemplateBinding TrackName}"
-                                           Text="{Binding Tag, RelativeSource={RelativeSource Self}, FallbackValue='Song 2'}"
-                                           Style="{StaticResource PhoneTextTitle2Style}" />
-                                <TextBlock Tag="{TemplateBinding Artist}"
-                                           Text="{Binding Tag, RelativeSource={RelativeSource Self}, FallbackValue='Blur'}"
-                                           Style="{StaticResource PhoneTextSubtleStyle}" />
+                            <StackPanel Grid.Column="1" Orientation="Vertical">
+                                <TextBlock Style="{StaticResource PhoneTextTitle2Style}"
+                                           Tag="{TemplateBinding TrackName}"
+                                           Text="{Binding Tag,
+                                                          RelativeSource={RelativeSource Self},
+                                                          FallbackValue='Song 2'}" />
+                                <TextBlock Style="{StaticResource PhoneTextSubtleStyle}"
+                                           Tag="{TemplateBinding Artist}"
+                                           Text="{Binding Tag,
+                                                          RelativeSource={RelativeSource Self},
+                                                          FallbackValue='Blur'}" />
                             </StackPanel>
 
                             <local:CustomButton Grid.Column="2"
-                                                controls:TiltEffect.IsTiltEnabled="True"
-                                                Style="{StaticResource EmptyButtonStyle}"
-                                                TapCommand="{Binding NowPlaying.PlayPauseCommand, Source={StaticResource Locator}}"
-                                                Height="75"
                                                 Width="75"
-                                                Margin="0">
-                                <Border BorderThickness="3"
-                                        BorderBrush="White"
-                                        CornerRadius="50"
+                                                Height="75"
+                                                Margin="0"
+                                                Style="{StaticResource EmptyButtonStyle}"
+                                                TapCommand="{Binding NowPlaying.PlayPauseCommand,
+                                                                     Source={StaticResource Locator}}"
+                                                controls:TiltEffect.IsTiltEnabled="True">
+                                <Border Width="55"
                                         Height="55"
-                                        Width="55"
-                                        Background="#83000000">
+                                        Background="#83000000"
+                                        BorderBrush="White"
+                                        BorderThickness="3"
+                                        CornerRadius="50">
                                     <Grid>
-                                        <Path Width="30"
+                                        <Path x:Name="PausePath"
+                                              Width="30"
                                               Height="30"
-                                              Fill="White"
+                                              Margin="0"
+                                              HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"
                                               Data="F1 M 26.9167,23.75L 33.25,23.75L 33.25,52.25L 26.9167,52.25L 26.9167,23.75 Z M 42.75,23.75L 49.0833,23.75L 49.0833,52.25L 42.75,52.25L 42.75,23.75 Z "
-                                              Margin="0"
-                                              Stretch="Uniform"
-                                              HorizontalAlignment="Center"
-                                              VerticalAlignment="Center"
-                                              Tag="{TemplateBinding IsPlaying}"
-                                              x:Name="PausePath"
-                                              Visibility="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource VisibilityConverter}}" />
-
-                                        <Path Width="30"
-                                              Height="30"
                                               Fill="White"
-                                              Data="F1 M 30.0833,22.1667L 50.6665,37.6043L 50.6665,38.7918L 30.0833,53.8333L 30.0833,22.1667 Z "
-                                              Margin="0"
                                               Stretch="Uniform"
+                                              Tag="{TemplateBinding IsPlaying}"
+                                              Visibility="{Binding Tag,
+                                                                   RelativeSource={RelativeSource Self},
+                                                                   Converter={StaticResource VisibilityConverter}}" />
+
+                                        <Path x:Name="PlayPath"
+                                              Width="30"
+                                              Height="30"
+                                              Margin="0"
                                               HorizontalAlignment="Center"
                                               VerticalAlignment="Center"
+                                              Data="F1 M 30.0833,22.1667L 50.6665,37.6043L 50.6665,38.7918L 30.0833,53.8333L 30.0833,22.1667 Z "
+                                              Fill="White"
+                                              Stretch="Uniform"
                                               Tag="{TemplateBinding IsPlaying}"
-                                              x:Name="PlayPath"
-                                              Visibility="{Binding Tag, RelativeSource={RelativeSource Self}, Converter={StaticResource InvertedVisibilityConverter}}" />
+                                              Visibility="{Binding Tag,
+                                                                   RelativeSource={RelativeSource Self},
+                                                                   Converter={StaticResource InvertedVisibilityConverter}}" />
                                     </Grid>
                                 </Border>
                             </local:CustomButton>
