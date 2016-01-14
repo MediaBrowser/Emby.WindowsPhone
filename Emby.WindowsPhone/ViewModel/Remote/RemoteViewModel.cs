@@ -243,14 +243,15 @@ namespace Emby.WindowsPhone.ViewModel.Remote
             }
         }
 
-        public RelayCommand<bool> AdjustVolumeCommand
+        public RelayCommand<string> AdjustVolumeCommand
         {
             get
             {
-                return new RelayCommand<bool>(async isVolumeUp =>
+                return new RelayCommand<string>(async isVolumeUpString =>
                 {
                     try
                     {
+                        var isVolumeUp = bool.Parse(isVolumeUpString);
                         var command = new GeneralCommand
                         {
                             Name = isVolumeUp ? GeneralCommandType.VolumeUp.ToString() : GeneralCommandType.VolumeDown.ToString()

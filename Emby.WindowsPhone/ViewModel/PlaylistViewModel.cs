@@ -266,6 +266,7 @@ namespace Emby.WindowsPhone.ViewModel
 
         #region Private methods
 
+        private int _errorCount;
         private async void PlaylistCheckerOnTick(object sender, EventArgs eventArgs)
         {
             await GetPlaylistItems();
@@ -276,6 +277,17 @@ namespace Emby.WindowsPhone.ViewModel
             catch (InvalidOperationException)
             {
                 BackgroundAudioPlayer.Instance.Play();
+            }
+            catch (Exception ex)
+            {
+                Log.ErrorException("PlaylistCheckerOnTick()", ex);
+                if (_errorCount == 2)
+                {
+                    KillTimer();
+                    return;
+                }
+
+                _errorCount++;
             }
         }
 

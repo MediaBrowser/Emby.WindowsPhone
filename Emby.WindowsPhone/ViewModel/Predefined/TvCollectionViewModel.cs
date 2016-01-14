@@ -169,7 +169,7 @@ namespace Emby.WindowsPhone.ViewModel.Predefined
                     UserId = AuthenticationService.Current.LoggedInUserId,
                     Fields = new[] { ItemFields.PrimaryImageAspectRatio, ItemFields.ParentId, ItemFields.MediaSources, ItemFields.SyncInfo },
                     ImageTypeLimit = 1,
-                    EnableImageTypes = new []{ImageType.Backdrop, ImageType.Primary}
+                    EnableImageTypes = new[] { ImageType.Backdrop, ImageType.Primary }
                 };
 
                 Log.Info("Getting next up items");
@@ -201,7 +201,7 @@ namespace Emby.WindowsPhone.ViewModel.Predefined
                     Fields = new[] { ItemFields.ParentId },
                     Limit = 30,
                     ImageTypeLimit = 1,
-                    EnableImageTypes = new[] { ImageType.Backdrop, ImageType.Primary}
+                    EnableImageTypes = new[] { ImageType.Backdrop, ImageType.Primary }
                 };
 
                 Log.Info("Getting upcoming items");
@@ -240,7 +240,7 @@ namespace Emby.WindowsPhone.ViewModel.Predefined
                     IsUnaired = App.SpecificSettings.ShowUnairedEpisodes,
                     Recursive = true,
                     ImageTypeLimit = 1,
-                    EnableImageTypes = new[] { ImageType.Backdrop, ImageType.Primary}
+                    EnableImageTypes = new[] { ImageType.Backdrop, ImageType.Primary }
                 };
 
                 Log.Info("Getting next up items");
@@ -275,7 +275,7 @@ namespace Emby.WindowsPhone.ViewModel.Predefined
                     Fields = new[] { ItemFields.DateCreated, ItemFields.SyncInfo },
                     Recursive = true,
                     ImageTypeLimit = 1,
-                    EnableImageTypes = new[] { ImageType.Backdrop, ImageType.Primary}
+                    EnableImageTypes = new[] { ImageType.Backdrop, ImageType.Primary }
                 };
 
                 Log.Info("Getting TV shows");
@@ -310,7 +310,7 @@ namespace Emby.WindowsPhone.ViewModel.Predefined
                     Fields = new[] { ItemFields.DateCreated },
                     UserId = AuthenticationService.Current.LoggedInUserId,
                     ImageTypeLimit = 1,
-                    EnableImageTypes = new[] { ImageType.Backdrop, ImageType.Primary}
+                    EnableImageTypes = new[] { ImageType.Backdrop, ImageType.Primary }
                 };
 
                 var items = await ApiClient.GetGenresAsync(query);
@@ -353,38 +353,41 @@ namespace Emby.WindowsPhone.ViewModel.Predefined
 
         private bool SetLatestUnwatched(ItemsResult itemResponse)
         {
-            SetProgressBar();
-
             if (itemResponse == null || !itemResponse.Items.Any())
             {
+                SetProgressBar();
+
                 return false;
             }
 
             LatestUnwatched = itemResponse.Items.ToList();
+
+            SetProgressBar();
 
             return true;
         }
 
         private bool SetNextUpItems(ItemsResult itemResponse)
         {
-            SetProgressBar();
-
             if (itemResponse == null || !itemResponse.Items.Any())
             {
+                SetProgressBar();
+
                 return false;
             }
 
             NextUpList = itemResponse.Items.ToList();
+
+            SetProgressBar();
 
             return true;
         }
 
         private bool SetUpcomingItems(ItemsResult itemResponse)
         {
-            SetProgressBar();
-
             if (itemResponse == null || !itemResponse.Items.Any())
             {
+                SetProgressBar();
                 return false;
             }
 
@@ -392,10 +395,12 @@ namespace Emby.WindowsPhone.ViewModel.Predefined
             var groupedItems = (from u in upcomingItems
                                 group u by u.PremiereDate.HasValue ? u.PremiereDate.Value.ToLocalTime().Date : DateTime.MinValue
                                     into grp
-                                    orderby grp.Key
-                                    select new Group<BaseItemDto>(Utils.CoolDateName(grp.Key.ToLocalTime().Date), grp)).ToList();
+                                orderby grp.Key
+                                select new Group<BaseItemDto>(Utils.CoolDateName(grp.Key.ToLocalTime().Date), grp)).ToList();
 
             Upcoming = groupedItems;
+
+            SetProgressBar();
 
             return true;
         }

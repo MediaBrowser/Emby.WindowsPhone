@@ -73,48 +73,24 @@ namespace Emby.WindowsPhone.Services
                 case "genre":
                 case "trailercollectionfolder":
                 case "playlistsfolder":
-                case "userview":
-                    var viewType = string.IsNullOrEmpty(item.CollectionType) ? string.Empty : item.CollectionType.ToLower();
-                    switch (viewType)
+                    if (App.SpecificSettings.UseLibraryFolders)
                     {
-                        case "movies":
-                            var moviesVm = SimpleIoc.Default.GetInstance<MovieCollectionViewModel>();
-                            moviesVm.SetParentId(item.Id);
-
-                            NavigateTo(Constants.Pages.Predefined.MovieCollectionView);
-                            break;
-                        case "tvshows":
-                            var tvVm = SimpleIoc.Default.GetInstance<TvCollectionViewModel>();
-                            tvVm.SetParentId(item.Id);
-
-                            NavigateTo(Constants.Pages.Predefined.TvCollectionView);
-                            break;
-                        case "music":
-                            var musicVm = SimpleIoc.Default.GetInstance<MusicCollectionViewModel>();
-                            musicVm.SetParentId(item.Id);
-
-                            NavigateTo(Constants.Pages.Predefined.MusicCollectionView);
-                            break;
-                        case "channels":
-                            NavigateTo(Constants.Pages.Channels.ChannelsView);
-                            break;
-                        case "livetv":
-                            NavigateTo(Constants.Pages.LiveTv.LiveTvView);
-                            break;
-                        case "playlists":
-                            NavigateTo(Constants.Pages.FolderView + item.Id);
-                            break;
-                        default:
-                            if (App.SpecificSettings.JustShowFolderView)
-                            {
-                                NavigateTo(Constants.Pages.FolderView + item.Id);
-                            }
-                            else
-                            {
-                                NavigateTo(Constants.Pages.CollectionView);
-                            }
-                            break;
+                        HandleCollectionNavigation(item);
                     }
+                    else
+                    {
+                        if (App.SpecificSettings.JustShowFolderView)
+                        {
+                            NavigateTo(Constants.Pages.FolderView + item.Id);
+                        }
+                        else
+                        {
+                            NavigateTo(Constants.Pages.CollectionView);
+                        }
+                    }
+                    break;
+                case "userview":
+                    HandleCollectionNavigation(item);
                     break;
                 case "photoalbum":
                 case "folder":
@@ -185,6 +161,51 @@ namespace Emby.WindowsPhone.Services
                         NavigateTo(Constants.Pages.GenericItemView);
                     }
 
+                    break;
+            }
+        }
+
+        private void HandleCollectionNavigation(BaseItemDto item)
+        {
+            var viewType = string.IsNullOrEmpty(item.CollectionType) ? string.Empty : item.CollectionType.ToLower();
+            switch (viewType)
+            {
+                case "movies":
+                    var moviesVm = SimpleIoc.Default.GetInstance<MovieCollectionViewModel>();
+                    moviesVm.SetParentId(item.Id);
+
+                    NavigateTo(Constants.Pages.Predefined.MovieCollectionView);
+                    break;
+                case "tvshows":
+                    var tvVm = SimpleIoc.Default.GetInstance<TvCollectionViewModel>();
+                    tvVm.SetParentId(item.Id);
+
+                    NavigateTo(Constants.Pages.Predefined.TvCollectionView);
+                    break;
+                case "music":
+                    var musicVm = SimpleIoc.Default.GetInstance<MusicCollectionViewModel>();
+                    musicVm.SetParentId(item.Id);
+
+                    NavigateTo(Constants.Pages.Predefined.MusicCollectionView);
+                    break;
+                case "channels":
+                    NavigateTo(Constants.Pages.Channels.ChannelsView);
+                    break;
+                case "livetv":
+                    NavigateTo(Constants.Pages.LiveTv.LiveTvView);
+                    break;
+                case "playlists":
+                    NavigateTo(Constants.Pages.FolderView + item.Id);
+                    break;
+                default:
+                    if (App.SpecificSettings.JustShowFolderView)
+                    {
+                        NavigateTo(Constants.Pages.FolderView + item.Id);
+                    }
+                    else
+                    {
+                        NavigateTo(Constants.Pages.CollectionView);
+                    }
                     break;
             }
         }
