@@ -51,6 +51,9 @@
         <Link NavigateUri="https://github.com/MediaBrowser/Emby.WindowsPhone/issues/new"
               Content="Raise an issue"
               Label="Issues:" />
+        <Link NavigateUri="http://emby.media/privacy"
+              Content="http://emby.media/privacy"
+              Label="Privacy policy:"/>
       </Links>
     </MainItem>
     <!-- For each additional pivot item, add a separate Item entry. Ideas for items are: license, tutorial or help, version history, show room for other apps from you etc. -->
